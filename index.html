@@ -440,6 +440,24 @@
             .empty-state.visible {
                 animation: none;
             }
+            /* Palette+: Disable pop-in animation */
+            .card.pop-in {
+                animation: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
+        /* Palette+: Staggered Entry Animation */
+        @keyframes popIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .card.pop-in {
+            /* Use animation for entry */
+            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0; /* Start invisible */
         }
     </style>
 </head>
@@ -470,6 +488,9 @@
         <p>No agents found matching your search.</p>
         <button class="secondary" style="margin: 1rem auto 0; width: auto;" onclick="clearSearch()">Clear Search</button>
     </div>
+
+    <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
+    <div id="search-announcer" class="sr-only" role="status" aria-live="polite" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;"></div>
 
     <div class="section-header">Core Maintenance (Plus Versions)</div>
     <div class="grid" id="coreGrid"></div>
@@ -1723,6 +1744,8 @@ function filterAgents(query) {
     const cards = document.querySelectorAll('.card');
     const emptyState = document.getElementById('emptyState');
     const clearBtn = document.getElementById('clearBtn');
+    const announcer = document.getElementById('search-announcer');
+
     let visibleCount = 0;
 
     // Toggle Clear Button Visibility
@@ -1732,28 +1755,62 @@ function filterAgents(query) {
         clearBtn.classList.remove('visible');
     }
 
-    // Filter Logic
+    // Filter Logic with Staggered Animation
     cards.forEach(card => {
         const text = card.textContent.toLowerCase();
+
+        // Reset animation class to re-trigger if needed (though mostly handled by display toggle)
+        card.classList.remove('pop-in');
+
         if (text.includes(search)) {
             card.style.display = 'flex';
+
+            // Palette+: Staggered Entry Animation
+            // Trigger reflow to restart animation if it was already there
+            void card.offsetWidth;
+
+            // Only animate if searching or clearing (simple heuristic: if query changed)
+            // Stagger delay based on visible index
+            // Limit stagger to first 20 items to prevent huge delays on clear
+            const delay = Math.min(visibleCount * 30, 600);
+            card.style.animationDelay = `${delay}ms`;
+            card.classList.add('pop-in');
+
             visibleCount++;
         } else {
             card.style.display = 'none';
         }
     });
 
-    // Toggle Empty State Visibility
-    // Hide all headers if searching (optional polish, but keeping headers simple for now)
-    // Just toggle the empty state div
+    // Toggle Empty State Visibility & Smart Headers
     if (visibleCount === 0 && query.length > 0) {
         emptyState.classList.add('visible');
-        // Hide section headers to reduce clutter when empty? 
-        // For now, let's leave them as layout anchors, but could hide them too.
+        // Hide all headers if no results
         document.querySelectorAll('.section-header').forEach(el => el.style.display = 'none');
     } else {
         emptyState.classList.remove('visible');
-        document.querySelectorAll('.section-header').forEach(el => el.style.display = 'block');
+
+        // Smart Headers: Only show headers that have visible cards
+        document.querySelectorAll('.grid').forEach(grid => {
+            // Check for visible children (direct children are cards)
+            const hasVisibleCards = Array.from(grid.children).some(card => card.style.display !== 'none');
+            const header = grid.previousElementSibling;
+
+            if (header && header.classList.contains('section-header')) {
+                header.style.display = hasVisibleCards ? 'block' : 'none';
+            }
+        });
+    }
+
+    // Palette+: A11y Announcement
+    if (announcer) {
+        if (query.length === 0) {
+            announcer.textContent = "";
+        } else if (visibleCount === 0) {
+            announcer.textContent = "No agents found.";
+        } else {
+            announcer.textContent = `Found ${visibleCount} agents.`;
+        }
     }
 }
 
