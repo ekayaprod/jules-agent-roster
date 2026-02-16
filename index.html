@@ -1,624 +1,827 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jules Master Agent Roster</title>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent: #38bdf8;
-            --accent-hover: #0ea5e9;
-            --success: #22c55e;
-            --success-hover: #16a34a;
-            --plus-accent: #a855f7;
-            --monthly-accent: #f59e0b;
-            --power-tag-bg: #334155;
-            --power-tag-text: #cbd5e1;
-            --overseer-tag-bg: #064e3b;
-            --overseer-tag-text: #6ee7b7;
-            --border: #334155;
-            --details-bg: #020617;
-            --scope-sm-bg: #1e1b4b; --scope-sm-text: #818cf8;
-            --scope-md-bg: #172554; --scope-md-text: #60a5fa;
-            --scope-lg-bg: #3f1e16; --scope-lg-text: #fca5a5;
-        }
+      :root {
+        --bg-color: #0f172a;
+        --card-bg: #1e293b;
+        --text-primary: #f8fafc;
+        --text-secondary: #94a3b8;
+        --accent: #38bdf8;
+        --accent-hover: #0ea5e9;
+        --success: #22c55e;
+        --success-hover: #16a34a;
+        --plus-accent: #a855f7;
+        --monthly-accent: #f59e0b;
+        --power-tag-bg: #334155;
+        --power-tag-text: #cbd5e1;
+        --overseer-tag-bg: #064e3b;
+        --overseer-tag-text: #6ee7b7;
+        --border: #334155;
+        --details-bg: #020617;
+        --scope-sm-bg: #1e1b4b;
+        --scope-sm-text: #818cf8;
+        --scope-md-bg: #172554;
+        --scope-md-text: #60a5fa;
+        --scope-lg-bg: #3f1e16;
+        --scope-lg-text: #fca5a5;
+      }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            margin: 0;
-            padding: 1.5rem;
-            line-height: 1.6;
-        }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        margin: 0;
+        padding: 1.5rem;
+        line-height: 1.6;
+      }
 
-        .header {
-            max-width: 1200px;
-            margin: 0 auto 3rem auto;
-            text-align: center;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-        }
+      /* Palette+: Skip Link */
+      .skip-link {
+        position: fixed;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--accent);
+        color: #0f172a;
+        padding: 0.5rem 1rem;
+        border-radius: 0 0 0.5rem 0.5rem;
+        z-index: 9999;
+        font-weight: bold;
+        text-decoration: none;
+        transition: top 0.2s;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
 
-        .header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+      .skip-link:focus {
+        top: 1rem;
+        outline: none;
+      }
 
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-            align-items: center; /* Palette+: Align search wrapper */
-        }
+      .header {
+        max-width: 1200px;
+        margin: 0 auto 3rem auto;
+        text-align: center;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+      }
 
-        /* Palette+: New Search Wrapper for positioning */
-        .search-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 300px;
-        }
+      .header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(to right, #38bdf8, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-        /* Palette+: Absolute positioned Clear Button */
-        .clear-search-btn {
-            position: absolute;
-            right: 0.5rem;
-            top: 50%;
-            transform: translateY(-50%) scale(0.8);
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            padding: 0.25rem;
-            cursor: pointer;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+        align-items: center; /* Palette+: Align search wrapper */
+      }
 
-        .clear-search-btn:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-        }
+      /* Palette+: New Search Wrapper for positioning */
+      .search-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+      }
 
-        .clear-search-btn.visible {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(-50%) scale(1);
-        }
+      /* Palette+: Absolute positioned Clear Button */
+      .clear-search-btn {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%) scale(0.8);
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        padding: 0.25rem;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
 
-        button {
-            background-color: var(--accent);
-            color: #0f172a;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
+      .clear-search-btn:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-primary);
+      }
 
-        button:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-1px);
-        }
+      .clear-search-btn.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(-50%) scale(1);
+      }
 
-        button:active {
-            transform: scale(0.97);
-        }
+      button {
+        background-color: var(--accent);
+        color: #0f172a;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        position: relative;
+        overflow: hidden;
+      }
 
-        button.secondary {
-            background-color: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-            width: 100%;
-            justify-content: center;
-        }
+      button:hover {
+        background-color: var(--accent-hover);
+        transform: translateY(-1px);
+      }
 
-        button.secondary:hover {
-            border-color: var(--accent);
-        }
+      button:active {
+        transform: scale(0.97);
+      }
 
-        button.success-state {
-            background-color: var(--success) !important;
-            color: white !important;
-            border-color: var(--success) !important;
-        }
-        
-        button.secondary.success-state {
-            background-color: var(--success) !important;
-        }
+      button.secondary {
+        background-color: var(--card-bg);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+        width: 100%;
+        justify-content: center;
+      }
 
-        input[type="text"] {
-            padding: 0.75rem;
-            padding-right: 2.5rem; /* Palette+: Space for X button */
-            border-radius: 0.5rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            width: 100%;
-            font-size: 1rem;
-            transition: border-color 0.2s;
-        }
+      button.secondary:hover {
+        border-color: var(--accent);
+      }
 
-        input[type="text"]:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
+      button.success-state {
+        background-color: var(--success) !important;
+        color: white !important;
+        border-color: var(--success) !important;
+      }
 
-        .section-header {
-            max-width: 1200px;
-            margin: 3rem auto 1rem auto;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.9rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.5rem;
-        }
+      button.secondary.success-state {
+        background-color: var(--success) !important;
+      }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+      input[type="text"] {
+        padding: 0.75rem;
+        padding-right: 2.5rem; /* Palette+: Space for X button */
+        border-radius: 0.5rem;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        color: var(--text-primary);
+        width: 100%;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+      }
 
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.2s;
-            position: relative;
-            overflow: hidden;
-        }
+      input[type="text"]:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
 
-        .card:hover {
-            border-color: var(--text-secondary);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-        }
+      .section-header {
+        max-width: 1200px;
+        margin: 3rem auto 1rem auto;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.9rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.5rem;
+      }
 
-        /* Type Indicators */
-        .card.plus-agent::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--plus-accent); }
-        .card.plus-agent .role-tag { color: var(--plus-accent); background-color: rgba(168, 85, 247, 0.1); }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
 
-        .card.monthly-agent::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--monthly-accent); }
-        .card.monthly-agent .role-tag { color: var(--monthly-accent); background-color: rgba(245, 158, 11, 0.1); }
+      .card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
+      .card:hover {
+        border-color: var(--text-secondary);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      }
 
-        .title-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
+      /* Type Indicators */
+      .card.plus-agent::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background-color: var(--plus-accent);
+      }
+      .card.plus-agent .role-tag {
+        color: var(--plus-accent);
+        background-color: rgba(168, 85, 247, 0.1);
+      }
 
-        .agent-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 0; /* Palette+: Reset margin for h3 */
-        }
+      .card.monthly-agent::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background-color: var(--monthly-accent);
+      }
+      .card.monthly-agent .role-tag {
+        color: var(--monthly-accent);
+        background-color: rgba(245, 158, 11, 0.1);
+      }
 
-        .role-tag {
-            font-size: 0.75rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 999px;
-            background-color: rgba(56, 189, 248, 0.1);
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 600;
-            align-self: flex-start;
-        }
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
 
-        .tag-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
+      .title-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
 
-        .meta-tag {
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 4px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-family: monospace;
-            letter-spacing: 0.05em;
-        }
+      .agent-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0; /* Palette+: Reset margin for h3 */
+      }
 
-        .scope-small { background: var(--scope-sm-bg); color: var(--scope-sm-text); }
-        .scope-medium { background: var(--scope-md-bg); color: var(--scope-md-text); }
-        .scope-large { background: var(--scope-lg-bg); color: var(--scope-lg-text); }
-        
-        .power-tag { background-color: var(--power-tag-bg); color: var(--power-tag-text); padding: 2px 6px; border-radius: 4px; font-size: 0.7rem;}
+      .role-tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 999px;
+        background-color: rgba(56, 189, 248, 0.1);
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+        align-self: flex-start;
+      }
 
-        .description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            flex-grow: 1;
-            line-height: 1.5;
-        }
-        
-        /* Diff List Styling */
-        .diff-list {
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            list-style: none;
-            padding: 0;
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 6px;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-        }
-        
-        .diff-item {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-            align-items: baseline;
-        }
-        
-        .diff-item:last-child { margin-bottom: 0; }
-        
-        .diff-icon {
-            font-weight: bold;
-            flex-shrink: 0;
-            font-family: monospace;
-        }
-        
-        .diff-plus .diff-icon { color: #4ade80; }
-        .diff-minus .diff-icon { color: #f87171; }
-        .diff-text { color: #cbd5e1; }
+      .tag-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
 
-        /* Palette+: Accordion Animation Styles */
-        .details-toggle {
-            background: none;
-            border: none;
-            color: var(--accent);
-            cursor: pointer;
-            padding: 0;
-            font-size: 0.85rem;
-            text-align: left;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            width: 100%;
-            border-top: 1px solid var(--border);
-            padding-top: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .details-toggle:hover {
-            color: var(--accent-hover);
-        }
+      .meta-tag {
+        font-size: 0.7rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-family: monospace;
+        letter-spacing: 0.05em;
+      }
 
-        /* Palette+: Chevron Rotation */
-        .details-toggle svg {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .details-toggle[aria-expanded="true"] svg {
-            transform: rotate(180deg);
-        }
+      .scope-small {
+        background: var(--scope-sm-bg);
+        color: var(--scope-sm-text);
+      }
+      .scope-medium {
+        background: var(--scope-md-bg);
+        color: var(--scope-md-text);
+      }
+      .scope-large {
+        background: var(--scope-lg-bg);
+        color: var(--scope-lg-text);
+      }
 
-        /* Palette+: Smooth Expansion using Grid Row Trick */
-        .details-grid {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+      .power-tag {
+        background-color: var(--power-tag-bg);
+        color: var(--power-tag-text);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+      }
 
-        .details-grid.expanded {
-            grid-template-rows: 1fr;
-        }
+      .description {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        flex-grow: 1;
+        line-height: 1.5;
+      }
 
-        .details-overflow {
-            overflow: hidden;
-        }
+      /* Diff List Styling */
+      .diff-list {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        list-style: none;
+        padding: 0;
+        background: rgba(15, 23, 42, 0.5);
+        border-radius: 6px;
+        padding: 0.75rem;
+        border: 1px solid var(--border);
+      }
 
-        .details-content {
-            background-color: var(--details-bg);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            border: 1px solid var(--border);
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            white-space: pre-wrap;
-            font-family: monospace;
-            max-height: 400px;
-            overflow-y: auto;
-            /* Palette+: Fade in opacity */
-            opacity: 0;
-            transition: opacity 0.3s ease-out;
-            /* Palette+: Hide from screen readers when collapsed */
-            visibility: hidden;
-        }
+      .diff-item {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+        align-items: baseline;
+      }
 
-        .details-grid.expanded .details-content {
-            opacity: 1;
-            visibility: visible;
-        }
+      .diff-item:last-child {
+        margin-bottom: 0;
+      }
 
-        .card-actions {
-            margin-top: auto;
-        }
+      .diff-icon {
+        font-weight: bold;
+        flex-shrink: 0;
+        font-family: monospace;
+      }
 
-        /* Palette+: Empty State */
-        .empty-state {
-            display: none;
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-secondary);
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+      .diff-plus .diff-icon {
+        color: #4ade80;
+      }
+      .diff-minus .diff-icon {
+        color: #f87171;
+      }
+      .diff-text {
+        color: #cbd5e1;
+      }
 
-        .empty-state.visible {
-            display: block;
-            animation: fadeIn 0.3s ease-out;
-        }
+      /* Palette+: Accordion Animation Styles */
+      .details-toggle {
+        background: none;
+        border: none;
+        color: var(--accent);
+        cursor: pointer;
+        padding: 0;
+        font-size: 0.85rem;
+        text-align: left;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        border-top: 1px solid var(--border);
+        padding-top: 1rem;
+        margin-top: 1rem;
+      }
 
-        .empty-state svg {
-            color: var(--border);
-            margin-bottom: 1rem;
-        }
+      .details-toggle:hover {
+        color: var(--accent-hover);
+      }
 
+      /* Palette+: Chevron Rotation */
+      .details-toggle svg {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .details-toggle[aria-expanded="true"] svg {
+        transform: rotate(180deg);
+      }
+
+      /* Palette+: Smooth Expansion using Grid Row Trick */
+      .details-grid {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .details-grid.expanded {
+        grid-template-rows: 1fr;
+      }
+
+      .details-overflow {
+        overflow: hidden;
+      }
+
+      .details-content {
+        background-color: var(--details-bg);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border);
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        white-space: pre-wrap;
+        font-family: monospace;
+        max-height: 400px;
+        overflow-y: auto;
+        /* Palette+: Fade in opacity */
+        opacity: 0;
+        transition: opacity 0.3s ease-out;
+        /* Palette+: Hide from screen readers when collapsed */
+        visibility: hidden;
+      }
+
+      .details-grid.expanded .details-content {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .card-actions {
+        margin-top: auto;
+      }
+
+      /* Palette+: Empty State */
+      .empty-state {
+        display: none;
+        text-align: center;
+        padding: 4rem 2rem;
+        color: var(--text-secondary);
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .empty-state.visible {
+        display: block;
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      .empty-state svg {
+        color: var(--border);
+        margin-bottom: 1rem;
+      }
+
+      .toast {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background-color: #22c55e;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        transform: translateY(150%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 50;
+        font-weight: 600;
+      }
+
+      .toast.show {
+        transform: translateY(0);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Palette+: Respect user motion preferences */
+      @media (prefers-reduced-motion: reduce) {
         .toast {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: #22c55e;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-            transform: translateY(150%);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 50;
-            font-weight: 600;
+          transition: none;
+          transform: translateY(0);
+          display: none;
         }
-
         .toast.show {
-            transform: translateY(0);
+          display: block;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        button,
+        .card,
+        .clear-search-btn,
+        .details-toggle svg,
+        .details-grid,
+        .details-content {
+          transition: none !important;
         }
-
-        /* Palette+: Respect user motion preferences */
-        @media (prefers-reduced-motion: reduce) {
-            .toast {
-                transition: none;
-                transform: translateY(0);
-                display: none;
-            }
-            .toast.show {
-                display: block;
-            }
-            button, .card, .clear-search-btn, .details-toggle svg, .details-grid, .details-content {
-                transition: none !important;
-            }
-            .empty-state.visible {
-                animation: none;
-            }
-            /* Palette+: Disable pop-in animation */
-            .card.pop-in {
-                animation: none !important;
-                opacity: 1 !important;
-                transform: none !important;
-            }
+        .empty-state.visible {
+          animation: none;
         }
-
-        /* Palette+: Staggered Entry Animation */
-        @keyframes popIn {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
+        /* Palette+: Disable pop-in animation */
         .card.pop-in {
-            /* Use animation for entry */
-            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-            opacity: 0; /* Start invisible */
+          animation: none !important;
+          opacity: 1 !important;
+          transform: none !important;
         }
+      }
 
-        /* Palette+: Sticky Navigation */
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 100px;
+      /* Palette+: Staggered Entry Animation */
+      @keyframes popIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
         }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
 
+      .card.pop-in {
+        /* Use animation for entry */
+        animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0; /* Start invisible */
+      }
+
+      /* Palette+: Sticky Navigation */
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 100px;
+      }
+
+      .category-nav {
+        position: sticky;
+        top: 1rem;
+        z-index: 100;
+        margin: 0 auto 2rem auto;
+        max-width: 600px;
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        padding: 0.35rem;
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        /* Entry Animation */
+        opacity: 0;
+        animation: fadeIn 0.5s ease-out 0.2s forwards;
+      }
+
+      .nav-list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-item {
+        flex: 1;
+        text-align: center;
+      }
+
+      .nav-pill {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 0.5rem 0.25rem;
+        border-radius: 999px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        display: block;
+        white-space: nowrap;
+        margin: 0 0.15rem;
+      }
+
+      .nav-pill:hover {
+        color: var(--text-primary);
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      .nav-pill.active {
+        background-color: var(--accent);
+        color: #0f172a;
+        box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+        transform: scale(1.05);
+      }
+
+      @media (max-width: 640px) {
         .category-nav {
-            position: sticky;
-            top: 1rem;
-            z-index: 100;
-            margin: 0 auto 2rem auto;
-            max-width: 600px;
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 999px;
-            padding: 0.35rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            /* Entry Animation */
-            opacity: 0;
-            animation: fadeIn 0.5s ease-out 0.2s forwards;
+          margin: 0 1rem 2rem 1rem;
+          border-radius: 1rem;
+          overflow-x: auto;
+          max-width: none;
         }
-
         .nav-list {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            list-style: none;
-            margin: 0;
-            padding: 0;
+          min-width: max-content;
+          padding: 0 0.5rem;
         }
-
-        .nav-item {
-            flex: 1;
-            text-align: center;
-        }
-
         .nav-pill {
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 0.5rem 0.25rem;
-            border-radius: 999px;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            display: block;
-            white-space: nowrap;
-            margin: 0 0.15rem;
+          padding: 0.5rem 1rem;
         }
-
-        .nav-pill:hover {
-            color: var(--text-primary);
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        .nav-pill.active {
-            background-color: var(--accent);
-            color: #0f172a;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
-            transform: scale(1.05);
-        }
-
-        @media (max-width: 640px) {
-            .category-nav {
-                margin: 0 1rem 2rem 1rem;
-                border-radius: 1rem;
-                overflow-x: auto;
-                max-width: none;
-            }
-            .nav-list {
-                min-width: max-content;
-                padding: 0 0.5rem;
-            }
-            .nav-pill {
-                padding: 0.5rem 1rem;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <!-- Palette+: Skip to Content Link -->
+    <a href="#main" class="skip-link">Skip to content</a>
 
     <div class="header">
-        <h1>Jules Master Agent Roster</h1>
-        <p style="color: var(--text-secondary);">The complete scheduled system for AI-solo development.</p>
-        <div class="controls">
-            <!-- Palette+: Search Wrapper for Clear Interaction -->
-            <div class="search-wrapper">
-                <input type="text" id="searchInput" aria-label="Search agents by name" placeholder="Search agents..." oninput="filterAgents(this.value)">
-                <button class="clear-search-btn" id="clearBtn" aria-label="Clear search" onclick="clearSearch()">
-                    <svg aria-hidden="true" focusable="false" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
-            </div>
-            
-            <button onclick="copyAll(this)">
-                <svg aria-hidden="true" focusable="false" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-                <span>Copy Full Roster (For Jules)</span>
-            </button>
+      <h1>Jules Master Agent Roster</h1>
+      <p style="color: var(--text-secondary)">
+        The complete scheduled system for AI-solo development.
+      </p>
+      <div class="controls">
+        <!-- Palette+: Search Wrapper for Clear Interaction -->
+        <div class="search-wrapper">
+          <input
+            type="text"
+            id="searchInput"
+            aria-label="Search agents by name"
+            placeholder="Search agents..."
+            oninput="filterAgents(this.value)"
+          />
+          <button
+            class="clear-search-btn"
+            id="clearBtn"
+            aria-label="Clear search"
+            onclick="clearSearch()"
+          >
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
         </div>
+
+        <button onclick="copyAll(this)">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+            />
+          </svg>
+          <span>Copy Full Roster (For Jules)</span>
+        </button>
+      </div>
     </div>
 
     <!-- Palette+: Sticky Category Navigation -->
     <nav id="category-nav" class="category-nav" aria-label="Section Navigation">
-        <ul class="nav-list">
-            <li class="nav-item"><a href="#core-maintenance" class="nav-pill">Core</a></li>
-            <li class="nav-item"><a href="#engineering-specialists" class="nav-pill">Engineering</a></li>
-            <li class="nav-item"><a href="#context-strategy" class="nav-pill">Context</a></li>
-            <li class="nav-item"><a href="#monthly-intelligence" class="nav-pill">Monthly</a></li>
-            <li class="nav-item"><a href="#bundled-tasks" class="nav-pill">Power</a></li>
-        </ul>
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="#core-maintenance" class="nav-pill">Core</a>
+        </li>
+        <li class="nav-item">
+          <a href="#engineering-specialists" class="nav-pill">Engineering</a>
+        </li>
+        <li class="nav-item">
+          <a href="#context-strategy" class="nav-pill">Context</a>
+        </li>
+        <li class="nav-item">
+          <a href="#monthly-intelligence" class="nav-pill">Monthly</a>
+        </li>
+        <li class="nav-item">
+          <a href="#bundled-tasks" class="nav-pill">Power</a>
+        </li>
+      </ul>
     </nav>
 
     <!-- Palette+: Empty State Component -->
     <div id="emptyState" class="empty-state">
-        <svg aria-hidden="true" focusable="false" width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        <p>No agents found matching your search.</p>
-        <button class="secondary" style="margin: 1rem auto 0; width: auto;" onclick="clearSearch()">Clear Search</button>
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        width="64"
+        height="64"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
+      </svg>
+      <p>No agents found matching your search.</p>
+      <button
+        class="secondary"
+        style="margin: 1rem auto 0; width: auto"
+        onclick="clearSearch()"
+      >
+        Clear Search
+      </button>
     </div>
 
     <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
-    <div id="search-announcer" class="sr-only" role="status" aria-live="polite" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;"></div>
+    <div
+      id="search-announcer"
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+      style="
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      "
+    ></div>
 
-    <h2 id="core-maintenance" class="section-header">Core Maintenance (Plus Versions)</h2>
-    <div class="grid" id="coreGrid"></div>
+    <main id="main">
+      <h2 id="core-maintenance" class="section-header">
+        Core Maintenance (Plus Versions)
+      </h2>
+      <div class="grid" id="coreGrid"></div>
 
-    <h2 id="engineering-specialists" class="section-header">Engineering Specialists (Medium Scope)</h2>
-    <div class="grid" id="engGrid"></div>
+      <h2 id="engineering-specialists" class="section-header">
+        Engineering Specialists (Medium Scope)
+      </h2>
+      <div class="grid" id="engGrid"></div>
 
-    <h2 id="context-strategy" class="section-header">Context & Strategy (Medium Scope)</h2>
-    <div class="grid" id="contextGrid"></div>
+      <h2 id="context-strategy" class="section-header">
+        Context & Strategy (Medium Scope)
+      </h2>
+      <div class="grid" id="contextGrid"></div>
 
-    <h2 id="monthly-intelligence" class="section-header">Monthly Intelligence (Large Scope)</h2>
-    <div class="grid" id="monthlyGrid"></div>
+      <h2 id="monthly-intelligence" class="section-header">
+        Monthly Intelligence (Large Scope)
+      </h2>
+      <div class="grid" id="monthlyGrid"></div>
 
-    <h2 id="bundled-tasks" class="section-header">Bundled Tasks (Dual-Small Scope)</h2>
-    <div class="grid" id="powerGrid"></div>
+      <h2 id="bundled-tasks" class="section-header">
+        Bundled Tasks (Dual-Small Scope)
+      </h2>
+      <div class="grid" id="powerGrid"></div>
+    </main>
 
     <!-- Palette+: Added role="status" and aria-live="polite" for screen reader feedback -->
-    <div id="toast" class="toast" role="status" aria-live="polite">Copied to clipboard!</div>
+    <div id="toast" class="toast" role="status" aria-live="polite">
+      Copied to clipboard!
+    </div>
 
-<script>
-const AGENTS = [
-    // --- CORE TRIO (PLUS VERSIONS) ---
-    {
-        name: "Bolt+",
-        icon: "⚡",
-        category: "core",
-        type: "plus",
-        scope: "Small-Medium",
-        usedIn: "Mechanic",
-        role: "Performance Engineer",
-        desc: "Implements systemic performance patterns (Virtualization, Workers, Caching). Consults Overseer Audit for bottlenecks.",
-        diffs: [
+    <script>
+      const AGENTS = [
+        // --- CORE TRIO (PLUS VERSIONS) ---
+        {
+          name: "Bolt+",
+          icon: "⚡",
+          category: "core",
+          type: "plus",
+          scope: "Small-Medium",
+          usedIn: "Mechanic",
+          role: "Performance Engineer",
+          desc: "Implements systemic performance patterns (Virtualization, Workers, Caching). Consults Overseer Audit for bottlenecks.",
+          diffs: [
             { type: "plus", text: "Scope: Micro-fix -> Systemic Strategy" },
-            { type: "plus", text: "Added: Virtualization, Workers, Custom Hooks" },
-        ],
-        prompt: `You are "Bolt+" ⚡ - a performance-obsessed agent (Enhanced).
+            {
+              type: "plus",
+              text: "Added: Virtualization, Workers, Custom Hooks",
+            },
+          ],
+          prompt: `You are "Bolt+" ⚡ - a performance-obsessed agent (Enhanced).
 Your mission is to identify and implement ONE SYSTEMIC performance pattern (Small-Medium Scope) that improves efficiency across a module or list.
 
 SAMPLE COMMANDS
@@ -683,22 +886,22 @@ BOLT'S FAVORITE PATTERNS:
 ⚡ Route-based code splitting (Lazy Loading)
 ⚡ Server-Side Pagination for large datasets
 ⚡ Debounce/Throttle hooks for frequent events
-⚡ Memoization of Context values to prevent prop drilling re-renders`
-    },
-    {
-        name: "Palette+",
-        icon: "🎨",
-        category: "core",
-        type: "plus",
-        scope: "Small-Medium",
-        usedIn: "Virtuoso",
-        role: "UX & Delight (Enhanced)",
-        desc: "Polishes complete interaction flows (Animations, Accessibility, State Feedback). Consults Overseer Audit for friction points.",
-        diffs: [
+⚡ Memoization of Context values to prevent prop drilling re-renders`,
+        },
+        {
+          name: "Palette+",
+          icon: "🎨",
+          category: "core",
+          type: "plus",
+          scope: "Small-Medium",
+          usedIn: "Virtuoso",
+          role: "UX & Delight (Enhanced)",
+          desc: "Polishes complete interaction flows (Animations, Accessibility, State Feedback). Consults Overseer Audit for friction points.",
+          diffs: [
             { type: "plus", text: "Scope: Micro-fix -> Component Flow" },
             { type: "plus", text: "Added: Motion, Transitions & State Polish" },
-        ],
-        prompt: `You are "Palette+" 🎨 - a UX & Delight agent (Enhanced).
+          ],
+          prompt: `You are "Palette+" 🎨 - a UX & Delight agent (Enhanced).
 Your mission is to find and polish ONE COMPLETE interaction flow or component (Small-Medium Scope).
 You make things intuitive, accessible, and DELIGHTFUL.
 
@@ -766,22 +969,25 @@ PALETTE'S FAVORITE POLISHES:
 ✨ Focus trapping for Modals/Drawers
 ✨ "Empty States" with Call-to-Actions
 ✨ Micro-interactions on buttons (Scale/Color shift)
-✨ Input Masking for complex data`
-    },
-    {
-        name: "Sentinel+",
-        icon: "🛡️",
-        category: "core",
-        type: "plus",
-        scope: "Small-Medium",
-        usedIn: "Warden",
-        role: "Security Engineer",
-        desc: "Hardens architecture via defense layers (Validation Schemas, CSP, Rate Limiting). Consults Overseer Audit for vulnerabilities.",
-        diffs: [
+✨ Input Masking for complex data`,
+        },
+        {
+          name: "Sentinel+",
+          icon: "🛡️",
+          category: "core",
+          type: "plus",
+          scope: "Small-Medium",
+          usedIn: "Warden",
+          role: "Security Engineer",
+          desc: "Hardens architecture via defense layers (Validation Schemas, CSP, Rate Limiting). Consults Overseer Audit for vulnerabilities.",
+          diffs: [
             { type: "plus", text: "Scope: Micro-patch -> Defense Layer" },
-            { type: "plus", text: "Added: Validation Schemas, Security Headers, Flow Hardening" },
-        ],
-        prompt: `You are "Sentinel+" 🛡️ - a security-focused agent (Enhanced).
+            {
+              type: "plus",
+              text: "Added: Validation Schemas, Security Headers, Flow Hardening",
+            },
+          ],
+          prompt: `You are "Sentinel+" 🛡️ - a security-focused agent (Enhanced).
 Your mission is to identify and harden ONE COMPLETE subsystem or data flow (Small-Medium Scope).
 
 SAMPLE COMMANDS
@@ -841,19 +1047,19 @@ SENTINEL'S FAVORITE DEFENSES:
 🛡️ Content Security Policy (CSP) Headers
 🛡️ HttpOnly/Secure Cookies for Session Management
 🛡️ Input Sanitization (DOMPurify) for Rich Text
-🛡️ Generic Error Messages (Anti-Leak)`
-    },
+🛡️ Generic Error Messages (Anti-Leak)`,
+        },
 
-    // --- ENGINEERING ---
-    {
-        name: "Architect",
-        icon: "🏗️",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Steward",
-        role: "Structure",
-        desc: "Refactors messy modules into clean patterns. Checks Overseer 'Structural Hotspots'.",
-        prompt: `You are "Architect" 🏗️ - a structural agent.
+        // --- ENGINEERING ---
+        {
+          name: "Architect",
+          icon: "🏗️",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Steward",
+          role: "Structure",
+          desc: "Refactors messy modules into clean patterns. Checks Overseer 'Structural Hotspots'.",
+          prompt: `You are "Architect" 🏗️ - a structural agent.
 Your mission is to identify and implement ONE ROBUST structural improvement that aligns the code with a unified pattern.
 
 SAMPLE COMMANDS
@@ -908,17 +1114,17 @@ ARCHITECT'S FAVORITE PATTERNS:
 🏗️ Extracting "Magic Strings" to Constants/Config
 🏗️ Breaking "God Components" into Sub-components
 🏗️ Custom Hooks for Logic Extraction
-🏗️ Barreling Imports (index.ts) for cleaner consumption`
-    },
-    {
-        name: "Scavenger",
-        icon: "🧹",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Steward",
-        role: "Cleanup",
-        desc: "Deletes dead code and resolved TODOs. Checks Overseer 'Debris Field'.",
-        prompt: `You are "Scavenger" 🧹 - a deletion specialist.
+🏗️ Barreling Imports (index.ts) for cleaner consumption`,
+        },
+        {
+          name: "Scavenger",
+          icon: "🧹",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Steward",
+          role: "Cleanup",
+          desc: "Deletes dead code and resolved TODOs. Checks Overseer 'Debris Field'.",
+          prompt: `You are "Scavenger" 🧹 - a deletion specialist.
 Your mission is to identify and delete ONE SIGNIFICANT piece of dead code, resolved TODO, or ghost import.
 
 SAMPLE COMMANDS
@@ -971,17 +1177,17 @@ SCAVENGER'S FAVORITE TARGETS:
 🧹 Completed TODO comments
 🧹 Console.logs in production code
 🧹 Deprecated/Commented-out code blocks
-🧹 Empty CSS files or unused classes`
-    },
-    {
-        name: "Janitor",
-        icon: "🧼",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Warden",
-        role: "Hygiene",
-        desc: "Maintains the project foundation (deps, engines, configs).",
-        prompt: `You are "Janitor" 🧼 - a dependency & config agent.
+🧹 Empty CSS files or unused classes`,
+        },
+        {
+          name: "Janitor",
+          icon: "🧼",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Warden",
+          role: "Hygiene",
+          desc: "Maintains the project foundation (deps, engines, configs).",
+          prompt: `You are "Janitor" 🧼 - a dependency & config agent.
 Your mission is to maintain the project's foundation (deps, engines, configs).
 
 SAMPLE COMMANDS
@@ -1035,17 +1241,17 @@ JANITOR'S FAVORITE TASKS:
 🧼 Deduplicating Lockfiles
 🧼 Standardizing Prettier/ESLint configs
 🧼 Updating .gitignore
-🧼 Sorting package.json scripts`
-    },
-    {
-        name: "Modernizer",
-        icon: "🆙",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Mechanic",
-        role: "Evolution",
-        desc: "Upgrades legacy tools and AI Models. Checks Overseer 'Modernization Targets'.",
-        prompt: `You are "Modernizer" 🆙 - a tech stack evolution agent.
+🧼 Sorting package.json scripts`,
+        },
+        {
+          name: "Modernizer",
+          icon: "🆙",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Mechanic",
+          role: "Evolution",
+          desc: "Upgrades legacy tools and AI Models. Checks Overseer 'Modernization Targets'.",
+          prompt: `You are "Modernizer" 🆙 - a tech stack evolution agent.
 Your mission is to identify ONE OUTDATED tool, library version, AI MODEL, or coding pattern and perform a MEANINGFUL migration.
 
 SAMPLE COMMANDS
@@ -1098,17 +1304,17 @@ MODERNIZER'S FAVORITE MIGRATIONS:
 🆙 Callbacks -> Async/Await
 🆙 var -> let/const
 🆙 Lodash -> Native ES6 Array methods
-🆙 Older AI Models -> Current Gen (Cheaper/Faster)`
-    },
-    {
-        name: "Inspector",
-        icon: "🕵️",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Guardian",
-        role: "QA",
-        desc: "Finds and fills test coverage gaps. Checks Overseer 'Coverage Gaps'.",
-        prompt: `You are "Inspector" 🕵️ - a QA agent.
+🆙 Older AI Models -> Current Gen (Cheaper/Faster)`,
+        },
+        {
+          name: "Inspector",
+          icon: "🕵️",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Guardian",
+          role: "QA",
+          desc: "Finds and fills test coverage gaps. Checks Overseer 'Coverage Gaps'.",
+          prompt: `You are "Inspector" 🕵️ - a QA agent.
 Your mission is to identify ONE MEANINGFUL gap in test coverage and add a robust test case.
 
 SAMPLE COMMANDS
@@ -1158,17 +1364,17 @@ INSPECTOR'S FAVORITE TESTS:
 🕵️ Error State Handling (Network failures)
 🕵️ User Interaction Flows (Click/Type)
 🕵️ Data Validation (Invalid inputs)
-🕵️ Integration Tests (Component + Hook)`
-    },
-    {
-        name: "Medic",
-        icon: "🚑",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Guardian",
-        role: "Resilience",
-        desc: "Hardens app against crashes, swallowed errors, and brittle logic.",
-        prompt: `You are "Medic" 🚑 - a resilience agent.
+🕵️ Integration Tests (Component + Hook)`,
+        },
+        {
+          name: "Medic",
+          icon: "🚑",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Guardian",
+          role: "Resilience",
+          desc: "Hardens app against crashes, swallowed errors, and brittle logic.",
+          prompt: `You are "Medic" 🚑 - a resilience agent.
 Your mission is to identify and fix ONE CRITICAL area of fragility.
 This includes: Swallowed errors, 'any' types, UNSAFE AI RESPONSE PARSING (JSON.parse), and BRITTLE API CALLS (missing retries).
 
@@ -1218,17 +1424,17 @@ MEDIC'S FAVORITE TREATMENTS:
 🚑 Wrapping JSON.parse in try/catch or Zod
 🚑 Adding Exponential Backoff to fetch calls
 🚑 Implementing Error Boundaries
-🚑 Adding Null checks for optional data`
-    },
-    {
-        name: "Blackbox",
-        icon: "✈️",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Clarifier",
-        role: "Debugging",
-        desc: "Acts as a Flight Recorder by enriching vague error logs with critical context variables (IDs, State).",
-        prompt: `You are "Blackbox" ✈️ - a debugging context agent.
+🚑 Adding Null checks for optional data`,
+        },
+        {
+          name: "Blackbox",
+          icon: "✈️",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Clarifier",
+          role: "Debugging",
+          desc: "Acts as a Flight Recorder by enriching vague error logs with critical context variables (IDs, State).",
+          prompt: `You are "Blackbox" ✈️ - a debugging context agent.
 Your mission is to audit a feature and ensure its logs provide complete debug context.
 
 SAMPLE COMMANDS
@@ -1281,19 +1487,19 @@ BLACKBOX'S FAVORITE ENRICHMENTS:
 ✈️ Logging State before Error
 ✈️ Standardizing Timestamp formats
 ✈️ Categorizing logs (Info/Warn/Error)
-✈️ Tracing async operations`
-    },
+✈️ Tracing async operations`,
+        },
 
-    // --- CONTEXT (MEDIUM SCOPE) ---
-    {
-        name: "Scribe",
-        icon: "✍️",
-        category: "context",
-        scope: "Medium",
-        usedIn: "Librarian, Clarifier",
-        role: "History",
-        desc: "Updates comprehensive documentation sections and API references. Stops if context is already synced.",
-        prompt: `You are "Scribe" ✍️ - the documentation historian.
+        // --- CONTEXT (MEDIUM SCOPE) ---
+        {
+          name: "Scribe",
+          icon: "✍️",
+          category: "context",
+          scope: "Medium",
+          usedIn: "Librarian, Clarifier",
+          role: "History",
+          desc: "Updates comprehensive documentation sections and API references. Stops if context is already synced.",
+          prompt: `You are "Scribe" ✍️ - the documentation historian.
 Your mission is to ensure a SECTION of documentation (e.g. API docs) is complete and accurate.
 
 SAMPLE COMMANDS
@@ -1324,17 +1530,17 @@ SCRIBE'S DAILY PROCESS:
    *NOTE:* If docs are synced, STOP.
 3. 📝 WRITE: Write comprehensive docs for it.
 4. ✅ VERIFY: Check spelling/rendering.
-5. 🎁 PRESENT: PR Title: "✍️ Scribe: [Docs Overhaul]"`
-    },
-    {
-        name: "Navigator",
-        icon: "🧭",
-        category: "context",
-        scope: "Medium",
-        usedIn: "Librarian",
-        role: "Strategy",
-        desc: "Aligns the Roadmap with code reality and promotes valid backlog ideas to the roadmap.",
-        prompt: `You are "Navigator" 🧭 - a strategy agent.
+5. 🎁 PRESENT: PR Title: "✍️ Scribe: [Docs Overhaul]"`,
+        },
+        {
+          name: "Navigator",
+          icon: "🧭",
+          category: "context",
+          scope: "Medium",
+          usedIn: "Librarian",
+          role: "Strategy",
+          desc: "Aligns the Roadmap with code reality and promotes valid backlog ideas to the roadmap.",
+          prompt: `You are "Navigator" 🧭 - a strategy agent.
 Your mission is to ensure the project's direction is clear.
 
 SAMPLE COMMANDS
@@ -1358,17 +1564,17 @@ NAVIGATOR'S DAILY PROCESS:
    *NOTE:* If aligned, STOP.
 3. 🧭 EXECUTE: Update the Roadmap file.
 4. ✅ VERIFY: Check links.
-5. 🎁 PRESENT: PR Title: "🧭 Navigator: [Strategy Update]"`
-    },
-    {
-        name: "Curator",
-        icon: "🖼️",
-        category: "context",
-        scope: "Medium",
-        usedIn: "Virtuoso",
-        role: "Assets",
-        desc: "Audits asset library health, optimizes file sizes, and ensures accessibility compliance.",
-        prompt: `You are "Curator" 🖼️ - an asset manager.
+5. 🎁 PRESENT: PR Title: "🧭 Navigator: [Strategy Update]"`,
+        },
+        {
+          name: "Curator",
+          icon: "🖼️",
+          category: "context",
+          scope: "Medium",
+          usedIn: "Virtuoso",
+          role: "Assets",
+          desc: "Audits asset library health, optimizes file sizes, and ensures accessibility compliance.",
+          prompt: `You are "Curator" 🖼️ - an asset manager.
 Your mission is to audit and optimize the project's static assets.
 
 SAMPLE COMMANDS
@@ -1396,19 +1602,19 @@ CURATOR'S DAILY PROCESS:
    *NOTE:* If optimized, STOP.
 3. 🖼️ POLISH: Compress/Convert/Tag.
 4. ✅ VERIFY: Build check.
-5. 🎁 PRESENT: PR Title: "🖼️ Curator: [Asset Optimization]"`
-    },
+5. 🎁 PRESENT: PR Title: "🖼️ Curator: [Asset Optimization]"`,
+        },
 
-    // --- MONTHLY (LARGE SCOPE) ---
-    {
-        name: "Overseer",
-        icon: "👁️",
-        category: "monthly",
-        type: "monthly",
-        scope: "Large",
-        role: "The Eye",
-        desc: "Performs deep forensic audit to identify targets for other agents.",
-        prompt: `You are "Overseer" 👁️ - the central project auditor.
+        // --- MONTHLY (LARGE SCOPE) ---
+        {
+          name: "Overseer",
+          icon: "👁️",
+          category: "monthly",
+          type: "monthly",
+          scope: "Large",
+          role: "The Eye",
+          desc: "Performs deep forensic audit to identify targets for other agents.",
+          prompt: `You are "Overseer" 👁️ - the central project auditor.
 Your mission is to perform a FORENSIC DEEP SCAN of the project (Git history, Performance, Stale files, Security, Test gaps) and generate a single intelligence report: \`.jules/AGENTS_AUDIT.md\`.
 You do NOT fix issues. You identify targets for the specialist agents.
 
@@ -1474,17 +1680,17 @@ MONTHLY PROCESS
 2. 🎯 COMPILE: Aggregate findings into the standard Markdown format with \`- [ ]\` checkboxes.
 3. 📝 REPORT: Write to \`.jules/AGENTS_AUDIT.md\`.
 4. ✅ VERIFY: Ensure the file exists and targets are clear.
-5. 🎁 PRESENT: PR Title: "👁️ Overseer: [Monthly Intelligence Report]"`
-    },
-    {
-        name: "Cartographer",
-        icon: "🗺️",
-        category: "monthly",
-        type: "monthly",
-        scope: "Large",
-        role: "Visuals",
-        desc: "Maps the entire system architecture into Mermaid diagrams for high-level understanding.",
-        prompt: `You are "Cartographer" 🗺️ - a visualization agent.
+5. 🎁 PRESENT: PR Title: "👁️ Overseer: [Monthly Intelligence Report]"`,
+        },
+        {
+          name: "Cartographer",
+          icon: "🗺️",
+          category: "monthly",
+          type: "monthly",
+          scope: "Large",
+          role: "Visuals",
+          desc: "Maps the entire system architecture into Mermaid diagrams for high-level understanding.",
+          prompt: `You are "Cartographer" 🗺️ - a visualization agent.
 Your mission is to map the high-level architecture into \`ARCHITECTURE.md\` (Mermaid).
 You create the "Big Picture" so developers don't get lost in the details.
 
@@ -1538,17 +1744,17 @@ CARTOGRAPHER'S FAVORITE DIAGRAMS:
 🗺️ System Context (C4 Level 1)
 🗺️ Container/Feature Flow (C4 Level 2)
 🗺️ Sequence Diagrams for critical auth flows
-🗺️ Entity Relationship Diagrams (ERD) for core data`
-    },
-    {
-        name: "Tutor",
-        icon: "🎓",
-        category: "monthly",
-        type: "monthly",
-        scope: "Large",
-        role: "Education",
-        desc: "Enriches the codebase by scanning utility libraries and adding @example usage snippets to JSDoc.",
-        prompt: `You are "Tutor" 🎓 - an education agent.
+🗺️ Entity Relationship Diagrams (ERD) for core data`,
+        },
+        {
+          name: "Tutor",
+          icon: "🎓",
+          category: "monthly",
+          type: "monthly",
+          scope: "Large",
+          role: "Education",
+          desc: "Enriches the codebase by scanning utility libraries and adding @example usage snippets to JSDoc.",
+          prompt: `You are "Tutor" 🎓 - an education agent.
 Your mission is to enrich the codebase by scanning utility libraries and adding \`@example\` usage snippets to JSDoc.
 You make the code self-documenting and teachable.
 
@@ -1597,18 +1803,18 @@ TUTOR'S FAVORITE LESSONS:
 🎓 Regex Explainers
 🎓 Complex Data Transformers
 🎓 Custom Hook Usages
-🎓 Date/Time Formatting utilities`
-    },
+🎓 Date/Time Formatting utilities`,
+        },
 
-    // --- POWER (DUAL-SMALL SCOPE) ---
-    {
-        name: "Steward",
-        icon: "🧹",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Arch+Scav",
-        desc: "Executes two distinct small tasks in one PR: One structure fix (Architect Lite) and one cleanup (Scavenger Lite).",
-        prompt: `You are "Steward" 🧹.
+        // --- POWER (DUAL-SMALL SCOPE) ---
+        {
+          name: "Steward",
+          icon: "🧹",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Arch+Scav",
+          desc: "Executes two distinct small tasks in one PR: One structure fix (Architect Lite) and one cleanup (Scavenger Lite).",
+          prompt: `You are "Steward" 🧹.
 Your mission: TWO SMALL, DISTINCT TASKS in one PR.
 
 === CRITICAL CONSTRAINTS ===
@@ -1628,16 +1834,16 @@ PROCESS:
    *NOTE:* If house clean, STOP.
 3. Execute both (respecting limits).
 4. Verify.
-5. PR: "🧹 Steward: [Structure] & [Cleanup]"`
-    },
-    {
-        name: "Warden",
-        icon: "🛡️",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Sent+Jan",
-        desc: "Executes two distinct small tasks in one PR: One security hardening (Sentinel+ Lite) and one dependency update (Janitor Lite).",
-        prompt: `You are "Warden" 🛡️.
+5. PR: "🧹 Steward: [Structure] & [Cleanup]"`,
+        },
+        {
+          name: "Warden",
+          icon: "🛡️",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Sent+Jan",
+          desc: "Executes two distinct small tasks in one PR: One security hardening (Sentinel+ Lite) and one dependency update (Janitor Lite).",
+          prompt: `You are "Warden" 🛡️.
 Your mission: TWO SMALL, DISTINCT TASKS in one PR.
 
 === CRITICAL CONSTRAINTS ===
@@ -1657,16 +1863,16 @@ PROCESS:
    *NOTE:* If secure/updated, STOP.
 3. Execute both.
 4. Verify.
-5. PR: "🛡️ Warden: [Secure] & [Update]"`
-    },
-    {
-        name: "Guardian",
-        icon: "🚑",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Medic+Insp",
-        desc: "Executes two distinct small tasks in one PR: One bug fix (Medic Lite) immediately locked in by a test case (Inspector Lite).",
-        prompt: `You are "Guardian" 🚑.
+5. PR: "🛡️ Warden: [Secure] & [Update]"`,
+        },
+        {
+          name: "Guardian",
+          icon: "🚑",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Medic+Insp",
+          desc: "Executes two distinct small tasks in one PR: One bug fix (Medic Lite) immediately locked in by a test case (Inspector Lite).",
+          prompt: `You are "Guardian" 🚑.
 Your mission: TWO SMALL, CONNECTED TASKS.
 
 === CRITICAL CONSTRAINTS ===
@@ -1685,16 +1891,16 @@ PROCESS:
 2. Fix it.
 3. Test it.
 4. Verify.
-5. PR: "🚑 Guardian: [Fix] & [Test]"`
-    },
-    {
-        name: "Librarian",
-        icon: "📚",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Scribe+Nav",
-        desc: "Executes two distinct small tasks in one PR: One documentation fix (Scribe Lite) and one roadmap update (Navigator Lite).",
-        prompt: `You are "Librarian" 📚.
+5. PR: "🚑 Guardian: [Fix] & [Test]"`,
+        },
+        {
+          name: "Librarian",
+          icon: "📚",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Scribe+Nav",
+          desc: "Executes two distinct small tasks in one PR: One documentation fix (Scribe Lite) and one roadmap update (Navigator Lite).",
+          prompt: `You are "Librarian" 📚.
 Your mission: TWO SMALL, DISTINCT TASKS.
 
 === CRITICAL CONSTRAINTS ===
@@ -1714,16 +1920,16 @@ PROCESS:
    *NOTE:* If synced, STOP.
 3. Execute both.
 4. Verify.
-5. PR: "📚 Librarian: [Doc] & [Roadmap]"`
-    },
-    {
-        name: "Virtuoso",
-        icon: "🎨",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Pal+Cur",
-        desc: "Executes two distinct small tasks in one PR: One UX polish (Palette+ Lite) and one asset optimization (Curator Lite).",
-        prompt: `You are "Virtuoso" 🎨.
+5. PR: "📚 Librarian: [Doc] & [Roadmap]"`,
+        },
+        {
+          name: "Virtuoso",
+          icon: "🎨",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Pal+Cur",
+          desc: "Executes two distinct small tasks in one PR: One UX polish (Palette+ Lite) and one asset optimization (Curator Lite).",
+          prompt: `You are "Virtuoso" 🎨.
 Your mission: TWO SMALL, DISTINCT TASKS.
 
 === CRITICAL CONSTRAINTS ===
@@ -1743,16 +1949,16 @@ PROCESS:
    *NOTE:* If polished, STOP.
 3. Execute both.
 4. Verify.
-5. PR: "🎨 Virtuoso: [UX] & [Asset]"`
-    },
-    {
-        name: "Mechanic",
-        icon: "🔧",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Bolt+Mod",
-        desc: "Executes two distinct small tasks in one PR: One performance tune (Bolt+ Lite) and one syntax update (Modernizer Lite).",
-        prompt: `You are "Mechanic" 🔧.
+5. PR: "🎨 Virtuoso: [UX] & [Asset]"`,
+        },
+        {
+          name: "Mechanic",
+          icon: "🔧",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Bolt+Mod",
+          desc: "Executes two distinct small tasks in one PR: One performance tune (Bolt+ Lite) and one syntax update (Modernizer Lite).",
+          prompt: `You are "Mechanic" 🔧.
 Your mission: TWO SMALL, DISTINCT TASKS.
 
 === CRITICAL CONSTRAINTS ===
@@ -1772,16 +1978,16 @@ PROCESS:
    *NOTE:* If modern/fast, STOP.
 3. Execute both.
 4. Verify.
-5. PR: "🔧 Mechanic: [Tune] & [Update]"`
-    },
-    {
-        name: "Clarifier",
-        icon: "🔦",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Blkbox+Scribe",
-        desc: "Executes two distinct small tasks in one PR: One log enrichment (Blackbox Lite) and one JSDoc addition (Scribe Lite).",
-        prompt: `You are "Clarifier" 🔦.
+5. PR: "🔧 Mechanic: [Tune] & [Update]"`,
+        },
+        {
+          name: "Clarifier",
+          icon: "🔦",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Blkbox+Scribe",
+          desc: "Executes two distinct small tasks in one PR: One log enrichment (Blackbox Lite) and one JSDoc addition (Scribe Lite).",
+          prompt: `You are "Clarifier" 🔦.
 Your mission: TWO CONNECTED TASKS.
 
 === CRITICAL CONSTRAINTS ===
@@ -1800,57 +2006,68 @@ PROCESS:
 2. Enrich it.
 3. Document it.
 4. Verify.
-5. PR: "🔦 Clarifier: [Log] & [Doc]"`
-    }
-];
+5. PR: "🔦 Clarifier: [Log] & [Doc]"`,
+        },
+      ];
 
-// --- RENDER LOGIC ---
-const categories = {
-    core: document.getElementById('coreGrid'),
-    eng: document.getElementById('engGrid'),
-    context: document.getElementById('contextGrid'),
-    monthly: document.getElementById('monthlyGrid'),
-    power: document.getElementById('powerGrid')
-};
+      // --- RENDER LOGIC ---
+      const categories = {
+        core: document.getElementById("coreGrid"),
+        eng: document.getElementById("engGrid"),
+        context: document.getElementById("contextGrid"),
+        monthly: document.getElementById("monthlyGrid"),
+        power: document.getElementById("powerGrid"),
+      };
 
-AGENTS.forEach((agent, index) => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    if (agent.type === 'plus') card.classList.add('plus-agent');
-    if (agent.type === 'monthly') card.classList.add('monthly-agent');
-    
-    // Build tags
-    let tags = '';
-    // Scope Tag
-    if (agent.scope) {
-        let scopeClass = 'scope-medium';
-        if (agent.scope.includes('Small')) scopeClass = 'scope-small';
-        if (agent.scope.includes('Large')) scopeClass = 'scope-large';
-        tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
-    }
-    
-    if (agent.usedIn) {
-        agent.usedIn.split(',').forEach(p => tags += `<span class="power-tag">🧩 Part of ${p.trim()}</span>`);
-    }
+      AGENTS.forEach((agent, index) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        if (agent.type === "plus") card.classList.add("plus-agent");
+        if (agent.type === "monthly") card.classList.add("monthly-agent");
 
-    // Differences List for Plus Agents
-    const diffHtml = agent.diffs ? `
+        // Build tags
+        let tags = "";
+        // Scope Tag
+        if (agent.scope) {
+          let scopeClass = "scope-medium";
+          if (agent.scope.includes("Small")) scopeClass = "scope-small";
+          if (agent.scope.includes("Large")) scopeClass = "scope-large";
+          tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
+        }
+
+        if (agent.usedIn) {
+          agent.usedIn
+            .split(",")
+            .forEach(
+              (p) =>
+                (tags += `<span class="power-tag">🧩 Part of ${p.trim()}</span>`),
+            );
+        }
+
+        // Differences List for Plus Agents
+        const diffHtml = agent.diffs
+          ? `
         <ul class="diff-list">
-            ${agent.diffs.map(diff => `
+            ${agent.diffs
+              .map(
+                (diff) => `
                 <li class="diff-item">
-                    <span class="diff-icon ${diff.type === 'plus' ? 'diff-plus' : (diff.type === 'minus' ? 'diff-minus' : 'diff-change')}">
-                        ${diff.type === 'plus' ? '➕' : (diff.type === 'minus' ? '➖' : '🔄')}
+                    <span class="diff-icon ${diff.type === "plus" ? "diff-plus" : diff.type === "minus" ? "diff-minus" : "diff-change"}">
+                        ${diff.type === "plus" ? "➕" : diff.type === "minus" ? "➖" : "🔄"}
                     </span>
                     <span class="diff-text">${diff.text}</span>
                 </li>
-            `).join('')}
+            `,
+              )
+              .join("")}
         </ul>
-    ` : '';
+    `
+          : "";
 
-    // Build inner HTML
-    // Palette+: Added aria-expanded and aria-controls to details toggle
-    // Palette+: Passed 'this' to copyAgent for state management
-    let html = `
+        // Build inner HTML
+        // Palette+: Added aria-expanded and aria-controls to details toggle
+        // Palette+: Passed 'this' to copyAgent for state management
+        let html = `
         <div class="card-header">
             <div class="title-group">
                 <h3 class="agent-title">
@@ -1888,53 +2105,59 @@ ${agent.prompt}
             </button>
         </div>
     `;
-    card.innerHTML = html;
-    categories[agent.category].appendChild(card);
-});
+        card.innerHTML = html;
+        categories[agent.category].appendChild(card);
+      });
 
-function toggleDetails(index) {
-    const grid = document.getElementById(`details-${index}`);
-    const btn = document.querySelector(`button[aria-controls="details-${index}"]`);
-    
-    // Palette+: Toggle class instead of display property
-    const isExpanded = grid.classList.toggle('expanded');
-    
-    // Palette+: Update aria state
-    btn.setAttribute('aria-expanded', isExpanded);
-    
-    // Palette+: Update button text
-    const span = btn.querySelector('span');
-    span.innerText = isExpanded ? 'Hide Details' : 'Show Details';
+      function toggleDetails(index) {
+        const grid = document.getElementById(`details-${index}`);
+        const btn = document.querySelector(
+          `button[aria-controls="details-${index}"]`,
+        );
 
-    console.debug("Toggled Agent Details", { index, expanded: isExpanded, agent: AGENTS[index]?.name });
-}
+        // Palette+: Toggle class instead of display property
+        const isExpanded = grid.classList.toggle("expanded");
 
-// Palette+: Search Logic including Empty State & Clear Button Visibility
-function filterAgents(query) {
-    const search = query.toLowerCase();
-    const cards = document.querySelectorAll('.card');
-    const emptyState = document.getElementById('emptyState');
-    const clearBtn = document.getElementById('clearBtn');
-    const announcer = document.getElementById('search-announcer');
+        // Palette+: Update aria state
+        btn.setAttribute("aria-expanded", isExpanded);
 
-    let visibleCount = 0;
+        // Palette+: Update button text
+        const span = btn.querySelector("span");
+        span.innerText = isExpanded ? "Hide Details" : "Show Details";
 
-    // Toggle Clear Button Visibility
-    if (query.length > 0) {
-        clearBtn.classList.add('visible');
-    } else {
-        clearBtn.classList.remove('visible');
-    }
+        console.debug("Toggled Agent Details", {
+          index,
+          expanded: isExpanded,
+          agent: AGENTS[index]?.name,
+        });
+      }
 
-    // Filter Logic with Staggered Animation
-    cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
+      // Palette+: Search Logic including Empty State & Clear Button Visibility
+      function filterAgents(query) {
+        const search = query.toLowerCase();
+        const cards = document.querySelectorAll(".card");
+        const emptyState = document.getElementById("emptyState");
+        const clearBtn = document.getElementById("clearBtn");
+        const announcer = document.getElementById("search-announcer");
 
-        // Reset animation class to re-trigger if needed (though mostly handled by display toggle)
-        card.classList.remove('pop-in');
+        let visibleCount = 0;
 
-        if (text.includes(search)) {
-            card.style.display = 'flex';
+        // Toggle Clear Button Visibility
+        if (query.length > 0) {
+          clearBtn.classList.add("visible");
+        } else {
+          clearBtn.classList.remove("visible");
+        }
+
+        // Filter Logic with Staggered Animation
+        cards.forEach((card) => {
+          const text = card.textContent.toLowerCase();
+
+          // Reset animation class to re-trigger if needed (though mostly handled by display toggle)
+          card.classList.remove("pop-in");
+
+          if (text.includes(search)) {
+            card.style.display = "flex";
 
             // Palette+: Staggered Entry Animation
             // Trigger reflow to restart animation if it was already there
@@ -1945,152 +2168,185 @@ function filterAgents(query) {
             // Limit stagger to first 20 items to prevent huge delays on clear
             const delay = Math.min(visibleCount * 30, 600);
             card.style.animationDelay = `${delay}ms`;
-            card.classList.add('pop-in');
+            card.classList.add("pop-in");
 
             visibleCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
+
+        // Toggle Empty State Visibility & Smart Headers
+        if (visibleCount === 0 && query.length > 0) {
+          emptyState.classList.add("visible");
+          // Hide all headers if no results
+          document
+            .querySelectorAll(".section-header")
+            .forEach((el) => (el.style.display = "none"));
         } else {
-            card.style.display = 'none';
-        }
-    });
+          emptyState.classList.remove("visible");
 
-    // Toggle Empty State Visibility & Smart Headers
-    if (visibleCount === 0 && query.length > 0) {
-        emptyState.classList.add('visible');
-        // Hide all headers if no results
-        document.querySelectorAll('.section-header').forEach(el => el.style.display = 'none');
-    } else {
-        emptyState.classList.remove('visible');
-
-        // Smart Headers: Only show headers that have visible cards
-        document.querySelectorAll('.grid').forEach(grid => {
+          // Smart Headers: Only show headers that have visible cards
+          document.querySelectorAll(".grid").forEach((grid) => {
             // Check for visible children (direct children are cards)
-            const hasVisibleCards = Array.from(grid.children).some(card => card.style.display !== 'none');
+            const hasVisibleCards = Array.from(grid.children).some(
+              (card) => card.style.display !== "none",
+            );
             const header = grid.previousElementSibling;
 
-            if (header && header.classList.contains('section-header')) {
-                header.style.display = hasVisibleCards ? 'block' : 'none';
+            if (header && header.classList.contains("section-header")) {
+              header.style.display = hasVisibleCards ? "block" : "none";
             }
-        });
-    }
-
-    // Palette+: A11y Announcement
-    if (announcer) {
-        if (query.length === 0) {
-            announcer.textContent = "";
-        } else if (visibleCount === 0) {
-            announcer.textContent = "No agents found.";
-        } else {
-            announcer.textContent = `Found ${visibleCount} agents.`;
+          });
         }
-    }
-}
 
-// Palette+: Clear Search Interaction
-function clearSearch() {
-    const input = document.getElementById('searchInput');
-    input.value = '';
-    filterAgents(''); // Reset filter
-    input.focus(); // A11y: Return focus to input
-}
+        // Palette+: A11y Announcement
+        if (announcer) {
+          if (query.length === 0) {
+            announcer.textContent = "";
+          } else if (visibleCount === 0) {
+            announcer.textContent = "No agents found.";
+          } else {
+            announcer.textContent = `Found ${visibleCount} agents.`;
+          }
+        }
+      }
 
-function showToast() {
-    const toast = document.getElementById('toast');
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2000);
-}
+      // Palette+: Clear Search Interaction
+      function clearSearch() {
+        const input = document.getElementById("searchInput");
+        input.value = "";
+        filterAgents(""); // Reset filter
+        input.focus(); // A11y: Return focus to input
+      }
 
-async function copyText(text) {
-    try {
-        await navigator.clipboard.writeText(text);
-        showToast();
-        return true;
-    } catch (err) {
-        console.warn("Clipboard API failed, attempting fallback", { error: err.message, textLength: text.length });
-        const el = document.createElement('textarea');
-        el.value = text;
-        el.style.position = 'fixed';
-        el.style.opacity = '0';
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-        showToast();
-        return true;
-    }
-}
+      // Palette+: Robust Toast Logic
+      let toastTimeout;
 
-async function handleCopyAnimation(btn, text) {
-    const success = await copyText(text);
-    if (!success) return;
+      function showToast(message) {
+        const toast = document.getElementById("toast");
 
-    // Palette+: Complete "Delight" Interaction Flow
-    // 1. Save original state
-    const originalText = btn.querySelector('span').innerText;
-    
-    // 2. Optimistic Update (Success State)
-    btn.classList.add('success-state');
-    btn.querySelector('span').innerText = 'Copied! ✨';
-    
-    // 3. Revert after delay
-    setTimeout(() => {
-        btn.classList.remove('success-state');
-        btn.querySelector('span').innerText = originalText;
-    }, 2000);
-}
+        // Reset existing timeout
+        if (toastTimeout) {
+          clearTimeout(toastTimeout);
+        }
 
-function copyAgent(index, btn) {
-    console.info("Agent Copied", { name: AGENTS[index].name, category: AGENTS[index].category });
-    handleCopyAnimation(btn, AGENTS[index].prompt);
-}
+        // Update content and show
+        toast.textContent = message || "Copied to clipboard!";
+        toast.classList.add("show");
 
-async function copyAll(btn) {
-    console.info("Full Roster Copied", { count: AGENTS.length });
-    const header = "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
-    const body = AGENTS.map(a => `${a.prompt}\n\n--------------------------------------------------------------------------------`).join('\n\n');
-    handleCopyAnimation(btn, header + body);
-}
+        // Set new timeout
+        toastTimeout = setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2000);
+      }
 
-// Palette+: Sticky Navigation Logic
-document.addEventListener('DOMContentLoaded', () => {
-    const navPills = document.querySelectorAll('.nav-pill');
-    // Map Grid IDs to Header IDs (which are the anchor targets)
-    const sectionMap = {
-        'coreGrid': 'core-maintenance',
-        'engGrid': 'engineering-specialists',
-        'contextGrid': 'context-strategy',
-        'monthlyGrid': 'monthly-intelligence',
-        'powerGrid': 'bundled-tasks'
-    };
+      async function copyText(text, message) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast(message);
+          return true;
+        } catch (err) {
+          console.warn("Clipboard API failed, attempting fallback", {
+            error: err.message,
+            textLength: text.length,
+          });
+          const el = document.createElement("textarea");
+          el.value = text;
+          el.style.position = "fixed";
+          el.style.opacity = "0";
+          document.body.appendChild(el);
+          el.select();
+          document.execCommand("copy");
+          document.body.removeChild(el);
+          showToast(message);
+          return true;
+        }
+      }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
+      async function handleCopyAnimation(btn, text, message) {
+        const success = await copyText(text, message);
+        if (!success) return;
+
+        // Palette+: Complete "Delight" Interaction Flow
+        // 1. Save original state
+        const originalText = btn.querySelector("span").innerText;
+
+        // 2. Optimistic Update (Success State)
+        btn.classList.add("success-state");
+        btn.querySelector("span").innerText = "Copied! ✨";
+
+        // 3. Revert after delay
+        setTimeout(() => {
+          btn.classList.remove("success-state");
+          btn.querySelector("span").innerText = originalText;
+        }, 2000);
+      }
+
+      function copyAgent(index, btn) {
+        const agent = AGENTS[index];
+        console.info("Agent Copied", {
+          name: agent.name,
+          category: agent.category,
+        });
+        handleCopyAnimation(btn, agent.prompt, `${agent.name} prompt copied!`);
+      }
+
+      async function copyAll(btn) {
+        console.info("Full Roster Copied", { count: AGENTS.length });
+        const header =
+          "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
+        const body = AGENTS.map(
+          (a) =>
+            `${a.prompt}\n\n--------------------------------------------------------------------------------`,
+        ).join("\n\n");
+        handleCopyAnimation(btn, header + body, "Full Roster copied!");
+      }
+
+      // Palette+: Sticky Navigation Logic
+      document.addEventListener("DOMContentLoaded", () => {
+        const navPills = document.querySelectorAll(".nav-pill");
+        // Map Grid IDs to Header IDs (which are the anchor targets)
+        const sectionMap = {
+          coreGrid: "core-maintenance",
+          engGrid: "engineering-specialists",
+          contextGrid: "context-strategy",
+          monthlyGrid: "monthly-intelligence",
+          powerGrid: "bundled-tasks",
+        };
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
                 const targetId = sectionMap[entry.target.id];
 
                 // Update active state
-                navPills.forEach(pill => {
-                    const href = pill.getAttribute('href').substring(1);
-                    if (href === targetId) {
-                        pill.classList.add('active');
-                    } else {
-                        pill.classList.remove('active');
-                    }
+                navPills.forEach((pill) => {
+                  const href = pill.getAttribute("href").substring(1);
+                  if (href === targetId) {
+                    pill.classList.add("active");
+                  } else {
+                    pill.classList.remove("active");
+                  }
                 });
-            }
-        });
-    }, {
-        // Trigger when the element crosses the "reading zone" (top 1/3 of screen)
-        // Offset -100px to account for the sticky nav itself
-        // Palette+: Adjusted to -80px to ensure anchor landing (at 100px) is captured inside the zone
-        rootMargin: '-80px 0px -60% 0px',
-        threshold: 0
-    });
+              }
+            });
+          },
+          {
+            // Trigger when the element crosses the "reading zone" (top 1/3 of screen)
+            // Offset -100px to account for the sticky nav itself
+            // Palette+: Adjusted to -80px to ensure anchor landing (at 100px) is captured inside the zone
+            rootMargin: "-80px 0px -60% 0px",
+            threshold: 0,
+          },
+        );
 
-    Object.keys(sectionMap).forEach(gridId => {
-        const el = document.getElementById(gridId);
-        if (el) observer.observe(el);
-    });
-});
-</script>
-</body>
+        Object.keys(sectionMap).forEach((gridId) => {
+          const el = document.getElementById(gridId);
+          if (el) observer.observe(el);
+        });
+      });
+    </script>
+  </body>
 </html>
