@@ -1,2 +1,73 @@
-# jules-agent-roster
+# Jules Agent Roster 🤖
+
+> The complete, enhanced agent system for Jules AI, featuring the **Overseer Protocol** and **Plus-tier** specialists.
+
 This repository hosts a curated collection of advanced agent prompts designed to work seamlessly with Jules. It moves beyond simple "chat" interactions into a robust, structured workflow where agents have specific roles, scopes, and memory.
+
+## 🌟 The "Plus" Philosophy
+
+Unlike standard agents which handle one-off tasks, the **Plus Agents** in this roster are designed for:
+
+1. **Systemic Improvement:** They don't just fix a bug; they implement a pattern (e.g., Virtualization, Zod Validation) that prevents the bug from returning.
+
+2. **Context Awareness:** They read from a central audit file (`.jules/AGENTS_AUDIT.md`) to find high-impact work instead of guessing.
+
+3. **Strict Scoping:** They operate within a "Small-Medium" scope—large enough to be meaningful, small enough to be safe and reviewable.
+
+## 👁️ The Overseer Protocol
+
+The core of this system is the **Overseer** agent. This agent runs monthly to perform a deep forensic scan of your codebase.
+
+**The Workflow:**
+
+1. **Monthly:** Run the **Overseer** agent. It scans for churn, performance bottlenecks, and security risks.
+
+2. **Output:** It generates a "Menu" of tasks in `.jules/AGENTS_AUDIT.md`.
+
+3. **Daily/Weekly:** You run specialist agents (like **Bolt+**, **Palette+**, **Sentinel+**).
+
+4. **Execution:** These agents read the audit file, pick a task, fix it, and **check it off the list**.
+
+## 🚀 Getting Started
+
+1. **Deploy:** This roster is a self-contained HTML file. You can deploy it to GitHub Pages or open it locally.
+
+2. **Copy:** Click "Copy Prompt" for the agent you need.
+
+3. **Paste:** Paste the prompt into your Jules chat window.
+
+## 📦 The Agents
+
+### Core Maintenance (Plus)
+
+* **Bolt+ ⚡**: Performance Engineer. Handles virtualization, workers, and caching strategies.
+
+* **Palette+ 🎨**: UX & Delight. Polishes interaction flows, animations, and accessibility.
+
+* **Sentinel+ 🛡️**: Security Engineer. Implements defense layers like validation schemas and CSP.
+
+### Engineering Specialists
+
+* **Architect 🏗️**: Structural refactoring and code organization.
+
+* **Scavenger 🧹**: Dead code deletion and debt removal.
+
+* **Janitor 🧼**: Dependency updates and config hygiene.
+
+* **Modernizer 🆙**: Upgrades legacy patterns and AI models.
+
+* **Inspector 🕵️**: Fills test coverage gaps.
+
+* **Medic 🚑**: Hardens app against crashes and brittle logic.
+
+* **Blackbox ✈️**: Enriches logs for better debugging.
+
+### Power Bundles
+
+* **Steward**, **Warden**, **Guardian**, etc.: 'Dual-Small' agents designed to clear backlog items efficiently by executing two distinct, small tasks in a single PR.
+
+## 🤝 Contributing
+
+This roster is designed to evolve. If you find a new pattern or a better way to structure an agent's "Philosophy," feel free to open a PR!
+
+*Built for the Jules Community.*
