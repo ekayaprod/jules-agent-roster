@@ -227,6 +227,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            margin: 0; /* Palette+: Reset margin for h3 */
         }
 
         .role-tag {
@@ -460,6 +461,85 @@
             animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             opacity: 0; /* Start invisible */
         }
+
+        /* Palette+: Sticky Navigation */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        .category-nav {
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            margin: 0 auto 2rem auto;
+            max-width: 600px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 999px;
+            padding: 0.35rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            /* Entry Animation */
+            opacity: 0;
+            animation: fadeIn 0.5s ease-out 0.2s forwards;
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .nav-pill {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 0.25rem;
+            border-radius: 999px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
+            white-space: nowrap;
+            margin: 0 0.15rem;
+        }
+
+        .nav-pill:hover {
+            color: var(--text-primary);
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-pill.active {
+            background-color: var(--accent);
+            color: #0f172a;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 640px) {
+            .category-nav {
+                margin: 0 1rem 2rem 1rem;
+                border-radius: 1rem;
+                overflow-x: auto;
+                max-width: none;
+            }
+            .nav-list {
+                min-width: max-content;
+                padding: 0 0.5rem;
+            }
+            .nav-pill {
+                padding: 0.5rem 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -483,6 +563,17 @@
         </div>
     </div>
 
+    <!-- Palette+: Sticky Category Navigation -->
+    <nav id="category-nav" class="category-nav" aria-label="Section Navigation">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="#core-maintenance" class="nav-pill">Core</a></li>
+            <li class="nav-item"><a href="#engineering-specialists" class="nav-pill">Engineering</a></li>
+            <li class="nav-item"><a href="#context-strategy" class="nav-pill">Context</a></li>
+            <li class="nav-item"><a href="#monthly-intelligence" class="nav-pill">Monthly</a></li>
+            <li class="nav-item"><a href="#bundled-tasks" class="nav-pill">Power</a></li>
+        </ul>
+    </nav>
+
     <!-- Palette+: Empty State Component -->
     <div id="emptyState" class="empty-state">
         <svg aria-hidden="true" focusable="false" width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
@@ -493,19 +584,19 @@
     <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
     <div id="search-announcer" class="sr-only" role="status" aria-live="polite" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;"></div>
 
-    <div class="section-header">Core Maintenance (Plus Versions)</div>
+    <h2 id="core-maintenance" class="section-header">Core Maintenance (Plus Versions)</h2>
     <div class="grid" id="coreGrid"></div>
 
-    <div class="section-header">Engineering Specialists (Medium Scope)</div>
+    <h2 id="engineering-specialists" class="section-header">Engineering Specialists (Medium Scope)</h2>
     <div class="grid" id="engGrid"></div>
 
-    <div class="section-header">Context & Strategy (Medium Scope)</div>
+    <h2 id="context-strategy" class="section-header">Context & Strategy (Medium Scope)</h2>
     <div class="grid" id="contextGrid"></div>
 
-    <div class="section-header">Monthly Intelligence (Large Scope)</div>
+    <h2 id="monthly-intelligence" class="section-header">Monthly Intelligence (Large Scope)</h2>
     <div class="grid" id="monthlyGrid"></div>
 
-    <div class="section-header">Bundled Tasks (Dual-Small Scope)</div>
+    <h2 id="bundled-tasks" class="section-header">Bundled Tasks (Dual-Small Scope)</h2>
     <div class="grid" id="powerGrid"></div>
 
     <!-- Palette+: Added role="status" and aria-live="polite" for screen reader feedback -->
@@ -1764,9 +1855,9 @@ AGENTS.forEach((agent, index) => {
     let html = `
         <div class="card-header">
             <div class="title-group">
-                <div class="agent-title">
+                <h3 class="agent-title">
                     <span>${agent.icon}</span> ${agent.name}
-                </div>
+                </h3>
                 <div class="tag-container">
                     ${tags}
                 </div>
@@ -1960,6 +2051,48 @@ async function copyAll(btn) {
     const body = AGENTS.map(a => `${a.prompt}\n\n--------------------------------------------------------------------------------`).join('\n\n');
     handleCopyAnimation(btn, header + body);
 }
+
+// Palette+: Sticky Navigation Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const navPills = document.querySelectorAll('.nav-pill');
+    // Map Grid IDs to Header IDs (which are the anchor targets)
+    const sectionMap = {
+        'coreGrid': 'core-maintenance',
+        'engGrid': 'engineering-specialists',
+        'contextGrid': 'context-strategy',
+        'monthlyGrid': 'monthly-intelligence',
+        'powerGrid': 'bundled-tasks'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const targetId = sectionMap[entry.target.id];
+
+                // Update active state
+                navPills.forEach(pill => {
+                    const href = pill.getAttribute('href').substring(1);
+                    if (href === targetId) {
+                        pill.classList.add('active');
+                    } else {
+                        pill.classList.remove('active');
+                    }
+                });
+            }
+        });
+    }, {
+        // Trigger when the element crosses the "reading zone" (top 1/3 of screen)
+        // Offset -100px to account for the sticky nav itself
+        // Palette+: Adjusted to -80px to ensure anchor landing (at 100px) is captured inside the zone
+        rootMargin: '-80px 0px -60% 0px',
+        threshold: 0
+    });
+
+    Object.keys(sectionMap).forEach(gridId => {
+        const el = document.getElementById(gridId);
+        if (el) observer.observe(el);
+    });
+});
 </script>
 </body>
 </html>
