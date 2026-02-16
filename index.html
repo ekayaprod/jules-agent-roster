@@ -1715,6 +1715,8 @@ function toggleDetails(index) {
     // Palette+: Update button text
     const span = btn.querySelector('span');
     span.innerText = isExpanded ? 'Hide Details' : 'Show Details';
+
+    console.debug("Toggled Agent Details", { index, expanded: isExpanded, agent: AGENTS[index]?.name });
 }
 
 // Palette+: Search Logic including Empty State & Clear Button Visibility
@@ -1777,6 +1779,7 @@ async function copyText(text) {
         showToast();
         return true;
     } catch (err) {
+        console.warn("Clipboard API failed, attempting fallback", { error: err.message, textLength: text.length });
         const el = document.createElement('textarea');
         el.value = text;
         el.style.position = 'fixed';
@@ -1810,10 +1813,12 @@ async function handleCopyAnimation(btn, text) {
 }
 
 function copyAgent(index, btn) {
+    console.info("Agent Copied", { name: AGENTS[index].name, category: AGENTS[index].category });
     handleCopyAnimation(btn, AGENTS[index].prompt);
 }
 
 async function copyAll(btn) {
+    console.info("Full Roster Copied", { count: AGENTS.length });
     const header = "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
     const body = AGENTS.map(a => `${a.prompt}\n\n--------------------------------------------------------------------------------`).join('\n\n');
     handleCopyAnimation(btn, header + body);
