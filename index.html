@@ -1717,7 +1717,6 @@ PROCESS:
 const categories = {
     core: document.getElementById('coreGrid'),
     eng: document.getElementById('engGrid'),
-    ai: document.getElementById('aiGrid'),
     context: document.getElementById('contextGrid'),
     monthly: document.getElementById('monthlyGrid'),
     power: document.getElementById('powerGrid')
@@ -1728,7 +1727,6 @@ AGENTS.forEach((agent, index) => {
     card.className = 'card';
     if (agent.type === 'plus') card.classList.add('plus-agent');
     if (agent.type === 'monthly') card.classList.add('monthly-agent');
-    if (agent.type === 'ai') card.classList.add('ai-agent');
     
     // Build tags
     let tags = '';
