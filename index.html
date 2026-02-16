@@ -1,474 +1,596 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jules Master Agent Roster</title>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --accent: #38bdf8;
-            --accent-hover: #0ea5e9;
-            --success: #22c55e;
-            --success-hover: #16a34a;
-            --plus-accent: #a855f7;
-            --monthly-accent: #f59e0b;
-            --power-tag-bg: #334155;
-            --power-tag-text: #cbd5e1;
-            --overseer-tag-bg: #064e3b;
-            --overseer-tag-text: #6ee7b7;
-            --border: #334155;
-            --details-bg: #020617;
-            --scope-sm-bg: #1e1b4b; --scope-sm-text: #818cf8;
-            --scope-md-bg: #172554; --scope-md-text: #60a5fa;
-            --scope-lg-bg: #3f1e16; --scope-lg-text: #fca5a5;
-        }
+      :root {
+        --bg-color: #0f172a;
+        --card-bg: #1e293b;
+        --text-primary: #f8fafc;
+        --text-secondary: #94a3b8;
+        --accent: #38bdf8;
+        --accent-hover: #0ea5e9;
+        --success: #22c55e;
+        --success-hover: #16a34a;
+        --plus-accent: #a855f7;
+        --monthly-accent: #f59e0b;
+        --power-tag-bg: #334155;
+        --power-tag-text: #cbd5e1;
+        --overseer-tag-bg: #064e3b;
+        --overseer-tag-text: #6ee7b7;
+        --border: #334155;
+        --details-bg: #020617;
+        --scope-sm-bg: #1e1b4b;
+        --scope-sm-text: #818cf8;
+        --scope-md-bg: #172554;
+        --scope-md-text: #60a5fa;
+        --scope-lg-bg: #3f1e16;
+        --scope-lg-text: #fca5a5;
+      }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            margin: 0;
-            padding: 1.5rem;
-            line-height: 1.6;
-        }
+      body {
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-primary);
+        margin: 0;
+        padding: 1.5rem;
+        line-height: 1.6;
+      }
 
-        .header {
-            max-width: 1200px;
-            margin: 0 auto 3rem auto;
-            text-align: center;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border);
-        }
+      .header {
+        max-width: 1200px;
+        margin: 0 auto 3rem auto;
+        text-align: center;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+      }
 
-        .header h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, #38bdf8, #818cf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+      .header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(to right, #38bdf8, #818cf8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
 
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-            align-items: center; /* Palette+: Align search wrapper */
-        }
+      .controls {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+        align-items: center; /* Palette+: Align search wrapper */
+      }
 
-        /* Palette+: New Search Wrapper for positioning */
-        .search-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 300px;
-        }
+      /* Palette+: New Search Wrapper for positioning */
+      .search-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+      }
 
-        /* Palette+: Absolute positioned Clear Button */
-        .clear-search-btn {
-            position: absolute;
-            right: 0.5rem;
-            top: 50%;
-            transform: translateY(-50%) scale(0.8);
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            padding: 0.25rem;
-            cursor: pointer;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
+      /* Palette+: Absolute positioned Clear Button */
+      .clear-search-btn {
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%) scale(0.8);
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        padding: 0.25rem;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
 
-        .clear-search-btn:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-        }
+      .clear-search-btn:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--text-primary);
+      }
 
-        .clear-search-btn.visible {
-            opacity: 1;
-            pointer-events: auto;
-            transform: translateY(-50%) scale(1);
-        }
+      .clear-search-btn.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(-50%) scale(1);
+      }
 
-        button {
-            background-color: var(--accent);
-            color: #0f172a;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
+      button {
+        background-color: var(--accent);
+        color: #0f172a;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        position: relative;
+        overflow: hidden;
+      }
 
-        button:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-1px);
-        }
+      button:hover {
+        background-color: var(--accent-hover);
+        transform: translateY(-1px);
+      }
 
-        button:active {
-            transform: scale(0.97);
-        }
+      button:active {
+        transform: scale(0.97);
+      }
 
-        button.secondary {
-            background-color: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-            width: 100%;
-            justify-content: center;
-        }
+      button.secondary {
+        background-color: var(--card-bg);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+        width: 100%;
+        justify-content: center;
+      }
 
-        button.secondary:hover {
-            border-color: var(--accent);
-        }
+      button.secondary:hover {
+        border-color: var(--accent);
+      }
 
-        button.success-state {
-            background-color: var(--success) !important;
-            color: white !important;
-            border-color: var(--success) !important;
-        }
-        
-        button.secondary.success-state {
-            background-color: var(--success) !important;
-        }
+      button.success-state {
+        background-color: var(--success) !important;
+        color: white !important;
+        border-color: var(--success) !important;
+      }
 
-        input[type="text"] {
-            padding: 0.75rem;
-            padding-right: 2.5rem; /* Palette+: Space for X button */
-            border-radius: 0.5rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text-primary);
-            width: 100%;
-            font-size: 1rem;
-            transition: border-color 0.2s;
-        }
+      button.secondary.success-state {
+        background-color: var(--success) !important;
+      }
 
-        input[type="text"]:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
+      input[type="text"] {
+        padding: 0.75rem;
+        padding-right: 2.5rem; /* Palette+: Space for X button */
+        border-radius: 0.5rem;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        color: var(--text-primary);
+        width: 100%;
+        font-size: 1rem;
+        transition: border-color 0.2s;
+      }
 
-        .section-header {
-            max-width: 1200px;
-            margin: 3rem auto 1rem auto;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-size: 0.9rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.5rem;
-        }
+      input[type="text"]:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+      .section-header {
+        max-width: 1200px;
+        margin: 3rem auto 1rem auto;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.9rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.5rem;
+      }
 
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            transition: all 0.2s;
-            position: relative;
-            overflow: hidden;
-        }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
 
-        .card:hover {
-            border-color: var(--text-secondary);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-        }
+      .card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        transition: all 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
 
-        /* Type Indicators */
-        .card.plus-agent::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--plus-accent); }
-        .card.plus-agent .role-tag { color: var(--plus-accent); background-color: rgba(168, 85, 247, 0.1); }
+      .card:hover {
+        border-color: var(--text-secondary);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      }
 
-        .card.monthly-agent::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background-color: var(--monthly-accent); }
-        .card.monthly-agent .role-tag { color: var(--monthly-accent); background-color: rgba(245, 158, 11, 0.1); }
+      /* Type Indicators */
+      .card.plus-agent::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background-color: var(--plus-accent);
+      }
+      .card.plus-agent .role-tag {
+        color: var(--plus-accent);
+        background-color: rgba(168, 85, 247, 0.1);
+      }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
+      .card.monthly-agent::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background-color: var(--monthly-accent);
+      }
+      .card.monthly-agent .role-tag {
+        color: var(--monthly-accent);
+        background-color: rgba(245, 158, 11, 0.1);
+      }
 
-        .title-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.25rem;
-        }
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+      }
 
-        .agent-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
+      .title-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
 
-        .role-tag {
-            font-size: 0.75rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 999px;
-            background-color: rgba(56, 189, 248, 0.1);
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            font-weight: 600;
-            align-self: flex-start;
-        }
+      .agent-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
 
-        .tag-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
+      .role-tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 999px;
+        background-color: rgba(56, 189, 248, 0.1);
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+        align-self: flex-start;
+      }
 
-        .meta-tag {
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 4px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            font-family: monospace;
-            letter-spacing: 0.05em;
-        }
+      .tag-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
 
-        .scope-small { background: var(--scope-sm-bg); color: var(--scope-sm-text); }
-        .scope-medium { background: var(--scope-md-bg); color: var(--scope-md-text); }
-        .scope-large { background: var(--scope-lg-bg); color: var(--scope-lg-text); }
-        
-        .power-tag { background-color: var(--power-tag-bg); color: var(--power-tag-text); padding: 2px 6px; border-radius: 4px; font-size: 0.7rem;}
+      .meta-tag {
+        font-size: 0.7rem;
+        padding: 2px 8px;
+        border-radius: 4px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-family: monospace;
+        letter-spacing: 0.05em;
+      }
 
-        .description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            flex-grow: 1;
-            line-height: 1.5;
-        }
-        
-        /* Diff List Styling */
-        .diff-list {
-            margin-top: 1rem;
-            font-size: 0.85rem;
-            list-style: none;
-            padding: 0;
-            background: rgba(15, 23, 42, 0.5);
-            border-radius: 6px;
-            padding: 0.75rem;
-            border: 1px solid var(--border);
-        }
-        
-        .diff-item {
-            display: flex;
-            gap: 0.75rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-            align-items: baseline;
-        }
-        
-        .diff-item:last-child { margin-bottom: 0; }
-        
-        .diff-icon {
-            font-weight: bold;
-            flex-shrink: 0;
-            font-family: monospace;
-        }
-        
-        .diff-plus .diff-icon { color: #4ade80; }
-        .diff-minus .diff-icon { color: #f87171; }
-        .diff-text { color: #cbd5e1; }
+      .scope-small {
+        background: var(--scope-sm-bg);
+        color: var(--scope-sm-text);
+      }
+      .scope-medium {
+        background: var(--scope-md-bg);
+        color: var(--scope-md-text);
+      }
+      .scope-large {
+        background: var(--scope-lg-bg);
+        color: var(--scope-lg-text);
+      }
 
-        /* Palette+: Accordion Animation Styles */
-        .details-toggle {
-            background: none;
-            border: none;
-            color: var(--accent);
-            cursor: pointer;
-            padding: 0;
-            font-size: 0.85rem;
-            text-align: left;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            width: 100%;
-            border-top: 1px solid var(--border);
-            padding-top: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .details-toggle:hover {
-            color: var(--accent-hover);
-        }
+      .power-tag {
+        background-color: var(--power-tag-bg);
+        color: var(--power-tag-text);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+      }
 
-        /* Palette+: Chevron Rotation */
-        .details-toggle svg {
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .details-toggle[aria-expanded="true"] svg {
-            transform: rotate(180deg);
-        }
+      .description {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+        flex-grow: 1;
+        line-height: 1.5;
+      }
 
-        /* Palette+: Smooth Expansion using Grid Row Trick */
-        .details-grid {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+      /* Diff List Styling */
+      .diff-list {
+        margin-top: 1rem;
+        font-size: 0.85rem;
+        list-style: none;
+        padding: 0;
+        background: rgba(15, 23, 42, 0.5);
+        border-radius: 6px;
+        padding: 0.75rem;
+        border: 1px solid var(--border);
+      }
 
-        .details-grid.expanded {
-            grid-template-rows: 1fr;
-        }
+      .diff-item {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.4;
+        align-items: baseline;
+      }
 
-        .details-overflow {
-            overflow: hidden;
-        }
+      .diff-item:last-child {
+        margin-bottom: 0;
+      }
 
-        .details-content {
-            background-color: var(--details-bg);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            border: 1px solid var(--border);
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            white-space: pre-wrap;
-            font-family: monospace;
-            max-height: 400px;
-            overflow-y: auto;
-            /* Palette+: Fade in opacity */
-            opacity: 0;
-            transition: opacity 0.3s ease-out;
-            /* Palette+: Hide from screen readers when collapsed */
-            visibility: hidden;
-        }
+      .diff-icon {
+        font-weight: bold;
+        flex-shrink: 0;
+        font-family: monospace;
+      }
 
-        .details-grid.expanded .details-content {
-            opacity: 1;
-            visibility: visible;
-        }
+      .diff-plus .diff-icon {
+        color: #4ade80;
+      }
+      .diff-minus .diff-icon {
+        color: #f87171;
+      }
+      .diff-text {
+        color: #cbd5e1;
+      }
 
-        .card-actions {
-            margin-top: auto;
-        }
+      /* Palette+: Accordion Animation Styles */
+      .details-toggle {
+        background: none;
+        border: none;
+        color: var(--accent);
+        cursor: pointer;
+        padding: 0;
+        font-size: 0.85rem;
+        text-align: left;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        border-top: 1px solid var(--border);
+        padding-top: 1rem;
+        margin-top: 1rem;
+      }
 
-        /* Palette+: Empty State */
-        .empty-state {
-            display: none;
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--text-secondary);
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+      .details-toggle:hover {
+        color: var(--accent-hover);
+      }
 
-        .empty-state.visible {
-            display: block;
-            animation: fadeIn 0.3s ease-out;
-        }
+      /* Palette+: Chevron Rotation */
+      .details-toggle svg {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
-        .empty-state svg {
-            color: var(--border);
-            margin-bottom: 1rem;
-        }
+      .details-toggle[aria-expanded="true"] svg {
+        transform: rotate(180deg);
+      }
 
+      /* Palette+: Smooth Expansion using Grid Row Trick */
+      .details-grid {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .details-grid.expanded {
+        grid-template-rows: 1fr;
+      }
+
+      .details-overflow {
+        overflow: hidden;
+      }
+
+      .details-content {
+        background-color: var(--details-bg);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--border);
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        white-space: pre-wrap;
+        font-family: monospace;
+        max-height: 400px;
+        overflow-y: auto;
+        /* Palette+: Fade in opacity */
+        opacity: 0;
+        transition: opacity 0.3s ease-out;
+        /* Palette+: Hide from screen readers when collapsed */
+        visibility: hidden;
+      }
+
+      .details-grid.expanded .details-content {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .card-actions {
+        margin-top: auto;
+      }
+
+      /* Palette+: Empty State */
+      .empty-state {
+        display: none;
+        text-align: center;
+        padding: 4rem 2rem;
+        color: var(--text-secondary);
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .empty-state.visible {
+        display: block;
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      .empty-state svg {
+        color: var(--border);
+        margin-bottom: 1rem;
+      }
+
+      .toast {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        background-color: #22c55e;
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+        transform: translateY(150%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 50;
+        font-weight: 600;
+      }
+
+      .toast.show {
+        transform: translateY(0);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Palette+: Respect user motion preferences */
+      @media (prefers-reduced-motion: reduce) {
         .toast {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: #22c55e;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-            transform: translateY(150%);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 50;
-            font-weight: 600;
+          transition: none;
+          transform: translateY(0);
+          display: none;
         }
-
         .toast.show {
-            transform: translateY(0);
+          display: block;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        button,
+        .card,
+        .clear-search-btn,
+        .details-toggle svg,
+        .details-grid,
+        .details-content {
+          transition: none !important;
         }
-
-        /* Palette+: Respect user motion preferences */
-        @media (prefers-reduced-motion: reduce) {
-            .toast {
-                transition: none;
-                transform: translateY(0);
-                display: none;
-            }
-            .toast.show {
-                display: block;
-            }
-            button, .card, .clear-search-btn, .details-toggle svg, .details-grid, .details-content {
-                transition: none !important;
-            }
-            .empty-state.visible {
-                animation: none;
-            }
+        .empty-state.visible {
+          animation: none;
         }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="header">
-        <h1>Jules Master Agent Roster</h1>
-        <p style="color: var(--text-secondary);">The complete scheduled system for AI-solo development.</p>
-        <div class="controls">
-            <!-- Palette+: Search Wrapper for Clear Interaction -->
-            <div class="search-wrapper">
-                <input type="text" id="searchInput" aria-label="Search agents by name" placeholder="Search agents..." oninput="filterAgents(this.value)">
-                <button class="clear-search-btn" id="clearBtn" aria-label="Clear search" onclick="clearSearch()">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
-            </div>
-            
-            <button onclick="copyAll(this)">
-                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-                <span>Copy Full Roster (For Jules)</span>
-            </button>
+      <h1>Jules Master Agent Roster</h1>
+      <p style="color: var(--text-secondary)">
+        The complete scheduled system for AI-solo development.
+      </p>
+      <div class="controls">
+        <!-- Palette+: Search Wrapper for Clear Interaction -->
+        <div class="search-wrapper">
+          <input
+            type="text"
+            id="searchInput"
+            aria-label="Search agents by name"
+            placeholder="Search agents..."
+            oninput="filterAgents(this.value)"
+          />
+          <button
+            class="clear-search-btn"
+            id="clearBtn"
+            aria-label="Clear search"
+            onclick="clearSearch()"
+          >
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
         </div>
+
+        <button onclick="copyAll(this)">
+          <svg
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+            />
+          </svg>
+          <span>Copy Full Roster (For Jules)</span>
+        </button>
+      </div>
     </div>
 
     <!-- Palette+: Empty State Component -->
     <div id="emptyState" class="empty-state">
-        <svg width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-        <p>No agents found matching your search.</p>
-        <button class="secondary" style="margin: 1rem auto 0; width: auto;" onclick="clearSearch()">Clear Search</button>
+      <svg
+        width="64"
+        height="64"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
+      </svg>
+      <p>No agents found matching your search.</p>
+      <button
+        class="secondary"
+        style="margin: 1rem auto 0; width: auto"
+        onclick="clearSearch()"
+      >
+        Clear Search
+      </button>
     </div>
 
     <div class="section-header">Core Maintenance (Plus Versions)</div>
@@ -487,25 +609,30 @@
     <div class="grid" id="powerGrid"></div>
 
     <!-- Palette+: Added role="status" and aria-live="polite" for screen reader feedback -->
-    <div id="toast" class="toast" role="status" aria-live="polite">Copied to clipboard!</div>
+    <div id="toast" class="toast" role="status" aria-live="polite">
+      Copied to clipboard!
+    </div>
 
-<script>
-const AGENTS = [
-    // --- CORE TRIO (PLUS VERSIONS) ---
-    {
-        name: "Bolt+",
-        icon: "⚡",
-        category: "core",
-        type: "plus",
-        scope: "Small-Medium",
-        usedIn: "Mechanic",
-        role: "Performance Engineer",
-        desc: "Implements systemic performance patterns (Virtualization, Workers, Caching). Consults Overseer Audit for bottlenecks.",
-        diffs: [
+    <script>
+      const AGENTS = [
+        // --- CORE TRIO (PLUS VERSIONS) ---
+        {
+          name: "Bolt+",
+          icon: "⚡",
+          category: "core",
+          type: "plus",
+          scope: "Small-Medium",
+          usedIn: "Mechanic",
+          role: "Performance Engineer",
+          desc: "Implements systemic performance patterns (Virtualization, Workers, Caching). Consults Overseer Audit for bottlenecks.",
+          diffs: [
             { type: "plus", text: "Scope: Micro-fix -> Systemic Strategy" },
-            { type: "plus", text: "Added: Virtualization, Workers, Custom Hooks" },
-        ],
-        prompt: `You are "Bolt+" ⚡ - a performance-obsessed agent (Enhanced).
+            {
+              type: "plus",
+              text: "Added: Virtualization, Workers, Custom Hooks",
+            },
+          ],
+          prompt: `You are "Bolt+" ⚡ - a performance-obsessed agent (Enhanced).
 Your mission is to identify and implement ONE SYSTEMIC performance pattern (Small-Medium Scope) that improves efficiency across a module or list.
 
 SAMPLE COMMANDS
@@ -570,22 +697,22 @@ BOLT'S FAVORITE PATTERNS:
 ⚡ Route-based code splitting (Lazy Loading)
 ⚡ Server-Side Pagination for large datasets
 ⚡ Debounce/Throttle hooks for frequent events
-⚡ Memoization of Context values to prevent prop drilling re-renders`
-    },
-    {
-        name: "Palette+",
-        icon: "🎨",
-        category: "core",
-        type: "plus",
-        scope: "Small-Medium",
-        usedIn: "Virtuoso",
-        role: "UX & Delight (Enhanced)",
-        desc: "Polishes complete interaction flows (Animations, Accessibility, State Feedback). Consults Overseer Audit for friction points.",
-        diffs: [
+⚡ Memoization of Context values to prevent prop drilling re-renders`,
+        },
+        {
+          name: "Palette+",
+          icon: "🎨",
+          category: "core",
+          type: "plus",
+          scope: "Small-Medium",
+          usedIn: "Virtuoso",
+          role: "UX & Delight (Enhanced)",
+          desc: "Polishes complete interaction flows (Animations, Accessibility, State Feedback). Consults Overseer Audit for friction points.",
+          diffs: [
             { type: "plus", text: "Scope: Micro-fix -> Component Flow" },
             { type: "plus", text: "Added: Motion, Transitions & State Polish" },
-        ],
-        prompt: `You are "Palette+" 🎨 - a UX & Delight agent (Enhanced).
+          ],
+          prompt: `You are "Palette+" 🎨 - a UX & Delight agent (Enhanced).
 Your mission is to find and polish ONE COMPLETE interaction flow or component (Small-Medium Scope).
 You make things intuitive, accessible, and DELIGHTFUL.
 
@@ -653,22 +780,25 @@ PALETTE'S FAVORITE POLISHES:
 ✨ Focus trapping for Modals/Drawers
 ✨ "Empty States" with Call-to-Actions
 ✨ Micro-interactions on buttons (Scale/Color shift)
-✨ Input Masking for complex data`
-    },
-    {
-        name: "Sentinel+",
-        icon: "🛡️",
-        category: "core",
-        type: "plus",
-        scope: "Small-Medium",
-        usedIn: "Warden",
-        role: "Security Engineer",
-        desc: "Hardens architecture via defense layers (Validation Schemas, CSP, Rate Limiting). Consults Overseer Audit for vulnerabilities.",
-        diffs: [
+✨ Input Masking for complex data`,
+        },
+        {
+          name: "Sentinel+",
+          icon: "🛡️",
+          category: "core",
+          type: "plus",
+          scope: "Small-Medium",
+          usedIn: "Warden",
+          role: "Security Engineer",
+          desc: "Hardens architecture via defense layers (Validation Schemas, CSP, Rate Limiting). Consults Overseer Audit for vulnerabilities.",
+          diffs: [
             { type: "plus", text: "Scope: Micro-patch -> Defense Layer" },
-            { type: "plus", text: "Added: Validation Schemas, Security Headers, Flow Hardening" },
-        ],
-        prompt: `You are "Sentinel+" 🛡️ - a security-focused agent (Enhanced).
+            {
+              type: "plus",
+              text: "Added: Validation Schemas, Security Headers, Flow Hardening",
+            },
+          ],
+          prompt: `You are "Sentinel+" 🛡️ - a security-focused agent (Enhanced).
 Your mission is to identify and harden ONE COMPLETE subsystem or data flow (Small-Medium Scope).
 
 SAMPLE COMMANDS
@@ -728,19 +858,19 @@ SENTINEL'S FAVORITE DEFENSES:
 🛡️ Content Security Policy (CSP) Headers
 🛡️ HttpOnly/Secure Cookies for Session Management
 🛡️ Input Sanitization (DOMPurify) for Rich Text
-🛡️ Generic Error Messages (Anti-Leak)`
-    },
+🛡️ Generic Error Messages (Anti-Leak)`,
+        },
 
-    // --- ENGINEERING ---
-    {
-        name: "Architect",
-        icon: "🏗️",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Steward",
-        role: "Structure",
-        desc: "Refactors messy modules into clean patterns. Checks Overseer 'Structural Hotspots'.",
-        prompt: `You are "Architect" 🏗️ - a structural agent.
+        // --- ENGINEERING ---
+        {
+          name: "Architect",
+          icon: "🏗️",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Steward",
+          role: "Structure",
+          desc: "Refactors messy modules into clean patterns. Checks Overseer 'Structural Hotspots'.",
+          prompt: `You are "Architect" 🏗️ - a structural agent.
 Your mission is to identify and implement ONE ROBUST structural improvement that aligns the code with a unified pattern.
 
 SAMPLE COMMANDS
@@ -795,17 +925,17 @@ ARCHITECT'S FAVORITE PATTERNS:
 🏗️ Extracting "Magic Strings" to Constants/Config
 🏗️ Breaking "God Components" into Sub-components
 🏗️ Custom Hooks for Logic Extraction
-🏗️ Barreling Imports (index.ts) for cleaner consumption`
-    },
-    {
-        name: "Scavenger",
-        icon: "🧹",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Steward",
-        role: "Cleanup",
-        desc: "Deletes dead code and resolved TODOs. Checks Overseer 'Debris Field'.",
-        prompt: `You are "Scavenger" 🧹 - a deletion specialist.
+🏗️ Barreling Imports (index.ts) for cleaner consumption`,
+        },
+        {
+          name: "Scavenger",
+          icon: "🧹",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Steward",
+          role: "Cleanup",
+          desc: "Deletes dead code and resolved TODOs. Checks Overseer 'Debris Field'.",
+          prompt: `You are "Scavenger" 🧹 - a deletion specialist.
 Your mission is to identify and delete ONE SIGNIFICANT piece of dead code, resolved TODO, or ghost import.
 
 SAMPLE COMMANDS
@@ -858,17 +988,17 @@ SCAVENGER'S FAVORITE TARGETS:
 🧹 Completed TODO comments
 🧹 Console.logs in production code
 🧹 Deprecated/Commented-out code blocks
-🧹 Empty CSS files or unused classes`
-    },
-    {
-        name: "Janitor",
-        icon: "🧼",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Warden",
-        role: "Hygiene",
-        desc: "Maintains the project foundation (deps, engines, configs).",
-        prompt: `You are "Janitor" 🧼 - a dependency & config agent.
+🧹 Empty CSS files or unused classes`,
+        },
+        {
+          name: "Janitor",
+          icon: "🧼",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Warden",
+          role: "Hygiene",
+          desc: "Maintains the project foundation (deps, engines, configs).",
+          prompt: `You are "Janitor" 🧼 - a dependency & config agent.
 Your mission is to maintain the project's foundation (deps, engines, configs).
 
 SAMPLE COMMANDS
@@ -922,17 +1052,17 @@ JANITOR'S FAVORITE TASKS:
 🧼 Deduplicating Lockfiles
 🧼 Standardizing Prettier/ESLint configs
 🧼 Updating .gitignore
-🧼 Sorting package.json scripts`
-    },
-    {
-        name: "Modernizer",
-        icon: "🆙",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Mechanic",
-        role: "Evolution",
-        desc: "Upgrades legacy tools and AI Models. Checks Overseer 'Modernization Targets'.",
-        prompt: `You are "Modernizer" 🆙 - a tech stack evolution agent.
+🧼 Sorting package.json scripts`,
+        },
+        {
+          name: "Modernizer",
+          icon: "🆙",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Mechanic",
+          role: "Evolution",
+          desc: "Upgrades legacy tools and AI Models. Checks Overseer 'Modernization Targets'.",
+          prompt: `You are "Modernizer" 🆙 - a tech stack evolution agent.
 Your mission is to identify ONE OUTDATED tool, library version, AI MODEL, or coding pattern and perform a MEANINGFUL migration.
 
 SAMPLE COMMANDS
@@ -985,17 +1115,17 @@ MODERNIZER'S FAVORITE MIGRATIONS:
 🆙 Callbacks -> Async/Await
 🆙 var -> let/const
 🆙 Lodash -> Native ES6 Array methods
-🆙 Older AI Models -> Current Gen (Cheaper/Faster)`
-    },
-    {
-        name: "Inspector",
-        icon: "🕵️",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Guardian",
-        role: "QA",
-        desc: "Finds and fills test coverage gaps. Checks Overseer 'Coverage Gaps'.",
-        prompt: `You are "Inspector" 🕵️ - a QA agent.
+🆙 Older AI Models -> Current Gen (Cheaper/Faster)`,
+        },
+        {
+          name: "Inspector",
+          icon: "🕵️",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Guardian",
+          role: "QA",
+          desc: "Finds and fills test coverage gaps. Checks Overseer 'Coverage Gaps'.",
+          prompt: `You are "Inspector" 🕵️ - a QA agent.
 Your mission is to identify ONE MEANINGFUL gap in test coverage and add a robust test case.
 
 SAMPLE COMMANDS
@@ -1045,17 +1175,17 @@ INSPECTOR'S FAVORITE TESTS:
 🕵️ Error State Handling (Network failures)
 🕵️ User Interaction Flows (Click/Type)
 🕵️ Data Validation (Invalid inputs)
-🕵️ Integration Tests (Component + Hook)`
-    },
-    {
-        name: "Medic",
-        icon: "🚑",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Guardian",
-        role: "Resilience",
-        desc: "Hardens app against crashes, swallowed errors, and brittle logic.",
-        prompt: `You are "Medic" 🚑 - a resilience agent.
+🕵️ Integration Tests (Component + Hook)`,
+        },
+        {
+          name: "Medic",
+          icon: "🚑",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Guardian",
+          role: "Resilience",
+          desc: "Hardens app against crashes, swallowed errors, and brittle logic.",
+          prompt: `You are "Medic" 🚑 - a resilience agent.
 Your mission is to identify and fix ONE CRITICAL area of fragility.
 This includes: Swallowed errors, 'any' types, UNSAFE AI RESPONSE PARSING (JSON.parse), and BRITTLE API CALLS (missing retries).
 
@@ -1105,17 +1235,17 @@ MEDIC'S FAVORITE TREATMENTS:
 🚑 Wrapping JSON.parse in try/catch or Zod
 🚑 Adding Exponential Backoff to fetch calls
 🚑 Implementing Error Boundaries
-🚑 Adding Null checks for optional data`
-    },
-    {
-        name: "Blackbox",
-        icon: "✈️",
-        category: "eng",
-        scope: "Medium",
-        usedIn: "Clarifier",
-        role: "Debugging",
-        desc: "Acts as a Flight Recorder by enriching vague error logs with critical context variables (IDs, State).",
-        prompt: `You are "Blackbox" ✈️ - a debugging context agent.
+🚑 Adding Null checks for optional data`,
+        },
+        {
+          name: "Blackbox",
+          icon: "✈️",
+          category: "eng",
+          scope: "Medium",
+          usedIn: "Clarifier",
+          role: "Debugging",
+          desc: "Acts as a Flight Recorder by enriching vague error logs with critical context variables (IDs, State).",
+          prompt: `You are "Blackbox" ✈️ - a debugging context agent.
 Your mission is to audit a feature and ensure its logs provide complete debug context.
 
 SAMPLE COMMANDS
@@ -1168,19 +1298,19 @@ BLACKBOX'S FAVORITE ENRICHMENTS:
 ✈️ Logging State before Error
 ✈️ Standardizing Timestamp formats
 ✈️ Categorizing logs (Info/Warn/Error)
-✈️ Tracing async operations`
-    },
+✈️ Tracing async operations`,
+        },
 
-    // --- CONTEXT (MEDIUM SCOPE) ---
-    {
-        name: "Scribe",
-        icon: "✍️",
-        category: "context",
-        scope: "Medium",
-        usedIn: "Librarian, Clarifier",
-        role: "History",
-        desc: "Updates comprehensive documentation sections and API references. Stops if context is already synced.",
-        prompt: `You are "Scribe" ✍️ - the documentation historian.
+        // --- CONTEXT (MEDIUM SCOPE) ---
+        {
+          name: "Scribe",
+          icon: "✍️",
+          category: "context",
+          scope: "Medium",
+          usedIn: "Librarian, Clarifier",
+          role: "History",
+          desc: "Updates comprehensive documentation sections and API references. Stops if context is already synced.",
+          prompt: `You are "Scribe" ✍️ - the documentation historian.
 Your mission is to ensure a SECTION of documentation (e.g. API docs) is complete and accurate.
 
 SAMPLE COMMANDS
@@ -1211,17 +1341,17 @@ SCRIBE'S DAILY PROCESS:
    *NOTE:* If docs are synced, STOP.
 3. 📝 WRITE: Write comprehensive docs for it.
 4. ✅ VERIFY: Check spelling/rendering.
-5. 🎁 PRESENT: PR Title: "✍️ Scribe: [Docs Overhaul]"`
-    },
-    {
-        name: "Navigator",
-        icon: "🧭",
-        category: "context",
-        scope: "Medium",
-        usedIn: "Librarian",
-        role: "Strategy",
-        desc: "Aligns the Roadmap with code reality and promotes valid backlog ideas to the roadmap.",
-        prompt: `You are "Navigator" 🧭 - a strategy agent.
+5. 🎁 PRESENT: PR Title: "✍️ Scribe: [Docs Overhaul]"`,
+        },
+        {
+          name: "Navigator",
+          icon: "🧭",
+          category: "context",
+          scope: "Medium",
+          usedIn: "Librarian",
+          role: "Strategy",
+          desc: "Aligns the Roadmap with code reality and promotes valid backlog ideas to the roadmap.",
+          prompt: `You are "Navigator" 🧭 - a strategy agent.
 Your mission is to ensure the project's direction is clear.
 
 SAMPLE COMMANDS
@@ -1245,17 +1375,17 @@ NAVIGATOR'S DAILY PROCESS:
    *NOTE:* If aligned, STOP.
 3. 🧭 EXECUTE: Update the Roadmap file.
 4. ✅ VERIFY: Check links.
-5. 🎁 PRESENT: PR Title: "🧭 Navigator: [Strategy Update]"`
-    },
-    {
-        name: "Curator",
-        icon: "🖼️",
-        category: "context",
-        scope: "Medium",
-        usedIn: "Virtuoso",
-        role: "Assets",
-        desc: "Audits asset library health, optimizes file sizes, and ensures accessibility compliance.",
-        prompt: `You are "Curator" 🖼️ - an asset manager.
+5. 🎁 PRESENT: PR Title: "🧭 Navigator: [Strategy Update]"`,
+        },
+        {
+          name: "Curator",
+          icon: "🖼️",
+          category: "context",
+          scope: "Medium",
+          usedIn: "Virtuoso",
+          role: "Assets",
+          desc: "Audits asset library health, optimizes file sizes, and ensures accessibility compliance.",
+          prompt: `You are "Curator" 🖼️ - an asset manager.
 Your mission is to audit and optimize the project's static assets.
 
 SAMPLE COMMANDS
@@ -1283,19 +1413,19 @@ CURATOR'S DAILY PROCESS:
    *NOTE:* If optimized, STOP.
 3. 🖼️ POLISH: Compress/Convert/Tag.
 4. ✅ VERIFY: Build check.
-5. 🎁 PRESENT: PR Title: "🖼️ Curator: [Asset Optimization]"`
-    },
+5. 🎁 PRESENT: PR Title: "🖼️ Curator: [Asset Optimization]"`,
+        },
 
-    // --- MONTHLY (LARGE SCOPE) ---
-    {
-        name: "Overseer",
-        icon: "👁️",
-        category: "monthly",
-        type: "monthly",
-        scope: "Large",
-        role: "The Eye",
-        desc: "Performs deep forensic audit to identify targets for other agents.",
-        prompt: `You are "Overseer" 👁️ - the central project auditor.
+        // --- MONTHLY (LARGE SCOPE) ---
+        {
+          name: "Overseer",
+          icon: "👁️",
+          category: "monthly",
+          type: "monthly",
+          scope: "Large",
+          role: "The Eye",
+          desc: "Performs deep forensic audit to identify targets for other agents.",
+          prompt: `You are "Overseer" 👁️ - the central project auditor.
 Your mission is to perform a FORENSIC DEEP SCAN of the project (Git history, Performance, Stale files, Security, Test gaps) and generate a single intelligence report: \`.jules/AGENTS_AUDIT.md\`.
 You do NOT fix issues. You identify targets for the specialist agents.
 
@@ -1361,17 +1491,17 @@ MONTHLY PROCESS
 2. 🎯 COMPILE: Aggregate findings into the standard Markdown format with \`- [ ]\` checkboxes.
 3. 📝 REPORT: Write to \`.jules/AGENTS_AUDIT.md\`.
 4. ✅ VERIFY: Ensure the file exists and targets are clear.
-5. 🎁 PRESENT: PR Title: "👁️ Overseer: [Monthly Intelligence Report]"`
-    },
-    {
-        name: "Cartographer",
-        icon: "🗺️",
-        category: "monthly",
-        type: "monthly",
-        scope: "Large",
-        role: "Visuals",
-        desc: "Maps the entire system architecture into Mermaid diagrams for high-level understanding.",
-        prompt: `You are "Cartographer" 🗺️ - a visualization agent.
+5. 🎁 PRESENT: PR Title: "👁️ Overseer: [Monthly Intelligence Report]"`,
+        },
+        {
+          name: "Cartographer",
+          icon: "🗺️",
+          category: "monthly",
+          type: "monthly",
+          scope: "Large",
+          role: "Visuals",
+          desc: "Maps the entire system architecture into Mermaid diagrams for high-level understanding.",
+          prompt: `You are "Cartographer" 🗺️ - a visualization agent.
 Your mission is to map the high-level architecture into \`ARCHITECTURE.md\` (Mermaid).
 
 BOUNDARIES
@@ -1387,17 +1517,17 @@ MONTHLY PROCESS
 2. 🎯 SKETCH: Determine flow.
 3. 🗺️ DRAW: Generate diagram.
 4. ✅ VERIFY: Valid syntax.
-5. 🎁 PRESENT: PR Title: "🗺️ Cartographer: [Map Update]"`
-    },
-    {
-        name: "Tutor",
-        icon: "🎓",
-        category: "monthly",
-        type: "monthly",
-        scope: "Large",
-        role: "Education",
-        desc: "Enriches the codebase by scanning utility libraries and adding @example usage snippets to JSDoc.",
-        prompt: `You are "Tutor" 🎓 - an education agent.
+5. 🎁 PRESENT: PR Title: "🗺️ Cartographer: [Map Update]"`,
+        },
+        {
+          name: "Tutor",
+          icon: "🎓",
+          category: "monthly",
+          type: "monthly",
+          scope: "Large",
+          role: "Education",
+          desc: "Enriches the codebase by scanning utility libraries and adding @example usage snippets to JSDoc.",
+          prompt: `You are "Tutor" 🎓 - an education agent.
 Your mission is to add \`@example\` usage snippets to JSDoc.
 
 DAILY PROCESS
@@ -1405,18 +1535,18 @@ DAILY PROCESS
 2. 🎯 SELECT: Top 3 confusing functions.
 3. 🎓 TEACH: Add examples.
 4. ✅ VERIFY: Compile.
-5. 🎁 PRESENT: PR Title: "🎓 Tutor: [Add Examples]"`
-    },
+5. 🎁 PRESENT: PR Title: "🎓 Tutor: [Add Examples]"`,
+        },
 
-    // --- POWER (DUAL-SMALL SCOPE) ---
-    {
-        name: "Steward",
-        icon: "🧹",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Arch+Scav",
-        desc: "Executes two distinct small tasks in one PR: One structure fix (Architect Lite) and one cleanup (Scavenger Lite).",
-        prompt: `You are "Steward" 🧹.
+        // --- POWER (DUAL-SMALL SCOPE) ---
+        {
+          name: "Steward",
+          icon: "🧹",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Arch+Scav",
+          desc: "Executes two distinct small tasks in one PR: One structure fix (Architect Lite) and one cleanup (Scavenger Lite).",
+          prompt: `You are "Steward" 🧹.
 Your mission: TWO SMALL, DISTINCT TASKS in one PR.
 
 === CRITICAL CONSTRAINTS ===
@@ -1436,16 +1566,16 @@ PROCESS:
    *NOTE:* If house clean, STOP.
 3. Execute both (respecting limits).
 4. Verify.
-5. PR: "🧹 Steward: [Structure] & [Cleanup]"`
-    },
-    {
-        name: "Warden",
-        icon: "🛡️",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Sent+Jan",
-        desc: "Executes two distinct small tasks in one PR: One security hardening (Sentinel+ Lite) and one dependency update (Janitor Lite).",
-        prompt: `You are "Warden" 🛡️.
+5. PR: "🧹 Steward: [Structure] & [Cleanup]"`,
+        },
+        {
+          name: "Warden",
+          icon: "🛡️",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Sent+Jan",
+          desc: "Executes two distinct small tasks in one PR: One security hardening (Sentinel+ Lite) and one dependency update (Janitor Lite).",
+          prompt: `You are "Warden" 🛡️.
 Your mission: TWO SMALL, DISTINCT TASKS in one PR.
 
 === CRITICAL CONSTRAINTS ===
@@ -1465,16 +1595,16 @@ PROCESS:
    *NOTE:* If secure/updated, STOP.
 3. Execute both.
 4. Verify.
-5. PR: "🛡️ Warden: [Secure] & [Update]"`
-    },
-    {
-        name: "Guardian",
-        icon: "🚑",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Medic+Insp",
-        desc: "Executes two distinct small tasks in one PR: One bug fix (Medic Lite) immediately locked in by a test case (Inspector Lite).",
-        prompt: `You are "Guardian" 🚑.
+5. PR: "🛡️ Warden: [Secure] & [Update]"`,
+        },
+        {
+          name: "Guardian",
+          icon: "🚑",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Medic+Insp",
+          desc: "Executes two distinct small tasks in one PR: One bug fix (Medic Lite) immediately locked in by a test case (Inspector Lite).",
+          prompt: `You are "Guardian" 🚑.
 Your mission: TWO SMALL, CONNECTED TASKS.
 
 === CRITICAL CONSTRAINTS ===
@@ -1493,16 +1623,16 @@ PROCESS:
 2. Fix it.
 3. Test it.
 4. Verify.
-5. PR: "🚑 Guardian: [Fix] & [Test]"`
-    },
-    {
-        name: "Librarian",
-        icon: "📚",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Scribe+Nav",
-        desc: "Executes two distinct small tasks in one PR: One documentation fix (Scribe Lite) and one roadmap update (Navigator Lite).",
-        prompt: `You are "Librarian" 📚.
+5. PR: "🚑 Guardian: [Fix] & [Test]"`,
+        },
+        {
+          name: "Librarian",
+          icon: "📚",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Scribe+Nav",
+          desc: "Executes two distinct small tasks in one PR: One documentation fix (Scribe Lite) and one roadmap update (Navigator Lite).",
+          prompt: `You are "Librarian" 📚.
 Your mission: TWO SMALL, DISTINCT TASKS.
 
 === CRITICAL CONSTRAINTS ===
@@ -1522,16 +1652,16 @@ PROCESS:
    *NOTE:* If synced, STOP.
 3. Execute both.
 4. Verify.
-5. PR: "📚 Librarian: [Doc] & [Roadmap]"`
-    },
-    {
-        name: "Virtuoso",
-        icon: "🎨",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Pal+Cur",
-        desc: "Executes two distinct small tasks in one PR: One UX polish (Palette+ Lite) and one asset optimization (Curator Lite).",
-        prompt: `You are "Virtuoso" 🎨.
+5. PR: "📚 Librarian: [Doc] & [Roadmap]"`,
+        },
+        {
+          name: "Virtuoso",
+          icon: "🎨",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Pal+Cur",
+          desc: "Executes two distinct small tasks in one PR: One UX polish (Palette+ Lite) and one asset optimization (Curator Lite).",
+          prompt: `You are "Virtuoso" 🎨.
 Your mission: TWO SMALL, DISTINCT TASKS.
 
 === CRITICAL CONSTRAINTS ===
@@ -1551,16 +1681,16 @@ PROCESS:
    *NOTE:* If polished, STOP.
 3. Execute both.
 4. Verify.
-5. PR: "🎨 Virtuoso: [UX] & [Asset]"`
-    },
-    {
-        name: "Mechanic",
-        icon: "🔧",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Bolt+Mod",
-        desc: "Executes two distinct small tasks in one PR: One performance tune (Bolt+ Lite) and one syntax update (Modernizer Lite).",
-        prompt: `You are "Mechanic" 🔧.
+5. PR: "🎨 Virtuoso: [UX] & [Asset]"`,
+        },
+        {
+          name: "Mechanic",
+          icon: "🔧",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Bolt+Mod",
+          desc: "Executes two distinct small tasks in one PR: One performance tune (Bolt+ Lite) and one syntax update (Modernizer Lite).",
+          prompt: `You are "Mechanic" 🔧.
 Your mission: TWO SMALL, DISTINCT TASKS.
 
 === CRITICAL CONSTRAINTS ===
@@ -1580,16 +1710,16 @@ PROCESS:
    *NOTE:* If modern/fast, STOP.
 3. Execute both.
 4. Verify.
-5. PR: "🔧 Mechanic: [Tune] & [Update]"`
-    },
-    {
-        name: "Clarifier",
-        icon: "🔦",
-        category: "power",
-        scope: "Small Bundle",
-        role: "Blkbox+Scribe",
-        desc: "Executes two distinct small tasks in one PR: One log enrichment (Blackbox Lite) and one JSDoc addition (Scribe Lite).",
-        prompt: `You are "Clarifier" 🔦.
+5. PR: "🔧 Mechanic: [Tune] & [Update]"`,
+        },
+        {
+          name: "Clarifier",
+          icon: "🔦",
+          category: "power",
+          scope: "Small Bundle",
+          role: "Blkbox+Scribe",
+          desc: "Executes two distinct small tasks in one PR: One log enrichment (Blackbox Lite) and one JSDoc addition (Scribe Lite).",
+          prompt: `You are "Clarifier" 🔦.
 Your mission: TWO CONNECTED TASKS.
 
 === CRITICAL CONSTRAINTS ===
@@ -1608,59 +1738,70 @@ PROCESS:
 2. Enrich it.
 3. Document it.
 4. Verify.
-5. PR: "🔦 Clarifier: [Log] & [Doc]"`
-    }
-];
+5. PR: "🔦 Clarifier: [Log] & [Doc]"`,
+        },
+      ];
 
-// --- RENDER LOGIC ---
-const categories = {
-    core: document.getElementById('coreGrid'),
-    eng: document.getElementById('engGrid'),
-    ai: document.getElementById('aiGrid'),
-    context: document.getElementById('contextGrid'),
-    monthly: document.getElementById('monthlyGrid'),
-    power: document.getElementById('powerGrid')
-};
+      // --- RENDER LOGIC ---
+      const categories = {
+        core: document.getElementById("coreGrid"),
+        eng: document.getElementById("engGrid"),
+        ai: document.getElementById("aiGrid"),
+        context: document.getElementById("contextGrid"),
+        monthly: document.getElementById("monthlyGrid"),
+        power: document.getElementById("powerGrid"),
+      };
 
-AGENTS.forEach((agent, index) => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    if (agent.type === 'plus') card.classList.add('plus-agent');
-    if (agent.type === 'monthly') card.classList.add('monthly-agent');
-    if (agent.type === 'ai') card.classList.add('ai-agent');
-    
-    // Build tags
-    let tags = '';
-    // Scope Tag
-    if (agent.scope) {
-        let scopeClass = 'scope-medium';
-        if (agent.scope.includes('Small')) scopeClass = 'scope-small';
-        if (agent.scope.includes('Large')) scopeClass = 'scope-large';
-        tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
-    }
-    
-    if (agent.usedIn) {
-        agent.usedIn.split(',').forEach(p => tags += `<span class="power-tag">🧩 Part of ${p.trim()}</span>`);
-    }
+      AGENTS.forEach((agent, index) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        if (agent.type === "plus") card.classList.add("plus-agent");
+        if (agent.type === "monthly") card.classList.add("monthly-agent");
+        if (agent.type === "ai") card.classList.add("ai-agent");
 
-    // Differences List for Plus Agents
-    const diffHtml = agent.diffs ? `
+        // Build tags
+        let tags = "";
+        // Scope Tag
+        if (agent.scope) {
+          let scopeClass = "scope-medium";
+          if (agent.scope.includes("Small")) scopeClass = "scope-small";
+          if (agent.scope.includes("Large")) scopeClass = "scope-large";
+          tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
+        }
+
+        if (agent.usedIn) {
+          agent.usedIn
+            .split(",")
+            .forEach(
+              (p) =>
+                (tags += `<span class="power-tag">🧩 Part of ${p.trim()}</span>`),
+            );
+        }
+
+        // Differences List for Plus Agents
+        const diffHtml = agent.diffs
+          ? `
         <ul class="diff-list">
-            ${agent.diffs.map(diff => `
+            ${agent.diffs
+              .map(
+                (diff) => `
                 <li class="diff-item">
-                    <span class="diff-icon ${diff.type === 'plus' ? 'diff-plus' : (diff.type === 'minus' ? 'diff-minus' : 'diff-change')}">
-                        ${diff.type === 'plus' ? '➕' : (diff.type === 'minus' ? '➖' : '🔄')}
+                    <span class="diff-icon ${diff.type === "plus" ? "diff-plus" : diff.type === "minus" ? "diff-minus" : "diff-change"}">
+                        ${diff.type === "plus" ? "➕" : diff.type === "minus" ? "➖" : "🔄"}
                     </span>
                     <span class="diff-text">${diff.text}</span>
                 </li>
-            `).join('')}
+            `,
+              )
+              .join("")}
         </ul>
-    ` : '';
+    `
+          : "";
 
-    // Build inner HTML
-    // Palette+: Added aria-expanded and aria-controls to details toggle
-    // Palette+: Passed 'this' to copyAgent for state management
-    let html = `
+        // Build inner HTML
+        // Palette+: Added aria-expanded and aria-controls to details toggle
+        // Palette+: Passed 'this' to copyAgent for state management
+        let html = `
         <div class="card-header">
             <div class="title-group">
                 <div class="agent-title">
@@ -1698,126 +1839,136 @@ ${agent.prompt}
             </button>
         </div>
     `;
-    card.innerHTML = html;
-    categories[agent.category].appendChild(card);
-});
+        card.innerHTML = html;
+        categories[agent.category].appendChild(card);
+      });
 
-function toggleDetails(index) {
-    const grid = document.getElementById(`details-${index}`);
-    const btn = document.querySelector(`button[aria-controls="details-${index}"]`);
-    
-    // Palette+: Toggle class instead of display property
-    const isExpanded = grid.classList.toggle('expanded');
-    
-    // Palette+: Update aria state
-    btn.setAttribute('aria-expanded', isExpanded);
-    
-    // Palette+: Update button text
-    const span = btn.querySelector('span');
-    span.innerText = isExpanded ? 'Hide Details' : 'Show Details';
-}
+      function toggleDetails(index) {
+        const grid = document.getElementById(`details-${index}`);
+        const btn = document.querySelector(
+          `button[aria-controls="details-${index}"]`,
+        );
 
-// Palette+: Search Logic including Empty State & Clear Button Visibility
-function filterAgents(query) {
-    const search = query.toLowerCase();
-    const cards = document.querySelectorAll('.card');
-    const emptyState = document.getElementById('emptyState');
-    const clearBtn = document.getElementById('clearBtn');
-    let visibleCount = 0;
+        // Palette+: Toggle class instead of display property
+        const isExpanded = grid.classList.toggle("expanded");
 
-    // Toggle Clear Button Visibility
-    if (query.length > 0) {
-        clearBtn.classList.add('visible');
-    } else {
-        clearBtn.classList.remove('visible');
-    }
+        // Palette+: Update aria state
+        btn.setAttribute("aria-expanded", isExpanded);
 
-    // Filter Logic
-    cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        if (text.includes(search)) {
-            card.style.display = 'flex';
-            visibleCount++;
+        // Palette+: Update button text
+        const span = btn.querySelector("span");
+        span.innerText = isExpanded ? "Hide Details" : "Show Details";
+      }
+
+      // Palette+: Search Logic including Empty State & Clear Button Visibility
+      function filterAgents(query) {
+        const search = query.toLowerCase();
+        const cards = document.querySelectorAll(".card");
+        const emptyState = document.getElementById("emptyState");
+        const clearBtn = document.getElementById("clearBtn");
+        let visibleCount = 0;
+
+        // Toggle Clear Button Visibility
+        if (query.length > 0) {
+          clearBtn.classList.add("visible");
         } else {
-            card.style.display = 'none';
+          clearBtn.classList.remove("visible");
         }
-    });
 
-    // Toggle Empty State Visibility
-    // Hide all headers if searching (optional polish, but keeping headers simple for now)
-    // Just toggle the empty state div
-    if (visibleCount === 0 && query.length > 0) {
-        emptyState.classList.add('visible');
-        // Hide section headers to reduce clutter when empty? 
-        // For now, let's leave them as layout anchors, but could hide them too.
-        document.querySelectorAll('.section-header').forEach(el => el.style.display = 'none');
-    } else {
-        emptyState.classList.remove('visible');
-        document.querySelectorAll('.section-header').forEach(el => el.style.display = 'block');
-    }
-}
+        // Filter Logic
+        cards.forEach((card) => {
+          const text = card.textContent.toLowerCase();
+          if (text.includes(search)) {
+            card.style.display = "flex";
+            visibleCount++;
+          } else {
+            card.style.display = "none";
+          }
+        });
 
-// Palette+: Clear Search Interaction
-function clearSearch() {
-    const input = document.getElementById('searchInput');
-    input.value = '';
-    filterAgents(''); // Reset filter
-    input.focus(); // A11y: Return focus to input
-}
+        // Toggle Empty State Visibility
+        // Hide all headers if searching (optional polish, but keeping headers simple for now)
+        // Just toggle the empty state div
+        if (visibleCount === 0 && query.length > 0) {
+          emptyState.classList.add("visible");
+          // Hide section headers to reduce clutter when empty?
+          // For now, let's leave them as layout anchors, but could hide them too.
+          document
+            .querySelectorAll(".section-header")
+            .forEach((el) => (el.style.display = "none"));
+        } else {
+          emptyState.classList.remove("visible");
+          document
+            .querySelectorAll(".section-header")
+            .forEach((el) => (el.style.display = "block"));
+        }
+      }
 
-function showToast() {
-    const toast = document.getElementById('toast');
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2000);
-}
+      // Palette+: Clear Search Interaction
+      function clearSearch() {
+        const input = document.getElementById("searchInput");
+        input.value = "";
+        filterAgents(""); // Reset filter
+        input.focus(); // A11y: Return focus to input
+      }
 
-async function copyText(text) {
-    try {
-        await navigator.clipboard.writeText(text);
-        showToast();
-        return true;
-    } catch (err) {
-        const el = document.createElement('textarea');
-        el.value = text;
-        el.style.position = 'fixed';
-        el.style.opacity = '0';
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-        showToast();
-        return true;
-    }
-}
+      function showToast() {
+        const toast = document.getElementById("toast");
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 2000);
+      }
 
-async function handleCopyAnimation(btn, text) {
-    const success = await copyText(text);
-    if (!success) return;
+      async function copyText(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast();
+          return true;
+        } catch (err) {
+          const el = document.createElement("textarea");
+          el.value = text;
+          el.style.position = "fixed";
+          el.style.opacity = "0";
+          document.body.appendChild(el);
+          el.select();
+          document.execCommand("copy");
+          document.body.removeChild(el);
+          showToast();
+          return true;
+        }
+      }
 
-    // Palette+: Complete "Delight" Interaction Flow
-    // 1. Save original state
-    const originalText = btn.querySelector('span').innerText;
-    
-    // 2. Optimistic Update (Success State)
-    btn.classList.add('success-state');
-    btn.querySelector('span').innerText = 'Copied! ✨';
-    
-    // 3. Revert after delay
-    setTimeout(() => {
-        btn.classList.remove('success-state');
-        btn.querySelector('span').innerText = originalText;
-    }, 2000);
-}
+      async function handleCopyAnimation(btn, text) {
+        const success = await copyText(text);
+        if (!success) return;
 
-function copyAgent(index, btn) {
-    handleCopyAnimation(btn, AGENTS[index].prompt);
-}
+        // Palette+: Complete "Delight" Interaction Flow
+        // 1. Save original state
+        const originalText = btn.querySelector("span").innerText;
 
-async function copyAll(btn) {
-    const header = "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
-    const body = AGENTS.map(a => `${a.prompt}\n\n--------------------------------------------------------------------------------`).join('\n\n');
-    handleCopyAnimation(btn, header + body);
-}
-</script>
-</body>
+        // 2. Optimistic Update (Success State)
+        btn.classList.add("success-state");
+        btn.querySelector("span").innerText = "Copied! ✨";
+
+        // 3. Revert after delay
+        setTimeout(() => {
+          btn.classList.remove("success-state");
+          btn.querySelector("span").innerText = originalText;
+        }, 2000);
+      }
+
+      function copyAgent(index, btn) {
+        handleCopyAnimation(btn, AGENTS[index].prompt);
+      }
+
+      async function copyAll(btn) {
+        const header =
+          "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
+        const body = AGENTS.map(
+          (a) =>
+            `${a.prompt}\n\n--------------------------------------------------------------------------------`,
+        ).join("\n\n");
+        handleCopyAnimation(btn, header + body);
+      }
+    </script>
+  </body>
 </html>
