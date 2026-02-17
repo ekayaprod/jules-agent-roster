@@ -839,19 +839,46 @@
 
       // --- ROSTER APP ---
       class RosterApp {
-        constructor(agents) {
-            this.agents = agents;
+        constructor() {
+            this.agents = [];
             this.elements = {};
             this.state = {
                 toastTimeout: null
             };
         }
 
-        init() {
-            this.renderAgents();
+        async init() {
             this.cacheElements();
+            await this.loadData();
+            this.renderAgents();
             this.bindEvents();
             this.initObserver();
+        }
+
+        async loadData() {
+            try {
+                const response = await fetch('agents.json');
+                const agentsData = await response.json();
+
+                // Parallel fetch for all prompts
+                this.agents = await Promise.all(agentsData.map(async (agent) => {
+                    if (agent.promptFile) {
+                        try {
+                            const promptRes = await fetch(agent.promptFile);
+                            agent.prompt = await promptRes.text();
+                        } catch (e) {
+                            console.error(`Failed to load prompt for ${agent.name}`, e);
+                            agent.prompt = "Error loading prompt.";
+                        }
+                    }
+                    return agent;
+                }));
+            } catch (error) {
+                console.error("Failed to load agents.json", error);
+                if (this.elements.main) {
+                    this.elements.main.innerHTML = `<div style="text-align:center; padding: 2rem; color: #f87171;">Failed to load roster data. Please ensure you are running on a local server.</div>`;
+                }
+            }
         }
 
         cacheElements() {
@@ -1119,7 +1146,7 @@
 
       // --- INITIALIZATION ---
       document.addEventListener("DOMContentLoaded", () => {
-        const app = new RosterApp(AGENTS);
+        const app = new RosterApp();
         app.init();
       });
     </script>
