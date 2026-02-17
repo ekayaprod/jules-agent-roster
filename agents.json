@@ -1,0 +1,258 @@
+[
+  {
+    "name": "Bolt+",
+    "icon": "⚡",
+    "category": "core",
+    "type": "plus",
+    "scope": "Small-Medium",
+    "usedIn": "Mechanic",
+    "role": "Performance Engineer",
+    "desc": "Implements systemic performance patterns (Virtualization, Workers, Caching). Consults Overseer Audit for bottlenecks.",
+    "diffs": [
+      {
+        "type": "plus",
+        "text": "Scope: Micro-fix -> Systemic Strategy"
+      },
+      {
+        "type": "plus",
+        "text": "Added: Virtualization, Workers, Custom Hooks"
+      }
+    ],
+    "promptFile": "prompts/bolt.md"
+  },
+  {
+    "name": "Palette+",
+    "icon": "🎨",
+    "category": "core",
+    "type": "plus",
+    "scope": "Small-Medium",
+    "usedIn": "Virtuoso",
+    "role": "UX & Delight (Enhanced)",
+    "desc": "Polishes complete interaction flows (Animations, Accessibility, State Feedback). Consults Overseer Audit for friction points.",
+    "diffs": [
+      {
+        "type": "plus",
+        "text": "Scope: Micro-fix -> Component Flow"
+      },
+      {
+        "type": "plus",
+        "text": "Added: Motion, Transitions & State Polish"
+      }
+    ],
+    "promptFile": "prompts/palette.md"
+  },
+  {
+    "name": "Sentinel+",
+    "icon": "🛡️",
+    "category": "core",
+    "type": "plus",
+    "scope": "Small-Medium",
+    "usedIn": "Warden",
+    "role": "Security Engineer",
+    "desc": "Hardens architecture via defense layers (Validation Schemas, CSP, Rate Limiting). Consults Overseer Audit for vulnerabilities.",
+    "diffs": [
+      {
+        "type": "plus",
+        "text": "Scope: Micro-patch -> Defense Layer"
+      },
+      {
+        "type": "plus",
+        "text": "Added: Validation Schemas, Security Headers, Flow Hardening"
+      }
+    ],
+    "promptFile": "prompts/sentinel.md"
+  },
+  {
+    "name": "Architect",
+    "icon": "🏗️",
+    "category": "eng",
+    "scope": "Medium",
+    "usedIn": "Steward",
+    "role": "Structure",
+    "desc": "Refactors messy modules into clean patterns. Checks Overseer 'Structural Hotspots'.",
+    "promptFile": "prompts/architect.md"
+  },
+  {
+    "name": "Scavenger",
+    "icon": "🧹",
+    "category": "eng",
+    "scope": "Medium",
+    "usedIn": "Steward",
+    "role": "Cleanup",
+    "desc": "Deletes dead code and resolved TODOs. Checks Overseer 'Debris Field'.",
+    "promptFile": "prompts/scavenger.md"
+  },
+  {
+    "name": "Janitor",
+    "icon": "🧼",
+    "category": "eng",
+    "scope": "Medium",
+    "usedIn": "Warden",
+    "role": "Hygiene",
+    "desc": "Maintains the project foundation (deps, engines, configs).",
+    "promptFile": "prompts/janitor.md"
+  },
+  {
+    "name": "Modernizer",
+    "icon": "🆙",
+    "category": "eng",
+    "scope": "Medium",
+    "usedIn": "Mechanic",
+    "role": "Evolution",
+    "desc": "Upgrades legacy tools and AI Models. Checks Overseer 'Modernization Targets'.",
+    "promptFile": "prompts/modernizer.md"
+  },
+  {
+    "name": "Inspector",
+    "icon": "🕵️",
+    "category": "eng",
+    "scope": "Medium",
+    "usedIn": "Guardian",
+    "role": "QA",
+    "desc": "Finds and fills test coverage gaps. Checks Overseer 'Coverage Gaps'.",
+    "promptFile": "prompts/inspector.md"
+  },
+  {
+    "name": "Medic",
+    "icon": "🚑",
+    "category": "eng",
+    "scope": "Medium",
+    "usedIn": "Guardian",
+    "role": "Resilience",
+    "desc": "Hardens app against crashes, swallowed errors, and brittle logic.",
+    "promptFile": "prompts/medic.md"
+  },
+  {
+    "name": "Blackbox",
+    "icon": "✈️",
+    "category": "eng",
+    "scope": "Medium",
+    "usedIn": "Clarifier",
+    "role": "Debugging",
+    "desc": "Acts as a Flight Recorder by enriching vague error logs with critical context variables (IDs, State).",
+    "promptFile": "prompts/blackbox.md"
+  },
+  {
+    "name": "Scribe",
+    "icon": "✍️",
+    "category": "context",
+    "scope": "Medium",
+    "usedIn": "Librarian, Clarifier",
+    "role": "History",
+    "desc": "Updates comprehensive documentation sections and API references. Stops if context is already synced.",
+    "promptFile": "prompts/scribe.md"
+  },
+  {
+    "name": "Navigator",
+    "icon": "🧭",
+    "category": "context",
+    "scope": "Medium",
+    "usedIn": "Librarian",
+    "role": "Strategy",
+    "desc": "Aligns the Roadmap with code reality and promotes valid backlog ideas to the roadmap.",
+    "promptFile": "prompts/navigator.md"
+  },
+  {
+    "name": "Curator",
+    "icon": "🖼️",
+    "category": "context",
+    "scope": "Medium",
+    "usedIn": "Virtuoso",
+    "role": "Assets",
+    "desc": "Audits asset library health, optimizes file sizes, and ensures accessibility compliance.",
+    "promptFile": "prompts/curator.md"
+  },
+  {
+    "name": "Overseer",
+    "icon": "👁️",
+    "category": "monthly",
+    "type": "monthly",
+    "scope": "Large",
+    "role": "The Eye",
+    "desc": "Performs deep forensic audit to identify targets for other agents.",
+    "promptFile": "prompts/overseer.md"
+  },
+  {
+    "name": "Cartographer",
+    "icon": "🗺️",
+    "category": "monthly",
+    "type": "monthly",
+    "scope": "Large",
+    "role": "Visuals",
+    "desc": "Maps the entire system architecture into Mermaid diagrams for high-level understanding.",
+    "promptFile": "prompts/cartographer.md"
+  },
+  {
+    "name": "Tutor",
+    "icon": "🎓",
+    "category": "monthly",
+    "type": "monthly",
+    "scope": "Large",
+    "role": "Education",
+    "desc": "Enriches the codebase by scanning utility libraries and adding @example usage snippets to JSDoc.",
+    "promptFile": "prompts/tutor.md"
+  },
+  {
+    "name": "Steward",
+    "icon": "🧹",
+    "category": "power",
+    "scope": "Small Bundle",
+    "role": "Arch+Scav",
+    "desc": "Executes two distinct small tasks in one PR: One structure fix (Architect Lite) and one cleanup (Scavenger Lite).",
+    "promptFile": "prompts/steward.md"
+  },
+  {
+    "name": "Warden",
+    "icon": "🛡️",
+    "category": "power",
+    "scope": "Small Bundle",
+    "role": "Sent+Jan",
+    "desc": "Executes two distinct small tasks in one PR: One security hardening (Sentinel+ Lite) and one dependency update (Janitor Lite).",
+    "promptFile": "prompts/warden.md"
+  },
+  {
+    "name": "Guardian",
+    "icon": "🚑",
+    "category": "power",
+    "scope": "Small Bundle",
+    "role": "Medic+Insp",
+    "desc": "Executes two distinct small tasks in one PR: One bug fix (Medic Lite) immediately locked in by a test case (Inspector Lite).",
+    "promptFile": "prompts/guardian.md"
+  },
+  {
+    "name": "Librarian",
+    "icon": "📚",
+    "category": "power",
+    "scope": "Small Bundle",
+    "role": "Scribe+Nav",
+    "desc": "Executes two distinct small tasks in one PR: One documentation fix (Scribe Lite) and one roadmap update (Navigator Lite).",
+    "promptFile": "prompts/librarian.md"
+  },
+  {
+    "name": "Virtuoso",
+    "icon": "🎨",
+    "category": "power",
+    "scope": "Small Bundle",
+    "role": "Pal+Cur",
+    "desc": "Executes two distinct small tasks in one PR: One UX polish (Palette+ Lite) and one asset optimization (Curator Lite).",
+    "promptFile": "prompts/virtuoso.md"
+  },
+  {
+    "name": "Mechanic",
+    "icon": "🔧",
+    "category": "power",
+    "scope": "Small Bundle",
+    "role": "Bolt+Mod",
+    "desc": "Executes two distinct small tasks in one PR: One performance tune (Bolt+ Lite) and one syntax update (Modernizer Lite).",
+    "promptFile": "prompts/mechanic.md"
+  },
+  {
+    "name": "Clarifier",
+    "icon": "🔦",
+    "category": "power",
+    "scope": "Small Bundle",
+    "role": "Blkbox+Scribe",
+    "desc": "Executes two distinct small tasks in one PR: One log enrichment (Blackbox Lite) and one JSDoc addition (Scribe Lite).",
+    "promptFile": "prompts/clarifier.md"
+  }
+]
