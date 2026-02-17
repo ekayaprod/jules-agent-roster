@@ -657,13 +657,11 @@
             id="searchInput"
             aria-label="Search agents by name"
             placeholder="Search agents..."
-            oninput="filterAgents(this.value)"
           />
           <button
             class="clear-search-btn"
             id="clearBtn"
             aria-label="Clear search"
-            onclick="clearSearch()"
           >
             <svg
               aria-hidden="true"
@@ -684,7 +682,7 @@
           </button>
         </div>
 
-        <button onclick="copyAll(this)">
+        <button id="copyAllBtn">
           <svg
             aria-hidden="true"
             focusable="false"
@@ -2014,342 +2012,322 @@ PROCESS:
         },
       ];
 
-      // --- RENDER LOGIC ---
-      const categories = {
-        core: document.getElementById("coreGrid"),
-        eng: document.getElementById("engGrid"),
-        context: document.getElementById("contextGrid"),
-        monthly: document.getElementById("monthlyGrid"),
-        power: document.getElementById("powerGrid"),
+      // --- CONFIGURATION ---
+      const CONFIG = {
+        selectors: {
+            searchInput: '#searchInput',
+            clearBtn: '#clearBtn',
+            copyAllBtn: '#copyAllBtn',
+            toast: '#toast',
+            announcer: '#search-announcer',
+            emptyState: '#emptyState',
+            categoryNav: '#category-nav',
+            main: '#main',
+            navPills: '.nav-pill',
+            sectionHeader: '.section-header',
+            grid: '.grid',
+            card: '.card'
+        },
+        categories: {
+            core: 'coreGrid',
+            eng: 'engGrid',
+            context: 'contextGrid',
+            monthly: 'monthlyGrid',
+            power: 'powerGrid'
+        },
+        sectionMap: {
+            'coreGrid': 'core-maintenance',
+            'engGrid': 'engineering-specialists',
+            'contextGrid': 'context-strategy',
+            'monthlyGrid': 'monthly-intelligence',
+            'powerGrid': 'bundled-tasks'
+        }
       };
 
-      AGENTS.forEach((agent, index) => {
-        const card = document.createElement("div");
-        card.className = "card";
-        if (agent.type === "plus") card.classList.add("plus-agent");
-        if (agent.type === "monthly") card.classList.add("monthly-agent");
-
-        // Build tags
-        let tags = "";
-        // Scope Tag
-        if (agent.scope) {
-          let scopeClass = "scope-medium";
-          if (agent.scope.includes("Small")) scopeClass = "scope-small";
-          if (agent.scope.includes("Large")) scopeClass = "scope-large";
-          tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
+      // --- ROSTER APP ---
+      class RosterApp {
+        constructor(agents) {
+            this.agents = agents;
+            this.elements = {};
+            this.state = {
+                toastTimeout: null
+            };
         }
 
-        if (agent.usedIn) {
-          agent.usedIn
-            .split(",")
-            .forEach(
-              (p) =>
-                (tags += `<span class="power-tag">🧩 Part of ${p.trim()}</span>`),
-            );
+        init() {
+            this.renderAgents();
+            this.cacheElements();
+            this.bindEvents();
+            this.initObserver();
         }
 
-        // Differences List for Plus Agents
-        const diffHtml = agent.diffs
-          ? `
-        <ul class="diff-list">
-            ${agent.diffs
-              .map(
-                (diff) => `
-                <li class="diff-item">
-                    <span class="diff-icon ${diff.type === "plus" ? "diff-plus" : diff.type === "minus" ? "diff-minus" : "diff-change"}">
-                        ${diff.type === "plus" ? "➕" : diff.type === "minus" ? "➖" : "🔄"}
-                    </span>
-                    <span class="diff-text">${diff.text}</span>
-                </li>
-            `,
-              )
-              .join("")}
-        </ul>
-    `
-          : "";
-
-        // Build inner HTML
-        // Palette+: Added aria-expanded and aria-controls to details toggle
-        // Palette+: Passed 'this' to copyAgent for state management
-        let html = `
-        <div class="card-header">
-            <div class="title-group">
-                <h3 class="agent-title">
-                    <span>${agent.icon}</span> ${agent.name}
-                </h3>
-                <div class="tag-container">
-                    ${tags}
-                </div>
-            </div>
-            <span class="role-tag">${agent.role}</span>
-        </div>
-        
-        <div class="description">
-            ${agent.desc}
-            ${diffHtml}
-        </div>
-
-        <button class="details-toggle" aria-expanded="false" aria-controls="details-${index}" onclick="toggleDetails(${index})">
-            <!-- Palette+: Replaced text arrow with SVG chevron -->
-            <svg aria-hidden="true" focusable="false" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-            <span>Show Details</span>
-        </button>
-        <!-- Palette+: Wrapped content in grid div for animation -->
-        <div class="details-grid" id="details-${index}">
-            <div class="details-overflow">
-                <div class="details-content">
-${agent.prompt}
-                </div>
-            </div>
-        </div>
-
-        <div class="card-actions">
-            <button class="secondary" onclick="copyAgent(${index}, this)">
-                <span>Copy Prompt</span>
-            </button>
-        </div>
-    `;
-        card.innerHTML = html;
-        categories[agent.category].appendChild(card);
-      });
-
-      function toggleDetails(index) {
-        const grid = document.getElementById(`details-${index}`);
-        const btn = document.querySelector(
-          `button[aria-controls="details-${index}"]`,
-        );
-
-        // Palette+: Toggle class instead of display property
-        const isExpanded = grid.classList.toggle("expanded");
-
-        // Palette+: Update aria state
-        btn.setAttribute("aria-expanded", isExpanded);
-
-        // Palette+: Update button text
-        const span = btn.querySelector("span");
-        span.innerText = isExpanded ? "Hide Details" : "Show Details";
-
-        console.debug("Toggled Agent Details", {
-          index,
-          expanded: isExpanded,
-          agent: AGENTS[index]?.name,
-        });
-      }
-
-      // Palette+: Search Logic including Empty State & Clear Button Visibility
-      function filterAgents(query) {
-        const search = query.toLowerCase();
-        const cards = document.querySelectorAll(".card");
-        const emptyState = document.getElementById("emptyState");
-        const clearBtn = document.getElementById("clearBtn");
-        const announcer = document.getElementById("search-announcer");
-
-        let visibleCount = 0;
-
-        // Toggle Clear Button Visibility
-        if (query.length > 0) {
-          clearBtn.classList.add("visible");
-        } else {
-          clearBtn.classList.remove("visible");
-        }
-
-        // Filter Logic with Staggered Animation
-        cards.forEach((card) => {
-          const text = card.textContent.toLowerCase();
-
-          // Reset animation class to re-trigger if needed (though mostly handled by display toggle)
-          card.classList.remove("pop-in");
-
-          if (text.includes(search)) {
-            card.style.display = "flex";
-
-            // Palette+: Staggered Entry Animation
-            // Trigger reflow to restart animation if it was already there
-            void card.offsetWidth;
-
-            // Only animate if searching or clearing (simple heuristic: if query changed)
-            // Stagger delay based on visible index
-            // Limit stagger to first 20 items to prevent huge delays on clear
-            const delay = Math.min(visibleCount * 30, 600);
-            card.style.animationDelay = `${delay}ms`;
-            card.classList.add("pop-in");
-
-            visibleCount++;
-          } else {
-            card.style.display = "none";
-          }
-        });
-
-        // Toggle Empty State Visibility & Smart Headers
-        if (visibleCount === 0 && query.length > 0) {
-          emptyState.classList.add("visible");
-          // Hide all headers if no results
-          document
-            .querySelectorAll(".section-header")
-            .forEach((el) => (el.style.display = "none"));
-        } else {
-          emptyState.classList.remove("visible");
-
-          // Smart Headers: Only show headers that have visible cards
-          document.querySelectorAll(".grid").forEach((grid) => {
-            // Check for visible children (direct children are cards)
-            const hasVisibleCards = Array.from(grid.children).some(
-              (card) => card.style.display !== "none",
-            );
-            const header = grid.previousElementSibling;
-
-            if (header && header.classList.contains("section-header")) {
-              header.style.display = hasVisibleCards ? "block" : "none";
-            }
-          });
-        }
-
-        // Palette+: A11y Announcement
-        if (announcer) {
-          if (query.length === 0) {
-            announcer.textContent = "";
-          } else if (visibleCount === 0) {
-            announcer.textContent = "No agents found.";
-          } else {
-            announcer.textContent = `Found ${visibleCount} agents.`;
-          }
-        }
-      }
-
-      // Palette+: Clear Search Interaction
-      function clearSearch() {
-        const input = document.getElementById("searchInput");
-        input.value = "";
-        filterAgents(""); // Reset filter
-        input.focus(); // A11y: Return focus to input
-      }
-
-      // Palette+: Robust Toast Logic
-      let toastTimeout;
-
-      function showToast(message) {
-        const toast = document.getElementById("toast");
-
-        // Reset existing timeout
-        if (toastTimeout) {
-          clearTimeout(toastTimeout);
-        }
-
-        // Update content and show
-        toast.textContent = message || "Copied to clipboard!";
-        toast.classList.add("show");
-
-        // Set new timeout
-        toastTimeout = setTimeout(() => {
-          toast.classList.remove("show");
-        }, 2000);
-      }
-
-      async function copyText(text, message) {
-        try {
-          await navigator.clipboard.writeText(text);
-          showToast(message);
-          return true;
-        } catch (err) {
-          console.warn("Clipboard API failed, attempting fallback", {
-            error: err.message,
-            textLength: text.length,
-          });
-          const el = document.createElement("textarea");
-          el.value = text;
-          el.style.position = "fixed";
-          el.style.opacity = "0";
-          document.body.appendChild(el);
-          el.select();
-          document.execCommand("copy");
-          document.body.removeChild(el);
-          showToast(message);
-          return true;
-        }
-      }
-
-      async function handleCopyAnimation(btn, text, message) {
-        const success = await copyText(text, message);
-        if (!success) return;
-
-        // Palette+: Complete "Delight" Interaction Flow
-        // 1. Save original state
-        const originalText = btn.querySelector("span").innerText;
-
-        // 2. Optimistic Update (Success State)
-        btn.classList.add("success-state");
-        btn.querySelector("span").innerText = "Copied! ✨";
-
-        // 3. Revert after delay
-        setTimeout(() => {
-          btn.classList.remove("success-state");
-          btn.querySelector("span").innerText = originalText;
-        }, 2000);
-      }
-
-      function copyAgent(index, btn) {
-        const agent = AGENTS[index];
-        console.info("Agent Copied", {
-          name: agent.name,
-          category: agent.category,
-        });
-        handleCopyAnimation(btn, agent.prompt, `${agent.name} prompt copied!`);
-      }
-
-      async function copyAll(btn) {
-        console.info("Full Roster Copied", { count: AGENTS.length });
-        const header =
-          "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
-        const body = AGENTS.map(
-          (a) =>
-            `${a.prompt}\n\n--------------------------------------------------------------------------------`,
-        ).join("\n\n");
-        handleCopyAnimation(btn, header + body, "Full Roster copied!");
-      }
-
-      // Palette+: Sticky Navigation Logic
-      document.addEventListener("DOMContentLoaded", () => {
-        const navPills = document.querySelectorAll(".nav-pill");
-        // Map Grid IDs to Header IDs (which are the anchor targets)
-        const sectionMap = {
-          coreGrid: "core-maintenance",
-          engGrid: "engineering-specialists",
-          contextGrid: "context-strategy",
-          monthlyGrid: "monthly-intelligence",
-          powerGrid: "bundled-tasks",
-        };
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const targetId = sectionMap[entry.target.id];
-
-                // Update active state
-                navPills.forEach((pill) => {
-                  const href = pill.getAttribute("href").substring(1);
-                  if (href === targetId) {
-                    pill.classList.add("active");
-                  } else {
-                    pill.classList.remove("active");
-                  }
-                });
-              }
+        cacheElements() {
+            // Cache DOM elements based on CONFIG
+            Object.keys(CONFIG.selectors).forEach(key => {
+                const selector = CONFIG.selectors[key];
+                this.elements[key] = selector.startsWith('#')
+                    ? document.getElementById(selector.substring(1))
+                    : document.querySelectorAll(selector);
             });
-          },
-          {
-            // Trigger when the element crosses the "reading zone" (top 1/3 of screen)
-            // Offset -100px to account for the sticky nav itself
-            // Palette+: Adjusted to -80px to ensure anchor landing (at 100px) is captured inside the zone
-            rootMargin: "-80px 0px -60% 0px",
-            threshold: 0,
-          },
-        );
+        }
 
-        Object.keys(sectionMap).forEach((gridId) => {
-          const el = document.getElementById(gridId);
-          if (el) observer.observe(el);
-        });
+        renderAgents() {
+            const categoryContainers = {};
+            Object.keys(CONFIG.categories).forEach(key => {
+                categoryContainers[key] = document.getElementById(CONFIG.categories[key]);
+            });
+
+            this.agents.forEach((agent, index) => {
+                const card = document.createElement("div");
+                card.className = "card";
+                if (agent.type === "plus") card.classList.add("plus-agent");
+                if (agent.type === "monthly") card.classList.add("monthly-agent");
+
+                // Build tags
+                let tags = "";
+                if (agent.scope) {
+                    let scopeClass = "scope-medium";
+                    if (agent.scope.includes("Small")) scopeClass = "scope-small";
+                    if (agent.scope.includes("Large")) scopeClass = "scope-large";
+                    tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
+                }
+
+                if (agent.usedIn) {
+                    agent.usedIn.split(",").forEach(
+                        (p) => (tags += `<span class="power-tag">🧩 Part of ${p.trim()}</span>`)
+                    );
+                }
+
+                // Differences List
+                const diffHtml = agent.diffs
+                ? `<ul class="diff-list">
+                    ${agent.diffs.map(diff => `
+                        <li class="diff-item">
+                            <span class="diff-icon ${diff.type === "plus" ? "diff-plus" : diff.type === "minus" ? "diff-minus" : "diff-change"}">
+                                ${diff.type === "plus" ? "➕" : diff.type === "minus" ? "➖" : "🔄"}
+                            </span>
+                            <span class="diff-text">${diff.text}</span>
+                        </li>`).join("")}
+                    </ul>`
+                : "";
+
+                // Build HTML
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="title-group">
+                            <h3 class="agent-title">
+                                <span>${agent.icon}</span> ${agent.name}
+                            </h3>
+                            <div class="tag-container">${tags}</div>
+                        </div>
+                        <span class="role-tag">${agent.role}</span>
+                    </div>
+
+                    <div class="description">
+                        ${agent.desc}
+                        ${diffHtml}
+                    </div>
+
+                    <button class="details-toggle" aria-expanded="false" aria-controls="details-${index}" data-action="toggle-details" data-index="${index}">
+                        <svg aria-hidden="true" focusable="false" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        <span>Show Details</span>
+                    </button>
+                    <div class="details-grid" id="details-${index}">
+                        <div class="details-overflow">
+                            <div class="details-content">${agent.prompt}</div>
+                        </div>
+                    </div>
+
+                    <div class="card-actions">
+                        <button class="secondary" data-action="copy-agent" data-index="${index}">
+                            <span>Copy Prompt</span>
+                        </button>
+                    </div>
+                `;
+
+                categoryContainers[agent.category].appendChild(card);
+            });
+        }
+
+        bindEvents() {
+            // Static events
+            this.elements.searchInput?.addEventListener('input', (e) => this.filterAgents(e.target.value));
+            this.elements.clearBtn?.addEventListener('click', () => this.clearSearch());
+            this.elements.copyAllBtn?.addEventListener('click', (e) => this.copyAll(e.currentTarget));
+
+            // Event Delegation
+            this.elements.main?.addEventListener('click', (e) => {
+                const toggleBtn = e.target.closest('[data-action="toggle-details"]');
+                if (toggleBtn) {
+                    this.toggleDetails(toggleBtn.dataset.index, toggleBtn);
+                    return;
+                }
+
+                const copyBtn = e.target.closest('[data-action="copy-agent"]');
+                if (copyBtn) {
+                    this.copyAgent(copyBtn.dataset.index, copyBtn);
+                    return;
+                }
+            });
+        }
+
+        toggleDetails(index, btn) {
+            const grid = document.getElementById(`details-${index}`);
+            const isExpanded = grid.classList.toggle("expanded");
+            btn.setAttribute("aria-expanded", isExpanded);
+            const span = btn.querySelector("span");
+            span.innerText = isExpanded ? "Hide Details" : "Show Details";
+
+            console.debug("Toggled Agent Details", { index, expanded: isExpanded, agent: this.agents[index]?.name });
+        }
+
+        filterAgents(query) {
+            const search = query.toLowerCase();
+            const cards = document.querySelectorAll(CONFIG.selectors.card);
+
+            let visibleCount = 0;
+
+            if (query.length > 0) {
+                this.elements.clearBtn?.classList.add("visible");
+            } else {
+                this.elements.clearBtn?.classList.remove("visible");
+            }
+
+            cards.forEach((card) => {
+                const text = card.textContent.toLowerCase();
+                card.classList.remove("pop-in");
+
+                if (text.includes(search)) {
+                    card.style.display = "flex";
+                    void card.offsetWidth;
+                    const delay = Math.min(visibleCount * 30, 600);
+                    card.style.animationDelay = `${delay}ms`;
+                    card.classList.add("pop-in");
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            if (visibleCount === 0 && query.length > 0) {
+                this.elements.emptyState?.classList.add("visible");
+                document.querySelectorAll(CONFIG.selectors.sectionHeader).forEach(el => el.style.display = 'none');
+            } else {
+                this.elements.emptyState?.classList.remove("visible");
+                document.querySelectorAll(CONFIG.selectors.grid).forEach(grid => {
+                    const hasVisibleCards = Array.from(grid.children).some(card => card.style.display !== 'none');
+                    const header = grid.previousElementSibling;
+                    if (header && header.classList.contains('section-header')) {
+                        header.style.display = hasVisibleCards ? 'block' : 'none';
+                    }
+                });
+            }
+
+            if (this.elements.announcer) {
+                this.elements.announcer.textContent = query.length === 0 ? "" :
+                    visibleCount === 0 ? "No agents found." : `Found ${visibleCount} agents.`;
+            }
+        }
+
+        clearSearch() {
+            if(this.elements.searchInput) {
+                this.elements.searchInput.value = "";
+                this.filterAgents("");
+                this.elements.searchInput.focus();
+            }
+        }
+
+        showToast(message) {
+            if (this.state.toastTimeout) {
+                clearTimeout(this.state.toastTimeout);
+            }
+            const toast = this.elements.toast;
+            if(toast) {
+                toast.textContent = message || "Copied to clipboard!";
+                toast.classList.add("show");
+                this.state.toastTimeout = setTimeout(() => {
+                    toast.classList.remove("show");
+                }, 2000);
+            }
+        }
+
+        async copyText(text, message) {
+            try {
+                await navigator.clipboard.writeText(text);
+                this.showToast(message);
+                return true;
+            } catch (err) {
+                console.warn("Clipboard API failed, attempting fallback", err);
+                const el = document.createElement("textarea");
+                el.value = text;
+                el.style.position = "fixed";
+                el.style.opacity = "0";
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand("copy");
+                document.body.removeChild(el);
+                this.showToast(message);
+                return true;
+            }
+        }
+
+        async handleCopyAnimation(btn, text, message) {
+            const success = await this.copyText(text, message);
+            if (!success) return;
+
+            const span = btn.querySelector("span");
+            const originalText = span.innerText;
+
+            btn.classList.add("success-state");
+            span.innerText = "Copied! ✨";
+
+            setTimeout(() => {
+                btn.classList.remove("success-state");
+                span.innerText = originalText;
+            }, 2000);
+        }
+
+        copyAgent(index, btn) {
+            const agent = this.agents[index];
+            console.info("Agent Copied", { name: agent.name });
+            this.handleCopyAnimation(btn, agent.prompt, `${agent.name} prompt copied!`);
+        }
+
+        copyAll(btn) {
+            console.info("Full Roster Copied", { count: this.agents.length });
+            const header = "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
+            const body = this.agents.map(a => `${a.prompt}\n\n--------------------------------------------------------------------------------`).join('\n\n');
+            this.handleCopyAnimation(btn, header + body, "Full Roster copied!");
+        }
+
+        initObserver() {
+             const navPills = document.querySelectorAll(CONFIG.selectors.navPills);
+             const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const targetId = CONFIG.sectionMap[entry.target.id];
+                        navPills.forEach((pill) => {
+                             const href = pill.getAttribute("href").substring(1);
+                             pill.classList.toggle("active", href === targetId);
+                        });
+                    }
+                });
+             }, {
+                rootMargin: "-80px 0px -60% 0px",
+                threshold: 0,
+             });
+
+             Object.keys(CONFIG.sectionMap).forEach((gridId) => {
+                const el = document.getElementById(gridId);
+                if (el) observer.observe(el);
+             });
+        }
+      }
+
+      // --- INITIALIZATION ---
+      document.addEventListener("DOMContentLoaded", () => {
+        const app = new RosterApp(AGENTS);
+        app.init();
       });
     </script>
   </body>
