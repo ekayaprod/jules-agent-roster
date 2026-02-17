@@ -460,6 +460,77 @@
         margin-top: auto;
       }
 
+      /* Palette+: Skeleton Loader */
+      .skeleton-card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        height: 100%;
+        box-sizing: border-box;
+      }
+
+      .skeleton-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .skeleton-title {
+        height: 1.5rem;
+        width: 60%;
+        background-color: var(--border);
+        border-radius: 0.5rem;
+      }
+
+      .skeleton-role {
+        height: 1rem;
+        width: 25%;
+        background-color: var(--border);
+        border-radius: 999px;
+      }
+
+      .skeleton-lines {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        flex-grow: 1;
+      }
+
+      .skeleton-line {
+        height: 0.85rem;
+        background-color: var(--border);
+        border-radius: 0.25rem;
+        width: 100%;
+      }
+
+      .skeleton-line.short {
+        width: 70%;
+      }
+
+      .skeleton-button {
+        height: 2.5rem;
+        background-color: var(--border);
+        border-radius: 0.5rem;
+        margin-top: auto;
+      }
+
+      .skeleton-pulse {
+        animation: skeletonPulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      @keyframes skeletonPulse {
+        0%, 100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
       /* Palette+: Empty State */
       .empty-state {
         display: none;
@@ -537,6 +608,9 @@
           animation: none !important;
           opacity: 1 !important;
           transform: none !important;
+        }
+        .skeleton-pulse {
+          animation: none !important;
         }
       }
 
@@ -701,6 +775,26 @@
           </svg>
           <span>Copy Full Roster (For Jules)</span>
         </button>
+
+        <button id="downloadAllBtn">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+            />
+          </svg>
+          <span>Download Prompts</span>
+        </button>
       </div>
     </div>
 
@@ -811,6 +905,7 @@
             searchInput: '#searchInput',
             clearBtn: '#clearBtn',
             copyAllBtn: '#copyAllBtn',
+            downloadAllBtn: '#downloadAllBtn',
             toast: '#toast',
             announcer: '#search-announcer',
             emptyState: '#emptyState',
@@ -849,10 +944,36 @@
 
         async init() {
             this.cacheElements();
+            this.renderSkeletons();
             await this.loadData();
             this.renderAgents();
             this.bindEvents();
             this.initObserver();
+        }
+
+        renderSkeletons() {
+            const skeletonHTML = `
+                <div class="skeleton-card skeleton-pulse">
+                    <div class="skeleton-header">
+                        <div class="skeleton-title"></div>
+                        <div class="skeleton-role"></div>
+                    </div>
+                    <div class="skeleton-lines">
+                        <div class="skeleton-line"></div>
+                        <div class="skeleton-line"></div>
+                        <div class="skeleton-line short"></div>
+                    </div>
+                    <div class="skeleton-button"></div>
+                </div>
+            `;
+
+            Object.values(CONFIG.categories).forEach(gridId => {
+                const grid = document.getElementById(gridId);
+                if (grid) {
+                    // Inject 3 skeletons per category
+                    grid.innerHTML = skeletonHTML.repeat(3);
+                }
+            });
         }
 
         async loadData() {
@@ -895,6 +1016,10 @@
             const categoryContainers = {};
             Object.keys(CONFIG.categories).forEach(key => {
                 categoryContainers[key] = document.getElementById(CONFIG.categories[key]);
+                // Clear skeletons
+                if (categoryContainers[key]) {
+                    categoryContainers[key].innerHTML = '';
+                }
             });
 
             this.agents.forEach((agent, index) => {
@@ -974,6 +1099,7 @@
             this.elements.searchInput?.addEventListener('input', (e) => this.filterAgents(e.target.value));
             this.elements.clearBtn?.addEventListener('click', () => this.clearSearch());
             this.elements.copyAllBtn?.addEventListener('click', (e) => this.copyAll(e.currentTarget));
+            this.elements.downloadAllBtn?.addEventListener('click', (e) => this.downloadAll(e.currentTarget));
 
             // Event Delegation
             this.elements.main?.addEventListener('click', (e) => {
@@ -1115,9 +1241,40 @@
 
         copyAll(btn) {
             console.info("Full Roster Copied", { count: this.agents.length });
+            const content = this.generateFullRosterText();
+            this.handleCopyAnimation(btn, content, "Full Roster copied!");
+        }
+
+        downloadAll(btn) {
+            console.info("Downloading Full Roster", { count: this.agents.length });
+            const content = this.generateFullRosterText();
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'jules_roster_prompts.md';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Visual Feedback
+            const span = btn.querySelector("span");
+            const originalText = span.innerText;
+            btn.classList.add("success-state");
+            span.innerText = "Downloaded! 📥";
+            this.showToast("Roster downloaded successfully!");
+
+            setTimeout(() => {
+                btn.classList.remove("success-state");
+                span.innerText = originalText;
+            }, 2000);
+        }
+
+        generateFullRosterText() {
             const header = "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
             const body = this.agents.map(a => `${a.prompt}\n\n--------------------------------------------------------------------------------`).join('\n\n');
-            this.handleCopyAnimation(btn, header + body, "Full Roster copied!");
+            return header + body;
         }
 
         initObserver() {
