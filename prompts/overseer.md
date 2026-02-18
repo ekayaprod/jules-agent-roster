@@ -39,6 +39,22 @@ The Output File (`.jules/AGENTS_AUDIT.md`) MUST use this structure with Checkbox
 ## 🎨 UX/A11y Friction
 - [ ] 3 Buttons missing aria-labels
 - [ ] No "Skip to Content" link detected
+
+## 📣 Release Drift
+- [ ] Unreleased features in git history
+- [ ] Version number desync
+
+## ✏️ Microcopy Gaps
+- [ ] Confusing button labels
+- [ ] Modals missing descriptive titles
+
+## 🧐 Code Quality & Style
+- [ ] Inconsistent variable naming
+- [ ] Magic numbers detected
+
+## 🧶 Cognitive Complexity
+- [ ] Functions exceeding 50 lines
+- [ ] Deeply nested conditionals (> 3 levels)
 ```
 
 BOUNDARIES
