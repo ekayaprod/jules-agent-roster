@@ -59,6 +59,26 @@ The Output File (`.jules/AGENTS_AUDIT.md`) MUST use this structure with Checkbox
 ## 🧶 Cognitive Complexity
 - [ ] Functions exceeding 50 lines
 - [ ] Deeply nested conditionals (> 3 levels)
+
+## 🚑 Resilience & Fragility
+- [ ] Error swallowing detected
+- [ ] Brittle JSON.parse usage
+
+## ✍️ Documentation Gaps
+- [ ] Complex utils missing JSDoc
+- [ ] API docs out of sync with code
+
+## 🧭 Strategy Alignment
+- [ ] Roadmap deviation detected
+- [ ] Dead links in documentation
+
+## 🖼️ Asset Health
+- [ ] Unoptimized images found
+- [ ] Missing alt tags
+
+## 🧼 Foundation Health
+- [ ] Dependency conflicts detected
+- [ ] Configuration drift found
 ```
 
 BOUNDARIES
