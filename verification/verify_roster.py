@@ -1,20 +1,46 @@
 import os
+import time
+import threading
+import http.server
+import socketserver
 from playwright.sync_api import sync_playwright
 from PIL import Image
 
+PORT = 8083
+
+def start_server():
+    # Serve from current directory
+    handler = http.server.SimpleHTTPRequestHandler
+    # Allow address reuse to avoid "Address already in use"
+    socketserver.TCPServer.allow_reuse_address = True
+    with socketserver.TCPServer(("", PORT), handler) as httpd:
+        print(f"Serving at port {PORT}")
+        httpd.serve_forever()
+
 def verify_roster():
+    # Start server in background thread
+    server_thread = threading.Thread(target=start_server, daemon=True)
+    server_thread.start()
+
+    # Wait for server to start
+    time.sleep(2)
+
     with sync_playwright() as p:
         browser = p.chromium.launch(args=["--disable-web-security"])
         page = browser.new_page()
 
-        # Open the local index.html file
-        file_path = os.path.abspath("index.html")
-        page.goto(f"file://{file_path}")
+        # Navigate to local server
+        page.goto(f"http://localhost:{PORT}/index.html")
 
         print("Page loaded.")
 
         # 1. Verify agents are rendered
-        # We expect card elements to exist
+        try:
+            page.wait_for_selector(".card", timeout=5000)
+        except Exception as e:
+            print("Timeout waiting for cards.")
+            raise e
+
         cards = page.locator(".card")
         count = cards.count()
         print(f"Found {count} agent cards.")
@@ -58,6 +84,7 @@ def verify_roster():
             print(f"Failed to convert screenshot to WebP: {e}")
 
         browser.close()
+        print("✅ Roster verification passed.")
 
 if __name__ == "__main__":
     verify_roster()
