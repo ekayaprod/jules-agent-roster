@@ -1129,82 +1129,94 @@
           });
 
           this.agents.forEach((agent, index) => {
-            const card = document.createElement("div");
-            card.className = "card";
-            if (agent.type === "plus") card.classList.add("plus-agent");
-            if (agent.type === "monthly") card.classList.add("monthly-agent");
-
-            // Build tags
-            let tags = "";
-            if (agent.scope) {
-              let scopeClass = "scope-medium";
-              if (agent.scope.includes("Small")) scopeClass = "scope-small";
-              if (agent.scope.includes("Large")) scopeClass = "scope-large";
-              tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
+            const card = this.createAgentCard(agent, index);
+            if (categoryContainers[agent.category]) {
+              categoryContainers[agent.category].appendChild(card);
             }
-
-            if (agent.usedIn) {
-              agent.usedIn
-                .split(",")
-                .forEach(
-                  (p) =>
-                    (tags += `<span class="power-tag">🧩 Part of ${p.trim()}</span>`),
-                );
-            }
-
-            // Differences List
-            const diffHtml = agent.diffs
-              ? `<ul class="diff-list">
-                    ${agent.diffs
-                      .map(
-                        (diff) => `
-                        <li class="diff-item">
-                            <span class="diff-icon ${diff.type === "plus" ? "diff-plus" : diff.type === "minus" ? "diff-minus" : "diff-change"}">
-                                ${diff.type === "plus" ? "➕" : diff.type === "minus" ? "➖" : "🔄"}
-                            </span>
-                            <span class="diff-text">${diff.text}</span>
-                        </li>`,
-                      )
-                      .join("")}
-                    </ul>`
-              : "";
-
-            // Build HTML
-            card.innerHTML = `
-                    <div class="card-header">
-                        <div class="title-group">
-                            <h3 class="agent-title">
-                                <span>${agent.icon}</span> ${agent.name}
-                            </h3>
-                            <div class="tag-container">${tags}</div>
-                        </div>
-                        <span class="role-tag">${agent.role}</span>
-                    </div>
-
-                    <div class="description">
-                        ${agent.desc}
-                        ${diffHtml}
-                    </div>
-
-                    <button class="details-toggle" aria-expanded="false" aria-controls="details-${index}" data-action="toggle-details" data-index="${index}">
-                        <svg aria-hidden="true" focusable="false" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        <span>Show Details</span>
-                    </button>
-                    <div class="details-grid" id="details-${index}">
-                        <div class="details-overflow">
-                            <div class="details-content">${agent.prompt}</div>
-                        </div>
-                    </div>
-
-                    <div class="card-actions">
-                        <button class="secondary" data-action="copy-agent" data-index="${index}">
-                            <span>Copy Prompt</span>
-                        </button>
-                    </div>
-                `;
-
-            categoryContainers[agent.category].appendChild(card);
           });
+        }
+
+        /**
+         * Creates a DOM element for a single agent card.
+         * @param {Object} agent - The agent data object.
+         * @param {number} index - The index of the agent in the list.
+         * @returns {HTMLElement} The constructed card element.
+         */
+        createAgentCard(agent, index) {
+          const card = document.createElement("div");
+          card.className = "card";
+          if (agent.type === "plus") card.classList.add("plus-agent");
+          if (agent.type === "monthly") card.classList.add("monthly-agent");
+
+          // Build tags
+          let tags = "";
+          if (agent.scope) {
+            let scopeClass = "scope-medium";
+            if (agent.scope.includes("Small")) scopeClass = "scope-small";
+            if (agent.scope.includes("Large")) scopeClass = "scope-large";
+            tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
+          }
+
+          if (agent.usedIn) {
+            agent.usedIn
+              .split(",")
+              .forEach(
+                (p) =>
+                  (tags += `<span class="power-tag">🧩 Part of ${p.trim()}</span>`),
+              );
+          }
+
+          // Differences List
+          const diffHtml = agent.diffs
+            ? `<ul class="diff-list">
+                  ${agent.diffs
+                    .map(
+                      (diff) => `
+                      <li class="diff-item">
+                          <span class="diff-icon ${diff.type === "plus" ? "diff-plus" : diff.type === "minus" ? "diff-minus" : "diff-change"}">
+                              ${diff.type === "plus" ? "➕" : diff.type === "minus" ? "➖" : "🔄"}
+                          </span>
+                          <span class="diff-text">${diff.text}</span>
+                      </li>`,
+                    )
+                    .join("")}
+                  </ul>`
+            : "";
+
+          // Build HTML
+          card.innerHTML = `
+                  <div class="card-header">
+                      <div class="title-group">
+                          <h3 class="agent-title">
+                              <span>${agent.icon}</span> ${agent.name}
+                          </h3>
+                          <div class="tag-container">${tags}</div>
+                      </div>
+                      <span class="role-tag">${agent.role}</span>
+                  </div>
+
+                  <div class="description">
+                      ${agent.desc}
+                      ${diffHtml}
+                  </div>
+
+                  <button class="details-toggle" aria-expanded="false" aria-controls="details-${index}" data-action="toggle-details" data-index="${index}">
+                      <svg aria-hidden="true" focusable="false" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                      <span>Show Details</span>
+                  </button>
+                  <div class="details-grid" id="details-${index}">
+                      <div class="details-overflow">
+                          <div class="details-content">${agent.prompt}</div>
+                      </div>
+                  </div>
+
+                  <div class="card-actions">
+                      <button class="secondary" data-action="copy-agent" data-index="${index}">
+                          <span>Copy Prompt</span>
+                      </button>
+                  </div>
+              `;
+          return card;
         }
 
         /**
@@ -1267,31 +1279,65 @@
           const search = query.toLowerCase();
           const cards = document.querySelectorAll(CONFIG.selectors.card);
 
-          let visibleCount = 0;
+          this.toggleClearButton(query.length > 0);
 
-          if (query.length > 0) {
+          let visibleCount = 0;
+          cards.forEach((card) => {
+            const isVisible = this.setCardVisibility(
+              card,
+              search,
+              visibleCount,
+            );
+            if (isVisible) visibleCount++;
+          });
+
+          this.updateFilterUI(visibleCount, query.length);
+        }
+
+        /**
+         * Toggles the visibility of the clear search button.
+         * @param {boolean} show - Whether to show the button.
+         */
+        toggleClearButton(show) {
+          if (show) {
             this.elements.clearBtn?.classList.add("visible");
           } else {
             this.elements.clearBtn?.classList.remove("visible");
           }
+        }
 
-          cards.forEach((card) => {
-            const text = card.textContent.toLowerCase();
-            card.classList.remove("pop-in");
+        /**
+         * Sets the visibility and animation of a single card.
+         * @param {HTMLElement} card - The card element.
+         * @param {string} search - The search query.
+         * @param {number} visibleCount - The current count of visible cards.
+         * @returns {boolean} Whether the card is visible.
+         */
+        setCardVisibility(card, search, visibleCount) {
+          const text = card.textContent.toLowerCase();
+          card.classList.remove("pop-in");
 
-            if (text.includes(search)) {
-              card.style.display = "flex";
-              void card.offsetWidth;
-              const delay = Math.min(visibleCount * 30, 600);
-              card.style.animationDelay = `${delay}ms`;
-              card.classList.add("pop-in");
-              visibleCount++;
-            } else {
-              card.style.display = "none";
-            }
-          });
+          if (text.includes(search)) {
+            card.style.display = "flex";
+            void card.offsetWidth; // Trigger reflow
+            const delay = Math.min(visibleCount * 30, 600);
+            card.style.animationDelay = `${delay}ms`;
+            card.classList.add("pop-in");
+            return true;
+          } else {
+            card.style.display = "none";
+            return false;
+          }
+        }
 
-          if (visibleCount === 0 && query.length > 0) {
+        /**
+         * Updates the UI state (empty state, headers, announcer) based on filter results.
+         * @param {number} visibleCount - Number of visible cards.
+         * @param {number} queryLength - Length of the search query.
+         */
+        updateFilterUI(visibleCount, queryLength) {
+          // Update Empty State and Headers
+          if (visibleCount === 0 && queryLength > 0) {
             this.elements.emptyState?.classList.add("visible");
             document
               .querySelectorAll(CONFIG.selectors.sectionHeader)
@@ -1309,9 +1355,10 @@
             });
           }
 
+          // Update Announcer
           if (this.elements.announcer) {
             this.elements.announcer.textContent =
-              query.length === 0
+              queryLength === 0
                 ? ""
                 : visibleCount === 0
                   ? "No agents found."
@@ -1412,11 +1459,10 @@
         }
 
         /**
-         * Generates a downloadable Markdown file containing all agent prompts.
-         * Creates a Blob and triggers a download.
-         * @param {HTMLElement} btn - The button that triggered the download.
+         * Generates the full roster markdown string.
+         * @returns {string} The complete markdown content.
          */
-        downloadAll(btn) {
+        generateRosterMarkdown() {
           const header =
             "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
           const body = this.agents
@@ -1425,8 +1471,16 @@
                 `${a.prompt}\n\n--------------------------------------------------------------------------------`,
             )
             .join("\n\n");
+          return header + body;
+        }
 
-          const content = header + body;
+        /**
+         * Generates a downloadable Markdown file containing all agent prompts.
+         * Creates a Blob and triggers a download.
+         * @param {HTMLElement} btn - The button that triggered the download.
+         */
+        downloadAll(btn) {
+          const content = this.generateRosterMarkdown();
           const blob = new Blob([content], { type: "text/markdown" });
           const url = URL.createObjectURL(blob);
           const a = document.createElement("a");
@@ -1445,18 +1499,8 @@
          * @param {HTMLElement} btn - The button triggered.
          */
         async copyAll(btn) {
-          const header =
-            "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
-          const body = this.agents
-            .map(
-              (a) =>
-                `${a.prompt}\n\n--------------------------------------------------------------------------------`,
-            )
-            .join("\n\n");
-          const success = await this.copyText(
-            header + body,
-            "Full Roster copied!",
-          );
+          const content = this.generateRosterMarkdown();
+          const success = await this.copyText(content, "Full Roster copied!");
           if (success) {
             this.animateButtonSuccess(btn, "Copied! ✨");
           }

@@ -15,3 +15,6 @@
 - [x] Redundant verification/verify_roster_debug.py
 - [x] Redundant verification/test_search_filtering.py
 - [x] Redundant verification/test_toggle_details.py
+
+## 🏗️ Structural Improvements
+- [x] Refactor `RosterApp` to reduce cognitive complexity (Untangler)
