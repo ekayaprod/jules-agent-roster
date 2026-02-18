@@ -806,6 +806,26 @@
 
     <script src="agents.js"></script>
     <script>
+      /**
+       * @typedef {Object} Agent
+       * @property {string} name - The display name of the agent.
+       * @property {string} icon - Emoji icon representing the agent.
+       * @property {string} category - Internal category identifier (core, eng, etc.).
+       * @property {string} [type] - Optional type variant (e.g., 'plus', 'monthly').
+       * @property {string} [scope] - Scope description (e.g., 'Small-Medium').
+       * @property {string} [usedIn] - Comma-separated list of bundles this agent is part of.
+       * @property {string} role - Short role description.
+       * @property {string} desc - Full description of the agent's purpose.
+       * @property {Array<{type: string, text: string}>} [diffs] - Optional list of changes/diffs.
+       * @property {string} promptFile - Path to the markdown prompt file.
+       * @property {string} [prompt] - The loaded content of the prompt file (added at runtime).
+       */
+
+      /**
+       * Configuration constants and DOM selectors.
+       * @constant
+       * @type {Object}
+       */
       const CONFIG = {
         selectors: {
             searchInput: '#searchInput',
@@ -838,15 +858,29 @@
       };
 
       // --- ROSTER APP ---
+      /**
+       * Main application class for the Jules Master Agent Roster.
+       * Handles data fetching, rendering, search filtering, and clipboard interactions.
+       */
       class RosterApp {
+        /**
+         * Initializes the RosterApp instance.
+         */
         constructor() {
+            /** @type {Agent[]} List of loaded agent data. */
             this.agents = [];
+            /** @type {Object.<string, HTMLElement|NodeList>} Cached DOM elements. */
             this.elements = {};
+            /** @type {{toastTimeout: ?number}} Application state. */
             this.state = {
                 toastTimeout: null
             };
         }
 
+        /**
+         * Bootstraps the application: caches elements, loads data, renders UI, binds events, and starts observers.
+         * @returns {Promise<void>}
+         */
         async init() {
             this.cacheElements();
             await this.loadData();
@@ -855,6 +889,11 @@
             this.initObserver();
         }
 
+        /**
+         * Fetches agent metadata and their corresponding prompt files.
+         * Populates `this.agents` with the enriched data.
+         * @returns {Promise<void>}
+         */
         async loadData() {
             try {
                 const response = await fetch('agents.json');
@@ -881,6 +920,9 @@
             }
         }
 
+        /**
+         * Caches DOM elements based on selectors defined in CONFIG.
+         */
         cacheElements() {
             // Cache DOM elements based on CONFIG
             Object.keys(CONFIG.selectors).forEach(key => {
@@ -891,6 +933,9 @@
             });
         }
 
+        /**
+         * Renders the agent cards into their respective grid categories.
+         */
         renderAgents() {
             const categoryContainers = {};
             Object.keys(CONFIG.categories).forEach(key => {
@@ -969,6 +1014,9 @@
             });
         }
 
+        /**
+         * Sets up event listeners for search, buttons, and delegated actions (details toggle, copy).
+         */
         bindEvents() {
             // Static events
             this.elements.searchInput?.addEventListener('input', (e) => this.filterAgents(e.target.value));
@@ -991,6 +1039,11 @@
             });
         }
 
+        /**
+         * Toggles the visibility of the agent details (prompt) section.
+         * @param {string} index - The index of the agent in the `agents` array.
+         * @param {HTMLElement} btn - The button element that triggered the action.
+         */
         toggleDetails(index, btn) {
             const grid = document.getElementById(`details-${index}`);
             const isExpanded = grid.classList.toggle("expanded");
@@ -1001,6 +1054,11 @@
             console.debug("Toggled Agent Details", { index, expanded: isExpanded, agent: this.agents[index]?.name });
         }
 
+        /**
+         * Filters the rendered agents based on the search query.
+         * Updates visibility of cards, empty state, and announcer for screen readers.
+         * @param {string} query - The search string.
+         */
         filterAgents(query) {
             const search = query.toLowerCase();
             const cards = document.querySelectorAll(CONFIG.selectors.card);
@@ -1049,6 +1107,9 @@
             }
         }
 
+        /**
+         * Clears the search input and resets the grid.
+         */
         clearSearch() {
             if(this.elements.searchInput) {
                 this.elements.searchInput.value = "";
@@ -1057,6 +1118,10 @@
             }
         }
 
+        /**
+         * Displays a temporary toast notification.
+         * @param {string} [message="Copied to clipboard!"] - The message to display.
+         */
         showToast(message) {
             if (this.state.toastTimeout) {
                 clearTimeout(this.state.toastTimeout);
@@ -1071,6 +1136,12 @@
             }
         }
 
+        /**
+         * Copies text to the clipboard using the Clipboard API or a fallback method.
+         * @param {string} text - The text to copy.
+         * @param {string} message - The success message to show in the toast.
+         * @returns {Promise<boolean>} True if successful.
+         */
         async copyText(text, message) {
             try {
                 await navigator.clipboard.writeText(text);
@@ -1091,6 +1162,12 @@
             }
         }
 
+        /**
+         * Handles the visual feedback and logic for copying text.
+         * @param {HTMLElement} btn - The button triggering the copy.
+         * @param {string} text - The text to copy.
+         * @param {string} message - The success message.
+         */
         async handleCopyAnimation(btn, text, message) {
             const success = await this.copyText(text, message);
             if (!success) return;
@@ -1107,12 +1184,21 @@
             }, 2000);
         }
 
+        /**
+         * Copies a specific agent's prompt.
+         * @param {number} index - Index of the agent in the `agents` array.
+         * @param {HTMLElement} btn - The button element.
+         */
         copyAgent(index, btn) {
             const agent = this.agents[index];
             console.info("Agent Copied", { name: agent.name });
             this.handleCopyAnimation(btn, agent.prompt, `${agent.name} prompt copied!`);
         }
 
+        /**
+         * Copies the entire roster (all prompts) to the clipboard.
+         * @param {HTMLElement} btn - The button element.
+         */
         copyAll(btn) {
             console.info("Full Roster Copied", { count: this.agents.length });
             const header = "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
@@ -1120,6 +1206,9 @@
             this.handleCopyAnimation(btn, header + body, "Full Roster copied!");
         }
 
+        /**
+         * Initializes the IntersectionObserver for sticky navigation highlighting.
+         */
         initObserver() {
              const navPills = document.querySelectorAll(CONFIG.selectors.navPills);
              const observer = new IntersectionObserver((entries) => {
