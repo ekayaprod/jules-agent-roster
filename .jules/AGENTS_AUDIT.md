@@ -12,3 +12,4 @@
 
 ## 🧹 Scavenger Targets
 - [x] Redundant verification/verify_roster_http.py
+- [x] Redundant verification/verify_roster_debug.py
