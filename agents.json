@@ -254,5 +254,41 @@
     "role": "Blkbox+Scribe",
     "desc": "Executes two distinct small tasks in one PR: One log enrichment (Blackbox Lite) and one JSDoc addition (Scribe Lite).",
     "promptFile": "prompts/clarifier.md"
+  },
+  {
+    "name": "Herald",
+    "icon": "📣",
+    "category": "context",
+    "scope": "Medium",
+    "role": "Release Manager",
+    "desc": "Translates git history into human-readable Changelogs and manages Semantic Versioning.",
+    "promptFile": "prompts/herald.md"
+  },
+  {
+    "name": "Wordsmith",
+    "icon": "✏️",
+    "category": "context",
+    "scope": "Small-Medium",
+    "role": "UX Writer",
+    "desc": "Audits button labels, modal titles, and empty states for brevity and clarity.",
+    "promptFile": "prompts/wordsmith.md"
+  },
+  {
+    "name": "Pedant",
+    "icon": "🧐",
+    "category": "eng",
+    "scope": "Small-Medium",
+    "role": "Code Quality Enforcer",
+    "desc": "Enforces strict naming conventions, style guides, and 'Clean Code' standards.",
+    "promptFile": "prompts/pedant.md"
+  },
+  {
+    "name": "Untangler",
+    "icon": "🧶",
+    "category": "eng",
+    "scope": "Small-Medium",
+    "role": "Logic Simplifier",
+    "desc": "Reduces cognitive complexity by flattening nested logic and extracting helper functions.",
+    "promptFile": "prompts/untangler.md"
   }
 ]
