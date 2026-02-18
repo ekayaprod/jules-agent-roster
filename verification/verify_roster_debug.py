@@ -1,4 +1,6 @@
+import os
 from playwright.sync_api import sync_playwright
+from PIL import Image
 
 def verify_roster():
     with sync_playwright() as p:
@@ -25,8 +27,19 @@ def verify_roster():
 
         if count > 0:
              # 4. Take Screenshot
-            page.screenshot(path="verification/roster_verified_server.png")
-            print("Screenshot saved.")
+            png_path = "verification/roster_verified_server.png"
+            webp_path = "verification/roster_verified_server.webp"
+
+            page.screenshot(path=png_path)
+
+            # Convert to WebP
+            try:
+                img = Image.open(png_path)
+                img.save(webp_path, "WEBP")
+                os.remove(png_path)
+                print(f"Screenshot saved to {webp_path}")
+            except Exception as e:
+                print(f"Failed to convert screenshot to WebP: {e}")
 
         browser.close()
 
