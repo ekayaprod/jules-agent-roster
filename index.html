@@ -745,9 +745,9 @@
       </svg>
       <p>No agents found matching your search.</p>
       <button
+        id="emptyStateClearBtn"
         class="secondary"
         style="margin: 1rem auto 0; width: auto"
-        onclick="clearSearch()"
       >
         Clear Search
       </button>
@@ -804,7 +804,6 @@
       Copied to clipboard!
     </div>
 
-    <script src="agents.js"></script>
     <script>
       const CONFIG = {
         selectors: {
@@ -814,6 +813,7 @@
             toast: '#toast',
             announcer: '#search-announcer',
             emptyState: '#emptyState',
+            emptyStateClearBtn: '#emptyStateClearBtn',
             categoryNav: '#category-nav',
             main: '#main',
             navPills: '.nav-pill',
@@ -973,6 +973,7 @@
             // Static events
             this.elements.searchInput?.addEventListener('input', (e) => this.filterAgents(e.target.value));
             this.elements.clearBtn?.addEventListener('click', () => this.clearSearch());
+            this.elements.emptyStateClearBtn?.addEventListener('click', () => this.clearSearch());
             this.elements.copyAllBtn?.addEventListener('click', (e) => this.copyAll(e.currentTarget));
 
             // Event Delegation
