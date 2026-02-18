@@ -992,10 +992,11 @@
         }
 
         toggleDetails(index, btn) {
-            const grid = document.getElementById(`details-${index}`);
+            // Bolt+: Optimized DOM traversal
+            const grid = btn.nextElementSibling;
             const isExpanded = grid.classList.toggle("expanded");
             btn.setAttribute("aria-expanded", isExpanded);
-            const span = btn.querySelector("span");
+            const span = btn.lastElementChild;
             span.innerText = isExpanded ? "Hide Details" : "Show Details";
 
             console.debug("Toggled Agent Details", { index, expanded: isExpanded, agent: this.agents[index]?.name });
