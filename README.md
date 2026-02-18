@@ -1,5 +1,7 @@
 # Jules Agent Roster 🤖
 
+> **Current Version:** 0.1.0
+
 > The complete, enhanced agent system for Jules AI, featuring the **Overseer Protocol** and **Plus-tier** specialists.
 
 This repository hosts a curated collection of advanced agent prompts designed to work seamlessly with Jules. It moves beyond simple "chat" interactions into a robust, structured workflow where agents have specific roles, scopes, and memory.
