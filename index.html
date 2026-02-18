@@ -948,17 +948,59 @@
           this.initObserver();
         }
 
+        async fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
+          try {
+            const response = await fetch(url, options);
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response;
+          } catch (error) {
+            if (retries > 0) {
+              console.warn(`Retrying ${url} (${retries} left)...`);
+              await new Promise((resolve) => setTimeout(resolve, backoff));
+              return this.fetchWithRetry(
+                url,
+                options,
+                retries - 1,
+                backoff * 2,
+              );
+            }
+            throw error;
+          }
+        }
+
+        validateAgentsData(data) {
+          if (!Array.isArray(data)) {
+            throw new Error("Invalid format: agents data must be an array.");
+          }
+          return data.filter((agent) => {
+            const isValid =
+              agent &&
+              typeof agent.name === "string" &&
+              typeof agent.category === "string" &&
+              typeof agent.promptFile === "string" &&
+              Object.keys(CONFIG.categories).includes(agent.category);
+
+            if (!isValid) {
+              console.warn("Skipping invalid agent entry:", agent);
+            }
+            return isValid;
+          });
+        }
+
         async loadData() {
           try {
-            const response = await fetch("agents.json");
-            const agentsData = await response.json();
+            const response = await this.fetchWithRetry("agents.json");
+            const rawData = await response.json();
+            const agentsData = this.validateAgentsData(rawData);
 
             // Parallel fetch for all prompts
             this.agents = await Promise.all(
               agentsData.map(async (agent) => {
                 if (agent.promptFile) {
                   try {
-                    const promptRes = await fetch(agent.promptFile);
+                    const promptRes = await this.fetchWithRetry(agent.promptFile);
                     agent.prompt = await promptRes.text();
                   } catch (e) {
                     console.error(`Failed to load prompt for ${agent.name}`, e);
