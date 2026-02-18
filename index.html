@@ -926,6 +926,21 @@
           monthlyGrid: "monthly-intelligence",
           powerGrid: "bundled-tasks",
         },
+        timeouts: {
+          toast: 2000,
+          success: 2000,
+        },
+        animation: {
+          pulse: 1500,
+          popIn: 400,
+          delayBase: 30,
+          delayMax: 600,
+        },
+        retry: {
+          count: 3,
+          backoff: 300,
+        },
+        skeletonCount: 3,
       };
 
       // --- ROSTER APP ---
@@ -976,7 +991,12 @@
          * @returns {Promise<Response>} The fetch response.
          * @throws {Error} If all retries fail.
          */
-        async fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
+        async fetchWithRetry(
+          url,
+          options = {},
+          retries = CONFIG.retry.count,
+          backoff = CONFIG.retry.backoff,
+        ) {
           try {
             const response = await fetch(url, options);
             if (!response.ok) {
@@ -1083,8 +1103,8 @@
             const container = document.getElementById(CONFIG.categories[key]);
             if (!container) return;
 
-            // Add 3 skeletons per category
-            for (let i = 0; i < 3; i++) {
+            // Add skeletons per category
+            for (let i = 0; i < CONFIG.skeletonCount; i++) {
               const skeleton = document.createElement("div");
               skeleton.className = "skeleton-card skeleton-pulse";
               skeleton.setAttribute("aria-hidden", "true"); // Hidden from screen readers
@@ -1247,14 +1267,14 @@
         /**
          * Toggles the visibility of the agent details section.
          * @param {string|number} index - The index of the agent.
-         * @param {HTMLElement} btn - The button element that triggered the action.
+         * @param {HTMLElement} toggleButton - The button element that triggered the action.
          */
-        toggleDetails(index, btn) {
+        toggleDetails(index, toggleButton) {
           const grid = document.getElementById(`details-${index}`);
           const isExpanded = grid.classList.toggle("expanded");
-          btn.setAttribute("aria-expanded", isExpanded);
-          const span = btn.querySelector("span");
-          span.innerText = isExpanded ? "Hide Details" : "Show Details";
+          toggleButton.setAttribute("aria-expanded", isExpanded);
+          const buttonLabel = toggleButton.querySelector("span");
+          buttonLabel.innerText = isExpanded ? "Hide Details" : "Show Details";
         }
 
         /**
@@ -1282,7 +1302,10 @@
             if (text.includes(search)) {
               card.style.display = "flex";
               void card.offsetWidth;
-              const delay = Math.min(visibleCount * 30, 600);
+              const delay = Math.min(
+                visibleCount * CONFIG.animation.delayBase,
+                CONFIG.animation.delayMax,
+              );
               card.style.animationDelay = `${delay}ms`;
               card.classList.add("pop-in");
               visibleCount++;
@@ -1346,12 +1369,13 @@
             toast.classList.add("show");
             this.state.toastTimeout = setTimeout(() => {
               toast.classList.remove("show");
-            }, 2000);
+            }, CONFIG.timeouts.toast);
           }
         }
 
         /**
          * Copies text to the clipboard using the Clipboard API or a fallback.
+         * Fallback uses a hidden textarea to support older browsers or contexts without API access.
          * @param {string} text - The text to copy.
          * @param {string} message - Success message for the toast.
          * @returns {Promise<boolean>} True if successful.
@@ -1363,14 +1387,14 @@
             return true;
           } catch (err) {
             console.warn("Clipboard API failed, attempting fallback", err);
-            const el = document.createElement("textarea");
-            el.value = text;
-            el.style.position = "fixed";
-            el.style.opacity = "0";
-            document.body.appendChild(el);
-            el.select();
+            const textAreaElement = document.createElement("textarea");
+            textAreaElement.value = text;
+            textAreaElement.style.position = "fixed";
+            textAreaElement.style.opacity = "0";
+            document.body.appendChild(textAreaElement);
+            textAreaElement.select();
             document.execCommand("copy");
-            document.body.removeChild(el);
+            document.body.removeChild(textAreaElement);
             this.showToast(message);
             return true;
           }
@@ -1378,79 +1402,79 @@
 
         /**
          * Animates a button to indicate success.
-         * Temporarily changes the button style and text.
-         * @param {HTMLElement} btn - The button element.
+         * Temporarily changes the button style and text to provide visual feedback.
+         * @param {HTMLElement} actionButton - The button element.
          * @param {string} successMessage - The text to display during the success state.
          */
-        animateButtonSuccess(btn, successMessage) {
-          const span = btn.querySelector("span");
-          const originalText = span.innerText;
+        animateButtonSuccess(actionButton, successMessage) {
+          const buttonLabel = actionButton.querySelector("span");
+          const originalText = buttonLabel.innerText;
 
-          btn.classList.add("success-state");
-          span.innerText = successMessage;
+          actionButton.classList.add("success-state");
+          buttonLabel.innerText = successMessage;
 
           setTimeout(() => {
-            btn.classList.remove("success-state");
-            span.innerText = originalText;
-          }, 2000);
+            actionButton.classList.remove("success-state");
+            buttonLabel.innerText = originalText;
+          }, CONFIG.timeouts.success);
         }
 
         /**
          * Copies a specific agent's prompt to the clipboard.
          * @param {string|number} index - Index of the agent in `this.agents`.
-         * @param {HTMLElement} btn - The button triggered.
+         * @param {HTMLElement} copyButton - The button triggered.
          */
-        async copyAgent(index, btn) {
+        async copyAgent(index, copyButton) {
           const agent = this.agents[index];
           const success = await this.copyText(
             agent.prompt,
             `${agent.name} prompt copied!`,
           );
           if (success) {
-            this.animateButtonSuccess(btn, "Copied! ✨");
+            this.animateButtonSuccess(copyButton, "Copied! ✨");
           }
         }
 
         /**
          * Generates a downloadable Markdown file containing all agent prompts.
          * Creates a Blob and triggers a download.
-         * @param {HTMLElement} btn - The button that triggered the download.
+         * @param {HTMLElement} downloadButton - The button that triggered the download.
          */
-        downloadAll(btn) {
+        downloadAll(downloadButton) {
           const header =
             "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
           const body = this.agents
             .map(
-              (a) =>
-                `${a.prompt}\n\n--------------------------------------------------------------------------------`,
+              (agent) =>
+                `${agent.prompt}\n\n--------------------------------------------------------------------------------`,
             )
             .join("\n\n");
 
           const content = header + body;
           const blob = new Blob([content], { type: "text/markdown" });
           const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = "jules_roster.md";
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
+          const downloadLink = document.createElement("a");
+          downloadLink.href = url;
+          downloadLink.download = "jules_roster.md";
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+          document.body.removeChild(downloadLink);
           URL.revokeObjectURL(url);
 
-          this.animateButtonSuccess(btn, "Downloaded! 📥");
+          this.animateButtonSuccess(downloadButton, "Downloaded! 📥");
         }
 
         /**
          * Copies the full roster content (headers + all prompts) to the clipboard.
-         * @param {HTMLElement} btn - The button triggered.
+         * @param {HTMLElement} copyButton - The button triggered.
          */
-        async copyAll(btn) {
+        async copyAll(copyButton) {
           const header =
             "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
           const body = this.agents
             .map(
-              (a) =>
-                `${a.prompt}\n\n--------------------------------------------------------------------------------`,
+              (agent) =>
+                `${agent.prompt}\n\n--------------------------------------------------------------------------------`,
             )
             .join("\n\n");
           const success = await this.copyText(
@@ -1458,7 +1482,7 @@
             "Full Roster copied!",
           );
           if (success) {
-            this.animateButtonSuccess(btn, "Copied! ✨");
+            this.animateButtonSuccess(copyButton, "Copied! ✨");
           }
         }
 

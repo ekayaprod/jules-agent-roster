@@ -15,3 +15,6 @@
 - [x] Redundant verification/verify_roster_debug.py
 - [x] Redundant verification/test_search_filtering.py
 - [x] Redundant verification/test_toggle_details.py
+
+## 🧐 Code Quality & Style
+- [x] Enforce consistent variable naming and magic number extraction in `index.html` and `verification/verify_roster.py`
