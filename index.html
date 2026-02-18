@@ -896,6 +896,10 @@
     </div>
 
     <script>
+      /**
+       * Configuration object for DOM selectors and category mappings.
+       * @type {Object}
+       */
       const CONFIG = {
         selectors: {
           searchInput: "#searchInput",
@@ -929,7 +933,14 @@
       };
 
       // --- ROSTER APP ---
+      /**
+       * Main application class for the Jules Master Agent Roster.
+       * Handles data loading, rendering, filtering, and user interactions.
+       */
       class RosterApp {
+        /**
+         * Initializes the RosterApp instance with empty state.
+         */
         constructor() {
           this.agents = [];
           this.elements = {};
@@ -938,6 +949,12 @@
           };
         }
 
+        /**
+         * Bootstraps the application.
+         * Caches DOM elements, renders skeletons, loads data, clears skeletons,
+         * renders agents, binds events, and initializes the observer.
+         * @async
+         */
         async init() {
           this.cacheElements();
           this.renderSkeletons();
@@ -948,6 +965,12 @@
           this.initObserver();
         }
 
+        /**
+         * Fetches agent metadata from 'agents.json' and individual prompt files.
+         * Populates `this.agents` with the loaded data.
+         * Handles errors by logging to console and displaying a UI message.
+         * @async
+         */
         async loadData() {
           try {
             const response = await fetch("agents.json");
@@ -976,6 +999,10 @@
           }
         }
 
+        /**
+         * Caches DOM elements referenced in CONFIG.selectors for efficient access.
+         * Stores them in `this.elements`.
+         */
         cacheElements() {
           // Cache DOM elements based on CONFIG
           Object.keys(CONFIG.selectors).forEach((key) => {
@@ -986,6 +1013,9 @@
           });
         }
 
+        /**
+         * Renders skeleton loader cards into each category container to indicate loading state.
+         */
         renderSkeletons() {
           Object.keys(CONFIG.categories).forEach((key) => {
             const container = document.getElementById(CONFIG.categories[key]);
@@ -1013,6 +1043,9 @@
           });
         }
 
+        /**
+         * Removes all skeleton loader cards from the DOM after data is loaded.
+         */
         clearSkeletons() {
           Object.keys(CONFIG.categories).forEach((key) => {
             const container = document.getElementById(CONFIG.categories[key]);
@@ -1020,6 +1053,10 @@
           });
         }
 
+        /**
+         * Renders agent cards into their respective category containers.
+         * Dynamically builds HTML for each agent including tags, diffs, and actions.
+         */
         renderAgents() {
           const categoryContainers = {};
           Object.keys(CONFIG.categories).forEach((key) => {
@@ -1107,6 +1144,10 @@
           });
         }
 
+        /**
+         * Binds static and delegated event listeners for the application.
+         * Handles search input, button clicks, and card interactions.
+         */
         bindEvents() {
           // Static events
           this.elements.searchInput?.addEventListener("input", (e) =>
@@ -1140,6 +1181,12 @@
           });
         }
 
+        /**
+         * Toggles the visibility of the details section (prompt content) for a specific agent card.
+         * Updates the button's aria-expanded attribute and text.
+         * @param {string|number} index - The index of the agent in the `this.agents` array.
+         * @param {HTMLElement} btn - The button element that triggered the toggle.
+         */
         toggleDetails(index, btn) {
           const grid = document.getElementById(`details-${index}`);
           const isExpanded = grid.classList.toggle("expanded");
@@ -1148,6 +1195,11 @@
           span.innerText = isExpanded ? "Hide Details" : "Show Details";
         }
 
+        /**
+         * Filters displayed agents based on a search query.
+         * Updates visibility of cards, section headers, and the empty state message.
+         * @param {string} query - The search string to filter by.
+         */
         filterAgents(query) {
           const search = query.toLowerCase();
           const cards = document.querySelectorAll(CONFIG.selectors.card);
@@ -1204,6 +1256,9 @@
           }
         }
 
+        /**
+         * Clears the current search query, resets the agent list visibility, and focuses the search input.
+         */
         clearSearch() {
           if (this.elements.searchInput) {
             this.elements.searchInput.value = "";
@@ -1212,6 +1267,11 @@
           }
         }
 
+        /**
+         * Displays a temporary toast message to the user.
+         * Clears any existing timeout to prevent overlapping toasts.
+         * @param {string} [message] - The message to display. Defaults to "Copied to clipboard!".
+         */
         showToast(message) {
           if (this.state.toastTimeout) {
             clearTimeout(this.state.toastTimeout);
@@ -1226,6 +1286,14 @@
           }
         }
 
+        /**
+         * Copies text to the system clipboard using the Clipboard API, falling back to execCommand if necessary.
+         * Shows a toast message upon success.
+         * @async
+         * @param {string} text - The text content to copy.
+         * @param {string} message - The success message to show in the toast.
+         * @returns {Promise<boolean>} True if copy was successful.
+         */
         async copyText(text, message) {
           try {
             await navigator.clipboard.writeText(text);
@@ -1246,6 +1314,12 @@
           }
         }
 
+        /**
+         * Animates a button to indicate a successful action (e.g., changing text and color).
+         * Reverts to original state after 2 seconds.
+         * @param {HTMLElement} btn - The button element to animate.
+         * @param {string} successMessage - The text to temporarily display on the button.
+         */
         animateButtonSuccess(btn, successMessage) {
           const span = btn.querySelector("span");
           const originalText = span.innerText;
@@ -1259,6 +1333,13 @@
           }, 2000);
         }
 
+        /**
+         * Copies a specific agent's prompt to the clipboard.
+         * Triggers button animation on success.
+         * @async
+         * @param {string|number} index - The index of the agent in the `this.agents` array.
+         * @param {HTMLElement} btn - The button element that triggered the copy.
+         */
         async copyAgent(index, btn) {
           const agent = this.agents[index];
           const success = await this.copyText(
@@ -1270,6 +1351,11 @@
           }
         }
 
+        /**
+         * Generates and downloads a Markdown file containing all agent prompts.
+         * Creates a temporary blob and anchor tag to trigger the download.
+         * @param {HTMLElement} btn - The button element that triggered the download.
+         */
         downloadAll(btn) {
           const header =
             "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
@@ -1294,6 +1380,12 @@
           this.animateButtonSuccess(btn, "Downloaded! 📥");
         }
 
+        /**
+         * Copies all agent prompts to the clipboard as a single formatted string.
+         * Triggers button animation on success.
+         * @async
+         * @param {HTMLElement} btn - The button element that triggered the copy.
+         */
         async copyAll(btn) {
           const header =
             "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
@@ -1312,6 +1404,10 @@
           }
         }
 
+        /**
+         * Initializes the IntersectionObserver for sticky navigation highlighting.
+         * Updates the active state of navigation pills based on the currently visible section.
+         */
         initObserver() {
           const navPills = document.querySelectorAll(CONFIG.selectors.navPills);
           const observer = new IntersectionObserver(
