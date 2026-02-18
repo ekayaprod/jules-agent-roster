@@ -747,7 +747,7 @@
       <button
         class="secondary"
         style="margin: 1rem auto 0; width: auto"
-        onclick="clearSearch()"
+        id="emptyStateClearBtn"
       >
         Clear Search
       </button>
@@ -810,6 +810,7 @@
         selectors: {
             searchInput: '#searchInput',
             clearBtn: '#clearBtn',
+            emptyStateClearBtn: '#emptyStateClearBtn',
             copyAllBtn: '#copyAllBtn',
             toast: '#toast',
             announcer: '#search-announcer',
@@ -973,6 +974,7 @@
             // Static events
             this.elements.searchInput?.addEventListener('input', (e) => this.filterAgents(e.target.value));
             this.elements.clearBtn?.addEventListener('click', () => this.clearSearch());
+            this.elements.emptyStateClearBtn?.addEventListener('click', () => this.clearSearch());
             this.elements.copyAllBtn?.addEventListener('click', (e) => this.copyAll(e.currentTarget));
 
             // Event Delegation
