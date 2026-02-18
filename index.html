@@ -929,7 +929,15 @@
       };
 
       // --- ROSTER APP ---
+      /**
+       * Main application class for the Jules Master Agent Roster.
+       * Handles fetching agent data, rendering the UI, managing state, and handling user interactions.
+       */
       class RosterApp {
+        /**
+         * Initializes the RosterApp instance.
+         * Sets up initial state for agents, DOM elements, and toast notifications.
+         */
         constructor() {
           this.agents = [];
           this.elements = {};
@@ -938,6 +946,17 @@
           };
         }
 
+        /**
+         * specialized initialization sequence.
+         * 1. Caches DOM elements.
+         * 2. Renders skeleton loaders.
+         * 3. Fetches data asynchronously.
+         * 4. Clears skeletons.
+         * 5. Renders agent cards.
+         * 6. Binds event listeners.
+         * 7. Initializes the intersection observer for navigation.
+         * @returns {Promise<void>}
+         */
         async init() {
           this.cacheElements();
           this.renderSkeletons();
@@ -948,6 +967,15 @@
           this.initObserver();
         }
 
+        /**
+         * Fetches a resource with exponential backoff retry logic.
+         * @param {string} url - The URL to fetch.
+         * @param {RequestInit} [options={}] - Fetch options.
+         * @param {number} [retries=3] - Number of retries.
+         * @param {number} [backoff=300] - Initial backoff delay in ms.
+         * @returns {Promise<Response>} The fetch response.
+         * @throws {Error} If all retries fail.
+         */
         async fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
           try {
             const response = await fetch(url, options);
@@ -970,6 +998,13 @@
           }
         }
 
+        /**
+         * Validates the structure of the agents data.
+         * filters out agents that do not match the expected schema.
+         * @param {any} data - The raw JSON data.
+         * @returns {Array} Array of valid agent objects.
+         * @throws {Error} If data is not an array.
+         */
         validateAgentsData(data) {
           if (!Array.isArray(data)) {
             throw new Error("Invalid format: agents data must be an array.");
@@ -989,6 +1024,12 @@
           });
         }
 
+        /**
+         * Loads agent data from `agents.json` and fetches individual prompt files.
+         * Populates `this.agents` with the complete data set.
+         * Handles errors by displaying a message in the main container.
+         * @returns {Promise<void>}
+         */
         async loadData() {
           try {
             const response = await this.fetchWithRetry("agents.json");
@@ -1018,6 +1059,10 @@
           }
         }
 
+        /**
+         * Caches DOM elements specified in `CONFIG.selectors` to `this.elements`.
+         * Reduces DOM lookups during runtime.
+         */
         cacheElements() {
           // Cache DOM elements based on CONFIG
           Object.keys(CONFIG.selectors).forEach((key) => {
@@ -1028,6 +1073,11 @@
           });
         }
 
+        /**
+         * Renders skeleton loading cards into each category grid.
+         * Provides visual feedback while data is loading.
+         * Supports reduced motion preferences via CSS.
+         */
         renderSkeletons() {
           Object.keys(CONFIG.categories).forEach((key) => {
             const container = document.getElementById(CONFIG.categories[key]);
@@ -1055,6 +1105,10 @@
           });
         }
 
+        /**
+         * Clears all skeleton loaders from the category grids.
+         * Called after data is successfully loaded.
+         */
         clearSkeletons() {
           Object.keys(CONFIG.categories).forEach((key) => {
             const container = document.getElementById(CONFIG.categories[key]);
@@ -1062,6 +1116,10 @@
           });
         }
 
+        /**
+         * Renders the agent cards into their respective category grids.
+         * Constructs HTML for each agent including tags, diffs, and action buttons.
+         */
         renderAgents() {
           const categoryContainers = {};
           Object.keys(CONFIG.categories).forEach((key) => {
@@ -1149,6 +1207,10 @@
           });
         }
 
+        /**
+         * Binds event listeners to static elements and sets up event delegation for dynamic elements.
+         * Handles search input, button clicks, and card interactions.
+         */
         bindEvents() {
           // Static events
           this.elements.searchInput?.addEventListener("input", (e) =>
@@ -1182,6 +1244,11 @@
           });
         }
 
+        /**
+         * Toggles the visibility of the agent details section.
+         * @param {string|number} index - The index of the agent.
+         * @param {HTMLElement} btn - The button element that triggered the action.
+         */
         toggleDetails(index, btn) {
           const grid = document.getElementById(`details-${index}`);
           const isExpanded = grid.classList.toggle("expanded");
@@ -1190,6 +1257,12 @@
           span.innerText = isExpanded ? "Hide Details" : "Show Details";
         }
 
+        /**
+         * Filters the displayed agents based on a search query.
+         * Updates visibility of cards, section headers, and empty state.
+         * Announces results to screen readers.
+         * @param {string} query - The search query.
+         */
         filterAgents(query) {
           const search = query.toLowerCase();
           const cards = document.querySelectorAll(CONFIG.selectors.card);
@@ -1246,6 +1319,10 @@
           }
         }
 
+        /**
+         * Clears the search input and resets the filter.
+         * Returns focus to the search input.
+         */
         clearSearch() {
           if (this.elements.searchInput) {
             this.elements.searchInput.value = "";
@@ -1254,6 +1331,11 @@
           }
         }
 
+        /**
+         * Displays a toast notification with a message.
+         * Clears any existing toast timeout to prevent race conditions.
+         * @param {string} [message="Copied to clipboard!"] - The message to display.
+         */
         showToast(message) {
           if (this.state.toastTimeout) {
             clearTimeout(this.state.toastTimeout);
@@ -1268,6 +1350,12 @@
           }
         }
 
+        /**
+         * Copies text to the clipboard using the Clipboard API or a fallback.
+         * @param {string} text - The text to copy.
+         * @param {string} message - Success message for the toast.
+         * @returns {Promise<boolean>} True if successful.
+         */
         async copyText(text, message) {
           try {
             await navigator.clipboard.writeText(text);
@@ -1288,6 +1376,12 @@
           }
         }
 
+        /**
+         * Animates a button to indicate success.
+         * Temporarily changes the button style and text.
+         * @param {HTMLElement} btn - The button element.
+         * @param {string} successMessage - The text to display during the success state.
+         */
         animateButtonSuccess(btn, successMessage) {
           const span = btn.querySelector("span");
           const originalText = span.innerText;
@@ -1301,6 +1395,11 @@
           }, 2000);
         }
 
+        /**
+         * Copies a specific agent's prompt to the clipboard.
+         * @param {string|number} index - Index of the agent in `this.agents`.
+         * @param {HTMLElement} btn - The button triggered.
+         */
         async copyAgent(index, btn) {
           const agent = this.agents[index];
           const success = await this.copyText(
@@ -1312,6 +1411,11 @@
           }
         }
 
+        /**
+         * Generates a downloadable Markdown file containing all agent prompts.
+         * Creates a Blob and triggers a download.
+         * @param {HTMLElement} btn - The button that triggered the download.
+         */
         downloadAll(btn) {
           const header =
             "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
@@ -1336,6 +1440,10 @@
           this.animateButtonSuccess(btn, "Downloaded! 📥");
         }
 
+        /**
+         * Copies the full roster content (headers + all prompts) to the clipboard.
+         * @param {HTMLElement} btn - The button triggered.
+         */
         async copyAll(btn) {
           const header =
             "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
@@ -1354,6 +1462,10 @@
           }
         }
 
+        /**
+         * Initializes the Intersection Observer for the sticky navigation.
+         * Updates the active state of navigation pills based on the currently visible section.
+         */
         initObserver() {
           const navPills = document.querySelectorAll(CONFIG.selectors.navPills);
           const observer = new IntersectionObserver(
