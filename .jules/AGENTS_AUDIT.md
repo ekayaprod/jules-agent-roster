@@ -9,3 +9,6 @@
 
 ## 🕵️ Coverage Gaps
 - [x] Search Filtering Logic
+
+## 🧹 Scavenger Targets
+- [x] Redundant verification/verify_roster_http.py
