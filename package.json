@@ -1,0 +1,25 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "> The complete, enhanced agent system for Jules AI, featuring the **Overseer Protocol** and **Plus-tier** specialists.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ekayaprod/jules-agent-roster.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ekayaprod/jules-agent-roster/issues"
+  },
+  "homepage": "https://github.com/ekayaprod/jules-agent-roster#readme",
+  "devDependencies": {
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0"
+  }
+}
