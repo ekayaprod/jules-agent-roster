@@ -47,7 +47,7 @@
     "category": "core",
     "type": "plus",
     "scope": "Small-Medium",
-    "usedIn": "Warden",
+    "usedIn": "",
     "role": "Security Engineer",
     "desc": "Hardens architecture via defense layers (Validation Schemas, CSP, Rate Limiting). Consults Overseer Audit for vulnerabilities.",
     "diffs": [
@@ -63,11 +63,22 @@
     "promptFile": "prompts/sentinel.md"
   },
   {
+    "name": "Helix",
+    "icon": "🧬",
+    "category": "eng",
+    "scope": "Small-Medium",
+    "usedIn": "Steward",
+    "role": "Deduplication Specialist",
+    "desc": "Identify shared genetic traits (duplicate logic) across files and extract them into a common ancestor (utility or hook).",
+    "diffs": [],
+    "promptFile": "prompts/helix.md"
+  },
+  {
     "name": "Architect",
     "icon": "🏗️",
     "category": "eng",
     "scope": "Medium",
-    "usedIn": "Steward",
+    "usedIn": "Mechanic",
     "role": "Structure",
     "desc": "Refactors messy modules into clean patterns. Checks Overseer 'Structural Hotspots'.",
     "promptFile": "prompts/architect.md"
@@ -87,7 +98,7 @@
     "icon": "🧼",
     "category": "eng",
     "scope": "Medium",
-    "usedIn": "Warden",
+    "usedIn": "Steward",
     "role": "Hygiene",
     "desc": "Maintains the project foundation (deps, engines, configs).",
     "promptFile": "prompts/janitor.md"
@@ -127,7 +138,7 @@
     "icon": "✈️",
     "category": "eng",
     "scope": "Medium",
-    "usedIn": "Clarifier",
+    "usedIn": "",
     "role": "Debugging",
     "desc": "Acts as a Flight Recorder by enriching vague error logs with critical context variables (IDs, State).",
     "promptFile": "prompts/blackbox.md"
@@ -137,7 +148,7 @@
     "icon": "✍️",
     "category": "context",
     "scope": "Medium",
-    "usedIn": "Librarian, Clarifier",
+    "usedIn": "Librarian",
     "role": "History",
     "desc": "Updates comprehensive documentation sections and API references. Stops if context is already synced.",
     "promptFile": "prompts/scribe.md"
@@ -193,73 +204,11 @@
     "promptFile": "prompts/tutor.md"
   },
   {
-    "name": "Steward",
-    "icon": "🧹",
-    "category": "power",
-    "scope": "Small Bundle",
-    "role": "Arch+Scav",
-    "desc": "Executes two distinct small tasks in one PR: One structure fix (Architect Lite) and one cleanup (Scavenger Lite).",
-    "promptFile": "prompts/steward.md"
-  },
-  {
-    "name": "Warden",
-    "icon": "🛡️",
-    "category": "power",
-    "scope": "Small Bundle",
-    "role": "Sent+Jan",
-    "desc": "Executes two distinct small tasks in one PR: One security hardening (Sentinel+ Lite) and one dependency update (Janitor Lite).",
-    "promptFile": "prompts/warden.md"
-  },
-  {
-    "name": "Guardian",
-    "icon": "🚑",
-    "category": "power",
-    "scope": "Small Bundle",
-    "role": "Medic+Insp",
-    "desc": "Executes two distinct small tasks in one PR: One bug fix (Medic Lite) immediately locked in by a test case (Inspector Lite).",
-    "promptFile": "prompts/guardian.md"
-  },
-  {
-    "name": "Librarian",
-    "icon": "📚",
-    "category": "power",
-    "scope": "Small Bundle",
-    "role": "Scribe+Nav",
-    "desc": "Executes two distinct small tasks in one PR: One documentation fix (Scribe Lite) and one roadmap update (Navigator Lite).",
-    "promptFile": "prompts/librarian.md"
-  },
-  {
-    "name": "Virtuoso",
-    "icon": "🎨",
-    "category": "power",
-    "scope": "Small Bundle",
-    "role": "Pal+Cur",
-    "desc": "Executes two distinct small tasks in one PR: One UX polish (Palette+ Lite) and one asset optimization (Curator Lite).",
-    "promptFile": "prompts/virtuoso.md"
-  },
-  {
-    "name": "Mechanic",
-    "icon": "🔧",
-    "category": "power",
-    "scope": "Small Bundle",
-    "role": "Bolt+Mod",
-    "desc": "Executes two distinct small tasks in one PR: One performance tune (Bolt+ Lite) and one syntax update (Modernizer Lite).",
-    "promptFile": "prompts/mechanic.md"
-  },
-  {
-    "name": "Clarifier",
-    "icon": "🔦",
-    "category": "power",
-    "scope": "Small Bundle",
-    "role": "Blkbox+Scribe",
-    "desc": "Executes two distinct small tasks in one PR: One log enrichment (Blackbox Lite) and one JSDoc addition (Scribe Lite).",
-    "promptFile": "prompts/clarifier.md"
-  },
-  {
     "name": "Herald",
     "icon": "📣",
     "category": "context",
     "scope": "Medium",
+    "usedIn": "Librarian",
     "role": "Release Manager",
     "desc": "Translates git history into human-readable Changelogs and manages Semantic Versioning.",
     "promptFile": "prompts/herald.md"
@@ -269,6 +218,7 @@
     "icon": "✏️",
     "category": "context",
     "scope": "Small-Medium",
+    "usedIn": "Virtuoso",
     "role": "UX Writer",
     "desc": "Audits button labels, modal titles, and empty states for brevity and clarity.",
     "promptFile": "prompts/wordsmith.md"
@@ -278,6 +228,7 @@
     "icon": "🧐",
     "category": "eng",
     "scope": "Small-Medium",
+    "usedIn": "Guardian",
     "role": "Code Quality Enforcer",
     "desc": "Enforces strict naming conventions, style guides, and 'Clean Code' standards.",
     "promptFile": "prompts/pedant.md"
@@ -290,5 +241,50 @@
     "role": "Logic Simplifier",
     "desc": "Reduces cognitive complexity by flattening nested logic and extracting helper functions.",
     "promptFile": "prompts/untangler.md"
+  },
+  {
+    "name": "Guardian",
+    "icon": "⛑️",
+    "category": "power",
+    "scope": "Small Bundle",
+    "role": "Code Safety Triad",
+    "desc": "Executes a triple-safety check: Fix Bug (Medic), Add Test (Inspector), Enforce Style (Pedant).",
+    "promptFile": "prompts/guardian.md"
+  },
+  {
+    "name": "Virtuoso",
+    "icon": "🎨",
+    "category": "power",
+    "scope": "Small Bundle",
+    "role": "Frontend Triad",
+    "desc": "Polishes a UI component: Interaction (Palette+), Copy (Wordsmith), Assets (Curator).",
+    "promptFile": "prompts/virtuoso.md"
+  },
+  {
+    "name": "Steward",
+    "icon": "🧹",
+    "category": "power",
+    "scope": "Medium Bundle",
+    "role": "Housekeeping Triad",
+    "desc": "Weekly maintenance: Delete Trash (Scavenger), Merge Logic (Helix), Update Deps (Janitor).",
+    "promptFile": "prompts/steward.md"
+  },
+  {
+    "name": "Mechanic",
+    "icon": "🔧",
+    "category": "power",
+    "scope": "Medium Bundle",
+    "role": "Architecture Triad",
+    "desc": "System tuning: Speed (Bolt+), Modernize (Modernizer), Structure (Architect).",
+    "promptFile": "prompts/mechanic.md"
+  },
+  {
+    "name": "Librarian",
+    "icon": "📚",
+    "category": "power",
+    "scope": "Medium Bundle",
+    "role": "History Triad",
+    "desc": "Documentation sync: Changelog (Herald), Docs (Scribe), Plan (Navigator).",
+    "promptFile": "prompts/librarian.md"
   }
 ]

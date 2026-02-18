@@ -17,6 +17,10 @@ The Output File (`.jules/AGENTS_AUDIT.md`) MUST use this structure with Checkbox
 ## 🏗️ Structural Hotspots
 - [ ] src/utils/god-file.ts (Changed 25 times this month, >300 lines)
 
+## 🧬 Genetic Drift
+- [ ] High code similarity (>80%) detected between files
+- [ ] Repeated logic blocks suitable for extraction
+
 ## ⚡ Performance Bottlenecks
 - [ ] Bundle Size: 5MB (Critical)
 - [ ] Largest Contentful Paint: 3.2s
