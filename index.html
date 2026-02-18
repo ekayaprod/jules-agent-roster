@@ -908,7 +908,14 @@
       };
 
       // --- ROSTER APP ---
+      /**
+       * Main application class for the Jules Master Agent Roster.
+       * Handles data fetching, DOM manipulation, search filtering, and clipboard interactions.
+       */
       class RosterApp {
+        /**
+         * Initializes the RosterApp instance with default state.
+         */
         constructor() {
           this.agents = [];
           this.elements = {};
@@ -917,6 +924,11 @@
           };
         }
 
+        /**
+         * Initializes the application lifecycle: caching elements, loading data,
+         * rendering agents, and binding events.
+         * @returns {Promise<void>}
+         */
         async init() {
           this.cacheElements();
           this.renderSkeletons();
@@ -927,6 +939,11 @@
           this.initObserver();
         }
 
+        /**
+         * Fetches agent data from 'agents.json' and loads individual prompt files.
+         * Handles parallel fetching and error management.
+         * @returns {Promise<void>}
+         */
         async loadData() {
           try {
             const response = await fetch("agents.json");
@@ -955,6 +972,10 @@
           }
         }
 
+        /**
+         * Caches DOM elements specified in CONFIG.selectors to optimize performance.
+         * Stores elements in this.elements.
+         */
         cacheElements() {
           // Cache DOM elements based on CONFIG
           Object.keys(CONFIG.selectors).forEach((key) => {
@@ -965,6 +986,9 @@
           });
         }
 
+        /**
+         * Renders skeleton loader cards for each category to indicate loading state.
+         */
         renderSkeletons() {
           Object.keys(CONFIG.categories).forEach((key) => {
             const container = document.getElementById(CONFIG.categories[key]);
@@ -992,6 +1016,9 @@
           });
         }
 
+        /**
+         * Removes skeleton loader cards from the DOM after data is loaded.
+         */
         clearSkeletons() {
           Object.keys(CONFIG.categories).forEach((key) => {
             const container = document.getElementById(CONFIG.categories[key]);
@@ -999,6 +1026,10 @@
           });
         }
 
+        /**
+         * Renders agent cards into their respective categories based on the loaded data.
+         * Processes tags, differences, and details for each agent.
+         */
         renderAgents() {
           const categoryContainers = {};
           Object.keys(CONFIG.categories).forEach((key) => {
@@ -1086,6 +1117,9 @@
           });
         }
 
+        /**
+         * Binds global event listeners for search, interactions, and delegation.
+         */
         bindEvents() {
           // Static events
           this.elements.searchInput?.addEventListener("input", (e) =>
@@ -1116,6 +1150,11 @@
           });
         }
 
+        /**
+         * Toggles the visibility of the agent details accordion.
+         * @param {string|number} index - The index of the agent in the agents array.
+         * @param {HTMLElement} btn - The button element that triggered the toggle.
+         */
         toggleDetails(index, btn) {
           const grid = document.getElementById(`details-${index}`);
           const isExpanded = grid.classList.toggle("expanded");
@@ -1124,6 +1163,11 @@
           span.innerText = isExpanded ? "Hide Details" : "Show Details";
         }
 
+        /**
+         * Filters the displayed agents based on the search query.
+         * Handles empty state visibility and animation delays.
+         * @param {string} query - The search query string.
+         */
         filterAgents(query) {
           const search = query.toLowerCase();
           const cards = document.querySelectorAll(CONFIG.selectors.card);
@@ -1180,6 +1224,9 @@
           }
         }
 
+        /**
+         * Clears the search input field and resets the agent filter.
+         */
         clearSearch() {
           if (this.elements.searchInput) {
             this.elements.searchInput.value = "";
@@ -1188,6 +1235,10 @@
           }
         }
 
+        /**
+         * Displays a toast notification with a specified message.
+         * @param {string} [message] - The message to display. Defaults to "Copied to clipboard!".
+         */
         showToast(message) {
           if (this.state.toastTimeout) {
             clearTimeout(this.state.toastTimeout);
@@ -1202,6 +1253,13 @@
           }
         }
 
+        /**
+         * Copies text to the system clipboard.
+         * Falls back to `document.execCommand` if the Clipboard API fails.
+         * @param {string} text - The text to copy.
+         * @param {string} message - The success message to display in the toast.
+         * @returns {Promise<boolean>} True if the copy was successful.
+         */
         async copyText(text, message) {
           try {
             await navigator.clipboard.writeText(text);
@@ -1222,6 +1280,13 @@
           }
         }
 
+        /**
+         * Handles the copy action and triggers the button success animation.
+         * @param {HTMLElement} btn - The button element triggering the copy.
+         * @param {string} text - The text to copy.
+         * @param {string} message - The success message for the toast.
+         * @returns {Promise<void>}
+         */
         async handleCopyAnimation(btn, text, message) {
           const success = await this.copyText(text, message);
           if (!success) return;
@@ -1238,6 +1303,11 @@
           }, 2000);
         }
 
+        /**
+         * Copies a specific agent's prompt to the clipboard.
+         * @param {string|number} index - The index of the agent.
+         * @param {HTMLElement} btn - The button element.
+         */
         copyAgent(index, btn) {
           const agent = this.agents[index];
           this.handleCopyAnimation(
@@ -1247,6 +1317,10 @@
           );
         }
 
+        /**
+         * Copies the entire roster (all prompts) to the clipboard.
+         * @param {HTMLElement} btn - The button element.
+         */
         copyAll(btn) {
           const header =
             "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
@@ -1259,6 +1333,9 @@
           this.handleCopyAnimation(btn, header + body, "Full Roster copied!");
         }
 
+        /**
+         * Initializes the IntersectionObserver for handling sticky navigation active states.
+         */
         initObserver() {
           const navPills = document.querySelectorAll(CONFIG.selectors.navPills);
           const observer = new IntersectionObserver(
