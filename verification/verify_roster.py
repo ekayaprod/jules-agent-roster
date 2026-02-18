@@ -1,9 +1,10 @@
 import os
 from playwright.sync_api import sync_playwright
+from PIL import Image
 
 def verify_roster():
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = p.chromium.launch(args=["--disable-web-security"])
         page = browser.new_page()
 
         # Open the local index.html file
@@ -42,8 +43,19 @@ def verify_roster():
              raise Exception("Details toggle failed! Event delegation might be broken.")
 
         # 4. Take Screenshot
-        page.screenshot(path="verification/roster_verified.png")
-        print("Screenshot saved to verification/roster_verified.png")
+        png_path = "verification/roster_verified.png"
+        webp_path = "verification/roster_verified.webp"
+
+        page.screenshot(path=png_path)
+
+        # Convert to WebP
+        try:
+            img = Image.open(png_path)
+            img.save(webp_path, "WEBP")
+            os.remove(png_path)
+            print(f"Screenshot saved to {webp_path}")
+        except Exception as e:
+            print(f"Failed to convert screenshot to WebP: {e}")
 
         browser.close()
 
