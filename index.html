@@ -1010,19 +1010,55 @@
           if (!Array.isArray(data)) {
             throw new Error("Invalid format: agents data must be an array.");
           }
-          return data.filter((agent) => {
-            const isValid =
-              agent &&
-              typeof agent.name === "string" &&
-              typeof agent.category === "string" &&
-              typeof agent.promptFile === "string" &&
-              Object.keys(CONFIG.categories).includes(agent.category);
+          return data
+            .filter((agent) => {
+              const isValid =
+                agent &&
+                typeof agent.name === "string" &&
+                typeof agent.category === "string" &&
+                typeof agent.promptFile === "string" &&
+                Object.keys(CONFIG.categories).includes(agent.category);
 
-            if (!isValid) {
-              console.warn("Skipping invalid agent entry:", agent);
-            }
-            return isValid;
-          });
+              if (!isValid) {
+                console.warn("Skipping invalid agent entry:", agent);
+              }
+              return isValid;
+            })
+            .map((agent) => {
+              // Medic: Sanitize optional fields to prevent fragility
+              if (agent.diffs) {
+                if (!Array.isArray(agent.diffs)) {
+                  console.warn(
+                    `Sanitizing agent ${agent.name}: diffs must be array. Resetting to empty.`,
+                  );
+                  agent.diffs = [];
+                } else {
+                  // Ensure diff items are valid objects
+                  agent.diffs = agent.diffs.filter(
+                    (d) =>
+                      d &&
+                      typeof d.text === "string" &&
+                      typeof d.type === "string",
+                  );
+                }
+              }
+
+              if (agent.scope && typeof agent.scope !== "string") {
+                console.warn(
+                  `Sanitizing agent ${agent.name}: scope must be string. Casting.`,
+                );
+                agent.scope = String(agent.scope);
+              }
+
+              if (agent.usedIn && typeof agent.usedIn !== "string") {
+                console.warn(
+                  `Sanitizing agent ${agent.name}: usedIn must be string. Casting.`,
+                );
+                agent.usedIn = String(agent.usedIn);
+              }
+
+              return agent;
+            });
         }
 
         /**
@@ -1130,6 +1166,14 @@
           });
 
           this.agents.forEach((agent, index) => {
+            const container = categoryContainers[agent.category];
+            if (!container) {
+              console.error(
+                `Medic: Container for category '${agent.category}' not found. Skipping agent ${agent.name}.`,
+              );
+              return;
+            }
+
             const card = document.createElement("div");
             card.className = "card";
             if (agent.type === "plus") card.classList.add("plus-agent");
@@ -1204,7 +1248,7 @@
                     </div>
                 `;
 
-            categoryContainers[agent.category].appendChild(card);
+            container.appendChild(card);
           });
         }
 

@@ -116,6 +116,59 @@ def verify_resilience():
                 print(f"Card {i}: {cards.nth(i).inner_text()}")
 
         page.close()
+
+        # Test 4: Malformed Optional Fields (Sanitization)
+        print("\n--- Test 4: Malformed Optional Fields ---")
+        page = browser.new_page()
+
+        # Intercept agents.json to return sanitized data
+        malformed_data = [
+            {
+                "name": "Valid Agent",
+                "category": "core",
+                "promptFile": "prompts/bolt.md",
+                "type": "plus",
+                "role": "Test Role",
+                "desc": "Test Desc"
+            },
+            {
+                "name": "Bad Diffs Agent",
+                "category": "core",
+                "promptFile": "prompts/bolt.md",
+                "type": "plus",
+                "role": "Test Role",
+                "desc": "Test Desc",
+                "diffs": "This should be an array"
+            },
+            {
+                "name": "Bad UsedIn Agent",
+                "category": "core",
+                "promptFile": "prompts/bolt.md",
+                "type": "plus",
+                "role": "Test Role",
+                "desc": "Test Desc",
+                "usedIn": 12345
+            }
+        ]
+
+        page.route("**/agents.json", lambda route: route.fulfill(
+            status=200,
+            content_type="application/json",
+            body=json.dumps(malformed_data)
+        ))
+
+        page.goto(f"http://localhost:{PORT}/index.html")
+        page.wait_for_timeout(2000)
+
+        card_count = page.locator(".card").count()
+        print(f"Cards rendered: {card_count}")
+
+        if card_count == 3:
+            print("✅ Sanitization: All agents rendered despite malformed optional fields.")
+        else:
+            print(f"❌ Sanitization Failed: Expected 3 cards, got {card_count}.")
+
+        page.close()
         browser.close()
 
 if __name__ == "__main__":
