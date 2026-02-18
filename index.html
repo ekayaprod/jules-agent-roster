@@ -822,13 +822,6 @@
         />
       </svg>
       <p>No agents found matching your search.</p>
-      <button
-        class="secondary"
-        style="margin: 1rem auto 0; width: auto"
-        onclick="clearSearch()"
-      >
-        Clear Search
-      </button>
     </div>
 
     <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
@@ -1129,12 +1122,6 @@
           btn.setAttribute("aria-expanded", isExpanded);
           const span = btn.querySelector("span");
           span.innerText = isExpanded ? "Hide Details" : "Show Details";
-
-          console.debug("Toggled Agent Details", {
-            index,
-            expanded: isExpanded,
-            agent: this.agents[index]?.name,
-          });
         }
 
         filterAgents(query) {
@@ -1253,7 +1240,6 @@
 
         copyAgent(index, btn) {
           const agent = this.agents[index];
-          console.info("Agent Copied", { name: agent.name });
           this.handleCopyAnimation(
             btn,
             agent.prompt,
@@ -1262,7 +1248,6 @@
         }
 
         copyAll(btn) {
-          console.info("Full Roster Copied", { count: this.agents.length });
           const header =
             "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
           const body = this.agents
