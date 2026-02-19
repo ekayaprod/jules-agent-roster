@@ -20,3 +20,8 @@
 
 ## 📣 Release Drift
 - [ ] (Empty)
+
+## ✏️ Microcopy Gaps
+- [x] Inconsistent success messages (Toast vs Button vs different actions)
+- [x] Passive empty state
+- [x] Technical error messages

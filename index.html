@@ -810,7 +810,7 @@
               d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
             />
           </svg>
-          <span>Copy Full Roster</span>
+          <span>Copy All Prompts</span>
         </button>
 
         <button id="downloadAllBtn">
@@ -874,7 +874,7 @@
           d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
         />
       </svg>
-      <p>No agents match your search.</p>
+      <p>No agents found. Try adjusting your search.</p>
     </div>
 
     <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
@@ -1154,7 +1154,7 @@
           } catch (error) {
             console.error("Failed to load agents.json", error);
             if (this.elements.main) {
-              this.elements.main.innerHTML = `<div style="text-align:center; padding: 2rem; color: #f87171;">Failed to load roster data. Please ensure you are running on a local server.</div>`;
+              this.elements.main.innerHTML = `<div style="text-align:center; padding: 2rem; color: #f87171;">Couldn't load agents. Please check your connection.</div>`;
             }
           }
         }
@@ -1445,7 +1445,7 @@
         /**
          * Displays a toast notification with a message.
          * Clears any existing toast timeout to prevent race conditions.
-         * @param {string} [message="Copied to clipboard!"] - The message to display.
+         * @param {string} [message="Copied to clipboard"] - The message to display.
          */
         showToast(message) {
           if (this.state.toastTimeout) {
@@ -1453,7 +1453,7 @@
           }
           const toast = this.elements.toast;
           if (toast) {
-            toast.textContent = message || "Copied to clipboard!";
+            toast.textContent = message || "Copied to clipboard";
             toast.classList.add("show");
             this.state.toastTimeout = setTimeout(() => {
               toast.classList.remove("show");
@@ -1521,7 +1521,7 @@
           const agent = this.agents[index];
           const success = await this.copyText(
             agent.prompt,
-            `${agent.name} prompt copied!`,
+            "Copied to clipboard",
           );
           if (success) {
             this.animateButtonSuccess(btn, "Copied!");
@@ -1572,7 +1572,7 @@
             .join("\n\n");
           const success = await this.copyText(
             header + body,
-            "Full Roster copied!",
+            "Copied to clipboard",
           );
           if (success) {
             this.animateButtonSuccess(btn, "Copied!");
