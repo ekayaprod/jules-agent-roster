@@ -503,7 +503,7 @@
         width: 100%;
         margin-top: 1rem; /* Palette+: Removed border-top, relying on spacing and hover state */
         border-radius: 0.5rem; /* Palette+: Rounded corners */
-        transition: background-color 0.2s ease, transform 0.1s ease, color 0.2s ease; /* Palette+: Smooth transitions */
+        transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Palette+: Smooth transitions */
       }
 
       .details-toggle:hover {
@@ -512,7 +512,8 @@
       }
 
       .details-toggle:active {
-        transform: scale(0.98); /* Palette+: Tactile feedback */
+        transform: scale(0.96); /* Palette+: Tactile feedback */
+        background-color: rgba(56, 189, 248, 0.2);
       }
 
       /* Palette+: Chevron Rotation */
@@ -639,6 +640,9 @@
         .details-grid,
         .details-content {
           transition: none !important;
+        }
+        .details-toggle:active {
+          transform: none !important;
         }
         .empty-state.visible {
           animation: none;
@@ -1256,7 +1260,7 @@
                 .split(",")
                 .forEach(
                   (p) =>
-                    (tags += `<span class="power-tag">🧩 Part of ${p.trim()}</span>`),
+                    (tags += `<span class="power-tag">🧩 Included in ${p.trim()}</span>`),
                 );
             }
 
@@ -1296,7 +1300,7 @@
 
                     <button class="details-toggle" aria-expanded="false" aria-controls="details-${index}" data-action="toggle-details" data-index="${index}">
                         <svg aria-hidden="true" focusable="false" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        <span>Show Prompt</span>
+                        <span>View Prompt</span>
                     </button>
                     <div class="details-grid" id="details-${index}">
                         <div class="details-overflow">
@@ -1305,10 +1309,10 @@
                     </div>
 
                     <div class="card-actions">
-                        <button class="secondary" data-action="copy-agent" data-index="${index}">
+                        <button class="secondary" data-action="copy-agent" data-index="${index}" aria-label="Copy instructions to clipboard">
                             <svg class="copy-icon" aria-hidden="true" focusable="false" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                             <svg class="check-icon" style="display: none" aria-hidden="true" focusable="false" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            <span>Copy Prompt</span>
+                            <span>Copy Instructions</span>
                         </button>
                     </div>
                 `;
@@ -1365,7 +1369,7 @@
           btn.closest(".card").classList.toggle("active", isExpanded);
           btn.setAttribute("aria-expanded", isExpanded);
           const span = btn.querySelector("span");
-          span.innerText = isExpanded ? "Hide Prompt" : "Show Prompt";
+          span.innerText = isExpanded ? "Close Prompt" : "View Prompt";
         }
 
         /**
