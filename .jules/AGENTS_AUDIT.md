@@ -17,6 +17,12 @@
 - [x] Redundant verification/test_search_filtering.py
 - [x] Redundant verification/test_toggle_details.py
 - [x] Redundant/Broken verification/verify_skeletons.py
+- [x] Redundant verification/verify_wordsmith_visual.py
+- [x] Redundant verification/verify_polish_screenshot.py
+- [x] Artifact verification/wordsmith_buttons.png
+- [x] Artifact verification/wordsmith_empty_state.png
+- [x] Artifact verification/polish_hover.png
+- [x] Artifact verification/polish_expanded.png
 
 ## 📣 Release Drift
 - [ ] (Empty)
