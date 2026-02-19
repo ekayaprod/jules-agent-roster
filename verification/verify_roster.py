@@ -68,7 +68,37 @@ def verify_roster():
         if is_expanded != "true":
              raise Exception("Details toggle failed! Event delegation might be broken.")
 
-        # 4. Take Screenshot
+        # 4. Verify Regression Fixes (Helix & Bolt+)
+        # Clear search first to ensure all cards are searchable/visible
+        search_input.fill("")
+        page.wait_for_timeout(500)
+
+        # Verify Helix has no diff-list
+        helix_card = page.locator(".card", has_text="Helix").first
+        if not helix_card.is_visible():
+            raise Exception("Helix card not found after clearing search")
+
+        if helix_card.locator(".diff-list").count() > 0:
+            raise Exception("FAIL: Helix card still has .diff-list")
+        print("PASS: Helix card has no .diff-list")
+
+        # Verify Bolt+ has no diff-list
+        bolt_card = page.locator(".card", has_text="Bolt+").first
+        if not bolt_card.is_visible():
+            raise Exception("Bolt+ card not found")
+
+        if bolt_card.locator(".diff-list").count() > 0:
+            raise Exception("FAIL: Bolt+ card still has .diff-list")
+        print("PASS: Bolt+ card has no .diff-list")
+
+        # Verify Bolt+ description contains merged text
+        desc_text = bolt_card.locator(".description").inner_text()
+        expected_text = "Scope: Micro-fix + Systemic Strategy"
+        if expected_text not in desc_text:
+            raise Exception(f"FAIL: Bolt+ description missing merged text. Found: {desc_text}")
+        print("PASS: Bolt+ description contains merged text")
+
+        # 5. Take Screenshot
         png_path = "verification/roster_verified.png"
         webp_path = "verification/roster_verified.webp"
 
