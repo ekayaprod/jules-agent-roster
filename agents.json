@@ -7,11 +7,11 @@
     "scope": "Small-Medium",
     "usedIn": "Mechanic",
     "role": "Performance Engineer",
-    "desc": "Implements systemic architecture (Virtualization, Caching) instead of isolated micro-optimizations.",
+    "desc": "Combines isolated micro-optimizations with systemic architectural patterns like virtualization and caching.",
     "diffs": [
       {
         "type": "plus",
-        "text": "Scope: Micro-fix -> Systemic Strategy"
+        "text": "Scope: Micro-fix + Systemic Strategy"
       },
       {
         "type": "plus",
@@ -28,11 +28,11 @@
     "scope": "Small-Medium",
     "usedIn": "Virtuoso",
     "role": "UX & Delight (Enhanced)",
-    "desc": "Polishes entire interaction flows (Motion, State) instead of static UI elements.",
+    "desc": "Combines isolated UI tweaks with comprehensive interaction flows, motion, and state feedback.",
     "diffs": [
       {
         "type": "plus",
-        "text": "Scope: Micro-fix -> Component Flow"
+        "text": "Scope: Micro-fix + Component Flow"
       },
       {
         "type": "plus",
@@ -49,11 +49,11 @@
     "scope": "Small-Medium",
     "usedIn": "",
     "role": "Security Engineer",
-    "desc": "Adds proactive defense layers (Schemas, Headers) instead of reactive bug patches.",
+    "desc": "Combines reactive vulnerability patching with proactive architectural hardening and defense layers.",
     "diffs": [
       {
         "type": "plus",
-        "text": "Scope: Micro-patch -> Defense Layer"
+        "text": "Scope: Micro-patch + Defense Layer"
       },
       {
         "type": "plus",
