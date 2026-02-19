@@ -26,6 +26,8 @@
 - [x] Redundant verification/verify_fixes.py
 - [x] Artifact verification/bolt_fixed.png
 - [x] Artifact verification/helix_fixed.png
+- [x] Artifact verification/controls_visual.png
+- [x] Artifact verification/roster_verified.webp
 
 ## 📣 Release Drift
 - [ ] (Empty)
