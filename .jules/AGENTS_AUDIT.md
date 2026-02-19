@@ -23,6 +23,9 @@
 - [x] Artifact verification/wordsmith_empty_state.png
 - [x] Artifact verification/polish_hover.png
 - [x] Artifact verification/polish_expanded.png
+- [x] Redundant verification/verify_fixes.py
+- [x] Artifact verification/bolt_fixed.png
+- [x] Artifact verification/helix_fixed.png
 
 ## 📣 Release Drift
 - [ ] (Empty)
