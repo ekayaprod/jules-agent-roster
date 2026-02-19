@@ -31,3 +31,5 @@
 - [x] Inconsistent success messages (Toast vs Button vs different actions)
 - [x] Passive empty state
 - [x] Technical error messages
+- [x] Inconsistent header action buttons ('Copy Roster' vs 'Export Markdown')
+- [x] Passive/Fragmented agent descriptions in `agents.json`
