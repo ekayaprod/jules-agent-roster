@@ -179,6 +179,15 @@
         max-width: 300px;
       }
 
+      .search-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-secondary);
+        pointer-events: none;
+      }
+
       /* Palette+: Absolute positioned Clear Button */
       .clear-search-btn {
         position: absolute;
@@ -249,6 +258,11 @@
         transform: scale(0.97);
       }
 
+      #copyAllBtn:active,
+      #downloadAllBtn:active {
+        transform: scale(0.95);
+      }
+
       button.secondary {
         background-color: var(--card-bg);
         color: var(--text-primary);
@@ -273,6 +287,7 @@
 
       input[type="text"] {
         padding: 0.75rem;
+        padding-left: 2.75rem; /* Palette+: Space for Search icon */
         padding-right: 2.5rem; /* Palette+: Space for X button */
         border-radius: 0.5rem;
         background: var(--card-bg);
@@ -280,12 +295,13 @@
         color: var(--text-primary);
         width: 100%;
         font-size: 1rem;
-        transition: border-color 0.2s;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       input[type="text"]:focus {
         outline: none;
         border-color: var(--accent);
+        box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3);
       }
 
       .section-header {
@@ -633,6 +649,7 @@
           display: block;
         }
         button,
+        input[type="text"],
         .card,
         .clear-search-btn,
         .details-toggle,
@@ -767,11 +784,28 @@
       <div class="controls">
         <!-- Palette+: Search Wrapper for Clear Interaction -->
         <div class="search-wrapper">
+          <svg
+            class="search-icon"
+            aria-hidden="true"
+            focusable="false"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
           <input
             type="text"
             id="searchInput"
             aria-label="Search agents by name"
-            placeholder="Find an agent..."
+            placeholder="Search agents..."
           />
           <button
             class="clear-search-btn"
@@ -814,7 +848,7 @@
               d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
             />
           </svg>
-          <span>Copy All Prompts</span>
+          <span>Copy Roster</span>
         </button>
 
         <button id="downloadAllBtn">
@@ -834,7 +868,7 @@
               d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
             />
           </svg>
-          <span>Download Roster</span>
+          <span>Export Markdown</span>
         </button>
       </div>
     </div>
