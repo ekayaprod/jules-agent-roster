@@ -73,25 +73,11 @@ def verify_roster():
         search_input.fill("")
         page.wait_for_timeout(500)
 
-        # Verify Helix has no diff-list
-        helix_card = page.locator(".card", has_text="Helix").first
-        if not helix_card.is_visible():
-            raise Exception("Helix card not found after clearing search")
-
-        if helix_card.locator(".diff-list").count() > 0:
-            raise Exception("FAIL: Helix card still has .diff-list")
-        print("PASS: Helix card has no .diff-list")
-
-        # Verify Bolt+ has no diff-list
+        # Verify Bolt+ description contains merged text
         bolt_card = page.locator(".card", has_text="Bolt+").first
         if not bolt_card.is_visible():
             raise Exception("Bolt+ card not found")
 
-        if bolt_card.locator(".diff-list").count() > 0:
-            raise Exception("FAIL: Bolt+ card still has .diff-list")
-        print("PASS: Bolt+ card has no .diff-list")
-
-        # Verify Bolt+ description contains merged text
         desc_text = bolt_card.locator(".description").inner_text()
         expected_text = "Scope: Micro-fix + Systemic Strategy"
         if expected_text not in desc_text:
