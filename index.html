@@ -7,7 +7,7 @@
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="version" content="0.1.0" />
+    <meta name="version" content="0.1.1" />
     <title>Jules Master Agent Roster</title>
     <meta
       http-equiv="Content-Security-Policy"
@@ -1022,6 +1022,14 @@
          * @param {number} [backoff=300] - Initial backoff delay in ms.
          * @returns {Promise<Response>} The fetch response.
          * @throws {Error} If all retries fail.
+         * @example
+         * const app = new RosterApp();
+         * try {
+         *   const response = await app.fetchWithRetry('https://api.example.com/data');
+         *   const data = await response.json();
+         * } catch (error) {
+         *   console.error('Fetch failed after retries:', error);
+         * }
          */
         async fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
           try {
