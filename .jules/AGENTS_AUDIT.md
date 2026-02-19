@@ -16,6 +16,7 @@
 - [x] Redundant verification/verify_roster_debug.py
 - [x] Redundant verification/test_search_filtering.py
 - [x] Redundant verification/test_toggle_details.py
+- [x] Redundant/Broken verification/verify_skeletons.py
 
 ## 📣 Release Drift
 - [ ] (Empty)
