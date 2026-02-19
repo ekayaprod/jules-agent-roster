@@ -7,11 +7,11 @@
     "scope": "Small-Medium",
     "usedIn": "Mechanic",
     "role": "Performance Engineer",
-    "desc": "Implements systemic performance patterns (Virtualization, Workers, Caching). Consults Overseer Audit for bottlenecks.",
+    "desc": "Combines isolated micro-optimizations with systemic architectural patterns like virtualization and caching.",
     "diffs": [
       {
         "type": "plus",
-        "text": "Scope: Micro-fix -> Systemic Strategy"
+        "text": "Scope: Micro-fix + Systemic Strategy"
       },
       {
         "type": "plus",
@@ -28,11 +28,11 @@
     "scope": "Small-Medium",
     "usedIn": "Virtuoso",
     "role": "UX & Delight (Enhanced)",
-    "desc": "Polishes complete interaction flows (Animations, Accessibility, State Feedback). Consults Overseer Audit for friction points.",
+    "desc": "Combines isolated UI tweaks with comprehensive interaction flows, motion, and state feedback.",
     "diffs": [
       {
         "type": "plus",
-        "text": "Scope: Micro-fix -> Component Flow"
+        "text": "Scope: Micro-fix + Component Flow"
       },
       {
         "type": "plus",
@@ -49,11 +49,11 @@
     "scope": "Small-Medium",
     "usedIn": "",
     "role": "Security Engineer",
-    "desc": "Hardens architecture via defense layers (Validation Schemas, CSP, Rate Limiting). Consults Overseer Audit for vulnerabilities.",
+    "desc": "Combines reactive vulnerability patching with proactive architectural hardening and defense layers.",
     "diffs": [
       {
         "type": "plus",
-        "text": "Scope: Micro-patch -> Defense Layer"
+        "text": "Scope: Micro-patch + Defense Layer"
       },
       {
         "type": "plus",

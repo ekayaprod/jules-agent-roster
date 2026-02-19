@@ -37,31 +37,31 @@ def verify_polish_v2():
 
         print("Page loaded.")
 
-        # 1. Verify "View Prompt" text (Wordsmith)
-        print("Checking 'View Prompt' text...")
+        # 1. Verify "Show Prompt" text (Wordsmith)
+        print("Checking 'Show Prompt' text...")
         try:
-            show_prompt_btn = page.locator("button.details-toggle span", has_text="View Prompt").first
+            show_prompt_btn = page.locator("button.details-toggle span", has_text="Show Prompt").first
             if show_prompt_btn.count() > 0:
-                print("✅ Found 'View Prompt' text.")
+                print("✅ Found 'Show Prompt' text.")
             else:
-                print("❌ 'View Prompt' text NOT found.")
+                print("❌ 'Show Prompt' text NOT found.")
                 # sys.exit(1) # Don't exit yet, check others
         except Exception as e:
              print(f"❌ Error checking text: {e}")
              sys.exit(1)
 
-        # 2. Verify "Close Prompt" text after toggle (Wordsmith)
-        print("Checking 'Close Prompt' text...")
+        # 2. Verify "Hide Prompt" text after toggle (Wordsmith)
+        print("Checking 'Hide Prompt' text...")
         try:
             toggle_btn = page.locator("button.details-toggle").first
             toggle_btn.click()
             page.wait_for_timeout(300) # Wait for text change
 
-            hide_prompt_btn = page.locator("button.details-toggle span", has_text="Close Prompt").first
+            hide_prompt_btn = page.locator("button.details-toggle span", has_text="Hide Prompt").first
             if hide_prompt_btn.count() > 0:
-                print("✅ Found 'Close Prompt' text.")
+                print("✅ Found 'Hide Prompt' text.")
             else:
-                print("❌ 'Close Prompt' text NOT found.")
+                print("❌ 'Hide Prompt' text NOT found.")
 
             # Collapse again
             toggle_btn.click()
