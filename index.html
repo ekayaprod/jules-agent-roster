@@ -1013,11 +1013,42 @@
         }
 
         /**
-         * Validates the structure of the agents data.
-         * filters out agents that do not match the expected schema.
-         * @param {any} data - The raw JSON data.
-         * @returns {Array} Array of valid agent objects.
-         * @throws {Error} If data is not an array.
+         * Validates the structure of the agents data and sanitizes optional fields.
+         * Filters out agents that do not match the expected schema (name, category, promptFile).
+         * Ensures optional fields like `diffs`, `scope`, and `usedIn` are of the correct type,
+         * defaulting to safe values if invalid.
+         *
+         * @param {any} data - The raw JSON data to validate.
+         * @returns {Array<Object>} Array of valid, sanitized agent objects.
+         * @throws {Error} If the input data is not an array.
+         *
+         * @example
+         * const app = new RosterApp();
+         * const rawData = [
+         *   {
+         *     name: "Valid Agent",
+         *     category: "core",
+         *     promptFile: "valid.md",
+         *     diffs: "invalid-string", // Will be reset to []
+         *     scope: 123 // Will be cast to "123"
+         *   },
+         *   {
+         *     name: "Invalid Agent",
+         *     category: "unknown-category" // Will be filtered out
+         *   }
+         * ];
+         *
+         * const validAgents = app.validateAgentsData(rawData);
+         * // Result:
+         * // [
+         * //   {
+         * //     name: "Valid Agent",
+         * //     category: "core",
+         * //     promptFile: "valid.md",
+         * //     diffs: [],
+         * //     scope: "123"
+         * //   }
+         * // ]
          */
         validateAgentsData(data) {
           if (!Array.isArray(data)) {

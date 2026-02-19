@@ -64,9 +64,43 @@ The core of this system is the **Overseer** agent. This agent runs monthly to pe
 
 * **Blackbox ✈️**: Enriches logs for better debugging.
 
+* **Helix 🧬**: Deduplication Specialist. Extracts shared logic into utilities or hooks.
+
+* **Pedant 🧐**: Code Quality Enforcer. Enforces naming conventions and style guides.
+
+* **Untangler 🧶**: Logic Simplifier. Flattens nested logic and extracts helper functions.
+
+### Context & Strategy
+
+* **Scribe ✍️**: Documentation. Updates docs and API references.
+
+* **Navigator 🧭**: Strategy. Aligns Roadmap with code reality.
+
+* **Curator 🖼️**: Assets. Audits asset library health and accessibility.
+
+* **Herald 📣**: Release Manager. Translates git history into Changelogs.
+
+* **Wordsmith ✏️**: UX Writer. Audits copy for brevity and clarity.
+
+### Monthly Intelligence
+
+* **Overseer 👁️**: The Eye. Performs deep forensic audit to identify targets.
+
+* **Cartographer 🗺️**: Visuals. Maps system architecture into Mermaid diagrams.
+
+* **Tutor 🎓**: Education. Adds @example usage snippets to JSDoc.
+
 ### Power Bundles
 
-* **Steward**, **Warden**, **Guardian**, etc.: 'Dual-Small' agents designed to clear backlog items efficiently by executing two distinct, small tasks in a single PR.
+* **Guardian ⛑️**: Code Safety Triad (Medic, Inspector, Pedant).
+
+* **Virtuoso 🎨**: Frontend Triad (Palette+, Wordsmith, Curator).
+
+* **Steward 🧹**: Housekeeping Triad (Scavenger, Helix, Janitor).
+
+* **Mechanic 🔧**: Architecture Triad (Bolt+, Modernizer, Architect).
+
+* **Librarian 📚**: History Triad (Herald, Scribe, Navigator).
 
 ## 🤝 Contributing
 
