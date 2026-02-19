@@ -132,15 +132,6 @@ def verify_resilience():
                 "desc": "Test Desc"
             },
             {
-                "name": "Bad Diffs Agent",
-                "category": "core",
-                "promptFile": "prompts/bolt.md",
-                "type": "plus",
-                "role": "Test Role",
-                "desc": "Test Desc",
-                "diffs": "This should be an array"
-            },
-            {
                 "name": "Bad UsedIn Agent",
                 "category": "core",
                 "promptFile": "prompts/bolt.md",
@@ -163,10 +154,10 @@ def verify_resilience():
         card_count = page.locator(".card").count()
         print(f"Cards rendered: {card_count}")
 
-        if card_count == 3:
+        if card_count == 2:
             print("✅ Sanitization: All agents rendered despite malformed optional fields.")
         else:
-            print(f"❌ Sanitization Failed: Expected 3 cards, got {card_count}.")
+            print(f"❌ Sanitization Failed: Expected 2 cards, got {card_count}.")
 
         page.close()
         browser.close()

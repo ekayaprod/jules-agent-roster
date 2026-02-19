@@ -478,46 +478,6 @@
         line-height: 1.5;
       }
 
-      /* Diff List Styling */
-      .diff-list {
-        margin-top: 1rem;
-        font-size: 0.85rem;
-        list-style: none;
-        padding: 0;
-        background: rgba(15, 23, 42, 0.5);
-        border-radius: 6px;
-        padding: 0.75rem;
-        border: 1px solid var(--border);
-      }
-
-      .diff-item {
-        display: flex;
-        gap: 0.75rem;
-        margin-bottom: 0.5rem;
-        line-height: 1.4;
-        align-items: baseline;
-      }
-
-      .diff-item:last-child {
-        margin-bottom: 0;
-      }
-
-      .diff-icon {
-        font-weight: bold;
-        flex-shrink: 0;
-        font-family: monospace;
-      }
-
-      .diff-plus .diff-icon {
-        color: #4ade80;
-      }
-      .diff-minus .diff-icon {
-        color: #f87171;
-      }
-      .diff-text {
-        color: #cbd5e1;
-      }
-
       /* Palette+: Accordion Animation Styles */
       .details-toggle {
         background: transparent;
@@ -1088,7 +1048,7 @@
         /**
          * Validates the structure of the agents data and sanitizes optional fields.
          * Filters out agents that do not match the expected schema (name, category, promptFile).
-         * Ensures optional fields like `diffs`, `scope`, and `usedIn` are of the correct type,
+         * Ensures optional fields like `scope`, and `usedIn` are of the correct type,
          * defaulting to safe values if invalid.
          *
          * @param {any} data - The raw JSON data to validate.
@@ -1102,7 +1062,6 @@
          *     name: "Valid Agent",
          *     category: "core",
          *     promptFile: "valid.md",
-         *     diffs: "invalid-string", // Will be reset to []
          *     scope: 123 // Will be cast to "123"
          *   },
          *   {
@@ -1118,7 +1077,6 @@
          * //     name: "Valid Agent",
          * //     category: "core",
          * //     promptFile: "valid.md",
-         * //     diffs: [],
          * //     scope: "123"
          * //   }
          * // ]
@@ -1143,23 +1101,6 @@
             })
             .map((agent) => {
               // Medic: Sanitize optional fields to prevent fragility
-              if (agent.diffs) {
-                if (!Array.isArray(agent.diffs)) {
-                  console.warn(
-                    `Sanitizing agent ${agent.name}: diffs must be array. Resetting to empty.`,
-                  );
-                  agent.diffs = [];
-                } else {
-                  // Ensure diff items are valid objects
-                  agent.diffs = agent.diffs.filter(
-                    (d) =>
-                      d &&
-                      typeof d.text === "string" &&
-                      typeof d.type === "string",
-                  );
-                }
-              }
-
               if (agent.scope && typeof agent.scope !== "string") {
                 console.warn(
                   `Sanitizing agent ${agent.name}: scope must be string. Casting.`,
@@ -1272,7 +1213,7 @@
 
         /**
          * Renders the agent cards into their respective category grids.
-         * Constructs HTML for each agent including tags, diffs, and action buttons.
+         * Constructs HTML for each agent including tags and action buttons.
          */
         renderAgents() {
           const categoryContainers = {};
@@ -1314,30 +1255,6 @@
                 );
             }
 
-            // Differences List
-            const diffHtml =
-              agent.diffs && agent.diffs.length > 0
-                ? `<ul class="diff-list">
-                    ${agent.diffs
-                      .map(
-                        (diff) => `
-                        <li class="diff-item">
-                            <span class="diff-icon ${diff.type === "plus" ? "diff-plus" : diff.type === "minus" ? "diff-minus" : "diff-change"}">
-                                ${
-                                  diff.type === "plus"
-                                    ? `<svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>`
-                                    : diff.type === "minus"
-                                      ? `<svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4"/></svg>`
-                                      : `<svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>`
-                                }
-                            </span>
-                            <span class="diff-text">${diff.text}</span>
-                        </li>`,
-                      )
-                      .join("")}
-                    </ul>`
-              : "";
-
             // Build HTML
             card.innerHTML = `
                     <div class="card-header">
@@ -1352,7 +1269,6 @@
 
                     <div class="description">
                         ${agent.desc}
-                        ${diffHtml}
                     </div>
 
                     <button class="details-toggle" aria-expanded="false" aria-controls="details-${index}" data-action="toggle-details" data-index="${index}">
