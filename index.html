@@ -311,6 +311,19 @@
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
       }
 
+      /* Palette+: Active Card State */
+      .card.active {
+        border-color: var(--accent);
+        background-color: rgba(56, 189, 248, 0.05);
+        box-shadow: 0 0 0 1px var(--accent), 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Palette+: Icon Styling */
+      .copy-icon,
+      .check-icon {
+        display: block; /* Ensure they behave well in flex */
+      }
+
       /* Type Indicators */
       .card.plus-agent::before {
         content: "";
@@ -1233,7 +1246,7 @@
 
                     <button class="details-toggle" aria-expanded="false" aria-controls="details-${index}" data-action="toggle-details" data-index="${index}">
                         <svg aria-hidden="true" focusable="false" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        <span>Show Details</span>
+                        <span>View Prompt</span>
                     </button>
                     <div class="details-grid" id="details-${index}">
                         <div class="details-overflow">
@@ -1243,6 +1256,8 @@
 
                     <div class="card-actions">
                         <button class="secondary" data-action="copy-agent" data-index="${index}">
+                            <svg class="copy-icon" aria-hidden="true" focusable="false" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                            <svg class="check-icon" style="display:none" aria-hidden="true" focusable="false" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                             <span>Copy Prompt</span>
                         </button>
                     </div>
@@ -1297,9 +1312,10 @@
         toggleDetails(index, btn) {
           const grid = document.getElementById(`details-${index}`);
           const isExpanded = grid.classList.toggle("expanded");
+          btn.closest(".card").classList.toggle("active", isExpanded);
           btn.setAttribute("aria-expanded", isExpanded);
           const span = btn.querySelector("span");
-          span.innerText = isExpanded ? "Hide Details" : "Show Details";
+          span.innerText = isExpanded ? "Close Prompt" : "View Prompt";
         }
 
         /**
@@ -1429,14 +1445,20 @@
          */
         animateButtonSuccess(btn, successMessage) {
           const span = btn.querySelector("span");
+          const copyIcon = btn.querySelector(".copy-icon");
+          const checkIcon = btn.querySelector(".check-icon");
           const originalText = span.innerText;
 
           btn.classList.add("success-state");
           span.innerText = successMessage;
+          if (copyIcon) copyIcon.style.display = "none";
+          if (checkIcon) checkIcon.style.display = "block";
 
           setTimeout(() => {
             btn.classList.remove("success-state");
             span.innerText = originalText;
+            if (copyIcon) copyIcon.style.display = "block";
+            if (checkIcon) checkIcon.style.display = "none";
           }, 2000);
         }
 
