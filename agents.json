@@ -7,17 +7,8 @@
     "scope": "Small-Medium",
     "usedIn": "Mechanic",
     "role": "Performance Engineer",
-    "desc": "Combines isolated micro-optimizations with systemic architectural patterns like virtualization and caching.",
-    "diffs": [
-      {
-        "type": "plus",
-        "text": "Scope: Micro-fix + Systemic Strategy"
-      },
-      {
-        "type": "plus",
-        "text": "Added: Virtualization, Workers, Custom Hooks"
-      }
-    ],
+    "desc": "Combines isolated micro-optimizations with systemic architectural patterns like virtualization and caching. Scope: Micro-fix + Systemic Strategy. Added: Virtualization, Workers, Custom Hooks.",
+    "diffs": [],
     "promptFile": "prompts/bolt.md"
   },
   {
@@ -28,17 +19,8 @@
     "scope": "Small-Medium",
     "usedIn": "Virtuoso",
     "role": "UX & Delight (Enhanced)",
-    "desc": "Combines isolated UI tweaks with comprehensive interaction flows, motion, and state feedback.",
-    "diffs": [
-      {
-        "type": "plus",
-        "text": "Scope: Micro-fix + Component Flow"
-      },
-      {
-        "type": "plus",
-        "text": "Added: Motion, Transitions & State Polish"
-      }
-    ],
+    "desc": "Combines isolated UI tweaks with comprehensive interaction flows, motion, and state feedback. Scope: Micro-fix + Component Flow. Added: Motion, Transitions & State Polish.",
+    "diffs": [],
     "promptFile": "prompts/palette.md"
   },
   {
@@ -49,17 +31,8 @@
     "scope": "Small-Medium",
     "usedIn": "",
     "role": "Security Engineer",
-    "desc": "Combines reactive vulnerability patching with proactive architectural hardening and defense layers.",
-    "diffs": [
-      {
-        "type": "plus",
-        "text": "Scope: Micro-patch + Defense Layer"
-      },
-      {
-        "type": "plus",
-        "text": "Added: Validation Schemas, Security Headers, Flow Hardening"
-      }
-    ],
+    "desc": "Combines reactive vulnerability patching with proactive architectural hardening and defense layers. Scope: Micro-patch + Defense Layer. Added: Validation Schemas, Security Headers, Flow Hardening.",
+    "diffs": [],
     "promptFile": "prompts/sentinel.md"
   },
   {
