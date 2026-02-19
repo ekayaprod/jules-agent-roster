@@ -489,11 +489,11 @@
 
       /* Palette+: Accordion Animation Styles */
       .details-toggle {
-        background: none;
+        background: transparent;
         border: none;
         color: var(--accent);
         cursor: pointer;
-        padding: 0;
+        padding: 0.75rem 1rem; /* Palette+: Increased padding for better touch target */
         font-size: 0.85rem;
         text-align: left;
         margin-bottom: 1rem;
@@ -501,13 +501,18 @@
         align-items: center;
         gap: 0.5rem;
         width: 100%;
-        border-top: 1px solid var(--border);
-        padding-top: 1rem;
-        margin-top: 1rem;
+        margin-top: 1rem; /* Palette+: Removed border-top, relying on spacing and hover state */
+        border-radius: 0.5rem; /* Palette+: Rounded corners */
+        transition: background-color 0.2s ease, transform 0.1s ease, color 0.2s ease; /* Palette+: Smooth transitions */
       }
 
       .details-toggle:hover {
         color: var(--accent-hover);
+        background-color: rgba(56, 189, 248, 0.1); /* Palette+: Subtle background on hover */
+      }
+
+      .details-toggle:active {
+        transform: scale(0.98); /* Palette+: Tactile feedback */
       }
 
       /* Palette+: Chevron Rotation */
@@ -629,6 +634,7 @@
         button,
         .card,
         .clear-search-btn,
+        .details-toggle,
         .details-toggle svg,
         .details-grid,
         .details-content {
@@ -761,7 +767,7 @@
             type="text"
             id="searchInput"
             aria-label="Search agents by name"
-            placeholder="Search agents..."
+            placeholder="Find an agent..."
           />
           <button
             class="clear-search-btn"
@@ -804,7 +810,7 @@
               d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
             />
           </svg>
-          <span>Copy Full Roster (For Jules)</span>
+          <span>Copy Full Roster</span>
         </button>
 
         <button id="downloadAllBtn">
@@ -824,7 +830,7 @@
               d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
             />
           </svg>
-          <span>Download All Agents</span>
+          <span>Download Roster</span>
         </button>
       </div>
     </div>
@@ -868,7 +874,7 @@
           d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
         />
       </svg>
-      <p>No agents found matching your search.</p>
+      <p>No agents match your search.</p>
     </div>
 
     <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
@@ -1290,7 +1296,7 @@
 
                     <button class="details-toggle" aria-expanded="false" aria-controls="details-${index}" data-action="toggle-details" data-index="${index}">
                         <svg aria-hidden="true" focusable="false" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                        <span>View Prompt</span>
+                        <span>Show Prompt</span>
                     </button>
                     <div class="details-grid" id="details-${index}">
                         <div class="details-overflow">
@@ -1301,7 +1307,7 @@
                     <div class="card-actions">
                         <button class="secondary" data-action="copy-agent" data-index="${index}">
                             <svg class="copy-icon" aria-hidden="true" focusable="false" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-                            <svg class="check-icon" style="display:none" aria-hidden="true" focusable="false" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            <svg class="check-icon" style="display: none" aria-hidden="true" focusable="false" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                             <span>Copy Prompt</span>
                         </button>
                     </div>
@@ -1359,7 +1365,7 @@
           btn.closest(".card").classList.toggle("active", isExpanded);
           btn.setAttribute("aria-expanded", isExpanded);
           const span = btn.querySelector("span");
-          span.innerText = isExpanded ? "Close Prompt" : "View Prompt";
+          span.innerText = isExpanded ? "Hide Prompt" : "Show Prompt";
         }
 
         /**
@@ -1518,7 +1524,7 @@
             `${agent.name} prompt copied!`,
           );
           if (success) {
-            this.animateButtonSuccess(btn, "Copied! ✨");
+            this.animateButtonSuccess(btn, "Copied!");
           }
         }
 
@@ -1548,7 +1554,7 @@
           document.body.removeChild(a);
           URL.revokeObjectURL(url);
 
-          this.animateButtonSuccess(btn, "Downloaded! 📥");
+          this.animateButtonSuccess(btn, "Downloaded!");
         }
 
         /**
@@ -1569,7 +1575,7 @@
             "Full Roster copied!",
           );
           if (success) {
-            this.animateButtonSuccess(btn, "Copied! ✨");
+            this.animateButtonSuccess(btn, "Copied!");
           }
         }
 
