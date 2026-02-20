@@ -39,7 +39,7 @@
     "scope": "Small-Medium",
     "usedIn": "Steward",
     "role": "Deduplication Specialist",
-    "desc": "Identify shared genetic traits (duplicate logic) across files and extract them into a common ancestor (utility or hook).",
+    "desc": "Extracts copy-pasted logic into shared utilities/hooks.",
     "promptFile": "prompts/helix.md"
   },
   {
@@ -48,8 +48,8 @@
     "category": "eng",
     "scope": "Medium",
     "usedIn": "Mechanic",
-    "role": "Structure",
-    "desc": "Refactors messy modules into clean patterns. Checks Overseer 'Structural Hotspots'.",
+    "role": "Structural Agent",
+    "desc": "File-level architecture: moving misplaced files, grouping feature folders, barreling imports, and splitting massive God Files.",
     "promptFile": "prompts/architect.md"
   },
   {
@@ -78,8 +78,8 @@
     "category": "eng",
     "scope": "Medium",
     "usedIn": "Mechanic",
-    "role": "Evolution",
-    "desc": "Upgrades legacy tools and AI Models. Checks Overseer 'Modernization Targets'.",
+    "role": "Tech Stack Evolution",
+    "desc": "Identifies outdated tools, library versions, or coding paradigms and performs meaningful migrations.",
     "promptFile": "prompts/modernizer.md"
   },
   {
@@ -98,29 +98,37 @@
     "category": "eng",
     "scope": "Medium",
     "usedIn": "Guardian",
-    "role": "Resilience",
-    "desc": "Hardens app against crashes, swallowed errors, and brittle logic.",
+    "role": "Resilience Agent",
+    "desc": "Fixes critical fragility: swallowed errors, missing retries, and poor telemetry/logging.",
     "promptFile": "prompts/medic.md"
   },
   {
-    "name": "Blackbox",
-    "icon": "✈️",
+    "name": "Cortex",
+    "icon": "🧠",
     "category": "eng",
     "scope": "Medium",
-    "usedIn": "",
-    "role": "Debugging",
-    "desc": "Acts as a Flight Recorder by enriching vague error logs with critical context variables (IDs, State).",
-    "promptFile": "prompts/blackbox.md"
+    "role": "AI Integration Specialist",
+    "desc": "Upgrades AI models, optimizes system prompts, and hardens API integrations.",
+    "promptFile": "prompts/cortex.md"
   },
   {
     "name": "Scribe",
     "icon": "✍️",
     "category": "context",
     "scope": "Medium",
-    "usedIn": "Librarian",
-    "role": "History",
-    "desc": "Updates comprehensive documentation sections and API references. Stops if context is already synced.",
+    "role": "Inline Documentation Historian",
+    "desc": "Ensures complex exported utilities, hooks, and functions are completely and accurately documented using JSDoc.",
     "promptFile": "prompts/scribe.md"
+  },
+  {
+    "name": "Author",
+    "icon": "📘",
+    "category": "context",
+    "scope": "Medium",
+    "usedIn": "Librarian",
+    "role": "Macro-Documentation Specialist",
+    "desc": "Writes human-friendly READMEs and feature onboarding guides.",
+    "promptFile": "prompts/author.md"
   },
   {
     "name": "Navigator",
@@ -138,8 +146,8 @@
     "category": "context",
     "scope": "Medium",
     "usedIn": "Virtuoso",
-    "role": "Assets",
-    "desc": "Audits asset library health, optimizes file sizes, and ensures accessibility compliance.",
+    "role": "Payload & Asset Manager",
+    "desc": "Optimizes the project's static assets: converting formats, compressing SVGs, and deleting ghost assets.",
     "promptFile": "prompts/curator.md"
   },
   {
@@ -163,14 +171,13 @@
     "promptFile": "prompts/cartographer.md"
   },
   {
-    "name": "Tutor",
-    "icon": "🎓",
+    "name": "Spark",
+    "icon": "💡",
     "category": "monthly",
-    "type": "monthly",
     "scope": "Large",
-    "role": "Education",
-    "desc": "Enriches the codebase by scanning utility libraries and adding @example usage snippets to JSDoc.",
-    "promptFile": "prompts/tutor.md"
+    "role": "Innovation Strategist",
+    "desc": "Identifies UX blindspots and suggests open-source library adoptions.",
+    "promptFile": "prompts/spark.md"
   },
   {
     "name": "Herald",
@@ -189,7 +196,7 @@
     "scope": "Small-Medium",
     "usedIn": "Virtuoso",
     "role": "UX Writer",
-    "desc": "Audits button labels, modal titles, and empty states for brevity and clarity.",
+    "desc": "Audits and rewrites all human-readable text: button labels, modal titles, empty states, alt tags, and ARIA labels.",
     "promptFile": "prompts/wordsmith.md"
   },
   {
@@ -199,7 +206,7 @@
     "scope": "Small-Medium",
     "usedIn": "Guardian",
     "role": "Code Quality Enforcer",
-    "desc": "Enforces strict naming conventions, style guides, and 'Clean Code' standards.",
+    "desc": "Enforces line-level style: strict naming conventions, eliminating magic numbers/strings, and ensuring clean typing.",
     "promptFile": "prompts/pedant.md"
   },
   {
@@ -208,7 +215,7 @@
     "category": "eng",
     "scope": "Small-Medium",
     "role": "Logic Simplifier",
-    "desc": "Reduces cognitive complexity by flattening nested logic and extracting helper functions.",
+    "desc": "Reduces cognitive complexity by flattening deeply nested logic and extracting local helper functions within the same file.",
     "promptFile": "prompts/untangler.md"
   },
   {

@@ -64,6 +64,10 @@ The Output File (`.jules/AGENTS_AUDIT.md`) MUST use this structure with Checkbox
 - [ ] Error swallowing detected
 - [ ] Brittle JSON.parse usage
 
+## 🧠 AI & Prompt Health
+- [ ] Deprecated model versions detected (e.g., GPT-3.5, Gemini 1.0)
+- [ ] Unversioned or bloated system prompts
+
 ## ✍️ Documentation Gaps
 - [ ] Complex utils missing JSDoc
 - [ ] API docs out of sync with code

@@ -15,15 +15,15 @@ Success: `CHANGELOG.md` is updated with a properly formatted, versioned entry co
 
 ---
 
-SCRIBE PHASE — Documentation (Present)
-Goal: Find ONE complex, exported function that lacks documentation and add comprehensive JSDoc to it.
+AUTHOR PHASE — Feature Documentation (Present)
+Goal: Find ONE feature folder or major module that lacks a `README.md` and write a comprehensive guide for it.
 Constraints:
-- Documentation must include @param, @returns, @throws (where applicable), and @example.
-- The @example must be copy-paste runnable — verify it is valid TypeScript/JavaScript.
-- Never write comments that simply restate the function name.
-- Sync the JSDoc with the actual type signature — if they conflict, the code wins.
-Commands: `grep -rL "\/\*\*" src/utils src/hooks` to find undocumented exports.
-Success: The selected function has complete, accurate JSDoc. The @example is valid.
+- Include "Purpose", "Quick Start", and "Architecture" sections.
+- Read `package.json` and source files to understand the module's role.
+- Never write JSDoc (Leave to Scribe).
+- Never write tests (Leave to Inspector).
+Commands: `find src -type d` to look for undocumented feature folders.
+Success: A new or significantly improved `README.md` exists for the target feature.
 
 ---
 
