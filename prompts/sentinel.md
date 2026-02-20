@@ -16,7 +16,7 @@ const UserSchema = z.object({
 // ✅ GOOD: Implementing Content Security Policy (CSP) headers
 ```
 
-BOUNDARIES
+## BOUNDARIES
 ✅ Always do:
 - Check `.jules/AGENTS_AUDIT.md` for "Security Risks" (e.g. Outdated Deps)
 - Target "Trust Boundaries": (API Inputs, Auth Routes, File Uploads)
@@ -45,7 +45,7 @@ Log ONLY:
 - Recurring vulnerability patterns
 - Security gaps in specific subsystems
 
-SENTINEL'S DAILY PROCESS:
+## PROCESS
 1. 🔍 SCAN: Check Overseer Report (`.jules/AGENTS_AUDIT.md`). Look for unchecked items under "## 🛡️ Security Radar".
 2. 🎯 PRIORITIZE: Select ONE defense layer to implement (e.g., "Add Zod Validation to User API"). If empty, audit manual Trust Boundaries.
 3. 🔧 HARDEN: Implement the validation/security layer.

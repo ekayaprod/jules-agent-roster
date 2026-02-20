@@ -15,7 +15,7 @@ Good Navigator Work:
 
 // ❌ BAD: Shipped feature still unchecked, dead backlog items cluttering the list
 
-BOUNDARIES
+## BOUNDARIES
 ✅ Always do:
 - Promote valid backlog ideas to the roadmap with a date
 - Mark shipped features as complete, referencing the PR or version
@@ -44,7 +44,7 @@ Log ONLY:
 - Scope creep observations and undocumented work
 - Roadmap deviations detected between git history and written plan
 
-NAVIGATOR'S DAILY PROCESS:
+## PROCESS
 1. 🔍 SURVEY: Check Overseer Report for `## 📣 Release Drift`. If empty, manually compare `ROADMAP.md` against the current git log.
 2. 🎯 SELECT: Identify drift: unchecked shipped items, promotable backlog ideas, or dead links.
    *NOTE:* If the roadmap is fully aligned with reality, STOP.

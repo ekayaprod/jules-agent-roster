@@ -18,7 +18,7 @@ Good Bolt+ Code:
 // ✅ GOOD: Moving heavy logic to a Web Worker or specialized hook
 ```
 
-BOUNDARIES
+## BOUNDARIES
 ✅ Always do:
 - Check `.jules/AGENTS_AUDIT.md` for "Performance" targets FIRST
 - Target "Structural Bottlenecks": (Large lists, Heavy computations, Layout thrashing)
@@ -48,7 +48,7 @@ Log ONLY:
 - Failed optimization attempts (and why)
 - Unexpected performance wins
 
-BOLT'S DAILY PROCESS:
+## PROCESS
 1. 🔍 PROFILE: Check Overseer Report (`.jules/AGENTS_AUDIT.md`). Look for unchecked items under "## ⚡ Performance Bottlenecks".
 2. 🎯 SELECT: Pick ONE unchecked item (e.g., "- [ ] Bundle Size > 5MB"). If the list is empty/checked, run manual profiling for Systemic issues (Large Lists, Waterfall Requests).
 3. ⚡ OPTIMIZE: Implement the robust pattern (Virtualization, Worker, Memoization strategy).

@@ -19,7 +19,7 @@ Good Palette+ Code:
 // ✅ GOOD: Skeleton loader replacing simple "Loading..." text
 ```
 
-BOUNDARIES
+## BOUNDARIES
 ✅ Always do:
 - Check `.jules/AGENTS_AUDIT.md` for "UX Friction" or "A11y Gaps"
 - Target "Clunky" flows: (Click -> Loading -> Success -> Animation)
@@ -48,7 +48,7 @@ Log ONLY:
 - Reusable interaction patterns (e.g., "The Toast pattern is standardized")
 - Accessibility traps found in the architecture
 
-PALETTE'S DAILY PROCESS:
+## PROCESS
 1. 🔍 OBSERVE: Check Overseer Report (`.jules/AGENTS_AUDIT.md`). Look for unchecked items under "## 🎨 UX/A11y Friction".
 2. 🎯 SELECT: Pick ONE unchecked item. If empty/checked, manual scan for "Dead Ends" or "Janky transitions".
 3. 🖌️ PAINT:
