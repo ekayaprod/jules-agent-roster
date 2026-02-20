@@ -746,6 +746,111 @@
           padding: 0.5rem 1rem;
         }
       }
+
+      /* Fusion Lab Styles */
+      .fusion-lab-container {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-bottom: 3rem;
+        text-align: center;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+
+      .fusion-lab-container h2 {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(to right, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 1.8rem;
+      }
+
+      .fusion-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.5rem;
+      }
+
+      .fusion-controls select {
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        background: var(--bg-color);
+        border: 1px solid var(--border);
+        color: var(--text-primary);
+        font-size: 1rem;
+        min-width: 200px;
+        transition: all 0.2s;
+      }
+
+      .fusion-controls select:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3);
+      }
+
+      .fusion-plus {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--text-secondary);
+      }
+
+      #fuseBtn {
+        background: linear-gradient(to right, #a855f7, #ec4899);
+        color: white;
+        border: none;
+        padding: 0.75rem 2rem;
+      }
+
+      #fuseBtn:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+
+      #fusionOutput {
+        margin-top: 2rem;
+        text-align: left;
+        background: var(--details-bg);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      .fusion-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1rem;
+      }
+
+      .fusion-header h3 {
+        margin: 0;
+        font-size: 1.25rem;
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      #fusionCode {
+        margin: 0;
+        white-space: pre-wrap;
+        font-family: monospace;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        max-height: 500px;
+        overflow-y: auto;
+      }
     </style>
   </head>
   <body>
@@ -846,6 +951,64 @@
           </svg>
           <span>Download All Prompts</span>
         </button>
+      </div>
+    </div>
+
+    <!-- Fusion Lab -->
+    <div class="fusion-lab-container">
+      <h2>🧬 The Fusion Lab</h2>
+      <div class="fusion-controls">
+        <select id="slotA" aria-label="Select first agent">
+          <option value="">Select Agent A...</option>
+        </select>
+        <span class="fusion-plus">+</span>
+        <select id="slotB" aria-label="Select second agent">
+          <option value="">Select Agent B...</option>
+        </select>
+        <button id="fuseBtn">Fuse Agents!</button>
+      </div>
+
+      <div id="fusionOutput" style="display: none">
+        <div class="fusion-header">
+          <h3 id="fusionName"></h3>
+          <button id="copyFusionBtn" class="secondary" style="width: auto">
+            <svg
+              class="copy-icon"
+              aria-hidden="true"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+              />
+            </svg>
+            <svg
+              class="check-icon"
+              style="display: none"
+              aria-hidden="true"
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <span>Copy Prompt</span>
+          </button>
+        </div>
+        <pre id="fusionCode"></pre>
       </div>
     </div>
 
@@ -974,6 +1137,85 @@
           powerGrid: "bundled-tasks",
         },
       };
+
+      class FusionCompiler {
+        constructor(agentsData, sTierData) {
+          // Only allow base agents to be fused
+          this.baseAgents = agentsData.filter(
+            (a) => a.category !== "monthly" && a.category !== "power",
+          );
+          this.sTierMap = sTierData || {};
+        }
+
+        extractSection(prompt, header) {
+          if (!prompt) return "Prompt data missing.";
+          const regex = new RegExp(`## ${header}\\s*([\\s\\S]*?)(?=## |$)`, "i");
+          const match = prompt.match(regex);
+          return match
+            ? match[1].trim()
+            : "Section extraction failed. Follow standard constraints.";
+        }
+
+        fuse(agent1, agent2) {
+          if (!agent1 || !agent2)
+            return { name: "Error", prompt: "Invalid agents selected." };
+          if (agent1.name === agent2.name)
+            return {
+              name: "Error",
+              prompt: "Cannot fuse an agent with itself.",
+            };
+
+          const sortedNames = [agent1.name, agent2.name].sort();
+          const key = sortedNames.join(",");
+
+          // 1. Check for S-Tier
+          if (this.sTierMap[key]) {
+            const fusion = this.sTierMap[key];
+            return {
+              name: fusion.name,
+              isSTier: true,
+              promptFile: fusion.promptFile,
+              prompt: null, // Will be fetched asynchronously by UI
+            };
+          }
+
+          // 2. Dynamic Stitching for A, B, and C Tiers
+          const bound1 = this.extractSection(agent1.prompt, "BOUNDARIES");
+          const bound2 = this.extractSection(agent2.prompt, "BOUNDARIES");
+          const proc1 = this.extractSection(agent1.prompt, "PROCESS");
+          const proc2 = this.extractSection(agent2.prompt, "PROCESS");
+
+          const stitchedPrompt = `You are a dynamic Fusion Agent combining "${agent1.name}" ${agent1.icon} and "${agent2.name}" ${agent2.icon}.
+Your mission is to execute a dual-phase workflow sequentially.
+
+## BOUNDARIES
+You must obey the strict boundaries of both constituent agents. If boundaries conflict, prioritize the safety and non-destructive constraints.
+
+### ${agent1.name}'s Boundaries:
+${bound1}
+
+### ${agent2.name}'s Boundaries:
+${bound2}
+
+## PROCESS
+You must execute these phases sequentially. Do not start Phase 2 until Phase 1 is logically complete.
+
+### Phase 1: The ${agent1.name} Phase
+${proc1}
+
+### Phase 2: The ${agent2.name} Phase
+${proc2}
+
+🎁 PRESENT: PR Title: "🧬 Fusion: [${agent1.name} + ${agent2.name} Task]"`;
+
+          return {
+            name: `${agent1.icon}${agent2.icon} ${agent1.name}-${agent2.name} Fusion`,
+            isSTier: false,
+            promptFile: null,
+            prompt: stitchedPrompt,
+          };
+        }
+      }
 
       // --- ROSTER APP ---
       /**
@@ -1128,6 +1370,75 @@
         }
 
         /**
+         * Populates the Fusion Lab dropdowns with base agents.
+         */
+        populateFusionDropdowns() {
+          const slotA = document.getElementById("slotA");
+          const slotB = document.getElementById("slotB");
+
+          if (!slotA || !slotB) return;
+
+          const options = this.fusionCompiler.baseAgents
+            .map(
+              (agent) =>
+                `<option value="${agent.name}">${agent.icon} ${agent.name}</option>`,
+            )
+            .join("");
+
+          slotA.innerHTML =
+            '<option value="">Select Agent A...</option>' + options;
+          slotB.innerHTML =
+            '<option value="">Select Agent B...</option>' + options;
+        }
+
+        /**
+         * Handles the fusion logic when the Fuse button is clicked.
+         */
+        async handleFusion() {
+          const slotA = document.getElementById("slotA");
+          const slotB = document.getElementById("slotB");
+          const nameA = slotA.value;
+          const nameB = slotB.value;
+
+          if (!nameA || !nameB) {
+            alert("Please select two agents.");
+            return;
+          }
+
+          const agentA = this.agents.find((a) => a.name === nameA);
+          const agentB = this.agents.find((a) => a.name === nameB);
+
+          const result = this.fusionCompiler.fuse(agentA, agentB);
+
+          const output = document.getElementById("fusionOutput");
+          const header = output.querySelector("h3");
+          const pre = output.querySelector("pre");
+
+          output.style.display = "block";
+          header.innerText = result.name;
+
+          if (result.isSTier) {
+            pre.innerText = "Forging S-Tier Fusion...";
+            try {
+              const res = await fetch(result.promptFile);
+              if (!res.ok) throw new Error("Not found");
+              const text = await res.text();
+              result.prompt = text;
+              pre.innerText = text;
+            } catch (e) {
+              const msg = `[System Note: This S-Tier prompt (${result.promptFile}) is currently being forged in the armory. Check back later!]`;
+              pre.innerText = msg;
+              result.prompt = msg;
+            }
+          } else {
+            pre.innerText = result.prompt;
+          }
+
+          // Store result for copying
+          this.lastFusionResult = result;
+        }
+
+        /**
          * Loads agent data from `agents.json` and fetches individual prompt files.
          * Populates `this.agents` with the complete data set.
          * Handles errors by displaying a message in the main container.
@@ -1154,6 +1465,18 @@
                 return agent;
               }),
             );
+
+            // FUSION: Load S-Tier Data
+            let sTierData = {};
+            try {
+              const sTierRes = await fetch("s_tier_fusions.json");
+              if (sTierRes.ok) sTierData = await sTierRes.json();
+            } catch (e) {
+              console.warn("S-Tier fusions file not found yet.");
+            }
+
+            this.fusionCompiler = new FusionCompiler(this.agents, sTierData);
+            this.populateFusionDropdowns();
           } catch (error) {
             console.error("Failed to load agents.json", error);
             if (this.elements.main) {
@@ -1325,6 +1648,27 @@
           this.elements.downloadAllBtn?.addEventListener("click", (e) =>
             this.downloadAll(e.currentTarget),
           );
+
+          const fuseBtn = document.getElementById("fuseBtn");
+          if (fuseBtn) {
+            fuseBtn.addEventListener("click", () => this.handleFusion());
+          }
+
+          const copyFusionBtn = document.getElementById("copyFusionBtn");
+          if (copyFusionBtn) {
+            copyFusionBtn.addEventListener("click", async (e) => {
+              const btn = e.currentTarget;
+              if (this.lastFusionResult && this.lastFusionResult.prompt) {
+                const success = await this.copyText(
+                  this.lastFusionResult.prompt,
+                  "Fusion copied!",
+                );
+                if (success) {
+                  this.animateButtonSuccess(btn, "Copied!");
+                }
+              }
+            });
+          }
 
           // Event Delegation
           this.elements.main?.addEventListener("click", (e) => {
