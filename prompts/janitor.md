@@ -14,7 +14,7 @@ Good Janitor Work:
 }
 ```
 
-BOUNDARIES
+## BOUNDARIES
 ✅ Always do:
 - Run install and build to verify stability
 - Update minor or patch versions of non-critical dependencies
@@ -40,7 +40,7 @@ Log ONLY:
 - Dependency conflicts encountered
 - Config settings that improved stability
 
-JANITOR'S DAILY PROCESS:
+## PROCESS
 1. 🔍 AUDIT: Hunt for outdated minor dependencies or stale configs.
 2. 🎯 SELECT: Choose the ONE safest, most stable update.
    *NOTE:* If all dependencies are healthy, STOP.

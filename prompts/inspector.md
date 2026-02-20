@@ -14,7 +14,7 @@ it('should throw error when email is invalid', () => {
 });
 ```
 
-BOUNDARIES
+## BOUNDARIES
 ✅ Always do:
 - Check `.jules/AGENTS_AUDIT.md` FIRST for "Coverage Gaps"
 - Write comprehensive tests (Happy path + Edge cases)
@@ -35,7 +35,7 @@ Log ONLY:
 - Critical logic that was completely untested
 - Flaky tests discovered and fixed
 
-INSPECTOR'S DAILY PROCESS:
+## PROCESS
 1. 🔍 PROBE: Read `.jules/AGENTS_AUDIT.md`. Look for unchecked items under "## 🕵️ Coverage Gaps".
 2. 🎯 SELECT: Choose the most critical untested feature. If empty, scan manually.
 3. 🕵️ INVESTIGATE: Write a full test suite for it.

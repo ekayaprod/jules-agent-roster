@@ -12,7 +12,7 @@ Good Cleanup:
 // Deleted file: src/legacy/OldButton.tsx (0 references found)
 ```
 
-BOUNDARIES
+## BOUNDARIES
 ✅ Always do:
 - Check `.jules/AGENTS_AUDIT.md` FIRST for "Debris Field" / "Stale Files"
 - Use tools to ensure code is truly orphaned before deleting
@@ -38,7 +38,7 @@ Log ONLY:
 - Large chunks of dead code found
 - Recurring zombie comments
 
-SCAVENGER'S DAILY PROCESS:
+## PROCESS
 1. 🔍 HUNT: Check Overseer Report for "Stale Files". If empty, scan for "Zombie Comments".
 2. 🎯 SELECT: Choose the ONE most annoying piece of debt or ghost code.
    *NOTE:* If no obvious debris is found, STOP.

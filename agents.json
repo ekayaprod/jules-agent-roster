@@ -217,50 +217,5 @@
     "role": "Logic Simplifier",
     "desc": "Reduces cognitive complexity by flattening deeply nested logic and extracting local helper functions within the same file.",
     "promptFile": "prompts/untangler.md"
-  },
-  {
-    "name": "Guardian",
-    "icon": "⛑️",
-    "category": "power",
-    "scope": "Small Bundle",
-    "role": "Code Safety Triad",
-    "desc": "Executes a triple-safety check: Fix Bug (Medic), Add Test (Inspector), Enforce Style (Pedant).",
-    "promptFile": "prompts/guardian.md"
-  },
-  {
-    "name": "Virtuoso",
-    "icon": "🎨",
-    "category": "power",
-    "scope": "Small Bundle",
-    "role": "Frontend Triad",
-    "desc": "Polishes a UI component: Interaction (Palette+), Copy (Wordsmith), Assets (Curator).",
-    "promptFile": "prompts/virtuoso.md"
-  },
-  {
-    "name": "Steward",
-    "icon": "🧹",
-    "category": "power",
-    "scope": "Medium Bundle",
-    "role": "Housekeeping Triad",
-    "desc": "Performs weekly maintenance: Deletes trash, merges logic, and updates dependencies.",
-    "promptFile": "prompts/steward.md"
-  },
-  {
-    "name": "Mechanic",
-    "icon": "🔧",
-    "category": "power",
-    "scope": "Medium Bundle",
-    "role": "Architecture Triad",
-    "desc": "Tunes system architecture: Optimizes speed, modernizes tools, and refactors structure.",
-    "promptFile": "prompts/mechanic.md"
-  },
-  {
-    "name": "Librarian",
-    "icon": "📚",
-    "category": "power",
-    "scope": "Medium Bundle",
-    "role": "History Triad",
-    "desc": "Syncs project history: Updates changelogs, documentation, and roadmaps.",
-    "promptFile": "prompts/librarian.md"
   }
 ]

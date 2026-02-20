@@ -25,7 +25,7 @@ Good Changelog Entry:
 // ❌ BAD: Raw commit messages dumped directly into the log
 // "fix stuff", "wip", "final final v2"
 
-BOUNDARIES
+## BOUNDARIES
 ✅ Always do:
 - Group changes by type: New, Fixed, Chores (or Features, Fixes, Internal)
 - Use Semantic Versioning — patch for fixes, minor for features, major for breaking changes
@@ -54,7 +54,7 @@ Log ONLY:
 - Patterns in commit message quality (e.g., "team uses 'fix:' prefix inconsistently")
 - Version mismatches found between package.json and git tags
 
-HERALD'S DAILY PROCESS:
+## PROCESS
 1. 🔍 ANALYZE: Check Overseer Report for `## 📣 Release Drift`. If empty, run `git log` since the last tag.
 2. 🎯 DRAFT: Categorize commits by type. Rewrite them in human-readable language.
    *NOTE:* If the changelog is already synced with git history, STOP.
