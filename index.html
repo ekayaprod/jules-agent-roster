@@ -545,13 +545,15 @@
         overflow-y: auto;
         /* Palette+: Fade in opacity */
         opacity: 0;
-        transition: opacity 0.3s ease-out;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out;
         /* Palette+: Hide from screen readers when collapsed */
         visibility: hidden;
       }
 
       .details-grid.expanded .details-content {
         opacity: 1;
+        transform: translateY(0);
         visibility: visible;
       }
 
@@ -807,11 +809,29 @@
         color: white;
         border: none;
         padding: 0.75rem 2rem;
+        transition: all 0.2s;
       }
 
       #fuseBtn:hover {
         opacity: 0.9;
         transform: translateY(-1px);
+      }
+
+      #fuseBtn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+        background: var(--border);
+      }
+
+      @keyframes pulse-purple {
+        0% { transform: scale(1); opacity: 0.7; }
+        50% { transform: scale(1.3); opacity: 1; color: #a855f7; }
+        100% { transform: scale(1); opacity: 0.7; }
+      }
+
+      .ready-pulse {
+        animation: pulse-purple 1.5s infinite;
       }
 
       #fusionOutput {
@@ -1114,7 +1134,7 @@
 
       <div id="fusionOutput" style="display: none">
         <div class="fusion-header">
-          <h3 id="fusionName"></h3>
+          <h3 id="fusionName" tabindex="-1"></h3>
           <button id="copyFusionBtn" class="secondary" style="width: auto">
             <svg
               class="copy-icon"
@@ -1519,6 +1539,7 @@ ${proc2}
         populateFusionDropdowns() {
           const slotA = document.getElementById("slotA");
           const slotB = document.getElementById("slotB");
+          const fuseBtn = document.getElementById("fuseBtn");
 
           if (!slotA || !slotB) return;
 
@@ -1533,6 +1554,34 @@ ${proc2}
             '<option value="">Select Agent A...</option>' + options;
           slotB.innerHTML =
             '<option value="">Select Agent B...</option>' + options;
+
+          // Palette+: Set initial disabled state
+          if (fuseBtn) fuseBtn.disabled = true;
+        }
+
+        /**
+         * Updates the state of the Fusion button and visual indicators based on selection.
+         */
+        updateFusionState() {
+          const slotA = document.getElementById("slotA");
+          const slotB = document.getElementById("slotB");
+          const fuseBtn = document.getElementById("fuseBtn");
+          const plusIcon = document.querySelector(".fusion-plus");
+
+          if (slotA && slotB && fuseBtn) {
+            const isReady = slotA.value !== "" && slotB.value !== "";
+            fuseBtn.disabled = !isReady;
+
+            if (plusIcon) {
+              if (isReady) {
+                plusIcon.classList.add("ready-pulse");
+                plusIcon.style.color = "#a855f7";
+              } else {
+                plusIcon.classList.remove("ready-pulse");
+                plusIcon.style.color = "var(--text-secondary)";
+              }
+            }
+          }
         }
 
         /**
@@ -1545,7 +1594,7 @@ ${proc2}
           const nameB = slotB.value;
 
           if (!nameA || !nameB) {
-            alert("Please select two agents.");
+            // Palette+: Button is disabled, so this shouldn't be reached
             return;
           }
 
@@ -1625,6 +1674,13 @@ ${proc2}
             // Show result
             output.style.display = "block";
             fuseBtn.disabled = false;
+
+            // Palette+: Move focus to result for screen readers
+            const resultHeader = document.getElementById("fusionName");
+            if (resultHeader) {
+                resultHeader.focus();
+                resultHeader.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
           }, 3500);
         }
 
@@ -1862,6 +1918,11 @@ ${proc2}
           if (fuseBtn) {
             fuseBtn.addEventListener("click", () => this.handleFusion());
           }
+
+          const slotA = document.getElementById("slotA");
+          const slotB = document.getElementById("slotB");
+          if (slotA) slotA.addEventListener("change", () => this.updateFusionState());
+          if (slotB) slotB.addEventListener("change", () => this.updateFusionState());
 
           const copyFusionBtn = document.getElementById("copyFusionBtn");
           if (copyFusionBtn) {
