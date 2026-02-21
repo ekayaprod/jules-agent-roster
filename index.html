@@ -1309,6 +1309,28 @@
             (a) => a.category !== "monthly" && a.category !== "power",
           );
           this.sTierMap = sTierData || {};
+
+          this.EXECUTION_PIPELINE = [
+            "Janitor",
+            "Scavenger",
+            "Architect",
+            "Helix",
+            "Untangler",
+            "Modernizer",
+            "Cortex",
+            "Bolt+",
+            "Sentinel+",
+            "Palette+",
+            "Wordsmith",
+            "Pedant",
+            "Medic",
+            "Inspector",
+            "Curator",
+            "Scribe",
+            "Author",
+            "Navigator",
+            "Herald",
+          ];
         }
 
         extractSection(prompt, header) {
@@ -1344,36 +1366,47 @@
           }
 
           // 2. Dynamic Stitching for A, B, and C Tiers
-          const bound1 = this.extractSection(agent1.prompt, "BOUNDARIES");
-          const bound2 = this.extractSection(agent2.prompt, "BOUNDARIES");
-          const proc1 = this.extractSection(agent1.prompt, "PROCESS");
-          const proc2 = this.extractSection(agent2.prompt, "PROCESS");
+          let p1 = agent1;
+          let p2 = agent2;
 
-          const stitchedPrompt = `You are a dynamic Fusion Agent combining "${agent1.name}" ${agent1.icon} and "${agent2.name}" ${agent2.icon}.
+          const idx1 = this.EXECUTION_PIPELINE.indexOf(p1.name);
+          const idx2 = this.EXECUTION_PIPELINE.indexOf(p2.name);
+
+          // If both agents are in the pipeline, enforce strict DAG order
+          if (idx1 !== -1 && idx2 !== -1 && idx2 < idx1) {
+            [p1, p2] = [p2, p1];
+          }
+
+          const bound1 = this.extractSection(p1.prompt, "BOUNDARIES");
+          const bound2 = this.extractSection(p2.prompt, "BOUNDARIES");
+          const proc1 = this.extractSection(p1.prompt, "PROCESS");
+          const proc2 = this.extractSection(p2.prompt, "PROCESS");
+
+          const stitchedPrompt = `You are a dynamic Fusion Agent combining "${p1.name}" ${p1.icon} and "${p2.name}" ${p2.icon}.
 Your mission is to execute a dual-phase workflow sequentially.
 
 ## BOUNDARIES
 You must obey the strict boundaries of both constituent agents. If boundaries conflict, prioritize the safety and non-destructive constraints.
 
-### ${agent1.name}'s Boundaries:
+### ${p1.name}'s Boundaries:
 ${bound1}
 
-### ${agent2.name}'s Boundaries:
+### ${p2.name}'s Boundaries:
 ${bound2}
 
 ## PROCESS
 You must execute these phases sequentially. Do not start Phase 2 until Phase 1 is logically complete.
 
-### Phase 1: The ${agent1.name} Phase
+### Phase 1: The ${p1.name} Phase
 ${proc1}
 
-### Phase 2: The ${agent2.name} Phase
+### Phase 2: The ${p2.name} Phase
 ${proc2}
 
-🎁 PRESENT: PR Title: "🧬 Fusion: [${agent1.name} + ${agent2.name} Task]"`;
+🎁 PRESENT: PR Title: "🧬 Fusion: [${p1.name} + ${p2.name} Task]"`;
 
           return {
-            name: `${agent1.icon}${agent2.icon} ${agent1.name}-${agent2.name} Fusion`,
+            name: `${p1.icon}${p2.icon} ${p1.name}-${p2.name} Fusion`,
             isSTier: false,
             promptFile: null,
             prompt: stitchedPrompt,
