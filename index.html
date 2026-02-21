@@ -851,6 +851,140 @@
         max-height: 500px;
         overflow-y: auto;
       }
+
+      /* Fusion Animation Styles */
+      .fusion-lab-container {
+        position: relative;
+        overflow: hidden; /* Contain the explosion */
+      }
+
+      .fusion-animation-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: var(--card-bg); /* Opaque cover */
+        z-index: 20;
+        display: none; /* Hidden by default */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1rem;
+      }
+
+      .fusion-animation-overlay.active {
+        display: flex;
+      }
+
+      .anim-arena {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .anim-icon {
+        font-size: 4rem;
+        position: absolute;
+        transition: opacity 0.2s;
+        opacity: 0;
+      }
+
+      /* Initial States for Phase 1 */
+      .phase-1 .anim-icon {
+        opacity: 1;
+      }
+
+      .phase-1 .anim-icon.left {
+        animation: floatInLeft 1.5s ease-in forwards;
+      }
+
+      .phase-1 .anim-icon.right {
+        animation: floatInRight 1.5s ease-in forwards;
+      }
+
+      @keyframes floatInLeft {
+        0% { transform: translateX(-150px) scale(0.5); opacity: 0; }
+        100% { transform: translateX(-30px) scale(1.2); opacity: 1; } /* Meet at center-left */
+      }
+
+      @keyframes floatInRight {
+        0% { transform: translateX(150px) scale(0.5); opacity: 0; }
+        100% { transform: translateX(30px) scale(1.2); opacity: 1; } /* Meet at center-right */
+      }
+
+      /* Phase 2: Clash */
+      .phase-2 .anim-arena {
+        animation: shake 0.5s ease-in-out;
+      }
+
+      .anim-flash {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, #ffffff, transparent 70%);
+        border-radius: 50%;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .phase-2 .anim-flash {
+        animation: flash 0.5s ease-out forwards;
+      }
+
+      @keyframes shake {
+        0%, 100% { transform: translate(0, 0); }
+        25% { transform: translate(-5px, 5px); }
+        50% { transform: translate(5px, -5px); }
+        75% { transform: translate(-5px, -5px); }
+      }
+
+      @keyframes flash {
+        0% { opacity: 1; transform: translate(-50%, -50%) scale(0.1); }
+        50% { opacity: 1; transform: translate(-50%, -50%) scale(2); }
+        100% { opacity: 0; transform: translate(-50%, -50%) scale(3); }
+      }
+
+      /* Phase 3: Reveal */
+      .anim-result {
+        font-size: 1.5rem;
+        font-weight: 800;
+        background: linear-gradient(to right, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0;
+        transform: scale(0.8);
+        margin-top: 2rem;
+        text-align: center;
+        padding: 0 1rem;
+      }
+
+      .phase-3 .anim-result {
+        animation: reveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        text-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);
+      }
+
+      .phase-3 .anim-icon {
+        opacity: 0; /* Hide icons on reveal */
+      }
+
+      @keyframes reveal {
+        0% { opacity: 0; transform: scale(0.8); }
+        100% { opacity: 1; transform: scale(1.2); }
+      }
+
+      /* Reduced Motion Override */
+      @media (prefers-reduced-motion: reduce) {
+        .fusion-animation-overlay {
+          display: none !important;
+        }
+      }
     </style>
   </head>
   <body>
@@ -966,6 +1100,16 @@
           <option value="">Select Agent B...</option>
         </select>
         <button id="fuseBtn">Fuse Agents!</button>
+      </div>
+
+      <!-- Fusion Animation Overlay -->
+      <div id="fusionAnimationOverlay" class="fusion-animation-overlay" aria-hidden="true">
+        <div class="anim-arena">
+          <div class="anim-icon left"></div>
+          <div class="anim-flash"></div>
+          <div class="anim-icon right"></div>
+        </div>
+        <div class="anim-result"></div>
       </div>
 
       <div id="fusionOutput" style="display: none">
@@ -1409,33 +1553,93 @@ ${proc2}
           const agentB = this.agents.find((a) => a.name === nameB);
 
           const result = this.fusionCompiler.fuse(agentA, agentB);
+          this.lastFusionResult = result;
 
           const output = document.getElementById("fusionOutput");
           const header = output.querySelector("h3");
           const pre = output.querySelector("pre");
 
-          output.style.display = "block";
           header.innerText = result.name;
 
+          // Prepare content
           if (result.isSTier) {
             pre.innerText = "Forging S-Tier Fusion...";
-            try {
-              const res = await fetch(result.promptFile);
-              if (!res.ok) throw new Error("Not found");
-              const text = await res.text();
-              result.prompt = text;
-              pre.innerText = text;
-            } catch (e) {
-              const msg = `[System Note: This S-Tier prompt (${result.promptFile}) is currently being forged in the armory. Check back later!]`;
-              pre.innerText = msg;
-              result.prompt = msg;
-            }
+            this.loadSTierPrompt(result, pre);
           } else {
             pre.innerText = result.prompt;
           }
 
-          // Store result for copying
-          this.lastFusionResult = result;
+          // Check reduced motion
+          const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)",
+          ).matches;
+
+          if (prefersReducedMotion) {
+            output.style.display = "block";
+          } else {
+            this.runFusionAnimation(agentA, agentB, result);
+          }
+        }
+
+        /**
+         * Orchestrates the fusion animation sequence.
+         */
+        runFusionAnimation(agentA, agentB, result) {
+          const overlay = document.getElementById("fusionAnimationOverlay");
+          const iconLeft = overlay.querySelector(".anim-icon.left");
+          const iconRight = overlay.querySelector(".anim-icon.right");
+          const animResult = overlay.querySelector(".anim-result");
+          const output = document.getElementById("fusionOutput");
+          const fuseBtn = document.getElementById("fuseBtn");
+
+          // Setup
+          iconLeft.innerHTML = agentA.icon;
+          iconRight.innerHTML = agentB.icon;
+          animResult.innerText = result.name;
+          output.style.display = "none";
+          fuseBtn.disabled = true;
+
+          // Show Overlay
+          overlay.classList.add("active");
+
+          // Phase 1: Draw In (Start immediately)
+          requestAnimationFrame(() => {
+            overlay.classList.add("phase-1");
+          });
+
+          // Phase 2: Clash (After 1.5s)
+          setTimeout(() => {
+            overlay.classList.add("phase-2");
+          }, 1500);
+
+          // Phase 3: Reveal (After 1.5s + 0.5s clash = 2.0s)
+          setTimeout(() => {
+            overlay.classList.add("phase-3");
+          }, 2000);
+
+          // Completion (After 2.0s + 1.5s hold = 3.5s)
+          setTimeout(() => {
+            // Hide overlay and reset classes
+            overlay.classList.remove("active", "phase-1", "phase-2", "phase-3");
+
+            // Show result
+            output.style.display = "block";
+            fuseBtn.disabled = false;
+          }, 3500);
+        }
+
+        async loadSTierPrompt(result, preElement) {
+          try {
+            const res = await fetch(result.promptFile);
+            if (!res.ok) throw new Error("Not found");
+            const text = await res.text();
+            result.prompt = text;
+            preElement.innerText = text;
+          } catch (e) {
+            const msg = `[System Note: This S-Tier prompt (${result.promptFile}) is currently being forged in the armory. Check back later!]`;
+            preElement.innerText = msg;
+            result.prompt = msg;
+          }
         }
 
         /**
