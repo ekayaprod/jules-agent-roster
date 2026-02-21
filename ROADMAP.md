@@ -9,7 +9,7 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 - [x] **Single-File Portability**: Ensure the entire roster remains a single `index.html` for easy deployment/usage.
 - [x] **Accessibility First**: Maintain high A11y standards (ARIA labels, keyboard navigation, reduced motion support).
-- [ ] **Agent Verification**: Manually verify that all agent prompts adhere to the "Plus" philosophy.
+- [x] **Agent Verification**: Manually verify that all agent prompts adhere to the "Plus" philosophy. (Verified in v0.1.1)
 - [x] **Documentation**: Ensure `README.md` accurately reflects the latest agent capabilities.
 
 ## 🚀 Phase 2: Expansion & Specialization (Q3)
@@ -18,6 +18,8 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 - [ ] **New Agent Categories**: Explore specialized agents for Data Science, DevOps, and Mobile dev.
 - [ ] **Framework-Specific Variants**: Create variants of agents for specific stacks (e.g., Next.js vs. Remix vs. Vue).
 - [ ] **Community Contributions**: Streamline the process for community submitted agents.
+- [ ] **Dark/Light Mode**: Add toggle (currently Dark only).
+- [ ] **Persistence**: Add LocalStorage support for "Favorites" or "Recently Used".
 
 ## 🛠️ Phase 3: Tooling & Automation (Future)
 *Focus: Quality Assurance*
@@ -27,5 +29,4 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 - [ ] **CLI Tool**: Potential CLI to fetch specific agents directly into the terminal.
 
 ## 📦 Backlog (Unscheduled)
-- [ ] Dark/Light mode toggle (currently Dark only).
-- [ ] LocalStorage persistence for "Favorites" or "Recently Used".
+- [ ] (Empty)
