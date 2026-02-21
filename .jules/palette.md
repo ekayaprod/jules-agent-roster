@@ -5,6 +5,7 @@
 - **Skeleton Loading**: `.skeleton-card` for loading states.
 - **Accordion Expansion**: `details-grid` with `grid-template-rows` for smooth height animation.
 - **Success Button State**: `animateButtonSuccess` provides immediate visual feedback on actions.
+- **Staggered Entry Animation**: `.pop-in` class with `animation-delay` provides delightful content entry.
 
 ## Accessibility Traps
 - **FIXED**: The Clear Search button now uses `visibility: hidden` when inactive to prevent keyboard focus.

@@ -1758,6 +1758,7 @@ ${proc2}
             );
           });
 
+          let globalIndex = 0;
           this.agents.forEach((agent, index) => {
             const container = categoryContainers[agent.category];
             if (!container) {
@@ -1768,7 +1769,11 @@ ${proc2}
             }
 
             const card = document.createElement("div");
-            card.className = "card";
+            card.className = "card pop-in";
+            const delay = Math.min(globalIndex * 30, 600);
+            card.style.animationDelay = `${delay}ms`;
+            globalIndex++;
+
             if (agent.type === "plus") card.classList.add("plus-agent");
             if (agent.type === "monthly") card.classList.add("monthly-agent");
 
