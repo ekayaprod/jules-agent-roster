@@ -158,7 +158,7 @@
     "scope": "Large",
     "role": "The Eye",
     "desc": "Performs deep forensic audit to identify targets for other agents.",
-    "promptFile": "prompts/overseer.md"
+    "promptFile": "prompts/power/overseer.md"
   },
   {
     "name": "Cartographer",
@@ -168,7 +168,7 @@
     "scope": "Large",
     "role": "Visuals",
     "desc": "Maps the entire system architecture into Mermaid diagrams for high-level understanding.",
-    "promptFile": "prompts/cartographer.md"
+    "promptFile": "prompts/power/cartographer.md"
   },
   {
     "name": "Spark",
@@ -177,7 +177,7 @@
     "scope": "Large",
     "role": "Innovation Strategist",
     "desc": "Identifies UX blindspots and suggests open-source library adoptions.",
-    "promptFile": "prompts/spark.md"
+    "promptFile": "prompts/power/spark.md"
   },
   {
     "name": "Herald",
