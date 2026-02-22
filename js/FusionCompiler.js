@@ -51,6 +51,50 @@ class FusionCompiler {
       : "Section extraction failed. Follow standard constraints.";
   }
 
+  /**
+   * Extracts content from an agent prompt, handling both XML and Legacy formats.
+   * @param {string} prompt - The raw prompt text.
+   * @returns {Object} { boundaries: string, process: string }
+   */
+  extractAgentContent(prompt) {
+    if (!prompt) return { boundaries: "Missing prompt.", process: "Missing prompt." };
+
+    let boundaries = "";
+    let process = "";
+
+    // Try parsing as XML if PromptParser is available
+    let parsed = null;
+    if (typeof PromptParser !== "undefined" && PromptParser.parsePrompt) {
+      parsed = PromptParser.parsePrompt(prompt);
+    }
+
+    if (parsed && parsed.format === "xml") {
+      // XML Extraction
+      const taskSection = parsed.sections.find((s) => s.tag === "task");
+      boundaries = taskSection
+        ? taskSection.content
+        : "No explicit boundaries found in XML.";
+
+      const steps = parsed.sections.filter((s) => s.tag === "step");
+      if (steps.length > 0) {
+        process = steps
+          .map(
+            (s) =>
+              `Step ${s.id || "?"}: ${s.name || "Action"}\n${s.content}`,
+          )
+          .join("\n\n");
+      } else {
+        process = "No explicit steps found in XML.";
+      }
+    } else {
+      // Legacy Markdown Extraction
+      boundaries = this.extractSection(prompt, "BOUNDARIES");
+      process = this.extractSection(prompt, "PROCESS");
+    }
+
+    return { boundaries, process };
+  }
+
   stitch(agent1, agent2, overrideName = null) {
     let p1 = agent1;
     let p2 = agent2;
@@ -63,10 +107,13 @@ class FusionCompiler {
       [p1, p2] = [p2, p1];
     }
 
-    const bound1 = this.extractSection(p1.prompt, "BOUNDARIES");
-    const bound2 = this.extractSection(p2.prompt, "BOUNDARIES");
-    const proc1 = this.extractSection(p1.prompt, "PROCESS");
-    const proc2 = this.extractSection(p2.prompt, "PROCESS");
+    const content1 = this.extractAgentContent(p1.prompt);
+    const content2 = this.extractAgentContent(p2.prompt);
+
+    const bound1 = content1.boundaries;
+    const bound2 = content2.boundaries;
+    const proc1 = content1.process;
+    const proc2 = content2.process;
 
     const prTitle = overrideName
       ? overrideName

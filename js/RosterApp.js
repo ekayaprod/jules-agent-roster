@@ -109,7 +109,7 @@ class RosterApp {
           agent &&
           typeof agent.name === "string" &&
           typeof agent.category === "string" &&
-          typeof agent.promptFile === "string" &&
+          typeof agent.prompt === "string" &&
           Object.keys(CONFIG.categories).includes(agent.category);
 
         if (!isValid) {
