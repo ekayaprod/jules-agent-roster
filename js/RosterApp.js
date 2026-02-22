@@ -149,21 +149,8 @@ class RosterApp {
       const rawData = await this.safeJsonParse(response, "agents.json");
       const agentsData = this.validateAgentsData(rawData);
 
-      // Parallel fetch for all prompts
-      this.agents = await Promise.all(
-        agentsData.map(async (agent) => {
-          if (agent.promptFile) {
-            try {
-              const promptRes = await this.fetchWithRetry(agent.promptFile);
-              agent.prompt = await promptRes.text();
-            } catch (e) {
-              console.error(`Failed to load prompt for ${agent.name}`, e);
-              agent.prompt = "Error loading prompt.";
-            }
-          }
-          return agent;
-        }),
-      );
+      // Use agents data directly (prompts are now embedded)
+      this.agents = agentsData;
 
       // FUSION: Load Custom Agents Data
       let customAgentsData = {};
