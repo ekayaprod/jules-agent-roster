@@ -1303,12 +1303,25 @@
       };
 
       class FusionCompiler {
-        constructor(agentsData, sTierData) {
+        constructor(agentsData, customAgentsData) {
           // Only allow base agents to be fused
           this.baseAgents = agentsData.filter(
             (a) => a.category !== "monthly" && a.category !== "power",
           );
-          this.sTierMap = sTierData || {};
+
+          // Normalize keys to ensure they are sorted alphabetically
+          this.customAgentsMap = {};
+          if (customAgentsData) {
+            Object.keys(customAgentsData).forEach((key) => {
+              // Split by comma, trim whitespace just in case, sort, and join
+              const sortedKey = key
+                .split(",")
+                .map((s) => s.trim())
+                .sort()
+                .join(",");
+              this.customAgentsMap[sortedKey] = customAgentsData[key];
+            });
+          }
 
           this.EXECUTION_PIPELINE = [
             "Janitor",
@@ -1342,30 +1355,7 @@
             : "Section extraction failed. Follow standard constraints.";
         }
 
-        fuse(agent1, agent2) {
-          if (!agent1 || !agent2)
-            return { name: "Error", prompt: "Invalid agents selected." };
-          if (agent1.name === agent2.name)
-            return {
-              name: "Error",
-              prompt: "Cannot fuse an agent with itself.",
-            };
-
-          const sortedNames = [agent1.name, agent2.name].sort();
-          const key = sortedNames.join(",");
-
-          // 1. Check for S-Tier
-          if (this.sTierMap[key]) {
-            const fusion = this.sTierMap[key];
-            return {
-              name: fusion.name,
-              isSTier: true,
-              promptFile: fusion.promptFile,
-              prompt: null, // Will be fetched asynchronously by UI
-            };
-          }
-
-          // 2. Dynamic Stitching for A, B, and C Tiers
+        stitch(agent1, agent2, overrideName = null) {
           let p1 = agent1;
           let p2 = agent2;
 
@@ -1382,7 +1372,11 @@
           const proc1 = this.extractSection(p1.prompt, "PROCESS");
           const proc2 = this.extractSection(p2.prompt, "PROCESS");
 
-          const stitchedPrompt = `You are a dynamic Fusion Agent combining "${p1.name}" ${p1.icon} and "${p2.name}" ${p2.icon}.
+          const prTitle = overrideName
+            ? overrideName
+            : `🧬 Fusion: [${p1.name} + ${p2.name} Task]`;
+
+          return `You are a dynamic Fusion Agent combining "${p1.name}" ${p1.icon} and "${p2.name}" ${p2.icon}.
 Your mission is to execute a dual-phase workflow sequentially.
 
 ## BOUNDARIES
@@ -1403,12 +1397,46 @@ ${proc1}
 ### Phase 2: The ${p2.name} Phase
 ${proc2}
 
-🎁 PRESENT: PR Title: "🧬 Fusion: [${p1.name} + ${p2.name} Task]"`;
+🎁 PRESENT: PR Title: "${prTitle}"`;
+        }
+
+        fuse(agent1, agent2) {
+          if (!agent1 || !agent2)
+            return { name: "Error", prompt: "Invalid agents selected." };
+          if (agent1.name === agent2.name)
+            return {
+              name: "Error",
+              prompt: "Cannot fuse an agent with itself.",
+            };
+
+          const sortedNames = [agent1.name, agent2.name].sort();
+          const key = sortedNames.join(",");
+
+          // 1. Check for Custom Agents
+          if (this.customAgentsMap[key]) {
+            const custom = this.customAgentsMap[key];
+
+            let finalPrompt = custom.prompt;
+            if (finalPrompt === null) {
+              // The Void Logic: Anomalous Fusion
+              finalPrompt = this.stitch(agent1, agent2, custom.name);
+            }
+
+            return {
+              name: custom.name,
+              isCustom: true,
+              description: custom.description,
+              prompt: finalPrompt,
+            };
+          }
+
+          // 2. Dynamic Stitching for standard fusions
+          const stitchedPrompt = this.stitch(agent1, agent2);
 
           return {
-            name: `${p1.icon}${p2.icon} ${p1.name}-${p2.name} Fusion`,
-            isSTier: false,
-            promptFile: null,
+            name: `${agent1.icon}${agent2.icon} ${agent1.name}-${agent2.name} Fusion`,
+            isCustom: false,
+            description: "A dynamic fusion of two base agents.",
             prompt: stitchedPrompt,
           };
         }
@@ -1643,13 +1671,18 @@ ${proc2}
 
           header.innerText = result.name;
 
-          // Prepare content
-          if (result.isSTier) {
-            pre.innerText = "Forging S-Tier Fusion...";
-            this.loadSTierPrompt(result, pre);
-          } else {
-            pre.innerText = result.prompt;
+          // Add description under header
+          let descEl = document.getElementById("fusionDesc");
+          if (!descEl) {
+            descEl = document.createElement("p");
+            descEl.id = "fusionDesc";
+            descEl.style.color = "var(--text-secondary)";
+            descEl.style.marginTop = "0.5rem";
+            header.parentNode.insertBefore(descEl, header.nextSibling);
           }
+          descEl.innerText = result.description || "";
+
+          pre.innerText = result.prompt;
 
           // Check reduced motion
           const prefersReducedMotion = window.matchMedia(
@@ -1711,24 +1744,13 @@ ${proc2}
             // Palette+: Move focus to result for screen readers
             const resultHeader = document.getElementById("fusionName");
             if (resultHeader) {
-                resultHeader.focus();
-                resultHeader.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+              resultHeader.focus();
+              resultHeader.scrollIntoView({
+                behavior: "smooth",
+                block: "nearest",
+              });
             }
           }, 3500);
-        }
-
-        async loadSTierPrompt(result, preElement) {
-          try {
-            const res = await fetch(result.promptFile);
-            if (!res.ok) throw new Error("Not found");
-            const text = await res.text();
-            result.prompt = text;
-            preElement.innerText = text;
-          } catch (e) {
-            const msg = `[System Note: This S-Tier prompt (${result.promptFile}) is currently being forged in the armory. Check back later!]`;
-            preElement.innerText = msg;
-            result.prompt = msg;
-          }
         }
 
         /**
@@ -1759,16 +1781,19 @@ ${proc2}
               }),
             );
 
-            // FUSION: Load S-Tier Data
-            let sTierData = {};
+            // FUSION: Load Custom Agents Data
+            let customAgentsData = {};
             try {
-              const sTierRes = await fetch("s_tier_fusions.json");
-              if (sTierRes.ok) sTierData = await sTierRes.json();
+              const customRes = await fetch("custom_agents.json");
+              if (customRes.ok) customAgentsData = await customRes.json();
             } catch (e) {
-              console.warn("S-Tier fusions file not found yet.");
+              console.warn("custom_agents.json not found yet.");
             }
 
-            this.fusionCompiler = new FusionCompiler(this.agents, sTierData);
+            this.fusionCompiler = new FusionCompiler(
+              this.agents,
+              customAgentsData,
+            );
             this.populateFusionDropdowns();
           } catch (error) {
             console.error("Failed to load agents.json", error);
