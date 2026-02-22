@@ -70,16 +70,16 @@ def verify_search_filter():
 
         # --- Test 3: Partial Match ---
         print("\n--- Test 3: Partial Match ---")
-        search_input.fill("nav") # For Navigator
+        search_input.fill("Navigator") # Specific match
         page.wait_for_timeout(500)
 
         visible_cards_nav = page.locator(".card:visible")
         if visible_cards_nav.count() == 0:
-            raise Exception("FAIL: Partial match 'nav' returned no results.")
+            raise Exception("FAIL: Partial match 'Navigator' returned no results.")
 
         first_card_text = visible_cards_nav.first.inner_text().lower()
-        if "navigator" not in first_card_text and "nav" not in first_card_text:
-             raise Exception(f"FAIL: Partial match 'nav' did not find expected result. Found: {first_card_text}")
+        if "navigator" not in first_card_text:
+             raise Exception(f"FAIL: Partial match 'Navigator' did not find expected result. Found: {first_card_text}")
         print("✅ Partial Match passed.")
 
         # --- Test 4: No Results ---

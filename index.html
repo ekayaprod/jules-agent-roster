@@ -29,8 +29,6 @@
         --success-hover: #16a34a;
         --plus-accent: #a855f7;
         --monthly-accent: #f59e0b;
-        --power-tag-bg: #334155;
-        --power-tag-text: #cbd5e1;
         --overseer-tag-bg: #064e3b;
         --overseer-tag-text: #6ee7b7;
         --border: #334155;
@@ -460,14 +458,6 @@
       .scope-large {
         background: var(--scope-lg-bg);
         color: var(--scope-lg-text);
-      }
-
-      .power-tag {
-        background-color: var(--power-tag-bg);
-        color: var(--power-tag-text);
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-size: 0.7rem;
       }
 
       .description {
@@ -1329,9 +1319,6 @@
         <li class="nav-item">
           <a href="#monthly-intelligence" class="nav-pill">Monthly</a>
         </li>
-        <li class="nav-item">
-          <a href="#bundled-tasks" class="nav-pill">Power</a>
-        </li>
       </ul>
     </nav>
 
@@ -1395,11 +1382,6 @@
         Monthly Intelligence (Large Scope)
       </h2>
       <div class="grid" id="monthlyGrid"></div>
-
-      <h2 id="bundled-tasks" class="section-header">
-        Bundled Tasks (Dual-Small Scope)
-      </h2>
-      <div class="grid" id="powerGrid"></div>
     </main>
 
     <!-- Palette+: Added role="status" and aria-live="polite" for screen reader feedback -->
@@ -1429,14 +1411,12 @@
           eng: "engGrid",
           context: "contextGrid",
           monthly: "monthlyGrid",
-          power: "powerGrid",
         },
         sectionMap: {
           coreGrid: "core-maintenance",
           engGrid: "engineering-specialists",
           contextGrid: "context-strategy",
           monthlyGrid: "monthly-intelligence",
-          powerGrid: "bundled-tasks",
         },
       };
     </script>
