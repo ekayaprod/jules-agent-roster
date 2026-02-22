@@ -781,47 +781,95 @@
         margin-bottom: 1.5rem;
       }
 
+      .select-wrapper {
+        position: relative;
+        min-width: 240px;
+      }
+
       .fusion-controls select {
-        padding: 0.75rem;
-        border-radius: 0.5rem;
-        background: var(--bg-color);
+        appearance: none;
+        -webkit-appearance: none;
+        width: 100%;
+        padding: 0.85rem 1rem;
+        padding-right: 2.5rem;
+        border-radius: 0.75rem;
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(8px);
         border: 1px solid var(--border);
         color: var(--text-primary);
         font-size: 1rem;
-        min-width: 200px;
-        transition: all 0.2s;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      .fusion-controls select:hover {
+        border-color: var(--text-secondary);
+        background: rgba(30, 41, 59, 0.8);
       }
 
       .fusion-controls select:focus {
         outline: none;
         border-color: var(--accent);
-        box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3);
+        box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        background: rgba(30, 41, 59, 1);
+      }
+
+      .select-arrow {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: var(--text-secondary);
+        transition: transform 0.2s ease, color 0.2s ease;
+      }
+
+      .fusion-controls select:focus + .select-arrow {
+        transform: translateY(-50%) rotate(180deg);
+        color: var(--accent);
       }
 
       .fusion-plus {
         font-size: 1.5rem;
         font-weight: bold;
         color: var(--text-secondary);
+        opacity: 0.3;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       #fuseBtn {
         background: linear-gradient(to right, #a855f7, #ec4899);
         color: white;
         border: none;
-        padding: 0.75rem 2rem;
-        transition: all 0.2s;
+        padding: 0.85rem 2.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+        border-radius: 0.75rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
+        letter-spacing: 0.025em;
       }
 
-      #fuseBtn:hover {
-        opacity: 0.9;
-        transform: translateY(-1px);
+      #fuseBtn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(168, 85, 247, 0.5);
+      }
+
+      #fuseBtn:active:not(:disabled) {
+        transform: scale(0.97) translateY(0);
+        box-shadow: 0 2px 8px rgba(168, 85, 247, 0.3);
       }
 
       #fuseBtn:disabled {
-        opacity: 0.5;
+        opacity: 0.4;
         cursor: not-allowed;
         transform: none;
-        background: var(--border);
+        box-shadow: none;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        color: var(--text-secondary);
       }
 
       @keyframes pulse-purple {
@@ -1112,14 +1160,50 @@
     <div class="fusion-lab-container">
       <h2>🧬 The Fusion Lab</h2>
       <div class="fusion-controls">
-        <select id="slotA" aria-label="Select first agent">
-          <option value="">Select Agent A...</option>
-        </select>
+        <div class="select-wrapper">
+          <select id="slotA" aria-label="Select Primary Protocol">
+            <option value="">Select Primary Protocol...</option>
+          </select>
+          <svg
+            class="select-arrow"
+            aria-hidden="true"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
         <span class="fusion-plus">+</span>
-        <select id="slotB" aria-label="Select second agent">
-          <option value="">Select Agent B...</option>
-        </select>
-        <button id="fuseBtn">Fuse Agents!</button>
+        <div class="select-wrapper">
+          <select id="slotB" aria-label="Select Secondary Protocol">
+            <option value="">Select Secondary Protocol...</option>
+          </select>
+          <svg
+            class="select-arrow"
+            aria-hidden="true"
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        </div>
+        <button id="fuseBtn">Initialize Fusion Sequence</button>
       </div>
 
       <!-- Fusion Animation Overlay -->
@@ -1436,7 +1520,7 @@ ${proc2}
           return {
             name: `${agent1.icon}${agent2.icon} ${agent1.name}-${agent2.name} Fusion`,
             isCustom: false,
-            description: "A dynamic fusion of two base agents.",
+            description: `A synthesized protocol combining the strengths of ${agent1.name} and ${agent2.name}.`,
             prompt: stitchedPrompt,
           };
         }
@@ -1627,9 +1711,9 @@ ${proc2}
             .join("");
 
           slotA.innerHTML =
-            '<option value="">Select Agent A...</option>' + options;
+            '<option value="">Select Primary Protocol...</option>' + options;
           slotB.innerHTML =
-            '<option value="">Select Agent B...</option>' + options;
+            '<option value="">Select Secondary Protocol...</option>' + options;
 
           // Palette+: Set initial disabled state
           if (fuseBtn) fuseBtn.disabled = true;
