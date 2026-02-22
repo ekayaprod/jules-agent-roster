@@ -29,6 +29,7 @@
 - [x] Artifact verification/helix_fixed.png
 - [x] Artifact verification/controls_visual.png
 - [x] Artifact verification/roster_verified.webp
+- [x] Redundant verification/verify_ux_enhancements.py
 
 ## 📣 Release Drift
 - [ ] (Empty)
