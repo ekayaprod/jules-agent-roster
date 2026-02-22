@@ -109,7 +109,6 @@ class RosterApp {
           agent &&
           typeof agent.name === "string" &&
           typeof agent.category === "string" &&
-          typeof agent.prompt === "string" &&
           Object.keys(CONFIG.categories).includes(agent.category);
 
         if (!isValid) {
@@ -149,7 +148,24 @@ class RosterApp {
       const rawData = await this.safeJsonParse(response, "agents.json");
       const agentsData = this.validateAgentsData(rawData);
 
-      // Use agents data directly (prompts are now embedded)
+      // Fetch Prompts for Standard Agents
+      await Promise.all(
+        agentsData.map(async (agent) => {
+          try {
+            const promptRes = await fetch(`prompts/${agent.name}.md`);
+            if (promptRes.ok) {
+              agent.prompt = await promptRes.text();
+            } else {
+              console.warn(`Failed to load prompt for ${agent.name}`);
+              agent.prompt = "Prompt missing.";
+            }
+          } catch (e) {
+            console.warn(`Error loading prompt for ${agent.name}`, e);
+            agent.prompt = "Prompt missing.";
+          }
+        }),
+      );
+
       this.agents = agentsData;
 
       // FUSION: Load Custom Agents Data
@@ -160,6 +176,34 @@ class RosterApp {
           customAgentsData = await this.safeJsonParse(
             customRes,
             "custom_agents.json",
+          );
+
+          // Fetch Prompts for Custom Agents
+          await Promise.all(
+            Object.values(customAgentsData).map(async (custom) => {
+              // Sanitize name for filename: Remove non-ASCII, trim, replace spaces with underscores.
+              const cleanName = custom.name
+                .replace(/[^\x00-\x7F]/g, "")
+                .trim()
+                .replace(/ /g, "_");
+              const filename = `prompts/fusions/${cleanName}.md`;
+
+              try {
+                const promptRes = await fetch(filename);
+                if (promptRes.ok) {
+                  custom.prompt = await promptRes.text();
+                } else {
+                  // File not found -> Assume dynamic fusion (like "The Void")
+                  custom.prompt = null;
+                }
+              } catch (e) {
+                console.warn(
+                  `Error loading custom prompt for ${custom.name}`,
+                  e,
+                );
+                custom.prompt = null;
+              }
+            }),
           );
         }
       } catch (e) {
