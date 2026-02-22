@@ -1521,6 +1521,21 @@ ${proc2}
         }
 
         /**
+         * Safely parses JSON from a fetch response, adding context to errors.
+         * @param {Response} response - The fetch response object.
+         * @param {string} label - A label for the resource (e.g., "agents.json").
+         * @returns {Promise<any>} The parsed JSON data.
+         * @throws {Error} If parsing fails, with a descriptive message.
+         */
+        async safeJsonParse(response, label) {
+          try {
+            return await response.json();
+          } catch (error) {
+            throw new Error(`Failed to parse JSON for ${label}: ${error.message}`);
+          }
+        }
+
+        /**
          * Validates the structure of the agents data and sanitizes optional fields.
          * Filters out agents that do not match the expected schema (name, category, promptFile).
          * Ensures optional fields like `scope`, and `usedIn` are of the correct type,
@@ -1762,7 +1777,7 @@ ${proc2}
         async loadData() {
           try {
             const response = await this.fetchWithRetry("agents.json");
-            const rawData = await response.json();
+            const rawData = await this.safeJsonParse(response, "agents.json");
             const agentsData = this.validateAgentsData(rawData);
 
             // Parallel fetch for all prompts
@@ -1785,9 +1800,23 @@ ${proc2}
             let customAgentsData = {};
             try {
               const customRes = await fetch("custom_agents.json");
-              if (customRes.ok) customAgentsData = await customRes.json();
+              if (customRes.ok) {
+                customAgentsData = await this.safeJsonParse(
+                  customRes,
+                  "custom_agents.json",
+                );
+              }
             } catch (e) {
-              console.warn("custom_agents.json not found yet.");
+              if (e.message.includes("parse JSON")) {
+                console.error(
+                  "CRITICAL: custom_agents.json is malformed. Fusion data may be incomplete.",
+                  e,
+                );
+              } else {
+                console.warn(
+                  "custom_agents.json not loaded (missing or network error).",
+                );
+              }
             }
 
             this.fusionCompiler = new FusionCompiler(
@@ -1798,7 +1827,10 @@ ${proc2}
           } catch (error) {
             console.error("Failed to load agents.json", error);
             if (this.elements.main) {
-              this.elements.main.innerHTML = `<div style="text-align:center; padding: 2rem; color: #f87171;">Couldn't load agents. Please check your connection.</div>`;
+              const msg = error.message.includes("JSON")
+                ? "Data corruption detected (JSON)"
+                : "Connection failed";
+              this.elements.main.innerHTML = `<div style="text-align:center; padding: 2rem; color: #f87171;">Couldn't load agents. ${msg}.</div>`;
             }
           }
         }
