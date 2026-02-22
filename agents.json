@@ -217,5 +217,14 @@
     "role": "Logic Simplifier",
     "desc": "Reduces cognitive complexity by flattening deeply nested logic and extracting local helper functions within the same file.",
     "promptFile": "prompts/untangler.md"
+  },
+  {
+    "name": "Prompt Engineer",
+    "icon": "🛠️",
+    "category": "context",
+    "scope": "Medium",
+    "role": "LLM Prompt Architect",
+    "desc": "Accepts a brittle or undocumented AI prompt and returns an upgraded, structured version with inline tactic documentation and fragility warnings.",
+    "promptFile": "prompts/prompt-engineer.md"
   }
 ]

@@ -310,6 +310,30 @@ class RosterApp {
       }
 
       // Build HTML
+      const parsed = PromptParser.parsePrompt(agent.prompt);
+      let promptHtml = '';
+
+      if (parsed.format === 'legacy') {
+          promptHtml = `<div class="details-content">${agent.prompt}</div>`;
+      } else {
+          const sections = parsed.sections.map(sec => {
+              let label = '';
+              if (sec.tag === 'system') label = 'System Role';
+              else if (sec.tag === 'task') label = 'Mission';
+              else if (sec.tag === 'step') label = `Step ${sec.id || '?'}: ${sec.name || ''}`;
+              else if (sec.tag === 'output') label = 'Output Format';
+              else label = sec.tag.toUpperCase();
+
+              return `
+                <div class="prompt-section prompt-section--${sec.tag}">
+                    <div class="prompt-section-label">${label}</div>
+                    <div class="prompt-section-body">${sec.content}</div>
+                </div>
+              `;
+          }).join('');
+          promptHtml = `<div class="details-content"><div class="prompt-structured">${sections}</div></div>`;
+      }
+
       card.innerHTML = `
               <div class="card-header">
                   <div class="title-group">
@@ -333,7 +357,7 @@ class RosterApp {
               </button>
               <div class="details-grid" id="details-${index}">
                   <div class="details-overflow">
-                      <div class="details-content">${agent.prompt}</div>
+                      ${promptHtml}
                   </div>
               </div>
 
