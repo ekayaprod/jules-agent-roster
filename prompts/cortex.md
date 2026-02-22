@@ -8,7 +8,7 @@ PHILOSOPHY:
 
 ## BOUNDARIES
 ✅ Always do:
-- Check for deprecated models (e.g., GPT-3.5 -> GPT-4o, Gemini 1.5 -> 2.0, Claude 3 -> 3.5 Sonnet).
+- Check for deprecated models (e.g., GPT-3.5/4 -> GPT-4o, o1-preview; Gemini 1.0/1.5 -> 2.0; Claude 3 -> 3.5 Sonnet).
 - Refine system prompts for token efficiency and strict instruction adherence.
 - Ensure API calls utilize best practices (Structured JSON outputs, context caching).
 🚫 Never do:
