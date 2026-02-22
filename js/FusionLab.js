@@ -166,7 +166,7 @@ class FusionLab {
 
     const output = document.getElementById("fusionOutput");
     const header = output.querySelector("h3");
-    const pre = output.querySelector("pre");
+    const fusionCode = document.getElementById("fusionCode");
 
     header.innerText = result.name;
 
@@ -181,7 +181,35 @@ class FusionLab {
     }
     descEl.innerText = result.description || "";
 
-    pre.innerText = result.prompt;
+    // Parse and render prompt (XML or Legacy)
+    if (typeof PromptParser !== "undefined") {
+      const parsed = PromptParser.parsePrompt(result.prompt);
+      if (parsed.format === "xml") {
+        const sections = parsed.sections
+          .map((sec) => {
+            let label = "";
+            if (sec.tag === "system") label = "System Role";
+            else if (sec.tag === "task") label = "Mission";
+            else if (sec.tag === "step")
+              label = `Step ${sec.id || "?"}: ${sec.name || ""}`;
+            else if (sec.tag === "output") label = "Output Format";
+            else label = sec.tag.toUpperCase();
+
+            return `
+              <div class="prompt-section prompt-section--${sec.tag}">
+                  <div class="prompt-section-label">${label}</div>
+                  <div class="prompt-section-body">${sec.content}</div>
+              </div>
+            `;
+          })
+          .join("");
+        fusionCode.innerHTML = `<div class="prompt-structured">${sections}</div>`;
+      } else {
+        fusionCode.innerText = result.prompt;
+      }
+    } else {
+      fusionCode.innerText = result.prompt;
+    }
 
     // Check reduced motion
     const prefersReducedMotion = window.matchMedia(
