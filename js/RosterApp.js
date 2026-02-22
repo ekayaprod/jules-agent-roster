@@ -287,15 +287,6 @@ class RosterApp {
         tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
       }
 
-      if (agent.usedIn) {
-        agent.usedIn
-          .split(",")
-          .forEach(
-            (p) =>
-              (tags += `<span class="power-tag">🧩 Included in ${p.trim()}</span>`),
-          );
-      }
-
       // Build HTML
       const parsed = PromptParser.parsePrompt(agent.prompt);
       let promptHtml = '';
