@@ -1,0 +1,267 @@
+class FusionLab {
+  constructor() {
+    this.agents = [];
+    this.compiler = null;
+    this.lastFusionResult = null;
+  }
+
+  /**
+   * Initializes the Fusion Lab component.
+   * @param {Array} agentsData - The list of agents.
+   * @param {Object} customAgentsData - The map of custom agent fusions.
+   */
+  init(agentsData, customAgentsData) {
+    this.agents = agentsData;
+    this.compiler = new FusionCompiler(agentsData, customAgentsData);
+    this.populateDropdowns();
+    this.bindEvents();
+  }
+
+  /**
+   * Binds event listeners for the Fusion Lab.
+   */
+  bindEvents() {
+    const slotA = document.getElementById("slotA");
+    const slotB = document.getElementById("slotB");
+    const fuseBtn = document.getElementById("fuseBtn");
+    const copyFusionBtn = document.getElementById("copyFusionBtn");
+
+    if (slotA) slotA.addEventListener("change", () => this.updateState());
+    if (slotB) slotB.addEventListener("change", () => this.updateState());
+    if (fuseBtn) fuseBtn.addEventListener("click", () => this.handleFusion());
+
+    if (copyFusionBtn) {
+      copyFusionBtn.addEventListener("click", async (e) => {
+        const btn = e.currentTarget;
+        if (this.lastFusionResult && this.lastFusionResult.prompt) {
+          await this.copyText(this.lastFusionResult.prompt);
+          this.animateButtonSuccess(btn, "Copied!");
+        }
+      });
+    }
+  }
+
+  /**
+   * Copies text to clipboard and triggers a global toast if available.
+   * @param {string} text
+   */
+  async copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      if (window.rosterApp && window.rosterApp.showToast) {
+        window.rosterApp.showToast("Fusion copied!");
+      }
+    } catch (err) {
+      // Fallback
+      const el = document.createElement("textarea");
+      el.value = text;
+      el.style.position = "fixed";
+      el.style.opacity = "0";
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
+      if (window.rosterApp && window.rosterApp.showToast) {
+        window.rosterApp.showToast("Fusion copied!");
+      }
+    }
+  }
+
+  /**
+   * Animates a button to indicate success.
+   * @param {HTMLElement} btn
+   * @param {string} msg
+   */
+  animateButtonSuccess(btn, msg) {
+    const span = btn.querySelector("span");
+    const copyIcon = btn.querySelector(".copy-icon");
+    const checkIcon = btn.querySelector(".check-icon");
+    const originalText = span.innerText;
+
+    btn.classList.add("success-state");
+    span.innerText = msg;
+    if (copyIcon) copyIcon.style.display = "none";
+    if (checkIcon) {
+      checkIcon.style.display = "block";
+      checkIcon.classList.add("animate");
+    }
+
+    setTimeout(() => {
+      btn.classList.remove("success-state");
+      span.innerText = originalText;
+      if (copyIcon) copyIcon.style.display = "block";
+      if (checkIcon) {
+        checkIcon.style.display = "none";
+        checkIcon.classList.remove("animate");
+      }
+    }, 2000);
+  }
+
+  /**
+   * Populates the Fusion Lab dropdowns with base agents.
+   */
+  populateDropdowns() {
+    const slotA = document.getElementById("slotA");
+    const slotB = document.getElementById("slotB");
+    const fuseBtn = document.getElementById("fuseBtn");
+
+    if (!slotA || !slotB) return;
+
+    const options = this.compiler.baseAgents
+      .map(
+        (agent) =>
+          `<option value="${agent.name}">${agent.icon} ${agent.name}</option>`,
+      )
+      .join("");
+
+    slotA.innerHTML =
+      '<option value="">Select Primary Protocol...</option>' + options;
+    slotB.innerHTML =
+      '<option value="">Select Secondary Protocol...</option>' + options;
+
+    if (fuseBtn) fuseBtn.disabled = true;
+  }
+
+  /**
+   * Updates the state of the Fusion button and visual indicators.
+   */
+  updateState() {
+    const slotA = document.getElementById("slotA");
+    const slotB = document.getElementById("slotB");
+    const fuseBtn = document.getElementById("fuseBtn");
+    const plusIcon = document.querySelector(".fusion-plus");
+
+    if (slotA && slotB && fuseBtn) {
+      const isReady = slotA.value !== "" && slotB.value !== "";
+      fuseBtn.disabled = !isReady;
+
+      if (plusIcon) {
+        if (isReady) {
+          plusIcon.classList.add("ready-pulse");
+          plusIcon.style.color = "#a855f7";
+        } else {
+          plusIcon.classList.remove("ready-pulse");
+          plusIcon.style.color = "var(--text-secondary)";
+        }
+      }
+    }
+  }
+
+  /**
+   * Handles the fusion logic when the Fuse button is clicked.
+   */
+  async handleFusion() {
+    const slotA = document.getElementById("slotA");
+    const slotB = document.getElementById("slotB");
+    const nameA = slotA.value;
+    const nameB = slotB.value;
+
+    if (!nameA || !nameB) return;
+
+    const agentA = this.agents.find((a) => a.name === nameA);
+    const agentB = this.agents.find((a) => a.name === nameB);
+
+    const result = this.compiler.fuse(agentA, agentB);
+    this.lastFusionResult = result;
+
+    const output = document.getElementById("fusionOutput");
+    const header = output.querySelector("h3");
+    const pre = output.querySelector("pre");
+
+    header.innerText = result.name;
+
+    // Add description under header
+    let descEl = document.getElementById("fusionDesc");
+    if (!descEl) {
+      descEl = document.createElement("p");
+      descEl.id = "fusionDesc";
+      descEl.style.color = "var(--text-secondary)";
+      descEl.style.marginTop = "0.5rem";
+      header.parentNode.insertBefore(descEl, header.nextSibling);
+    }
+    descEl.innerText = result.description || "";
+
+    pre.innerText = result.prompt;
+
+    // Check reduced motion
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      this.showResult();
+    } else {
+      this.runAnimation(agentA, agentB, result);
+    }
+  }
+
+  /**
+   * Reveals the fusion result with smooth transitions.
+   */
+  showResult() {
+    const wrapper = document.getElementById("fusionOutputWrapper");
+    if (wrapper) {
+      wrapper.classList.add("open");
+    } else {
+      // Fallback
+      const output = document.getElementById("fusionOutput");
+      if (output) output.style.display = "block";
+    }
+
+    const resultHeader = document.getElementById("fusionName");
+    if (resultHeader) {
+      resultHeader.focus();
+      resultHeader.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  }
+
+  /**
+   * Orchestrates the fusion animation sequence.
+   */
+  runAnimation(agentA, agentB, result) {
+    const overlay = document.getElementById("fusionAnimationOverlay");
+    const iconLeft = overlay.querySelector(".anim-icon.left");
+    const iconRight = overlay.querySelector(".anim-icon.right");
+    const animResult = overlay.querySelector(".anim-result");
+    const fuseBtn = document.getElementById("fuseBtn");
+    const controls = document.querySelector(".fusion-controls");
+
+    // Close result if open
+    const wrapper = document.getElementById("fusionOutputWrapper");
+    if (wrapper) wrapper.classList.remove("open");
+
+    // Setup Animation Data
+    iconLeft.innerHTML = agentA.icon;
+    iconRight.innerHTML = agentB.icon;
+    animResult.innerText = result.name;
+
+    fuseBtn.disabled = true;
+    if (controls) controls.classList.add("fusing");
+
+    // Start Animation
+    overlay.classList.add("active");
+
+    requestAnimationFrame(() => {
+      overlay.classList.add("phase-1");
+    });
+
+    setTimeout(() => {
+      overlay.classList.add("phase-2");
+    }, 1500);
+
+    setTimeout(() => {
+      overlay.classList.add("phase-3");
+    }, 2000);
+
+    setTimeout(() => {
+      overlay.classList.remove("active", "phase-1", "phase-2", "phase-3");
+      fuseBtn.disabled = false;
+      if (controls) controls.classList.remove("fusing");
+
+      this.showResult();
+    }, 3500);
+  }
+}
