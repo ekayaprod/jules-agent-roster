@@ -1,6 +1,6 @@
 # Jules Agent Roster 🤖
 
-> **Current Version:** 0.1.0
+> **Current Version:** 0.2.0
 
 > The complete, enhanced agent system for Jules AI, featuring the **Overseer Protocol** and **Plus-tier** specialists.
 
@@ -62,8 +62,6 @@ The core of this system is the **Overseer** agent. This agent runs monthly to pe
 
 * **Medic 🚑**: Hardens app against crashes and brittle logic.
 
-* **Blackbox ✈️**: Enriches logs for better debugging.
-
 * **Helix 🧬**: Deduplication Specialist. Extracts shared logic into utilities or hooks.
 
 * **Pedant 🧐**: Code Quality Enforcer. Enforces naming conventions and style guides.
@@ -88,19 +86,23 @@ The core of this system is the **Overseer** agent. This agent runs monthly to pe
 
 * **Cartographer 🗺️**: Visuals. Maps system architecture into Mermaid diagrams.
 
-* **Tutor 🎓**: Education. Adds @example usage snippets to JSDoc.
+* **Spark 💡**: Innovation Strategist. Reviews codebase for blindspots and suggests libraries.
 
-### Power Bundles
+### 🧬 The Fusion System
 
-* **Guardian ⛑️**: Code Safety Triad (Medic, Inspector, Pedant).
+The Fusion Lab allows you to combine any two agents to create a specialized hybrid agent. Select two agents in the UI to generate a unique "Fusion Prompt" that combines their strengths.
 
-* **Virtuoso 🎨**: Frontend Triad (Palette+, Wordsmith, Curator).
+**Featured Fusions:**
 
-* **Steward 🧹**: Housekeeping Triad (Scavenger, Helix, Janitor).
+* **The Guardian ⛑️** (Medic + Inspector): Hardens code against crashes and locks it in place with rigorous tests.
 
-* **Mechanic 🔧**: Architecture Triad (Bolt+, Modernizer, Architect).
+* **The Virtuoso 🎨** (Palette+ + Wordsmith): Polishes interaction flows and microcopy in a single unified pass.
 
-* **Librarian 📚**: History Triad (Herald, Scribe, Navigator).
+* **The Steward 🧹** (Janitor + Scavenger): Bumps dependencies and surgically purges the legacy polyfills they replace.
+
+* **The Catalyst ⚡** (Bolt+ + Modernizer): Upgrades legacy syntax and instantly extracts native performance gains.
+
+* **The Historian ⏳** (Herald + Scribe): Documents a release in the Changelog and the codebase JSDoc simultaneously.
 
 ## 🤝 Contributing
 
