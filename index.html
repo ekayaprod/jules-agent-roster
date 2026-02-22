@@ -1075,6 +1075,36 @@
         filter: blur(2px);
         transition: all 0.3s ease;
       }
+
+      /* Structured Prompt Styles */
+      .prompt-structured {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .prompt-section {
+        background-color: var(--details-bg);
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.8rem;
+        line-height: 1.6;
+      }
+      .prompt-section-label {
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        margin-bottom: 0.4rem;
+      }
+      .prompt-section--system .prompt-section-label { color: var(--plus-accent); }
+      .prompt-section--output .prompt-section-label { color: var(--success); }
+      .prompt-section-body {
+        color: var(--text-secondary);
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-family: inherit;
+      }
 </style>
   </head>
   <body>
@@ -1412,6 +1442,7 @@
     </script>
     <script src="js/FusionCompiler.js"></script>
     <script src="js/FusionLab.js"></script>
+    <script src="js/PromptParser.js"></script>
     <script src="js/RosterApp.js"></script>
     <script>
       // --- INITIALIZATION ---
