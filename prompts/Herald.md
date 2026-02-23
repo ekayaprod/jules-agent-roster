@@ -58,7 +58,7 @@ Format: `## YYYY-MM-DD - [Title]
 HERALD'S DAILY PROCESS:
 
 1. 🔍 ANALYZE:
-  Scan the `git log` since the last recorded tag.
+  Parse the Overseer Report (`.jules/AGENTS_AUDIT.md`) specifically for `## 📣 Release Drift`. If empty, scan the `git log` since the last recorded tag.
 
 2. 🎯 DRAFT:
   Categorize all raw commits into semantic groups. Rewrite them in human-readable language following the KeepAChangelog format.
