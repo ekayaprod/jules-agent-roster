@@ -115,11 +115,14 @@ class FusionLab {
       .join("");
 
     slotA.innerHTML =
-      '<option value="">Select Primary Protocol...</option>' + options;
+      '<option value="">Select Base Agent...</option>' + options;
     slotB.innerHTML =
-      '<option value="">Select Secondary Protocol...</option>' + options;
+      '<option value="">Select Modifier Agent...</option>' + options;
 
-    if (fuseBtn) fuseBtn.disabled = true;
+    if (fuseBtn) {
+      fuseBtn.disabled = true;
+      fuseBtn.innerText = "Ignite Fusion Protocol";
+    }
   }
 
   /**
@@ -153,16 +156,54 @@ class FusionLab {
   async handleFusion() {
     const slotA = document.getElementById("slotA");
     const slotB = document.getElementById("slotB");
+    const fuseBtn = document.getElementById("fuseBtn");
+    const errorEl = document.getElementById("fusionError");
+    const emptyState = document.getElementById("fusionEmptyState");
+
     const nameA = slotA.value;
     const nameB = slotB.value;
 
     if (!nameA || !nameB) return;
+
+    // Reset UI states
+    if (errorEl) errorEl.hidden = true;
+    if (fuseBtn) {
+      fuseBtn.classList.remove("error");
+      fuseBtn.classList.add("loading");
+      fuseBtn.innerText = "Stabilizing...";
+      fuseBtn.disabled = true;
+    }
+
+    // UX Delay
+    await new Promise((r) => setTimeout(r, 400));
 
     const agentA = this.agents.find((a) => a.name === nameA);
     const agentB = this.agents.find((a) => a.name === nameB);
 
     const result = this.compiler.fuse(agentA, agentB);
     this.lastFusionResult = result;
+
+    // Error Handling
+    if (result.name === "Error") {
+      if (fuseBtn) {
+        fuseBtn.classList.remove("loading");
+        fuseBtn.classList.add("error");
+        fuseBtn.innerText = "Ignite Fusion Protocol";
+        fuseBtn.disabled = false;
+      }
+      if (errorEl) {
+        errorEl.hidden = false;
+        const msg =
+          result.prompt === "Cannot fuse an agent with itself."
+            ? "Self-fusion unstable. Select distinct protocols."
+            : result.prompt;
+        const textSpan = errorEl.querySelector("span") || errorEl;
+        textSpan.innerText = msg;
+      }
+      return;
+    }
+
+    if (emptyState) emptyState.style.display = "none";
 
     const output = document.getElementById("fusionOutput");
     const header = output.querySelector("h3");
@@ -177,7 +218,8 @@ class FusionLab {
       descEl.id = "fusionDesc";
       descEl.style.color = "var(--text-secondary)";
       descEl.style.marginTop = "0.5rem";
-      header.parentNode.insertBefore(descEl, header.nextSibling);
+      descEl.style.marginBottom = "1.5rem";
+      output.insertBefore(descEl, fusionCode);
     }
     descEl.innerText = result.description || "";
 
@@ -227,6 +269,13 @@ class FusionLab {
    * Reveals the fusion result with smooth transitions.
    */
   showResult() {
+    const fuseBtn = document.getElementById("fuseBtn");
+    if (fuseBtn) {
+      fuseBtn.innerText = "Ignite Fusion Protocol";
+      fuseBtn.classList.remove("loading");
+      fuseBtn.disabled = false;
+    }
+
     const wrapper = document.getElementById("fusionOutputWrapper");
     if (wrapper) {
       wrapper.classList.add("open");
