@@ -718,6 +718,14 @@
         opacity: 0; /* Start invisible */
       }
 
+      /* Palette+: Fading Out */
+      .card.fading-out {
+        opacity: 0;
+        transform: scale(0.95);
+        pointer-events: none;
+        transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+      }
+
       /* Palette+: Sticky Navigation */
       html {
         scroll-behavior: smooth;
@@ -1696,6 +1704,9 @@
       };
     </script>
     <script src="js/PromptParser.js"></script>
+    <script src="js/services/AgentRepository.js"></script>
+    <script src="js/ui/ToastNotification.js"></script>
+    <script src="js/ui/AgentCard.js"></script>
     <script src="js/FusionCompiler.js"></script>
     <script src="js/FusionLab.js"></script>
     <script src="js/RosterApp.js"></script>
