@@ -1,44 +1,30 @@
 # 👁️ Overseer Report (2025-05-24)
 
-## 🛡️ Security Radar
-- [x] Missing Content Security Policy (CSP) headers
+## ⚡ Performance Bottlenecks
+- [ ] `index.html` exceeds 600 lines due to heavy inline CSS.
+- [ ] Critical JS files (`RosterApp.js`, `FusionLab.js`) load synchronously in `<head>`.
+- [ ] `verification/` folder contains 18+ uncompressed binary images (PNG/WEBP).
 
-## 🎨 UX/A11y Friction
-- [x] No "Skip to Content" link detected
-- [x] Toast feedback has race conditions and lacks context
-- [x] Invisible Focusable Element (Clear Search)
-- [x] Fusion Lab Missing Disabled State & Focus Management
+## 🛡️ Security Radar
+- [ ] `index.html` CSP policy permits `unsafe-inline` for both scripts and styles.
+- [ ] No `package-lock.json` or `yarn.lock` to guarantee reproducible dependency versions.
+
+## 🧹 Debris Field
+- [ ] `verification/` is accumulating artifact screenshots (e.g., `roster_loaded.png`, `fusion_result.png`).
+- [ ] Missing standard `package.json` for project metadata and scripts.
 
 ## 🕵️ Coverage Gaps
-- [x] Search Filtering Logic
-- [x] Robust Search Filtering Tests (Inspector)
-- [x] Prompt Parser Logic
+- [ ] `js/FusionCompiler.js` lacks isolated unit tests.
+- [ ] `js/services/AgentRepository.js` lacks isolated unit tests.
+- [ ] No test coverage for `PromptParser.js` XML parsing logic.
 
-## 🧹 Scavenger Targets
-- [x] Redundant verification/verify_roster_http.py
-- [x] Redundant verification/verify_roster_debug.py
-- [x] Redundant verification/test_search_filtering.py
-- [x] Redundant verification/test_toggle_details.py
-- [x] Redundant/Broken verification/verify_skeletons.py
-- [x] Redundant verification/verify_wordsmith_visual.py
-- [x] Redundant verification/verify_polish_screenshot.py
-- [x] Artifact verification/wordsmith_buttons.png
-- [x] Artifact verification/wordsmith_empty_state.png
-- [x] Artifact verification/polish_hover.png
-- [x] Artifact verification/polish_expanded.png
-- [x] Redundant verification/verify_fixes.py
-- [x] Artifact verification/bolt_fixed.png
-- [x] Artifact verification/helix_fixed.png
-- [x] Artifact verification/controls_visual.png
-- [x] Artifact verification/roster_verified.webp
-- [x] Redundant verification/verify_ux_enhancements.py
+## 🧼 Dependency Decay
+- [ ] Project relies on manual dependency management (no npm/yarn manifest).
+- [ ] `agents.json` and `custom_agents.json` require manual synchronization.
 
 ## 📣 Release Drift
-- [ ] (Empty)
+- [ ] `CHANGELOG.md` updates rely entirely on manual human intervention.
 
-## ✏️ Microcopy Gaps
-- [x] Inconsistent success messages (Toast vs Button vs different actions)
-- [x] Passive empty state
-- [x] Technical error messages
-- [x] Inconsistent header action buttons ('Copy Roster' vs 'Export Markdown')
-- [x] Passive/Fragmented agent descriptions in `agents.json`
+## 🎨 UX/A11y Friction
+- [ ] `FusionLab.js` injects raw HTML strings into the DOM (potential XSS vector).
+- [ ] Application renders blank screen if JavaScript is disabled or fails to load.
