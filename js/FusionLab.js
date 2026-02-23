@@ -34,67 +34,14 @@ class FusionLab {
       copyFusionBtn.addEventListener("click", async (e) => {
         const btn = e.currentTarget;
         if (this.lastFusionResult && this.lastFusionResult.prompt) {
-          await this.copyText(this.lastFusionResult.prompt);
-          this.animateButtonSuccess(btn, "Copied!");
+          await ClipboardUtils.copyText(this.lastFusionResult.prompt);
+          if (window.rosterApp && window.rosterApp.showToast) {
+            window.rosterApp.showToast("Fusion copied to clipboard");
+          }
+          ClipboardUtils.animateButtonSuccess(btn, "Copied!");
         }
       });
     }
-  }
-
-  /**
-   * Copies text to clipboard and triggers a global toast if available.
-   * @param {string} text
-   */
-  async copyText(text) {
-    try {
-      await navigator.clipboard.writeText(text);
-      if (window.rosterApp && window.rosterApp.showToast) {
-        window.rosterApp.showToast("Fusion copied to clipboard");
-      }
-    } catch (err) {
-      // Fallback
-      const el = document.createElement("textarea");
-      el.value = text;
-      el.style.position = "fixed";
-      el.style.opacity = "0";
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand("copy");
-      document.body.removeChild(el);
-      if (window.rosterApp && window.rosterApp.showToast) {
-        window.rosterApp.showToast("Fusion copied to clipboard");
-      }
-    }
-  }
-
-  /**
-   * Animates a button to indicate success.
-   * @param {HTMLElement} btn
-   * @param {string} msg
-   */
-  animateButtonSuccess(btn, msg) {
-    const span = btn.querySelector("span");
-    const copyIcon = btn.querySelector(".copy-icon");
-    const checkIcon = btn.querySelector(".check-icon");
-    const originalText = span.innerText;
-
-    btn.classList.add("success-state");
-    span.innerText = msg;
-    if (copyIcon) copyIcon.style.display = "none";
-    if (checkIcon) {
-      checkIcon.style.display = "block";
-      checkIcon.classList.add("animate");
-    }
-
-    setTimeout(() => {
-      btn.classList.remove("success-state");
-      span.innerText = originalText;
-      if (copyIcon) copyIcon.style.display = "block";
-      if (checkIcon) {
-        checkIcon.style.display = "none";
-        checkIcon.classList.remove("animate");
-      }
-    }, 2000);
   }
 
   /**

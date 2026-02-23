@@ -347,77 +347,17 @@ class RosterApp {
   }
 
   /**
-   * Copies text to the clipboard using the Clipboard API or a fallback.
-   * @param {string} text - The text to copy.
-   * @param {string} message - Success message for the toast.
-   * @returns {Promise<boolean>} True if successful.
-   */
-  async copyText(text, message) {
-    try {
-      await navigator.clipboard.writeText(text);
-      this.toast.show(message);
-      return true;
-    } catch (err) {
-      console.warn("Clipboard API failed, attempting fallback", err);
-      const el = document.createElement("textarea");
-      el.value = text;
-      el.style.position = "fixed";
-      el.style.opacity = "0";
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand("copy");
-      document.body.removeChild(el);
-      this.toast.show(message);
-      return true;
-    }
-  }
-
-  /**
-   * Animates a button to indicate success.
-   * Temporarily changes the button style and text.
-   * @param {HTMLElement} btn - The button element.
-   * @param {string} successMessage - The text to display during the success state.
-   */
-  animateButtonSuccess(btn, successMessage) {
-    const span = btn.querySelector("span");
-    const checkIcon = btn.querySelector(".check-icon");
-    // Palette+: Dynamically find primary icon (not check icon)
-    const primaryIcon = btn.querySelector("svg:not(.check-icon)");
-    const originalText = span.innerText;
-
-    btn.classList.add("success-state");
-    span.innerText = successMessage;
-    if (primaryIcon) primaryIcon.style.display = "none";
-    if (checkIcon) {
-      checkIcon.style.display = "block";
-      // Palette+: Trigger pop animation
-      checkIcon.classList.add("animate");
-    }
-
-    setTimeout(() => {
-      btn.classList.remove("success-state");
-      span.innerText = originalText;
-      if (primaryIcon) primaryIcon.style.display = "block";
-      if (checkIcon) {
-        checkIcon.style.display = "none";
-        checkIcon.classList.remove("animate");
-      }
-    }, 2000);
-  }
-
-  /**
    * Copies a specific agent's prompt to the clipboard.
    * @param {string|number} index - Index of the agent in `this.agents`.
    * @param {HTMLElement} btn - The button triggered.
    */
   async copyAgent(index, btn) {
     const agent = this.agents[index];
-    const success = await this.copyText(
-      agent.prompt,
-      "Copied to clipboard",
-    );
+    const success = await ClipboardUtils.copyText(agent.prompt);
+
     if (success) {
-      this.animateButtonSuccess(btn, "Copied!");
+      this.toast.show("Copied to clipboard");
+      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
     }
   }
 
@@ -521,7 +461,7 @@ class RosterApp {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    this.animateButtonSuccess(btn, "Downloaded!");
+    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
     this.elements.downloadDropdownMenu?.classList.remove("visible");
   }
 
@@ -551,7 +491,7 @@ class RosterApp {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    this.animateButtonSuccess(btn, "Downloaded!");
+    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
   }
 
   /**
@@ -567,12 +507,11 @@ class RosterApp {
           `${a.prompt}\n\n--------------------------------------------------------------------------------`,
       )
       .join("\n\n");
-    const success = await this.copyText(
-      header + body,
-      "Copied to clipboard",
-    );
+    const success = await ClipboardUtils.copyText(header + body);
+
     if (success) {
-      this.animateButtonSuccess(btn, "Copied!");
+      this.toast.show("Copied to clipboard");
+      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
     }
   }
 
