@@ -14,6 +14,7 @@ class RosterApp {
     this.state = {
       toastTimeout: null,
     };
+    this.customAgents = {};
     this.fusionLab = null;
   }
 
@@ -205,6 +206,8 @@ class RosterApp {
               }
             }),
           );
+
+          this.customAgents = customAgentsData;
         }
       } catch (e) {
         if (e.message.includes("parse JSON")) {
@@ -417,6 +420,24 @@ class RosterApp {
     this.elements.downloadAllBtn?.addEventListener("click", (e) =>
       this.downloadAll(e.currentTarget),
     );
+    this.elements.downloadDropdownBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      this.toggleDownloadDropdown();
+    });
+    this.elements.downloadCustomBtn?.addEventListener("click", (e) =>
+      this.downloadCustomAgents(e.currentTarget),
+    );
+
+    // Global click to close dropdown
+    document.addEventListener("click", (e) => {
+      if (
+        this.elements.downloadDropdownMenu?.classList.contains("visible") &&
+        !this.elements.downloadDropdownMenu.contains(e.target) &&
+        !this.elements.downloadDropdownBtn.contains(e.target)
+      ) {
+        this.elements.downloadDropdownMenu.classList.remove("visible");
+      }
+    });
 
     // Event Delegation
     this.elements.main?.addEventListener("click", (e) => {
@@ -616,6 +637,56 @@ class RosterApp {
     if (success) {
       this.animateButtonSuccess(btn, "Copied!");
     }
+  }
+
+  /**
+   * Toggles the visibility of the download dropdown menu.
+   */
+  toggleDownloadDropdown() {
+    const menu = this.elements.downloadDropdownMenu;
+    if (menu) {
+      menu.classList.toggle("visible");
+    }
+  }
+
+  /**
+   * Generates a downloadable Markdown file containing all custom agent (fusion) prompts.
+   * Creates a Blob and triggers a download.
+   * @param {HTMLElement} btn - The button that triggered the download.
+   */
+  downloadCustomAgents(btn) {
+    const header =
+      "JULES CUSTOM AGENT ROSTER (FUSIONS)\n\nThis roster contains synthesized protocols from the Fusion Lab.\n\n--------------------------------------------------------------------------------\n\n";
+
+    const validCustomAgents = Object.values(this.customAgents).filter(
+      (a) => a.prompt && a.prompt.length > 0
+    );
+
+    if (validCustomAgents.length === 0) {
+      this.showToast("No custom agents available to download.");
+      return;
+    }
+
+    const body = validCustomAgents
+      .map(
+        (a) =>
+          `${a.prompt}\n\n--------------------------------------------------------------------------------`,
+      )
+      .join("\n\n");
+
+    const content = header + body;
+    const blob = new Blob([content], { type: "text/markdown" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "jules_custom_agents.md";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    this.animateButtonSuccess(btn, "Downloaded!");
+    this.elements.downloadDropdownMenu?.classList.remove("visible");
   }
 
   /**

@@ -287,6 +287,66 @@
         background-color: var(--success) !important;
       }
 
+      /* Palette+: Download Group & Dropdown */
+      .download-group {
+        display: flex;
+        align-items: stretch;
+        position: relative;
+      }
+
+      .download-main-btn {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+      }
+
+      .download-dropdown-btn {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        min-width: 40px;
+        justify-content: center;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 0.5rem;
+        background-color: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        z-index: 50;
+        min-width: 260px;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      .dropdown-menu.visible {
+        display: flex;
+        animation: fadeIn 0.2s ease-out;
+      }
+
+      .dropdown-item {
+        width: 100%;
+        background-color: transparent !important;
+        color: var(--text-primary) !important;
+        border: none;
+        border-radius: 0;
+        padding: 0.75rem 1rem;
+        justify-content: flex-start;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .dropdown-item:hover {
+        background-color: rgba(56, 189, 248, 0.1) !important;
+        color: var(--accent) !important;
+      }
+
       input[type="text"] {
         padding: 0.75rem;
         padding-left: 2.75rem; /* Palette+: Space for Search icon */
@@ -1274,43 +1334,108 @@
           <span>Copy All Prompts</span>
         </button>
 
-        <button id="downloadAllBtn" aria-label="Download all agent prompts as a Markdown file">
-          <svg
-            aria-hidden="true"
-            focusable="false"
-            width="20"
-            height="20"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
+        <div class="download-group">
+          <button
+            id="downloadAllBtn"
+            class="download-main-btn"
+            aria-label="Download all agent prompts as a Markdown file"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+              />
+            </svg>
+            <!-- Palette+: Success Check Icon -->
+            <svg
+              class="check-icon"
+              style="display: none"
+              aria-hidden="true"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
               stroke-width="2"
-              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-            />
-          </svg>
-          <!-- Palette+: Success Check Icon -->
-          <svg
-            class="check-icon"
-            style="display: none"
-            aria-hidden="true"
-            width="20"
-            height="20"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+            <span>Download All Prompts</span>
+          </button>
+          <button
+            id="downloadDropdownBtn"
+            class="download-dropdown-btn"
+            aria-label="More download options"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-          <span>Download All Prompts</span>
-        </button>
+            <svg
+              aria-hidden="true"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+          <div id="downloadDropdownMenu" class="dropdown-menu">
+            <button id="downloadCustomBtn" class="dropdown-item">
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                style="margin-right: 0.5rem"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
+                />
+              </svg>
+              <span>Download Custom Agents</span>
+              <svg
+                class="check-icon"
+                style="display: none; margin-left: auto"
+                aria-hidden="true"
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1525,6 +1650,9 @@
           clearBtn: "#clearBtn",
           copyAllBtn: "#copyAllBtn",
           downloadAllBtn: "#downloadAllBtn",
+          downloadDropdownBtn: "#downloadDropdownBtn",
+          downloadDropdownMenu: "#downloadDropdownMenu",
+          downloadCustomBtn: "#downloadCustomBtn",
           toast: "#toast",
           announcer: "#search-announcer",
           emptyState: "#emptyState",
