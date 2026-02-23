@@ -502,9 +502,11 @@
         border-radius: 4px;
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 4px;
         font-family: monospace;
         letter-spacing: 0.05em;
+        line-height: 1.2;
       }
 
       .scope-small {
@@ -641,7 +643,7 @@
         padding: 1rem 2rem;
         border-radius: 0.5rem;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-        transform: translateY(150%);
+        transform: translateY(200%);
         transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 50;
         font-weight: 600;
@@ -804,6 +806,17 @@
         }
         .nav-pill {
           padding: 0.5rem 1rem;
+        }
+
+        .fusion-header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1rem;
+        }
+
+        #copyFusionBtn {
+            width: 100% !important;
+            justify-content: center;
         }
       }
 
@@ -1025,11 +1038,11 @@
       }
 
       .fusion-animation-overlay.active .anim-icon.left {
-        animation: floatInLeft 1.5s ease-in forwards, fadeOut 0.2s ease-out 1.5s forwards;
+        animation: floatInLeft 1.5s ease-in forwards, fadeOut 0.05s ease-out 1.5s forwards;
       }
 
       .fusion-animation-overlay.active .anim-icon.right {
-        animation: floatInRight 1.5s ease-in forwards, fadeOut 0.2s ease-out 1.5s forwards;
+        animation: floatInRight 1.5s ease-in forwards, fadeOut 0.05s ease-out 1.5s forwards;
       }
 
       @keyframes floatInLeft {
