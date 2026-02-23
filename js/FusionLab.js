@@ -317,17 +317,29 @@ class FusionLab {
     animResult.innerText = result.name;
 
     // Determine Result Icon
-    let resultIcon = agentA.icon + agentB.icon;
     if (result.isCustom && result.name) {
       // Extract emoji from end of name string (e.g. "The Void ☠️")
       const parts = result.name.trim().split(" ");
       const lastPart = parts[parts.length - 1];
       // Simple check if it looks like an emoji/icon (not a word)
       if (lastPart && !/^[A-Za-z0-9]+$/.test(lastPart)) {
-        resultIcon = lastPart;
+        if (iconResult) iconResult.innerHTML = lastPart;
+      } else {
+        if (iconResult) iconResult.innerHTML = agentA.icon + agentB.icon;
+      }
+    } else {
+      // Standard Fusion: Emoji Kitchen
+      const iconA = agentA.icon.trim();
+      const iconB = agentB.icon.trim();
+
+      // Use Emoji Kitchen API
+      const imgUrl = `https://emojik.vercel.app/s/${iconA}_${iconB}?size=128`;
+
+      if (iconResult) {
+        // Fallback handled by onerror
+        iconResult.innerHTML = `<img src="${imgUrl}" alt="${result.name}" style="width: 1em; height: 1em; object-fit: contain;" onerror="this.style.display='none'; this.parentElement.innerText='${iconA}${iconB}'" />`;
       }
     }
-    if (iconResult) iconResult.innerHTML = resultIcon;
 
     fuseBtn.disabled = true;
     if (controls) controls.classList.add("fusing");
