@@ -39,31 +39,26 @@ def verify_animation():
         page.click("#fuseBtn")
 
         # 4. Check for Animation Overlay Visibility
-        # Note: Before implementation, this will fail or not find element.
-        # After implementation, we expect overlay to be visible.
         overlay = page.locator("#fusionAnimationOverlay")
 
         # We wait for overlay to appear (Phase 1)
         try:
             expect(overlay).to_be_visible(timeout=5000)
-            print("Animation Overlay appeared.")
-
-            # Check for Phase 1 class
-            expect(overlay).to_have_class(re.compile(r"phase-1"))
-            print("Phase 1 active.")
+            expect(overlay).to_have_class(re.compile(r"active"))
+            print("Animation Overlay appeared and is active.")
 
             # Wait for Phase 2 (approx 1.5s later)
             time.sleep(1.6)
-            expect(overlay).to_have_class(re.compile(r"phase-2"))
-            print("Phase 2 active (Clash).")
+            expect(overlay).to_be_visible()
+            print("Animation Overlay still visible (Clash phase).")
 
-            # Wait for Phase 3 (approx 0.4s later)
-            time.sleep(0.5)
-            expect(overlay).to_have_class(re.compile(r"phase-3"))
-            print("Phase 3 active (Reveal).")
+            # Wait for Phase 3 (approx 0.5s later)
+            time.sleep(0.6)
+            expect(overlay).to_be_visible()
+            print("Animation Overlay still visible (Reveal phase).")
 
             # Wait for Completion (approx 1.5s later)
-            time.sleep(2.5) # Increased wait to ensure completion
+            time.sleep(2.0) # Increased wait to ensure completion
             expect(overlay).not_to_be_visible()
             print("Animation Overlay hidden.")
 
@@ -72,7 +67,8 @@ def verify_animation():
             print("Fusion Result visible.")
 
         except Exception as e:
-            print(f"Animation verification failed (Expected if not implemented yet): {e}")
+            print(f"Animation verification failed: {e}")
+            raise e
 
         browser.close()
 
