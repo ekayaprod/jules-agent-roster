@@ -5,6 +5,12 @@
  */
 const PromptParser = {
   /**
+   * Reusable DOMParser instance to avoid repeated instantiation.
+   * @private
+   */
+  _parser: typeof DOMParser !== 'undefined' ? new DOMParser() : null,
+
+  /**
    * Parses a raw prompt string into a structured object.
    * @param {string} rawText - The raw prompt text.
    * @returns {Object} Parsed result: { format: 'xml'|'legacy', sections: Array, raw: string }
@@ -23,7 +29,8 @@ const PromptParser = {
 
     try {
       // Use DOMParser to parse the XML structure
-      const parser = new DOMParser();
+      const parser = this._parser || new DOMParser();
+
       // Wrap in a root element to ensure we can parse multiple top-level siblings
       // and handle whitespace/text nodes gracefully.
       const wrappedText = `<root>${rawText}</root>`;
