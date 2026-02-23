@@ -1226,29 +1226,47 @@
       }
 
       .fusion-error {
-        background-color: rgba(239, 68, 68, 0.05);
+        background-color: rgba(239, 68, 68, 0.08); /* Palette+: Slightly richer bg */
         color: #fca5a5;
+        border: 1px solid rgba(239, 68, 68, 0.2);
         border-left: 4px solid #ef4444;
-        padding: 1rem;
-        border-radius: 0.25rem;
+        padding: 1rem 1.25rem;
+        border-radius: 0.5rem; /* Palette+: Softer corners */
         margin-bottom: 1.5rem;
         display: flex;
-        align-items: flex-start;
+        align-items: center; /* Palette+: Center alignment for better flow */
         gap: 1rem;
-        font-size: 0.9rem;
-        animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        font-size: 0.95rem; /* Palette+: Slightly larger for readability */
+        font-weight: 500;
+        animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; /* Palette+: Smooth entry */
         text-align: left;
-        backdrop-filter: blur(4px);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.1);
       }
 
       .fusion-error[hidden] {
         display: none;
       }
 
+      /* Palette+: Error Icon container */
+      .fusion-error svg {
+        flex-shrink: 0;
+        color: #ef4444;
+        filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.4));
+      }
+
       #fuseBtn.loading {
         cursor: wait;
-        opacity: 0.8;
-        animation: pulse-purple 1.5s infinite;
+        opacity: 0.9;
+        background: linear-gradient(to right, #9333ea, #db2777); /* Palette+: Deeper gradient during load */
+        box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        animation: pulse-glow 2s infinite;
+      }
+
+      @keyframes pulse-glow {
+        0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
       }
 
       #fuseBtn.error {
