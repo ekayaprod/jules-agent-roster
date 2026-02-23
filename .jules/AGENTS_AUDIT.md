@@ -12,6 +12,7 @@
 ## 🕵️ Coverage Gaps
 - [x] Search Filtering Logic
 - [x] Robust Search Filtering Tests (Inspector)
+- [x] Prompt Parser Logic
 
 ## 🧹 Scavenger Targets
 - [x] Redundant verification/verify_roster_http.py
