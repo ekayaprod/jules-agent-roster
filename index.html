@@ -1185,16 +1185,30 @@
       /* Fusion UX Polish */
       .fusion-empty-state {
         text-align: center;
-        padding: 3rem 1.5rem;
+        padding: 4rem 2rem;
         color: var(--text-secondary);
         border: 1px dashed var(--border);
-        border-radius: 0.5rem;
+        border-radius: 1rem;
         margin-top: 2rem;
-        background: rgba(15, 23, 42, 0.3);
+        background: radial-gradient(
+          circle at center,
+          rgba(56, 189, 248, 0.05) 0%,
+          transparent 70%
+        );
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
+        gap: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .fusion-empty-state:hover {
+        border-color: var(--accent);
+        background: radial-gradient(
+          circle at center,
+          rgba(56, 189, 248, 0.08) 0%,
+          transparent 70%
+        );
       }
 
       .fusion-empty-state svg {
@@ -1204,18 +1218,19 @@
       }
 
       .fusion-error {
-        background-color: rgba(239, 68, 68, 0.1);
+        background-color: rgba(239, 68, 68, 0.05);
         color: #fca5a5;
-        border: 1px solid rgba(239, 68, 68, 0.2);
+        border-left: 4px solid #ef4444;
         padding: 1rem;
-        border-radius: 0.5rem;
+        border-radius: 0.25rem;
         margin-bottom: 1.5rem;
         display: flex;
-        align-items: center;
-        gap: 0.75rem;
+        align-items: flex-start;
+        gap: 1rem;
         font-size: 0.9rem;
-        animation: shake 0.4s ease-in-out;
+        animation: shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
         text-align: left;
+        backdrop-filter: blur(4px);
       }
 
       .fusion-error[hidden] {
@@ -1498,7 +1513,7 @@
       <!-- Fusion Empty State -->
       <div id="fusionEmptyState" class="fusion-empty-state">
         <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
-        <p>Select a Base and Modifier to synthesize a new protocol.</p>
+        <p>Ready to experiment? Select two agents above to synthesize a powerful new protocol.</p>
       </div>
 
       <!-- Fusion Animation Overlay -->
