@@ -177,9 +177,6 @@ class FusionLab {
       fuseBtn.disabled = true;
     }
 
-    // UX Delay
-    await new Promise((r) => setTimeout(r, 600)); // Palette+: Slightly longer for drama
-
     const agentA = this.agents.find((a) => a.name === nameA);
     const agentB = this.agents.find((a) => a.name === nameB);
 
@@ -356,20 +353,8 @@ class FusionLab {
     // Start Animation
     overlay.classList.add("active");
 
-    requestAnimationFrame(() => {
-      overlay.classList.add("phase-1");
-    });
-
     setTimeout(() => {
-      overlay.classList.add("phase-2");
-    }, 1500);
-
-    setTimeout(() => {
-      overlay.classList.add("phase-3");
-    }, 2000);
-
-    setTimeout(() => {
-      overlay.classList.remove("active", "phase-1", "phase-2", "phase-3");
+      overlay.classList.remove("active");
       fuseBtn.disabled = false;
       if (controls) controls.classList.remove("fusing");
 

@@ -502,9 +502,11 @@
         border-radius: 4px;
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 4px;
         font-family: monospace;
         letter-spacing: 0.05em;
+        line-height: 1.2;
       }
 
       .scope-small {
@@ -641,7 +643,7 @@
         padding: 1rem 2rem;
         border-radius: 0.5rem;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-        transform: translateY(150%);
+        transform: translateY(200%);
         transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 50;
         font-weight: 600;
@@ -804,6 +806,17 @@
         }
         .nav-pill {
           padding: 0.5rem 1rem;
+        }
+
+        .fusion-header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1rem;
+        }
+
+        #copyFusionBtn {
+            width: 100% !important;
+            justify-content: center;
         }
       }
 
@@ -1020,16 +1033,16 @@
       }
 
       /* Initial States for Phase 1 */
-      .phase-1 .anim-icon {
+      .fusion-animation-overlay.active .anim-icon {
         opacity: 1;
       }
 
-      .phase-1 .anim-icon.left {
-        animation: floatInLeft 1.5s ease-in forwards;
+      .fusion-animation-overlay.active .anim-icon.left {
+        animation: floatInLeft 1.5s ease-in forwards, fadeOut 0.05s ease-out 1.5s forwards;
       }
 
-      .phase-1 .anim-icon.right {
-        animation: floatInRight 1.5s ease-in forwards;
+      .fusion-animation-overlay.active .anim-icon.right {
+        animation: floatInRight 1.5s ease-in forwards, fadeOut 0.05s ease-out 1.5s forwards;
       }
 
       @keyframes floatInLeft {
@@ -1042,9 +1055,13 @@
         100% { transform: translateX(30px) scale(1.2); opacity: 1; } /* Meet at center-right */
       }
 
+      @keyframes fadeOut {
+        to { opacity: 0; }
+      }
+
       /* Phase 2: Clash */
-      .phase-2 .anim-arena {
-        animation: shake 0.5s ease-in-out;
+      .fusion-animation-overlay.active .anim-arena {
+        animation: shake 0.5s ease-in-out 1.5s;
       }
 
       .anim-flash {
@@ -1060,15 +1077,8 @@
         pointer-events: none;
       }
 
-      .phase-2 .anim-flash {
-        animation: flash 0.5s ease-out forwards;
-      }
-
-      /* Icons fade out on clash */
-      .phase-2 .anim-icon.left,
-      .phase-2 .anim-icon.right {
-        opacity: 0;
-        transition: opacity 0.2s ease-out;
+      .fusion-animation-overlay.active .anim-flash {
+        animation: flash 0.5s ease-out 1.5s forwards;
       }
 
       /* Result Icon Emerges */
@@ -1081,8 +1091,8 @@
         text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
       }
 
-      .phase-2 .anim-icon.result {
-        animation: emerge 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s forwards;
+      .fusion-animation-overlay.active .anim-icon.result {
+        animation: emerge 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.6s forwards;
       }
 
       @keyframes emerge {
@@ -1117,13 +1127,9 @@
         padding: 0 1rem;
       }
 
-      .phase-3 .anim-result {
-        animation: reveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      .fusion-animation-overlay.active .anim-result {
+        animation: reveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 2.0s forwards;
         text-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);
-      }
-
-      .phase-3 .anim-icon {
-        opacity: 0; /* Hide icons on reveal */
       }
 
       @keyframes reveal {
