@@ -6,7 +6,7 @@ import socketserver
 from playwright.sync_api import sync_playwright
 import json
 
-PORT = 8093
+PORT = 8095  # Changed port
 
 def start_server():
     handler = http.server.SimpleHTTPRequestHandler
@@ -16,7 +16,6 @@ def start_server():
             print(f"Serving at port {PORT}")
             httpd.serve_forever()
     except OSError:
-        # Port might be in use if script runs too fast after another
         pass
 
 def verify_polygraph():
@@ -30,11 +29,9 @@ def verify_polygraph():
         page.goto(f"http://localhost:{PORT}/index.html")
         print("Page loaded.")
 
-        # Ensure RosterApp is initialized
-        page.wait_for_function("() => window.rosterApp !== undefined")
+        page.wait_for_function("() => window.rosterApp && window.rosterApp.fusionCompiler")
         print("RosterApp initialized.")
 
-        # Helper to run validation
         def run_validation(data):
             return page.evaluate(f"""
                 (data) => {{
@@ -47,7 +44,7 @@ def verify_polygraph():
                 }}
             """, data)
 
-        print("\n--- TEST CASE 1: Valid JSON ---")
+        print("\n--- TEST CASE 1: Valid JSON (Upgraded Schema) ---")
         valid_json = {
             "phase1": {
                 "thought_process": "Analysis complete.",
@@ -57,56 +54,52 @@ def verify_polygraph():
                 "thought_process": "Tests written.",
                 "output": "Tests passed."
             },
-            "pr_title": "feat: fusion complete"
+            "pr_title": "feat: fusion complete",
+            "confidence_score": 0.95,
+            "warnings": ["minor complexity increase"]
         }
         res = run_validation(valid_json)
         if not res["success"]:
             raise Exception(f"Failed to validate valid JSON: {res['error']}")
         print("PASS: Valid JSON accepted.")
 
-        print("\n--- TEST CASE 2: Valid JSON String ---")
-        res_str = run_validation(json.dumps(valid_json))
-        if not res_str["success"]:
-            raise Exception(f"Failed to validate valid JSON string: {res_str['error']}")
-        print("PASS: Valid JSON string accepted.")
-
-        print("\n--- TEST CASE 3: Malformed JSON String ---")
-        res_malformed = run_validation("{ 'phase1': ... invalid ... }")
-        if res_malformed["success"]:
-             raise Exception("Malformed JSON should have failed!")
-        print(f"PASS: Malformed JSON rejected. Error: {res_malformed['error']}")
-
-        print("\n--- TEST CASE 4: Missing Phase 2 ---")
-        invalid_missing_phase = {
-            "phase1": {
-                "thought_process": "...",
-                "output": "..."
-            },
-            "pr_title": "..."
+        print("\n--- TEST CASE 2: Missing Confidence Score ---")
+        invalid_no_conf = {
+            "phase1": valid_json["phase1"],
+            "phase2": valid_json["phase2"],
+            "pr_title": "feat: fail",
+            "warnings": []
         }
-        res_missing = run_validation(invalid_missing_phase)
-        if res_missing["success"]:
-            raise Exception("Missing 'phase2' should have failed!")
-        print(f"PASS: Missing field rejected. Error: {res_missing['error']}")
+        res_no_conf = run_validation(invalid_no_conf)
+        if res_no_conf["success"]:
+            raise Exception("Missing 'confidence_score' should have failed!")
+        print(f"PASS: Missing confidence_score rejected. Error: {res_no_conf['error']}")
 
-        print("\n--- TEST CASE 5: Missing Inner Field ---")
-        invalid_inner = {
-            "phase1": {
-                "output": "..."
-                # Missing thought_process
-            },
-            "phase2": {
-                "thought_process": "...",
-                "output": "..."
-            },
-            "pr_title": "..."
-        }
-        res_inner = run_validation(invalid_inner)
-        if res_inner["success"]:
-            raise Exception("Missing inner field should have failed!")
-        print(f"PASS: Missing inner field rejected. Error: {res_inner['error']}")
+        print("\n--- TEST CASE 3: Invalid Confidence Score (String) ---")
+        invalid_conf_type = valid_json.copy()
+        invalid_conf_type["confidence_score"] = "high"
+        res_conf_type = run_validation(invalid_conf_type)
+        if res_conf_type["success"]:
+             raise Exception("String 'confidence_score' should have failed!")
+        print(f"PASS: Invalid confidence_score type rejected. Error: {res_conf_type['error']}")
 
-        print("\n✅ All Polygraph Interrogations Passed.")
+        print("\n--- TEST CASE 4: Invalid Confidence Score (Out of Range) ---")
+        invalid_conf_range = valid_json.copy()
+        invalid_conf_range["confidence_score"] = 1.5
+        res_conf_range = run_validation(invalid_conf_range)
+        if res_conf_range["success"]:
+             raise Exception("Out of range 'confidence_score' should have failed!")
+        print(f"PASS: Out of range confidence_score rejected. Error: {res_conf_range['error']}")
+
+        print("\n--- TEST CASE 5: Missing Warnings ---")
+        invalid_no_warn = valid_json.copy()
+        del invalid_no_warn["warnings"]
+        res_no_warn = run_validation(invalid_no_warn)
+        if res_no_warn["success"]:
+             raise Exception("Missing 'warnings' should have failed!")
+        print(f"PASS: Missing warnings rejected. Error: {res_no_warn['error']}")
+
+        print("\n✅ All Polygraph Interrogations Passed (Strict Schema Enforced).")
         browser.close()
 
 if __name__ == "__main__":

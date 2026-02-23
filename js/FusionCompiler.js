@@ -95,6 +95,15 @@ class FusionCompiler {
     return { boundaries, process };
   }
 
+  escapeXML(str) {
+    if (!str) return "";
+    return str.replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&apos;");
+  }
+
   stitch(agent1, agent2, overrideName = null) {
     let p1 = agent1;
     let p2 = agent2;
@@ -110,18 +119,21 @@ class FusionCompiler {
     const content1 = this.extractAgentContent(p1.prompt);
     const content2 = this.extractAgentContent(p2.prompt);
 
-    const bound1 = content1.boundaries;
-    const bound2 = content2.boundaries;
-    const proc1 = content1.process;
-    const proc2 = content2.process;
+    const bound1 = this.escapeXML(content1.boundaries);
+    const bound2 = this.escapeXML(content2.boundaries);
+    const proc1 = this.escapeXML(content1.process);
+    const proc2 = this.escapeXML(content2.process);
 
     const prTitle = overrideName
       ? overrideName
       : `🧬 Fusion: [${p1.name} + ${p2.name} Task]`;
 
-    return `You are a dynamic Fusion Agent combining "${p1.name}" ${p1.icon} and "${p2.name}" ${p2.icon}.
+    return `<system>
+You are a dynamic Fusion Agent combining "${p1.name}" ${p1.icon} and "${p2.name}" ${p2.icon}.
 Your mission is to execute a dual-phase workflow sequentially.
+</system>
 
+<task>
 ## BOUNDARIES
 You must obey the strict boundaries of both constituent agents. If boundaries conflict, prioritize the safety and non-destructive constraints.
 
@@ -130,17 +142,17 @@ ${bound1}
 
 ### ${p2.name}'s Boundaries:
 ${bound2}
+</task>
 
-## PROCESS
-You must execute these phases sequentially. Do not start Phase 2 until Phase 1 is logically complete.
-
-### Phase 1: The ${p1.name} Phase
+<step id="1" name="The ${p1.name} Phase">
 ${proc1}
+</step>
 
-### Phase 2: The ${p2.name} Phase
+<step id="2" name="The ${p2.name} Phase">
 ${proc2}
+</step>
 
-## OUTPUT FORMAT
+<output>
 You must return your final response as a strict JSON object adhering to this schema:
 {
   "phase1": {
@@ -151,8 +163,11 @@ You must return your final response as a strict JSON object adhering to this sch
     "thought_process": "string",
     "output": "string"
   },
-  "pr_title": "${prTitle}"
-}`;
+  "pr_title": "${prTitle}",
+  "confidence_score": 1.0, // float 0.0-1.0
+  "warnings": [] // array of strings
+}
+</output>`;
   }
 
   /**
@@ -175,6 +190,7 @@ You must return your final response as a strict JSON object adhering to this sch
       throw new Error("Fusion output must be an object.");
     }
 
+    // Phase 1 Validation
     if (!data.phase1 || typeof data.phase1 !== "object") {
       throw new Error("Missing or invalid 'phase1' object.");
     }
@@ -185,6 +201,7 @@ You must return your final response as a strict JSON object adhering to this sch
       throw new Error("Phase 1 missing 'output' string.");
     }
 
+    // Phase 2 Validation
     if (!data.phase2 || typeof data.phase2 !== "object") {
       throw new Error("Missing or invalid 'phase2' object.");
     }
@@ -195,8 +212,24 @@ You must return your final response as a strict JSON object adhering to this sch
       throw new Error("Phase 2 missing 'output' string.");
     }
 
+    // Title Validation
     if (!data.pr_title || typeof data.pr_title !== "string") {
       throw new Error("Missing or invalid 'pr_title' string.");
+    }
+
+    // New Strict Fields Validation
+    if (data.confidence_score === undefined || typeof data.confidence_score !== "number") {
+      throw new Error("Missing or invalid 'confidence_score' number.");
+    }
+    if (data.confidence_score < 0 || data.confidence_score > 1) {
+      throw new Error("'confidence_score' must be between 0.0 and 1.0.");
+    }
+
+    if (!Array.isArray(data.warnings)) {
+      throw new Error("Missing or invalid 'warnings' array.");
+    }
+    if (data.warnings.some(w => typeof w !== "string")) {
+       throw new Error("'warnings' array must contain only strings.");
     }
 
     return data;
