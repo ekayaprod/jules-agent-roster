@@ -170,7 +170,7 @@ class FusionLab {
     if (fuseBtn) {
       fuseBtn.classList.remove("error");
       fuseBtn.classList.add("loading");
-      fuseBtn.innerText = "Stabilizing...";
+      fuseBtn.innerText = "Synthesizing...";
       fuseBtn.disabled = true;
     }
 
@@ -195,7 +195,7 @@ class FusionLab {
         errorEl.hidden = false;
         const msg =
           result.prompt === "Cannot fuse an agent with itself."
-            ? "Self-fusion unstable. Select distinct protocols."
+            ? "Identical protocols cannot be fused. Select a different modifier to ignite the process."
             : result.prompt;
         const textSpan = errorEl.querySelector("span") || errorEl;
         textSpan.innerText = msg;
