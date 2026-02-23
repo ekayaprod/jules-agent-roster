@@ -297,13 +297,18 @@ class RosterApp {
   /**
    * Renders the agent cards into their respective category grids.
    * Constructs HTML for each agent including tags and action buttons.
+   * Uses DocumentFragment to minimize reflows.
    */
   renderAgents() {
     const categoryContainers = {};
+    const fragments = {};
+
     Object.keys(CONFIG.categories).forEach((key) => {
-      categoryContainers[key] = document.getElementById(
-        CONFIG.categories[key],
-      );
+      const container = document.getElementById(CONFIG.categories[key]);
+      categoryContainers[key] = container;
+      if (container) {
+        fragments[key] = document.createDocumentFragment();
+      }
     });
 
     let globalIndex = 0;
@@ -339,24 +344,24 @@ class RosterApp {
       let promptHtml = '';
 
       if (parsed.format === 'legacy') {
-          promptHtml = `<div class="details-content">${agent.prompt}</div>`;
+        promptHtml = `<div class="details-content">${agent.prompt}</div>`;
       } else {
-          const sections = parsed.sections.map(sec => {
-              let label = '';
-              if (sec.tag === 'system') label = 'System Role';
-              else if (sec.tag === 'task') label = 'Mission';
-              else if (sec.tag === 'step') label = `Step ${sec.id || '?'}: ${sec.name || ''}`;
-              else if (sec.tag === 'output') label = 'Output Format';
-              else label = sec.tag.toUpperCase();
+        const sections = parsed.sections.map(sec => {
+          let label = '';
+          if (sec.tag === 'system') label = 'System Role';
+          else if (sec.tag === 'task') label = 'Mission';
+          else if (sec.tag === 'step') label = `Step ${sec.id || '?'}: ${sec.name || ''}`;
+          else if (sec.tag === 'output') label = 'Output Format';
+          else label = sec.tag.toUpperCase();
 
-              return `
+          return `
                 <div class="prompt-section prompt-section--${sec.tag}">
                     <div class="prompt-section-label">${label}</div>
                     <div class="prompt-section-body">${sec.content}</div>
                 </div>
               `;
-          }).join('');
-          promptHtml = `<div class="details-content"><div class="prompt-structured">${sections}</div></div>`;
+        }).join('');
+        promptHtml = `<div class="details-content"><div class="prompt-structured">${sections}</div></div>`;
       }
 
       card.innerHTML = `
@@ -398,7 +403,17 @@ class RosterApp {
               </div>
           `;
 
-      container.appendChild(card);
+      // Append to fragment instead of direct DOM
+      if (fragments[agent.category]) {
+        fragments[agent.category].appendChild(card);
+      }
+    });
+
+    // Commit fragments to DOM
+    Object.keys(fragments).forEach(key => {
+      if (categoryContainers[key]) {
+        categoryContainers[key].appendChild(fragments[key]);
+      }
     });
   }
 
@@ -475,6 +490,7 @@ class RosterApp {
    * Filters the displayed agents based on a search query.
    * Updates visibility of cards, section headers, and empty state.
    * Announces results to screen readers.
+   * Optimized to avoid layout thrashing and unnecessary re-renders.
    * @param {string} query - The search query.
    */
   filterAgents(query) {
@@ -491,17 +507,25 @@ class RosterApp {
 
     cards.forEach((card) => {
       const text = card.textContent.toLowerCase();
-      card.classList.remove("pop-in");
+      const isMatch = text.includes(search);
+      const isHidden = card.style.display === "none";
 
-      if (text.includes(search)) {
-        card.style.display = "flex";
-        void card.offsetWidth;
-        const delay = Math.min(visibleCount * 30, 600);
-        card.style.animationDelay = `${delay}ms`;
-        card.classList.add("pop-in");
+      if (isMatch) {
+        if (isHidden) {
+          card.style.display = "flex";
+          card.classList.remove("pop-in");
+          void card.offsetWidth; // Trigger reflow only for appearing elements
+          const delay = Math.min(visibleCount * 30, 600);
+          card.style.animationDelay = `${delay}ms`;
+          card.classList.add("pop-in");
+        }
+        // If already visible, do nothing (preserve stable state)
         visibleCount++;
       } else {
-        card.style.display = "none";
+        if (!isHidden) {
+          card.style.display = "none";
+          card.classList.remove("pop-in");
+        }
       }
     });
 
