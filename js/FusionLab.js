@@ -302,6 +302,7 @@ class FusionLab {
     const overlay = document.getElementById("fusionAnimationOverlay");
     const iconLeft = overlay.querySelector(".anim-icon.left");
     const iconRight = overlay.querySelector(".anim-icon.right");
+    const iconResult = overlay.querySelector(".anim-icon.result");
     const animResult = overlay.querySelector(".anim-result");
     const fuseBtn = document.getElementById("fuseBtn");
     const controls = document.querySelector(".fusion-controls");
@@ -314,6 +315,19 @@ class FusionLab {
     iconLeft.innerHTML = agentA.icon;
     iconRight.innerHTML = agentB.icon;
     animResult.innerText = result.name;
+
+    // Determine Result Icon
+    let resultIcon = agentA.icon + agentB.icon;
+    if (result.isCustom && result.name) {
+      // Extract emoji from end of name string (e.g. "The Void ☠️")
+      const parts = result.name.trim().split(" ");
+      const lastPart = parts[parts.length - 1];
+      // Simple check if it looks like an emoji/icon (not a word)
+      if (lastPart && !/^[A-Za-z0-9]+$/.test(lastPart)) {
+        resultIcon = lastPart;
+      }
+    }
+    if (iconResult) iconResult.innerHTML = resultIcon;
 
     fuseBtn.disabled = true;
     if (controls) controls.classList.add("fusing");
