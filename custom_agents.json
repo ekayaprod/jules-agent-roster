@@ -273,5 +273,15 @@
     "name": "The Script Supervisor \ud83c\udfac",
     "tier": "U-Tier",
     "description": "Holds the master script (the roadmap) and strictly ensures the user-facing UI doesn't ad-lib a single unauthorized word."
+  },
+  "Medic,Wordsmith": {
+    "name": "The Diplomat \ud83e\udd1d",
+    "tier": "U-Tier",
+    "description": "An Empathetic Error Recovery Specialist. It catches raw system failures in a safe boundary and translates them into calm, actionable, human-friendly messages."
+  },
+  "Architect,Scribe": {
+    "name": "The Archivist \ud83d\udcdc",
+    "tier": "U-Tier",
+    "description": "A Deep Context & Macro Documentation Specialist. It connects granular, inline code explanations to the macro-architectural READMEs."
   }
 }
