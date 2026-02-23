@@ -166,16 +166,19 @@ class FusionLab {
     if (!nameA || !nameB) return;
 
     // Reset UI states
-    if (errorEl) errorEl.hidden = true;
+    if (errorEl) {
+      errorEl.hidden = true;
+      errorEl.removeAttribute("aria-live"); // Reset live region
+    }
     if (fuseBtn) {
       fuseBtn.classList.remove("error");
       fuseBtn.classList.add("loading");
-      fuseBtn.innerText = "Synthesizing...";
+      fuseBtn.innerText = "Synthesizing Protocol...";
       fuseBtn.disabled = true;
     }
 
     // UX Delay
-    await new Promise((r) => setTimeout(r, 400));
+    await new Promise((r) => setTimeout(r, 600)); // Palette+: Slightly longer for drama
 
     const agentA = this.agents.find((a) => a.name === nameA);
     const agentB = this.agents.find((a) => a.name === nameB);
@@ -193,10 +196,16 @@ class FusionLab {
       }
       if (errorEl) {
         errorEl.hidden = false;
-        const msg =
-          result.prompt === "Cannot fuse an agent with itself."
-            ? "Identical protocols cannot be fused. Select a different modifier to ignite the process."
-            : result.prompt;
+        errorEl.setAttribute("aria-live", "assertive"); // Palette+: Announce error immediately
+
+        let msg = result.prompt;
+        // Virtuoso: Empathetic & Actionable Error Copy
+        if (result.prompt === "Cannot fuse an agent with itself.") {
+          msg = "Self-fusion is unstable. Choose a second, distinct agent to stabilize the reaction.";
+        } else if (result.prompt === "Invalid agents selected.") {
+          msg = "Protocol mismatch. Please select two valid agents to begin fusion.";
+        }
+
         const textSpan = errorEl.querySelector("span") || errorEl;
         textSpan.innerText = msg;
       }
