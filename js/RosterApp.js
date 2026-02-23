@@ -10,11 +10,11 @@ class RosterApp {
    */
   constructor() {
     this.agents = [];
-    this.elements = {};
-    this.state = {
-      toastTimeout: null,
-    };
     this.customAgents = {};
+    this.elements = {};
+    // Service & UI Components
+    this.agentRepo = new AgentRepository();
+    this.toast = new ToastNotification(CONFIG.selectors.toast);
     this.fusionLab = null;
   }
 
@@ -37,281 +37,29 @@ class RosterApp {
   async init() {
     this.cacheElements();
     this.renderSkeletons();
-    await this.loadData();
+
+    try {
+        const { agents, customAgents } = await this.agentRepo.getAgents();
+        this.agents = agents;
+        this.customAgents = customAgents;
+
+        // Initialize Fusion Lab Component
+        this.fusionLab = new FusionLab();
+        this.fusionLab.init(this.agents, this.customAgents);
+
+    } catch (error) {
+        if (this.elements.main) {
+            const msg = error.message && error.message.includes("JSON")
+              ? "Data corruption detected (JSON)"
+              : "Connection failed";
+            this.elements.main.innerHTML = `<div style="text-align:center; padding: 2rem; color: #f87171;">Couldn't load agents. ${msg}.</div>`;
+        }
+    }
+
     this.clearSkeletons();
     this.renderAgents();
     this.bindEvents();
     this.initObserver();
-  }
-
-  /**
-   * Fetches a resource with exponential backoff retry logic.
-   * @param {string} url - The URL to fetch.
-   * @param {RequestInit} [options={}] - Fetch options.
-   * @param {number} [retries=3] - Number of retries.
-   * @param {number} [backoff=300] - Initial backoff delay in ms.
-   * @returns {Promise<Response>} The fetch response.
-   * @throws {Error} If all retries fail.
-   */
-  async fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
-    try {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response;
-    } catch (error) {
-      if (retries > 0) {
-        console.warn(`Retrying ${url} (${retries} left)...`);
-        await new Promise((resolve) => setTimeout(resolve, backoff));
-        return this.fetchWithRetry(
-          url,
-          options,
-          retries - 1,
-          backoff * 2,
-        );
-      }
-      throw error;
-    }
-  }
-
-  /**
-   * Safely parses JSON from a fetch response, adding context to errors.
-   * @param {Response} response - The fetch response object.
-   * @param {string} label - A label for the resource (e.g., "agents.json").
-   * @returns {Promise<any>} The parsed JSON data.
-   * @throws {Error} If parsing fails, with a descriptive message.
-   */
-  async safeJsonParse(response, label) {
-    try {
-      return await response.json();
-    } catch (error) {
-      throw new Error(`Failed to parse JSON for ${label}: ${error.message}`);
-    }
-  }
-
-  /**
-   * Validates the structure of the agents data and sanitizes optional fields.
-   * Filters out agents that do not match the expected schema (name, category, promptFile).
-   * Ensures optional fields like `scope`, and `usedIn` are of the correct type,
-   * defaulting to safe values if invalid.
-   *
-   * @param {any} data - The raw JSON data to validate.
-   * @returns {Array<Object>} Array of valid, sanitized agent objects.
-   * @throws {Error} If the input data is not an array.
-   */
-  validateAgentsData(data) {
-    if (!Array.isArray(data)) {
-      throw new Error("Invalid format: agents data must be an array.");
-    }
-    return data
-      .filter((agent) => {
-        const isValid =
-          agent &&
-          typeof agent.name === "string" &&
-          typeof agent.category === "string" &&
-          Object.keys(CONFIG.categories).includes(agent.category);
-
-        if (!isValid) {
-          console.warn("Skipping invalid agent entry:", agent);
-        }
-        return isValid;
-      })
-      .map((agent) => {
-        // Medic: Sanitize optional fields to prevent fragility
-        if (agent.scope && typeof agent.scope !== "string") {
-          console.warn(
-            `Sanitizing agent ${agent.name}: scope must be string. Casting.`,
-          );
-          agent.scope = String(agent.scope);
-        }
-
-        if (agent.usedIn && typeof agent.usedIn !== "string") {
-          console.warn(
-            `Sanitizing agent ${agent.name}: usedIn must be string. Casting.`,
-          );
-          agent.usedIn = String(agent.usedIn);
-        }
-
-        return agent;
-      });
-  }
-
-  /**
-   * The First Responder: Validates and sanitizes a custom agent entry.
-   * Enforces strict schema and sanitizes optional fields.
-   * @param {string} key - The dictionary key (agent ingredients).
-   * @param {Object} data - The raw agent data.
-   * @returns {Object} { valid: boolean, sanitized?: Object, reason?: string }
-   */
-  validateCustomAgent(key, data) {
-    if (!data || typeof data !== "object") {
-      return { valid: false, reason: "Entry is not an object" };
-    }
-    // Critical: Name is required
-    if (
-      !data.name ||
-      typeof data.name !== "string" ||
-      data.name.trim() === ""
-    ) {
-      return { valid: false, reason: "Missing or invalid 'name' field" };
-    }
-
-    // First Responder: Sanitize optional fields
-    // If description exists but is not a string, cast it.
-    if (
-      data.description !== undefined &&
-      typeof data.description !== "string"
-    ) {
-      console.warn(
-        `[First Responder] Sanitizing ${key}: description must be string. Casting.`,
-      );
-      data.description = String(data.description);
-    }
-
-    // Security: Check for basic XSS in name/description
-    const maliciousPattern = /<script|javascript:/i;
-    if (
-      maliciousPattern.test(data.name) ||
-      (data.description && maliciousPattern.test(data.description))
-    ) {
-      return { valid: false, reason: "Potential malicious content detected" };
-    }
-
-    return { valid: true, sanitized: data };
-  }
-
-  /**
-   * Loads agent data from `agents.json` and fetches individual prompt files.
-   * Populates `this.agents` with the complete data set.
-   * Handles errors by displaying a message in the main container.
-   * @returns {Promise<void>}
-   */
-  async loadData() {
-    try {
-      const response = await this.fetchWithRetry("agents.json");
-      const rawData = await this.safeJsonParse(response, "agents.json");
-      const agentsData = this.validateAgentsData(rawData);
-
-      // Fetch Prompts for Standard Agents
-      await Promise.all(
-        agentsData.map(async (agent) => {
-          try {
-            const promptRes = await fetch(`prompts/${agent.name}.md`);
-            if (promptRes.ok) {
-              agent.prompt = await promptRes.text();
-            } else {
-              console.warn(`Failed to load prompt for ${agent.name}`);
-              agent.prompt = "Prompt missing.";
-            }
-          } catch (e) {
-            console.warn(`Error loading prompt for ${agent.name}`, e);
-            agent.prompt = "Prompt missing.";
-          }
-        }),
-      );
-
-      this.agents = agentsData;
-
-      // FUSION: Load Custom Agents Data
-      let customAgentsData = {};
-      try {
-        const customRes = await fetch("custom_agents.json");
-        if (customRes.ok) {
-          const rawCustomData = await this.safeJsonParse(
-            customRes,
-            "custom_agents.json",
-          );
-
-          // The First Responder: Validate & Sanitize Boundary
-          const validatedCustomData = {};
-
-          await Promise.all(
-            Object.entries(rawCustomData).map(async ([key, custom]) => {
-              try {
-                const validation = this.validateCustomAgent(key, custom);
-
-                if (!validation.valid) {
-                  // TELEMETRY: Log rejection
-                  console.warn(
-                    JSON.stringify({
-                      event: "INVALID_CUSTOM_AGENT",
-                      key: key,
-                      reason: validation.reason,
-                      timestamp: new Date().toISOString(),
-                    }),
-                  );
-                  return; // Skip this agent
-                }
-
-                const agent = validation.sanitized;
-
-                // Sanitize name for filename: Remove non-ASCII, trim, replace spaces with underscores.
-                const cleanName = agent.name
-                  .replace(/[^\x00-\x7F]/g, "")
-                  .trim()
-                  .replace(/ /g, "_");
-                const filename = `prompts/fusions/${cleanName}.md`;
-
-                try {
-                  const promptRes = await fetch(filename);
-                  if (promptRes.ok) {
-                    agent.prompt = await promptRes.text();
-                  } else {
-                    // File not found -> Assume dynamic fusion (like "The Void")
-                    agent.prompt = null;
-                  }
-                } catch (e) {
-                  console.warn(
-                    `Error loading custom prompt for ${agent.name}`,
-                    e,
-                  );
-                  agent.prompt = null;
-                }
-
-                // Add to valid set
-                validatedCustomData[key] = agent;
-              } catch (err) {
-                // Catch-all for unexpected processing errors to prevent total crash
-                console.error(
-                  JSON.stringify({
-                    event: "CUSTOM_AGENT_PROCESSING_ERROR",
-                    key: key,
-                    error: err.message,
-                  }),
-                );
-              }
-            }),
-          );
-
-          this.customAgents = validatedCustomData;
-        }
-      } catch (e) {
-        if (e.message.includes("parse JSON")) {
-          console.error(
-            "CRITICAL: custom_agents.json is malformed. Fusion data may be incomplete.",
-            e,
-          );
-        } else {
-          console.warn(
-            "custom_agents.json not loaded (missing or network error).",
-          );
-        }
-      }
-
-      // Initialize Fusion Lab Component
-      this.fusionLab = new FusionLab();
-      this.fusionLab.init(this.agents, customAgentsData);
-
-    } catch (error) {
-      console.error("Failed to load agents.json", error);
-      if (this.elements.main) {
-        const msg = error.message.includes("JSON")
-          ? "Data corruption detected (JSON)"
-          : "Connection failed";
-        this.elements.main.innerHTML = `<div style="text-align:center; padding: 2rem; color: #f87171;">Couldn't load agents. ${msg}.</div>`;
-      }
-    }
   }
 
   /**
@@ -398,87 +146,9 @@ class RosterApp {
         return;
       }
 
-      const card = document.createElement("div");
-      card.className = "card pop-in";
-      const delay = Math.min(globalIndex * 30, 600);
-      card.style.animationDelay = `${delay}ms`;
+      // 🗿 The Sculptor: Use AgentCard component
+      const card = AgentCard.create(agent, index, globalIndex);
       globalIndex++;
-
-      if (agent.type === "plus") card.classList.add("plus-agent");
-      if (agent.type === "monthly") card.classList.add("monthly-agent");
-
-      // Build tags
-      let tags = "";
-      if (agent.scope) {
-        let scopeClass = "scope-medium";
-        if (agent.scope.includes("Small")) scopeClass = "scope-small";
-        if (agent.scope.includes("Large")) scopeClass = "scope-large";
-        tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
-      }
-
-      // Build HTML
-      const parsed = PromptParser.parsePrompt(agent.prompt);
-      let promptHtml = '';
-
-      if (parsed.format === 'legacy') {
-        promptHtml = `<div class="details-content">${agent.prompt}</div>`;
-      } else {
-        const sections = parsed.sections.map(sec => {
-          let label = '';
-          if (sec.tag === 'system') label = 'System Role';
-          else if (sec.tag === 'task') label = 'Mission';
-          else if (sec.tag === 'step') label = `Step ${sec.id || '?'}: ${sec.name || ''}`;
-          else if (sec.tag === 'output') label = 'Output Format';
-          else label = sec.tag.toUpperCase();
-
-          return `
-                <div class="prompt-section prompt-section--${sec.tag}">
-                    <div class="prompt-section-label">${label}</div>
-                    <div class="prompt-section-body">${sec.content}</div>
-                </div>
-              `;
-        }).join('');
-        promptHtml = `<div class="details-content"><div class="prompt-structured">${sections}</div></div>`;
-      }
-
-      card.innerHTML = `
-              <div class="card-header">
-                  <div class="title-group">
-                      <h3 class="agent-title">
-                          <span>${agent.icon}</span> ${agent.name}
-                      </h3>
-                      <div class="tag-container">${tags}</div>
-                  </div>
-                  <span class="role-tag">${agent.role}</span>
-              </div>
-
-              <div class="description">
-                  ${agent.desc}
-              </div>
-
-              <button class="details-toggle" aria-expanded="false" aria-controls="details-${index}" data-action="toggle-details" data-index="${index}">
-                  <!-- Curator: Optimized Chevron -->
-                  <svg aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-                  <!-- Wordsmith: Active voice -->
-                  <span>Show Prompt</span>
-              </button>
-              <div class="details-grid" id="details-${index}">
-                  <div class="details-overflow">
-                      ${promptHtml}
-                  </div>
-              </div>
-
-              <div class="card-actions">
-                  <!-- Wordsmith: Accurate label, Active voice -->
-                  <button class="secondary" data-action="copy-agent" data-index="${index}" aria-label="Copy this agent's prompt to clipboard">
-                      <!-- Curator: Optimized Copy Icon -->
-                      <svg class="copy-icon" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
-                      <!-- Curator: Optimized Check Icon -->
-                      <svg class="check-icon" style="display: none" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                      <span>Copy Prompt</span>
-                  </button>
-              </div>
-          `;
 
       // Append to fragment instead of direct DOM
       if (fragments[agent.category]) {
@@ -580,6 +250,7 @@ class RosterApp {
   filterAgents(query) {
     const search = query.toLowerCase();
     const cards = document.querySelectorAll(CONFIG.selectors.card);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let visibleCount = 0;
 
@@ -592,23 +263,45 @@ class RosterApp {
     cards.forEach((card) => {
       const text = card.textContent.toLowerCase();
       const isMatch = text.includes(search);
-      const isHidden = card.style.display === "none";
+
+      // Clear any pending hide timeout
+      if (card._hideTimeout) {
+        clearTimeout(card._hideTimeout);
+        card._hideTimeout = null;
+      }
 
       if (isMatch) {
-        if (isHidden) {
+        // If it was fading out, stop it
+        card.classList.remove("fading-out");
+
+        if (card.style.display === "none") {
           card.style.display = "flex";
-          card.classList.remove("pop-in");
-          void card.offsetWidth; // Trigger reflow only for appearing elements
-          const delay = Math.min(visibleCount * 30, 600);
-          card.style.animationDelay = `${delay}ms`;
-          card.classList.add("pop-in");
+          if (!reducedMotion) {
+            card.classList.remove("pop-in");
+            void card.offsetWidth; // Trigger reflow
+            const delay = Math.min(visibleCount * 30, 600);
+            card.style.animationDelay = `${delay}ms`;
+            card.classList.add("pop-in");
+          }
         }
-        // If already visible, do nothing (preserve stable state)
         visibleCount++;
       } else {
-        if (!isHidden) {
-          card.style.display = "none";
-          card.classList.remove("pop-in");
+        // No match
+        if (card.style.display !== "none") {
+          if (reducedMotion) {
+            card.style.display = "none";
+            card.classList.remove("pop-in");
+          } else {
+            card.classList.add("fading-out");
+            // 🗿 The Sculptor: Smooth fade out
+            card._hideTimeout = setTimeout(() => {
+              if (card.classList.contains("fading-out")) {
+                card.style.display = "none";
+                card.classList.remove("fading-out");
+                card.classList.remove("pop-in");
+              }
+            }, 200); // Match CSS transition duration
+          }
         }
       }
     });
@@ -654,25 +347,6 @@ class RosterApp {
   }
 
   /**
-   * Displays a toast notification with a message.
-   * Clears any existing toast timeout to prevent race conditions.
-   * @param {string} [message="Copied to clipboard"] - The message to display.
-   */
-  showToast(message) {
-    if (this.state.toastTimeout) {
-      clearTimeout(this.state.toastTimeout);
-    }
-    const toast = this.elements.toast;
-    if (toast) {
-      toast.textContent = message || "Copied to clipboard";
-      toast.classList.add("show");
-      this.state.toastTimeout = setTimeout(() => {
-        toast.classList.remove("show");
-      }, 2000);
-    }
-  }
-
-  /**
    * Copies text to the clipboard using the Clipboard API or a fallback.
    * @param {string} text - The text to copy.
    * @param {string} message - Success message for the toast.
@@ -681,7 +355,7 @@ class RosterApp {
   async copyText(text, message) {
     try {
       await navigator.clipboard.writeText(text);
-      this.showToast(message);
+      this.toast.show(message);
       return true;
     } catch (err) {
       console.warn("Clipboard API failed, attempting fallback", err);
@@ -693,7 +367,7 @@ class RosterApp {
       el.select();
       document.execCommand("copy");
       document.body.removeChild(el);
-      this.showToast(message);
+      this.toast.show(message);
       return true;
     }
   }
@@ -825,7 +499,7 @@ class RosterApp {
     );
 
     if (validCustomAgents.length === 0) {
-      this.showToast("No custom agents available to download.");
+      this.toast.show("No custom agents available to download.");
       return;
     }
 
@@ -930,5 +604,12 @@ class RosterApp {
       const el = document.getElementById(gridId);
       if (el) observer.observe(el);
     });
+  }
+
+  /**
+   * Expose showToast method for compatibility with other components (FusionLab)
+   */
+  showToast(message) {
+      this.toast.show(message);
   }
 }
