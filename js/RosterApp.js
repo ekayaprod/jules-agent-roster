@@ -577,13 +577,14 @@ class RosterApp {
    */
   animateButtonSuccess(btn, successMessage) {
     const span = btn.querySelector("span");
-    const copyIcon = btn.querySelector(".copy-icon");
     const checkIcon = btn.querySelector(".check-icon");
+    // Palette+: Dynamically find primary icon (not check icon)
+    const primaryIcon = btn.querySelector("svg:not(.check-icon)");
     const originalText = span.innerText;
 
     btn.classList.add("success-state");
     span.innerText = successMessage;
-    if (copyIcon) copyIcon.style.display = "none";
+    if (primaryIcon) primaryIcon.style.display = "none";
     if (checkIcon) {
       checkIcon.style.display = "block";
       // Palette+: Trigger pop animation
@@ -593,7 +594,7 @@ class RosterApp {
     setTimeout(() => {
       btn.classList.remove("success-state");
       span.innerText = originalText;
-      if (copyIcon) copyIcon.style.display = "block";
+      if (primaryIcon) primaryIcon.style.display = "block";
       if (checkIcon) {
         checkIcon.style.display = "none";
         checkIcon.classList.remove("animate");
