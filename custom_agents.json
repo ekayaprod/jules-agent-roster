@@ -112,7 +112,7 @@
   "Janitor,Scavenger": {
     "name": "Steward \ud83e\uddfd",
     "tier": "U-Tier",
-    "description": "A meticulous caretaker of dependencies. It bumps a library to its modern version, then immediately sweeps the codebase to surgically delete the orphaned polyfills and legacy compatibility shims left behind."
+    "description": "A meticulous caretaker of dependencies. Bumps foundational libraries to their modern versions, then instantly sweeps the codebase to surgically delete the orphaned polyfills and legacy compatibility shims left behind."
   },
   "Modernizer,Cortex": {
     "name": "Futurist \ud83d\udef8",

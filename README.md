@@ -98,7 +98,7 @@ The Fusion Lab allows you to combine any two agents to create a specialized hybr
 
 * **The Virtuoso 🎨** (Palette+ + Wordsmith): Polishes interaction flows and microcopy in a single unified pass.
 
-* **The Steward 🧹** (Janitor + Scavenger): Bumps dependencies and surgically purges the legacy polyfills they replace.
+* **The Steward 🧽** (Janitor + Scavenger): Bumps dependencies and surgically purges the legacy polyfills they replace.
 
 * **The Catalyst ⚡** (Bolt+ + Modernizer): Upgrades legacy syntax and instantly extracts native performance gains.
 
