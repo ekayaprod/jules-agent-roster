@@ -333,7 +333,7 @@ class FusionLab {
       const iconB = agentB.icon.trim();
 
       // Use Emoji Kitchen API
-      const imgUrl = `https://emojik.vercel.app/s/${iconA}_${iconB}?size=128`;
+      const imgUrl = `${CONFIG.emojiKitchenPrefix}${iconA}_${iconB}?size=128`;
 
       if (iconResult) {
         // Fallback handled by onerror
