@@ -43,8 +43,9 @@ class FusionCompiler {
   }
 
   extractSection(prompt, header) {
-    if (!prompt) return "Prompt data missing.";
-    const regex = new RegExp(`## ${header}\\s*([\\s\\S]*?)(?=## |$)`, "i");
+    if (typeof prompt !== "string") return "Prompt data missing.";
+    const escapedHeader = header.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const regex = new RegExp(`## ${escapedHeader}\\s*([\\s\\S]*?)(?=##|$)`, "i");
     const match = prompt.match(regex);
     return match
       ? match[1].trim()
