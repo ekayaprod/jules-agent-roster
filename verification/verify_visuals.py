@@ -41,18 +41,20 @@ def verify_visuals():
             sys.exit(1)
 
         # 3. Check Placeholders
-        # Wait for JS to populate options - use state='attached' because options are hidden
-        page.wait_for_selector('#slotA option', state='attached')
+        # Wait for JS to populate options - ensure we have more than the default 1 option
+        # Using nth-child(2) to wait for at least 2 options (placeholder + 1 agent)
+        # Use state='attached' because options are hidden inside the select until expanded
+        page.wait_for_selector('#slotA option:nth-child(2)', state='attached')
 
         slotA_text = page.locator('#slotA option').first.text_content()
-        if "Select Primary Protocol" in slotA_text:
+        if "Select Base Agent" in slotA_text:
             print(f"✅ PASS: Slot A placeholder is correct: '{slotA_text}'")
         else:
             print(f"❌ FAIL: Slot A placeholder incorrect: '{slotA_text}'")
             sys.exit(1)
 
         slotB_text = page.locator('#slotB option').first.text_content()
-        if "Select Secondary Protocol" in slotB_text:
+        if "Select Modifier Agent" in slotB_text:
             print(f"✅ PASS: Slot B placeholder is correct: '{slotB_text}'")
         else:
             print(f"❌ FAIL: Slot B placeholder incorrect: '{slotB_text}'")
@@ -60,7 +62,7 @@ def verify_visuals():
 
         # 4. Check Button Text
         btn_text = page.locator('#fuseBtn').text_content()
-        if "Initialize Fusion Sequence" in btn_text:
+        if "Ignite Fusion Protocol" in btn_text:
             print(f"✅ PASS: Button text is correct: '{btn_text}'")
         else:
             print(f"❌ FAIL: Button text incorrect: '{btn_text}'")
