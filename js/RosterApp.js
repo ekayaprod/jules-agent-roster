@@ -516,6 +516,12 @@ class RosterApp {
       e.stopPropagation();
       this.toggleDownloadDropdown();
     });
+    this.elements.downloadDropdownBtn?.addEventListener("keydown", (e) =>
+      this.handleDropdownKeydown(e),
+    );
+    this.elements.downloadDropdownMenu?.addEventListener("keydown", (e) =>
+      this.handleDropdownKeydown(e),
+    );
     this.elements.downloadCustomBtn?.addEventListener("click", (e) =>
       this.downloadCustomAgents(e.currentTarget),
     );
@@ -528,6 +534,7 @@ class RosterApp {
         !this.elements.downloadDropdownBtn.contains(e.target)
       ) {
         this.elements.downloadDropdownMenu.classList.remove("visible");
+        this.elements.downloadDropdownBtn?.setAttribute("aria-expanded", "false");
       }
     });
 
@@ -745,8 +752,62 @@ class RosterApp {
    */
   toggleDownloadDropdown() {
     const menu = this.elements.downloadDropdownMenu;
+    const btn = this.elements.downloadDropdownBtn;
+
     if (menu) {
-      menu.classList.toggle("visible");
+      const isVisible = menu.classList.toggle("visible");
+      if (btn) btn.setAttribute("aria-expanded", isVisible);
+
+      // Focus management when opening
+      if (isVisible) {
+        const firstItem = menu.querySelector('.dropdown-item');
+        if (firstItem) firstItem.focus();
+      }
+    }
+  }
+
+  /**
+   * Handles keyboard navigation for the download dropdown.
+   * @param {KeyboardEvent} e - The keyboard event.
+   */
+  handleDropdownKeydown(e) {
+    const menu = this.elements.downloadDropdownMenu;
+    const btn = this.elements.downloadDropdownBtn;
+    const isVisible = menu.classList.contains("visible");
+
+    if (e.key === "Escape") {
+      if (isVisible) {
+        e.preventDefault();
+        this.toggleDownloadDropdown();
+        btn.focus();
+      }
+    } else if (e.key === "Enter" || e.key === " ") {
+      // Explicitly handle Enter/Space to ensure toggle works reliably via keyboard
+      e.preventDefault();
+      this.toggleDownloadDropdown();
+    } else if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+
+      if (!isVisible) {
+        this.toggleDownloadDropdown();
+        return;
+      }
+
+      // Navigation within menu
+      const items = Array.from(menu.querySelectorAll('.dropdown-item'));
+      if (items.length === 0) return;
+
+      const currentIndex = items.indexOf(document.activeElement);
+      let nextIndex;
+
+      if (currentIndex === -1) {
+        nextIndex = e.key === "ArrowDown" ? 0 : items.length - 1;
+      } else if (e.key === "ArrowDown") {
+        nextIndex = (currentIndex + 1) % items.length;
+      } else {
+        nextIndex = (currentIndex - 1 + items.length) % items.length;
+      }
+      items[nextIndex].focus();
     }
   }
 
