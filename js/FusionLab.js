@@ -49,7 +49,7 @@ class FusionLab {
     try {
       await navigator.clipboard.writeText(text);
       if (window.rosterApp && window.rosterApp.showToast) {
-        window.rosterApp.showToast("Fusion copied!");
+        window.rosterApp.showToast("Fusion copied to clipboard");
       }
     } catch (err) {
       // Fallback
@@ -62,7 +62,7 @@ class FusionLab {
       document.execCommand("copy");
       document.body.removeChild(el);
       if (window.rosterApp && window.rosterApp.showToast) {
-        window.rosterApp.showToast("Fusion copied!");
+        window.rosterApp.showToast("Fusion copied to clipboard");
       }
     }
   }
