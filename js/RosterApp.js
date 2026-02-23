@@ -138,6 +138,50 @@ class RosterApp {
   }
 
   /**
+   * The First Responder: Validates and sanitizes a custom agent entry.
+   * Enforces strict schema and sanitizes optional fields.
+   * @param {string} key - The dictionary key (agent ingredients).
+   * @param {Object} data - The raw agent data.
+   * @returns {Object} { valid: boolean, sanitized?: Object, reason?: string }
+   */
+  validateCustomAgent(key, data) {
+    if (!data || typeof data !== "object") {
+      return { valid: false, reason: "Entry is not an object" };
+    }
+    // Critical: Name is required
+    if (
+      !data.name ||
+      typeof data.name !== "string" ||
+      data.name.trim() === ""
+    ) {
+      return { valid: false, reason: "Missing or invalid 'name' field" };
+    }
+
+    // First Responder: Sanitize optional fields
+    // If description exists but is not a string, cast it.
+    if (
+      data.description !== undefined &&
+      typeof data.description !== "string"
+    ) {
+      console.warn(
+        `[First Responder] Sanitizing ${key}: description must be string. Casting.`,
+      );
+      data.description = String(data.description);
+    }
+
+    // Security: Check for basic XSS in name/description
+    const maliciousPattern = /<script|javascript:/i;
+    if (
+      maliciousPattern.test(data.name) ||
+      (data.description && maliciousPattern.test(data.description))
+    ) {
+      return { valid: false, reason: "Potential malicious content detected" };
+    }
+
+    return { valid: true, sanitized: data };
+  }
+
+  /**
    * Loads agent data from `agents.json` and fetches individual prompt files.
    * Populates `this.agents` with the complete data set.
    * Handles errors by displaying a message in the main container.
@@ -174,40 +218,73 @@ class RosterApp {
       try {
         const customRes = await fetch("custom_agents.json");
         if (customRes.ok) {
-          customAgentsData = await this.safeJsonParse(
+          const rawCustomData = await this.safeJsonParse(
             customRes,
             "custom_agents.json",
           );
 
-          // Fetch Prompts for Custom Agents
-          await Promise.all(
-            Object.values(customAgentsData).map(async (custom) => {
-              // Sanitize name for filename: Remove non-ASCII, trim, replace spaces with underscores.
-              const cleanName = custom.name
-                .replace(/[^\x00-\x7F]/g, "")
-                .trim()
-                .replace(/ /g, "_");
-              const filename = `prompts/fusions/${cleanName}.md`;
+          // The First Responder: Validate & Sanitize Boundary
+          const validatedCustomData = {};
 
+          await Promise.all(
+            Object.entries(rawCustomData).map(async ([key, custom]) => {
               try {
-                const promptRes = await fetch(filename);
-                if (promptRes.ok) {
-                  custom.prompt = await promptRes.text();
-                } else {
-                  // File not found -> Assume dynamic fusion (like "The Void")
-                  custom.prompt = null;
+                const validation = this.validateCustomAgent(key, custom);
+
+                if (!validation.valid) {
+                  // TELEMETRY: Log rejection
+                  console.warn(
+                    JSON.stringify({
+                      event: "INVALID_CUSTOM_AGENT",
+                      key: key,
+                      reason: validation.reason,
+                      timestamp: new Date().toISOString(),
+                    }),
+                  );
+                  return; // Skip this agent
                 }
-              } catch (e) {
-                console.warn(
-                  `Error loading custom prompt for ${custom.name}`,
-                  e,
+
+                const agent = validation.sanitized;
+
+                // Sanitize name for filename: Remove non-ASCII, trim, replace spaces with underscores.
+                const cleanName = agent.name
+                  .replace(/[^\x00-\x7F]/g, "")
+                  .trim()
+                  .replace(/ /g, "_");
+                const filename = `prompts/fusions/${cleanName}.md`;
+
+                try {
+                  const promptRes = await fetch(filename);
+                  if (promptRes.ok) {
+                    agent.prompt = await promptRes.text();
+                  } else {
+                    // File not found -> Assume dynamic fusion (like "The Void")
+                    agent.prompt = null;
+                  }
+                } catch (e) {
+                  console.warn(
+                    `Error loading custom prompt for ${agent.name}`,
+                    e,
+                  );
+                  agent.prompt = null;
+                }
+
+                // Add to valid set
+                validatedCustomData[key] = agent;
+              } catch (err) {
+                // Catch-all for unexpected processing errors to prevent total crash
+                console.error(
+                  JSON.stringify({
+                    event: "CUSTOM_AGENT_PROCESSING_ERROR",
+                    key: key,
+                    error: err.message,
+                  }),
                 );
-                custom.prompt = null;
               }
             }),
           );
 
-          this.customAgents = customAgentsData;
+          this.customAgents = validatedCustomData;
         }
       } catch (e) {
         if (e.message.includes("parse JSON")) {
