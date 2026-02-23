@@ -1395,6 +1395,8 @@
             id="downloadDropdownBtn"
             class="download-dropdown-btn"
             aria-label="More download options"
+            aria-haspopup="true"
+            aria-expanded="false"
           >
             <svg
               aria-hidden="true"
@@ -1412,8 +1414,8 @@
               />
             </svg>
           </button>
-          <div id="downloadDropdownMenu" class="dropdown-menu">
-            <button id="downloadCustomBtn" class="dropdown-item">
+          <div id="downloadDropdownMenu" class="dropdown-menu" role="menu">
+            <button id="downloadCustomBtn" class="dropdown-item" role="menuitem">
               <svg
                 aria-hidden="true"
                 width="16"
