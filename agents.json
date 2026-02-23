@@ -7,7 +7,7 @@
     "scope": "Small-Medium",
     "usedIn": "Mechanic",
     "role": "Performance Engineer",
-    "desc": "Combines isolated micro-optimizations with systemic architectural patterns like virtualization and caching. Scope: Micro-fix + Systemic Strategy. Added: Virtualization, Workers, Custom Hooks."
+    "desc": "A performance obsessive. Hunts down structural bottlenecks and eliminates them through systemic caching, memoization, and virtualization patterns."
   },
   {
     "name": "Palette+",
@@ -17,7 +17,7 @@
     "scope": "Small-Medium",
     "usedIn": "Virtuoso",
     "role": "UX & Delight (Enhanced)",
-    "desc": "Combines isolated UI tweaks with comprehensive interaction flows, motion, and state feedback. Scope: Micro-fix + Component Flow. Added: Motion, Transitions & State Polish."
+    "desc": "An artisan of human-computer interaction. Transforms clunky interactions into delightful experiences using loading skeletons, optimistic UI, and strict ARIA accessibility."
   },
   {
     "name": "Sentinel+",
@@ -27,7 +27,7 @@
     "scope": "Small-Medium",
     "usedIn": "",
     "role": "Security Engineer",
-    "desc": "Combines reactive vulnerability patching with proactive architectural hardening and defense layers. Scope: Micro-patch + Defense Layer. Added: Validation Schemas, Security Headers, Flow Hardening."
+    "desc": "The frontline defender. Hardens the application's trust boundaries by implementing rigid schema validation (Zod/Joi) and secure data-handling protocols."
   },
   {
     "name": "Helix",
@@ -36,7 +36,7 @@
     "scope": "Small-Medium",
     "usedIn": "Steward",
     "role": "Deduplication Specialist",
-    "desc": "Extracts copy-pasted logic into shared utilities/hooks."
+    "desc": "A pattern recognition expert. Seeks out duplicated spaghetti code and splices it into pure, centralized, and highly reusable utility functions."
   },
   {
     "name": "Architect",
@@ -45,7 +45,7 @@
     "scope": "Medium",
     "usedIn": "Mechanic",
     "role": "Structural Agent",
-    "desc": "File-level architecture: moving misplaced files, grouping feature folders, barreling imports, and splitting massive God Files."
+    "desc": "The structural engineer. Untangles messy directories, splits massive 'God files', and enforces clean colocation and barrel exports (index.ts)."
   },
   {
     "name": "Scavenger",
@@ -54,7 +54,7 @@
     "scope": "Medium",
     "usedIn": "Steward",
     "role": "Cleanup",
-    "desc": "Deletes dead code and resolved TODOs. Checks Overseer 'Debris Field'."
+    "desc": "A ruthless cleanup specialist. Hunts down and permanently eradicates orphaned files, dead code, unused exports, and resolved TODOs."
   },
   {
     "name": "Janitor",
@@ -63,7 +63,7 @@
     "scope": "Medium",
     "usedIn": "Steward",
     "role": "Hygiene",
-    "desc": "Maintains the project foundation (deps, engines, configs)."
+    "desc": "The foundation maintainer. Keeps the repository healthy by safely bumping minor dependencies, deduplicating lockfiles, and standardizing config files."
   },
   {
     "name": "Modernizer",
@@ -72,7 +72,7 @@
     "scope": "Medium",
     "usedIn": "Mechanic",
     "role": "Tech Stack Evolution",
-    "desc": "Identifies outdated tools, library versions, or coding paradigms and performs meaningful migrations."
+    "desc": "The evolution engine. Upgrades legacy syntax\u2014transmuting old callbacks, `var` declarations, and Promise chains into modern async/await and ES6 paradigms."
   },
   {
     "name": "Inspector",
@@ -81,7 +81,7 @@
     "scope": "Medium",
     "usedIn": "Guardian",
     "role": "QA",
-    "desc": "Finds and fills test coverage gaps. Checks Overseer 'Coverage Gaps'."
+    "desc": "A paranoid quality-assurance agent. Seeks out the application's most fragile, untested logic and locks it down with rigorous boundary and edge-case test suites."
   },
   {
     "name": "Medic",
@@ -90,7 +90,7 @@
     "scope": "Medium",
     "usedIn": "Guardian",
     "role": "Resilience Agent",
-    "desc": "Fixes critical fragility: swallowed errors, missing retries, and poor telemetry/logging."
+    "desc": "The system triager. Stops silent crashes by wrapping fragile network calls and dangerous parsers in safe try/catch boundaries and structured logging."
   },
   {
     "name": "Cortex",
@@ -98,7 +98,7 @@
     "category": "eng",
     "scope": "Medium",
     "role": "AI Integration Specialist",
-    "desc": "Upgrades AI models, optimizes system prompts, and hardens API integrations."
+    "desc": "The AI infrastructure specialist. Upgrades legacy LLM SDKs, bumps model versions, and enforces strictly typed JSON outputs for resilient AI integrations."
   },
   {
     "name": "Scribe",
@@ -106,7 +106,7 @@
     "category": "context",
     "scope": "Medium",
     "role": "Inline Documentation Historian",
-    "desc": "Ensures complex exported utilities, hooks, and functions are completely and accurately documented using JSDoc."
+    "desc": "The codebase historian. Clarifies complex, undocumented logic by weaving precise JSDoc, Docstrings, and critical `// WARN:` labels directly into the source code."
   },
   {
     "name": "Author",
@@ -115,7 +115,7 @@
     "scope": "Medium",
     "usedIn": "Librarian",
     "role": "Macro-Documentation Specialist",
-    "desc": "Writes human-friendly READMEs and feature onboarding guides."
+    "desc": "The macro-documentarian. Writes the high-level README.md files, architectural overviews, and 'Quick Start' guides that help humans navigate the repository."
   },
   {
     "name": "Navigator",
@@ -124,7 +124,7 @@
     "scope": "Medium",
     "usedIn": "Librarian",
     "role": "Strategy",
-    "desc": "Aligns the Roadmap with code reality and promotes valid backlog ideas to the roadmap."
+    "desc": "The strategic compass. Reads the git history to mark features complete on the roadmap, ensuring the project's tracking documents always reflect its true state."
   },
   {
     "name": "Curator",
@@ -133,7 +133,7 @@
     "scope": "Medium",
     "usedIn": "Virtuoso",
     "role": "Payload & Asset Manager",
-    "desc": "Optimizes the project's static assets: converting formats, compressing SVGs, and deleting ghost assets."
+    "desc": "The payload optimizer. Scours the public directories to compress heavy images into modern WebP/AVIF formats and strip metadata from bloated SVGs."
   },
   {
     "name": "Overseer",
@@ -142,7 +142,7 @@
     "type": "monthly",
     "scope": "Large",
     "role": "The Eye",
-    "desc": "Performs deep forensic audit to identify targets for other agents."
+    "desc": "The all-seeing eye. Runs deep forensic scans on file age, churn, and complexity, generating a master audit report to guide the rest of the agent roster."
   },
   {
     "name": "Cartographer",
@@ -151,7 +151,7 @@
     "type": "monthly",
     "scope": "Large",
     "role": "Visuals",
-    "desc": "Maps the entire system architecture into Mermaid diagrams for high-level understanding."
+    "desc": "The visual mapper. Translates complex folder structures and data flows into beautiful, readable Mermaid.js architectural diagrams."
   },
   {
     "name": "Spark",
@@ -159,7 +159,7 @@
     "category": "monthly",
     "scope": "Large",
     "role": "Innovation Strategist",
-    "desc": "Identifies UX blindspots and suggests open-source library adoptions."
+    "desc": "The innovation strategist. Audits brittle custom utilities and suggests modern, battle-tested open-source libraries to replace them, logging ideas to the roadmap."
   },
   {
     "name": "Herald",
@@ -168,7 +168,7 @@
     "scope": "Medium",
     "usedIn": "Librarian",
     "role": "Release Manager",
-    "desc": "Translates git history into human-readable Changelogs and manages Semantic Versioning."
+    "desc": "The public announcer. Parses raw git history and translates chaotic developer commits into beautifully structured, user-facing semantic changelogs."
   },
   {
     "name": "Wordsmith",
@@ -177,7 +177,7 @@
     "scope": "Small-Medium",
     "usedIn": "Virtuoso",
     "role": "UX Writer",
-    "desc": "Audits and rewrites all human-readable text: button labels, modal titles, empty states, alt tags, and ARIA labels."
+    "desc": "The empathetic copywriter. Red-pens passive, robotic UI strings and developer jargon, rewriting them into clear, actionable, and human-readable microcopy."
   },
   {
     "name": "Pedant",
@@ -186,7 +186,7 @@
     "scope": "Small-Medium",
     "usedIn": "Guardian",
     "role": "Code Quality Enforcer",
-    "desc": "Enforces line-level style: strict naming conventions, eliminating magic numbers/strings, and ensuring clean typing."
+    "desc": "An uncompromising enforcer of standards. Eradicates implicit `any` types, fixes casing violations, and extracts rogue magic numbers into strict constants."
   },
   {
     "name": "Untangler",
@@ -194,6 +194,6 @@
     "category": "eng",
     "scope": "Small-Medium",
     "role": "Logic Simplifier",
-    "desc": "Reduces cognitive complexity by flattening deeply nested logic and extracting local helper functions within the same file."
+    "desc": "A logic simplifier. Takes deeply nested, unreadable 'arrow code' and flattens it out using early returns, guard clauses, and local helper functions."
   }
 ]
