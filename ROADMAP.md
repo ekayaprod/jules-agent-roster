@@ -30,3 +30,9 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 ## 📦 Backlog (Unscheduled)
 - [ ] (Empty)
+
+## 🧪 Innovation Backlog (Spark)
+- [ ] [UX] Idea: Adopt `fuse.js` (20k stars) for fuzzy search to fix strict typo failures. (Source: fusejs.io)
+- [ ] [Security] Idea: Integrate `DOMPurify` to sanitize Fusion Lab output and prevent XSS. (Source: github.com/cure53/DOMPurify)
+- [ ] [Performance] Idea: Implement debounce pattern for search input to prevent layout thrashing on every keystroke. (Source: lodash)
+- [ ] [DX] Idea: Standardize clipboard logic with `clipboard-polyfill` to replace deprecated execCommand. (Source: github.com/lgarron/clipboard-polyfill)
