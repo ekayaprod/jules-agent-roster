@@ -201,58 +201,6 @@ You must return your final response as a strict JSON object adhering to this sch
   }
 
   /**
-   * Validates the fusion output to ensure it matches the expected JSON schema.
-   * This protects the UI from rendering errors and ensures the agent followed instructions.
-   *
-   * @param {string|object} output - The output to validate (JSON string or object).
-   * @returns {object} The validated object.
-   * @throws {Error} If validation fails (missing fields, invalid types).
-   */
-  validateFusionOutput(output) {
-    let data = output;
-    if (typeof data === "string") {
-      try {
-        data = JSON.parse(data);
-      } catch (e) {
-        throw new Error("Fusion output is not valid JSON.");
-      }
-    }
-
-    if (!data || typeof data !== "object") {
-      throw new Error("Fusion output must be an object.");
-    }
-
-    // Phase 1 Validation
-    if (!data.phase1 || typeof data.phase1 !== "object") {
-      throw new Error("Missing or invalid 'phase1' object.");
-    }
-    if (!data.phase1.thought_process || typeof data.phase1.thought_process !== "string") {
-      throw new Error("Phase 1 missing 'thought_process' string.");
-    }
-    if (!data.phase1.output || typeof data.phase1.output !== "string") {
-      throw new Error("Phase 1 missing 'output' string.");
-    }
-
-    // Phase 2 Validation
-    if (!data.phase2 || typeof data.phase2 !== "object") {
-      throw new Error("Missing or invalid 'phase2' object.");
-    }
-    if (!data.phase2.thought_process || typeof data.phase2.thought_process !== "string") {
-      throw new Error("Phase 2 missing 'thought_process' string.");
-    }
-    if (!data.phase2.output || typeof data.phase2.output !== "string") {
-      throw new Error("Phase 2 missing 'output' string.");
-    }
-
-    // Metadata Validation
-    if (!data.pr_title || typeof data.pr_title !== "string") {
-      throw new Error("Missing or invalid 'pr_title' string.");
-    }
-
-    return data;
-  }
-
-  /**
    * Public API to fuse two agents.
    * Handles custom "named" fusions and falls back to dynamic stitching.
    *
