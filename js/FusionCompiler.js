@@ -217,7 +217,11 @@ You must return your final response as a strict JSON object adhering to this sch
         prompt: "Cannot fuse an agent with itself.",
       };
 
-    const sortedNames = [agent1.name, agent2.name].sort();
+    // Pedant: Ensure names are trimmed before key generation
+    const name1 = agent1.name ? agent1.name.trim() : "";
+    const name2 = agent2.name ? agent2.name.trim() : "";
+
+    const sortedNames = [name1, name2].sort();
     const key = sortedNames.join(",");
 
     // 1. Check for Custom Agents (Named Fusions like "The Void")

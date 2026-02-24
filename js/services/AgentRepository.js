@@ -208,6 +208,11 @@ class AgentRepository {
                 return isValid;
             })
             .map((agent) => {
+                // Pedant: Ensure name is trimmed to prevent matching issues
+                if (agent.name) {
+                    agent.name = agent.name.trim();
+                }
+
                 // Medic: Sanitize optional fields to prevent fragility
                 if (agent.scope && typeof agent.scope !== "string") {
                     console.warn(

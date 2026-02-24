@@ -1,7 +1,7 @@
 [
   {
     "name": "Bolt+",
-    "icon": "\u26a1",
+    "icon": "⚡",
     "category": "core",
     "type": "plus",
     "scope": "Small-Medium",
@@ -11,7 +11,7 @@
   },
   {
     "name": "Palette+",
-    "icon": "\ud83c\udfa8",
+    "icon": "🎨",
     "category": "core",
     "type": "plus",
     "scope": "Small-Medium",
@@ -21,7 +21,7 @@
   },
   {
     "name": "Sentinel+",
-    "icon": "\ud83d\udee1\ufe0f",
+    "icon": "🛡️",
     "category": "core",
     "type": "plus",
     "scope": "Small-Medium",
@@ -31,7 +31,7 @@
   },
   {
     "name": "Helix",
-    "icon": "\ud83e\uddec",
+    "icon": "🧬",
     "category": "eng",
     "scope": "Small-Medium",
     "usedIn": "Steward",
@@ -40,7 +40,7 @@
   },
   {
     "name": "Architect",
-    "icon": "\ud83c\udfd7\ufe0f",
+    "icon": "🏗️",
     "category": "eng",
     "scope": "Medium",
     "usedIn": "Mechanic",
@@ -49,7 +49,7 @@
   },
   {
     "name": "Scavenger",
-    "icon": "\ud83e\uddf9",
+    "icon": "🧹",
     "category": "eng",
     "scope": "Medium",
     "usedIn": "Steward",
@@ -58,7 +58,7 @@
   },
   {
     "name": "Janitor",
-    "icon": "\ud83e\uddfc",
+    "icon": "🧼",
     "category": "eng",
     "scope": "Medium",
     "usedIn": "Steward",
@@ -67,16 +67,16 @@
   },
   {
     "name": "Modernizer",
-    "icon": "\ud83c\udd99",
+    "icon": "🆙",
     "category": "eng",
     "scope": "Medium",
     "usedIn": "Mechanic",
     "role": "Tech Stack Evolution",
-    "desc": "The evolution engine. Upgrades legacy syntax\u2014transmuting old callbacks, `var` declarations, and Promise chains into modern async/await and ES6 paradigms."
+    "desc": "The evolution engine. Upgrades legacy syntax—transmuting old callbacks, `var` declarations, and Promise chains into modern async/await and ES6 paradigms."
   },
   {
     "name": "Inspector",
-    "icon": "\ud83d\udd75\ufe0f",
+    "icon": "🕵️",
     "category": "eng",
     "scope": "Medium",
     "usedIn": "Guardian",
@@ -85,7 +85,7 @@
   },
   {
     "name": "Medic",
-    "icon": "\ud83d\ude91",
+    "icon": "🚑",
     "category": "eng",
     "scope": "Medium",
     "usedIn": "Guardian",
@@ -94,7 +94,7 @@
   },
   {
     "name": "Cortex",
-    "icon": "\ud83e\udde0",
+    "icon": "🧠",
     "category": "eng",
     "scope": "Medium",
     "role": "AI Integration Specialist",
@@ -102,7 +102,7 @@
   },
   {
     "name": "Scribe",
-    "icon": "\u270d\ufe0f",
+    "icon": "✍️",
     "category": "context",
     "scope": "Medium",
     "role": "Inline Documentation Historian",
@@ -110,7 +110,7 @@
   },
   {
     "name": "Author",
-    "icon": "\ud83d\udcd8",
+    "icon": "📘",
     "category": "context",
     "scope": "Medium",
     "usedIn": "Librarian",
@@ -119,7 +119,7 @@
   },
   {
     "name": "Navigator",
-    "icon": "\ud83e\udded",
+    "icon": "🧭",
     "category": "context",
     "scope": "Medium",
     "usedIn": "Librarian",
@@ -128,7 +128,7 @@
   },
   {
     "name": "Curator",
-    "icon": "\ud83d\uddbc\ufe0f",
+    "icon": "🖼️",
     "category": "context",
     "scope": "Medium",
     "usedIn": "Virtuoso",
@@ -137,7 +137,7 @@
   },
   {
     "name": "Overseer",
-    "icon": "\ud83d\udc41\ufe0f",
+    "icon": "👁️",
     "category": "monthly",
     "type": "monthly",
     "scope": "Large",
@@ -146,7 +146,7 @@
   },
   {
     "name": "Cartographer",
-    "icon": "\ud83d\uddfa\ufe0f",
+    "icon": "🗺️",
     "category": "monthly",
     "type": "monthly",
     "scope": "Large",
@@ -155,7 +155,7 @@
   },
   {
     "name": "Spark",
-    "icon": "\ud83d\udca1",
+    "icon": "💡",
     "category": "monthly",
     "type": "monthly",
     "scope": "Large",
@@ -164,7 +164,7 @@
   },
   {
     "name": "Herald",
-    "icon": "\ud83d\udce3",
+    "icon": "📣",
     "category": "context",
     "scope": "Medium",
     "usedIn": "Librarian",
@@ -173,7 +173,7 @@
   },
   {
     "name": "Wordsmith",
-    "icon": "\u270f\ufe0f",
+    "icon": "✏️",
     "category": "context",
     "scope": "Small-Medium",
     "usedIn": "Virtuoso",
@@ -182,7 +182,7 @@
   },
   {
     "name": "Pedant",
-    "icon": "\ud83e\uddd0",
+    "icon": "🧐",
     "category": "eng",
     "scope": "Small-Medium",
     "usedIn": "Guardian",
@@ -191,7 +191,7 @@
   },
   {
     "name": "Untangler",
-    "icon": "\ud83e\uddf6",
+    "icon": "🧶",
     "category": "eng",
     "scope": "Small-Medium",
     "role": "Logic Simplifier",
