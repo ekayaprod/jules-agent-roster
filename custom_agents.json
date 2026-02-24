@@ -303,5 +303,25 @@
     "name": "Pathfinder 🥾",
     "tier": "U-Tier",
     "description": "The Friction Eradicator. Analyzes clicks and steps required to complete a workflow, ruthlessly flattening routing logic and removing dead ends."
+  },
+  "Bolt+,Janitor": {
+    "name": "Expediter 🛎️",
+    "tier": "U-Tier",
+    "description": "The Build Optimizer. Speeds up CI/CD pipelines, optimizes Webpack/Vite configs, and parallelizes build tasks so orders fly out without bottlenecks."
+  },
+  "Bolt+,Scavenger": {
+    "name": "Proton Pack 🎒",
+    "tier": "U-Tier",
+    "description": "The Memory Leak Eradicator. Aggressively blasts away unmounted React components, detached DOM nodes, and stale LocalStorage bloat."
+  },
+  "Bolt+,Helix": {
+    "name": "Mitosis 🧫",
+    "tier": "U-Tier",
+    "description": "The Parallelizer. Splits heavy, single-threaded UI logic into identical, parallel Web Worker cells for true multi-threading."
+  },
+  "Bolt+,Pedant": {
+    "name": "Millisecond ⏱️",
+    "tier": "U-Tier",
+    "description": "The Micro-Optimizer. Obsessively shaves off microscopic render waste by dialing in AST-level rendering rules and eliminating inline object allocations."
   }
 }
