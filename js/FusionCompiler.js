@@ -186,7 +186,8 @@ ${proc1}
 ${proc2}
 
 ## OUTPUT FORMAT
-You must return your final response as a strict JSON object adhering to this schema:
+You must return your final response as a strict JSON object adhering to this exact schema. Do not include markdown code blocks, comments, or any text outside the JSON object.
+
 {
   "phase1": {
     "thought_process": "string",
@@ -197,7 +198,22 @@ You must return your final response as a strict JSON object adhering to this sch
     "output": "string"
   },
   "pr_title": "${prTitle}"
-}`;
+}
+
+FAILURE TO COMPLY WITH THIS SCHEMA WILL CAUSE THE FUSION TO FAIL.`;
+  }
+
+  /**
+   * Validates the fusion output against the strict schema.
+   * Delegates to FusionSchema.
+   * @param {string|Object} output - The output to validate.
+   * @returns {Object} Validation result { valid, errors, data }
+   */
+  static validateFusionOutput(output) {
+      if (typeof FusionSchema === 'undefined') {
+          return { valid: false, errors: ['FusionSchema is not loaded.'] };
+      }
+      return FusionSchema.validate(output);
   }
 
   /**
@@ -249,4 +265,9 @@ You must return your final response as a strict JSON object adhering to this sch
       prompt: stitchedPrompt,
     };
   }
+}
+
+// Node.js Export Support
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = FusionCompiler;
 }
