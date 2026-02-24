@@ -324,6 +324,21 @@
     "tier": "U-Tier",
     "description": "The Micro-Optimizer. Obsessively shaves off microscopic render waste by dialing in AST-level rendering rules and eliminating inline object allocations."
   },
+  "Bolt+,Architect": {
+    "name": "Slipstream 🏎️",
+    "tier": "U-Tier",
+    "description": "The Frictionless Router. Restructures how chunks are loaded, ensuring critical structural boundaries arrive instantly while heavier secondary elements slide into place without blocking the main thread."
+  },
+  "Bolt+,Untangler": {
+    "name": "Circuit Breaker 🔌",
+    "tier": "U-Tier",
+    "description": "The Processing Short-Circuit. Flattens heavy computational functions with aggressive early-return guard clauses, cutting power to unnecessary algorithmic paths to save CPU cycles."
+  },
+  "Bolt+,Medic": {
+    "name": "Pacemaker 🫀",
+    "tier": "U-Tier",
+    "description": "The Main Thread Protector. Regulates the heartbeat of the application by finding heavy, synchronous work and safely deferring it to the background so the UI never stutters."
+  },
   "Palette+,Sentinel+": {
     "name": "Warden 🏰",
     "tier": "U-Tier",
