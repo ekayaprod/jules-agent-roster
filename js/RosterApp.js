@@ -196,6 +196,23 @@ class RosterApp {
       this.downloadCustomAgents(e.currentTarget),
     );
 
+    // Close dropdown on focus out (Tab or click outside)
+    this.elements.downloadDropdownMenu?.addEventListener("focusout", (e) => {
+      // Use setTimeout to allow activeElement to update
+      setTimeout(() => {
+        const menu = this.elements.downloadDropdownMenu;
+        const btn = this.elements.downloadDropdownBtn;
+        if (
+          menu.classList.contains("visible") &&
+          !menu.contains(document.activeElement) &&
+          !btn.contains(document.activeElement)
+        ) {
+          menu.classList.remove("visible");
+          btn.setAttribute("aria-expanded", "false");
+        }
+      }, 0);
+    });
+
     // Global click to close dropdown
     document.addEventListener("click", (e) => {
       if (
@@ -399,7 +416,7 @@ class RosterApp {
       // Explicitly handle Enter/Space to ensure toggle works reliably via keyboard
       e.preventDefault();
       this.toggleDownloadDropdown();
-    } else if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+    } else if (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === "Home" || e.key === "End") {
       e.preventDefault();
 
       if (!isVisible) {
@@ -414,7 +431,11 @@ class RosterApp {
       const currentIndex = items.indexOf(document.activeElement);
       let nextIndex;
 
-      if (currentIndex === -1) {
+      if (e.key === "Home") {
+        nextIndex = 0;
+      } else if (e.key === "End") {
+        nextIndex = items.length - 1;
+      } else if (currentIndex === -1) {
         nextIndex = e.key === "ArrowDown" ? 0 : items.length - 1;
       } else if (e.key === "ArrowDown") {
         nextIndex = (currentIndex + 1) % items.length;
