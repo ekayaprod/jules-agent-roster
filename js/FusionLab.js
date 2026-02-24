@@ -26,8 +26,18 @@ class FusionLab {
     const fuseBtn = document.getElementById("fuseBtn");
     const copyFusionBtn = document.getElementById("copyFusionBtn");
 
-    if (slotA) slotA.addEventListener("change", () => this.updateState());
-    if (slotB) slotB.addEventListener("change", () => this.updateState());
+    if (slotA) {
+      slotA.addEventListener("change", () => {
+        this.updateState();
+        this.clearError();
+      });
+    }
+    if (slotB) {
+      slotB.addEventListener("change", () => {
+        this.updateState();
+        this.clearError();
+      });
+    }
     if (fuseBtn) fuseBtn.addEventListener("click", () => this.handleFusion());
 
     if (copyFusionBtn) {
@@ -98,13 +108,52 @@ class FusionLab {
   }
 
   /**
+   * Displays an error message in the Fusion Lab.
+   * @param {string} message - The error message to display.
+   */
+  showError(message) {
+    const errorEl = document.getElementById("fusionError");
+    const textSpan = document.getElementById("fusionErrorText");
+    const fuseBtn = document.getElementById("fuseBtn");
+
+    if (fuseBtn) {
+      fuseBtn.classList.remove("loading");
+      fuseBtn.classList.add("error");
+      fuseBtn.innerText = "Ignite Fusion Protocol";
+      fuseBtn.disabled = false;
+    }
+
+    if (errorEl) {
+      errorEl.hidden = false;
+      errorEl.setAttribute("aria-live", "assertive");
+      if (textSpan) textSpan.innerText = message;
+    }
+  }
+
+  /**
+   * Clears the error state.
+   */
+  clearError() {
+    const errorEl = document.getElementById("fusionError");
+    const fuseBtn = document.getElementById("fuseBtn");
+
+    if (errorEl) {
+      errorEl.hidden = true;
+      errorEl.removeAttribute("aria-live");
+    }
+
+    if (fuseBtn) {
+      fuseBtn.classList.remove("error");
+    }
+  }
+
+  /**
    * Handles the fusion logic when the Fuse button is clicked.
    */
   async handleFusion() {
     const slotA = document.getElementById("slotA");
     const slotB = document.getElementById("slotB");
     const fuseBtn = document.getElementById("fuseBtn");
-    const errorEl = document.getElementById("fusionError");
     const emptyState = document.getElementById("fusionEmptyState");
 
     const nameA = slotA.value;
@@ -113,12 +162,8 @@ class FusionLab {
     if (!nameA || !nameB) return;
 
     // Reset UI states
-    if (errorEl) {
-      errorEl.hidden = true;
-      errorEl.removeAttribute("aria-live"); // Reset live region
-    }
+    this.clearError();
     if (fuseBtn) {
-      fuseBtn.classList.remove("error");
       fuseBtn.classList.add("loading");
       fuseBtn.innerText = "Synthesizing Protocol...";
       fuseBtn.disabled = true;
@@ -132,27 +177,14 @@ class FusionLab {
 
     // Error Handling
     if (result.name === "Error") {
-      if (fuseBtn) {
-        fuseBtn.classList.remove("loading");
-        fuseBtn.classList.add("error");
-        fuseBtn.innerText = "Ignite Fusion Protocol";
-        fuseBtn.disabled = false;
+      let msg = result.prompt;
+      // Virtuoso: Empathetic & Actionable Error Copy
+      if (result.prompt === "Cannot fuse an agent with itself.") {
+        msg = "Unstable Reaction: Fusing an agent with itself creates a feedback loop. Select a different partner to stabilize.";
+      } else if (result.prompt === "Invalid agents selected.") {
+        msg = "Missing Components: Two distinct agents are required to initiate the fusion protocol.";
       }
-      if (errorEl) {
-        errorEl.hidden = false;
-        errorEl.setAttribute("aria-live", "assertive"); // Palette+: Announce error immediately
-
-        let msg = result.prompt;
-        // Virtuoso: Empathetic & Actionable Error Copy
-        if (result.prompt === "Cannot fuse an agent with itself.") {
-          msg = "Self-fusion is unstable. Choose a second, distinct agent to stabilize the reaction.";
-        } else if (result.prompt === "Invalid agents selected.") {
-          msg = "Protocol mismatch. Please select two valid agents to begin fusion.";
-        }
-
-        const textSpan = errorEl.querySelector("span") || errorEl;
-        textSpan.innerText = msg;
-      }
+      this.showError(msg);
       return;
     }
 

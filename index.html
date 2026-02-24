@@ -1281,48 +1281,54 @@
         flex-direction: column;
         align-items: center;
         gap: 1.5rem;
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: default;
       }
 
       .fusion-empty-state:hover {
         border-color: var(--accent);
         background: radial-gradient(
           circle at center,
-          rgba(56, 189, 248, 0.08) 0%,
+          rgba(56, 189, 248, 0.1) 0%,
           transparent 70%
         );
+        transform: translateY(-2px);
       }
 
       .fusion-empty-state svg {
         color: var(--border);
         width: 48px;
         height: 48px;
+        transition: color 0.3s ease;
+      }
+
+      .fusion-empty-state:hover svg {
+        color: var(--accent);
       }
 
       .fusion-error {
-        background-color: rgba(239, 68, 68, 0.08); /* Palette+: Slightly richer bg */
+        background-color: rgba(254, 226, 226, 0.1);
         color: #fca5a5;
-        border: 1px solid rgba(239, 68, 68, 0.2);
+        border: 1px solid rgba(252, 165, 165, 0.3);
         border-left: 4px solid #ef4444;
-        padding: 1rem 1.25rem;
-        border-radius: 0.5rem; /* Palette+: Softer corners */
+        padding: 1.25rem;
+        border-radius: 0.5rem;
         margin-bottom: 1.5rem;
         display: flex;
-        align-items: center; /* Palette+: Center alignment for better flow */
+        align-items: center;
         gap: 1rem;
-        font-size: 0.95rem; /* Palette+: Slightly larger for readability */
+        font-size: 0.95rem;
         font-weight: 500;
-        animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards; /* Palette+: Smooth entry */
+        animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         text-align: left;
         backdrop-filter: blur(8px);
-        box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.1);
+        box-shadow: 0 4px 12px -2px rgba(239, 68, 68, 0.15);
       }
 
       .fusion-error[hidden] {
         display: none;
       }
 
-      /* Palette+: Error Icon container */
       .fusion-error svg {
         flex-shrink: 0;
         color: #ef4444;
@@ -1332,15 +1338,14 @@
       #fuseBtn.loading {
         cursor: wait;
         opacity: 0.9;
-        background: linear-gradient(to right, #9333ea, #db2777); /* Palette+: Deeper gradient during load */
-        box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
-        animation: pulse-glow 2s infinite;
+        background: linear-gradient(to right, #9333ea, #db2777);
+        animation: pulse-loading 2s infinite;
       }
 
-      @keyframes pulse-glow {
-        0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); }
-        70% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+      @keyframes pulse-loading {
+        0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); transform: scale(1); }
+        50% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); transform: scale(0.98); }
+        100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); transform: scale(1); }
       }
 
       #fuseBtn.error {
@@ -1608,7 +1613,7 @@
 
       <!-- Fusion Error Alert -->
       <div id="fusionError" class="fusion-error" role="alert" hidden>
-        <svg aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <svg aria-hidden="true" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
         <span id="fusionErrorText"></span>
       </div>
 
