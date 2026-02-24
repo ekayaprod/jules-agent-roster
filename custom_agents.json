@@ -323,5 +323,25 @@
     "name": "Millisecond ⏱️",
     "tier": "U-Tier",
     "description": "The Micro-Optimizer. Obsessively shaves off microscopic render waste by dialing in AST-level rendering rules and eliminating inline object allocations."
+  },
+  "Palette+,Sentinel+": {
+    "name": "Warden 🏰",
+    "tier": "U-Tier",
+    "description": "The Trust Designer. Bridges security and empathy by designing frictionless authentication flows, interactive password meters, and clear permission dialogues."
+  },
+  "Palette+,Modernizer": {
+    "name": "Stylist 💅",
+    "tier": "U-Tier",
+    "description": "The UI Modernizer. Brings outdated styling into the modern era by migrating legacy CSS to Tailwind and implementing CSS Variables for seamless Dark Mode support."
+  },
+  "Palette+,Pedant": {
+    "name": "Typesetter 🔠",
+    "tier": "U-Tier",
+    "description": "The Pixel Perfectionist. Enforces visual rhythm at the code level, hunting down rogue inline margins to enforce strict spacing scales and WCAG contrast ratios."
+  },
+  "Palette+,Curator": {
+    "name": "Gallerist 🖼️",
+    "tier": "U-Tier",
+    "description": "The Media Presenter. Treats application assets like a museum exhibit, standardizing icon libraries and implementing gorgeous blurry-image placeholders for lazy-loaded media."
   }
 }
