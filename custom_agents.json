@@ -1,381 +1,381 @@
 {
   "Scavenger,Helix": {
-    "name": "Void \ud83d\udd73\ufe0f",
+    "name": "Void 🕳️",
     "tier": "X-Tier",
     "description": "An anomalous consolidation specialist. Extracts duplicated patterns into a single shared utility, then completely physically purges the original redundant files from the repository."
   },
   "Janitor,Sentinel+": {
-    "name": "Checkpoint \ud83d\udea7",
+    "name": "Checkpoint 🚧",
     "tier": "U-Tier",
     "description": "A rigid security enforcer at the gates of maintenance. Safely bumps NPM dependencies and immediately updates the validation schemas guarding their APIs."
   },
   "Scavenger,Inspector": {
-    "name": "Coroner \ud83e\ude7b",
+    "name": "Coroner 🩻",
     "tier": "U-Tier",
     "description": "A surgical investigator of the dead. Proves code is truly abandoned before permanently excising both the source files and the ghost tests keeping them alive."
   },
   "Bolt+,Palette+": {
-    "name": "Illusionist \ud83e\ude84",
+    "name": "Illusionist 🪄",
     "tier": "U-Tier",
     "description": "A master of perceived performance. Strips a component to its bare render constraints, then masks any remaining latency with luxurious CSS loading states."
   },
   "Bolt+,Curator": {
-    "name": "Sprinter \ud83d\udc5f",
+    "name": "Sprinter 👟",
     "tier": "U-Tier",
     "description": "An elite payload delivery specialist. Compresses massive static assets and instantly rewrites the DOM/CSS to serve them via modern, responsive delivery tags."
   },
   "Bolt+,Sentinel+": {
-    "name": "Broker \ud83d\udcbc",
+    "name": "Broker 💼",
     "tier": "U-Tier",
     "description": "A ruthless mediator between speed and security. Implements extreme edge-caching for public routes while strictly quarantining authenticated and sensitive data."
   },
   "Bolt+,Modernizer": {
-    "name": "Catalyst \ud83c\udfce\ufe0f",
+    "name": "Catalyst 🏎️",
     "tier": "U-Tier",
     "description": "An engine of pure momentum. Modernizes legacy syntax and architecture specifically to unlock and apply native runtime execution speedups."
   },
   "Bolt+,Inspector": {
-    "name": "Pacesetter \u23f1\ufe0f",
+    "name": "Pacesetter ⏱️",
     "tier": "U-Tier",
     "description": "A relentless enforcer of speed. Re-engineers heavy algorithms for maximum efficiency and locks the gains in place with strict benchmark regression tests."
   },
   "Palette+,Wordsmith": {
-    "name": "Virtuoso \ud83c\udfad",
+    "name": "Virtuoso 🎭",
     "tier": "U-Tier",
     "description": "An artisan of interface design. Designs flawless visual states (hover, loading, error) and pairs them with highly empathetic, active-voice microcopy."
   },
   "Medic,Palette+": {
-    "name": "Placebo \ud83d\udc8a",
+    "name": "Placebo 💊",
     "tier": "U-Tier",
     "description": "A psychological performance specialist. Hardens fragile asynchronous requests with strict error boundaries while masking their latency with optimistic UI skeletons."
   },
   "Medic,Sentinel+": {
-    "name": "First Responder \ud83d\udea8",
+    "name": "First Responder 🚨",
     "tier": "U-Tier",
     "description": "An elite crisis manager. Secures external API boundaries with strict schema validation and wraps the rejection paths in graceful fallbacks and telemetry."
   },
   "Pedant,Sentinel+": {
-    "name": "Regulator \ud83d\udec2",
+    "name": "Regulator 🛂",
     "tier": "U-Tier",
     "description": "A federal compliance officer for the codebase. Extracts illegal, hardcoded magic numbers into global constants and enforces them across all security schemas."
   },
   "Cortex,Sentinel+": {
-    "name": "Firewall \ud83e\uddf1",
+    "name": "Firewall 🧱",
     "tier": "U-Tier",
     "description": "A heavy blast door for artificial intelligence. Upgrades LLM integrations while wrapping their inputs and outputs in strict prompt-injection and schema guards."
   },
   "Modernizer,Sentinel+": {
-    "name": "Retrofitter \ud83d\udd27",
+    "name": "Retrofitter 🔧",
     "tier": "U-Tier",
     "description": "A structural and syntactic migration specialist. Moves outdated files into modern domain-driven folders while simultaneously upgrading their code to ES6+ standards."
   },
   "Sentinel+,Wordsmith": {
-    "name": "Redactor \u2b1b",
+    "name": "Redactor ⬛",
     "tier": "U-Tier",
     "description": "A historical security sanitization agent. Scours JSDoc and READMEs to scrub leaked secrets or PII, replacing them with secure placeholders and warning comments."
   },
   "Architect,Helix": {
-    "name": "Kiln \ud83c\udf0b",
+    "name": "Kiln 🌋",
     "tier": "U-Tier",
     "description": "A high-heat refactoring specialist. Upgrades legacy syntax to modern standards and immediately subjects it to intense boundary testing to prove the logic holds."
   },
   "Architect,Scavenger": {
-    "name": "Renovator \ud83c\udfe1",
+    "name": "Renovator 🏡",
     "tier": "U-Tier",
     "description": "A structural UX polish specialist. Restructures disorganized feature hierarchies and simultaneously adds missing loading and empty states to their UI components."
   },
   "Architect,Modernizer": {
-    "name": "Terraformer \ud83c\udf0d",
+    "name": "Terraformer 🌍",
     "tier": "U-Tier",
     "description": "A topographical asset management specialist. Moves chaotic asset dumps into domain-driven structures, optimizing the files and updating their codebase references in one pass."
   },
   "Architect,Author": {
-    "name": "City Clerk \ud83c\udfdb\ufe0f",
+    "name": "City Clerk 🏛️",
     "tier": "U-Tier",
     "description": "An architectural migration documentarian. Restructures complex module imports and meticulously documents the exact architectural shift via formal migration guides."
   },
   "Architect,Inspector": {
-    "name": "Seawall \ud83c\udf0a",
+    "name": "Seawall 🌊",
     "tier": "U-Tier",
     "description": "An architectural encapsulation specialist. Establishes strict barrel exports to hide internal module state and writes integration tests that simulate the storm against the public API."
   },
   "Helix,Untangler": {
-    "name": "Weaver \ud83e\uddf5",
+    "name": "Weaver 🧵",
     "tier": "U-Tier",
     "description": "A logic restructuring specialist. Extracts duplicated code into a single shared utility while simultaneously flattening its deeply nested execution paths into pristine guard clauses."
   },
   "Helix,Scribe": {
-    "name": "Oracle \ud83d\udd2e",
+    "name": "Oracle 🔮",
     "tier": "U-Tier",
     "description": "A documentation and centralization specialist. Centralizes duplicated logic into a single point of truth and drafts a strict, binding JSDoc contract for all future consumers."
   },
   "Janitor,Scavenger": {
-    "name": "Steward \ud83e\uddfd",
+    "name": "Steward 🧽",
     "tier": "U-Tier",
     "description": "A meticulous caretaker of dependencies. Bumps foundational libraries to their modern versions, then instantly sweeps the codebase to surgically delete the orphaned polyfills and legacy compatibility shims left behind."
   },
   "Modernizer,Cortex": {
-    "name": "Futurist \ud83d\udef8",
+    "name": "Futurist 🛸",
     "tier": "U-Tier",
     "description": "An AI infrastructure evolution specialist. Upgrades legacy server routes to modern ES6 syntax and simultaneously updates the AI models and prompt structures running inside them."
   },
   "Medic,Inspector": {
-    "name": "Guardian \u26d1\ufe0f",
+    "name": "Guardian ⛑️",
     "tier": "U-Tier",
     "description": "A battle-tested protector. Wraps fragile code paths in strict error boundaries and immediately writes tests that deliberately assault those boundaries to prove they hold."
   },
   "Pedant,Inspector": {
-    "name": "Auditor \ud83d\udd0e",
+    "name": "Auditor 🔎",
     "tier": "U-Tier",
     "description": "A quality assurance inspector. Standardizes sloppy variables into strictly typed constants and immediately locks the pristine logic in place with a robust test suite."
   },
   "Janitor,Modernizer": {
-    "name": "Synchronizer \ud83d\udd04",
+    "name": "Synchronizer 🔄",
     "tier": "U-Tier",
     "description": "A dependency migration specialist. Bumps a major package version and traverses the AST to migrate all deprecated syntax to the new API in a single evolutionary pass."
   },
   "Scavenger,Curator": {
-    "name": "Purger \ud83d\uddd1\ufe0f",
+    "name": "Purger 🗑️",
     "tier": "U-Tier",
     "description": "A cascading deletion specialist. Demolishes orphaned components and immediately hunts down and eradicates the heavy ghost images and static assets they leave behind."
   },
   "Herald,Scribe": {
-    "name": "Historian \u23f3",
+    "name": "Historian ⏳",
     "tier": "U-Tier",
     "description": "A temporal archivist. Generates public changelogs for new releases and instantly embeds that historical context into the shipped functions via inline JSDoc."
   },
   "Janitor,Inspector": {
-    "name": "Safety Inspector \ud83e\uddba",
+    "name": "Safety Inspector 🦺",
     "tier": "U-Tier",
     "description": "A dependency QA specialist. Bumps outdated package versions and immediately secures the affected integration paths with strict regression tests."
   },
   "Scavenger,Modernizer": {
-    "name": "Liquidator \ud83d\udca5",
+    "name": "Liquidator 💥",
     "tier": "U-Tier",
     "description": "A destructive migration specialist. Migrates legacy consumers to modern native APIs and ruthlessly deletes the old polyfills and shim files in one pass."
   },
   "Navigator,Herald": {
-    "name": "Strategist \u265f\ufe0f",
+    "name": "Strategist ♟️",
     "tier": "U-Tier",
     "description": "A release and roadmap synchronizer. Updates the internal roadmap to mark features complete and instantly broadcasts the achievement via a perfectly aligned public changelog."
   },
   "Untangler,Medic": {
-    "name": "Triage \ud83c\udfe5",
+    "name": "Triage 🏥",
     "tier": "U-Tier",
     "description": "A logic flattening and resilience specialist. Untangles deeply nested, fragile logic to expose its execution paths, replacing vague catch-alls with specific, isolated error handlers."
   },
   "Scribe,Navigator": {
-    "name": "Chronicler \ud83d\udd8b\ufe0f",
+    "name": "Chronicler 🖋️",
     "tier": "U-Tier",
     "description": "A strategic context historian. Checks features off the roadmap and immediately cements their architectural intent into the codebase via explanatory JSDoc."
   },
   "Untangler,Modernizer": {
-    "name": "Refiner \ud83d\udee2\ufe0f",
+    "name": "Refiner 🛢️",
     "tier": "U-Tier",
     "description": "A structural modernization specialist. Distills messy, nested callback spaghetti into flat, modern async/await execution paths in one continuous operation."
   },
   "Modernizer,Medic": {
-    "name": "Inoculator \ud83d\udc89",
+    "name": "Inoculator 💉",
     "tier": "U-Tier",
     "description": "A modernization and resilience specialist. Upgrades legacy code to modern asynchronous paradigms and explicitly treats the new failure modes it introduces."
   },
   "Helix,Medic": {
-    "name": "Quarantine \u2623\ufe0f",
+    "name": "Quarantine ☣️",
     "tier": "U-Tier",
     "description": "A safe centralization specialist. Extracts volatile, scattered logic into a single shared utility and wraps it in an impenetrable error-handling boundary."
   },
   "Wordsmith,Curator": {
-    "name": "Captionist \ud83d\udcac",
+    "name": "Captionist 💬",
     "tier": "U-Tier",
     "description": "An accessible payload specialist. Crushes static asset sizes while simultaneously rewriting their alt tags and ARIA labels for perfect semantic accessibility."
   },
   "Wordsmith,Pedant": {
-    "name": "Grammarian \u2712\ufe0f",
+    "name": "Grammarian ✒️",
     "tier": "U-Tier",
     "description": "A microcopy canonicalization specialist. Extracts sloppy, hardcoded UI strings into strict canonical constants and rewrites them into polished, active-voice microcopy."
   },
   "Scribe,Author": {
-    "name": "Scholar \ud83e\udd89",
+    "name": "Scholar 🦉",
     "tier": "U-Tier",
     "description": "A macro/micro documentation synthesizer. Documents a module from the granular JSDoc micro-level all the way up to the macro architectural README in one unified pass."
   },
   "Cortex,Inspector": {
-    "name": "Polygraph \ud83c\udf9b\ufe0f",
+    "name": "Polygraph 🎛️",
     "tier": "U-Tier",
     "description": "An AI data schema and validation specialist. Upgrades LLM prompts to enforce strict JSON outputs and administers a lie-detector test by feeding it malformed data to ensure safe parsing."
   },
   "Scavenger,Scribe": {
-    "name": "Obituary Writer \ud83e\udea6",
+    "name": "Obituary Writer 🪦",
     "tier": "U-Tier",
     "description": "A historical deletion specialist. Researches and documents the final engineering intent of dead code before permanently burying it and its associated tests."
   },
   "Cortex,Scribe": {
-    "name": "Prompt Engineer \ud83d\udee0\ufe0f",
+    "name": "Prompt Engineer 🛠️",
     "tier": "U-Tier",
     "description": "A master of words and constraints. Optimizes the clarity and execution of AI prompts across the codebase without breaking their underlying JSON or Markdown structures."
   },
   "Author,Herald": {
-    "name": "Town Crier \ud83d\udd14",
+    "name": "Town Crier 🔔",
     "tier": "U-Tier",
     "description": "A release documentation synchronizer. Announces a new release to the public via the changelog and instantly updates the macro README to reflect the repository's new reality."
   },
   "Wordsmith,Author": {
-    "name": "Brand Manager \ud83c\udff7\ufe0f",
+    "name": "Brand Manager 🏷️",
     "tier": "U-Tier",
     "description": "A domain language synchronizer. Establishes the official canonical terminology in the macro README and strictly enforces it across the user interface."
   },
   "Architect,Palette+": {
-    "name": "Sculptor \ud83d\uddff",
+    "name": "Sculptor 🗿",
     "tier": "U-Tier",
     "description": "A structural UI and animation specialist. Chisels massive monolith components into clean sub-components and applies polished visual transitions to the new seams."
   },
   "Sentinel+,Inspector": {
-    "name": "Stress Tester \ud83d\udddc\ufe0f",
+    "name": "Stress Tester 🗜️",
     "tier": "U-Tier",
     "description": "A security assurance specialist. Implements strict validation schemas at trust boundaries and writes brutal tests that deliberately inject malicious data to bypass them."
   },
   "Helix,Inspector": {
-    "name": "Mixologist \ud83c\udf78",
+    "name": "Mixologist 🍸",
     "tier": "U-Tier",
     "description": "A precision extraction specialist. Combines scattered logic fragments into a perfectly balanced shared utility, then rigorously taste-tests it with 100% test coverage."
   },
   "Untangler,Sentinel+": {
-    "name": "Defuser \u2702\ufe0f",
+    "name": "Defuser ✂️",
     "tier": "U-Tier",
     "description": "An authorization restructuring specialist. Meticulously untangles deeply nested security logic to expose vulnerabilities, then strictly types and locks down the boundary."
   },
   "Untangler,Pedant": {
-    "name": "Sorter \ud83d\uddc2\ufe0f",
+    "name": "Sorter 🗂️",
     "tier": "U-Tier",
     "description": "A logic categorization specialist. Flattens deeply nested spaghetti code and drops every extracted piece into perfectly labeled, strictly typed local helper functions."
   },
   "Janitor,Cortex": {
-    "name": "Technician \ud83e\uddf0",
+    "name": "Technician 🧰",
     "tier": "U-Tier",
     "description": "An AI infrastructure maintainer. Unplugs deprecated AI SDKs, bumps the dependencies, and rewires the application logic to match the new API structures."
   },
   "Cortex,Palette+": {
-    "name": "Hologram \ud83c\udf87",
+    "name": "Hologram 🎇",
     "tier": "U-Tier",
     "description": "A generative UI specialist. Intercepts raw, streaming data lasers from an AI backend and refracts them into a beautiful, progressive, and optimistic visual interface."
   },
   "Palette+,Inspector": {
-    "name": "Jeweler \ud83d\udc8e",
+    "name": "Jeweler 💎",
     "tier": "U-Tier",
     "description": "A visual interaction QA specialist. Polishes interactive UI components with focus/accessibility states, then places them under a loupe to write rigorous interaction tests."
   },
   "Modernizer,Scribe": {
-    "name": "Transition Manager \ud83c\udf09",
+    "name": "Transition Manager 🌉",
     "tier": "U-Tier",
     "description": "A legacy migration architect. Refactors outdated architectural paradigms and immediately writes detailed inline JSDoc to explain the paradigm shift to the team."
   },
   "Wordsmith,Navigator": {
-    "name": "Script Supervisor \ud83c\udfac",
+    "name": "Script Supervisor 🎬",
     "tier": "U-Tier",
     "description": "A roadmap lexicon enforcer. Reads the official product strategy and ruthlessly enforces its exact terminology across every user-facing string in the UI."
   },
   "Medic,Wordsmith": {
-    "name": "Diplomat \ud83e\udd1d",
+    "name": "Diplomat 🤝",
     "tier": "U-Tier",
     "description": "An empathetic error recovery specialist. Catches terrifying system failures in safe technical boundaries and translates them into calm, actionable messages for the user."
   },
   "Architect,Scribe": {
-    "name": "Archivist \ud83d\uddc3\ufe0f",
+    "name": "Archivist 🗃️",
     "tier": "U-Tier",
     "description": "A deep context documentation specialist. Writes granular inline JSDoc and links it directly up to high-level architectural READMEs, syncing micro and macro context."
   },
   "Palette+,Navigator": {
-    "name": "Wayfinder \ud83e\udea7",
+    "name": "Wayfinder 🪧",
     "tier": "U-Tier",
     "description": "The Onboarding & Routing Specialist. Solves 'Lost User Syndrome' by building intuitive stepper components, breadcrumbs, and empty-state guided tours."
   },
   "Palette+,Untangler": {
-    "name": "Streamliner \u26f7\ufe0f",
+    "name": "Streamliner ⛷️",
     "tier": "U-Tier",
     "description": "The Cognitive Load Reducer. Takes massive, intimidating workflows and breaks them down using progressive disclosure and clean, chunked UI layouts."
   },
   "Architect,Wordsmith": {
-    "name": "Information Architect \ud83d\uddc2\ufe0f",
+    "name": "Information Architect 🗂️",
     "tier": "U-Tier",
     "description": "The Structural Content Designer. Reorganizes page layout hierarchy while simultaneously ensuring step labels, headings, and CTAs tell a cohesive, sequential story."
   },
   "Navigator,Untangler": {
-    "name": "Pathfinder \ud83e\udd7e",
+    "name": "Pathfinder 🥾",
     "tier": "U-Tier",
     "description": "The Friction Eradicator. Analyzes clicks and steps required to complete a workflow, ruthlessly flattening routing logic and removing dead ends."
   },
   "Bolt+,Janitor": {
-    "name": "Expediter \ud83d\udece\ufe0f",
+    "name": "Expediter 🛎️",
     "tier": "U-Tier",
     "description": "The Build Optimizer. Speeds up CI/CD pipelines, optimizes Webpack/Vite configs, and parallelizes build tasks so orders fly out without bottlenecks."
   },
   "Bolt+,Scavenger": {
-    "name": "Proton Pack \ud83c\udf92",
+    "name": "Proton Pack 🎒",
     "tier": "U-Tier",
     "description": "The Memory Leak Eradicator. Aggressively blasts away unmounted React components, detached DOM nodes, and stale LocalStorage bloat."
   },
   "Bolt+,Helix": {
-    "name": "Mitosis \ud83e\uddeb",
+    "name": "Mitosis 🧫",
     "tier": "U-Tier",
     "description": "The Parallelizer. Splits heavy, single-threaded UI logic into identical, parallel Web Worker cells for true multi-threading."
   },
   "Bolt+,Pedant": {
-    "name": "Millisecond \u23f1\ufe0f",
+    "name": "Millisecond ⏱️",
     "tier": "U-Tier",
     "description": "The Micro-Optimizer. Obsessively shaves off microscopic render waste by dialing in AST-level rendering rules and eliminating inline object allocations."
   },
   "Bolt+,Architect": {
-    "name": "Slipstream \ud83c\udfce\ufe0f",
+    "name": "Slipstream 🏎️",
     "tier": "U-Tier",
     "description": "The Frictionless Router. Restructures how chunks are loaded, ensuring critical structural boundaries arrive instantly while heavier secondary elements slide into place without blocking the main thread."
   },
   "Bolt+,Untangler": {
-    "name": "Circuit Breaker \ud83d\udd0c",
+    "name": "Circuit Breaker 🔌",
     "tier": "U-Tier",
     "description": "The Processing Short-Circuit. Flattens heavy computational functions with aggressive early-return guard clauses, cutting power to unnecessary algorithmic paths to save CPU cycles."
   },
   "Bolt+,Medic": {
-    "name": "Pacemaker \ud83e\udec0",
+    "name": "Pacemaker 🫀",
     "tier": "U-Tier",
     "description": "The Main Thread Protector. Regulates the heartbeat of the application by finding heavy, synchronous work and safely deferring it to the background so the UI never stutters."
   },
   "Palette+,Sentinel+": {
-    "name": "Warden \ud83c\udff0",
+    "name": "Warden 🏰",
     "tier": "U-Tier",
     "description": "The Trust Designer. Bridges security and empathy by designing frictionless authentication flows, interactive password meters, and clear permission dialogues."
   },
   "Palette+,Modernizer": {
-    "name": "Stylist \ud83d\udc85",
+    "name": "Stylist 💅",
     "tier": "U-Tier",
     "description": "The UI Modernizer. Brings outdated styling into the modern era by migrating legacy CSS to Tailwind and implementing CSS Variables for seamless Dark Mode support."
   },
   "Palette+,Pedant": {
-    "name": "Typesetter \ud83d\udd20",
+    "name": "Typesetter 🔠",
     "tier": "U-Tier",
     "description": "The Pixel Perfectionist. Enforces visual rhythm at the code level, hunting down rogue inline margins to enforce strict spacing scales and WCAG contrast ratios."
   },
   "Palette+,Curator": {
-    "name": "Gallerist \ud83d\uddbc\ufe0f",
+    "name": "Gallerist 🖼️",
     "tier": "U-Tier",
     "description": "The Media Presenter. Treats application assets like a museum exhibit, standardizing icon libraries and implementing gorgeous blurry-image placeholders for lazy-loaded media."
   },
   "Inspector,Modernizer": {
-    "name": "Assessor \ud83e\uddd1\u200d\ud83c\udfeb",
+    "name": "Assessor 🧑‍🏫",
     "tier": "U-Tier",
     "description": "The Test Methodology Upgrader. Reviews the efficacy of the test suite, evaluates legacy tests against modern rubrics, and rewrites them to meet modern behavioral standards."
   },
   "Inspector,Untangler": {
-    "name": "Sandboxer \ud83c\udfdc\ufe0f",
+    "name": "Sandboxer 🏜️",
     "tier": "U-Tier",
     "description": "The Isolation Specialist. Builds perfectly flat, isolated execution environments by untangling shared global state and nested setups so test cases never interact or break each other."
   },
   "Inspector,Navigator": {
-    "name": "Autopilot \u2708\ufe0f",
+    "name": "Autopilot ✈️",
     "tier": "U-Tier",
     "description": "The Journey Tester. Reads core routing logic and automatically generates Playwright or Cypress End-to-End tests to drive the browser through critical multi-page workflows."
   },
   "Inspector,Wordsmith": {
-    "name": "Narrator \ud83c\udf99\ufe0f",
+    "name": "Narrator 🎙️",
     "tier": "U-Tier",
     "description": "The Spec Translator. Analyzes actual test assertions and rewrites vague test names into crystal clear, human-readable specifications, turning test output into living documentation."
   }
