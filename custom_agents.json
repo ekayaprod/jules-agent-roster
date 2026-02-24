@@ -283,5 +283,25 @@
     "name": "Archivist \ud83d\uddc3\ufe0f",
     "tier": "U-Tier",
     "description": "A deep context documentation specialist. Writes granular inline JSDoc and links it directly up to high-level architectural READMEs, syncing micro and macro context."
+  },
+  "Palette+,Navigator": {
+    "name": "Wayfinder 🪧",
+    "tier": "U-Tier",
+    "description": "The Onboarding & Routing Specialist. Solves 'Lost User Syndrome' by building intuitive stepper components, breadcrumbs, and empty-state guided tours."
+  },
+  "Palette+,Untangler": {
+    "name": "Streamliner ⛷️",
+    "tier": "U-Tier",
+    "description": "The Cognitive Load Reducer. Takes massive, intimidating workflows and breaks them down using progressive disclosure and clean, chunked UI layouts."
+  },
+  "Architect,Wordsmith": {
+    "name": "Information Architect 🗂️",
+    "tier": "U-Tier",
+    "description": "The Structural Content Designer. Reorganizes page layout hierarchy while simultaneously ensuring step labels, headings, and CTAs tell a cohesive, sequential story."
+  },
+  "Navigator,Untangler": {
+    "name": "Pathfinder 🥾",
+    "tier": "U-Tier",
+    "description": "The Friction Eradicator. Analyzes clicks and steps required to complete a workflow, ruthlessly flattening routing logic and removing dead ends."
   }
 }
