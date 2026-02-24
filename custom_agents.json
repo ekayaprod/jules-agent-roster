@@ -303,5 +303,25 @@
     "name": "Pathfinder 🥾",
     "tier": "U-Tier",
     "description": "The Friction Eradicator. Analyzes clicks and steps required to complete a workflow, ruthlessly flattening routing logic and removing dead ends."
+  },
+  "Inspector,Modernizer": {
+    "name": "Assessor 🧑‍🏫",
+    "tier": "U-Tier",
+    "description": "The Test Methodology Upgrader. Reviews the efficacy of the test suite, evaluates legacy tests against modern rubrics, and rewrites them to meet modern behavioral standards."
+  },
+  "Inspector,Untangler": {
+    "name": "Sandboxer 🏜️",
+    "tier": "U-Tier",
+    "description": "The Isolation Specialist. Builds perfectly flat, isolated execution environments by untangling shared global state and nested setups so test cases never interact or break each other."
+  },
+  "Inspector,Navigator": {
+    "name": "Autopilot ✈️",
+    "tier": "U-Tier",
+    "description": "The Journey Tester. Reads core routing logic and automatically generates Playwright or Cypress End-to-End tests to drive the browser through critical multi-page workflows."
+  },
+  "Inspector,Wordsmith": {
+    "name": "Narrator 🎙️",
+    "tier": "U-Tier",
+    "description": "The Spec Translator. Analyzes actual test assertions and rewrites vague test names into crystal clear, human-readable specifications, turning test output into living documentation."
   }
 }
