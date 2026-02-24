@@ -285,78 +285,98 @@
     "description": "A deep context documentation specialist. Writes granular inline JSDoc and links it directly up to high-level architectural READMEs, syncing micro and macro context."
   },
   "Palette+,Navigator": {
-    "name": "Wayfinder 🪧",
+    "name": "Wayfinder \ud83e\udea7",
     "tier": "U-Tier",
     "description": "The Onboarding & Routing Specialist. Solves 'Lost User Syndrome' by building intuitive stepper components, breadcrumbs, and empty-state guided tours."
   },
   "Palette+,Untangler": {
-    "name": "Streamliner ⛷️",
+    "name": "Streamliner \u26f7\ufe0f",
     "tier": "U-Tier",
     "description": "The Cognitive Load Reducer. Takes massive, intimidating workflows and breaks them down using progressive disclosure and clean, chunked UI layouts."
   },
   "Architect,Wordsmith": {
-    "name": "Information Architect 🗂️",
+    "name": "Information Architect \ud83d\uddc2\ufe0f",
     "tier": "U-Tier",
     "description": "The Structural Content Designer. Reorganizes page layout hierarchy while simultaneously ensuring step labels, headings, and CTAs tell a cohesive, sequential story."
   },
   "Navigator,Untangler": {
-    "name": "Pathfinder 🥾",
+    "name": "Pathfinder \ud83e\udd7e",
     "tier": "U-Tier",
     "description": "The Friction Eradicator. Analyzes clicks and steps required to complete a workflow, ruthlessly flattening routing logic and removing dead ends."
   },
   "Bolt+,Janitor": {
-    "name": "Expediter 🛎️",
+    "name": "Expediter \ud83d\udece\ufe0f",
     "tier": "U-Tier",
     "description": "The Build Optimizer. Speeds up CI/CD pipelines, optimizes Webpack/Vite configs, and parallelizes build tasks so orders fly out without bottlenecks."
   },
   "Bolt+,Scavenger": {
-    "name": "Proton Pack 🎒",
+    "name": "Proton Pack \ud83c\udf92",
     "tier": "U-Tier",
     "description": "The Memory Leak Eradicator. Aggressively blasts away unmounted React components, detached DOM nodes, and stale LocalStorage bloat."
   },
   "Bolt+,Helix": {
-    "name": "Mitosis 🧫",
+    "name": "Mitosis \ud83e\uddeb",
     "tier": "U-Tier",
     "description": "The Parallelizer. Splits heavy, single-threaded UI logic into identical, parallel Web Worker cells for true multi-threading."
   },
   "Bolt+,Pedant": {
-    "name": "Millisecond ⏱️",
+    "name": "Millisecond \u23f1\ufe0f",
     "tier": "U-Tier",
     "description": "The Micro-Optimizer. Obsessively shaves off microscopic render waste by dialing in AST-level rendering rules and eliminating inline object allocations."
   },
   "Bolt+,Architect": {
-    "name": "Slipstream 🏎️",
+    "name": "Slipstream \ud83c\udfce\ufe0f",
     "tier": "U-Tier",
     "description": "The Frictionless Router. Restructures how chunks are loaded, ensuring critical structural boundaries arrive instantly while heavier secondary elements slide into place without blocking the main thread."
   },
   "Bolt+,Untangler": {
-    "name": "Circuit Breaker 🔌",
+    "name": "Circuit Breaker \ud83d\udd0c",
     "tier": "U-Tier",
     "description": "The Processing Short-Circuit. Flattens heavy computational functions with aggressive early-return guard clauses, cutting power to unnecessary algorithmic paths to save CPU cycles."
   },
   "Bolt+,Medic": {
-    "name": "Pacemaker 🫀",
+    "name": "Pacemaker \ud83e\udec0",
     "tier": "U-Tier",
     "description": "The Main Thread Protector. Regulates the heartbeat of the application by finding heavy, synchronous work and safely deferring it to the background so the UI never stutters."
   },
   "Palette+,Sentinel+": {
-    "name": "Warden 🏰",
+    "name": "Warden \ud83c\udff0",
     "tier": "U-Tier",
     "description": "The Trust Designer. Bridges security and empathy by designing frictionless authentication flows, interactive password meters, and clear permission dialogues."
   },
   "Palette+,Modernizer": {
-    "name": "Stylist 💅",
+    "name": "Stylist \ud83d\udc85",
     "tier": "U-Tier",
     "description": "The UI Modernizer. Brings outdated styling into the modern era by migrating legacy CSS to Tailwind and implementing CSS Variables for seamless Dark Mode support."
   },
   "Palette+,Pedant": {
-    "name": "Typesetter 🔠",
+    "name": "Typesetter \ud83d\udd20",
     "tier": "U-Tier",
     "description": "The Pixel Perfectionist. Enforces visual rhythm at the code level, hunting down rogue inline margins to enforce strict spacing scales and WCAG contrast ratios."
   },
   "Palette+,Curator": {
-    "name": "Gallerist 🖼️",
+    "name": "Gallerist \ud83d\uddbc\ufe0f",
     "tier": "U-Tier",
     "description": "The Media Presenter. Treats application assets like a museum exhibit, standardizing icon libraries and implementing gorgeous blurry-image placeholders for lazy-loaded media."
+  },
+  "Inspector,Modernizer": {
+    "name": "Assessor \ud83e\uddd1\u200d\ud83c\udfeb",
+    "tier": "U-Tier",
+    "description": "The Test Methodology Upgrader. Reviews the efficacy of the test suite, evaluates legacy tests against modern rubrics, and rewrites them to meet modern behavioral standards."
+  },
+  "Inspector,Untangler": {
+    "name": "Sandboxer \ud83c\udfdc\ufe0f",
+    "tier": "U-Tier",
+    "description": "The Isolation Specialist. Builds perfectly flat, isolated execution environments by untangling shared global state and nested setups so test cases never interact or break each other."
+  },
+  "Inspector,Navigator": {
+    "name": "Autopilot \u2708\ufe0f",
+    "tier": "U-Tier",
+    "description": "The Journey Tester. Reads core routing logic and automatically generates Playwright or Cypress End-to-End tests to drive the browser through critical multi-page workflows."
+  },
+  "Inspector,Wordsmith": {
+    "name": "Narrator \ud83c\udf99\ufe0f",
+    "tier": "U-Tier",
+    "description": "The Spec Translator. Analyzes actual test assertions and rewrites vague test names into crystal clear, human-readable specifications, turning test output into living documentation."
   }
 }
