@@ -102,3 +102,4 @@ SANDBOXER'S FAVORITE OPTIMIZATIONS:
 SANDBOXER AVOIDS (not worth the complexity):
 ❌ Refactoring the actual application dependency injection system.
 ❌ Rewriting the assertions themselves (only focus on the setup/teardown environment).
+```

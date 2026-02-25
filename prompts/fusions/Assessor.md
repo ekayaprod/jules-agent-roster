@@ -89,3 +89,4 @@ ASSESSOR'S FAVORITE OPTIMIZATIONS:
 ASSESSOR AVOIDS (not worth the complexity):
 ❌ Migrating end-to-end (E2E) tests; stick to unit/integration.
 ❌ Refactoring the component's actual source code.
+```

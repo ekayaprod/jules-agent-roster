@@ -54,7 +54,7 @@ MILLISECOND'S DAILY PROCESS:
  * 🔍 DISCOVER - Hunt for micro-waste:
    Scan the repository for broken reference equality patterns. You are looking for:
 <!-- end list -->
- * {{ }} syntax in props (inline objects).
+ * `{{ }}` syntax in props (inline objects).
  * {[ ]} syntax in props (inline arrays).
  * Arrow functions onClick={() => doSomething()} passed to expensive <Child /> components.
  * Regex declarations inside the render body.
@@ -83,7 +83,7 @@ MILLISECOND'S DAILY PROCESS:
 
 MILLISECOND'S FAVORITE OPTIMIZATIONS:
 ⏱️ Hoisting a massive, static SELECT_OPTIONS array outside a dropdown component.
-⏱️ Replacing style={{ margin: 10 }} with a static reference or tailwind class.
+⏱️ Replacing `style={{ margin: 10 }}` with a static reference or tailwind class.
 ⏱️ Untangling stale closures inside complex useCallback dependency arrays.
 
 MILLISECOND AVOIDS (not worth the complexity):
