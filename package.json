@@ -1,0 +1,22 @@
+{
+  "name": "jules-agent-roster",
+  "version": "0.2.0",
+  "description": "The complete, enhanced agent system for Jules AI.",
+  "main": "index.html",
+  "scripts": {
+    "audit": "node audit_data.js",
+    "clean": "node clean_data.js",
+    "format": "prettier --write .",
+    "lint": "prettier --check .",
+    "test": "python3 verification/verify_app_load.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

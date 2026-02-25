@@ -14,7 +14,7 @@ class FusionCompiler {
   constructor(agentsData, customAgentsData) {
     // Only allow base agents to be fused. Monthly/Power agents are excluded to prevent complexity explosion.
     this.baseAgents = agentsData.filter(
-      (a) => a.category !== "monthly" && a.category !== "power",
+      (a) => a.category !== 'monthly' && a.category !== 'power'
     );
 
     // Normalize keys to ensure they are sorted alphabetically.
@@ -24,10 +24,10 @@ class FusionCompiler {
       Object.keys(customAgentsData).forEach((key) => {
         // Split by comma, trim whitespace just in case, sort, and join
         const sortedKey = key
-          .split(",")
+          .split(',')
           .map((s) => s.trim())
           .sort()
-          .join(",");
+          .join(',');
         this.customAgentsMap[sortedKey] = customAgentsData[key];
       });
     }
@@ -36,25 +36,25 @@ class FusionCompiler {
     // The order determines which agent runs as Phase 1 (Upstream) vs Phase 2 (Downstream).
     // Example: Architect (Design) always comes before Builder (Implementation).
     this.EXECUTION_PIPELINE = [
-      "Janitor",    // Cleanup first
-      "Scavenger",  // Dead code removal next
-      "Architect",  // Design high-level structure
-      "Helix",      // Core logic implementation
-      "Untangler",  // Refactoring
-      "Modernizer", // Tech stack updates
-      "Cortex",     // AI Model updates
-      "Bolt+",      // Performance tuning
-      "Sentinel+",  // Security hardening
-      "Palette+",   // UI/UX Polish
-      "Wordsmith",  // Documentation/Copy
-      "Pedant",     // Strict verification
-      "Medic",      // Bug fixing
-      "Inspector",  // Testing
-      "Curator",    // Data management
-      "Scribe",     // Inline documentation
-      "Author",     // Macro documentation
-      "Navigator",  // Roadmap planning
-      "Herald",     // Release announcements
+      'Janitor', // Cleanup first
+      'Scavenger', // Dead code removal next
+      'Architect', // Design high-level structure
+      'Helix', // Core logic implementation
+      'Untangler', // Refactoring
+      'Modernizer', // Tech stack updates
+      'Cortex', // AI Model updates
+      'Bolt+', // Performance tuning
+      'Sentinel+', // Security hardening
+      'Palette+', // UI/UX Polish
+      'Wordsmith', // Documentation/Copy
+      'Pedant', // Strict verification
+      'Medic', // Bug fixing
+      'Inspector', // Testing
+      'Curator', // Data management
+      'Scribe', // Inline documentation
+      'Author', // Macro documentation
+      'Navigator', // Roadmap planning
+      'Herald', // Release announcements
     ];
   }
 
@@ -65,21 +65,24 @@ class FusionCompiler {
    * @returns {string} The content of the section, or a fallback message.
    */
   extractSection(prompt, header) {
-    if (typeof prompt !== "string") return "Prompt data missing.";
+    if (typeof prompt !== 'string') return 'Prompt data missing.';
 
     // Escape special regex characters in the header to prevent injection or errors.
-    const escapedHeader = header.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const escapedHeader = header.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
     // Regex Explanation:
     // ## ${escapedHeader}  -> Match the literal header (e.g., "## BOUNDARIES")
     // \s*                  -> Allow optional whitespace
     // ([\s\S]*?)           -> Capture all content (non-greedy) including newlines
     // (?=##|$)             -> Stop at the next header (##) OR the end of the string ($)
-    const regex = new RegExp(`## ${escapedHeader}\\s*([\\s\\S]*?)(?=##|$)`, "i");
+    const regex = new RegExp(
+      `## ${escapedHeader}\\s*([\\s\\S]*?)(?=##|$)`,
+      'i'
+    );
     const match = prompt.match(regex);
     return match
       ? match[1].trim()
-      : "Section extraction failed. Follow standard constraints.";
+      : 'Section extraction failed. Follow standard constraints.';
   }
 
   /**
@@ -89,40 +92,40 @@ class FusionCompiler {
    * @returns {Object} { boundaries: string, process: string }
    */
   extractAgentContent(prompt) {
-    if (!prompt) return { boundaries: "Missing prompt.", process: "Missing prompt." };
+    if (!prompt)
+      return { boundaries: 'Missing prompt.', process: 'Missing prompt.' };
 
-    let boundaries = "";
-    let process = "";
+    let boundaries = '';
+    let process = '';
 
     // Try parsing as XML if PromptParser is available (Generic extraction)
     let parsed = null;
-    if (typeof PromptParser !== "undefined" && PromptParser.parsePrompt) {
+    if (typeof PromptParser !== 'undefined' && PromptParser.parsePrompt) {
       parsed = PromptParser.parsePrompt(prompt);
     }
 
-    if (parsed && parsed.format === "xml") {
+    if (parsed && parsed.format === 'xml') {
       // XML Extraction Strategy
-      const taskSection = parsed.sections.find((s) => s.tag === "task");
+      const taskSection = parsed.sections.find((s) => s.tag === 'task');
       boundaries = taskSection
         ? taskSection.content
-        : "No explicit boundaries found in XML.";
+        : 'No explicit boundaries found in XML.';
 
-      const steps = parsed.sections.filter((s) => s.tag === "step");
+      const steps = parsed.sections.filter((s) => s.tag === 'step');
       if (steps.length > 0) {
         // Reconstruct steps into a readable list for the fusion prompt
         process = steps
           .map(
-            (s) =>
-              `Step ${s.id || "?"}: ${s.name || "Action"}\n${s.content}`,
+            (s) => `Step ${s.id || '?'}: ${s.name || 'Action'}\n${s.content}`
           )
-          .join("\n\n");
+          .join('\n\n');
       } else {
-        process = "No explicit steps found in XML.";
+        process = 'No explicit steps found in XML.';
       }
     } else {
       // Legacy Markdown Extraction Strategy
-      boundaries = this.extractSection(prompt, "BOUNDARIES");
-      process = this.extractSection(prompt, "PROCESS");
+      boundaries = this.extractSection(prompt, 'BOUNDARIES');
+      process = this.extractSection(prompt, 'PROCESS');
     }
 
     return { boundaries, process };
@@ -210,19 +213,19 @@ You must return your final response as a strict JSON object adhering to this sch
    */
   fuse(agent1, agent2) {
     if (!agent1 || !agent2)
-      return { name: "Error", prompt: "Invalid agents selected." };
+      return { name: 'Error', prompt: 'Invalid agents selected.' };
     if (agent1.name === agent2.name)
       return {
-        name: "Error",
-        prompt: "Cannot fuse an agent with itself.",
+        name: 'Error',
+        prompt: 'Cannot fuse an agent with itself.',
       };
 
     // Pedant: Ensure names are trimmed before key generation
-    const name1 = agent1.name ? agent1.name.trim() : "";
-    const name2 = agent2.name ? agent2.name.trim() : "";
+    const name1 = agent1.name ? agent1.name.trim() : '';
+    const name2 = agent2.name ? agent2.name.trim() : '';
 
     const sortedNames = [name1, name2].sort();
-    const key = sortedNames.join(",");
+    const key = sortedNames.join(',');
 
     // 1. Check for Custom Agents (Named Fusions like "The Void")
     if (this.customAgentsMap[key]) {

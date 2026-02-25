@@ -2,64 +2,67 @@
  * Component responsible for rendering individual agent cards.
  */
 class AgentCard {
-    /**
-     * Lazily generates the HTML for the agent's prompt details.
-     * @param {Object} agent - The agent data.
-     * @returns {string} The HTML string for the prompt details.
-     */
-    static getPromptHtml(agent) {
-        const parsed = PromptParser.parsePrompt(agent.prompt);
-        let promptHtml = '';
+  /**
+   * Lazily generates the HTML for the agent's prompt details.
+   * @param {Object} agent - The agent data.
+   * @returns {string} The HTML string for the prompt details.
+   */
+  static getPromptHtml(agent) {
+    const parsed = PromptParser.parsePrompt(agent.prompt);
+    let promptHtml = '';
 
-        if (parsed.format === 'legacy') {
-            promptHtml = `<div class="details-content">${agent.prompt}</div>`;
-        } else {
-            const sections = parsed.sections.map(sec => {
-                let label = '';
-                if (sec.tag === 'system') label = 'System Role';
-                else if (sec.tag === 'task') label = 'Mission';
-                else if (sec.tag === 'step') label = `Step ${sec.id || '?'}: ${sec.name || ''}`;
-                else if (sec.tag === 'output') label = 'Output Format';
-                else label = sec.tag.toUpperCase();
+    if (parsed.format === 'legacy') {
+      promptHtml = `<div class="details-content">${agent.prompt}</div>`;
+    } else {
+      const sections = parsed.sections
+        .map((sec) => {
+          let label = '';
+          if (sec.tag === 'system') label = 'System Role';
+          else if (sec.tag === 'task') label = 'Mission';
+          else if (sec.tag === 'step')
+            label = `Step ${sec.id || '?'}: ${sec.name || ''}`;
+          else if (sec.tag === 'output') label = 'Output Format';
+          else label = sec.tag.toUpperCase();
 
-                return `
+          return `
                 <div class="prompt-section prompt-section--${sec.tag}">
                     <div class="prompt-section-label">${label}</div>
                     <div class="prompt-section-body">${sec.content}</div>
                 </div>
               `;
-            }).join('');
-            promptHtml = `<div class="details-content"><div class="prompt-structured">${sections}</div></div>`;
-        }
-        return promptHtml;
+        })
+        .join('');
+      promptHtml = `<div class="details-content"><div class="prompt-structured">${sections}</div></div>`;
+    }
+    return promptHtml;
+  }
+
+  /**
+   * Creates the DOM element for an agent card.
+   * @param {Object} agent - The agent data.
+   * @param {number} index - The index of the agent.
+   * @param {number} globalIndex - Global index for animation staggering.
+   * @returns {HTMLElement} The card element.
+   */
+  static create(agent, index, globalIndex) {
+    const card = document.createElement('div');
+    card.className = 'card pop-in';
+    const delay = Math.min(globalIndex * 30, 600);
+    card.style.animationDelay = `${delay}ms`;
+
+    if (agent.type === 'plus') card.classList.add('plus-agent');
+    if (agent.type === 'monthly') card.classList.add('monthly-agent');
+
+    // Build tags
+    let tags = '';
+    if (agent.scope) {
+      let scopeClass = 'scope-medium';
+      if (agent.scope.includes('Small')) scopeClass = 'scope-small';
+      if (agent.scope.includes('Large')) scopeClass = 'scope-large';
+      tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
     }
 
-    /**
-     * Creates the DOM element for an agent card.
-     * @param {Object} agent - The agent data.
-     * @param {number} index - The index of the agent.
-     * @param {number} globalIndex - Global index for animation staggering.
-     * @returns {HTMLElement} The card element.
-     */
-    static create(agent, index, globalIndex) {
-        const card = document.createElement("div");
-        card.className = "card pop-in";
-        const delay = Math.min(globalIndex * 30, 600);
-        card.style.animationDelay = `${delay}ms`;
-
-        if (agent.type === "plus") card.classList.add("plus-agent");
-        if (agent.type === "monthly") card.classList.add("monthly-agent");
-
-        // Build tags
-        let tags = "";
-        if (agent.scope) {
-            let scopeClass = "scope-medium";
-            if (agent.scope.includes("Small")) scopeClass = "scope-small";
-            if (agent.scope.includes("Large")) scopeClass = "scope-large";
-            tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
-        }
-
-        card.innerHTML = `
+    card.innerHTML = `
               <div class="card-header">
                   <div class="title-group">
                       <h3 class="agent-title">
@@ -96,6 +99,6 @@ class AgentCard {
               </div>
           `;
 
-        return card;
-    }
+    return card;
+  }
 }

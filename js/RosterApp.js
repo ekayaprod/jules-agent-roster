@@ -20,7 +20,7 @@ class RosterApp {
 
   // Backward compatibility for verification scripts
   get fusionCompiler() {
-      return this.fusionLab ? this.fusionLab.compiler : null;
+    return this.fusionLab ? this.fusionLab.compiler : null;
   }
 
   /**
@@ -38,21 +38,21 @@ class RosterApp {
     this.cacheElements();
 
     try {
-        const { agents, customAgents } = await this.agentRepo.getAgents();
-        this.agents = agents;
-        this.customAgents = customAgents;
+      const { agents, customAgents } = await this.agentRepo.getAgents();
+      this.agents = agents;
+      this.customAgents = customAgents;
 
-        // Initialize Fusion Lab Component
-        this.fusionLab = new FusionLab();
-        this.fusionLab.init(this.agents, this.customAgents);
-
+      // Initialize Fusion Lab Component
+      this.fusionLab = new FusionLab();
+      this.fusionLab.init(this.agents, this.customAgents);
     } catch (error) {
-        if (this.elements.main) {
-            const msg = error.message && error.message.includes("JSON")
-              ? "Data corruption detected (JSON)"
-              : "Connection failed";
-            this.elements.main.innerHTML = `<div style="text-align:center; padding: 2rem; color: #f87171;">Couldn't load agents. ${msg}.</div>`;
-        }
+      if (this.elements.main) {
+        const msg =
+          error.message && error.message.includes('JSON')
+            ? 'Data corruption detected (JSON)'
+            : 'Connection failed';
+        this.elements.main.innerHTML = `<div style="text-align:center; padding: 2rem; color: #f87171;">Couldn't load agents. ${msg}.</div>`;
+      }
     }
 
     this.clearSkeletons();
@@ -69,7 +69,7 @@ class RosterApp {
     // Cache DOM elements based on CONFIG
     Object.keys(CONFIG.selectors).forEach((key) => {
       const selector = CONFIG.selectors[key];
-      this.elements[key] = selector.startsWith("#")
+      this.elements[key] = selector.startsWith('#')
         ? document.getElementById(selector.substring(1))
         : document.querySelectorAll(selector);
     });
@@ -82,7 +82,7 @@ class RosterApp {
   clearSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
       const container = document.getElementById(CONFIG.categories[key]);
-      if (container) container.innerHTML = "";
+      if (container) container.innerHTML = '';
     });
   }
 
@@ -108,7 +108,7 @@ class RosterApp {
       const container = categoryContainers[agent.category];
       if (!container) {
         console.error(
-          `Medic: Container for category '${agent.category}' not found. Skipping agent ${agent.name}.`,
+          `Medic: Container for category '${agent.category}' not found. Skipping agent ${agent.name}.`
         );
         return;
       }
@@ -124,7 +124,7 @@ class RosterApp {
     });
 
     // Commit fragments to DOM
-    Object.keys(fragments).forEach(key => {
+    Object.keys(fragments).forEach((key) => {
       if (categoryContainers[key]) {
         categoryContainers[key].appendChild(fragments[key]);
       }
@@ -143,68 +143,67 @@ class RosterApp {
         this.filterAgents(query);
       }, 300);
 
-      this.elements.searchInput.addEventListener("input", (e) =>
-        debouncedFilter(e.target.value),
+      this.elements.searchInput.addEventListener('input', (e) =>
+        debouncedFilter(e.target.value)
       );
     }
 
-    this.elements.clearBtn?.addEventListener("click", () =>
-      this.clearSearch(),
+    this.elements.clearBtn?.addEventListener('click', () => this.clearSearch());
+    this.elements.copyAllBtn?.addEventListener('click', (e) =>
+      this.copyAll(e.currentTarget)
     );
-    this.elements.copyAllBtn?.addEventListener("click", (e) =>
-      this.copyAll(e.currentTarget),
+    this.elements.downloadAllBtn?.addEventListener('click', (e) =>
+      this.downloadAll(e.currentTarget)
     );
-    this.elements.downloadAllBtn?.addEventListener("click", (e) =>
-      this.downloadAll(e.currentTarget),
-    );
-    this.elements.downloadDropdownBtn?.addEventListener("click", (e) => {
+    this.elements.downloadDropdownBtn?.addEventListener('click', (e) => {
       e.stopPropagation();
       this.toggleDownloadDropdown();
     });
-    this.elements.downloadDropdownBtn?.addEventListener("keydown", (e) =>
-      this.handleDropdownKeydown(e),
+    this.elements.downloadDropdownBtn?.addEventListener('keydown', (e) =>
+      this.handleDropdownKeydown(e)
     );
-    this.elements.downloadDropdownMenu?.addEventListener("keydown", (e) =>
-      this.handleDropdownKeydown(e),
+    this.elements.downloadDropdownMenu?.addEventListener('keydown', (e) =>
+      this.handleDropdownKeydown(e)
     );
-    this.elements.downloadCustomBtn?.addEventListener("click", (e) =>
-      this.downloadCustomAgents(e.currentTarget),
+    this.elements.downloadCustomBtn?.addEventListener('click', (e) =>
+      this.downloadCustomAgents(e.currentTarget)
     );
 
     // Close dropdown on focus out (Tab or click outside)
-    this.elements.downloadDropdownMenu?.addEventListener("focusout", (e) => {
+    this.elements.downloadDropdownMenu?.addEventListener('focusout', (e) => {
       // Use setTimeout to allow activeElement to update
       setTimeout(() => {
         const menu = this.elements.downloadDropdownMenu;
         const btn = this.elements.downloadDropdownBtn;
         if (
-          menu.classList.contains("visible") &&
+          menu.classList.contains('visible') &&
           !menu.contains(document.activeElement) &&
           !btn.contains(document.activeElement)
         ) {
-          menu.classList.remove("visible");
-          btn.setAttribute("aria-expanded", "false");
+          menu.classList.remove('visible');
+          btn.setAttribute('aria-expanded', 'false');
         }
       }, 0);
     });
 
     // Global click to close dropdown
-    document.addEventListener("click", (e) => {
+    document.addEventListener('click', (e) => {
       if (
-        this.elements.downloadDropdownMenu?.classList.contains("visible") &&
+        this.elements.downloadDropdownMenu?.classList.contains('visible') &&
         !this.elements.downloadDropdownMenu.contains(e.target) &&
         !this.elements.downloadDropdownBtn.contains(e.target)
       ) {
-        this.elements.downloadDropdownMenu.classList.remove("visible");
-        this.elements.downloadDropdownBtn?.setAttribute("aria-expanded", "false");
+        this.elements.downloadDropdownMenu.classList.remove('visible');
+        this.elements.downloadDropdownBtn?.setAttribute(
+          'aria-expanded',
+          'false'
+        );
       }
     });
 
     // Event Delegation
-    this.elements.main?.addEventListener("click", (e) => {
-      const toggleBtn = e.target.closest(
-        '[data-action="toggle-details"]',
-      );
+    this.elements.main?.addEventListener('click', (e) => {
+      const toggleBtn = e.target.closest('[data-action="toggle-details"]');
       if (toggleBtn) {
         this.toggleDetails(toggleBtn.dataset.index, toggleBtn);
         return;
@@ -229,15 +228,15 @@ class RosterApp {
     // ⚡ Bolt+: Lazy load content to reduce initial DOM size
     const content = grid.querySelector('.details-overflow');
     if (content && !content.innerHTML.trim()) {
-        const agent = this.agents[index];
-        content.innerHTML = AgentCard.getPromptHtml(agent);
+      const agent = this.agents[index];
+      content.innerHTML = AgentCard.getPromptHtml(agent);
     }
 
-    const isExpanded = grid.classList.toggle("expanded");
-    btn.closest(".card").classList.toggle("active", isExpanded);
-    btn.setAttribute("aria-expanded", isExpanded);
-    const span = btn.querySelector("span");
-    span.innerText = isExpanded ? "Hide Prompt" : "Show Prompt";
+    const isExpanded = grid.classList.toggle('expanded');
+    btn.closest('.card').classList.toggle('active', isExpanded);
+    btn.setAttribute('aria-expanded', isExpanded);
+    const span = btn.querySelector('span');
+    span.innerText = isExpanded ? 'Hide Prompt' : 'Show Prompt';
   }
 
   /**
@@ -250,14 +249,16 @@ class RosterApp {
   filterAgents(query) {
     const search = query.toLowerCase();
     const cards = document.querySelectorAll(CONFIG.selectors.card);
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
 
     let visibleCount = 0;
 
     if (query.length > 0) {
-      this.elements.clearBtn?.classList.add("visible");
+      this.elements.clearBtn?.classList.add('visible');
     } else {
-      this.elements.clearBtn?.classList.remove("visible");
+      this.elements.clearBtn?.classList.remove('visible');
     }
 
     cards.forEach((card) => {
@@ -272,33 +273,33 @@ class RosterApp {
 
       if (isMatch) {
         // If it was fading out, stop it
-        card.classList.remove("fading-out");
+        card.classList.remove('fading-out');
 
-        if (card.style.display === "none") {
-          card.style.display = "flex";
+        if (card.style.display === 'none') {
+          card.style.display = 'flex';
           if (!reducedMotion) {
-            card.classList.remove("pop-in");
+            card.classList.remove('pop-in');
             void card.offsetWidth; // Trigger reflow
             const delay = Math.min(visibleCount * 30, 600);
             card.style.animationDelay = `${delay}ms`;
-            card.classList.add("pop-in");
+            card.classList.add('pop-in');
           }
         }
         visibleCount++;
       } else {
         // No match
-        if (card.style.display !== "none") {
+        if (card.style.display !== 'none') {
           if (reducedMotion) {
-            card.style.display = "none";
-            card.classList.remove("pop-in");
+            card.style.display = 'none';
+            card.classList.remove('pop-in');
           } else {
-            card.classList.add("fading-out");
+            card.classList.add('fading-out');
             // 🗿 The Sculptor: Smooth fade out
             card._hideTimeout = setTimeout(() => {
-              if (card.classList.contains("fading-out")) {
-                card.style.display = "none";
-                card.classList.remove("fading-out");
-                card.classList.remove("pop-in");
+              if (card.classList.contains('fading-out')) {
+                card.style.display = 'none';
+                card.classList.remove('fading-out');
+                card.classList.remove('pop-in');
               }
             }, 200); // Match CSS transition duration
           }
@@ -307,19 +308,19 @@ class RosterApp {
     });
 
     if (visibleCount === 0 && query.length > 0) {
-      this.elements.emptyState?.classList.add("visible");
+      this.elements.emptyState?.classList.add('visible');
       document
         .querySelectorAll(CONFIG.selectors.sectionHeader)
-        .forEach((el) => (el.style.display = "none"));
+        .forEach((el) => (el.style.display = 'none'));
     } else {
-      this.elements.emptyState?.classList.remove("visible");
+      this.elements.emptyState?.classList.remove('visible');
       document.querySelectorAll(CONFIG.selectors.grid).forEach((grid) => {
         const hasVisibleCards = Array.from(grid.children).some(
-          (card) => card.style.display !== "none",
+          (card) => card.style.display !== 'none'
         );
         const header = grid.previousElementSibling;
-        if (header && header.classList.contains("section-header")) {
-          header.style.display = hasVisibleCards ? "block" : "none";
+        if (header && header.classList.contains('section-header')) {
+          header.style.display = hasVisibleCards ? 'block' : 'none';
         }
       });
     }
@@ -327,9 +328,9 @@ class RosterApp {
     if (this.elements.announcer) {
       this.elements.announcer.textContent =
         query.length === 0
-          ? ""
+          ? ''
           : visibleCount === 0
-            ? "No agents found."
+            ? 'No agents found.'
             : `Found ${visibleCount} agents.`;
     }
   }
@@ -340,8 +341,8 @@ class RosterApp {
    */
   clearSearch() {
     if (this.elements.searchInput) {
-      this.elements.searchInput.value = "";
-      this.filterAgents("");
+      this.elements.searchInput.value = '';
+      this.filterAgents('');
       this.elements.searchInput.focus();
     }
   }
@@ -356,8 +357,8 @@ class RosterApp {
     const success = await ClipboardUtils.copyText(agent.prompt);
 
     if (success) {
-      this.toast.show("Copied to clipboard");
-      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+      this.toast.show('Copied to clipboard');
+      ClipboardUtils.animateButtonSuccess(btn, 'Copied!');
     }
   }
 
@@ -369,8 +370,8 @@ class RosterApp {
     const btn = this.elements.downloadDropdownBtn;
 
     if (menu) {
-      const isVisible = menu.classList.toggle("visible");
-      if (btn) btn.setAttribute("aria-expanded", isVisible);
+      const isVisible = menu.classList.toggle('visible');
+      if (btn) btn.setAttribute('aria-expanded', isVisible);
 
       // Focus management when opening
       if (isVisible) {
@@ -387,19 +388,24 @@ class RosterApp {
   handleDropdownKeydown(e) {
     const menu = this.elements.downloadDropdownMenu;
     const btn = this.elements.downloadDropdownBtn;
-    const isVisible = menu.classList.contains("visible");
+    const isVisible = menu.classList.contains('visible');
 
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       if (isVisible) {
         e.preventDefault();
         this.toggleDownloadDropdown();
         btn.focus();
       }
-    } else if (e.key === "Enter" || e.key === " ") {
+    } else if (e.key === 'Enter' || e.key === ' ') {
       // Explicitly handle Enter/Space to ensure toggle works reliably via keyboard
       e.preventDefault();
       this.toggleDownloadDropdown();
-    } else if (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === "Home" || e.key === "End") {
+    } else if (
+      e.key === 'ArrowDown' ||
+      e.key === 'ArrowUp' ||
+      e.key === 'Home' ||
+      e.key === 'End'
+    ) {
       e.preventDefault();
 
       if (!isVisible) {
@@ -414,13 +420,13 @@ class RosterApp {
       const currentIndex = items.indexOf(document.activeElement);
       let nextIndex;
 
-      if (e.key === "Home") {
+      if (e.key === 'Home') {
         nextIndex = 0;
-      } else if (e.key === "End") {
+      } else if (e.key === 'End') {
         nextIndex = items.length - 1;
       } else if (currentIndex === -1) {
-        nextIndex = e.key === "ArrowDown" ? 0 : items.length - 1;
-      } else if (e.key === "ArrowDown") {
+        nextIndex = e.key === 'ArrowDown' ? 0 : items.length - 1;
+      } else if (e.key === 'ArrowDown') {
         nextIndex = (currentIndex + 1) % items.length;
       } else {
         nextIndex = (currentIndex - 1 + items.length) % items.length;
@@ -436,37 +442,37 @@ class RosterApp {
    */
   downloadCustomAgents(btn) {
     const header =
-      "JULES CUSTOM AGENT ROSTER (FUSIONS)\n\nThis roster contains synthesized protocols from the Fusion Lab.\n\n--------------------------------------------------------------------------------\n\n";
+      'JULES CUSTOM AGENT ROSTER (FUSIONS)\n\nThis roster contains synthesized protocols from the Fusion Lab.\n\n--------------------------------------------------------------------------------\n\n';
 
     const validCustomAgents = Object.values(this.customAgents).filter(
       (a) => a.prompt && a.prompt.length > 0
     );
 
     if (validCustomAgents.length === 0) {
-      this.toast.show("No custom agents available to download.");
+      this.toast.show('No custom agents available to download.');
       return;
     }
 
     const body = validCustomAgents
       .map(
         (a) =>
-          `${a.prompt}\n\n--------------------------------------------------------------------------------`,
+          `${a.prompt}\n\n--------------------------------------------------------------------------------`
       )
-      .join("\n\n");
+      .join('\n\n');
 
     const content = header + body;
-    const blob = new Blob([content], { type: "text/markdown" });
+    const blob = new Blob([content], { type: 'text/markdown' });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
-    a.download = "jules_custom_agents.md";
+    a.download = 'jules_custom_agents.md';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
-    this.elements.downloadDropdownMenu?.classList.remove("visible");
+    ClipboardUtils.animateButtonSuccess(btn, 'Downloaded!');
+    this.elements.downloadDropdownMenu?.classList.remove('visible');
   }
 
   /**
@@ -476,26 +482,26 @@ class RosterApp {
    */
   downloadAll(btn) {
     const header =
-      "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
+      'JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n';
     const body = this.agents
       .map(
         (a) =>
-          `${a.prompt}\n\n--------------------------------------------------------------------------------`,
+          `${a.prompt}\n\n--------------------------------------------------------------------------------`
       )
-      .join("\n\n");
+      .join('\n\n');
 
     const content = header + body;
-    const blob = new Blob([content], { type: "text/markdown" });
+    const blob = new Blob([content], { type: 'text/markdown' });
     const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
+    const a = document.createElement('a');
     a.href = url;
-    a.download = "jules_roster.md";
+    a.download = 'jules_roster.md';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
+    ClipboardUtils.animateButtonSuccess(btn, 'Downloaded!');
   }
 
   /**
@@ -504,18 +510,18 @@ class RosterApp {
    */
   async copyAll(btn) {
     const header =
-      "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
+      'JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n';
     const body = this.agents
       .map(
         (a) =>
-          `${a.prompt}\n\n--------------------------------------------------------------------------------`,
+          `${a.prompt}\n\n--------------------------------------------------------------------------------`
       )
-      .join("\n\n");
+      .join('\n\n');
     const success = await ClipboardUtils.copyText(header + body);
 
     if (success) {
-      this.toast.show("Copied to clipboard");
-      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+      this.toast.show('Copied to clipboard');
+      ClipboardUtils.animateButtonSuccess(btn, 'Copied!');
     }
   }
 
@@ -531,16 +537,16 @@ class RosterApp {
           if (entry.isIntersecting) {
             const targetId = CONFIG.sectionMap[entry.target.id];
             navPills.forEach((pill) => {
-              const href = pill.getAttribute("href").substring(1);
-              pill.classList.toggle("active", href === targetId);
+              const href = pill.getAttribute('href').substring(1);
+              pill.classList.toggle('active', href === targetId);
             });
           }
         });
       },
       {
-        rootMargin: "-80px 0px -60% 0px",
+        rootMargin: '-80px 0px -60% 0px',
         threshold: 0,
-      },
+      }
     );
 
     Object.keys(CONFIG.sectionMap).forEach((gridId) => {
@@ -553,6 +559,6 @@ class RosterApp {
    * Expose showToast method for compatibility with other components (FusionLab)
    */
   showToast(message) {
-      this.toast.show(message);
+    this.toast.show(message);
   }
 }

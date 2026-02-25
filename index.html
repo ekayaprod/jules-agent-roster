@@ -43,7 +43,7 @@
 
       body {
         font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
           Arial, sans-serif;
         background-color: var(--bg-color);
         color: var(--text-primary);
@@ -204,7 +204,9 @@
         opacity: 0;
         pointer-events: none;
         visibility: hidden;
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0.2s;
+        transition:
+          all 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+          visibility 0s 0.2s;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -221,7 +223,9 @@
         pointer-events: auto;
         transform: translateY(-50%) scale(1);
         visibility: visible;
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
+        transition:
+          all 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+          visibility 0s;
       }
 
       /* Palette+: Focus Visibility */
@@ -352,7 +356,7 @@
         outline: none; /* Replaced by border/bg polish */
       }
 
-      input[type="text"] {
+      input[type='text'] {
         padding: 0.75rem;
         padding-left: 2.75rem; /* Palette+: Space for Search icon */
         padding-right: 2.5rem; /* Palette+: Space for X button */
@@ -365,7 +369,7 @@
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      input[type="text"]:focus {
+      input[type='text']:focus {
         outline: none;
         border-color: var(--accent);
         box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3);
@@ -412,7 +416,9 @@
       .card.active {
         border-color: var(--accent);
         background-color: rgba(56, 189, 248, 0.05);
-        box-shadow: 0 0 0 1px var(--accent), 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        box-shadow:
+          0 0 0 1px var(--accent),
+          0 10px 15px -3px rgba(0, 0, 0, 0.3);
       }
 
       /* Palette+: Icon Styling */
@@ -423,18 +429,28 @@
 
       /* Palette+: Check Icon Pop Animation */
       @keyframes checkPop {
-        0% { transform: scale(0); opacity: 0; }
-        60% { transform: scale(1.2); opacity: 1; }
-        100% { transform: scale(1); opacity: 1; }
+        0% {
+          transform: scale(0);
+          opacity: 0;
+        }
+        60% {
+          transform: scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
       }
 
       .check-icon.animate {
-        animation: checkPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        animation: checkPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+          forwards;
       }
 
       /* Type Indicators */
       .card.plus-agent::before {
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
@@ -448,7 +464,7 @@
       }
 
       .card.monthly-agent::before {
-        content: "";
+        content: '';
         position: absolute;
         top: 0;
         left: 0;
@@ -552,12 +568,20 @@
         width: 100%;
         margin-top: 0.5rem;
         border-radius: 0.5rem; /* Palette+: Rounded corners */
-        transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Palette+: Smooth transitions */
+        transition:
+          background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+          transform 0.1s cubic-bezier(0.4, 0, 0.2, 1),
+          color 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Palette+: Smooth transitions */
       }
 
       .details-toggle:hover {
         color: var(--accent-hover);
-        background-color: rgba(56, 189, 248, 0.1); /* Palette+: Subtle background on hover */
+        background-color: rgba(
+          56,
+          189,
+          248,
+          0.1
+        ); /* Palette+: Subtle background on hover */
       }
 
       .details-toggle:active {
@@ -570,7 +594,7 @@
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      .details-toggle[aria-expanded="true"] svg {
+      .details-toggle[aria-expanded='true'] svg {
         transform: rotate(180deg);
       }
 
@@ -604,7 +628,9 @@
         /* Palette+: Fade in opacity */
         opacity: 0;
         transform: translateY(-10px);
-        transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        transition:
+          opacity 0.3s ease-out,
+          transform 0.3s ease-out;
         /* Palette+: Hide from screen readers when collapsed */
         visibility: hidden;
       }
@@ -751,7 +777,7 @@
           display: block;
         }
         button,
-        input[type="text"],
+        input[type='text'],
         .card,
         .clear-search-btn,
         .details-toggle,
@@ -797,7 +823,9 @@
         opacity: 0;
         transform: scale(0.95);
         pointer-events: none;
-        transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+        transition:
+          opacity 0.2s ease-out,
+          transform 0.2s ease-out;
       }
 
       /* Palette+: Sticky Navigation */
@@ -882,14 +910,14 @@
         }
 
         .fusion-header {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 1rem;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 1rem;
         }
 
         #copyFusionBtn {
-            width: 100% !important;
-            justify-content: center;
+          width: 100% !important;
+          justify-content: center;
         }
       }
 
@@ -905,7 +933,9 @@
         max-width: 800px;
         margin-left: auto;
         margin-right: auto;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
       }
 
       .fusion-lab-container h2 {
@@ -957,7 +987,9 @@
       .fusion-controls select:focus {
         outline: none;
         border-color: var(--accent);
-        box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        box-shadow:
+          0 0 0 3px rgba(56, 189, 248, 0.2),
+          0 4px 6px -1px rgba(0, 0, 0, 0.1);
         background: rgba(30, 41, 59, 1);
       }
 
@@ -968,7 +1000,9 @@
         transform: translateY(-50%);
         pointer-events: none;
         color: var(--text-secondary);
-        transition: transform 0.2s ease, color 0.2s ease;
+        transition:
+          transform 0.2s ease,
+          color 0.2s ease;
       }
 
       .fusion-controls select:focus + .select-arrow {
@@ -1018,9 +1052,19 @@
       }
 
       @keyframes pulse-purple {
-        0% { transform: scale(1); opacity: 0.7; }
-        50% { transform: scale(1.3); opacity: 1; color: #a855f7; }
-        100% { transform: scale(1); opacity: 0.7; }
+        0% {
+          transform: scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(1.3);
+          opacity: 1;
+          color: #a855f7;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.7;
+        }
       }
 
       .ready-pulse {
@@ -1112,25 +1156,43 @@
       }
 
       .fusion-animation-overlay.active .anim-icon.left {
-        animation: floatInLeft 1.5s ease-in forwards, fadeOut 0.05s ease-out 1.5s forwards;
+        animation:
+          floatInLeft 1.5s ease-in forwards,
+          fadeOut 0.05s ease-out 1.5s forwards;
       }
 
       .fusion-animation-overlay.active .anim-icon.right {
-        animation: floatInRight 1.5s ease-in forwards, fadeOut 0.05s ease-out 1.5s forwards;
+        animation:
+          floatInRight 1.5s ease-in forwards,
+          fadeOut 0.05s ease-out 1.5s forwards;
       }
 
       @keyframes floatInLeft {
-        0% { transform: translateX(-150px) scale(0.5); opacity: 0; }
-        100% { transform: translateX(-30px) scale(1.2); opacity: 1; } /* Meet at center-left */
+        0% {
+          transform: translateX(-150px) scale(0.5);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(-30px) scale(1.2);
+          opacity: 1;
+        } /* Meet at center-left */
       }
 
       @keyframes floatInRight {
-        0% { transform: translateX(150px) scale(0.5); opacity: 0; }
-        100% { transform: translateX(30px) scale(1.2); opacity: 1; } /* Meet at center-right */
+        0% {
+          transform: translateX(150px) scale(0.5);
+          opacity: 0;
+        }
+        100% {
+          transform: translateX(30px) scale(1.2);
+          opacity: 1;
+        } /* Meet at center-right */
       }
 
       @keyframes fadeOut {
-        to { opacity: 0; }
+        to {
+          opacity: 0;
+        }
       }
 
       /* Phase 2: Clash */
@@ -1166,7 +1228,9 @@
         border: 4px solid #fff;
         border-radius: 50%;
         opacity: 0;
-        box-shadow: 0 0 20px #fff, inset 0 0 20px #fff;
+        box-shadow:
+          0 0 20px #fff,
+          inset 0 0 20px #fff;
         pointer-events: none;
       }
 
@@ -1206,13 +1270,27 @@
       }
 
       @keyframes emerge {
-        0% { opacity: 0; transform: scale(0.5); }
-        100% { opacity: 1; transform: scale(1.5); }
+        0% {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1.5);
+        }
       }
 
       @keyframes shockwave {
-        0% { transform: translate(-50%, -50%) scale(0); opacity: 1; border-width: 4px; }
-        100% { transform: translate(-50%, -50%) scale(4); opacity: 0; border-width: 0px; }
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 1;
+          border-width: 4px;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(4);
+          opacity: 0;
+          border-width: 0px;
+        }
       }
 
       @keyframes particles {
@@ -1243,16 +1321,34 @@
       }
 
       @keyframes shake {
-        0%, 100% { transform: translate(0, 0); }
-        25% { transform: translate(-5px, 5px); }
-        50% { transform: translate(5px, -5px); }
-        75% { transform: translate(-5px, -5px); }
+        0%,
+        100% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(-5px, 5px);
+        }
+        50% {
+          transform: translate(5px, -5px);
+        }
+        75% {
+          transform: translate(-5px, -5px);
+        }
       }
 
       @keyframes flash {
-        0% { opacity: 1; transform: translate(-50%, -50%) scale(0.1); }
-        50% { opacity: 1; transform: translate(-50%, -50%) scale(2); }
-        100% { opacity: 0; transform: translate(-50%, -50%) scale(3); }
+        0% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(0.1);
+        }
+        50% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(2);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(3);
+        }
       }
 
       /* Phase 3: Reveal */
@@ -1270,13 +1366,19 @@
       }
 
       .fusion-animation-overlay.active .anim-result {
-        animation: reveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 2.0s forwards;
+        animation: reveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 2s forwards;
         text-shadow: 0 10px 30px rgba(168, 85, 247, 0.5);
       }
 
       @keyframes reveal {
-        0% { opacity: 0; transform: scale(0.8); }
-        100% { opacity: 1; transform: scale(1.2); }
+        0% {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
       }
 
       /* Reduced Motion Override */
@@ -1329,8 +1431,12 @@
         color: var(--accent);
         margin-bottom: 0.4rem;
       }
-      .prompt-section--system .prompt-section-label { color: var(--plus-accent); }
-      .prompt-section--output .prompt-section-label { color: var(--success); }
+      .prompt-section--system .prompt-section-label {
+        color: var(--plus-accent);
+      }
+      .prompt-section--output .prompt-section-label {
+        color: var(--success);
+      }
       .prompt-section-body {
         color: var(--text-secondary);
         white-space: pre-wrap;
@@ -1417,9 +1523,18 @@
       }
 
       @keyframes pulse-loading {
-        0% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); transform: scale(1); }
-        50% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); transform: scale(0.98); }
-        100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); transform: scale(1); }
+        0% {
+          box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4);
+          transform: scale(1);
+        }
+        50% {
+          box-shadow: 0 0 0 10px rgba(168, 85, 247, 0);
+          transform: scale(0.98);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(168, 85, 247, 0);
+          transform: scale(1);
+        }
       }
 
       #fuseBtn.error {
@@ -1483,7 +1598,11 @@
         filter: none;
         cursor: pointer;
         border-color: rgba(168, 85, 247, 0.3);
-        background: radial-gradient(circle at center, rgba(168, 85, 247, 0.1), transparent);
+        background: radial-gradient(
+          circle at center,
+          rgba(168, 85, 247, 0.1),
+          transparent
+        );
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       }
 
@@ -1500,9 +1619,18 @@
 
       /* Unlock Animation */
       @keyframes unlockPulse {
-        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7); }
-        50% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
-        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7);
+        }
+        50% {
+          transform: scale(1.2);
+          box-shadow: 0 0 0 10px rgba(168, 85, 247, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(168, 85, 247, 0);
+        }
       }
 
       .fusion-slot.just-unlocked {
@@ -1564,7 +1692,11 @@
       .slot-card.filled {
         border-style: solid;
         border-color: var(--accent);
-        background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.6));
+        background: radial-gradient(
+          circle at center,
+          rgba(56, 189, 248, 0.1),
+          rgba(15, 23, 42, 0.6)
+        );
       }
 
       .slot-content {
@@ -1742,17 +1874,58 @@
         font-size: 0.7rem;
         color: var(--text-secondary);
       }
-</style>
+    </style>
   </head>
   <body>
     <noscript>
       <style>
-        #main, .controls, .category-nav, .fusion-lab-container, .fusion-archive-container, .header p, .header .controls, .empty-state, #agentPickerModal, #toast { display: none !important; }
-        .no-js-message { display: flex !important; }
+        #main,
+        .controls,
+        .category-nav,
+        .fusion-lab-container,
+        .fusion-archive-container,
+        .header p,
+        .header .controls,
+        .empty-state,
+        #agentPickerModal,
+        #toast {
+          display: none !important;
+        }
+        .no-js-message {
+          display: flex !important;
+        }
       </style>
-      <div class="no-js-message fusion-error" style="display: none; justify-content: center; margin: 2rem auto; max-width: 600px; text-align: left; align-items: center; gap: 1rem;">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-        <span>This application requires JavaScript to function. Please enable it to view the Agent Roster.</span>
+      <div
+        class="no-js-message fusion-error"
+        style="
+          display: none;
+          justify-content: center;
+          margin: 2rem auto;
+          max-width: 600px;
+          text-align: left;
+          align-items: center;
+          gap: 1rem;
+        "
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span
+          >This application requires JavaScript to function. Please enable it to
+          view the Agent Roster.</span
+        >
       </div>
     </noscript>
 
@@ -1814,7 +1987,10 @@
           </button>
         </div>
 
-        <button id="copyAllBtn" aria-label="Copy all agent prompts to clipboard">
+        <button
+          id="copyAllBtn"
+          aria-label="Copy all agent prompts to clipboard"
+        >
           <svg
             aria-hidden="true"
             focusable="false"
@@ -1918,7 +2094,11 @@
             </svg>
           </button>
           <div id="downloadDropdownMenu" class="dropdown-menu" role="menu">
-            <button id="downloadCustomBtn" class="dropdown-item" role="menuitem">
+            <button
+              id="downloadCustomBtn"
+              class="dropdown-item"
+              role="menuitem"
+            >
               <svg
                 aria-hidden="true"
                 width="16"
@@ -1972,7 +2152,7 @@
           <a href="#code-hygiene" class="nav-pill">Hygiene</a>
         </li>
         <li class="nav-item">
-            <a href="#operations-release" class="nav-pill">Operations</a>
+          <a href="#operations-release" class="nav-pill">Operations</a>
         </li>
         <li class="nav-item">
           <a href="#context-strategy" class="nav-pill">Context</a>
@@ -2024,9 +2204,7 @@
     ></div>
 
     <main id="main">
-      <h2 id="core-maintenance" class="section-header">
-        Core Maintenance
-      </h2>
+      <h2 id="core-maintenance" class="section-header">Core Maintenance</h2>
       <div class="grid" id="coreGrid">
         <div class="skeleton-card skeleton-pulse" aria-hidden="true">
           <div class="skeleton-header">
@@ -2108,9 +2286,7 @@
         </div>
       </div>
 
-      <h2 id="code-hygiene" class="section-header">
-        Code Hygiene & QA
-      </h2>
+      <h2 id="code-hygiene" class="section-header">Code Hygiene & QA</h2>
       <div class="grid" id="hygieneGrid">
         <div class="skeleton-card skeleton-pulse" aria-hidden="true">
           <div class="skeleton-header">
@@ -2283,7 +2459,11 @@
 
       <!-- Visual Fusion Controls -->
       <div class="fusion-visual-slots">
-        <button id="slotACard" class="slot-card empty" aria-label="Select Primary Protocol">
+        <button
+          id="slotACard"
+          class="slot-card empty"
+          aria-label="Select Primary Protocol"
+        >
           <div class="slot-content">
             <span class="slot-icon-placeholder">+</span>
             <span class="slot-label">Select Agent A</span>
@@ -2294,7 +2474,11 @@
           <button id="fuseBtn" disabled>Ignite Fusion Protocol</button>
         </div>
 
-        <button id="slotBCard" class="slot-card empty" aria-label="Select Secondary Protocol">
+        <button
+          id="slotBCard"
+          class="slot-card empty"
+          aria-label="Select Secondary Protocol"
+        >
           <div class="slot-content">
             <span class="slot-icon-placeholder">+</span>
             <span class="slot-label">Select Agent B</span>
@@ -2304,14 +2488,32 @@
 
       <!-- Fusion Error Alert -->
       <div id="fusionError" class="fusion-error" role="alert" hidden>
-        <svg aria-hidden="true" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+        <svg
+          aria-hidden="true"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+          />
+        </svg>
         <span id="fusionErrorText"></span>
       </div>
 
       <!-- Fusion Empty State (Removed as it is now redundant with visual slots) -->
 
       <!-- Fusion Animation Overlay -->
-      <div id="fusionAnimationOverlay" class="fusion-animation-overlay" aria-hidden="true">
+      <div
+        id="fusionAnimationOverlay"
+        class="fusion-animation-overlay"
+        aria-hidden="true"
+      >
         <div class="anim-arena">
           <div class="anim-icon left"></div>
           <div class="anim-shockwave"></div>
@@ -2323,48 +2525,50 @@
         <div class="anim-result"></div>
       </div>
 
-      <div id="fusionOutputWrapper"><div class="overflow-hidden"><div id="fusionOutput">
-        <div class="fusion-header">
-          <h3 id="fusionName" tabindex="-1"></h3>
-          <button id="copyFusionBtn" class="secondary" style="width: auto">
-            <svg
-              class="copy-icon"
-              aria-hidden="true"
-              width="16"
-              height="16"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
-              />
-            </svg>
-            <svg
-              class="check-icon"
-              style="display: none"
-              aria-hidden="true"
-              width="16"
-              height="16"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-            <span>Copy Prompt</span>
-          </button>
-        </div>
-        <div id="fusionCode"></div>
-      </div>
+      <div id="fusionOutputWrapper">
+        <div class="overflow-hidden">
+          <div id="fusionOutput">
+            <div class="fusion-header">
+              <h3 id="fusionName" tabindex="-1"></h3>
+              <button id="copyFusionBtn" class="secondary" style="width: auto">
+                <svg
+                  class="copy-icon"
+                  aria-hidden="true"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"
+                  />
+                </svg>
+                <svg
+                  class="check-icon"
+                  style="display: none"
+                  aria-hidden="true"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+                <span>Copy Prompt</span>
+              </button>
+            </div>
+            <div id="fusionCode"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -2376,20 +2580,39 @@
 
     <!-- Agent Picker Modal -->
     <dialog id="agentPickerModal" class="picker-modal">
-        <div class="picker-container">
-            <div class="picker-header">
-                <h3>Select Protocol</h3>
-                <button id="closePickerBtn" class="close-btn" aria-label="Close">
-                    <svg aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-                </button>
-            </div>
-            <div class="picker-search">
-                <input type="text" id="pickerSearch" placeholder="Filter agents..." aria-label="Filter agents">
-            </div>
-            <div id="pickerGrid" class="picker-grid">
-                <!-- Populated by JS -->
-            </div>
+      <div class="picker-container">
+        <div class="picker-header">
+          <h3>Select Protocol</h3>
+          <button id="closePickerBtn" class="close-btn" aria-label="Close">
+            <svg
+              aria-hidden="true"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
         </div>
+        <div class="picker-search">
+          <input
+            type="text"
+            id="pickerSearch"
+            placeholder="Filter agents..."
+            aria-label="Filter agents"
+          />
+        </div>
+        <div id="pickerGrid" class="picker-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
     </dialog>
 
     <!-- Palette+: Dynamic Toast Notification Container -->
@@ -2397,40 +2620,40 @@
 
     <script>
       const CONFIG = {
-        emojiKitchenPrefix: "https://emojik.vercel.app/s/",
+        emojiKitchenPrefix: 'https://emojik.vercel.app/s/',
         selectors: {
-          searchInput: "#searchInput",
-          clearBtn: "#clearBtn",
-          copyAllBtn: "#copyAllBtn",
-          downloadAllBtn: "#downloadAllBtn",
-          downloadDropdownBtn: "#downloadDropdownBtn",
-          downloadDropdownMenu: "#downloadDropdownMenu",
-          downloadCustomBtn: "#downloadCustomBtn",
-          toast: "#toast",
-          announcer: "#search-announcer",
-          emptyState: "#emptyState",
-          categoryNav: "#category-nav",
-          main: "#main",
-          navPills: ".nav-pill",
-          sectionHeader: ".section-header",
-          grid: ".grid",
-          card: ".card",
+          searchInput: '#searchInput',
+          clearBtn: '#clearBtn',
+          copyAllBtn: '#copyAllBtn',
+          downloadAllBtn: '#downloadAllBtn',
+          downloadDropdownBtn: '#downloadDropdownBtn',
+          downloadDropdownMenu: '#downloadDropdownMenu',
+          downloadCustomBtn: '#downloadCustomBtn',
+          toast: '#toast',
+          announcer: '#search-announcer',
+          emptyState: '#emptyState',
+          categoryNav: '#category-nav',
+          main: '#main',
+          navPills: '.nav-pill',
+          sectionHeader: '.section-header',
+          grid: '.grid',
+          card: '.card',
         },
         categories: {
-          core: "coreGrid",
-          architecture: "archGrid",
-          hygiene: "hygieneGrid",
-          operations: "opsGrid",
-          context: "contextGrid",
-          monthly: "monthlyGrid",
+          core: 'coreGrid',
+          architecture: 'archGrid',
+          hygiene: 'hygieneGrid',
+          operations: 'opsGrid',
+          context: 'contextGrid',
+          monthly: 'monthlyGrid',
         },
         sectionMap: {
-          coreGrid: "core-maintenance",
-          archGrid: "architecture-optimization",
-          hygieneGrid: "code-hygiene",
-          opsGrid: "operations-release",
-          contextGrid: "context-strategy",
-          monthlyGrid: "monthly-intelligence",
+          coreGrid: 'core-maintenance',
+          archGrid: 'architecture-optimization',
+          hygieneGrid: 'code-hygiene',
+          opsGrid: 'operations-release',
+          contextGrid: 'context-strategy',
+          monthlyGrid: 'monthly-intelligence',
         },
       };
     </script>
@@ -2446,7 +2669,7 @@
     <script src="js/RosterApp.js"></script>
     <script>
       // --- INITIALIZATION ---
-      document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener('DOMContentLoaded', () => {
         window.rosterApp = new RosterApp();
         window.rosterApp.init();
       });

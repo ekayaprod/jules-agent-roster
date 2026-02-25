@@ -1,0 +1,13 @@
+# Ignore prompts as they are sensitive raw text assets
+prompts/
+
+# Ignore Python verification scripts
+verification/
+
+# Ignore build/dependency directories
+node_modules/
+.git/
+.jules/
+
+# Ignore markdown files as they are often hand-formatted
+*.md

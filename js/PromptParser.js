@@ -27,10 +27,10 @@ const PromptParser = {
       // Wrap in a root element to ensure we can parse multiple top-level siblings
       // and handle whitespace/text nodes gracefully.
       const wrappedText = `<root>${rawText}</root>`;
-      const xmlDoc = parser.parseFromString(wrappedText, "text/xml");
+      const xmlDoc = parser.parseFromString(wrappedText, 'text/xml');
 
       // Check for parsing errors
-      const parserError = xmlDoc.getElementsByTagName("parsererror");
+      const parserError = xmlDoc.getElementsByTagName('parsererror');
       if (parserError.length > 0) {
         // Fallback to legacy if XML is malformed
         return { format: 'legacy', raw: rawText };
@@ -44,7 +44,8 @@ const PromptParser = {
         const node = root.childNodes[i];
 
         // We only care about element nodes
-        if (node.nodeType === 1) { // Node.ELEMENT_NODE
+        if (node.nodeType === 1) {
+          // Node.ELEMENT_NODE
           const tag = node.tagName.toLowerCase();
 
           if (validTags.includes(tag)) {
@@ -55,7 +56,7 @@ const PromptParser = {
               // For XML, textContent is appropriate.
               content: node.textContent.trim(),
               id: node.getAttribute('id') || null,
-              name: node.getAttribute('name') || null
+              name: node.getAttribute('name') || null,
             };
             sections.push(section);
           }
@@ -63,14 +64,16 @@ const PromptParser = {
       }
 
       if (sections.length === 0) {
-         return { format: 'legacy', raw: rawText };
+        return { format: 'legacy', raw: rawText };
       }
 
       return { format: 'xml', sections: sections };
-
     } catch (e) {
-      console.warn("PromptParser encountered an error, falling back to legacy:", e);
+      console.warn(
+        'PromptParser encountered an error, falling back to legacy:',
+        e
+      );
       return { format: 'legacy', raw: rawText };
     }
-  }
+  },
 };
