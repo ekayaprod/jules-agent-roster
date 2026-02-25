@@ -165,7 +165,7 @@ class FusionLab {
     this.clearError();
     if (fuseBtn) {
       fuseBtn.classList.add("loading");
-      fuseBtn.innerText = "Synthesizing Protocol...";
+      fuseBtn.innerText = "Igniting Protocol...";
       fuseBtn.disabled = true;
     }
 
@@ -173,21 +173,27 @@ class FusionLab {
     const agentB = this.agents.find((a) => a.name === nameB);
 
     const result = this.compiler.fuse(agentA, agentB);
-    this.lastFusionResult = result;
 
     // Error Handling
     if (result.name === "Error") {
       let msg = result.prompt;
       // Virtuoso: Empathetic & Actionable Error Copy
-      if (result.prompt === "Cannot fuse an agent with itself.") {
-        msg = "Unstable Reaction: Fusing an agent with itself creates a feedback loop. Select a different partner to stabilize.";
-      } else if (result.prompt === "Invalid agents selected.") {
-        msg = "Missing Components: Two distinct agents are required to initiate the fusion protocol.";
+      const ERROR_MAP = {
+        "Cannot fuse an agent with itself.":
+          "Unstable Reaction: Fusing an agent with itself creates a feedback loop. Select a different partner to stabilize.",
+        "Invalid agents selected.":
+          "Missing Components: Two distinct agents are required to initiate the fusion protocol.",
+      };
+
+      if (ERROR_MAP[result.prompt]) {
+        msg = ERROR_MAP[result.prompt];
       }
+
       this.showError(msg);
       return;
     }
 
+    this.lastFusionResult = result;
     if (emptyState) emptyState.style.display = "none";
 
     const output = document.getElementById("fusionOutput");
