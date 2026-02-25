@@ -23,7 +23,7 @@ class AgentRepository {
             await Promise.all(
                 agentsData.map(async (agent) => {
                     try {
-                        const promptRes = await fetch(`prompts/${agent.name}.md`);
+                        const promptRes = await this.fetchWithRetry(`prompts/${agent.name}.md`);
                         if (promptRes.ok) {
                             agent.prompt = await promptRes.text();
                         } else {
@@ -42,7 +42,7 @@ class AgentRepository {
             // FUSION: Load Custom Agents Data
             let customAgentsData = {};
             try {
-                const customRes = await fetch("custom_agents.json");
+                const customRes = await this.fetchWithRetry("custom_agents.json");
                 if (customRes.ok) {
                     const rawCustomData = await this.safeJsonParse(
                         customRes,
@@ -80,7 +80,7 @@ class AgentRepository {
                                 const filename = `prompts/fusions/${cleanName}.md`;
 
                                 try {
-                                    const promptRes = await fetch(filename);
+                                    const promptRes = await this.fetchWithRetry(filename);
                                     if (promptRes.ok) {
                                         agent.prompt = await promptRes.text();
                                     } else {
@@ -147,6 +147,10 @@ class AgentRepository {
         try {
             const response = await fetch(url, options);
             if (!response.ok) {
+                // Medic: Do not retry 404s, they are likely permanent
+                if (response.status === 404) {
+                    return response;
+                }
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return response;
@@ -275,4 +279,8 @@ class AgentRepository {
 
         return { valid: true, sanitized: data };
     }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = AgentRepository;
 }
