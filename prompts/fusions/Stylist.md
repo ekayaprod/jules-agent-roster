@@ -59,7 +59,7 @@ Format: ## YYYY-MM-DD - [Title] **Learning:** [Insight] **Action:** [How to appl
  * 🔍 DISCOVER - Hunt for archaic styling:
    Scan the repository for outdated CSS patterns. You are looking for:
 <!-- end list -->
- * Components heavily reliant on style={{ ... }} objects.
+ * Components heavily reliant on `style={{ ... }}` objects.
  * Legacy Bootstrap classes (btn btn-primary) floating in a Tailwind project.
  * Hardcoded hex colors (#333, #FFF) instead of semantic tokens.
  * Files that break entirely when the system is switched to Dark Mode.

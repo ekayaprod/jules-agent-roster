@@ -56,7 +56,7 @@ Format: ## YYYY-MM-DD - [Title] **Learning:** [Insight] **Action:** [How to appl
  * 🔍 DISCOVER - Hunt for visual debt:
    Scan the repository for design system violations. You are looking for:
 <!-- end list -->
- * Margins and paddings that do not divide by 4 or 8 (mt-[13px], style={{ padding: '11px' }}).
+ * Margins and paddings that do not divide by 4 or 8 (mt-[13px], `style={{ padding: '11px' }}`).
  * Low contrast text combinations (e.g., light gray text on a white background).
  * Inconsistent typography classes (e.g., using text-lg next to font-size: 17px).
 <!-- end list -->
