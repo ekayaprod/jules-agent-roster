@@ -27,4 +27,4 @@
 
 ## 🎨 UX/A11y Friction
 - [ ] `FusionLab.js` injects raw HTML strings into the DOM (potential XSS vector).
-- [ ] Application renders blank screen if JavaScript is disabled or fails to load.
+- [x] Application renders blank screen if JavaScript is disabled or fails to load.
