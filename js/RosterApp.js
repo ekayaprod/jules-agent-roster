@@ -455,15 +455,7 @@ class RosterApp {
       .join("\n\n");
 
     const content = header + body;
-    const blob = new Blob([content], { type: "text/markdown" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "jules_custom_agents.md";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    DownloadUtils.downloadTextFile(content, "jules_custom_agents.md");
 
     ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
     this.elements.downloadDropdownMenu?.classList.remove("visible");
@@ -485,15 +477,7 @@ class RosterApp {
       .join("\n\n");
 
     const content = header + body;
-    const blob = new Blob([content], { type: "text/markdown" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "jules_roster.md";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    DownloadUtils.downloadTextFile(content, "jules_roster.md");
 
     ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
   }
