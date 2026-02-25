@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.0 - 2026-02-25
+
+### 🚀 Features
+- **Fusion System Expansion**: Deployed comprehensive prompt definitions for 50+ specialized U-Tier agents (including *The Catalyst*, *The Optimist*, *The Diplomat*, and *The Narrator*).
+
+### ⚡ Performance
+- **Bolt+ Optimization**: Implemented 300ms strict debouncing on the Agent Roster search to prevent layout thrashing and improve responsiveness.
+
+### 🔧 Chores
+- **Verification Suite**: Added comprehensive Python verification scripts for all fusion combinations and visual regression baselines.
+
 ## 0.2.0 - 2026-02-20
 
 ### 🧬 The Fusion System
