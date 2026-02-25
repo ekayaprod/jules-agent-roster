@@ -32,7 +32,7 @@
   {
     "name": "Helix",
     "icon": "🧬",
-    "category": "eng",
+    "category": "architecture",
     "scope": "Small-Medium",
     "usedIn": "Steward",
     "role": "Deduplication Specialist",
@@ -41,7 +41,7 @@
   {
     "name": "Architect",
     "icon": "🏗️",
-    "category": "eng",
+    "category": "architecture",
     "scope": "Medium",
     "usedIn": "Mechanic",
     "role": "Structural Agent",
@@ -50,7 +50,7 @@
   {
     "name": "Scavenger",
     "icon": "🧹",
-    "category": "eng",
+    "category": "hygiene",
     "scope": "Medium",
     "usedIn": "Steward",
     "role": "Cleanup",
@@ -59,7 +59,7 @@
   {
     "name": "Janitor",
     "icon": "🧼",
-    "category": "eng",
+    "category": "hygiene",
     "scope": "Medium",
     "usedIn": "Steward",
     "role": "Hygiene",
@@ -68,7 +68,7 @@
   {
     "name": "Modernizer",
     "icon": "🆙",
-    "category": "eng",
+    "category": "architecture",
     "scope": "Medium",
     "usedIn": "Mechanic",
     "role": "Tech Stack Evolution",
@@ -77,7 +77,7 @@
   {
     "name": "Inspector",
     "icon": "🕵️",
-    "category": "eng",
+    "category": "hygiene",
     "scope": "Medium",
     "usedIn": "Guardian",
     "role": "QA",
@@ -86,7 +86,7 @@
   {
     "name": "Medic",
     "icon": "🚑",
-    "category": "eng",
+    "category": "hygiene",
     "scope": "Medium",
     "usedIn": "Guardian",
     "role": "Resilience Agent",
@@ -95,7 +95,7 @@
   {
     "name": "Cortex",
     "icon": "🧠",
-    "category": "eng",
+    "category": "architecture",
     "scope": "Medium",
     "role": "AI Integration Specialist",
     "desc": "The AI infrastructure specialist. Upgrades legacy LLM SDKs, bumps model versions, and enforces strictly typed JSON outputs for resilient AI integrations."
@@ -120,7 +120,7 @@
   {
     "name": "Navigator",
     "icon": "🧭",
-    "category": "context",
+    "category": "operations",
     "scope": "Medium",
     "usedIn": "Librarian",
     "role": "Strategy",
@@ -129,7 +129,7 @@
   {
     "name": "Curator",
     "icon": "🖼️",
-    "category": "context",
+    "category": "hygiene",
     "scope": "Medium",
     "usedIn": "Virtuoso",
     "role": "Payload & Asset Manager",
@@ -165,7 +165,7 @@
   {
     "name": "Herald",
     "icon": "📣",
-    "category": "context",
+    "category": "operations",
     "scope": "Medium",
     "usedIn": "Librarian",
     "role": "Release Manager",
@@ -183,7 +183,7 @@
   {
     "name": "Pedant",
     "icon": "🧐",
-    "category": "eng",
+    "category": "hygiene",
     "scope": "Small-Medium",
     "usedIn": "Guardian",
     "role": "Code Quality Enforcer",
@@ -192,7 +192,7 @@
   {
     "name": "Untangler",
     "icon": "🧶",
-    "category": "eng",
+    "category": "architecture",
     "scope": "Small-Medium",
     "role": "Logic Simplifier",
     "desc": "A logic simplifier. Takes deeply nested, unreadable 'arrow code' and flattens it out using early returns, guard clauses, and local helper functions."
