@@ -225,6 +225,14 @@ class RosterApp {
    */
   toggleDetails(index, btn) {
     const grid = document.getElementById(`details-${index}`);
+
+    // ⚡ Bolt+: Lazy load content to reduce initial DOM size
+    const content = grid.querySelector('.details-overflow');
+    if (content && !content.innerHTML.trim()) {
+        const agent = this.agents[index];
+        content.innerHTML = AgentCard.getPromptHtml(agent);
+    }
+
     const isExpanded = grid.classList.toggle("expanded");
     btn.closest(".card").classList.toggle("active", isExpanded);
     btn.setAttribute("aria-expanded", isExpanded);
