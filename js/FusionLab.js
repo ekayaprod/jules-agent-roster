@@ -45,11 +45,9 @@ class FusionLab {
     const slotBCard = document.getElementById("slotBCard");
 
     if (slotACard) slotACard.addEventListener("click", () => {
-        console.log("Slot A Clicked");
         this.openPicker("slotA");
     });
     if (slotBCard) slotBCard.addEventListener("click", () => {
-        console.log("Slot B Clicked");
         this.openPicker("slotB");
     });
 
@@ -130,7 +128,6 @@ class FusionLab {
    * @param {string} slotKey - "slotA" or "slotB"
    */
   openPicker(slotKey) {
-    console.log(`Opening Picker for ${slotKey}`);
     this.activePickerSlot = slotKey;
     const modal = document.getElementById("agentPickerModal");
     const grid = document.getElementById("pickerGrid");
@@ -169,7 +166,6 @@ class FusionLab {
         grid.appendChild(item);
     });
 
-    console.log("Showing Modal");
     modal.showModal();
     modal.setAttribute("open", "");
 
@@ -181,7 +177,6 @@ class FusionLab {
    * Closes the picker modal.
    */
   closePicker() {
-      console.log("Closing Picker");
       const modal = document.getElementById("agentPickerModal");
       if (modal) {
           modal.removeAttribute("open"); // For CSS
@@ -194,7 +189,6 @@ class FusionLab {
    * Handles selection from the picker.
    */
   handlePickerSelection(agent) {
-      console.log("Selection made:", agent.name);
       if (this.activePickerSlot) {
           this.state[this.activePickerSlot] = agent;
           this.renderSlots();
@@ -275,7 +269,6 @@ class FusionLab {
    * Handles the fusion logic when the Fuse button is clicked.
    */
   async handleFusion() {
-    console.log("Handle Fusion Triggered");
     const fuseBtn = document.getElementById("fuseBtn");
 
     const agentA = this.state.slotA;
