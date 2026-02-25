@@ -36,7 +36,6 @@ class RosterApp {
    */
   async init() {
     this.cacheElements();
-    this.renderSkeletons();
 
     try {
         const { agents, customAgents } = await this.agentRepo.getAgents();
@@ -73,38 +72,6 @@ class RosterApp {
       this.elements[key] = selector.startsWith("#")
         ? document.getElementById(selector.substring(1))
         : document.querySelectorAll(selector);
-    });
-  }
-
-  /**
-   * Renders skeleton loading cards into each category grid.
-   * Provides visual feedback while data is loading.
-   * Supports reduced motion preferences via CSS.
-   */
-  renderSkeletons() {
-    Object.keys(CONFIG.categories).forEach((key) => {
-      const container = document.getElementById(CONFIG.categories[key]);
-      if (!container) return;
-
-      // Add 3 skeletons per category
-      for (let i = 0; i < 3; i++) {
-        const skeleton = document.createElement("div");
-        skeleton.className = "skeleton-card skeleton-pulse";
-        skeleton.setAttribute("aria-hidden", "true"); // Hidden from screen readers
-        skeleton.innerHTML = `
-                  <div class="skeleton-header">
-                       <div class="skeleton-title"></div>
-                       <div class="skeleton-circle"></div>
-                  </div>
-                  <div class="skeleton-lines">
-                      <div class="skeleton-text"></div>
-                      <div class="skeleton-text"></div>
-                      <div class="skeleton-text short"></div>
-                  </div>
-                  <div class="skeleton-btn"></div>
-              `;
-        container.appendChild(skeleton);
-      }
     });
   }
 

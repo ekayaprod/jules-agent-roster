@@ -1745,6 +1745,17 @@
 </style>
   </head>
   <body>
+    <noscript>
+      <style>
+        #main, .controls, .category-nav, .fusion-lab-container, .fusion-archive-container, .header p, .header .controls, .empty-state, #agentPickerModal, #toast { display: none !important; }
+        .no-js-message { display: flex !important; }
+      </style>
+      <div class="no-js-message fusion-error" style="display: none; justify-content: center; margin: 2rem auto; max-width: 600px; text-align: left; align-items: center; gap: 1rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+        <span>This application requires JavaScript to function. Please enable it to view the Agent Roster.</span>
+      </div>
+    </noscript>
+
     <!-- Palette+: Skip to Content Link -->
     <a href="#main" class="skip-link">Skip to content</a>
 
@@ -2016,32 +2027,254 @@
       <h2 id="core-maintenance" class="section-header">
         Core Maintenance
       </h2>
-      <div class="grid" id="coreGrid"></div>
+      <div class="grid" id="coreGrid">
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+      </div>
 
       <h2 id="architecture-optimization" class="section-header">
         Architecture & Optimization
       </h2>
-      <div class="grid" id="archGrid"></div>
+      <div class="grid" id="archGrid">
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+      </div>
 
       <h2 id="code-hygiene" class="section-header">
         Code Hygiene & QA
       </h2>
-      <div class="grid" id="hygieneGrid"></div>
+      <div class="grid" id="hygieneGrid">
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+      </div>
 
       <h2 id="operations-release" class="section-header">
         Operations & Release
       </h2>
-      <div class="grid" id="opsGrid"></div>
+      <div class="grid" id="opsGrid">
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+      </div>
 
       <h2 id="context-strategy" class="section-header">
         Context & Documentation
       </h2>
-      <div class="grid" id="contextGrid"></div>
+      <div class="grid" id="contextGrid">
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+      </div>
 
       <h2 id="monthly-intelligence" class="section-header">
         Monthly Intelligence
       </h2>
-      <div class="grid" id="monthlyGrid"></div>
+      <div class="grid" id="monthlyGrid">
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+        <div class="skeleton-card skeleton-pulse" aria-hidden="true">
+          <div class="skeleton-header">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-circle"></div>
+          </div>
+          <div class="skeleton-lines">
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+          </div>
+          <div class="skeleton-btn"></div>
+        </div>
+      </div>
     </main>
 
     <!-- Fusion Lab (Moved to Bottom) -->
