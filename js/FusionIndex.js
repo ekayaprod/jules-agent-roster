@@ -150,7 +150,8 @@ class FusionIndex {
    * @param {string} key - The fusion key.
    */
   updateSlot(key) {
-    const slot = document.querySelector(`.fusion-slot[data-key="${key}"]`);
+    const safeKey = key.replace(/"/g, '\\"');
+    const slot = document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
     if (slot) {
       const agentData = this.customAgentsData[key];
       slot.classList.remove("locked");

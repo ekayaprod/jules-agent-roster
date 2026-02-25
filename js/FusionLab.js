@@ -205,10 +205,14 @@ class FusionLab {
 
     // Unlock in Index if it's a valid fusion
     if (this.fusionIndex) {
-      const key = [agentA.name, agentB.name].sort().join(",");
-      // Check if it's a known custom fusion
-      if (this.fusionIndex.customAgentsData[key]) {
-        this.fusionIndex.unlock(key);
+      try {
+        const key = [agentA.name, agentB.name].sort().join(",");
+        // Check if it's a known custom fusion
+        if (this.fusionIndex.customAgentsData[key]) {
+          this.fusionIndex.unlock(key);
+        }
+      } catch (e) {
+        console.warn("FusionLab: Failed to unlock index", e);
       }
     }
 
