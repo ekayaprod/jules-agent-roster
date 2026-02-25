@@ -643,19 +643,80 @@
         position: fixed;
         bottom: 2rem;
         right: 2rem;
-        background-color: #22c55e;
+        background-color: var(--card-bg);
         color: white;
-        padding: 1rem 2rem;
+        padding: 0;
         border-radius: 0.5rem;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
         transform: translateY(200%);
         transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 50;
-        font-weight: 600;
+        font-weight: 500;
+        display: flex;
+        align-items: stretch;
+        overflow: hidden;
+        border: 1px solid transparent;
+        max-width: 400px;
       }
 
       .toast.show {
         transform: translateY(0);
+      }
+
+      .toast-content {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 0 1rem 1.25rem;
+        flex-grow: 1;
+      }
+
+      .toast-icon {
+        flex-shrink: 0;
+      }
+
+      .toast-close-btn {
+        background: transparent;
+        border: none;
+        color: currentColor;
+        padding: 0 1rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .toast-close-btn:hover {
+        opacity: 1;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .toast-close-btn:focus-visible {
+        outline: 2px solid white;
+        outline-offset: -2px;
+        opacity: 1;
+      }
+
+      /* Toast Types */
+      .toast.success {
+        background-color: #22c55e;
+        border-color: #16a34a;
+        color: white;
+      }
+
+      .toast.error {
+        background-color: #ef4444;
+        border-color: #dc2626;
+        color: white;
+      }
+
+      .toast.info {
+        background-color: #3b82f6;
+        border-color: #2563eb;
+        color: white;
       }
 
       @keyframes fadeIn {
@@ -1767,10 +1828,8 @@
       <div class="grid" id="monthlyGrid"></div>
     </main>
 
-    <!-- Palette+: Added role="status" and aria-live="polite" for screen reader feedback -->
-    <div id="toast" class="toast" role="status" aria-live="polite">
-      Copied to clipboard
-    </div>
+    <!-- Palette+: Dynamic Toast Notification Container -->
+    <div id="toast" class="toast"></div>
 
     <script>
       const CONFIG = {
