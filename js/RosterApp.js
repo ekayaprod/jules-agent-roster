@@ -170,9 +170,17 @@ class RosterApp {
    */
   bindEvents() {
     // Static events
-    this.elements.searchInput?.addEventListener("input", (e) =>
-      this.filterAgents(e.target.value),
-    );
+    // ⚡ Bolt+: Debounce search input to prevent layout thrashing
+    if (this.elements.searchInput) {
+      const debouncedFilter = PerformanceUtils.debounce((query) => {
+        this.filterAgents(query);
+      }, 300);
+
+      this.elements.searchInput.addEventListener("input", (e) =>
+        debouncedFilter(e.target.value),
+      );
+    }
+
     this.elements.clearBtn?.addEventListener("click", () =>
       this.clearSearch(),
     );

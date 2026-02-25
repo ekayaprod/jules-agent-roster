@@ -82,7 +82,11 @@ class FusionLab {
     if (closeBtn) closeBtn.addEventListener("click", () => this.closePicker());
 
     if (searchInput) {
-        searchInput.addEventListener("input", (e) => this.filterPicker(e.target.value));
+        // ⚡ Bolt+: Debounce picker search
+        const debouncedFilter = PerformanceUtils.debounce((query) => {
+            this.filterPicker(query);
+        }, 300);
+        searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
     }
   }
 
