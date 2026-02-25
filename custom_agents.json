@@ -210,9 +210,9 @@
     "description": "A historical deletion specialist. Researches and documents the final engineering intent of dead code before permanently burying it and its associated tests."
   },
   "Cortex,Scribe": {
-    "name": "Prompt Engineer 🛠️",
+    "name": "Few-Shot Forger 🖇️",
     "tier": "U-Tier",
-    "description": "A master of words and constraints. Optimizes the clarity and execution of AI prompts across the codebase without breaking their underlying JSON or Markdown structures."
+    "description": "The Inline Example Builder. Sweeps prompt templates and injects structured 'Few-Shot' examples (input/output pairs) directly into the code to guarantee the LLM returns the correct format."
   },
   "Author,Herald": {
     "name": "Town Crier 🔔",
@@ -275,9 +275,9 @@
     "description": "A roadmap lexicon enforcer. Reads the official product strategy and ruthlessly enforces its exact terminology across every user-facing string in the UI."
   },
   "Medic,Wordsmith": {
-    "name": "Diplomat 🤝",
+    "name": "Diplomat 🕊️",
     "tier": "U-Tier",
-    "description": "An empathetic error recovery specialist. Catches terrifying system failures in safe technical boundaries and translates them into calm, actionable messages for the user."
+    "description": "The Empathy Translator. Rewrites terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy for the end-user."
   },
   "Architect,Scribe": {
     "name": "Archivist 🗃️",
@@ -414,11 +414,6 @@
     "tier": "U-Tier",
     "description": "The Persona & Tone Specialist. Edits the English payload of AI prompts to enforce strict personas, negative constraints, and precise domain vocabulary."
   },
-  "Cortex,Scribe": {
-    "name": "Few-Shot Forger 🖇️",
-    "tier": "U-Tier",
-    "description": "The Inline Example Builder. Sweeps prompt templates and injects structured 'Few-Shot' examples (input/output pairs) directly into the code to guarantee the LLM returns the correct format."
-  },
   "Cortex,Curator": {
     "name": "Tokenizer 🗜️",
     "tier": "U-Tier",
@@ -488,11 +483,6 @@
     "name": "Circuit Breaker 🔌",
     "tier": "U-Tier",
     "description": "The Fallback Strategist. Sweeps routing layers and fragile API calls, wrapping them in Error Boundaries and fallback states to ensure the application degrades gracefully instead of crashing."
-  },
-  "Medic,Wordsmith": {
-    "name": "Diplomat 🕊️",
-    "tier": "U-Tier",
-    "description": "The Empathy Translator. Rewrites terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy for the end-user."
   },
   "Medic,Curator": {
     "name": "Blackbox 🗃️",
