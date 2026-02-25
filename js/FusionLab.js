@@ -209,7 +209,6 @@ class FusionLab {
       const slotKey = this.activePickerSlot;
       const modal = document.getElementById("agentPickerModal");
       if (modal) {
-          modal.removeAttribute("open"); // For CSS
           modal.close();
       }
       this.activePickerSlot = null;
