@@ -28,3 +28,4 @@
 ## 🎨 UX/A11y Friction
 - [ ] `FusionLab.js` injects raw HTML strings into the DOM (potential XSS vector).
 - [x] Application renders blank screen if JavaScript is disabled or fails to load.
+- [x] Fusion Lab Agent Picker lacks empty state, focus management, and animation.
