@@ -774,6 +774,30 @@
         }
       }
 
+      /* Palette+: Selected & Disabled States */
+      .mini-agent-card.selected {
+        border-color: var(--accent);
+        background-color: rgba(56, 189, 248, 0.1);
+        box-shadow: 0 0 0 1px var(--accent);
+      }
+
+      .mini-agent-card.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+        filter: grayscale(1);
+        background-color: rgba(15, 23, 42, 0.3);
+      }
+
+      /* Palette+: Picker Empty State */
+      .picker-empty-state {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-secondary);
+        font-style: italic;
+        width: 100%;
+        animation: fadeIn 0.3s ease-out;
+      }
+
       /* Palette+: Staggered Entry Animation */
       @keyframes popIn {
         0% {
@@ -786,7 +810,8 @@
         }
       }
 
-      .card.pop-in {
+      .card.pop-in,
+      .mini-agent-card.pop-in {
         /* Use animation for entry */
         animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         opacity: 0; /* Start invisible */
@@ -2389,6 +2414,8 @@
             <div id="pickerGrid" class="picker-grid">
                 <!-- Populated by JS -->
             </div>
+            <!-- Palette+: Empty State -->
+            <div id="pickerEmptyState" class="picker-empty-state" hidden>No agents match your search.</div>
         </div>
     </dialog>
 

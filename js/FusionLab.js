@@ -138,30 +138,59 @@ class FusionLab {
         return;
     }
 
+    // Determine current selections
+    const otherSlot = slotKey === "slotA" ? "slotB" : "slotA";
+    const otherAgent = this.state[otherSlot];
+    const currentAgent = this.state[slotKey];
+
     // Reset Search
     if (searchInput) searchInput.value = "";
 
+    // Hide empty state initially
+    const emptyState = document.getElementById("pickerEmptyState");
+    if (emptyState) emptyState.hidden = true;
+
     // Populate Grid
     grid.innerHTML = "";
-    this.compiler.baseAgents.forEach(agent => {
+    this.compiler.baseAgents.forEach((agent, index) => {
         const item = document.createElement("div");
-        item.className = "mini-agent-card";
+        item.className = "mini-agent-card pop-in";
+        item.style.animationDelay = `${Math.min(index * 30, 300)}ms`;
+
         item.setAttribute("role", "button");
         item.setAttribute("tabindex", "0");
         item.setAttribute("data-name", agent.name.toLowerCase()); // For filtering
+
+        // Check if agent is already selected in the OTHER slot
+        const isOther = otherAgent && otherAgent.name === agent.name;
+        if (isOther) {
+            item.classList.add("disabled");
+            item.setAttribute("aria-disabled", "true");
+            item.title = "Already selected in other slot";
+        }
+
+        // Check if agent is currently selected in THIS slot
+        const isCurrent = currentAgent && currentAgent.name === agent.name;
+        if (isCurrent) {
+            item.classList.add("selected");
+            item.setAttribute("aria-selected", "true");
+        }
+
         item.innerHTML = `
             <span class="mini-icon">${agent.icon}</span>
             <span class="mini-name">${agent.name}</span>
             <span class="mini-role">${agent.role}</span>
         `;
 
-        item.addEventListener("click", () => this.handlePickerSelection(agent));
-        item.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                this.handlePickerSelection(agent);
-            }
-        });
+        if (!isOther) {
+            item.addEventListener("click", () => this.handlePickerSelection(agent));
+            item.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    this.handlePickerSelection(agent);
+                }
+            });
+        }
 
         grid.appendChild(item);
     });
@@ -177,12 +206,22 @@ class FusionLab {
    * Closes the picker modal.
    */
   closePicker() {
+      const slotKey = this.activePickerSlot;
       const modal = document.getElementById("agentPickerModal");
       if (modal) {
           modal.removeAttribute("open"); // For CSS
           modal.close();
       }
       this.activePickerSlot = null;
+
+      // Return focus to trigger
+      if (slotKey) {
+          const btn = document.getElementById(slotKey + "Card");
+          // Palette+: Wrap in timeout to ensure modal teardown doesn't interfere
+          setTimeout(() => {
+              if (btn) btn.focus();
+          }, 50);
+      }
   }
 
   /**
@@ -203,14 +242,22 @@ class FusionLab {
   filterPicker(query) {
       const term = query.toLowerCase();
       const items = document.querySelectorAll(".mini-agent-card");
+      let visibleCount = 0;
+
       items.forEach(item => {
           const name = item.getAttribute("data-name");
           if (name.includes(term)) {
               item.style.display = "flex";
+              visibleCount++;
           } else {
               item.style.display = "none";
           }
       });
+
+      const emptyState = document.getElementById("pickerEmptyState");
+      if (emptyState) {
+          emptyState.hidden = visibleCount > 0;
+      }
   }
 
   /**
