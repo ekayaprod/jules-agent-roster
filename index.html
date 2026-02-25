@@ -1284,14 +1284,18 @@
       .anim-result {
         font-size: 1.5rem;
         font-weight: 800;
-        background: linear-gradient(to right, #a855f7, #ec4899);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: var(--text-primary);
         opacity: 0;
         transform: scale(0.8);
         margin-top: 2rem;
         text-align: center;
         padding: 0 1rem;
+      }
+
+      .anim-result .highlight {
+        background: linear-gradient(to right, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
       .fusion-animation-overlay.active .anim-result {
@@ -1494,13 +1498,14 @@
       }
 
       .fusion-slot.locked {
-        opacity: 0.3;
+        opacity: 0.6;
         filter: grayscale(100%) contrast(0.8);
         cursor: not-allowed;
       }
 
       .fusion-slot.locked .slot-icon {
-        opacity: 0.5;
+        opacity: 1;
+        filter: brightness(0);
       }
 
       .fusion-slot.unlocked {

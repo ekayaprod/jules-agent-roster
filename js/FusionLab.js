@@ -517,15 +517,22 @@ class FusionLab {
     // Setup Animation Data
     iconLeft.innerHTML = agentA.icon;
     iconRight.innerHTML = agentB.icon;
-    animResult.innerText = result.name;
+    // Determine if last part is an emoji/icon (not alphanumeric or basic punctuation)
+    const parts = result.name.trim().split(" ");
+    const lastPart = parts[parts.length - 1];
+    const isEmoji = lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart);
+
+    // Set result name with highlighted text and separate emoji
+    if (isEmoji) {
+      const textPart = parts.slice(0, -1).join(" ");
+      animResult.innerHTML = `<span class="highlight">${textPart}</span> ${lastPart}`;
+    } else {
+      animResult.innerHTML = `<span class="highlight">${result.name}</span>`;
+    }
 
     // Determine Result Icon
     if (result.isCustom && result.name) {
-      // Extract emoji from end of name string (e.g. "The Void ☠️")
-      const parts = result.name.trim().split(" ");
-      const lastPart = parts[parts.length - 1];
-      // Simple check if it looks like an emoji/icon (not a word)
-      if (lastPart && !/^[A-Za-z0-9]+$/.test(lastPart)) {
+      if (isEmoji) {
         if (iconResult) iconResult.innerHTML = lastPart;
       } else {
         if (iconResult) iconResult.innerHTML = agentA.icon + agentB.icon;
