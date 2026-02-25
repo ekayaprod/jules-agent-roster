@@ -209,6 +209,11 @@
     "tier": "U-Tier",
     "description": "A historical deletion specialist. Researches and documents the final engineering intent of dead code before permanently burying it and its associated tests."
   },
+  "Cortex,Scribe": {
+    "name": "Prompt Engineer 🛠️",
+    "tier": "U-Tier",
+    "description": "A master of words and constraints. Optimizes the clarity and execution of AI prompts across the codebase without breaking their underlying JSON or Markdown structures."
+  },
   "Author,Herald": {
     "name": "Town Crier 🔔",
     "tier": "U-Tier",
@@ -268,6 +273,11 @@
     "name": "Script Supervisor 🎬",
     "tier": "U-Tier",
     "description": "A roadmap lexicon enforcer. Reads the official product strategy and ruthlessly enforces its exact terminology across every user-facing string in the UI."
+  },
+  "Medic,Wordsmith": {
+    "name": "Diplomat 🤝",
+    "tier": "U-Tier",
+    "description": "An empathetic error recovery specialist. Catches terrifying system failures in safe technical boundaries and translates them into calm, actionable messages for the user."
   },
   "Architect,Scribe": {
     "name": "Archivist 🗃️",
@@ -528,5 +538,60 @@
     "name": "Prophet 🔮",
     "tier": "U-Tier",
     "description": "The Deprecation Forecaster. Hunts for @deprecated code, injects runtime console warnings, and automatically generates step-by-step migration guides for developers."
+  },
+  "Navigator,Scavenger": {
+    "name": "Dead-Ender 🚧",
+    "tier": "U-Tier",
+    "description": "The Route Purger. Sweeps the routing tree and analytics configurations to find 'Ghost Routes' (pages that exist but have zero internal links pointing to them) and safely deletes them."
+  },
+  "Navigator,Janitor": {
+    "name": "Redirector 🔀",
+    "tier": "U-Tier",
+    "description": "The 404 Sweeper. Sweeps the application for broken internal links and maintains the central routing configuration to safely redirect legacy traffic to active pages."
+  },
+  "Navigator,Pedant": {
+    "name": "REST Enforcer 🚦",
+    "tier": "U-Tier",
+    "description": "The API Standardizer. Sweeps backend routing controllers to enforce strict, pedantic RESTful or GraphQL naming conventions across all endpoints."
+  },
+  "Herald,Scavenger": {
+    "name": "Undertaker 🪦",
+    "tier": "U-Tier",
+    "description": "The Deletion Broadcaster. Intercepts PRs where major code or APIs are purged and automatically drafts public release-note warnings detailing exactly what was permanently removed."
+  },
+  "Herald,Janitor": {
+    "name": "Upgrader 📈",
+    "tier": "U-Tier",
+    "description": "The Dependency Broadcaster. When dependencies are bumped, fetches external changelogs and broadcasts a summary into the PR of exactly what the team needs to know about the new version."
+  },
+  "Herald,Pedant": {
+    "name": "Whistleblower 📯",
+    "tier": "U-Tier",
+    "description": "The Syntax Shamer. Intercepts CI linting and TypeScript failures, broadcasting strict, pedantic Markdown instructions directly into the codebase or PRs detailing exactly how to fix the violations."
+  },
+  "Bolt+,Scribe": {
+    "name": "Tachometer 🏎️",
+    "tier": "U-Tier",
+    "description": "The RPM Gauge. Injects native performance.mark() and performance.measure() APIs around highly complex components and loops, logging exact millisecond render times and performance spikes."
+  },
+  "Bolt+,Author": {
+    "name": "Bootstrapper 🥾",
+    "tier": "U-Tier",
+    "description": "The Preload Strategist. Edits the root HTML to inject <link rel=\"preload\"> and <link rel=\"preconnect\"> tags for critical fonts, external APIs, and Hero images so they download instantly."
+  },
+  "Bolt+,Navigator": {
+    "name": "Optimist 🏃",
+    "tier": "U-Tier",
+    "description": "The Latency Illusionist. Sweeps slow data mutations and implements Optimistic UI routing, instantly transitioning the UI to the success state while the actual save happens silently in the background."
+  },
+  "Bolt+,Herald": {
+    "name": "Projectionist 📽️",
+    "tier": "U-Tier",
+    "description": "The Perception Engine. Intercepts loading boundaries to simultaneously inject structural CSS skeletons (preventing layout shift) and rotating status text (preventing user anxiety)."
+  },
+  "Bolt+,Wordsmith": {
+    "name": "Truncator ✂️",
+    "tier": "U-Tier",
+    "description": "The Payload Reducer. Scans the UI for text rendering, then sweeps the corresponding GraphQL, SQL, or REST API queries to drop fields that are never actually rendered."
   }
 }
