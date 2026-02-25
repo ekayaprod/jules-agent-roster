@@ -3,6 +3,11 @@ class FusionLab {
     this.agents = [];
     this.compiler = null;
     this.lastFusionResult = null;
+    // Internal State for Selection
+    this.state = {
+      slotA: null,
+      slotB: null,
+    };
   }
 
   /**
@@ -13,7 +18,6 @@ class FusionLab {
   init(agentsData, customAgentsData) {
     this.agents = agentsData;
     this.compiler = new FusionCompiler(agentsData, customAgentsData);
-    this.populateDropdowns();
 
     // Initialize Fusion Index (Collectible Shelf)
     if (typeof FusionIndex !== "undefined") {
@@ -26,29 +30,29 @@ class FusionLab {
     }
 
     this.bindEvents();
+    this.renderSlots(); // Initial render
   }
 
   /**
    * Binds event listeners for the Fusion Lab.
    */
   bindEvents() {
-    const slotA = document.getElementById("slotA");
-    const slotB = document.getElementById("slotB");
     const fuseBtn = document.getElementById("fuseBtn");
     const copyFusionBtn = document.getElementById("copyFusionBtn");
 
-    if (slotA) {
-      slotA.addEventListener("change", () => {
-        this.updateState();
-        this.clearError();
-      });
-    }
-    if (slotB) {
-      slotB.addEventListener("change", () => {
-        this.updateState();
-        this.clearError();
-      });
-    }
+    // Slot Interactions
+    const slotACard = document.getElementById("slotACard");
+    const slotBCard = document.getElementById("slotBCard");
+
+    if (slotACard) slotACard.addEventListener("click", () => {
+        console.log("Slot A Clicked");
+        this.openPicker("slotA");
+    });
+    if (slotBCard) slotBCard.addEventListener("click", () => {
+        console.log("Slot B Clicked");
+        this.openPicker("slotB");
+    });
+
     if (fuseBtn) fuseBtn.addEventListener("click", () => this.handleFusion());
 
     if (copyFusionBtn) {
@@ -63,58 +67,163 @@ class FusionLab {
         }
       });
     }
+
+    // Modal Events
+    const modal = document.getElementById("agentPickerModal");
+    const closeBtn = document.getElementById("closePickerBtn");
+    const searchInput = document.getElementById("pickerSearch");
+
+    if (modal) {
+        // Close on backdrop click
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) this.closePicker();
+        });
+    }
+    if (closeBtn) closeBtn.addEventListener("click", () => this.closePicker());
+
+    if (searchInput) {
+        searchInput.addEventListener("input", (e) => this.filterPicker(e.target.value));
+    }
   }
 
   /**
-   * Populates the Fusion Lab dropdowns with base agents.
+   * Renders the visual state of the slots based on this.state.
    */
-  populateDropdowns() {
-    const slotA = document.getElementById("slotA");
-    const slotB = document.getElementById("slotB");
-    const fuseBtn = document.getElementById("fuseBtn");
+  renderSlots() {
+    const updateSlotUI = (slotId, agent) => {
+        const card = document.getElementById(slotId + "Card");
+        if (!card) return;
 
-    if (!slotA || !slotB) return;
+        const content = card.querySelector(".slot-content");
 
-    const options = this.compiler.baseAgents
-      .map(
-        (agent) =>
-          `<option value="${agent.name}">${agent.icon} ${agent.name}</option>`,
-      )
-      .join("");
+        if (agent) {
+            card.classList.remove("empty");
+            card.classList.add("filled");
+            card.setAttribute("aria-label", `Selected: ${agent.name}. Click to change.`);
+            content.innerHTML = `
+                <span class="slot-icon-placeholder">${agent.icon}</span>
+                <span class="slot-label">${agent.name}</span>
+            `;
+        } else {
+            card.classList.add("empty");
+            card.classList.remove("filled");
+            card.setAttribute("aria-label", slotId === "slotA" ? "Select Primary Protocol" : "Select Secondary Protocol");
+            content.innerHTML = `
+                <span class="slot-icon-placeholder">+</span>
+                <span class="slot-label">${slotId === "slotA" ? "Select Agent A" : "Select Agent B"}</span>
+            `;
+        }
+    };
 
-    slotA.innerHTML =
-      '<option value="">Select Base Agent...</option>' + options;
-    slotB.innerHTML =
-      '<option value="">Select Modifier Agent...</option>' + options;
+    updateSlotUI("slotA", this.state.slotA);
+    updateSlotUI("slotB", this.state.slotB);
 
-    if (fuseBtn) {
-      fuseBtn.disabled = true;
-      fuseBtn.innerText = "Ignite Fusion Protocol";
+    this.updateState(); // Update button state
+  }
+
+  /**
+   * Opens the agent picker modal for a specific slot.
+   * @param {string} slotKey - "slotA" or "slotB"
+   */
+  openPicker(slotKey) {
+    console.log(`Opening Picker for ${slotKey}`);
+    this.activePickerSlot = slotKey;
+    const modal = document.getElementById("agentPickerModal");
+    const grid = document.getElementById("pickerGrid");
+    const searchInput = document.getElementById("pickerSearch");
+
+    if (!modal || !grid) {
+        console.error("Picker modal or grid not found");
+        return;
     }
+
+    // Reset Search
+    if (searchInput) searchInput.value = "";
+
+    // Populate Grid
+    grid.innerHTML = "";
+    this.compiler.baseAgents.forEach(agent => {
+        const item = document.createElement("div");
+        item.className = "mini-agent-card";
+        item.setAttribute("role", "button");
+        item.setAttribute("tabindex", "0");
+        item.setAttribute("data-name", agent.name.toLowerCase()); // For filtering
+        item.innerHTML = `
+            <span class="mini-icon">${agent.icon}</span>
+            <span class="mini-name">${agent.name}</span>
+            <span class="mini-role">${agent.role}</span>
+        `;
+
+        item.addEventListener("click", () => this.handlePickerSelection(agent));
+        item.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                this.handlePickerSelection(agent);
+            }
+        });
+
+        grid.appendChild(item);
+    });
+
+    console.log("Showing Modal");
+    modal.showModal();
+    modal.setAttribute("open", "");
+
+    // Focus search
+    if (searchInput) searchInput.focus();
+  }
+
+  /**
+   * Closes the picker modal.
+   */
+  closePicker() {
+      console.log("Closing Picker");
+      const modal = document.getElementById("agentPickerModal");
+      if (modal) {
+          modal.removeAttribute("open"); // For CSS
+          modal.close();
+      }
+      this.activePickerSlot = null;
+  }
+
+  /**
+   * Handles selection from the picker.
+   */
+  handlePickerSelection(agent) {
+      console.log("Selection made:", agent.name);
+      if (this.activePickerSlot) {
+          this.state[this.activePickerSlot] = agent;
+          this.renderSlots();
+          this.clearError();
+      }
+      this.closePicker();
+  }
+
+  /**
+   * Filters the agent grid in the picker.
+   */
+  filterPicker(query) {
+      const term = query.toLowerCase();
+      const items = document.querySelectorAll(".mini-agent-card");
+      items.forEach(item => {
+          const name = item.getAttribute("data-name");
+          if (name.includes(term)) {
+              item.style.display = "flex";
+          } else {
+              item.style.display = "none";
+          }
+      });
   }
 
   /**
    * Updates the state of the Fusion button and visual indicators.
    */
   updateState() {
-    const slotA = document.getElementById("slotA");
-    const slotB = document.getElementById("slotB");
     const fuseBtn = document.getElementById("fuseBtn");
-    const plusIcon = document.querySelector(".fusion-plus");
 
-    if (slotA && slotB && fuseBtn) {
-      const isReady = slotA.value !== "" && slotB.value !== "";
+    if (fuseBtn) {
+      const isReady = this.state.slotA !== null && this.state.slotB !== null;
       fuseBtn.disabled = !isReady;
-
-      if (plusIcon) {
-        if (isReady) {
-          plusIcon.classList.add("ready-pulse");
-          plusIcon.style.color = "#a855f7";
-        } else {
-          plusIcon.classList.remove("ready-pulse");
-          plusIcon.style.color = "var(--text-secondary)";
-        }
-      }
     }
   }
 
@@ -162,14 +271,13 @@ class FusionLab {
    * Handles the fusion logic when the Fuse button is clicked.
    */
   async handleFusion() {
-    const slotA = document.getElementById("slotA");
-    const slotB = document.getElementById("slotB");
+    console.log("Handle Fusion Triggered");
     const fuseBtn = document.getElementById("fuseBtn");
 
-    const nameA = slotA.value;
-    const nameB = slotB.value;
+    const agentA = this.state.slotA;
+    const agentB = this.state.slotB;
 
-    if (!nameA || !nameB) return;
+    if (!agentA || !agentB) return;
 
     // Reset UI states
     this.clearError();
@@ -178,9 +286,6 @@ class FusionLab {
       fuseBtn.innerText = "Igniting Protocol...";
       fuseBtn.disabled = true;
     }
-
-    const agentA = this.agents.find((a) => a.name === nameA);
-    const agentB = this.agents.find((a) => a.name === nameB);
 
     const result = this.compiler.fuse(agentA, agentB);
 
@@ -247,12 +352,13 @@ class FusionLab {
       return;
     }
 
-    // Update Dropdowns to reflect selection (UX Polish)
-    const slotA = document.getElementById("slotA");
-    const slotB = document.getElementById("slotB");
-    if (slotA) slotA.value = agentA.name;
-    if (slotB) slotB.value = agentB.name;
-    this.updateState(); // Enable button etc.
+    // Update Visual Slots to reflect selection (UX Polish)
+    this.state.slotA = agentA;
+    this.state.slotB = agentB;
+    this.renderSlots();
+
+    // Clear any previous errors
+    this.clearError();
 
     const result = this.compiler.fuse(agentA, agentB);
     this.renderFusionResult(result);
@@ -265,6 +371,7 @@ class FusionLab {
    */
   renderFusionResult(result) {
     this.lastFusionResult = result;
+    // Empty state removed in HTML refactor, but kept here for safety if logic needed
     const emptyState = document.getElementById("fusionEmptyState");
     if (emptyState) emptyState.style.display = "none";
 
@@ -357,7 +464,7 @@ class FusionLab {
     const iconResult = overlay.querySelector(".anim-icon.result");
     const animResult = overlay.querySelector(".anim-result");
     const fuseBtn = document.getElementById("fuseBtn");
-    const controls = document.querySelector(".fusion-controls");
+    const controls = document.querySelector(".fusion-visual-slots"); // Updated class
 
     // Close result if open
     const wrapper = document.getElementById("fusionOutputWrapper");
