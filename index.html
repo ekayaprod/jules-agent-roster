@@ -384,17 +384,18 @@
 
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 1rem;
         max-width: 1200px;
         margin: 0 auto;
+        justify-content: center;
       }
 
       .card {
         background-color: var(--card-bg);
         border: 1px solid var(--border);
         border-radius: 1rem;
-        padding: 1rem;
+        padding: 0.75rem;
         display: flex;
         flex-direction: column;
         transition: all 0.2s;
@@ -464,7 +465,7 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
       }
 
       .title-group {
@@ -474,17 +475,17 @@
       }
 
       .agent-title {
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 700;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.4rem;
         margin: 0; /* Palette+: Reset margin for h3 */
       }
 
       .role-tag {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.5rem;
+        font-size: 0.7rem;
+        padding: 0.15rem 0.4rem;
         border-radius: 999px;
         background-color: rgba(56, 189, 248, 0.1);
         color: var(--accent);
@@ -497,8 +498,8 @@
       .tag-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
+        gap: 0.4rem;
+        margin-top: 0.4rem;
       }
 
       .meta-tag {
@@ -529,10 +530,10 @@
 
       .description {
         color: var(--text-secondary);
-        font-size: 0.95rem;
-        margin-bottom: 1rem;
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
         flex-grow: 1;
-        line-height: 1.5;
+        line-height: 1.4;
       }
 
       /* Palette+: Accordion Animation Styles */
@@ -541,15 +542,15 @@
         border: none;
         color: var(--accent);
         cursor: pointer;
-        padding: 0.75rem 1rem; /* Palette+: Increased padding for better touch target */
-        font-size: 0.85rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
         text-align: left;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.4rem;
         width: 100%;
-        margin-top: 1rem; /* Palette+: Removed border-top, relying on spacing and hover state */
+        margin-top: 0.5rem;
         border-radius: 0.5rem; /* Palette+: Rounded corners */
         transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.1s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1); /* Palette+: Smooth transitions */
       }
@@ -616,6 +617,11 @@
 
       .card-actions {
         margin-top: auto;
+      }
+
+      .card-actions button {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
       }
 
       /* Palette+: Empty State */
