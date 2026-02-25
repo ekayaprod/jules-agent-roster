@@ -3,14 +3,14 @@
 ## ⚡ Performance Bottlenecks
 - [ ] `index.html` exceeds 600 lines due to heavy inline CSS.
 - [ ] Critical JS files (`RosterApp.js`, `FusionLab.js`) load synchronously in `<head>`.
-- [ ] `verification/` folder contains 18+ uncompressed binary images (PNG/WEBP).
+- [x] `verification/` folder contains 18+ uncompressed binary images (PNG/WEBP).
 
 ## 🛡️ Security Radar
 - [ ] `index.html` CSP policy permits `unsafe-inline` for both scripts and styles.
 - [ ] No `package-lock.json` or `yarn.lock` to guarantee reproducible dependency versions.
 
 ## 🧹 Debris Field
-- [ ] `verification/` is accumulating artifact screenshots (e.g., `roster_loaded.png`, `fusion_result.png`).
+- [x] `verification/` is accumulating artifact screenshots (e.g., `roster_loaded.png`, `fusion_result.png`).
 - [ ] Missing standard `package.json` for project metadata and scripts.
 
 ## 🕵️ Coverage Gaps
