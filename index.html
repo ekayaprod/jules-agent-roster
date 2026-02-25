@@ -384,8 +384,8 @@
 
       .grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
         max-width: 1200px;
         margin: 0 auto;
       }
@@ -394,7 +394,7 @@
         background-color: var(--card-bg);
         border: 1px solid var(--border);
         border-radius: 1rem;
-        padding: 1.5rem;
+        padding: 1rem;
         display: flex;
         flex-direction: column;
         transition: all 0.2s;
@@ -474,7 +474,7 @@
       }
 
       .agent-title {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
         font-weight: 700;
         display: flex;
         align-items: center;
@@ -805,7 +805,7 @@
         top: 1rem;
         z-index: 100;
         margin: 0 auto 2rem auto;
-        max-width: 600px;
+        max-width: 800px; /* Increased to accommodate more items */
         background: rgba(15, 23, 42, 0.7);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
@@ -827,6 +827,7 @@
         list-style: none;
         margin: 0;
         padding: 0;
+        overflow-x: auto; /* Allow scrolling if too narrow */
       }
 
       .nav-item {
@@ -892,6 +893,7 @@
         border: 1px solid var(--border);
         border-radius: 1rem;
         padding: 2rem;
+        margin-top: 3rem; /* Add spacing above */
         margin-bottom: 3rem;
         text-align: center;
         max-width: 800px;
@@ -1627,7 +1629,103 @@
       </div>
     </div>
 
-    <!-- Fusion Lab -->
+    <!-- Palette+: Sticky Category Navigation -->
+    <nav id="category-nav" class="category-nav" aria-label="Section Navigation">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a href="#core-maintenance" class="nav-pill">Core</a>
+        </li>
+        <li class="nav-item">
+          <a href="#architecture-optimization" class="nav-pill">Architecture</a>
+        </li>
+        <li class="nav-item">
+          <a href="#code-hygiene" class="nav-pill">Hygiene</a>
+        </li>
+        <li class="nav-item">
+            <a href="#operations-release" class="nav-pill">Operations</a>
+        </li>
+        <li class="nav-item">
+          <a href="#context-strategy" class="nav-pill">Context</a>
+        </li>
+        <li class="nav-item">
+          <a href="#monthly-intelligence" class="nav-pill">Monthly</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Palette+: Empty State Component -->
+    <div id="emptyState" class="empty-state">
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        width="64"
+        height="64"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
+      </svg>
+      <p>No agents found. Try a different keyword.</p>
+    </div>
+
+    <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
+    <div
+      id="search-announcer"
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+      style="
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      "
+    ></div>
+
+    <main id="main">
+      <h2 id="core-maintenance" class="section-header">
+        Core Maintenance
+      </h2>
+      <div class="grid" id="coreGrid"></div>
+
+      <h2 id="architecture-optimization" class="section-header">
+        Architecture & Optimization
+      </h2>
+      <div class="grid" id="archGrid"></div>
+
+      <h2 id="code-hygiene" class="section-header">
+        Code Hygiene & QA
+      </h2>
+      <div class="grid" id="hygieneGrid"></div>
+
+      <h2 id="operations-release" class="section-header">
+        Operations & Release
+      </h2>
+      <div class="grid" id="opsGrid"></div>
+
+      <h2 id="context-strategy" class="section-header">
+        Context & Documentation
+      </h2>
+      <div class="grid" id="contextGrid"></div>
+
+      <h2 id="monthly-intelligence" class="section-header">
+        Monthly Intelligence
+      </h2>
+      <div class="grid" id="monthlyGrid"></div>
+    </main>
+
+    <!-- Fusion Lab (Moved to Bottom) -->
     <div class="fusion-lab-container">
       <h2>🧬 The Fusion Lab</h2>
       <div class="fusion-controls">
@@ -1748,86 +1846,6 @@
       </div>
     </div>
 
-    <!-- Palette+: Sticky Category Navigation -->
-    <nav id="category-nav" class="category-nav" aria-label="Section Navigation">
-      <ul class="nav-list">
-        <li class="nav-item">
-          <a href="#core-maintenance" class="nav-pill">Core</a>
-        </li>
-        <li class="nav-item">
-          <a href="#engineering-specialists" class="nav-pill">Engineering</a>
-        </li>
-        <li class="nav-item">
-          <a href="#context-strategy" class="nav-pill">Context</a>
-        </li>
-        <li class="nav-item">
-          <a href="#monthly-intelligence" class="nav-pill">Monthly</a>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- Palette+: Empty State Component -->
-    <div id="emptyState" class="empty-state">
-      <svg
-        aria-hidden="true"
-        focusable="false"
-        width="64"
-        height="64"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-        />
-      </svg>
-      <p>No agents found. Try a different keyword.</p>
-    </div>
-
-    <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
-    <div
-      id="search-announcer"
-      class="sr-only"
-      role="status"
-      aria-live="polite"
-      style="
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
-      "
-    ></div>
-
-    <main id="main">
-      <h2 id="core-maintenance" class="section-header">
-        Core Maintenance (Plus Versions)
-      </h2>
-      <div class="grid" id="coreGrid"></div>
-
-      <h2 id="engineering-specialists" class="section-header">
-        Engineering Specialists (Medium Scope)
-      </h2>
-      <div class="grid" id="engGrid"></div>
-
-      <h2 id="context-strategy" class="section-header">
-        Context & Strategy (Medium Scope)
-      </h2>
-      <div class="grid" id="contextGrid"></div>
-
-      <h2 id="monthly-intelligence" class="section-header">
-        Monthly Intelligence (Large Scope)
-      </h2>
-      <div class="grid" id="monthlyGrid"></div>
-    </main>
-
     <!-- Palette+: Dynamic Toast Notification Container -->
     <div id="toast" class="toast"></div>
 
@@ -1854,13 +1872,17 @@
         },
         categories: {
           core: "coreGrid",
-          eng: "engGrid",
+          architecture: "archGrid",
+          hygiene: "hygieneGrid",
+          operations: "opsGrid",
           context: "contextGrid",
           monthly: "monthlyGrid",
         },
         sectionMap: {
           coreGrid: "core-maintenance",
-          engGrid: "engineering-specialists",
+          archGrid: "architecture-optimization",
+          hygieneGrid: "code-hygiene",
+          opsGrid: "operations-release",
           contextGrid: "context-strategy",
           monthlyGrid: "monthly-intelligence",
         },
