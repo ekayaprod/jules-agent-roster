@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 
 // Helper to check string for whitespace
@@ -20,7 +20,8 @@ async function run() {
     // 1. Audit agents.json
     console.log("Auditing agents.json...");
     try {
-        const agents = JSON.parse(fs.readFileSync('agents.json', 'utf8'));
+        const content = await fs.readFile('agents.json', 'utf8');
+        const agents = JSON.parse(content);
         agents.forEach((agent, index) => {
             if (hasIssues(agent.name)) {
                 console.log(`[agents.json] Index ${index}: Name '${agent.name}' has whitespace issues.`);
@@ -38,10 +39,11 @@ async function run() {
     // 2. Audit custom_agents.json
     console.log("\nAuditing custom_agents.json...");
     try {
-        const customAgents = JSON.parse(fs.readFileSync('custom_agents.json', 'utf8'));
+        const content = await fs.readFile('custom_agents.json', 'utf8');
+        const customAgents = JSON.parse(content);
 
         // Get actual files in prompts/fusions
-        const files = fs.readdirSync('prompts/fusions');
+        const files = await fs.readdir('prompts/fusions');
 
         for (const [key, agent] of Object.entries(customAgents)) {
             // Check Key
@@ -91,4 +93,4 @@ async function run() {
     }
 }
 
-run();
+run().catch(console.error);

@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 
 function cleanObject(obj) {
     if (typeof obj === 'string') {
@@ -17,17 +17,17 @@ function cleanObject(obj) {
     return obj;
 }
 
-function processFile(filepath) {
+async function processFile(filepath) {
     console.log(`Cleaning ${filepath}...`);
     try {
-        const content = fs.readFileSync(filepath, 'utf8');
+        const content = await fs.readFile(filepath, 'utf8');
         const data = JSON.parse(content);
         const cleanedData = cleanObject(data);
         const newContent = JSON.stringify(cleanedData, null, 2); // 2 spaces indentation
 
         // Only write if changed to avoid unnecessary churn
         if (content.trim() !== newContent.trim()) {
-            fs.writeFileSync(filepath, newContent + '\n'); // Add final newline
+            await fs.writeFile(filepath, newContent + '\n'); // Add final newline
             console.log(`✅ Fixed whitespace issues in ${filepath}`);
         } else {
             console.log(`✨ ${filepath} was already clean.`);
@@ -37,5 +37,12 @@ function processFile(filepath) {
     }
 }
 
-processFile('agents.json');
-processFile('custom_agents.json');
+async function main() {
+  const files = process.argv.slice(2).length > 0 ? process.argv.slice(2) : ['agents.json', 'custom_agents.json'];
+
+  for (const file of files) {
+      await processFile(file);
+  }
+}
+
+main().catch(console.error);
