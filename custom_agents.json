@@ -210,9 +210,9 @@
     "description": "A historical deletion specialist. Researches and documents the final engineering intent of dead code before permanently burying it and its associated tests."
   },
   "Cortex,Scribe": {
-    "name": "Few-Shot Forger 🖇️",
+    "name": "Prompt Engineer ✨",
     "tier": "U-Tier",
-    "description": "The Inline Example Builder. Sweeps prompt templates and injects structured 'Few-Shot' examples (input/output pairs) directly into the code to guarantee the LLM returns the correct format."
+    "description": "The Master of Constraints. Edits the English payload of AI prompts to enforce strict personas, negative constraints, and precise domain vocabulary."
   },
   "Author,Herald": {
     "name": "Town Crier 🔔",
@@ -277,7 +277,7 @@
   "Medic,Wordsmith": {
     "name": "Diplomat 🕊️",
     "tier": "U-Tier",
-    "description": "The Empathy Translator. Rewrites terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy for the end-user."
+    "description": "The Empathy Translator. Rewrites terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy."
   },
   "Architect,Scribe": {
     "name": "Archivist 🗃️",
@@ -379,131 +379,6 @@
     "tier": "U-Tier",
     "description": "The Spec Translator. Analyzes actual test assertions and rewrites vague test names into crystal clear, human-readable specifications, turning test output into living documentation."
   },
-  "Palette+,Author": {
-    "name": "Muse 🧑‍🎨",
-    "tier": "U-Tier",
-    "description": "The Contextual Guide. Owns the First-Time User Experience (FTUE) by treating empty screens as a blank canvas, injecting beautiful Empty States, contextual hover-tooltips, and inspiring in-app help interfaces."
-  },
-  "Palette+,Herald": {
-    "name": "Publisher 📰",
-    "tier": "U-Tier",
-    "description": "The Viewport Specialist. Sweeps the application for fixed widths and layout breaks, injecting mobile-first responsive utilities to ensure perfect rendering across all devices."
-  },
-  "Palette+,Janitor": {
-    "name": "Upholsterer 🛋️",
-    "tier": "U-Tier",
-    "description": "The UI Standardizer. Safely bumps visual dependencies and sweeps the codebase to standardize fragmented component props, ensuring UI hygiene remains perfectly consistent."
-  },
-  "Palette+,Helix": {
-    "name": "Chameleon 🦎",
-    "tier": "U-Tier",
-    "description": "The State Mutator. Continuously audits UI components and mutates them to handle every possible user interaction, injecting accessible hover, focus-visible, and disabled states."
-  },
-  "Palette+,Scavenger": {
-    "name": "Minimalist ⬜",
-    "tier": "U-Tier",
-    "description": "The Visual Purger. Ruthlessly hunts down and deletes orphaned CSS classes, outdated layout wrappers, and dead UI components disconnected from the routing tree."
-  },
-  "Palette+,Scribe": {
-    "name": "Calligrapher 🖋️",
-    "tier": "U-Tier",
-    "description": "The Token Typist. Locks down the design system by converting loose string props into strict TypeScript literal unions and continuously syncing them with CSS variables."
-  },
-  "Cortex,Wordsmith": {
-    "name": "Prompt Engineer ✨",
-    "tier": "U-Tier",
-    "description": "The Persona & Tone Specialist. Edits the English payload of AI prompts to enforce strict personas, negative constraints, and precise domain vocabulary."
-  },
-  "Cortex,Curator": {
-    "name": "Tokenizer 🗜️",
-    "tier": "U-Tier",
-    "description": "The Context Window Optimizer. Sweeps data payloads and RAG chunks before they hit the LLM, stripping HTML, minifying JSON, and dropping useless data to save tokens and prevent overflow."
-  },
-  "Cortex,Navigator": {
-    "name": "Dispatcher 🚦",
-    "tier": "U-Tier",
-    "description": "The Cost Strategist. Evaluates AI routing logic, sending simple tasks to fast/cheap models while saving heavy, expensive reasoning models exclusively for complex tasks."
-  },
-  "Cortex,Herald": {
-    "name": "Telemetrist 📡",
-    "tier": "U-Tier",
-    "description": "The AI Broadcaster. Intercepts AI execution routes and injects structured observability logging to broadcast token usage, latency, and cost-per-request to the terminal."
-  },
-  "Cortex,Author": {
-    "name": "Policy Maker ⚖️",
-    "tier": "U-Tier",
-    "description": "The AI Architect. Authors and maintains the macro AI_POLICY.md, sweeping the codebase to ensure no internal PII or unauthorized models are breaching compliance."
-  },
-  "Sentinel+,Navigator": {
-    "name": "Gatekeeper 🛂",
-    "tier": "U-Tier",
-    "description": "The RBAC Enforcer. Sweeps the application's routing layer, wrapping vulnerable pages and API endpoints in strict Role-Based Access Control and authentication guards."
-  },
-  "Sentinel+,Curator": {
-    "name": "Hazmat ☣️",
-    "tier": "U-Tier",
-    "description": "The Payload Purifier. Intercepts incoming user data payloads, injecting strict XSS escaping, SQL injection prevention, and Zod/Joi schema boundaries."
-  },
-  "Sentinel+,Scribe": {
-    "name": "Keymaster 🗝️",
-    "tier": "U-Tier",
-    "description": "The Cryptographic Auditor. Hunts down hardcoded secrets, extracts them to environment variables, and injects strict inline JSDoc security rules for cryptographic functions."
-  },
-  "Sentinel+,Author": {
-    "name": "Threat Modeler ♟️",
-    "tier": "U-Tier",
-    "description": "The Macro Strategist. Authors the overarching THREAT_MODEL.md and sweeps the global configuration to enforce strict CORS, CSP, and secure HTTP headers."
-  },
-  "Herald,Sentinel+": {
-    "name": "Siren 🚨",
-    "tier": "U-Tier",
-    "description": "The Vulnerability Broadcaster. Drafts strict, compliance-ready security advisories and updates SECURITY.md policies when critical patches are merged."
-  },
-  "Inspector,Curator": {
-    "name": "Fabricator 🏭",
-    "tier": "U-Tier",
-    "description": "The Mock Engineer. Sweeps test files to eradicate brittle, hardcoded JSON objects, replacing them with dynamic, randomized mock-data factories and robust fixtures."
-  },
-  "Inspector,Scribe": {
-    "name": "Interrogator 🔦",
-    "tier": "U-Tier",
-    "description": "The State Validator. Sweeps weak unit tests that lack meaningful assertions, injecting deep, rigorous checks against component state, DOM interactions, and accessibility."
-  },
-  "Inspector,Herald": {
-    "name": "Decoder 📟",
-    "tier": "U-Tier",
-    "description": "The CI Whisperer. Intercepts broken test suites and translates massive, unreadable terminal stack traces into clear, actionable Markdown reports for developers."
-  },
-  "Inspector,Author": {
-    "name": "Cartographer 🗺️",
-    "tier": "U-Tier",
-    "description": "The Coverage Mapper. Reads the codebase to identify untested high-risk domains, continuously authoring and updating the macro TESTING_PLAN.md with prioritized gaps."
-  },
-  "Medic,Navigator": {
-    "name": "Circuit Breaker 🔌",
-    "tier": "U-Tier",
-    "description": "The Fallback Strategist. Sweeps routing layers and fragile API calls, wrapping them in Error Boundaries and fallback states to ensure the application degrades gracefully instead of crashing."
-  },
-  "Medic,Curator": {
-    "name": "Blackbox 🗃️",
-    "tier": "U-Tier",
-    "description": "The Data Preserver. Sweeps complex forms and user-input flows, injecting local storage caching mechanisms so unsaved data survives unexpected network failures or app crashes."
-  },
-  "Medic,Scribe": {
-    "name": "Runbooker 🚑",
-    "tier": "U-Tier",
-    "description": "The Recovery Documentarian. Sweeps generic catch blocks, injecting structured logging and inline JSDoc 'Runbooks' that tell future developers exactly how to fix the specific failure."
-  },
-  "Herald,Medic": {
-    "name": "Press Secretary 👔",
-    "tier": "U-Tier",
-    "description": "The Incident Communicator. Translates emergency hotfixes and revert PRs into calm, professional Status Page updates and public incident post-mortems."
-  },
-  "Medic,Author": {
-    "name": "Paramedic 🏥",
-    "tier": "U-Tier",
-    "description": "The Contingency Planner. Evaluates single points of failure in the architecture to author and continuously update the macro DISASTER_RECOVERY.md documentation."
-  },
   "Author,Scavenger": {
     "name": "Sunsetter 🌅",
     "tier": "U-Tier",
@@ -518,16 +393,6 @@
     "name": "Rulemaker 📏",
     "tier": "U-Tier",
     "description": "The Style Guide Enforcer. Authors the overarching STYLEGUIDE.md and standardizes strict linting configurations to bridge human rules with machine enforcement."
-  },
-  "Herald,Palette+": {
-    "name": "Publicist 🍸",
-    "tier": "U-Tier",
-    "description": "The Release Marketer. Translates dry, technical commit messages into gorgeous, user-facing Release Notes, formatting them with clear markdown hierarchy to highlight UX value."
-  },
-  "Herald,Modernizer": {
-    "name": "Prophet 🔮",
-    "tier": "U-Tier",
-    "description": "The Deprecation Forecaster. Hunts for @deprecated code, injects runtime console warnings, and automatically generates step-by-step migration guides for developers."
   },
   "Navigator,Scavenger": {
     "name": "Dead-Ender 🚧",
@@ -560,14 +425,14 @@
     "description": "The Syntax Shamer. Intercepts CI linting and TypeScript failures, broadcasting strict, pedantic Markdown instructions directly into the codebase or PRs detailing exactly how to fix the violations."
   },
   "Bolt+,Scribe": {
-    "name": "Tachometer 🏎️",
+    "name": "Chronograph 🕰️",
     "tier": "U-Tier",
-    "description": "The RPM Gauge. Injects native performance.mark() and performance.measure() APIs around highly complex components and loops, logging exact millisecond render times and performance spikes."
+    "description": "The Execution Timer. Drops precise start/stop markers around heavy components and functions to clock their exact millisecond runtimes."
   },
   "Bolt+,Author": {
-    "name": "Bootstrapper 🥾",
+    "name": "Service Worker ⚙️",
     "tier": "U-Tier",
-    "description": "The Preload Strategist. Edits the root HTML to inject <link rel=\"preload\"> and <link rel=\"preconnect\"> tags for critical fonts, external APIs, and Hero images so they download instantly."
+    "description": "The Cache Orchestrator. Authors and maintains a highly aggressive Service Worker to cache the application shell locally for instant offline-starts."
   },
   "Bolt+,Navigator": {
     "name": "Optimist 🏃",
