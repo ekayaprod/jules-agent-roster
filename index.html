@@ -1429,6 +1429,98 @@
         box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
         animation: shake 0.4s ease-in-out;
       }
+
+      /* Fusion Index Styles */
+      .fusion-index-wrapper {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+        text-align: center;
+      }
+
+      .fusion-index-header {
+        font-size: 1.25rem;
+        color: var(--text-secondary);
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+
+      .fusion-shelf-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 0.75rem;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .fusion-slot {
+        aspect-ratio: 1;
+        background-color: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .fusion-slot.locked {
+        opacity: 0.3;
+        filter: grayscale(100%) contrast(0.8);
+        cursor: not-allowed;
+      }
+
+      .fusion-slot.locked .slot-icon {
+        opacity: 0.5;
+      }
+
+      .fusion-slot.unlocked {
+        opacity: 1;
+        filter: none;
+        cursor: pointer;
+        border-color: rgba(168, 85, 247, 0.3);
+        background: radial-gradient(circle at center, rgba(168, 85, 247, 0.1), transparent);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      .fusion-slot.unlocked:hover {
+        transform: translateY(-4px) scale(1.05);
+        border-color: #a855f7;
+        box-shadow: 0 10px 15px -3px rgba(168, 85, 247, 0.2);
+        z-index: 10;
+      }
+
+      .fusion-slot.unlocked:active {
+        transform: scale(0.95);
+      }
+
+      /* Unlock Animation */
+      @keyframes unlockPulse {
+        0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.7); }
+        50% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(168, 85, 247, 0); }
+      }
+
+      .fusion-slot.just-unlocked {
+        animation: unlockPulse 0.8s ease-out;
+        z-index: 20;
+        border-color: #ec4899;
+      }
+
+      .fusion-progress {
+        font-family: monospace;
+        color: var(--text-secondary);
+        font-size: 0.85rem;
+        background: rgba(15, 23, 42, 0.5);
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+      }
 </style>
   </head>
   <body>
@@ -1850,6 +1942,9 @@
       </div>
         </div>
       </div>
+
+      <!-- Fusion Index Shelf -->
+      <div id="fusionIndexContainer"></div>
     </div>
 
     <!-- Palette+: Dynamic Toast Notification Container -->
@@ -1900,6 +1995,7 @@
     <script src="js/ui/AgentCard.js"></script>
     <script src="js/ui/ClipboardUtils.js"></script>
     <script src="js/FusionCompiler.js"></script>
+    <script src="js/FusionIndex.js"></script>
     <script src="js/FusionLab.js"></script>
     <script src="js/RosterApp.js"></script>
     <script>

@@ -14,6 +14,17 @@ class FusionLab {
     this.agents = agentsData;
     this.compiler = new FusionCompiler(agentsData, customAgentsData);
     this.populateDropdowns();
+
+    // Initialize Fusion Index (Collectible Shelf)
+    if (typeof FusionIndex !== "undefined") {
+      this.fusionIndex = new FusionIndex(
+        "fusionIndexContainer",
+        this.compiler.customAgentsMap,
+        (key) => this.handleShelfSelection(key),
+      );
+      this.fusionIndex.init();
+    }
+
     this.bindEvents();
   }
 
@@ -154,7 +165,6 @@ class FusionLab {
     const slotA = document.getElementById("slotA");
     const slotB = document.getElementById("slotB");
     const fuseBtn = document.getElementById("fuseBtn");
-    const emptyState = document.getElementById("fusionEmptyState");
 
     const nameA = slotA.value;
     const nameB = slotB.value;
@@ -193,7 +203,65 @@ class FusionLab {
       return;
     }
 
+    // Unlock in Index if it's a valid fusion
+    if (this.fusionIndex) {
+      const key = [agentA.name, agentB.name].sort().join(",");
+      // Check if it's a known custom fusion
+      if (this.fusionIndex.customAgentsData[key]) {
+        this.fusionIndex.unlock(key);
+      }
+    }
+
+    this.renderFusionResult(result);
+
+    // Check reduced motion
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      this.showResult();
+    } else {
+      this.runAnimation(agentA, agentB, result);
+    }
+  }
+
+  /**
+   * Handles selection from the Fusion Index shelf.
+   * Recreates the fusion result without the long animation.
+   * @param {string} key - The fusion key (AgentA,AgentB).
+   */
+  handleShelfSelection(key) {
+    const names = key.split(",");
+    if (names.length !== 2) return;
+
+    const agentA = this.agents.find((a) => a.name === names[0].trim());
+    const agentB = this.agents.find((a) => a.name === names[1].trim());
+
+    if (!agentA || !agentB) {
+      console.warn("FusionLab: Could not find agents for key", key);
+      return;
+    }
+
+    // Update Dropdowns to reflect selection (UX Polish)
+    const slotA = document.getElementById("slotA");
+    const slotB = document.getElementById("slotB");
+    if (slotA) slotA.value = agentA.name;
+    if (slotB) slotB.value = agentB.name;
+    this.updateState(); // Enable button etc.
+
+    const result = this.compiler.fuse(agentA, agentB);
+    this.renderFusionResult(result);
+    this.showResult();
+  }
+
+  /**
+   * Renders the fusion result into the DOM.
+   * @param {Object} result - The fusion result object.
+   */
+  renderFusionResult(result) {
     this.lastFusionResult = result;
+    const emptyState = document.getElementById("fusionEmptyState");
     if (emptyState) emptyState.style.display = "none";
 
     const output = document.getElementById("fusionOutput");
@@ -242,17 +310,6 @@ class FusionLab {
       }
     } else {
       fusionCode.innerText = result.prompt;
-    }
-
-    // Check reduced motion
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      this.showResult();
-    } else {
-      this.runAnimation(agentA, agentB, result);
     }
   }
 
