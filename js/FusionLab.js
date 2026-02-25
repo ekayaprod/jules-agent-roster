@@ -545,8 +545,49 @@ class FusionLab {
       const imgUrl = `${CONFIG.emojiKitchenPrefix}${iconA}_${iconB}?size=128`;
 
       if (iconResult) {
-        // Fallback handled by onerror
-        iconResult.innerHTML = `<img src="${imgUrl}" alt="${result.name}" style="width: 1em; height: 1em; object-fit: contain;" onerror="this.style.display='none'; this.parentElement.innerText='${iconA}${iconB}'" />`;
+        // Gallerist: Premium Asset Loading
+        iconResult.innerHTML = ""; // Clear previous content
+
+        // Create Container
+        const wrapper = document.createElement("div");
+        wrapper.className = "img-wrapper";
+        wrapper.style.fontSize = "inherit"; // Inherit font size from parent
+
+        // Create Placeholder
+        const placeholder = document.createElement("div");
+        placeholder.className = "img-placeholder";
+        wrapper.appendChild(placeholder);
+
+        // Create Image
+        const img = new Image();
+        img.src = imgUrl;
+        img.alt = result.name;
+        img.loading = "lazy";
+        img.className = "img-loading";
+        img.style.width = "100%";
+        img.style.height = "100%";
+        img.style.objectFit = "contain";
+
+        // Handle Load
+        img.onload = () => {
+          img.classList.remove("img-loading");
+          img.classList.add("img-loaded");
+          placeholder.classList.add("hidden");
+          // Remove placeholder after transition
+          setTimeout(() => {
+            if (placeholder.parentNode) placeholder.remove();
+          }, 300);
+        };
+
+        // Handle Error
+        img.onerror = () => {
+          console.warn("Gallerist: Image load failed, falling back to emoji.");
+          wrapper.remove();
+          iconResult.innerText = `${iconA}${iconB}`;
+        };
+
+        wrapper.appendChild(img);
+        iconResult.appendChild(wrapper);
       }
     }
 
