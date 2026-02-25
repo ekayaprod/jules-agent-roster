@@ -61,9 +61,9 @@ class ClipboardUtils {
         btn.classList.add("success-state");
         span.innerText = successMessage;
 
-        if (primaryIcon) primaryIcon.style.display = "none";
+        if (primaryIcon) primaryIcon.classList.add("hidden");
         if (checkIcon) {
-            checkIcon.style.display = "block";
+            checkIcon.classList.remove("hidden");
             checkIcon.classList.add("animate");
         }
 
@@ -71,9 +71,9 @@ class ClipboardUtils {
             btn.classList.remove("success-state");
             span.innerText = originalText;
 
-            if (primaryIcon) primaryIcon.style.display = "block";
+            if (primaryIcon) primaryIcon.classList.remove("hidden");
             if (checkIcon) {
-                checkIcon.style.display = "none";
+                checkIcon.classList.add("hidden");
                 checkIcon.classList.remove("animate");
             }
         }, duration);

@@ -429,9 +429,7 @@ class FusionLab {
     if (!descEl) {
       descEl = document.createElement("p");
       descEl.id = "fusionDesc";
-      descEl.style.color = "var(--text-secondary)";
-      descEl.style.marginTop = "0.5rem";
-      descEl.style.marginBottom = "1.5rem";
+      descEl.className = "fusion-description";
       output.insertBefore(descEl, fusionCode);
     }
     descEl.innerText = result.description || "";
@@ -546,7 +544,7 @@ class FusionLab {
 
       if (iconResult) {
         // Fallback handled by onerror
-        iconResult.innerHTML = `<img src="${imgUrl}" alt="${result.name}" style="width: 1em; height: 1em; object-fit: contain;" onerror="this.style.display='none'; this.parentElement.innerText='${iconA}${iconB}'" />`;
+        iconResult.innerHTML = `<img src="${imgUrl}" alt="${result.name}" class="fusion-result-icon" onerror="this.classList.add('hidden'); this.parentElement.innerText='${iconA}${iconB}'" />`;
       }
     }
 

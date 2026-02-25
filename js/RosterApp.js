@@ -51,7 +51,7 @@ class RosterApp {
             const msg = error.message && error.message.includes("JSON")
               ? "Data corruption detected (JSON)"
               : "Connection failed";
-            this.elements.main.innerHTML = `<div style="text-align:center; padding: 2rem; color: #f87171;">Couldn't load agents. ${msg}.</div>`;
+            this.elements.main.innerHTML = `<div class="text-center p-8 text-error">Couldn't load agents. ${msg}.</div>`;
         }
     }
 
