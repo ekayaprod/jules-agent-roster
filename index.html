@@ -790,12 +790,74 @@
 
       /* Palette+: Picker Empty State */
       .picker-empty-state {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 1.5rem;
         text-align: center;
-        padding: 2rem;
         color: var(--text-secondary);
-        font-style: italic;
+        gap: 1rem;
         width: 100%;
         animation: fadeIn 0.3s ease-out;
+      }
+
+      .picker-empty-state[hidden] {
+        display: none !important;
+      }
+
+      .picker-empty-state .empty-icon {
+        width: 48px;
+        height: 48px;
+        color: var(--border);
+        margin-bottom: 0.5rem;
+      }
+
+      .picker-empty-state .empty-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+      }
+
+      .picker-empty-state .empty-desc {
+        font-size: 0.9rem;
+        margin: 0;
+        max-width: 300px;
+      }
+
+      /* Virtuoso: Visual Slot Polish */
+      .slot-card.filled {
+          position: relative;
+      }
+
+      .slot-card.filled::after {
+          content: "Swap";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) scale(0.8);
+          background: rgba(15, 23, 42, 0.9);
+          color: var(--accent);
+          padding: 0.5rem 1rem;
+          border-radius: 999px;
+          font-size: 0.85rem;
+          font-weight: 700;
+          opacity: 0;
+          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+          pointer-events: none;
+          border: 1px solid var(--accent);
+          z-index: 10;
+      }
+
+      .slot-card.filled:hover::after {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+      }
+
+      .slot-card.filled:hover .slot-content {
+          opacity: 0.3;
+          filter: blur(2px);
       }
 
       /* Palette+: Staggered Entry Animation */
@@ -2447,13 +2509,19 @@
                 </button>
             </div>
             <div class="picker-search">
-                <input type="text" id="pickerSearch" placeholder="Filter agents..." aria-label="Filter agents">
+                <input type="text" id="pickerSearch" placeholder="Search protocols..." aria-label="Search protocols">
             </div>
             <div id="pickerGrid" class="picker-grid">
                 <!-- Populated by JS -->
             </div>
             <!-- Palette+: Empty State -->
-            <div id="pickerEmptyState" class="picker-empty-state" hidden>No agents match your search.</div>
+            <div id="pickerEmptyState" class="picker-empty-state" hidden>
+                <svg class="empty-icon" aria-hidden="true" width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <p class="empty-title">No Protocols Found</p>
+                <p class="empty-desc">Adjust your search parameters to locate available agents.</p>
+            </div>
         </div>
     </dialog>
 

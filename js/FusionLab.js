@@ -109,10 +109,10 @@ class FusionLab {
         } else {
             card.classList.add("empty");
             card.classList.remove("filled");
-            card.setAttribute("aria-label", slotId === "slotA" ? "Select Primary Protocol" : "Select Secondary Protocol");
+            card.setAttribute("aria-label", slotId === "slotA" ? "Assign Primary Protocol" : "Assign Secondary Protocol");
             content.innerHTML = `
                 <span class="slot-icon-placeholder">+</span>
-                <span class="slot-label">${slotId === "slotA" ? "Select Agent A" : "Select Agent B"}</span>
+                <span class="slot-label">${slotId === "slotA" ? "Assign Primary Protocol" : "Assign Secondary Protocol"}</span>
             `;
         }
     };
