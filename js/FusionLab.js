@@ -86,6 +86,12 @@ class FusionLab {
         }, 300);
         searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
     }
+
+    // 💎 Jeweler: Grid Keyboard Navigation
+    const pickerGrid = document.getElementById("pickerGrid");
+    if (pickerGrid) {
+        pickerGrid.addEventListener("keydown", (e) => this.handleGridKeydown(e));
+    }
   }
 
   /**
@@ -157,8 +163,9 @@ class FusionLab {
         item.className = "mini-agent-card pop-in";
         item.style.animationDelay = `${Math.min(index * 30, 300)}ms`;
 
-        item.setAttribute("role", "button");
-        item.setAttribute("tabindex", "0");
+        item.setAttribute("role", "option");
+        // 💎 Jeweler: Roving Tabindex - Only first item is focusable initially
+        item.setAttribute("tabindex", index === 0 ? "0" : "-1");
         item.setAttribute("data-name", agent.name.toLowerCase()); // For filtering
 
         // Check if agent is already selected in the OTHER slot
@@ -184,12 +191,7 @@ class FusionLab {
 
         if (!isOther) {
             item.addEventListener("click", () => this.handlePickerSelection(agent));
-            item.addEventListener("keydown", (e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    this.handlePickerSelection(agent);
-                }
-            });
+            // Keydown handled by grid container
         }
 
         grid.appendChild(item);
@@ -242,20 +244,89 @@ class FusionLab {
       const term = query.toLowerCase();
       const items = document.querySelectorAll(".mini-agent-card");
       let visibleCount = 0;
+      let firstVisible = null;
 
       items.forEach(item => {
           const name = item.getAttribute("data-name");
-          if (name.includes(term)) {
+          const match = name.includes(term);
+          if (match) {
               item.style.display = "flex";
+              if (!firstVisible) firstVisible = item;
               visibleCount++;
           } else {
               item.style.display = "none";
           }
+          item.setAttribute("tabindex", "-1"); // Reset all
       });
+
+      // 💎 Jeweler: Reset Roving Tabindex to first result
+      if (firstVisible) {
+          firstVisible.setAttribute("tabindex", "0");
+      }
+
+      // 💎 Jeweler: Live Region Announcement
+      const announcer = document.getElementById("pickerAnnouncer");
+      if (announcer) {
+          announcer.innerText = `${visibleCount} protocols found`;
+      }
 
       const emptyState = document.getElementById("pickerEmptyState");
       if (emptyState) {
           emptyState.hidden = visibleCount > 0;
+      }
+  }
+
+  /**
+   * 💎 Jeweler: Handles keyboard navigation within the grid (Roving Tabindex).
+   */
+  handleGridKeydown(e) {
+      const target = e.target;
+      if (!target.classList.contains("mini-agent-card")) return;
+
+      const items = Array.from(document.querySelectorAll(".mini-agent-card")).filter(
+          (el) => el.style.display !== "none"
+      );
+      const index = items.indexOf(target);
+
+      let newIndex = index;
+
+      switch (e.key) {
+          case "ArrowRight":
+          case "ArrowDown": // Simple grid navigation: next item
+              newIndex = index + 1;
+              if (newIndex >= items.length) newIndex = 0;
+              e.preventDefault();
+              break;
+          case "ArrowLeft":
+          case "ArrowUp": // Simple grid navigation: prev item
+              newIndex = index - 1;
+              if (newIndex < 0) newIndex = items.length - 1;
+              e.preventDefault();
+              break;
+          case "Home":
+              newIndex = 0;
+              e.preventDefault();
+              break;
+          case "End":
+              newIndex = items.length - 1;
+              e.preventDefault();
+              break;
+          case "Enter":
+          case " ":
+              e.preventDefault();
+              // Trigger click logic
+              target.click();
+              return;
+          default:
+              return;
+      }
+
+      // Apply Roving Tabindex
+      if (newIndex !== index) {
+          items[index].setAttribute("tabindex", "-1");
+          const newFocus = items[newIndex];
+          newFocus.setAttribute("tabindex", "0");
+          newFocus.focus();
       }
   }
 

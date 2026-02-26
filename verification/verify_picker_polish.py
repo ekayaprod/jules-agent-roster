@@ -87,7 +87,8 @@ def verify_picker_polish():
         agent_in_picker = page.locator(f".mini-agent-card[data-name='{agent_name}']")
 
         # Check for disabled attribute or class
-        expect(agent_in_picker).to_have_class(lambda s: "disabled" in s, timeout=2000)
+        import re
+        expect(agent_in_picker).to_have_class(re.compile(r"disabled"), timeout=2000)
         print("✅ Agent A is disabled in Slot B picker")
 
         browser.close()

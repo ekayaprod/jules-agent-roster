@@ -1849,8 +1849,20 @@
         transform: translateY(-2px);
       }
 
+      .mini-agent-card:focus {
+        outline: none;
+      }
+
       .mini-agent-card:focus-visible {
         outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3);
+      }
+
+      .mini-agent-card[aria-selected="true"] {
+        border-color: var(--accent);
+        background-color: rgba(56, 189, 248, 0.15);
+        box-shadow: 0 0 0 1px var(--accent);
       }
 
       .mini-icon {
@@ -2510,8 +2522,9 @@
             </div>
             <div class="picker-search">
                 <input type="text" id="pickerSearch" placeholder="Search protocols..." aria-label="Search protocols">
+                <div id="pickerAnnouncer" class="sr-only" aria-live="polite"></div>
             </div>
-            <div id="pickerGrid" class="picker-grid">
+            <div id="pickerGrid" class="picker-grid" role="listbox" aria-label="Available Protocols">
                 <!-- Populated by JS -->
             </div>
             <!-- Palette+: Empty State -->
