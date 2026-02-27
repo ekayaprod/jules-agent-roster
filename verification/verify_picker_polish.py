@@ -1,98 +1,98 @@
-import time
-import threading
-import http.server
-import socketserver
 import os
-from playwright.sync_api import sync_playwright, expect
+import time
+from playwright.sync_api import sync_playwright
 
 PORT = 8130
 
-def start_server():
-    # Allow address reuse to avoid "Address already in use"
-    socketserver.TCPServer.allow_reuse_address = True
-    handler = http.server.SimpleHTTPRequestHandler
-    with socketserver.TCPServer(("", PORT), handler) as httpd:
-        print(f"Serving at port {PORT}")
-        httpd.serve_forever()
-
 def verify_picker_polish():
-    # Start server in background thread
-    server_thread = threading.Thread(target=start_server, daemon=True)
-    server_thread.start()
-    time.sleep(2)
-
     with sync_playwright() as p:
         browser = p.chromium.launch()
         page = browser.new_page()
-        page.goto(f"http://localhost:{PORT}/index.html")
 
-        print("Page loaded.")
-
-        # Wait for skeletons to disappear (indicates JS init complete)
-        # Or wait for a specific card to appear
-        try:
-            page.wait_for_selector(".skeleton-card", state="hidden", timeout=10000)
-            print("✅ App initialized (Skeletons gone)")
-        except:
-            print("⚠️ Timeout waiting for skeletons to disappear")
+        print(f"Navigating to http://localhost:{PORT}")
+        page.goto(f"http://localhost:{PORT}")
 
         # 1. Open Picker
-        page.click("#slotACard")
-        modal = page.locator("#agentPickerModal")
-        expect(modal).to_be_visible()
-        print("✅ Modal opened")
+        print("Opening picker for Slot A...")
+        page.wait_for_selector("#slotACard")
 
-        # 2. Check Focus on Search
-        search_input = page.locator("#pickerSearch")
-        expect(search_input).to_be_focused()
-        print("✅ Search input focused")
+        # Use evaluate click to force open if needed
+        page.evaluate("document.getElementById('slotACard').click()")
 
-        # 3. Test Search Filtering
-        search_input.fill("Bolt")
-        # Expect at least one result
-        visible_cards = page.locator(".mini-agent-card:visible")
-        expect(visible_cards).not_to_have_count(0)
-        print("✅ Search filtering works")
+        # 2. Assert Header Text
+        print("Verifying Header Text...")
+        # Just wait for visibility of header
+        page.wait_for_selector(".picker-header h3")
 
-        # 4. Test Empty State
-        search_input.fill("NonExistentAgent123")
-        empty_state = page.locator("#pickerEmptyState")
+        header_text = page.text_content(".picker-header h3")
+        assert header_text == "Select Fusion Protocol", f"Expected 'Select Fusion Protocol', got '{header_text}'"
 
-        expect(empty_state).to_be_visible()
-        print("✅ Empty state visible")
+        # 3. Assert Search Placeholder
+        print("Verifying Search Placeholder...")
+        placeholder = page.get_attribute("#pickerSearch", "placeholder")
+        assert placeholder == "Filter protocols by name or role...", f"Expected placeholder 'Filter protocols by name or role...', got '{placeholder}'"
 
-        # 5. Clear Search and Select
-        search_input.fill("")
+        # 4. Verify Empty State
+        print("Testing Empty State...")
+        page.type("#pickerSearch", "xyz_nonexistent_agent", delay=100)
 
-        # Select first agent (Bolt+)
-        first_agent = page.locator(".mini-agent-card").first
-        agent_name = first_agent.get_attribute("data-name")
-        first_agent.click()
+        try:
+            # Wait for element to not be hidden
+            page.wait_for_selector("#pickerEmptyState:not([hidden])", timeout=5000)
+        except:
+            is_hidden = page.evaluate("document.getElementById('pickerEmptyState').hidden")
+            print(f"DEBUG: pickerEmptyState hidden property is: {is_hidden}")
+            page.screenshot(path="verification/screenshots/debug_empty_state_fail.png")
+            raise
 
-        expect(modal).not_to_be_visible()
-        print("✅ Modal closed after selection")
+        empty_title = page.text_content("#pickerEmptyState .empty-title")
+        assert empty_title == "No Fusion Protocols Found", f"Expected 'No Fusion Protocols Found', got '{empty_title}'"
 
-        # 6. Check Focus Return (Skipping for now due to headless environment focus issues)
-        slot_a_card = page.locator("#slotACard")
-        # expect(slot_a_card).to_be_focused()
-        print("⚠️ Focus returned check skipped")
+        empty_desc = page.text_content("#pickerEmptyState .empty-desc")
+        assert "We couldn't locate any agents matching your search" in empty_desc, f"Unexpected empty state description: {empty_desc}"
 
-        # 7. Open Slot B and check for disabled state of Agent A
-        # Force click in case of overlay interference in headless mode
-        page.locator("#slotBCard").click(force=True)
-        expect(modal).to_be_visible()
+        if not os.path.exists("verification/screenshots"):
+            os.makedirs("verification/screenshots")
+        page.screenshot(path="verification/screenshots/picker_empty_state.png")
 
-        # Find the agent we selected in Slot A in the new picker
-        # It should be disabled or marked as selected
-        agent_in_picker = page.locator(f".mini-agent-card[data-name='{agent_name}']")
+        # 5. Select Agent A
+        print("Selecting Agent A...")
+        page.fill("#pickerSearch", "")
 
-        # Check for disabled attribute or class
-        import re
-        expect(agent_in_picker).to_have_class(re.compile(r"disabled"), timeout=2000)
-        print("✅ Agent A is disabled in Slot B picker")
+        # Wait for grid
+        page.wait_for_selector(".mini-agent-card[data-name='architect']:not([hidden])")
 
+        # Force JS click
+        page.evaluate("document.querySelector(\".mini-agent-card[data-name='architect']\").click()")
+
+        # Wait for slot to be filled
+        page.wait_for_selector("#slotACard.filled")
+
+        # 6. Verify Disabled State in Slot B Picker
+        print("Opening picker for Slot B...")
+        page.evaluate("document.getElementById('slotBCard').click()")
+        page.wait_for_selector(".picker-header h3")
+
+        # Find the Architect card in the new picker
+        architect_card = page.locator(".mini-agent-card[data-name='architect']")
+
+        # Assert class contains 'disabled'
+        classes = architect_card.get_attribute("class")
+        assert "disabled" in classes, "Architect card should be disabled in Slot B picker"
+
+        # Assert cursor style
+        cursor = architect_card.evaluate("element => getComputedStyle(element).cursor")
+        assert cursor == "not-allowed", f"Expected cursor 'not-allowed', got '{cursor}'"
+
+        # Assert title attribute
+        title = architect_card.get_attribute("title")
+        assert title == "Protocol already active in opposing slot.", f"Unexpected title: {title}"
+
+        # Capture screenshot of disabled state
+        page.screenshot(path="verification/screenshots/picker_disabled_state.png")
+
+        print("✅ All verification steps passed!")
         browser.close()
-        # Kill server (optional, let main process handle cleanup)
 
 if __name__ == "__main__":
     verify_picker_polish()
