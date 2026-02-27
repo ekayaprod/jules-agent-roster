@@ -95,6 +95,28 @@
   width: auto !important;
 }
 
+.no-js-container {
+  display: none;
+  justify-content: center;
+  margin: 2rem auto;
+  max-width: 600px;
+  text-align: left;
+  align-items: center;
+  gap: 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 body {
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
@@ -1825,26 +1847,4 @@ html {
 .mini-role {
   font-size: 0.7rem;
   color: var(--text-secondary);
-}
-
-.no-js-container {
-  display: none;
-  justify-content: center;
-  margin: 2rem auto;
-  max-width: 600px;
-  text-align: left;
-  align-items: center;
-  gap: 1rem;
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
 }
