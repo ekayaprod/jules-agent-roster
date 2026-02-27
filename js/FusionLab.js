@@ -115,10 +115,10 @@ class FusionLab {
         } else {
             card.classList.add("empty");
             card.classList.remove("filled");
-            card.setAttribute("aria-label", slotId === "slotA" ? "Assign Primary Protocol" : "Assign Secondary Protocol");
+            card.setAttribute("aria-label", slotId === "slotA" ? "Initiate Primary Protocol" : "Initiate Secondary Protocol");
             content.innerHTML = `
                 <span class="slot-icon-placeholder">+</span>
-                <span class="slot-label">${slotId === "slotA" ? "Assign Primary Protocol" : "Assign Secondary Protocol"}</span>
+                <span class="slot-label">${slotId === "slotA" ? "Initiate Primary Protocol" : "Initiate Secondary Protocol"}</span>
             `;
         }
     };
@@ -173,7 +173,7 @@ class FusionLab {
         if (isOther) {
             item.classList.add("disabled");
             item.setAttribute("aria-disabled", "true");
-            item.title = "Already selected in other slot";
+            item.title = "Protocol already active in opposing slot.";
         }
 
         // Check if agent is currently selected in THIS slot

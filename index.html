@@ -783,7 +783,8 @@
 
       .mini-agent-card.disabled {
         opacity: 0.5;
-        pointer-events: none;
+        /* pointer-events: none; Removed to allow tooltips */
+        cursor: not-allowed;
         filter: grayscale(1);
         background-color: rgba(15, 23, 42, 0.3);
       }
@@ -794,12 +795,13 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 3rem 1.5rem;
+        padding: 4rem 2rem;
         text-align: center;
         color: var(--text-secondary);
-        gap: 1rem;
+        gap: 1.5rem;
         width: 100%;
         animation: fadeIn 0.3s ease-out;
+        background: radial-gradient(circle at center, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
       }
 
       .picker-empty-state[hidden] {
@@ -2516,13 +2518,13 @@
     <dialog id="agentPickerModal" class="picker-modal">
         <div class="picker-container">
             <div class="picker-header">
-                <h3>Select Protocol</h3>
+                <h3>Select Fusion Protocol</h3>
                 <button id="closePickerBtn" class="close-btn" aria-label="Close">
                     <svg aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
             </div>
             <div class="picker-search">
-                <input type="text" id="pickerSearch" placeholder="Search protocols..." aria-label="Search protocols">
+                <input type="text" id="pickerSearch" placeholder="Filter protocols by name or role..." aria-label="Search protocols">
                 <div id="pickerAnnouncer" class="sr-only" aria-live="polite"></div>
             </div>
             <div id="pickerGrid" class="picker-grid" role="listbox" aria-label="Available Protocols">
@@ -2533,8 +2535,8 @@
                 <svg class="empty-icon" aria-hidden="true" width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
-                <p class="empty-title">No Protocols Found</p>
-                <p class="empty-desc">Adjust your search parameters to locate available agents.</p>
+                <p class="empty-title">No Fusion Protocols Found</p>
+                <p class="empty-desc">We couldn't locate any agents matching your search. Try a broader term.</p>
             </div>
         </div>
     </dialog>
