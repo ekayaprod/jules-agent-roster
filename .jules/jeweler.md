@@ -9,3 +9,7 @@
 ## 2026-02-26 - [Polished & Protected UI: Agent Picker]
 **Learning:** Playwright's Python `expect().to_have_class()` assertion strictly requires strings or regular expressions; lambdas are not supported, causing test failures even when logic is correct. Also, `role="button"` inside a grid/listbox context should avoid `aria-selected`; `role="option"` with Roving Tabindex is the semantic gold standard for single-select grids.
 **Action:** Use `re.compile(r"pattern")` for flexible class assertions in Python tests. Implement Roving Tabindex manually for composite widgets to ensure keyboard navigation (Arrows/Home/End) works predictably across screen readers.
+
+## 2026-02-28 - [Polished & Protected UI: Fusion Index Shelf]
+**Learning:** When retrofitting interactive behavior onto `div` elements, explicit `keydown` listeners for `Enter` and `Space` are mandatory for keyboard accessibility; relying on `click` is insufficient as browsers do not auto-trigger clicks on non-buttons via keyboard. Furthermore, testing `localStorage` hydration requires careful sequencing: navigating to the page, injecting the data, and then reloading the page ensures the application initializes with the correct state.
+**Action:** Always pair `role="button"` with `tabindex="0"` and an explicit `keydown` handler (`Enter`/`Space`) when upgrading non-semantic elements. For state-dependent tests, favor a "Load → Inject → Reload" pattern to guarantee clean state initialization.
