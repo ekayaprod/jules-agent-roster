@@ -889,6 +889,17 @@
         transition: opacity 0.2s ease-out, transform 0.2s ease-out;
       }
 
+      /* Gallerist: Optimized Hero Banner */
+      .hero-banner {
+        max-width: 100%;
+        height: auto;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+
       /* Palette+: Sticky Navigation */
       html {
         scroll-behavior: smooth;
@@ -1906,7 +1917,14 @@
     <a href="#main" class="skip-link">Skip to content</a>
 
     <div class="header">
-      <img src="assets/hero-banner.svg" alt="AI Fusion Lab Hero Banner" style="max-width: 100%; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); margin-bottom: 1.5rem;">
+      <!-- Gallerist: Optimized Hero Banner with explicit dimensions and fade-in -->
+      <img
+        src="assets/hero-banner.svg"
+        alt="AI Fusion Lab Hero Banner"
+        width="800"
+        height="250"
+        class="hero-banner"
+      >
       <h1>Jules Master Agent Roster</h1>
       <p style="color: var(--text-secondary)">
         The complete system for solo development with AI agents.
