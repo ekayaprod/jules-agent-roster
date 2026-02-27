@@ -99,9 +99,23 @@ class FusionIndex {
       slot.innerHTML = `<span class="slot-icon">${emoji}</span>`;
 
       if (isUnlocked) {
-        slot.addEventListener("click", () => {
+        // 💎 Jeweler: A11y Polish
+        slot.setAttribute("role", "button");
+        slot.setAttribute("tabindex", "0");
+        slot.setAttribute("aria-label", `Load ${agentData.name} Protocol`);
+
+        const handleSelect = () => {
           if (this.onSelectCallback) this.onSelectCallback(key);
+        };
+
+        slot.addEventListener("click", handleSelect);
+        slot.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleSelect();
+          }
         });
+
         // Add tier indicator if available
         if (agentData.tier) {
            // Optional: visual indicator for tier
@@ -159,8 +173,21 @@ class FusionIndex {
       slot.setAttribute("title", agentData.name);
 
       // Re-bind click event
-      slot.addEventListener("click", () => {
+      // 💎 Jeweler: A11y Polish for newly unlocked slots
+      slot.setAttribute("role", "button");
+      slot.setAttribute("tabindex", "0");
+      slot.setAttribute("aria-label", `Load ${agentData.name} Protocol`);
+
+      const handleSelect = () => {
         if (this.onSelectCallback) this.onSelectCallback(key);
+      };
+
+      slot.addEventListener("click", handleSelect);
+      slot.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleSelect();
+        }
       });
 
       // Remove animation class after animation
