@@ -510,26 +510,13 @@ class FusionLab {
     // Parse and render prompt (XML or Legacy)
     if (typeof PromptParser !== "undefined") {
       const parsed = PromptParser.parsePrompt(result.prompt);
-      if (parsed.format === "xml") {
-        const sections = parsed.sections
-          .map((sec) => {
-            let label = "";
-            if (sec.tag === "system") label = "System Role";
-            else if (sec.tag === "task") label = "Mission";
-            else if (sec.tag === "step")
-              label = `Step ${sec.id || "?"}: ${sec.name || ""}`;
-            else if (sec.tag === "output") label = "Output Format";
-            else label = sec.tag.toUpperCase();
-
-            return `
-              <div class="prompt-section prompt-section--${sec.tag}">
-                  <div class="prompt-section-label">${label}</div>
-                  <div class="prompt-section-body">${sec.content}</div>
-              </div>
-            `;
-          })
-          .join("");
-        fusionCode.innerHTML = `<div class="prompt-structured">${sections}</div>`;
+      if (parsed.format === "xml" && typeof PromptRenderer !== 'undefined') {
+        const structuredHtml = PromptRenderer.renderXml(parsed);
+        if (structuredHtml) {
+            fusionCode.innerHTML = structuredHtml;
+        } else {
+            fusionCode.innerText = result.prompt;
+        }
       } else {
         fusionCode.innerText = result.prompt;
       }

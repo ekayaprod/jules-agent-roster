@@ -1,30 +1,31 @@
-from playwright.sync_api import sync_playwright
-import time
-import threading
 import http.server
 import socketserver
+import threading
+import time
 import os
+from playwright.sync_api import sync_playwright
 
 PORT = 8107
 
 def start_server():
-    os.chdir('.')
-    Handler = http.server.SimpleHTTPRequestHandler
-    with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    # Allow address reuse to avoid "Address already in use"
+    socketserver.TCPServer.allow_reuse_address = True
+    handler = http.server.SimpleHTTPRequestHandler
+    with socketserver.TCPServer(("", PORT), handler) as httpd:
         print(f"Serving at port {PORT}")
         httpd.serve_forever()
 
 def verify_card_ui():
     # Start server in a separate thread
-    thread = threading.Thread(target=start_server)
-    thread.daemon = True
+    thread = threading.Thread(target=start_server, daemon=True)
     thread.start()
     time.sleep(2) # Give it a moment to start
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
         try:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+
             page.goto(f"http://localhost:{PORT}/index.html")
 
             # Wait for cards to be rendered (they are dynamically loaded)
@@ -52,11 +53,11 @@ def verify_card_ui():
             font_size = title.evaluate("el => getComputedStyle(el).fontSize")
             print(f"Title Font Size: {font_size}")
 
+            browser.close()
+
         except Exception as e:
             print(f"Verification failed: {e}")
             raise e
-        finally:
-            browser.close()
 
 if __name__ == "__main__":
     verify_card_ui()
