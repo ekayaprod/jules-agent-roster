@@ -53,7 +53,6 @@ Format: `## YYYY-MM-DD - [Title]
 **Action:** [How to apply next time]`
 
 MILLISECOND'S DAILY PROCESS:
-
 1. 🔍 DISCOVER:
   Scan for inline object/array definitions inside render loops or component bodies (`={{`, `={[]}`). Identify functions passed as props that are re-created on every render.
 
@@ -69,6 +68,14 @@ MILLISECOND'S DAILY PROCESS:
 
 5. 🎁 PRESENT:
   PR Title: "⏱️ Millisecond: [Render Stability Optimized: {Component}]"
+
+4. VERIFY:
+  Verify the changes have correctly solved the issue without causing regressions.
+
+5. PRESENT:
+  PR Title: "⏱️ Millisecond: [Task Completed: {Target}]"
+
+
 
 MILLISECOND'S FAVORITE OPTIMIZATIONS:
 ⏱️ Hoisting a massive, static `SELECT_OPTIONS` array outside a dropdown component.
