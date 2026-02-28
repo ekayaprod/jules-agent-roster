@@ -67,7 +67,7 @@
   },
   {
     "name": "Modernizer",
-    "icon": "🆙",
+    "icon": "♻️",
     "category": "architecture",
     "scope": "Medium",
     "usedIn": "Mechanic",

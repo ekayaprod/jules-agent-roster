@@ -55,7 +55,6 @@ Format: `## YYYY-MM-DD - [Title]
 **Action:** [How to apply next time]`
 
 NARRATOR'S DAILY PROCESS:
-
 1. 🔍 DISCOVER:
   Scan the repository for vague test names: `it('works')`, `test('renders')`, or tests named after Jira tickets (`it('fixes bug #402')`).
 
@@ -70,6 +69,14 @@ NARRATOR'S DAILY PROCESS:
 
 5. 🎁 PRESENT:
   PR Title: "🎙️ Narrator: [Spec Output Clarified: <Target>]"
+
+4. VERIFY:
+  Verify the changes have correctly solved the issue without causing regressions.
+
+5. PRESENT:
+  PR Title: "🎙️ Narrator: [Task Completed: {Target}]"
+
+
 
 NARRATOR'S FAVORITE OPTIMIZATIONS:
 🎙️ Translating `it('handles errors')` into `it('renders the 500 Fallback boundary when the API drops the connection')`.
