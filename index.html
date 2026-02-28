@@ -1911,7 +1911,86 @@
         font-size: 0.7rem;
         color: var(--text-secondary);
       }
-</style>
+
+      /* Muse: Contextual Help Tooltips */
+      .tooltip-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.25em;
+        height: 1.25em;
+        border-radius: 50%;
+        background-color: var(--border);
+        color: var(--text-secondary);
+        font-size: 0.6em;
+        font-weight: bold;
+        cursor: help;
+        position: relative;
+        vertical-align: middle;
+        margin-left: 0.5rem;
+        transition: all 0.2s ease;
+      }
+
+      .tooltip-icon:hover, .tooltip-icon:focus {
+        background-color: var(--accent);
+        color: white;
+        outline: none;
+      }
+
+      .tooltip-icon::after {
+        content: attr(aria-label);
+        position: absolute;
+        bottom: 150%;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        background-color: rgba(15, 23, 42, 0.95);
+        color: white;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.85rem;
+        font-weight: normal;
+        white-space: normal;
+        min-width: 200px;
+        max-width: 300px;
+        text-align: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+        z-index: 100;
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+
+      .tooltip-icon:hover::after, .tooltip-icon:focus::after {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* Arrow */
+      .tooltip-icon::before {
+        content: '';
+        position: absolute;
+        bottom: 150%;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        border: 6px solid transparent;
+        border-top-color: var(--border);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 101;
+        pointer-events: none;
+      }
+
+      .tooltip-icon:hover::before, .tooltip-icon:focus::before {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(6px);
+      }
+
+    </style>
   </head>
   <body>
     <noscript>
@@ -2181,6 +2260,7 @@
       </svg>
       <p class="empty-title">No Agents Found</p>
       <p class="empty-desc">We couldn't locate any agents matching your search. Try using a broader keyword or clear your filters.</p>
+      <button id="clearSearchEmptyBtn" class="primary" style="margin-top: 1.5rem;">Clear Search</button>
     </div>
 
     <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
@@ -2204,7 +2284,7 @@
 
     <main id="main">
       <h2 id="core-maintenance" class="section-header">
-        Core Maintenance
+        Core Maintenance <span class="tooltip-icon" tabindex="0" aria-label="High-impact tasks addressing structural patterns, performance, and security." role="tooltip">?</span>
       </h2>
       <div class="grid" id="coreGrid">
         <div class="skeleton-card skeleton-pulse" aria-hidden="true">
@@ -2414,7 +2494,7 @@
       </div>
 
       <h2 id="monthly-intelligence" class="section-header">
-        Monthly Intelligence
+        Monthly Intelligence <span class="tooltip-icon" tabindex="0" aria-label="Agents designed for deep forensic scans to generate actionable insights." role="tooltip">?</span>
       </h2>
       <div class="grid" id="monthlyGrid">
         <div class="skeleton-card skeleton-pulse" aria-hidden="true">
@@ -2458,7 +2538,7 @@
 
     <!-- Fusion Lab (Moved to Bottom) -->
     <div class="fusion-lab-container">
-      <h2>🧬 The Fusion Lab</h2>
+      <h2>🧬 The Fusion Lab <span class="tooltip-icon" tabindex="0" aria-label="Combine two standard agents to create a specialized hybrid protocol." role="tooltip">?</span></h2>
 
       <!-- Visual Fusion Controls -->
       <div class="fusion-visual-slots">
@@ -2576,6 +2656,7 @@
                 </svg>
                 <p class="empty-title">No Fusion Protocols Found</p>
                 <p class="empty-desc">We couldn't locate any agents matching your search. Try a broader term.</p>
+                <button id="clearPickerSearchEmptyBtn" class="primary" style="margin-top: 1.5rem;">Clear Search</button>
             </div>
         </div>
     </dialog>

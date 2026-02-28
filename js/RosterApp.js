@@ -147,10 +147,15 @@ class RosterApp {
         debouncedFilter(e.target.value),
       );
     }
-
     this.elements.clearBtn?.addEventListener("click", () =>
       this.clearSearch(),
     );
+
+    const clearSearchEmptyBtn = document.getElementById("clearSearchEmptyBtn");
+    if (clearSearchEmptyBtn) {
+      clearSearchEmptyBtn.addEventListener("click", () => this.clearSearch());
+    }
+
     this.elements.copyAllBtn?.addEventListener("click", (e) =>
       this.copyAll(e.currentTarget),
     );
