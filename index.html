@@ -626,23 +626,46 @@
 
       /* Palette+: Empty State */
       .empty-state {
-        display: none;
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         padding: 4rem 2rem;
+        text-align: center;
         color: var(--text-secondary);
+        gap: 1.5rem;
         width: 100%;
         max-width: 1200px;
         margin: 0 auto;
+        background: radial-gradient(circle at center, rgba(56, 189, 248, 0.05) 0%, transparent 70%);
+      }
+
+      .empty-state:not(.visible) {
+        display: none !important;
       }
 
       .empty-state.visible {
-        display: block;
         animation: fadeIn 0.3s ease-out;
       }
 
-      .empty-state svg {
+      .empty-state .empty-icon {
+        width: 64px;
+        height: 64px;
         color: var(--border);
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .empty-state .empty-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+      }
+
+      .empty-state .empty-desc {
+        font-size: 1rem;
+        margin: 0;
+        max-width: 400px;
       }
 
       .toast {
@@ -2151,6 +2174,7 @@
     <!-- Palette+: Empty State Component -->
     <div id="emptyState" class="empty-state">
       <svg
+        class="empty-icon"
         aria-hidden="true"
         focusable="false"
         width="64"
@@ -2166,7 +2190,8 @@
           d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
         />
       </svg>
-      <p>No agents found. Try a different keyword.</p>
+      <p class="empty-title">No Agents Found</p>
+      <p class="empty-desc">We couldn't locate any agents matching your search. Try using a broader keyword or clear your filters.</p>
     </div>
 
     <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
