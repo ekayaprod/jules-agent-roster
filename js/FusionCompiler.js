@@ -211,11 +211,6 @@ You must return your final response as a strict JSON object adhering to this sch
   fuse(agent1, agent2) {
     if (!agent1 || !agent2)
       return { name: "Error", prompt: "Invalid agents selected." };
-    if (agent1.name === agent2.name)
-      return {
-        name: "Error",
-        prompt: "Cannot fuse an agent with itself.",
-      };
 
     // Pedant: Ensure names are trimmed before key generation
     const name1 = agent1.name ? agent1.name.trim() : "";
