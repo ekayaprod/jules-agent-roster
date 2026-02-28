@@ -1054,13 +1054,6 @@
         font-size: 1.8rem;
       }
 
-      .fusion-plus {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: var(--text-secondary);
-        opacity: 0.3;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
 
       #fuseBtn {
         background: linear-gradient(to right, #a855f7, #ec4899);
@@ -1459,46 +1452,9 @@
       }
 
       /* Fusion UX Polish */
-      .fusion-empty-state {
-        text-align: center;
-        padding: 4rem 2rem;
-        color: var(--text-secondary);
-        border: 1px dashed var(--border);
-        border-radius: 1rem;
-        margin-top: 2rem;
-        background: radial-gradient(
-          circle at center,
-          rgba(56, 189, 248, 0.05) 0%,
-          transparent 70%
-        );
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: default;
-      }
 
-      .fusion-empty-state:hover {
-        border-color: var(--accent);
-        background: radial-gradient(
-          circle at center,
-          rgba(56, 189, 248, 0.1) 0%,
-          transparent 70%
-        );
-        transform: translateY(-2px);
-      }
 
-      .fusion-empty-state svg {
-        color: var(--border);
-        width: 48px;
-        height: 48px;
-        transition: color 0.3s ease;
-      }
 
-      .fusion-empty-state:hover svg {
-        color: var(--accent);
-      }
 
       .fusion-error {
         background-color: rgba(254, 226, 226, 0.1);
@@ -2230,7 +2186,7 @@
     <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
     <div
       id="search-announcer"
-      class="sr-only"
+
       role="status"
       aria-live="polite"
       style="
@@ -2506,7 +2462,7 @@
 
       <!-- Visual Fusion Controls -->
       <div class="fusion-visual-slots">
-        <button id="slotACard" class="slot-card empty" aria-label="Select Primary Protocol">
+        <button id="slotACard" class="slot-card" aria-label="Select Primary Protocol">
           <div class="slot-content">
             <span class="slot-icon-placeholder">+</span>
             <span class="slot-label">Select Agent A</span>
@@ -2517,7 +2473,7 @@
           <button id="fuseBtn" disabled aria-disabled="true">Ignite Fusion Protocol</button>
         </div>
 
-        <button id="slotBCard" class="slot-card empty" aria-label="Select Secondary Protocol">
+        <button id="slotBCard" class="slot-card" aria-label="Select Secondary Protocol">
           <div class="slot-content">
             <span class="slot-icon-placeholder">+</span>
             <span class="slot-label">Select Agent B</span>
@@ -2608,7 +2564,7 @@
             </div>
             <div class="picker-search">
                 <input type="text" id="pickerSearch" placeholder="Filter protocols by name or role..." aria-label="Search protocols">
-                <div id="pickerAnnouncer" class="sr-only" aria-live="polite"></div>
+                <div id="pickerAnnouncer"  aria-live="polite"></div>
             </div>
             <div id="pickerGrid" class="picker-grid" role="listbox" aria-label="Available Protocols">
                 <!-- Populated by JS -->
