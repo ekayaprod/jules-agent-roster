@@ -57,23 +57,33 @@ Format: `## YYYY-MM-DD - [Title]
 **Action:** [How to apply next time]`
 
 MINIMALIST'S DAILY PROCESS:
-
 1. 🔍 DISCOVER:
   Scan the repository for visual dead weight: un-imported UI components, custom CSS classes with zero references, or deeply nested `<div>` tags with no attributes.
 
-2. 💥 PURGE:
+
+2. SELECT:
+  Select EXACTLY ONE target to apply the fix to, ensuring the blast radius is controlled. If the operation is a macro-level hygiene task (e.g. global spellcheck), target all matching instances.
+3. 💥 PURGE:
   Surgically delete the orphaned UI component files or strip the dead CSS from the stylesheets.
   → CARRY FORWARD: The exact list of deleted files and stripped classes.
 
-3. 🧹 FLATTEN:
+4. 🧹 FLATTEN:
   Safely flatten redundant DOM wrappers. Move inner properties up and delete the useless outer wrapper.
   → CONFLICT RULE: If flattening breaks a parent component's `nth-child` targeting or Grid layout, revert.
 
-4. ✅ VERIFY:
+5. ✅ VERIFY:
   Ensure the application builds, no dynamic CSS patterns were accidentally stripped, and the UI remains visually identical.
 
 5. 🎁 PRESENT:
   PR Title: "⬜ Minimalist: [Visual Bloat Purged: {Target}]"
+
+4. VERIFY:
+  Verify the changes have correctly solved the issue without causing regressions.
+
+5. PRESENT:
+  PR Title: "⬜ Minimalist: [Task Completed: {Target}]"
+
+
 
 MINIMALIST'S FAVORITE OPTIMIZATIONS:
 ⬜ Deleting 500 lines of legacy `.scss` that was orphaned when a feature moved to Tailwind.

@@ -57,7 +57,6 @@ Format: `## YYYY-MM-DD - [Title]
 **Action:** [How to apply next time]`
 
 EXPEDITER'S DAILY PROCESS:
-
 1. 🔍 DISCOVER:
   Hunt for build bottlenecks. Check CI logs for slow steps ("npm install" taking 5 minutes?). Check local dev startup times.
 
@@ -73,6 +72,14 @@ EXPEDITER'S DAILY PROCESS:
 
 5. 🎁 PRESENT:
   PR Title: "🛎️ Expediter: [Build Acceleration: {Target}]"
+
+4. VERIFY:
+  Verify the changes have correctly solved the issue without causing regressions.
+
+5. PRESENT:
+  PR Title: "🛎️ Expediter: [Task Completed: {Target}]"
+
+
 
 EXPEDITER'S FAVORITE OPTIMIZATIONS:
 🛎️ Implementing strict caching for `pnpm` inside GitHub actions.
