@@ -233,8 +233,62 @@ class FusionLab {
           this.state[this.activePickerSlot] = agent;
           this.renderSlots();
           this.clearError();
+          this.renderPreMergePreview();
       }
       this.closePicker();
+  }
+
+  /**
+   * Renders the pre-merge "Known Recipe" preview if the resulting agent is already unlocked.
+   */
+  renderPreMergePreview() {
+    const actionArea = document.querySelector(".fusion-action-area");
+    if (!actionArea) return;
+
+    let previewEl = document.getElementById("preMergePreview");
+
+    const agentA = this.state.slotA;
+    const agentB = this.state.slotB;
+
+    if (!agentA || !agentB) {
+        if (previewEl) previewEl.style.display = "none";
+        return;
+    }
+
+    if (agentA.name === agentB.name) {
+        if (previewEl) previewEl.style.display = "none";
+        return;
+    }
+
+    const key = [agentA.name, agentB.name].sort().join(",");
+
+    if (this.fusionIndex && this.fusionIndex.isUnlocked(key)) {
+        const result = this.compiler.fuse(agentA, agentB);
+
+        if (!previewEl) {
+            previewEl = document.createElement("div");
+            previewEl.id = "preMergePreview";
+            previewEl.className = "pre-merge-preview";
+            actionArea.appendChild(previewEl);
+        }
+
+        const parts = result.name.trim().split(" ");
+        const lastPart = parts[parts.length - 1];
+        const isEmoji = lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart);
+        let iconHtml = result.isCustom && isEmoji ? lastPart : `${agentA.icon}${agentB.icon}`;
+        let nameHtml = isEmoji ? parts.slice(0, -1).join(" ") : result.name;
+
+        previewEl.innerHTML = `
+            <div class="preview-badge">Already Discovered</div>
+            <div class="preview-content">
+                <span class="preview-icon">${iconHtml}</span>
+                <span class="preview-name">${nameHtml}</span>
+            </div>
+        `;
+        previewEl.style.display = "flex";
+    } else {
+        if (previewEl) previewEl.style.display = "none";
+    }
   }
 
   /**
@@ -574,6 +628,52 @@ class FusionLab {
     // Close result if open
     const wrapper = document.getElementById("fusionOutputWrapper");
     if (wrapper) wrapper.classList.remove("open");
+
+    // Dynamic Tier Styling & Particle Generation
+    const tier = result.tier || "Stable";
+    const tierClass = `tier-${tier.toLowerCase()}`;
+
+    // Clean up previous tier classes
+    overlay.className = "fusion-animation-overlay";
+    overlay.classList.add(tierClass);
+
+    const particlesContainer = overlay.querySelector(".anim-particles");
+    if (particlesContainer) {
+      particlesContainer.innerHTML = ""; // Clear previous particles
+
+      let particleCount = 10;
+      let speedMultiplier = 1;
+
+      switch (tier) {
+        case "Stable": particleCount = 10; speedMultiplier = 1; break;
+        case "Reactive": particleCount = 20; speedMultiplier = 1; break;
+        case "Radiant": particleCount = 40; speedMultiplier = 1.2; break;
+        case "Critical": particleCount = 80; speedMultiplier = 1.5; break;
+        case "Anomalous": particleCount = 150; speedMultiplier = 2; break;
+      }
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement("div");
+        particle.className = "anim-particle";
+        // Randomize angle and distance for the particle explosion
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 50 + Math.random() * 150; // pixels to travel
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+
+        particle.style.setProperty("--tx", `${tx}px`);
+        particle.style.setProperty("--ty", `${ty}px`);
+        particle.style.animationDuration = `${0.8 / speedMultiplier}s`;
+        // Delay slightly for Anomalous to create a fountain effect
+        if (tier === "Anomalous") {
+            particle.style.animationDelay = `${1.5 + Math.random() * 1.5}s`;
+        } else {
+            particle.style.animationDelay = `1.5s`;
+        }
+
+        particlesContainer.appendChild(particle);
+      }
+    }
 
     // Setup Animation Data
     iconLeft.innerHTML = agentA.icon;

@@ -1285,21 +1285,33 @@
         animation: shockwave 0.6s ease-out 1.5s forwards;
       }
 
-      /* Particle Explosion */
+      /* Dynamic Particle Explosion */
       .anim-particles {
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 4px;
-        height: 4px;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 0;
+        width: 1px;
+        height: 1px;
         pointer-events: none;
       }
 
-      .fusion-animation-overlay.active .anim-particles {
-        animation: particles 0.8s ease-out 1.5s forwards;
+      .anim-particle {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background-color: var(--particle-color, #fff);
+        border-radius: 50%;
+        opacity: 0;
+        box-shadow: 0 0 10px var(--particle-color, #fff);
+      }
+
+      .fusion-animation-overlay.active .anim-particle {
+        animation: particleExplode forwards ease-out;
+      }
+
+      @keyframes particleExplode {
+        0% { transform: translate(0, 0) scale(1); opacity: 1; }
+        100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
       }
 
       /* Result Icon Emerges */
@@ -1326,38 +1338,37 @@
         100% { transform: translate(-50%, -50%) scale(4); opacity: 0; border-width: 0px; }
       }
 
-      @keyframes particles {
-        0% {
-          opacity: 1;
-          box-shadow:
-            0 0 0 0 #a855f7,
-            0 0 0 0 #ec4899,
-            0 0 0 0 #38bdf8,
-            0 0 0 0 #fff,
-            0 0 0 0 #a855f7,
-            0 0 0 0 #ec4899,
-            0 0 0 0 #38bdf8,
-            0 0 0 0 #fff;
-        }
-        100% {
-          opacity: 0;
-          box-shadow:
-            -100px -60px 0 2px #a855f7,
-            100px -60px 0 2px #ec4899,
-            0 100px 0 2px #38bdf8,
-            0 -120px 0 4px #fff,
-            -70px 70px 0 2px #a855f7,
-            70px 70px 0 2px #ec4899,
-            -70px -70px 0 2px #38bdf8,
-            70px -70px 0 4px #fff;
-        }
-      }
-
       @keyframes shake {
         0%, 100% { transform: translate(0, 0); }
         25% { transform: translate(-5px, 5px); }
         50% { transform: translate(5px, -5px); }
         75% { transform: translate(-5px, -5px); }
+      }
+
+      @keyframes shake-violent {
+        0%, 100% { transform: translate(0, 0); }
+        10% { transform: translate(-10px, 10px) rotate(-2deg); }
+        20% { transform: translate(10px, -10px) rotate(2deg); }
+        30% { transform: translate(-15px, -5px) rotate(-1deg); }
+        40% { transform: translate(15px, 5px) rotate(1deg); }
+        50% { transform: translate(-10px, 15px) rotate(-2deg); }
+        60% { transform: translate(10px, -15px) rotate(2deg); }
+        70% { transform: translate(-5px, -10px) rotate(-1deg); }
+        80% { transform: translate(5px, 10px) rotate(1deg); }
+        90% { transform: translate(-10px, 5px) rotate(-2deg); }
+      }
+
+      @keyframes shake-anomalous {
+        0%, 100% { transform: translate(0, 0) scale(1); filter: invert(0); }
+        10% { transform: translate(-20px, 20px) scale(1.05); filter: invert(1); }
+        20% { transform: translate(20px, -20px) scale(0.95); filter: invert(0); }
+        30% { transform: translate(-25px, -15px) scale(1.1); filter: invert(1); }
+        40% { transform: translate(25px, 15px) scale(0.9); filter: invert(0); }
+        50% { transform: translate(-20px, 25px) scale(1.05); filter: invert(1); }
+        60% { transform: translate(20px, -25px) scale(0.95); filter: invert(0); }
+        70% { transform: translate(-15px, -20px) scale(1.1); filter: invert(1); }
+        80% { transform: translate(15px, 20px) scale(0.9); filter: invert(0); }
+        90% { transform: translate(-20px, 15px) scale(1.05); filter: invert(1); }
       }
 
       @keyframes flash {
@@ -1721,6 +1732,79 @@
         flex-direction: column;
         align-items: center;
         gap: 0.5rem;
+      }
+
+      /* Fusion Tier Rarity System */
+      /* Tier 1: Stable */
+      .tier-stable .anim-particle { --particle-color: #06b6d4; } /* Cyan */
+      .fusion-tier-badge.tier-stable, .meta-tag.tier-stable { background: rgba(6, 182, 212, 0.2); color: #22d3ee; }
+
+      /* Tier 2: Reactive */
+      .tier-reactive .anim-particle { --particle-color: #10b981; } /* Emerald */
+      .fusion-tier-badge.tier-reactive, .meta-tag.tier-reactive { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+
+      /* Tier 3: Radiant */
+      .tier-radiant .anim-particle { --particle-color: #a855f7; } /* Amethyst */
+      .fusion-tier-badge.tier-radiant, .meta-tag.tier-radiant { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
+      .card.tier-radiant { box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15); }
+      .fusion-slot.tier-radiant { box-shadow: 0 0 15px rgba(168, 85, 247, 0.2); }
+
+      /* Tier 4: Critical */
+      .tier-critical .anim-particle { --particle-color: #ef4444; } /* Crimson */
+      .fusion-tier-badge.tier-critical, .meta-tag.tier-critical { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+      .fusion-animation-overlay.active.tier-critical .anim-arena { animation: shake-violent 0.8s ease-in-out 1.5s; }
+      .card.tier-critical { box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); border-color: rgba(239, 68, 68, 0.5); }
+      .fusion-slot.tier-critical { box-shadow: 0 0 20px rgba(239, 68, 68, 0.4); border-color: #ef4444; }
+
+      /* Tier 5: Anomalous */
+      .tier-anomalous .anim-particle { --particle-color: #f59e0b; } /* Gold */
+      .fusion-tier-badge.tier-anomalous, .meta-tag.tier-anomalous {
+          background: linear-gradient(45deg, #f59e0b, #ec4899, #8b5cf6);
+          color: white;
+          font-weight: bold;
+      }
+      .fusion-animation-overlay.active.tier-anomalous .anim-arena { animation: shake-anomalous 1s ease-in-out 1.5s; }
+      @keyframes shimmerBorder {
+          0% { border-color: #f59e0b; box-shadow: 0 0 15px #f59e0b; }
+          33% { border-color: #ec4899; box-shadow: 0 0 15px #ec4899; }
+          66% { border-color: #8b5cf6; box-shadow: 0 0 15px #8b5cf6; }
+          100% { border-color: #f59e0b; box-shadow: 0 0 15px #f59e0b; }
+      }
+      .card.tier-anomalous { animation: shimmerBorder 3s infinite; }
+      .fusion-slot.tier-anomalous { animation: shimmerBorder 3s infinite; }
+
+      /* Pre-Merge Preview */
+      .pre-merge-preview {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          background: rgba(15, 23, 42, 0.8);
+          border: 1px dashed var(--border);
+          border-radius: 0.75rem;
+          padding: 0.75rem 1.5rem;
+          margin-bottom: 1rem;
+          opacity: 0.6;
+          filter: grayscale(80%);
+      }
+      .pre-merge-preview .preview-badge {
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          color: var(--text-secondary);
+          margin-bottom: 0.25rem;
+      }
+      .pre-merge-preview .preview-content {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+      }
+      .pre-merge-preview .preview-icon {
+          font-size: 1.5rem;
+      }
+      .pre-merge-preview .preview-name {
+          font-size: 0.9rem;
+          font-weight: 600;
+          color: var(--text-primary);
       }
 
       /* Fusion Archive (Separated) */
