@@ -54,8 +54,6 @@
 
       /* Palette+: Skeleton Loading */
       .skeleton-card {
-        flex: 1 1 250px;
-        max-width: 350px;
         background-color: var(--card-bg);
         border: 1px solid var(--border);
         border-radius: 1rem;
@@ -385,17 +383,15 @@
       }
 
       .grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         gap: 1rem;
         max-width: 1200px;
         margin: 0 auto;
+        justify-content: center;
       }
 
       .card {
-        flex: 1 1 250px;
-        max-width: 350px;
         background-color: var(--card-bg);
         border: 1px solid var(--border);
         border-radius: 1rem;
@@ -961,11 +957,6 @@
         margin: 0;
         padding: 0;
         overflow-x: auto; /* Allow scrolling if too narrow */
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-      }
-      .nav-list::-webkit-scrollbar {
-        display: none;
       }
 
       .nav-item {
@@ -1004,11 +995,6 @@
           border-radius: 1rem;
           overflow-x: auto;
           max-width: none;
-          -ms-overflow-style: none; /* IE and Edge */
-          scrollbar-width: none; /* Firefox */
-        }
-        .category-nav::-webkit-scrollbar {
-          display: none;
         }
         .nav-list {
           min-width: max-content;
@@ -2430,7 +2416,7 @@
         </button>
 
         <div class="fusion-action-area">
-          <button id="fuseBtn" disabled aria-disabled="true">Ignite Fusion Protocol</button>
+          <button id="fuseBtn" disabled>Ignite Fusion Protocol</button>
         </div>
 
         <button id="slotBCard" class="slot-card empty" aria-label="Select Secondary Protocol">
