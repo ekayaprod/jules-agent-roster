@@ -52,6 +52,10 @@ class AgentCard {
             if (agent.scope.includes("Large")) scopeClass = "scope-large";
             tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
         }
+        if (agent.tier) {
+            tags += `<span class="meta-tag tier-badge tier-${agent.tier.toLowerCase()}">${agent.tier}</span>`;
+            card.classList.add(`tier-${agent.tier.toLowerCase()}`);
+        }
 
         card.innerHTML = `
               <div class="card-header">

@@ -94,6 +94,9 @@ class FusionIndex {
 
       const slot = document.createElement("div");
       slot.className = `fusion-slot ${isUnlocked ? "unlocked" : "locked"}`;
+      if (isUnlocked && agentData.tier) {
+          slot.classList.add(`tier-${agentData.tier.toLowerCase()}`);
+      }
       slot.setAttribute("data-key", key);
       slot.setAttribute("title", isUnlocked ? agentData.name : "Locked Protocol");
       slot.innerHTML = `<span class="slot-icon">${emoji}</span>`;
@@ -118,7 +121,10 @@ class FusionIndex {
 
         // Add tier indicator if available
         if (agentData.tier) {
-           // Optional: visual indicator for tier
+           const tierBadge = document.createElement("div");
+           tierBadge.className = `fusion-tier-badge tier-${agentData.tier.toLowerCase()}`;
+           tierBadge.innerText = agentData.tier;
+           slot.appendChild(tierBadge);
         }
       }
 
@@ -170,6 +176,17 @@ class FusionIndex {
       const agentData = this.customAgentsData[key];
       slot.classList.remove("locked");
       slot.classList.add("unlocked", "just-unlocked");
+      if (agentData.tier) {
+          slot.classList.add(`tier-${agentData.tier.toLowerCase()}`);
+
+          let tierBadge = slot.querySelector(".fusion-tier-badge");
+          if (!tierBadge) {
+              tierBadge = document.createElement("div");
+              tierBadge.className = `fusion-tier-badge tier-${agentData.tier.toLowerCase()}`;
+              tierBadge.innerText = agentData.tier;
+              slot.appendChild(tierBadge);
+          }
+      }
       slot.setAttribute("title", agentData.name);
 
       // Re-bind click event
