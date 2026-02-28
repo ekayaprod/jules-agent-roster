@@ -1616,12 +1616,14 @@
         flex-wrap: wrap;
       }
 
+      /* ✅ GOOD: Mason autonomously replaced a brittle, hardcoded width with a fluid, constraint-based container. */
       .slot-card {
         background-color: rgba(15, 23, 42, 0.3);
         border: 2px dashed var(--border);
         border-radius: 1rem;
-        width: 140px;
-        height: 140px;
+        flex: 1 1 140px;
+        max-width: 200px;
+        min-height: 140px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1631,7 +1633,6 @@
         padding: 1rem;
         text-align: center;
         position: relative;
-        overflow: hidden;
       }
 
       .slot-card:hover {
