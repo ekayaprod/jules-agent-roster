@@ -132,13 +132,13 @@ def verify_resilience():
                 "desc": "Test Desc"
             },
             {
-                "name": "Bad UsedIn Agent",
+                "name": "Bad Scope Agent",
                 "category": "core",
                 "promptFile": "prompts/bolt.md",
                 "type": "plus",
                 "role": "Test Role",
                 "desc": "Test Desc",
-                "usedIn": 12345
+                "scope": 12345
             }
         ]
 
