@@ -1040,65 +1040,6 @@
         font-size: 1.8rem;
       }
 
-      .fusion-controls {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-        margin-bottom: 1.5rem;
-      }
-
-      .select-wrapper {
-        position: relative;
-        min-width: 240px;
-      }
-
-      .fusion-controls select {
-        appearance: none;
-        -webkit-appearance: none;
-        width: 100%;
-        padding: 0.85rem 1rem;
-        padding-right: 2.5rem;
-        border-radius: 0.75rem;
-        background: rgba(15, 23, 42, 0.6);
-        backdrop-filter: blur(8px);
-        border: 1px solid var(--border);
-        color: var(--text-primary);
-        font-size: 1rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-      }
-
-      .fusion-controls select:hover {
-        border-color: var(--text-secondary);
-        background: rgba(30, 41, 59, 0.8);
-      }
-
-      .fusion-controls select:focus {
-        outline: none;
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        background: rgba(30, 41, 59, 1);
-      }
-
-      .select-arrow {
-        position: absolute;
-        right: 0.75rem;
-        top: 50%;
-        transform: translateY(-50%);
-        pointer-events: none;
-        color: var(--text-secondary);
-        transition: transform 0.2s ease, color 0.2s ease;
-      }
-
-      .fusion-controls select:focus + .select-arrow {
-        transform: translateY(-50%) rotate(180deg);
-        color: var(--accent);
-      }
-
       .fusion-plus {
         font-size: 1.5rem;
         font-weight: bold;
@@ -1460,12 +1401,6 @@
       }
       #fusionOutput {
         min-height: 0;
-      }
-      .fusion-controls.fusing {
-        opacity: 0.5;
-        pointer-events: none;
-        filter: blur(2px);
-        transition: all 0.3s ease;
       }
 
       /* Structured Prompt Styles */
