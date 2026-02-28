@@ -1,887 +1,887 @@
 {
   "Architect,Architect": {
     "name": "Vibe 🎧",
-    "tier": "Anomalous",
+    "tier": "Legendary",
     "description": "The Feature Imagineer. Sweeps the repository for explicit intent markers (`// TODO`) OR analyzes the project's domain to imagineer and autonomously build brand-new, complementary features."
   },
   "Architect,Author": {
     "name": "City Clerk 🏛️",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "An architectural migration documentarian. Restructures complex module imports and meticulously documents the exact architectural shift via formal migration guides."
   },
   "Architect,Bolt+": {
     "name": "Slipstream 💨",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Frictionless Router. Restructures how chunks are loaded, ensuring critical structural boundaries arrive instantly while heavier secondary elements slide into place without blocking the main thread."
   },
   "Architect,Cortex": {
     "name": "Construct 🧊",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Hyper-Dimensional Structurer. Evaluates how raw knowledge is fed into the vector database, re-architecting flat, massive text blobs into semantic, overlapping multi-dimensional chunks."
   },
   "Architect,Curator": {
     "name": "Mason 🧱",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Spatial Reinforcer. Autonomously sweeps the presentation layer to fix broken layout containers, mismatched grids, and overflow boundaries, ensuring spatial integrity across the application."
   },
   "Architect,Helix": {
     "name": "Kiln 🌋",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A high-heat refactoring specialist. Upgrades legacy syntax to modern standards and immediately subjects it to intense boundary testing to prove the logic holds."
   },
   "Architect,Herald": {
     "name": "Registrar 📑",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Structural Broadcaster. Autonomously reads physical file trees, barrel exports, and structural git diffs, translating them into formal, centralized architectural guidelines and import rules."
   },
   "Architect,Inspector": {
     "name": "Seawall 🌊",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "An architectural encapsulation specialist. Establishes strict barrel exports to hide internal module state and writes integration tests that simulate the storm against the public API."
   },
   "Architect,Janitor": {
     "name": "Organizer 🧲",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Domain Grouper. Sweeps massive, flat directories and magnetically pulls implicitly related files (like a script, its test, and its config) into dedicated, structured subdirectories."
   },
   "Architect,Medic": {
     "name": "Surgeon 🥼",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Inline Extractor. Autonomously cuts open massive 'God Functions', excising fragile inline network and parsing logic into dedicated, crash-proof architectural modules."
   },
   "Architect,Modernizer": {
     "name": "Terraformer 🌍",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "A topographical asset management specialist. Moves chaotic asset dumps into domain-driven structures, optimizing the files and updating their codebase references in one pass."
   },
   "Architect,Navigator": {
     "name": "Scaffolder 🧰",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Structural Propagator. Autonomously reads routing maps and application manifests to construct missing physical boilerplate directories and skeleton files."
   },
   "Architect,Palette+": {
     "name": "Sculptor 🗿",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A structural UI and animation specialist. Chisels massive monolith components into clean sub-components and applies polished visual transitions to the new seams."
   },
   "Architect,Pedant": {
     "name": "Foreman 👷",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The File Convention Enforcer. Sweeps the physical file tree to enforce strict architectural blueprints, ensuring all files match exact casing conventions and updating imports."
   },
   "Architect,Scavenger": {
     "name": "Renovator 🏚️",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "A structural UX polish specialist. Restructures disorganized feature hierarchies and simultaneously adds missing loading and empty states to their UI components."
   },
   "Architect,Scribe": {
     "name": "Archivist 📚",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "A deep context documentation specialist. Writes granular inline JSDoc and links it directly up to high-level architectural READMEs, syncing micro and macro context."
   },
   "Architect,Sentinel+": {
     "name": "Bastion 🏰",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Boundary Hardener. Sweeps infrastructure (IaC, Docker, Terraform) and BaaS rules to autonomously lock down structural vulnerabilities, open ports, and wildcards without human intervention."
   },
   "Architect,Untangler": {
     "name": "Hoister 🪝",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Invariant Extractor. Autonomously hooks expensive static operations (DOM queries, Regex compilations, disk reads) trapped inside execution loops, hoisting them into cached variables to eliminate waste."
   },
   "Architect,Wordsmith": {
     "name": "Information Architect 📋",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Structural Content Designer. Reorganizes page layout hierarchy while simultaneously ensuring step labels, headings, and CTAs tell a cohesive, sequential story."
   },
   "Author,Bolt+": {
     "name": "Accountant 📊",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Budget Enforcer. Authors the macro PERFORMANCE_BUDGET.md and locks down bundler configurations to automatically fail the build if chunk sizes exceed strict limits."
   },
   "Author,Cortex": {
     "name": "Policy Maker ⚖️",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The AI Architect. Authors and maintains the macro AI_POLICY.md, sweeping the codebase to ensure no internal PII or unauthorized models are breaching compliance."
   },
   "Author,Curator": {
     "name": "Illuminator 🖌️",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Vector Artist. Autonomously reads dense architecture descriptions and hollow empty-states, mathematically generating beautiful SVG/Mermaid graphics to visualize the text."
   },
   "Author,Helix": {
     "name": "Lexicon 📗",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Domain Centralizer. Autonomously sweeps the codebase hunting for fractured domain language (e.g., mixing 'Client' and 'User'), centralizing the vocabulary into a master glossary and standardizing the nomenclature."
   },
   "Author,Herald": {
     "name": "Town Crier 🔔",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "A release documentation synchronizer. Announces a new release to the public via the changelog and instantly updates the macro README to reflect the repository's new reality."
   },
   "Author,Inspector": {
     "name": "Mapper 📍",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Coverage Mapper. Reads the codebase to identify untested high-risk domains, continuously authoring and updating the macro TESTING_PLAN.md with prioritized gaps."
   },
   "Author,Janitor": {
     "name": "Groundskeeper 🏡",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Automation Maintainer. Authors the macro MAINTENANCE.md guide and standardizes CI/CD and Dependabot configurations to ensure routine upkeep is codified."
   },
   "Author,Medic": {
     "name": "Paramedic 🏥",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Contingency Planner. Evaluates single points of failure in the architecture to author and continuously update the macro DISASTER_RECOVERY.md documentation."
   },
   "Author,Modernizer": {
     "name": "Ouija 👻",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Lore Resurrector. Autonomously combines local git forensics with LLM reasoning to deduce the historical intent behind load-bearing legacy spaghetti, injecting detailed lore to explain the horror."
   },
   "Author,Navigator": {
     "name": "Sherpa 🧗‍♂️",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Onboarding Architect. Autonomously deduces spatial complexity in dense UIs and logic flows, injecting interactive step-by-step onboarding tooltips to guide the user."
   },
   "Author,Palette+": {
     "name": "Muse 🧑‍🎨",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Contextual Guide. Owns the First-Time User Experience (FTUE) by treating empty screens as a blank canvas, injecting beautiful Empty States, contextual hover-tooltips, and inspiring in-app help interfaces."
   },
   "Author,Pedant": {
     "name": "Rulemaker 💯",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Style Guide Enforcer. Authors the overarching STYLEGUIDE.md and standardizes strict linting configurations to bridge human rules with machine enforcement."
   },
   "Author,Scavenger": {
     "name": "Sunsetter 🌅",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Deprecation Documentarian. Authors formal DEPRECATION.md plans and sweeps global wikis to erase all documentation references to deprecated systems."
   },
   "Author,Scribe": {
     "name": "Scholar 🦉",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "A macro/micro documentation synthesizer. Documents a module from the granular JSDoc micro-level all the way up to the macro architectural README in one unified pass."
   },
   "Author,Sentinel+": {
     "name": "Threat Modeler 🎯",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Macro Strategist. Authors the overarching THREAT_MODEL.md and sweeps the global configuration to enforce strict CORS, CSP, and secure HTTP headers."
   },
   "Author,Untangler": {
     "name": "Tracer 📌",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Execution Mapper. Autonomously traces deeply tangled, undocumented spaghetti code and event flows, authoring clear macro-level documents and sequence diagrams to illuminate the logic."
   },
   "Author,Wordsmith": {
     "name": "Brand Manager 🏷️",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "A domain language synchronizer. Establishes the official canonical terminology in the macro README and strictly enforces it across the user interface."
   },
   "Bolt+,Cortex": {
     "name": "Tachyon ☄️",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Stream-State Accelerator. Hunts down clunky, synchronous LLM queries that freeze the UI, and rewires them into high-speed Server-Sent Events (stream: true)."
   },
   "Bolt+,Curator": {
     "name": "Sprinter 👟",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "An elite payload delivery specialist. Compresses massive static assets and instantly rewrites the DOM/CSS to serve them via modern, responsive delivery tags."
   },
   "Bolt+,Helix": {
     "name": "Mitosis 🧫",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Parallelizer. Splits heavy, single-threaded UI logic into identical, parallel Web Worker cells for true multi-threading."
   },
   "Bolt+,Herald": {
     "name": "Speed Camera 🚥",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Web Vitals Broadcaster. Intercepts CI Lighthouse scores and bundle-size artifacts, generating strict Markdown reports that call out performance regressions before they merge."
   },
   "Bolt+,Inspector": {
     "name": "Pacesetter 🏁",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A relentless enforcer of speed. Re-engineers heavy algorithms for maximum efficiency and locks the gains in place with strict benchmark regression tests."
   },
   "Bolt+,Janitor": {
     "name": "Expediter 🛎️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Build Optimizer. Speeds up CI/CD pipelines, optimizes Webpack/Vite configs, and parallelizes build tasks so orders fly out without bottlenecks."
   },
   "Bolt+,Medic": {
     "name": "Pacemaker 🫀",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Main Thread Protector. Regulates the heartbeat of the application by finding heavy, synchronous work and safely deferring it to the background so the UI never stutters."
   },
   "Bolt+,Modernizer": {
     "name": "Catalyst 🏎️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "An engine of pure momentum. Modernizes legacy syntax and architecture specifically to unlock and apply native runtime execution speedups."
   },
   "Bolt+,Navigator": {
     "name": "Hyperloop 🚄",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Edge Router. Sweeps API routes and server-side paths, migrating heavily accessed static endpoints to edge-compatible runtimes and strict CDN caching layers."
   },
   "Bolt+,Palette+": {
     "name": "Illusionist 🪄",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "A master of perceived performance. Strips a component to its bare render constraints, then masks any remaining latency with luxurious CSS loading states."
   },
   "Bolt+,Pedant": {
     "name": "Millisecond ⏱️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Micro-Optimizer. Obsessively shaves off microscopic render waste by dialing in AST-level rendering rules and eliminating inline object allocations."
   },
   "Bolt+,Scavenger": {
     "name": "Proton Pack 🎒",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Memory Leak Eradicator. Aggressively blasts away unmounted React components, detached DOM nodes, and stale LocalStorage bloat."
   },
   "Bolt+,Scribe": {
     "name": "Profiler 🔬",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Complexity Auditor. Analyzes the algorithmic complexity of functions and injects strict Big-O notation into their JSDoc to warn developers of hot-path dangers."
   },
   "Bolt+,Sentinel+": {
     "name": "Broker 💼",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "A ruthless mediator between speed and security. Implements extreme edge-caching for public routes while strictly quarantining authenticated and sensitive data."
   },
   "Bolt+,Untangler": {
     "name": "Surge Protector 🌩️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Processing Short-Circuit. Flattens heavy computational functions with aggressive early-return guard clauses, cutting power to unnecessary algorithmic paths to save CPU cycles."
   },
   "Bolt+,Wordsmith": {
     "name": "Telepath 👁️‍🗨️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Predictive Pre-loader. Scans the UI for primary Call-To-Action buttons and links, injecting aggressive hover-prefetching logic so the next screen's data loads before the user clicks."
   },
   "Cortex,Cortex": {
     "name": "Singularity 🌌",
-    "tier": "Anomalous",
+    "tier": "Legendary",
     "description": "The Meta-Architect. Sweeps the repository looking for repetitive human developer chores or unstructured workflows, and automatically generates pristine, highly-constrained Jules agent prompts to automate them."
   },
   "Cortex,Curator": {
     "name": "Tokenizer 🪙",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Context Window Optimizer. Sweeps data payloads and RAG chunks before they hit the LLM, stripping HTML, minifying JSON, and dropping useless data to save tokens and prevent overflow."
   },
   "Cortex,Helix": {
     "name": "Synthesizer 🎹",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Semantic Consolidator. Uses an LLM to find completely different syntactic implementations of the same business logic, extracting them into a single, parameterized shared utility."
   },
   "Cortex,Herald": {
     "name": "Telemetrist 📡",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The AI Broadcaster. Intercepts AI execution routes and injects structured observability logging to broadcast token usage, latency, and cost-per-request to the terminal."
   },
   "Cortex,Inspector": {
     "name": "Polygraph 🎛️",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Voight-Kampff Administrator. Upgrades LLM prompts to enforce strict JSON outputs and administers a lie-detector test by feeding them malformed data to ensure safe parsing."
   },
   "Cortex,Janitor": {
     "name": "Electrician 🔋",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The AI Infrastructure Maintainer. Autonomously unplugs deprecated AI SDKs, bumps their dependencies, and cleanly rewires the application logic to match the new API schemas."
   },
   "Cortex,Medic": {
     "name": "Resuscitator 🩺",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Execution Simulator. Mentally executes code to hunt for infinite loops, race conditions, and initialization failures that cause instant crashes, explicitly deep-parsing dynamic strings as compiled code."
   },
   "Cortex,Modernizer": {
     "name": "Futurist 🛸",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "An AI infrastructure evolution specialist. Upgrades legacy server routes to modern ES6 syntax and simultaneously updates the AI models and prompt structures running inside them."
   },
   "Cortex,Navigator": {
     "name": "Dispatcher 🚏",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Cost Strategist. Evaluates AI routing logic, sending simple tasks to fast/cheap models while saving heavy, expensive reasoning models exclusively for complex tasks."
   },
   "Cortex,Palette+": {
     "name": "Hologram 🎇",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "A generative UI specialist. Intercepts raw, streaming data lasers from an AI backend and refracts them into a beautiful, progressive, and optimistic visual interface."
   },
   "Cortex,Pedant": {
     "name": "Cypher 💠",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Neural Payload Sanitizer. Intercepts the AI's raw output, injecting robust middleware to strip markdown wrappers, catch parsing failures, and strictly type-cast the raw hallucination into a safe, predictable object."
   },
   "Cortex,Scavenger": {
     "name": "Agent 🕶️",
-    "tier": "Anomalous",
+    "tier": "Legendary",
     "description": "The System Purger. A fully autonomous semantic enforcer that hunts down codebase anomalies: technically imported code that semantically violates the domain, vestigial components rendering dead data, and custom polyfills that native APIs have obsoleted."
   },
   "Cortex,Scribe": {
     "name": "Few-Shot Forger 🖇️",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Inline Example Builder. Sweeps prompt templates and injects structured 'Few-Shot' examples (input/output pairs) directly into the code to guarantee the LLM returns the correct format."
   },
   "Cortex,Sentinel+": {
     "name": "Firewall 📛",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "A heavy blast door for artificial intelligence. Upgrades LLM integrations while wrapping their inputs and outputs in strict prompt-injection and schema guards."
   },
   "Cortex,Untangler": {
     "name": "Automata 🦾",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Agentic State Flattener. Eradicates messy string parsing used for AI intent and rewires AI execution loops into pristine, native Tool-Calling arrays, creating a highly predictable cybernetic state machine."
   },
   "Cortex,Wordsmith": {
     "name": "Prompt Engineer ✨",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Persona & Tone Specialist. Edits the English payload of AI prompts to enforce strict personas, negative constraints, and precise domain vocabulary."
   },
   "Curator,Helix": {
     "name": "Catalogue 📇",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Asset Centralizer. Autonomously identifies identically duplicated visual media (raw inline SVGs, Base64 strings) scattered across files and extracts them into a single, clean centralized asset dictionary."
   },
   "Curator,Herald": {
     "name": "Publicist 📸",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The SEO Broadcaster. Autonomously sweeps public routes, extracting semantic context to generate perfect SVG OpenGraph cards and injecting the social metadata into the head."
   },
   "Curator,Inspector": {
     "name": "Fabricator 🏭",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Mock Engineer. Sweeps test files to eradicate brittle, hardcoded JSON objects, replacing them with dynamic, randomized mock-data factories and robust fixtures."
   },
   "Curator,Janitor": {
     "name": "Aligner 📏",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Rhythm Standardizer. Autonomously hunts down arbitrary, hardcoded spacing numbers (margins, paddings, coordinates) and snaps them to the project's systematic mathematical grid."
   },
   "Curator,Medic": {
     "name": "Blackbox 🗃️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Data Preserver. Sweeps complex forms and user-input flows, injecting local storage caching mechanisms so unsaved data survives unexpected network failures or app crashes."
   },
   "Curator,Modernizer": {
     "name": "Darkroom 🎞️",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Media Upgrader. Hunts down heavy, legacy image assets and processes them into highly optimized modern web formats like WebP, updating all source code references."
   },
   "Curator,Navigator": {
     "name": "Choreographer 🩰",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Transition Enforcer. Autonomously identifies blocking API calls and harsh route jumps, injecting loading skeletons and visual transitions to ensure fluidity during state changes."
   },
   "Curator,Palette+": {
     "name": "Gallerist 🏞️",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Media Presenter. Treats application assets like a museum exhibit, standardizing icon libraries and implementing gorgeous blurry-image placeholders for lazy-loaded media."
   },
   "Curator,Pedant": {
     "name": "Restorer 🛠️",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Reference Cleaner. Autonomously sweeps markup to find and purge orphaned presentation hooks like dead CSS classes, missing image links, and unused icon fonts."
   },
   "Curator,Scavenger": {
     "name": "Purger 🗑️",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "A cascading deletion specialist. Demolishes orphaned components and immediately hunts down and eradicates the heavy ghost images and static assets they leave behind."
   },
   "Curator,Scribe": {
     "name": "Typesmith 🖋️",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Typographic Hierarch. Autonomously groups chaotic, hardcoded text sizing and weights, replacing them with a systematic, scalable typographic hierarchy."
   },
   "Curator,Sentinel+": {
     "name": "Hazmat ☣️",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Payload Purifier. Intercepts incoming user data payloads, injecting strict XSS escaping, SQL injection prevention, and Zod/Joi schema boundaries."
   },
   "Curator,Untangler": {
     "name": "Press 🗜️",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Visual Extractor. Autonomously extracts massive, unreadable blocks of raw visual media (inline SVGs, Base64 strings, embedded styles) into clean, adjacent files to flatten component logic."
   },
   "Curator,Wordsmith": {
     "name": "Captionist 🎟️",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "An accessible payload specialist. Crushes static asset sizes while simultaneously rewriting their alt tags and ARIA labels for perfect semantic accessibility."
   },
   "Helix,Herald": {
     "name": "Tower 🗼",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Broadcast Centralizer. Autonomously hunts down fragmented outbound signals (isolated console logs, disparate telemetry trackers) and forces them through a single, centralized choke-point with uniform structural metadata."
   },
   "Helix,Inspector": {
     "name": "Mixologist 🍸",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A precision extraction specialist. Combines scattered logic fragments into a perfectly balanced shared utility, then rigorously taste-tests it with 100% test coverage."
   },
   "Helix,Janitor": {
     "name": "Superintendent 🪠",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Maintenance Centralizer. Autonomously hunts down fragmented cleanup scripts, cache purges, and teardown commands scattered across the codebase, unifying them into a single, master execution manifest."
   },
   "Helix,Medic": {
     "name": "Quarantine 🏕️",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "A safe centralization specialist. Extracts volatile, scattered logic into a single shared utility and wraps it in an impenetrable error-handling boundary."
   },
   "Helix,Modernizer": {
     "name": "Transmuter 🔄",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Paradigm Migrator. Executes global architectural shifts (e.g., Classes to Hooks) by autonomously rewriting legacy files one-by-one to match the modern repository standard."
   },
   "Helix,Navigator": {
     "name": "PathCentralizer 🌐",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Route Extractor. Autonomously hunts down hardcoded API endpoints, local file paths, and URL strings scattered across scripts, extracting them into a centralized configuration map."
   },
   "Helix,Palette+": {
     "name": "Chameleon 🦎",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The State Mutator. Continuously audits UI components and mutates them to handle every possible user interaction, injecting accessible hover, focus-visible, and disabled states."
   },
   "Helix,Pedant": {
     "name": "Quartermaster 📦",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Centralization Engine. Sweeps the repository for identical magic strings and numbers duplicated across multiple files, extracting them into strictly-typed global constants."
   },
   "Helix,Scavenger": {
     "name": "Void 🕳️",
-    "tier": "Anomalous",
+    "tier": "Legendary",
     "description": "An anomalous consolidation specialist. Extracts duplicated patterns into a single shared utility, then completely physically purges the original redundant files from the repository."
   },
   "Helix,Scribe": {
     "name": "Oracle 🧿",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "A documentation and centralization specialist. Centralizes duplicated logic into a single point of truth and drafts a strict, binding JSDoc contract for all future consumers."
   },
   "Helix,Sentinel+": {
     "name": "Gatekeeper ⛩️",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Policy Centralizer. Autonomously hunts for fragmented, hardcoded authorization logic scattered across UI components and routes, extracting them into a single, inescapable global policy engine."
   },
   "Helix,Untangler": {
     "name": "Weaver 🧵",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A logic restructuring specialist. Extracts duplicated code into a single shared utility while simultaneously flattening its deeply nested execution paths into pristine guard clauses."
   },
   "Helix,Wordsmith": {
     "name": "Standardizer 📝",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Copy Centralizer. Autonomously hunts for scattered, hardcoded user-facing text—both fragmented microcopy and massive duplicated macro-text blocks—extracting them into centralized dictionaries and shared templates."
   },
   "Herald,Inspector": {
     "name": "Decoder 📟",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The CI Whisperer. Intercepts broken test suites and translates massive, unreadable terminal stack traces into clear, actionable Markdown reports for developers."
   },
   "Herald,Janitor": {
     "name": "Upgrader 📈",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Dependency Broadcaster. When dependencies are bumped, fetches external changelogs and broadcasts a summary into the PR of exactly what the team needs to know about the new version."
   },
   "Herald,Medic": {
     "name": "Press Secretary 👔",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Incident Communicator. Translates emergency hotfixes and revert PRs into calm, professional Status Page updates and public incident post-mortems."
   },
   "Herald,Modernizer": {
     "name": "Prophet 🔭",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Deprecation Forecaster. Hunts for @deprecated code, injects runtime console warnings, and automatically generates step-by-step migration guides for developers."
   },
   "Herald,Navigator": {
     "name": "Strategist ♟️",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "A release and roadmap synchronizer. Updates the internal roadmap to mark features complete and instantly broadcasts the achievement via a perfectly aligned public changelog."
   },
   "Herald,Palette+": {
     "name": "Publisher 📰",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Viewport Specialist. Sweeps the application for fixed widths and layout breaks, injecting mobile-first responsive utilities to ensure perfect rendering across all devices."
   },
   "Herald,Pedant": {
     "name": "Whistleblower 📯",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Syntax Shamer. Intercepts CI linting and TypeScript failures, broadcasting strict, pedantic Markdown instructions directly into the codebase or PRs detailing exactly how to fix the violations."
   },
   "Herald,Scavenger": {
     "name": "Undertaker 🪦",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Deletion Broadcaster. Intercepts PRs where major code or APIs are purged and automatically drafts public release-note warnings detailing exactly what was permanently removed."
   },
   "Herald,Scribe": {
     "name": "Historian ⏳",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "A temporal archivist. Generates public changelogs for new releases and instantly embeds that historical context into the shipped functions via inline JSDoc."
   },
   "Herald,Sentinel+": {
     "name": "Siren 🔊",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Vulnerability Broadcaster. Drafts strict, compliance-ready security advisories and updates SECURITY.md policies when critical patches are merged."
   },
   "Herald,Untangler": {
     "name": "Limiter 🎚️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Spike Regulator. Autonomously injects debouncing, rate-limiting, and batch-chunking into hyper-active event listeners, rapid-fire API scripts, and massive synchronous arrays to prevent execution lockups."
   },
   "Herald,Wordsmith": {
     "name": "Orator 📢",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Error Copywriter. Autonomously hunts down lazy, unhelpful error throws, deducing the logic context to expand them into eloquent, actionable, and variable-rich broadcasts."
   },
   "Inspector,Inspector": {
     "name": "Adversary 🤺",
-    "tier": "Anomalous",
+    "tier": "Legendary",
     "description": "The Mutation Engine. A paranoid QA agent that actively injects logical bugs into working code to hunt down fraudulent tests and false positives, ensuring the suite actually fails when it should."
   },
   "Inspector,Janitor": {
     "name": "Safety Inspector 🦺",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A dependency QA specialist. Bumps outdated package versions and immediately secures the affected integration paths with strict regression tests."
   },
   "Inspector,Medic": {
     "name": "Guardian ⛑️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A battle-tested protector. Wraps fragile code paths in strict error boundaries and immediately writes tests that deliberately assault those boundaries to prove they hold."
   },
   "Inspector,Modernizer": {
     "name": "Assessor 🧑‍🏫",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Test Methodology Upgrader. Reviews the efficacy of the test suite, evaluates legacy tests against modern rubrics, and rewrites them to meet modern behavioral standards."
   },
   "Inspector,Navigator": {
     "name": "Autopilot ✈️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Journey Tester. Reads core routing logic and automatically generates Playwright or Cypress End-to-End tests to drive the browser through critical multi-page workflows."
   },
   "Inspector,Palette+": {
     "name": "Jeweler 💎",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A visual interaction QA specialist. Polishes interactive UI components with focus/accessibility states, then places them under a loupe to write rigorous interaction tests."
   },
   "Inspector,Pedant": {
     "name": "Auditor 🔎",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A quality assurance inspector. Standardizes sloppy variables into strictly typed constants and immediately locks the pristine logic in place with a robust test suite."
   },
   "Inspector,Scavenger": {
     "name": "Coroner 🩻",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A surgical investigator of the dead. Proves code is truly abandoned before permanently excising both the source files and the ghost tests keeping them alive."
   },
   "Inspector,Scribe": {
     "name": "Interrogator 🔦",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The State Validator. Sweeps weak unit tests that lack meaningful assertions, injecting deep, rigorous checks against component state, DOM interactions, and accessibility."
   },
   "Inspector,Sentinel+": {
     "name": "Stress Tester 🧨",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "A security assurance specialist. Implements strict validation schemas at trust boundaries and writes brutal tests that deliberately inject malicious data to bypass them."
   },
   "Inspector,Untangler": {
     "name": "Sandboxer 🏜️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Isolation Specialist. Builds perfectly flat, isolated execution environments by untangling shared global state and nested setups so test cases never interact or break each other."
   },
   "Inspector,Wordsmith": {
     "name": "Narrator 🎙️",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Spec Translator. Analyzes actual test assertions and rewrites vague test names into crystal clear, human-readable specifications, turning test output into living documentation."
   },
   "Janitor,Janitor": {
     "name": "Vibe Check 🪩",
-    "tier": "Anomalous",
+    "tier": "Legendary",
     "description": "The Synthetic Detoxifier. Leverages fluid LLM reasoning to hunt down and purge the specific technical debt generated by AI: hallucinated dependencies, abandoned logic sludge, and conversational artifacts."
   },
   "Janitor,Medic": {
     "name": "Sanitizer 🧴",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Memory Sweeper. Autonomously hunts for unclosed database connections, orphaned event listeners, and dangling loops, injecting explicit cleanup logic to prevent Out-Of-Memory crashes."
   },
   "Janitor,Modernizer": {
     "name": "Synchronizer 🔁",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A dependency migration specialist. Bumps a major package version and traverses the AST to migrate all deprecated syntax to the new API in a single evolutionary pass."
   },
   "Janitor,Navigator": {
     "name": "Redirector 🔀",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The 404 Sweeper. Sweeps the application for broken internal links and maintains the central routing configuration to safely redirect legacy traffic to active pages."
   },
   "Janitor,Palette+": {
     "name": "Upholsterer 🛋️",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The UI Standardizer. Safely bumps visual dependencies and sweeps the codebase to standardize fragmented component props, ensuring UI hygiene remains perfectly consistent."
   },
   "Janitor,Pedant": {
     "name": "Ratchet 🔩",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Strictness Enforcer. Sweeps the codebase for ESLint or TypeScript rules set to 'warn', physically fixes the underlying code violations, and aggressively upgrades the configuration rule to 'error'."
   },
   "Janitor,Scavenger": {
     "name": "Steward 🧽",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "A meticulous caretaker of dependencies. Bumps foundational libraries to their modern versions, then instantly sweeps the codebase to surgically delete the orphaned polyfills and legacy compatibility shims left behind."
   },
   "Janitor,Scribe": {
     "name": "Revisionist 🤥",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Lie Detector. Autonomously sweeps the codebase hunting for 'lying comments' that contradict the runtime reality, rewriting the documentation to match the actual code."
   },
   "Janitor,Sentinel+": {
     "name": "Checkpoint 🚧",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A rigid security enforcer at the gates of maintenance. Safely bumps NPM dependencies and immediately updates the validation schemas guarding their APIs."
   },
   "Janitor,Untangler": {
     "name": "Pruner 🪴",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Dead Code Destroyer. Evaluates AST control flows to hunt down and surgically delete mathematically impossible branches, unreachable code, and orphaned unused exports."
   },
   "Janitor,Wordsmith": {
     "name": "Spellchecker 🔤",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Typo Eradicator. Autonomously hunts for spelling errors across the entire AST (variables, JSON keys, exports) and safely executes repository-wide refactors to fix them without breaking bindings."
   },
   "Medic,Modernizer": {
     "name": "Inoculator 💉",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A modernization and resilience specialist. Upgrades legacy code to modern asynchronous paradigms and explicitly treats the new failure modes it introduces."
   },
   "Medic,Navigator": {
     "name": "Circuit Breaker 🔌",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Fallback Strategist. Sweeps routing layers and fragile API calls, wrapping them in Error Boundaries and fallback states to ensure the application degrades gracefully instead of crashing."
   },
   "Medic,Palette+": {
     "name": "Placebo 💊",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "A psychological performance specialist. Hardens fragile asynchronous requests with strict error boundaries while masking their latency with optimistic UI skeletons."
   },
   "Medic,Pedant": {
     "name": "Toxicologist 🧪",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Catch-Block Enforcer. Autonomously hunts for swallowed errors and empty catch blocks, enforcing strict exception-handling rules and telemetry routing to eliminate silent failures."
   },
   "Medic,Scavenger": {
     "name": "Amputator 🪚",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Dead Fallback Purger. Sweeps the codebase to surgically remove legacy retry-loops, fallback UI states, and circuit breakers that were built for 3rd-party services the application no longer uses."
   },
   "Medic,Scribe": {
     "name": "Runbooker 📓",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Recovery Documentarian. Sweeps generic catch blocks, injecting structured logging and inline JSDoc 'Runbooks' that tell future developers exactly how to fix the specific failure."
   },
   "Medic,Sentinel+": {
     "name": "First Responder 🚨",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "An elite crisis manager. Secures external API boundaries with strict schema validation and wraps the rejection paths in graceful fallbacks and telemetry."
   },
   "Medic,Untangler": {
     "name": "Transfusion 🩸",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The State Purifier. Autonomously sweeps codebases hunting for functions suffering from implicit, dirty global state, and purifies them by refactoring the function signatures to explicitly require those dependencies."
   },
   "Medic,Wordsmith": {
     "name": "Diplomat 🕊️",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Empathy Translator. Rewrites terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy."
   },
   "Modernizer,Navigator": {
     "name": "Helmsman ⛵",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Routing Upgrader. Autonomously parses legacy navigation patterns, raw anchor tags, and deprecated routers, modernizing them into native structural equivalents across the entire architecture."
   },
   "Modernizer,Palette+": {
     "name": "Stylist 💅",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The UI Modernizer. Brings outdated styling into the modern era by migrating legacy CSS to Tailwind and implementing CSS Variables for seamless Dark Mode support."
   },
   "Modernizer,Pedant": {
     "name": "Prefect 🏅",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Constraint Enforcer. Autonomously reads legacy, header-less files, deduces their execution era by analyzing syntax, and injects strict headers like '#Requires' or '\"use strict\"'."
   },
   "Modernizer,Scavenger": {
     "name": "Liquidator 💥",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "A destructive migration specialist. Migrates legacy consumers to modern native APIs and ruthlessly deletes the old polyfills and shim files in one pass."
   },
   "Modernizer,Scribe": {
     "name": "Transition Manager 🌉",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "A legacy migration architect. Refactors outdated architectural paradigms and immediately writes detailed inline JSDoc to explain the paradigm shift to the team."
   },
   "Modernizer,Sentinel+": {
     "name": "Retrofitter 🔧",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A structural and syntactic migration specialist. Moves outdated files into modern domain-driven folders while simultaneously upgrading their code to ES6+ standards."
   },
   "Modernizer,Untangler": {
     "name": "Refiner 🛢️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "A structural modernization specialist. Distills messy, nested callback spaghetti into flat, modern async/await execution paths in one continuous operation."
   },
   "Modernizer,Wordsmith": {
     "name": "Interpolator 💬",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Syntax Upgrader. Autonomously parses the AST to hunt for archaic string concatenations and legacy formatters, upgrading them to modern, highly readable Template Literals."
   },
   "Navigator,Palette+": {
     "name": "Wayfinder 🪧",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Onboarding & Routing Specialist. Solves 'Lost User Syndrome' by building intuitive stepper components, breadcrumbs, and empty-state guided tours."
   },
   "Navigator,Pedant": {
     "name": "REST Enforcer 🚦",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The API Standardizer. Sweeps backend routing controllers to enforce strict, pedantic RESTful or GraphQL naming conventions across all endpoints."
   },
   "Navigator,Scavenger": {
     "name": "Dead-Ender 🛑",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Route Purger. Sweeps the routing tree and analytics configurations to find 'Ghost Routes' (pages that exist but have zero internal links pointing to them) and safely deletes them."
   },
   "Navigator,Scribe": {
     "name": "Chronicler 📜",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "A strategic context historian. Checks features off the roadmap and immediately cements their architectural intent into the codebase via explanatory JSDoc."
   },
   "Navigator,Sentinel+": {
     "name": "Customs 🛃",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The RBAC Enforcer. Sweeps the application's routing layer, wrapping vulnerable pages and API endpoints in strict Role-Based Access Control and authentication guards."
   },
   "Navigator,Untangler": {
     "name": "Pathfinder 🥾",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Friction Eradicator. Analyzes clicks and steps required to complete a workflow, ruthlessly flattening routing logic and removing dead ends."
   },
   "Navigator,Wordsmith": {
     "name": "Script Supervisor 🎬",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "A roadmap lexicon enforcer. Reads the official product strategy and ruthlessly enforces its exact terminology across every user-facing string in the UI."
   },
   "Palette+,Pedant": {
     "name": "Typesetter 🔠",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Pixel Perfectionist. Enforces visual rhythm at the code level, hunting down rogue inline margins to enforce strict spacing scales and WCAG contrast ratios."
   },
   "Palette+,Scavenger": {
     "name": "Minimalist ⬜",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Visual Purger. Ruthlessly hunts down and deletes orphaned CSS classes, outdated layout wrappers, and dead UI components disconnected from the routing tree."
   },
   "Palette+,Scribe": {
     "name": "Calligrapher 🪶",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Token Typist. Locks down the design system by converting loose string props into strict TypeScript literal unions and continuously syncing them with CSS variables."
   },
   "Palette+,Sentinel+": {
     "name": "Warden 🔐",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Trust Designer. Bridges security and empathy by designing frictionless authentication flows, interactive password meters, and clear permission dialogues."
   },
   "Palette+,Untangler": {
     "name": "Streamliner ⛷️",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Cognitive Load Reducer. Takes massive, intimidating workflows and breaks them down using progressive disclosure and clean, chunked UI layouts."
   },
   "Palette+,Wordsmith": {
     "name": "Virtuoso 🎭",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "An artisan of interface design. Designs flawless visual states (hover, loading, error) and pairs them with highly empathetic, active-voice microcopy."
   },
   "Pedant,Scavenger": {
     "name": "Shredder 📠",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Graveyard Destroyer. Sweeps the codebase for commented-out code and ruthlessly deletes any block of unused code that has been sitting untouched for more than 30 days."
   },
   "Pedant,Scribe": {
     "name": "Glossary 📖",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Domain Taxonomist. Autonomously sweeps the entire type system, cross-references domain logic, and injects pedantic, strict semantic definitions to generate global Data Dictionaries."
   },
   "Pedant,Sentinel+": {
     "name": "Regulator 🛂",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "A federal compliance officer for the codebase. Extracts illegal, hardcoded magic numbers into global constants and enforces them across all security schemas."
   },
   "Pedant,Untangler": {
     "name": "Systematizer 🗄️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Logic Declutterer. Autonomously sweeps into chaotic, deeply nested spaghetti code, flattens the primary execution path, and sorts the extracted pieces into pristine, perfectly labeled, strictly typed local helper functions."
   },
   "Pedant,Wordsmith": {
     "name": "Grammarian ✒️",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "A microcopy canonicalization specialist. Extracts sloppy, hardcoded UI strings into strict canonical constants and rewrites them into polished, active-voice microcopy."
   },
   "Scavenger,Scribe": {
     "name": "Obituary Writer 🕯️",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "A historical deletion specialist. Researches and documents the final engineering intent of dead code before permanently burying it and its associated tests."
   },
   "Scavenger,Sentinel+": {
     "name": "Revoker 🪪",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Credential Invalidater. Hunts down and permanently deletes hardcoded test credentials, legacy .env backup files, and expired development JWTs to shrink the security attack surface."
   },
   "Scavenger,Untangler": {
     "name": "Lumberjack 🪓",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Execution Tree Clearer. Analyzes complex conditional logic to find deeply nested else branches, legacy feature flags, and mathematically unreachable code, aggressively chopping down that dead wood."
   },
   "Scavenger,Wordsmith": {
     "name": "Redliner 🖍️",
-    "tier": "Stable",
+    "tier": "Common",
     "description": "The Dead Copy Purger. Builds an AST-map of actively rendered text and strikes a red line through any orphaned copy, localized strings, or dead Markdown files."
   },
   "Scribe,Sentinel+": {
     "name": "Keymaster 🗝️",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The Cryptographic Auditor. Hunts down hardcoded secrets, extracts them to environment variables, and injects strict inline JSDoc security rules for cryptographic functions."
   },
   "Scribe,Untangler": {
     "name": "Logician 🧮",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Logic Documenter. Autonomously parses dense boolean clusters, massive state machines, and high cyclomatic complexity, translating them into formal Truth Tables and structured JSDoc grids."
   },
   "Scribe,Wordsmith": {
     "name": "Polyglot 🗣️",
-    "tier": "Radiant",
+    "tier": "Rare",
     "description": "The Linguistic Unifier. Autonomously hunts for mixed-language variables (e.g., English logic mixed with French terminology), executing safe repository-wide translations to unify the dialect."
   },
   "Sentinel+,Sentinel+": {
     "name": "Honeypot 🍯",
-    "tier": "Anomalous",
+    "tier": "Legendary",
     "description": "The Offensive Defender. Sweeps the routing perimeter and builds fake API routes, invisible admin links, and data trapwires designed to catch and ban malicious scrapers, bots, and vulnerability scanners."
   },
   "Sentinel+,Untangler": {
     "name": "Defuser 🪢",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "An authorization restructuring specialist. Meticulously untangles deeply nested security logic to expose vulnerabilities, then strictly types and locks down the boundary."
   },
   "Sentinel+,Wordsmith": {
     "name": "Redactor ⬛",
-    "tier": "Critical",
+    "tier": "Epic",
     "description": "The PII Scrubber. Sweeps the UI and logging layers to mask and redact sensitive user data, ensuring credit cards, emails, and phone numbers never leak into plain text."
   },
   "Untangler,Untangler": {
     "name": "Temporal Loom 🌀",
-    "tier": "Anomalous",
+    "tier": "Legendary",
     "description": "The Spaghettification Engine. Exerts immense gravitational pull on chaotic, branching code timelines, weaving deeply nested \"Pyramid of Doom\" logic into a single, flat, one-dimensional strand of execution."
   },
   "Untangler,Wordsmith": {
     "name": "Cryptographer 🔏",
-    "tier": "Reactive",
+    "tier": "Uncommon",
     "description": "The Syntax Translator. Autonomously identifies hostile machine syntax (raw Regex, Cron schedules, Bitwise operators) and translates them into plain-English inline comments."
   }
 }

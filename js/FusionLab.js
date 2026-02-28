@@ -639,7 +639,7 @@ class FusionLab {
     if (wrapper) wrapper.classList.remove("open");
 
     // Dynamic Tier Styling & Particle Generation
-    const tier = result.tier || "Stable";
+    const tier = result.tier || "Common";
     const tierClass = `tier-${tier.toLowerCase()}`;
 
     // Clean up previous tier classes
@@ -654,11 +654,11 @@ class FusionLab {
       let speedMultiplier = 1;
 
       switch (tier) {
-        case "Stable": particleCount = 10; speedMultiplier = 1; break;
-        case "Reactive": particleCount = 20; speedMultiplier = 1; break;
-        case "Radiant": particleCount = 40; speedMultiplier = 1.2; break;
-        case "Critical": particleCount = 80; speedMultiplier = 1.5; break;
-        case "Anomalous": particleCount = 150; speedMultiplier = 2; break;
+        case "Common": particleCount = 10; speedMultiplier = 1; break;
+        case "Uncommon": particleCount = 20; speedMultiplier = 1; break;
+        case "Rare": particleCount = 40; speedMultiplier = 1.2; break;
+        case "Epic": particleCount = 80; speedMultiplier = 1.5; break;
+        case "Legendary": particleCount = 150; speedMultiplier = 2; break;
       }
 
       for (let i = 0; i < particleCount; i++) {
@@ -673,8 +673,8 @@ class FusionLab {
         particle.style.setProperty("--tx", `${tx}px`);
         particle.style.setProperty("--ty", `${ty}px`);
         particle.style.animationDuration = `${0.8 / speedMultiplier}s`;
-        // Delay slightly for Anomalous to create a fountain effect
-        if (tier === "Anomalous") {
+        // Delay slightly for Legendary to create a fountain effect
+        if (tier === "Legendary" || tier === "Epic") {
             particle.style.animationDelay = `${1.5 + Math.random() * 1.5}s`;
         } else {
             particle.style.animationDelay = `1.5s`;

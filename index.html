@@ -1692,43 +1692,98 @@
       }
 
       /* Fusion Tier Rarity System */
-      /* Tier 1: Stable */
-      .tier-stable .anim-particle { --particle-color: #06b6d4; } /* Cyan */
-      .fusion-tier-badge.tier-stable, .meta-tag.tier-stable { background: rgba(6, 182, 212, 0.2); color: #22d3ee; }
+      /* Tier 1: Common */
+      .tier-common .anim-particle { --particle-color: #9ca3af; } /* Gray */
+      .fusion-tier-badge.tier-common, .meta-tag.tier-common { background: rgba(156, 163, 175, 0.2); color: #d1d5db; }
+      .card.tier-common { border-color: rgba(156, 163, 175, 0.5); }
+      .fusion-slot.tier-common { border-color: #9ca3af; }
 
-      /* Tier 2: Reactive */
-      .tier-reactive .anim-particle { --particle-color: #10b981; } /* Emerald */
-      .fusion-tier-badge.tier-reactive, .meta-tag.tier-reactive { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+      /* Tier 2: Uncommon */
+      .tier-uncommon .anim-particle { --particle-color: #14b8a6; } /* Teal */
+      .fusion-tier-badge.tier-uncommon, .meta-tag.tier-uncommon { background: rgba(20, 184, 166, 0.2); color: #5eead4; }
+      .card.tier-uncommon { background: rgba(20, 184, 166, 0.05); border-color: rgba(20, 184, 166, 0.5); }
+      .fusion-slot.tier-uncommon { background: rgba(20, 184, 166, 0.05); border-color: #14b8a6; }
 
-      /* Tier 3: Radiant */
-      .tier-radiant .anim-particle { --particle-color: #a855f7; } /* Amethyst */
-      .fusion-tier-badge.tier-radiant, .meta-tag.tier-radiant { background: rgba(168, 85, 247, 0.2); color: #c084fc; }
-      .card.tier-radiant { box-shadow: 0 4px 20px rgba(168, 85, 247, 0.15); }
-      .fusion-slot.tier-radiant { box-shadow: 0 0 15px rgba(168, 85, 247, 0.2); }
+      /* Tier 3: Rare */
+      .tier-rare .anim-particle { --particle-color: #3b82f6; } /* Blue/Sapphire */
+      .fusion-tier-badge.tier-rare, .meta-tag.tier-rare { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+      .card.tier-rare { border-color: rgba(59, 130, 246, 0.5); box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15); }
+      .fusion-slot.tier-rare { border-color: #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.2); }
 
-      /* Tier 4: Critical */
-      .tier-critical .anim-particle { --particle-color: #ef4444; } /* Crimson */
-      .fusion-tier-badge.tier-critical, .meta-tag.tier-critical { background: rgba(239, 68, 68, 0.2); color: #f87171; }
-      .fusion-animation-overlay.active.tier-critical .anim-arena { animation: shake-violent 0.8s ease-in-out 1.5s; }
-      .card.tier-critical { box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); border-color: rgba(239, 68, 68, 0.5); }
-      .fusion-slot.tier-critical { box-shadow: 0 0 20px rgba(239, 68, 68, 0.4); border-color: #ef4444; }
+      /* Tier 4: Epic */
+      .tier-epic .anim-particle { --particle-color: #d946ef; } /* Purple/Magenta */
+      .fusion-tier-badge.tier-epic, .meta-tag.tier-epic { background: rgba(217, 70, 239, 0.2); color: #e879f9; }
+      .fusion-animation-overlay.active.tier-epic .anim-arena { animation: shake-violent 0.8s ease-in-out 1.5s; }
+      .card.tier-epic { box-shadow: 0 0 15px rgba(217, 70, 239, 0.4); border-color: rgba(217, 70, 239, 0.5); }
+      .fusion-slot.tier-epic { box-shadow: 0 0 20px rgba(217, 70, 239, 0.4); border-color: #d946ef; }
 
-      /* Tier 5: Anomalous */
-      .tier-anomalous .anim-particle { --particle-color: #f59e0b; } /* Gold */
-      .fusion-tier-badge.tier-anomalous, .meta-tag.tier-anomalous {
-          background: linear-gradient(45deg, #f59e0b, #ec4899, #8b5cf6);
+      /* Tier 5: Legendary */
+      .tier-legendary .anim-particle { --particle-color: #fbbf24; } /* Gold */
+      .fusion-tier-badge.tier-legendary, .meta-tag.tier-legendary {
+          background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
           color: white;
           font-weight: bold;
       }
-      .fusion-animation-overlay.active.tier-anomalous .anim-arena { animation: shake-anomalous 1s ease-in-out 1.5s; }
-      @keyframes shimmerBorder {
-          0% { border-color: #f59e0b; box-shadow: 0 0 15px #f59e0b; }
-          33% { border-color: #ec4899; box-shadow: 0 0 15px #ec4899; }
-          66% { border-color: #8b5cf6; box-shadow: 0 0 15px #8b5cf6; }
-          100% { border-color: #f59e0b; box-shadow: 0 0 15px #f59e0b; }
+      .fusion-animation-overlay.active.tier-legendary .anim-arena { animation: shake-legendary 1.5s ease-in-out 1.5s; }
+      @keyframes shake-legendary {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-15px) scale(1.02); }
+          20%, 40%, 60%, 80% { transform: translateX(15px) scale(0.98); }
       }
-      .card.tier-anomalous { animation: shimmerBorder 3s infinite; }
-      .fusion-slot.tier-anomalous { animation: shimmerBorder 3s infinite; }
+
+      @keyframes shimmerBorder {
+          0% { border-color: #fbbf24; box-shadow: 0 0 20px #fbbf24; }
+          33% { border-color: #fcd34d; box-shadow: 0 0 25px #fcd34d; }
+          66% { border-color: #f59e0b; box-shadow: 0 0 20px #f59e0b; }
+          100% { border-color: #fbbf24; box-shadow: 0 0 20px #fbbf24; }
+      }
+      .card.tier-legendary { animation: shimmerBorder 3s infinite; position: relative; overflow: hidden; }
+      .card.tier-legendary::after {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+          transform: rotate(45deg);
+          animation: holographic 3s linear infinite;
+          mix-blend-mode: overlay;
+          pointer-events: none;
+      }
+      @keyframes holographic {
+          0% { transform: rotate(45deg) translateY(-100%); }
+          100% { transform: rotate(45deg) translateY(100%); }
+      }
+      .fusion-slot.tier-legendary { animation: shimmerBorder 3s infinite; position: relative; overflow: hidden;}
+      .fusion-slot.tier-legendary::after {
+          content: '';
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+          transform: rotate(45deg);
+          animation: holographic 3s linear infinite;
+          mix-blend-mode: overlay;
+          pointer-events: none;
+      }
+      .fusion-animation-overlay.active.tier-legendary::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: white;
+          opacity: 0;
+          animation: flash-white 3s ease-in-out forwards;
+          pointer-events: none;
+          z-index: 1000;
+      }
+      @keyframes flash-white {
+          0%, 40% { opacity: 0; }
+          50% { opacity: 1; }
+          60%, 100% { opacity: 0; }
+      }
 
       /* Pre-Merge Preview */
       .pre-merge-preview {
