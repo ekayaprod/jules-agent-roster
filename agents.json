@@ -159,7 +159,7 @@
   },
   {
     "name": "Wordsmith",
-    "icon": "✏️",
+    "icon": "🖋️",
     "category": "context",
     "scope": "Small-Medium",
     "role": "UX Writer",
@@ -167,7 +167,7 @@
   },
   {
     "name": "Pedant",
-    "icon": "🧐",
+    "icon": "☝️",
     "category": "hygiene",
     "scope": "Small-Medium",
     "role": "Code Quality Enforcer",
