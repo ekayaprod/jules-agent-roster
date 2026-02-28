@@ -630,7 +630,7 @@
     "description": "A meticulous caretaker of dependencies. Bumps foundational libraries to their modern versions, then instantly sweeps the codebase to surgically delete the orphaned polyfills and legacy compatibility shims left behind."
   },
   "Scribe,Superintendent": {
-    "name": "Revisionist 🤥",
+    "name": "Revisionist 🧾",
     "tier": "Uncommon",
     "description": "The Lie Detector. Autonomously sweeps the codebase hunting for 'lying comments' that contradict the runtime reality, rewriting the documentation to match the actual code."
   },
