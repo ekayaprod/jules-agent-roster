@@ -119,13 +119,6 @@ class FusionIndex {
           }
         });
 
-        // Add tier indicator if available
-        if (agentData.tier) {
-           const tierBadge = document.createElement("div");
-           tierBadge.className = `fusion-tier-badge tier-${agentData.tier.toLowerCase()}`;
-           tierBadge.innerText = agentData.tier;
-           slot.appendChild(tierBadge);
-        }
       }
 
       grid.appendChild(slot);
@@ -178,14 +171,6 @@ class FusionIndex {
       slot.classList.add("unlocked", "just-unlocked");
       if (agentData.tier) {
           slot.classList.add(`tier-${agentData.tier.toLowerCase()}`);
-
-          let tierBadge = slot.querySelector(".fusion-tier-badge");
-          if (!tierBadge) {
-              tierBadge = document.createElement("div");
-              tierBadge.className = `fusion-tier-badge tier-${agentData.tier.toLowerCase()}`;
-              tierBadge.innerText = agentData.tier;
-              slot.appendChild(tierBadge);
-          }
       }
       slot.setAttribute("title", agentData.name);
 
