@@ -49,8 +49,8 @@ class RosterApp {
     } catch (error) {
         if (this.elements.main) {
             const msg = error.message && error.message.includes("JSON")
-              ? "Data corruption detected (JSON)"
-              : "Connection failed";
+              ? "We encountered a problem reading the agent data. Please check your data files"
+              : "We couldn't connect to retrieve the agents. Please check your network connection";
             this.elements.main.innerHTML = `<div style="text-align:center; padding: 2rem; color: #f87171;">Couldn't load agents. ${msg}.</div>`;
         }
     }
