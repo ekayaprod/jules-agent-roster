@@ -230,7 +230,7 @@ You must return your final response as a strict JSON object adhering to this sch
 
       let finalPrompt = custom.prompt;
       if (finalPrompt === null) {
-        // The Void Logic: Anomalous Fusion where we want dynamic stitching behavior
+        // The Void Logic: Legendary Fusion where we want dynamic stitching behavior
         // but with a custom name/description.
         finalPrompt = this.stitch(agent1, agent2, custom.name);
       }
