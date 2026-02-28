@@ -339,6 +339,7 @@ class FusionLab {
     if (fuseBtn) {
       const isReady = this.state.slotA !== null && this.state.slotB !== null;
       fuseBtn.disabled = !isReady;
+      fuseBtn.setAttribute("aria-disabled", String(!isReady));
     }
   }
 
@@ -356,6 +357,7 @@ class FusionLab {
       fuseBtn.classList.add("error");
       fuseBtn.innerText = "Ignite Fusion Protocol";
       fuseBtn.disabled = false;
+      fuseBtn.setAttribute("aria-disabled", "false");
     }
 
     if (errorEl) {
@@ -399,6 +401,7 @@ class FusionLab {
       fuseBtn.classList.add("loading");
       fuseBtn.innerText = "Igniting Protocol...";
       fuseBtn.disabled = true;
+      fuseBtn.setAttribute("aria-disabled", "true");
     }
 
     const result = this.compiler.fuse(agentA, agentB);
@@ -534,6 +537,7 @@ class FusionLab {
       fuseBtn.innerText = "Ignite Fusion Protocol";
       fuseBtn.classList.remove("loading");
       fuseBtn.disabled = false;
+      fuseBtn.setAttribute("aria-disabled", "false");
     }
 
     const wrapper = document.getElementById("fusionOutputWrapper");
@@ -650,6 +654,7 @@ class FusionLab {
     }
 
     fuseBtn.disabled = true;
+    fuseBtn.setAttribute("aria-disabled", "true");
     if (controls) controls.classList.add("fusing");
 
     // Start Animation
@@ -658,6 +663,7 @@ class FusionLab {
     setTimeout(() => {
       overlay.classList.remove("active");
       fuseBtn.disabled = false;
+      fuseBtn.setAttribute("aria-disabled", "false");
       if (controls) controls.classList.remove("fusing");
 
       this.showResult();
