@@ -78,14 +78,23 @@ class FusionLab {
         });
     }
     if (closeBtn) closeBtn.addEventListener("click", () => this.closePicker());
-
     if (searchInput) {
         // ⚡ Bolt+: Debounce picker search
         const debouncedFilter = PerformanceUtils.debounce((query) => {
             this.filterPicker(query);
         }, 300);
         searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
+
+        const clearPickerSearchEmptyBtn = document.getElementById("clearPickerSearchEmptyBtn");
+        if (clearPickerSearchEmptyBtn) {
+            clearPickerSearchEmptyBtn.addEventListener("click", () => {
+                searchInput.value = "";
+                this.filterPicker("");
+                searchInput.focus();
+            });
+        }
     }
+
 
     // 💎 Jeweler: Grid Keyboard Navigation
     const pickerGrid = document.getElementById("pickerGrid");
