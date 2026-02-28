@@ -9,3 +9,7 @@
 ## 2026-02-26 - Agent Picker Polish
 **Learning:** Disabled items in the picker were unclickable and had `pointer-events: none`, preventing users from seeing *why* they were disabled via tooltip.
 **Action:** Removed `pointer-events: none` and added `cursor: not-allowed` to enable tooltips while maintaining disabled semantics. Also humanized the empty state copy.
+
+## 2026-02-27 - Main Search Empty State Polish
+**Learning:** The main search empty state used unstyled `<p>` tags with blunt, unhelpful copy ("No agents found. Try a different keyword."). This lacked the empathy and visual hierarchy found in modal empty states.
+**Action:** Replaced the paragraph with structured `.empty-title` and `.empty-desc` elements. Added actionable, active-voice microcopy and harmonized the visual layout (flexbox, gap, and gradient background) with the modal's empty state.
