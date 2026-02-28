@@ -177,14 +177,6 @@ class FusionLab {
         item.setAttribute("tabindex", index === 0 ? "0" : "-1");
         item.setAttribute("data-name", agent.name.toLowerCase()); // For filtering
 
-        // Check if agent is already selected in the OTHER slot
-        const isOther = otherAgent && otherAgent.name === agent.name;
-        if (isOther) {
-            item.classList.add("disabled");
-            item.setAttribute("aria-disabled", "true");
-            item.title = "Protocol already active in opposing slot.";
-        }
-
         // Check if agent is currently selected in THIS slot
         const isCurrent = currentAgent && currentAgent.name === agent.name;
         if (isCurrent) {
@@ -198,10 +190,8 @@ class FusionLab {
             <span class="mini-role">${agent.role}</span>
         `;
 
-        if (!isOther) {
-            item.addEventListener("click", () => this.handlePickerSelection(agent));
-            // Keydown handled by grid container
-        }
+        item.addEventListener("click", () => this.handlePickerSelection(agent));
+        // Keydown handled by grid container
 
         grid.appendChild(item);
     });
@@ -474,8 +464,6 @@ class FusionLab {
       let msg = result.prompt;
       // Virtuoso: Empathetic & Actionable Error Copy
       const ERROR_MAP = {
-        "Cannot fuse an agent with itself.":
-          "Unstable Reaction: Fusing an agent with itself creates a feedback loop. Select a different partner to stabilize.",
         "Invalid agents selected.":
           "Missing Components: Two distinct agents are required to initiate the fusion protocol.",
       };
