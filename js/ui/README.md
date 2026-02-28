@@ -11,8 +11,7 @@ const agent = {
     name: "Architect",
     category: "engineering",
     description: "Structural refactoring and code organization.",
-    prompt: "...",
-    usedIn: "Code Refactoring"
+    prompt: "..."
 };
 
 const cardHtml = AgentCard.create(agent);

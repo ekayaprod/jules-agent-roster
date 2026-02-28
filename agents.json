@@ -5,7 +5,6 @@
     "category": "core",
     "type": "plus",
     "scope": "Small-Medium",
-    "usedIn": "Mechanic",
     "role": "Performance Engineer",
     "desc": "A performance obsessive. Hunts down structural bottlenecks and eliminates them through systemic caching, memoization, and virtualization patterns."
   },
@@ -15,7 +14,6 @@
     "category": "core",
     "type": "plus",
     "scope": "Small-Medium",
-    "usedIn": "Virtuoso",
     "role": "UX & Delight (Enhanced)",
     "desc": "An artisan of human-computer interaction. Transforms clunky interactions into delightful experiences using loading skeletons, optimistic UI, and strict ARIA accessibility."
   },
@@ -25,7 +23,6 @@
     "category": "core",
     "type": "plus",
     "scope": "Small-Medium",
-    "usedIn": "",
     "role": "Security Engineer",
     "desc": "The frontline defender. Hardens the application's trust boundaries by implementing rigid schema validation (Zod/Joi) and secure data-handling protocols."
   },
@@ -34,7 +31,6 @@
     "icon": "🧬",
     "category": "architecture",
     "scope": "Small-Medium",
-    "usedIn": "Steward",
     "role": "Deduplication Specialist",
     "desc": "A pattern recognition expert. Seeks out duplicated spaghetti code and splices it into pure, centralized, and highly reusable utility functions."
   },
@@ -43,7 +39,6 @@
     "icon": "🏗️",
     "category": "architecture",
     "scope": "Medium",
-    "usedIn": "Mechanic",
     "role": "Structural Agent",
     "desc": "The structural engineer. Untangles messy directories, splits massive 'God files', and enforces clean colocation and barrel exports (index.ts)."
   },
@@ -52,7 +47,6 @@
     "icon": "🦅",
     "category": "hygiene",
     "scope": "Medium",
-    "usedIn": "Steward",
     "role": "Cleanup",
     "desc": "A ruthless cleanup specialist. Hunts down and permanently eradicates orphaned files, dead code, unused exports, and resolved TODOs."
   },
@@ -61,7 +55,6 @@
     "icon": "🧰",
     "category": "hygiene",
     "scope": "Medium",
-    "usedIn": "Steward",
     "role": "Hygiene",
     "desc": "The foundation maintainer. Keeps the repository healthy by safely bumping minor dependencies, deduplicating lockfiles, and standardizing config files."
   },
@@ -70,7 +63,6 @@
     "icon": "♻️",
     "category": "architecture",
     "scope": "Medium",
-    "usedIn": "Mechanic",
     "role": "Tech Stack Evolution",
     "desc": "The evolution engine. Upgrades legacy syntax—transmuting old callbacks, `var` declarations, and Promise chains into modern async/await and ES6 paradigms."
   },
@@ -79,7 +71,6 @@
     "icon": "🕵️",
     "category": "operations",
     "scope": "Medium",
-    "usedIn": "Guardian",
     "role": "QA",
     "desc": "A paranoid quality-assurance agent. Seeks out the application's most fragile, untested logic and locks it down with rigorous boundary and edge-case test suites."
   },
@@ -88,7 +79,6 @@
     "icon": "🚑",
     "category": "operations",
     "scope": "Medium",
-    "usedIn": "Guardian",
     "role": "Resilience Agent",
     "desc": "The system triager. Stops silent crashes by wrapping fragile network calls and dangerous parsers in safe try/catch boundaries and structured logging."
   },
@@ -113,7 +103,6 @@
     "icon": "📘",
     "category": "context",
     "scope": "Medium",
-    "usedIn": "Librarian",
     "role": "Macro-Documentation Specialist",
     "desc": "The macro-documentarian. Writes the high-level README.md files, architectural overviews, and 'Quick Start' guides that help humans navigate the repository."
   },
@@ -122,7 +111,6 @@
     "icon": "🧭",
     "category": "context",
     "scope": "Medium",
-    "usedIn": "Librarian",
     "role": "Strategy",
     "desc": "The strategic compass. Reads the git history to mark features complete on the roadmap, ensuring the project's tracking documents always reflect its true state."
   },
@@ -131,7 +119,6 @@
     "icon": "🖼️",
     "category": "context",
     "scope": "Medium",
-    "usedIn": "Virtuoso",
     "role": "Payload & Asset Manager",
     "desc": "The payload optimizer. Scours the public directories to compress heavy images into modern WebP/AVIF formats and strip metadata from bloated SVGs."
   },
@@ -167,7 +154,6 @@
     "icon": "📣",
     "category": "context",
     "scope": "Medium",
-    "usedIn": "Librarian",
     "role": "Release Manager",
     "desc": "The public announcer. Parses raw git history and translates chaotic developer commits into beautifully structured, user-facing semantic changelogs."
   },
@@ -176,7 +162,6 @@
     "icon": "✏️",
     "category": "context",
     "scope": "Small-Medium",
-    "usedIn": "Virtuoso",
     "role": "UX Writer",
     "desc": "The empathetic copywriter. Red-pens passive, robotic UI strings and developer jargon, rewriting them into clear, actionable, and human-readable microcopy."
   },
@@ -185,7 +170,6 @@
     "icon": "🧐",
     "category": "hygiene",
     "scope": "Small-Medium",
-    "usedIn": "Guardian",
     "role": "Code Quality Enforcer",
     "desc": "An uncompromising enforcer of standards. Eradicates implicit `any` types, fixes casing violations, and extracts rogue magic numbers into strict constants."
   },

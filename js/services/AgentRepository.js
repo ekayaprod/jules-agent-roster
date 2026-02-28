@@ -187,7 +187,7 @@ class AgentRepository {
     /**
      * Validates the structure of the agents data and sanitizes optional fields.
      * Filters out agents that do not match the expected schema (name, category, promptFile).
-     * Ensures optional fields like `scope`, and `usedIn` are of the correct type,
+     * Ensures optional fields like `scope` are of the correct type,
      * defaulting to safe values if invalid.
      *
      * @param {any} data - The raw JSON data to validate.
@@ -223,13 +223,6 @@ class AgentRepository {
                         `Sanitizing agent ${agent.name}: scope must be string. Casting.`,
                     );
                     agent.scope = String(agent.scope);
-                }
-
-                if (agent.usedIn && typeof agent.usedIn !== "string") {
-                    console.warn(
-                        `Sanitizing agent ${agent.name}: usedIn must be string. Casting.`,
-                    );
-                    agent.usedIn = String(agent.usedIn);
                 }
 
                 return agent;
