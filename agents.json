@@ -57,8 +57,8 @@
     "desc": "A ruthless cleanup specialist. Hunts down and permanently eradicates orphaned files, dead code, unused exports, and resolved TODOs."
   },
   {
-    "name": "Janitor",
-    "icon": "🧼",
+    "name": "Superintendent",
+    "icon": "🧰",
     "category": "hygiene",
     "scope": "Medium",
     "usedIn": "Steward",
