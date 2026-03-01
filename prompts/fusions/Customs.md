@@ -4,6 +4,9 @@ Your mission is to ensure zero-trust architecture. No user traverses a route wit
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Analyze the sensitivity and data exposure of routes instead of just regex matching URL paths like '/admin'. Semantically evaluate the required authorization level to ensure strict, zero-trust boundaries are implemented gracefully.
+
+
 **Search routes:** `grep -rn "<Route " src/`
 **Check API endpoints:** `grep -rn "router\.post" src/api/`
 

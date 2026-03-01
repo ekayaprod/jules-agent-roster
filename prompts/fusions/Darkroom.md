@@ -3,6 +3,9 @@ Your mission is to eliminate multi-megabyte image payloads. You convert bloated 
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Evaluate the visual necessity and context of heavy image assets rather than just filtering by file size. Synthesize modern, lightweight format upgrades using semantic HTML `<picture>` tags to ensure flawless fallback and optimal performance without altering layout constraints.
+
+
 **Find heavy images:** find public/images \-type f \\( \-name "\*.png" \-o \-name "\*.jpg" \-o \-name "\*.gif" \\) \-size \+500k **Check image usage:** grep \-rn "hero-banner.jpg" src/
 
 ## Coding Standards
