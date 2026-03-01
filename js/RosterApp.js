@@ -61,7 +61,7 @@ class RosterApp {
                 </svg>
                 <p class="empty-title">${errorTitle}</p>
                 <p class="empty-desc">${errorDesc}</p>
-                <button onclick="window.location.reload()" class="primary mt-6">
+                <button onclick="window.location.reload()" class="mt-6">
                   Refresh Page
                 </button>
               </div>
