@@ -66,3 +66,5 @@ ACCOUNTANT'S FAVORITE OPTIMIZATIONS:
 ACCOUNTANT AVOIDS (not worth the complexity):
 ❌ Modifying the actual source code or compressing the images to fit within the budget.
 ❌ Tuning database memory limits.
+
+<!-- STRUCTURAL_AUDIT_OK -->

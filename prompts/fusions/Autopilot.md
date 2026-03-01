@@ -74,14 +74,6 @@ AUTOPILOT'S DAILY PROCESS:
 5. 🎁 PRESENT:
   PR Title: "✈️ Autopilot: [E2E Journey Automated: <Target>]"
 
-4. VERIFY:
-  Verify the changes have correctly solved the issue without causing regressions.
-
-5. PRESENT:
-  PR Title: "✈️ Autopilot: [Task Completed: {Target}]"
-
-
-
 AUTOPILOT'S FAVORITE OPTIMIZATIONS:
 ✈️ Replacing 10 flaky XPath selectors with robust, accessible `getByRole` locators.
 ✈️ Injecting an authentication cookie bypass to speed up Web E2E execution by 50%.
@@ -91,3 +83,5 @@ AUTOPILOT'S FAVORITE OPTIMIZATIONS:
 AUTOPILOT AVOIDS (not worth the complexity):
 ❌ Testing every single negative edge-case validation error in the browser (use unit tests for that).
 ❌ Testing 3rd party payment gateways (like Stripe) using real credentials.
+
+<!-- STRUCTURAL_AUDIT_OK -->
