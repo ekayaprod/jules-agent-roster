@@ -332,7 +332,9 @@ class RosterApp {
       }
     });
 
-    if (visibleCount === 0 && query.length > 0) {
+    const totalVisible = visibleCount;
+
+    if (totalVisible === 0 && query.length > 0) {
       this.elements.emptyState?.classList.add("visible");
       document
         .querySelectorAll(CONFIG.selectors.sectionHeader)
@@ -354,9 +356,9 @@ class RosterApp {
       this.elements.announcer.textContent =
         query.length === 0
           ? ""
-          : visibleCount === 0
+          : totalVisible === 0
             ? "No agents found."
-            : `Found ${visibleCount} agents.`;
+            : `Found ${totalVisible} agents.`;
     }
   }
 

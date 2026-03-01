@@ -539,77 +539,27 @@ class FusionLab {
    */
   renderFusionResult(result) {
     this.lastFusionResult = result;
-    // Empty state removed in HTML refactor, but kept here for safety if logic needed
-    const emptyState = document.getElementById("fusionEmptyState");
-    if (emptyState) emptyState.style.display = "none";
 
-    const output = document.getElementById("fusionOutput");
-    const header = output.querySelector("h3");
-    const fusionCode = document.getElementById("fusionCode");
+    const container = document.getElementById("fusionResultContainer");
+    if (container) {
+      container.innerHTML = ""; // Clear previous
 
-    header.innerText = result.name;
-
-    // Add description under header
-    let descEl = document.getElementById("fusionDesc");
-    if (!descEl) {
-      descEl = document.createElement("p");
-      descEl.id = "fusionDesc";
-      descEl.style.color = "var(--text-secondary)";
-      descEl.style.marginTop = "0.5rem";
-      descEl.style.marginBottom = "1.5rem";
-
-      try {
-        output.insertBefore(descEl, fusionCode);
-      } catch (error) {
-        console.error(
-          JSON.stringify({
-            event: "FUSION_DOM_INSERT_FAILED",
-            result: result.name,
-            error: error.message,
-          })
-        );
-        // Fallback: If fusionCode is not a child of output, try appending to fusionCode's parent or output
-        try {
-          if (fusionCode && fusionCode.parentNode) {
-            fusionCode.parentNode.insertBefore(descEl, fusionCode);
-          } else {
-            output.appendChild(descEl);
-          }
-        } catch (fallbackError) {
-          console.error(
-            JSON.stringify({
-              event: "FUSION_DOM_INSERT_FALLBACK_FAILED",
-              result: result.name,
-              error: fallbackError.message,
-            })
-          );
-          if (output) {
-            try {
-              output.appendChild(descEl);
-            } catch (finalError) {
-              // Gracefully degrade by swallowing since we already logged the failure
+      if (typeof AgentCard !== "undefined") {
+        // Find the custom agent key by finding the matching object in customAgentsMap
+        let keyStr = "fusion-result";
+        for (const [key, val] of Object.entries(this.compiler.customAgentsMap)) {
+            if (val.name === result.name) {
+                keyStr = key;
+                break;
             }
-          }
         }
-      }
-    }
-    descEl.innerText = result.description || "";
 
-    // Parse and render prompt (XML or Legacy)
-    if (typeof PromptParser !== "undefined") {
-      const parsed = PromptParser.parsePrompt(result.prompt);
-      if (parsed.format === "xml" && typeof PromptRenderer !== 'undefined') {
-        const structuredHtml = PromptRenderer.renderXml(parsed);
-        if (structuredHtml) {
-            fusionCode.innerHTML = structuredHtml;
-        } else {
-            fusionCode.innerText = result.prompt;
-        }
-      } else {
-        fusionCode.innerText = result.prompt;
+        const card = AgentCard.create(result, keyStr, 0);
+        // Force the card to be visible instantly within the wrapper
+        card.style.display = "flex";
+        card.classList.remove("pop-in");
+        container.appendChild(card);
       }
-    } else {
-      fusionCode.innerText = result.prompt;
     }
   }
 
@@ -628,19 +578,14 @@ class FusionLab {
     const wrapper = document.getElementById("fusionOutputWrapper");
     if (wrapper) {
       wrapper.classList.add("open");
-    } else {
-      // Fallback
-      const output = document.getElementById("fusionOutput");
-      if (output) output.style.display = "block";
-    }
 
-    const resultHeader = document.getElementById("fusionName");
-    if (resultHeader) {
-      resultHeader.focus();
-      resultHeader.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest",
-      });
+      // Ensure the card inside gets focused for accessibility
+      const cardTitle = wrapper.querySelector(".agent-title");
+      if (cardTitle) {
+          cardTitle.setAttribute("tabindex", "-1");
+          cardTitle.focus();
+          cardTitle.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
     }
   }
 
@@ -672,15 +617,15 @@ class FusionLab {
     if (particlesContainer) {
       particlesContainer.innerHTML = ""; // Clear previous particles
 
-      let particleCount = 10;
+      let particleCount = 0;
       let speedMultiplier = 1;
 
       switch (tier) {
-        case "Common": particleCount = 10; speedMultiplier = 1; break;
+        case "Common": particleCount = 0; speedMultiplier = 1; break;
         case "Uncommon": particleCount = 20; speedMultiplier = 1; break;
         case "Rare": particleCount = 40; speedMultiplier = 1.2; break;
-        case "Epic": particleCount = 80; speedMultiplier = 1.5; break;
-        case "Legendary": particleCount = 150; speedMultiplier = 2; break;
+        case "Epic": particleCount = 160; speedMultiplier = 1.5; break;
+        case "Legendary": particleCount = 300; speedMultiplier = 2; break;
       }
 
       for (let i = 0; i < particleCount; i++) {
