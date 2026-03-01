@@ -24,12 +24,12 @@ class AgentRepository {
                 agentsData.map(async (agent) => {
                     try {
                         const promptRes = await this.fetchWithRetry(`prompts/${agent.name}.md`);
-                        if (promptRes.ok) {
-                            agent.prompt = await promptRes.text();
-                        } else {
+                        if (!promptRes.ok) {
                             console.warn(`Failed to load prompt for ${agent.name}`);
                             agent.prompt = "Prompt missing.";
+                            return;
                         }
+                        agent.prompt = await promptRes.text();
                     } catch (e) {
                         console.warn(`Error loading prompt for ${agent.name}`, e);
                         agent.prompt = "Prompt missing.";
@@ -43,74 +43,78 @@ class AgentRepository {
             let customAgentsData = {};
             try {
                 const customRes = await this.fetchWithRetry("custom_agents.json");
-                if (customRes.ok) {
-                    const rawCustomData = await this.safeJsonParse(
-                        customRes,
-                        "custom_agents.json",
-                    );
+                if (!customRes.ok) {
+                    throw new Error(`Failed to load custom_agents.json: ${customRes.status}`);
+                }
 
-                    // The First Responder: Validate & Sanitize Boundary
-                    const validatedCustomData = {};
+                const rawCustomData = await this.safeJsonParse(
+                    customRes,
+                    "custom_agents.json",
+                );
 
-                    await Promise.all(
-                        Object.entries(rawCustomData).map(async ([key, custom]) => {
-                            try {
-                                const validation = this.validateCustomAgent(key, custom);
+                // The First Responder: Validate & Sanitize Boundary
+                const validatedCustomData = {};
 
-                                if (!validation.valid) {
-                                    // TELEMETRY: Log rejection
-                                    console.warn(
-                                        JSON.stringify({
-                                            event: "INVALID_CUSTOM_AGENT",
-                                            key: key,
-                                            reason: validation.reason,
-                                            timestamp: new Date().toISOString(),
-                                        }),
-                                    );
-                                    return; // Skip this agent
-                                }
+                await Promise.all(
+                    Object.entries(rawCustomData).map(async ([key, custom]) => {
+                        try {
+                            const validation = this.validateCustomAgent(key, custom);
 
-                                const agent = validation.sanitized;
-
-                                // Sanitize name for filename: Remove non-ASCII, trim.
-                                const cleanName = agent.name
-                                    .replace(/[^\x00-\x7F]/g, "")
-                                    .trim();
-                                const filename = `prompts/fusions/${cleanName}.md`;
-
-                                try {
-                                    const promptRes = await this.fetchWithRetry(filename);
-                                    if (promptRes.ok) {
-                                        agent.prompt = await promptRes.text();
-                                    } else {
-                                        // File not found -> Assume dynamic fusion (like "The Void")
-                                        agent.prompt = null;
-                                    }
-                                } catch (e) {
-                                    console.warn(
-                                        `Error loading custom prompt for ${agent.name}`,
-                                        e,
-                                    );
-                                    agent.prompt = null;
-                                }
-
-                                // Add to valid set
-                                validatedCustomData[key] = agent;
-                            } catch (err) {
-                                // Catch-all for unexpected processing errors to prevent total crash
-                                console.error(
+                            if (!validation.valid) {
+                                // TELEMETRY: Log rejection
+                                console.warn(
                                     JSON.stringify({
-                                        event: "CUSTOM_AGENT_PROCESSING_ERROR",
+                                        event: "INVALID_CUSTOM_AGENT",
                                         key: key,
-                                        error: err.message,
+                                        reason: validation.reason,
+                                        timestamp: new Date().toISOString(),
                                     }),
                                 );
+                                return; // Skip this agent
                             }
-                        }),
-                    );
 
-                    customAgentsData = validatedCustomData;
-                }
+                            const agent = validation.sanitized;
+
+                            // Sanitize name for filename: Remove non-ASCII, trim.
+                            const cleanName = agent.name
+                                .replace(/[^\x00-\x7F]/g, "")
+                                .trim();
+                            const filename = `prompts/fusions/${cleanName}.md`;
+
+                            try {
+                                const promptRes = await this.fetchWithRetry(filename);
+                                if (!promptRes.ok) {
+                                    // File not found -> Assume dynamic fusion (like "The Void")
+                                    agent.prompt = null;
+                                    validatedCustomData[key] = agent;
+                                    return;
+                                }
+
+                                agent.prompt = await promptRes.text();
+                            } catch (e) {
+                                console.warn(
+                                    `Error loading custom prompt for ${agent.name}`,
+                                    e,
+                                );
+                                agent.prompt = null;
+                            }
+
+                            // Add to valid set
+                            validatedCustomData[key] = agent;
+                        } catch (err) {
+                            // Catch-all for unexpected processing errors to prevent total crash
+                            console.error(
+                                JSON.stringify({
+                                    event: "CUSTOM_AGENT_PROCESSING_ERROR",
+                                    key: key,
+                                    error: err.message,
+                                }),
+                            );
+                        }
+                    }),
+                );
+
+                customAgentsData = validatedCustomData;
             } catch (e) {
                 if (e.message.includes("parse JSON")) {
                     console.error(
