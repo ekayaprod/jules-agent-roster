@@ -48,10 +48,24 @@ class RosterApp {
 
     } catch (error) {
         if (this.elements.main) {
-            const msg = error.message && error.message.includes("JSON")
-              ? "We encountered a problem reading the agent data. Please check your data files"
-              : "We couldn't connect to retrieve the agents. Please check your network connection";
-            this.elements.main.innerHTML = `<div style="text-align:center; padding: 2rem; color: #f87171;">Couldn't load agents. ${msg}.</div>`;
+            const isDataError = error.message && error.message.includes("JSON");
+            const errorTitle = "We couldn't load the agent roster";
+            const errorDesc = isDataError
+              ? "We encountered a problem reading the agent data files. Please check your configuration and try again."
+              : "We're having trouble connecting to the network. Please check your connection and try refreshing.";
+
+            this.elements.main.innerHTML = `
+              <div class="empty-state visible">
+                <svg class="empty-icon" aria-hidden="true" focusable="false" width="64" height="64" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <p class="empty-title">${errorTitle}</p>
+                <p class="empty-desc">${errorDesc}</p>
+                <button onclick="window.location.reload()" class="primary" style="margin-top: 1.5rem;">
+                  Refresh Page
+                </button>
+              </div>
+            `;
         }
     }
 
