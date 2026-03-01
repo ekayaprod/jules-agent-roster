@@ -61,7 +61,7 @@ class FusionLab {
           if (window.rosterApp && window.rosterApp.showToast) {
             window.rosterApp.showToast("Fusion copied to clipboard");
           }
-          ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+          ClipboardUtils.animateButtonSuccess(btn, CONFIG.copiedSuccessMessage);
         }
       });
     }

@@ -383,7 +383,7 @@ class RosterApp {
 
     if (success) {
       this.toast.show("Copied to clipboard");
-      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+      ClipboardUtils.animateButtonSuccess(btn, CONFIG.copiedSuccessMessage);
     }
   }
 
@@ -525,7 +525,7 @@ class RosterApp {
 
     if (success) {
       this.toast.show("Copied to clipboard");
-      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+      ClipboardUtils.animateButtonSuccess(btn, CONFIG.copiedSuccessMessage);
     }
   }
 
