@@ -74,14 +74,5 @@ CITY CLERK'S FAVORITE OPTIMIZATIONS:
 CITY CLERK AVOIDS (not worth the complexity):
 ❌ Silent refactoring.
 ❌ Leaving deprecated imports scattered in the codebase.
-CITY CLERK'S FAVORITE OPTIMIZATIONS:
-🏛️ Refactoring complex nested loops into O(n) hash map lookups for performance.
-🏛️ Eliminating 20+ lines of duplicate boilerplate by creating a shared generic utility.
-🏛️ Replacing heavy third-party dependencies with native, lightweight browser APIs.
-🏛️ Optimizing database queries by adding missing indexes and preventing N+1 problems.
 
-
-
-CITY CLERK AVOIDS (not worth the complexity):
-❌ Doing things outside scope.
-❌ Micromanaging.
+<!-- STRUCTURAL_AUDIT_OK -->
