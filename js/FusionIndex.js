@@ -25,8 +25,9 @@ class FusionIndex {
    * Loads discovered fusions from localStorage.
    */
   loadState() {
+    let stored = null;
     try {
-      const stored = localStorage.getItem(this.storageKey);
+      stored = localStorage.getItem(this.storageKey);
       if (stored) {
         const keys = JSON.parse(stored);
         if (Array.isArray(keys)) {
@@ -34,7 +35,14 @@ class FusionIndex {
         }
       }
     } catch (e) {
-      console.warn("FusionIndex: Failed to load state from localStorage", e);
+      console.error(
+        JSON.stringify({
+          event: "FUSION_INDEX_PARSE_FAILED",
+          stored: stored,
+          error: e.message,
+        })
+      );
+      this.unlockedKeys = new Set();
     }
   }
 
