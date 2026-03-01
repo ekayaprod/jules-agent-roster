@@ -18,7 +18,7 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 - [ ] **New Agent Categories**: Explore specialized agents for Data Science, DevOps, and Mobile dev.
 - [ ] **Framework-Specific Variants**: Create variants of agents for specific stacks (e.g., Next.js vs. Remix vs. Vue).
 - [ ] **Community Contributions**: Streamline the process for community submitted agents.
-- [ ] **Dark/Light Mode**: Add toggle (currently Dark only).
+- [x] **Dark/Light Mode**: Add toggle (currently Dark only). (Shipped: b70bd3f)
 - [ ] **Persistence**: Add LocalStorage support for "Favorites" or "Recently Used".
 
 ## 🛠️ Phase 3: Tooling & Automation (Future)
