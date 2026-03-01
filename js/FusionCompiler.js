@@ -17,8 +17,9 @@ class FusionCompiler {
       (a) => a.category !== "monthly" && a.category !== "power",
     );
 
-    // Normalize keys to ensure they are sorted alphabetically.
-    // This guarantees that "Bolt+Architect" and "Architect+Bolt" resolve to the same fusion.
+    // WARN: We use a sorted, comma-separated string to guarantee order-agnostic resolution.
+    // This ensures that "AgentA,AgentB" acts identical to "AgentB,AgentA",
+    // resolving to the exact same custom fusion recipe regardless of selection order.
     this.customAgentsMap = {};
     if (customAgentsData) {
       Object.keys(customAgentsData).forEach((key) => {
@@ -32,9 +33,10 @@ class FusionCompiler {
       });
     }
 
-    // WARN: This is a strict Directed Acyclic Graph (DAG).
+    // WARN: This array defines a strict Directed Acyclic Graph (DAG) for agent execution.
     // The order determines which agent runs as Phase 1 (Upstream) vs Phase 2 (Downstream).
-    // Example: Architect (Design) always comes before Builder (Implementation).
+    // Business constraint: Architectural design must precede implementation, and cleanup
+    // must happen before everything else. Do not reorder without consulting the DAG architect.
     this.EXECUTION_PIPELINE = [
       "Janitor",    // Cleanup first
       "Scavenger",  // Dead code removal next
@@ -59,10 +61,15 @@ class FusionCompiler {
   }
 
   /**
-   * Extracts a specific Markdown section from a raw prompt string.
-   * @param {string} prompt - The full prompt text.
-   * @param {string} header - The header name to extract (e.g., "BOUNDARIES").
-   * @returns {string} The content of the section, or a fallback message.
+   * Extracts a specific Markdown section from a raw legacy prompt string.
+   * This acts as a fallback for old-format agents that do not use the new XML structure.
+   *
+   * @param {string} prompt - The full, raw prompt text containing Markdown headers.
+   * @param {string} header - The exact string header name to extract (e.g., "BOUNDARIES").
+   * @returns {string} The multi-line content of the section, or a fallback message if extraction fails.
+   * @example
+   * // returns "- Do not delete files."
+   * compiler.extractSection("## BOUNDARIES\n- Do not delete files.\n## PROCESS", "BOUNDARIES");
    */
   extractSection(prompt, header) {
     if (typeof prompt !== "string") return "Prompt data missing.";
@@ -83,10 +90,16 @@ class FusionCompiler {
   }
 
   /**
-   * Extracts content from an agent prompt, handling both XML and Legacy formats.
-   * Uses `PromptParser` if available for robust XML handling.
-   * @param {string} prompt - The raw prompt text.
-   * @returns {Object} { boundaries: string, process: string }
+   * Normalizes the extraction of prompt content by abstracting away the underlying format (XML vs Legacy Markdown).
+   * It attempts robust XML parsing first, then falls back to regex-based Markdown extraction if the XML is malformed
+   * or if the agent relies on legacy structures.
+   *
+   * @param {string} prompt - The raw, unparsed prompt string.
+   * @returns {{boundaries: string, process: string}} An object containing the extracted 'boundaries' constraint string and the 'process' step-by-step string.
+   * @example
+   * const content = compiler.extractAgentContent("<task>Do X</task><step id='1'>First step</step>");
+   * // content.boundaries === "Do X"
+   * // content.process === "Step 1: Action\nFirst step"
    */
   extractAgentContent(prompt) {
     if (!prompt) return { boundaries: "Missing prompt.", process: "Missing prompt." };
@@ -144,9 +157,9 @@ class FusionCompiler {
     const idx1 = this.EXECUTION_PIPELINE.indexOf(p1.name);
     const idx2 = this.EXECUTION_PIPELINE.indexOf(p2.name);
 
-    // DAG ENFORCEMENT:
-    // If both agents are in the pipeline, sort them by their index.
-    // Lower index = Upstream (Phase 1), Higher index = Downstream (Phase 2).
+    // WARN: DAG ENFORCEMENT logic explicitly swaps agent order based on EXECUTION_PIPELINE priority.
+    // This protects logical sequential progression (e.g., ensuring architectural planning happens
+    // before documentation). Breaking this constraint creates unresolvable temporal logic errors.
     if (idx1 !== -1 && idx2 !== -1 && idx2 < idx1) {
       [p1, p2] = [p2, p1];
     }
