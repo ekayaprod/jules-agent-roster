@@ -58,7 +58,7 @@ DISPATCHER'S DAILY PROCESS:
 2. SELECT:
   Select EXACTLY ONE target to apply the fix to, ensuring the blast radius is controlled. If the operation is a macro-level hygiene task (e.g. global spellcheck), target all matching instances.
 3. 🚦 EVALUATE:
-  Determine the lowest-tier model capable of executing the task flawlessly.
+  Determine the smallest model capable of executing the task flawlessly.
   → CARRY FORWARD: The target cheaper/faster model string and the specific dynamic fallback logic.
 
 4. 🔀 ROUTE:

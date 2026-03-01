@@ -37,7 +37,7 @@ def calc(p, t):
 
 **Find raw HTML injections:** grep \-r "dangerouslySetInnerHTML" src/ **Find raw SQL queries:** grep \-r "SELECT \\\* FROM.\*{" src/
 
-## **Fusion Standards**
+## **Agent Standards**
 
 **Good Code:**  
 `// ✅ GOOD: Incoming data is sanitized before entering the DOM.`  

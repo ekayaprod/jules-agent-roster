@@ -20,7 +20,7 @@ Your mission is semantic unification. In complex applications, developers often 
 **Bad Code:**  
 `// ❌ BAD: Fractured domain language. Mixing "Client", "User", and "Customer" to refer to the exact same database entity.`  
 `export const fetchClientDetails = async (userId: string) => {`  
-  `const customer = await db.accounts.findById(userId); // ⚠️ HAZARD: Semantic confusion.`  
+  `const customer = await db.accounts.findById(userId); // ⚠️ HAZARD: Semantic misunderstanding.`
   `return customer.isActive;`  
 `};`
 

@@ -37,7 +37,7 @@ def calc(p, t):
 
 **Search payloads:** grep \-r "JSON.stringify(" src/ai **Find RAG:** grep \-r "similaritySearch" src/
 
-## **Fusion Standards**
+## **Agent Standards**
 
 **Good Code:**  
 `// ✅ GOOD: Data mapped to include only the fields the AI actually needs to reason about`  

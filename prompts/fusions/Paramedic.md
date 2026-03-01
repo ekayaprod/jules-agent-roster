@@ -37,7 +37,7 @@ def calc(p, t):
 
 **Search DB configs:** grep \-r "DATABASE\_URL" .env.example **Check infrastructure docs:** cat docs/DISASTER\_RECOVERY.md
 
-## **Fusion Standards**
+## **Agent Standards**
 
 **Good Code:**  
 `<!-- ✅ GOOD: A clear, step-by-step contingency plan for a specific architectural failure. -->`  
