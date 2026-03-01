@@ -557,7 +557,24 @@ class FusionLab {
       descEl.style.color = "var(--text-secondary)";
       descEl.style.marginTop = "0.5rem";
       descEl.style.marginBottom = "1.5rem";
-      output.insertBefore(descEl, fusionCode);
+
+      try {
+        output.insertBefore(descEl, fusionCode);
+      } catch (error) {
+        console.error(
+          JSON.stringify({
+            event: "FUSION_DOM_INSERT_FAILED",
+            result: result.name,
+            error: error.message,
+          })
+        );
+        // Fallback: If fusionCode is not a child of output, try appending to fusionCode's parent or output
+        if (fusionCode && fusionCode.parentNode) {
+          fusionCode.parentNode.insertBefore(descEl, fusionCode);
+        } else {
+          output.appendChild(descEl);
+        }
+      }
     }
     descEl.innerText = result.description || "";
 
