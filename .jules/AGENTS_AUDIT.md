@@ -11,9 +11,9 @@
 - [ ] No explicit dependency lockfiles (`package-lock.json`, `yarn.lock`) to ensure reproducible builds and prevent dependency poisoning.
 
 ## 🧹 Debris Field
-- [ ] `verification/` folder contains unused and obsolete artifacts (`app_verification.png`, `error_state.png`).
-- [ ] Several Python testing scripts (`verify_ux_polish_screenshot2.py`, etc.) appear orphaned or unimported.
-- [ ] Unused `test_fusion_index.js` floating outside standard testing directory structure.
+- [x] `verification/` folder contains unused and obsolete artifacts (`app_verification.png`, `error_state.png`).
+- [x] Several Python testing scripts (`verify_ux_polish_screenshot2.py`, etc.) appear orphaned or unimported.
+- [x] Unused `test_fusion_index.js` floating outside standard testing directory structure.
 
 ## 🕵️ Coverage Gaps
 - [ ] Complete lack of standard test coverage (`test_` or `spec_` files) for core modules (`FusionCompiler.js`, `FusionIndex.js`, `FusionLab.js`).
