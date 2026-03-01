@@ -76,7 +76,7 @@ class AgentCard {
                   <!-- Curator: Optimized Chevron -->
                   <svg aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
                   <!-- Wordsmith: Active voice -->
-                  <span>Show Prompt</span>
+                  <span>${UI_TEXT.BUTTONS.SHOW_PROMPT}</span>
               </button>
               <div class="details-grid" id="details-${index}">
                   <div class="details-overflow"></div>
@@ -89,7 +89,7 @@ class AgentCard {
                       <svg class="copy-icon" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                       <!-- Curator: Optimized Check Icon -->
                       <svg class="check-icon hidden" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                      <span>Copy Prompt</span>
+                      <span>${UI_TEXT.BUTTONS.COPY_PROMPT}</span>
                   </button>
               </div>
           `;

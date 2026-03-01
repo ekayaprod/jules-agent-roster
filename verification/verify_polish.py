@@ -79,7 +79,7 @@ def verify_polish_v2():
 
             empty_state = page.locator("#emptyState p")
             text = empty_state.inner_text()
-            expected_text = "No agents found. Try a different keyword."
+            expected_text = "We couldn't locate any agents matching your search. Try using a broader keyword or clear your filters."
 
             if text == expected_text:
                 print(f"✅ Found correct empty state text: '{text}'")

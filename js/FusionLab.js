@@ -408,7 +408,7 @@ class FusionLab {
     if (fuseBtn) {
       fuseBtn.classList.remove("loading");
       fuseBtn.classList.add("error");
-      fuseBtn.innerText = "Ignite Fusion Protocol";
+      fuseBtn.innerText = UI_TEXT.BUTTONS.IGNITE_FUSION;
       fuseBtn.disabled = false;
       fuseBtn.setAttribute("aria-disabled", "false");
     }
@@ -452,7 +452,7 @@ class FusionLab {
     this.clearError();
     if (fuseBtn) {
       fuseBtn.classList.add("loading");
-      fuseBtn.innerText = "Igniting Protocol...";
+      fuseBtn.innerText = UI_TEXT.BUTTONS.IGNITING_FUSION;
       fuseBtn.disabled = true;
       fuseBtn.setAttribute("aria-disabled", "true");
     }
@@ -619,7 +619,7 @@ class FusionLab {
   showResult() {
     const fuseBtn = document.getElementById("fuseBtn");
     if (fuseBtn) {
-      fuseBtn.innerText = "Ignite Fusion Protocol";
+      fuseBtn.innerText = UI_TEXT.BUTTONS.IGNITE_FUSION;
       fuseBtn.classList.remove("loading");
       fuseBtn.disabled = false;
       fuseBtn.setAttribute("aria-disabled", "false");

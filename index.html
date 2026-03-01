@@ -2137,7 +2137,7 @@
       </style>
       <div class="no-js-message fusion-error hidden flex justify-center items-center gap-4 my-8 mx-auto max-w-xl text-left">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-        <span>It looks like JavaScript is disabled. Please enable it to use the Agent Roster.</span>
+        <span data-i18n="MESSAGES.NO_JS">It looks like JavaScript is disabled. Please enable it to use the Agent Roster.</span>
       </div>
     </noscript>
 
@@ -2233,7 +2233,7 @@
               d="M5 13l4 4L19 7"
             />
           </svg>
-          <span>Copy All Prompts</span>
+          <span data-i18n="BUTTONS.COPY_ALL">Copy All Prompts</span>
         </button>
 
         <div class="download-group">
@@ -2275,7 +2275,7 @@
                 d="M5 13l4 4L19 7"
               />
             </svg>
-            <span>Download All Prompts</span>
+            <span data-i18n="BUTTONS.DOWNLOAD_ALL">Download All Prompts</span>
           </button>
           <button
             id="downloadDropdownBtn"
@@ -2318,7 +2318,7 @@
                   d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
                 />
               </svg>
-              <span>Download Custom Agents</span>
+              <span data-i18n="BUTTONS.DOWNLOAD_CUSTOM">Download Custom Agents</span>
               <svg
                 class="check-icon hidden ml-auto"
                 aria-hidden="true"
@@ -2384,9 +2384,9 @@
           d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
         />
       </svg>
-      <h2 class="empty-title">No Agents Found</h2>
-      <p class="empty-desc">We couldn't locate any agents matching your search. Try using a broader keyword or clear your filters.</p>
-      <button id="clearSearchEmptyBtn" class="mt-6">Clear Search</button>
+      <h2 class="empty-title" data-i18n="EMPTY_STATES.NO_AGENTS">No Agents Found</h2>
+      <p class="empty-desc" data-i18n="EMPTY_STATES.NO_AGENTS_DESC">We couldn't locate any agents matching your search. Try using a broader keyword or clear your filters.</p>
+      <button id="clearSearchEmptyBtn" class="mt-6" data-i18n="BUTTONS.CLEAR_SEARCH">Clear Search</button>
     </div>
 
     <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
@@ -2675,18 +2675,18 @@
         <button id="slotACard" class="slot-card" aria-label="Select Primary Protocol">
           <div class="slot-content">
             <span class="slot-icon-placeholder">+</span>
-            <span class="slot-label">Select Agent A</span>
+            <span class="slot-label" data-i18n="BUTTONS.SELECT_AGENT_A">Select Agent A</span>
           </div>
         </button>
 
         <div class="fusion-action-area">
-          <button id="fuseBtn" disabled aria-disabled="true">Ignite Fusion Protocol</button>
+          <button id="fuseBtn" disabled aria-disabled="true" data-i18n="BUTTONS.IGNITE_FUSION">Ignite Fusion Protocol</button>
         </div>
 
         <button id="slotBCard" class="slot-card" aria-label="Select Secondary Protocol">
           <div class="slot-content">
             <span class="slot-icon-placeholder">+</span>
-            <span class="slot-label">Select Agent B</span>
+            <span class="slot-label" data-i18n="BUTTONS.SELECT_AGENT_B">Select Agent B</span>
           </div>
         </button>
       </div>
@@ -2748,7 +2748,7 @@
                 d="M5 13l4 4L19 7"
               />
             </svg>
-            <span>Copy Prompt</span>
+            <span data-i18n="BUTTONS.COPY_PROMPT">Copy Prompt</span>
           </button>
         </div>
         <div id="fusionCode"></div>
@@ -2783,9 +2783,9 @@
                 <svg class="empty-icon" aria-hidden="true" width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
-                <h2 class="empty-title">No Fusion Protocols Found</h2>
-                <p class="empty-desc">We couldn't locate any agents matching your search. Try a broader term.</p>
-                <button id="clearPickerSearchEmptyBtn" class="mt-6">Clear Search</button>
+                <h2 class="empty-title" data-i18n="EMPTY_STATES.NO_FUSIONS">No Fusion Protocols Found</h2>
+                <p class="empty-desc" data-i18n="EMPTY_STATES.NO_FUSIONS_DESC">We couldn't locate any agents matching your search. Try a broader term.</p>
+                <button id="clearPickerSearchEmptyBtn" class="mt-6" data-i18n="BUTTONS.CLEAR_SEARCH">Clear Search</button>
             </div>
         </div>
     </dialog>
@@ -2793,6 +2793,7 @@
     <!-- Palette+: Dynamic Toast Notification Container -->
     <div id="toast" class="toast"></div>
 
+    <script src="js/constants/ui-text.js"></script>
     <script>
       const CONFIG = {
         emojiKitchenPrefix: "https://emojik.vercel.app/s/",
@@ -2838,6 +2839,7 @@
     <script src="js/ui/ToastNotification.js"></script>
     <script src="js/ui/AgentCard.js"></script>
     <script src="js/ui/ClipboardUtils.js"></script>
+    <script src="js/utils/FormatUtils.js"></script>
     <script src="js/utils/PerformanceUtils.js"></script>
     <script src="js/utils/DownloadUtils.js"></script>
     <script src="js/FusionCompiler.js"></script>
