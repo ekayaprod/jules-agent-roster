@@ -22,18 +22,11 @@ class AgentRepository {
             // Fetch Prompts for Standard Agents
             await Promise.all(
                 agentsData.map(async (agent) => {
-                    try {
-                        const promptRes = await this.fetchWithRetry(`prompts/${agent.name}.md`);
-                        if (promptRes.ok) {
-                            agent.prompt = await promptRes.text();
-                        } else {
-                            console.warn(`Failed to load prompt for ${agent.name}`);
-                            agent.prompt = "Prompt missing.";
-                        }
-                    } catch (e) {
-                        console.warn(`Error loading prompt for ${agent.name}`, e);
-                        agent.prompt = "Prompt missing.";
-                    }
+                    agent.prompt = await this.fetchPrompt(
+                        agent.name,
+                        `prompts/${agent.name}.md`,
+                        "Prompt missing.",
+                    );
                 }),
             );
 
@@ -78,21 +71,11 @@ class AgentRepository {
                                     .trim();
                                 const filename = `prompts/fusions/${cleanName}.md`;
 
-                                try {
-                                    const promptRes = await this.fetchWithRetry(filename);
-                                    if (promptRes.ok) {
-                                        agent.prompt = await promptRes.text();
-                                    } else {
-                                        // File not found -> Assume dynamic fusion (like "The Void")
-                                        agent.prompt = null;
-                                    }
-                                } catch (e) {
-                                    console.warn(
-                                        `Error loading custom prompt for ${agent.name}`,
-                                        e,
-                                    );
-                                    agent.prompt = null;
-                                }
+                                agent.prompt = await this.fetchPrompt(
+                                    agent.name,
+                                    filename,
+                                    null,
+                                );
 
                                 // Add to valid set
                                 validatedCustomData[key] = agent;
@@ -130,6 +113,34 @@ class AgentRepository {
         } catch (error) {
             console.error("Failed to load agents.json", error);
             throw error;
+        }
+    }
+
+    /**
+     * Safely fetches a prompt file, handling parsing and default fallbacks.
+     * @param {string} name - The agent name for logging.
+     * @param {string} url - The URL to fetch the prompt from.
+     * @param {string|null} fallback - The fallback value if fetching fails.
+     * @returns {Promise<string|null>} The parsed prompt or the fallback value.
+     */
+    async fetchPrompt(name, url, fallback) {
+        try {
+            const res = await this.fetchWithRetry(url);
+            if (!res.ok) {
+                if (!url.includes("fusions")) {
+                    console.warn(`Failed to load prompt for ${name}`);
+                }
+                return fallback;
+            }
+            return await res.text();
+        } catch (e) {
+            console.warn(
+                url.includes("fusions")
+                    ? `Error loading custom prompt for ${name}`
+                    : `Error loading prompt for ${name}`,
+                e
+            );
+            return fallback;
         }
     }
 
