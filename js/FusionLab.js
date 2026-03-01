@@ -569,10 +569,27 @@ class FusionLab {
           })
         );
         // Fallback: If fusionCode is not a child of output, try appending to fusionCode's parent or output
-        if (fusionCode && fusionCode.parentNode) {
-          fusionCode.parentNode.insertBefore(descEl, fusionCode);
-        } else {
-          output.appendChild(descEl);
+        try {
+          if (fusionCode && fusionCode.parentNode) {
+            fusionCode.parentNode.insertBefore(descEl, fusionCode);
+          } else {
+            output.appendChild(descEl);
+          }
+        } catch (fallbackError) {
+          console.error(
+            JSON.stringify({
+              event: "FUSION_DOM_INSERT_FALLBACK_FAILED",
+              result: result.name,
+              error: fallbackError.message,
+            })
+          );
+          if (output) {
+            try {
+              output.appendChild(descEl);
+            } catch (finalError) {
+              // Gracefully degrade by swallowing since we already logged the failure
+            }
+          }
         }
       }
     }
