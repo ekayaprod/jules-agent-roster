@@ -173,6 +173,14 @@
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       }
 
+      .skip-link:hover {
+        background-color: var(--accent-hover);
+      }
+
+      .skip-link:active {
+        transform: translateX(-50%) scale(0.95);
+      }
+
       .skip-link:focus {
         top: 1rem;
         outline: none;
@@ -253,6 +261,10 @@
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s;
       }
 
+      .clear-search-btn.visible:active {
+        transform: translateY(-50%) scale(0.9);
+      }
+
       /* Palette+: Focus Visibility */
       button:focus-visible,
       a:focus-visible,
@@ -261,6 +273,11 @@
         outline: 2px solid var(--accent);
         outline-offset: 2px;
         box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3);
+      }
+
+      button:disabled, input:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
       }
 
       button {
@@ -381,6 +398,10 @@
         outline: none; /* Replaced by border/bg polish */
       }
 
+      .dropdown-item:active {
+        transform: scale(0.98);
+      }
+
       input[type="text"] {
         padding: 0.75rem;
         padding-left: 2.75rem; /* Palette+: Space for Search icon */
@@ -394,7 +415,7 @@
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
-      input[type="text"]:focus {
+      input[type="text"]:focus-visible {
         outline: none;
         border-color: var(--accent);
         box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.3);
@@ -760,6 +781,10 @@
         opacity: 1;
       }
 
+      .toast-close-btn:active {
+        transform: scale(0.9);
+      }
+
       /* Toast Types */
       .toast.success {
         background-color: #22c55e;
@@ -1023,6 +1048,10 @@
         color: #0f172a;
         box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
         transform: scale(1.05);
+      }
+
+      .nav-pill:active {
+        transform: scale(0.95);
       }
 
       @media (max-width: 640px) {
@@ -1679,6 +1708,10 @@
         background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.6));
       }
 
+      .slot-card:active {
+        transform: translateY(0) scale(0.98);
+      }
+
       .slot-content {
         display: flex;
         flex-direction: column;
@@ -1929,6 +1962,10 @@
       .close-btn:hover {
         background-color: rgba(255, 255, 255, 0.1);
         color: var(--text-primary);
+      }
+
+      .close-btn:active {
+        transform: scale(0.9);
       }
 
       .picker-search {
