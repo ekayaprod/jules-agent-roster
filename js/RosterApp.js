@@ -473,12 +473,7 @@ class RosterApp {
       return;
     }
 
-    const body = validCustomAgents
-      .map(
-        (a) =>
-          `${a.prompt}\n\n--------------------------------------------------------------------------------`,
-      )
-      .join("\n\n");
+    const body = FormatUtils.formatAgentPrompts(validCustomAgents);
 
     const content = header + body;
     DownloadUtils.downloadTextFile(content, "jules_custom_agents.md");
@@ -495,12 +490,7 @@ class RosterApp {
   downloadAll(btn) {
     const header =
       "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
-    const body = this.agents
-      .map(
-        (a) =>
-          `${a.prompt}\n\n--------------------------------------------------------------------------------`,
-      )
-      .join("\n\n");
+    const body = FormatUtils.formatAgentPrompts(this.agents);
 
     const content = header + body;
     DownloadUtils.downloadTextFile(content, "jules_roster.md");
@@ -515,12 +505,7 @@ class RosterApp {
   async copyAll(btn) {
     const header =
       "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
-    const body = this.agents
-      .map(
-        (a) =>
-          `${a.prompt}\n\n--------------------------------------------------------------------------------`,
-      )
-      .join("\n\n");
+    const body = FormatUtils.formatAgentPrompts(this.agents);
     const success = await ClipboardUtils.copyText(header + body);
 
     if (success) {
