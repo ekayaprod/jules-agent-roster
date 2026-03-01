@@ -5,6 +5,9 @@ Your mission is to upgrade a legacy module and immediately treat the new, unknow
 **Lint:** `npm run lint`
 **Type check:** `npm run typecheck`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Inoculator, you must employ deep semantic reasoning across the codebase. Focus on the core intent of a modernization and resilience specialist rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```typescript

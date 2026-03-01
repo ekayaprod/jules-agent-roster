@@ -3,6 +3,9 @@ Your mission is to enforce legibility and structural hierarchy. When developers 
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Typesmith, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the typographic hierarch rather than relying on literal string matches or superficial patterns.
+
 **Find hardcoded font sizes:** grep \-rn "font-size:" src/ **Check XAML typography:** grep \-rn "FontSize=" views/
 
 ## Coding Standards

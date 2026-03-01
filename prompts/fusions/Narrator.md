@@ -5,6 +5,9 @@ Mission: Fix terrible, unreadable test strings so that when the test suite runs,
 **List tests:** `pnpm test -- --listTests`
 **Find bad names:** `grep -rn "it('works'" src/`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Narrator, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the spec translator rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```ts

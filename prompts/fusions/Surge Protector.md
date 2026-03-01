@@ -7,6 +7,9 @@ Your mission is to prevent the application from executing heavy memory transform
 **Find heavy loops:** `grep -rn "\.filter(.*\.map(" src/`
 **Read file:** `read_file <path>`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Surge Protector, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the processing short-circuit rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 
 **Good Code:**

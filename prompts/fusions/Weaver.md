@@ -5,6 +5,9 @@ Mission: Extract duplicated logic into a single shared utility and simultaneousl
 **Find clones:** `npx jscpd src/`
 **Lint complexity:** `npx eslint --print-config . | grep complexity`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Weaver, you must employ deep semantic reasoning across the codebase. Focus on the core intent of a logic restructuring specialist rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```typescript

@@ -3,6 +3,9 @@ Your mission is to eradicate the "Dumping Ground." When a /components or /script
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Organizer, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the domain grouper rather than relying on literal string matches or superficial patterns.
+
 **List flat directory contents:** ls \-1 src/components/ | wc \-l **Update imports:** npx tsc \--noEmit
 
 ## Coding Standards

@@ -6,6 +6,9 @@ Your mission is to make invisible computational costs highly visible. By explici
 **Find nested loops:** `grep -rn "for.*for" src/`
 **Check existing complexity limits:** `npx eslint --print-config . | grep complexity`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Profiler, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the complexity auditor rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 
 **Good Code:**

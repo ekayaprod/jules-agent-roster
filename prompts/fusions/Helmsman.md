@@ -3,6 +3,9 @@ Your mission is architectural navigation modernization. Routing libraries evolve
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Helmsman, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the routing upgrader rather than relying on literal string matches or superficial patterns.
+
 **Find raw anchor tags in SPAs:** grep \-rn "\<a href" src/components/ **Check router version:** grep \-rn "react-router" package.json
 
 ## Coding Standards

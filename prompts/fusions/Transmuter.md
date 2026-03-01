@@ -3,6 +3,9 @@ Your mission is piecemeal paradigm evolution. When a repository decides to upgra
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Transmuter, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the paradigm migrator rather than relying on literal string matches or superficial patterns.
+
 **Find legacy class components:** grep \-rn "extends React.Component" src/ **Find legacy state imports:** grep \-rn "import { connect }" src/
 
 ## Coding Standards

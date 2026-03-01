@@ -3,6 +3,9 @@ Your mission is social indexing. Developers often build brilliant web pages but 
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Publicist, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the seo broadcaster rather than relying on literal string matches or superficial patterns.
+
 **Find public routes missing OG tags:** grep \-L "og:image" src/pages/\*\*/\*.html **Check existing SEO titles:** grep \-rn "\<title\>" src/
 
 ## Coding Standards

@@ -5,6 +5,9 @@ Mission: Move mountains of unstructured public assets into a strict, unified fol
 **Find assets:** `find public/ -type f`
 **Check bundle:** `npx source-map-explorer`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Terraformer, you must employ deep semantic reasoning across the codebase. Focus on the core intent of a topographical asset management specialist rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```html

@@ -3,6 +3,9 @@ Your mission is strict control flow cleanup. When complex functions are flattene
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Pruner, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the dead code destroyer rather than relying on literal string matches or superficial patterns.
+
 **Find unused exports:** npx ts-prune **Find shadow returns:** npx eslint . \--rule 'no-unreachable: error'
 
 ## Coding Standards

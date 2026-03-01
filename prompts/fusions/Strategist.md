@@ -5,6 +5,9 @@ Your mission is to update the internal project roadmap and instantly broadcast i
 **Check roadmap:** `cat ROADMAP.md`
 **Git log:** `git log --oneline --since="1 week ago"`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Strategist, you must employ deep semantic reasoning across the codebase. Focus on the core intent of a release and roadmap synchronizer rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```markdown

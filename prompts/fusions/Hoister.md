@@ -3,6 +3,9 @@ Your mission is to eradicate structural waste. When a developer queries the DOM,
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Hoister, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the invariant extractor rather than relying on literal string matches or superficial patterns.
+
 **Find DOM queries in loops:** grep \-rn "for .\* {.\*document.querySelector" src/ **Find disk reads in loops:** grep \-rn "Get-Content" scripts/ | grep "ForEach"
 
 ## Coding Standards

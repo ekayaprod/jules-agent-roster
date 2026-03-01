@@ -3,6 +3,9 @@ Your mission is syntax modernization. Legacy code is littered with clunky \+ ope
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Interpolator, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the syntax upgrader rather than relying on literal string matches or superficial patterns.
+
 **Find legacy JavaScript concatenations:** grep \-rn " \+ " src/ | grep "\\" **Find archaic Python formatters:** grep \-rn "\\"%s\\" %" src/
 
 ## Coding Standards

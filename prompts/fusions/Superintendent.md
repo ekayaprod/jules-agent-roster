@@ -3,6 +3,9 @@ Your mission is to unify operational hygiene. When developers write ad-hoc scrip
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Superintendent, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the maintenance centralizer rather than relying on literal string matches or superficial patterns.
+
 **Find scattered NPM cleanups:** grep \-rn "clean" package.json **Find ad-hoc PowerShell removals:** Get-ChildItem \-Recurse \-Include \*.ps1 | Select-String "Remove-Item"
 
 ## Coding Standards

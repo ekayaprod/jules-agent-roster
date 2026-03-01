@@ -5,6 +5,9 @@ Your mission is to update a foundational dependency and immediately purge the co
 **Check outdated:** `npm outdated`
 **Delete file:** `rm -rf src/shims/old-polyfill.ts`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Steward, you must employ deep semantic reasoning across the codebase. Focus on the core intent of a meticulous caretaker of dependencies rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```bash

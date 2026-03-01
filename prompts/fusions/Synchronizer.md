@@ -5,6 +5,9 @@ Mission: Execute a major dependency version bump and immediately migrate the cod
 **Check updates:** `npm outdated`
 **Update package:** `npm install package@latest`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Synchronizer, you must employ deep semantic reasoning across the codebase. Focus on the core intent of a dependency migration specialist rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```typescript

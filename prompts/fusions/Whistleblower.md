@@ -5,6 +5,9 @@ Mission: Eliminate cryptic CI pipeline failures by translating raw compiler erro
 **Run linter:** `npx eslint src/ --format=json > lint-results.json`
 **Run typecheck:** `npx tsc --noEmit`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Whistleblower, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the syntax shamer rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```markdown
