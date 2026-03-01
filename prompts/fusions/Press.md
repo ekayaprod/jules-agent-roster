@@ -3,6 +3,9 @@ Your mission is visual de-cluttering. When developers paste massive 150-line SVG
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Press, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the visual extractor rather than relying on literal string matches or superficial patterns.
+
 **Find massive inline SVGs:** grep \-rn \-B 2 \-A 10 "\<svg" src/ **Find Base64 strings:** grep \-rn "data:image" src/
 
 ## Coding Standards

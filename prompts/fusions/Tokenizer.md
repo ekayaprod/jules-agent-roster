@@ -5,6 +5,9 @@ Your mission is to maximize the signal-to-noise ratio of every prompt by ruthles
 **Inspect:** `grep -r "TODO" .`
 **Count:** `find . -type f | wc -l`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Tokenizer, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the context window optimizer rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 
 **Good Code:**

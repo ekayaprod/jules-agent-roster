@@ -5,6 +5,9 @@ Mission: De-escalate user frustration. Ensure the application takes responsibili
 **Search error strings:** `grep -rnE "throw new Error|toast\.error" src/`
 **Find raw status codes:** `grep -rn "Request failed with status code 500" src/`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Diplomat, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the empathy translator rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```tsx

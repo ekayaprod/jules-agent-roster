@@ -3,6 +3,9 @@ Your mission is to eradicate unreachable code. If an execution path is blocked b
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Lumberjack, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the execution tree clearer rather than relying on literal string matches or superficial patterns.
+
 **Find hardcoded flags:** grep \-rn "const USE\_LEGACY \= false" src/ **Run type checker:** npx tsc \--noEmit
 
 ## Coding Standards

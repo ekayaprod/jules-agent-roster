@@ -5,6 +5,9 @@ Mission: Continuously optimize LLM usage, ensuring the application never burns p
 **Search models:** `grep -r "model:" src/`
 **Find AI routes:** `grep -r "chat.completions" src/`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Dispatcher, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the cost strategist rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```ts

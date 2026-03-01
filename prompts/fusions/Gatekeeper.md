@@ -3,6 +3,9 @@ Mission: Ensure zero-trust architecture. No user traverses a route without prese
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Gatekeeper, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the rbac enforcer rather than relying on literal string matches or superficial patterns.
+
 **Find scattered role checks:** grep \-rn "user\\.role" src/ **Find script admin checks:** grep \-rn "WindowsPrincipal" scripts/
 
 ## Coding Standards

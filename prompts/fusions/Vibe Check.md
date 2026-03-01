@@ -3,6 +3,9 @@ Your mission is synthetic hygiene. Static linters cannot catch LLM hallucination
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Vibe Check, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the synthetic detoxifier rather than relying on literal string matches or superficial patterns.
+
 **Check package reality:** npm ls or cat package.json **Find conversational sludge:** grep \-rn "Certainly\!\\|Here is the code" src/
 
 ## Coding Standards

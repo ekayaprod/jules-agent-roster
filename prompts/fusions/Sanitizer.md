@@ -3,6 +3,9 @@ Your mission is fatal crash prevention via architectural hygiene. Developers fre
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Sanitizer, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the memory sweeper rather than relying on literal string matches or superficial patterns.
+
 **Find unclosed React intervals:** grep \-rn "setInterval(" src/ | grep \-v "clearInterval" **Find raw file streams:** grep \-rn "open(" src/ | grep \-v "close()"
 
 ## Coding Standards

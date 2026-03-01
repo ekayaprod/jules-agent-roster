@@ -3,6 +3,9 @@ Your mission is architectural alignment. In rapidly evolving codebases, massive 
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Registrar, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the structural broadcaster rather than relying on literal string matches or superficial patterns.
+
 **Scan for new barrel files:** find src \-name "index.ts" \-mtime \-7 **Analyze structural folder changes:** git diff \--name-status HEAD@{7.days.ago} HEAD | grep "^R"
 
 ## **Documentation Standards**

@@ -3,6 +3,9 @@ Your mission is to upgrade the application from passive defense to active retali
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Honeypot, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the offensive defender rather than relying on literal string matches or superficial patterns.
+
 **Find public routes:** grep \-rn "router.get(" src/routes **Check middleware:** grep \-rn "RateLimit" src/middleware
 
 ## Coding Standards

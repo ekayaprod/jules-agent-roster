@@ -3,6 +3,9 @@ Your mission is professional logic organization. When developers build complex f
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Systematizer, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the logic declutterer rather than relying on literal string matches or superficial patterns.
+
 **Lint complexity:** npx eslint \--print-config . | grep complexity **Check Python types:** mypy src/ \--strict
 
 ## Coding Standards

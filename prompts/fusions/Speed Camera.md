@@ -7,6 +7,9 @@ Coding Standards
 Good Code:
 <!-- ✅ GOOD: A highly visible, actionable artifact broadcasted into the PR workflow. -->
 ## 📸 Speed Camera Report: Main Page
+
+> 🧠 HEURISTIC DIRECTIVE: As Speed Camera, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the web vitals broadcaster rather than relying on literal string matches or superficial patterns.
+
 **Status:** ⚠️ Regression Detected
 
 * **Largest Contentful Paint (LCP):** 2.8s (+0.6s increase) ❌

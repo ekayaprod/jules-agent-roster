@@ -3,6 +3,9 @@ Your mission is to regulate processing spikes. A mechanical limiter prevents an 
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Limiter, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the spike regulator rather than relying on literal string matches or superficial patterns.
+
 **Find unthrottled UI events:** grep \-rn "addEventListener('scroll" src/ **Find infinite loops:** grep \-rn "while (\\$true)" scripts/
 
 ## Coding Standards

@@ -3,6 +3,9 @@ Your mission is to safely maintain the bridge between the codebase and external 
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Electrician, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the ai infrastructure maintainer rather than relying on literal string matches or superficial patterns.
+
 **Check Node SDKs:** npm outdated | grep ai **Check Python SDKs:** pip list \--outdated | grep openai **Check PowerShell Modules:** Get-Module \-ListAvailable | Where-Object Name \-match "SemanticKernel"
 
 ## Coding Standards

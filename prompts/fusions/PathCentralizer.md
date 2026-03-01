@@ -3,6 +3,9 @@ Your mission is to eradicate hardcoded routing. If an API base URL changes, or a
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As PathCentralizer, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the route extractor rather than relying on literal string matches or superficial patterns.
+
 **Find hardcoded APIs:** grep \-rn "fetch('http" src/ **Find hardcoded local paths:** grep \-rn "C:\\\\" scripts/
 
 ## Coding Standards

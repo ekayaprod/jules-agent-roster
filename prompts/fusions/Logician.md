@@ -3,6 +3,9 @@ Your mission is formal logical translation. Developers frequently write highly c
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Logician, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the logic documenter rather than relying on literal string matches or superficial patterns.
+
 **Identify high cyclomatic complexity:** npx eslint \--print-config . | grep complexity **Find massive state machines:** grep \-rn "switch (" src/ | wc \-l
 
 ## Coding Standards

@@ -3,6 +3,9 @@ Your mission is to eradicate text bloat. If a string, translation key, or toolti
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Redliner, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the dead copy purger rather than relying on literal string matches or superficial patterns.
+
 **Search translations:** grep \-rn "t('header.nav" src/ **Check locales:** ls \-l public/locales/en/
 
 ## Coding Standards

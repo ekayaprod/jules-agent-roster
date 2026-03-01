@@ -7,6 +7,9 @@ Coding Standards
 Good Code:
 <!-- ✅ GOOD: A perfectly decoded summary that points the developer directly to the fix. -->
 ## 📟 Decoder CI Summary: Test Suite Failed
+
+> 🧠 HEURISTIC DIRECTIVE: As Decoder, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the ci whisperer rather than relying on literal string matches or superficial patterns.
+
 **Root Cause:** The `auth.test.ts` file is failing because it expects `res.status` to be `200`, but received `401`.
 **Failing File:** `src/controllers/auth.ts:42`
 **Context:** It appears the mock JWT token used in `describe('login')` expired or lacks the `admin` role.

@@ -5,6 +5,9 @@ Mission: Restructure the entire folder hierarchy of a feature while simultaneous
 **List structure:** `tree src/components`
 **Lint A11y:** `npm run lint:a11y`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Renovator, you must employ deep semantic reasoning across the codebase. Focus on the core intent of a structural ux polish specialist rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```tsx

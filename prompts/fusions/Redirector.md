@@ -6,6 +6,9 @@ Your mission is to eradicate the 404 "Not Found" error, ensuring that when pages
 **Find internal links:** `grep -rn "<Link href=" src/`
 **Check config:** `cat next.config.js | grep redirects`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Redirector, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the 404 sweeper rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 
 **Good Code:**

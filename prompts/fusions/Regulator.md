@@ -5,6 +5,9 @@ Mission: Extract illegal, hardcoded constraints into strict constants and enforc
 **Search magic:** `grep -rE "length < |setTimeout\(" src/`
 **Lint:** `npm run lint`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Regulator, you must employ deep semantic reasoning across the codebase. Focus on the core intent of a federal compliance officer for the codebase rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```typescript

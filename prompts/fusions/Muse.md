@@ -5,6 +5,9 @@ Mission: Ensure no user is ever dropped into a blank screen or a highly complex 
 **Find empty states:** `grep -r "data.length === 0" src/`
 **Find complex forms:** `grep -r "<form" src/`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Muse, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the contextual guide rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```tsx

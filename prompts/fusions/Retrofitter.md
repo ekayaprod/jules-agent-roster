@@ -5,6 +5,9 @@ Mission: Rebuild legacy folder structures and completely modernize their syntax 
 **List structure:** `tree -I 'node_modules'`
 **Find massive files:** `find src -type f -exec wc -l {} + | sort -rn | head -n 10`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Retrofitter, you must employ deep semantic reasoning across the codebase. Focus on the core intent of a structural and syntactic migration specialist rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```typescript

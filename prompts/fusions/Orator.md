@@ -3,6 +3,9 @@ Your mission is eloquent telemetry. When an edge-case hits, developers frequentl
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Orator, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the error copywriter rather than relying on literal string matches or superficial patterns.
+
 **Find lazy error strings:** grep \-rn 'Error(".\*")' src/ **Find raw PowerShell throws:** grep \-rn "Write-Error" scripts/
 
 ## Coding Standards

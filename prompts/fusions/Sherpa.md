@@ -3,6 +3,9 @@ Your mission is spatial orientation. When developers build dense dashboards, mul
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Sherpa, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the onboarding architect rather than relying on literal string matches or superficial patterns.
+
 **Find dense, unguided UI grids:** grep \-rn "grid-cols-\\|flex-col" src/components/ | grep \-v "data-step" **Find multi-step CLI prompts:** grep \-rn "Read-Host" scripts/ | wc \-l
 
 ## Coding Standards

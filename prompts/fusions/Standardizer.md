@@ -3,6 +3,9 @@ Your mission is semantic consistency. In a large application, developers often h
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Standardizer, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the copy centralizer rather than relying on literal string matches or superficial patterns.
+
 **Find scattered microcopy:** grep \-rn "\>Submit\<\\|\>Save\<" src/ **Find duplicated macro-text:** grep \-rn "Copyright 202.\*All rights reserved" src/
 
 ## Coding Standards

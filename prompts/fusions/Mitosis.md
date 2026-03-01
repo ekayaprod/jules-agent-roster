@@ -5,6 +5,9 @@ Mission: Find heavy, synchronous mathematical or data-parsing operations and spl
 **Find heavy processing:** `grep -rn "for (let i" src/ | grep -v "i < 10"`
 **Find parsing:** `grep -rn "JSON.parse(" src/`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Mitosis, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the parallelizer rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```javascript

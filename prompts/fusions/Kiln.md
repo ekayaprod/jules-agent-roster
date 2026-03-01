@@ -5,6 +5,9 @@ Mission: Modernize legacy code and immediately subject it to intense boundary te
 **Lint:** `npm run lint`
 **Run tests:** `npm run test -- --coverage`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Kiln, you must employ deep semantic reasoning across the codebase. Focus on the core intent of a high-heat refactoring specialist rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```javascript

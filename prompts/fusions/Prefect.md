@@ -3,6 +3,9 @@ Your mission is to upgrade implicit assumptions into explicit constraints. If a 
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Prefect, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the constraint enforcer rather than relying on literal string matches or superficial patterns.
+
 **Find unconstrained PowerShell:** grep \-L "\#Requires" \*.ps1 **Check JS strictness:** grep \-L "use strict" src/\*\*/\*.js
 
 ## Coding Standards

@@ -3,6 +3,9 @@ Your mission is to enforce the physical skeleton. When a developer defines a new
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Scaffolder, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the structural propagator rather than relying on literal string matches or superficial patterns.
+
 **Find missing React routes:** grep \-rn "\<Route path=" src/ | grep \-v "element=" **Check missing PowerShell module exports:** grep \-rn "FunctionsToExport" \*.psd1
 
 ## Coding Standards

@@ -6,6 +6,9 @@ Your mission is to ensure that when an API, component, or system is permanently 
 **Find deletions:** `git log --diff-filter=D --summary -n 5`
 **Check changelog:** `cat CHANGELOG.md`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Undertaker, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the deletion broadcaster rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 
 **Good Code:**

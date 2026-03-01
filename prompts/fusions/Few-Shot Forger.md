@@ -5,6 +5,9 @@ Mission: Eliminate "Zero-Shot" hallucinations by proving to the AI exactly what 
 **Search LLM arrays:** `grep -r "role: 'system'" src/`
 **Find parsers:** `grep -r "JSON.parse(llmOutput)" src/`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Few-Shot Forger, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the inline example builder rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```ts

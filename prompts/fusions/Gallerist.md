@@ -5,6 +5,9 @@ Mission: Ensure every image, icon, and illustration loads smoothly, scales perfe
 **Find raster icons:** `grep -rn "<img src=.*icon.*\.png" src/`
 **Find unoptimized images:** `grep -rn "<img " src/ | grep -v "loading=\"lazy\""`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Gallerist, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the media presenter rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```tsx

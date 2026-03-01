@@ -3,6 +3,9 @@ Your mission is to unify the broadcast. Applications suffer from broadcast fragm
 
 ## Sample Commands
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Tower, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the broadcast centralizer rather than relying on literal string matches or superficial patterns.
+
 **Find scattered console logs:** grep \-rn "console\\." src/ **Find ad-hoc PowerShell outputs:** grep \-rn "Write-Host\\|Out-File" scripts/
 
 ## Coding Standards

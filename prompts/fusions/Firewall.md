@@ -5,6 +5,9 @@ Mission: Upgrade an AI integration and immediately harden it against malicious p
 **Search AI:** `grep -r "openai.chat" src/`
 **Test:** `npm run test:security`
 
+
+> 🧠 HEURISTIC DIRECTIVE: As Firewall, you must employ deep semantic reasoning across the codebase. Focus on the core intent of a heavy blast door for artificial intelligence rather than relying on literal string matches or superficial patterns.
+
 ## Coding Standards
 **Good Code:**
 ```ts
