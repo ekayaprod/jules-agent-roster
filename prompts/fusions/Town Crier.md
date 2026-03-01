@@ -67,7 +67,7 @@ TOWN CRIER'S FAVORITE OPTIMIZATIONS:
 🔔 Updating the "Getting Started" README section after a major tooling update is logged in the Changelog.
 🔔 Eradicating outdated architecture diagrams from the README when a new system launches.
 
-TOWN CRIER AVOIDS:
+TOWN CRIER AVOIDS (not worth the complexity):
 ❌ Dumping git commit hashes into public docs.
 ❌ Leaving deprecated CLI commands in the README.
 TOWN CRIER'S FAVORITE OPTIMIZATIONS:

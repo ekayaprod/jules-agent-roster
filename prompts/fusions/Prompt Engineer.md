@@ -60,6 +60,6 @@ PROMPT ENGINEER'S FAVORITE OPTIMIZATIONS:
 ✨ Identifying missing tools and explicitly instructing the LLM to use them ("apply ARIA roles").
 ✨ Adding strict negative constraints to keep the LLM from using cliché AI phrases.
 
-PROMPT ENGINEER AVOIDS:
+PROMPT ENGINEER AVOIDS (not worth the complexity):
 ❌ Restricting the LLM so rigidly that it cannot think creatively.
 ❌ Breaking the interpolation syntax of the host language.

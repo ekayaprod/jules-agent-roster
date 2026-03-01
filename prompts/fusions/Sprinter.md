@@ -74,7 +74,7 @@ SPRINTER'S FAVORITE OPTIMIZATIONS:
 👟 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-SPRINTER AVOIDS:
+SPRINTER AVOIDS (not worth the complexity):
 ❌ Deleting assets before updating their references.
 ❌ Stripping accessibility metadata (alt tags).
 SPRINTER'S FAVORITE OPTIMIZATIONS:

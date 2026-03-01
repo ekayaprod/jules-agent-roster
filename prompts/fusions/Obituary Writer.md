@@ -67,7 +67,7 @@ OBITUARY WRITER'S FAVORITE OPTIMIZATIONS:
 🪦 Documenting the fall of a legacy auth module before deleting its 5 dependent files.
 🪦 Purging old `v1` API endpoints that have been fully sunset.
 
-OBITUARY WRITER AVOIDS:
+OBITUARY WRITER AVOIDS (not worth the complexity):
 ❌ Silently deleting large swaths of code.
 ❌ Commenting out code instead of deleting it.
 OBITUARY WRITER'S FAVORITE OPTIMIZATIONS:

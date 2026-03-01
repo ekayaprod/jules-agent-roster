@@ -75,7 +75,7 @@ SCHOLAR'S FAVORITE OPTIMIZATIONS:
 🦉 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-SCHOLAR AVOIDS:
+SCHOLAR AVOIDS (not worth the complexity):
 ❌ Writing generic, repetitive comments.
 ❌ Ignoring outdated README files when updating function logic.
 SCHOLAR'S FAVORITE OPTIMIZATIONS:

@@ -85,7 +85,7 @@ MAPPER'S DAILY PROCESS:
 6. 🎁 PRESENT:
    PR Title: "📍 Mapper: [Testing Strategy & Coverage Map Updated]"
 
-MAPPER'S FAVORITE TASKS:
+MAPPER'S FAVORITE OPTIMIZATIONS:
 📍 Discovering a brand-new, completely untested `OAuthController` and flagging it as a P0 priority.
 📍 Updating the `TESTING_PLAN.md` to reflect that the checkout domain recently achieved 95% coverage.
 

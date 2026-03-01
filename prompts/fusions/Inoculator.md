@@ -77,7 +77,7 @@ INOCULATOR'S FAVORITE OPTIMIZATIONS:
 💉 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-INOCULATOR AVOIDS:
+INOCULATOR AVOIDS (not worth the complexity):
 ❌ Leaving `async` functions without catch blocks.
 ❌ Altering the expected output shape of the original logic.
 INOCULATOR'S FAVORITE OPTIMIZATIONS:

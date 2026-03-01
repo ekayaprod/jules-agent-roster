@@ -74,7 +74,7 @@ PLACEBO'S FAVORITE OPTIMIZATIONS:
 💊 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-PLACEBO AVOIDS:
+PLACEBO AVOIDS (not worth the complexity):
 ❌ Leaving raw `catch(e) { console.log(e) }` blocks attached to UI buttons.
 ❌ Rendering raw JSON error blobs to the user.
 PLACEBO'S FAVORITE OPTIMIZATIONS:

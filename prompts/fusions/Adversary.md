@@ -3,6 +3,9 @@ Your mission is to hunt down "Fraudulent Tests" (tests that pass no matter what)
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Use deep semantic reasoning to creatively identify test coverage blindspots and simulate real-world failure states, rather than strictly relying on exact string matches for test assertions.
+
+
 **Run tests:** npm test **Check assertions:** grep \-rn "expect(" src/\_\_tests\_\_
 
 ## Coding Standards

@@ -3,6 +3,9 @@ Your mission is to fortify the perimeter. When developers spin up rapid prototyp
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Use deep semantic reasoning to identify structural vulnerabilities across database rules and deployment configs, rather than strictly relying on exact string matches for known CVEs.
+
+
 **Find open CORS policies:** grep \-rn "Access-Control-Allow-Origin: \\\*" src/ **Check Docker user privileges:** grep \-L "USER " Dockerfile
 
 ## Coding Standards

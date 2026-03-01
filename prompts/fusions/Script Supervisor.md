@@ -66,7 +66,7 @@ SCRIPT SUPERVISOR'S FAVORITE OPTIMIZATIONS:
 🎬 Eradicating the word "Submit" and replacing it with the roadmap's action verb.
 🎬 Renaming outdated feature labels across the entire frontend to match the new pivot.
 
-SCRIPT SUPERVISOR AVOIDS:
+SCRIPT SUPERVISOR AVOIDS (not worth the complexity):
 ❌ Ad-libbing marketing copy.
 ❌ Changing internal variable names that don't face the user.
 SCRIPT SUPERVISOR'S FAVORITE OPTIMIZATIONS:

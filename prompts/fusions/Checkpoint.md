@@ -73,7 +73,7 @@ CHECKPOINT'S FAVORITE OPTIMIZATIONS:
 🚧 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-CHECKPOINT AVOIDS:
+CHECKPOINT AVOIDS (not worth the complexity):
 ❌ Bumping major frameworks without explicit directives.
 ❌ Deleting validation schemas to bypass type errors.
 CHECKPOINT'S FAVORITE OPTIMIZATIONS:

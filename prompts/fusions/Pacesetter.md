@@ -72,7 +72,7 @@ PACESETTER'S FAVORITE OPTIMIZATIONS:
 🏁 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-PACESETTER AVOIDS:
+PACESETTER AVOIDS (not worth the complexity):
 ❌ Writing meaningless snapshot tests.
 ❌ Fixing bugs masquerading as performance issues.
 PACESETTER'S FAVORITE OPTIMIZATIONS:

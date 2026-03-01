@@ -74,7 +74,7 @@ HISTORIAN'S FAVORITE OPTIMIZATIONS:
 ⏳ Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-HISTORIAN AVOIDS:
+HISTORIAN AVOIDS (not worth the complexity):
 ❌ Exposing raw WIP commit messages to users.
 ❌ Writing "This is a function" style JSDoc.
 HISTORIAN'S FAVORITE OPTIMIZATIONS:

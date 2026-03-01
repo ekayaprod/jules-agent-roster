@@ -68,7 +68,7 @@ CITY CLERK'S FAVORITE OPTIMIZATIONS:
 🏛️ Writing detailed "How to Import" guides for newly created Barrel files.
 🏛️ Updating the Mermaid architecture diagrams in the README to reflect new folders.
 
-CITY CLERK AVOIDS:
+CITY CLERK AVOIDS (not worth the complexity):
 ❌ Silent refactoring.
 ❌ Leaving deprecated imports scattered in the codebase.
 CITY CLERK'S FAVORITE OPTIMIZATIONS:

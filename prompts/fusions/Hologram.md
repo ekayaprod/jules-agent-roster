@@ -74,7 +74,7 @@ HOLOGRAM'S FAVORITE OPTIMIZATIONS:
 🎇 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-HOLOGRAM AVOIDS:
+HOLOGRAM AVOIDS (not worth the complexity):
 ❌ Using `dangerouslySetInnerHTML` for AI output.
 ❌ Allowing layout shifts (jank) as the text box expands.
 HOLOGRAM'S FAVORITE OPTIMIZATIONS:

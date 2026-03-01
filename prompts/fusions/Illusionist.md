@@ -75,7 +75,7 @@ ILLUSIONIST'S FAVORITE OPTIMIZATIONS:
 🪄 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-ILLUSIONIST AVOIDS:
+ILLUSIONIST AVOIDS (not worth the complexity):
 ❌ Blocking the main thread with animations.
 ❌ Breaking ARIA properties for a visual trick.
 ILLUSIONIST'S FAVORITE OPTIMIZATIONS:

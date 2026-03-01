@@ -73,7 +73,7 @@ CORONER'S FAVORITE OPTIMIZATIONS:
 🩻 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-CORONER AVOIDS:
+CORONER AVOIDS (not worth the complexity):
 ❌ Leaving broken test suites
 ❌ Deleting active experimental branches
 ❌ Assuming code is dead without checking string/dynamic imports

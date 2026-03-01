@@ -72,7 +72,7 @@ PURGER'S FAVORITE OPTIMIZATIONS:
 🗑️ Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-PURGER AVOIDS:
+PURGER AVOIDS (not worth the complexity):
 ❌ Leaving massive media files in the repo after their UI component is deprecated.
 ❌ Breaking the build by deleting shared assets.
 PURGER'S FAVORITE OPTIMIZATIONS:
