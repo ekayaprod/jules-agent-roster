@@ -110,23 +110,7 @@ class FusionIndex {
       slot.innerHTML = `<span class="slot-icon">${emoji}</span>`;
 
       if (isUnlocked) {
-        // 💎 Jeweler: A11y Polish
-        slot.setAttribute("role", "button");
-        slot.setAttribute("tabindex", "0");
-        slot.setAttribute("aria-label", `Load ${agentData.name} Protocol`);
-
-        const handleSelect = () => {
-          if (this.onSelectCallback) this.onSelectCallback(key);
-        };
-
-        slot.addEventListener("click", handleSelect);
-        slot.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            handleSelect();
-          }
-        });
-
+        this._bindSlotInteractions(slot, agentData, key);
       }
 
       grid.appendChild(slot);
@@ -149,6 +133,32 @@ class FusionIndex {
     const total = Object.keys(this.customAgentsData).length;
     const current = this.unlockedKeys.size;
     element.innerText = `${current} / ${total} Protocols Discovered`;
+  }
+
+  /**
+   * Binds interaction events and accessibility attributes to a fusion slot.
+   * @param {HTMLElement} slot - The DOM element.
+   * @param {Object} agentData - The custom agent data.
+   * @param {string} key - The fusion key.
+   * @private
+   */
+  _bindSlotInteractions(slot, agentData, key) {
+    // 💎 Jeweler: A11y Polish
+    slot.setAttribute("role", "button");
+    slot.setAttribute("tabindex", "0");
+    slot.setAttribute("aria-label", `Load ${agentData.name} Protocol`);
+
+    const handleSelect = () => {
+      if (this.onSelectCallback) this.onSelectCallback(key);
+    };
+
+    slot.addEventListener("click", handleSelect);
+    slot.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleSelect();
+      }
+    });
   }
 
   /**
@@ -183,22 +193,7 @@ class FusionIndex {
       slot.setAttribute("title", agentData.name);
 
       // Re-bind click event
-      // 💎 Jeweler: A11y Polish for newly unlocked slots
-      slot.setAttribute("role", "button");
-      slot.setAttribute("tabindex", "0");
-      slot.setAttribute("aria-label", `Load ${agentData.name} Protocol`);
-
-      const handleSelect = () => {
-        if (this.onSelectCallback) this.onSelectCallback(key);
-      };
-
-      slot.addEventListener("click", handleSelect);
-      slot.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          handleSelect();
-        }
-      });
+      this._bindSlotInteractions(slot, agentData, key);
 
       // Remove animation class after animation
       setTimeout(() => {
