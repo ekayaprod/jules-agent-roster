@@ -36,3 +36,6 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 - [ ] [Security] Idea: Integrate `DOMPurify` to sanitize Fusion Lab output and prevent XSS. (Source: github.com/cure53/DOMPurify)
 - [ ] [Performance] Idea: Implement debounce pattern for search input to prevent layout thrashing on every keystroke. (Source: lodash)
 - [ ] [DX] Idea: Standardize clipboard logic with `clipboard-polyfill` to replace deprecated execCommand. (Source: github.com/lgarron/clipboard-polyfill)
+- [ ] [Performance] Idea: Adopt `UnoCSS` via CDN to eliminate >600 lines of inline CSS in index.html while maintaining the zero-build-step requirement. (Source: unocss.dev)
+- [ ] [DX] Idea: Adopt `lit-html` via CDN to replace brittle manual string concatenation (innerHTML) in AgentCard.js and FusionLab.js, standardizing templating safely without a build step. (Source: lit.dev)
+- [ ] [DX] Idea: Introduce a standard `package.json` to define npm scripts for verification and task running, replacing scattered manual python scripts and unifying DX. (Source: docs.npmjs.com)
