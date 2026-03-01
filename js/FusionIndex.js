@@ -25,23 +25,10 @@ class FusionIndex {
    * Loads discovered fusions from localStorage.
    */
   loadState() {
-    let stored = null;
-    try {
-      stored = localStorage.getItem(this.storageKey);
-      if (stored) {
-        const keys = JSON.parse(stored);
-        if (Array.isArray(keys)) {
-          this.unlockedKeys = new Set(keys);
-        }
-      }
-    } catch (e) {
-      console.error(
-        JSON.stringify({
-          event: "FUSION_INDEX_PARSE_FAILED",
-          stored: stored,
-          error: e.message,
-        })
-      );
+    const keys = StorageService.getItem(this.storageKey, []);
+    if (Array.isArray(keys)) {
+      this.unlockedKeys = new Set(keys);
+    } else {
       this.unlockedKeys = new Set();
     }
   }
@@ -50,14 +37,7 @@ class FusionIndex {
    * Saves discovered fusions to localStorage.
    */
   saveState() {
-    try {
-      localStorage.setItem(
-        this.storageKey,
-        JSON.stringify(Array.from(this.unlockedKeys)),
-      );
-    } catch (e) {
-      console.warn("FusionIndex: Failed to save state to localStorage", e);
-    }
+    StorageService.setItem(this.storageKey, Array.from(this.unlockedKeys));
   }
 
   /**

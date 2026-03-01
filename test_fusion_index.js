@@ -12,6 +12,7 @@ global.document = {
 
 // Include FusionIndex
 const fs = require('fs');
+const StorageService = require('./js/services/StorageService.js');
 let code = fs.readFileSync('./js/FusionIndex.js', 'utf8');
 
 const { Script } = require('vm');
@@ -24,7 +25,8 @@ script.runInNewContext({
   module: m,
   Set: Set,
   Array: Array,
-  JSON: JSON
+  JSON: JSON,
+  StorageService: StorageService
 });
 
 const FusionIndex = m.exports;

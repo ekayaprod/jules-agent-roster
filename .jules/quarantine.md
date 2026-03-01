@@ -1,0 +1,3 @@
+## 2024-05-24 - Extracting localStorage access into StorageService
+**Learning:** `localStorage` combined with `JSON.parse` is prone to causing silent or disruptive application failures if the data format changes or becomes corrupted.
+**Action:** Extract raw `localStorage` accesses and unsafe `JSON.parse` methods into `StorageService.js` where explicit try/catch blocks handle the failures gracefully, enabling the centralized return of predictable, safe state configurations (e.g. `[]`) back to components rather than throwing unhandled errors.
