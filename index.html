@@ -2046,6 +2046,33 @@
         transform: translateX(-50%) translateY(6px);
       }
 
+      /* Stylist: Modern Utility Classes */
+      .hidden { display: none; }
+      .flex { display: flex; }
+      .justify-center { justify-content: center; }
+      .items-center { align-items: center; }
+      .gap-4 { gap: 1rem; }
+      .my-8 { margin-top: 2rem; margin-bottom: 2rem; }
+      .mx-auto { margin-left: auto; margin-right: auto; }
+      .max-w-xl { max-width: 600px; }
+      .text-left { text-align: left; }
+      .text-secondary { color: var(--text-secondary); }
+      .mr-2 { margin-right: 0.5rem; }
+      .ml-auto { margin-left: auto; }
+      .mt-6 { margin-top: 1.5rem; }
+      .w-auto { width: auto; }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
     </style>
   </head>
   <body>
@@ -2054,7 +2081,7 @@
         #main, .controls, .category-nav, .fusion-lab-container, .fusion-archive-container, .header p, .header .controls, .empty-state, #agentPickerModal, #toast { display: none !important; }
         .no-js-message { display: flex !important; }
       </style>
-      <div class="no-js-message fusion-error" style="display: none; justify-content: center; margin: 2rem auto; max-width: 600px; text-align: left; align-items: center; gap: 1rem;">
+      <div class="no-js-message fusion-error hidden flex justify-center items-center gap-4 my-8 mx-auto max-w-xl text-left">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
         <span>It looks like JavaScript is disabled. Please enable it to use the Agent Roster.</span>
       </div>
@@ -2073,7 +2100,7 @@
         class="hero-banner"
       >
       <h1>Jules Master Agent Roster</h1>
-      <p style="color: var(--text-secondary)">
+      <p class="text-secondary">
         The complete system for solo development with AI agents.
       </p>
       <div class="controls">
@@ -2145,8 +2172,7 @@
           </svg>
           <!-- Palette+: Success Check Icon -->
           <svg
-            class="check-icon"
-            style="display: none"
+            class="check-icon hidden"
             aria-hidden="true"
             width="20"
             height="20"
@@ -2188,8 +2214,7 @@
             </svg>
             <!-- Palette+: Success Check Icon -->
             <svg
-              class="check-icon"
-              style="display: none"
+              class="check-icon hidden"
               aria-hidden="true"
               width="20"
               height="20"
@@ -2238,7 +2263,7 @@
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
-                style="margin-right: 0.5rem"
+                class="mr-2"
               >
                 <path
                   stroke-linecap="round"
@@ -2249,8 +2274,7 @@
               </svg>
               <span>Download Custom Agents</span>
               <svg
-                class="check-icon"
-                style="display: none; margin-left: auto"
+                class="check-icon hidden ml-auto"
                 aria-hidden="true"
                 width="16"
                 height="16"
@@ -2316,26 +2340,15 @@
       </svg>
       <p class="empty-title">No Agents Found</p>
       <p class="empty-desc">We couldn't locate any agents matching your search. Try using a broader keyword or clear your filters.</p>
-      <button id="clearSearchEmptyBtn" class="primary" style="margin-top: 1.5rem;">Clear Search</button>
+      <button id="clearSearchEmptyBtn" class="primary mt-6">Clear Search</button>
     </div>
 
     <!-- Palette+: A11y Search Announcer (Hidden visually but read by screen readers) -->
     <div
       id="search-announcer"
-
+      class="sr-only"
       role="status"
       aria-live="polite"
-      style="
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
-      "
     ></div>
 
     <main id="main">
@@ -2641,7 +2654,7 @@
       <div id="fusionOutputWrapper"><div class="overflow-hidden"><div id="fusionOutput">
         <div class="fusion-header">
           <h3 id="fusionName" tabindex="-1"></h3>
-          <button id="copyFusionBtn" class="secondary" style="width: auto">
+          <button id="copyFusionBtn" class="secondary w-auto">
             <svg
               class="copy-icon"
               aria-hidden="true"
@@ -2659,8 +2672,7 @@
               />
             </svg>
             <svg
-              class="check-icon"
-              style="display: none"
+              class="check-icon hidden"
               aria-hidden="true"
               width="16"
               height="16"
@@ -2712,7 +2724,7 @@
                 </svg>
                 <p class="empty-title">No Fusion Protocols Found</p>
                 <p class="empty-desc">We couldn't locate any agents matching your search. Try a broader term.</p>
-                <button id="clearPickerSearchEmptyBtn" class="primary" style="margin-top: 1.5rem;">Clear Search</button>
+                <button id="clearPickerSearchEmptyBtn" class="primary mt-6">Clear Search</button>
             </div>
         </div>
     </dialog>
