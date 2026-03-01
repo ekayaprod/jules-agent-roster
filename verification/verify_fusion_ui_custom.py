@@ -32,9 +32,6 @@ def test_fusion_lab_pre_merge(page):
     # Click fuse to test animation overlay classes
     page.locator("#fuseBtn").click()
 
-    # Check overlay has the tier class 'tier-reactive'
-    overlay = page.locator("#fusionAnimationOverlay")
-
     # Take a screenshot during animation
     page.screenshot(path="verification/fusion_animation.png")
 

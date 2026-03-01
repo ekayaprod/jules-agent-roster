@@ -10,7 +10,7 @@ PORT = 8102
 
 def start_server():
     class QuietHandler(http.server.SimpleHTTPRequestHandler):
-        def log_message(self, format, *args):
+        def log_message(self, *args):  # type: ignore
             pass
 
     socketserver.TCPServer.allow_reuse_address = True

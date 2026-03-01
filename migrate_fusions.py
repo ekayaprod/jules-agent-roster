@@ -15,7 +15,7 @@ def migrate_agents():
 
     # 2. Extract and clean names (Strip the trailing space and emoji)
     valid_names = set()
-    for coords, agent_data in data.items():
+    for _, agent_data in data.items():
         raw_name = agent_data.get('name', '')
         if raw_name:
             clean_name = raw_name.rsplit(' ', 1)[0].strip()

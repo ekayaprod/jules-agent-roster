@@ -14,7 +14,7 @@ def execute_sync():
         data = json.load(f)
 
     json_agents = {}
-    for coords, agent in data.items():
+    for _, agent in data.items():
         raw_name = agent.get('name', '')
         if raw_name:
             canonical_name = raw_name.rsplit(' ', 1)[0].strip()

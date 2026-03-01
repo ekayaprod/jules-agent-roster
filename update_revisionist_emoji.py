@@ -8,7 +8,7 @@ if os.path.exists(FUSIONS_FILE):
         fusions = json.load(f)
 
     updated = False
-    for key, data in fusions.items():
+    for _, data in fusions.items():
         if "Revisionist" in data.get("name", "") and "🤥" in data.get("name", ""):
             data["name"] = data["name"].replace("🤥", "🧾")
             updated = True
