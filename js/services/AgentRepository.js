@@ -72,11 +72,10 @@ class AgentRepository {
 
                                 const agent = validation.sanitized;
 
-                                // Sanitize name for filename: Remove non-ASCII, trim, replace spaces with underscores.
+                                // Sanitize name for filename: Remove non-ASCII, trim.
                                 const cleanName = agent.name
                                     .replace(/[^\x00-\x7F]/g, "")
-                                    .trim()
-                                    .replace(/ /g, "_");
+                                    .trim();
                                 const filename = `prompts/fusions/${cleanName}.md`;
 
                                 try {
