@@ -15,3 +15,6 @@
 ## 2025-05-25 - [LocalStorage Parsing Fragility]
 **Learning:** `JSON.parse` is extremely fragile when reading data from untrusted sources like `localStorage`, which can be corrupted or malformed. Previously, `FusionIndex` silently caught errors with `console.warn` without sufficient context, masking the potential issue of a corrupt save state.
 **Action:** Wrap parsing logic of `localStorage` items in a `try/catch` block. Use structured error logging with actionable context (e.g., `event`, the `stored` string that failed, and the specific `error.message`). Ensure the application gracefully degrades by returning safe default state representations (like `new Set()`).
+## 2026-03-01 - [DOM Manipulations with Implicit Mismatched Elements]
+**Learning:** Hardcoded DOM hierarchy assumptions (like `output.insertBefore(desc, fusionCode)`) fail fatally if the underlying HTML structure contains mismatched closing tags that force the browser to auto-close parent elements early. This causes the target element to not be a direct child of the expected parent.
+**Action:** Always wrap risky DOM insertions (`insertBefore`, `replaceChild`) in `try/catch` blocks. Log the structured error event, and provide safe fallbacks, such as checking `element.parentNode` before inserting or gracefully appending to a top-level container to prevent the main thread from crashing.
