@@ -19,6 +19,33 @@
       }
 
       :root {
+        /* Typesmith: Typography Scale */
+        --text-3xs: 0.6em;
+        --text-2xs: 0.7rem;
+        --text-xs: 0.85rem;
+        --text-sm: 0.95rem;
+        --text-base: 1rem;
+        --text-md: 1.1rem;
+        --text-lg: 1.25rem;
+        --text-xl: 1.5rem;
+        --text-2xl: 1.75rem;
+        --text-3xl: 2rem;
+        --text-4xl: 2.5rem;
+        --text-5xl: 3.5rem;
+        --text-6xl: 4rem;
+        --text-7xl: 5rem;
+
+        --weight-normal: 400;
+        --weight-medium: 500;
+        --weight-semibold: 600;
+        --weight-bold: 700;
+        --weight-extrabold: 800;
+        --leading-none: 1;
+        --leading-tight: 1.2;
+        --leading-snug: 1.375;
+        --leading-normal: 1.5;
+        --leading-relaxed: 1.6;
+        --leading-loose: 2;
         --bg-color: #0f172a;
         --card-bg: #1e293b;
         --text-primary: #f8fafc;
@@ -49,7 +76,7 @@
         color: var(--text-primary);
         margin: 0;
         padding: 1.5rem;
-        line-height: 1.6;
+        line-height: var(--leading-relaxed);
       }
 
       /* Palette+: Skeleton Loading */
@@ -140,7 +167,7 @@
         padding: 0.5rem 1rem;
         border-radius: 0 0 0.5rem 0.5rem;
         z-index: 9999;
-        font-weight: bold;
+        font-weight: var(--weight-bold);
         text-decoration: none;
         transition: top 0.2s;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -160,7 +187,7 @@
       }
 
       .header h1 {
-        font-size: 2rem;
+        font-size: var(--text-3xl);
         margin-bottom: 0.5rem;
         background: linear-gradient(to right, #38bdf8, #818cf8);
         -webkit-background-clip: text;
@@ -241,8 +268,8 @@
         color: #0f172a;
         border: none;
         padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-        font-weight: 600;
+        font-size: var(--text-base);
+        font-weight: var(--weight-semibold);
         border-radius: 0.5rem;
         cursor: pointer;
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -341,8 +368,8 @@
         border-radius: 0;
         padding: 0.75rem 1rem;
         justify-content: flex-start;
-        font-size: 0.9rem;
-        font-weight: 500;
+        font-size: var(--text-base);
+        font-weight: var(--weight-medium);
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
@@ -363,7 +390,7 @@
         border: 1px solid var(--border);
         color: var(--text-primary);
         width: 100%;
-        font-size: 1rem;
+        font-size: var(--text-base);
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
@@ -379,7 +406,7 @@
         color: var(--text-secondary);
         text-transform: uppercase;
         letter-spacing: 0.1em;
-        font-size: 0.9rem;
+        font-size: var(--text-base);
         border-bottom: 1px solid var(--border);
         padding-bottom: 0.5rem;
       }
@@ -479,8 +506,8 @@
       }
 
       .agent-title {
-        font-size: 1.25rem;
-        font-weight: 700;
+        font-size: var(--text-lg);
+        font-weight: var(--weight-bold);
         display: flex;
         align-items: center;
         gap: 0.4rem;
@@ -488,14 +515,14 @@
       }
 
       .role-tag {
-        font-size: 0.7rem;
+        font-size: var(--text-2xs);
         padding: 0.15rem 0.4rem;
         border-radius: 999px;
         background-color: rgba(56, 189, 248, 0.1);
         color: var(--accent);
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        font-weight: 600;
+        font-weight: var(--weight-semibold);
         align-self: flex-start;
       }
 
@@ -507,7 +534,7 @@
       }
 
       .meta-tag {
-        font-size: 0.7rem;
+        font-size: var(--text-2xs);
         padding: 2px 8px;
         border-radius: 4px;
         display: inline-flex;
@@ -516,7 +543,7 @@
         gap: 4px;
         font-family: monospace;
         letter-spacing: 0.05em;
-        line-height: 1.2;
+        line-height: var(--leading-tight);
       }
 
       .scope-small {
@@ -534,10 +561,10 @@
 
       .description {
         color: var(--text-secondary);
-        font-size: 0.85rem;
+        font-size: var(--text-xs);
         margin-bottom: 0.25rem;
         flex-grow: 1;
-        line-height: 1.4;
+        line-height: var(--leading-snug);
       }
 
       /* Palette+: Accordion Animation Styles */
@@ -547,7 +574,7 @@
         color: var(--accent);
         cursor: pointer;
         padding: 0.25rem 0.5rem;
-        font-size: 0.8rem;
+        font-size: var(--text-xs);
         text-align: left;
         margin-bottom: 0.25rem;
         display: flex;
@@ -599,7 +626,7 @@
         border-radius: 0.5rem;
         border: 1px solid var(--border);
         margin-bottom: 1rem;
-        font-size: 0.85rem;
+        font-size: var(--text-xs);
         color: var(--text-secondary);
         white-space: pre-wrap;
         font-family: monospace;
@@ -625,7 +652,7 @@
 
       .card-actions button {
         padding: 0.5rem 1rem;
-        font-size: 0.85rem;
+        font-size: var(--text-xs);
       }
 
       /* Palette+: Empty State */
@@ -660,14 +687,14 @@
       }
 
       .empty-state .empty-title {
-        font-size: 1.25rem;
-        font-weight: 600;
+        font-size: var(--text-lg);
+        font-weight: var(--weight-semibold);
         color: var(--text-primary);
         margin: 0;
       }
 
       .empty-state .empty-desc {
-        font-size: 1rem;
+        font-size: var(--text-base);
         margin: 0;
         max-width: 400px;
       }
@@ -684,7 +711,7 @@
         transform: translateY(200%);
         transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 50;
-        font-weight: 500;
+        font-weight: var(--weight-medium);
         display: flex;
         align-items: stretch;
         overflow: hidden;
@@ -843,14 +870,14 @@
       }
 
       .picker-empty-state .empty-title {
-        font-size: 1.1rem;
-        font-weight: 600;
+        font-size: var(--text-md);
+        font-weight: var(--weight-semibold);
         color: var(--text-primary);
         margin: 0;
       }
 
       .picker-empty-state .empty-desc {
-        font-size: 0.9rem;
+        font-size: var(--text-base);
         margin: 0;
         max-width: 300px;
       }
@@ -870,8 +897,8 @@
           color: var(--accent);
           padding: 0.5rem 1rem;
           border-radius: 999px;
-          font-size: 0.85rem;
-          font-weight: 700;
+          font-size: var(--text-xs);
+          font-weight: var(--weight-bold);
           opacity: 0;
           transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
           pointer-events: none;
@@ -976,8 +1003,8 @@
       .nav-pill {
         text-decoration: none;
         color: var(--text-secondary);
-        font-size: 0.85rem;
-        font-weight: 600;
+        font-size: var(--text-xs);
+        font-weight: var(--weight-semibold);
         padding: 0.5rem 0.25rem;
         border-radius: 999px;
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1051,7 +1078,7 @@
         background: linear-gradient(to right, #a855f7, #ec4899);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        font-size: 1.8rem;
+        font-size: var(--text-2xl);
       }
 
 
@@ -1060,8 +1087,8 @@
         color: white;
         border: none;
         padding: 0.85rem 2.5rem;
-        font-size: 1rem;
-        font-weight: 700;
+        font-size: var(--text-base);
+        font-weight: var(--weight-bold);
         border-radius: 0.75rem;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
@@ -1119,7 +1146,7 @@
 
       .fusion-header h3 {
         margin: 0;
-        font-size: 1.25rem;
+        font-size: var(--text-lg);
         color: var(--accent);
         display: flex;
         align-items: center;
@@ -1131,7 +1158,7 @@
         white-space: pre-wrap;
         font-family: monospace;
         color: var(--text-secondary);
-        font-size: 0.9rem;
+        font-size: var(--text-base);
         max-height: 500px;
         overflow-y: auto;
       }
@@ -1204,7 +1231,7 @@
       }
 
       .anim-icon {
-        font-size: 4rem;
+        font-size: var(--text-6xl);
         position: absolute;
         transition: opacity 0.2s;
         opacity: 0;
@@ -1310,7 +1337,7 @@
       /* Result Icon Emerges */
       .anim-icon.result {
         position: absolute;
-        font-size: 5rem;
+        font-size: var(--text-7xl);
         opacity: 0;
         transform: scale(0.5);
         z-index: 10;
@@ -1372,8 +1399,8 @@
 
       /* Phase 3: Reveal */
       .anim-result {
-        font-size: 1.5rem;
-        font-weight: 800;
+        font-size: var(--text-xl);
+        font-weight: var(--weight-extrabold);
         color: var(--text-primary);
         opacity: 0;
         transform: scale(0.8);
@@ -1431,12 +1458,12 @@
         background-color: var(--details-bg);
         border-radius: 0.5rem;
         padding: 0.75rem 1rem;
-        font-size: 0.8rem;
-        line-height: 1.6;
+        font-size: var(--text-xs);
+        line-height: var(--leading-relaxed);
       }
       .prompt-section-label {
-        font-size: 0.7rem;
-        font-weight: 700;
+        font-size: var(--text-2xs);
+        font-weight: var(--weight-bold);
         text-transform: uppercase;
         letter-spacing: 0.08em;
         color: var(--accent);
@@ -1467,8 +1494,8 @@
         display: flex;
         align-items: center;
         gap: 1rem;
-        font-size: 0.95rem;
-        font-weight: 500;
+        font-size: var(--text-sm);
+        font-weight: var(--weight-medium);
         animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         text-align: left;
         backdrop-filter: blur(8px);
@@ -1515,7 +1542,7 @@
       }
 
       .fusion-index-header {
-        font-size: 1.25rem;
+        font-size: var(--text-lg);
         color: var(--text-secondary);
         margin-bottom: 1.5rem;
         text-transform: uppercase;
@@ -1538,7 +1565,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.75rem;
+        font-size: var(--text-2xl);
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
         overflow: hidden;
@@ -1598,7 +1625,7 @@
       .fusion-progress {
         font-family: monospace;
         color: var(--text-secondary);
-        font-size: 0.85rem;
+        font-size: var(--text-xs);
         background: rgba(15, 23, 42, 0.5);
         display: inline-block;
         padding: 0.25rem 0.75rem;
@@ -1661,27 +1688,27 @@
       }
 
       .slot-icon-placeholder {
-        font-size: 2.5rem;
+        font-size: var(--text-4xl);
         color: var(--text-secondary);
         opacity: 0.5;
         transition: all 0.2s;
       }
 
       .slot-card.filled .slot-icon-placeholder {
-        font-size: 3.5rem;
+        font-size: var(--text-5xl);
         opacity: 1;
         text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
       }
 
       .slot-label {
-        font-size: 0.8rem;
+        font-size: var(--text-xs);
         color: var(--text-secondary);
-        font-weight: 500;
+        font-weight: var(--weight-medium);
       }
 
       .slot-card.filled .slot-label {
         color: var(--text-primary);
-        font-weight: 700;
+        font-weight: var(--weight-bold);
       }
 
       .fusion-action-area {
@@ -1722,7 +1749,7 @@
       .fusion-tier-badge.tier-legendary, .meta-tag.tier-legendary {
           background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706);
           color: white;
-          font-weight: bold;
+          font-weight: var(--weight-bold);
       }
       .fusion-animation-overlay.active.tier-legendary .anim-arena { animation: shake-legendary 1.5s ease-in-out 1.5s; }
       @keyframes shake-legendary {
@@ -1799,7 +1826,7 @@
           filter: grayscale(80%);
       }
       .pre-merge-preview .preview-badge {
-          font-size: 0.7rem;
+          font-size: var(--text-2xs);
           text-transform: uppercase;
           letter-spacing: 0.05em;
           color: var(--text-secondary);
@@ -1811,11 +1838,11 @@
           gap: 0.5rem;
       }
       .pre-merge-preview .preview-icon {
-          font-size: 1.5rem;
+          font-size: var(--text-xl);
       }
       .pre-merge-preview .preview-name {
-          font-size: 0.9rem;
-          font-weight: 600;
+          font-size: var(--text-base);
+          font-weight: var(--weight-semibold);
           color: var(--text-primary);
       }
 
@@ -1883,7 +1910,7 @@
 
       .picker-header h3 {
         margin: 0;
-        font-size: 1.25rem;
+        font-size: var(--text-lg);
         color: var(--text-primary);
       }
 
@@ -1954,17 +1981,17 @@
       }
 
       .mini-icon {
-        font-size: 2rem;
+        font-size: var(--text-3xl);
       }
 
       .mini-name {
-        font-size: 0.85rem;
-        font-weight: 600;
+        font-size: var(--text-xs);
+        font-weight: var(--weight-semibold);
         color: var(--text-primary);
       }
 
       .mini-role {
-        font-size: 0.7rem;
+        font-size: var(--text-2xs);
         color: var(--text-secondary);
       }
 
@@ -1978,8 +2005,8 @@
         border-radius: 50%;
         background-color: var(--border);
         color: var(--text-secondary);
-        font-size: 0.6em;
-        font-weight: bold;
+        font-size: var(--text-3xs);
+        font-weight: var(--weight-bold);
         cursor: help;
         position: relative;
         vertical-align: middle;
@@ -2003,8 +2030,8 @@
         color: white;
         padding: 0.5rem 0.75rem;
         border-radius: 0.5rem;
-        font-size: 0.85rem;
-        font-weight: normal;
+        font-size: var(--text-xs);
+        font-weight: var(--weight-normal);
         white-space: normal;
         min-width: 200px;
         max-width: 300px;
@@ -2090,7 +2117,7 @@
     <!-- Palette+: Skip to Content Link -->
     <a href="#main" class="skip-link">Skip to content</a>
 
-    <div class="header">
+    <header class="header">
       <!-- Gallerist: Optimized Hero Banner with explicit dimensions and fade-in -->
       <img
         src="assets/hero-banner.svg"
@@ -2338,7 +2365,7 @@
           d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
         />
       </svg>
-      <p class="empty-title">No Agents Found</p>
+      <h2 class="empty-title">No Agents Found</h2>
       <p class="empty-desc">We couldn't locate any agents matching your search. Try using a broader keyword or clear your filters.</p>
       <button id="clearSearchEmptyBtn" class="primary mt-6">Clear Search</button>
     </div>
@@ -2652,7 +2679,7 @@
       </div>
 
       <div id="fusionOutputWrapper"><div class="overflow-hidden"><div id="fusionOutput">
-        <div class="fusion-header">
+        <header class="fusion-header">
           <h3 id="fusionName" tabindex="-1"></h3>
           <button id="copyFusionBtn" class="secondary w-auto">
             <svg
@@ -2704,12 +2731,12 @@
     <!-- Agent Picker Modal -->
     <dialog id="agentPickerModal" class="picker-modal">
         <div class="picker-container">
-            <div class="picker-header">
+            <header class="picker-header">
                 <h3>Select Fusion Protocol</h3>
                 <button id="closePickerBtn" class="close-btn" aria-label="Close">
                     <svg aria-hidden="true" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </button>
-            </div>
+            </header>
             <div class="picker-search">
                 <input type="text" id="pickerSearch" placeholder="Filter protocols by name or role..." aria-label="Search protocols">
                 <div id="pickerAnnouncer"  aria-live="polite"></div>
@@ -2722,7 +2749,7 @@
                 <svg class="empty-icon" aria-hidden="true" width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                 </svg>
-                <p class="empty-title">No Fusion Protocols Found</p>
+                <h2 class="empty-title">No Fusion Protocols Found</h2>
                 <p class="empty-desc">We couldn't locate any agents matching your search. Try a broader term.</p>
                 <button id="clearPickerSearchEmptyBtn" class="primary mt-6">Clear Search</button>
             </div>

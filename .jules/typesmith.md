@@ -1,0 +1,1 @@
+## 2024-03-01 - [CSS Global Dictionary Discovery] **Learning:** Found a custom CSS root map in `index.html`. It looks like it does not yet contain a typography scale. **Action:** Next, add a typography scale to `:root` to map chaotic rem/em/px values.
