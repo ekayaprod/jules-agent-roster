@@ -4,181 +4,159 @@
     "icon": "⚡",
     "category": "core",
     "type": "plus",
-    "scope": "Small-Medium",
-    "role": "Performance Engineer",
-    "desc": "A performance obsessive. Hunts down structural bottlenecks and eliminates them through systemic caching, memoization, and virtualization patterns."
+    "role": "Speed Optimizer",
+    "desc": "Hunts down sluggish code and structural bottlenecks. Wraps heavy calculations in system caches to make your app run at lightning speed."
   },
   {
     "name": "Palette+",
     "icon": "🎨",
     "category": "core",
     "type": "plus",
-    "scope": "Small-Medium",
-    "role": "UX & Delight (Enhanced)",
-    "desc": "An artisan of human-computer interaction. Transforms clunky interactions into delightful experiences using loading skeletons, optimistic UI, and strict ARIA accessibility."
+    "role": "UI Polisher",
+    "desc": "Transforms clunky interactions into delightful experiences. Injects loading skeletons, smooth animations, and accessibility to make your app feel premium."
   },
   {
     "name": "Sentinel+",
     "icon": "🛡️",
     "category": "core",
     "type": "plus",
-    "scope": "Small-Medium",
-    "role": "Security Engineer",
-    "desc": "The frontline defender. Hardens the application's trust boundaries by implementing rigid schema validation (Zod/Joi) and secure data-handling protocols."
+    "role": "Security Guard",
+    "desc": "Hardens your application's trust boundaries. Injects strict schema validations and sanitizes data payloads to protect your system from malicious inputs."
   },
   {
     "name": "Helix",
     "icon": "🧬",
     "category": "architecture",
-    "scope": "Small-Medium",
-    "role": "Deduplication Specialist",
-    "desc": "A pattern recognition expert. Seeks out duplicated spaghetti code and splices it into pure, centralized, and highly reusable utility functions."
+    "role": "Code Consolidator",
+    "desc": "Hunts down duplicated spaghetti code scattered across your files. Extracts it into clean, shared utility functions to give your app a single source of truth."
   },
   {
     "name": "Architect",
     "icon": "🏗️",
     "category": "architecture",
-    "scope": "Medium",
-    "role": "Structural Agent",
-    "desc": "The structural engineer. Untangles messy directories, splits massive 'God files', and enforces clean colocation and barrel exports (index.ts)."
+    "role": "Folder Organizer",
+    "desc": "Untangles chaotic directories and unmaintainable monoliths. Splits massive files and enforces clean folder structures to keep your repository highly organized."
   },
   {
     "name": "Scavenger",
     "icon": "🦅",
     "category": "hygiene",
-    "scope": "Medium",
-    "role": "Cleanup",
-    "desc": "A ruthless cleanup specialist. Hunts down and permanently eradicates orphaned files, dead code, unused exports, and resolved TODOs."
+    "role": "Trash Collector",
+    "desc": "A ruthless cleanup specialist. Hunts down and permanently deletes orphaned files, dead code, and resolved TODOs to reduce technical debt and codebase bloat."
   },
   {
     "name": "Superintendent",
     "icon": "🧰",
     "category": "hygiene",
-    "scope": "Medium",
-    "role": "Hygiene",
-    "desc": "The foundation maintainer. Keeps the repository healthy by safely bumping minor dependencies, deduplicating lockfiles, and standardizing config files."
+    "role": "Dependency Manager",
+    "desc": "Keeps your underlying infrastructure healthy. Safely bumps outdated packages, cleans up lockfiles, and standardizes configuration manifests."
   },
   {
     "name": "Modernizer",
     "icon": "♻️",
     "category": "architecture",
-    "scope": "Medium",
-    "role": "Tech Stack Evolution",
-    "desc": "The evolution engine. Upgrades legacy syntax—transmuting old callbacks, `var` declarations, and Promise chains into modern async/await and ES6 paradigms."
+    "role": "Code Upgrader",
+    "desc": "Upgrades legacy syntax to modern standards. Transmutes old callbacks, heavy loops, and outdated libraries into clean, modern language paradigms."
   },
   {
     "name": "Inspector",
     "icon": "🕵️",
     "category": "operations",
-    "scope": "Medium",
-    "role": "QA",
-    "desc": "A paranoid quality-assurance agent. Seeks out the application's most fragile, untested logic and locks it down with rigorous boundary and edge-case test suites."
+    "role": "Test Writer",
+    "desc": "A paranoid quality-assurance agent. Seeks out your application's most fragile logic and locks it down with rigorous boundary and edge-case test suites."
   },
   {
     "name": "Medic",
     "icon": "🚑",
     "category": "operations",
-    "scope": "Medium",
-    "role": "Resilience Agent",
-    "desc": "The system triager. Stops silent crashes by wrapping fragile network calls and dangerous parsers in safe try/catch boundaries and structured logging."
+    "role": "Crash Responder",
+    "desc": "Cures inexplicable system crashes. Wraps fragile network calls and dangerous parsers in safe error boundaries, fallback states, and structured logs."
   },
   {
     "name": "Cortex",
     "icon": "🧠",
     "category": "operations",
-    "scope": "Medium",
-    "role": "AI Integration Specialist",
-    "desc": "The AI infrastructure specialist. Upgrades legacy LLM SDKs, bumps model versions, and enforces strictly typed JSON outputs for resilient AI integrations."
+    "role": "AI Integrator",
+    "desc": "The AI infrastructure specialist. Upgrades legacy LLM tools, bumps model versions, and enforces strict JSON schemas for resilient AI integrations."
   },
   {
     "name": "Scribe",
     "icon": "✍️",
     "category": "context",
-    "scope": "Medium",
-    "role": "Inline Documentation Historian",
-    "desc": "The codebase historian. Clarifies complex, undocumented logic by weaving precise JSDoc, Docstrings, and critical `// WARN:` labels directly into the source code."
+    "role": "Code Commenter",
+    "desc": "Clarifies complex, undocumented logic. Weaves precise inline comments, Docstrings, and critical warning labels directly into the source code to explain the 'Why'."
   },
   {
     "name": "Author",
     "icon": "📘",
     "category": "context",
-    "scope": "Medium",
-    "role": "Macro-Documentation Specialist",
-    "desc": "The macro-documentarian. Writes the high-level README.md files, architectural overviews, and 'Quick Start' guides that help humans navigate the repository."
+    "role": "Readme Writer",
+    "desc": "Writes your high-level architecture guides. Generates clear README files and 'Quick Start' instructions to help developers instantly understand the repository."
   },
   {
     "name": "Navigator",
     "icon": "🧭",
     "category": "context",
-    "scope": "Medium",
-    "role": "Strategy",
-    "desc": "The strategic compass. Reads the git history to mark features complete on the roadmap, ensuring the project's tracking documents always reflect its true state."
+    "role": "Roadmap Tracker",
+    "desc": "Synchronizes your project strategy with reality. Reads your git history to mark features complete on your roadmap, keeping your tracking documents perfectly aligned."
   },
   {
     "name": "Curator",
     "icon": "🖼️",
     "category": "context",
-    "scope": "Medium",
-    "role": "Payload & Asset Manager",
-    "desc": "The payload optimizer. Scours the public directories to compress heavy images into modern WebP/AVIF formats and strip metadata from bloated SVGs."
+    "role": "Asset Optimizer",
+    "desc": "Optimizes your static assets to drastically reduce bundle sizes. Compresses heavy images into modern formats and strips bloated metadata from SVGs."
   },
   {
     "name": "Overseer",
     "icon": "👁️",
     "category": "monthly",
     "type": "monthly",
-    "scope": "Large",
-    "role": "The Eye",
-    "desc": "The all-seeing eye. Runs deep forensic scans on file age, churn, and complexity, generating a master audit report to guide the rest of the agent roster."
+    "role": "System Auditor",
+    "desc": "The all-seeing intelligence engine. Runs deep forensic scans on file age, churn, and complexity to generate a master audit report guiding the rest of the agents."
   },
   {
     "name": "Cartographer",
     "icon": "🗺️",
     "category": "monthly",
     "type": "monthly",
-    "scope": "Large",
-    "role": "Visuals",
-    "desc": "The visual mapper. Translates complex folder structures and data flows into beautiful, readable Mermaid.js architectural diagrams."
+    "role": "Diagram Generator",
+    "desc": "Translates complex folder structures and data flows into beautiful, readable architectural diagrams so you can understand your system at a glance."
   },
   {
     "name": "Spark",
     "icon": "💡",
     "category": "monthly",
     "type": "monthly",
-    "scope": "Large",
-    "role": "Innovation Strategist",
-    "desc": "The innovation strategist. Audits brittle custom utilities and suggests modern, battle-tested open-source libraries to replace them, logging ideas to the roadmap."
+    "role": "Idea Generator",
+    "desc": "Audits your custom logic and UX friction points, suggesting modern, battle-tested open-source solutions to replace them and logging the ideas to your roadmap."
   },
   {
     "name": "Herald",
     "icon": "📣",
     "category": "context",
-    "scope": "Medium",
-    "role": "Release Manager",
-    "desc": "The public announcer. Parses raw git history and translates chaotic developer commits into beautifully structured, user-facing semantic changelogs."
+    "role": "Changelog Writer",
+    "desc": "Parses your raw git history and translates chaotic developer commits into beautifully structured, user-facing semantic changelogs."
   },
   {
     "name": "Wordsmith",
     "icon": "🖋️",
     "category": "context",
-    "scope": "Small-Medium",
-    "role": "UX Writer",
-    "desc": "The empathetic copywriter. Red-pens passive, robotic UI strings and developer jargon, rewriting them into clear, actionable, and human-readable microcopy."
+    "role": "UX Copywriter",
+    "desc": "Red-pens passive, robotic UI strings and developer jargon. Rewrites errors and buttons into clear, actionable, and highly empathetic microcopy."
   },
   {
     "name": "Pedant",
     "icon": "☝️",
     "category": "hygiene",
-    "scope": "Small-Medium",
-    "role": "Code Quality Enforcer",
-    "desc": "An uncompromising enforcer of standards. Eradicates implicit `any` types, fixes casing violations, and extracts rogue magic numbers into strict constants."
+    "role": "Style Enforcer",
+    "desc": "An uncompromising enforcer of style. Eradicates implicit types, fixes casing violations, and extracts rogue magic numbers into strict constants."
   },
   {
     "name": "Untangler",
     "icon": "🧶",
     "category": "architecture",
-    "scope": "Small-Medium",
-    "role": "Logic Simplifier",
-    "desc": "A logic simplifier. Takes deeply nested, unreadable 'arrow code' and flattens it out using early returns, guard clauses, and local helper functions."
+    "role": "Logic Flattener",
+    "desc": "Takes deeply nested, unreadable 'spaghetti code' and flattens it out using early returns, clean guard clauses, and local helper functions."
   }
 ]
