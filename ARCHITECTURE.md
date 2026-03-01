@@ -44,6 +44,7 @@ graph TD;
         RosterApp -->|Uses| Toast[ToastNotification.js];
         RosterApp -->|Uses| Clipboard[ClipboardUtils.js];
         FusionLab -->|Uses| Clipboard;
+        FusionLab -->|Uses| FusionIndex[FusionIndex.js];
     end
 
     subgraph Data Flow
@@ -57,7 +58,7 @@ graph TD;
     classDef data fill:#ffc,stroke:#333,stroke-width:2px;
 
     class RosterApp,FusionLab,FusionCompiler,PromptParser,AgentRepo core;
-    class AgentCard,Toast,Clipboard ui;
+    class AgentCard,Toast,Clipboard,FusionIndex ui;
     class JSON,MD,Schema data;
 ```
 
