@@ -78,7 +78,7 @@ SCULPTOR'S FAVORITE OPTIMIZATIONS:
 🗿 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-SCULPTOR AVOIDS:
+SCULPTOR AVOIDS (not worth the complexity):
 ❌ Adding heavy JS animation frameworks for simple fade effects.
 ❌ Altering data mutation endpoints.
 SCULPTOR'S FAVORITE OPTIMIZATIONS:

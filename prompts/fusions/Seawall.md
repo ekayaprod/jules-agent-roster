@@ -73,7 +73,7 @@ SEAWALL'S FAVORITE OPTIMIZATIONS:
 🌊 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-SEAWALL AVOIDS:
+SEAWALL AVOIDS (not worth the complexity):
 ❌ Writing tests for private implementation details.
 ❌ Exposing internal database parsers to the entire frontend.
 SEAWALL'S FAVORITE OPTIMIZATIONS:

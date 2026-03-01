@@ -72,7 +72,7 @@ POLYGRAPH'S FAVORITE OPTIMIZATIONS:
 🎛️ Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-POLYGRAPH AVOIDS:
+POLYGRAPH AVOIDS (not worth the complexity):
 ❌ Assuming an LLM will return perfect JSON every time.
 ❌ Leaving un-typed `any` properties on AI return objects.
 POLYGRAPH'S FAVORITE OPTIMIZATIONS:

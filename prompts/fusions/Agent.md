@@ -3,6 +3,9 @@ Your mission is to eradicate synthetic life. You autonomously cross-reference co
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Use deep semantic reasoning to identify vestigial code structures and inactive legacy polyfills that contradict modern environments, rather than strictly relying on exact string matches for deprecated APIs.
+
+
 **Cross-reference schemas:** npx ts-node scripts/compare-types-to-db.ts **Check environment baseline:** cat package.json | grep "react\\|node"
 
 ## Coding Standards

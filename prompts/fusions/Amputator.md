@@ -4,6 +4,9 @@ Your mission is to eradicate obsolete resilience logic. If a service has been de
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Use deep semantic reasoning to distinguish between active resilience boundaries and genuinely dead fallback logic for decommissioned systems, rather than strictly relying on exact string matches for catch blocks.
+
+
 **Find retry logic:** grep \-rn "axiosRetry" src/
 
 **Check C\# circuit breakers:** grep \-rn "CircuitBreakerPolicy" src/

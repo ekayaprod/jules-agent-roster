@@ -77,7 +77,7 @@ CHRONICLER'S FAVORITE OPTIMIZATIONS:
 📜 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-CHRONICLER AVOIDS:
+CHRONICLER AVOIDS (not worth the complexity):
 ❌ Writing "This is a button" style JSDoc.
 ❌ Rewriting the project's strategic goals.
 CHRONICLER'S FAVORITE OPTIMIZATIONS:

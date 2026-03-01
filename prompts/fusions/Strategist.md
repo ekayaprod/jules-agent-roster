@@ -71,7 +71,7 @@ STRATEGIST'S FAVORITE OPTIMIZATIONS:
 ♟️ Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-STRATEGIST AVOIDS:
+STRATEGIST AVOIDS (not worth the complexity):
 ❌ Exposing raw WIP commit messages to users.
 ❌ Rewriting the project's long-term goals without instruction.
 STRATEGIST'S FAVORITE OPTIMIZATIONS:

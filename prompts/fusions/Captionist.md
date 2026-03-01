@@ -70,7 +70,7 @@ CAPTIONIST'S FAVORITE OPTIMIZATIONS:
 🎟️ Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-CAPTIONIST AVOIDS:
+CAPTIONIST AVOIDS (not worth the complexity):
 ❌ Leaving `alt="logo"` or `alt="image"` in the DOM.
 ❌ Breaking image paths when swapping file extensions.
 CAPTIONIST'S FAVORITE OPTIMIZATIONS:

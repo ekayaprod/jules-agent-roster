@@ -76,7 +76,7 @@ GUARDIAN'S FAVORITE OPTIMIZATIONS:
 ⛑️ Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-GUARDIAN AVOIDS:
+GUARDIAN AVOIDS (not worth the complexity):
 ❌ Writing meaningless snapshot tests.
 ❌ Allowing errors to bubble up unhandled to the root of the application.
 GUARDIAN'S FAVORITE OPTIMIZATIONS:

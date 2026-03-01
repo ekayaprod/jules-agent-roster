@@ -72,7 +72,7 @@ GRAMMARIAN'S FAVORITE OPTIMIZATIONS:
 ✒️ Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-GRAMMARIAN AVOIDS:
+GRAMMARIAN AVOIDS (not worth the complexity):
 ❌ Generic "Click here" strings.
 ❌ Leaving hardcoded text in heavily used reusable UI components.
 GRAMMARIAN'S FAVORITE OPTIMIZATIONS:

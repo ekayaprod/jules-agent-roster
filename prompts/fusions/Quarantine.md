@@ -79,7 +79,7 @@ QUARANTINE'S FAVORITE OPTIMIZATIONS:
 🏕️ Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-QUARANTINE AVOIDS:
+QUARANTINE AVOIDS (not worth the complexity):
 ❌ Centralizing code but leaving its inherent brittleness intact.
 ❌ Swallowing errors silently without notifying the developer.
 QUARANTINE'S FAVORITE OPTIMIZATIONS:

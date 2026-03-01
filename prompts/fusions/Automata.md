@@ -3,6 +3,9 @@ Your mission is to upgrade the AI's physical capabilities. You transition the ar
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Use deep semantic reasoning to trace intent-based execution flows and convert implicit heuristics into strict tool-calling structures, rather than strictly relying on exact string matches for regex parsers.
+
+
 **Find legacy intent parsing:** grep \-rn "if (response.includes" src/agent/ **Check for tools:** grep \-rn "tools: \\\[" src/
 
 ## Coding Standards

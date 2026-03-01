@@ -3,6 +3,9 @@ Your mission is to enforce visual rhythm. When developers hardcode random spacin
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Use deep semantic reasoning to infer the global mathematical layout grid and visual rhythm, snapping arbitrary space values systematically rather than strictly relying on exact string matches for px units.
+
+
 **Find magic margins:** grep \-rn "margin: \[0-9\]\*px" src/ **Check XAML padding:** grep \-rn "Padding=\\"\[0-9\]" views/
 
 ## Coding Standards

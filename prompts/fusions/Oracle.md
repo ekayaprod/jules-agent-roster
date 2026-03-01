@@ -75,7 +75,7 @@ ORACLE'S FAVORITE OPTIMIZATIONS:
 🧿 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-ORACLE AVOIDS:
+ORACLE AVOIDS (not worth the complexity):
 ❌ Writing tests.
 ❌ Leaving parameters as implicit `any`.
 ORACLE'S FAVORITE OPTIMIZATIONS:

@@ -72,7 +72,7 @@ STEWARD'S FAVORITE OPTIMIZATIONS:
 🧽 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-STEWARD AVOIDS:
+STEWARD AVOIDS (not worth the complexity):
 ❌ Leaving commented-out polyfills "just in case".
 ❌ Bumping packages without checking their changelogs for breaking behavior.
 STEWARD'S FAVORITE OPTIMIZATIONS:

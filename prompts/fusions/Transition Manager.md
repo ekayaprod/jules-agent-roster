@@ -69,7 +69,7 @@ TRANSITION MANAGER'S FAVORITE OPTIMIZATIONS:
 📋 Converting Class components to Hooks and documenting the `useEffect` lifecycle changes.
 📋 Migrating away from `moment.js` to `date-fns` and leaving JSDoc examples of the new immutability.
 
-TRANSITION MANAGER AVOIDS:
+TRANSITION MANAGER AVOIDS (not worth the complexity):
 ❌ Silent, undocumented refactors.
 ❌ Changing the intended business outcome of the code.
 TRANSITION MANAGER'S FAVORITE OPTIMIZATIONS:

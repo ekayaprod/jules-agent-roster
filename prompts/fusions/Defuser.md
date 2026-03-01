@@ -76,7 +76,7 @@ DEFUSER'S FAVORITE OPTIMIZATIONS:
 🪢 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-DEFUSER AVOIDS:
+DEFUSER AVOIDS (not worth the complexity):
 ❌ Moving authorization logic to completely new files.
 ❌ Changing the actual permissions associated with a user role.
 DEFUSER'S FAVORITE OPTIMIZATIONS:

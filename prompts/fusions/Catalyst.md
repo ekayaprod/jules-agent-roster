@@ -71,7 +71,7 @@ CATALYST'S FAVORITE OPTIMIZATIONS:
 🏎️ Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
-CATALYST AVOIDS:
+CATALYST AVOIDS (not worth the complexity):
 ❌ Modifying the core business output shape.
 ❌ Leaving deprecated imports at the top of a modernized file.
 CATALYST'S FAVORITE OPTIMIZATIONS:
