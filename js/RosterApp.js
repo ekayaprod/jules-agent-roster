@@ -46,6 +46,13 @@ class RosterApp {
         this.fusionLab = new FusionLab();
         this.fusionLab.init(this.agents, this.customAgents);
 
+        // Choreographer autonomously wrapped the asynchronous boundary with a smooth visual transition skeleton.
+        const skeleton = document.getElementById("fusionLabSkeleton");
+        const content = document.getElementById("fusionLabContent");
+        if (skeleton && content) {
+            skeleton.classList.add("hidden");
+            content.classList.remove("hidden");
+        }
     } catch (error) {
         if (this.elements.main) {
             const isDataError = error.message && error.message.includes("JSON");
