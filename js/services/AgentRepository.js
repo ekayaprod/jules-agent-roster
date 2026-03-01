@@ -150,7 +150,7 @@ class AgentRepository {
                 if (response.status === 404) {
                     return response;
                 }
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error(`We couldn't reach the server (Status: ${response.status}). Please check your connection and try again.`);
             }
             return response;
         } catch (error) {
@@ -179,7 +179,7 @@ class AgentRepository {
         try {
             return await response.json();
         } catch (error) {
-            throw new Error(`Failed to parse JSON for ${label}: ${error.message}`);
+            throw new Error(`We encountered a problem reading the configuration for ${label}. Please ensure the file is formatted correctly.`);
         }
     }
 
@@ -195,7 +195,7 @@ class AgentRepository {
      */
     validateAgentsData(data) {
         if (!Array.isArray(data)) {
-            throw new Error("Invalid format: agents data must be an array.");
+            throw new Error("The agent data is not in the expected format. Please provide a valid list of agents.");
         }
         return data
             .filter((agent) => {
