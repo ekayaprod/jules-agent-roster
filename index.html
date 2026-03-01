@@ -2119,13 +2119,18 @@
 
     <header class="header">
       <!-- Gallerist: Optimized Hero Banner with explicit dimensions and fade-in -->
-      <img
-        src="assets/hero-banner.svg"
-        alt="AI Fusion Lab Hero Banner"
-        width="800"
-        height="250"
-        class="hero-banner"
-      >
+      <div class="img-wrapper" style="width: 800px; height: 250px; max-width: 100%;">
+        <div class="img-placeholder" style="border-radius: 1rem;"></div>
+        <img
+          src="assets/hero-banner.svg"
+          alt="AI Fusion Lab Hero Banner"
+          width="800"
+          height="250"
+          class="hero-banner img-loading"
+          onload="this.classList.remove('img-loading'); this.classList.add('img-loaded'); this.previousElementSibling.classList.add('hidden');"
+          loading="lazy"
+        >
+      </div>
       <h1>Jules Master Agent Roster</h1>
       <p class="text-secondary">
         The complete system for solo development with AI agents.
