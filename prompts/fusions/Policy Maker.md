@@ -37,7 +37,7 @@ def calc(p, t):
 
 **Search policy:** cat AI\_POLICY.md **Search data leaks:** grep \-r "user.ssn\\|user.email" src/ai/
 
-## **Fusion Standards**
+## **Agent Standards**
 
 **Good Code:**  
 `// ✅ GOOD: A compliance warning mapped directly to the policy document before AI execution.`  

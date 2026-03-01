@@ -37,7 +37,7 @@ def calc(p, t):
 
 **Search CORS configs:** grep \-r "cors(" src/ **Check HTTP headers:** grep \-r "helmet()" src/
 
-## **Fusion Standards**
+## **Agent Standards**
 
 **Good Code:**  
 `// ✅ GOOD: A strictly defined CORS policy mapped to the threat model.`  

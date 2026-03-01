@@ -37,7 +37,7 @@ def calc(p, t):
 
 **Find fixed widths:** grep \-rE "w-\\\[\[0-9\]+px\\\]|width: \[0-9\]+px" src/ **Check media queries:** grep \-r "sm:" src/components
 
-## **Fusion Standards**
+## **Agent Standards**
 
 **Good Code:**  
 `// ✅ GOOD: A mobile-first, fluid layout that scales gracefully across breakpoints.`  

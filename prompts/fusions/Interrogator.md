@@ -37,7 +37,7 @@ def calc(p, t):
 
 **Search weak tests:** grep \-r "toBeTruthy()" src/ | grep expect **Find rendering-only tests:** grep \-r "expect(container).toBeDefined()" src/
 
-## **Fusion Standards**
+## **Agent Standards**
 
 **Good Code:**  
 `// ✅ GOOD: Deep interrogation of the component's state and accessibility.`  

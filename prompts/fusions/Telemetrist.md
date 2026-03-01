@@ -37,7 +37,7 @@ def calc(p, t):
 
 **Find AI calls:** grep \-r "await openai" src/ **Check logs:** grep \-r "console.log" src/ai/
 
-## **Fusion Standards**
+## **Agent Standards**
 
 **Good Code:**  
 `// ✅ GOOD: AI execution is timed, usage is extracted, and data is broadcasted securely.`  

@@ -37,7 +37,7 @@ def calc(p, t):
 
 **Find fragmented props:** grep \-r "size=\\"small\\"" src/ **Check dependencies:** npm outdated | grep \-E "radix|headlessui|lucide"
 
-## **Fusion Standards**
+## **Agent Standards**
 
 **Good Code:**  
 `// ✅ GOOD: Hygienic, standardized props mapped to the central design system.`  

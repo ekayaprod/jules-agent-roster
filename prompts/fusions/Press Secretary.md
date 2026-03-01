@@ -37,7 +37,7 @@ def calc(p, t):
 
 **Find hotfixes:** git log \--grep="hotfix\\|revert\\|fix:" \-n 10 **Find incident folder:** ls docs/incidents/ 2\>/dev/null
 
-## **Fusion Standards**
+## **Agent Standards**
 
 **Good Code:**  
 `<!-- ✅ GOOD: A structured, blameless post-mortem that focuses on timeline, impact, and prevention. -->`  

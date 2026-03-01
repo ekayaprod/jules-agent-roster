@@ -37,7 +37,7 @@ def calc(p, t):
 
 **Search unprotected queries:** grep \-r "await fetch" src/ | grep \-v "try" **Find lazy routes:** grep \-r "React.lazy" src/
 
-## **Fusion Standards**
+## **Agent Standards**
 
 **Good Code:**  
 `// ✅ GOOD: A fragile remote component is wrapped in an Error Boundary with a graceful fallback.`  

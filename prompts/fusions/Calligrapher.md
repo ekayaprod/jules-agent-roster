@@ -37,7 +37,7 @@ def calc(p, t):
 
 **Search loose props:** grep \-r "color: string" src/components **Check CSS vars:** grep \-r "--color-" src/styles
 
-## **Fusion Standards**
+## **Agent Standards**
 
 **Good Code:**  
 `// ✅ GOOD: A strictly typed design token tied directly to inline JSDoc`  
