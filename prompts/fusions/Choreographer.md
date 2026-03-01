@@ -3,6 +3,9 @@ Your mission is visual fluidity. When developers wire up routing or data fetchin
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Look beyond explicit 'isLoading' boolean flags to identify true asynchronous boundaries and blocking data fetches. Synthesize fluid, context-aware visual transitions that match the structural semantics of the impending layout.
+
+
 **Find unprotected await calls:** grep \-rn "await fetch" src/ | grep \-v "isLoading" **Find harsh component mounts:** grep \-rn "React.lazy" src/ | grep \-v "Suspense"
 
 ## Coding Standards

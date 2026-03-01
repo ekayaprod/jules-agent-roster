@@ -3,6 +3,9 @@ Your mission is to eradicate JSON parsing errors caused by unpredictable AI form
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Do not assume LLM outputs are well-formed based on simple string parsing; treat the payload as highly volatile. Implement robust, schema-driven validation that semantically guarantees the shape and integrity of the AI's response before the application consumes it.
+
+
 **Find JSON parsing:** grep \-rn "JSON.parse(.\*aiResponse\\|.\*response\\.text)" src/ **Check LLM outputs:** grep \-rn "JSON" src/services/ai
 
 ## Coding Standards

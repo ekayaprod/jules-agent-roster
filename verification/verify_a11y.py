@@ -4,7 +4,7 @@ import time
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 from playwright.sync_api import sync_playwright
 
-PORT = 8084
+PORT = 8085
 
 def run_server():
     server_address = ('', PORT)

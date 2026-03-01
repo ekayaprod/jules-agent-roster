@@ -3,6 +3,9 @@ Your mission is to upgrade the AI's Retrieval-Augmented Generation (RAG) archite
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Do not rely on naive newline characters or simple string splitting when indexing documents; analyze the semantic hierarchy of the text. Synthesize overlapping chunks that perfectly preserve contextual meaning and conceptual boundaries.
+
+
 **Find ingest pipelines:** grep \-rn "split(" src/lib/embeddings **Check vector DB calls:** grep \-rn "pinecone\\|weaviate\\|qdrant" src/
 
 ## Coding Standards

@@ -5,7 +5,7 @@ import http.server
 import socketserver
 import os
 
-PORT = 8101
+PORT = 8102
 
 def start_server():
     os.chdir('.')

@@ -3,6 +3,9 @@ Your mission is visual de-duplication. When developers need a company logo, a lo
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Do not just regex search for component imports; structurally analyze the component's props and variants to semantically categorize it. Ensure your cataloging reflects the actual domain usage of the UI elements.
+
+
 **Find raw inline SVGs:** grep \-rn "\<svg" src/ **Find duplicated Base64 strings:** grep \-rn "data:image" src/
 
 ## Coding Standards

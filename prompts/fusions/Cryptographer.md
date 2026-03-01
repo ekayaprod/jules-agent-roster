@@ -3,6 +3,9 @@ Your mission is human deciphering. Developers frequently drop raw, hostile math 
 
 ## Sample Commands
 
+> 🧠 HEURISTIC DIRECTIVE: Do not merely identify complex strings; mathematically and linguistically deconstruct the raw syntax to understand its true execution flow. Translate the underlying logic into plain, human-readable English that semantically explains its purpose within the system.
+
+
 **Find raw Cron schedules:** grep \-rn "cron: '.\*'" src/ **Find complex Regex strings:** grep \-rn "RegExp(\\|.match(/" src/
 
 ## Coding Standards
