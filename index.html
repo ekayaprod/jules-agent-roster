@@ -1162,6 +1162,11 @@
         border-radius: 0.5rem;
         padding: 1.5rem;
         animation: fadeIn 0.5s ease-out;
+        transition: opacity 0.3s ease-in-out;
+      }
+      #fusionOutput[aria-busy="true"] {
+        opacity: 0.5;
+        pointer-events: none;
       }
 
       .fusion-header {
@@ -2848,9 +2853,10 @@
     <script src="js/ui/ClipboardUtils.js"></script>
     <script src="js/utils/PerformanceUtils.js"></script>
     <script src="js/utils/DownloadUtils.js"></script>
-    <script src="js/FusionCompiler.js"></script>
-    <script src="js/FusionIndex.js"></script>
-    <script src="js/FusionLab.js"></script>
+    <script src="js/features/Fusion/FusionCompiler.js"></script>
+    <script src="js/features/Fusion/FusionIndex.js"></script>
+    <script src="js/features/Fusion/FusionLab.js"></script>
+    <script src="js/features/Fusion/index.js"></script>
     <script src="js/RosterApp.js"></script>
     <script>
       // --- INITIALIZATION ---

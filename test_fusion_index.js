@@ -12,7 +12,7 @@ global.document = {
 
 // Include FusionIndex
 const fs = require('fs');
-let code = fs.readFileSync('./js/FusionIndex.js', 'utf8');
+let code = fs.readFileSync('./js/features/Fusion/FusionIndex.js', 'utf8');
 
 const { Script } = require('vm');
 const script = new Script(code + '\n\n module.exports = FusionIndex;');

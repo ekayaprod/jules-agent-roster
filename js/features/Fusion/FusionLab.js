@@ -788,6 +788,9 @@ class FusionLab {
     fuseBtn.setAttribute("aria-disabled", "true");
     if (controls) controls.classList.add("fusing");
 
+    const output = document.getElementById("fusionOutput");
+    if (output) output.setAttribute("aria-busy", "true");
+
     // Start Animation
     overlay.classList.add("active");
 
@@ -796,6 +799,7 @@ class FusionLab {
       fuseBtn.disabled = false;
       fuseBtn.setAttribute("aria-disabled", "false");
       if (controls) controls.classList.remove("fusing");
+      if (output) output.setAttribute("aria-busy", "false");
 
       this.showResult();
     }, 3500);
