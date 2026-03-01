@@ -13,3 +13,7 @@
 ## 2026-02-28 - [Polished & Protected UI: Fusion Index Shelf]
 **Learning:** When retrofitting interactive behavior onto `div` elements, explicit `keydown` listeners for `Enter` and `Space` are mandatory for keyboard accessibility; relying on `click` is insufficient as browsers do not auto-trigger clicks on non-buttons via keyboard. Furthermore, testing `localStorage` hydration requires careful sequencing: navigating to the page, injecting the data, and then reloading the page ensures the application initializes with the correct state.
 **Action:** Always pair `role="button"` with `tabindex="0"` and an explicit `keydown` handler (`Enter`/`Space`) when upgrading non-semantic elements. For state-dependent tests, favor a "Load → Inject → Reload" pattern to guarantee clean state initialization.
+
+## 2026-03-01 - [Polished & Protected UI: Tooltip Focus States]
+**Learning:** When implementing pure CSS tooltips using `::after` pseudo-elements, relying on `:focus` to trigger visibility creates an accessibility trap for mouse users (the tooltip remains permanently visible after clicking until another element is focused). Furthermore, using a `<span>` with `role="tooltip"` and `tabindex="0"` is an anti-pattern for the *trigger* element itself.
+**Action:** Always upgrade interactive tooltip triggers to semantic `<button type="button">` elements. Bind the tooltip visibility strictly to `:hover` and `:focus-visible` (never `:focus`), and ensure the button has a distinct, high-contrast `:focus-visible` ring.
