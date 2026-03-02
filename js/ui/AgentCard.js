@@ -39,7 +39,6 @@ class AgentCard {
             card.classList.add(`tier-${lowerTier}`);
         }
 
-        // Fix Fusion Icon Bug: Extract emoji from custom fusion names if icon is missing
         let icon = agent.icon;
         let displayName = agent.name;
         if (!icon && agent.isCustom) {
@@ -110,7 +109,6 @@ class AgentCard {
             card.classList.remove('flipped');
         });
 
-        // Inline toggle logic to avoid overflow clipping issues
         toggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (mainBtn.dataset.action === "copy-agent") {
