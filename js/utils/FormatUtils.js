@@ -17,4 +17,19 @@ class FormatUtils {
             )
             .join("\n\n");
     }
+
+    /**
+     * Escapes special HTML characters to prevent XSS.
+     * @param {string} unsafe - The unsafe string to escape.
+     * @returns {string} The escaped, safe string.
+     */
+    static escapeHTML(unsafe) {
+        if (!unsafe || typeof unsafe !== 'string') return unsafe || "";
+        return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 }

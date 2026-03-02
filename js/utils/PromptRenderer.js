@@ -25,8 +25,8 @@ class PromptRenderer {
 
             return `
               <div class="prompt-section prompt-section--${sec.tag}">
-                  <div class="prompt-section-label">${label}</div>
-                  <div class="prompt-section-body">${sec.content}</div>
+                  <div class="prompt-section-label">${FormatUtils.escapeHTML(label)}</div>
+                  <div class="prompt-section-body">${FormatUtils.escapeHTML(sec.content)}</div>
               </div>
             `;
         }).join('');

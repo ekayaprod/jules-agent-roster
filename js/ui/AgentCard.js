@@ -54,15 +54,16 @@ class AgentCard {
             icon = '🤖';
         }
 
-        const role = agent.role || 'Fusion Protocol';
-        const desc = agent.desc || agent.description || '';
+        const role = FormatUtils.escapeHTML(agent.role || 'Fusion Protocol');
+        const desc = FormatUtils.escapeHTML(agent.desc || agent.description || '');
+        const safeDisplayName = FormatUtils.escapeHTML(displayName);
 
         card.innerHTML = `
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <div class="emoji-hero">${icon}</div>
                     <div class="title-group">
-                        <h3 class="agent-title">${displayName}</h3>
+                        <h3 class="agent-title">${safeDisplayName}</h3>
                         <span class="role-tag">${role}</span>
                     </div>
                     <div class="tag-container justify-center mt-2">${tags}</div>
@@ -72,7 +73,7 @@ class AgentCard {
 
                 <div class="flip-card-back">
                     <div class="back-header">
-                        <h3 class="agent-title text-sm truncate">${displayName}</h3>
+                        <h3 class="agent-title text-sm truncate">${safeDisplayName}</h3>
                         <button class="icon-btn flip-back-btn" aria-label="Flip back">✕</button>
                     </div>
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
