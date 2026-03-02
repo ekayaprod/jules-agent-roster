@@ -1,39 +1,21 @@
 // --- ROSTER APP ---
 /**
  * Main application class for the Jules Master Agent Roster.
- * Handles fetching agent data, rendering the UI, managing state, and handling user interactions.
  */
 class RosterApp {
-  /**
-   * Initializes the RosterApp instance.
-   * Sets up initial state for agents, DOM elements, and toast notifications.
-   */
   constructor() {
     this.agents = [];
     this.customAgents = {};
     this.elements = {};
-    // Service & UI Components
     this.agentRepo = new AgentRepository();
     this.toast = new ToastNotification(CONFIG.selectors.toast);
     this.fusionLab = null;
   }
 
-  // Backward compatibility for verification scripts
   get fusionCompiler() {
       return this.fusionLab ? this.fusionLab.compiler : null;
   }
 
-  /**
-   * specialized initialization sequence.
-   * 1. Caches DOM elements.
-   * 2. Renders skeleton loaders.
-   * 3. Fetches data asynchronously.
-   * 4. Clears skeletons.
-   * 5. Renders agent cards.
-   * 6. Binds event listeners.
-   * 7. Initializes the intersection observer for navigation.
-   * @returns {Promise<void>}
-   */
   async init() {
     this.cacheElements();
 
@@ -42,11 +24,9 @@ class RosterApp {
         this.agents = agents;
         this.customAgents = customAgents;
 
-        // Initialize Fusion Lab Component
         this.fusionLab = new FusionLab();
         this.fusionLab.init(this.agents, this.customAgents);
 
-        // Choreographer autonomously wrapped the asynchronous boundary with a smooth visual transition skeleton.
         const skeleton = document.getElementById("fusionLabSkeleton");
         const content = document.getElementById("fusionLabContent");
         if (skeleton && content) {
@@ -68,9 +48,7 @@ class RosterApp {
                 </svg>
                 <p class="empty-title">${errorTitle}</p>
                 <p class="empty-desc">${errorDesc}</p>
-                <button onclick="window.location.reload()" class="mt-6">
-                  Refresh Page
-                </button>
+                <button onclick="window.location.reload()" class="mt-6">Refresh Page</button>
               </div>
             `;
         }
@@ -82,12 +60,7 @@ class RosterApp {
     this.initObserver();
   }
 
-  /**
-   * Caches DOM elements specified in `CONFIG.selectors` to `this.elements`.
-   * Reduces DOM lookups during runtime.
-   */
   cacheElements() {
-    // Cache DOM elements based on CONFIG
     Object.keys(CONFIG.selectors).forEach((key) => {
       const selector = CONFIG.selectors[key];
       this.elements[key] = selector.startsWith("#")
@@ -96,10 +69,6 @@ class RosterApp {
     });
   }
 
-  /**
-   * Clears all skeleton loaders from the category grids.
-   * Called after data is successfully loaded.
-   */
   clearSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
       const container = document.getElementById(CONFIG.categories[key]);
@@ -107,11 +76,6 @@ class RosterApp {
     });
   }
 
-  /**
-   * Renders the agent cards into their respective category grids.
-   * Constructs HTML for each agent including tags and action buttons.
-   * Uses DocumentFragment to minimize reflows.
-   */
   renderAgents() {
     const categoryContainers = {};
     const fragments = {};
@@ -127,24 +91,16 @@ class RosterApp {
     let globalIndex = 0;
     this.agents.forEach((agent, index) => {
       const container = categoryContainers[agent.category];
-      if (!container) {
-        console.error(
-          `Medic: Container for category '${agent.category}' not found. Skipping agent ${agent.name}.`,
-        );
-        return;
-      }
+      if (!container) return;
 
-      // 🗿 The Sculptor: Use AgentCard component
       const card = AgentCard.create(agent, index, globalIndex);
       globalIndex++;
 
-      // Append to fragment instead of direct DOM
       if (fragments[agent.category]) {
         fragments[agent.category].appendChild(card);
       }
     });
 
-    // Commit fragments to DOM
     Object.keys(fragments).forEach(key => {
       if (categoryContainers[key]) {
         categoryContainers[key].appendChild(fragments[key]);
@@ -152,13 +108,7 @@ class RosterApp {
     });
   }
 
-  /**
-   * Binds event listeners to static elements and sets up event delegation for dynamic elements.
-   * Handles search input, button clicks, and card interactions.
-   */
   bindEvents() {
-    // Static events
-    // ⚡ Bolt+: Debounce search input to prevent layout thrashing
     if (this.elements.searchInput) {
       const debouncedFilter = PerformanceUtils.debounce((query) => {
         this.filterAgents(query);
@@ -168,251 +118,132 @@ class RosterApp {
         debouncedFilter(e.target.value),
       );
     }
-    this.elements.clearBtn?.addEventListener("click", () =>
-      this.clearSearch(),
-    );
+    
+    this.elements.clearBtn?.addEventListener("click", () => this.clearSearch());
 
     const clearSearchEmptyBtn = document.getElementById("clearSearchEmptyBtn");
     if (clearSearchEmptyBtn) {
       clearSearchEmptyBtn.addEventListener("click", () => this.clearSearch());
     }
 
-    this.elements.copyAllBtn?.addEventListener("click", (e) =>
-      this.copyAll(e.currentTarget),
-    );
-    this.elements.downloadAllBtn?.addEventListener("click", (e) =>
-      this.downloadAll(e.currentTarget),
-    );
+    this.elements.copyAllBtn?.addEventListener("click", (e) => this.copyAll(e.currentTarget));
+    this.elements.downloadAllBtn?.addEventListener("click", (e) => this.downloadAll(e.currentTarget));
     this.elements.downloadDropdownBtn?.addEventListener("click", (e) => {
       e.stopPropagation();
       this.toggleDownloadDropdown();
     });
-    this.elements.downloadDropdownBtn?.addEventListener("keydown", (e) =>
-      this.handleDropdownKeydown(e),
-    );
-    this.elements.downloadDropdownMenu?.addEventListener("keydown", (e) =>
-      this.handleDropdownKeydown(e),
-    );
-    this.elements.downloadCustomBtn?.addEventListener("click", (e) =>
-      this.downloadCustomAgents(e.currentTarget),
-    );
+    this.elements.downloadDropdownBtn?.addEventListener("keydown", (e) => this.handleDropdownKeydown(e));
+    this.elements.downloadDropdownMenu?.addEventListener("keydown", (e) => this.handleDropdownKeydown(e));
+    this.elements.downloadCustomBtn?.addEventListener("click", (e) => this.downloadCustomAgents(e.currentTarget));
 
-    // Close dropdown on focus out (Tab or click outside)
-    this.elements.downloadDropdownMenu?.addEventListener("focusout", (e) => {
-      // Use setTimeout to allow activeElement to update
+    this.elements.downloadDropdownMenu?.addEventListener("focusout", () => {
       setTimeout(() => {
         const menu = this.elements.downloadDropdownMenu;
         const btn = this.elements.downloadDropdownBtn;
-        if (
-          menu.classList.contains("visible") &&
-          !menu.contains(document.activeElement) &&
-          !btn.contains(document.activeElement)
-        ) {
+        if (menu.classList.contains("visible") && !menu.contains(document.activeElement) && !btn.contains(document.activeElement)) {
           menu.classList.remove("visible");
           btn.setAttribute("aria-expanded", "false");
         }
       }, 0);
     });
 
-    // Global click to close dropdown
     document.addEventListener("click", (e) => {
-      if (
-        this.elements.downloadDropdownMenu?.classList.contains("visible") &&
-        !this.elements.downloadDropdownMenu.contains(e.target) &&
-        !this.elements.downloadDropdownBtn.contains(e.target)
-      ) {
+      if (this.elements.downloadDropdownMenu?.classList.contains("visible") && !this.elements.downloadDropdownMenu.contains(e.target) && !this.elements.downloadDropdownBtn.contains(e.target)) {
         this.elements.downloadDropdownMenu.classList.remove("visible");
         this.elements.downloadDropdownBtn?.setAttribute("aria-expanded", "false");
       }
     });
 
-    // Event Delegation
-    this.elements.main?.addEventListener("click", (e) => {
-      const toggleBtn = e.target.closest(
-        '[data-action="toggle-details"]',
-      );
-      if (toggleBtn) {
-        this.toggleDetails(toggleBtn.dataset.index, toggleBtn);
-        return;
-      }
-
+    // Event Delegation for Copy Buttons inside Flip Cards
+    document.addEventListener("click", (e) => {
       const copyBtn = e.target.closest('[data-action="copy-agent"]');
       if (copyBtn) {
         this.copyAgent(copyBtn.dataset.index, copyBtn);
-        return;
       }
     });
   }
 
   /**
-   * Toggles the visibility of the agent details section.
-   * @param {string|number} index - The index of the agent.
-   * @param {HTMLElement} btn - The button element that triggered the action.
-   */
-  toggleDetails(index, btn) {
-    const grid = document.getElementById(`details-${index}`);
-
-    // ⚡ Bolt+: Lazy load content to reduce initial DOM size
-    const content = grid.querySelector('.details-overflow');
-    if (content && !content.innerHTML.trim()) {
-        let agent = this.agents[index];
-        if (!agent && this.customAgents && this.customAgents[index]) {
-            agent = this.customAgents[index];
-        }
-        if (!agent && this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]) {
-            agent = this.fusionLab.compiler.customAgentsMap[index];
-        }
-
-        if (agent) {
-            content.innerHTML = AgentCard.getPromptHtml(agent);
-        }
-    }
-
-    const isExpanded = grid.classList.toggle("expanded");
-    btn.closest(".card").classList.toggle("active", isExpanded);
-    btn.setAttribute("aria-expanded", isExpanded);
-    const span = btn.querySelector("span");
-    span.innerText = isExpanded ? "Hide Prompt" : "Show Prompt";
-  }
-
-  /**
-   * Filters the displayed agents based on a search query.
-   * Updates visibility of cards, section headers, and empty state.
-   * Announces results to screen readers.
-   * Optimized to avoid layout thrashing and unnecessary re-renders.
-   * @param {string} query - The search query.
+   * Search Mode Paradigm: Clears search area, parses query, clones matching cards to the top grid.
    */
   filterAgents(query) {
     const search = query.toLowerCase();
-
-    // Clear fusion search grid
-    const fusionGrid = document.getElementById('fusionSearchGrid');
-    const fusionHeader = document.getElementById('fusion-search-results');
-    if (fusionGrid) fusionGrid.innerHTML = '';
-    if (fusionHeader) fusionHeader.style.display = 'none';
-
-    const cards = document.querySelectorAll(CONFIG.selectors.card);
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    let visibleCount = 0;
-
+    const searchModeContainer = document.getElementById("searchModeContainer");
+    const searchResultsGrid = document.getElementById("searchResultsGrid");
+    const categoryNav = document.getElementById("category-nav");
+    
+    // Toggle Search UI Elements
     if (query.length > 0) {
       this.elements.clearBtn?.classList.add("visible");
+      searchModeContainer.classList.remove("hidden");
+      if(categoryNav) categoryNav.style.display = 'none';
+      
+      // Hide standard categorized grids
+      document.querySelectorAll(CONFIG.selectors.grid).forEach(grid => {
+          if(grid.id !== "searchResultsGrid") grid.style.display = "none";
+      });
+      document.querySelectorAll(CONFIG.selectors.sectionHeader).forEach(header => {
+          if(header.id !== "search-mode-header") header.style.display = "none";
+      });
     } else {
       this.elements.clearBtn?.classList.remove("visible");
+      searchModeContainer.classList.add("hidden");
+      if(categoryNav) categoryNav.style.display = 'flex';
+      
+      // Restore standard grids
+      document.querySelectorAll(CONFIG.selectors.grid).forEach(grid => {
+          if(grid.id !== "searchResultsGrid") grid.style.display = "flex";
+      });
+      document.querySelectorAll(CONFIG.selectors.sectionHeader).forEach(header => {
+          if(header.id !== "search-mode-header") header.style.display = "block";
+      });
+      
+      this.elements.emptyState?.classList.remove("visible");
+      if (this.elements.announcer) this.elements.announcer.textContent = "";
+      return;
     }
 
-    cards.forEach((card) => {
-      const text = card.textContent.toLowerCase();
-      const isMatch = text.includes(search);
+    // Clear previous search results
+    searchResultsGrid.innerHTML = "";
+    let visibleCount = 0;
 
-      // Clear any pending hide timeout
-      if (card._hideTimeout) {
-        clearTimeout(card._hideTimeout);
-        card._hideTimeout = null;
-      }
-
-      if (isMatch) {
-        // If it was fading out, stop it
-        card.classList.remove("fading-out");
-
-        if (card.style.display === "none") {
-          card.style.display = "flex";
-          if (!reducedMotion) {
-            card.classList.remove("pop-in");
-            void card.offsetWidth; // Trigger reflow
-            const delay = Math.min(visibleCount * 30, 600);
-            card.style.animationDelay = `${delay}ms`;
-            card.classList.add("pop-in");
-          }
+    // 1. Search Core Agents
+    this.agents.forEach((agent, index) => {
+        const text = (agent.name + " " + (agent.desc || "")).toLowerCase();
+        if (text.includes(search)) {
+            const card = AgentCard.create(agent, index, visibleCount);
+            searchResultsGrid.appendChild(card);
+            visibleCount++;
         }
-        visibleCount++;
-      } else {
-        // No match
-        if (card.style.display !== "none") {
-          if (reducedMotion) {
-            card.style.display = "none";
-            card.classList.remove("pop-in");
-          } else {
-            card.classList.add("fading-out");
-            // 🗿 The Sculptor: Smooth fade out
-            card._hideTimeout = setTimeout(() => {
-              if (card.classList.contains("fading-out")) {
-                card.style.display = "none";
-                card.classList.remove("fading-out");
-                card.classList.remove("pop-in");
-              }
-            }, 200); // Match CSS transition duration
-          }
-        }
-      }
     });
 
-    // NOW, add Fusion cards
-    if (search.length > 0 && this.fusionLab && this.fusionLab.fusionIndex) {
-        let fusionVisibleCount = 0;
-        const unlockedKeys = this.fusionLab.fusionIndex.unlockedKeys;
-        unlockedKeys.forEach(key => {
-            let agent = this.customAgents[key];
-
-            if (!agent && this.fusionLab.compiler.customAgentsMap[key]) {
-                agent = this.fusionLab.compiler.customAgentsMap[key];
-            }
+    // 2. Search Fusion Agents
+    if (this.fusionLab && this.fusionLab.fusionIndex) {
+        this.fusionLab.fusionIndex.unlockedKeys.forEach(key => {
+            let agent = this.customAgents[key] || this.fusionLab.compiler.customAgentsMap[key];
             if (!agent) return;
 
-            const desc = agent.desc || agent.description || "";
-            const text = (agent.name + " " + desc).toLowerCase();
-
+            const text = (agent.name + " " + (agent.desc || "")).toLowerCase();
             if (text.includes(search)) {
-                // It's a match, create and add card
-                const card = AgentCard.create(agent, key, visibleCount + fusionVisibleCount);
-                // Force display flex
-                card.style.display = 'flex';
-                if (fusionGrid) fusionGrid.appendChild(card);
-                fusionVisibleCount++;
+                const card = AgentCard.create(agent, key, visibleCount);
+                searchResultsGrid.appendChild(card);
+                visibleCount++;
             }
         });
-
-        if (fusionVisibleCount > 0) {
-            if (fusionHeader) fusionHeader.style.display = 'block';
-            visibleCount += fusionVisibleCount;
-        }
     }
 
-    const totalVisible = visibleCount;
-
-    if (totalVisible === 0 && query.length > 0) {
+    if (visibleCount === 0) {
       this.elements.emptyState?.classList.add("visible");
-      document
-        .querySelectorAll(CONFIG.selectors.sectionHeader)
-        .forEach((el) => (el.style.display = "none"));
+      searchModeContainer.classList.add("hidden");
     } else {
       this.elements.emptyState?.classList.remove("visible");
-      document.querySelectorAll(CONFIG.selectors.grid).forEach((grid) => {
-        const hasVisibleCards = Array.from(grid.children).some(
-          (card) => card.style.display !== "none",
-        );
-        const header = grid.previousElementSibling;
-        if (header && header.classList.contains("section-header")) {
-          header.style.display = hasVisibleCards ? "block" : "none";
-        }
-      });
     }
 
     if (this.elements.announcer) {
-      this.elements.announcer.textContent =
-        query.length === 0
-          ? ""
-          : totalVisible === 0
-            ? "No agents found."
-            : `Found ${totalVisible} agents.`;
+      this.elements.announcer.textContent = visibleCount === 0 ? "No agents found." : `Found ${visibleCount} agents.`;
     }
   }
 
-  /**
-   * Clears the search input and resets the filter.
-   * Returns focus to the search input.
-   */
   clearSearch() {
     if (this.elements.searchInput) {
       this.elements.searchInput.value = "";
@@ -421,33 +252,17 @@ class RosterApp {
     }
   }
 
-  /**
-   * Copies a specific agent's prompt to the clipboard.
-   * @param {string|number} index - Index of the agent in `this.agents`.
-   * @param {HTMLElement} btn - The button triggered.
-   */
   async copyAgent(index, btn) {
-    let agent = this.agents[index];
-    if (!agent && this.customAgents && this.customAgents[index]) {
-        agent = this.customAgents[index];
-    }
-    if (!agent && this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]) {
-        agent = this.fusionLab.compiler.customAgentsMap[index];
-    }
-
+    let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
     if (!agent) return;
 
     const success = await ClipboardUtils.copyText(agent.prompt);
-
     if (success) {
       this.toast.show("Copied to clipboard");
       ClipboardUtils.animateButtonSuccess(btn, "Copied!");
     }
   }
 
-  /**
-   * Toggles the visibility of the download dropdown menu.
-   */
   toggleDownloadDropdown() {
     const menu = this.elements.downloadDropdownMenu;
     const btn = this.elements.downloadDropdownBtn;
@@ -455,8 +270,6 @@ class RosterApp {
     if (menu) {
       const isVisible = menu.classList.toggle("visible");
       if (btn) btn.setAttribute("aria-expanded", isVisible);
-
-      // Focus management when opening
       if (isVisible) {
         const firstItem = menu.querySelector('.dropdown-item');
         if (firstItem) firstItem.focus();
@@ -464,10 +277,6 @@ class RosterApp {
     }
   }
 
-  /**
-   * Handles keyboard navigation for the download dropdown.
-   * @param {KeyboardEvent} e - The keyboard event.
-   */
   handleDropdownKeydown(e) {
     const menu = this.elements.downloadDropdownMenu;
     const btn = this.elements.downloadDropdownBtn;
@@ -480,102 +289,49 @@ class RosterApp {
         btn.focus();
       }
     } else if (e.key === "Enter" || e.key === " ") {
-      // Explicitly handle Enter/Space to ensure toggle works reliably via keyboard
       e.preventDefault();
       this.toggleDownloadDropdown();
-    } else if (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === "Home" || e.key === "End") {
+    } else if (["ArrowDown", "ArrowUp", "Home", "End"].includes(e.key)) {
       e.preventDefault();
-
       if (!isVisible) {
         this.toggleDownloadDropdown();
         return;
       }
-
-      // Navigation within menu
       const items = Array.from(menu.querySelectorAll('.dropdown-item'));
       if (items.length === 0) return;
-
       const currentIndex = items.indexOf(document.activeElement);
-      let nextIndex;
-
-      if (e.key === "Home") {
-        nextIndex = 0;
-      } else if (e.key === "End") {
-        nextIndex = items.length - 1;
-      } else if (currentIndex === -1) {
-        nextIndex = e.key === "ArrowDown" ? 0 : items.length - 1;
-      } else if (e.key === "ArrowDown") {
-        nextIndex = (currentIndex + 1) % items.length;
-      } else {
-        nextIndex = (currentIndex - 1 + items.length) % items.length;
-      }
+      let nextIndex = e.key === "Home" ? 0 : e.key === "End" ? items.length - 1 : currentIndex === -1 ? (e.key === "ArrowDown" ? 0 : items.length - 1) : e.key === "ArrowDown" ? (currentIndex + 1) % items.length : (currentIndex - 1 + items.length) % items.length;
       items[nextIndex].focus();
     }
   }
 
-  /**
-   * Generates a downloadable Markdown file containing all custom agent (fusion) prompts.
-   * Creates a Blob and triggers a download.
-   * @param {HTMLElement} btn - The button that triggered the download.
-   */
   downloadCustomAgents(btn) {
-    const header =
-      "JULES CUSTOM AGENT ROSTER (FUSIONS)\n\nThis roster contains synthesized protocols from the Fusion Lab.\n\n--------------------------------------------------------------------------------\n\n";
-
-    const validCustomAgents = Object.values(this.customAgents).filter(
-      (a) => a.prompt && a.prompt.length > 0
-    );
-
+    const header = "JULES CUSTOM AGENT ROSTER (FUSIONS)\n\n--------------------------------------------------------------------------------\n\n";
+    const validCustomAgents = Object.values(this.customAgents).filter(a => a.prompt && a.prompt.length > 0);
     if (validCustomAgents.length === 0) {
       this.toast.show("No custom agents available to download.");
       return;
     }
-
-    const body = FormatUtils.formatAgentPrompts(validCustomAgents);
-
-    const content = header + body;
-    DownloadUtils.downloadTextFile(content, "jules_custom_agents.md");
-
+    DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(validCustomAgents), "jules_custom_agents.md");
     ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
     this.elements.downloadDropdownMenu?.classList.remove("visible");
   }
 
-  /**
-   * Generates a downloadable Markdown file containing all agent prompts.
-   * Creates a Blob and triggers a download.
-   * @param {HTMLElement} btn - The button that triggered the download.
-   */
   downloadAll(btn) {
-    const header =
-      "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
-    const body = FormatUtils.formatAgentPrompts(this.agents);
-
-    const content = header + body;
-    DownloadUtils.downloadTextFile(content, "jules_roster.md");
-
+    const header = "JULES MASTER AGENT ROSTER\n\n--------------------------------------------------------------------------------\n\n";
+    DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(this.agents), "jules_roster.md");
     ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
   }
 
-  /**
-   * Copies the full roster content (headers + all prompts) to the clipboard.
-   * @param {HTMLElement} btn - The button triggered.
-   */
   async copyAll(btn) {
-    const header =
-      "JULES MASTER AGENT ROSTER\n\nThis roster integrates Core Performance/UX/Security agents with Engineering & Context specialists.\n\n--------------------------------------------------------------------------------\n\n";
-    const body = FormatUtils.formatAgentPrompts(this.agents);
-    const success = await ClipboardUtils.copyText(header + body);
-
+    const header = "JULES MASTER AGENT ROSTER\n\n--------------------------------------------------------------------------------\n\n";
+    const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(this.agents));
     if (success) {
       this.toast.show("Copied to clipboard");
       ClipboardUtils.animateButtonSuccess(btn, "Copied!");
     }
   }
 
-  /**
-   * Initializes the Intersection Observer for the sticky navigation.
-   * Updates the active state of navigation pills based on the currently visible section.
-   */
   initObserver() {
     const navPills = document.querySelectorAll(CONFIG.selectors.navPills);
     const observer = new IntersectionObserver(
@@ -590,10 +346,7 @@ class RosterApp {
           }
         });
       },
-      {
-        rootMargin: "-80px 0px -60% 0px",
-        threshold: 0,
-      },
+      { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
     );
 
     Object.keys(CONFIG.sectionMap).forEach((gridId) => {
@@ -602,9 +355,6 @@ class RosterApp {
     });
   }
 
-  /**
-   * Expose showToast method for compatibility with other components (FusionLab)
-   */
   showToast(message) {
       this.toast.show(message);
   }
