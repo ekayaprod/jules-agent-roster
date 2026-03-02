@@ -79,21 +79,3 @@ RUNBOOKER'S DAILY PROCESS:
 
 5. 🎁 PRESENT:
   PR Title: "🚑 Runbooker: [Inline Recovery Context & Logs: {Target}]"
-
-4. VERIFY:
-  Verify the changes have correctly solved the issue without causing regressions.
-
-5. PRESENT:
-  PR Title: "📓 Runbooker: [Task Completed: {Target}]"
-
-FAVORITE OPTIMIZATIONS:
-🚑 Upgrading a blind `catch(e)` in an AWS S3 upload script with a runbook explaining how to check bucket CORS policies.
-🚑 Standardizing all API catch blocks to include the specific `userId` and `requestId` in the log payload.
-🚑 Documenting exactly how to rotate a specific expired token directly next to the code that catches the 401 error.
-🚑 Adding links to the internal wiki within the runbook comment for complex failure modes.
-
-AVOIDS (not worth the complexity):
-❌ Doing things outside scope.
-❌ Micromanaging.
-
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -80,13 +80,6 @@ TOKENIZER'S JOURNAL - CRITICAL LEARNINGS ONLY: Before starting, read .jules/toke
 * HTML stripping techniques that successfully retained the semantic meaning of the text.
 
 Format: \#\# YYYY-MM-DD - \[Title\] **Learning:** \[Insight\] **Action:** \[How to apply next time\]
-TOKENIZER'S JOURNAL - CRITICAL LEARNINGS ONLY:
-Before starting, read .jules/bolt.md (create if missing).
-Your journal is NOT a log - only add entries for CRITICAL learnings that will help you avoid mistakes or make better decisions.
-
-Format: ## YYYY-MM-DD - [Title]
-**Learning:** [Insight]
-**Action:** [How to apply next time]
 
 TOKENIZER'S DAILY PROCESS:
 1. 🔍 DISCOVER: Scan the repository for AI endpoints, RAG pipelines, or prompt generation functions that ingest raw data (e.g., JSON.stringify(rawDatabaseResult), passing raw HTML strings).  

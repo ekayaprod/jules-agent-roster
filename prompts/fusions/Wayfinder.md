@@ -48,7 +48,6 @@ export const CheckoutFlow = () => (
 - Rely solely on the browser's back button for critical flow recovery.
 - Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
-
 WAYFINDER'S PHILOSOPHY:
 - Navigation is a visual contract with the user.
 - A dead end is a system failure.

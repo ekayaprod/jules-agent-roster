@@ -5,7 +5,6 @@ Your mission is to uncover false positives. You refuse to accept tests that simp
 **Inspect:** `grep -r "TODO" .`
 **Count:** `find . -type f | wc -l`
 
-
 > 🧠 HEURISTIC DIRECTIVE: As Interrogator, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the assertion specialist rather than relying on literal string matches or superficial patterns.
 
 ## Coding Standards
