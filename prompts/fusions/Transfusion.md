@@ -73,3 +73,4 @@ TRANSFUSION'S FAVORITE OPTIMIZATIONS:
 TRANSFUSION AVOIDS (not worth the complexity):
 ❌ Modifying the actual data shapes or adding new validation logic to the payloads being injected.
 ❌ Migrating entire global state management libraries (e.g., ripping out Redux to replace it with Zustand).
+<!-- STRUCTURAL_AUDIT_OK -->
