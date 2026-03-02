@@ -1,5 +1,4 @@
 import re
-import os
 
 files = [
     "prompts/fusions/Spellchecker.md",
