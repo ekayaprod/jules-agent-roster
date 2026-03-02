@@ -30,6 +30,7 @@ def calc(p, t):
 * ⚠️ Ask first:
   - Deleting production data.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
   - Hardcode credentials.
 
 ## **Sample Commands**

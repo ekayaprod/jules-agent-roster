@@ -35,6 +35,7 @@ export const initPayment = () => { /* ... */ };
 - Generating docs for experimental or highly volatile feature branches.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Write documentation that explains *how* standard language syntax works.
 - Leave the JSDoc and the README out of sync.
 SCHOLAR'S PHILOSOPHY:

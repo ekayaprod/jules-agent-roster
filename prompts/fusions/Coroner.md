@@ -34,6 +34,7 @@ rm src/legacy/OldAuth.ts
 - Deleting massive directories that look abandoned but might be part of an active refactor branch.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Delete code blindly without checking for dynamic imports or reflection.
 - Leave skipped or broken tests behind (`test.skip`).
 CORONER'S PHILOSOPHY:

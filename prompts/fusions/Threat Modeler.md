@@ -30,6 +30,7 @@ def calc(p, t):
 * ⚠️ Ask first:
   - Deleting production data.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
   - Hardcode credentials.
 
 ## **Sample Commands**
@@ -69,6 +70,7 @@ def calc(p, t):
 * Implementing extremely strict CSPs that might break existing inline styles or third-party analytics scripts.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Turn off CORS completely just to bypass a local development bug.  
 * Write theoretical threat models that have no basis in the actual architecture of the app.

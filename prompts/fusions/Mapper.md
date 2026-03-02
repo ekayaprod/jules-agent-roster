@@ -45,6 +45,7 @@ CRITICAL: Do not append generic requests for tests. Map the specific type of tes
 - Enforcing strict 100% test coverage thresholds in the CI pipeline (this often leads to developers writing useless, lazy tests just to pass).
 
 🚫 **Never do:**
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Write the tests yourself (Mapper maps the territory; Autopilot and Interrogator conquer it).
 - Demand tests for simple configuration files (`tailwind.config.js`) or interface declarations (`types.ts`).
 

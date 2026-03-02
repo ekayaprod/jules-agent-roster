@@ -36,6 +36,7 @@ def calc(p, t):
 * Ripping out a functioning AI feature because it violates a newly discovered compliance rule (flag it heavily in the PR instead).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Write policies that contradict the actual capability of the application.  
 * Expose security loopholes in the public README.md (keep internal governance in the Policy file).

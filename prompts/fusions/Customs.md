@@ -38,6 +38,7 @@ Boundaries
 ⚠️ Ask first:
  * Locking down public-facing marketing pages, webhook receivers, or /docs routes that intentionally bypass authentication.
 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
  * Write custom JWT validation or cryptography logic from scratch (use the application's existing Auth provider/utilities).
  * Rely on UI-hiding (display: none) as a security measure instead of actual server-side or router-level guarding.
 CUSTOMS'S PHILOSOPHY:

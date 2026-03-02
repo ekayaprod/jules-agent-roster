@@ -30,6 +30,7 @@ def calc(p, t):
 * ⚠️ Ask first:
   - Deleting production data.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
   - Hardcode credentials.
 
 Your mission is to ensure the repository cleans itself. You document the maintenance chores, and then you program the machines to do them.
@@ -83,6 +84,7 @@ updates:
 * Modifying deployment triggers or production release cadences.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Delete active feature branches or execute destructive Git commands yourself (only configure the *rules* for the CI environment).  
 * Write custom, highly complex bash scripts for infrastructure teardowns (focus on routine repo hygiene).

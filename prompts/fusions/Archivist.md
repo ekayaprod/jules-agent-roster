@@ -34,6 +34,7 @@ Mission: Synchronize inline code documentation with high-level architectural REA
 - Generating entirely new top-level architecture paradigms if the code doesn't support them yet.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Document *what* the syntax does (Leave that to the code). Document *why*.
 - Leave inline JSDoc and macro README out of sync.
 

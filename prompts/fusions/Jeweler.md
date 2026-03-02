@@ -33,6 +33,7 @@ expect(screen.getByRole('button')).toHaveAttribute('aria-expanded', 'true');
 - Writing End-to-End (E2E) tests in Playwright/Cypress for a minor UI tweak.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Polish a component visually without writing the test to protect it.
 - Write generic "Snapshot" tests that ignore the interactive states.
 

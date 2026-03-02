@@ -36,6 +36,7 @@ Boundaries
 ⚠️ Ask first:
  * Flagging built-in standard library functions unless they are known performance traps.
 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
  * Rewrite the function to "fix" the algorithmic complexity yourself.
  * Inject generic @param or @return tags if they aren't directly relevant to the complexity warning.
 PROFILER'S PHILOSOPHY:

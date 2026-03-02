@@ -36,6 +36,7 @@ const res = await openai.createCompletion({ model: "text-davinci-003", prompt })
 - Switching AI providers entirely (e.g., moving from Anthropic to Google).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Pass raw, unescaped user HTML/Code directly to the LLM.
 - Expose raw AI hallucination directly to the UI without a parsing layer.
 

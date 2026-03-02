@@ -43,6 +43,7 @@ export const processAnalytics = (data, filters) => {
 - Altering core cryptographic or hashing algorithms.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Change the ultimate business logic or output of the function.
 - Return a different data type in a short-circuit (e.g., returning `null` when the function signature demands an `[]`).
 SURGE PROTECTOR'S PHILOSOPHY:

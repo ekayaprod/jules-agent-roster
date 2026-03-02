@@ -39,6 +39,7 @@ export const sharedFetch = async (url) => {
 - Standardizing highly divergent error fallback states that currently serve different domains uniquely.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Create a shared utility out of fragile code without adding an error boundary to protect the consumers.
 - Swallow errors silently without telemetry/logging.
 QUARANTINE'S PHILOSOPHY:

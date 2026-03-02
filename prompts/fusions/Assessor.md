@@ -39,6 +39,7 @@ test('submits form', () => {
 - Changing the actual underlying business logic of the component just to make it easier to test.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Delete a legacy test without replacing it with an equivalent or superior modern test.
 - Migrate a test suite into a framework not already installed in the package.json.
 

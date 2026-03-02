@@ -32,6 +32,7 @@ export const parseDate = (date) => { /* ... */ } // No tests exist
 - Combining logic that looks similar but serves entirely different domain purposes.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Extract a shared utility without writing test coverage for it.
 - Leave the original duplicated code in place.
 

@@ -30,6 +30,7 @@ def calc(p, t):
 * ⚠️ Ask first:
   - Deleting production data.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
   - Hardcode credentials.
 
 ## **Sample Commands**
@@ -61,7 +62,7 @@ def calc(p, t):
 
 * ✅ Always do:
 
-* Wrap runtime deprecation console.warn statements in NODE_ENV \!== 'production' checks so they don't spam end-users.
+* Wrap runtime deprecation console.warn statements in NODE_ENV !== 'production' checks so they don't spam end-users.
 * Draft a highly specific MIGRATION.md file explaining exactly how to transition from the old API to the new one.  
 * Provide code examples of the "Old Way" vs the "New Way" in the migration guide.
 
@@ -70,6 +71,7 @@ def calc(p, t):
 * Actually deleting the deprecated code. (Your job is to warn, Scavenger's job is to delete).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Add deprecation warnings to internal, private utility functions that aren't exposed to the public API.  
 * Spam the console with a warning on every single render loop (use a "warned once" flag if necessary).

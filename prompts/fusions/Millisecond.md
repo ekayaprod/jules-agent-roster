@@ -36,6 +36,7 @@ export const Widget = () => (
 - Refactoring `React.memo` wrappers if the component is exceptionally cheap to render.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Apply `useMemo` to primitive values (strings, numbers, booleans) as it costs more than the render.
 - Alter the actual data structure or visual output of the component.
 

@@ -42,6 +42,7 @@ export const PollingWidget = () => {
  * Clearing critical global cache states (like Apollo/React Query caches) during active sessions.
  * Wiping authentication tokens from storage.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
  * Mute ESLint exhaustive-deps warnings just to prevent infinite loops (fix the dependency array instead).
  * Delete user-generated draft data before it is saved.
 PROTON PACK'S PHILOSOPHY:

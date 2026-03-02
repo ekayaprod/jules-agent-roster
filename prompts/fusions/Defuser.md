@@ -36,6 +36,7 @@ if (user) {
 - Refactoring core session management lifecycles (e.g., JWT signing algorithms).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Alter the underlying permissions granted to specific roles during the flattening process.
 - Leave authorization variables untyped or as implicit `any`.
 DEFUSER'S PHILOSOPHY:

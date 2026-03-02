@@ -32,6 +32,7 @@ const fastFilter = (data) => /* complex unreadable bitwise logic */
 - Rewriting critical, mathematically complex business algorithms purely for speed.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Optimize code at the expense of correct logical parity.
 - Write generic UI component tests; focus strictly on logical performance boundaries.
 PACESETTER'S PHILOSOPHY:

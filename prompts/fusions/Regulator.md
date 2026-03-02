@@ -31,6 +31,7 @@ if (password.length < 12) { throw new Error("Too short"); }
 - Refactoring complex generic types that might break consumer implementations.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Move files or restructure folders (Leave to Architect 🏗️).
 - Change the logical output or business outcome during extraction.
 

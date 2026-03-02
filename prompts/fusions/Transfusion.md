@@ -30,6 +30,7 @@ Boundaries
 ⚠️ Ask first:
  * Decoupling massive legacy singletons from core middleware where updating the signature would require changing 500+ consumer files in a single, highly-conflicting PR.
 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
  * Change the core algorithmic logic of what the function actually calculates or returns.
  * Hardcode mock data as the default parameter just to make tests pass; force the caller to inject the real dependency.
 TRANSFUSION'S PHILOSOPHY:

@@ -58,6 +58,7 @@ def calc(p, t):
 * Refactoring complex discriminated unions that govern application state logic (stick to UI/visual tokens).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Create a TypeScript literal for a color/size that doesn't actually exist in the CSS.  
 * Delete or rename a design token in the CSS (your job is to type them, not change them).

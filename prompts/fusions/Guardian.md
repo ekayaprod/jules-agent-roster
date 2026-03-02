@@ -37,6 +37,7 @@ const data = JSON.parse(input);
 - Adding massive observability SDKs (e.g., Sentry) to handle the logging.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Swallow errors silently without returning a predictable state.
 - Write "Happy Path" tests. Focus strictly on the failure modes.
 GUARDIAN'S PHILOSOPHY:

@@ -30,6 +30,7 @@ Mission: Move mountains of unstructured public assets into a strict, unified fol
 - Deleting massive video files or highly specific vector branding assets.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Move an asset without updating its corresponding import path in the code.
 - Strip alt text or accessibility tags from the DOM.
 

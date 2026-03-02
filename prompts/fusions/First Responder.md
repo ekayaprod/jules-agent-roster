@@ -37,6 +37,7 @@ database.save(data);
 - Blocking IP ranges automatically upon validation failure.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Allow code execution to proceed if validation fails.
 - Leak PII, passwords, or raw malicious injection strings into the logging telemetry.
 

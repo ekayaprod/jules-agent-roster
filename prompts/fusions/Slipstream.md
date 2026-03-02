@@ -47,6 +47,7 @@ export const Dashboard = () => (
 * ⚠️ Ask first:
  * Dynamically importing core navigational elements or authentication boundaries.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
  * Code-split tiny, lightweight components (the network overhead isn't worth it).
  * Break static routing structures that rely on synchronous exports.
 

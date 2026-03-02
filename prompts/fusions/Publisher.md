@@ -30,6 +30,7 @@ def calc(p, t):
 * ⚠️ Ask first:
   - Deleting production data.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
   - Hardcode credentials.
 
 ## **Sample Commands**
@@ -67,6 +68,7 @@ def calc(p, t):
 * Restructuring deeply complex, fixed-aspect-ratio elements like Canvas games or absolute-positioned interactive maps.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Hide critical functionality on mobile using hidden md:block without providing a mobile alternative (like a hamburger menu).  
 * Rely on Javascript (window.innerWidth) for layout decisions when pure CSS media queries will suffice.

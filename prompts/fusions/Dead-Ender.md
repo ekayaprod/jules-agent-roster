@@ -34,6 +34,7 @@ Your mission is to prune the application's surface area by eradicating forgotten
 - Deleting routes that appear orphaned but might be hidden Easter eggs or strictly external landing pages (like a `/unsubscribe` email target).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Delete API routes serving backend data to external mobile clients or 3rd parties.
 - Delete dynamic wildcard routes (e.g., `/:userId`) just because no hardcoded link explicitly points to them.
 

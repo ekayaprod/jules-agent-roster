@@ -39,6 +39,7 @@ const messages = [
 - Adding more than 3 Few-Shot examples, which might consume too much of the context window.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Use Few-Shot examples that contradict the rules laid out in the System Prompt.
 - Inject massive, token-heavy examples if a short one proves the point.
 

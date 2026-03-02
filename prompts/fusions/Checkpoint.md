@@ -34,6 +34,7 @@ const InaccurateSchema = z.object({ id: z.number() });
 - Bumping major versions of core frameworks (React, Express) that require massive rewrites.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Bump a dependency and ignore the integration boundaries.
 - Override or delete a security validation just to make a type error go away.
 CHECKPOINT'S PHILOSOPHY:

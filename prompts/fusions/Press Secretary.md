@@ -36,6 +36,7 @@ def calc(p, t):
 * Publishing incident reports to a public-facing /website/ directory (keep them in internal /docs/ unless specified).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Name specific developers or cast blame in the report.  
 * Speculate on financial loss or legal liability.

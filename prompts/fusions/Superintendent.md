@@ -40,6 +40,7 @@ Your mission is to unify operational hygiene. When developers write ad-hoc scrip
 * Centralizing scripts that drop production or staging databases, as execution context changes could be highly destructive.
 
 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Centralize business authorization policies or application logic.  
 * Execute the cleanup scripts yourself; your job is strictly to organize and centralize the commands for human/CI execution.

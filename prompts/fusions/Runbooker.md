@@ -41,6 +41,7 @@ catch (error) {
 - Injecting massive runbooks into highly performance-sensitive inner loops.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Write runbooks for generic framework errors (focus on domain-specific logic).
 - Swallow the error entirely (always re-throw or return a handled state).
 

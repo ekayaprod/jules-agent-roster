@@ -33,6 +33,7 @@ return <textarea value={draft} onChange={(e) => setDraft(e.target.value)} />
 - Caching highly sensitive data (like Passwords, SSNs, or Credit Cards) to local storage.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Cache data forever without an expiration or cleanup mechanism (always clear the cache onSubmit success).
 - Exceed the 5MB localStorage browser limit by caching massive Base64 image uploads.
 

@@ -45,6 +45,7 @@ export const Exhibit = () => (
 - Introducing a completely new icon library if one is already established.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Serve a massive 4K image file into a tiny 100x100 thumbnail div without optimization.
 - Remove alt text from images.
 

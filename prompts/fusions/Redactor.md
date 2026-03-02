@@ -45,6 +45,7 @@ return (
 - Redacting data in specific "Admin Only" billing dashboards where the full string might be legally required.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Mutate the actual data in the database (Redactor only masks the *display* and *logs*, not the storage).
 - Write custom regex for complex cryptographic hashing (use standard masking utilities).
 

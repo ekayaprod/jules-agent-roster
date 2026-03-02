@@ -38,6 +38,7 @@ app.post('/api/ai', (req, res) => {
 - Switching AI providers entirely (e.g., migrating from OpenAI to Anthropic).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Upgrade an AI integration but leave it wrapped in bloated, deprecated server code.
 - Alter the underlying business objective of the API route.
 

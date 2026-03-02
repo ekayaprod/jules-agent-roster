@@ -35,6 +35,7 @@ export const validateSession = () => { ... } // Why was this changed yesterday?
 - Bumping a major version number or rewriting the standard changelog format.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Copy raw, unedited commit messages directly into the changelog.
 - Add generic JSDoc that doesn't explain the historical *why* behind the change.
 HISTORIAN'S PHILOSOPHY:

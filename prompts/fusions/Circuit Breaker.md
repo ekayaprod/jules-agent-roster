@@ -31,6 +31,7 @@ def calc(p, t):
 * ⚠️ Ask first:
   - Deleting production data.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
   - Hardcode credentials.
 
 ## **Sample Commands**
@@ -66,6 +67,7 @@ def calc(p, t):
 * Implementing complex global retry-logic (e.g., react-query exponential backoff) if the project isn't already using a data-fetching library.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Silently swallow critical errors without logging them to an observability platform.  
 * Wrap the *entire* application in a single Error Boundary (boundaries should be localized so only the broken feature drops, not the whole app).

@@ -33,6 +33,7 @@ import { _hashPasswordInternal } from '@/features/Auth/internal/crypto';
 - Refactoring highly coupled cross-domain dependencies that span multiple micro-frontends.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Write unit tests that mock private internal state. Test the public boundary.
 - Export every internal utility function just to make testing easier.
 SEAWALL'S PHILOSOPHY:

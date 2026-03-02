@@ -41,6 +41,7 @@ module.exports = {
 - Altering the target browser matrix (e.g., dropping support for older browsers to speed up transpilation).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Turn off strict TypeScript checking or linting just to make the build "faster".
 - Cache sensitive environment variables or secrets.
 

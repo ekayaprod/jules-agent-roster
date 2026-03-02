@@ -42,6 +42,7 @@ def calc(p, t):
  * Bypassing or flattening security checkpoints (e.g., 2FA or re-authentication steps).
  * Removing confirmation modals for destructive actions.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
  * Create infinite redirect loops.
  * Sacrifice data integrity or user consent just to save a single click.
 PATHFINDER'S PHILOSOPHY:

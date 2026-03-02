@@ -38,6 +38,7 @@ Your mission is to ensure no interactive element in the codebase is ever left fl
 - Mutating structural layout containers (`<div>` or `<section>`) to behave like interactive elements.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Use `focus:` instead of `focus-visible:` (which breaks the experience for mouse users).
 - Alter the click handlers, routing logic, or data-fetching logic attached to the elements.
 

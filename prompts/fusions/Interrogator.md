@@ -31,6 +31,7 @@ def calc(p, t):
 * ⚠️ Ask first:
   - Deleting production data.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
   - Hardcode credentials.
 
 ## **Sample Commands**
@@ -69,6 +70,7 @@ def calc(p, t):
 * Removing massive snapshot tests (.snap), as some teams rely heavily on them for visual regression (though they are usually brittle).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Write tests that assert against internal component state (e.g., expect(instance.state.isOpen).toBe(true)). Always assert against the resulting DOM/Output.  
 * Assert against specific randomized mock data that might change.

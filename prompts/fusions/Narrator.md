@@ -38,6 +38,7 @@ describe('Checkout', () => {
 - Standardizing the testing vernacular globally (e.g., forcing all tests to use "should...").
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Alter the actual `expect()` assertions or test logic.
 - Change the names of exported variables or functions inside the test file.
 

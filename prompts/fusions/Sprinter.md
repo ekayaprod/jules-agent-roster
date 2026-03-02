@@ -34,6 +34,7 @@ Your mission is to compress a feature's static payload and immediately rewrite t
 - Downscaling image dimensions so aggressively that it becomes blurry.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Delete the original asset without confirming every DOM/CSS reference is updated.
 - Strip alt text while rewriting the image tags.
 SPRINTER'S PHILOSOPHY:

@@ -45,6 +45,7 @@ Your mission is to safely maintain the bridge between the codebase and external 
 * Upgrading to "beta" or experimental SDK features that aren't fully documented or stable.
 
 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Bump an AI dependency without explicitly updating the code that consumes it.  
 * Modify the natural language text or system instructions of the prompt itself (Leave to Prompt Engineer ✨).

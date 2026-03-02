@@ -49,6 +49,7 @@ export const PasswordInput = ({ value, onChange }) => {
 - Changing the underlying Auth provider (e.g., swapping Auth0 for Firebase).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Hardcode plaintext passwords or secrets in the UI placeholders.
 - Use hostile, blaming language in security error states (e.g., "You entered the wrong password!").
 

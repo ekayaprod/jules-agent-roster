@@ -33,6 +33,7 @@ export const fetchUser = async (id) => { /* un-tested logic */ };
 - Refactoring highly complex mathematical state logic if no previous tests exist to verify it against.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Modernize a file without writing the corresponding boundary tests.
 - Change the core business outcome just to make testing easier.
 

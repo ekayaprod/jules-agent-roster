@@ -41,6 +41,7 @@ if (projects.length === 0) {
 - Building multi-page, persistent onboarding tours (like Intro.js) that might trap the user.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Write dry, technical documentation in a tooltip.
 - Hide critical functionality inside a tooltip.
 

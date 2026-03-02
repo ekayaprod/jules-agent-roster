@@ -38,6 +38,7 @@ export const processLegacyCart = () => { ... }
 - Modifying the underlying structure of the `ROADMAP.md` file layout.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Write generic comments that just repeat the function name.
 - Change the actual execution logic of the shipped feature.
 CHRONICLER'S PHILOSOPHY:

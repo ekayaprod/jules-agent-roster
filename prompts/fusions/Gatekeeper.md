@@ -42,6 +42,7 @@ Mission: Ensure zero-trust architecture. No user traverses a route without prese
 * Extracting complex, highly dynamic ownership checks that require joining multiple database tables, as centralizing this might cause severe N+1 query performance bottlenecks.
 
 🚫 **Never do:**
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Centralize standard business logic or data formatting (e.g., calculating tax rates). You strictly extract *security, identity, and authorization* logic.
 * Implement "happy path" security. Never assume the user object will perfectly exist on the request context without explicitly verifying it first.

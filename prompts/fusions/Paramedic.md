@@ -36,6 +36,7 @@ def calc(p, t):
 * Suggesting massive architectural changes (like moving from single-region to multi-region). Document the *current* reality, don't invent a new one.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Include hardcoded passwords or server IP addresses in the recovery documentation (refer to secure Vaults/Environment variables).  
 * Write contingencies for trivial failures (like a CSS bug). Focus on SEV-1 system outages.

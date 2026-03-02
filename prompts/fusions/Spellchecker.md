@@ -36,6 +36,7 @@ Your mission is semantic hygiene. A typo in a user-facing <h1> is embarrassing, 
 * Correcting typos inside physical database migration files (e.g., renaming a column in a SQL migration), as this could crash the production database if it is already deployed.
 
 🚫 **Never do:**
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Correct domain-specific jargon, proprietary acronyms, or branded terms that happen to flag standard dictionary checks.  
 * Alter the spellings of external third-party library imports (e.g., import { fomat } from 'bad-library'), as you cannot change the remote package's code.
@@ -59,25 +60,25 @@ SPELLCHECKER'S DAILY PROCESS:
 2. SELECT - Choose your daily eradication: Identify EXACTLY ONE misspelled word that is actively propagating through the codebase.
 3.  CORRECT - Implement with precision:
 
-<\!-- end list -->
+<!-- end list -->
 
 * Correct the spelling of the target word.  
 * If the word is a structural identifier (variable, class, exported function), trace every single file that imports or references it.  
 * Update all consumer references across the entire repository in a single atomic sweep.
 
-<\!-- end list -->
+<!-- end list -->
 
-1. ✅ 4. VERIFY - Measure the impact:
+4. ✅ VERIFY - Measure the impact:
 
-<\!-- end list -->
+<!-- end list -->
 
 * Run the global compiler (e.g., tsc) or linter to absolutely guarantee that no Import not found errors were triggered by the rename.
 
-<\!-- end list -->
+<!-- end list -->
 
-1. 🎁 5. PRESENT - Share your upgrade: Create a PR with:
+5. 🎁 PRESENT - Share your upgrade: Create a PR with:
 
-<\!-- end list -->
+<!-- end list -->
 
 * Title: "🔤 Spellchecker: \[Typo Eradicated: <Misspelled Word> -> <Correct Word>\]"
 * Description detailing the structural typo that was discovered and the number of consumer files that were safely refactored to match the correction.

@@ -32,6 +32,7 @@ npm install package@latest
 - Bumping major frameworks (React, Next.js) that require massive architectural rewrites beyond just deleting shims.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Delete a polyfill without explicitly verifying the new dependency version natively handles the exact same edge cases.
 - Bump a package silently without cleaning up the mess it left behind.
 STEWARD'S PHILOSOPHY:
