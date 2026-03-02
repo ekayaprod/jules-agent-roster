@@ -12,9 +12,6 @@ class RosterApp {
     this.fusionLab = null;
   }
 
-  get fusionCompiler() {
-      return this.fusionLab ? this.fusionLab.compiler : null;
-  }
 
   async init() {
     this.cacheElements();

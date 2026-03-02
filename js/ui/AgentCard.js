@@ -89,7 +89,6 @@ class AgentCard {
             </div>
         `;
 
-        const inner = card.querySelector('.flip-card-inner');
         const front = card.querySelector('.flip-card-front');
         const backBtn = card.querySelector('.flip-back-btn');
         const toggleBtn = card.querySelector('.action-toggle-btn');
