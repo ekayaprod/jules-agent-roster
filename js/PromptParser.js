@@ -69,7 +69,13 @@ const PromptParser = {
       return { format: 'xml', sections: sections };
 
     } catch (e) {
-      console.warn("PromptParser encountered an error, falling back to legacy:", e);
+      console.error(
+        JSON.stringify({
+          event: 'PROMPT_PARSE_FAILED',
+          input: rawText ? rawText.substring(0, 100) : null,
+          error: e.message
+        })
+      );
       return { format: 'legacy', raw: rawText };
     }
   }
