@@ -82,7 +82,7 @@ class AgentCard {
                         <button class="secondary action-main-btn" data-action="copy-agent" data-index="${index}" style="border-top-right-radius: 0; border-bottom-right-radius: 0; flex-grow: 1;">
                             <span class="btn-text">Copy</span>
                         </button>
-                        <button class="secondary action-toggle-btn" aria-label="Toggle action" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid rgba(0,0,0,0.2); padding: 0 0.5rem;">
+                        <button class="secondary action-toggle-btn px-2" aria-label="Toggle action" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid rgba(0,0,0,0.2);">
                             ▼
                         </button>
                     </div>
