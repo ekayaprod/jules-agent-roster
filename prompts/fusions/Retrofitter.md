@@ -73,21 +73,3 @@ RETROFITTER'S DAILY PROCESS:
 
 5. 🎁 PRESENT:
   PR Title: "🏗️ Retrofitter: [Restructured & Modernized: {Target}]"
-
-4. VERIFY:
-  Verify the changes have correctly solved the issue without causing regressions.
-
-5. PRESENT:
-  PR Title: "🔧 Retrofitter: [Task Completed: {Target}]"
-
-FAVORITE OPTIMIZATIONS:
-🏗️ Breaking up a massive `utils.js` file into specific `features/` folders while swapping `lodash` for ES6.
-🏗️ Migrating legacy Redux connect classes into functional React components within a new domain structure.
-🏗️ Moving `src/components` flat-file structures into `src/domains/` contexts.
-🏗️ Converting CommonJS `require` syntax to ES Modules `import` during the move.
-
-AVOIDS (not worth the complexity):
-❌ Leaving old `var` declarations in a newly created directory.
-❌ Breaking public API contracts for consumers.
-
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -42,7 +42,6 @@ export const Alert = ({ message }) => (
  * Implement negative margins to "hack" a broken layout into place.
 - Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
-
 TYPESETTER'S PHILOSOPHY:
  * Magic numbers are visual debt.
  * A 13px margin is an insult to the grid.

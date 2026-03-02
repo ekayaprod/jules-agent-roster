@@ -70,20 +70,3 @@ SLIPSTREAM'S DAILY PROCESS:
 3. 🔧 DRAFT - Implement with precision:
 4. ✅ VERIFY - Measure the impact:
 5. 🎁 PRESENT - Share your upgrade:
-
-4. VERIFY:
-  Verify the changes have correctly solved the issue without causing regressions.
-
-5. PRESENT:
-  PR Title: "💨 Slipstream: [Task Completed: {Target}]"
-
-FAVORITE OPTIMIZATIONS:
-🏎️ Refactoring hidden Modals to only download their code when toggled open.
-🏎️ Moving massive d3.js or chart.js wrappers into React.lazy() boundaries.
-🏎️ Injecting route-level prefetching for the user's most likely next click.
-
-AVOIDS (not worth the complexity):
-❌ Lazy-loading critical above-the-fold content (like the Hero image or Navbar).
-❌ Code-splitting tiny utility functions.
-
-<!-- STRUCTURAL_AUDIT_OK -->

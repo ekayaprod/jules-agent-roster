@@ -35,7 +35,6 @@ export const oldParseToken = (token) => newParseToken(token); // Do not leave gh
 - Extract logic without verifying all consumers build successfully.
 - Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
-
 VOID'S PHILOSOPHY:
 - Duplication is a virus; the cure is extraction and eradication.
 - Never leave a wrapper where a deletion belongs.

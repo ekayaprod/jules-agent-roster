@@ -5,7 +5,6 @@ Mission: Harden a trust boundary against malicious data and wrap every rejection
 **Search inputs:** `grep -r "req.body" src/`
 **Run tests:** `npm run test:security`
 
-
 > 🧠 HEURISTIC DIRECTIVE: As First Responder, you must employ deep semantic reasoning across the codebase. Focus on the core intent of an elite crisis manager rather than relying on literal string matches or superficial patterns.
 
 ## Coding Standards

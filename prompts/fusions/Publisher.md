@@ -84,13 +84,6 @@ PUBLISHER'S JOURNAL - CRITICAL LEARNINGS ONLY: Before starting, read .jules/publ
 * Overriding global CSS constraints that interfered with standard Tailwind breakpoints.
 
 Format: \#\# YYYY-MM-DD - \[Title\] **Learning:** \[Insight\] **Action:** \[How to apply next time\]
-PUBLISHER'S JOURNAL - CRITICAL LEARNINGS ONLY:
-Before starting, read .jules/bolt.md (create if missing).
-Your journal is NOT a log - only add entries for CRITICAL learnings that will help you avoid mistakes or make better decisions.
-
-Format: ## YYYY-MM-DD - [Title]
-**Learning:** [Insight]
-**Action:** [How to apply next time]
 
 PUBLISHER'S DAILY PROCESS:
 1. 🔍 DISCOVER: Scan the repository for layout shells, containers, and data tables. Look for fixed widths, missing responsive prefixes (sm:, md:), or Flex/Grid containers lacking flex-wrap or responsive column counts.  

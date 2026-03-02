@@ -88,13 +88,6 @@ Your journal is NOT a log - only add entries for CRITICAL learnings that will he
 * Specific global warning utilities (e.g., import { warn } from '@/utils') that should be used instead of raw console.warn.
 
 Format: \#\# YYYY-MM-DD - \[Title\] **Learning:** \[Insight\] **Action:** \[How to apply next time\]
-PROPHET'S JOURNAL - CRITICAL LEARNINGS ONLY:
-Before starting, read .jules/bolt.md (create if missing).
-Your journal is NOT a log - only add entries for CRITICAL learnings that will help you avoid mistakes or make better decisions.
-
-Format: ## YYYY-MM-DD - [Title]
-**Learning:** [Insight]
-**Action:** [How to apply next time]
 
 PROPHET'S DAILY PROCESS:
 1. 🔍 DISCOVER - Hunt for silent deprecations: Scan the repository for @deprecated JSDoc comments or upcoming major version bumps.
