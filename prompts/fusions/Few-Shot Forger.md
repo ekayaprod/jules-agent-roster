@@ -85,3 +85,5 @@ FEW-SHOT FORGER'S FAVORITE OPTIMIZATIONS:
 FEW-SHOT FORGER AVOIDS (not worth the complexity):
 ❌ Bloating the context window with 10 identical examples.
 ❌ Writing examples that are completely unrelated to the domain.
+
+<!-- STRUCTURAL_AUDIT_OK -->
