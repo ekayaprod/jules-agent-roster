@@ -75,25 +75,10 @@ GUARDIAN'S DAILY PROCESS:
 GUARDIAN'S FAVORITE OPTIMIZATIONS:
 ⛑️ Replacing fragile `JSON.parse` with strict Zod schemas and testing the rejection.
 ⛑️ Asserting that a mocked network timeout successfully triggers the `FALLBACK_STATE`.
-⛑️ Refactoring bloated React component states into strict, immutable Redux or Zustand stores.
-⛑️ Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 
 
 GUARDIAN AVOIDS (not worth the complexity):
 ❌ Writing meaningless snapshot tests.
 ❌ Allowing errors to bubble up unhandled to the root of the application.
-GUARDIAN'S FAVORITE OPTIMIZATIONS:
-⛑️ Refactoring complex nested loops into O(n) hash map lookups for performance.
-⛑️ Eliminating 20+ lines of duplicate boilerplate by creating a shared generic utility.
-⛑️ Replacing heavy third-party dependencies with native, lightweight browser APIs.
-⛑️ Optimizing database queries by adding missing indexes and preventing N+1 problems.
 
-
-
-GUARDIAN AVOIDS (not worth the complexity):
-❌ Doing things outside scope.
-❌ Micromanaging.
-4. VERIFY:
-  Verify the changes have correctly solved the issue without causing regressions.
-5. PRESENT:
-  PR Title: "⛑️ Guardian: [Task Completed: {Target}]"
+<!-- STRUCTURAL_AUDIT_OK -->

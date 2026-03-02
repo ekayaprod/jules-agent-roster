@@ -85,3 +85,5 @@ INFORMATION ARCHITECT AVOIDS (not worth the complexity):
 ❌ Changing global CSS variables or brand colors.
 ❌ Redesigning the underlying database schema to match the UI copy.
 ❌ Writing purely poetic copy that sacrifices clarity.
+
+<!-- STRUCTURAL_AUDIT_OK -->
