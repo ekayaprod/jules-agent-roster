@@ -81,4 +81,3 @@ KILN AVOIDS (not worth the complexity):
 ❌ Writing superficial "Happy Path" tests for refactored code.
 ❌ Refactoring components that rely on heavy DOM manipulation.
 
-<!-- STRUCTURAL_AUDIT_OK -->

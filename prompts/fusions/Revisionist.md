@@ -93,4 +93,3 @@ AVOIDS (not worth the complexity):
 ❌ Refactoring the actual code to fix a bug described in a comment.
 ❌ Generating completely new documentation for undocumented functions from scratch.
 
-<!-- STRUCTURAL_AUDIT_OK -->

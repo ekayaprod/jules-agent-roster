@@ -86,4 +86,3 @@ EXPEDITER AVOIDS (not worth the complexity):
 ❌ Attempting to rewrite the entire monorepo architecture.
 ❌ Bypassing security checks to save 5 seconds on the CI run.
 
-<!-- STRUCTURAL_AUDIT_OK -->

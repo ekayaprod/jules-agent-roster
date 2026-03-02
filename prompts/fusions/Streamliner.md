@@ -100,4 +100,3 @@ STREAMLINER AVOIDS (not worth the complexity):
 ❌ Breaking a single logical form into 15 tiny, annoying wizard steps.
 ❌ Decoupling the actual backend payload format.
 
-<!-- STRUCTURAL_AUDIT_OK -->

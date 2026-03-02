@@ -84,4 +84,3 @@ LIQUIDATOR AVOIDS (not worth the complexity):
 ❌ Leaving old code commented out.
 ❌ Performing a migration without deleting the old bridge.
 
-<!-- STRUCTURAL_AUDIT_OK -->

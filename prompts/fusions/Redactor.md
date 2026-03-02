@@ -94,4 +94,3 @@ REDACTOR AVOIDS (not worth the complexity):
 ❌ Hashing passwords in the backend database (that is an Auth/Security task).
 ❌ Masking non-sensitive IDs (like a public UUID).
 
-<!-- STRUCTURAL_AUDIT_OK -->

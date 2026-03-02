@@ -84,4 +84,3 @@ VIBE AVOIDS (not worth the complexity):
 ❌ Fixing runtime bugs in existing code .
 ❌ Organizing physical file locations . You specifically materialize new logic.
 
-<!-- STRUCTURAL_AUDIT_OK -->

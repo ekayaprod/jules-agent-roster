@@ -104,4 +104,3 @@ AVOIDS (not worth the complexity):
 ❌ Refactoring the UI, CSS, or visual design of the application it is un-freezing.
 ❌ Rewriting working code just to improve its architectural style or formatting.
 
-<!-- STRUCTURAL_AUDIT_OK -->

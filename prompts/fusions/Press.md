@@ -94,4 +94,3 @@ PRESS AVOIDS (not worth the complexity):
 ❌ Organizing directories . You specifically extract code *out* of files, you don't move the files themselves.
 ❌ Fixing layout boundaries or CSS margins on the newly extracted icons.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -89,4 +89,3 @@ DEAD-ENDER AVOIDS (not worth the complexity):
 ❌ Attempting to analyze external Google Analytics data to prove traffic volume.
 ❌ Refactoring the actual internal navigation components.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -85,4 +85,3 @@ ASSESSOR AVOIDS (not worth the complexity):
 ❌ Migrating End-to-End (E2E) tests if the CI runner doesn't support the new browser driver.
 ❌ Refactoring the component's actual source code.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -79,4 +79,3 @@ AVOIDS (not worth the complexity):
 ❌ Writing generic, repetitive comments.
 ❌ Ignoring outdated README files when updating function logic.
 
-<!-- STRUCTURAL_AUDIT_OK -->

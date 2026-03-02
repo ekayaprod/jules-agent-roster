@@ -74,4 +74,3 @@ TOWN CRIER AVOIDS (not worth the complexity):
 ❌ Dumping git commit hashes into public docs.
 ❌ Leaving deprecated CLI commands in the README.
 
-<!-- STRUCTURAL_AUDIT_OK -->

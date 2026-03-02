@@ -78,4 +78,3 @@ ORATOR AVOIDS (not worth the complexity):
 ❌ Changing the underlying code logic to fix the bug itself .
 ❌ Translating the error messages into different languages .
 
-<!-- STRUCTURAL_AUDIT_OK -->

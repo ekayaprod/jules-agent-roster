@@ -90,4 +90,3 @@ GALLERIST AVOIDS (not worth the complexity):
 ❌ Implementing fully dynamic server-side image resizing middleware.
 ❌ Trying to convert highly complex, multi-colored illustrations into pure SVG paths manually.
 
-<!-- STRUCTURAL_AUDIT_OK -->

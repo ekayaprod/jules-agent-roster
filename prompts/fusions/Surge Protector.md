@@ -102,4 +102,3 @@ SURGE PROTECTOR AVOIDS (not worth the complexity):
 ❌ Optimizing tiny, 5-item arrays where the optimization overhead costs more than the loop.
 ❌ Breaking functions that explicitly require synchronous side-effects to execute.
 
-<!-- STRUCTURAL_AUDIT_OK -->

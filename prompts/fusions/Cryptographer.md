@@ -91,4 +91,3 @@ CRYPTOGRAPHER AVOIDS (not worth the complexity):
 ❌ Re-writing the regex pattern to be more performant or catch edge cases.
 ❌ Creating interactive visualization charts or flow diagrams. You strictly author plain-text translations.
 
-<!-- STRUCTURAL_AUDIT_OK -->

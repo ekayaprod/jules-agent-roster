@@ -97,4 +97,3 @@ REGISTRAR AVOIDS (not worth the complexity):
 ❌ Executing file movements or actually creating the barrel exports.
 ❌ Writing docstrings or inline code comments for individual functions or variables.
 
-<!-- STRUCTURAL_AUDIT_OK -->

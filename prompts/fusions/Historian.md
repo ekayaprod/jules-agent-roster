@@ -77,4 +77,3 @@ HISTORIAN AVOIDS (not worth the complexity):
 ❌ Exposing raw WIP commit messages to users.
 ❌ Writing "This is a function" style JSDoc.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -86,4 +86,3 @@ WEAVER'S FAVORITE OPTIMIZATIONS:
 WEAVER AVOIDS (not worth the complexity):
 ❌ Changing the business outcome of the code.
 ❌ Extracting spaghetti code without flattening it.
-<!-- STRUCTURAL_AUDIT_OK -->

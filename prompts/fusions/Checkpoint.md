@@ -77,4 +77,3 @@ CHECKPOINT AVOIDS (not worth the complexity):
 ❌ Bumping major frameworks without explicit directives.
 ❌ Deleting validation schemas to bypass type errors.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -85,4 +85,3 @@ AUTOPILOT AVOIDS (not worth the complexity):
 ❌ Testing every single negative edge-case validation error in the browser (use unit tests for that).
 ❌ Testing 3rd party payment gateways (like Stripe) using real credentials.
 
-<!-- STRUCTURAL_AUDIT_OK -->

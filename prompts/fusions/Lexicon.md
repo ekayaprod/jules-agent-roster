@@ -80,4 +80,3 @@ LEXICON AVOIDS (not worth the complexity):
 ❌ Translating the actual user-facing UI text into different languages.
 ❌ Restructuring the physical folder hierarchies of the project files to match the new names.
 
-<!-- STRUCTURAL_AUDIT_OK -->

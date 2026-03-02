@@ -92,4 +92,3 @@ AGENT AVOIDS (not worth the complexity):
 ❌ Modifying the database schema or external APIs to match the UI (you adapt the code to the schema's reality, not the other way around).
 ❌ Purging dynamically invoked code (e.g., string interpolation, reflection, or eval) just because static analysis couldn't find a direct import.
 
-<!-- STRUCTURAL_AUDIT_OK -->

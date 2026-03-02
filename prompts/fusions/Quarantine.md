@@ -84,4 +84,3 @@ QUARANTINE AVOIDS (not worth the complexity):
 ❌ Centralizing code but leaving its inherent brittleness intact.
 ❌ Swallowing errors silently without notifying the developer.
 
-<!-- STRUCTURAL_AUDIT_OK -->

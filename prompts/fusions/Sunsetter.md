@@ -126,4 +126,3 @@ SUNSETTER AVOIDS (not worth the complexity):
 ❌ Refactoring the entire codebase to force the migration.
 ❌ Modifying core business logic.
 
-<!-- STRUCTURAL_AUDIT_OK -->

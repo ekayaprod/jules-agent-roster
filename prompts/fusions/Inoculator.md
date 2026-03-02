@@ -80,4 +80,3 @@ INOCULATOR AVOIDS (not worth the complexity):
 ❌ Leaving `async` functions without catch blocks.
 ❌ Altering the expected output shape of the original logic.
 
-<!-- STRUCTURAL_AUDIT_OK -->

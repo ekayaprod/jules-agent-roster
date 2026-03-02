@@ -79,4 +79,3 @@ TERRAFORMER AVOIDS (not worth the complexity):
 ❌ Leaving orphaned assets in the old directory.
 ❌ Breaking live production image links.
 
-<!-- STRUCTURAL_AUDIT_OK -->

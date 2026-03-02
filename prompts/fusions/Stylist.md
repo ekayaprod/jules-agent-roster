@@ -75,4 +75,3 @@ STYLIST AVOIDS (not worth the complexity):
 ❌ Redesigning the entire application's user flow.
 ❌ Refactoring the animation engine (leave heavy JS animations to Bolt+ or specialized libs).
 
-<!-- STRUCTURAL_AUDIT_OK -->

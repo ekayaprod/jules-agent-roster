@@ -94,4 +94,3 @@ AVOIDS (not worth the complexity):
 ❌ Moving existing files into new folders . You specifically build *new* physical structures.
 ❌ Generating the actual UI layout or database schema logic inside the files (that is the human developer's job).
 
-<!-- STRUCTURAL_AUDIT_OK -->

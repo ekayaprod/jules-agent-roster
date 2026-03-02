@@ -99,4 +99,3 @@ UPHOLSTERER'S DAILY PROCESS:
 UPHOLSTERER'S FAVORITE OPTIMIZATIONS: 🛋️ Hunting down 50 instances of size="large" and standardizing them to size="lg". 🛋️ Bumping lucide-react and swapping deprecated icon names across the repository. 🛋️ Stripping out inline style={{ marginTop: 10 }} and replacing it with standard className="mt-2".
 UPHOLSTERER AVOIDS (not worth the complexity): ❌ Refactoring data-fetching hooks. ❌ Changing the brand color hex codes.
 
-<!-- STRUCTURAL_AUDIT_OK -->

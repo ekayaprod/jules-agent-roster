@@ -81,4 +81,3 @@ DIPLOMAT AVOIDS (not worth the complexity):
 ❌ Fixing the actual backend API throwing the 500 error.
 ❌ Redesigning the visual CSS of the Toast component.
 
-<!-- STRUCTURAL_AUDIT_OK -->

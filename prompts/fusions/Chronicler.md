@@ -81,4 +81,3 @@ CHRONICLER AVOIDS (not worth the complexity):
 ❌ Writing "This is a button" style JSDoc.
 ❌ Rewriting the project's strategic goals.
 
-<!-- STRUCTURAL_AUDIT_OK -->

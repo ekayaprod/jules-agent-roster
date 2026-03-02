@@ -79,4 +79,3 @@ ILLUSIONIST AVOIDS (not worth the complexity):
 ❌ Blocking the main thread with animations.
 ❌ Breaking ARIA properties for a visual trick.
 
-<!-- STRUCTURAL_AUDIT_OK -->

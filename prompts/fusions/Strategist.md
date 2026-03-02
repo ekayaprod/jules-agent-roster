@@ -74,4 +74,3 @@ STRATEGIST AVOIDS (not worth the complexity):
 ❌ Exposing raw WIP commit messages to users.
 ❌ Rewriting the project's long-term goals without instruction.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -99,4 +99,3 @@ SYNTHESIZER AVOIDS (not worth the complexity):
 ❌ Consolidating massive UI components (like merging three different data tables). Stick to logical utility functions and state mappings.
 ❌ Rewriting the actual underlying business rules (if the old function allowed subdomains, the new function must also support allowing subdomains via a parameter).
 
-<!-- STRUCTURAL_AUDIT_OK -->

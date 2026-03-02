@@ -71,4 +71,3 @@ SUPERINTENDENT AVOIDS (not worth the complexity):
 ❌ Centralizing business authorization policies .
 ❌ Organizing the physical location of the application components .
 
-<!-- STRUCTURAL_AUDIT_OK -->

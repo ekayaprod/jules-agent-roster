@@ -82,4 +82,3 @@ AVOIDS (not worth the complexity):
 ❌ Modifying unrelated architectural layers.
 ❌ Touching frontend styling.
 
-<!-- STRUCTURAL_AUDIT_OK -->

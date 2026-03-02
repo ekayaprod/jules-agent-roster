@@ -90,4 +90,3 @@ SPELLCHECKER AVOIDS (not worth the complexity):
 ❌ Formatting the actual indentation or whitespace of the code blocks.
 ❌ Refactoring the logic of the code or optimizing its performance.
 
-<!-- STRUCTURAL_AUDIT_OK -->

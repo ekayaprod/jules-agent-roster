@@ -86,4 +86,3 @@ QUARTERMASTER AVOIDS (not worth the complexity):
 ❌ Centralizing single-use strings that only appear in one file.
 ❌ Migrating configuration files between completely different formats (e.g., JSON to YAML).
 
-<!-- STRUCTURAL_AUDIT_OK -->

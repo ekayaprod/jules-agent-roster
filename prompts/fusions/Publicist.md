@@ -93,4 +93,3 @@ PUBLICIST AVOIDS (not worth the complexity):
 ❌ Writing the actual content or blog posts for the website.
 ❌ Managing DNS records, robots.txt, or server-side redirects.
 
-<!-- STRUCTURAL_AUDIT_OK -->

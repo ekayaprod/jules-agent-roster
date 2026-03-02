@@ -88,4 +88,3 @@ TOWER AVOIDS (not worth the complexity):
 ❌ Formatting the actual mathematical values of the data payloads (e.g., rounding numbers).
 ❌ Managing the network infrastructure of the external telemetry providers (e.g., configuring the AWS CloudWatch permissions).
 
-<!-- STRUCTURAL_AUDIT_OK -->

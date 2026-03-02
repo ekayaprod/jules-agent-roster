@@ -97,4 +97,3 @@ CONSTRUCT AVOIDS (not worth the complexity):
 ❌ Managing the physical vector database infrastructure (Cloud deployments).
 ❌ Writing the frontend chat UI.
 
-<!-- STRUCTURAL_AUDIT_OK -->

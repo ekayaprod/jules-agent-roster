@@ -72,4 +72,3 @@ PROTON PACK AVOIDS (not worth the complexity):
 ❌ Refactoring entire state management libraries (Redux/Zustand) to save a few kilobytes.
 ❌ Emptying the browser's native HTTP cache.
 
-<!-- STRUCTURAL_AUDIT_OK -->

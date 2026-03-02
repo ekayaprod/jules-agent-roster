@@ -81,4 +81,3 @@ PREFECT AVOIDS (not worth the complexity):
 ❌ Injecting module-level constraints (like <script type="module">) into files that clearly rely on global scope pollution to function.
 ❌ Suppressing actual compiler errors using // @ts-ignore or eslint-disable. You define the *environment*, you do not mask bad code.
 
-<!-- STRUCTURAL_AUDIT_OK -->

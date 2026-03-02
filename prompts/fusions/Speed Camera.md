@@ -81,4 +81,3 @@ FAVORITE OPTIMIZATIONS:
 
 AVOIDS (not worth the complexity):
 
-<!-- STRUCTURAL_AUDIT_OK -->

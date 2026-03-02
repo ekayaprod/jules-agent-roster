@@ -82,4 +82,3 @@ AVOIDS (not worth the complexity):
 ❌ Adding heavy JS animation frameworks for simple fade effects.
 ❌ Altering data mutation endpoints.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -75,4 +75,3 @@ ELECTRICIAN AVOIDS (not worth the complexity):
 ❌ Altering the English language instructions inside the prompts.
 ❌ Changing the underlying AI model (e.g., upgrading GPT-3.5 to GPT-4) without permission.
 
-<!-- STRUCTURAL_AUDIT_OK -->

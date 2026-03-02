@@ -85,4 +85,3 @@ LIMITER AVOIDS (not worth the complexity):
 ❌ Caching the actual data returned by the APIs .
 ❌ Fixing fatal startup crashes . You specifically target code that works but runs dangerously fast.
 
-<!-- STRUCTURAL_AUDIT_OK -->

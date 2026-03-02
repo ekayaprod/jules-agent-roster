@@ -83,4 +83,3 @@ RENOVATOR AVOIDS (not worth the complexity):
 ❌ Leaving broken imports after moving files.
 ❌ Altering Redux/Context state logic.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -93,4 +93,3 @@ CHOREOGRAPHER AVOIDS (not worth the complexity):
 ❌ Managing global state caching to speed up the actual data load.
 ❌ Rewriting synchronous loops into asynchronous threads. You strictly deal with the visual layer.
 
-<!-- STRUCTURAL_AUDIT_OK -->

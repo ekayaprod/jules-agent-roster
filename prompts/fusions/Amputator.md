@@ -96,4 +96,3 @@ AMPUTATOR AVOIDS (not worth the complexity):
 ❌ Refactoring the core internal database logic that survived the amputation.
 ❌ Upgrading the remaining, living API clients to use newer syntax (that is /'s job).
 
-<!-- STRUCTURAL_AUDIT_OK -->

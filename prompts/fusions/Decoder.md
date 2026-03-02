@@ -63,4 +63,3 @@ DECODER AVOIDS (not worth the complexity):
 ❌ Fixing the broken code.
 ❌ Upgrading the testing frameworks or changing test timeouts.
 
-<!-- STRUCTURAL_AUDIT_OK -->

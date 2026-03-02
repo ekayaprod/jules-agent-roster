@@ -86,4 +86,3 @@ CHAMELEON AVOIDS (not worth the complexity):
 ❌ Removing `outline-none` without replacing it with `focus-visible`.
 ❌ Changing the base structural padding/margins of the elements.
 
-<!-- STRUCTURAL_AUDIT_OK -->

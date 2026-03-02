@@ -85,4 +85,3 @@ MIXOLOGIST AVOIDS (not worth the complexity):
 ❌ Extracting utilities without typing them.
 ❌ Leaving edge cases untested in the new central function.
 
-<!-- STRUCTURAL_AUDIT_OK -->

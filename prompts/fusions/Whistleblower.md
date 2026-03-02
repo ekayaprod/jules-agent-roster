@@ -78,4 +78,3 @@ WHISTLEBLOWER'S FAVORITE OPTIMIZATIONS:
 WHISTLEBLOWER AVOIDS (not worth the complexity):
 ❌ Executing automatic `--fix` commands that blindly overwrite files without explanation.
 ❌ Rewriting the global `.eslintrc` rules.
-<!-- STRUCTURAL_AUDIT_OK -->

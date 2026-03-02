@@ -75,4 +75,3 @@ GRAMMARIAN AVOIDS (not worth the complexity):
 ❌ Generic "Click here" strings.
 ❌ Leaving hardcoded text in heavily used reusable UI components.
 
-<!-- STRUCTURAL_AUDIT_OK -->

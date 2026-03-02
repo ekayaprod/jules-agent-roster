@@ -74,4 +74,3 @@ AVOIDS (not worth the complexity):
 ❌ Ad-libbing marketing copy.
 ❌ Changing internal variable names that don't face the user.
 
-<!-- STRUCTURAL_AUDIT_OK -->

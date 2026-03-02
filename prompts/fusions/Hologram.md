@@ -78,4 +78,3 @@ HOLOGRAM AVOIDS (not worth the complexity):
 ❌ Using `dangerouslySetInnerHTML` for AI output.
 ❌ Allowing layout shifts (jank) as the text box expands.
 
-<!-- STRUCTURAL_AUDIT_OK -->

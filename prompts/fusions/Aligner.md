@@ -84,4 +84,3 @@ ALIGNER AVOIDS (not worth the complexity):
 ❌ Fixing broken layouts or overflowing containers . You strictly fix the rhythm and spacing.
 ❌ Touching color hex codes or typography styles.
 
-<!-- STRUCTURAL_AUDIT_OK -->

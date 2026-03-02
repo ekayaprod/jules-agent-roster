@@ -99,4 +99,3 @@ TACHYON AVOIDS (not worth the complexity):
 ❌ Refactoring the actual AI prompt instructions.
 ❌ Attempting to stream binary file data out of an LLM.
 
-<!-- STRUCTURAL_AUDIT_OK -->

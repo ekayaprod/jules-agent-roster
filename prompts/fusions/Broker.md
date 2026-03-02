@@ -80,4 +80,3 @@ BROKER AVOIDS (not worth the complexity):
 ❌ Caching user session data globally.
 ❌ Bypassing auth middlewares to improve TTFB.
 
-<!-- STRUCTURAL_AUDIT_OK -->

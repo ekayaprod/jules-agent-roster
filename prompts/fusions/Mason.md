@@ -84,4 +84,3 @@ MASON AVOIDS (not worth the complexity):
 ❌ Changing typographic hierarchy or font sizes .
 ❌ Redesigning the UX flow of a form.
 
-<!-- STRUCTURAL_AUDIT_OK -->

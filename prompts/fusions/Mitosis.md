@@ -93,4 +93,3 @@ MITOSIS AVOIDS (not worth the complexity):
 ❌ Offloading simple `Array.map` operations of less than 1,000 items.
 ❌ Abstracting API network requests into Workers (the browser handles network async already).
 
-<!-- STRUCTURAL_AUDIT_OK -->

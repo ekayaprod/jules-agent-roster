@@ -86,4 +86,3 @@ FUTURIST AVOIDS (not worth the complexity):
 ❌ Leaving deprecated model strings in the codebase.
 ❌ Changing the UI output format without updating the frontend consumers.
 
-<!-- STRUCTURAL_AUDIT_OK -->

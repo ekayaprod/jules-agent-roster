@@ -79,4 +79,3 @@ TRACER AVOIDS (not worth the complexity):
 ❌ Altering the runtime logic to make the code run faster or cleaner.
 ❌ Commenting on individual lines of code inside the logic blocks. You strictly author macro-level flow documents.
 
-<!-- STRUCTURAL_AUDIT_OK -->

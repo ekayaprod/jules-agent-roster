@@ -83,4 +83,3 @@ TOXICOLOGIST AVOIDS (not worth the complexity):
 ❌ Fixing the underlying bug that is causing the exception to throw in the first place.
 ❌ Altering network infrastructure configurations or retry policies.
 
-<!-- STRUCTURAL_AUDIT_OK -->

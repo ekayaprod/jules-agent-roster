@@ -94,4 +94,3 @@ MUSE AVOIDS (not worth the complexity):
 ❌ Writing 500-word paragraphs in the UI.
 ❌ Adding tooltips to obvious elements like a "Save" button.
 
-<!-- STRUCTURAL_AUDIT_OK -->

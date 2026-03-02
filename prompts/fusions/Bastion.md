@@ -90,4 +90,3 @@ BASTION AVOIDS (not worth the complexity):
 ❌ Managing API keys, database passwords, or .env files .
 ❌ Fixing business-logic authorization inside the application code .
 
-<!-- STRUCTURAL_AUDIT_OK -->

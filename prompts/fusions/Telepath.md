@@ -72,4 +72,3 @@ TELEPATH AVOIDS (not worth the complexity):
 ❌ Prefetching data on mobile scrolling (focus exclusively on explicit touch/hover intent).
 ❌ Modifying backend API logic or database schemas.
 
-<!-- STRUCTURAL_AUDIT_OK -->

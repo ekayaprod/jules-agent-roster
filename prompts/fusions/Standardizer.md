@@ -101,4 +101,3 @@ STANDARDIZER AVOIDS (not worth the complexity):
 ❌ Altering the CSS styles, typography variables, or font weights of the text being extracted. You strictly centralize the raw string data, not its visual presentation.
 ❌ Standardizing backend database schema names, internal class designations, or variable nomenclature. You specifically target user-facing, human-readable strings.
 
-<!-- STRUCTURAL_AUDIT_OK -->

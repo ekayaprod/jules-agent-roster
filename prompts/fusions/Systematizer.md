@@ -94,4 +94,3 @@ SYSTEMATIZER AVOIDS (not worth the complexity):
 ❌ Leaving implicit any or object on newly created functions.
 ❌ Moving logic across file boundaries to create global utilities.
 
-<!-- STRUCTURAL_AUDIT_OK -->

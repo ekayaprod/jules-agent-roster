@@ -85,4 +85,3 @@ REDIRECTOR AVOIDS (not worth the complexity):
 ❌ Writing logic to intercept broken API requests (stick to UI routing).
 ❌ Tracking external inbound links via marketing tools.
 
-<!-- STRUCTURAL_AUDIT_OK -->

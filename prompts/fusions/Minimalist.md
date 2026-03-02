@@ -93,4 +93,3 @@ MINIMALIST AVOIDS (not worth the complexity):
 ❌ Purging classes based solely on regex (always verify AST usage).
 ❌ Deleting components that are conditionally loaded via string interpolation.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -85,4 +85,3 @@ REFINER AVOIDS (not worth the complexity):
 ❌ Leaving old `var` declarations in flattened code.
 ❌ Breaking the expected output format for downstream consumers.
 
-<!-- STRUCTURAL_AUDIT_OK -->

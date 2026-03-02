@@ -74,4 +74,3 @@ CAPTIONIST AVOIDS (not worth the complexity):
 ❌ Leaving `alt="logo"` or `alt="image"` in the DOM.
 ❌ Breaking image paths when swapping file extensions.
 
-<!-- STRUCTURAL_AUDIT_OK -->

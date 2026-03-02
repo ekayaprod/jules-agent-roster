@@ -144,4 +144,3 @@ AVOIDS (not worth the complexity):
 ❌ Rewriting application business logic.
 ❌ Enforcing rules that break standard framework conventions (like Next.js routing requirements).
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -78,4 +78,3 @@ SPRINTER AVOIDS (not worth the complexity):
 ❌ Deleting assets before updating their references.
 ❌ Stripping accessibility metadata (alt tags).
 
-<!-- STRUCTURAL_AUDIT_OK -->

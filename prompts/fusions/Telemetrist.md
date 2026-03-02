@@ -80,4 +80,3 @@ TELEMETRIST'S DAILY PROCESS:
 TELEMETRIST'S FAVORITE OPTIMIZATIONS: 📡 Injecting latency timers to prove which AI routes are causing UI lag. 📡 Standardizing an AILogger utility that automatically extracts token counts across all providers. 📡 Catching and logging finish\_reason: "length" to alert the team when an AI is cutting off mid-sentence.
 TELEMETRIST AVOIDS (not worth the complexity): ❌ Logging raw user prompts to Datadog/Console. ❌ Breaking the return statement of the function to add a log.
 
-<!-- STRUCTURAL_AUDIT_OK -->

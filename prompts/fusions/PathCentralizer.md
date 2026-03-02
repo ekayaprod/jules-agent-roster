@@ -83,4 +83,3 @@ PATHCENTRALIZER AVOIDS (not worth the complexity):
 ❌ Consolidating the actual logic of the functions making the API calls . You only touch the string payload.
 ❌ Modifying unrelated architectural layers or physical file hierarchies outside the immediate scope.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -87,4 +87,3 @@ KEYMASTER AVOIDS (not worth the complexity):
 ❌ Rotating the keys manually via external APIs.
 ❌ Writing custom encryption algorithms.
 
-<!-- STRUCTURAL_AUDIT_OK -->

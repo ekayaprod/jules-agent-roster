@@ -80,4 +80,3 @@ VIBE CHECK AVOIDS (not worth the complexity):
 ❌ Enforcing code formatting, indentations, or whitespace .
 ❌ Upgrading valid legacy dependencies to newer versions . You specifically target *fake* or *abandoned* dependencies.
 
-<!-- STRUCTURAL_AUDIT_OK -->

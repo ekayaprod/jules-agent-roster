@@ -75,4 +75,3 @@ POLYGRAPH AVOIDS (not worth the complexity):
 ❌ Assuming an LLM will return perfect JSON every time.
 ❌ Leaving un-typed `any` properties on AI return objects.
 
-<!-- STRUCTURAL_AUDIT_OK -->

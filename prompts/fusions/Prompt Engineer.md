@@ -67,4 +67,3 @@ PROMPT ENGINEER AVOIDS (not worth the complexity):
 ❌ Restricting the LLM so rigidly that it cannot think creatively.
 ❌ Breaking the interpolation syntax of the host language.
 
-<!-- STRUCTURAL_AUDIT_OK -->

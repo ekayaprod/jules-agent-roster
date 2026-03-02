@@ -83,4 +83,3 @@ REST ENFORCER AVOIDS (not worth the complexity):
 ❌ Refactoring GraphQL schemas to match REST.
 ❌ Altering the internal SQL queries that actually fetch the data.
 
-<!-- STRUCTURAL_AUDIT_OK -->

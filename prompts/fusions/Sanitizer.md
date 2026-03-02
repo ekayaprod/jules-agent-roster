@@ -89,4 +89,3 @@ AVOIDS (not worth the complexity):
 ❌ Refactoring synchronous blocking operations into asynchronous promises.
 ❌ Minimizing CSS or aggressively bundling JavaScript files to reduce initial payload size.
 
-<!-- STRUCTURAL_AUDIT_OK -->

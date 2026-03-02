@@ -94,4 +94,3 @@ AVOIDS (not worth the complexity):
 ❌ Setting up or managing the actual external infrastructure (like AWS KMS, HashiCorp Vault, or GitHub Secrets).
 ❌ Refactoring the entire application's configuration management library (e.g., migrating from dotenv to convict).
 
-<!-- STRUCTURAL_AUDIT_OK -->

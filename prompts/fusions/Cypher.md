@@ -113,4 +113,3 @@ CYPHER AVOIDS (not worth the complexity):
 ❌ Writing the prompt engineering logic.
 ❌ Training custom models to output better JSON.
 
-<!-- STRUCTURAL_AUDIT_OK -->

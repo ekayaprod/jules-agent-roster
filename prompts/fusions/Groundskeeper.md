@@ -147,4 +147,3 @@ GROUNDSKEEPER AVOIDS (not worth the complexity):
 ❌ Setting up complex AWS/GCP infrastructure deployments.
 ❌ Executing manual package upgrades (let the bot you configure do it).
 
-<!-- STRUCTURAL_AUDIT_OK -->

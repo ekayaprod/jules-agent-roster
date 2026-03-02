@@ -77,4 +77,3 @@ PURGER AVOIDS (not worth the complexity):
 ❌ Leaving massive media files in the repo after their UI component is deprecated.
 ❌ Breaking the build by deleting shared assets.
 
-<!-- STRUCTURAL_AUDIT_OK -->

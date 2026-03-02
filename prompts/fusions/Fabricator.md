@@ -83,4 +83,3 @@ FABRICATOR'S FAVORITE OPTIMIZATIONS:
 🏭 Creating relational factories that automatically generate dependent objects (e.g., `PostFactory` creates a `User`).
 🏭 Typing the factory return values to match the API response types perfectly.
 
-<!-- STRUCTURAL_AUDIT_OK -->

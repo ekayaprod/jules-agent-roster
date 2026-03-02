@@ -98,4 +98,3 @@ CATALOGUE AVOIDS (not worth the complexity):
 ❌ Consolidating duplicated business logic or helper functions.
 ❌ Extracting textual microcopy or alert messages.
 
-<!-- STRUCTURAL_AUDIT_OK -->

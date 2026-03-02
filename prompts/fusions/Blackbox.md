@@ -82,4 +82,3 @@ BLACKBOX AVOIDS (not worth the complexity):
 ❌ Caching passwords or PII.
 ❌ Writing custom database persistence layers (stick to client-side/session caching).
 
-<!-- STRUCTURAL_AUDIT_OK -->

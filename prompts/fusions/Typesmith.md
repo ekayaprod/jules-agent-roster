@@ -81,4 +81,3 @@ TYPESMITH AVOIDS (not worth the complexity):
 ❌ Adjusting margins or spatial alignment between the text blocks .
 ❌ Fixing spelling errors or editing the actual textual content (that is /Wordsmith's job).
 
-<!-- STRUCTURAL_AUDIT_OK -->

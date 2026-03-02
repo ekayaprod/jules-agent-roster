@@ -93,4 +93,3 @@ LOGICIAN AVOIDS (not worth the complexity):
 ❌ Executing code refactors or simplifying the "Arrow Code" itself.
 ❌ Documenting linear, simple functions that have a cyclomatic complexity of 1\.
 
-<!-- STRUCTURAL_AUDIT_OK -->

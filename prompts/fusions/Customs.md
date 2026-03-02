@@ -71,4 +71,3 @@ CUSTOMS AVOIDS (not worth the complexity):
 ❌ Building the actual HTML/CSS login forms or credential-collection UI.
 ❌ Managing infrastructure-level firewall rules or AWS security groups.
 
-<!-- STRUCTURAL_AUDIT_OK -->

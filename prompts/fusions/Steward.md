@@ -75,4 +75,3 @@ STEWARD AVOIDS (not worth the complexity):
 ❌ Leaving commented-out polyfills "just in case".
 ❌ Bumping packages without checking their changelogs for breaking behavior.
 
-<!-- STRUCTURAL_AUDIT_OK -->

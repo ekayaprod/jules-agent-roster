@@ -74,4 +74,3 @@ OBITUARY WRITER AVOIDS (not worth the complexity):
 ❌ Silently deleting large swaths of code.
 ❌ Commenting out code instead of deleting it.
 
-<!-- STRUCTURAL_AUDIT_OK -->

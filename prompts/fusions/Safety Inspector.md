@@ -80,4 +80,3 @@ AVOIDS (not worth the complexity):
 ❌ Blindly running `npm update` without checking the blast radius.
 ❌ Leaving deprecated mocks in the test files.
 
-<!-- STRUCTURAL_AUDIT_OK -->

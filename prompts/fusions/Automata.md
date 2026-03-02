@@ -101,4 +101,3 @@ AUTOMATA AVOIDS (not worth the complexity):
 ❌ Writing the actual 3rd party API integrations (the tools should already exist in the codebase).
 ❌ Overcomplicating the system with complex memory graphs if simple message history suffices.
 
-<!-- STRUCTURAL_AUDIT_OK -->

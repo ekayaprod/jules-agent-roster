@@ -79,4 +79,3 @@ UNDERTAKER AVOIDS (not worth the complexity):
 ❌ Executing the actual file deletions (leave that to Scavenger).
 ❌ Announcing the deletion of minor CSS classes or whitespace.
 
-<!-- STRUCTURAL_AUDIT_OK -->

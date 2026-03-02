@@ -81,4 +81,3 @@ PATHFINDER AVOIDS (not worth the complexity):
 ❌ Removing explicit user consent screens to save a click.
 ❌ Breaking URL parameters required by downstream analytics.
 
-<!-- STRUCTURAL_AUDIT_OK -->

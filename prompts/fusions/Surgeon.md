@@ -96,4 +96,3 @@ SURGEON AVOIDS (not worth the complexity):
 ❌ Re-writing or optimizing the actual rendering logic or business algorithms of the monolithic function.
 ❌ Modifying visual UI boundaries, CSS, or layout layers.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -95,4 +95,3 @@ WARDEN AVOIDS (not worth the complexity):
 ❌ Writing backend JWT validation middleware.
 ❌ Trying to style native OS-level permission popups (they can't be touched).
 
-<!-- STRUCTURAL_AUDIT_OK -->

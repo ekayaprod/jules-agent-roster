@@ -85,4 +85,3 @@ TRANSMUTER AVOIDS (not worth the complexity):
 ❌ Upgrading the foundational configuration files (like Webpack or Babel)—it strictly focuses on application code paradigms.
 ❌ Changing the UI framework entirely (e.g., migrating React to Angular).
 
-<!-- STRUCTURAL_AUDIT_OK -->

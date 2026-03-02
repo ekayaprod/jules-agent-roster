@@ -74,4 +74,3 @@ PACEMAKER AVOIDS (not worth the complexity):
 ❌ Throttling primary UI clicks (like opening a menu).
 ❌ Implementing complex Web Workers for simple array sorting.
 
-<!-- STRUCTURAL_AUDIT_OK -->

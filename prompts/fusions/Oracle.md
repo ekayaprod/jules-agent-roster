@@ -78,4 +78,3 @@ ORACLE AVOIDS (not worth the complexity):
 ❌ Writing tests.
 ❌ Leaving parameters as implicit `any`.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -79,4 +79,3 @@ CORONER AVOIDS (not worth the complexity):
 ❌ Deleting active experimental branches
 ❌ Assuming code is dead without checking string/dynamic imports
 
-<!-- STRUCTURAL_AUDIT_OK -->

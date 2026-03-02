@@ -91,4 +91,3 @@ DARKROOM AVOIDS (not worth the complexity):
 ❌ Upscaling low-res images or generating dynamic SVGs from scratch.
 ❌ Modifying the underlying CSS grid/flexbox layouts surrounding the images.
 
-<!-- STRUCTURAL_AUDIT_OK -->

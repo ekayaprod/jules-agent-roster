@@ -85,4 +85,3 @@ GLOSSARY AVOIDS (not worth the complexity):
 ❌ Enforcing type safety or rewriting weak types (any).
 ❌ Documenting standard, self-explanatory utility functions (e.g., add(a, b)).
 
-<!-- STRUCTURAL_AUDIT_OK -->

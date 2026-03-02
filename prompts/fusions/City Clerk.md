@@ -76,4 +76,3 @@ CITY CLERK AVOIDS (not worth the complexity):
 ❌ Silent refactoring.
 ❌ Leaving deprecated imports scattered in the codebase.
 
-<!-- STRUCTURAL_AUDIT_OK -->

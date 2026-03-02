@@ -86,4 +86,3 @@ INFORMATION ARCHITECT AVOIDS (not worth the complexity):
 ❌ Redesigning the underlying database schema to match the UI copy.
 ❌ Writing purely poetic copy that sacrifices clarity.
 
-<!-- STRUCTURAL_AUDIT_OK -->

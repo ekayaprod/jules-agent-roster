@@ -87,4 +87,3 @@ LUMBERJACK AVOIDS (not worth the complexity):
 ❌ Untangling active, reachable spaghetti code (that is pure Untangler territory).
 ❌ Deleting commented-out code (that is 's territory).
 
-<!-- STRUCTURAL_AUDIT_OK -->

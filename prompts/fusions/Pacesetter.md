@@ -75,4 +75,3 @@ PACESETTER AVOIDS (not worth the complexity):
 ❌ Writing meaningless snapshot tests.
 ❌ Fixing bugs masquerading as performance issues.
 
-<!-- STRUCTURAL_AUDIT_OK -->

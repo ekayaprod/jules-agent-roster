@@ -82,4 +82,3 @@ SYNCHRONIZER AVOIDS (not worth the complexity):
 ❌ Blindly running `npm update` on major versions without checking the changelog.
 ❌ Leaving deprecated console warnings unresolved.
 
-<!-- STRUCTURAL_AUDIT_OK -->

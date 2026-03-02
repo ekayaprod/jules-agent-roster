@@ -88,4 +88,3 @@ RESTORER AVOIDS (not worth the complexity):
 ❌ Formatting the spacing or layout of the elements (that is /'s job).
 ❌ Organizing the physical asset folders themselves .
 
-<!-- STRUCTURAL_AUDIT_OK -->

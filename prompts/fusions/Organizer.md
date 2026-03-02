@@ -84,4 +84,3 @@ ORGANIZER AVOIDS (not worth the complexity):
 ❌ Refactoring the code inside the files to share variables.
 ❌ Moving files across completely different macro-architectural boundaries (e.g., do not move a file from /backend into /frontend).
 
-<!-- STRUCTURAL_AUDIT_OK -->

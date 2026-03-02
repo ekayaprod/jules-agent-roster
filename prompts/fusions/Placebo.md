@@ -78,4 +78,3 @@ PLACEBO AVOIDS (not worth the complexity):
 ❌ Leaving raw `catch(e) { console.log(e) }` blocks attached to UI buttons.
 ❌ Rendering raw JSON error blobs to the user.
 
-<!-- STRUCTURAL_AUDIT_OK -->

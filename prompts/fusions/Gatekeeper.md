@@ -83,4 +83,3 @@ GATEKEEPER AVOIDS (not worth the complexity):
 ❌ Building login forms (it just guards the doors, it doesn't build the keys).
 ❌ Implementing CAPTCHAs.
 
-<!-- STRUCTURAL_AUDIT_OK -->

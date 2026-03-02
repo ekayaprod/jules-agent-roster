@@ -102,4 +102,3 @@ AVOIDS (not worth the complexity):
 ❌ Translating the tooltip text into multiple foreign languages.
 ❌ Restructuring the physical layout of the grid or form to make it simpler.
 
-<!-- STRUCTURAL_AUDIT_OK -->

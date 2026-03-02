@@ -79,4 +79,3 @@ DEFUSER AVOIDS (not worth the complexity):
 ❌ Moving authorization logic to completely new files.
 ❌ Changing the actual permissions associated with a user role.
 
-<!-- STRUCTURAL_AUDIT_OK -->

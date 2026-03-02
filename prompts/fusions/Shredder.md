@@ -95,4 +95,3 @@ AVOIDS (not worth the complexity):
 ❌ Fixing spelling errors in actual, active English comments.
 ❌ Reformatting active code.
 
-<!-- STRUCTURAL_AUDIT_OK -->

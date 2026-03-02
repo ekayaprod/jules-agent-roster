@@ -77,4 +77,3 @@ AVOIDS (not worth the complexity):
 ❌ Writing tests for private implementation details.
 ❌ Exposing internal database parsers to the entire frontend.
 
-<!-- STRUCTURAL_AUDIT_OK -->

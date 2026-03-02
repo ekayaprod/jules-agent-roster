@@ -80,4 +80,3 @@ VOID AVOIDS (not worth the complexity):
 ❌ Leaving old code commented out.
 ❌ Writing alias wrappers for deprecated paths.
 
-<!-- STRUCTURAL_AUDIT_OK -->

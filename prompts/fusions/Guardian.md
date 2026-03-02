@@ -79,4 +79,3 @@ GUARDIAN AVOIDS (not worth the complexity):
 ❌ Writing meaningless snapshot tests.
 ❌ Allowing errors to bubble up unhandled to the root of the application.
 
-<!-- STRUCTURAL_AUDIT_OK -->

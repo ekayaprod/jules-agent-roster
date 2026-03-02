@@ -97,4 +97,3 @@ PUBLISHER'S DAILY PROCESS:
 PUBLISHER'S FAVORITE OPTIMIZATIONS: 📰 Eradicating a plague of w-\[900px\] classes and implementing a fluid grid-cols-1 md:grid-cols-3 layout. 📰 Fixing mobile viewports by swapping h-screen for the modern h-\[100dvh\] to account for iOS Safari address bars. 📰 Wrapping un-breakable URLs and long user hashes in break-all so they don't shatter mobile cards.
 PUBLISHER AVOIDS (not worth the complexity): ❌ Hiding primary action buttons on small screens. ❌ Redesigning the entire aesthetic visual language (focus solely on viewport structure).
 
-<!-- STRUCTURAL_AUDIT_OK -->

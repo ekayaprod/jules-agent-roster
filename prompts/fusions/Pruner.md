@@ -98,4 +98,3 @@ PRUNER AVOIDS (not worth the complexity):
 ❌ Attempting to predict if a dynamic eval or string-based import might eventually call the function.
 ❌ Modifying active, reachable business logic.
 
-<!-- STRUCTURAL_AUDIT_OK -->

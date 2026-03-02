@@ -86,4 +86,3 @@ MILLISECOND AVOIDS (not worth the complexity):
 ❌ Wrapping literally every function in the app in `useCallback` blindly (causes memory bloat).
 ❌ Micro-optimizing "leaf" components that have no children to cascade to.
 
-<!-- STRUCTURAL_AUDIT_OK -->

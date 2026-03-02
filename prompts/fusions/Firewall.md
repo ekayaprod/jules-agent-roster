@@ -84,4 +84,3 @@ FIREWALL AVOIDS (not worth the complexity):
 ❌ Trusting the LLM to format JSON correctly without validation.
 ❌ Letting the LLM generate raw HTML that is rendered directly to the DOM.
 
-<!-- STRUCTURAL_AUDIT_OK -->

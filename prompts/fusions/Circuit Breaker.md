@@ -102,4 +102,3 @@ FAVORITE OPTIMIZATIONS: 🔌 Wrapping an unreliable StripePaymentModal in a boun
 
 AVOIDS (not worth the complexity):
 
-<!-- STRUCTURAL_AUDIT_OK -->

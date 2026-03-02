@@ -81,4 +81,3 @@ JEWELER AVOIDS (not worth the complexity):
 ❌ Writing tests that only check if the component mounts.
 ❌ Ignoring high-contrast or reduced-motion requirements.
 
-<!-- STRUCTURAL_AUDIT_OK -->

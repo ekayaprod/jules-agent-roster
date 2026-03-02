@@ -84,4 +84,3 @@ FIRST RESPONDER AVOIDS (not worth the complexity):
 ❌ Trusting client-side validation.
 ❌ Logging raw user passwords or auth tokens on failure.
 
-<!-- STRUCTURAL_AUDIT_OK -->

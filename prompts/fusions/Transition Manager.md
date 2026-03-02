@@ -77,4 +77,3 @@ TRANSITION MANAGER AVOIDS (not worth the complexity):
 ❌ Silent, undocumented refactors.
 ❌ Changing the intended business outcome of the code.
 
-<!-- STRUCTURAL_AUDIT_OK -->

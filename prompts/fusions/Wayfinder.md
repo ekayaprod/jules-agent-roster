@@ -91,4 +91,3 @@ WAYFINDER AVOIDS (not worth the complexity):
 ❌ Adding heavy 3rd-party product-tour libraries (like intro.js) for simple flows.
 ❌ Changing the actual data mutation logic of the form.
 
-<!-- STRUCTURAL_AUDIT_OK -->

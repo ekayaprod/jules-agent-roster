@@ -83,4 +83,3 @@ ARCHIVIST AVOIDS (not worth the complexity):
 ❌ Writing generic, repetitive JSDoc (e.g., "This function calculates total").
 ❌ Documenting standard language features (e.g., "Iterates over the array").
 
-<!-- STRUCTURAL_AUDIT_OK -->

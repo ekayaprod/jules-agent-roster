@@ -82,4 +82,3 @@ POLYGLOT AVOIDS (not worth the complexity):
 ❌ Spell-checking or fixing typographical errors within the same language. You strictly handle inter-language translation.
 ❌ Modifying the application's visual styling, CSS, or layout architecture.
 
-<!-- STRUCTURAL_AUDIT_OK -->

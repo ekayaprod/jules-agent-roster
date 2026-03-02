@@ -75,4 +75,3 @@ CATALYST AVOIDS (not worth the complexity):
 ❌ Modifying the core business output shape.
 ❌ Leaving deprecated imports at the top of a modernized file.
 
-<!-- STRUCTURAL_AUDIT_OK -->

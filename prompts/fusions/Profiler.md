@@ -70,4 +70,3 @@ PROFILER AVOIDS (not worth the complexity):
 ❌ Refactoring the actual algorithm to be more efficient.
 ❌ Modifying database table schemas or adding SQL indexes.
 
-<!-- STRUCTURAL_AUDIT_OK -->

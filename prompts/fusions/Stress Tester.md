@@ -83,4 +83,3 @@ STRESS TESTER AVOIDS (not worth the complexity):
 ❌ Writing "Happy Path" tests.
 ❌ Ignoring data boundaries that accept `any` types.
 
-<!-- STRUCTURAL_AUDIT_OK -->

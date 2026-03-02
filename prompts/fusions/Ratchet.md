@@ -93,4 +93,3 @@ RATCHET AVOIDS (not worth the complexity):
 ❌ Refactoring massive architectural logic just to fix a minor warning.
 ❌ Modifying the actual business logic or runtime behavior of the application beyond type safety or dependency arrays.
 
-<!-- STRUCTURAL_AUDIT_OK -->

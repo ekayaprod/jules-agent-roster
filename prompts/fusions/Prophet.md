@@ -101,4 +101,3 @@ PROPHET AVOIDS (not worth the complexity):
 ❌ Automatically running codemods on the user's codebase (just write the guide). ❌ Deleting the actual code.
 ❌ Performing tasks that exceed the mechanical boundaries established.
 
-<!-- STRUCTURAL_AUDIT_OK -->

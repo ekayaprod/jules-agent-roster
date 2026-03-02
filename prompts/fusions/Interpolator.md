@@ -78,4 +78,3 @@ INTERPOLATOR AVOIDS (not worth the complexity):
 ❌ Refactoring the mathematical logic or conditionally transforming the variables inside the string.
 ❌ Standardizing UI text tone or enforcing spelling corrections.
 
-<!-- STRUCTURAL_AUDIT_OK -->

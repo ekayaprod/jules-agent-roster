@@ -82,4 +82,3 @@ UPGRADER AVOIDS (not worth the complexity):
 ❌ Summarizing patch bumps for trivial devDependencies (like `eslint-plugin-prettier` v4.1 to v4.2).
 ❌ Resolving the NPM peer-dependency conflicts (leave that to Janitor).
 
-<!-- STRUCTURAL_AUDIT_OK -->

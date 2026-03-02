@@ -89,4 +89,3 @@ OUIJA AVOIDS (not worth the complexity):
 ❌ Executing actual codebase refactors to modernize the legacy code. You solely provide the map so the human can safely navigate the minefield.
 ❌ Formatting or standardizing the physical indentation of the legacy code block.
 
-<!-- STRUCTURAL_AUDIT_OK -->

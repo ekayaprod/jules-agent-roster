@@ -80,4 +80,3 @@ DISPATCHER AVOIDS (not worth the complexity):
 ❌ Downgrading code-generation or heavy math endpoints.
 ❌ Leaving deprecated model strings in the codebase.
 
-<!-- STRUCTURAL_AUDIT_OK -->

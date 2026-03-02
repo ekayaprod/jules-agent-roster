@@ -81,4 +81,3 @@ HELMSMAN AVOIDS (not worth the complexity):
 ❌ Fixing broken links or resolving 404 Not Found errors.
 ❌ Managing DNS records, load balancers, or infrastructure-level reverse proxies.
 
-<!-- STRUCTURAL_AUDIT_OK -->

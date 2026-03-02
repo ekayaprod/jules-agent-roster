@@ -86,4 +86,3 @@ HOISTER AVOIDS (not worth the complexity):
 ❌ Flattening the nested if statements inside the loop .
 ❌ Extracting hardcoded paths or URL strings into configuration files . You hoist *operations*, not strings.
 
-<!-- STRUCTURAL_AUDIT_OK -->

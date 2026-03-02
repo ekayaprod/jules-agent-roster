@@ -87,4 +87,3 @@ NARRATOR AVOIDS (not worth the complexity):
 ❌ Fixing broken test logic (leave that to a dedicated testing agent).
 ❌ Formatting the whitespace of the test file (leave that to Prettier).
 
-<!-- STRUCTURAL_AUDIT_OK -->

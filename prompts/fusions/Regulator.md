@@ -80,4 +80,3 @@ REGULATOR AVOIDS (not worth the complexity):
 ❌ Leaving literal values embedded in logical `if` checks.
 ❌ Changing the underlying business rule limits.
 
-<!-- STRUCTURAL_AUDIT_OK -->

@@ -79,4 +79,3 @@ FOREMAN AVOIDS (not worth the complexity):
 ❌ Refactoring the internal logic, functions, or variable names inside the files it renames.
 ❌ Changing the underlying build system tools (Webpack/Vite) configurations.
 
-<!-- STRUCTURAL_AUDIT_OK -->

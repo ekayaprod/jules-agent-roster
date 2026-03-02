@@ -82,4 +82,3 @@ ILLUMINATOR AVOIDS (not worth the complexity):
 ❌ Generating raster graphics or loading external images via URLs.
 ❌ Correcting grammatical errors within the text itself.
 
-<!-- STRUCTURAL_AUDIT_OK -->

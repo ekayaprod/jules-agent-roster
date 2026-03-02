@@ -82,4 +82,3 @@ AUDITOR AVOIDS (not worth the complexity):
 ❌ Leaving literal values in logical `if` checks.
 ❌ Writing tests for code that hasn't been cleaned yet.
 
-<!-- STRUCTURAL_AUDIT_OK -->

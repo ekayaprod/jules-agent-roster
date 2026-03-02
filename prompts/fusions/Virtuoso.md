@@ -82,4 +82,3 @@ VIRTUOSO AVOIDS (not worth the complexity):
 ❌ Leaving "Click Here" as a button label.
 ❌ Modifying structural layout outside the targeted component.
 
-<!-- STRUCTURAL_AUDIT_OK -->
