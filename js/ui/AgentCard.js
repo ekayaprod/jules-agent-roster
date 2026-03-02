@@ -44,6 +44,11 @@ class AgentCard {
         if (agent.type === "plus") card.classList.add("plus-agent");
         if (agent.type === "monthly") card.classList.add("monthly-agent");
 
+        // Safe fallbacks for custom agents
+        const icon = agent.icon || '';
+        const role = agent.role || 'Fusion Protocol';
+        const desc = agent.desc || agent.description || '';
+
         // Build tags
         let tags = "";
         if (agent.scope) {
@@ -61,15 +66,15 @@ class AgentCard {
               <div class="card-header">
                   <div class="title-group">
                       <h3 class="agent-title">
-                          <span>${agent.icon}</span> ${agent.name}
+                          <span>${icon}</span> ${agent.name}
                       </h3>
                       <div class="tag-container">${tags}</div>
                   </div>
-                  <span class="role-tag">${agent.role}</span>
+                  <span class="role-tag">${role}</span>
               </div>
 
               <div class="description">
-                  ${agent.desc}
+                  ${desc}
               </div>
 
               <button class="details-toggle" aria-expanded="false" aria-controls="details-${index}" data-action="toggle-details" data-index="${index}">
