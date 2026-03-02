@@ -10,6 +10,8 @@ class AgentRepository {
 
     /**
      * Fetches all agent data, including standard and custom agents.
+     * @see ARCHITECTURE.md#1-system-context for the high-level data flow architecture.
+     * @see ARCHITECTURE.md#2-component-architecture for the dependency graph.
      * @returns {Promise<{agents: Array, customAgents: Object}>} The loaded agents.
      * @throws {Error} If loading fails.
      */
@@ -181,6 +183,9 @@ class AgentRepository {
 
     /**
      * Safely parses JSON from a fetch response, adding context to errors.
+     * Captures raw response errors and decorates them with human-readable context
+     * to prevent silent failures when loading external configuration.
+     * @see ARCHITECTURE.md#6-data-integrity--parsing
      * @param {Response} response - The fetch response object.
      * @param {string} label - A label for the resource (e.g., "agents.json").
      * @returns {Promise<any>} The parsed JSON data.
@@ -242,6 +247,10 @@ class AgentRepository {
     /**
      * The First Responder: Validates and sanitizes a custom agent entry.
      * Enforces strict schema and sanitizes optional fields.
+     * Implements defense-in-depth by running a robust malicious pattern regex
+     * on all custom agent data before it enters the application state.
+     * @see ARCHITECTURE.md#4-trust-boundaries
+     * @see ARCHITECTURE.md#7-security-model
      * @param {string} key - The dictionary key (agent ingredients).
      * @param {Object} data - The raw agent data.
      * @returns {Object} { valid: boolean, sanitized?: Object, reason?: string }
