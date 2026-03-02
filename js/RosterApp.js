@@ -255,8 +255,17 @@ class RosterApp {
     // ⚡ Bolt+: Lazy load content to reduce initial DOM size
     const content = grid.querySelector('.details-overflow');
     if (content && !content.innerHTML.trim()) {
-        const agent = this.agents[index];
-        content.innerHTML = AgentCard.getPromptHtml(agent);
+        let agent = this.agents[index];
+        if (!agent && this.customAgents && this.customAgents[index]) {
+            agent = this.customAgents[index];
+        }
+        if (!agent && this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]) {
+            agent = this.fusionLab.compiler.customAgentsMap[index];
+        }
+
+        if (agent) {
+            content.innerHTML = AgentCard.getPromptHtml(agent);
+        }
     }
 
     const isExpanded = grid.classList.toggle("expanded");
@@ -275,6 +284,13 @@ class RosterApp {
    */
   filterAgents(query) {
     const search = query.toLowerCase();
+
+    // Clear fusion search grid
+    const fusionGrid = document.getElementById('fusionSearchGrid');
+    const fusionHeader = document.getElementById('fusion-search-results');
+    if (fusionGrid) fusionGrid.innerHTML = '';
+    if (fusionHeader) fusionHeader.style.display = 'none';
+
     const cards = document.querySelectorAll(CONFIG.selectors.card);
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -332,6 +348,37 @@ class RosterApp {
       }
     });
 
+    // NOW, add Fusion cards
+    if (search.length > 0 && this.fusionLab && this.fusionLab.fusionIndex) {
+        let fusionVisibleCount = 0;
+        const unlockedKeys = this.fusionLab.fusionIndex.unlockedKeys;
+        unlockedKeys.forEach(key => {
+            let agent = this.customAgents[key];
+
+            if (!agent && this.fusionLab.compiler.customAgentsMap[key]) {
+                agent = this.fusionLab.compiler.customAgentsMap[key];
+            }
+            if (!agent) return;
+
+            const desc = agent.desc || agent.description || "";
+            const text = (agent.name + " " + desc).toLowerCase();
+
+            if (text.includes(search)) {
+                // It's a match, create and add card
+                const card = AgentCard.create(agent, key, visibleCount + fusionVisibleCount);
+                // Force display flex
+                card.style.display = 'flex';
+                if (fusionGrid) fusionGrid.appendChild(card);
+                fusionVisibleCount++;
+            }
+        });
+
+        if (fusionVisibleCount > 0) {
+            if (fusionHeader) fusionHeader.style.display = 'block';
+            visibleCount += fusionVisibleCount;
+        }
+    }
+
     const totalVisible = visibleCount;
 
     if (totalVisible === 0 && query.length > 0) {
@@ -380,7 +427,16 @@ class RosterApp {
    * @param {HTMLElement} btn - The button triggered.
    */
   async copyAgent(index, btn) {
-    const agent = this.agents[index];
+    let agent = this.agents[index];
+    if (!agent && this.customAgents && this.customAgents[index]) {
+        agent = this.customAgents[index];
+    }
+    if (!agent && this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]) {
+        agent = this.fusionLab.compiler.customAgentsMap[index];
+    }
+
+    if (!agent) return;
+
     const success = await ClipboardUtils.copyText(agent.prompt);
 
     if (success) {
