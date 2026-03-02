@@ -30,6 +30,7 @@ def calc(p, t):
 * ⚠️ Ask first:
   - Deleting production data.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
   - Hardcode credentials.
 
 ## **Sample Commands**
@@ -69,6 +70,7 @@ def calc(p, t):
 * Standardizing highly complex, custom-built components that intentionally deviate from the design system for specific business reasons.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Alter the functional onClick or state-management logic attached to the components.  
 * Delete custom UI components without replacing them with the standardized library equivalent.

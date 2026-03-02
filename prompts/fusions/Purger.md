@@ -32,6 +32,7 @@ rm src/components/Hero.tsx
 - Deleting global branding assets (logos, default avatars) that appear unused but might be dynamically referenced.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Delete a shared static asset if it is still actively used by other living components.
 - Leave orphaned assets in the file system to save time.
 PURGER'S PHILOSOPHY:

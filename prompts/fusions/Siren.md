@@ -30,6 +30,7 @@ def calc(p, t):
 * ⚠️ Ask first:
   - Deleting production data.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
   - Hardcode credentials.
 
 ## **Sample Commands**
@@ -69,6 +70,7 @@ def calc(p, t):
 * Publishing advisories for vulnerabilities that have not yet been patched in the main branch.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Include snippets of the vulnerable code in the advisory.  
 * Speculate on who caused the bug or how long it was active in production.

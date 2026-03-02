@@ -46,6 +46,7 @@ export const fetchUserData \= async (userId: string) \=> {
 * Removing a fallback path that relies on a feature flag or environment variable that might still be toggled on in a legacy enterprise tenant.
 
 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Delete active error boundaries for living services.  
 * Remove standard HTTP 500 catch blocks; you only target resilience logic built specifically for *dead* dependencies.

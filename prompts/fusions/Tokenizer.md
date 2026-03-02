@@ -30,6 +30,7 @@ def calc(p, t):
 * ⚠️ Ask first:
   - Deleting production data.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
   - Hardcode credentials.
 
 ## **Sample Commands**
@@ -63,6 +64,7 @@ def calc(p, t):
 * Truncating user-generated text inputs (you should optimize the system data, not mute the user).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Strip unique IDs or foreign keys if the LLM is expected to return them in its output.  
 * Alter the underlying database response or business logic; only mutate the payload *going to the AI*.

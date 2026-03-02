@@ -40,6 +40,7 @@ const getPaymentClient = () => {
 - Implementing heavy third-party Key Management Services (like AWS KMS) if the project only uses basic `.env` files.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Commit actual secrets to the `.env.example` file.
 - Change the hashing algorithm of an existing password database without an explicit migration plan.
 

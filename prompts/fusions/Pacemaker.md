@@ -37,6 +37,7 @@ export const SearchInput = ({ onSearch }) => {
 * ⚠️ Ask first:
  * Moving massive chunks of business logic into Web Workers (adds high architectural complexity).
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
  * Debounce or throttle critical, direct user-intent actions (like clicking a "Submit Payment" button).
  * Swallow or drop data silently if throttling prevents an update.
 

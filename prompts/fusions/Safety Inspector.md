@@ -32,6 +32,7 @@ it('handles the updated-package response format correctly', () => { /* ... */ })
 - Bumping major framework versions (e.g., React 17 -> 19) that require whole-app rewrites.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Bump a package without writing or updating the tests that cover its integration.
 - Write mock tests that simulate the *old* version's behavior.
 

@@ -31,6 +31,7 @@ import { formatDistance } from 'date-fns';
 - Deleting an adapter that is still used by a separate, un-migrated microservice in a monorepo.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Leave the old, deprecated files behind "just in case".
 - Delete a shim without rewriting every single file that depended on it.
 

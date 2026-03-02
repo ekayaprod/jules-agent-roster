@@ -36,6 +36,7 @@ const SlowRow = ({ data }) => {
 - Implementing complex WebGL or Canvas layers for visual flair.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Add animations that block the main thread.
 - Break accessibility (ARIA) for the sake of a visual trick.
 ILLUSIONIST'S PHILOSOPHY:

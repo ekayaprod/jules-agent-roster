@@ -39,6 +39,7 @@ test('checkout works', async ({ page }) => {
 - Writing tests that require 3rd-party SMS or Email verification to proceed.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Use `page.waitForTimeout(5000)` or equivalent hard sleep functions.
 - Write assertions against specific database rows or internal Redux states inside an E2E test.
 

@@ -40,6 +40,7 @@ export const UserCard = ({ name }) => (
 - Purging dynamic CSS classes (e.g., `text-${color}-500`) that might not be statically scannable.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Delete global typography or reset styles.
 - Flatten a layout wrapper if it actively controls Grid/Flexbox positioning for its children.
 

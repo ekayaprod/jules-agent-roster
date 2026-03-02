@@ -33,6 +33,7 @@ if (status === 'active_user_v2') { return true; }
 - Refactoring complex generic types that might break consumer implementations across the app.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Change the logical output or business outcome during extraction.
 - Write tests that repeat the magic string literals instead of importing the constants.
 

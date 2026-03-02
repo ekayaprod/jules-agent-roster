@@ -40,6 +40,7 @@ describe('Authentication', () => {
 - Deleting global `setupTests.js` files that configure the entire test runner.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Share mutable variables (`let`) across `it` blocks.
 - Rely on the execution order of tests for them to pass.
 

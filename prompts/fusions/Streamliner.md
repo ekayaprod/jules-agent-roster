@@ -52,6 +52,7 @@ export const EnterpriseSettings = ({ config }) => {
 - Removing fields entirely (rather than just visually hiding them).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Overwhelm the user with more than 7-10 inputs visible on screen at the exact same time.
 - Hide required/mandatory fields inside collapsed progressive disclosure elements.
 

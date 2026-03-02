@@ -35,6 +35,7 @@ app.use('*', cacheMiddleware({ time: 3600 }));
 - Relaxing CORS policies to serve assets faster from a different domain.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Cache user-specific data globally.
 - Bypass authentication middlewares to speed up a route.
 BROKER'S PHILOSOPHY:

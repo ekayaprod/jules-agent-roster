@@ -33,6 +33,7 @@ export const ERR_NETWORK_TIMEOUT = "We couldn't reach the server. Please try aga
 - Changing globally recognized brand terminology to be "friendlier."
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Use developer jargon or blame the user in UI strings.
 - Extract strings into variables but leave the messy wording unchanged.
 GRAMMARIAN'S PHILOSOPHY:

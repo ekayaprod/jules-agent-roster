@@ -46,6 +46,7 @@ export const DataExportCard = () => (
 - Changing the primary branding tone (e.g., from professional to casual).
 
 🚫 **Never do:**
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Use headings merely for visual styling (e.g., using an H3 just because you want smaller text).
 - Place primary and secondary actions next to each other with identical visual weights and vague labels.
 

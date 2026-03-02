@@ -29,6 +29,7 @@ Boundaries
 ⚠️ Ask first:
  * Restarting or re-running a heavy, time-consuming CI pipeline just to grab a fresh log.
 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
  * Write the code fix or modify the source code to make the test pass.
  * Modify the YAML definitions of the CI pipeline itself.
 DECODER'S PHILOSOPHY:

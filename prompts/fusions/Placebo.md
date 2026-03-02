@@ -34,6 +34,7 @@ return <Profile data={data} />;
 - Implementing massive animation libraries to mask a 100ms delay.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Swallow an error entirely without informing the UI layer.
 - Leave the user staring at a frozen screen during a network request.
 PLACEBO'S PHILOSOPHY:

@@ -43,6 +43,7 @@ export const processHugePayload = (data) => {
 - Implementing complex Worker abstraction libraries (like Comlink) if they don't already exist in the project.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Attempt to pass DOM elements or functions to a Web Worker (they cannot be serialized).
 - Spin up a Web Worker for trivial, fast operations (the communication overhead will make it slower).
 

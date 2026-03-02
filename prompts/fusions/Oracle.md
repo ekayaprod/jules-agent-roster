@@ -35,6 +35,7 @@ export const formatDate = (date) => { /* ... */ }
 - Centralizing highly complex React hooks that have divergent component lifecycles.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Extract a utility without writing the JSDoc contract for it.
 - Leave implicit `any` types in the new shared function.
 ORACLE'S PHILOSOPHY:

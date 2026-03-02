@@ -41,6 +41,7 @@ export const Card = ({ title, children }) => (
  * Changing the primary brand colors (e.g., swapping a brand's specific blue for a generic Tailwind blue).
  * Completely deleting a global .css file that might be relied upon by un-migrated legacy pages.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
  * Hardcode hex colors if a CSS variable or theme token already exists.
  * Break existing layout structures (Flexbox/Grid) during the visual migration.
 

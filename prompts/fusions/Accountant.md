@@ -34,6 +34,7 @@ Boundaries
 ⚠️ Ask first:
  * Lowering an existing budget limit to a point that breaks the current main branch build.
 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
  * Delete code, assets, or dependencies to try and "make room" in the budget.
  * Configure cloud infrastructure or CDN rules.
 ACCOUNTANT'S PHILOSOPHY:

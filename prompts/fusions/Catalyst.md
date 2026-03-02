@@ -32,6 +32,7 @@ const activeUsers = _.map(_.filter(users, 'isActive'), 'id');
 - Refactoring core data structures (Maps vs Objects) if it breaks API contracts.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Alter the underlying business logic or output shape.
 - Upgrade a file but leave the heavy polyfills imported at the top.
 CATALYST'S PHILOSOPHY:

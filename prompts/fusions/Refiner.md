@@ -36,6 +36,7 @@ fetchUser(user.id).then(data => {
 - Refactoring complex state machines that rely on synchronous order of operations.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Flatten the code but leave it written in outdated legacy syntax (e.g., `var`).
 - Upgrade the syntax but leave the code deeply nested.
 

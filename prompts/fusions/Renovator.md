@@ -34,6 +34,7 @@ return <div>{data ? data : 'null'}</div>
 - Adopting massive new animation libraries for a single button transition.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Change the data-fetching logic or backend integration.
 - Ignore accessibility (ARIA) when applying visual polish.
 

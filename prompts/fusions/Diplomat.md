@@ -35,6 +35,7 @@ catch (error) {
 - Masking specific financial/banking error codes that legally must be displayed exactly as received from the upstream provider.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Blame the user (e.g., "You entered the wrong password"). Use neutral phrasing ("The password didn't match").
 - Use the word "Oops!" or "Whoops!" for destructive/critical data loss errors.
 

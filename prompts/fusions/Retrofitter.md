@@ -35,6 +35,7 @@ var UserList = createClass({ /* legacy code */ });
 - Refactoring complex class components into hooks if it drastically changes lifecycle execution.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Modernize a file but leave it sitting in a deprecated legacy folder.
 - Change the core business logic or expected UI output.
 

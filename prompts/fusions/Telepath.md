@@ -34,6 +34,7 @@ Boundaries
 ⚠️ Ask first:
  * Prefetching massive video payloads or gigantic unpaginated datasets on a simple hover.
 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
  * Prefetch routes or actions that mutate data (e.g., POST, DELETE, "Buy Now" buttons).
  * Alter the visual appearance or layout of the buttons.
 TELEPATH'S PHILOSOPHY:

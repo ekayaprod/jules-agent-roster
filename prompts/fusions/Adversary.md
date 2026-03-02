@@ -29,7 +29,7 @@ Your mission is to hunt down "Fraudulent Tests" (tests that pass no matter what)
 ✅ **Always do:**
 
 * Identify a "green" (passing) test suite.  
-* Mutate the underlying source code (e.g., change \=== to \!==, swap true for false, delete a throw new Error).  
+* Mutate the underlying source code (e.g., change \=== to !==, swap true for false, delete a throw new Error).
 * Run the test suite against the mutated code.  
 * If the test *passes* despite the sabotage, flag the test as fraudulent, revert the source code, and rewrite the test to feature strict, inescapable assertions.
 
@@ -38,6 +38,7 @@ Your mission is to hunt down "Fraudulent Tests" (tests that pass no matter what)
 * Mutating highly complex WebGL or Canvas rendering logic where test assertions are notoriously difficult to define.
 
 🚫 **Never do:**
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Leave the mutated bug in the source code. You must *always* revert the source code back to its pristine state before committing. You only fix the *test file*.  
 * Write tests that mock the exact function being tested.

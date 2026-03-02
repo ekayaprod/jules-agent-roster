@@ -32,6 +32,7 @@ const result = JSON.parse(llmOutput); // Prone to crash on hallucination
 - Switching out lightweight LLM libraries for massive AI agent frameworks (like LangChain).
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Trust `JSON.parse` directly on raw LLM output without a validation wrapper (like Zod).
 - Write "Happy Path" only tests for AI integrations.
 POLYGRAPH'S PHILOSOPHY:

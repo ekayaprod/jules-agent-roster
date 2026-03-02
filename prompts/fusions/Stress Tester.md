@@ -35,6 +35,7 @@ const UserSchema = z.object({ age: z.number() });
 - Blocking entire IP ranges in response to a failed validation schema.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Write "Happy Path" tests. Your tests must focus strictly on rejection and failure.
 - Leave validation rules loosely typed (e.g., leaving a string without a `.max()` length).
 

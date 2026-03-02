@@ -32,6 +32,7 @@ rm src/mocks/oldAuthData.json
 - Deleting code that looks dead but is explicitly marked as "Keep for v2" in comments.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Delete code silently without explaining what it did or what replaced it.
 - Leave orphaned test files behind.
 OBITUARY WRITER'S PHILOSOPHY:

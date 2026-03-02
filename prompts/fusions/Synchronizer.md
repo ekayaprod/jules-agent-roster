@@ -33,6 +33,7 @@ import { useHistory } from 'react-router-dom'; // Fails in v6!
 - Executing a massive framework migration (e.g., Vue 2 to Vue 3) that alters the entire foundation of the application.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Bump a major package version without updating the code that consumes it.
 - Leave deprecated warning messages triggering in the console.
 

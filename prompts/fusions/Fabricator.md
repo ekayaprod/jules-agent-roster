@@ -39,6 +39,7 @@ it('displays the premium badge', () => {
 - Introducing heavy 3rd-party factory libraries if the project prefers simple plain-old-javascript-object (POJO) functions.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Mutate the application's actual data fetching logic or types.
 - Randomize data that the test explicitly asserts against (if asserting the name is "John", the name must be overridden to "John").
 

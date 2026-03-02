@@ -31,6 +31,7 @@ const res = await openai.chat.completions.create({ model: "gpt-4o", ... }); // W
 - Switching AI providers entirely (e.g., Anthropic to Google) just to save costs, as this introduces different API SDKs.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Downgrade a model for a task that strictly requires deep reasoning or complex code generation.
 - Hardcode deprecated models (e.g., `gpt-3.5-turbo`) to save money.
 

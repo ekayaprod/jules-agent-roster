@@ -41,6 +41,7 @@ Boundaries
 ⚠️ Ask first:
  * Changing database drivers or connections to support Edge runtimes (e.g., migrating from standard Postgres TCP to HTTP connections).
 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
  * Cache user-specific authenticated routes or PII.
  * Migrate heavy, long-running batch processing jobs to the Edge.
 HYPERLOOP'S PHILOSOPHY:

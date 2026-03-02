@@ -38,6 +38,7 @@ return await response.json(); // Crashes the app if network fails!
 - Implementing heavy third-party observability tools to handle the new errors.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Modernize a file and ignore its asynchronous error states.
 - Swallow an error silently without logging it or providing a safe fallback.
 INOCULATOR'S PHILOSOPHY:

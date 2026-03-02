@@ -38,6 +38,7 @@ return isEditing ? (
 - Adopting massive third-party animation libraries (like Framer Motion) if the project only uses Tailwind.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 - Change the core data fetching or Redux/Context state logic while splitting the component.
 - Break accessibility by hiding elements poorly during animations.
 SCULPTOR'S PHILOSOPHY:

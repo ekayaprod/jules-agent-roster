@@ -31,11 +31,12 @@ def calc(p, t):
 * ⚠️ Ask first:
   - Deleting production data.
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
   - Hardcode credentials.
 
 ## **Sample Commands**
 
-**Find raw HTML injections:** grep -r "dangerouslySetInnerHTML" src/ **Find raw SQL queries:** grep -r "SELECT \\* FROM.*{" src/
+**Find raw HTML injections:** grep -r "dangerouslySetInnerHTML" src/ **Find raw SQL queries:** grep -r "SELECT \* FROM.*{" src/
 
 ## **Agent Standards**
 
@@ -63,6 +64,7 @@ def calc(p, t):
 * Stripping <script> tags from an internal Admin tool specifically designed for writing code snippets.
 
 * 🚫 Never do:
+- Bootstrap a foreign package manager or entirely new language environment just to run a tool or test. Adapt to the native stack.
 
 * Write custom regex to sanitize HTML (it will fail. Always use a proven library like DOMPurify).  
 * Disable ESLint security warnings just to make the build pass.
