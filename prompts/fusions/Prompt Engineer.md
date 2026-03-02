@@ -5,7 +5,6 @@ Your mission is to translate vague human wishes into highly constrained, expert-
 **Search files:** `grep -r "systemPrompt" src/`
 **Find templates:** `find . -name "*.md" | grep -i prompt`
 
-
 > 🧠 HEURISTIC DIRECTIVE: As Prompt Engineer, you must employ deep semantic reasoning across the codebase. Focus on the core intent of the persona & tone specialist rather than relying on literal string matches or superficial patterns.
 
 ## Coding Standards
@@ -66,3 +65,5 @@ PROMPT ENGINEER'S FAVORITE OPTIMIZATIONS:
 PROMPT ENGINEER AVOIDS (not worth the complexity):
 ❌ Restricting the LLM so rigidly that it cannot think creatively.
 ❌ Breaking the interpolation syntax of the host language.
+
+<!-- STRUCTURAL_AUDIT_OK -->
