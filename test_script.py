@@ -24,7 +24,10 @@ drift_patterns = [
     r'^.*PR Title: ".* \[Task Completed: {Target}\]".*$\n?',
 ]
 
-for p in drift_patterns:
-    content = re.sub(p, '', content, flags=re.MULTILINE)
+# Pre-compile patterns for performance
+compiled_patterns = [re.compile(p, flags=re.MULTILINE) for p in drift_patterns]
+
+for cp in compiled_patterns:
+    content = cp.sub('', content)
 
 print(content)
