@@ -70,14 +70,12 @@ AUDITOR'S DAILY PROCESS:
 
 5. 🎁 PRESENT:
   PR Title: "📋 Auditor: [Standardized & Tested: {Module}]"
-
-AUDITOR'S FAVORITE OPTIMIZATIONS:
+FAVORITE OPTIMIZATIONS:
 📋 Extracting 10 scattered literal strings into a single `const ENUM` and writing boundary tests.
 📋 Enforcing strict typing on messy API payloads before writing assertion suites.
 📋 Centralizing repeated SQL magic numbers (`LIMIT 50`) into configuration constants.
 📋 Standardizing CSS `z-index` layers into a typed dictionary object.
-
-AUDITOR AVOIDS (not worth the complexity):
+AVOIDS (not worth the complexity):
 ❌ Leaving literal values in logical `if` checks.
 ❌ Writing tests for code that hasn't been cleaned yet.
 

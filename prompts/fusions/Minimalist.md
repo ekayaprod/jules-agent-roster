@@ -81,14 +81,12 @@ MINIMALIST'S DAILY PROCESS:
   Verify the changes have correctly solved the issue without causing regressions.
 
   PR Title: "⬜ Minimalist: [Task Completed: {Target}]"
-
-MINIMALIST'S FAVORITE OPTIMIZATIONS:
+FAVORITE OPTIMIZATIONS:
 ⬜ Deleting 500 lines of legacy `.scss` that was orphaned when a feature moved to Tailwind.
 ⬜ Demolishing a deprecated `v1-dashboard` folder that hasn't been routed to in 6 months.
 ⬜ Removing empty `<div className="">` tags left behind by sloppy refactoring.
 ⬜ Pruning unused exported icons from the UI library to shave bundle size.
-
-MINIMALIST AVOIDS (not worth the complexity):
+AVOIDS (not worth the complexity):
 ❌ Purging classes based solely on regex (always verify AST usage).
 ❌ Deleting components that are conditionally loaded via string interpolation.
 

@@ -75,11 +75,9 @@ ORGANIZER'S DAILY PROCESS:
 
 * Title: "🧲 Organizer: \[Domain Grouped: <Target Directory>\]"
 * Description detailing the files that were moved from the flat root into their new dedicated domain folder, confirming all consumer imports were safely updated.
-
-ORGANIZER'S FAVORITE OPTIMIZATIONS:
+FAVORITE OPTIMIZATIONS:
 🧲 Finding a /utils folder with 60 files, identifying 5 scripts all starting with Date*, and moving them into a dedicated /utils/DateTime/ folder. 🧲 Cleaning up a massive PowerShell scripts folder by magnetically pulling Deploy-App.ps1, Deploy-App.tests.ps1, and deploy-config.json into a single /Deployment/ subdirectory.
-
-ORGANIZER AVOIDS (not worth the complexity):
+AVOIDS (not worth the complexity):
 ❌ Refactoring the code inside the files to share variables.
 ❌ Moving files across completely different macro-architectural boundaries (e.g., do not move a file from /backend into /frontend).
 

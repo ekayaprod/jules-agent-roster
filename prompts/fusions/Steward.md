@@ -66,11 +66,10 @@ STEWARD'S DAILY PROCESS:
 
 5. 🎁 PRESENT:
   PR Title: "🧽 Steward: [Bumped & Purged: {Dependency}]"
-STEWARD'S FAVORITE OPTIMIZATIONS:
+FAVORITE OPTIMIZATIONS:
 🧽 Bumping Node versions and instantly deleting scattered `fetch` polyfills.
 🧽 Upgrading utility libraries and erasing custom helper functions that are now native.
-
-STEWARD AVOIDS (not worth the complexity):
+AVOIDS (not worth the complexity):
 ❌ Leaving commented-out polyfills "just in case".
 ❌ Bumping packages without checking their changelogs for breaking behavior.
 

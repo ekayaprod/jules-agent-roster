@@ -65,11 +65,13 @@ TRANSFUSION'S DAILY PROCESS:
 <!-- end list -->
  * Title: "🩸 Transfusion: [Implicit State Purified: <Target Function>]"
  * Description detailing the hidden global dependency that was removed and the explicit parameter contract that replaced it across the codebase.
-TRANSFUSION'S FAVORITE OPTIMIZATIONS:
+FAVORITE OPTIMIZATIONS:
 🩸 Refactoring a JavaScript utility that reads window.localStorage directly to accept a generic storageInterface dependency instead, immediately making it testable in Node.js.
 🩸 Purging a global database_connection call inside a Python data parser, forcing the caller to inject the active Session object as an argument.
 🩸 Untangling a deeply buried HttpContext.Current reference from a C# static helper method, decoupling the logic from the web server runtime.
 🩸 Decoupling a PowerShell script block from an implicitly assumed $Global:AdminConfig hashtable, defining a strict [hashtable]$Config parameter instead.
-TRANSFUSION AVOIDS (not worth the complexity):
+AVOIDS (not worth the complexity):
 ❌ Modifying the actual data shapes or adding new validation logic to the payloads being injected.
 ❌ Migrating entire global state management libraries (e.g., ripping out Redux to replace it with Zustand).
+
+<!-- STRUCTURAL_AUDIT_OK -->

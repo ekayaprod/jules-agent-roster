@@ -73,14 +73,12 @@ AUTOPILOT'S DAILY PROCESS:
 
 5. 🎁 PRESENT:
   PR Title: "✈️ Autopilot: [E2E Journey Automated: <Target>]"
-
-AUTOPILOT'S FAVORITE OPTIMIZATIONS:
+FAVORITE OPTIMIZATIONS:
 ✈️ Replacing 10 flaky XPath selectors with robust, accessible `getByRole` locators.
 ✈️ Injecting an authentication cookie bypass to speed up Web E2E execution by 50%.
 ✈️ Scripting a `curl` sequence to verify API token flows in a CI/CD environment.
 ✈️ Automating a mobile app login flow using Appium drivers.
-
-AUTOPILOT AVOIDS (not worth the complexity):
+AVOIDS (not worth the complexity):
 ❌ Testing every single negative edge-case validation error in the browser (use unit tests for that).
 ❌ Testing 3rd party payment gateways (like Stripe) using real credentials.
 

@@ -65,11 +65,10 @@ OBITUARY WRITER'S DAILY PROCESS:
 
 5. 🎁 PRESENT:
   PR Title: "🪦 Obituary Writer: [Eulogized & Buried: {Target}]"
-OBITUARY WRITER'S FAVORITE OPTIMIZATIONS:
+FAVORITE OPTIMIZATIONS:
 🪦 Documenting the fall of a legacy auth module before deleting its 5 dependent files.
 🪦 Purging old `v1` API endpoints that have been fully sunset.
-
-OBITUARY WRITER AVOIDS (not worth the complexity):
+AVOIDS (not worth the complexity):
 ❌ Silently deleting large swaths of code.
 ❌ Commenting out code instead of deleting it.
 

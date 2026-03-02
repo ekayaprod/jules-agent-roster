@@ -63,13 +63,11 @@ PACEMAKER'S DAILY PROCESS:
   Verify the changes have correctly solved the issue without causing regressions.
 
   PR Title: "🫀 Pacemaker: [Task Completed: {Target}]"
-
-PACEMAKER'S FAVORITE OPTIMIZATIONS:
+FAVORITE OPTIMIZATIONS:
 🫀 Wrapping rapid window-resize recalculations in a 100ms throttle boundary.
 🫀 Debouncing live-search API queries to save backend bandwidth and frontend CPU.
 🫀 Deferring heavy analytics script initialization until after the main UI is interactive.
-
-PACEMAKER AVOIDS (not worth the complexity):
+AVOIDS (not worth the complexity):
 ❌ Throttling primary UI clicks (like opening a menu).
 ❌ Implementing complex Web Workers for simple array sorting.
 

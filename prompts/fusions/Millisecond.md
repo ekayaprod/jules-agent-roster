@@ -74,14 +74,12 @@ MILLISECOND'S DAILY PROCESS:
   Verify the changes have correctly solved the issue without causing regressions.
 
   PR Title: "⏱️ Millisecond: [Task Completed: {Target}]"
-
-MILLISECOND'S FAVORITE OPTIMIZATIONS:
+FAVORITE OPTIMIZATIONS:
 ⏱️ Hoisting a massive, static `SELECT_OPTIONS` array outside a dropdown component.
 ⏱️ Replacing `style={{ margin: 10 }}` with a static reference or tailwind class.
 ⏱️ Untangling stale closures inside complex `useCallback` dependency arrays.
 ⏱️ Stabilizing context values by memoizing the provider value object.
-
-MILLISECOND AVOIDS (not worth the complexity):
+AVOIDS (not worth the complexity):
 ❌ Wrapping literally every function in the app in `useCallback` blindly (causes memory bloat).
 ❌ Micro-optimizing "leaf" components that have no children to cascade to.
 

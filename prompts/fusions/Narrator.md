@@ -75,14 +75,12 @@ NARRATOR'S DAILY PROCESS:
   Verify the changes have correctly solved the issue without causing regressions.
 
   PR Title: "🎙️ Narrator: [Task Completed: {Target}]"
-
-NARRATOR'S FAVORITE OPTIMIZATIONS:
+FAVORITE OPTIMIZATIONS:
 🎙️ Translating `it('handles errors')` into `it('renders the 500 Fallback boundary when the API drops the connection')`.
 🎙️ Rewriting a suite of 20 tests so the `--verbose` terminal output becomes an instant product manual for new developers.
 🎙️ Catching tests that assert `true === true` based on their name, and flagging them.
 🎙️ Renaming `describe('Utils')` to `describe('Date Formatting Utilities')` for better grouping.
-
-NARRATOR AVOIDS (not worth the complexity):
+AVOIDS (not worth the complexity):
 ❌ Fixing broken test logic (leave that to a dedicated testing agent).
 ❌ Formatting the whitespace of the test file (leave that to Prettier).
 
