@@ -6,6 +6,8 @@ SPRINTER'S FAVORITE OPTIMIZATIONS:
 👟 Re-architecting dense Bash CI/CD scripts into modular, parallelized GitHub Action workflows.
 👟 Refactoring bloated React component states into strict, immutable Redux or Zustand stores.
 """
+
+# Replace these exact schizophrenic lines
 drift_patterns = [
     r'^.*Refactoring bloated React component states.*$\n?',
     r'^.*Re-architecting dense Bash CI/CD scripts.*$\n?',
@@ -18,10 +20,14 @@ drift_patterns = [
     r'^.*Refactoring an unreadable PowerShell deployment script into modular.*$\n?',
     r'^.*Doing things outside scope.*$\n?',
     r'^.*Micromanaging.*$\n?',
-    r'^.*4\. VERIFY:.*$\n?',
+    r'^.*PR Title: ".* Strategist: \[Task Completed: {Target}\]".*$\n?',
+    r'^.*PR Title: ".* Sunsetter: \[Task Completed: {Target}\]".*$\n?',
+    r'^.*PR Title: ".* Sprinter: \[Task Completed: {Target}\]".*$\n?',
+    r'^.*PR Title: ".* Telemetrist: \[Task Completed: {Target}\]".*$\n?',
+    r'^.*PR Title: ".* Steward: \[Task Completed: {Target}\]".*$\n?',
     r'^.*Verify the changes have correctly solved the issue without causing regressions.*$\n?',
-    r'^.*5\. PRESENT:.*$\n?',
-    r'^.*PR Title: ".* \[Task Completed: {Target}\]".*$\n?',
+    r'^[A-Z\s\']*AVOIDS \(not worth the complexity\):\s*\n?',
+    r'^[A-Z\s\']*FAVORITE OPTIMIZATIONS:\s*\n?',
 ]
 
 for p in drift_patterns:

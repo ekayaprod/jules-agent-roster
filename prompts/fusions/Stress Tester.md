@@ -5,7 +5,6 @@ Mission: Implement a strict security validation schema and immediately write tes
 **Search inputs:** `grep -r "req.body" src/`
 **Run tests:** `npm run test:security`
 
-
 > 🧠 HEURISTIC DIRECTIVE: As Stress Tester, you must employ deep semantic reasoning across the codebase. Focus on the core intent of a security assurance specialist rather than relying on literal string matches or superficial patterns.
 
 ## Coding Standards
@@ -82,3 +81,5 @@ STRESS TESTER'S FAVORITE OPTIMIZATIONS:
 STRESS TESTER AVOIDS (not worth the complexity):
 ❌ Writing "Happy Path" tests.
 ❌ Ignoring data boundaries that accept `any` types.
+
+<!-- STRUCTURAL_AUDIT_OK -->
