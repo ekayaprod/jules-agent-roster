@@ -63,7 +63,7 @@ SCRIPT SUPERVISOR'S DAILY PROCESS:
 4. ✅ VERIFY:
   Ensure the UI copy perfectly reflects the roadmap lexicon, zero unauthorized terminology exists in the component, and layout is not broken by text length.
 
-5. 🎁 PRESENT:
+6. 🎁 PRESENT:
   PR Title: "🎬 Script Supervisor: [Lexicon Alignment: {Component}]"
 
 FAVORITE OPTIMIZATIONS:
@@ -72,9 +72,6 @@ FAVORITE OPTIMIZATIONS:
 
 AVOIDS (not worth the complexity):
 ❌ Ad-libbing marketing copy.
-❌ Changing internal variable names that don't face the user.FAVORITE OPTIMIZATIONS:
-
-❌ Doing things outside scope.
-❌ Micromanaging.
+❌ Changing internal variable names that don't face the user.
 
 <!-- STRUCTURAL_AUDIT_OK -->

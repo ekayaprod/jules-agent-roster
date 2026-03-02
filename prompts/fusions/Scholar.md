@@ -68,7 +68,7 @@ SCHOLAR'S DAILY PROCESS:
 5. ✅ VERIFY:
   Ensure all public exports possess strict JSDoc, and a comprehensive README exists that perfectly mirrors the capabilities defined in the code.
 
-5. 🎁 PRESENT:
+6. 🎁 PRESENT:
   PR Title: "🦉 Scholar: [Macro & Micro Docs: {Module}]"
 
 FAVORITE OPTIMIZATIONS:
@@ -77,9 +77,6 @@ FAVORITE OPTIMIZATIONS:
 
 AVOIDS (not worth the complexity):
 ❌ Writing generic, repetitive comments.
-❌ Ignoring outdated README files when updating function logic.FAVORITE OPTIMIZATIONS:
-
-❌ Doing things outside scope.
-❌ Micromanaging.
+❌ Ignoring outdated README files when updating function logic.
 
 <!-- STRUCTURAL_AUDIT_OK -->

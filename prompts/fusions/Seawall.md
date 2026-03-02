@@ -66,7 +66,7 @@ SEAWALL'S DAILY PROCESS:
 5. ✅ VERIFY:
   Ensure deep internal imports have been replaced by strict barrel exports across the app, and the integration tests achieve coverage solely through the public API surface.
 
-5. 🎁 PRESENT:
+6. 🎁 PRESENT:
   PR Title: "🌊 Seawall: [Encapsulated & Tested: {Module}]"
 
 FAVORITE OPTIMIZATIONS:
@@ -75,9 +75,6 @@ FAVORITE OPTIMIZATIONS:
 
 AVOIDS (not worth the complexity):
 ❌ Writing tests for private implementation details.
-❌ Exposing internal database parsers to the entire frontend.FAVORITE OPTIMIZATIONS:
-
-❌ Doing things outside scope.
-❌ Micromanaging.
+❌ Exposing internal database parsers to the entire frontend.
 
 <!-- STRUCTURAL_AUDIT_OK -->

@@ -71,7 +71,7 @@ SCULPTOR'S DAILY PROCESS:
 5. ✅ VERIFY:
   Ensure the God Component is successfully split into single-responsibility pieces, and state changes trigger smooth, polished visual transitions without jank.
 
-5. 🎁 PRESENT:
+6. 🎁 PRESENT:
   PR Title: "🗿 Sculptor: [Split & Polished: {Component}]"
 
 FAVORITE OPTIMIZATIONS:
@@ -80,9 +80,6 @@ FAVORITE OPTIMIZATIONS:
 
 AVOIDS (not worth the complexity):
 ❌ Adding heavy JS animation frameworks for simple fade effects.
-❌ Altering data mutation endpoints.FAVORITE OPTIMIZATIONS:
-
-❌ Doing things outside scope.
-❌ Micromanaging.
+❌ Altering data mutation endpoints.
 
 <!-- STRUCTURAL_AUDIT_OK -->
