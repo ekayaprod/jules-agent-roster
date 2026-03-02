@@ -491,16 +491,7 @@ class FusionLab {
 
     this.renderFusionResult(result);
 
-    // Check reduced motion
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      this.showResult();
-    } else {
-      this.runAnimation(agentA, agentB, result);
-    }
+    this.runAnimation(agentA, agentB, result);
   }
 
   /**
