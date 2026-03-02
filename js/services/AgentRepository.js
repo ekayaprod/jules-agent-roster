@@ -271,8 +271,9 @@ class AgentRepository {
             data.description = String(data.description);
         }
 
-        // Security: Check for basic XSS in name/description
-        const maliciousPattern = /<script|javascript:/i;
+        // Security: Check for XSS in name/description using a robust pattern
+        // Targets dangerous tags, event handlers, and URI schemes.
+        const maliciousPattern = /<\s*(script|iframe|object|embed|style|meta|link|base|svg|math|form|details|button|video|audio|canvas|map|area|plaintext|basefont|listing|xmp)\b|on\w+\s*=|javascript\s*:|vbscript\s*:/i;
         if (
             maliciousPattern.test(data.name) ||
             (data.description && maliciousPattern.test(data.description))
