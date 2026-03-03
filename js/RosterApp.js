@@ -271,31 +271,54 @@ class RosterApp {
     searchResultsGrid.innerHTML = "";
     let visibleCount = 0;
 
-    const allAgents = this.agents.map((agent, index) => ({ agent, keyOrIndex: index }));
-    if (this.fusionLab && this.fusionLab.fusionIndex) {
-        this.fusionLab.fusionIndex.unlockedKeys.forEach(key => {
-            let agent = this.customAgents[key] || this.fusionLab.compiler.customAgentsMap[key];
-            if (agent) {
-                allAgents.push({ agent, keyOrIndex: key });
-            }
+    // 🏁 Pacesetter: Memoize Fuse index to prevent O(n) array mapping and index rebuilds on every keystroke
+    const currentUnlockedSize = (this.fusionLab && this.fusionLab.fusionIndex) ? this.fusionLab.fusionIndex.unlockedKeys.size : 0;
+
+    if (!this._searchCache ||
+        this._searchCache.agentCount !== this.agents.length ||
+        this._searchCache.unlockedSize !== currentUnlockedSize) {
+
+        const allAgents = this.agents.map((agent, index) => ({ agent, keyOrIndex: index }));
+        if (this.fusionLab && this.fusionLab.fusionIndex) {
+            this.fusionLab.fusionIndex.unlockedKeys.forEach(key => {
+                let agent = this.customAgents[key] || this.fusionLab.compiler.customAgentsMap[key];
+                if (agent) {
+                    allAgents.push({ agent, keyOrIndex: key });
+                }
+            });
+        }
+
+        const fuse = new Fuse(allAgents, {
+            keys: ["agent.name", "agent.desc"],
+            threshold: 0.4
         });
+
+        this._searchCache = {
+            agentCount: this.agents.length,
+            unlockedSize: currentUnlockedSize,
+            fuseInstance: fuse
+        };
     }
 
-    const fuse = new Fuse(allAgents, {
-        keys: ["agent.name", "agent.desc"],
-        threshold: 0.4
-    });
+    const results = this._searchCache.fuseInstance.search(search);
 
-    const results = fuse.search(search);
+    // 🏁 Pacesetter: Limit DOM rendering to a maximum of 25 items to prevent layout thrashing
+    const MAX_RESULTS = 25;
+    const limitedResults = results.slice(0, MAX_RESULTS);
 
-    results.forEach(result => {
+    // 🏁 Pacesetter: Use DocumentFragment to batch DOM inserts
+    const fragment = document.createDocumentFragment();
+
+    limitedResults.forEach(result => {
         const { agent, keyOrIndex } = result.item;
         const card = AgentCard.create(agent, keyOrIndex, visibleCount);
-        searchResultsGrid.appendChild(card);
+        fragment.appendChild(card);
         visibleCount++;
     });
 
-    if (visibleCount === 0) {
+    searchResultsGrid.appendChild(fragment);
+
+    if (results.length === 0) {
       this.elements.emptyState?.classList.add("visible");
       searchModeContainer.classList.add("hidden");
     } else {
@@ -303,7 +326,7 @@ class RosterApp {
     }
 
     if (this.elements.announcer) {
-      this.elements.announcer.textContent = visibleCount === 0 ? "No protocols found." : `Found ${visibleCount} protocols.`;
+      this.elements.announcer.textContent = results.length === 0 ? "No protocols found." : `Found ${results.length} protocols.`;
     }
   }
 

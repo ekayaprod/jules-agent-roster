@@ -194,6 +194,18 @@ class FusionLab {
         grid.appendChild(item);
     });
 
+    // 🏁 Pacesetter: Pre-compute DOM elements and instantiate Fuse ONCE per picker open
+    // This prevents re-mapping the entire DOM and re-building the index on every keystroke
+    const items = grid.querySelectorAll(".mini-agent-card");
+    const data = Array.from(items).map(item => ({
+        el: item,
+        name: item.getAttribute("data-name")
+    }));
+    this.pickerFuse = new Fuse(data, {
+        keys: ["name"],
+        threshold: 0.4
+    });
+
     modal.showModal();
     modal.setAttribute("open", "");
 
@@ -302,17 +314,9 @@ class FusionLab {
               item.setAttribute("tabindex", "-1"); // Reset all
           });
       } else {
-          const data = Array.from(items).map(item => ({
-              el: item,
-              name: item.getAttribute("data-name")
-          }));
-
-          const fuse = new Fuse(data, {
-              keys: ["name"],
-              threshold: 0.4
-          });
-
-          const results = fuse.search(term);
+          // 🏁 Pacesetter: Use the pre-computed Fuse instance instead of mapping DOM elements
+          // and re-instantiating the search index on every single keystroke.
+          const results = this.pickerFuse ? this.pickerFuse.search(term) : [];
 
           items.forEach(item => {
               item.style.display = "none";

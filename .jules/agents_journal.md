@@ -1,3 +1,7 @@
 ## 2024-05-24 - ⬜ Minimalist - CSS Grid Animations Require Inner Overflow Control
 **Learning:** When attempting to flatten DOM wrappers by moving `overflow: hidden` to a parent CSS grid container (used for `0fr` to `1fr` transitions), the animation will break. The grid accordion trick strictly requires the *direct grid item* to have `overflow: hidden` or `min-height: 0` to control the collapsing height accurately.
 **Action:** When purging redundant visual wrappers within animated CSS grids, ensure the `overflow` property is applied directly to the inner grid item, not the outer grid wrapper, before deleting structural DOM nodes.
+
+## 2024-05-24 - 🏁 Pacesetter - [Optimized & Locked: Roster & Picker Search Filtering]
+**Learning:** Instantiating a fuzzy search index (like `Fuse.js`) inside an event handler creates massive execution latency. Every keystroke triggers an $O(n)$ mapping of 5000+ DOM elements and re-indexes them synchronously, blocking the main thread for over 3 seconds and violating the 50ms performance threshold.
+**Action:** Extract search index instantiation out of the input event loop entirely. Cache the `Fuse` instance and the data mapping at the initialization or state-change boundary (e.g., when the agent count changes or when the modal opens), reducing the keystroke event to a pure `.search()` call and limiting DOM result rendering via `DocumentFragment`. Locked in place with a strict execution-time assertion boundary script.
