@@ -251,7 +251,7 @@ class FusionLab {
    * Renders the pre-merge "Known Recipe" preview if the resulting agent is already unlocked.
    */
   renderPreMergePreview() {
-    const actionArea = document.querySelector(".fusion-action-area");
+    const actionArea = document.querySelector("#fusionLabContent .fusion-action-area");
     if (!actionArea) return;
 
     let previewEl = document.getElementById("preMergePreview");
@@ -607,7 +607,7 @@ class FusionLab {
     const iconResult = overlay.querySelector(".anim-icon.result");
     const animResult = overlay.querySelector(".anim-result");
     const fuseBtn = document.getElementById("fuseBtn");
-    const controls = document.querySelector(".fusion-visual-slots"); // Updated class
+    const controls = document.getElementById("fusionLabContent"); // Updated class
 
     // Close result if open
     const wrapper = document.getElementById("fusionOutputWrapper");
