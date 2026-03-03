@@ -1,4 +1,4 @@
-const StringUtils = require('./StringUtils');
+const { StringUtils } = require('./index');
 
 describe('StringUtils', () => {
     describe('extractEmoji', () => {
