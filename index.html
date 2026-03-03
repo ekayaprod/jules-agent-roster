@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="version" content="0.5.0" />
     <title>Autonomous Protocol Matrix</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://emojik.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self';"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://emojik.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self';"/>
     <style>
       * { box-sizing: border-box; }
       :root {
@@ -521,6 +521,7 @@
         sectionMap: { coreGrid: "core-maintenance", archGrid: "architecture-optimization", hygieneGrid: "code-hygiene", opsGrid: "operations-release", contextGrid: "context-strategy", monthlyGrid: "monthly-intelligence" }
       };
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
     <script src="js/PromptParser.js"></script>
     <script src="js/utils/PromptRenderer.js"></script>
     <script src="js/services/AgentRepository.js"></script>
