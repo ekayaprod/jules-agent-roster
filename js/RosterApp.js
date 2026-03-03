@@ -3,6 +3,10 @@
  * Main application class for the Autonomous Protocol Matrix.
  */
 class RosterApp {
+  /**
+   * Initializes the RosterApp instance, setting up empty states and service dependencies.
+   * @see js/README.md#rosterapp-architecture for the initialization flow.
+   */
   constructor() {
     this.agents = [];
     this.customAgents = {};
@@ -13,6 +17,11 @@ class RosterApp {
   }
 
 
+  /**
+   * Bootstraps the application, fetching agent data and initializing UI components.
+   * @see js/README.md#rosterapp-architecture for the complete application lifecycle.
+   * @returns {Promise<void>} Resolves when initialization is complete.
+   */
   async init() {
     this.cacheElements();
 
@@ -57,6 +66,10 @@ class RosterApp {
     this.initObserver();
   }
 
+  /**
+   * Caches critical DOM elements to prevent repeated queries during high-frequency events.
+   * @see js/README.md#rosterapp-architecture
+   */
   cacheElements() {
     Object.keys(CONFIG.selectors).forEach((key) => {
       const selector = CONFIG.selectors[key];
@@ -66,6 +79,9 @@ class RosterApp {
     });
   }
 
+  /**
+   * Removes loading skeleton placeholders from all rendering grids.
+   */
   clearSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
       const container = document.getElementById(CONFIG.categories[key]);
@@ -75,6 +91,9 @@ class RosterApp {
     });
   }
 
+  /**
+   * Injects CSS loading skeletons into grids to mask latency during data fetching.
+   */
   renderSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
       const container = document.getElementById(CONFIG.categories[key]);
@@ -90,6 +109,11 @@ class RosterApp {
     });
   }
 
+  /**
+   * Renders agent cards into their respective category grids using asynchronous batch chunking.
+   * Leverages requestAnimationFrame and setTimeout to prevent main-thread blocking.
+   * @see js/README.md#rosterapp-architecture for batch rendering optimizations.
+   */
   renderAgents() {
     const categoryContainers = {};
     const fragments = {};
@@ -160,6 +184,10 @@ class RosterApp {
     });
   }
 
+  /**
+   * Attaches event listeners for search input, filtering, and global action delegation.
+   * @see js/README.md#rosterapp-architecture for event delegation strategies.
+   */
   bindEvents() {
     if (this.elements.searchInput) {
       const debouncedFilter = PerformanceUtils.debounce((query) => {
@@ -234,6 +262,11 @@ class RosterApp {
     });
   }
 
+  /**
+   * Filters the agent roster using fuzzy search and updates the UI.
+   * Implements Fuse.js memoization and DOM batch insertion to prevent layout thrashing.
+   * @param {string} query - The search query string.
+   */
   filterAgents(query) {
     const search = query.toLowerCase();
     const searchModeContainer = document.getElementById("searchModeContainer");
@@ -330,6 +363,9 @@ class RosterApp {
     }
   }
 
+  /**
+   * Clears the current search query, resets the search input, and restores the category grid view.
+   */
   clearSearch() {
     if (this.elements.searchInput) {
       this.elements.searchInput.value = "";
@@ -338,6 +374,12 @@ class RosterApp {
     }
   }
 
+  /**
+   * Copies a specific agent's prompt to the user's clipboard and animates the trigger button.
+   * @param {number|string} index - The index or key of the agent in the data store.
+   * @param {HTMLElement} btn - The button element that triggered the action.
+   * @returns {Promise<void>} Resolves when the copy action completes.
+   */
   async copyAgent(index, btn) {
     let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
     if (!agent) return;
@@ -349,6 +391,10 @@ class RosterApp {
     }
   }
 
+  /**
+   * Packages and downloads all currently unlocked custom fusion agents as a single Markdown file.
+   * @param {HTMLElement} btn - The trigger button to animate on success.
+   */
   downloadCustomAgents(btn) {
     const header = "JULES CUSTOM AGENT ROSTER (FUSIONS)\n\n--------------------------------------------------------------------------------\n\n";
     const validCustomAgents = Object.values(this.customAgents).filter(a => a.prompt && a.prompt.length > 0);
@@ -361,12 +407,21 @@ class RosterApp {
     if(document.getElementById('masterDropdownMenu')) document.getElementById('masterDropdownMenu').classList.remove("visible");
   }
 
+  /**
+   * Packages and downloads the entire master agent roster as a single Markdown file.
+   * @param {HTMLElement} btn - The trigger button to animate on success.
+   */
   downloadAll(btn) {
     const header = "JULES MASTER AGENT ROSTER\n\n--------------------------------------------------------------------------------\n\n";
     DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(this.agents), "jules_roster.md");
     ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
   }
 
+  /**
+   * Copies the entire master agent roster to the user's clipboard.
+   * @param {HTMLElement} btn - The trigger button to animate on success.
+   * @returns {Promise<void>} Resolves when the copy action completes.
+   */
   async copyAll(btn) {
     const header = "JULES MASTER AGENT ROSTER\n\n--------------------------------------------------------------------------------\n\n";
     const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(this.agents));
@@ -376,6 +431,9 @@ class RosterApp {
     }
   }
 
+  /**
+   * Initializes the IntersectionObserver for category navigation scroll-spy functionality.
+   */
   initObserver() {
     const navPills = document.querySelectorAll(CONFIG.selectors.navPills);
     const observer = new IntersectionObserver(
@@ -399,6 +457,10 @@ class RosterApp {
     });
   }
 
+  /**
+   * Displays a global toast notification.
+   * @param {string} message - The message to display.
+   */
   showToast(message) {
       this.toast.show(message);
   }
