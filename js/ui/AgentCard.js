@@ -50,12 +50,18 @@ class AgentCard {
         card.innerHTML = `
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <div class="emoji-hero">${icon}</div>
-                    <div class="title-group">
-                        <h3 class="agent-title">${safeDisplayName}</h3>
-                        <span class="role-tag">${role}</span>
+                    <div class="card-top">
+                        <div class="card-top-left">
+                            <div class="emoji-hero">${icon}</div>
+                        </div>
+                        <div class="card-top-right">
+                            <div class="title-group">
+                                <h3 class="agent-title">${safeDisplayName}</h3>
+                                <span class="role-tag">${role}</span>
+                            </div>
+                            <div class="tag-container mt-2">${tags}</div>
+                        </div>
                     </div>
-                    <div class="tag-container justify-center mt-2">${tags}</div>
                     <div class="description mt-3">${desc}</div>
                     <div class="flip-hint mt-auto text-secondary text-xs">Tap to view protocol ↺</div>
                 </div>
