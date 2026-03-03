@@ -17,97 +17,107 @@ class AgentRepository {
      */
     async fetchAgents() {
         try {
-            const response = await this.fetchWithRetry("agents.json");
-            const rawData = await this.safeJsonParse(response, "agents.json");
-            const agentsData = this.validateAgentsData(rawData);
+            this.agents = await this.#loadStandardAgents();
+            this.customAgents = await this.#loadCustomAgents();
 
-            // Fetch Prompts for Standard Agents
-            await Promise.all(
-                agentsData.map(async (agent) => {
-                    agent.prompt = await this.fetchPrompt(
-                        agent.name,
-                        `prompts/${agent.name}.md`,
-                        "Prompt missing.",
-                    );
-                }),
-            );
-
-            this.agents = agentsData;
-
-            // FUSION: Load Custom Agents Data
-            let customAgentsData = {};
-            try {
-                const customRes = await this.fetchWithRetry("custom_agents.json");
-                if (customRes.ok) {
-                    const rawCustomData = await this.safeJsonParse(
-                        customRes,
-                        "custom_agents.json",
-                    );
-
-                    // The First Responder: Validate & Sanitize Boundary
-                    const validatedCustomData = {};
-
-                    await Promise.all(
-                        Object.entries(rawCustomData).map(async ([key, custom]) => {
-                            try {
-                                const validation = this.validateCustomAgent(key, custom);
-
-                                if (!validation.valid) {
-                                    // TELEMETRY: Log rejection
-                                    console.warn(
-                                        JSON.stringify({
-                                            event: "INVALID_CUSTOM_AGENT",
-                                            key: key,
-                                            reason: validation.reason,
-                                            timestamp: new Date().toISOString(),
-                                        }),
-                                    );
-                                    return; // Skip this agent
-                                }
-
-                                const agent = validation.sanitized;
-
-                                // Sanitize name for filename: Remove non-ASCII, trim.
-                                const cleanName = agent.name
-                                    .replace(/[^\x00-\x7F]/g, "")
-                                    .trim();
-                                const filename = `prompts/fusions/${cleanName}.md`;
-
-                                agent.prompt = await this.fetchPrompt(
-                                    agent.name,
-                                    filename,
-                                    null,
-                                );
-
-                                // Add to valid set
-                                validatedCustomData[key] = agent;
-                            } catch (err) {
-                                console.error(`Error processing custom agent '${key}':`, err);
-                            }
-                        }),
-                    );
-
-                    customAgentsData = validatedCustomData;
-                }
-            } catch (e) {
-                if (e.message.includes("parse JSON")) {
-                    console.error(
-                        "CRITICAL: custom_agents.json is malformed. Fusion data may be incomplete.",
-                        e,
-                    );
-                } else {
-                    console.warn(
-                        "custom_agents.json not loaded (missing or network error).",
-                    );
-                }
-            }
-
-            this.customAgents = customAgentsData;
             return { agents: this.agents, customAgents: this.customAgents };
-
         } catch (error) {
             console.error("Failed to load agents.json", error);
             throw error;
+        }
+    }
+
+    async #loadStandardAgents() {
+        const response = await this.fetchWithRetry("agents.json");
+        const rawData = await this.safeJsonParse(response, "agents.json");
+        const agentsData = this.validateAgentsData(rawData);
+
+        // Fetch Prompts for Standard Agents
+        await Promise.all(
+            agentsData.map(async (agent) => {
+                agent.prompt = await this.fetchPrompt(
+                    agent.name,
+                    `prompts/${agent.name}.md`,
+                    "Prompt missing.",
+                );
+            }),
+        );
+
+        return agentsData;
+    }
+
+    async #loadCustomAgents() {
+        try {
+            const customRes = await this.fetchWithRetry("custom_agents.json");
+            if (!customRes.ok) return {};
+
+            const rawCustomData = await this.safeJsonParse(
+                customRes,
+                "custom_agents.json",
+            );
+
+            const validatedCustomData = {};
+
+            await Promise.all(
+                Object.entries(rawCustomData).map(async ([key, custom]) => {
+                    const agent = await this.#processCustomAgent(key, custom);
+                    if (agent) {
+                        validatedCustomData[key] = agent;
+                    }
+                }),
+            );
+
+            return validatedCustomData;
+        } catch (e) {
+            if (e.message.includes("parse JSON")) {
+                console.error(
+                    "CRITICAL: custom_agents.json is malformed. Fusion data may be incomplete.",
+                    e,
+                );
+            } else {
+                console.warn(
+                    "custom_agents.json not loaded (missing or network error).",
+                );
+            }
+            return {};
+        }
+    }
+
+    async #processCustomAgent(key, custom) {
+        try {
+            const validation = this.validateCustomAgent(key, custom);
+
+            if (!validation.valid) {
+                // TELEMETRY: Log rejection
+                console.warn(
+                    JSON.stringify({
+                        event: "INVALID_CUSTOM_AGENT",
+                        key: key,
+                        reason: validation.reason,
+                        timestamp: new Date().toISOString(),
+                    }),
+                );
+                return null;
+            }
+
+            const agent = validation.sanitized;
+
+            // Sanitize name for filename: Remove non-ASCII, trim.
+            const cleanName = agent.name
+                .replace(/[^\x00-\x7F]/g, "")
+                .trim();
+            const filename = `prompts/fusions/${cleanName}.md`;
+
+            agent.prompt = await this.fetchPrompt(
+                agent.name,
+                filename,
+                null,
+            );
+
+            return agent;
+        } catch (err) {
+            console.error(`Error processing custom agent '${key}':`, err);
+            return null;
         }
     }
 
