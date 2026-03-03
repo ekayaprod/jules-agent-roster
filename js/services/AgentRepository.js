@@ -290,27 +290,23 @@ class AgentRepository {
 
         if (typeof StringUtils !== 'undefined') {
             if (!data.icon) {
-                data.icon = StringUtils.extractEmoji(data.name);
+                data.icon = StringUtils.hasEmojiSuffix(data.name)
+                    ? StringUtils.extractEmoji(data.name)
+                    : (StringUtils.hasEmojiPrefix(data.name)
+                        ? StringUtils.extractEmojiPrefix(data.name)
+                        : '🤖');
             }
             if (StringUtils.hasEmojiSuffix(data.name)) {
                 data.name = StringUtils.extractNameWithoutEmoji(data.name);
+            } else if (StringUtils.hasEmojiPrefix(data.name)) {
+                data.name = StringUtils.extractNameWithoutEmojiPrefix(data.name);
             }
         } else {
-            // Fallback parsing if StringUtils is not available in environment
+            // Safe fallback defaults to avoid duplicating complex logic
             if (!data.icon) {
-                const parts = data.name.trim().split(" ");
-                const lastPart = parts[parts.length - 1];
-                if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
-                    data.icon = lastPart;
-                } else {
-                    data.icon = '🤖';
-                }
+                data.icon = '🤖';
             }
-            const parts = data.name.trim().split(" ");
-            const lastPart = parts[parts.length - 1];
-            if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
-                data.name = parts.slice(0, -1).join(" ");
-            }
+            // Retain original name if utility is inexplicably missing
         }
 
         return { valid: true, sanitized: data };

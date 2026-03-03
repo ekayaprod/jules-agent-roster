@@ -14,7 +14,7 @@ class StringUtils {
     if (!name) return "❓";
     const parts = name.trim().split(" ");
     const lastPart = parts[parts.length - 1];
-    if (lastPart && !/^[a-zA-Z0-9\-\.]+$/.test(lastPart)) {
+    if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
       return lastPart;
     }
     return "❓";
@@ -30,7 +30,7 @@ class StringUtils {
     if (!name) return false;
     const parts = name.trim().split(" ");
     const lastPart = parts[parts.length - 1];
-    return !!(lastPart && !/^[a-zA-Z0-9\-\.]+$/.test(lastPart));
+    return !!(lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart));
   }
 
   /**
@@ -43,9 +43,58 @@ class StringUtils {
     if (!name) return "";
     const parts = name.trim().split(" ");
     const lastPart = parts[parts.length - 1];
-    if (lastPart && !/^[a-zA-Z0-9\-\.]+$/.test(lastPart)) {
+    if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
         return parts.slice(0, -1).join(" ");
     }
     return name;
   }
+
+  /**
+   * Extracts the emoji from the beginning of a fusion name.
+   *
+   * @param {string} name - The fusion name (e.g., "⚡🧬 Bolt-Helix").
+   * @returns {string} The extracted emoji or a fallback ("❓").
+   */
+  static extractEmojiPrefix(name) {
+    if (!name) return "❓";
+    const parts = name.trim().split(" ");
+    const firstPart = parts[0];
+    if (firstPart && !/^[A-Za-z0-9\-\.]+$/.test(firstPart)) {
+      return firstPart;
+    }
+    return "❓";
+  }
+
+  /**
+   * Checks if the first part of a string is an emoji.
+   *
+   * @param {string} name - The fusion name (e.g., "⚡🧬 Bolt-Helix").
+   * @returns {boolean} True if the first part is an emoji, false otherwise.
+   */
+  static hasEmojiPrefix(name) {
+    if (!name) return false;
+    const parts = name.trim().split(" ");
+    const firstPart = parts[0];
+    return !!(firstPart && !/^[A-Za-z0-9\-\.]+$/.test(firstPart));
+  }
+
+  /**
+   * Extracts the base name without the leading emoji from a fusion name.
+   *
+   * @param {string} name - The fusion name (e.g., "⚡🧬 Bolt-Helix").
+   * @returns {string} The base name without the leading emoji.
+   */
+  static extractNameWithoutEmojiPrefix(name) {
+    if (!name) return "";
+    const parts = name.trim().split(" ");
+    const firstPart = parts[0];
+    if (firstPart && !/^[A-Za-z0-9\-\.]+$/.test(firstPart)) {
+        return parts.slice(1).join(" ");
+    }
+    return name;
+  }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = StringUtils;
 }
