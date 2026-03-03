@@ -687,7 +687,7 @@ class FusionLab {
         const img = new Image();
         img.src = imgUrl;
         img.alt = result.name;
-        img.loading = "lazy";
+        img.loading = "eager";
         img.className = "img-loading";
         img.style.width = "100%";
         img.style.height = "100%";
