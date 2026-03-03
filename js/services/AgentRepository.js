@@ -273,14 +273,15 @@ class AgentRepository {
 
         // First Responder: Sanitize optional fields
         // If description exists but is not a string, cast it.
-        if (
-            data.description !== undefined &&
-            typeof data.description !== "string"
-        ) {
-            console.warn(
-                `[First Responder] Sanitizing ${key}: description must be string. Casting.`,
-            );
+        if (data.desc !== undefined && typeof data.desc !== "string") {
+            data.desc = String(data.desc);
+        }
+        if (data.description !== undefined && typeof data.description !== "string") {
             data.description = String(data.description);
+        }
+        if (data.short_description !== undefined && typeof data.short_description !== "string") {
+            console.warn(`[First Responder] Sanitizing ${key}: short_description must be string. Casting.`);
+            data.short_description = String(data.short_description);
         }
 
         // Security: Check for XSS in name/description using a robust pattern
@@ -288,19 +289,27 @@ class AgentRepository {
         const maliciousPattern = /<\s*(script|iframe|object|embed|style|meta|link|base|svg|math|form|details|button|video|audio|canvas|map|area|plaintext|basefont|listing|xmp)\b|on\w+\s*=|javascript\s*:|vbscript\s*:/i;
         if (
             maliciousPattern.test(data.name) ||
+            (data.short_description && maliciousPattern.test(data.short_description)) ||
+            (data.desc && maliciousPattern.test(data.desc)) ||
             (data.description && maliciousPattern.test(data.description))
         ) {
             return { valid: false, reason: "Potential malicious content detected" };
         }
 
         // Standardize schema to match agents.json (desc, icon, clean name)
-        if (data.description !== undefined && data.desc === undefined) {
-            data.desc = data.description;
+        // Standardize schema
+        if (data.description !== undefined && data.short_description === undefined) {
+            data.short_description = data.description;
+            delete data.description;
+        }
+        if (data.desc !== undefined && data.short_description === undefined) {
+            data.short_description = data.desc;
+            delete data.desc;
         }
 
         if (typeof StringUtils !== 'undefined') {
-            if (!data.icon) {
-                data.icon = StringUtils.hasEmojiSuffix(data.name)
+            if (!data.emoji) {
+                data.emoji = StringUtils.hasEmojiSuffix(data.name)
                     ? StringUtils.extractEmoji(data.name)
                     : (StringUtils.hasEmojiPrefix(data.name)
                         ? StringUtils.extractEmojiPrefix(data.name)
@@ -313,8 +322,8 @@ class AgentRepository {
             }
         } else {
             // Safe fallback defaults to avoid duplicating complex logic
-            if (!data.icon) {
-                data.icon = '🤖';
+            if (!data.emoji) {
+                data.emoji = '🤖';
             }
             // Retain original name if utility is inexplicably missing
         }

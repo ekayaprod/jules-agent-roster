@@ -1,162 +1,200 @@
 [
   {
     "name": "Bolt+",
-    "icon": "⚡",
+    "emoji": "⚡",
+    "short_description": "Hunts down sluggish code and structural bottlenecks. Wraps heavy calculations in system caches to make your app run at lightning speed.",
+    "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "Speed Optimizer",
-    "desc": "Hunts down sluggish code and structural bottlenecks. Wraps heavy calculations in system caches to make your app run at lightning speed."
+    "role": "Speed Optimizer"
   },
   {
     "name": "Palette+",
-    "icon": "🎨",
+    "emoji": "🎨",
+    "short_description": "Transforms clunky interactions into delightful experiences. Injects loading skeletons, smooth animations, and accessibility to make your app feel premium.",
+    "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "UI Polisher",
-    "desc": "Transforms clunky interactions into delightful experiences. Injects loading skeletons, smooth animations, and accessibility to make your app feel premium."
+    "role": "UI Polisher"
   },
   {
     "name": "Sentinel+",
-    "icon": "🛡️",
+    "emoji": "🛡️",
+    "short_description": "Hardens your application's trust boundaries. Injects strict schema validations and sanitizes data payloads to protect your system from malicious inputs.",
+    "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "Security Guard",
-    "desc": "Hardens your application's trust boundaries. Injects strict schema validations and sanitizes data payloads to protect your system from malicious inputs."
+    "role": "Security Guard"
   },
   {
     "name": "Helix",
-    "icon": "🧬",
+    "emoji": "🧬",
+    "short_description": "Hunts down duplicated spaghetti code scattered across your files. Extracts it into clean, shared utility functions to give your app a single source of truth.",
+    "tier": "",
     "category": "architecture",
-    "role": "Code Consolidator",
-    "desc": "Hunts down duplicated spaghetti code scattered across your files. Extracts it into clean, shared utility functions to give your app a single source of truth."
+    "type": "",
+    "role": "Code Consolidator"
   },
   {
     "name": "Architect",
-    "icon": "🏗️",
+    "emoji": "🏗️",
+    "short_description": "Untangles chaotic directories and unmaintainable monoliths. Splits massive files and enforces clean folder structures to keep your repository highly organized.",
+    "tier": "",
     "category": "architecture",
-    "role": "Folder Organizer",
-    "desc": "Untangles chaotic directories and unmaintainable monoliths. Splits massive files and enforces clean folder structures to keep your repository highly organized."
+    "type": "",
+    "role": "Folder Organizer"
   },
   {
     "name": "Scavenger",
-    "icon": "🦅",
+    "emoji": "🦅",
+    "short_description": "A ruthless cleanup specialist. Hunts down and permanently deletes orphaned files, dead code, and resolved TODOs to reduce technical debt and codebase bloat.",
+    "tier": "",
     "category": "hygiene",
-    "role": "Trash Collector",
-    "desc": "A ruthless cleanup specialist. Hunts down and permanently deletes orphaned files, dead code, and resolved TODOs to reduce technical debt and codebase bloat."
+    "type": "",
+    "role": "Trash Collector"
   },
   {
     "name": "Superintendent",
-    "icon": "🧰",
+    "emoji": "🧰",
+    "short_description": "Keeps your underlying infrastructure healthy. Safely bumps outdated packages, cleans up lockfiles, and standardizes configuration manifests.",
+    "tier": "",
     "category": "hygiene",
-    "role": "Dependency Manager",
-    "desc": "Keeps your underlying infrastructure healthy. Safely bumps outdated packages, cleans up lockfiles, and standardizes configuration manifests."
+    "type": "",
+    "role": "Dependency Manager"
   },
   {
     "name": "Modernizer",
-    "icon": "♻️",
+    "emoji": "♻️",
+    "short_description": "Upgrades legacy syntax to modern standards. Transmutes old callbacks, heavy loops, and outdated libraries into clean, modern language paradigms.",
+    "tier": "",
     "category": "architecture",
-    "role": "Code Upgrader",
-    "desc": "Upgrades legacy syntax to modern standards. Transmutes old callbacks, heavy loops, and outdated libraries into clean, modern language paradigms."
+    "type": "",
+    "role": "Code Upgrader"
   },
   {
     "name": "Inspector",
-    "icon": "🕵️",
+    "emoji": "🕵️",
+    "short_description": "A paranoid quality-assurance agent. Seeks out your application's most fragile logic and locks it down with rigorous boundary and edge-case test suites.",
+    "tier": "",
     "category": "operations",
-    "role": "Test Writer",
-    "desc": "A paranoid quality-assurance agent. Seeks out your application's most fragile logic and locks it down with rigorous boundary and edge-case test suites."
+    "type": "",
+    "role": "Test Writer"
   },
   {
     "name": "Medic",
-    "icon": "🚑",
+    "emoji": "🚑",
+    "short_description": "Cures inexplicable system crashes. Wraps fragile network calls and dangerous parsers in safe error boundaries, fallback states, and structured logs.",
+    "tier": "",
     "category": "operations",
-    "role": "Crash Responder",
-    "desc": "Cures inexplicable system crashes. Wraps fragile network calls and dangerous parsers in safe error boundaries, fallback states, and structured logs."
+    "type": "",
+    "role": "Crash Responder"
   },
   {
     "name": "Cortex",
-    "icon": "🧠",
+    "emoji": "🧠",
+    "short_description": "The AI infrastructure specialist. Upgrades legacy LLM tools, bumps model versions, and enforces strict JSON schemas for resilient AI integrations.",
+    "tier": "",
     "category": "operations",
-    "role": "AI Integrator",
-    "desc": "The AI infrastructure specialist. Upgrades legacy LLM tools, bumps model versions, and enforces strict JSON schemas for resilient AI integrations."
+    "type": "",
+    "role": "AI Integrator"
   },
   {
     "name": "Scribe",
-    "icon": "✍️",
+    "emoji": "✍️",
+    "short_description": "Clarifies complex, undocumented logic. Weaves precise inline comments, Docstrings, and critical warning labels directly into the source code to explain the 'Why'.",
+    "tier": "",
     "category": "context",
-    "role": "Code Commenter",
-    "desc": "Clarifies complex, undocumented logic. Weaves precise inline comments, Docstrings, and critical warning labels directly into the source code to explain the 'Why'."
+    "type": "",
+    "role": "Code Commenter"
   },
   {
     "name": "Author",
-    "icon": "📘",
+    "emoji": "📘",
+    "short_description": "Writes your high-level architecture guides. Generates clear README files and 'Quick Start' instructions to help developers instantly understand the repository.",
+    "tier": "",
     "category": "context",
-    "role": "Readme Writer",
-    "desc": "Writes your high-level architecture guides. Generates clear README files and 'Quick Start' instructions to help developers instantly understand the repository."
+    "type": "",
+    "role": "Readme Writer"
   },
   {
     "name": "Navigator",
-    "icon": "🧭",
+    "emoji": "🧭",
+    "short_description": "Synchronizes your project strategy with reality. Reads your git history to mark features complete on your roadmap, keeping your tracking documents perfectly aligned.",
+    "tier": "",
     "category": "context",
-    "role": "Roadmap Tracker",
-    "desc": "Synchronizes your project strategy with reality. Reads your git history to mark features complete on your roadmap, keeping your tracking documents perfectly aligned."
+    "type": "",
+    "role": "Roadmap Tracker"
   },
   {
     "name": "Curator",
-    "icon": "🖼️",
+    "emoji": "🖼️",
+    "short_description": "Optimizes your static assets to drastically reduce bundle sizes. Compresses heavy images into modern formats and strips bloated metadata from SVGs.",
+    "tier": "",
     "category": "context",
-    "role": "Asset Optimizer",
-    "desc": "Optimizes your static assets to drastically reduce bundle sizes. Compresses heavy images into modern formats and strips bloated metadata from SVGs."
+    "type": "",
+    "role": "Asset Optimizer"
   },
   {
     "name": "Overseer",
-    "icon": "👁️",
+    "emoji": "👁️",
+    "short_description": "The all-seeing intelligence engine. Runs deep forensic scans on file age, churn, and complexity to generate a master audit report guiding the rest of the agents.",
+    "tier": "",
     "category": "monthly",
     "type": "monthly",
-    "role": "System Auditor",
-    "desc": "The all-seeing intelligence engine. Runs deep forensic scans on file age, churn, and complexity to generate a master audit report guiding the rest of the agents."
+    "role": "System Auditor"
   },
   {
     "name": "Cartographer",
-    "icon": "🗺️",
+    "emoji": "🗺️",
+    "short_description": "Translates complex folder structures and data flows into beautiful, readable architectural diagrams so you can understand your system at a glance.",
+    "tier": "",
     "category": "monthly",
     "type": "monthly",
-    "role": "Diagram Generator",
-    "desc": "Translates complex folder structures and data flows into beautiful, readable architectural diagrams so you can understand your system at a glance."
+    "role": "Diagram Generator"
   },
   {
     "name": "Spark",
-    "icon": "💡",
+    "emoji": "💡",
+    "short_description": "Audits your custom logic and UX friction points, suggesting modern, battle-tested open-source solutions to replace them and logging the ideas to your roadmap.",
+    "tier": "",
     "category": "monthly",
     "type": "monthly",
-    "role": "Idea Generator",
-    "desc": "Audits your custom logic and UX friction points, suggesting modern, battle-tested open-source solutions to replace them and logging the ideas to your roadmap."
+    "role": "Idea Generator"
   },
   {
     "name": "Herald",
-    "icon": "📣",
+    "emoji": "📣",
+    "short_description": "Parses your raw git history and translates chaotic developer commits into beautifully structured, user-facing semantic changelogs.",
+    "tier": "",
     "category": "context",
-    "role": "Changelog Writer",
-    "desc": "Parses your raw git history and translates chaotic developer commits into beautifully structured, user-facing semantic changelogs."
+    "type": "",
+    "role": "Changelog Writer"
   },
   {
     "name": "Wordsmith",
-    "icon": "🖋️",
+    "emoji": "🖋️",
+    "short_description": "Red-pens passive, robotic UI strings and developer jargon. Rewrites errors and buttons into clear, actionable, and highly empathetic microcopy.",
+    "tier": "",
     "category": "context",
-    "role": "UX Copywriter",
-    "desc": "Red-pens passive, robotic UI strings and developer jargon. Rewrites errors and buttons into clear, actionable, and highly empathetic microcopy."
+    "type": "",
+    "role": "UX Copywriter"
   },
   {
     "name": "Pedant",
-    "icon": "☝️",
+    "emoji": "☝️",
+    "short_description": "An uncompromising enforcer of style. Eradicates implicit types, fixes casing violations, and extracts rogue magic numbers into strict constants.",
+    "tier": "",
     "category": "hygiene",
-    "role": "Style Enforcer",
-    "desc": "An uncompromising enforcer of style. Eradicates implicit types, fixes casing violations, and extracts rogue magic numbers into strict constants."
+    "type": "",
+    "role": "Style Enforcer"
   },
   {
     "name": "Untangler",
-    "icon": "🧶",
+    "emoji": "🧶",
+    "short_description": "Takes deeply nested, unreadable 'spaghetti code' and flattens it out using early returns, clean guard clauses, and local helper functions.",
+    "tier": "",
     "category": "architecture",
-    "role": "Logic Flattener",
-    "desc": "Takes deeply nested, unreadable 'spaghetti code' and flattens it out using early returns, clean guard clauses, and local helper functions."
+    "type": "",
+    "role": "Logic Flattener"
   }
 ]

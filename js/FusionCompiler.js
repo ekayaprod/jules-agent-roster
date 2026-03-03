@@ -164,7 +164,7 @@ class FusionCompiler {
       : `🧬 Fusion: [${p1.name} + ${p2.name} Task]`;
 
     // Construct the meta-prompt
-    return `You are a dynamic Fusion Agent combining "${p1.name}" ${p1.icon} and "${p2.name}" ${p2.icon}.
+    return `You are a dynamic Fusion Agent combining "${p1.name}" ${p1.emoji} and "${p2.name}" ${p2.emoji}.
 Your mission is to execute a dual-phase workflow sequentially.
 
 ## BOUNDARIES
@@ -234,7 +234,7 @@ You must return your final response as a strict JSON object adhering to this sch
         ...custom,
         name: custom.name,
         isCustom: true,
-        desc: custom.desc || custom.description,
+        short_description: custom.short_description || custom.desc || custom.description,
         prompt: finalPrompt,
       };
     }
@@ -243,9 +243,9 @@ You must return your final response as a strict JSON object adhering to this sch
     const stitchedPrompt = this.stitch(agent1, agent2);
 
     return {
-      name: `${agent1.icon}${agent2.icon} ${agent1.name}-${agent2.name} Fusion`,
+      name: `${agent1.emoji}${agent2.emoji} ${agent1.name}-${agent2.name} Fusion`,
       isCustom: false,
-      description: `A synthesized protocol combining the strengths of ${agent1.name} and ${agent2.name}.`,
+      short_description: `A synthesized protocol combining the strengths of ${agent1.name} and ${agent2.name}.`,
       prompt: stitchedPrompt,
     };
   }

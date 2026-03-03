@@ -118,7 +118,7 @@ class FusionLab {
             card.classList.add("filled");
             card.setAttribute("aria-label", `Selected: ${agent.name}. Click to change.`);
             content.innerHTML = `
-                <span class="slot-icon-placeholder">${agent.icon}</span>
+                <span class="slot-icon-placeholder">${agent.emoji}</span>
                 <span class="slot-label">${agent.name}</span>
             `;
         } else {
@@ -183,7 +183,7 @@ class FusionLab {
         }
 
         item.innerHTML = `
-            <span class="mini-icon">${agent.icon}</span>
+            <span class="mini-icon">${agent.emoji}</span>
             <span class="mini-name">${agent.name}</span>
             <span class="mini-role">${agent.role}</span>
         `;
@@ -281,7 +281,7 @@ class FusionLab {
             actionArea.appendChild(previewEl);
         }
 
-        const iconHtml = FormatUtils.extractIcon(result, `${agentA.icon}${agentB.icon}`);
+        const iconHtml = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
         const nameHtml = FormatUtils.extractDisplayName(result);
 
         previewEl.innerHTML = `
@@ -660,10 +660,10 @@ class FusionLab {
     }
 
     // Setup Animation Data
-    iconLeft.innerHTML = agentA.icon;
-    iconRight.innerHTML = agentB.icon;
+    iconLeft.innerHTML = agentA.emoji;
+    iconRight.innerHTML = agentB.emoji;
 
-    const icon = FormatUtils.extractIcon(result, `${agentA.icon}${agentB.icon}`);
+    const icon = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
     const displayName = FormatUtils.extractDisplayName(result);
 
     // Set result name with highlighted text and separate emoji
@@ -674,8 +674,8 @@ class FusionLab {
       if (iconResult) iconResult.innerHTML = icon;
     } else {
       // Standard Fusion: Emoji Kitchen
-      const iconA = agentA.icon.trim();
-      const iconB = agentB.icon.trim();
+      const iconA = agentA.emoji.trim();
+      const iconB = agentB.emoji.trim();
 
       // Use Emoji Kitchen API
       const imgUrl = `${CONFIG.emojiKitchenPrefix}${iconA}_${iconB}?size=128`;
