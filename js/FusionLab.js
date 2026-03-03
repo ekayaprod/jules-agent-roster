@@ -686,40 +686,58 @@ class FusionLab {
         wrapper.style.fontSize = "inherit"; // Inherit font size from parent
 
         // Create Placeholder
+        // 💊 Placebo: Use skeleton pulse to mask latency
         const placeholder = document.createElement("div");
-        placeholder.className = "img-placeholder";
+        placeholder.className = "img-placeholder skeleton-pulse";
         wrapper.appendChild(placeholder);
 
-        // Create Image
-        const img = new Image();
-        img.src = imgUrl;
-        img.alt = result.name;
-        img.loading = "eager";
-        img.className = "img-loading";
-        img.style.width = "100%";
-        img.style.height = "100%";
-        img.style.objectFit = "contain";
-
-        // Handle Load
-        img.onload = () => {
-          img.classList.remove("img-loading");
-          img.classList.add("img-loaded");
-          placeholder.classList.add("hidden");
-          // Remove placeholder after transition
-          setTimeout(() => {
-            if (placeholder.parentNode) placeholder.remove();
-          }, 300);
-        };
-
-        // Handle Error
-        img.onerror = () => {
-          console.warn("Gallerist: Image load failed, falling back to emoji.");
-          wrapper.remove();
-          iconResult.innerText = `${iconA}${iconB}`;
-        };
-
-        wrapper.appendChild(img);
         iconResult.appendChild(wrapper);
+
+        // 💊 Placebo: Resilient Image Loading with Exponential Backoff
+        const loadImageWithRetry = (url, retries = 3, backoff = 300) => {
+          const img = new Image();
+          img.src = url;
+          img.alt = result.name;
+          img.loading = "eager";
+          img.className = "img-loading";
+          img.style.width = "100%";
+          img.style.height = "100%";
+          img.style.objectFit = "contain";
+
+          img.onload = () => {
+            wrapper.appendChild(img);
+            // Trigger reflow to ensure CSS transition applies
+            void img.offsetWidth;
+            img.classList.remove("img-loading");
+            img.classList.add("img-loaded");
+            placeholder.classList.add("hidden");
+            // Remove placeholder after transition
+            setTimeout(() => {
+              if (placeholder.parentNode) placeholder.remove();
+            }, 300);
+          };
+
+          img.onerror = () => {
+            if (retries > 0) {
+              console.warn(`💊 Placebo: Image load failed. Retrying... (${retries} left)`);
+              setTimeout(() => loadImageWithRetry(url, retries - 1, backoff * 2), backoff);
+            } else {
+              // Structured logging for hard failures
+              console.error(JSON.stringify({
+                  event: "EMOJI_KITCHEN_API_FAILURE",
+                  url: url,
+                  reason: "All retries exhausted",
+                  timestamp: new Date().toISOString()
+              }));
+              wrapper.remove();
+              // Graceful Fallback
+              iconResult.innerText = `${iconA}${iconB}`;
+            }
+          };
+        };
+
+        // Start async load without blocking the 3500ms timeline
+        loadImageWithRetry(imgUrl);
       }
     }
 
