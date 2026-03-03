@@ -154,8 +154,6 @@ class FusionLab {
     }
 
     // Determine current selections
-    const otherSlot = slotKey === "slotA" ? "slotB" : "slotA";
-    const otherAgent = this.state[otherSlot];
     const currentAgent = this.state[slotKey];
 
     // Reset Search
@@ -488,16 +486,7 @@ class FusionLab {
 
     this.renderFusionResult(result);
 
-    // Check reduced motion
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      this.showResult();
-    } else {
-      this.runAnimation(agentA, agentB, result);
-    }
+    this.runAnimation(agentA, agentB, result);
   }
 
   /**
@@ -589,7 +578,7 @@ class FusionLab {
   /**
    * Orchestrates the fusion animation sequence.
    */
-  runAnimation(agentA, agentB, result) {
+  async runAnimation(agentA, agentB, result) {
     const overlay = document.getElementById("fusionAnimationOverlay");
     const iconLeft = overlay.querySelector(".anim-icon.left");
     const iconRight = overlay.querySelector(".anim-icon.right");
@@ -687,7 +676,7 @@ class FusionLab {
         const img = new Image();
         img.src = imgUrl;
         img.alt = result.name;
-        img.loading = "lazy";
+        img.loading = "eager";
         img.className = "img-loading";
         img.style.width = "100%";
         img.style.height = "100%";
@@ -723,13 +712,13 @@ class FusionLab {
     // Start Animation
     overlay.classList.add("active");
 
-    setTimeout(() => {
-      overlay.classList.remove("active");
-      fuseBtn.disabled = false;
-      fuseBtn.setAttribute("aria-disabled", "false");
-      if (controls) controls.classList.remove("fusing");
+    await new Promise(resolve => setTimeout(resolve, 3500));
 
-      this.showResult();
-    }, 3500);
+    overlay.classList.remove("active");
+    fuseBtn.disabled = false;
+    fuseBtn.setAttribute("aria-disabled", "false");
+    if (controls) controls.classList.remove("fusing");
+
+    this.showResult();
   }
 }

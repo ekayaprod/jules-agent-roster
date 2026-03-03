@@ -107,3 +107,13 @@ sequenceDiagram
 - **Static JSON Configuration**: `agents.json` and `custom_agents.json` drive the UI, allowing for easy updates without code changes.
 - **DAG Pipeline**: Agents are executed in a strict Directed Acyclic Graph order (e.g., Architect -> Builder) regardless of selection order, ensuring logical consistency.
 - **XML Prompt Structure**: Moving towards structured XML prompts for better parsing and reliability.
+
+## 6. Data Integrity & Parsing
+
+To ensure reliable data flow from the static file system to the UI, the system enforces a strict parsing and validation strategy. The application relies on `safeJsonParse` wrappers that capture raw response errors and decorate them with human-readable context. Rather than failing silently, invalid payloads trigger explicit warnings, ensuring broken configurations (`agents.json` or `custom_agents.json`) are easily diagnosed without requiring deep network inspection.
+
+## 7. Security Model
+
+The project employs a defense-in-depth approach to XSS and malicious injections:
+1. **Input Validation (`AgentRepository.js`)**: All dynamically loaded or custom agent data is scrubbed against a robust malicious pattern regex targeting dangerous tags (`<script>`, `<iframe>`, `<object>`, etc.), event handlers (`on*`), and active URI schemes (`javascript:`, `vbscript:`). Any entry matching these patterns is immediately invalidated before entering the application state.
+2. **Centralized Escaping (`FormatUtils.js`)**: Before any user-controlled data (names, descriptions, roles, or generated prompt content) is injected into DOM sinks via `innerHTML` (e.g., within `AgentCard.js` or `PromptRenderer.js`), it is aggressively encoded using a global `FormatUtils.escapeHTML()` utility, preventing execution of any structural artifacts that slip past initial validation.

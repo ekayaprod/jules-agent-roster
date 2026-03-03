@@ -5,7 +5,9 @@
 class PerformanceUtils {
   /**
    * Creates a debounced function that delays invoking func until after wait milliseconds have elapsed since the last time the debounced function was invoked.
-   * Useful for search inputs to prevent filtering on every keystroke.
+   * Implemented to fulfill ROADMAP [Performance] Idea: "Implement debounce pattern".
+   * Reduces layout thrashing and computational overhead during rapid search input events by delaying execution until the user pauses.
+   * @see ROADMAP.md
    *
    * @param {Function} func - The function to debounce.
    * @param {number} wait - The number of milliseconds to delay.

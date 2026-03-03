@@ -18,33 +18,33 @@
       body { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 1.5rem; line-height: 1.5; }
 
       /* FLIP CARD REFINEMENTS */
-      .flip-card { background-color: transparent !important; border: none !important; perspective: 1000px; flex: 1 1 220px; max-width: 320px; height: 260px; }
+      .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 20rem; max-width: 24rem; height: 16rem; }
       .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; border-radius: 1rem; cursor: pointer; }
       .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
       
-      .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1rem; padding: 1rem 1.25rem; display: flex; flex-direction: column; background-color: var(--card-bg); border: 1px solid var(--border); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2); overflow: hidden; }
+      .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1rem; padding: 0.75rem 1rem; display: flex; flex-direction: column; background-color: var(--card-bg); border: 1px solid var(--border); box-shadow: 0 0.25rem 0.375rem -1px rgba(0, 0, 0, 0.2); overflow: hidden; }
       .flip-card-front { align-items: center; justify-content: flex-start; }
-      .flip-card-back { transform: rotateY(180deg); text-align: left; padding: 1rem; cursor: default; }
+      .flip-card-back { transform: rotateY(180deg); text-align: left; padding: 0.75rem; cursor: default; }
       
-      .emoji-hero { font-size: var(--text-3xl); margin-bottom: 0.5rem; transition: transform 0.2s ease; }
-      .flip-card-inner:hover .emoji-hero { transform: scale(1.05) translateY(-2px); }
+      .emoji-hero { font-size: var(--text-4xl); margin-bottom: 0.5rem; transition: transform 0.2s ease; }
+      .flip-card-inner:hover .emoji-hero { transform: scale(1.05) translateY(-0.125rem); }
       .flip-hint { opacity: 0.6; transition: opacity 0.3s; font-family: -apple-system, sans-serif; }
       .flip-card-inner:hover .flip-hint { opacity: 1; }
 
       .prompt-scroll-area { flex-grow: 1; overflow-y: auto; background: var(--details-bg); padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem; white-space: pre-wrap; font-family: inherit; }
-      .prompt-scroll-area::-webkit-scrollbar { width: 4px; }
-      .prompt-scroll-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+      .prompt-scroll-area::-webkit-scrollbar { width: 0.25rem; }
+      .prompt-scroll-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0.25rem; }
       
-      .back-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; }
+      .back-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; cursor: pointer; }
       .icon-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.25rem; }
       .icon-btn:hover { color: var(--text-primary); }
 
       /* CORE UI & BRANDING */
-      .header { max-width: 900px; margin: 0 auto 3rem auto; text-align: center; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+      .header { max-width: 56.25rem; margin: 0 auto 3rem auto; text-align: center; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
       .header h1 { font-size: var(--text-3xl); margin-bottom: 0.5rem; font-weight: 800; letter-spacing: -0.05em; background: linear-gradient(135deg, #38bdf8, #818cf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
       .header p { font-family: -apple-system, sans-serif; font-size: var(--text-base); }
       
-      .search-wrapper { position: relative; width: 100%; max-width: 400px; margin: 1.5rem auto 0 auto; }
+      .search-wrapper { position: relative; width: 100%; max-width: 25rem; margin: 1.5rem auto 0 auto; }
       .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); pointer-events: none; }
       .clear-search-btn { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%) scale(0.8); background: none; border: none; color: var(--text-secondary); padding: 0.25rem; cursor: pointer; opacity: 0; visibility: hidden; }
       .clear-search-btn.visible { opacity: 1; visibility: visible; transform: translateY(-50%) scale(1); pointer-events: auto; }
@@ -55,56 +55,57 @@
       button.secondary { background-color: var(--card-bg); color: var(--text-primary); border: 1px solid var(--border); }
       button.secondary:hover { border-color: var(--accent); }
       
-      .section-header { max-width: 1200px; margin: 2rem auto 1rem auto; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-      .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 1200px; margin: 0 auto; }
+      .section-header { max-width: 75rem; margin: 2rem auto 1rem auto; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+      .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 75rem; margin: 0 auto; }
       
       .title-group { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; }
       .agent-title { font-size: var(--text-base); font-weight: var(--weight-bold); margin: 0; font-family: -apple-system, sans-serif; }
       .role-tag { font-size: var(--text-3xs); padding: 0.1rem 0.4rem; border-radius: 999px; background-color: rgba(56, 189, 248, 0.1); color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; font-family: -apple-system, sans-serif;}
       .tag-container { display: flex; flex-wrap: wrap; gap: 0.25rem; }
-      .meta-tag { font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 4px; background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); }
+      .meta-tag { font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 0.25rem; background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); }
       
       /* Dynamic Description Shrinking */
-      .description { color: var(--text-secondary); font-size: clamp(0.7rem, 2vw, 0.8rem); line-height: 1.4; margin-bottom: auto; font-family: -apple-system, sans-serif; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+      .description { color: var(--text-secondary); font-size: clamp(0.65rem, 1.5vw, 0.85rem); line-height: 1.4; margin-bottom: auto; font-family: -apple-system, sans-serif; overflow: hidden; max-height: 5.6em; display: block; }
 
       /* NAVIGATION */
-      .category-nav { position: sticky; top: 1rem; z-index: 100; margin: 0 auto 2rem auto; max-width: 800px; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 999px; padding: 0.35rem; display: flex; justify-content: space-between; overflow-x: auto; font-family: -apple-system, sans-serif; }
+      .category-nav { position: sticky; top: 1rem; z-index: 100; margin: 0 auto 2rem auto; max-width: 50rem; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 999px; padding: 0.35rem; display: flex; justify-content: space-between; overflow-x: auto; font-family: -apple-system, sans-serif; }
       .nav-pill { color: var(--text-secondary); text-decoration: none; font-size: var(--text-xs); font-weight: 600; padding: 0.4rem 0.8rem; border-radius: 999px; }
       .nav-pill.active { background: var(--accent); color: #0f172a; }
 
       /* FOOTER & MASTER CONTROLS */
-      .roster-footer { max-width: 1200px; margin: 4rem auto 2rem auto; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: center; align-items: center; }
+      .roster-footer { max-width: 75rem; margin: 4rem auto 2rem auto; padding-top: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: center; align-items: center; }
       .master-export-group { display: flex; position: relative; font-family: -apple-system, sans-serif; }
       .master-main-btn { padding: 0.75rem 2rem; font-size: var(--text-base); border-top-right-radius: 0; border-bottom-right-radius: 0; border-right: 1px solid rgba(0,0,0,0.2); }
       .master-drop-btn { padding: 0 1rem; border-top-left-radius: 0; border-bottom-left-radius: 0; }
-      .dropdown-menu { position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; z-index: 50; display: none; flex-direction: column; min-width: 280px; box-shadow: 0 -10px 15px -3px rgba(0, 0, 0, 0.3); overflow: hidden; }
+      .dropdown-menu { position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; z-index: 50; display: none; flex-direction: column; min-width: 17.5rem; box-shadow: 0 -0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.3); overflow: hidden; }
       .dropdown-menu.visible { display: flex; }
       .dropdown-item { width: 100%; background: transparent; color: var(--text-primary); border: none; padding: 0.75rem 1rem; text-align: left; font-size: var(--text-sm); border-radius: 0;}
       .dropdown-item:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
 
       /* FUSION LAB & ARCHIVE (Restored structural CSS) */
-      .fusion-lab-container { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; margin-top: 3rem; margin-bottom: 3rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }
+      .fusion-lab-container { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; margin-top: 3rem; margin-bottom: 3rem; text-align: center; max-width: 50rem; margin-left: auto; margin-right: auto; }
       .fusion-lab-container h2 { margin-top: 0; margin-bottom: 1.5rem; background: linear-gradient(to right, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: -apple-system, sans-serif; font-weight: 800; }
       .fusion-visual-slots { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
-      .slot-card { background-color: rgba(15, 23, 42, 0.3); border: 2px dashed var(--border); border-radius: 1rem; flex: 1 1 140px; max-width: 200px; min-height: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; padding: 1rem; text-align: center; }
+      .slot-card { background-color: rgba(15, 23, 42, 0.3); border: 2px dashed var(--border); border-radius: 1rem; flex: 1 1 8.75rem; max-width: 12.5rem; min-height: 7.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; padding: 1rem; text-align: center; }
       .slot-card:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.05); }
       .slot-card.filled { border-style: solid; border-color: var(--accent); background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.6)); }
       .slot-icon-placeholder { font-size: var(--text-3xl); color: var(--text-secondary); opacity: 0.5; }
-      .slot-card.filled .slot-icon-placeholder { font-size: var(--text-4xl); opacity: 1; text-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
+      .slot-card.filled .slot-icon-placeholder { font-size: var(--text-4xl); opacity: 1; text-shadow: 0 0 1.25rem rgba(56, 189, 248, 0.3); }
       .slot-label { font-size: var(--text-xs); color: var(--text-secondary); font-family: -apple-system, sans-serif;}
       #fuseBtn { background: linear-gradient(to right, #a855f7, #ec4899); color: white; padding: 0.75rem 2rem; }
       #fuseBtn:disabled { background: var(--card-bg); border: 1px solid var(--border); color: var(--text-secondary); opacity: 0.5; }
       
-      .fusion-archive-container { margin-top: 2rem; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border); background-color: rgba(15, 23, 42, 0.3); text-align: center; max-width: 800px; margin-left: auto; margin-right: auto; }
+      .fusion-archive-container { margin-top: 2rem; padding: 2rem; border-radius: 1rem; border: 1px solid var(--border); background-color: rgba(15, 23, 42, 0.3); text-align: center; max-width: 50rem; margin-left: auto; margin-right: auto; }
       .fusion-index-header { font-size: var(--text-base); color: var(--text-secondary); margin-bottom: 1.5rem; font-family: -apple-system, sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
-      .fusion-shelf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(50px, 1fr)); gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; }
+      .fusion-shelf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(3.125rem, 1fr)); gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; }
       .fusion-slot { aspect-ratio: 1; background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: var(--text-xl); position: relative; overflow: hidden; }
-      .fusion-slot.locked { opacity: 0.6; filter: grayscale(100%) contrast(0.8); cursor: not-allowed; }
+      .fusion-slot.locked { opacity: 0.6; cursor: not-allowed; }
+      .fusion-slot.locked .slot-icon { filter: brightness(0); }
       .fusion-slot.unlocked { cursor: pointer; border-color: rgba(168, 85, 247, 0.3); }
       
       .picker-modal { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); border: none; width: 100%; height: 100%; position: fixed; z-index: 100; display: none; align-items: center; justify-content: center; top: 0; left: 0; font-family: -apple-system, sans-serif;}
       .picker-modal[open] { display: flex; }
-      .picker-container { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; width: 90%; max-width: 600px; max-height: 80vh; display: flex; flex-direction: column; }
+      .picker-container { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; width: 90%; max-width: 37.5rem; max-height: 80vh; display: flex; flex-direction: column; }
       .picker-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
       .picker-header h3 { margin: 0; font-size: var(--text-lg); }
       .picker-search { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); }
@@ -117,14 +118,27 @@
       #fusionOutputWrapper.open { grid-template-rows: 1fr; }
       .overflow-hidden { overflow: hidden; }
       
+      /* FUSION ANIMATION OVERLAY */
+      .fusion-animation-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.95); z-index: 1000; display: none; align-items: center; justify-content: center; flex-direction: column; }
+      .fusion-animation-overlay.active { display: flex; }
+      .anim-content { display: flex; align-items: center; gap: 2rem; position: relative; z-index: 2; }
+      .anim-icon { font-size: 4rem; display: flex; align-items: center; justify-content: center; width: 6.25rem; height: 6.25rem; }
+      .anim-result { font-size: 2rem; margin-top: 1rem; color: #fff; z-index: 2; position: relative; }
+      .highlight { color: var(--accent); }
+      .anim-particles { position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+      .anim-particle { position: absolute; width: 0.5rem; height: 0.5rem; background: var(--accent); border-radius: 50%; top: 50%; left: 50%; opacity: 0; transform: translate(0, 0); animation: explode ease-out forwards; }
+      @keyframes explode { 0% { transform: translate(0, 0); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)); opacity: 0; } }
+
       /* POKEDEX GLOW EFFECTS */
-      .tier-epic .flip-card-front, .tier-epic .flip-card-back, .fusion-slot.tier-epic { border-color: rgba(217, 70, 239, 0.6); box-shadow: 0 0 15px rgba(217, 70, 239, 0.15); }
-      @keyframes legendaryPulse { 0% { box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); border-color: rgba(251, 191, 36, 0.6); } 50% { box-shadow: 0 0 25px rgba(245, 158, 11, 0.6); border-color: rgba(245, 158, 11, 1); } 100% { box-shadow: 0 0 10px rgba(251, 191, 36, 0.4); border-color: rgba(251, 191, 36, 0.6); } }
+      .tier-epic .flip-card-front, .tier-epic .flip-card-back, .fusion-slot.tier-epic { border-color: rgba(217, 70, 239, 0.6); box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); }
+      @keyframes legendaryPulse { 0% { box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); border-color: rgba(251, 191, 36, 0.6); } 50% { box-shadow: 0 0 1.5625rem rgba(245, 158, 11, 0.6); border-color: rgba(245, 158, 11, 1); } 100% { box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); border-color: rgba(251, 191, 36, 0.6); } }
       .tier-legendary .flip-card-front, .tier-legendary .flip-card-back, .fusion-slot.tier-legendary { animation: legendaryPulse 4s infinite ease-in-out; }
       
       /* UTILS */
-      .hidden { display: none !important; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .justify-center { justify-content: center; } .text-xs { font-size: var(--text-xs); } .text-sm { font-size: var(--text-sm); } .text-secondary { color: var(--text-secondary); } .flex { display: flex; } .truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 10px 15px rgba(0,0,0,0.5); transform: translateY(200%); transition: transform 0.3s; z-index: 50; border: 1px solid #16a34a; font-family: -apple-system, sans-serif;}
+      .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem 1rem; }
+      .empty-state.visible { display: flex; }
+      .hidden { display: none !important; } .mt-6 { margin-top: 1.5rem; } .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .justify-center { justify-content: center; } .text-xs { font-size: var(--text-xs); } .text-sm { font-size: var(--text-sm); } .text-secondary { color: var(--text-secondary); } .flex { display: flex; } .truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 0.625rem 0.9375rem rgba(0,0,0,0.5); transform: translateY(200%); transition: transform 0.3s; z-index: 50; border: 1px solid #16a34a; font-family: -apple-system, sans-serif;}
       .toast.show { transform: translateY(0); }
     </style>
   </head>
@@ -176,7 +190,7 @@
       <h2>🧬 The Fusion Lab</h2>
       <div id="fusionLabSkeleton" class="fusion-visual-slots skeleton-pulse" aria-hidden="true">
         <div class="slot-card" style="border-color: var(--border); background-color: var(--card-bg);"></div>
-        <div class="fusion-action-area"><div style="width: 200px; height: 3rem; border-radius: 0.5rem; background: var(--border);"></div></div>
+        <div class="fusion-action-area"><div style="width: 12.5rem; height: 3rem; border-radius: 0.5rem; background: var(--border);"></div></div>
         <div class="slot-card" style="border-color: var(--border); background-color: var(--card-bg);"></div>
       </div>
       <div id="fusionLabContent" class="fusion-visual-slots hidden">
@@ -190,11 +204,12 @@
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent B</span></div>
         </button>
       </div>
-      <div id="fusionOutputWrapper">
+    </div>
+
+    <div id="fusionOutputWrapper">
         <div class="overflow-hidden">
-          <div id="fusionResultContainer" class="grid" style="margin-top: 1.5rem;"></div>
+          <div id="fusionResultContainer" class="grid mt-6"></div>
         </div>
-      </div>
     </div>
 
     <div class="fusion-archive-container">
@@ -226,6 +241,16 @@
         </div>
     </dialog>
 
+    <div id="fusionAnimationOverlay" class="fusion-animation-overlay">
+      <div class="anim-particles"></div>
+      <div class="anim-content">
+        <div class="anim-icon left"></div>
+        <div class="anim-icon right"></div>
+        <div class="anim-icon result"></div>
+      </div>
+      <div class="anim-result"></div>
+    </div>
+
     <div id="toast" class="toast"></div>
 
     <script>
@@ -248,6 +273,7 @@
     <script src="js/ui/ClipboardUtils.js"></script>
     <script src="js/utils/FormatUtils.js"></script>
     <script src="js/utils/PerformanceUtils.js"></script>
+    <script src="js/utils/StringUtils.js"></script>
     <script src="js/utils/DownloadUtils.js"></script>
     <script src="js/FusionCompiler.js"></script>
     <script src="js/FusionIndex.js"></script>

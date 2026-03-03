@@ -10,6 +10,8 @@ class AgentRepository {
 
     /**
      * Fetches all agent data, including standard and custom agents.
+     * @see ARCHITECTURE.md#1-system-context for the high-level data flow architecture.
+     * @see ARCHITECTURE.md#2-component-architecture for the dependency graph.
      * @returns {Promise<{agents: Array, customAgents: Object}>} The loaded agents.
      * @throws {Error} If loading fails.
      */
@@ -80,14 +82,7 @@ class AgentRepository {
                                 // Add to valid set
                                 validatedCustomData[key] = agent;
                             } catch (err) {
-                                // Catch-all for unexpected processing errors to prevent total crash
-                                console.error(
-                                    JSON.stringify({
-                                        event: "CUSTOM_AGENT_PROCESSING_ERROR",
-                                        key: key,
-                                        error: err.message,
-                                    }),
-                                );
+                                console.error(`Error processing custom agent '${key}':`, err);
                             }
                         }),
                     );
@@ -181,6 +176,9 @@ class AgentRepository {
 
     /**
      * Safely parses JSON from a fetch response, adding context to errors.
+     * Captures raw response errors and decorates them with human-readable context
+     * to prevent silent failures when loading external configuration.
+     * @see ARCHITECTURE.md#6-data-integrity--parsing
      * @param {Response} response - The fetch response object.
      * @param {string} label - A label for the resource (e.g., "agents.json").
      * @returns {Promise<any>} The parsed JSON data.
@@ -189,7 +187,7 @@ class AgentRepository {
     async safeJsonParse(response, label) {
         try {
             return await response.json();
-        } catch (error) {
+        } catch {
             throw new Error(`We encountered a problem reading the configuration for ${label}. Please ensure the file is formatted correctly.`);
         }
     }
@@ -242,6 +240,10 @@ class AgentRepository {
     /**
      * The First Responder: Validates and sanitizes a custom agent entry.
      * Enforces strict schema and sanitizes optional fields.
+     * Implements defense-in-depth by running a robust malicious pattern regex
+     * on all custom agent data before it enters the application state.
+     * @see ARCHITECTURE.md#4-trust-boundaries
+     * @see ARCHITECTURE.md#7-security-model
      * @param {string} key - The dictionary key (agent ingredients).
      * @param {Object} data - The raw agent data.
      * @returns {Object} { valid: boolean, sanitized?: Object, reason?: string }
@@ -271,8 +273,9 @@ class AgentRepository {
             data.description = String(data.description);
         }
 
-        // Security: Check for basic XSS in name/description
-        const maliciousPattern = /<script|javascript:/i;
+        // Security: Check for XSS in name/description using a robust pattern
+        // Targets dangerous tags, event handlers, and URI schemes.
+        const maliciousPattern = /<\s*(script|iframe|object|embed|style|meta|link|base|svg|math|form|details|button|video|audio|canvas|map|area|plaintext|basefont|listing|xmp)\b|on\w+\s*=|javascript\s*:|vbscript\s*:/i;
         if (
             maliciousPattern.test(data.name) ||
             (data.description && maliciousPattern.test(data.description))

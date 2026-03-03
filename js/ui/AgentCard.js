@@ -43,15 +43,16 @@ class AgentCard {
         const icon = FormatUtils.extractIcon(agent);
         const displayName = FormatUtils.extractDisplayName(agent);
 
-        const role = agent.role || 'Fusion Protocol';
-        const desc = agent.desc || agent.description || '';
+        const role = FormatUtils.escapeHTML(agent.role || 'Fusion Protocol');
+        const desc = FormatUtils.escapeHTML(agent.desc || agent.description || '');
+        const safeDisplayName = FormatUtils.escapeHTML(displayName);
 
         card.innerHTML = `
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <div class="emoji-hero">${icon}</div>
                     <div class="title-group">
-                        <h3 class="agent-title">${displayName}</h3>
+                        <h3 class="agent-title">${safeDisplayName}</h3>
                         <span class="role-tag">${role}</span>
                     </div>
                     <div class="tag-container justify-center mt-2">${tags}</div>
@@ -61,7 +62,7 @@ class AgentCard {
 
                 <div class="flip-card-back">
                     <div class="back-header">
-                        <h3 class="agent-title text-sm truncate">${displayName}</h3>
+                        <h3 class="agent-title text-sm truncate">${safeDisplayName}</h3>
                         <button class="icon-btn flip-back-btn" aria-label="Flip back">✕</button>
                     </div>
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
@@ -70,7 +71,7 @@ class AgentCard {
                         <button class="secondary action-main-btn" data-action="copy-agent" data-index="${index}" style="border-top-right-radius: 0; border-bottom-right-radius: 0; flex-grow: 1;">
                             <span class="btn-text">Copy</span>
                         </button>
-                        <button class="secondary action-toggle-btn" aria-label="Toggle action" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid rgba(0,0,0,0.2); padding: 0 0.5rem;">
+                        <button class="secondary action-toggle-btn px-2" aria-label="Toggle action" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid rgba(0,0,0,0.2);">
                             ▼
                         </button>
                     </div>
@@ -78,9 +79,8 @@ class AgentCard {
             </div>
         `;
 
-        const inner = card.querySelector('.flip-card-inner');
         const front = card.querySelector('.flip-card-front');
-        const backBtn = card.querySelector('.flip-back-btn');
+        const backBtn = card.querySelector('.back-header');
         const toggleBtn = card.querySelector('.action-toggle-btn');
         const mainBtn = card.querySelector('.action-main-btn');
         const btnText = card.querySelector('.btn-text');
@@ -98,7 +98,6 @@ class AgentCard {
             card.classList.remove('flipped');
         });
 
-        // Inline toggle logic to avoid overflow clipping issues
         toggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             if (mainBtn.dataset.action === "copy-agent") {

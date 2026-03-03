@@ -93,7 +93,7 @@ class FusionIndex {
     Object.keys(this.customAgentsData).forEach((key) => {
       const agentData = this.customAgentsData[key];
       const isUnlocked = this.unlockedKeys.has(key);
-      const emoji = this.getEmoji(agentData.name);
+      const emoji = StringUtils.extractEmoji(agentData.name);
 
       const slot = document.createElement("div");
       slot.className = `fusion-slot ${isUnlocked ? "unlocked" : "locked"}`;
