@@ -1,4 +1,10 @@
 {
+  "name": "jules-roster",
+  "version": "0.2.0",
+  "description": "Jules Agent Roster",
+  "scripts": {
+    "test": "node benchmark.js",
+    "benchmark": "node benchmark.js"
   "name": "fusion-lab",
   "version": "1.0.0",
   "description": "Fusion Lab Project",
