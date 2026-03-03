@@ -20,3 +20,7 @@
 ## 2024-05-24 - 📑 Registrar - [Barrel Exports & Discoverability Centralized: js/utils]
 **Learning:** Shared utility files without a centralized barrel export lead to deep relative imports and hinder codebase discoverability, but in environments enforcing a single-file portability (zero-build-step) constraint, frontend components loaded via `<script>` tags don't benefit from standard ES Modules. However, backend testing environments still strictly require Node.js CommonJS `require()` support to maintain clean imports in tests.
 **Action:** Always create an `index.js` (or `__init__.py`) barrel file at the root of major directories (`js/utils/`) combining all module exports. Update any test files or Node scripts to import cleanly from the barrel (`require('./index')`) rather than hardcoding deep paths to internal modules.
+
+## 2026-03-03 - 🦉 Scholar - [RosterApp Architectural State Synthesized]
+**Learning:** `RosterApp.js` executes massive asynchronous batch rendering (via `requestAnimationFrame` and `setTimeout`) and strictly throttles fuzzy search DOM manipulation. The existing JSDoc completely lacked insight into these anti-thrashing mechanisms, meaning developers could unknowingly strip these patterns and cause crippling layout shifts.
+**Action:** Always link granular asynchronous UI performance optimizations in JSDoc via `@see` to a single macro architectural thesis (e.g. `README.md#rosterapp-architecture`) so developers understand *why* seemingly overly complex asynchronous chunking logic was implemented.

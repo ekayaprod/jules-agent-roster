@@ -9,6 +9,26 @@ The codebase is organized into modular components that separate concerns between
 ### Core Logic (`/`)
 
 *   **`RosterApp.js`**: The main entry point. Initializes the application, coordinates data fetching via `AgentRepository`, and manages the main agent grid UI.
+
+#### <a id="rosterapp-architecture"></a>🧠 RosterApp Architecture (Core Lifecycle)
+
+The `RosterApp` orchestrates the primary application flow, emphasizing asynchronous non-blocking operations and event delegation.
+
+1.  **Initialization Flow (`init()`)**:
+    *   Caches critical DOM elements to prevent query thrashing (`cacheElements()`).
+    *   Fetches the JSON agent payload asynchronously via the injected `AgentRepository`.
+    *   Bootstraps the `FusionLab` environment and delegates its setup.
+    *   Uses a cascading fallback to display rigorous UI error states if JSON parsing or network operations fail.
+2.  **Batch Rendering Strategy (`renderAgents()`)**:
+    *   The `RosterApp` handles rendering hundreds of cards using asynchronous batch chunking.
+    *   Execution is spread across frames using `requestAnimationFrame` and `setTimeout` (yield points) to prevent the massive `AgentCard` DOM injections from locking the main browser thread.
+3.  **Search & Layout Thrashing Prevention (`filterAgents()`)**:
+    *   Search operations are debounced to `300ms` limits.
+    *   The internal `Fuse.js` index is memoized and only rebuilt on state boundary changes (e.g., when a new fusion protocol unlocks).
+    *   Results are limited to 25 items and injected using a `DocumentFragment` to enforce strict DOM bounds and eradicate layout thrashing.
+4.  **Global Event Delegation (`bindEvents()`)**:
+    *   The app entirely abandons inner loop event listeners. Interactions on `AgentCard` buttons (e.g., Copy, Download) bubble up to a single document-level `click` listener in `RosterApp`, routed securely via `dataset.action`.
+
 *   **`FusionLab.js`**: Manages the "Fusion Lab" UI component (the bottom section), handling agent selection, animation states, and fusion execution.
 *   **`FusionCompiler.js`**: The brain of the fusion system. Contains the logic for combining two agent prompts into a single, cohesive "Fusion Protocol" (XML/JSON output).
 *   **`PromptParser.js`**: A utility for parsing and structuring raw Markdown prompts into machine-readable formats (e.g., XML sections).
