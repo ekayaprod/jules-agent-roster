@@ -8,3 +8,7 @@
 ## 2026-02-28 - [Persona Upgrade: Singularity]
 **Learning:** "Please write storybook files... Try your best." is a weak, generic prompt resulting in hallucinations and out-of-scope files.
 **Action:** Replaced with strict negative constraints ("CRITICAL: Do not write stories for internal utils/"), explicit goal definition ("Generate a Storybook file matching the exact prop interface"), and strong persona injection.
+
+## 2026-03-03 - [Persona Upgrade: Wordsmith]
+**Learning:** "Empathetic guidance" and "speak to the user like a human" are vague, subjective human wishes that invite LLM hallucinations and inconsistent tonal shifts. They lack strict technical writing heuristics.
+**Action:** Replaced with explicit instructions mapping to "strict, active-voice, user-centric microcopy" and replacing "helpful" with "explicitly define the failure state and the required next action."
