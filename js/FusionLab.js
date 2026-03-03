@@ -269,11 +269,10 @@ class FusionLab {
             actionArea.appendChild(previewEl);
         }
 
-        const parts = result.name.trim().split(" ");
-        const lastPart = parts[parts.length - 1];
-        const isEmoji = lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart);
+        const isEmoji = StringUtils.hasEmojiSuffix(result.name);
+        const lastPart = StringUtils.extractEmoji(result.name);
+        const nameHtml = StringUtils.extractNameWithoutEmoji(result.name);
         let iconHtml = result.isCustom && isEmoji ? lastPart : `${agentA.icon}${agentB.icon}`;
-        let nameHtml = isEmoji ? parts.slice(0, -1).join(" ") : result.name;
 
         previewEl.innerHTML = `
             <div class="preview-badge">Already Discovered</div>
@@ -644,13 +643,12 @@ class FusionLab {
     iconLeft.innerHTML = agentA.icon;
     iconRight.innerHTML = agentB.icon;
     // Determine if last part is an emoji/icon (not alphanumeric or basic punctuation)
-    const parts = result.name.trim().split(" ");
-    const lastPart = parts[parts.length - 1];
-    const isEmoji = lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart);
+    const isEmoji = StringUtils.hasEmojiSuffix(result.name);
+    const lastPart = StringUtils.extractEmoji(result.name);
+    const textPart = StringUtils.extractNameWithoutEmoji(result.name);
 
     // Set result name with highlighted text and separate emoji
     if (isEmoji) {
-      const textPart = parts.slice(0, -1).join(" ");
       animResult.innerHTML = `<span class="highlight">${textPart}</span> ${lastPart}`;
     } else {
       animResult.innerHTML = `<span class="highlight">${result.name}</span>`;
