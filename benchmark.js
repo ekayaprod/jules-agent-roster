@@ -36,6 +36,10 @@ global.document = {
     addEventListener: () => {}
 };
 
+global.Clusterize = class Clusterize {
+    constructor(options) { this.options = options; }
+    update(data) { this.options.rows = data; }
+};
 global.CSS = { escape: (str) => str };
 global.CONFIG = { selectors: {}, categories: {}, sectionMap: {} };
 
@@ -45,9 +49,9 @@ global.AgentCard = {
 };
 
 // Load Core logic
-const FusionCompiler = loadClass('js/FusionCompiler.js');
-const FusionIndex = loadClass('js/FusionIndex.js');
-const FusionLab = loadClass('js/FusionLab.js');
+const FusionCompiler = loadClass('js/features/fusion/FusionCompiler.js');
+const FusionIndex = loadClass('js/features/fusion/FusionIndex.js');
+const FusionLab = loadClass('js/features/fusion/FusionLab.js');
 const AgentRepository = loadClass('js/services/AgentRepository.js');
 const ToastNotification = loadClass('js/ui/ToastNotification.js');
 const RosterApp = loadClass('js/RosterApp.js');
