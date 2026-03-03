@@ -19,6 +19,21 @@ class FormatUtils {
     }
 
     /**
+     * Escapes HTML special characters in a string to prevent XSS.
+     * @param {string} str - The string to escape.
+     * @returns {string} The escaped string.
+     */
+    static escapeHTML(str) {
+        if (!str || typeof str !== "string") return "";
+        return str
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    /**
      * Extracts an icon from an agent, handling fallbacks for fusions.
      * @param {Object} agent - The agent object.
      * @param {string} fallback - Optional fallback icon.
