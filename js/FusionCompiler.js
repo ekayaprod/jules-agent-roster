@@ -234,7 +234,7 @@ You must return your final response as a strict JSON object adhering to this sch
         ...custom,
         name: custom.name,
         isCustom: true,
-        desc: custom.short_description || custom.short_description,
+        short_description: custom.short_description || custom.desc || custom.description,
         prompt: finalPrompt,
       };
     }
@@ -245,7 +245,7 @@ You must return your final response as a strict JSON object adhering to this sch
     return {
       name: `${agent1.emoji}${agent2.emoji} ${agent1.name}-${agent2.name} Fusion`,
       isCustom: false,
-      description: `A synthesized protocol combining the strengths of ${agent1.name} and ${agent2.name}.`,
+      short_description: `A synthesized protocol combining the strengths of ${agent1.name} and ${agent2.name}.`,
       prompt: stitchedPrompt,
     };
   }
