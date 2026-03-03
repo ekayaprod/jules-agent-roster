@@ -160,7 +160,7 @@ class FusionLab {
 
     // Hide empty state initially
     const emptyState = document.getElementById("pickerEmptyState");
-    if (emptyState) emptyState.hidden = true;
+    if (emptyState) emptyState.style.display = "none";
 
     // Populate Grid
     grid.innerHTML = "";
@@ -340,7 +340,7 @@ class FusionLab {
 
       const emptyState = document.getElementById("pickerEmptyState");
       if (emptyState) {
-          emptyState.hidden = visibleCount > 0;
+          emptyState.style.display = visibleCount > 0 ? "none" : "flex";
       }
   }
 
@@ -426,6 +426,7 @@ class FusionLab {
       fuseBtn.innerText = "Ignite Fusion Protocol";
       fuseBtn.disabled = false;
       fuseBtn.setAttribute("aria-disabled", "false");
+      fuseBtn.setAttribute("aria-busy", "false");
     }
 
     if (errorEl) {
@@ -470,6 +471,7 @@ class FusionLab {
       fuseBtn.innerText = "Igniting Protocol...";
       fuseBtn.disabled = true;
       fuseBtn.setAttribute("aria-disabled", "true");
+      fuseBtn.setAttribute("aria-busy", "true");
     }
 
     const result = this.compiler.fuse(agentA, agentB);
@@ -577,6 +579,7 @@ class FusionLab {
       fuseBtn.classList.remove("loading");
       fuseBtn.disabled = false;
       fuseBtn.setAttribute("aria-disabled", "false");
+      fuseBtn.setAttribute("aria-busy", "false");
     }
 
     const wrapper = document.getElementById("fusionOutputWrapper");
@@ -757,4 +760,8 @@ class FusionLab {
 
     this.showResult();
   }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = FusionLab;
 }
