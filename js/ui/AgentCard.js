@@ -44,7 +44,7 @@ class AgentCard {
         const displayName = FormatUtils.extractDisplayName(agent);
 
         const role = FormatUtils.escapeHTML(agent.role || 'Fusion Protocol');
-        const desc = FormatUtils.escapeHTML(agent.desc || agent.description || '');
+        const desc = FormatUtils.escapeHTML(agent.short_description || agent.short_description || '');
         const safeDisplayName = FormatUtils.escapeHTML(displayName);
 
         card.innerHTML = `

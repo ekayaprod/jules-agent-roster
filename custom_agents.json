@@ -1,1064 +1,1595 @@
 {
   "Architect,Architect": {
     "name": "Vibe",
+    "emoji": "\ud83c\udfa7",
+    "short_description": "The Feature Imagineer. Sweeps the repository for explicit intent markers (`// TODO`) OR analyzes the project's domain to imagineer and autonomously build brand-new, complementary features.",
     "tier": "Legendary",
-    "icon": "\ud83c\udfa7",
-    "desc": "The Feature Imagineer. Sweeps the repository for explicit intent markers (`// TODO`) OR analyzes the project's domain to imagineer and autonomously build brand-new, complementary features."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Author": {
     "name": "City Clerk",
+    "emoji": "\ud83c\udfdb\ufe0f",
+    "short_description": "An architectural migration documentarian. Restructures complex module imports and meticulously documents the exact architectural shift via formal migration guides.",
     "tier": "Uncommon",
-    "icon": "\ud83c\udfdb\ufe0f",
-    "desc": "An architectural migration documentarian. Restructures complex module imports and meticulously documents the exact architectural shift via formal migration guides."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Bolt+": {
     "name": "Slipstream",
+    "emoji": "\ud83d\udca8",
+    "short_description": "The Frictionless Router. Restructures how chunks are loaded, ensuring critical structural boundaries arrive instantly while heavier secondary elements slide into place without blocking the main thread.",
     "tier": "Rare",
-    "icon": "\ud83d\udca8",
-    "desc": "The Frictionless Router. Restructures how chunks are loaded, ensuring critical structural boundaries arrive instantly while heavier secondary elements slide into place without blocking the main thread."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Cortex": {
     "name": "Construct",
+    "emoji": "\ud83e\uddca",
+    "short_description": "The Hyper-Dimensional Structurer. Evaluates how raw knowledge is fed into the vector database, re-architecting flat, massive text blobs into semantic, overlapping multi-dimensional chunks.",
     "tier": "Epic",
-    "icon": "\ud83e\uddca",
-    "desc": "The Hyper-Dimensional Structurer. Evaluates how raw knowledge is fed into the vector database, re-architecting flat, massive text blobs into semantic, overlapping multi-dimensional chunks."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Curator": {
     "name": "Mason",
+    "emoji": "\ud83e\uddf1",
+    "short_description": "The Spatial Reinforcer. Autonomously sweeps the presentation layer to fix broken layout containers, mismatched grids, and overflow boundaries, ensuring spatial integrity across the application.",
     "tier": "Uncommon",
-    "icon": "\ud83e\uddf1",
-    "desc": "The Spatial Reinforcer. Autonomously sweeps the presentation layer to fix broken layout containers, mismatched grids, and overflow boundaries, ensuring spatial integrity across the application."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Helix": {
     "name": "Kiln",
+    "emoji": "\ud83c\udf0b",
+    "short_description": "A high-heat refactoring specialist. Upgrades legacy syntax to modern standards and immediately subjects it to intense boundary testing to prove the logic holds.",
     "tier": "Rare",
-    "icon": "\ud83c\udf0b",
-    "desc": "A high-heat refactoring specialist. Upgrades legacy syntax to modern standards and immediately subjects it to intense boundary testing to prove the logic holds."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Herald": {
     "name": "Registrar",
+    "emoji": "\ud83d\udcd1",
+    "short_description": "The Structural Broadcaster. Autonomously reads physical file trees, barrel exports, and structural git diffs, translating them into formal, centralized architectural guidelines and import rules.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udcd1",
-    "desc": "The Structural Broadcaster. Autonomously reads physical file trees, barrel exports, and structural git diffs, translating them into formal, centralized architectural guidelines and import rules."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Inspector": {
     "name": "Seawall",
+    "emoji": "\ud83c\udf0a",
+    "short_description": "An architectural encapsulation specialist. Establishes strict barrel exports to hide internal module state and writes integration tests that simulate the storm against the public API.",
     "tier": "Rare",
-    "icon": "\ud83c\udf0a",
-    "desc": "An architectural encapsulation specialist. Establishes strict barrel exports to hide internal module state and writes integration tests that simulate the storm against the public API."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Superintendent": {
     "name": "Organizer",
+    "emoji": "\ud83e\uddf2",
+    "short_description": "The Domain Grouper. Sweeps massive, flat directories and magnetically pulls implicitly related files (like a script, its test, and its config) into dedicated, structured subdirectories.",
     "tier": "Uncommon",
-    "icon": "\ud83e\uddf2",
-    "desc": "The Domain Grouper. Sweeps massive, flat directories and magnetically pulls implicitly related files (like a script, its test, and its config) into dedicated, structured subdirectories."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Medic": {
     "name": "Surgeon",
+    "emoji": "\ud83e\udd7c",
+    "short_description": "The Inline Extractor. Autonomously cuts open massive 'God Functions', excising fragile inline network and parsing logic into dedicated, crash-proof architectural modules.",
     "tier": "Epic",
-    "icon": "\ud83e\udd7c",
-    "desc": "The Inline Extractor. Autonomously cuts open massive 'God Functions', excising fragile inline network and parsing logic into dedicated, crash-proof architectural modules."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Modernizer": {
     "name": "Terraformer",
+    "emoji": "\ud83c\udf0d",
+    "short_description": "A topographical asset management specialist. Moves chaotic asset dumps into domain-driven structures, optimizing the files and updating their codebase references in one pass.",
     "tier": "Uncommon",
-    "icon": "\ud83c\udf0d",
-    "desc": "A topographical asset management specialist. Moves chaotic asset dumps into domain-driven structures, optimizing the files and updating their codebase references in one pass."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Navigator": {
     "name": "Scaffolder",
+    "emoji": "\ud83e\uddf0",
+    "short_description": "The Structural Propagator. Autonomously reads routing maps and application manifests to construct missing physical boilerplate directories and skeleton files.",
     "tier": "Uncommon",
-    "icon": "\ud83e\uddf0",
-    "desc": "The Structural Propagator. Autonomously reads routing maps and application manifests to construct missing physical boilerplate directories and skeleton files."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Palette+": {
     "name": "Sculptor",
+    "emoji": "\ud83d\uddff",
+    "short_description": "A structural UI and animation specialist. Chisels massive monolith components into clean sub-components and applies polished visual transitions to the new seams.",
     "tier": "Rare",
-    "icon": "\ud83d\uddff",
-    "desc": "A structural UI and animation specialist. Chisels massive monolith components into clean sub-components and applies polished visual transitions to the new seams."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Pedant": {
     "name": "Foreman",
+    "emoji": "\ud83d\udc77",
+    "short_description": "The File Convention Enforcer. Sweeps the physical file tree to enforce strict architectural blueprints, ensuring all files match exact casing conventions and updating imports.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udc77",
-    "desc": "The File Convention Enforcer. Sweeps the physical file tree to enforce strict architectural blueprints, ensuring all files match exact casing conventions and updating imports."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Scavenger": {
     "name": "Renovator",
+    "emoji": "\ud83c\udfda\ufe0f",
+    "short_description": "A structural UX polish specialist. Restructures disorganized feature hierarchies and simultaneously adds missing loading and empty states to their UI components.",
     "tier": "Uncommon",
-    "icon": "\ud83c\udfda\ufe0f",
-    "desc": "A structural UX polish specialist. Restructures disorganized feature hierarchies and simultaneously adds missing loading and empty states to their UI components."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Scribe": {
     "name": "Archivist",
+    "emoji": "\ud83d\udcda",
+    "short_description": "A deep context documentation specialist. Writes granular inline JSDoc and links it directly up to high-level architectural READMEs, syncing micro and macro context.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udcda",
-    "desc": "A deep context documentation specialist. Writes granular inline JSDoc and links it directly up to high-level architectural READMEs, syncing micro and macro context."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Sentinel+": {
     "name": "Bastion",
+    "emoji": "\ud83c\udff0",
+    "short_description": "The Boundary Hardener. Sweeps infrastructure (IaC, Docker, Terraform) and BaaS rules to autonomously lock down structural vulnerabilities, open ports, and wildcards without human intervention.",
     "tier": "Epic",
-    "icon": "\ud83c\udff0",
-    "desc": "The Boundary Hardener. Sweeps infrastructure (IaC, Docker, Terraform) and BaaS rules to autonomously lock down structural vulnerabilities, open ports, and wildcards without human intervention."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Untangler": {
     "name": "Hoister",
+    "emoji": "\ud83e\ude9d",
+    "short_description": "The Invariant Extractor. Autonomously hooks expensive static operations (DOM queries, Regex compilations, disk reads) trapped inside execution loops, hoisting them into cached variables to eliminate waste.",
     "tier": "Rare",
-    "icon": "\ud83e\ude9d",
-    "desc": "The Invariant Extractor. Autonomously hooks expensive static operations (DOM queries, Regex compilations, disk reads) trapped inside execution loops, hoisting them into cached variables to eliminate waste."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Architect,Wordsmith": {
     "name": "Information Architect",
+    "emoji": "\ud83d\udccb",
+    "short_description": "The Structural Content Designer. Reorganizes page layout hierarchy while simultaneously ensuring step labels, headings, and CTAs tell a cohesive, sequential story.",
     "tier": "Common",
-    "icon": "\ud83d\udccb",
-    "desc": "The Structural Content Designer. Reorganizes page layout hierarchy while simultaneously ensuring step labels, headings, and CTAs tell a cohesive, sequential story."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Bolt+": {
     "name": "Accountant",
+    "emoji": "\ud83d\udcca",
+    "short_description": "The Budget Enforcer. Authors the macro PERFORMANCE_BUDGET.md and locks down bundler configurations to automatically fail the build if chunk sizes exceed strict limits.",
     "tier": "Rare",
-    "icon": "\ud83d\udcca",
-    "desc": "The Budget Enforcer. Authors the macro PERFORMANCE_BUDGET.md and locks down bundler configurations to automatically fail the build if chunk sizes exceed strict limits."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Cortex": {
     "name": "Policy Maker",
+    "emoji": "\u2696\ufe0f",
+    "short_description": "The AI Architect. Authors and maintains the macro AI_POLICY.md, sweeping the codebase to ensure no internal PII or unauthorized models are breaching compliance.",
     "tier": "Uncommon",
-    "icon": "\u2696\ufe0f",
-    "desc": "The AI Architect. Authors and maintains the macro AI_POLICY.md, sweeping the codebase to ensure no internal PII or unauthorized models are breaching compliance."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Curator": {
     "name": "Illuminator",
+    "emoji": "\ud83d\udd8c\ufe0f",
+    "short_description": "The Vector Artist. Autonomously reads dense architecture descriptions and hollow empty-states, mathematically generating beautiful SVG/Mermaid graphics to visualize the text.",
     "tier": "Common",
-    "icon": "\ud83d\udd8c\ufe0f",
-    "desc": "The Vector Artist. Autonomously reads dense architecture descriptions and hollow empty-states, mathematically generating beautiful SVG/Mermaid graphics to visualize the text."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Helix": {
     "name": "Lexicon",
+    "emoji": "\ud83d\udcd7",
+    "short_description": "The Domain Centralizer. Autonomously sweeps the codebase hunting for fractured domain language (e.g., mixing 'Client' and 'User'), centralizing the vocabulary into a master glossary and standardizing the nomenclature.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udcd7",
-    "desc": "The Domain Centralizer. Autonomously sweeps the codebase hunting for fractured domain language (e.g., mixing 'Client' and 'User'), centralizing the vocabulary into a master glossary and standardizing the nomenclature."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Herald": {
     "name": "Town Crier",
+    "emoji": "\ud83d\udd14",
+    "short_description": "A release documentation synchronizer. Announces a new release to the public via the changelog and instantly updates the macro README to reflect the repository's new reality.",
     "tier": "Common",
-    "icon": "\ud83d\udd14",
-    "desc": "A release documentation synchronizer. Announces a new release to the public via the changelog and instantly updates the macro README to reflect the repository's new reality."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Inspector": {
     "name": "Mapper",
+    "emoji": "\ud83d\udccd",
+    "short_description": "The Coverage Mapper. Reads the codebase to identify untested high-risk domains, continuously authoring and updating the macro TESTING_PLAN.md with prioritized gaps.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udccd",
-    "desc": "The Coverage Mapper. Reads the codebase to identify untested high-risk domains, continuously authoring and updating the macro TESTING_PLAN.md with prioritized gaps."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Superintendent": {
     "name": "Groundskeeper",
+    "emoji": "\ud83c\udfe1",
+    "short_description": "The Automation Maintainer. Authors the macro MAINTENANCE.md guide and standardizes CI/CD and Dependabot configurations to ensure routine upkeep is codified.",
     "tier": "Uncommon",
-    "icon": "\ud83c\udfe1",
-    "desc": "The Automation Maintainer. Authors the macro MAINTENANCE.md guide and standardizes CI/CD and Dependabot configurations to ensure routine upkeep is codified."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Medic": {
     "name": "Paramedic",
+    "emoji": "\ud83c\udfe5",
+    "short_description": "The Contingency Planner. Evaluates single points of failure in the architecture to author and continuously update the macro DISASTER_RECOVERY.md documentation.",
     "tier": "Uncommon",
-    "icon": "\ud83c\udfe5",
-    "desc": "The Contingency Planner. Evaluates single points of failure in the architecture to author and continuously update the macro DISASTER_RECOVERY.md documentation."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Modernizer": {
     "name": "Ouija",
+    "emoji": "\ud83d\udc7b",
+    "short_description": "The Lore Resurrector. Autonomously combines local git forensics with LLM reasoning to deduce the historical intent behind load-bearing legacy spaghetti, injecting detailed lore to explain the horror.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udc7b",
-    "desc": "The Lore Resurrector. Autonomously combines local git forensics with LLM reasoning to deduce the historical intent behind load-bearing legacy spaghetti, injecting detailed lore to explain the horror."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Navigator": {
     "name": "Sherpa",
+    "emoji": "\ud83e\uddd7\u200d\u2642\ufe0f",
+    "short_description": "The Onboarding Architect. Autonomously deduces spatial complexity in dense UIs and logic flows, injecting interactive step-by-step onboarding tooltips to guide the user.",
     "tier": "Common",
-    "icon": "\ud83e\uddd7\u200d\u2642\ufe0f",
-    "desc": "The Onboarding Architect. Autonomously deduces spatial complexity in dense UIs and logic flows, injecting interactive step-by-step onboarding tooltips to guide the user."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Palette+": {
     "name": "Muse",
+    "emoji": "\ud83e\uddd1\u200d\ud83c\udfa8",
+    "short_description": "The Contextual Guide. Owns the First-Time User Experience (FTUE) by treating empty screens as a blank canvas, injecting beautiful Empty States, contextual hover-tooltips, and inspiring in-app help interfaces.",
     "tier": "Common",
-    "icon": "\ud83e\uddd1\u200d\ud83c\udfa8",
-    "desc": "The Contextual Guide. Owns the First-Time User Experience (FTUE) by treating empty screens as a blank canvas, injecting beautiful Empty States, contextual hover-tooltips, and inspiring in-app help interfaces."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Pedant": {
     "name": "Rulemaker",
+    "emoji": "\ud83d\udcaf",
+    "short_description": "The Style Guide Enforcer. Authors the overarching STYLEGUIDE.md and standardizes strict linting configurations to bridge human rules with machine enforcement.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udcaf",
-    "desc": "The Style Guide Enforcer. Authors the overarching STYLEGUIDE.md and standardizes strict linting configurations to bridge human rules with machine enforcement."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Scavenger": {
     "name": "Sunsetter",
+    "emoji": "\ud83c\udf05",
+    "short_description": "The Deprecation Documentarian. Authors formal DEPRECATION.md plans and sweeps global wikis to erase all documentation references to deprecated systems.",
     "tier": "Uncommon",
-    "icon": "\ud83c\udf05",
-    "desc": "The Deprecation Documentarian. Authors formal DEPRECATION.md plans and sweeps global wikis to erase all documentation references to deprecated systems."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Scribe": {
     "name": "Scholar",
+    "emoji": "\ud83e\udd89",
+    "short_description": "A macro/micro documentation synthesizer. Documents a module from the granular JSDoc micro-level all the way up to the macro architectural README in one unified pass.",
     "tier": "Common",
-    "icon": "\ud83e\udd89",
-    "desc": "A macro/micro documentation synthesizer. Documents a module from the granular JSDoc micro-level all the way up to the macro architectural README in one unified pass."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Sentinel+": {
     "name": "Threat Modeler",
+    "emoji": "\ud83c\udfaf",
+    "short_description": "The Macro Strategist. Authors the overarching THREAT_MODEL.md and sweeps the global configuration to enforce strict CORS, CSP, and secure HTTP headers.",
     "tier": "Epic",
-    "icon": "\ud83c\udfaf",
-    "desc": "The Macro Strategist. Authors the overarching THREAT_MODEL.md and sweeps the global configuration to enforce strict CORS, CSP, and secure HTTP headers."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Untangler": {
     "name": "Tracer",
+    "emoji": "\ud83d\udccc",
+    "short_description": "The Execution Mapper. Autonomously traces deeply tangled, undocumented spaghetti code and event flows, authoring clear macro-level documents and sequence diagrams to illuminate the logic.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udccc",
-    "desc": "The Execution Mapper. Autonomously traces deeply tangled, undocumented spaghetti code and event flows, authoring clear macro-level documents and sequence diagrams to illuminate the logic."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Author,Wordsmith": {
     "name": "Brand Manager",
+    "emoji": "\ud83c\udff7\ufe0f",
+    "short_description": "A domain language synchronizer. Establishes the official canonical terminology in the macro README and strictly enforces it across the user interface.",
     "tier": "Common",
-    "icon": "\ud83c\udff7\ufe0f",
-    "desc": "A domain language synchronizer. Establishes the official canonical terminology in the macro README and strictly enforces it across the user interface."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Cortex": {
     "name": "Tachyon",
+    "emoji": "\u2604\ufe0f",
+    "short_description": "The Stream-State Accelerator. Hunts down clunky, synchronous LLM queries that freeze the UI, and rewires them into high-speed Server-Sent Events (stream: true).",
     "tier": "Epic",
-    "icon": "\u2604\ufe0f",
-    "desc": "The Stream-State Accelerator. Hunts down clunky, synchronous LLM queries that freeze the UI, and rewires them into high-speed Server-Sent Events (stream: true)."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Curator": {
     "name": "Sprinter",
+    "emoji": "\ud83d\udc5f",
+    "short_description": "An elite payload delivery specialist. Compresses massive static assets and instantly rewrites the DOM/CSS to serve them via modern, responsive delivery tags.",
     "tier": "Rare",
-    "icon": "\ud83d\udc5f",
-    "desc": "An elite payload delivery specialist. Compresses massive static assets and instantly rewrites the DOM/CSS to serve them via modern, responsive delivery tags."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Helix": {
     "name": "Mitosis",
+    "emoji": "\ud83e\uddeb",
+    "short_description": "The Parallelizer. Splits heavy, single-threaded UI logic into identical, parallel Web Worker cells for true multi-threading.",
     "tier": "Rare",
-    "icon": "\ud83e\uddeb",
-    "desc": "The Parallelizer. Splits heavy, single-threaded UI logic into identical, parallel Web Worker cells for true multi-threading."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Herald": {
     "name": "Speed Camera",
+    "emoji": "\ud83d\udea5",
+    "short_description": "The Web Vitals Broadcaster. Intercepts CI Lighthouse scores and bundle-size artifacts, generating strict Markdown reports that call out performance regressions before they merge.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udea5",
-    "desc": "The Web Vitals Broadcaster. Intercepts CI Lighthouse scores and bundle-size artifacts, generating strict Markdown reports that call out performance regressions before they merge."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Inspector": {
     "name": "Pacesetter",
+    "emoji": "\ud83c\udfc1",
+    "short_description": "A relentless enforcer of speed. Re-engineers heavy algorithms for maximum efficiency and locks the gains in place with strict benchmark regression tests.",
     "tier": "Rare",
-    "icon": "\ud83c\udfc1",
-    "desc": "A relentless enforcer of speed. Re-engineers heavy algorithms for maximum efficiency and locks the gains in place with strict benchmark regression tests."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Superintendent": {
     "name": "Expediter",
+    "emoji": "\ud83d\udece\ufe0f",
+    "short_description": "The Build Optimizer. Speeds up CI/CD pipelines, optimizes Webpack/Vite configs, and parallelizes build tasks so orders fly out without bottlenecks.",
     "tier": "Rare",
-    "icon": "\ud83d\udece\ufe0f",
-    "desc": "The Build Optimizer. Speeds up CI/CD pipelines, optimizes Webpack/Vite configs, and parallelizes build tasks so orders fly out without bottlenecks."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Medic": {
     "name": "Pacemaker",
+    "emoji": "\ud83e\udec0",
+    "short_description": "The Main Thread Protector. Regulates the heartbeat of the application by finding heavy, synchronous work and safely deferring it to the background so the UI never stutters.",
     "tier": "Rare",
-    "icon": "\ud83e\udec0",
-    "desc": "The Main Thread Protector. Regulates the heartbeat of the application by finding heavy, synchronous work and safely deferring it to the background so the UI never stutters."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Modernizer": {
     "name": "Catalyst",
+    "emoji": "\ud83c\udfce\ufe0f",
+    "short_description": "An engine of pure momentum. Modernizes legacy syntax and architecture specifically to unlock and apply native runtime execution speedups.",
     "tier": "Rare",
-    "icon": "\ud83c\udfce\ufe0f",
-    "desc": "An engine of pure momentum. Modernizes legacy syntax and architecture specifically to unlock and apply native runtime execution speedups."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Navigator": {
     "name": "Hyperloop",
+    "emoji": "\ud83d\ude84",
+    "short_description": "The Edge Router. Sweeps API routes and server-side paths, migrating heavily accessed static endpoints to edge-compatible runtimes and strict CDN caching layers.",
     "tier": "Epic",
-    "icon": "\ud83d\ude84",
-    "desc": "The Edge Router. Sweeps API routes and server-side paths, migrating heavily accessed static endpoints to edge-compatible runtimes and strict CDN caching layers."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Palette+": {
     "name": "Illusionist",
+    "emoji": "\ud83e\ude84",
+    "short_description": "A master of perceived performance. Strips a component to its bare render constraints, then masks any remaining latency with luxurious CSS loading states.",
     "tier": "Common",
-    "icon": "\ud83e\ude84",
-    "desc": "A master of perceived performance. Strips a component to its bare render constraints, then masks any remaining latency with luxurious CSS loading states."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Pedant": {
     "name": "Millisecond",
+    "emoji": "\u23f1\ufe0f",
+    "short_description": "The Micro-Optimizer. Obsessively shaves off microscopic render waste by dialing in AST-level rendering rules and eliminating inline object allocations.",
     "tier": "Rare",
-    "icon": "\u23f1\ufe0f",
-    "desc": "The Micro-Optimizer. Obsessively shaves off microscopic render waste by dialing in AST-level rendering rules and eliminating inline object allocations."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Scavenger": {
     "name": "Proton Pack",
+    "emoji": "\ud83c\udf92",
+    "short_description": "The Memory Leak Eradicator. Aggressively blasts away unmounted React components, detached DOM nodes, and stale LocalStorage bloat.",
     "tier": "Rare",
-    "icon": "\ud83c\udf92",
-    "desc": "The Memory Leak Eradicator. Aggressively blasts away unmounted React components, detached DOM nodes, and stale LocalStorage bloat."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Scribe": {
     "name": "Profiler",
+    "emoji": "\ud83d\udd2c",
+    "short_description": "The Complexity Auditor. Analyzes the algorithmic complexity of functions and injects strict Big-O notation into their JSDoc to warn developers of hot-path dangers.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udd2c",
-    "desc": "The Complexity Auditor. Analyzes the algorithmic complexity of functions and injects strict Big-O notation into their JSDoc to warn developers of hot-path dangers."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Sentinel+": {
     "name": "Broker",
+    "emoji": "\ud83d\udcbc",
+    "short_description": "A ruthless mediator between speed and security. Implements extreme edge-caching for public routes while strictly quarantining authenticated and sensitive data.",
     "tier": "Epic",
-    "icon": "\ud83d\udcbc",
-    "desc": "A ruthless mediator between speed and security. Implements extreme edge-caching for public routes while strictly quarantining authenticated and sensitive data."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Untangler": {
     "name": "Surge Protector",
+    "emoji": "\ud83c\udf29\ufe0f",
+    "short_description": "The Processing Short-Circuit. Flattens heavy computational functions with aggressive early-return guard clauses, cutting power to unnecessary algorithmic paths to save CPU cycles.",
     "tier": "Rare",
-    "icon": "\ud83c\udf29\ufe0f",
-    "desc": "The Processing Short-Circuit. Flattens heavy computational functions with aggressive early-return guard clauses, cutting power to unnecessary algorithmic paths to save CPU cycles."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Bolt+,Wordsmith": {
     "name": "Telepath",
+    "emoji": "\ud83d\udc41\ufe0f\u200d\ud83d\udde8\ufe0f",
+    "short_description": "The Predictive Pre-loader. Scans the UI for primary Call-To-Action buttons and links, injecting aggressive hover-prefetching logic so the next screen's data loads before the user clicks.",
     "tier": "Rare",
-    "icon": "\ud83d\udc41\ufe0f\u200d\ud83d\udde8\ufe0f",
-    "desc": "The Predictive Pre-loader. Scans the UI for primary Call-To-Action buttons and links, injecting aggressive hover-prefetching logic so the next screen's data loads before the user clicks."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Cortex": {
     "name": "Singularity",
+    "emoji": "\ud83c\udf0c",
+    "short_description": "The Meta-Architect. Sweeps the repository looking for repetitive human developer chores or unstructured workflows, and automatically generates pristine, highly-constrained Jules agent prompts to automate them.",
     "tier": "Legendary",
-    "icon": "\ud83c\udf0c",
-    "desc": "The Meta-Architect. Sweeps the repository looking for repetitive human developer chores or unstructured workflows, and automatically generates pristine, highly-constrained Jules agent prompts to automate them."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Curator": {
     "name": "Tokenizer",
+    "emoji": "\ud83e\ude99",
+    "short_description": "The Context Window Optimizer. Sweeps data payloads and RAG chunks before they hit the LLM, stripping HTML, minifying JSON, and dropping useless data to save tokens and prevent overflow.",
     "tier": "Rare",
-    "icon": "\ud83e\ude99",
-    "desc": "The Context Window Optimizer. Sweeps data payloads and RAG chunks before they hit the LLM, stripping HTML, minifying JSON, and dropping useless data to save tokens and prevent overflow."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Helix": {
     "name": "Synthesizer",
+    "emoji": "\ud83c\udfb9",
+    "short_description": "The Semantic Consolidator. Uses an LLM to find completely different syntactic implementations of the same business logic, extracting them into a single, parameterized shared utility.",
     "tier": "Rare",
-    "icon": "\ud83c\udfb9",
-    "desc": "The Semantic Consolidator. Uses an LLM to find completely different syntactic implementations of the same business logic, extracting them into a single, parameterized shared utility."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Herald": {
     "name": "Telemetrist",
+    "emoji": "\ud83d\udce1",
+    "short_description": "The AI Broadcaster. Intercepts AI execution routes and injects structured observability logging to broadcast token usage, latency, and cost-per-request to the terminal.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udce1",
-    "desc": "The AI Broadcaster. Intercepts AI execution routes and injects structured observability logging to broadcast token usage, latency, and cost-per-request to the terminal."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Inspector": {
     "name": "Polygraph",
+    "emoji": "\ud83c\udf9b\ufe0f",
+    "short_description": "The Voight-Kampff Administrator. Upgrades LLM prompts to enforce strict JSON outputs and administers a lie-detector test by feeding them malformed data to ensure safe parsing.",
     "tier": "Epic",
-    "icon": "\ud83c\udf9b\ufe0f",
-    "desc": "The Voight-Kampff Administrator. Upgrades LLM prompts to enforce strict JSON outputs and administers a lie-detector test by feeding them malformed data to ensure safe parsing."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Superintendent": {
     "name": "Electrician",
+    "emoji": "\ud83d\udd0b",
+    "short_description": "The AI Infrastructure Maintainer. Autonomously unplugs deprecated AI SDKs, bumps their dependencies, and cleanly rewires the application logic to match the new API schemas.",
     "tier": "Rare",
-    "icon": "\ud83d\udd0b",
-    "desc": "The AI Infrastructure Maintainer. Autonomously unplugs deprecated AI SDKs, bumps their dependencies, and cleanly rewires the application logic to match the new API schemas."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Medic": {
     "name": "Resuscitator",
+    "emoji": "\ud83e\ude7a",
+    "short_description": "The Execution Simulator. Mentally executes code to hunt for infinite loops, race conditions, and initialization failures that cause instant crashes, explicitly deep-parsing dynamic strings as compiled code.",
     "tier": "Epic",
-    "icon": "\ud83e\ude7a",
-    "desc": "The Execution Simulator. Mentally executes code to hunt for infinite loops, race conditions, and initialization failures that cause instant crashes, explicitly deep-parsing dynamic strings as compiled code."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Modernizer": {
     "name": "Futurist",
+    "emoji": "\ud83d\udef8",
+    "short_description": "An AI infrastructure evolution specialist. Upgrades legacy server routes to modern ES6 syntax and simultaneously updates the AI models and prompt structures running inside them.",
     "tier": "Epic",
-    "icon": "\ud83d\udef8",
-    "desc": "An AI infrastructure evolution specialist. Upgrades legacy server routes to modern ES6 syntax and simultaneously updates the AI models and prompt structures running inside them."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Navigator": {
     "name": "Dispatcher",
+    "emoji": "\ud83d\ude8f",
+    "short_description": "The Cost Strategist. Evaluates AI routing logic, sending simple tasks to fast/cheap models while saving heavy, expensive reasoning models exclusively for complex tasks.",
     "tier": "Rare",
-    "icon": "\ud83d\ude8f",
-    "desc": "The Cost Strategist. Evaluates AI routing logic, sending simple tasks to fast/cheap models while saving heavy, expensive reasoning models exclusively for complex tasks."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Palette+": {
     "name": "Hologram",
+    "emoji": "\ud83c\udf87",
+    "short_description": "A generative UI specialist. Intercepts raw, streaming data lasers from an AI backend and refracts them into a beautiful, progressive, and optimistic visual interface.",
     "tier": "Common",
-    "icon": "\ud83c\udf87",
-    "desc": "A generative UI specialist. Intercepts raw, streaming data lasers from an AI backend and refracts them into a beautiful, progressive, and optimistic visual interface."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Pedant": {
     "name": "Cypher",
+    "emoji": "\ud83d\udca0",
+    "short_description": "The Neural Payload Sanitizer. Intercepts the AI's raw output, injecting robust middleware to strip markdown wrappers, catch parsing failures, and strictly type-cast the raw hallucination into a safe, predictable object.",
     "tier": "Epic",
-    "icon": "\ud83d\udca0",
-    "desc": "The Neural Payload Sanitizer. Intercepts the AI's raw output, injecting robust middleware to strip markdown wrappers, catch parsing failures, and strictly type-cast the raw hallucination into a safe, predictable object."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Scavenger": {
     "name": "Agent",
+    "emoji": "\ud83d\udd76\ufe0f",
+    "short_description": "The System Purger. A fully autonomous semantic enforcer that hunts down codebase anomalies: technically imported code that semantically violates the domain, vestigial components rendering dead data, and custom polyfills that native APIs have obsoleted.",
     "tier": "Legendary",
-    "icon": "\ud83d\udd76\ufe0f",
-    "desc": "The System Purger. A fully autonomous semantic enforcer that hunts down codebase anomalies: technically imported code that semantically violates the domain, vestigial components rendering dead data, and custom polyfills that native APIs have obsoleted."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Scribe": {
     "name": "Few-Shot Forger",
+    "emoji": "\ud83d\udd87\ufe0f",
+    "short_description": "The Inline Example Builder. Sweeps prompt templates and injects structured 'Few-Shot' examples (input/output pairs) directly into the code to guarantee the LLM returns the correct format.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udd87\ufe0f",
-    "desc": "The Inline Example Builder. Sweeps prompt templates and injects structured 'Few-Shot' examples (input/output pairs) directly into the code to guarantee the LLM returns the correct format."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Sentinel+": {
     "name": "Firewall",
+    "emoji": "\ud83d\udcdb",
+    "short_description": "A heavy blast door for artificial intelligence. Upgrades LLM integrations while wrapping their inputs and outputs in strict prompt-injection and schema guards.",
     "tier": "Epic",
-    "icon": "\ud83d\udcdb",
-    "desc": "A heavy blast door for artificial intelligence. Upgrades LLM integrations while wrapping their inputs and outputs in strict prompt-injection and schema guards."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Untangler": {
     "name": "Automata",
+    "emoji": "\ud83e\uddbe",
+    "short_description": "The Agentic State Flattener. Eradicates messy string parsing used for AI intent and rewires AI execution loops into pristine, native Tool-Calling arrays, creating a highly predictable cybernetic state machine.",
     "tier": "Epic",
-    "icon": "\ud83e\uddbe",
-    "desc": "The Agentic State Flattener. Eradicates messy string parsing used for AI intent and rewires AI execution loops into pristine, native Tool-Calling arrays, creating a highly predictable cybernetic state machine."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Cortex,Wordsmith": {
     "name": "Prompt Engineer",
+    "emoji": "\u2728",
+    "short_description": "The Persona & Tone Specialist. Edits the English payload of AI prompts to enforce strict personas, negative constraints, and precise domain vocabulary.",
     "tier": "Uncommon",
-    "icon": "\u2728",
-    "desc": "The Persona & Tone Specialist. Edits the English payload of AI prompts to enforce strict personas, negative constraints, and precise domain vocabulary."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Helix": {
     "name": "Catalogue",
+    "emoji": "\ud83d\udcc7",
+    "short_description": "The Asset Centralizer. Autonomously identifies identically duplicated visual media (raw inline SVGs, Base64 strings) scattered across files and extracts them into a single, clean centralized asset dictionary.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udcc7",
-    "desc": "The Asset Centralizer. Autonomously identifies identically duplicated visual media (raw inline SVGs, Base64 strings) scattered across files and extracts them into a single, clean centralized asset dictionary."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Herald": {
     "name": "Publicist",
+    "emoji": "\ud83d\udcf8",
+    "short_description": "The SEO Broadcaster. Autonomously sweeps public routes, extracting semantic context to generate perfect SVG OpenGraph cards and injecting the social metadata into the head.",
     "tier": "Common",
-    "icon": "\ud83d\udcf8",
-    "desc": "The SEO Broadcaster. Autonomously sweeps public routes, extracting semantic context to generate perfect SVG OpenGraph cards and injecting the social metadata into the head."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Inspector": {
     "name": "Fabricator",
+    "emoji": "\ud83c\udfed",
+    "short_description": "The Mock Engineer. Sweeps test files to eradicate brittle, hardcoded JSON objects, replacing them with dynamic, randomized mock-data factories and robust fixtures.",
     "tier": "Uncommon",
-    "icon": "\ud83c\udfed",
-    "desc": "The Mock Engineer. Sweeps test files to eradicate brittle, hardcoded JSON objects, replacing them with dynamic, randomized mock-data factories and robust fixtures."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Superintendent": {
     "name": "Aligner",
+    "emoji": "\ud83d\udccf",
+    "short_description": "The Rhythm Standardizer. Autonomously hunts down arbitrary, hardcoded spacing numbers (margins, paddings, coordinates) and snaps them to the project's systematic mathematical grid.",
     "tier": "Common",
-    "icon": "\ud83d\udccf",
-    "desc": "The Rhythm Standardizer. Autonomously hunts down arbitrary, hardcoded spacing numbers (margins, paddings, coordinates) and snaps them to the project's systematic mathematical grid."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Medic": {
     "name": "Blackbox",
+    "emoji": "\ud83d\uddc3\ufe0f",
+    "short_description": "The Data Preserver. Sweeps complex forms and user-input flows, injecting local storage caching mechanisms so unsaved data survives unexpected network failures or app crashes.",
     "tier": "Rare",
-    "icon": "\ud83d\uddc3\ufe0f",
-    "desc": "The Data Preserver. Sweeps complex forms and user-input flows, injecting local storage caching mechanisms so unsaved data survives unexpected network failures or app crashes."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Modernizer": {
     "name": "Darkroom",
+    "emoji": "\ud83c\udf9e\ufe0f",
+    "short_description": "The Media Upgrader. Hunts down heavy, legacy image assets and processes them into highly optimized modern web formats like WebP, updating all source code references.",
     "tier": "Uncommon",
-    "icon": "\ud83c\udf9e\ufe0f",
-    "desc": "The Media Upgrader. Hunts down heavy, legacy image assets and processes them into highly optimized modern web formats like WebP, updating all source code references."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Navigator": {
     "name": "Choreographer",
+    "emoji": "\ud83e\ude70",
+    "short_description": "The Transition Enforcer. Autonomously identifies blocking API calls and harsh route jumps, injecting loading skeletons and visual transitions to ensure fluidity during state changes.",
     "tier": "Common",
-    "icon": "\ud83e\ude70",
-    "desc": "The Transition Enforcer. Autonomously identifies blocking API calls and harsh route jumps, injecting loading skeletons and visual transitions to ensure fluidity during state changes."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Palette+": {
     "name": "Gallerist",
+    "emoji": "\ud83c\udfde\ufe0f",
+    "short_description": "The Media Presenter. Treats application assets like a museum exhibit, standardizing icon libraries and implementing gorgeous blurry-image placeholders for lazy-loaded media.",
     "tier": "Common",
-    "icon": "\ud83c\udfde\ufe0f",
-    "desc": "The Media Presenter. Treats application assets like a museum exhibit, standardizing icon libraries and implementing gorgeous blurry-image placeholders for lazy-loaded media."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Pedant": {
     "name": "Restorer",
+    "emoji": "\ud83d\udee0\ufe0f",
+    "short_description": "The Reference Cleaner. Autonomously sweeps markup to find and purge orphaned presentation hooks like dead CSS classes, missing image links, and unused icon fonts.",
     "tier": "Common",
-    "icon": "\ud83d\udee0\ufe0f",
-    "desc": "The Reference Cleaner. Autonomously sweeps markup to find and purge orphaned presentation hooks like dead CSS classes, missing image links, and unused icon fonts."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Scavenger": {
     "name": "Purger",
+    "emoji": "\ud83d\uddd1\ufe0f",
+    "short_description": "A cascading deletion specialist. Demolishes orphaned components and immediately hunts down and eradicates the heavy ghost images and static assets they leave behind.",
     "tier": "Uncommon",
-    "icon": "\ud83d\uddd1\ufe0f",
-    "desc": "A cascading deletion specialist. Demolishes orphaned components and immediately hunts down and eradicates the heavy ghost images and static assets they leave behind."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Scribe": {
     "name": "Typesmith",
+    "emoji": "\ud83d\udd8b\ufe0f",
+    "short_description": "The Typographic Hierarch. Autonomously groups chaotic, hardcoded text sizing and weights, replacing them with a systematic, scalable typographic hierarchy.",
     "tier": "Common",
-    "icon": "\ud83d\udd8b\ufe0f",
-    "desc": "The Typographic Hierarch. Autonomously groups chaotic, hardcoded text sizing and weights, replacing them with a systematic, scalable typographic hierarchy."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Sentinel+": {
     "name": "Hazmat",
+    "emoji": "\u2623\ufe0f",
+    "short_description": "The Payload Purifier. Intercepts incoming user data payloads, injecting strict XSS escaping, SQL injection prevention, and Zod/Joi schema boundaries.",
     "tier": "Epic",
-    "icon": "\u2623\ufe0f",
-    "desc": "The Payload Purifier. Intercepts incoming user data payloads, injecting strict XSS escaping, SQL injection prevention, and Zod/Joi schema boundaries."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Untangler": {
     "name": "Press",
+    "emoji": "\ud83d\udddc\ufe0f",
+    "short_description": "The Visual Extractor. Autonomously extracts massive, unreadable blocks of raw visual media (inline SVGs, Base64 strings, embedded styles) into clean, adjacent files to flatten component logic.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udddc\ufe0f",
-    "desc": "The Visual Extractor. Autonomously extracts massive, unreadable blocks of raw visual media (inline SVGs, Base64 strings, embedded styles) into clean, adjacent files to flatten component logic."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Curator,Wordsmith": {
     "name": "Captionist",
+    "emoji": "\ud83c\udf9f\ufe0f",
+    "short_description": "An accessible payload specialist. Crushes static asset sizes while simultaneously rewriting their alt tags and ARIA labels for perfect semantic accessibility.",
     "tier": "Common",
-    "icon": "\ud83c\udf9f\ufe0f",
-    "desc": "An accessible payload specialist. Crushes static asset sizes while simultaneously rewriting their alt tags and ARIA labels for perfect semantic accessibility."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Herald": {
     "name": "Tower",
+    "emoji": "\ud83d\uddfc",
+    "short_description": "The Broadcast Centralizer. Autonomously hunts down fragmented outbound signals (isolated console logs, disparate telemetry trackers) and forces them through a single, centralized choke-point with uniform structural metadata.",
     "tier": "Uncommon",
-    "icon": "\ud83d\uddfc",
-    "desc": "The Broadcast Centralizer. Autonomously hunts down fragmented outbound signals (isolated console logs, disparate telemetry trackers) and forces them through a single, centralized choke-point with uniform structural metadata."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Inspector": {
     "name": "Mixologist",
+    "emoji": "\ud83c\udf78",
+    "short_description": "A precision extraction specialist. Combines scattered logic fragments into a perfectly balanced shared utility, then rigorously taste-tests it with 100% test coverage.",
     "tier": "Rare",
-    "icon": "\ud83c\udf78",
-    "desc": "A precision extraction specialist. Combines scattered logic fragments into a perfectly balanced shared utility, then rigorously taste-tests it with 100% test coverage."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Superintendent": {
     "name": "Janitor",
+    "emoji": "\ud83e\udea0",
+    "short_description": "The Maintenance Centralizer. Autonomously hunts down fragmented cleanup scripts, cache purges, and teardown commands scattered across the codebase, unifying them into a single, master execution manifest.",
     "tier": "Uncommon",
-    "icon": "\ud83e\udea0",
-    "desc": "The Maintenance Centralizer. Autonomously hunts down fragmented cleanup scripts, cache purges, and teardown commands scattered across the codebase, unifying them into a single, master execution manifest."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Medic": {
     "name": "Quarantine",
+    "emoji": "\ud83c\udfd5\ufe0f",
+    "short_description": "A safe centralization specialist. Extracts volatile, scattered logic into a single shared utility and wraps it in an impenetrable error-handling boundary.",
     "tier": "Epic",
-    "icon": "\ud83c\udfd5\ufe0f",
-    "desc": "A safe centralization specialist. Extracts volatile, scattered logic into a single shared utility and wraps it in an impenetrable error-handling boundary."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Modernizer": {
     "name": "Transmuter",
+    "emoji": "\ud83d\udd04",
+    "short_description": "The Paradigm Migrator. Executes global architectural shifts (e.g., Classes to Hooks) by autonomously rewriting legacy files one-by-one to match the modern repository standard.",
     "tier": "Epic",
-    "icon": "\ud83d\udd04",
-    "desc": "The Paradigm Migrator. Executes global architectural shifts (e.g., Classes to Hooks) by autonomously rewriting legacy files one-by-one to match the modern repository standard."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Navigator": {
     "name": "PathCentralizer",
+    "emoji": "\ud83c\udf10",
+    "short_description": "The Route Extractor. Autonomously hunts down hardcoded API endpoints, local file paths, and URL strings scattered across scripts, extracting them into a centralized configuration map.",
     "tier": "Uncommon",
-    "icon": "\ud83c\udf10",
-    "desc": "The Route Extractor. Autonomously hunts down hardcoded API endpoints, local file paths, and URL strings scattered across scripts, extracting them into a centralized configuration map."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Palette+": {
     "name": "Chameleon",
+    "emoji": "\ud83e\udd8e",
+    "short_description": "The State Mutator. Continuously audits UI components and mutates them to handle every possible user interaction, injecting accessible hover, focus-visible, and disabled states.",
     "tier": "Common",
-    "icon": "\ud83e\udd8e",
-    "desc": "The State Mutator. Continuously audits UI components and mutates them to handle every possible user interaction, injecting accessible hover, focus-visible, and disabled states."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Pedant": {
     "name": "Quartermaster",
+    "emoji": "\ud83d\udce6",
+    "short_description": "The Centralization Engine. Sweeps the repository for identical magic strings and numbers duplicated across multiple files, extracting them into strictly-typed global constants.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udce6",
-    "desc": "The Centralization Engine. Sweeps the repository for identical magic strings and numbers duplicated across multiple files, extracting them into strictly-typed global constants."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Scavenger": {
     "name": "Void",
+    "emoji": "\ud83d\udd73\ufe0f",
+    "short_description": "An anomalous consolidation specialist. Extracts duplicated patterns into a single shared utility, then completely physically purges the original redundant files from the repository.",
     "tier": "Legendary",
-    "icon": "\ud83d\udd73\ufe0f",
-    "desc": "An anomalous consolidation specialist. Extracts duplicated patterns into a single shared utility, then completely physically purges the original redundant files from the repository."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Scribe": {
     "name": "Oracle",
+    "emoji": "\ud83e\uddff",
+    "short_description": "A documentation and centralization specialist. Centralizes duplicated logic into a single point of truth and drafts a strict, binding JSDoc contract for all future consumers.",
     "tier": "Uncommon",
-    "icon": "\ud83e\uddff",
-    "desc": "A documentation and centralization specialist. Centralizes duplicated logic into a single point of truth and drafts a strict, binding JSDoc contract for all future consumers."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Sentinel+": {
     "name": "Gatekeeper",
+    "emoji": "\u26e9\ufe0f",
+    "short_description": "The Policy Centralizer. Autonomously hunts for fragmented, hardcoded authorization logic scattered across UI components and routes, extracting them into a single, inescapable global policy engine.",
     "tier": "Epic",
-    "icon": "\u26e9\ufe0f",
-    "desc": "The Policy Centralizer. Autonomously hunts for fragmented, hardcoded authorization logic scattered across UI components and routes, extracting them into a single, inescapable global policy engine."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Untangler": {
     "name": "Weaver",
+    "emoji": "\ud83e\uddf5",
+    "short_description": "A logic restructuring specialist. Extracts duplicated code into a single shared utility while simultaneously flattening its deeply nested execution paths into pristine guard clauses.",
     "tier": "Rare",
-    "icon": "\ud83e\uddf5",
-    "desc": "A logic restructuring specialist. Extracts duplicated code into a single shared utility while simultaneously flattening its deeply nested execution paths into pristine guard clauses."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Helix,Wordsmith": {
     "name": "Standardizer",
+    "emoji": "\ud83d\udcdd",
+    "short_description": "The Copy Centralizer. Autonomously hunts for scattered, hardcoded user-facing text\u2014both fragmented microcopy and massive duplicated macro-text blocks\u2014extracting them into centralized dictionaries and shared templates.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udcdd",
-    "desc": "The Copy Centralizer. Autonomously hunts for scattered, hardcoded user-facing text\u2014both fragmented microcopy and massive duplicated macro-text blocks\u2014extracting them into centralized dictionaries and shared templates."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Herald,Inspector": {
     "name": "Decoder",
+    "emoji": "\ud83d\udcdf",
+    "short_description": "The CI Whisperer. Intercepts broken test suites and translates massive, unreadable terminal stack traces into clear, actionable Markdown reports for developers.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udcdf",
-    "desc": "The CI Whisperer. Intercepts broken test suites and translates massive, unreadable terminal stack traces into clear, actionable Markdown reports for developers."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Herald,Superintendent": {
     "name": "Upgrader",
+    "emoji": "\ud83d\udcc8",
+    "short_description": "The Dependency Broadcaster. When dependencies are bumped, fetches external changelogs and broadcasts a summary into the PR of exactly what the team needs to know about the new version.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udcc8",
-    "desc": "The Dependency Broadcaster. When dependencies are bumped, fetches external changelogs and broadcasts a summary into the PR of exactly what the team needs to know about the new version."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Herald,Medic": {
     "name": "Press Secretary",
+    "emoji": "\ud83d\udc54",
+    "short_description": "The Incident Communicator. Translates emergency hotfixes and revert PRs into calm, professional Status Page updates and public incident post-mortems.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udc54",
-    "desc": "The Incident Communicator. Translates emergency hotfixes and revert PRs into calm, professional Status Page updates and public incident post-mortems."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Herald,Modernizer": {
     "name": "Prophet",
+    "emoji": "\ud83d\udd2d",
+    "short_description": "The Deprecation Forecaster. Hunts for @deprecated code, injects runtime console warnings, and automatically generates step-by-step migration guides for developers.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udd2d",
-    "desc": "The Deprecation Forecaster. Hunts for @deprecated code, injects runtime console warnings, and automatically generates step-by-step migration guides for developers."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Herald,Navigator": {
     "name": "Strategist",
+    "emoji": "\u265f\ufe0f",
+    "short_description": "A release and roadmap synchronizer. Updates the internal roadmap to mark features complete and instantly broadcasts the achievement via a perfectly aligned public changelog.",
     "tier": "Uncommon",
-    "icon": "\u265f\ufe0f",
-    "desc": "A release and roadmap synchronizer. Updates the internal roadmap to mark features complete and instantly broadcasts the achievement via a perfectly aligned public changelog."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Herald,Palette+": {
     "name": "Publisher",
+    "emoji": "\ud83d\udcf0",
+    "short_description": "The Viewport Specialist. Sweeps the application for fixed widths and layout breaks, injecting mobile-first responsive utilities to ensure perfect rendering across all devices.",
     "tier": "Common",
-    "icon": "\ud83d\udcf0",
-    "desc": "The Viewport Specialist. Sweeps the application for fixed widths and layout breaks, injecting mobile-first responsive utilities to ensure perfect rendering across all devices."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Herald,Pedant": {
     "name": "Whistleblower",
+    "emoji": "\ud83d\udcef",
+    "short_description": "The Syntax Shamer. Intercepts CI linting and TypeScript failures, broadcasting strict, pedantic Markdown instructions directly into the codebase or PRs detailing exactly how to fix the violations.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udcef",
-    "desc": "The Syntax Shamer. Intercepts CI linting and TypeScript failures, broadcasting strict, pedantic Markdown instructions directly into the codebase or PRs detailing exactly how to fix the violations."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Herald,Scavenger": {
     "name": "Undertaker",
+    "emoji": "\ud83e\udea6",
+    "short_description": "The Deletion Broadcaster. Intercepts PRs where major code or APIs are purged and automatically drafts public release-note warnings detailing exactly what was permanently removed.",
     "tier": "Uncommon",
-    "icon": "\ud83e\udea6",
-    "desc": "The Deletion Broadcaster. Intercepts PRs where major code or APIs are purged and automatically drafts public release-note warnings detailing exactly what was permanently removed."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Herald,Scribe": {
     "name": "Historian",
+    "emoji": "\u23f3",
+    "short_description": "A temporal archivist. Generates public changelogs for new releases and instantly embeds that historical context into the shipped functions via inline JSDoc.",
     "tier": "Uncommon",
-    "icon": "\u23f3",
-    "desc": "A temporal archivist. Generates public changelogs for new releases and instantly embeds that historical context into the shipped functions via inline JSDoc."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Herald,Sentinel+": {
     "name": "Siren",
+    "emoji": "\ud83d\udd0a",
+    "short_description": "The Vulnerability Broadcaster. Drafts strict, compliance-ready security advisories and updates SECURITY.md policies when critical patches are merged.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udd0a",
-    "desc": "The Vulnerability Broadcaster. Drafts strict, compliance-ready security advisories and updates SECURITY.md policies when critical patches are merged."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Herald,Untangler": {
     "name": "Limiter",
+    "emoji": "\ud83c\udf9a\ufe0f",
+    "short_description": "The Spike Regulator. Autonomously injects debouncing, rate-limiting, and batch-chunking into hyper-active event listeners, rapid-fire API scripts, and massive synchronous arrays to prevent execution lockups.",
     "tier": "Rare",
-    "icon": "\ud83c\udf9a\ufe0f",
-    "desc": "The Spike Regulator. Autonomously injects debouncing, rate-limiting, and batch-chunking into hyper-active event listeners, rapid-fire API scripts, and massive synchronous arrays to prevent execution lockups."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Herald,Wordsmith": {
     "name": "Orator",
+    "emoji": "\ud83d\udce2",
+    "short_description": "The Error Copywriter. Autonomously hunts down lazy, unhelpful error throws, deducing the logic context to expand them into eloquent, actionable, and variable-rich broadcasts.",
     "tier": "Common",
-    "icon": "\ud83d\udce2",
-    "desc": "The Error Copywriter. Autonomously hunts down lazy, unhelpful error throws, deducing the logic context to expand them into eloquent, actionable, and variable-rich broadcasts."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Inspector,Inspector": {
     "name": "Adversary",
+    "emoji": "\ud83e\udd3a",
+    "short_description": "The Mutation Engine. A paranoid QA agent that actively injects logical bugs into working code to hunt down fraudulent tests and false positives, ensuring the suite actually fails when it should.",
     "tier": "Legendary",
-    "icon": "\ud83e\udd3a",
-    "desc": "The Mutation Engine. A paranoid QA agent that actively injects logical bugs into working code to hunt down fraudulent tests and false positives, ensuring the suite actually fails when it should."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Inspector,Superintendent": {
     "name": "Safety Inspector",
+    "emoji": "\ud83e\uddba",
+    "short_description": "A dependency QA specialist. Bumps outdated package versions and immediately secures the affected integration paths with strict regression tests.",
     "tier": "Rare",
-    "icon": "\ud83e\uddba",
-    "desc": "A dependency QA specialist. Bumps outdated package versions and immediately secures the affected integration paths with strict regression tests."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Inspector,Medic": {
     "name": "Guardian",
+    "emoji": "\u26d1\ufe0f",
+    "short_description": "A battle-tested protector. Wraps fragile code paths in strict error boundaries and immediately writes tests that deliberately assault those boundaries to prove they hold.",
     "tier": "Rare",
-    "icon": "\u26d1\ufe0f",
-    "desc": "A battle-tested protector. Wraps fragile code paths in strict error boundaries and immediately writes tests that deliberately assault those boundaries to prove they hold."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Inspector,Modernizer": {
     "name": "Assessor",
+    "emoji": "\ud83e\uddd1\u200d\ud83c\udfeb",
+    "short_description": "The Test Methodology Upgrader. Reviews the efficacy of the test suite, evaluates legacy tests against modern rubrics, and rewrites them to meet modern behavioral standards.",
     "tier": "Rare",
-    "icon": "\ud83e\uddd1\u200d\ud83c\udfeb",
-    "desc": "The Test Methodology Upgrader. Reviews the efficacy of the test suite, evaluates legacy tests against modern rubrics, and rewrites them to meet modern behavioral standards."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Inspector,Navigator": {
     "name": "Autopilot",
+    "emoji": "\u2708\ufe0f",
+    "short_description": "The Journey Tester. Reads core routing logic and automatically generates Playwright or Cypress End-to-End tests to drive the browser through critical multi-page workflows.",
     "tier": "Rare",
-    "icon": "\u2708\ufe0f",
-    "desc": "The Journey Tester. Reads core routing logic and automatically generates Playwright or Cypress End-to-End tests to drive the browser through critical multi-page workflows."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Inspector,Palette+": {
     "name": "Jeweler",
+    "emoji": "\ud83d\udc8e",
+    "short_description": "A visual interaction QA specialist. Polishes interactive UI components with focus/accessibility states, then places them under a loupe to write rigorous interaction tests.",
     "tier": "Rare",
-    "icon": "\ud83d\udc8e",
-    "desc": "A visual interaction QA specialist. Polishes interactive UI components with focus/accessibility states, then places them under a loupe to write rigorous interaction tests."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Inspector,Pedant": {
     "name": "Auditor",
+    "emoji": "\ud83d\udd0e",
+    "short_description": "A quality assurance inspector. Standardizes sloppy variables into strictly typed constants and immediately locks the pristine logic in place with a robust test suite.",
     "tier": "Rare",
-    "icon": "\ud83d\udd0e",
-    "desc": "A quality assurance inspector. Standardizes sloppy variables into strictly typed constants and immediately locks the pristine logic in place with a robust test suite."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Inspector,Scavenger": {
     "name": "Coroner",
+    "emoji": "\ud83e\ude7b",
+    "short_description": "A surgical investigator of the dead. Proves code is truly abandoned before permanently excising both the source files and the ghost tests keeping them alive.",
     "tier": "Rare",
-    "icon": "\ud83e\ude7b",
-    "desc": "A surgical investigator of the dead. Proves code is truly abandoned before permanently excising both the source files and the ghost tests keeping them alive."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Inspector,Scribe": {
     "name": "Interrogator",
+    "emoji": "\ud83d\udd26",
+    "short_description": "The State Validator. Sweeps weak unit tests that lack meaningful assertions, injecting deep, rigorous checks against component state, DOM interactions, and accessibility.",
     "tier": "Rare",
-    "icon": "\ud83d\udd26",
-    "desc": "The State Validator. Sweeps weak unit tests that lack meaningful assertions, injecting deep, rigorous checks against component state, DOM interactions, and accessibility."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Inspector,Sentinel+": {
     "name": "Stress Tester",
+    "emoji": "\ud83e\udde8",
+    "short_description": "A security assurance specialist. Implements strict validation schemas at trust boundaries and writes brutal tests that deliberately inject malicious data to bypass them.",
     "tier": "Epic",
-    "icon": "\ud83e\udde8",
-    "desc": "A security assurance specialist. Implements strict validation schemas at trust boundaries and writes brutal tests that deliberately inject malicious data to bypass them."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Inspector,Untangler": {
     "name": "Sandboxer",
+    "emoji": "\ud83c\udfdc\ufe0f",
+    "short_description": "The Isolation Specialist. Builds perfectly flat, isolated execution environments by untangling shared global state and nested setups so test cases never interact or break each other.",
     "tier": "Rare",
-    "icon": "\ud83c\udfdc\ufe0f",
-    "desc": "The Isolation Specialist. Builds perfectly flat, isolated execution environments by untangling shared global state and nested setups so test cases never interact or break each other."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Inspector,Wordsmith": {
     "name": "Narrator",
+    "emoji": "\ud83c\udf99\ufe0f",
+    "short_description": "The Spec Translator. Analyzes actual test assertions and rewrites vague test names into crystal clear, human-readable specifications, turning test output into living documentation.",
     "tier": "Uncommon",
-    "icon": "\ud83c\udf99\ufe0f",
-    "desc": "The Spec Translator. Analyzes actual test assertions and rewrites vague test names into crystal clear, human-readable specifications, turning test output into living documentation."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Superintendent,Superintendent": {
     "name": "Vibe Check",
+    "emoji": "\ud83e\udea9",
+    "short_description": "The Synthetic Detoxifier. Leverages fluid LLM reasoning to hunt down and purge the specific technical debt generated by AI: hallucinated dependencies, abandoned logic sludge, and conversational artifacts.",
     "tier": "Legendary",
-    "icon": "\ud83e\udea9",
-    "desc": "The Synthetic Detoxifier. Leverages fluid LLM reasoning to hunt down and purge the specific technical debt generated by AI: hallucinated dependencies, abandoned logic sludge, and conversational artifacts."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Medic,Superintendent": {
     "name": "Sanitizer",
+    "emoji": "\ud83e\uddf4",
+    "short_description": "The Memory Sweeper. Autonomously hunts for unclosed database connections, orphaned event listeners, and dangling loops, injecting explicit cleanup logic to prevent Out-Of-Memory crashes.",
     "tier": "Epic",
-    "icon": "\ud83e\uddf4",
-    "desc": "The Memory Sweeper. Autonomously hunts for unclosed database connections, orphaned event listeners, and dangling loops, injecting explicit cleanup logic to prevent Out-Of-Memory crashes."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Modernizer,Superintendent": {
     "name": "Synchronizer",
+    "emoji": "\ud83d\udd01",
+    "short_description": "A dependency migration specialist. Bumps a major package version and traverses the AST to migrate all deprecated syntax to the new API in a single evolutionary pass.",
     "tier": "Rare",
-    "icon": "\ud83d\udd01",
-    "desc": "A dependency migration specialist. Bumps a major package version and traverses the AST to migrate all deprecated syntax to the new API in a single evolutionary pass."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Navigator,Superintendent": {
     "name": "Redirector",
+    "emoji": "\ud83d\udd00",
+    "short_description": "The 404 Sweeper. Sweeps the application for broken internal links and maintains the central routing configuration to safely redirect legacy traffic to active pages.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udd00",
-    "desc": "The 404 Sweeper. Sweeps the application for broken internal links and maintains the central routing configuration to safely redirect legacy traffic to active pages."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Palette+,Superintendent": {
     "name": "Upholsterer",
+    "emoji": "\ud83d\udecb\ufe0f",
+    "short_description": "The UI Standardizer. Safely bumps visual dependencies and sweeps the codebase to standardize fragmented component props, ensuring UI hygiene remains perfectly consistent.",
     "tier": "Common",
-    "icon": "\ud83d\udecb\ufe0f",
-    "desc": "The UI Standardizer. Safely bumps visual dependencies and sweeps the codebase to standardize fragmented component props, ensuring UI hygiene remains perfectly consistent."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Pedant,Superintendent": {
     "name": "Ratchet",
+    "emoji": "\ud83d\udd29",
+    "short_description": "The Strictness Enforcer. Sweeps the codebase for ESLint or TypeScript rules set to 'warn', physically fixes the underlying code violations, and aggressively upgrades the configuration rule to 'error'.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udd29",
-    "desc": "The Strictness Enforcer. Sweeps the codebase for ESLint or TypeScript rules set to 'warn', physically fixes the underlying code violations, and aggressively upgrades the configuration rule to 'error'."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Scavenger,Superintendent": {
     "name": "Steward",
+    "emoji": "\ud83e\uddfd",
+    "short_description": "A meticulous caretaker of dependencies. Bumps foundational libraries to their modern versions, then instantly sweeps the codebase to surgically delete the orphaned polyfills and legacy compatibility shims left behind.",
     "tier": "Uncommon",
-    "icon": "\ud83e\uddfd",
-    "desc": "A meticulous caretaker of dependencies. Bumps foundational libraries to their modern versions, then instantly sweeps the codebase to surgically delete the orphaned polyfills and legacy compatibility shims left behind."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Scribe,Superintendent": {
     "name": "Revisionist",
+    "emoji": "\ud83e\uddfe",
+    "short_description": "The Lie Detector. Autonomously sweeps the codebase hunting for 'lying comments' that contradict the runtime reality, rewriting the documentation to match the actual code.",
     "tier": "Uncommon",
-    "icon": "\ud83e\uddfe",
-    "desc": "The Lie Detector. Autonomously sweeps the codebase hunting for 'lying comments' that contradict the runtime reality, rewriting the documentation to match the actual code."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Sentinel+,Superintendent": {
     "name": "Checkpoint",
+    "emoji": "\ud83d\udea7",
+    "short_description": "A rigid security enforcer at the gates of maintenance. Safely bumps NPM dependencies and immediately updates the validation schemas guarding their APIs.",
     "tier": "Rare",
-    "icon": "\ud83d\udea7",
-    "desc": "A rigid security enforcer at the gates of maintenance. Safely bumps NPM dependencies and immediately updates the validation schemas guarding their APIs."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Superintendent,Untangler": {
     "name": "Pruner",
+    "emoji": "\ud83e\udeb4",
+    "short_description": "The Dead Code Destroyer. Evaluates AST control flows to hunt down and surgically delete mathematically impossible branches, unreachable code, and orphaned unused exports.",
     "tier": "Rare",
-    "icon": "\ud83e\udeb4",
-    "desc": "The Dead Code Destroyer. Evaluates AST control flows to hunt down and surgically delete mathematically impossible branches, unreachable code, and orphaned unused exports."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Superintendent,Wordsmith": {
     "name": "Spellchecker",
+    "emoji": "\ud83d\udd24",
+    "short_description": "The Typo Eradicator. Autonomously hunts for spelling errors across the entire AST (variables, JSON keys, exports) and safely executes repository-wide refactors to fix them without breaking bindings.",
     "tier": "Common",
-    "icon": "\ud83d\udd24",
-    "desc": "The Typo Eradicator. Autonomously hunts for spelling errors across the entire AST (variables, JSON keys, exports) and safely executes repository-wide refactors to fix them without breaking bindings."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Medic,Modernizer": {
     "name": "Inoculator",
+    "emoji": "\ud83d\udc89",
+    "short_description": "A modernization and resilience specialist. Upgrades legacy code to modern asynchronous paradigms and explicitly treats the new failure modes it introduces.",
     "tier": "Rare",
-    "icon": "\ud83d\udc89",
-    "desc": "A modernization and resilience specialist. Upgrades legacy code to modern asynchronous paradigms and explicitly treats the new failure modes it introduces."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Medic,Navigator": {
     "name": "Circuit Breaker",
+    "emoji": "\ud83d\udd0c",
+    "short_description": "The Fallback Strategist. Sweeps routing layers and fragile API calls, wrapping them in Error Boundaries and fallback states to ensure the application degrades gracefully instead of crashing.",
     "tier": "Epic",
-    "icon": "\ud83d\udd0c",
-    "desc": "The Fallback Strategist. Sweeps routing layers and fragile API calls, wrapping them in Error Boundaries and fallback states to ensure the application degrades gracefully instead of crashing."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Medic,Palette+": {
     "name": "Placebo",
+    "emoji": "\ud83d\udc8a",
+    "short_description": "A psychological performance specialist. Hardens fragile asynchronous requests with strict error boundaries while masking their latency with optimistic UI skeletons.",
     "tier": "Common",
-    "icon": "\ud83d\udc8a",
-    "desc": "A psychological performance specialist. Hardens fragile asynchronous requests with strict error boundaries while masking their latency with optimistic UI skeletons."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Medic,Pedant": {
     "name": "Toxicologist",
+    "emoji": "\ud83e\uddea",
+    "short_description": "The Catch-Block Enforcer. Autonomously hunts for swallowed errors and empty catch blocks, enforcing strict exception-handling rules and telemetry routing to eliminate silent failures.",
     "tier": "Rare",
-    "icon": "\ud83e\uddea",
-    "desc": "The Catch-Block Enforcer. Autonomously hunts for swallowed errors and empty catch blocks, enforcing strict exception-handling rules and telemetry routing to eliminate silent failures."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Medic,Scavenger": {
     "name": "Amputator",
+    "emoji": "\ud83e\ude9a",
+    "short_description": "The Dead Fallback Purger. Sweeps the codebase to surgically remove legacy retry-loops, fallback UI states, and circuit breakers that were built for 3rd-party services the application no longer uses.",
     "tier": "Rare",
-    "icon": "\ud83e\ude9a",
-    "desc": "The Dead Fallback Purger. Sweeps the codebase to surgically remove legacy retry-loops, fallback UI states, and circuit breakers that were built for 3rd-party services the application no longer uses."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Medic,Scribe": {
     "name": "Runbooker",
+    "emoji": "\ud83d\udcd3",
+    "short_description": "The Recovery Documentarian. Sweeps generic catch blocks, injecting structured logging and inline JSDoc 'Runbooks' that tell future developers exactly how to fix the specific failure.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udcd3",
-    "desc": "The Recovery Documentarian. Sweeps generic catch blocks, injecting structured logging and inline JSDoc 'Runbooks' that tell future developers exactly how to fix the specific failure."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Medic,Sentinel+": {
     "name": "First Responder",
+    "emoji": "\ud83d\udea8",
+    "short_description": "An elite crisis manager. Secures external API boundaries with strict schema validation and wraps the rejection paths in graceful fallbacks and telemetry.",
     "tier": "Epic",
-    "icon": "\ud83d\udea8",
-    "desc": "An elite crisis manager. Secures external API boundaries with strict schema validation and wraps the rejection paths in graceful fallbacks and telemetry."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Medic,Untangler": {
     "name": "Transfusion",
+    "emoji": "\ud83e\ude78",
+    "short_description": "The State Purifier. Autonomously sweeps codebases hunting for functions suffering from implicit, dirty global state, and purifies them by refactoring the function signatures to explicitly require those dependencies.",
     "tier": "Rare",
-    "icon": "\ud83e\ude78",
-    "desc": "The State Purifier. Autonomously sweeps codebases hunting for functions suffering from implicit, dirty global state, and purifies them by refactoring the function signatures to explicitly require those dependencies."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Medic,Wordsmith": {
     "name": "Diplomat",
+    "emoji": "\ud83d\udd4a\ufe0f",
+    "short_description": "The Empathy Translator. Rewrites terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy.",
     "tier": "Common",
-    "icon": "\ud83d\udd4a\ufe0f",
-    "desc": "The Empathy Translator. Rewrites terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Modernizer,Navigator": {
     "name": "Helmsman",
+    "emoji": "\u26f5",
+    "short_description": "The Routing Upgrader. Autonomously parses legacy navigation patterns, raw anchor tags, and deprecated routers, modernizing them into native structural equivalents across the entire architecture.",
     "tier": "Rare",
-    "icon": "\u26f5",
-    "desc": "The Routing Upgrader. Autonomously parses legacy navigation patterns, raw anchor tags, and deprecated routers, modernizing them into native structural equivalents across the entire architecture."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Modernizer,Palette+": {
     "name": "Stylist",
+    "emoji": "\ud83d\udc85",
+    "short_description": "The UI Modernizer. Brings outdated styling into the modern era by migrating legacy CSS to Tailwind and implementing CSS Variables for seamless Dark Mode support.",
     "tier": "Common",
-    "icon": "\ud83d\udc85",
-    "desc": "The UI Modernizer. Brings outdated styling into the modern era by migrating legacy CSS to Tailwind and implementing CSS Variables for seamless Dark Mode support."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Modernizer,Pedant": {
     "name": "Prefect",
+    "emoji": "\ud83c\udfc5",
+    "short_description": "The Constraint Enforcer. Autonomously reads legacy, header-less files, deduces their execution era by analyzing syntax, and injects strict headers like '#Requires' or '\"use strict\"'.",
     "tier": "Rare",
-    "icon": "\ud83c\udfc5",
-    "desc": "The Constraint Enforcer. Autonomously reads legacy, header-less files, deduces their execution era by analyzing syntax, and injects strict headers like '#Requires' or '\"use strict\"'."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Modernizer,Scavenger": {
     "name": "Liquidator",
+    "emoji": "\ud83d\udca5",
+    "short_description": "A destructive migration specialist. Migrates legacy consumers to modern native APIs and ruthlessly deletes the old polyfills and shim files in one pass.",
     "tier": "Epic",
-    "icon": "\ud83d\udca5",
-    "desc": "A destructive migration specialist. Migrates legacy consumers to modern native APIs and ruthlessly deletes the old polyfills and shim files in one pass."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Modernizer,Scribe": {
     "name": "Transition Manager",
+    "emoji": "\ud83c\udf09",
+    "short_description": "A legacy migration architect. Refactors outdated architectural paradigms and immediately writes detailed inline JSDoc to explain the paradigm shift to the team.",
     "tier": "Uncommon",
-    "icon": "\ud83c\udf09",
-    "desc": "A legacy migration architect. Refactors outdated architectural paradigms and immediately writes detailed inline JSDoc to explain the paradigm shift to the team."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Modernizer,Sentinel+": {
     "name": "Retrofitter",
+    "emoji": "\ud83d\udd27",
+    "short_description": "A structural and syntactic migration specialist. Moves outdated files into modern domain-driven folders while simultaneously upgrading their code to ES6+ standards.",
     "tier": "Rare",
-    "icon": "\ud83d\udd27",
-    "desc": "A structural and syntactic migration specialist. Moves outdated files into modern domain-driven folders while simultaneously upgrading their code to ES6+ standards."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Modernizer,Untangler": {
     "name": "Refiner",
+    "emoji": "\ud83d\udee2\ufe0f",
+    "short_description": "A structural modernization specialist. Distills messy, nested callback spaghetti into flat, modern async/await execution paths in one continuous operation.",
     "tier": "Rare",
-    "icon": "\ud83d\udee2\ufe0f",
-    "desc": "A structural modernization specialist. Distills messy, nested callback spaghetti into flat, modern async/await execution paths in one continuous operation."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Modernizer,Wordsmith": {
     "name": "Interpolator",
+    "emoji": "\ud83d\udcac",
+    "short_description": "The Syntax Upgrader. Autonomously parses the AST to hunt for archaic string concatenations and legacy formatters, upgrading them to modern, highly readable Template Literals.",
     "tier": "Common",
-    "icon": "\ud83d\udcac",
-    "desc": "The Syntax Upgrader. Autonomously parses the AST to hunt for archaic string concatenations and legacy formatters, upgrading them to modern, highly readable Template Literals."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Navigator,Palette+": {
     "name": "Wayfinder",
+    "emoji": "\ud83e\udea7",
+    "short_description": "The Onboarding & Routing Specialist. Solves 'Lost User Syndrome' by building intuitive stepper components, breadcrumbs, and empty-state guided tours.",
     "tier": "Common",
-    "icon": "\ud83e\udea7",
-    "desc": "The Onboarding & Routing Specialist. Solves 'Lost User Syndrome' by building intuitive stepper components, breadcrumbs, and empty-state guided tours."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Navigator,Pedant": {
     "name": "REST Enforcer",
+    "emoji": "\ud83d\udea6",
+    "short_description": "The API Standardizer. Sweeps backend routing controllers to enforce strict, pedantic RESTful or GraphQL naming conventions across all endpoints.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udea6",
-    "desc": "The API Standardizer. Sweeps backend routing controllers to enforce strict, pedantic RESTful or GraphQL naming conventions across all endpoints."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Navigator,Scavenger": {
     "name": "Dead-Ender",
+    "emoji": "\ud83d\uded1",
+    "short_description": "The Route Purger. Sweeps the routing tree and analytics configurations to find 'Ghost Routes' (pages that exist but have zero internal links pointing to them) and safely deletes them.",
     "tier": "Uncommon",
-    "icon": "\ud83d\uded1",
-    "desc": "The Route Purger. Sweeps the routing tree and analytics configurations to find 'Ghost Routes' (pages that exist but have zero internal links pointing to them) and safely deletes them."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Navigator,Scribe": {
     "name": "Chronicler",
+    "emoji": "\ud83d\udcdc",
+    "short_description": "A strategic context historian. Checks features off the roadmap and immediately cements their architectural intent into the codebase via explanatory JSDoc.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udcdc",
-    "desc": "A strategic context historian. Checks features off the roadmap and immediately cements their architectural intent into the codebase via explanatory JSDoc."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Navigator,Sentinel+": {
     "name": "Customs",
+    "emoji": "\ud83d\udec3",
+    "short_description": "The RBAC Enforcer. Sweeps the application's routing layer, wrapping vulnerable pages and API endpoints in strict Role-Based Access Control and authentication guards.",
     "tier": "Epic",
-    "icon": "\ud83d\udec3",
-    "desc": "The RBAC Enforcer. Sweeps the application's routing layer, wrapping vulnerable pages and API endpoints in strict Role-Based Access Control and authentication guards."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Navigator,Untangler": {
     "name": "Pathfinder",
+    "emoji": "\ud83e\udd7e",
+    "short_description": "The Friction Eradicator. Analyzes clicks and steps required to complete a workflow, ruthlessly flattening routing logic and removing dead ends.",
     "tier": "Rare",
-    "icon": "\ud83e\udd7e",
-    "desc": "The Friction Eradicator. Analyzes clicks and steps required to complete a workflow, ruthlessly flattening routing logic and removing dead ends."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Navigator,Wordsmith": {
     "name": "Script Supervisor",
+    "emoji": "\ud83c\udfac",
+    "short_description": "A roadmap lexicon enforcer. Reads the official product strategy and ruthlessly enforces its exact terminology across every user-facing string in the UI.",
     "tier": "Common",
-    "icon": "\ud83c\udfac",
-    "desc": "A roadmap lexicon enforcer. Reads the official product strategy and ruthlessly enforces its exact terminology across every user-facing string in the UI."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Palette+,Pedant": {
     "name": "Typesetter",
+    "emoji": "\ud83d\udd20",
+    "short_description": "The Pixel Perfectionist. Enforces visual rhythm at the code level, hunting down rogue inline margins to enforce strict spacing scales and WCAG contrast ratios.",
     "tier": "Common",
-    "icon": "\ud83d\udd20",
-    "desc": "The Pixel Perfectionist. Enforces visual rhythm at the code level, hunting down rogue inline margins to enforce strict spacing scales and WCAG contrast ratios."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Palette+,Scavenger": {
     "name": "Minimalist",
+    "emoji": "\u2b1c",
+    "short_description": "The Visual Purger. Ruthlessly hunts down and deletes orphaned CSS classes, outdated layout wrappers, and dead UI components disconnected from the routing tree.",
     "tier": "Common",
-    "icon": "\u2b1c",
-    "desc": "The Visual Purger. Ruthlessly hunts down and deletes orphaned CSS classes, outdated layout wrappers, and dead UI components disconnected from the routing tree."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Palette+,Scribe": {
     "name": "Calligrapher",
+    "emoji": "\ud83e\udeb6",
+    "short_description": "The Token Typist. Locks down the design system by converting loose string props into strict TypeScript literal unions and continuously syncing them with CSS variables.",
     "tier": "Common",
-    "icon": "\ud83e\udeb6",
-    "desc": "The Token Typist. Locks down the design system by converting loose string props into strict TypeScript literal unions and continuously syncing them with CSS variables."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Palette+,Sentinel+": {
     "name": "Warden",
+    "emoji": "\ud83d\udd10",
+    "short_description": "The Trust Designer. Bridges security and empathy by designing frictionless authentication flows, interactive password meters, and clear permission dialogues.",
     "tier": "Common",
-    "icon": "\ud83d\udd10",
-    "desc": "The Trust Designer. Bridges security and empathy by designing frictionless authentication flows, interactive password meters, and clear permission dialogues."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Palette+,Untangler": {
     "name": "Streamliner",
+    "emoji": "\u26f7\ufe0f",
+    "short_description": "The Cognitive Load Reducer. Takes massive, intimidating workflows and breaks them down using progressive disclosure and clean, chunked UI layouts.",
     "tier": "Common",
-    "icon": "\u26f7\ufe0f",
-    "desc": "The Cognitive Load Reducer. Takes massive, intimidating workflows and breaks them down using progressive disclosure and clean, chunked UI layouts."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Palette+,Wordsmith": {
     "name": "Virtuoso",
+    "emoji": "\ud83c\udfad",
+    "short_description": "An artisan of interface design. Designs flawless visual states (hover, loading, error) and pairs them with highly empathetic, active-voice microcopy.",
     "tier": "Common",
-    "icon": "\ud83c\udfad",
-    "desc": "An artisan of interface design. Designs flawless visual states (hover, loading, error) and pairs them with highly empathetic, active-voice microcopy."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Pedant,Scavenger": {
     "name": "Shredder",
+    "emoji": "\ud83d\udce0",
+    "short_description": "The Graveyard Destroyer. Sweeps the codebase for commented-out code and ruthlessly deletes any block of unused code that has been sitting untouched for more than 30 days.",
     "tier": "Common",
-    "icon": "\ud83d\udce0",
-    "desc": "The Graveyard Destroyer. Sweeps the codebase for commented-out code and ruthlessly deletes any block of unused code that has been sitting untouched for more than 30 days."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Pedant,Scribe": {
     "name": "Glossary",
+    "emoji": "\ud83d\udcd6",
+    "short_description": "The Domain Taxonomist. Autonomously sweeps the entire type system, cross-references domain logic, and injects pedantic, strict semantic definitions to generate global Data Dictionaries.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udcd6",
-    "desc": "The Domain Taxonomist. Autonomously sweeps the entire type system, cross-references domain logic, and injects pedantic, strict semantic definitions to generate global Data Dictionaries."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Pedant,Sentinel+": {
     "name": "Regulator",
+    "emoji": "\ud83d\udec2",
+    "short_description": "A federal compliance officer for the codebase. Extracts illegal, hardcoded magic numbers into global constants and enforces them across all security schemas.",
     "tier": "Epic",
-    "icon": "\ud83d\udec2",
-    "desc": "A federal compliance officer for the codebase. Extracts illegal, hardcoded magic numbers into global constants and enforces them across all security schemas."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Pedant,Untangler": {
     "name": "Systematizer",
+    "emoji": "\ud83d\uddc4\ufe0f",
+    "short_description": "The Logic Declutterer. Autonomously sweeps into chaotic, deeply nested spaghetti code, flattens the primary execution path, and sorts the extracted pieces into pristine, perfectly labeled, strictly typed local helper functions.",
     "tier": "Rare",
-    "icon": "\ud83d\uddc4\ufe0f",
-    "desc": "The Logic Declutterer. Autonomously sweeps into chaotic, deeply nested spaghetti code, flattens the primary execution path, and sorts the extracted pieces into pristine, perfectly labeled, strictly typed local helper functions."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Pedant,Wordsmith": {
     "name": "Grammarian",
+    "emoji": "\u2712\ufe0f",
+    "short_description": "A microcopy canonicalization specialist. Extracts sloppy, hardcoded UI strings into strict canonical constants and rewrites them into polished, active-voice microcopy.",
     "tier": "Common",
-    "icon": "\u2712\ufe0f",
-    "desc": "A microcopy canonicalization specialist. Extracts sloppy, hardcoded UI strings into strict canonical constants and rewrites them into polished, active-voice microcopy."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Scavenger,Scribe": {
     "name": "Obituary Writer",
+    "emoji": "\ud83d\udd6f\ufe0f",
+    "short_description": "A historical deletion specialist. Researches and documents the final engineering intent of dead code before permanently burying it and its associated tests.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udd6f\ufe0f",
-    "desc": "A historical deletion specialist. Researches and documents the final engineering intent of dead code before permanently burying it and its associated tests."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Scavenger,Sentinel+": {
     "name": "Revoker",
+    "emoji": "\ud83e\udeaa",
+    "short_description": "The Credential Invalidater. Hunts down and permanently deletes hardcoded test credentials, legacy .env backup files, and expired development JWTs to shrink the security attack surface.",
     "tier": "Epic",
-    "icon": "\ud83e\udeaa",
-    "desc": "The Credential Invalidater. Hunts down and permanently deletes hardcoded test credentials, legacy .env backup files, and expired development JWTs to shrink the security attack surface."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Scavenger,Untangler": {
     "name": "Lumberjack",
+    "emoji": "\ud83e\ude93",
+    "short_description": "The Execution Tree Clearer. Analyzes complex conditional logic to find deeply nested else branches, legacy feature flags, and mathematically unreachable code, aggressively chopping down that dead wood.",
     "tier": "Rare",
-    "icon": "\ud83e\ude93",
-    "desc": "The Execution Tree Clearer. Analyzes complex conditional logic to find deeply nested else branches, legacy feature flags, and mathematically unreachable code, aggressively chopping down that dead wood."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Scavenger,Wordsmith": {
     "name": "Redliner",
+    "emoji": "\ud83d\udd8d\ufe0f",
+    "short_description": "The Dead Copy Purger. Builds an AST-map of actively rendered text and strikes a red line through any orphaned copy, localized strings, or dead Markdown files.",
     "tier": "Common",
-    "icon": "\ud83d\udd8d\ufe0f",
-    "desc": "The Dead Copy Purger. Builds an AST-map of actively rendered text and strikes a red line through any orphaned copy, localized strings, or dead Markdown files."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Scribe,Sentinel+": {
     "name": "Keymaster",
+    "emoji": "\ud83d\udddd\ufe0f",
+    "short_description": "The Cryptographic Auditor. Hunts down hardcoded secrets, extracts them to environment variables, and injects strict inline JSDoc security rules for cryptographic functions.",
     "tier": "Epic",
-    "icon": "\ud83d\udddd\ufe0f",
-    "desc": "The Cryptographic Auditor. Hunts down hardcoded secrets, extracts them to environment variables, and injects strict inline JSDoc security rules for cryptographic functions."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Scribe,Untangler": {
     "name": "Logician",
+    "emoji": "\ud83e\uddee",
+    "short_description": "The Logic Documenter. Autonomously parses dense boolean clusters, massive state machines, and high cyclomatic complexity, translating them into formal Truth Tables and structured JSDoc grids.",
     "tier": "Uncommon",
-    "icon": "\ud83e\uddee",
-    "desc": "The Logic Documenter. Autonomously parses dense boolean clusters, massive state machines, and high cyclomatic complexity, translating them into formal Truth Tables and structured JSDoc grids."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Scribe,Wordsmith": {
     "name": "Polyglot",
+    "emoji": "\ud83d\udde3\ufe0f",
+    "short_description": "The Linguistic Unifier. Autonomously hunts for mixed-language variables (e.g., English logic mixed with French terminology), executing safe repository-wide translations to unify the dialect.",
     "tier": "Rare",
-    "icon": "\ud83d\udde3\ufe0f",
-    "desc": "The Linguistic Unifier. Autonomously hunts for mixed-language variables (e.g., English logic mixed with French terminology), executing safe repository-wide translations to unify the dialect."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Sentinel+,Sentinel+": {
     "name": "Honeypot",
+    "emoji": "\ud83c\udf6f",
+    "short_description": "The Offensive Defender. Sweeps the routing perimeter and builds fake API routes, invisible admin links, and data trapwires designed to catch and ban malicious scrapers, bots, and vulnerability scanners.",
     "tier": "Legendary",
-    "icon": "\ud83c\udf6f",
-    "desc": "The Offensive Defender. Sweeps the routing perimeter and builds fake API routes, invisible admin links, and data trapwires designed to catch and ban malicious scrapers, bots, and vulnerability scanners."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Sentinel+,Untangler": {
     "name": "Defuser",
+    "emoji": "\ud83e\udea2",
+    "short_description": "An authorization restructuring specialist. Meticulously untangles deeply nested security logic to expose vulnerabilities, then strictly types and locks down the boundary.",
     "tier": "Epic",
-    "icon": "\ud83e\udea2",
-    "desc": "An authorization restructuring specialist. Meticulously untangles deeply nested security logic to expose vulnerabilities, then strictly types and locks down the boundary."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Sentinel+,Wordsmith": {
     "name": "Redactor",
+    "emoji": "\u2b1b",
+    "short_description": "The PII Scrubber. Sweeps the UI and logging layers to mask and redact sensitive user data, ensuring credit cards, emails, and phone numbers never leak into plain text.",
     "tier": "Epic",
-    "icon": "\u2b1b",
-    "desc": "The PII Scrubber. Sweeps the UI and logging layers to mask and redact sensitive user data, ensuring credit cards, emails, and phone numbers never leak into plain text."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Untangler,Untangler": {
     "name": "Temporal Loom",
+    "emoji": "\ud83c\udf00",
+    "short_description": "The Spaghettification Engine. Exerts immense gravitational pull on chaotic, branching code timelines, weaving deeply nested \"Pyramid of Doom\" logic into a single, flat, one-dimensional strand of execution.",
     "tier": "Legendary",
-    "icon": "\ud83c\udf00",
-    "desc": "The Spaghettification Engine. Exerts immense gravitational pull on chaotic, branching code timelines, weaving deeply nested \"Pyramid of Doom\" logic into a single, flat, one-dimensional strand of execution."
+    "category": "",
+    "type": "",
+    "role": ""
   },
   "Untangler,Wordsmith": {
     "name": "Cryptographer",
+    "emoji": "\ud83d\udd0f",
+    "short_description": "The Syntax Translator. Autonomously identifies hostile machine syntax (raw Regex, Cron schedules, Bitwise operators) and translates them into plain-English inline comments.",
     "tier": "Uncommon",
-    "icon": "\ud83d\udd0f",
-    "desc": "The Syntax Translator. Autonomously identifies hostile machine syntax (raw Regex, Cron schedules, Bitwise operators) and translates them into plain-English inline comments."
+    "category": "",
+    "type": "",
+    "role": ""
   }
 }

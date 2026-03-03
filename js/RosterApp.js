@@ -289,7 +289,7 @@ class RosterApp {
         }
 
         const fuse = new Fuse(allAgents, {
-            keys: ["agent.name", "agent.desc"],
+            keys: ["agent.name", "agent.short_description"],
             threshold: 0.4
         });
 

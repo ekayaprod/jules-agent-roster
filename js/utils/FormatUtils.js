@@ -41,7 +41,7 @@ class FormatUtils {
      */
     static extractIcon(agent, fallback = '🤖') {
         if (!agent) return fallback;
-        if (agent.icon) return agent.icon;
+        if (agent.emoji) return agent.emoji;
 
         const name = (agent.name || '').trim();
         if (!name) return fallback;
