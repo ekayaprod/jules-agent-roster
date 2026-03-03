@@ -13,6 +13,7 @@ class RosterApp {
     this.elements = {};
     this.agentRepo = new AgentRepository();
     this.toast = new ToastNotification(CONFIG.selectors.toast);
+    this.favoritesManager = new FavoritesManager();
     this.fusionLab = null;
   }
 
@@ -77,6 +78,37 @@ class RosterApp {
   }
 
   /**
+   * Renders favorited agents into the favorites grid based on FavoritesManager state.
+   */
+  renderFavorites() {
+    const container = document.getElementById(CONFIG.categories.favorites);
+    if (!container) return;
+
+    container.innerHTML = "";
+    const favorites = this.favoritesManager.getFavorites();
+    const sectionHeader = document.getElementById("favorites-section");
+
+    if (favorites.length === 0) {
+      if (sectionHeader) sectionHeader.style.display = 'none';
+      container.style.display = 'none';
+      return;
+    }
+
+    if (sectionHeader) sectionHeader.style.display = 'block';
+    container.style.display = 'flex';
+
+    const fragment = document.createDocumentFragment();
+    favorites.forEach((keyOrIndex, i) => {
+        let agent = this.agents[keyOrIndex] || (this.customAgents && this.customAgents[keyOrIndex]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[keyOrIndex]);
+        if (agent) {
+             const card = AgentCard.create(agent, keyOrIndex, i);
+             fragment.appendChild(card);
+        }
+    });
+    container.appendChild(fragment);
+  }
+
+  /**
    * Caches critical DOM elements to prevent repeated queries during high-frequency events.
    * @see js/README.md#rosterapp-architecture
    */
@@ -94,6 +126,7 @@ class RosterApp {
    */
   clearSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
+      if (key === 'favorites') return;
       const container = document.getElementById(CONFIG.categories[key]);
       if (container) {
         container.innerHTML = "";
@@ -106,6 +139,7 @@ class RosterApp {
    */
   renderSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
+      if (key === 'favorites') return;
       const container = document.getElementById(CONFIG.categories[key]);
       if (container) {
         container.innerHTML = "";
@@ -253,6 +287,32 @@ class RosterApp {
 
     // Event Delegation for Flip Card Action Buttons & Virtualized Card interactions
     document.addEventListener("click", (e) => {
+      // 0. Toggle Favorite (Must be before flip-card to prevent interception)
+      const favTarget = e.target.closest('[data-action="toggle-favorite"]');
+      if (favTarget) {
+          e.stopPropagation();
+          e.preventDefault(); // Prevent flip-card action
+          const index = favTarget.dataset.index;
+          if (index) {
+              const isFav = this.favoritesManager.toggleFavorite(index);
+
+              // Update all rendered buttons for this agent dynamically
+              document.querySelectorAll(`[data-action="toggle-favorite"][data-index="${index}"]`).forEach(btn => {
+                  btn.innerHTML = isFav ? '★' : '☆';
+                  if (isFav) {
+                      btn.classList.add('favorited');
+                  } else {
+                      btn.classList.remove('favorited');
+                  }
+              });
+
+              // Re-render favorites grid to reflect changes immediately
+              this.renderFavorites();
+              this.showToast(isFav ? "Added to Favorites" : "Removed from Favorites");
+          }
+          return;
+      }
+
       // 1. Flip Card Front (Open)
       const frontTarget = e.target.closest('[data-action="flip-card"]');
       if (frontTarget) {

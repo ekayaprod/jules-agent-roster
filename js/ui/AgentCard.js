@@ -47,6 +47,10 @@ class AgentCard {
         const desc = FormatUtils.escapeHTML(agent.short_description || agent.desc || agent.description || '');
         const safeDisplayName = FormatUtils.escapeHTML(displayName);
 
+        const isFav = window.rosterApp && window.rosterApp.favoritesManager && window.rosterApp.favoritesManager.isFavorite(index);
+        const favIcon = isFav ? '★' : '☆';
+        const favClass = isFav ? 'favorited' : '';
+
         card.innerHTML = `
             <div class="flip-card-inner">
                 <div class="flip-card-front">
@@ -56,7 +60,10 @@ class AgentCard {
                         </div>
                         <div class="card-top-right">
                             <div class="title-group">
-                                <h3 class="agent-title">${safeDisplayName}</h3>
+                                <div style="display: flex; justify-content: space-between; width: 100%;">
+                                    <h3 class="agent-title">${safeDisplayName}</h3>
+                                    <button class="icon-btn favorite-btn ${favClass}" data-action="toggle-favorite" data-index="${index}" aria-label="Toggle Favorite" style="position: absolute; right: 0.5rem; top: 0.5rem; font-size: 1.5rem; line-height: 1;">${favIcon}</button>
+                                </div>
                                 <span class="role-tag">${role}</span>
                             </div>
                             <div class="tag-container mt-2">${tags}</div>
@@ -90,6 +97,9 @@ class AgentCard {
         const toggleBtn = card.querySelector('.action-toggle-btn');
 
         // Event delegation moved to RosterApp.js so virtualized cards still work
+        // We do NOT add data-action to the front wrapper itself, or it captures everything.
+        // Instead, the container just relies on the global listener checking if a click
+        // landed inside it. Let's make sure it doesn't intercept the button.
         front.setAttribute('data-action', 'flip-card');
         front.setAttribute('data-index', index);
 

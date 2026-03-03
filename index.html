@@ -141,6 +141,8 @@
     </div>
 
     <main id="main">
+      <h2 id="favorites-section" class="section-header" style="display: none;">Favorites</h2>
+      <div class="grid" id="favoritesGrid" style="display: none;"></div>
       <h2 id="core-maintenance" class="section-header">Core Maintenance</h2>
       <div class="grid" id="coreGrid"></div>
       <h2 id="architecture-optimization" class="section-header">Architecture & Optimization</h2>
@@ -231,8 +233,8 @@
           categoryNav: "#category-nav", main: "#main", navPills: ".nav-pill",
           sectionHeader: ".section-header", grid: ".grid", card: ".card"
         },
-        categories: { core: "coreGrid", architecture: "archGrid", hygiene: "hygieneGrid", operations: "opsGrid", context: "contextGrid", monthly: "monthlyGrid" },
-        sectionMap: { coreGrid: "core-maintenance", archGrid: "architecture-optimization", hygieneGrid: "code-hygiene", opsGrid: "operations-release", contextGrid: "context-strategy", monthlyGrid: "monthly-intelligence" }
+        categories: { favorites: "favoritesGrid", core: "coreGrid", architecture: "archGrid", hygiene: "hygieneGrid", operations: "opsGrid", context: "contextGrid", monthly: "monthlyGrid" },
+        sectionMap: { favoritesGrid: "favorites-section", coreGrid: "core-maintenance", archGrid: "architecture-optimization", hygieneGrid: "code-hygiene", opsGrid: "operations-release", contextGrid: "context-strategy", monthlyGrid: "monthly-intelligence" }
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
@@ -251,6 +253,7 @@
     <script src="js/features/fusion/AgentPicker.js"></script>
     <script src="js/features/fusion/FusionIndex.js"></script>
     <script src="js/features/fusion/FusionLab.js"></script>
+    <script src="js/features/favorites/FavoritesManager.js"></script>
     <script src="js/RosterApp.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
