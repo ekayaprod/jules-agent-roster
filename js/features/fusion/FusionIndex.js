@@ -206,3 +206,5 @@ class FusionIndex {
     return this.unlockedKeys.has(key);
   }
 }
+
+if (typeof module !== 'undefined' && module.exports) module.exports = FusionIndex;

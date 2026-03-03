@@ -250,3 +250,5 @@ You must return your final response as a strict JSON object adhering to this sch
     };
   }
 }
+
+if (typeof module !== 'undefined' && module.exports) module.exports = FusionCompiler;
