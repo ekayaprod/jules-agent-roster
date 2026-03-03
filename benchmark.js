@@ -36,6 +36,10 @@ global.document = {
     addEventListener: () => {}
 };
 
+global.Clusterize = class Clusterize {
+    constructor(options) { this.options = options; }
+    update(data) { this.options.rows = data; }
+};
 global.CSS = { escape: (str) => str };
 global.CONFIG = { selectors: {}, categories: {}, sectionMap: {} };
 

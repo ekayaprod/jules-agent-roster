@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="version" content="0.5.0" />
     <title>Autonomous Protocol Matrix</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://emojik.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self';"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https://emojik.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self';"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.css" />
     <link rel="stylesheet" href="js/features/fusion/fusion.css" />
     <style>
       * { box-sizing: border-box; }
@@ -19,18 +20,26 @@
 
       body { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 1.5rem; line-height: 1.5; }
 
+      .clusterize-extra-row {
+        grid-column: 1 / -1 !important;
+      }
+
       /* FLIP CARD REFINEMENTS */
-      .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 20rem; max-width: 24rem; height: 16rem; }
+      .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 20rem; max-width: 24rem; height: 13rem; }
       .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; border-radius: 1rem; cursor: pointer; }
       .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
       
       .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1rem; padding: 0.75rem 1rem; display: flex; flex-direction: column; background-color: var(--card-bg); border: 1px solid var(--border); box-shadow: 0 0.25rem 0.375rem -1px rgba(0, 0, 0, 0.2); overflow: hidden; }
-      .flip-card-front { align-items: center; justify-content: flex-start; }
+      .flip-card-front { justify-content: flex-start; }
       .flip-card-back { transform: rotateY(180deg); text-align: left; padding: 0.75rem; cursor: default; }
       
-      .emoji-hero { font-size: var(--text-4xl); margin-bottom: 0.5rem; transition: transform 0.2s ease; }
+      .card-top { display: grid; grid-template-columns: 1fr 2fr; width: 100%; gap: 0.5rem; align-items: center; }
+      .card-top-left { display: flex; justify-content: center; align-items: center; padding-top: 0.25rem; }
+      .card-top-right { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+
+      .emoji-hero { font-size: 3.5rem; line-height: 1; margin-bottom: 0; transition: transform 0.2s ease; }
       .flip-card-inner:hover .emoji-hero { transform: scale(1.05) translateY(-0.125rem); }
-      .flip-hint { opacity: 0.6; transition: opacity 0.3s; font-family: -apple-system, sans-serif; }
+      .flip-hint { position: absolute; bottom: 0.5rem; right: 0.75rem; font-size: 1.25rem; opacity: 0.6; transition: opacity 0.3s; font-family: -apple-system, sans-serif; color: var(--text-secondary); }
       .flip-card-inner:hover .flip-hint { opacity: 1; }
 
       .prompt-scroll-area { flex-grow: 1; overflow-y: auto; background: var(--details-bg); padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem; white-space: pre-wrap; font-family: inherit; }
@@ -60,10 +69,10 @@
       .section-header { max-width: 75rem; margin: 2rem auto 1rem auto; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
       .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 75rem; margin: 0 auto; }
       
-      .title-group { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; }
+      .title-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1rem; text-align: left; }
       .agent-title { font-size: var(--text-base); font-weight: var(--weight-bold); margin: 0; font-family: -apple-system, sans-serif; }
       .role-tag { font-size: var(--text-3xs); padding: 0.1rem 0.4rem; border-radius: 999px; background-color: rgba(56, 189, 248, 0.1); color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; font-family: -apple-system, sans-serif;}
-      .tag-container { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+      .tag-container { display: flex; flex-wrap: wrap; gap: 0.25rem; justify-content: flex-start; }
       .meta-tag { font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 0.25rem; background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); }
       
       /* Dynamic Description Shrinking */
@@ -92,7 +101,7 @@
       .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 0.625rem 0.9375rem rgba(0,0,0,0.5); transform: translateY(200%); transition: transform 0.3s; z-index: 50; border: 1px solid #16a34a; font-family: -apple-system, sans-serif;}
       .toast.show { transform: translateY(0); }
       /* LOADING SKELETON (ILLUSIONIST) */
-      .skeleton-card { height: 16rem; background-color: var(--card-bg); border: 1px dashed var(--border); border-radius: 1rem; flex: 1 1 20rem; max-width: 24rem; display: flex; align-items: center; justify-content: center; opacity: 0.6; }
+      .skeleton-card { height: 13rem; background-color: var(--card-bg); border: 1px dashed var(--border); border-radius: 1rem; flex: 1 1 20rem; max-width: 24rem; display: flex; align-items: center; justify-content: center; opacity: 0.6; }
       @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
       .skeleton-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
       @media (prefers-reduced-motion: reduce) {
@@ -122,7 +131,7 @@
 
     <div id="searchModeContainer" class="hidden">
         <h2 id="search-mode-header" class="section-header">Search Results</h2>
-        <div class="grid" id="searchResultsGrid"></div>
+        <div id="searchResultsScrollArea" class="clusterize-scroll" style="max-height: 80vh;"><div class="grid clusterize-content" id="searchResultsGrid"></div></div>
     </div>
     <div id="emptyState" class="empty-state">
       <h2>No Protocols Found</h2>
@@ -225,6 +234,7 @@
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.js"></script>
     <script src="js/PromptParser.js"></script>
     <script src="js/utils/PromptRenderer.js"></script>
     <script src="js/services/AgentRepository.js"></script>

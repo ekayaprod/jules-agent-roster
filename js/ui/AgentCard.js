@@ -50,14 +50,20 @@ class AgentCard {
         card.innerHTML = `
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <div class="emoji-hero">${icon}</div>
-                    <div class="title-group">
-                        <h3 class="agent-title">${safeDisplayName}</h3>
-                        <span class="role-tag">${role}</span>
+                    <div class="card-top">
+                        <div class="card-top-left">
+                            <div class="emoji-hero">${icon}</div>
+                        </div>
+                        <div class="card-top-right">
+                            <div class="title-group">
+                                <h3 class="agent-title">${safeDisplayName}</h3>
+                                <span class="role-tag">${role}</span>
+                            </div>
+                            <div class="tag-container mt-2">${tags}</div>
+                        </div>
                     </div>
-                    <div class="tag-container justify-center mt-2">${tags}</div>
                     <div class="description mt-3">${desc}</div>
-                    <div class="flip-hint mt-auto text-secondary text-xs">Tap to view protocol ↺</div>
+                    <div class="flip-hint" aria-label="Tap to view protocol">↺</div>
                 </div>
 
                 <div class="flip-card-back">
@@ -82,33 +88,13 @@ class AgentCard {
         const front = card.querySelector('.flip-card-front');
         const backBtn = card.querySelector('.back-header');
         const toggleBtn = card.querySelector('.action-toggle-btn');
-        const mainBtn = card.querySelector('.action-main-btn');
-        const btnText = card.querySelector('.btn-text');
 
-        front.addEventListener('click', () => {
-            const safeIndex = CSS.escape(String(index));
-            const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
-            if (promptArea && !promptArea.innerHTML.trim()) {
-                promptArea.innerHTML = AgentCard.getPromptHtml(agent);
-            }
-            card.classList.add('flipped');
-        });
+        // Event delegation moved to RosterApp.js so virtualized cards still work
+        front.setAttribute('data-action', 'flip-card');
+        front.setAttribute('data-index', index);
 
-        backBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            card.classList.remove('flipped');
-        });
-
-        toggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (mainBtn.dataset.action === "copy-agent") {
-                mainBtn.dataset.action = "download-agent";
-                btnText.innerText = "Download";
-            } else {
-                mainBtn.dataset.action = "copy-agent";
-                btnText.innerText = "Copy";
-            }
-        });
+        backBtn.setAttribute('data-action', 'flip-card-back');
+        toggleBtn.setAttribute('data-action', 'toggle-card-action');
 
         return card;
     }
