@@ -370,7 +370,6 @@ class RosterApp {
     if (this.elements.searchInput) {
       this.elements.searchInput.value = "";
       this.filterAgents("");
-      this.elements.searchInput.focus();
     }
   }
 

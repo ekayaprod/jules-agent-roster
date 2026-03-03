@@ -90,7 +90,6 @@ class FusionLab {
             clearPickerSearchEmptyBtn.addEventListener("click", () => {
                 searchInput.value = "";
                 this.filterPicker("");
-                searchInput.focus();
             });
         }
     }
@@ -208,9 +207,6 @@ class FusionLab {
 
     modal.showModal();
     modal.setAttribute("open", "");
-
-    // Focus search
-    if (searchInput) searchInput.focus();
   }
 
   /**
