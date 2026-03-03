@@ -32,3 +32,7 @@
 ## 2026-03-03 - 🗿 Sculptor - [Component Chiseled & Smoothed: Fusion Lab Skeleton]
 **Learning:** Instantly swapping `.hidden` utility classes between loading skeletons and actual content creates a jarring, unpolished experience. CSS transitions on `opacity` won't execute if the `display: none` property (from `.hidden`) is instantly toggled without allowing a frame to render.
 **Action:** When extracting or managing state transitions between skeletons and active components, use a `setTimeout` (or `transitionend` event) matching the CSS transition duration. Fade out the skeleton by setting `opacity: 0`, wait for the timeout, apply `.hidden` to the skeleton, remove `.hidden` from the content, force a layout reflow (e.g. `element.offsetHeight`), and finally set the content's `opacity: 1`.
+
+## 2026-03-03 - 🪄 Illusionist - [AgentPicker]
+**Learning:** Rendering the picker list for 170+ agents synchronously blocked the main thread and caused a sluggish UI response. Replacing synchronous rendering with asynchronous batch rendering (`requestAnimationFrame`) successfully eliminated render thrashing, while appending CSS `.mini-skeleton-card` loading states successfully masked the latency.
+**Action:** Before writing heavy JS rendering logic or external virtualization libraries, explore asynchronous batch chunking combined with rich, hardware-accelerated CSS skeleton loaders to fix both perceived and actual performance.

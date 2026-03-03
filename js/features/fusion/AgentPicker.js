@@ -75,45 +75,100 @@ class AgentPicker {
 
         // Populate Grid
         grid.innerHTML = "";
-        this.baseAgents.forEach((agent, index) => {
-            const item = document.createElement("div");
-            item.className = "mini-agent-card pop-in";
-            item.style.animationDelay = `${Math.min(index * 30, 300)}ms`;
+        // 🪄 Illusionist: Mask latency with luxurious CSS loading skeletons
+        for (let i = 0; i < 20; i++) {
+            const skeleton = document.createElement("div");
+            skeleton.className = "mini-skeleton-card skeleton-pulse";
+            skeleton.setAttribute("aria-hidden", "true");
+            grid.appendChild(skeleton);
+        }
 
-            item.setAttribute("role", "option");
-            // 💎 Jeweler: Roving Tabindex - Only first item is focusable initially
-            item.setAttribute("tabindex", index === 0 ? "0" : "-1");
-            item.setAttribute("data-name", agent.name.toLowerCase()); // For filtering
+        // Cancel any previous renders
+        const currentRenderId = Symbol();
+        this.currentRenderId = currentRenderId;
 
-            // Check if agent is currently selected in THIS slot
-            const isCurrent = currentAgent && currentAgent.name === agent.name;
-            if (isCurrent) {
-                item.classList.add("selected");
-                item.setAttribute("aria-selected", "true");
-            }
+        const CHUNK_SIZE = 25;
+        let agentIndex = 0;
 
-            item.innerHTML = `
-                <span class="mini-icon">${agent.emoji}</span>
-                <span class="mini-name">${agent.name}</span>
-                <span class="mini-role">${agent.role}</span>
-            `;
-
-            item.addEventListener("click", () => this.handlePickerSelection(agent));
-            // Keydown handled by grid container
-
-            grid.appendChild(item);
-        });
-
-        // 🏁 Pacesetter: Pre-compute DOM elements and instantiate Fuse ONCE per picker open
-        // This prevents re-mapping the entire DOM and re-building the index on every keystroke
-        const items = grid.querySelectorAll(".mini-agent-card");
-        const data = Array.from(items).map(item => ({
-            el: item,
-            name: item.getAttribute("data-name")
+        // 🏁 Pacesetter: Initialize Fuse immediately with the raw data so it's ready for fast typers
+        const fuseData = this.baseAgents.map((agent) => ({
+            name: agent.name.toLowerCase(),
+            agent: agent
         }));
-        this.pickerFuse = new Fuse(data, {
+        this.pickerFuse = new Fuse(fuseData, {
             keys: ["name"],
             threshold: 0.4
+        });
+
+        // Map to keep track of generated elements for quick lookup during search
+        this.renderedElementsMap = new Map();
+
+        const renderChunk = () => {
+            if (this.currentRenderId !== currentRenderId) return; // Cancelled
+
+            const end = Math.min(agentIndex + CHUNK_SIZE, this.baseAgents.length);
+            const fragment = document.createDocumentFragment();
+
+            for (let i = agentIndex; i < end; i++) {
+                const agent = this.baseAgents[i];
+                const item = document.createElement("div");
+                item.className = "mini-agent-card pop-in";
+                item.style.animationDelay = `${Math.min((i % CHUNK_SIZE) * 30, 300)}ms`;
+
+                item.setAttribute("role", "option");
+                // 💎 Jeweler: Roving Tabindex - Only first item is focusable initially
+                item.setAttribute("tabindex", i === 0 ? "0" : "-1");
+                item.setAttribute("data-name", agent.name.toLowerCase()); // For filtering
+
+                // Check if agent is currently selected in THIS slot
+                const isCurrent = currentAgent && currentAgent.name === agent.name;
+                if (isCurrent) {
+                    item.classList.add("selected");
+                    item.setAttribute("aria-selected", "true");
+                }
+
+                item.innerHTML = `
+                    <span class="mini-icon">${agent.emoji}</span>
+                    <span class="mini-name">${agent.name}</span>
+                    <span class="mini-role">${agent.role}</span>
+                `;
+
+                item.addEventListener("click", () => this.handlePickerSelection(agent));
+                // Keydown handled by grid container
+
+                fragment.appendChild(item);
+                this.renderedElementsMap.set(agent.name.toLowerCase(), item);
+            }
+
+            agentIndex = end;
+
+            // Yield to main thread, append current chunk, and clear initial skeletons if this is the first chunk
+            requestAnimationFrame(() => {
+                if (this.currentRenderId !== currentRenderId) return;
+
+                if (agentIndex === CHUNK_SIZE) {
+                    // First chunk: remove all skeletons
+                    grid.innerHTML = "";
+                }
+
+                grid.appendChild(fragment);
+
+                if (agentIndex < this.baseAgents.length) {
+                    // Schedule next chunk
+                    setTimeout(renderChunk, 0);
+                } else {
+                    // Render finished
+                    // If the user started searching during render, apply the current filter
+                    if (searchInput && searchInput.value) {
+                        this.filterPicker(searchInput.value);
+                    }
+                }
+            });
+        };
+
+        // Start rendering chunks
+        requestAnimationFrame(() => {
+            setTimeout(renderChunk, 0);
         });
 
         modal.showModal();
@@ -154,6 +209,9 @@ class AgentPicker {
         }
         this.activePickerSlot = null;
         this.pickerFuse = null; // Free memory
+        if (this.renderedElementsMap) {
+            this.renderedElementsMap.clear();
+        }
 
         // Return focus to trigger
         if (slotKey) {
@@ -191,10 +249,13 @@ class AgentPicker {
             });
 
             results.forEach(result => {
-                const item = result.item.el;
-                item.style.display = "flex";
-                if (!firstVisible) firstVisible = item;
-                visibleCount++;
+                // We use the renderedElementsMap to find the element
+                const item = this.renderedElementsMap.get(result.item.name);
+                if (item) {
+                    item.style.display = "flex";
+                    if (!firstVisible) firstVisible = item;
+                    visibleCount++;
+                }
             });
         }
 

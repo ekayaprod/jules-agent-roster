@@ -33,6 +33,7 @@
 .mini-agent-card { background-color: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.5rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.25rem; text-align: center; transition: all 0.2s ease; }
 .mini-agent-card:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.05); }
 .mini-agent-card.selected { border-color: var(--accent); background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.6)); }
+.mini-skeleton-card { background-color: rgba(15, 23, 42, 0.3); border: 1px dashed var(--border); border-radius: 0.5rem; padding: 0.5rem; min-height: 5.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.6; pointer-events: none; }
 .mini-icon { font-size: var(--text-2xl); }
 .mini-name { font-size: var(--text-xs); font-weight: var(--weight-semibold); }
 .mini-role { font-size: var(--text-3xs); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-top: auto; }

@@ -42,6 +42,7 @@ global.Clusterize = class Clusterize {
 };
 global.CSS = { escape: (str) => str };
 global.CONFIG = { selectors: {}, categories: {}, sectionMap: {} };
+global.requestAnimationFrame = (callback) => setTimeout(callback, 0);
 
 // Mock AgentCard because RosterApp calls it
 global.AgentCard = {
