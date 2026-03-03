@@ -17,3 +17,9 @@
 **Learning:** Removed `verify_fusion.py`, `verify_polished_fusion.py`, and `capture_fusion_ui.py`. These scripts were identified as "dead code" because they targeted a legacy UI structure (HTML `<select>` elements) that no longer exists in `index.html`. Keeping broken tests creates false negatives and confusion.
 
 **Action:** Regularly audit the `verification/` folder to ensure tests match the current UI. If a feature is refactored, its associated verification scripts must be updated or deleted immediately to prevent debt accumulation.
+
+## 2026-06-15 - Purged Root Test Scratchpads
+
+**Learning:** The root directory was cluttered with `test_*.py` files (e.g., `test_script.py`, `test_regex.py`) that were being used as temporary scratchpads rather than a formal, automated test suite.
+
+**Action:** Always prioritize keeping the repository root clean. Scratchpad and experimental test scripts should be strictly ephemeral and deleted before merging.
