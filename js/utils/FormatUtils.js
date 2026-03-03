@@ -46,18 +46,14 @@ class FormatUtils {
         const name = (agent.name || '').trim();
         if (!name) return fallback;
 
-        const parts = name.split(" ");
-
         // 1. Check for emoji at the end (Custom Fusions)
-        const lastPart = parts[parts.length - 1];
-        if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
-            return lastPart;
+        if (typeof StringUtils !== 'undefined' && StringUtils.hasEmojiSuffix(name)) {
+            return StringUtils.extractEmoji(name);
         }
 
         // 2. Check for emoji at the start (Standard Fusions like "⚡🧬 Bolt-Helix Fusion")
-        const firstPart = parts[0];
-        if (firstPart && !/^[A-Za-z0-9\-\.]+$/.test(firstPart)) {
-            return firstPart;
+        if (typeof StringUtils !== 'undefined' && StringUtils.hasEmojiPrefix(name)) {
+            return StringUtils.extractEmojiPrefix(name);
         }
 
         return fallback;
@@ -72,21 +68,21 @@ class FormatUtils {
         if (!agent || !agent.name) return 'Unknown Protocol';
 
         const name = agent.name.trim();
-        const parts = name.split(" ");
-        if (parts.length <= 1) return name;
 
         // 1. Strip emoji from the end
-        const lastPart = parts[parts.length - 1];
-        if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
-            return parts.slice(0, -1).join(" ").trim();
+        if (typeof StringUtils !== 'undefined' && StringUtils.hasEmojiSuffix(name)) {
+            return StringUtils.extractNameWithoutEmoji(name).trim();
         }
 
         // 2. Strip emoji from the start
-        const firstPart = parts[0];
-        if (firstPart && !/^[A-Za-z0-9\-\.]+$/.test(firstPart)) {
-            return parts.slice(1).join(" ").trim();
+        if (typeof StringUtils !== 'undefined' && StringUtils.hasEmojiPrefix(name)) {
+            return StringUtils.extractNameWithoutEmojiPrefix(name).trim();
         }
 
         return name;
     }
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = FormatUtils;
 }
