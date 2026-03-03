@@ -39,20 +39,8 @@ class AgentCard {
             card.classList.add(`tier-${lowerTier}`);
         }
 
-        let icon = agent.icon;
+        let icon = agent.icon || '🤖';
         let displayName = agent.name;
-        if (!icon && agent.isCustom) {
-            const parts = agent.name.trim().split(" ");
-            const lastPart = parts[parts.length - 1];
-            if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
-                icon = lastPart;
-                displayName = parts.slice(0, -1).join(" ");
-            } else {
-                icon = '🤖';
-            }
-        } else if (!icon) {
-            icon = '🤖';
-        }
 
         const role = FormatUtils.escapeHTML(agent.role || 'Fusion Protocol');
         const desc = FormatUtils.escapeHTML(agent.desc || agent.description || '');
@@ -97,7 +85,8 @@ class AgentCard {
         const btnText = card.querySelector('.btn-text');
 
         front.addEventListener('click', () => {
-            const promptArea = card.querySelector(`#prompt-content-${index}`);
+            const safeIndex = String(index).replace(/"/g, '\\"').replace(/,/g, '\\,');
+            const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
             if (promptArea && !promptArea.innerHTML.trim()) {
                 promptArea.innerHTML = AgentCard.getPromptHtml(agent);
             }
