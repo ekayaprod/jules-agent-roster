@@ -146,12 +146,12 @@
 
     <div class="fusion-lab-container">
       <h2>🧬 The Fusion Lab</h2>
-      <div id="fusionLabSkeleton" class="fusion-visual-slots skeleton-pulse" aria-hidden="true">
+      <div id="fusionLabSkeleton" class="fusion-visual-slots skeleton-pulse fade-transition" aria-hidden="true">
         <div class="slot-card" style="border-color: var(--border); background-color: var(--card-bg);"></div>
         <div class="fusion-action-area"><div style="width: 12.5rem; height: 3rem; border-radius: 0.5rem; background: var(--border);"></div></div>
         <div class="slot-card" style="border-color: var(--border); background-color: var(--card-bg);"></div>
       </div>
-      <div id="fusionLabContent" class="fusion-visual-slots hidden">
+      <div id="fusionLabContent" class="fusion-visual-slots fade-transition hidden">
         <button id="slotACard" class="slot-card">
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent A</span></div>
         </button>
@@ -236,6 +236,8 @@
     <script src="js/utils/StringUtils.js"></script>
     <script src="js/utils/DownloadUtils.js"></script>
     <script src="js/features/fusion/FusionCompiler.js"></script>
+    <script src="js/features/fusion/AgentPicker.js"></script>
+    <script src="js/features/fusion/FusionAnimation.js"></script>
     <script src="js/features/fusion/FusionIndex.js"></script>
     <script src="js/features/fusion/FusionLab.js"></script>
     <script src="js/RosterApp.js"></script>

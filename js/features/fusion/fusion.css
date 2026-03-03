@@ -311,3 +311,6 @@
     50% { opacity: 1; }
     60%, 100% { opacity: 0; }
 }
+
+/* Sculptor UI State Transition */
+.fade-transition { transition: opacity 0.5s ease-in-out; }
