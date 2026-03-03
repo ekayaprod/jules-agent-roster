@@ -2,7 +2,7 @@
   {
     "name": "Bolt+",
     "emoji": "⚡",
-    "short_description": "Hunts down sluggish code and structural bottlenecks. Wraps heavy calculations in system caches to make your app run at lightning speed.",
+    "short_description": "Hunts down structural bottlenecks and eliminates them through systemic caching, memoization, and virtualization. Makes the application measurably faster and more efficient.",
     "tier": "",
     "category": "core",
     "type": "plus",
@@ -11,7 +11,7 @@
   {
     "name": "Palette+",
     "emoji": "🎨",
-    "short_description": "Transforms clunky interactions into delightful experiences. Injects loading skeletons, smooth animations, and accessibility to make your app feel premium.",
+    "short_description": "Transforms clunky, static UI interactions into delightful experiences using loading skeletons and optimistic UI. Prioritizes perceived performance, motion, and universal ARIA accessibility.",
     "tier": "",
     "category": "core",
     "type": "plus",
@@ -20,7 +20,7 @@
   {
     "name": "Sentinel+",
     "emoji": "🛡️",
-    "short_description": "Hardens your application's trust boundaries. Injects strict schema validations and sanitizes data payloads to protect your system from malicious inputs.",
+    "short_description": "Hardens the application's trust boundaries by implementing rigid schema validation and secure data-handling protocols. Protects the system from malicious inputs and vulnerabilities.",
     "tier": "",
     "category": "core",
     "type": "plus",
@@ -29,7 +29,7 @@
   {
     "name": "Helix",
     "emoji": "🧬",
-    "short_description": "Hunts down duplicated spaghetti code scattered across your files. Extracts it into clean, shared utility functions to give your app a single source of truth.",
+    "short_description": "Seeks out duplicated spaghetti code and splices it into pure, centralized utility functions. Ruthlessly abstracts logic to give your application a single source of truth.",
     "tier": "",
     "category": "architecture",
     "type": "",
@@ -38,7 +38,7 @@
   {
     "name": "Architect",
     "emoji": "🏗️",
-    "short_description": "Untangles chaotic directories and unmaintainable monoliths. Splits massive files and enforces clean folder structures to keep your repository highly organized.",
+    "short_description": "Untangles messy directories, splits massive 'God files', and enforces clean colocation. Unifies folder patterns and standardizes import paths for a highly organized repository.",
     "tier": "",
     "category": "architecture",
     "type": "",
@@ -47,7 +47,7 @@
   {
     "name": "Scavenger",
     "emoji": "🦅",
-    "short_description": "A ruthless cleanup specialist. Hunts down and permanently deletes orphaned files, dead code, and resolved TODOs to reduce technical debt and codebase bloat.",
+    "short_description": "Hunts down and permanently eradicates orphaned files, dead code, unused exports, and resolved TODOs. Systematically reduces codebase bloat and technical debt.",
     "tier": "",
     "category": "hygiene",
     "type": "",
@@ -56,7 +56,7 @@
   {
     "name": "Superintendent",
     "emoji": "🧰",
-    "short_description": "Keeps your underlying infrastructure healthy. Safely bumps outdated packages, cleans up lockfiles, and standardizes configuration manifests.",
+    "short_description": "Keeps the repository healthy by safely bumping minor dependencies, deduplicating lockfiles, and standardizing config files. Ensures your project's foundation never decays.",
     "tier": "",
     "category": "hygiene",
     "type": "",
@@ -65,7 +65,7 @@
   {
     "name": "Modernizer",
     "emoji": "♻️",
-    "short_description": "Upgrades legacy syntax to modern standards. Transmutes old callbacks, heavy loops, and outdated libraries into clean, modern language paradigms.",
+    "short_description": "Upgrades legacy syntax and deprecated patterns to modern standards. Transmutes old callbacks, heavy loops, and outdated libraries into clean, modern language paradigms.",
     "tier": "",
     "category": "architecture",
     "type": "",
@@ -74,7 +74,7 @@
   {
     "name": "Inspector",
     "emoji": "🕵️",
-    "short_description": "A paranoid quality-assurance agent. Seeks out your application's most fragile logic and locks it down with rigorous boundary and edge-case test suites.",
+    "short_description": "Seeks out the application's most fragile, untested logic and locks it down with rigorous boundary and edge-case test suites. Assaults fragile code with malformed data to ensure stability.",
     "tier": "",
     "category": "operations",
     "type": "",
@@ -83,7 +83,7 @@
   {
     "name": "Medic",
     "emoji": "🚑",
-    "short_description": "Cures inexplicable system crashes. Wraps fragile network calls and dangerous parsers in safe error boundaries, fallback states, and structured logs.",
+    "short_description": "Stops silent crashes by wrapping fragile network calls and logic in safe error boundaries. Executes deep structural triage to find and cure inexplicable system failures.",
     "tier": "",
     "category": "operations",
     "type": "",
@@ -92,7 +92,7 @@
   {
     "name": "Cortex",
     "emoji": "🧠",
-    "short_description": "The AI infrastructure specialist. Upgrades legacy LLM tools, bumps model versions, and enforces strict JSON schemas for resilient AI integrations.",
+    "short_description": "Upgrades legacy LLM SDKs, bumps model versions, and enforces strictly typed JSON outputs for resilient AI integrations. Owns the infrastructure and plumbing of your AI features.",
     "tier": "",
     "category": "operations",
     "type": "",
@@ -101,7 +101,7 @@
   {
     "name": "Scribe",
     "emoji": "✍️",
-    "short_description": "Clarifies complex, undocumented logic. Weaves precise inline comments, Docstrings, and critical warning labels directly into the source code to explain the 'Why'.",
+    "short_description": "Clarifies complex, undocumented logic by weaving precise JSDoc, Docstrings, and XML Comments directly into the source code. Explains the 'Why' behind the 'What'.",
     "tier": "",
     "category": "context",
     "type": "",
@@ -110,7 +110,7 @@
   {
     "name": "Author",
     "emoji": "📘",
-    "short_description": "Writes your high-level architecture guides. Generates clear README files and 'Quick Start' instructions to help developers instantly understand the repository.",
+    "short_description": "Writes high-level README.md files, architectural overviews, and 'Quick Start' guides. Helps developers instantly understand the structure, usage, and setup of the codebase.",
     "tier": "",
     "category": "context",
     "type": "",
@@ -119,7 +119,7 @@
   {
     "name": "Navigator",
     "emoji": "🧭",
-    "short_description": "Synchronizes your project strategy with reality. Reads your git history to mark features complete on your roadmap, keeping your tracking documents perfectly aligned.",
+    "short_description": "Reads the git history to mark features complete on the roadmap, ensuring project tracking documents always reflect codebase reality. Keeps your ROADMAP.md perfectly aligned.",
     "tier": "",
     "category": "context",
     "type": "",
@@ -128,7 +128,7 @@
   {
     "name": "Curator",
     "emoji": "🖼️",
-    "short_description": "Optimizes your static assets to drastically reduce bundle sizes. Compresses heavy images into modern formats and strips bloated metadata from SVGs.",
+    "short_description": "Scours public directories to compress heavy images into modern web formats and strip metadata from bloated SVGs. Optimizes static assets to drastically reduce bundle sizes.",
     "tier": "",
     "category": "context",
     "type": "",
@@ -137,7 +137,7 @@
   {
     "name": "Overseer",
     "emoji": "👁️",
-    "short_description": "The all-seeing intelligence engine. Runs deep forensic scans on file age, churn, and complexity to generate a master audit report guiding the rest of the agents.",
+    "short_description": "Runs deep forensic scans on file age, churn, and complexity, generating an objective intelligence report. Acts as the master auditor guiding the rest of the agent roster.",
     "tier": "",
     "category": "monthly",
     "type": "monthly",
@@ -146,7 +146,7 @@
   {
     "name": "Cartographer",
     "emoji": "🗺️",
-    "short_description": "Translates complex folder structures and data flows into beautiful, readable architectural diagrams so you can understand your system at a glance.",
+    "short_description": "Translates complex folder structures, data flows, and architectural boundaries into beautiful, readable Mermaid.js diagrams. Helps developers understand the system at a glance.",
     "tier": "",
     "category": "monthly",
     "type": "monthly",
@@ -155,7 +155,7 @@
   {
     "name": "Spark",
     "emoji": "💡",
-    "short_description": "Audits your custom logic and UX friction points, suggesting modern, battle-tested open-source solutions to replace them and logging the ideas to your roadmap.",
+    "short_description": "Audits brittle custom utilities, UX dead-ends, and security risks, suggesting modern, battle-tested solutions to replace them. Systematically identifies innovation opportunities.",
     "tier": "",
     "category": "monthly",
     "type": "monthly",
@@ -164,7 +164,7 @@
   {
     "name": "Herald",
     "emoji": "📣",
-    "short_description": "Parses your raw git history and translates chaotic developer commits into beautifully structured, user-facing semantic changelogs.",
+    "short_description": "Parses raw git history and internal ticketing jargon into beautifully structured, user-facing semantic changelogs. Broadcasts the reality of the codebase's release notes to the world.",
     "tier": "",
     "category": "context",
     "type": "",
@@ -173,7 +173,7 @@
   {
     "name": "Wordsmith",
     "emoji": "🖋️",
-    "short_description": "Red-pens passive, robotic UI strings and developer jargon. Rewrites errors and buttons into clear, actionable, and highly empathetic microcopy.",
+    "short_description": "Red-pens passive, system-centric UI strings and developer jargon into strict, active-voice microcopy. Enforces UX writing heuristics for clarity and actionable resolution paths.",
     "tier": "",
     "category": "context",
     "type": "",
@@ -182,7 +182,7 @@
   {
     "name": "Pedant",
     "emoji": "☝️",
-    "short_description": "An uncompromising enforcer of style. Eradicates implicit types, fixes casing violations, and extracts rogue magic numbers into strict constants.",
+    "short_description": "An uncompromising enforcer of standards. Eradicates implicit types, fixes casing violations, and extracts rogue magic numbers into strict constants across the codebase.",
     "tier": "",
     "category": "hygiene",
     "type": "",
@@ -191,7 +191,7 @@
   {
     "name": "Untangler",
     "emoji": "🧶",
-    "short_description": "Takes deeply nested, unreadable 'spaghetti code' and flattens it out using early returns, clean guard clauses, and local helper functions.",
+    "short_description": "Takes deeply nested, unreadable 'Arrow Code' and flattens it out using early returns, guard clauses, and local helper functions. Reduces cognitive complexity in massive scripts.",
     "tier": "",
     "category": "architecture",
     "type": "",
