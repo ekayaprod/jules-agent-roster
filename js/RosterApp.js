@@ -17,7 +17,7 @@ class RosterApp {
     this.cacheElements();
 
     try {
-        const { agents, customAgents } = await this.agentRepo.getAgents();
+        const { agents, customAgents } = await this.agentRepo.fetchAgents();
         this.agents = agents;
         this.customAgents = customAgents;
 

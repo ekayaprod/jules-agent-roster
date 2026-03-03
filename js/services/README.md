@@ -11,7 +11,7 @@ const repository = new AgentRepository();
 
 async function loadData() {
     try {
-        const { agents, customAgents } = await repository.getAgents();
+        const { agents, customAgents } = await repository.fetchAgents();
         console.log(`Loaded ${agents.length} standard agents.`);
         console.log(`Loaded ${Object.keys(customAgents).length} custom fusions.`);
     } catch (error) {
