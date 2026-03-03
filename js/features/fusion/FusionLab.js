@@ -4,7 +4,6 @@ class FusionLab {
     this.compiler = null;
     this.lastFusionResult = null;
     this.picker = null;
-    this.animation = null;
     // Internal State for Selection
     this.state = {
       slotA: null,
@@ -38,11 +37,6 @@ class FusionLab {
         (selectedAgent) => this.getPreMergePreviewHTML(selectedAgent)
       );
     }
-
-    if (typeof FusionAnimation !== "undefined") {
-      this.animation = new FusionAnimation();
-    }
-
 
     this.bindEvents();
     this.renderSlots(); // Initial render

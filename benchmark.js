@@ -52,10 +52,8 @@ global.AgentCard = {
 const FusionCompiler = loadClass('js/features/fusion/FusionCompiler.js');
 const FusionIndex = loadClass('js/features/fusion/FusionIndex.js');
 const AgentPicker = loadClass('js/features/fusion/AgentPicker.js');
-const FusionAnimation = loadClass('js/features/fusion/FusionAnimation.js');
 const FusionLab = loadClass('js/features/fusion/FusionLab.js');
 global.AgentPicker = AgentPicker;
-global.FusionAnimation = FusionAnimation;
 
 const AgentRepository = loadClass('js/services/AgentRepository.js');
 const ToastNotification = loadClass('js/ui/ToastNotification.js');

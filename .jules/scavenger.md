@@ -23,3 +23,9 @@
 **Learning:** The root directory was cluttered with `test_*.py` files (e.g., `test_script.py`, `test_regex.py`) that were being used as temporary scratchpads rather than a formal, automated test suite.
 
 **Action:** Always prioritize keeping the repository root clean. Scratchpad and experimental test scripts should be strictly ephemeral and deleted before merging.
+
+## 2026-06-25 - Dead Extracted Ghost Class
+
+**Learning:** Discovered `FusionAnimation.js` was created to handle the fusion animation sequence, likely by the Sculptor persona extracting logic from `FusionLab.js`. However, `FusionLab.js` was never actually modified to call the extracted `animation.play()` method, instead keeping and using its own monolith `runAnimation` function. This created an entirely dead class that was instantiated but never invoked.
+
+**Action:** Always verify that newly extracted classes are not just instantiated, but actually *used* in place of the original monolith code.
