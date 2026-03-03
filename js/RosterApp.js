@@ -164,6 +164,9 @@ class RosterApp {
       if (actionBtn) {
           const index = actionBtn.dataset.index;
           let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          if (index === "fusion-result" && this.fusionLab) {
+              agent = this.fusionLab.lastFusionResult;
+          }
           if (!agent) return;
 
           if (actionBtn.dataset.action === "copy-agent") {

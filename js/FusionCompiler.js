@@ -231,9 +231,10 @@ You must return your final response as a strict JSON object adhering to this sch
       }
 
       return {
+        ...custom,
         name: custom.name,
         isCustom: true,
-        description: custom.description,
+        desc: custom.desc || custom.description,
         prompt: finalPrompt,
       };
     }
