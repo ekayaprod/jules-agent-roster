@@ -561,8 +561,6 @@ class FusionLab {
         }
 
         const card = AgentCard.create(result, keyStr, 0);
-        // Force the card to be visible instantly within the wrapper
-        card.style.display = "flex";
         card.classList.remove("pop-in");
         container.appendChild(card);
       }
