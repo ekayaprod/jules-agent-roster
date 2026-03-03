@@ -32,3 +32,7 @@
 ## 2026-03-03 - 🗿 Sculptor - [Component Chiseled & Smoothed: Fusion Lab Skeleton]
 **Learning:** Instantly swapping `.hidden` utility classes between loading skeletons and actual content creates a jarring, unpolished experience. CSS transitions on `opacity` won't execute if the `display: none` property (from `.hidden`) is instantly toggled without allowing a frame to render.
 **Action:** When extracting or managing state transitions between skeletons and active components, use a `setTimeout` (or `transitionend` event) matching the CSS transition duration. Fade out the skeleton by setting `opacity: 0`, wait for the timeout, apply `.hidden` to the skeleton, remove `.hidden` from the content, force a layout reflow (e.g. `element.offsetHeight`), and finally set the content's `opacity: 1`.
+
+## 2024-05-24 - 📏 Aligner - [Grid Identification & Spacing Standardization]
+**Learning:** Found scattered hardcoded pixel values breaking visual rhythm in presentation layer CSS, such as `max-width: 400px` in `index.html`, `120px` and `200px` in `fusion.css` max-widths, and various animation transforms (`px` mapping). System strictly uses a `rem`-based grid scale (`1rem = 16px`).
+**Action:** Always map raw `px` values representing structural margins, paddings, caps, or layout positioning directly to fractionated `rem` equivalents (e.g., `400px` to `25rem`, `20px` to `1.25rem`). Single `1px` positioning boundaries or borders are exceptions and should remain preserved unless explicitly part of the primary layout grid.
