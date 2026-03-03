@@ -24,3 +24,7 @@
 ## 2026-03-03 - 🦉 Scholar - [RosterApp Architectural State Synthesized]
 **Learning:** `RosterApp.js` executes massive asynchronous batch rendering (via `requestAnimationFrame` and `setTimeout`) and strictly throttles fuzzy search DOM manipulation. The existing JSDoc completely lacked insight into these anti-thrashing mechanisms, meaning developers could unknowingly strip these patterns and cause crippling layout shifts.
 **Action:** Always link granular asynchronous UI performance optimizations in JSDoc via `@see` to a single macro architectural thesis (e.g. `README.md#rosterapp-architecture`) so developers understand *why* seemingly overly complex asynchronous chunking logic was implemented.
+
+## 2024-05-24 - 📰 Publisher - [Responsive Layout Enforced: Category Navigation]
+**Learning:** When using `overflow-x: auto` for horizontally scrollable flexbox containers (like `.category-nav`), `justify-content: space-between` causes items to be cut off and inaccessible on smaller viewports.
+**Action:** Use `justify-content: flex-start` with a `gap` (e.g., `gap: 0.5rem`) instead, ensuring all items are accessible via scrolling without layout blowout.
