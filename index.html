@@ -10,6 +10,7 @@
     <style>
       * { box-sizing: border-box; }
       :root {
+        color-scheme: dark;
         --text-3xs: 0.6em; --text-2xs: 0.7rem; --text-xs: 0.85rem; --text-sm: 0.95rem; --text-base: 1rem; --text-md: 1.1rem; --text-lg: 1.25rem; --text-xl: 1.5rem; --text-2xl: 1.75rem; --text-3xl: 2.2rem; --text-4xl: 2.5rem;
         --weight-normal: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700;
         --bg-color: #0f172a; --card-bg: #1e293b; --text-primary: #f8fafc; --text-secondary: #94a3b8; --accent: #38bdf8; --accent-hover: #0ea5e9; --success: #22c55e; --border: #334155; --details-bg: #020617;
@@ -103,16 +104,23 @@
       .fusion-slot.locked .slot-icon { filter: brightness(0); }
       .fusion-slot.unlocked { cursor: pointer; border-color: rgba(168, 85, 247, 0.3); }
       
-      .picker-modal { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); border: none; width: 100%; height: 100%; position: fixed; z-index: 100; display: none; align-items: center; justify-content: center; top: 0; left: 0; font-family: -apple-system, sans-serif;}
+      .picker-modal { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); border: none; width: 100%; height: 100%; position: fixed; z-index: 100; display: none; align-items: center; justify-content: center; top: 0; left: 0; font-family: -apple-system, sans-serif; padding: 0; color: inherit; }
+      .picker-modal::backdrop { background: transparent; }
       .picker-modal[open] { display: flex; }
       .picker-container { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; width: 90%; max-width: 37.5rem; max-height: 80vh; display: flex; flex-direction: column; }
       .picker-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
       .picker-header h3 { margin: 0; font-size: var(--text-lg); }
+      .close-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.5rem; display: flex; align-items: center; justify-content: center; border-radius: 0.25rem; font-size: var(--text-lg); line-height: 1; }
+      .close-btn:hover { color: var(--text-primary); background-color: rgba(255, 255, 255, 0.1); }
       .picker-search { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); }
+      .picker-search input[type="text"] { padding-left: 1rem; padding-right: 1rem; }
       .picker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.5rem; padding: 1.5rem; overflow-y: auto; }
-      .mini-agent-card { background-color: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.5rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.25rem; text-align: center; }
+      .mini-agent-card { background-color: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.5rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.25rem; text-align: center; transition: all 0.2s ease; }
+      .mini-agent-card:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.05); }
+      .mini-agent-card.selected { border-color: var(--accent); background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.6)); }
       .mini-icon { font-size: var(--text-2xl); }
       .mini-name { font-size: var(--text-xs); font-weight: var(--weight-semibold); }
+      .mini-role { font-size: var(--text-3xs); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-top: auto; }
       
       #fusionOutputWrapper { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s; }
       #fusionOutputWrapper.open { grid-template-rows: 1fr; }
