@@ -61,6 +61,16 @@ class FusionIndex {
   }
 
   /**
+   * Extracts the emoji from a fusion name.
+   * @param {string} name - The fusion name (e.g., "Void 🕳️").
+   * @returns {string} The extracted emoji or a fallback.
+   */
+  getEmoji(name) {
+    // 🧬 Helix: Use centralized utility for consistent icon extraction
+    return FormatUtils.extractIcon({ name }, '❓');
+  }
+
+  /**
    * Renders the Fusion Index shelf.
    */
   render() {

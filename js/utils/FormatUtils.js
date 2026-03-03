@@ -19,17 +19,59 @@ class FormatUtils {
     }
 
     /**
-     * Escapes special HTML characters to prevent XSS.
-     * @param {string} unsafe - The unsafe string to escape.
-     * @returns {string} The escaped, safe string.
+     * Extracts an icon from an agent, handling fallbacks for fusions.
+     * @param {Object} agent - The agent object.
+     * @param {string} fallback - Optional fallback icon.
+     * @returns {string} The extracted icon or the fallback.
      */
-    static escapeHTML(unsafe) {
-        if (!unsafe || typeof unsafe !== 'string') return unsafe || "";
-        return unsafe
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+    static extractIcon(agent, fallback = '🤖') {
+        if (!agent) return fallback;
+        if (agent.icon) return agent.icon;
+
+        const name = (agent.name || '').trim();
+        if (!name) return fallback;
+
+        const parts = name.split(" ");
+
+        // 1. Check for emoji at the end (Custom Fusions)
+        const lastPart = parts[parts.length - 1];
+        if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
+            return lastPart;
+        }
+
+        // 2. Check for emoji at the start (Standard Fusions like "⚡🧬 Bolt-Helix Fusion")
+        const firstPart = parts[0];
+        if (firstPart && !/^[A-Za-z0-9\-\.]+$/.test(firstPart)) {
+            return firstPart;
+        }
+
+        return fallback;
+    }
+
+    /**
+     * Extracts a clean display name from an agent by stripping icons.
+     * @param {Object} agent - The agent object.
+     * @returns {string} The display name without icons.
+     */
+    static extractDisplayName(agent) {
+        if (!agent || !agent.name) return 'Unknown Protocol';
+
+        const name = agent.name.trim();
+        const parts = name.split(" ");
+        if (parts.length <= 1) return name;
+
+        // 1. Strip emoji from the end
+        const lastPart = parts[parts.length - 1];
+        if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
+            return parts.slice(0, -1).join(" ").trim();
+        }
+
+        // 2. Strip emoji from the start
+        const firstPart = parts[0];
+        if (firstPart && !/^[A-Za-z0-9\-\.]+$/.test(firstPart)) {
+            return parts.slice(1).join(" ").trim();
+        }
+
+        return name;
     }
 }

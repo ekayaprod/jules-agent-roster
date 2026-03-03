@@ -39,8 +39,9 @@ class AgentCard {
             card.classList.add(`tier-${lowerTier}`);
         }
 
-        let icon = agent.icon || '🤖';
-        let displayName = agent.name;
+        // Fix Fusion Icon Bug: Use centralized utility for icon extraction
+        const icon = FormatUtils.extractIcon(agent);
+        const displayName = FormatUtils.extractDisplayName(agent);
 
         const role = FormatUtils.escapeHTML(agent.role || 'Fusion Protocol');
         const desc = FormatUtils.escapeHTML(agent.desc || agent.description || '');

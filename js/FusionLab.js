@@ -269,10 +269,8 @@ class FusionLab {
             actionArea.appendChild(previewEl);
         }
 
-        const isEmoji = StringUtils.hasEmojiSuffix(result.name);
-        const lastPart = StringUtils.extractEmoji(result.name);
-        const nameHtml = StringUtils.extractNameWithoutEmoji(result.name);
-        let iconHtml = result.isCustom && isEmoji ? lastPart : `${agentA.icon}${agentB.icon}`;
+        const iconHtml = FormatUtils.extractIcon(result, `${agentA.icon}${agentB.icon}`);
+        const nameHtml = FormatUtils.extractDisplayName(result);
 
         previewEl.innerHTML = `
             <div class="preview-badge">Already Discovered</div>
@@ -642,25 +640,16 @@ class FusionLab {
     // Setup Animation Data
     iconLeft.innerHTML = agentA.icon;
     iconRight.innerHTML = agentB.icon;
-    // Determine if last part is an emoji/icon (not alphanumeric or basic punctuation)
-    const isEmoji = StringUtils.hasEmojiSuffix(result.name);
-    const lastPart = StringUtils.extractEmoji(result.name);
-    const textPart = StringUtils.extractNameWithoutEmoji(result.name);
+
+    const icon = FormatUtils.extractIcon(result, `${agentA.icon}${agentB.icon}`);
+    const displayName = FormatUtils.extractDisplayName(result);
 
     // Set result name with highlighted text and separate emoji
-    if (isEmoji) {
-      animResult.innerHTML = `<span class="highlight">${textPart}</span> ${lastPart}`;
-    } else {
-      animResult.innerHTML = `<span class="highlight">${result.name}</span>`;
-    }
+    animResult.innerHTML = `<span class="highlight">${displayName}</span> ${icon}`;
 
     // Determine Result Icon
     if (result.isCustom && result.name) {
-      if (isEmoji) {
-        if (iconResult) iconResult.innerHTML = lastPart;
-      } else {
-        if (iconResult) iconResult.innerHTML = agentA.icon + agentB.icon;
-      }
+      if (iconResult) iconResult.innerHTML = icon;
     } else {
       // Standard Fusion: Emoji Kitchen
       const iconA = agentA.icon.trim();
