@@ -86,7 +86,7 @@ class AgentCard {
         const btnText = card.querySelector('.btn-text');
 
         front.addEventListener('click', () => {
-            const safeIndex = String(index).replace(/"/g, '\\"').replace(/,/g, '\\,');
+            const safeIndex = CSS.escape(String(index));
             const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
             if (promptArea && !promptArea.innerHTML.trim()) {
                 promptArea.innerHTML = AgentCard.getPromptHtml(agent);

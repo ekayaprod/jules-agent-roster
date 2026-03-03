@@ -51,7 +51,7 @@ class RosterApp {
         }
     }
 
-    this.clearSkeletons();
+    this.renderSkeletons();
     this.renderAgents();
     this.bindEvents();
     this.initObserver();
@@ -69,7 +69,24 @@ class RosterApp {
   clearSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
       const container = document.getElementById(CONFIG.categories[key]);
-      if (container) container.innerHTML = "";
+      if (container) {
+        container.innerHTML = "";
+      }
+    });
+  }
+
+  renderSkeletons() {
+    Object.keys(CONFIG.categories).forEach((key) => {
+      const container = document.getElementById(CONFIG.categories[key]);
+      if (container) {
+        container.innerHTML = "";
+        for (let i = 0; i < 12; i++) {
+          const skeleton = document.createElement("div");
+          skeleton.className = "card skeleton-card skeleton-pulse";
+          skeleton.setAttribute("aria-hidden", "true");
+          container.appendChild(skeleton);
+        }
+      }
     });
   }
 
@@ -85,23 +102,61 @@ class RosterApp {
       }
     });
 
+    // Cancel any previous renders
+    const currentRenderId = Symbol();
+    this.currentRenderId = currentRenderId;
+
     let globalIndex = 0;
-    this.agents.forEach((agent, index) => {
-      const container = categoryContainers[agent.category];
-      if (!container) return;
+    const CHUNK_SIZE = 15;
+    let agentIndex = 0;
 
-      const card = AgentCard.create(agent, index, globalIndex);
-      globalIndex++;
+    const renderChunk = () => {
+      if (this.currentRenderId !== currentRenderId) return; // Cancelled
 
-      if (fragments[agent.category]) {
-        fragments[agent.category].appendChild(card);
+      const end = Math.min(agentIndex + CHUNK_SIZE, this.agents.length);
+
+      for (let i = agentIndex; i < end; i++) {
+        const agent = this.agents[i];
+        const container = categoryContainers[agent.category];
+        if (!container) continue;
+
+        const card = AgentCard.create(agent, i, globalIndex);
+        globalIndex++;
+
+        if (fragments[agent.category]) {
+          fragments[agent.category].appendChild(card);
+        }
       }
-    });
 
-    Object.keys(fragments).forEach(key => {
-      if (categoryContainers[key]) {
-        categoryContainers[key].appendChild(fragments[key]);
+      agentIndex = end;
+
+      if (agentIndex < this.agents.length) {
+        // Yield to the main thread before processing the next chunk
+        requestAnimationFrame(() => {
+          setTimeout(renderChunk, 0);
+        });
+      } else {
+        // All chunks processed, flush fragments to DOM
+        requestAnimationFrame(() => {
+          if (this.currentRenderId !== currentRenderId) return; // Cancelled before flushing
+
+          Object.keys(categoryContainers).forEach((key) => {
+            if (categoryContainers[key]) {
+              categoryContainers[key].innerHTML = "";
+            }
+          });
+          Object.keys(fragments).forEach(key => {
+            if (categoryContainers[key]) {
+              categoryContainers[key].appendChild(fragments[key]);
+            }
+          });
+        });
       }
+    };
+
+    // Start rendering chunks
+    requestAnimationFrame(() => {
+      setTimeout(renderChunk, 0);
     });
   }
 
@@ -164,6 +219,9 @@ class RosterApp {
       if (actionBtn) {
           const index = actionBtn.dataset.index;
           let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          if (index === "fusion-result" && this.fusionLab) {
+              agent = this.fusionLab.lastFusionResult;
+          }
           if (!agent) return;
 
           if (actionBtn.dataset.action === "copy-agent") {

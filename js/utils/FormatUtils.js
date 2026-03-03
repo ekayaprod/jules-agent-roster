@@ -19,13 +19,13 @@ class FormatUtils {
     }
 
     /**
-     * Escapes HTML special characters in a string to prevent XSS.
+     * Escapes HTML characters in a string to prevent XSS.
      * @param {string} str - The string to escape.
      * @returns {string} The escaped string.
      */
     static escapeHTML(str) {
-        if (!str || typeof str !== "string") return "";
-        return str
+        if (!str) return "";
+        return String(str)
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;")
