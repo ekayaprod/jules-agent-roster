@@ -581,7 +581,7 @@ class FusionLab {
   /**
    * Orchestrates the fusion animation sequence.
    */
-  runAnimation(agentA, agentB, result) {
+  async runAnimation(agentA, agentB, result) {
     const overlay = document.getElementById("fusionAnimationOverlay");
     const iconLeft = overlay.querySelector(".anim-icon.left");
     const iconRight = overlay.querySelector(".anim-icon.right");
@@ -725,13 +725,13 @@ class FusionLab {
     // Start Animation
     overlay.classList.add("active");
 
-    setTimeout(() => {
-      overlay.classList.remove("active");
-      fuseBtn.disabled = false;
-      fuseBtn.setAttribute("aria-disabled", "false");
-      if (controls) controls.classList.remove("fusing");
+    await new Promise(resolve => setTimeout(resolve, 3500));
 
-      this.showResult();
-    }, 3500);
+    overlay.classList.remove("active");
+    fuseBtn.disabled = false;
+    fuseBtn.setAttribute("aria-disabled", "false");
+    if (controls) controls.classList.remove("fusing");
+
+    this.showResult();
   }
 }
