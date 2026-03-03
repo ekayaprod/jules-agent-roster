@@ -20,7 +20,7 @@
       body { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 1.5rem; line-height: 1.5; }
 
       /* FLIP CARD REFINEMENTS */
-      .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 20rem; max-width: 24rem; height: 16rem; }
+      .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 20rem; max-width: 24rem; height: 13rem; }
       .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; border-radius: 1rem; cursor: pointer; }
       .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
       
@@ -34,7 +34,7 @@
 
       .emoji-hero { font-size: 3.5rem; line-height: 1; margin-bottom: 0; transition: transform 0.2s ease; }
       .flip-card-inner:hover .emoji-hero { transform: scale(1.05) translateY(-0.125rem); }
-      .flip-hint { opacity: 0.6; transition: opacity 0.3s; font-family: -apple-system, sans-serif; }
+      .flip-hint { position: absolute; bottom: 0.5rem; right: 0.75rem; font-size: 1.25rem; opacity: 0.6; transition: opacity 0.3s; font-family: -apple-system, sans-serif; color: var(--text-secondary); }
       .flip-card-inner:hover .flip-hint { opacity: 1; }
 
       .prompt-scroll-area { flex-grow: 1; overflow-y: auto; background: var(--details-bg); padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem; white-space: pre-wrap; font-family: inherit; }
@@ -96,7 +96,7 @@
       .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 0.625rem 0.9375rem rgba(0,0,0,0.5); transform: translateY(200%); transition: transform 0.3s; z-index: 50; border: 1px solid #16a34a; font-family: -apple-system, sans-serif;}
       .toast.show { transform: translateY(0); }
       /* LOADING SKELETON (ILLUSIONIST) */
-      .skeleton-card { height: 16rem; background-color: var(--card-bg); border: 1px dashed var(--border); border-radius: 1rem; flex: 1 1 20rem; max-width: 24rem; display: flex; align-items: center; justify-content: center; opacity: 0.6; }
+      .skeleton-card { height: 13rem; background-color: var(--card-bg); border: 1px dashed var(--border); border-radius: 1rem; flex: 1 1 20rem; max-width: 24rem; display: flex; align-items: center; justify-content: center; opacity: 0.6; }
       @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
       .skeleton-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
       @media (prefers-reduced-motion: reduce) {

@@ -63,7 +63,7 @@ class AgentCard {
                         </div>
                     </div>
                     <div class="description mt-3">${desc}</div>
-                    <div class="flip-hint mt-auto text-secondary text-xs">Tap to view protocol ↺</div>
+                    <div class="flip-hint" aria-label="Tap to view protocol">↺</div>
                 </div>
 
                 <div class="flip-card-back">
