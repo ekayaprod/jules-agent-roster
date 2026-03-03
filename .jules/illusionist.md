@@ -1,0 +1,3 @@
+## 2026-03-03 - 🪄 Illusionist - [Agent Roster Perceived Performance]
+**Learning:** Rendering massive DOM lists synchronously (like 170+ AgentCards) freezes the main thread. Implementing asynchronous chunking using `requestAnimationFrame` fixes this, but can introduce race conditions if the render function is called multiple times quickly (like during search filtering).
+**Action:** When implementing chunked asynchronous rendering, track the active loop with a unique identifier (like a `Symbol`) to cleanly cancel old render passes if a new one is initiated, preventing DOM corruption. Always ensure CSS loading animations include a `@media (prefers-reduced-motion: reduce)` block.
