@@ -389,8 +389,11 @@
       }
       
       /* UTILS */
-      .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem 1rem; }
+      .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 1rem; background-color: rgba(15, 23, 42, 0.3); border: 1px dashed var(--border); border-radius: 1rem; max-width: 40rem; margin: 2rem auto; }
       .empty-state.visible { display: flex; }
+      .empty-icon { margin-bottom: 1rem; opacity: 0.8; }
+      .empty-title { font-size: var(--text-xl); font-weight: var(--weight-bold); margin: 0 0 0.5rem 0; color: var(--text-primary); font-family: -apple-system, sans-serif; }
+      .empty-desc { font-size: var(--text-base); color: var(--text-secondary); margin: 0; max-width: 30rem; font-family: -apple-system, sans-serif; }
       .hidden { display: none !important; } .mt-6 { margin-top: 1.5rem; } .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .justify-center { justify-content: center; } .text-xs { font-size: var(--text-xs); } .text-sm { font-size: var(--text-sm); } .text-secondary { color: var(--text-secondary); } .flex { display: flex; } .truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 0.625rem 0.9375rem rgba(0,0,0,0.5); transform: translateY(200%); transition: transform 0.3s; z-index: 50; border: 1px solid #16a34a; font-family: -apple-system, sans-serif;}
       .toast.show { transform: translateY(0); }
@@ -428,8 +431,12 @@
         <div class="grid" id="searchResultsGrid"></div>
     </div>
     <div id="emptyState" class="empty-state">
-      <h2>No Protocols Found</h2>
-      <button id="clearSearchEmptyBtn" class="mt-2 secondary">Clear Search</button>
+      <svg class="empty-icon" aria-hidden="true" focusable="false" width="64" height="64" fill="none" stroke="var(--text-secondary)" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+      </svg>
+      <p class="empty-title">No Protocols Found</p>
+      <p class="empty-desc">We couldn't find any agents matching your search. Try a different term or clear your search to see all protocols.</p>
+      <button id="clearSearchEmptyBtn" class="mt-6 secondary">Clear Search</button>
     </div>
 
     <main id="main">
