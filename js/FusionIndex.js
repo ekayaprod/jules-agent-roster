@@ -61,21 +61,6 @@ class FusionIndex {
   }
 
   /**
-   * Extracts the emoji from a fusion name.
-   * @param {string} name - The fusion name (e.g., "Void 🕳️").
-   * @returns {string} The extracted emoji or a fallback.
-   */
-  getEmoji(name) {
-    if (!name) return "❓";
-    const parts = name.trim().split(" ");
-    const last = parts[parts.length - 1];
-    if (last && !/^[a-zA-Z0-9]+$/.test(last)) {
-      return last;
-    }
-    return "❓";
-  }
-
-  /**
    * Renders the Fusion Index shelf.
    */
   render() {
@@ -98,7 +83,7 @@ class FusionIndex {
     Object.keys(this.customAgentsData).forEach((key) => {
       const agentData = this.customAgentsData[key];
       const isUnlocked = this.unlockedKeys.has(key);
-      const emoji = this.getEmoji(agentData.name);
+      const emoji = StringUtils.extractEmoji(agentData.name);
 
       const slot = document.createElement("div");
       slot.className = `fusion-slot ${isUnlocked ? "unlocked" : "locked"}`;
