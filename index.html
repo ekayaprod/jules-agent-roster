@@ -103,9 +103,10 @@
       .fusion-slot.locked .slot-icon { filter: brightness(0); }
       .fusion-slot.unlocked { cursor: pointer; border-color: rgba(168, 85, 247, 0.3); }
       
-      .picker-modal { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); border: none; width: 100%; height: 100%; position: fixed; z-index: 100; display: none; align-items: center; justify-content: center; top: 0; left: 0; font-family: -apple-system, sans-serif;}
-      .picker-modal[open] { display: flex; }
-      .picker-container { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; width: 90%; max-width: 37.5rem; max-height: 80vh; display: flex; flex-direction: column; }
+      .picker-modal { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); border: none; width: 100%; height: 100%; position: fixed; z-index: 100; display: flex; align-items: center; justify-content: center; top: 0; left: 0; font-family: -apple-system, sans-serif; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+      .picker-modal[open] { opacity: 1; pointer-events: auto; }
+      .picker-container { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; width: 90%; max-width: 37.5rem; max-height: 80vh; display: flex; flex-direction: column; transform: translateY(20px) scale(0.95); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+      .picker-modal[open] .picker-container { transform: translateY(0) scale(1); }
       .picker-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
       .picker-header h3 { margin: 0; font-size: var(--text-lg); }
       .picker-search { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); }
@@ -391,7 +392,10 @@
       /* UTILS */
       .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem 1rem; }
       .empty-state.visible { display: flex; }
-      .hidden { display: none !important; } .mt-6 { margin-top: 1.5rem; } .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .justify-center { justify-content: center; } .text-xs { font-size: var(--text-xs); } .text-sm { font-size: var(--text-sm); } .text-secondary { color: var(--text-secondary); } .flex { display: flex; } .truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .hidden { display: none !important; }
+      .fade-out { opacity: 0 !important; pointer-events: none; transition: opacity 0.3s ease; }
+      .fade-in { opacity: 1 !important; transition: opacity 0.3s ease; }
+      .mt-6 { margin-top: 1.5rem; } .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .justify-center { justify-content: center; } .text-xs { font-size: var(--text-xs); } .text-sm { font-size: var(--text-sm); } .text-secondary { color: var(--text-secondary); } .flex { display: flex; } .truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 0.625rem 0.9375rem rgba(0,0,0,0.5); transform: translateY(200%); transition: transform 0.3s; z-index: 50; border: 1px solid #16a34a; font-family: -apple-system, sans-serif;}
       .toast.show { transform: translateY(0); }
       /* LOADING SKELETON (ILLUSIONIST) */
@@ -447,14 +451,14 @@
       <div class="grid" id="monthlyGrid"></div>
     </main>
 
-    <div class="fusion-lab-container">
+    <div class="fusion-lab-container" style="position: relative; min-height: 250px;">
       <h2>🧬 The Fusion Lab</h2>
-      <div id="fusionLabSkeleton" class="fusion-visual-slots skeleton-pulse" aria-hidden="true">
+      <div id="fusionLabSkeleton" class="fusion-visual-slots skeleton-pulse fade-in" aria-hidden="true" style="position: absolute; width: 100%; top: 4rem; left: 0;">
         <div class="slot-card" style="border-color: var(--border); background-color: var(--card-bg);"></div>
         <div class="fusion-action-area"><div style="width: 12.5rem; height: 3rem; border-radius: 0.5rem; background: var(--border);"></div></div>
         <div class="slot-card" style="border-color: var(--border); background-color: var(--card-bg);"></div>
       </div>
-      <div id="fusionLabContent" class="fusion-visual-slots hidden">
+      <div id="fusionLabContent" class="fusion-visual-slots fade-out" style="position: relative; z-index: 1;">
         <button id="slotACard" class="slot-card">
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent A</span></div>
         </button>
@@ -538,6 +542,8 @@
     <script src="js/utils/StringUtils.js"></script>
     <script src="js/utils/DownloadUtils.js"></script>
     <script src="js/FusionCompiler.js"></script>
+    <script src="js/ui/FusionPicker.js"></script>
+    <script src="js/ui/FusionAnimation.js"></script>
     <script src="js/FusionIndex.js"></script>
     <script src="js/FusionLab.js"></script>
     <script src="js/RosterApp.js"></script>

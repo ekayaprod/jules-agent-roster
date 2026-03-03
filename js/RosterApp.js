@@ -27,8 +27,15 @@ class RosterApp {
         const skeleton = document.getElementById("fusionLabSkeleton");
         const content = document.getElementById("fusionLabContent");
         if (skeleton && content) {
-            skeleton.classList.add("hidden");
-            content.classList.remove("hidden");
+            skeleton.classList.remove("fade-in");
+            skeleton.classList.add("fade-out");
+            content.classList.remove("fade-out");
+            content.classList.add("fade-in");
+
+            // Wait for transition to finish before hiding skeleton completely
+            setTimeout(() => {
+                skeleton.style.display = 'none';
+            }, 300);
         }
     } catch (error) {
         if (this.elements.main) {
