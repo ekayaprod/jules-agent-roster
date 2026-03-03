@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.5.0 - 2026-03-03
+
+### 🚀 Features
+- **Performance & Search**: Implemented virtualization for search results to significantly improve performance, added fuzzy search capabilities, and included unlocked fusion agents in search results.
+- **Agent Data Standardization**: Standardized `agents.json` and `custom_agents.json` schemas.
+- **Testing Integration**: Added comprehensive tests for `PromptParser.parsePrompt` and spawned "Singularity: Test Pilot" for improved test coverage.
+- **UI Tweaks**: Redesigned Agent Card layout to a one-third/two-thirds split, and updated locked fusion slots to display solid black emoji silhouettes.
+
+### 💅 Polish
+- **Responsive Layout Enforcement**: Ensured responsive layouts across the Fusion Lab and Category Navigation.
+- **UX & Tooling**: Restructured and polished the Fusion UI, added contextual FTUE (First-Time User Experience) & help UI for global search empty states, and standardized spatial rhythm across `index.html` and `AgentCard`.
+- **Interaction Flow**: Refined the interaction flow for Fusion Lab card integration and polished the tooltip icon UI.
+
+### 🐛 Fixed
+- **Layout & Visual Fixes**: Resolved Fusion Lab card layout collapse, correctly styled the fusion agent picker modal for dark themes, and reduced flip card height.
+- **Animation Integrity**: Restored the complex Fusion Lab animation sequence, ensured animations are correctly scoped, and fixed animation loading by applying eager loading to images.
+- **Mobile Experience**: Fixed mobile keyboard auto-focus issues on search inputs.
+- **Data & Rendering**: Standardized custom agent data mapping, fixed DOM ID escaping in `AgentCard.js` for composite keys, and centralized fusion icon extraction logic.
+
+### 🔧 Chores
+- **Code Refactoring & Cleanup**: Extracted and centralized JS utilities, refactored `runAnimation` and `fetchAgents` to use flat `async/await` structures, and eliminated redundant DOM wrappers.
+- **Documentation Overhaul**: Injected cognitive heuristics into fusion agent prompts, generated a master audit report, and revised documentation for various core and fusion agents to improve clarity, detail, and formatting.
+- **System Maintenance**: Purged orphaned python scripts and unused Javascript variables to reduce codebase bloat.
+
 ## 0.4.0 - 2026-03-01
 
 ### 🚀 Features
