@@ -61,13 +61,13 @@ class FusionIndex {
   }
 
   /**
-   * Extracts the emoji from a fusion name.
-   * @param {string} name - The fusion name (e.g., "Void 🕳️").
+   * Extracts the emoji from a fusion agent.
+   * @param {Object} agent - The custom agent object.
    * @returns {string} The extracted emoji or a fallback.
    */
-  getEmoji(name) {
+  getEmoji(agent) {
     // 🧬 Helix: Use centralized utility for consistent icon extraction
-    return FormatUtils.extractIcon({ name }, '❓');
+    return FormatUtils.extractIcon(agent, '❓');
   }
 
   /**
@@ -93,7 +93,7 @@ class FusionIndex {
     Object.keys(this.customAgentsData).forEach((key) => {
       const agentData = this.customAgentsData[key];
       const isUnlocked = this.unlockedKeys.has(key);
-      const emoji = StringUtils.extractEmoji(agentData.name);
+      const emoji = this.getEmoji(agentData);
 
       const slot = document.createElement("div");
       slot.className = `fusion-slot ${isUnlocked ? "unlocked" : "locked"}`;
