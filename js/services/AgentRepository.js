@@ -194,7 +194,7 @@ class AgentRepository {
     async safeJsonParse(response, label) {
         try {
             return await response.json();
-        } catch (error) {
+        } catch {
             throw new Error(`We encountered a problem reading the configuration for ${label}. Please ensure the file is formatted correctly.`);
         }
     }

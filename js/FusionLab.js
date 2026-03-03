@@ -154,8 +154,6 @@ class FusionLab {
     }
 
     // Determine current selections
-    const otherSlot = slotKey === "slotA" ? "slotB" : "slotA";
-    const otherAgent = this.state[otherSlot];
     const currentAgent = this.state[slotKey];
 
     // Reset Search
