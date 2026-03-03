@@ -1,0 +1,11 @@
+{
+  "name": "fusion-lab",
+  "version": "1.0.0",
+  "description": "Fusion Lab Project",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
