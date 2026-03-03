@@ -213,28 +213,29 @@ class RosterApp {
     searchResultsGrid.innerHTML = "";
     let visibleCount = 0;
 
-    this.agents.forEach((agent, index) => {
-        const text = (agent.name + " " + (agent.desc || "")).toLowerCase();
-        if (text.includes(search)) {
-            const card = AgentCard.create(agent, index, visibleCount);
-            searchResultsGrid.appendChild(card);
-            visibleCount++;
-        }
-    });
-
+    const allAgents = this.agents.map((agent, index) => ({ agent, keyOrIndex: index }));
     if (this.fusionLab && this.fusionLab.fusionIndex) {
         this.fusionLab.fusionIndex.unlockedKeys.forEach(key => {
             let agent = this.customAgents[key] || this.fusionLab.compiler.customAgentsMap[key];
-            if (!agent) return;
-
-            const text = (agent.name + " " + (agent.desc || "")).toLowerCase();
-            if (text.includes(search)) {
-                const card = AgentCard.create(agent, key, visibleCount);
-                searchResultsGrid.appendChild(card);
-                visibleCount++;
+            if (agent) {
+                allAgents.push({ agent, keyOrIndex: key });
             }
         });
     }
+
+    const fuse = new Fuse(allAgents, {
+        keys: ["agent.name", "agent.desc"],
+        threshold: 0.4
+    });
+
+    const results = fuse.search(search);
+
+    results.forEach(result => {
+        const { agent, keyOrIndex } = result.item;
+        const card = AgentCard.create(agent, keyOrIndex, visibleCount);
+        searchResultsGrid.appendChild(card);
+        visibleCount++;
+    });
 
     if (visibleCount === 0) {
       this.elements.emptyState?.classList.add("visible");
