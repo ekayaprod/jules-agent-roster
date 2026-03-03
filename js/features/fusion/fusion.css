@@ -1,6 +1,6 @@
 /* FUSION LAB & ARCHIVE (Restored structural CSS) */
 .fusion-lab-container { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; margin-top: 3rem; margin-bottom: 3rem; text-align: center; max-width: 50rem; margin-left: auto; margin-right: auto; }
-.fusion-lab-container h2 { margin-top: 0; margin-bottom: 1.5rem; background: linear-gradient(to right, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: -apple-system, sans-serif; font-weight: 800; }
+.fusion-lab-container h2 { margin-top: 0; margin-bottom: 1.5rem; background: linear-gradient(to right, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: -apple-system, sans-serif; font-weight: var(--weight-extrabold); }
 .fusion-visual-slots { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
 .slot-card { background-color: rgba(15, 23, 42, 0.3); border: 2px dashed var(--border); border-radius: 1rem; flex: 1 1 8.75rem; max-width: 12.5rem; min-height: 7.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; padding: 1rem; text-align: center; }
 .slot-card:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.05); }
@@ -25,7 +25,7 @@
 .picker-container { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; width: 90%; max-width: 37.5rem; max-height: 80vh; display: flex; flex-direction: column; }
 .picker-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
 .picker-header h3 { margin: 0; font-size: var(--text-lg); }
-.close-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.5rem; display: flex; align-items: center; justify-content: center; border-radius: 0.25rem; font-size: var(--text-lg); line-height: 1; }
+.close-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.5rem; display: flex; align-items: center; justify-content: center; border-radius: 0.25rem; font-size: var(--text-lg); line-height: var(--leading-none); }
 .close-btn:hover { color: var(--text-primary); background-color: rgba(255, 255, 255, 0.1); }
 .picker-search { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); }
 .picker-search input[type="text"] { padding-left: 1rem; padding-right: 1rem; }
