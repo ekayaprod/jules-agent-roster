@@ -28,3 +28,7 @@
 ## 2024-05-24 - 📰 Publisher - [Responsive Layout Enforced: Category Navigation]
 **Learning:** When using `overflow-x: auto` for horizontally scrollable flexbox containers (like `.category-nav`), `justify-content: space-between` causes items to be cut off and inaccessible on smaller viewports.
 **Action:** Use `justify-content: flex-start` with a `gap` (e.g., `gap: 0.5rem`) instead, ensuring all items are accessible via scrolling without layout blowout.
+
+## 2026-03-03 - 🗿 Sculptor - [Component Chiseled & Smoothed: Fusion Lab Skeleton]
+**Learning:** Instantly swapping `.hidden` utility classes between loading skeletons and actual content creates a jarring, unpolished experience. CSS transitions on `opacity` won't execute if the `display: none` property (from `.hidden`) is instantly toggled without allowing a frame to render.
+**Action:** When extracting or managing state transitions between skeletons and active components, use a `setTimeout` (or `transitionend` event) matching the CSS transition duration. Fade out the skeleton by setting `opacity: 0`, wait for the timeout, apply `.hidden` to the skeleton, remove `.hidden` from the content, force a layout reflow (e.g. `element.offsetHeight`), and finally set the content's `opacity: 1`.
