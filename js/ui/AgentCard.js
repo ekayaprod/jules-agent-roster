@@ -88,33 +88,13 @@ class AgentCard {
         const front = card.querySelector('.flip-card-front');
         const backBtn = card.querySelector('.back-header');
         const toggleBtn = card.querySelector('.action-toggle-btn');
-        const mainBtn = card.querySelector('.action-main-btn');
-        const btnText = card.querySelector('.btn-text');
 
-        front.addEventListener('click', () => {
-            const safeIndex = CSS.escape(String(index));
-            const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
-            if (promptArea && !promptArea.innerHTML.trim()) {
-                promptArea.innerHTML = AgentCard.getPromptHtml(agent);
-            }
-            card.classList.add('flipped');
-        });
+        // Event delegation moved to RosterApp.js so virtualized cards still work
+        front.setAttribute('data-action', 'flip-card');
+        front.setAttribute('data-index', index);
 
-        backBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            card.classList.remove('flipped');
-        });
-
-        toggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (mainBtn.dataset.action === "copy-agent") {
-                mainBtn.dataset.action = "download-agent";
-                btnText.innerText = "Download";
-            } else {
-                mainBtn.dataset.action = "copy-agent";
-                btnText.innerText = "Copy";
-            }
-        });
+        backBtn.setAttribute('data-action', 'flip-card-back');
+        toggleBtn.setAttribute('data-action', 'toggle-card-action');
 
         return card;
     }

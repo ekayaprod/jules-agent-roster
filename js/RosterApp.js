@@ -241,8 +241,62 @@ class RosterApp {
         masterDropMenu.classList.remove("visible");
     });
 
-    // Event Delegation for Flip Card Action Buttons
+    // Event Delegation for Flip Card Action Buttons & Virtualized Card interactions
     document.addEventListener("click", (e) => {
+      // 1. Flip Card Front (Open)
+      const frontTarget = e.target.closest('[data-action="flip-card"]');
+      if (frontTarget) {
+          const card = frontTarget.closest('.flip-card');
+          if (card) {
+              const index = frontTarget.dataset.index;
+              const safeIndex = CSS.escape(String(index));
+              const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
+              if (promptArea && !promptArea.innerHTML.trim()) {
+                  // Resolve agent
+                  let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+                  if (index === "fusion-result" && this.fusionLab) {
+                      agent = this.fusionLab.lastFusionResult;
+                  }
+                  if (agent) {
+                      promptArea.innerHTML = AgentCard.getPromptHtml(agent);
+                  }
+              }
+              card.classList.add('flipped');
+          }
+          return;
+      }
+
+      // 2. Flip Card Back (Close)
+      const backTarget = e.target.closest('[data-action="flip-card-back"]');
+      if (backTarget) {
+          e.stopPropagation();
+          const card = backTarget.closest('.flip-card');
+          if (card) card.classList.remove('flipped');
+          return;
+      }
+
+      // 3. Action Toggle Button (Copy/Download)
+      const toggleTarget = e.target.closest('[data-action="toggle-card-action"]');
+      if (toggleTarget) {
+          e.stopPropagation();
+          const card = toggleTarget.closest('.flip-card');
+          if (card) {
+              const mainBtn = card.querySelector('.action-main-btn');
+              const btnText = card.querySelector('.btn-text');
+              if (mainBtn && btnText) {
+                  if (mainBtn.dataset.action === "copy-agent") {
+                      mainBtn.dataset.action = "download-agent";
+                      btnText.innerText = "Download";
+                  } else {
+                      mainBtn.dataset.action = "copy-agent";
+                      btnText.innerText = "Copy";
+                  }
+              }
+          }
+          return;
+      }
+
+      // 4. Main Action Button
       const actionBtn = e.target.closest('.action-main-btn');
       if (actionBtn) {
           const index = actionBtn.dataset.index;
@@ -301,7 +355,7 @@ class RosterApp {
       return;
     }
 
-    searchResultsGrid.innerHTML = "";
+    // searchResultsGrid.innerHTML = ""; // Virtualized via Clusterize.js
     let visibleCount = 0;
 
     // 🏁 Pacesetter: Memoize Fuse index to prevent O(n) array mapping and index rebuilds on every keystroke
@@ -335,21 +389,24 @@ class RosterApp {
 
     const results = this._searchCache.fuseInstance.search(search);
 
-    // 🏁 Pacesetter: Limit DOM rendering to a maximum of 25 items to prevent layout thrashing
-    const MAX_RESULTS = 25;
-    const limitedResults = results.slice(0, MAX_RESULTS);
-
-    // 🏁 Pacesetter: Use DocumentFragment to batch DOM inserts
-    const fragment = document.createDocumentFragment();
-
-    limitedResults.forEach(result => {
+    // ⚡ Bolt+: Use Clusterize.js to virtualize search results instead of DOM truncation.
+    // This allows navigating the entire search results without layout thrashing.
+    const htmlResults = results.map(result => {
         const { agent, keyOrIndex } = result.item;
         const card = AgentCard.create(agent, keyOrIndex, visibleCount);
-        fragment.appendChild(card);
         visibleCount++;
+        return card.outerHTML;
     });
 
-    searchResultsGrid.appendChild(fragment);
+    if (!this.searchClusterize) {
+      this.searchClusterize = new Clusterize({
+        rows: htmlResults,
+        scrollId: 'searchResultsScrollArea',
+        contentId: 'searchResultsGrid'
+      });
+    } else {
+      this.searchClusterize.update(htmlResults);
+    }
 
     if (results.length === 0) {
       this.elements.emptyState?.classList.add("visible");
