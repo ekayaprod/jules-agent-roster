@@ -47,8 +47,10 @@
       .prompt-scroll-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0.25rem; }
       
       .back-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; cursor: pointer; }
-      .icon-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.25rem; }
+      .icon-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.25rem; transition: all 0.2s; }
       .icon-btn:hover { color: var(--text-primary); }
+      .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.25rem; }
+      .icon-btn:active { transform: scale(0.95); }
 
       /* CORE UI & BRANDING */
       .header { max-width: 56.25rem; margin: 0 auto 3rem auto; text-align: center; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
@@ -57,14 +59,21 @@
       
       .search-wrapper { position: relative; width: 100%; max-width: 25rem; margin: 1.5rem auto 0 auto; }
       .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); pointer-events: none; }
-      .clear-search-btn { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%) scale(0.8); background: none; border: none; color: var(--text-secondary); padding: 0.25rem; cursor: pointer; opacity: 0; visibility: hidden; }
+      .clear-search-btn { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%) scale(0.8); background: none; border: none; color: var(--text-secondary); padding: 0.25rem; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.2s; }
       .clear-search-btn.visible { opacity: 1; visibility: visible; transform: translateY(-50%) scale(1); pointer-events: auto; }
-      input[type="text"] { padding: 0.75rem 2.5rem 0.75rem 2.75rem; border-radius: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text-primary); width: 100%; font-family: inherit; }
+      .clear-search-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.25rem; }
+      .clear-search-btn:active { transform: translateY(-50%) scale(0.95); }
+      input[type="text"] { padding: 0.75rem 2.5rem 0.75rem 2.75rem; border-radius: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text-primary); width: 100%; font-family: inherit; transition: all 0.2s; }
+      input[type="text"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       
       button { background-color: var(--accent); color: #0f172a; border: none; padding: 0.5rem 1rem; font-weight: var(--weight-semibold); border-radius: 0.5rem; cursor: pointer; transition: all 0.2s; font-family: -apple-system, sans-serif;}
       button:hover { background-color: var(--accent-hover); }
+      button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      button:active { transform: scale(0.98); }
+      button:disabled { opacity: 0.5; cursor: not-allowed; }
       button.secondary { background-color: var(--card-bg); color: var(--text-primary); border: 1px solid var(--border); }
       button.secondary:hover { border-color: var(--accent); }
+      button.secondary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       
       .section-header { max-width: 75rem; margin: 2rem auto 1rem auto; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
       .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 75rem; margin: 0 auto; }
@@ -80,7 +89,10 @@
 
       /* NAVIGATION */
       .category-nav { position: sticky; top: 1rem; z-index: 100; margin: 0 auto 2rem auto; max-width: 50rem; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 999px; padding: 0.35rem; display: flex; justify-content: flex-start; gap: 0.5rem; overflow-x: auto; font-family: -apple-system, sans-serif; }
-      .nav-pill { color: var(--text-secondary); text-decoration: none; font-size: var(--text-xs); font-weight: 600; padding: 0.4rem 0.8rem; border-radius: 999px; }
+      .nav-pill { color: var(--text-secondary); text-decoration: none; font-size: var(--text-xs); font-weight: 600; padding: 0.4rem 0.8rem; border-radius: 999px; transition: all 0.2s; }
+      .nav-pill:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
+      .nav-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .nav-pill:active { transform: scale(0.95); }
       .nav-pill.active { background: var(--accent); color: #0f172a; }
 
       /* FOOTER & MASTER CONTROLS */
@@ -90,8 +102,9 @@
       .master-drop-btn { padding: 0 1rem; border-top-left-radius: 0; border-bottom-left-radius: 0; }
       .dropdown-menu { position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; z-index: 50; display: none; flex-direction: column; min-width: 17.5rem; box-shadow: 0 -0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.3); overflow: hidden; }
       .dropdown-menu.visible { display: flex; }
-      .dropdown-item { width: 100%; background: transparent; color: var(--text-primary); border: none; padding: 0.75rem 1rem; text-align: left; font-size: var(--text-sm); border-radius: 0;}
+      .dropdown-item { width: 100%; background: transparent; color: var(--text-primary); border: none; padding: 0.75rem 1rem; text-align: left; font-size: var(--text-sm); border-radius: 0; transition: all 0.2s;}
       .dropdown-item:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
+      .dropdown-item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
       /* UTILS */
       .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
