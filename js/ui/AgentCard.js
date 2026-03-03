@@ -91,7 +91,7 @@ class AgentCard {
         `;
 
         const front = card.querySelector('.flip-card-front');
-        const backBtn = card.querySelector('.flip-back-btn');
+        const backBtn = card.querySelector('.back-header');
         const toggleBtn = card.querySelector('.action-toggle-btn');
         const mainBtn = card.querySelector('.action-main-btn');
         const btnText = card.querySelector('.btn-text');
