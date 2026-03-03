@@ -17,7 +17,7 @@ class RosterApp {
     this.cacheElements();
 
     try {
-        const { agents, customAgents } = await this.agentRepo.getAgents();
+        const { agents, customAgents } = await this.agentRepo.fetchAgents();
         this.agents = agents;
         this.customAgents = customAgents;
 
@@ -219,6 +219,9 @@ class RosterApp {
       if (actionBtn) {
           const index = actionBtn.dataset.index;
           let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          if (index === "fusion-result" && this.fusionLab) {
+              agent = this.fusionLab.lastFusionResult;
+          }
           if (!agent) return;
 
           if (actionBtn.dataset.action === "copy-agent") {
@@ -268,28 +271,29 @@ class RosterApp {
     searchResultsGrid.innerHTML = "";
     let visibleCount = 0;
 
-    this.agents.forEach((agent, index) => {
-        const text = (agent.name + " " + (agent.desc || "")).toLowerCase();
-        if (text.includes(search)) {
-            const card = AgentCard.create(agent, index, visibleCount);
-            searchResultsGrid.appendChild(card);
-            visibleCount++;
-        }
-    });
-
+    const allAgents = this.agents.map((agent, index) => ({ agent, keyOrIndex: index }));
     if (this.fusionLab && this.fusionLab.fusionIndex) {
         this.fusionLab.fusionIndex.unlockedKeys.forEach(key => {
             let agent = this.customAgents[key] || this.fusionLab.compiler.customAgentsMap[key];
-            if (!agent) return;
-
-            const text = (agent.name + " " + (agent.desc || "")).toLowerCase();
-            if (text.includes(search)) {
-                const card = AgentCard.create(agent, key, visibleCount);
-                searchResultsGrid.appendChild(card);
-                visibleCount++;
+            if (agent) {
+                allAgents.push({ agent, keyOrIndex: key });
             }
         });
     }
+
+    const fuse = new Fuse(allAgents, {
+        keys: ["agent.name", "agent.desc"],
+        threshold: 0.4
+    });
+
+    const results = fuse.search(search);
+
+    results.forEach(result => {
+        const { agent, keyOrIndex } = result.item;
+        const card = AgentCard.create(agent, keyOrIndex, visibleCount);
+        searchResultsGrid.appendChild(card);
+        visibleCount++;
+    });
 
     if (visibleCount === 0) {
       this.elements.emptyState?.classList.add("visible");

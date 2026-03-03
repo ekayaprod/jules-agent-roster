@@ -12,3 +12,7 @@
 ## 2024-05-24 - Brittle Custom Roving Tabindex
 **Learning:** The project relies on custom JavaScript logic (`handleGridKeydown` in `FusionLab.js`) to manage roving tabindexes for modal grid navigation. This is a recurring DX friction point that often leads to WCAG accessibility violations if edge cases are missed.
 **Action:** When auditing custom accessibility logic for complex grids or modals, always cross-reference against battle-tested libraries like `focus-trap` or `roving-tabindex` to ensure robust keyboard navigation without reinventing the wheel.
+
+## 2024-05-24 - Custom Agent Layouts
+**Learning:** Users need a way to personalize their workspace by pinning frequently used or favorite fusion agent cards for quicker access.
+**Action:** When considering UX enhancements, prioritize features that allow for user customization and persistence (e.g., via LocalStorage) without complicating the single-file deployment constraint.

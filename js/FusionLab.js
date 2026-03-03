@@ -289,23 +289,43 @@ class FusionLab {
    * Filters the agent grid in the picker.
    */
   filterPicker(query) {
-      const term = query.toLowerCase();
+      const term = query.trim();
       const items = document.querySelectorAll(".mini-agent-card");
       let visibleCount = 0;
       let firstVisible = null;
 
-      items.forEach(item => {
-          const name = item.getAttribute("data-name");
-          const match = name.includes(term);
-          if (match) {
+      if (!term) {
+          items.forEach(item => {
               item.style.display = "flex";
               if (!firstVisible) firstVisible = item;
               visibleCount++;
-          } else {
+              item.setAttribute("tabindex", "-1"); // Reset all
+          });
+      } else {
+          const data = Array.from(items).map(item => ({
+              el: item,
+              name: item.getAttribute("data-name")
+          }));
+
+          const fuse = new Fuse(data, {
+              keys: ["name"],
+              threshold: 0.4
+          });
+
+          const results = fuse.search(term);
+
+          items.forEach(item => {
               item.style.display = "none";
-          }
-          item.setAttribute("tabindex", "-1"); // Reset all
-      });
+              item.setAttribute("tabindex", "-1"); // Reset all
+          });
+
+          results.forEach(result => {
+              const item = result.item.el;
+              item.style.display = "flex";
+              if (!firstVisible) firstVisible = item;
+              visibleCount++;
+          });
+      }
 
       // 💎 Jeweler: Reset Roving Tabindex to first result
       if (firstVisible) {
@@ -541,8 +561,6 @@ class FusionLab {
         }
 
         const card = AgentCard.create(result, keyStr, 0);
-        // Force the card to be visible instantly within the wrapper
-        card.style.display = "flex";
         card.classList.remove("pop-in");
         container.appendChild(card);
       }

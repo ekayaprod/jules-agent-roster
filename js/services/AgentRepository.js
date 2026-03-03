@@ -15,7 +15,7 @@ class AgentRepository {
      * @returns {Promise<{agents: Array, customAgents: Object}>} The loaded agents.
      * @throws {Error} If loading fails.
      */
-    async getAgents() {
+    async fetchAgents() {
         try {
             const response = await this.fetchWithRetry("agents.json");
             const rawData = await this.safeJsonParse(response, "agents.json");
