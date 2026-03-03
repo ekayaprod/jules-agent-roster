@@ -283,6 +283,36 @@ class AgentRepository {
             return { valid: false, reason: "Potential malicious content detected" };
         }
 
+        // Standardize schema to match agents.json (desc, icon, clean name)
+        if (data.description !== undefined && data.desc === undefined) {
+            data.desc = data.description;
+        }
+
+        if (typeof StringUtils !== 'undefined') {
+            if (!data.icon) {
+                data.icon = StringUtils.extractEmoji(data.name);
+            }
+            if (StringUtils.hasEmojiSuffix(data.name)) {
+                data.name = StringUtils.extractNameWithoutEmoji(data.name);
+            }
+        } else {
+            // Fallback parsing if StringUtils is not available in environment
+            if (!data.icon) {
+                const parts = data.name.trim().split(" ");
+                const lastPart = parts[parts.length - 1];
+                if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
+                    data.icon = lastPart;
+                } else {
+                    data.icon = '🤖';
+                }
+            }
+            const parts = data.name.trim().split(" ");
+            const lastPart = parts[parts.length - 1];
+            if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
+                data.name = parts.slice(0, -1).join(" ");
+            }
+        }
+
         return { valid: true, sanitized: data };
     }
 }
