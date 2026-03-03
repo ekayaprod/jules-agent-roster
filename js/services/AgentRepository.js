@@ -82,14 +82,7 @@ class AgentRepository {
                                 // Add to valid set
                                 validatedCustomData[key] = agent;
                             } catch (err) {
-                                // Catch-all for unexpected processing errors to prevent total crash
-                                console.error(
-                                    JSON.stringify({
-                                        event: "CUSTOM_AGENT_PROCESSING_ERROR",
-                                        key: key,
-                                        error: err.message,
-                                    }),
-                                );
+                                console.error(`Error processing custom agent '${key}':`, err);
                             }
                         }),
                     );
