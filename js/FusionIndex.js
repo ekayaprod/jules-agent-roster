@@ -66,13 +66,8 @@ class FusionIndex {
    * @returns {string} The extracted emoji or a fallback.
    */
   getEmoji(name) {
-    if (!name) return "❓";
-    const parts = name.trim().split(" ");
-    const last = parts[parts.length - 1];
-    if (last && !/^[a-zA-Z0-9]+$/.test(last)) {
-      return last;
-    }
-    return "❓";
+    // 🧬 Helix: Use centralized utility for consistent icon extraction
+    return FormatUtils.extractIcon({ name }, '❓');
   }
 
   /**

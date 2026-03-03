@@ -271,11 +271,8 @@ class FusionLab {
             actionArea.appendChild(previewEl);
         }
 
-        const parts = result.name.trim().split(" ");
-        const lastPart = parts[parts.length - 1];
-        const isEmoji = lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart);
-        let iconHtml = result.isCustom && isEmoji ? lastPart : `${agentA.icon}${agentB.icon}`;
-        let nameHtml = isEmoji ? parts.slice(0, -1).join(" ") : result.name;
+        const iconHtml = FormatUtils.extractIcon(result, `${agentA.icon}${agentB.icon}`);
+        const nameHtml = FormatUtils.extractDisplayName(result);
 
         previewEl.innerHTML = `
             <div class="preview-badge">Already Discovered</div>
@@ -654,26 +651,16 @@ class FusionLab {
     // Setup Animation Data
     iconLeft.innerHTML = agentA.icon;
     iconRight.innerHTML = agentB.icon;
-    // Determine if last part is an emoji/icon (not alphanumeric or basic punctuation)
-    const parts = result.name.trim().split(" ");
-    const lastPart = parts[parts.length - 1];
-    const isEmoji = lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart);
+
+    const icon = FormatUtils.extractIcon(result, `${agentA.icon}${agentB.icon}`);
+    const displayName = FormatUtils.extractDisplayName(result);
 
     // Set result name with highlighted text and separate emoji
-    if (isEmoji) {
-      const textPart = parts.slice(0, -1).join(" ");
-      animResult.innerHTML = `<span class="highlight">${textPart}</span> ${lastPart}`;
-    } else {
-      animResult.innerHTML = `<span class="highlight">${result.name}</span>`;
-    }
+    animResult.innerHTML = `<span class="highlight">${displayName}</span> ${icon}`;
 
     // Determine Result Icon
     if (result.isCustom && result.name) {
-      if (isEmoji) {
-        if (iconResult) iconResult.innerHTML = lastPart;
-      } else {
-        if (iconResult) iconResult.innerHTML = agentA.icon + agentB.icon;
-      }
+      if (iconResult) iconResult.innerHTML = icon;
     } else {
       // Standard Fusion: Emoji Kitchen
       const iconA = agentA.icon.trim();

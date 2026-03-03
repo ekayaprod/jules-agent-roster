@@ -39,21 +39,9 @@ class AgentCard {
             card.classList.add(`tier-${lowerTier}`);
         }
 
-        // Fix Fusion Icon Bug: Extract emoji from custom fusion names if icon is missing
-        let icon = agent.icon;
-        let displayName = agent.name;
-        if (!icon && agent.isCustom) {
-            const parts = agent.name.trim().split(" ");
-            const lastPart = parts[parts.length - 1];
-            if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
-                icon = lastPart;
-                displayName = parts.slice(0, -1).join(" ");
-            } else {
-                icon = '🤖';
-            }
-        } else if (!icon) {
-            icon = '🤖';
-        }
+        // Fix Fusion Icon Bug: Use centralized utility for icon extraction
+        const icon = FormatUtils.extractIcon(agent);
+        const displayName = FormatUtils.extractDisplayName(agent);
 
         const role = agent.role || 'Fusion Protocol';
         const desc = agent.desc || agent.description || '';
