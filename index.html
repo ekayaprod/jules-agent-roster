@@ -155,9 +155,9 @@
     </div>
     <div id="emptyState" class="empty-state">
       <div style="font-size: var(--text-5xl); margin-bottom: 1rem;">🌌</div>
-      <h2>Uncharted Territory</h2>
-      <p class="text-secondary mt-2" style="max-width: 25rem; line-height: var(--leading-normal);">We couldn't find a protocol matching your current parameters. Clear your search to explore the full matrix of autonomous agents and find the perfect specialist for your next task.</p>
-      <button id="clearSearchEmptyBtn" class="mt-3 secondary">Clear Search & Explore</button>
+      <h2>No Protocols Found</h2>
+      <p class="text-secondary mt-2" style="max-width: 25rem; line-height: var(--leading-normal);">We couldn't find any protocols matching your search. Clear your filters to explore the matrix.</p>
+      <button id="clearSearchEmptyBtn" class="mt-3 secondary" aria-label="Clear Search Filters">Clear Search & Explore</button>
     </div>
 
     <main id="main">
@@ -187,13 +187,13 @@
         <div class="slot-card" style="border-color: var(--border); background-color: var(--card-bg);"></div>
       </div>
       <div id="fusionLabContent" class="fusion-visual-slots fade-transition hidden">
-        <button id="slotACard" class="slot-card">
+        <button id="slotACard" class="slot-card" aria-label="Select Primary Protocol">
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent A</span></div>
         </button>
         <div class="fusion-action-area">
-          <button id="fuseBtn" disabled>Ignite Protocol</button>
+          <button id="fuseBtn" disabled aria-label="Fuse Selected Protocols">Ignite Protocol</button>
         </div>
-        <button id="slotBCard" class="slot-card">
+        <button id="slotBCard" class="slot-card" aria-label="Select Secondary Protocol">
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent B</span></div>
         </button>
       </div>
@@ -220,12 +220,12 @@
 
     <footer class="roster-footer">
       <div class="master-export-group">
-        <button id="masterCopyBtn" class="master-main-btn" data-action="copy-all">Copy All Core Prompts</button>
-        <button id="masterDropdownBtn" class="master-drop-btn">▼</button>
+        <button id="masterCopyBtn" class="master-main-btn" data-action="copy-all" aria-label="Copy All Core Prompts to Clipboard">Copy All Core Prompts</button>
+        <button id="masterDropdownBtn" class="master-drop-btn" aria-label="Toggle Export Options">▼</button>
         <div id="masterDropdownMenu" class="dropdown-menu">
-          <button id="masterDownloadCoreBtn" class="dropdown-item" data-action="download-all">Download Core Prompts</button>
-          <button id="masterCopyFusionsBtn" class="dropdown-item" data-action="copy-fusions">Copy Unlocked Fusions</button>
-          <button id="masterDownloadFusionsBtn" class="dropdown-item" data-action="download-fusions">Download Unlocked Fusions</button>
+          <button id="masterDownloadCoreBtn" class="dropdown-item" data-action="download-all" aria-label="Download Core Prompts as JSON">Download Core Prompts</button>
+          <button id="masterCopyFusionsBtn" class="dropdown-item" data-action="copy-fusions" aria-label="Copy Unlocked Fusions to Clipboard">Copy Unlocked Fusions</button>
+          <button id="masterDownloadFusionsBtn" class="dropdown-item" data-action="download-fusions" aria-label="Download Unlocked Fusions as JSON">Download Unlocked Fusions</button>
         </div>
       </div>
     </footer>
@@ -234,7 +234,7 @@
         <div class="picker-container">
             <header class="picker-header">
                 <h3>Select Protocol Component</h3>
-                <button id="closePickerBtn" class="close-btn">✕</button>
+                <button id="closePickerBtn" class="close-btn" aria-label="Close Protocol Selection">✕</button>
             </header>
             <div class="picker-search">
                 <input type="text" id="pickerSearch" placeholder="Filter protocols...">

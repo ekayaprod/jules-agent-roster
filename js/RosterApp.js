@@ -54,11 +54,11 @@ class RosterApp {
         }
     } catch (error) {
         if (this.elements.main) {
-            const isDataError = error.message && error.message.includes("JSON");
-            const errorTitle = "We couldn't load the agent roster";
+            const isDataError = error.message && (error.message.includes("JSON") || error.message.includes("configuration"));
+            const errorTitle = "Unable to Load Protocols";
             const errorDesc = isDataError
-              ? "We encountered a problem reading the agent data files. Please check your configuration and try again."
-              : "We're having trouble connecting to the network. Please check your connection and try refreshing.";
+              ? "Check your configuration file formatting and try again."
+              : "Check your internet connection and refresh the page.";
 
             this.elements.main.innerHTML = `
               <div class="empty-state visible">
