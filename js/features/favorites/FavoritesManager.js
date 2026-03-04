@@ -14,22 +14,10 @@ class FavoritesManager {
      * Initializes the manager by loading saved favorites from localStorage.
      */
     init() {
-        let stored = null;
-        try {
-            if (typeof localStorage === 'undefined') return;
-            stored = localStorage.getItem(this.storageKey);
-            if (stored) {
-                const keys = JSON.parse(stored);
-                if (Array.isArray(keys)) {
-                    this.favorites = new Set(keys);
-                }
-            }
-        } catch (error) {
-            console.error(JSON.stringify({
-                event: "FAVORITES_LOAD_FAILED",
-                stored: stored,
-                error: error.message
-            }));
+        const storedKeys = StorageUtils.getJsonArrayItem(this.storageKey, "FAVORITES_LOAD_FAILED");
+        if (storedKeys) {
+            this.favorites = new Set(storedKeys);
+        } else {
             this.favorites = new Set();
         }
     }
@@ -38,12 +26,7 @@ class FavoritesManager {
      * Saves the current set of favorites to localStorage.
      */
     save() {
-        try {
-            if (typeof localStorage === 'undefined') return;
-            localStorage.setItem(this.storageKey, JSON.stringify(Array.from(this.favorites)));
-        } catch (error) {
-            console.warn("FavoritesManager: Failed to save to localStorage", error);
-        }
+        StorageUtils.setJsonItem(this.storageKey, Array.from(this.favorites), "FavoritesManager");
     }
 
     /**

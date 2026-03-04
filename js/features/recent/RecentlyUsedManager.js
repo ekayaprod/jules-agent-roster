@@ -15,36 +15,15 @@ class RecentlyUsedManager {
      * Initializes the manager by loading saved recent agents from localStorage.
      */
     init() {
-        let stored = null;
-        try {
-            if (typeof localStorage === 'undefined') return;
-            stored = localStorage.getItem(this.storageKey);
-            if (stored) {
-                const keys = JSON.parse(stored);
-                if (Array.isArray(keys)) {
-                    this.recent = keys;
-                }
-            }
-        } catch (error) {
-            console.error(JSON.stringify({
-                event: "RECENTLY_USED_LOAD_FAILED",
-                stored: stored,
-                error: error.message
-            }));
-            this.recent = [];
-        }
+        const storedKeys = StorageUtils.getJsonArrayItem(this.storageKey, "RECENTLY_USED_LOAD_FAILED");
+        this.recent = storedKeys || [];
     }
 
     /**
      * Saves the current set of recently used agents to localStorage.
      */
     save() {
-        try {
-            if (typeof localStorage === 'undefined') return;
-            localStorage.setItem(this.storageKey, JSON.stringify(this.recent));
-        } catch (error) {
-            console.warn("RecentlyUsedManager: Failed to save to localStorage", error);
-        }
+        StorageUtils.setJsonItem(this.storageKey, this.recent, "RecentlyUsedManager");
     }
 
     /**
