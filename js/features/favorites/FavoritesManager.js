@@ -14,9 +14,10 @@ class FavoritesManager {
      * Initializes the manager by loading saved favorites from localStorage.
      */
     init() {
+        let stored = null;
         try {
             if (typeof localStorage === 'undefined') return;
-            const stored = localStorage.getItem(this.storageKey);
+            stored = localStorage.getItem(this.storageKey);
             if (stored) {
                 const keys = JSON.parse(stored);
                 if (Array.isArray(keys)) {
@@ -26,6 +27,7 @@ class FavoritesManager {
         } catch (error) {
             console.error(JSON.stringify({
                 event: "FAVORITES_LOAD_FAILED",
+                stored: stored,
                 error: error.message
             }));
             this.favorites = new Set();
