@@ -54,14 +54,14 @@ class AgentCard {
         card.innerHTML = `
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <button class="icon-btn favorite-btn ${favClass}" data-action="toggle-favorite" data-index="${index}" aria-label="Toggle Favorite" style="position: absolute; right: 0.75rem; top: 0.75rem; font-size: var(--text-xl); line-height: var(--leading-none);">${favIcon}</button>
+                    <button class="icon-btn favorite-btn ${favClass}" data-action="toggle-favorite" data-index="${index}" aria-label="Toggle Favorite" >${favIcon}</button>
                     <div class="card-top">
                         <div class="card-top-left">
                             <div class="emoji-hero">${icon}</div>
                         </div>
                         <div class="card-top-right">
                             <div class="title-group">
-                                <div style="display: flex; justify-content: space-between; width: 100%;">
+                                <div class="title-wrapper">
                                     <h3 class="agent-title">${safeDisplayName}</h3>
                                 </div>
                                 <span class="role-tag">${role}</span>
@@ -70,7 +70,7 @@ class AgentCard {
                         </div>
                     </div>
                     <div class="description mt-3">${desc}</div>
-                    <div class="flip-hint" aria-label="Tap to view protocol" style="position: absolute; right: 0.75rem; bottom: 0.75rem;">↺</div>
+                    <div class="flip-hint" aria-label="Tap to view protocol" >↺</div>
                 </div>
 
                 <div class="flip-card-back">
@@ -81,10 +81,10 @@ class AgentCard {
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
                     
                     <div class="card-actions mt-auto pt-2 flex">
-                        <button class="secondary action-main-btn" data-action="copy-agent" data-index="${index}" style="border-top-right-radius: 0; border-bottom-right-radius: 0; flex-grow: 1;">
+                        <button class="secondary action-main-btn" data-action="copy-agent" data-index="${index}" >
                             <span class="btn-text">Copy</span>
                         </button>
-                        <button class="secondary action-toggle-btn px-2" aria-label="Toggle action" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid rgba(0,0,0,0.2);">
+                        <button class="secondary action-toggle-btn px-2" aria-label="Toggle action" >
                             ▼
                         </button>
                     </div>
