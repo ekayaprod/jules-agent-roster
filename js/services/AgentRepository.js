@@ -197,7 +197,12 @@ class AgentRepository {
     async safeJsonParse(response, label) {
         try {
             return await response.json();
-        } catch {
+        } catch (error) {
+            console.error(JSON.stringify({
+                event: 'JSON_PARSE_FAILED',
+                resource: label,
+                error: error.message
+            }));
             throw new Error("Check the configuration file formatting and try again.");
         }
     }
