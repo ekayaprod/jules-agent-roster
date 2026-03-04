@@ -35,3 +35,6 @@
 **Learning:** Found temporary python scripts like `analyze_pass7.py` and generated screenshot files floating in the repository root. Static analysis tools initially flagged `.test.js` files as unused because test files are typically unimported by runtime logic, highlighting a flaw in purely relying on AST parsers for test structures.
 
 **Action:** Ensure temporary execution scripts or image artifacts are strictly ephemeral and do not persist in the main codebase. Do not delete test suite entry files (`.test.js`) just because they lack runtime imports; use dedicated test-runner configurations to audit active test paths.
+## 2024-03-04 - 🦅 Scavenger - Major Code Purge: Recently Used Section
+**Learning:** The "Recently Used" feature, consisting of UI grid rendering logic and local storage caching, was unused and marked as obsolete debris in the Overseer report.
+**Action:** Removed the `RecentlyUsedManager.js`, associated HTML elements, and references across `RosterApp.js` and `benchmark.js`. The benchmark tests and the core functionality logic continue to perform optimally within standard tolerances.
