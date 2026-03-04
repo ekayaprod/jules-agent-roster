@@ -397,6 +397,8 @@ class FusionLab {
         case "Legendary": particleCount = 300; speedMultiplier = 2; break;
       }
 
+      const fragment = document.createDocumentFragment();
+
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement("div");
         particle.className = "anim-particle";
@@ -416,8 +418,10 @@ class FusionLab {
             particle.style.animationDelay = `1.5s`;
         }
 
-        particlesContainer.appendChild(particle);
+        fragment.appendChild(particle);
       }
+
+      particlesContainer.appendChild(fragment);
     }
 
     // Setup Animation Data
