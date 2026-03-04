@@ -2,6 +2,7 @@ if (typeof module !== 'undefined' && module.exports && typeof require !== 'undef
   module.exports = {
     FusionCompiler: require('./FusionCompiler.js'),
     FusionIndex: require('./FusionIndex.js'),
-    FusionLab: require('./FusionLab.js')
+    FusionLab: require('./FusionLab.js'),
+    FusionAnimation: require('./FusionAnimation.js')
   };
 }
