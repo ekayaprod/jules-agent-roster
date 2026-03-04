@@ -67,10 +67,10 @@ class AgentCard {
                                     </div>
                                     <span class="role-tag">${role}</span>
                                 </div>
-                                <div class="tag-container mt-2">${tags}</div>
+                                <div class="tag-container">${tags}</div>
                             </div>
                         </div>
-                        <div class="description mt-3">${desc}</div>
+                        <div class="description">${desc}</div>
                     </div>
                     <div class="flip-hint" aria-label="Tap to view protocol" >↺</div>
                 </div>

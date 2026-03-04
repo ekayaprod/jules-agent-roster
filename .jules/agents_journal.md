@@ -1,10 +1,3 @@
-## 2026-03-03 - 🪄 Illusionist - [Perceived Performance: AgentPicker]
-**Learning:** Rendering a large list of elements (e.g., 170+ agent cards) synchronously into the DOM when opening a modal causes noticeable main-thread blocking and layout thrashing, leading to interaction lag.
-**Action:** When creating a large grid or list inside a modal, offload the actual DOM generation to an asynchronous chunk (using `requestAnimationFrame` + `setTimeout`). Mask the rendering latency by immediately injecting a pure CSS loading skeleton (`.skeleton-pulse`) that matches the dimensions of the final elements. Furthermore, cache the created DOM nodes (e.g., in an array or DocumentFragment) and use global event delegation to eliminate the need for re-creating them and re-attaching individual event listeners on subsequent modal openings.
-
-## 2026-03-04 - 🎧 Vibe - [Feature Materialized: Recently Used Feature]
-**Learning:** When generating standalone logic managers in this specific project's architecture (like a new `RecentlyUsedManager.js`), they must be manually injected as script tags into the core HTML layout, and also dynamically imported into `benchmark.js` (using `loadClass`) and bound to the `global` object. Failing to do so causes ReferenceErrors during `npm run test` because standard module loaders or bundlers are intentionally absent.
-**Action:** When writing standalone script classes, always add a script tag into `index.html` before the application script (`RosterApp.js`), and strictly update `benchmark.js` to `loadClass` and bind the class globally.
-## 2024-05-24 - 🪧 Wayfinder - [Navigation Context Enhanced: AgentPicker Modal]
-**Learning:** The Agent Picker modal `<dialog>` creates an "invisible" dead end by overlaying the UI without modifying the browser's history state, causing the native back button to bypass the modal and unintentionally navigate the user away from the app.
-**Action:** Injected a `history.pushState` operation when opening the modal, and added a global `popstate` event listener to intercept the browser's back button and safely close the modal without losing the underlying application state.
+## 2026-03-04 - 🧱 Mason - [Spatial Layout Reinforced: AgentCard]
+**Learning:** Legacy UI cards relied on fragile negative margins (`margin-top: -0.5rem`) and structural margin utility classes (`mt-2`, `mt-3`) on inner elements to artificially space out titles, tags, and descriptions. This violates spatial integrity and causes misalignments when content scales.
+**Action:** Stripped out the negative margins and `mt-*` utilities. Enforced a mathematically sound layout by relying exclusively on `gap` (`0.75rem` and `0.5rem`) within the parent `flex` containers to space the children dynamically.
