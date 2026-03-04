@@ -15,9 +15,10 @@ class RecentlyUsedManager {
      * Initializes the manager by loading saved recent agents from localStorage.
      */
     init() {
+        let stored = null;
         try {
             if (typeof localStorage === 'undefined') return;
-            const stored = localStorage.getItem(this.storageKey);
+            stored = localStorage.getItem(this.storageKey);
             if (stored) {
                 const keys = JSON.parse(stored);
                 if (Array.isArray(keys)) {
@@ -27,6 +28,7 @@ class RecentlyUsedManager {
         } catch (error) {
             console.error(JSON.stringify({
                 event: "RECENTLY_USED_LOAD_FAILED",
+                stored: stored,
                 error: error.message
             }));
             this.recent = [];
