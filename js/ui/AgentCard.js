@@ -7,12 +7,12 @@ class AgentCard {
         let promptHtml = '';
 
         if (parsed.format === 'legacy') {
-            promptHtml = `<div class="details-content">${agent.prompt}</div>`;
+            promptHtml = `<div class="details-content">${FormatUtils.escapeHTML(agent.prompt)}</div>`;
         } else if (typeof PromptRenderer !== 'undefined') {
             const structuredHtml = PromptRenderer.renderXml(parsed);
-            promptHtml = `<div class="details-content">${structuredHtml || agent.prompt}</div>`;
+            promptHtml = `<div class="details-content">${structuredHtml || FormatUtils.escapeHTML(agent.prompt)}</div>`;
         } else {
-            promptHtml = `<div class="details-content">${agent.prompt}</div>`;
+            promptHtml = `<div class="details-content">${FormatUtils.escapeHTML(agent.prompt)}</div>`;
         }
         return promptHtml;
     }
