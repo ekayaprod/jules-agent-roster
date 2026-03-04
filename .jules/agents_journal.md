@@ -12,3 +12,7 @@
 ## 2024-05-24 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: FavoritesManager]
 **Learning:** The persistence module `FavoritesManager` lacked context on its architectural role and how its local storage usage works.
 **Action:** Synthesized a high-level `README.md` defining its singleton-like pattern and its usage of `StorageUtils` for `localStorage`, and added granular, strictly typed JSDoc comments to `FavoritesManager.js` using `@see` to link directly back to the `README.md` architecture and quick-start sections.
+
+## 2026-03-05 - 📰 Publisher - [Responsive Layout Enforced: Raw CSS Media Queries]
+**Learning:** The project relies on raw vanilla CSS without standard utility frameworks, meaning responsive standard breakpoints (like `sm:` or `md:`) must be manually defined via `@media (min-width: 640px)` to transition from fluid mobile constraints (`100%` width) to fixed dimensions on larger screens, rather than injecting utility classes.
+**Action:** Always manually define and enforce `min-width` media queries in the CSS files (e.g., `fusion.css` and inline styles) instead of attempting to use Tailwind-like prefixes when working in vanilla CSS environments.
