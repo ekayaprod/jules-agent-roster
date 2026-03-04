@@ -60,7 +60,7 @@ The core of this system is the **Overseer** agent. This agent runs monthly to pe
 
 * **Inspector 🕵️**: Fills test coverage gaps.
 
-* **Medic 🚑**: Hardens app against crashes and brittle logic.
+* **Paramedic 🚨**: Hardens app against crashes and brittle logic.
 
 * **Helix 🧬**: Deduplication Specialist. Extracts shared logic into utilities or hooks.
 
@@ -94,7 +94,7 @@ The Fusion Lab allows you to combine any two agents to create a specialized hybr
 
 **Featured Fusions:**
 
-* **The Guardian ⛑️** (Medic + Inspector): Hardens code against crashes and locks it in place with rigorous tests.
+* **The Guardian ⛑️** (Paramedic + Inspector): Hardens code against crashes and locks it in place with rigorous tests.
 
 * **The Virtuoso 🎨** (Palette+ + Wordsmith): Polishes interaction flows and microcopy in a single unified pass.
 

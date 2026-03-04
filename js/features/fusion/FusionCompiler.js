@@ -48,7 +48,7 @@ class FusionCompiler {
       "Palette+",   // UI/UX Polish
       "Wordsmith",  // Documentation/Copy
       "Pedant",     // Strict verification
-      "Medic",      // Bug fixing
+      "Paramedic",      // Bug fixing
       "Inspector",  // Testing
       "Curator",    // Data management
       "Scribe",     // Inline documentation

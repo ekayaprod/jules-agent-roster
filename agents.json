@@ -81,13 +81,13 @@
     "role": "Test Writer"
   },
   {
-    "name": "Medic",
-    "emoji": "🚑",
-    "short_description": "Stops silent crashes by wrapping fragile network calls in safe boundaries. Executes deep structural triage to find and fix fatal crashes in broken scripts before they take down the application.",
+    "name": "Paramedic",
+    "emoji": "🚨",
+    "short_description": "Resuscitates DOA scripts, fixes fatal syntax errors in dynamic code, and resolves startup boot freezes.",
     "tier": "",
     "category": "operations",
     "type": "",
-    "role": "Crash Responder"
+    "role": "The Crash Specialist"
   },
   {
     "name": "Cortex",

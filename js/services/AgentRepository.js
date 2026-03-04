@@ -168,7 +168,7 @@ class AgentRepository {
         try {
             const response = await fetch(url, options);
             if (!response.ok) {
-                // Medic: Do not retry 404s, they are likely permanent
+                // Paramedic: Do not retry 404s, they are likely permanent
                 if (response.status === 404) {
                     return response;
                 }
@@ -246,7 +246,7 @@ class AgentRepository {
                     agent.name = agent.name.trim();
                 }
 
-                // Medic: Sanitize optional fields to prevent fragility
+                // Paramedic: Sanitize optional fields to prevent fragility
                 if (agent.scope && typeof agent.scope !== "string") {
                     console.warn(
                         `Sanitizing agent ${agent.name}: scope must be string. Casting.`,
