@@ -11,6 +11,9 @@ class AgentPicker {
         this.getPreMergePreviewHTML = getPreMergePreviewHTML;
         this.activePickerSlot = null;
         this.pickerFuse = null;
+        this.currentAgent = null;
+        this.focusedIndex = 0;
+        this.filteredResults = [];
 
         this.bindEvents();
     }
@@ -56,12 +59,13 @@ class AgentPicker {
         }
 
         // 💎 Jeweler: Grid Keyboard Navigation
-        const pickerGrid = document.getElementById("pickerGrid");
-        if (pickerGrid) {
-            pickerGrid.addEventListener("keydown", (e) => this.handleGridKeydown(e));
+        // Ensure event delegation catches events bubbled from clusterize
+        const pickerScrollArea = document.getElementById("pickerScrollArea");
+        if (pickerScrollArea) {
+            pickerScrollArea.addEventListener("keydown", (e) => this.handleGridKeydown(e));
 
             // Global event delegation for memoized/virtualized grid items
-            pickerGrid.addEventListener("click", (e) => {
+            pickerScrollArea.addEventListener("click", (e) => {
                 const target = e.target.closest(".mini-agent-card");
                 if (target) {
                     const agentName = target.getAttribute("data-name");
@@ -75,67 +79,103 @@ class AgentPicker {
     }
 
     /**
-     * Retrieves the memoized DOM structure for the base agents.
-     * Uses a single DocumentFragment to avoid unnecessary renders.
+     * Retrieves the memoized HTML strings for the base agents.
+     * Uses Clusterize.js to virtualize DOM nodes and avoid main-thread blocking.
      */
-    getMemoizedFragment(currentAgent) {
-        if (!this.cachedElements) {
-            this.cachedElements = [];
+    getMemoizedHtml(itemsToRender) {
+        if (!this.cachedHtmlStrings) {
+            this.cachedHtmlStrings = [];
             this.baseAgents.forEach((agent, index) => {
-                const item = document.createElement("div");
-                item.className = "mini-agent-card pop-in";
-                item.style.animationDelay = `${Math.min(index * 30, 300)}ms`;
-
-                item.setAttribute("role", "option");
-                item.setAttribute("tabindex", "-1");
-                item.setAttribute("data-name", agent.name.toLowerCase()); // For filtering
-
-                item.innerHTML = `
+                const delay = Math.min(index * 30, 300);
+                const htmlStr = `
+                <div class="mini-agent-card pop-in" style="animation-delay: ${delay}ms; display: flex;" role="option" tabindex="-1" data-name="${agent.name.toLowerCase()}">
                     <span class="mini-icon">${agent.emoji}</span>
                     <span class="mini-name">${agent.name}</span>
                     <span class="mini-role">${agent.role}</span>
-                `;
-                this.cachedElements.push(item);
+                </div>`;
+                this.cachedHtmlStrings.push({ html: htmlStr, name: agent.name.toLowerCase(), agent: agent });
             });
 
-            const data = this.cachedElements.map(item => ({
-                el: item,
-                name: item.getAttribute("data-name")
-            }));
-            this.pickerFuse = new Fuse(data, {
+            this.pickerFuse = new Fuse(this.cachedHtmlStrings, {
                 keys: ["name"],
                 threshold: 0.4
             });
         }
 
-        // Return a fragment containing all cached elements.
-        // Appending elements to a fragment removes them from their current parent.
-        const fragment = document.createDocumentFragment();
-        this.cachedElements.forEach((el, index) => {
-            const isCurrent = currentAgent && currentAgent.name.toLowerCase() === el.getAttribute("data-name");
+        if (!itemsToRender) itemsToRender = this.cachedHtmlStrings;
+
+        return itemsToRender.map((item, index) => {
+            let renderedHtml = item.html;
+            const isCurrent = this.currentAgent && this.currentAgent.name.toLowerCase() === item.name;
+
             if (isCurrent) {
-                el.classList.add("selected");
-                el.setAttribute("aria-selected", "true");
-            } else {
-                el.classList.remove("selected");
-                el.removeAttribute("aria-selected");
+                renderedHtml = renderedHtml.replace('class="mini-agent-card pop-in"', 'class="mini-agent-card pop-in selected" aria-selected="true"');
             }
 
-            if (index === 0 && !currentAgent) {
-                el.setAttribute("tabindex", "0");
-            } else if (isCurrent) {
-                el.setAttribute("tabindex", "0");
-            } else {
-                el.setAttribute("tabindex", "-1");
+            if (index === this.focusedIndex) {
+                renderedHtml = renderedHtml.replace('tabindex="-1"', 'tabindex="0"');
+                // Auto-focus class is injected but actual focus depends on keyboard event handling
+                renderedHtml = renderedHtml.replace('class="mini-agent-card', 'class="mini-agent-card is-focused');
             }
 
-            // Ensure display is flex in case it was hidden by previous search
-            el.style.display = "flex";
-
-            fragment.appendChild(el);
+            return renderedHtml;
         });
+    }
 
-        return fragment;
+    /**
+     * Chunk array into a 2D array representing rows, based on calculated columns.
+     * This makes Clusterize.js compatible with CSS Grid layout.
+     */
+    getChunkedHtml(htmlResults) {
+        const scrollArea = document.getElementById("pickerScrollArea");
+        let columns = 1;
+
+        if (scrollArea && scrollArea.clientWidth > 0) {
+            // CSS Grid uses minmax(120px, 1fr) with 8px gap
+            const availableWidth = scrollArea.clientWidth - 48; // account for padding (1.5rem * 2)
+            columns = Math.max(1, Math.floor((availableWidth + 8) / (120 + 8)));
+        } else {
+            // Fallback for purely hidden modal or unit test environments
+            columns = 4;
+        }
+
+        const chunked = [];
+        const templateCols = `repeat(${columns}, 1fr)`;
+        for (let i = 0; i < htmlResults.length; i += columns) {
+            const rowChunk = htmlResults.slice(i, i + columns).join("");
+            chunked.push(`<div style="display: grid; grid-template-columns: ${templateCols}; gap: 0.5rem; margin-bottom: 0.5rem;">${rowChunk}</div>`);
+        }
+
+        return chunked;
+    }
+
+    /**
+     * Updates the Clusterize instance and handles DOM focus synchronization.
+     */
+    updateGrid() {
+        const htmlResults = this.getMemoizedHtml(this.filteredResults);
+        const chunkedRows = this.getChunkedHtml(htmlResults);
+
+        if (!this.pickerClusterize) {
+            this.pickerClusterize = new Clusterize({
+                rows: chunkedRows,
+                scrollId: 'pickerScrollArea',
+                contentId: 'pickerGrid'
+            });
+
+            // Re-calculate chunks if window resizes to ensure grid alignment
+            if (typeof window !== 'undefined') {
+                window.addEventListener('resize', PerformanceUtils.debounce(() => {
+                    if (this.activePickerSlot) this.updateGrid();
+                }, 300));
+            }
+        } else {
+            this.pickerClusterize.update(chunkedRows);
+        }
+
+        // We do NOT call el.focus() here because updateGrid is called by the search filter.
+        // Stealing focus here would rip the cursor out of the search input while the user is typing.
+        // Visual focus (.is-focused) is handled via getMemoizedHtml string replacement.
     }
 
     /**
@@ -145,6 +185,7 @@ class AgentPicker {
      */
     openPicker(slotKey, currentAgent) {
         this.activePickerSlot = slotKey;
+        this.currentAgent = currentAgent;
         const modal = document.getElementById("agentPickerModal");
         const grid = document.getElementById("pickerGrid");
         const searchInput = document.getElementById("pickerSearch");
@@ -182,9 +223,20 @@ class AgentPicker {
         // 🪄 Illusionist: Offload actual DOM generation to avoid main-thread blocking
         requestAnimationFrame(() => {
             setTimeout(() => {
-                const fragment = this.getMemoizedFragment(currentAgent);
+                // Ensure cache is built
+                this.getMemoizedHtml(this.cachedHtmlStrings);
+
+                this.filteredResults = this.cachedHtmlStrings;
+
+                // Establish focus index: either selected agent or 0
+                this.focusedIndex = 0;
+                if (this.currentAgent) {
+                    const idx = this.filteredResults.findIndex(item => item.name === this.currentAgent.name.toLowerCase());
+                    if (idx !== -1) this.focusedIndex = idx;
+                }
+
                 grid.innerHTML = "";
-                grid.appendChild(fragment);
+                this.updateGrid();
 
                 // Focus search input on open for immediate typing
                 if (searchInput) {
@@ -225,6 +277,7 @@ class AgentPicker {
         }
         this.activePickerSlot = null;
         this.pickerFuse = null; // Free memory
+        this.currentAgent = null;
 
         // Return focus to trigger
         if (slotKey) {
@@ -241,38 +294,22 @@ class AgentPicker {
      */
     filterPicker(query) {
         const term = query.trim();
-        const items = document.querySelectorAll(".mini-agent-card");
         let visibleCount = 0;
-        let firstVisible = null;
 
         if (!term) {
-            items.forEach(item => {
-                item.style.display = "flex";
-                if (!firstVisible) firstVisible = item;
-                visibleCount++;
-                item.setAttribute("tabindex", "-1"); // Reset all
-            });
+            this.filteredResults = this.cachedHtmlStrings;
         } else {
             // 🏁 Pacesetter: Use the pre-computed Fuse instance
             const results = this.pickerFuse ? this.pickerFuse.search(term) : [];
-
-            items.forEach(item => {
-                item.style.display = "none";
-                item.setAttribute("tabindex", "-1"); // Reset all
-            });
-
-            results.forEach(result => {
-                const item = result.item.el;
-                item.style.display = "flex";
-                if (!firstVisible) firstVisible = item;
-                visibleCount++;
-            });
+            this.filteredResults = results.map(result => result.item);
         }
 
-        // 💎 Jeweler: Reset Roving Tabindex to first result
-        if (firstVisible) {
-            firstVisible.setAttribute("tabindex", "0");
-        }
+        visibleCount = this.filteredResults.length;
+
+        // Reset focus on search
+        this.focusedIndex = 0;
+
+        this.updateGrid();
 
         // 💎 Jeweler: Live Region Announcement
         const announcer = document.getElementById("pickerAnnouncer");
@@ -290,27 +327,21 @@ class AgentPicker {
      * Handles keyboard navigation within the grid (Roving Tabindex)
      */
     handleGridKeydown(e) {
-        const target = e.target;
-        if (!target.classList.contains("mini-agent-card")) return;
+        if (this.filteredResults.length === 0) return;
 
-        const items = Array.from(document.querySelectorAll(".mini-agent-card")).filter(
-            (el) => el.style.display !== "none"
-        );
-        const index = items.indexOf(target);
-
-        let newIndex = index;
+        let newIndex = this.focusedIndex;
 
         switch (e.key) {
             case "ArrowRight":
             case "ArrowDown": // Simple grid navigation: next item
-                newIndex = index + 1;
-                if (newIndex >= items.length) newIndex = 0;
+                newIndex = this.focusedIndex + 1;
+                if (newIndex >= this.filteredResults.length) newIndex = 0;
                 e.preventDefault();
                 break;
             case "ArrowLeft":
             case "ArrowUp": // Simple grid navigation: prev item
-                newIndex = index - 1;
-                if (newIndex < 0) newIndex = items.length - 1;
+                newIndex = this.focusedIndex - 1;
+                if (newIndex < 0) newIndex = this.filteredResults.length - 1;
                 e.preventDefault();
                 break;
             case "Home":
@@ -318,25 +349,65 @@ class AgentPicker {
                 e.preventDefault();
                 break;
             case "End":
-                newIndex = items.length - 1;
+                newIndex = this.filteredResults.length - 1;
                 e.preventDefault();
                 break;
             case "Enter":
             case " ":
                 e.preventDefault();
                 // Trigger click logic
-                target.click();
+                const focusedItem = this.filteredResults[this.focusedIndex];
+                if (focusedItem) {
+                    const agent = this.baseAgents.find(a => a.name.toLowerCase() === focusedItem.name);
+                    if (agent) this.handlePickerSelection(agent);
+                }
                 return;
             default:
                 return;
         }
 
-        // Apply Roving Tabindex
-        if (newIndex !== index) {
-            items[index].setAttribute("tabindex", "-1");
-            const newFocus = items[newIndex];
-            newFocus.setAttribute("tabindex", "0");
-            newFocus.focus();
+        // Update active index and re-render the view
+        if (newIndex !== this.focusedIndex) {
+            this.focusedIndex = newIndex;
+
+            // Try to find the new element in the DOM
+            const newFocusedItem = this.filteredResults[newIndex];
+            const el = document.querySelector(`#pickerGrid .mini-agent-card[data-name="${newFocusedItem.name}"]`);
+
+            if (el) {
+                // If it's already in the DOM, simply move focus without a full Clusterize re-render
+                document.querySelectorAll('#pickerGrid .mini-agent-card.is-focused').forEach(node => {
+                    node.classList.remove('is-focused');
+                    node.setAttribute('tabindex', '-1');
+                });
+                el.classList.add('is-focused');
+                el.setAttribute('tabindex', '0');
+                el.focus();
+
+                // Ensure it's scrolled into view smoothly
+                el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+            } else {
+                // If it's off-screen and missing from DOM, trigger a full re-render
+                // Clusterize will pick it up when we force scroll
+                this.updateGrid();
+
+                setTimeout(() => {
+                    // Try to scroll the scrollArea to approximate position based on index height
+                    const scrollArea = document.getElementById("pickerScrollArea");
+                    if (scrollArea) {
+                        // Assuming grid cards are ~80px height including gap, and say 4 columns wide
+                        const cols = Math.floor(scrollArea.clientWidth / 120) || 1;
+                        const row = Math.floor(newIndex / cols);
+                        scrollArea.scrollTop = row * 80; // approximate
+                    }
+
+                    // After scrolling, Clusterize generates DOM, then focus it
+                    setTimeout(() => {
+                        const newEl = document.querySelector(`#pickerGrid .mini-agent-card[data-name="${newFocusedItem.name}"]`);
+                        if (newEl) newEl.focus();
+                    }, 50);
+                }, 0);
+            }
         }
     }
 

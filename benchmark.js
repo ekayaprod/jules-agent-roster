@@ -43,7 +43,7 @@ global.document = {
         };
     },
     querySelectorAll: () => [],
-    querySelector: () => ({ classList: { add: () => {}, remove: () => {} }, addEventListener: () => {} }),
+    querySelector: () => ({ classList: { add: () => {}, remove: () => {} }, addEventListener: () => {}, focus: () => {} }),
     createDocumentFragment: () => ({ appendChild: () => {} }),
     addEventListener: () => {}
 };
@@ -105,6 +105,12 @@ const runBenchmark = async () => {
             };
         }
 
+        if (id === 'pickerScrollArea') {
+            return {
+                addEventListener: () => {}
+            };
+        }
+
         if (id === 'pickerGrid') return { addEventListener: () => {}, appendChild: () => {},
             querySelectorAll: () => {
                 const arr = [];
@@ -115,7 +121,7 @@ const runBenchmark = async () => {
             },
             innerHTML: ''
         };
-        return { style: {}, classList: { add: () => {}, remove: () => {} }, appendChild: () => {}, focus: () => {} };
+        return { style: {}, classList: { add: () => {}, remove: () => {} }, appendChild: () => {}, focus: () => {}, addEventListener: () => {} };
     };
 
     // 1. RosterApp Benchmark
