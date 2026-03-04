@@ -237,7 +237,9 @@
             <div class="picker-search">
                 <input type="text" id="pickerSearch" placeholder="Filter protocols...">
             </div>
-            <div id="pickerGrid" class="picker-grid"></div>
+            <div id="pickerScrollArea" class="clusterize-scroll" style="max-height: 50vh; overflow-y: auto;">
+                <div id="pickerGrid" class="picker-grid clusterize-content" style="display: block; grid-template-columns: none;"></div>
+            </div>
             <div id="pickerEmptyState" class="empty-state">No matching protocols found.</div>
         </div>
         <div id="pickerAnnouncer" class="sr-only" aria-live="polite"></div>
