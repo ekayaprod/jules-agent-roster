@@ -29,7 +29,19 @@ global.document = {
     getElementById: (id) => {
         return { style: {}, classList: { add: () => {}, remove: () => {} }, appendChild: () => {}, focus: () => {} };
     },
-    createElement: () => ({ setAttribute: () => {}, classList: { add: () => {}, remove: () => {} }, addEventListener: () => {}, style: {}, className: '', innerHTML: '' }),
+    createElement: () => {
+        const attributes = {};
+        return {
+            setAttribute: (k, v) => attributes[k] = v,
+            getAttribute: (k) => attributes[k],
+            removeAttribute: (k) => delete attributes[k],
+            classList: { add: () => {}, remove: () => {} },
+            addEventListener: () => {},
+            style: {},
+            className: '',
+            innerHTML: ''
+        };
+    },
     querySelectorAll: () => [],
     querySelector: () => ({ classList: { add: () => {}, remove: () => {} }, addEventListener: () => {} }),
     createDocumentFragment: () => ({ appendChild: () => {} }),
@@ -42,6 +54,7 @@ global.Clusterize = class Clusterize {
 };
 global.CSS = { escape: (str) => str };
 global.CONFIG = { selectors: {}, categories: {}, sectionMap: {} };
+global.requestAnimationFrame = (cb) => setTimeout(cb, 0);
 
 // Mock AgentCard because RosterApp calls it
 global.AgentCard = {
