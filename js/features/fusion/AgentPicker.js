@@ -272,8 +272,8 @@ class AgentPicker {
         }
 
         if (modal) {
+            modal.close();
             modal.removeAttribute("open");
-            setTimeout(() => modal.close(), 50); // small delay for transition
         }
         this.activePickerSlot = null;
         this.pickerFuse = null; // Free memory
