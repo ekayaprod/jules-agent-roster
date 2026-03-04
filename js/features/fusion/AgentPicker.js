@@ -47,7 +47,83 @@ class AgentPicker {
         const pickerGrid = document.getElementById("pickerGrid");
         if (pickerGrid) {
             pickerGrid.addEventListener("keydown", (e) => this.handleGridKeydown(e));
+
+            // Global event delegation for memoized/virtualized grid items
+            pickerGrid.addEventListener("click", (e) => {
+                const target = e.target.closest(".mini-agent-card");
+                if (target) {
+                    const agentName = target.getAttribute("data-name");
+                    const agent = this.baseAgents.find(a => a.name.toLowerCase() === agentName);
+                    if (agent) {
+                        this.handlePickerSelection(agent);
+                    }
+                }
+            });
         }
+    }
+
+    /**
+     * Retrieves the memoized DOM structure for the base agents.
+     * Uses a single DocumentFragment to avoid unnecessary renders.
+     */
+    getMemoizedFragment(currentAgent) {
+        if (!this.cachedElements) {
+            this.cachedElements = [];
+            this.baseAgents.forEach((agent, index) => {
+                const item = document.createElement("div");
+                item.className = "mini-agent-card pop-in";
+                item.style.animationDelay = `${Math.min(index * 30, 300)}ms`;
+
+                item.setAttribute("role", "option");
+                item.setAttribute("tabindex", "-1");
+                item.setAttribute("data-name", agent.name.toLowerCase()); // For filtering
+
+                item.innerHTML = `
+                    <span class="mini-icon">${agent.emoji}</span>
+                    <span class="mini-name">${agent.name}</span>
+                    <span class="mini-role">${agent.role}</span>
+                `;
+                this.cachedElements.push(item);
+            });
+
+            const data = this.cachedElements.map(item => ({
+                el: item,
+                name: item.getAttribute("data-name")
+            }));
+            this.pickerFuse = new Fuse(data, {
+                keys: ["name"],
+                threshold: 0.4
+            });
+        }
+
+        // Return a fragment containing all cached elements.
+        // Appending elements to a fragment removes them from their current parent.
+        const fragment = document.createDocumentFragment();
+        this.cachedElements.forEach((el, index) => {
+            const isCurrent = currentAgent && currentAgent.name.toLowerCase() === el.getAttribute("data-name");
+            if (isCurrent) {
+                el.classList.add("selected");
+                el.setAttribute("aria-selected", "true");
+            } else {
+                el.classList.remove("selected");
+                el.removeAttribute("aria-selected");
+            }
+
+            if (index === 0 && !currentAgent) {
+                el.setAttribute("tabindex", "0");
+            } else if (isCurrent) {
+                el.setAttribute("tabindex", "0");
+            } else {
+                el.setAttribute("tabindex", "-1");
+            }
+
+            // Ensure display is flex in case it was hidden by previous search
+            el.style.display = "flex";
+
+            fragment.appendChild(el);
+        });
+
+        return fragment;
     }
 
     /**
@@ -73,60 +149,32 @@ class AgentPicker {
         const emptyState = document.getElementById("pickerEmptyState");
         if (emptyState) emptyState.style.display = "none";
 
-        // Populate Grid
+        // 🪄 Illusionist: Add pure CSS loading skeleton to mask DOM generation latency
         grid.innerHTML = "";
-        this.baseAgents.forEach((agent, index) => {
-            const item = document.createElement("div");
-            item.className = "mini-agent-card pop-in";
-            item.style.animationDelay = `${Math.min(index * 30, 300)}ms`;
-
-            item.setAttribute("role", "option");
-            // 💎 Jeweler: Roving Tabindex - Only first item is focusable initially
-            item.setAttribute("tabindex", index === 0 ? "0" : "-1");
-            item.setAttribute("data-name", agent.name.toLowerCase()); // For filtering
-
-            // Check if agent is currently selected in THIS slot
-            const isCurrent = currentAgent && currentAgent.name === agent.name;
-            if (isCurrent) {
-                item.classList.add("selected");
-                item.setAttribute("aria-selected", "true");
-            }
-
-            item.innerHTML = `
-                <span class="mini-icon">${agent.emoji}</span>
-                <span class="mini-name">${agent.name}</span>
-                <span class="mini-role">${agent.role}</span>
-            `;
-
-            item.addEventListener("click", () => this.handlePickerSelection(agent));
-            // Keydown handled by grid container
-
-            grid.appendChild(item);
-        });
-
-        // 🏁 Pacesetter: Pre-compute DOM elements and instantiate Fuse ONCE per picker open
-        // This prevents re-mapping the entire DOM and re-building the index on every keystroke
-        const items = grid.querySelectorAll(".mini-agent-card");
-        const data = Array.from(items).map(item => ({
-            el: item,
-            name: item.getAttribute("data-name")
-        }));
-        this.pickerFuse = new Fuse(data, {
-            keys: ["name"],
-            threshold: 0.4
-        });
+        for (let i = 0; i < 12; i++) {
+            const skeleton = document.createElement("div");
+            skeleton.className = "mini-agent-card skeleton-pulse";
+            skeleton.style.minHeight = "4rem";
+            skeleton.setAttribute("aria-hidden", "true");
+            grid.appendChild(skeleton);
+        }
 
         modal.showModal();
         modal.setAttribute("open", "");
 
-        // Focus search input on open for immediate typing
-        if (searchInput) {
-            // Slight delay to ensure modal transition completes before focusing
-            // to avoid sudden scroll jumps on mobile
+        // 🪄 Illusionist: Offload actual DOM generation to avoid main-thread blocking
+        requestAnimationFrame(() => {
             setTimeout(() => {
-                searchInput.focus();
-            }, 50);
-        }
+                const fragment = this.getMemoizedFragment(currentAgent);
+                grid.innerHTML = "";
+                grid.appendChild(fragment);
+
+                // Focus search input on open for immediate typing
+                if (searchInput) {
+                    searchInput.focus();
+                }
+            }, 0);
+        });
     }
 
     /**
