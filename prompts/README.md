@@ -11,7 +11,7 @@ To add a new agent to the roster, execute the following steps:
 3. Write the agent prompt using standard Markdown syntax. Exclude YAML front matter completely.
 4. Escape any template syntax (e.g., `{{ }}`) within code blocks to prevent unintended parsing by GitHub Pages.
 5. Register a Core Agent by appending an entry to `agents.json` in the repository root.
-6. Register a Fusion Agent by appending an entry to `custom_agents.json`, clearly defining the parent pair (e.g., `"Medic,Wordsmith"`).
+6. Register a Fusion Agent by appending an entry to `custom_agents.json`, clearly defining the parent pair (e.g., `"Paramedic,Wordsmith"`).
 7. Reload the local application and verify the new agent appears in the main grid or is unlockable within the Fusion Lab.
 
 ## Architecture

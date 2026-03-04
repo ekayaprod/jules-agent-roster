@@ -80,7 +80,7 @@
     "type": "fusion",
     "role": "The Domain Grouper"
   },
-  "Architect,Medic": {
+  "Architect,Paramedic": {
     "name": "Surgeon",
     "emoji": "🔪",
     "short_description": "Sweeps codebases hunting for massive, monolithic functions to safely excise fragile inline network calls and data parsers. Autonomously cut open these monoliths, extract the fragile I/O logic into dedicated, safely structured module files, and wrap them in robust try/catch boundaries.",
@@ -233,7 +233,7 @@
     "type": "fusion",
     "role": "The Automation Maintainer"
   },
-  "Author,Medic": {
+  "Author,Paramedic": {
     "name": "Paramedic",
     "emoji": "🏥",
     "short_description": "Maps architectural escape routes by evaluating single points of failure and authoring high-precision failover protocols. Audits the codebase and infrastructure-as-code files to identify critical dependencies, then inject numbered terminal commands and recovery scenarios into a central disaster recovery manifest.",
@@ -377,7 +377,7 @@
     "type": "fusion",
     "role": "The Build Optimizer"
   },
-  "Bolt+,Medic": {
+  "Bolt+,Paramedic": {
     "name": "Pacemaker",
     "emoji": "🫀",
     "short_description": "Regulates the heartbeat of the application by finding heavy, synchronous work and safely deferring it to the background so the UI never stutters. Protects the browser's main thread by injecting robust debounce/throttle boundaries, deferring non-critical tasks via `requestIdleCallback`, and batching rapid state updates.",
@@ -521,7 +521,7 @@
     "type": "fusion",
     "role": "The AI Infrastructure Maintainer"
   },
-  "Cortex,Medic": {
+  "Cortex,Paramedic": {
     "name": "Resuscitator",
     "emoji": "🩺",
     "short_description": "Sweeps the codebase for silent catch blocks, swallowed errors, and generic \"Something went wrong\" messages, upgrading them into actionable, structured error boundaries. Autonomously upgrade primitive errors into custom, domain-specific Error classes and injects contextual metadata into logging pipelines to ensure failures are explicitly visible and actionable.",
@@ -647,7 +647,7 @@
     "type": "fusion",
     "role": "The Rhythm Standardizer"
   },
-  "Curator,Medic": {
+  "Curator,Paramedic": {
     "name": "Blackbox",
     "emoji": "🗃️",
     "short_description": "Sweeps complex forms and user-input flows, injecting local storage caching mechanisms so unsaved data survives unexpected network failures or app crashes. Upgrades state management to securely cache drafts to persistent client-side storage and provide intuitive UI mechanisms to restore or clear the data.",
@@ -764,7 +764,7 @@
     "type": "fusion",
     "role": "The Maintenance Centralizer"
   },
-  "Helix,Medic": {
+  "Helix,Paramedic": {
     "name": "Quarantine",
     "emoji": "🏕️",
     "short_description": "Extracts volatile, scattered logic into a single shared utility and immediately wrap it in an impenetrable error-handling boundary. Centralizes volatile operations and quarantine them within strict error boundaries, ensuring the utility always returns predictable, safe fallback states for all consumers.",
@@ -872,7 +872,7 @@
     "type": "fusion",
     "role": "The Dependency Broadcaster"
   },
-  "Herald,Medic": {
+  "Herald,Paramedic": {
     "name": "Press Secretary",
     "emoji": "👔",
     "short_description": "Monitors emergency hotfixes and rollbacks to translate technical chaos into professional Status Page updates and public, blameless incident post-mortems. Analyzes git forensics and technical diffs to author objective timelines and actionable prevention plans, ensuring transparency and structural learning.",
@@ -980,7 +980,7 @@
     "type": "fusion",
     "role": "The Dependency QA Specialist"
   },
-  "Inspector,Medic": {
+  "Inspector,Paramedic": {
     "name": "Guardian",
     "emoji": "⛑️",
     "short_description": "Hardens fragile code paths against failure and immediately write tests that deliberately assault those boundaries to prove they hold. Wraps fragile logic in safe parsing or error boundaries and writes \"assault\" tests that force malformed data and timeouts to guarantee safe, predictable fallback states.",
@@ -1079,7 +1079,7 @@
     "type": "fusion",
     "role": "The Synthetic Detoxifier"
   },
-  "Medic,Superintendent": {
+  "Paramedic,Superintendent": {
     "name": "Sanitizer",
     "emoji": "🧴",
     "short_description": "Sweeps codebases to hunt down and eradicate memory leaks and dangling resources by injecting explicit teardown logic. Autonomously parse the Abstract Syntax Tree (AST) to track resource lifecycles and injects natively supported `close()`, `dispose()`, or `clearInterval()` logic at the exact execution exit points.",
@@ -1169,7 +1169,7 @@
     "type": "fusion",
     "role": "The Typo Eradicator"
   },
-  "Medic,Modernizer": {
+  "Modernizer,Paramedic": {
     "name": "Inoculator",
     "emoji": "💉",
     "short_description": "Upgrades legacy architecture to modern asynchronous paradigms while explicitly treating the new failure modes introduced by the shift. Refactors legacy logic to modern standards and immediately wrap the new stress points in strict error handling, schema validation, and graceful fallbacks.",
@@ -1178,7 +1178,7 @@
     "type": "fusion",
     "role": "A modernization and resilience specialist"
   },
-  "Medic,Navigator": {
+  "Navigator,Paramedic": {
     "name": "Circuit Breaker",
     "emoji": "🔌",
     "short_description": "Sweeps routing layers and fragile API calls, wrapping them in Error Boundaries and fallback states to ensure the application degrades gracefully instead of crashing. Isolates the blast radius by injecting context-aware fallback strategies that semantically preserve the user experience during partial system failures.",
@@ -1187,7 +1187,7 @@
     "type": "fusion",
     "role": "The Fallback Strategist"
   },
-  "Medic,Palette+": {
+  "Palette+,Paramedic": {
     "name": "Placebo",
     "emoji": "💊",
     "short_description": "Hardens fragile asynchronous backend requests with strict error boundaries while simultaneously masking their latency and failure states via optimistic UI. Wraps async boundaries in robust error handling and exponential backoff retries while injecting pulse skeletons and optimistic state updates to ensure the interface feels instantaneous and reliable.",
@@ -1196,7 +1196,7 @@
     "type": "fusion",
     "role": "The Psychological Performance Specialist"
   },
-  "Medic,Pedant": {
+  "Paramedic,Pedant": {
     "name": "Toxicologist",
     "emoji": "🧪",
     "short_description": "Eradicates \"swallowed errors\" and empty catch blocks to ensure system failures are never hidden from monitoring tools and telemetry layers. Autonomously hunt down irresponsible error muting and enforce strict exception-handling rules, injecting proper telemetry routing or explicit re-throws while preserving original stack traces.",
@@ -1205,7 +1205,7 @@
     "type": "fusion",
     "role": "The Catch-Block Enforcer"
   },
-  "Medic,Scavenger": {
+  "Paramedic,Scavenger": {
     "name": "Amputator",
     "emoji": "🪚",
     "short_description": "Surgicallys remove legacy retry loops, fallback UI states, and circuit breakers that were built to protect third-party services the application no longer uses. verifys a target service is officially gone, delete its retry infrastructure, and promote the surviving fallback path into the clean, primary execution path.",
@@ -1214,7 +1214,7 @@
     "type": "fusion",
     "role": "The Dead Fallback Purger"
   },
-  "Medic,Scribe": {
+  "Paramedic,Scribe": {
     "name": "Runbooker",
     "emoji": "📓",
     "short_description": "Sweeps generic catch blocks and injects structured logging and inline JSDoc \"Runbooks\" that tell future developers exactly how to fix specific failures. Eliminates debugging guesswork by analyzing failure paths and injecting step-by-step mitigation instructions directly above the error throw alongside structured telemetry.",
@@ -1223,7 +1223,7 @@
     "type": "fusion",
     "role": "The Recovery Documentarian"
   },
-  "Medic,Sentinel+": {
+  "Paramedic,Sentinel+": {
     "name": "First Responder",
     "emoji": "🚨",
     "short_description": "Hardens external API boundaries against malicious and malformed data by implementing strict schema validation, wrapping every rejection path in structured telemetry, and ensuring safe recovery logic prevents crashes and data leakage. identifies an unprotected external input boundary, implement strict schema validation that halts execution on failure, wrap the rejection path in sanitized structured logging, and return a safe, controlled response to the caller.",
@@ -1232,7 +1232,7 @@
     "type": "fusion",
     "role": "The Crisis Manager"
   },
-  "Medic,Untangler": {
+  "Paramedic,Untangler": {
     "name": "Transfusion",
     "emoji": "🩸",
     "short_description": "Extracts implicit reliance on the global scope and injects explicit parameter contracts to eliminate crash hazards and ensures every function is mathematically testable. Identifies implicit global references, refactor function signatures to support dependency injection, and perform repository-wide AST sweeps to update all call sites.",
@@ -1241,7 +1241,7 @@
     "type": "fusion",
     "role": "The State Purifier"
   },
-  "Medic,Wordsmith": {
+  "Paramedic,Wordsmith": {
     "name": "Diplomat",
     "emoji": "🕊️",
     "short_description": "Rewrites terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy for the end-user. Sweeps UI error states to translate them into clear, actionable language while strictly separating the human display error from the machine-logged error.",
