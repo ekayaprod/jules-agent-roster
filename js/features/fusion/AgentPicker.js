@@ -27,6 +27,18 @@ class AgentPicker {
             });
         }
         if (closeBtn) closeBtn.addEventListener("click", () => this.closePicker());
+
+        // 🪧 Wayfinder: Handle browser back button to close modal instead of leaving page
+        if (typeof window !== 'undefined') {
+            window.addEventListener("popstate", (e) => {
+                if (this.activePickerSlot) {
+                    // The user clicked "Back" while the modal was open.
+                    // We close the picker but tell it NOT to call history.back() again,
+                    // because the browser has already popped the state.
+                    this.closePicker(false);
+                }
+            });
+        }
         if (searchInput) {
             // ⚡ Bolt+: Debounce picker search
             const debouncedFilter = PerformanceUtils.debounce((query) => {
@@ -162,6 +174,11 @@ class AgentPicker {
         modal.showModal();
         modal.setAttribute("open", "");
 
+        // 🪧 Wayfinder: Push a history state so the back button can be intercepted
+        if (typeof history !== 'undefined' && history.pushState) {
+            history.pushState({ modalOpen: true }, "");
+        }
+
         // 🪄 Illusionist: Offload actual DOM generation to avoid main-thread blocking
         requestAnimationFrame(() => {
             setTimeout(() => {
@@ -192,10 +209,16 @@ class AgentPicker {
 
     /**
      * Closes the picker modal.
+     * @param {boolean} navigateBack - Whether to call history.back() to clean up the pushed state.
      */
-    closePicker() {
+    closePicker(navigateBack = true) {
         const slotKey = this.activePickerSlot;
         const modal = document.getElementById("agentPickerModal");
+
+        if (this.activePickerSlot && navigateBack && typeof history !== 'undefined' && history.state && history.state.modalOpen) {
+            history.back();
+        }
+
         if (modal) {
             modal.removeAttribute("open");
             setTimeout(() => modal.close(), 50); // small delay for transition

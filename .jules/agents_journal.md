@@ -1,3 +1,7 @@
 ## 2026-03-03 - 🪄 Illusionist - [Perceived Performance: AgentPicker]
 **Learning:** Rendering a large list of elements (e.g., 170+ agent cards) synchronously into the DOM when opening a modal causes noticeable main-thread blocking and layout thrashing, leading to interaction lag.
 **Action:** When creating a large grid or list inside a modal, offload the actual DOM generation to an asynchronous chunk (using `requestAnimationFrame` + `setTimeout`). Mask the rendering latency by immediately injecting a pure CSS loading skeleton (`.skeleton-pulse`) that matches the dimensions of the final elements. Furthermore, cache the created DOM nodes (e.g., in an array or DocumentFragment) and use global event delegation to eliminate the need for re-creating them and re-attaching individual event listeners on subsequent modal openings.
+
+## 2024-05-24 - 🪧 Wayfinder - [Navigation Context Enhanced: AgentPicker Modal]
+**Learning:** The Agent Picker modal `<dialog>` creates an "invisible" dead end by overlaying the UI without modifying the browser's history state, causing the native back button to bypass the modal and unintentionally navigate the user away from the app.
+**Action:** Injected a `history.pushState` operation when opening the modal, and added a global `popstate` event listener to intercept the browser's back button and safely close the modal without losing the underlying application state.
