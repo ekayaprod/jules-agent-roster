@@ -62,7 +62,7 @@ class AgentCard {
                             <div class="title-group">
                                 <div style="display: flex; justify-content: space-between; width: 100%;">
                                     <h3 class="agent-title">${safeDisplayName}</h3>
-                                    <button class="icon-btn favorite-btn ${favClass}" data-action="toggle-favorite" data-index="${index}" aria-label="Toggle Favorite" style="position: absolute; right: 0.5rem; top: 0.5rem; font-size: 1.5rem; line-height: 1;">${favIcon}</button>
+                                    <button class="icon-btn favorite-btn ${favClass}" data-action="toggle-favorite" data-index="${index}" aria-label="Toggle Favorite" style="position: absolute; right: 0.5rem; top: 0.5rem; font-size: var(--text-xl); line-height: var(--leading-none);">${favIcon}</button>
                                 </div>
                                 <span class="role-tag">${role}</span>
                             </div>
