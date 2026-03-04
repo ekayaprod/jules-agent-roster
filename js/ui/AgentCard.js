@@ -54,6 +54,7 @@ class AgentCard {
         card.innerHTML = `
             <div class="flip-card-inner">
                 <div class="flip-card-front">
+                    <button class="icon-btn favorite-btn ${favClass}" data-action="toggle-favorite" data-index="${index}" aria-label="Toggle Favorite" style="position: absolute; right: 0.75rem; top: 0.75rem; font-size: var(--text-xl); line-height: var(--leading-none);">${favIcon}</button>
                     <div class="card-top">
                         <div class="card-top-left">
                             <div class="emoji-hero">${icon}</div>
@@ -62,7 +63,6 @@ class AgentCard {
                             <div class="title-group">
                                 <div style="display: flex; justify-content: space-between; width: 100%;">
                                     <h3 class="agent-title">${safeDisplayName}</h3>
-                                    <button class="icon-btn favorite-btn ${favClass}" data-action="toggle-favorite" data-index="${index}" aria-label="Toggle Favorite" style="position: absolute; right: 0.5rem; top: 0.5rem; font-size: var(--text-xl); line-height: var(--leading-none);">${favIcon}</button>
                                 </div>
                                 <span class="role-tag">${role}</span>
                             </div>
@@ -70,7 +70,7 @@ class AgentCard {
                         </div>
                     </div>
                     <div class="description mt-3">${desc}</div>
-                    <div class="flip-hint" aria-label="Tap to view protocol">↺</div>
+                    <div class="flip-hint" aria-label="Tap to view protocol" style="position: absolute; right: 0.75rem; bottom: 0.75rem;">↺</div>
                 </div>
 
                 <div class="flip-card-back">
