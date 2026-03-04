@@ -82,7 +82,7 @@
   },
   "Architect,Medic": {
     "name": "Surgeon",
-    "emoji": "🥼",
+    "emoji": "🔪",
     "short_description": "The Inline Extractor. Autonomously cuts open massive 'God Functions', excising fragile inline network and parsing logic into dedicated, crash-proof architectural modules.",
     "tier": "Epic",
     "category": "",
@@ -100,7 +100,7 @@
   },
   "Architect,Navigator": {
     "name": "Scaffolder",
-    "emoji": "🧰",
+    "emoji": "🪜",
     "short_description": "The Structural Propagator. Autonomously reads routing maps and application manifests to construct missing physical boilerplate directories and skeleton files.",
     "tier": "Uncommon",
     "category": "",
@@ -199,7 +199,7 @@
   },
   "Author,Helix": {
     "name": "Lexicon",
-    "emoji": "📗",
+    "emoji": "📖",
     "short_description": "The Domain Centralizer. Autonomously sweeps the codebase hunting for fractured domain language (e.g., mixing 'Client' and 'User'), centralizing the vocabulary into a master glossary and standardizing the nomenclature.",
     "tier": "Uncommon",
     "category": "",
@@ -244,7 +244,7 @@
   },
   "Author,Modernizer": {
     "name": "Ouija",
-    "emoji": "👻",
+    "emoji": "🕯️",
     "short_description": "The Lore Resurrector. Autonomously combines local git forensics with LLM reasoning to deduce the historical intent behind load-bearing legacy spaghetti, injecting detailed lore to explain the horror.",
     "tier": "Uncommon",
     "category": "",
@@ -271,7 +271,7 @@
   },
   "Author,Pedant": {
     "name": "Rulemaker",
-    "emoji": "💯",
+    "emoji": "🧑‍⚖️",
     "short_description": "The Style Guide Enforcer. Authors the overarching STYLEGUIDE.md and standardizes strict linting configurations to bridge human rules with machine enforcement.",
     "tier": "Uncommon",
     "category": "",
@@ -280,7 +280,7 @@
   },
   "Author,Scavenger": {
     "name": "Sunsetter",
-    "emoji": "🌅",
+    "emoji": "🌇",
     "short_description": "The Deprecation Documentarian. Authors formal DEPRECATION.md plans and sweeps global wikis to erase all documentation references to deprecated systems.",
     "tier": "Uncommon",
     "category": "",
@@ -298,7 +298,7 @@
   },
   "Author,Sentinel+": {
     "name": "Threat Modeler",
-    "emoji": "🎯",
+    "emoji": "🏯",
     "short_description": "The Macro Strategist. Authors the overarching THREAT_MODEL.md and sweeps the global configuration to enforce strict CORS, CSP, and secure HTTP headers.",
     "tier": "Epic",
     "category": "",
@@ -703,7 +703,7 @@
   },
   "Curator,Scribe": {
     "name": "Typesmith",
-    "emoji": "🖋️",
+    "emoji": "🔠",
     "short_description": "The Typographic Hierarch. Autonomously groups chaotic, hardcoded text sizing and weights, replacing them with a systematic, scalable typographic hierarchy.",
     "tier": "Common",
     "category": "",
@@ -883,7 +883,7 @@
   },
   "Herald,Modernizer": {
     "name": "Prophet",
-    "emoji": "🔭",
+    "emoji": "🔮",
     "short_description": "The Deprecation Forecaster. Hunts for @deprecated code, injects runtime console warnings, and automatically generates step-by-step migration guides for developers.",
     "tier": "Uncommon",
     "category": "",
@@ -937,7 +937,7 @@
   },
   "Herald,Sentinel+": {
     "name": "Siren",
-    "emoji": "🔊",
+    "emoji": "🚨",
     "short_description": "The Vulnerability Broadcaster. Drafts strict, compliance-ready security advisories and updates SECURITY.md policies when critical patches are merged.",
     "tier": "Uncommon",
     "category": "",
@@ -1090,7 +1090,7 @@
   },
   "Modernizer,Superintendent": {
     "name": "Synchronizer",
-    "emoji": "🔁",
+    "emoji": "🔄",
     "short_description": "A dependency migration specialist. Bumps a major package version and traverses the AST to migrate all deprecated syntax to the new API in a single evolutionary pass.",
     "tier": "Rare",
     "category": "",
@@ -1342,7 +1342,7 @@
   },
   "Navigator,Scavenger": {
     "name": "Dead-Ender",
-    "emoji": "🛑",
+    "emoji": "🚧",
     "short_description": "The Route Purger. Sweeps the routing tree and analytics configurations to find 'Ghost Routes' (pages that exist but have zero internal links pointing to them) and safely deletes them.",
     "tier": "Uncommon",
     "category": "",
@@ -1486,7 +1486,7 @@
   },
   "Scavenger,Scribe": {
     "name": "Obituary Writer",
-    "emoji": "🕯️",
+    "emoji": "🪦",
     "short_description": "A historical deletion specialist. Researches and documents the final engineering intent of dead code before permanently burying it and its associated tests.",
     "tier": "Uncommon",
     "category": "",
