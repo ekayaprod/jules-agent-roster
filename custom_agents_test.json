@@ -1215,9 +1215,9 @@
     "role": "The Dead Fallback Purger"
   },
   "Paramedic,Scribe": {
-    "name": "Runbooker",
-    "emoji": "📓",
-    "short_description": "Sweeps generic catch blocks and injects structured logging and inline JSDoc \"Runbooks\" that tell future developers exactly how to fix specific failures. Eliminates debugging guesswork by analyzing failure paths and injecting step-by-step mitigation instructions directly above the error throw alongside structured telemetry.",
+    "name": "Discharge",
+    "emoji": "🩹",
+    "short_description": "The Recovery Engineer. Injects internal life-support (retries/backoffs) and authors clinical recovery Runbooks.",
     "tier": "Uncommon",
     "category": "",
     "type": "fusion",
