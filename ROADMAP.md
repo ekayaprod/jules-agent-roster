@@ -19,7 +19,7 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 - [ ] **Framework-Specific Variants**: Create variants of agents for specific stacks (e.g., Next.js vs. Remix vs. Vue).
 - [ ] **Community Contributions**: Streamline the process for community submitted agents.
 - [x] **Dark/Light Mode**: Add toggle (currently Dark only). (Shipped: b70bd3f)
-- [ ] **Persistence**: Add LocalStorage support for "Favorites" or "Recently Used".
+- [x] **Persistence**: Add LocalStorage support for "Favorites" or "Recently Used".
 
 ## 🛠️ Phase 3: Tooling & Automation (Future)
 *Focus: Quality Assurance*
@@ -40,5 +40,5 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 - [ ] [Performance] Idea: Adopt `UnoCSS` via CDN to eliminate >600 lines of inline CSS in index.html while maintaining the zero-build-step requirement. (Source: unocss.dev)
 - [ ] [DX] Idea: Adopt `lit-html` via CDN to replace brittle manual string concatenation (innerHTML) in AgentCard.js and FusionLab.js, standardizing templating safely without a build step. (Source: lit.dev)
 - [ ] [DX] Idea: Introduce a standard `package.json` to define npm scripts for verification and task running, replacing scattered manual python scripts and unifying DX. (Source: docs.npmjs.com)
-- [Performance] Idea: Implement virtualized lists via `Clusterize.js` (via CDN) to render large agent rosters without layout thrashing, resolving the 'Missing pagination' audit finding while maintaining the zero-build-step constraint. (Source: clusterize.js.org)
+- [x] [Performance] Idea: Implement virtualized lists via `Clusterize.js` (via CDN) to render large agent rosters without layout thrashing, resolving the 'Missing pagination' audit finding while maintaining the zero-build-step constraint. (Source: clusterize.js.org)
 - [UX] Idea: Adopt `focus-trap` via CDN to standardize keyboard navigation and modal accessibility in FusionLab, replacing brittle custom roving tabindex logic (`handleGridKeydown`). (Source: github.com/focus-trap/focus-trap)

@@ -1,9 +1,36 @@
 /**
  * PromptRenderer
- * Renders parsed prompt objects into structured HTML.
+ * Responsible for generating the final markdown prompt string from agent data.
+ * Ensures consistent formatting, ordering, and spacing.
+ * Also renders parsed prompt objects into structured HTML.
  * Shared utility to ensure consistent rendering of XML-based prompts across AgentCard and FusionLab.
  */
 class PromptRenderer {
+    /**
+     * Renders a complete prompt string from a single agent or a fused agent.
+     * @param {Object} agent - The agent data object.
+     * @returns {string} The formatted markdown prompt.
+     */
+    static renderMarkdown(agent) {
+        if (!agent) return '';
+
+        const parts = [];
+
+        if (agent.name) {
+            parts.push(`# ${agent.name}`);
+        }
+
+        if (agent.description) {
+            parts.push(`> ${agent.description}`);
+        }
+
+        if (agent.prompt) {
+            parts.push(agent.prompt);
+        }
+
+        return parts.join('\n\n');
+    }
+
     /**
      * Renders a parsed prompt object into an HTML string for XML formats.
      * @param {Object} parsedPrompt - The parsed prompt object from PromptParser.

@@ -7,12 +7,12 @@ class AgentCard {
         let promptHtml = '';
 
         if (parsed.format === 'legacy') {
-            promptHtml = `<div class="details-content">${agent.prompt}</div>`;
+            promptHtml = `<div class="details-content">${FormatUtils.escapeHTML(agent.prompt)}</div>`;
         } else if (typeof PromptRenderer !== 'undefined') {
             const structuredHtml = PromptRenderer.renderXml(parsed);
-            promptHtml = `<div class="details-content">${structuredHtml || agent.prompt}</div>`;
+            promptHtml = `<div class="details-content">${structuredHtml || FormatUtils.escapeHTML(agent.prompt)}</div>`;
         } else {
-            promptHtml = `<div class="details-content">${agent.prompt}</div>`;
+            promptHtml = `<div class="details-content">${FormatUtils.escapeHTML(agent.prompt)}</div>`;
         }
         return promptHtml;
     }
@@ -47,17 +47,32 @@ class AgentCard {
         const desc = FormatUtils.escapeHTML(agent.short_description || agent.desc || agent.description || '');
         const safeDisplayName = FormatUtils.escapeHTML(displayName);
 
+        const isFav = window.rosterApp && window.rosterApp.favoritesManager && window.rosterApp.favoritesManager.isFavorite(index);
+        const favIcon = isFav ? '★' : '☆';
+        const favClass = isFav ? 'favorited' : '';
+
         card.innerHTML = `
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <div class="emoji-hero">${icon}</div>
-                    <div class="title-group">
-                        <h3 class="agent-title">${safeDisplayName}</h3>
-                        <span class="role-tag">${role}</span>
+                    <button class="icon-btn favorite-btn ${favClass}" data-action="toggle-favorite" data-index="${index}" aria-label="Toggle Favorite" >${favIcon}</button>
+                    <div class="front-content-wrapper">
+                        <div class="card-top">
+                            <div class="card-top-left">
+                                <div class="emoji-hero">${icon}</div>
+                            </div>
+                            <div class="card-top-right">
+                                <div class="title-group">
+                                    <div class="title-wrapper">
+                                        <h3 class="agent-title">${safeDisplayName}</h3>
+                                    </div>
+                                    <span class="role-tag">${role}</span>
+                                </div>
+                                <div class="tag-container mt-2">${tags}</div>
+                            </div>
+                        </div>
+                        <div class="description mt-3">${desc}</div>
                     </div>
-                    <div class="tag-container justify-center mt-2">${tags}</div>
-                    <div class="description mt-3">${desc}</div>
-                    <div class="flip-hint mt-auto text-secondary text-xs">Tap to view protocol ↺</div>
+                    <div class="flip-hint" aria-label="Tap to view protocol" >↺</div>
                 </div>
 
                 <div class="flip-card-back">
@@ -68,10 +83,10 @@ class AgentCard {
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
                     
                     <div class="card-actions mt-auto pt-2 flex">
-                        <button class="secondary action-main-btn" data-action="copy-agent" data-index="${index}" style="border-top-right-radius: 0; border-bottom-right-radius: 0; flex-grow: 1;">
+                        <button class="secondary action-main-btn" data-action="copy-agent" data-index="${index}" >
                             <span class="btn-text">Copy</span>
                         </button>
-                        <button class="secondary action-toggle-btn px-2" aria-label="Toggle action" style="border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid rgba(0,0,0,0.2);">
+                        <button class="secondary action-toggle-btn px-2" aria-label="Toggle action" >
                             ▼
                         </button>
                     </div>
@@ -82,33 +97,16 @@ class AgentCard {
         const front = card.querySelector('.flip-card-front');
         const backBtn = card.querySelector('.back-header');
         const toggleBtn = card.querySelector('.action-toggle-btn');
-        const mainBtn = card.querySelector('.action-main-btn');
-        const btnText = card.querySelector('.btn-text');
 
-        front.addEventListener('click', () => {
-            const safeIndex = CSS.escape(String(index));
-            const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
-            if (promptArea && !promptArea.innerHTML.trim()) {
-                promptArea.innerHTML = AgentCard.getPromptHtml(agent);
-            }
-            card.classList.add('flipped');
-        });
+        // Event delegation moved to RosterApp.js so virtualized cards still work
+        // We do NOT add data-action to the front wrapper itself, or it captures everything.
+        // Instead, the container just relies on the global listener checking if a click
+        // landed inside it. Let's make sure it doesn't intercept the button.
+        front.setAttribute('data-action', 'flip-card');
+        front.setAttribute('data-index', index);
 
-        backBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            card.classList.remove('flipped');
-        });
-
-        toggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (mainBtn.dataset.action === "copy-agent") {
-                mainBtn.dataset.action = "download-agent";
-                btnText.innerText = "Download";
-            } else {
-                mainBtn.dataset.action = "copy-agent";
-                btnText.innerText = "Copy";
-            }
-        });
+        backBtn.setAttribute('data-action', 'flip-card-back');
+        toggleBtn.setAttribute('data-action', 'toggle-card-action');
 
         return card;
     }

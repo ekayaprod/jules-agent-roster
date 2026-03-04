@@ -14,7 +14,7 @@ class StringUtils {
     if (!name) return "❓";
     const parts = name.trim().split(" ");
     const lastPart = parts[parts.length - 1];
-    if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
+    if (lastPart && !/^[A-Za-z0-9\-\.\+]+$/.test(lastPart)) {
       return lastPart;
     }
     return "❓";
@@ -30,7 +30,7 @@ class StringUtils {
     if (!name) return false;
     const parts = name.trim().split(" ");
     const lastPart = parts[parts.length - 1];
-    return !!(lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart));
+    return !!(lastPart && !/^[A-Za-z0-9\-\.\+]+$/.test(lastPart));
   }
 
   /**
@@ -43,7 +43,7 @@ class StringUtils {
     if (!name) return "";
     const parts = name.trim().split(" ");
     const lastPart = parts[parts.length - 1];
-    if (lastPart && !/^[A-Za-z0-9\-\.]+$/.test(lastPart)) {
+    if (lastPart && !/^[A-Za-z0-9\-\.\+]+$/.test(lastPart)) {
         return parts.slice(0, -1).join(" ");
     }
     return name;
@@ -59,7 +59,7 @@ class StringUtils {
     if (!name) return "❓";
     const parts = name.trim().split(" ");
     const firstPart = parts[0];
-    if (firstPart && !/^[A-Za-z0-9\-\.]+$/.test(firstPart)) {
+    if (firstPart && !/^[A-Za-z0-9\-\.\+]+$/.test(firstPart)) {
       return firstPart;
     }
     return "❓";
@@ -75,7 +75,7 @@ class StringUtils {
     if (!name) return false;
     const parts = name.trim().split(" ");
     const firstPart = parts[0];
-    return !!(firstPart && !/^[A-Za-z0-9\-\.]+$/.test(firstPart));
+    return !!(firstPart && !/^[A-Za-z0-9\-\.\+]+$/.test(firstPart));
   }
 
   /**
@@ -88,7 +88,7 @@ class StringUtils {
     if (!name) return "";
     const parts = name.trim().split(" ");
     const firstPart = parts[0];
-    if (firstPart && !/^[A-Za-z0-9\-\.]+$/.test(firstPart)) {
+    if (firstPart && !/^[A-Za-z0-9\-\.\+]+$/.test(firstPart)) {
         return parts.slice(1).join(" ");
     }
     return name;

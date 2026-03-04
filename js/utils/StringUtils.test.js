@@ -18,6 +18,10 @@ describe('StringUtils', () => {
         it('should handle multiple spaces', () => {
             expect(StringUtils.extractEmoji('Test  ✨')).toBe('✨');
         });
+        it('should handle names with plus signs', () => {
+            expect(StringUtils.extractEmoji('Bolt+')).toBe('❓');
+            expect(StringUtils.extractEmoji('Bolt+ ✨')).toBe('✨');
+        });
     });
 
     describe('hasEmojiSuffix', () => {
@@ -36,6 +40,10 @@ describe('StringUtils', () => {
         });
         it('should handle multiple spaces', () => {
             expect(StringUtils.hasEmojiSuffix('Test  ✨')).toBe(true);
+        });
+        it('should handle names with plus signs', () => {
+            expect(StringUtils.hasEmojiSuffix('Bolt+')).toBe(false);
+            expect(StringUtils.hasEmojiSuffix('Bolt+ ✨')).toBe(true);
         });
     });
 
@@ -56,6 +64,10 @@ describe('StringUtils', () => {
         it('should handle multiple spaces', () => {
             expect(StringUtils.extractNameWithoutEmoji('Test  ✨')).toBe('Test ');
         });
+        it('should handle names with plus signs', () => {
+            expect(StringUtils.extractNameWithoutEmoji('Bolt+')).toBe('Bolt+');
+            expect(StringUtils.extractNameWithoutEmoji('Bolt+ ✨')).toBe('Bolt+');
+        });
     });
 
     describe('extractEmojiPrefix', () => {
@@ -71,6 +83,10 @@ describe('StringUtils', () => {
         it('should handle empty or null input', () => {
             expect(StringUtils.extractEmojiPrefix('')).toBe('❓');
             expect(StringUtils.extractEmojiPrefix(null)).toBe('❓');
+        });
+        it('should handle names with plus signs', () => {
+            expect(StringUtils.extractEmojiPrefix('Bolt+')).toBe('❓');
+            expect(StringUtils.extractEmojiPrefix('✨ Bolt+')).toBe('✨');
         });
     });
 
@@ -88,6 +104,10 @@ describe('StringUtils', () => {
             expect(StringUtils.hasEmojiPrefix('')).toBe(false);
             expect(StringUtils.hasEmojiPrefix(null)).toBe(false);
         });
+        it('should handle names with plus signs', () => {
+            expect(StringUtils.hasEmojiPrefix('Bolt+')).toBe(false);
+            expect(StringUtils.hasEmojiPrefix('✨ Bolt+')).toBe(true);
+        });
     });
 
     describe('extractNameWithoutEmojiPrefix', () => {
@@ -103,6 +123,10 @@ describe('StringUtils', () => {
         it('should handle empty or null input', () => {
             expect(StringUtils.extractNameWithoutEmojiPrefix('')).toBe('');
             expect(StringUtils.extractNameWithoutEmojiPrefix(null)).toBe('');
+        });
+        it('should handle names with plus signs', () => {
+            expect(StringUtils.extractNameWithoutEmojiPrefix('Bolt+')).toBe('Bolt+');
+            expect(StringUtils.extractNameWithoutEmojiPrefix('✨ Bolt+')).toBe('Bolt+');
         });
     });
 });

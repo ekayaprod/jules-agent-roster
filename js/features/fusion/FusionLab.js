@@ -3,6 +3,8 @@ class FusionLab {
     this.agents = [];
     this.compiler = null;
     this.lastFusionResult = null;
+    this.picker = null;
+    this.animation = typeof FusionAnimation !== "undefined" ? new FusionAnimation() : null;
     // Internal State for Selection
     this.state = {
       slotA: null,
@@ -29,6 +31,14 @@ class FusionLab {
       this.fusionIndex.init();
     }
 
+    if (typeof AgentPicker !== "undefined") {
+      this.picker = new AgentPicker(
+        this.compiler.baseAgents,
+        (slotKey, agent) => this.handlePickerSelection(slotKey, agent),
+        (selectedAgent) => this.getPreMergePreviewHTML(selectedAgent)
+      );
+    }
+
     this.bindEvents();
     this.renderSlots(); // Initial render
   }
@@ -45,10 +55,10 @@ class FusionLab {
     const slotBCard = document.getElementById("slotBCard");
 
     if (slotACard) slotACard.addEventListener("click", () => {
-        this.openPicker("slotA");
+        if (this.picker) this.picker.openPicker("slotA", this.state.slotA);
     });
     if (slotBCard) slotBCard.addEventListener("click", () => {
-        this.openPicker("slotB");
+        if (this.picker) this.picker.openPicker("slotB", this.state.slotB);
     });
 
     if (fuseBtn) fuseBtn.addEventListener("click", () => this.handleFusion());
@@ -66,40 +76,6 @@ class FusionLab {
       });
     }
 
-    // Modal Events
-    const modal = document.getElementById("agentPickerModal");
-    const closeBtn = document.getElementById("closePickerBtn");
-    const searchInput = document.getElementById("pickerSearch");
-
-    if (modal) {
-        // Close on backdrop click
-        modal.addEventListener("click", (e) => {
-            if (e.target === modal) this.closePicker();
-        });
-    }
-    if (closeBtn) closeBtn.addEventListener("click", () => this.closePicker());
-    if (searchInput) {
-        // ⚡ Bolt+: Debounce picker search
-        const debouncedFilter = PerformanceUtils.debounce((query) => {
-            this.filterPicker(query);
-        }, 300);
-        searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
-
-        const clearPickerSearchEmptyBtn = document.getElementById("clearPickerSearchEmptyBtn");
-        if (clearPickerSearchEmptyBtn) {
-            clearPickerSearchEmptyBtn.addEventListener("click", () => {
-                searchInput.value = "";
-                this.filterPicker("");
-            });
-        }
-    }
-
-
-    // 💎 Jeweler: Grid Keyboard Navigation
-    const pickerGrid = document.getElementById("pickerGrid");
-    if (pickerGrid) {
-        pickerGrid.addEventListener("keydown", (e) => this.handleGridKeydown(e));
-    }
   }
 
   /**
@@ -123,7 +99,7 @@ class FusionLab {
         } else {
             card.classList.add("empty");
             card.classList.remove("filled");
-            card.setAttribute("aria-label", slotId === "slotA" ? "Initiate Primary Protocol" : "Initiate Secondary Protocol");
+            card.setAttribute("aria-label", slotId === "slotA" ? "Select Primary Protocol" : "Select Secondary Protocol");
             content.innerHTML = `
                 <span class="slot-icon-placeholder">+</span>
                 <span class="slot-label">${slotId === "slotA" ? "Initiate Primary Protocol" : "Initiate Secondary Protocol"}</span>
@@ -137,265 +113,52 @@ class FusionLab {
     this.updateState(); // Update button state
   }
 
-  /**
-   * Opens the agent picker modal for a specific slot.
-   * @param {string} slotKey - "slotA" or "slotB"
-   */
-  openPicker(slotKey) {
-    this.activePickerSlot = slotKey;
-    const modal = document.getElementById("agentPickerModal");
-    const grid = document.getElementById("pickerGrid");
-    const searchInput = document.getElementById("pickerSearch");
-
-    if (!modal || !grid) {
-        console.error("Picker modal or grid not found");
-        return;
-    }
-
-    // Determine current selections
-    const currentAgent = this.state[slotKey];
-
-    // Reset Search
-    if (searchInput) searchInput.value = "";
-
-    // Hide empty state initially
-    const emptyState = document.getElementById("pickerEmptyState");
-    if (emptyState) emptyState.style.display = "none";
-
-    // Populate Grid
-    grid.innerHTML = "";
-    this.compiler.baseAgents.forEach((agent, index) => {
-        const item = document.createElement("div");
-        item.className = "mini-agent-card pop-in";
-        item.style.animationDelay = `${Math.min(index * 30, 300)}ms`;
-
-        item.setAttribute("role", "option");
-        // 💎 Jeweler: Roving Tabindex - Only first item is focusable initially
-        item.setAttribute("tabindex", index === 0 ? "0" : "-1");
-        item.setAttribute("data-name", agent.name.toLowerCase()); // For filtering
-
-        // Check if agent is currently selected in THIS slot
-        const isCurrent = currentAgent && currentAgent.name === agent.name;
-        if (isCurrent) {
-            item.classList.add("selected");
-            item.setAttribute("aria-selected", "true");
-        }
-
-        item.innerHTML = `
-            <span class="mini-icon">${agent.emoji}</span>
-            <span class="mini-name">${agent.name}</span>
-            <span class="mini-role">${agent.role}</span>
-        `;
-
-        item.addEventListener("click", () => this.handlePickerSelection(agent));
-        // Keydown handled by grid container
-
-        grid.appendChild(item);
-    });
-
-    // 🏁 Pacesetter: Pre-compute DOM elements and instantiate Fuse ONCE per picker open
-    // This prevents re-mapping the entire DOM and re-building the index on every keystroke
-    const items = grid.querySelectorAll(".mini-agent-card");
-    const data = Array.from(items).map(item => ({
-        el: item,
-        name: item.getAttribute("data-name")
-    }));
-    this.pickerFuse = new Fuse(data, {
-        keys: ["name"],
-        threshold: 0.4
-    });
-
-    modal.showModal();
-    modal.setAttribute("open", "");
-  }
-
-  /**
-   * Closes the picker modal.
-   */
-  closePicker() {
-      const slotKey = this.activePickerSlot;
-      const modal = document.getElementById("agentPickerModal");
-      if (modal) {
-          modal.close();
-      }
-      this.activePickerSlot = null;
-
-      // Return focus to trigger
-      if (slotKey) {
-          const btn = document.getElementById(slotKey + "Card");
-          // Palette+: Wrap in timeout to ensure modal teardown doesn't interfere
-          setTimeout(() => {
-              if (btn) btn.focus();
-          }, 50);
-      }
-  }
 
   /**
    * Handles selection from the picker.
+   * @param {string} slotKey - The slot key being populated
+   * @param {Object} agent - The selected agent
    */
-  handlePickerSelection(agent) {
-      if (this.activePickerSlot) {
-          this.state[this.activePickerSlot] = agent;
-          this.renderSlots();
-          this.clearError();
-          this.renderPreMergePreview();
-      }
-      this.closePicker();
+  handlePickerSelection(slotKey, agent) {
+      this.state[slotKey] = agent;
+      this.renderSlots();
+      this.clearError();
   }
 
   /**
-   * Renders the pre-merge "Known Recipe" preview if the resulting agent is already unlocked.
+   * Returns the HTML string for the pre-merge "Known Recipe" preview if the resulting agent is already unlocked.
+   * @param {Object} selectedAgent - The agent just selected in the picker.
+   * @returns {string|null} - The HTML string or null if not previewable.
    */
-  renderPreMergePreview() {
-    const actionArea = document.querySelector("#fusionLabContent .fusion-action-area");
-    if (!actionArea) return;
-
-    let previewEl = document.getElementById("preMergePreview");
-
-    const agentA = this.state.slotA;
-    const agentB = this.state.slotB;
-
-    if (!agentA || !agentB) {
-        if (previewEl) previewEl.style.display = "none";
-        return;
+  getPreMergePreviewHTML(selectedAgent) {
+    const tempState = { ...this.state };
+    if (this.picker && this.picker.activePickerSlot) {
+        tempState[this.picker.activePickerSlot] = selectedAgent;
     }
 
-    if (agentA.name === agentB.name) {
-        if (previewEl) previewEl.style.display = "none";
-        return;
+    const agentA = tempState.slotA;
+    const agentB = tempState.slotB;
+
+    if (!agentA || !agentB || agentA.name === agentB.name) {
+        return null;
     }
 
     const key = [agentA.name, agentB.name].sort().join(",");
 
     if (this.fusionIndex && this.fusionIndex.isUnlocked(key)) {
         const result = this.compiler.fuse(agentA, agentB);
-
-        if (!previewEl) {
-            previewEl = document.createElement("div");
-            previewEl.id = "preMergePreview";
-            previewEl.className = "pre-merge-preview";
-            actionArea.appendChild(previewEl);
-        }
-
         const iconHtml = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
         const nameHtml = FormatUtils.extractDisplayName(result);
 
-        previewEl.innerHTML = `
+        return `
             <div class="preview-badge">Already Discovered</div>
             <div class="preview-content">
                 <span class="preview-icon">${iconHtml}</span>
                 <span class="preview-name">${nameHtml}</span>
             </div>
         `;
-        previewEl.style.display = "flex";
-    } else {
-        if (previewEl) previewEl.style.display = "none";
     }
-  }
-
-  /**
-   * Filters the agent grid in the picker.
-   */
-  filterPicker(query) {
-      const term = query.trim();
-      const items = document.querySelectorAll(".mini-agent-card");
-      let visibleCount = 0;
-      let firstVisible = null;
-
-      if (!term) {
-          items.forEach(item => {
-              item.style.display = "flex";
-              if (!firstVisible) firstVisible = item;
-              visibleCount++;
-              item.setAttribute("tabindex", "-1"); // Reset all
-          });
-      } else {
-          // 🏁 Pacesetter: Use the pre-computed Fuse instance instead of mapping DOM elements
-          // and re-instantiating the search index on every single keystroke.
-          const results = this.pickerFuse ? this.pickerFuse.search(term) : [];
-
-          items.forEach(item => {
-              item.style.display = "none";
-              item.setAttribute("tabindex", "-1"); // Reset all
-          });
-
-          results.forEach(result => {
-              const item = result.item.el;
-              item.style.display = "flex";
-              if (!firstVisible) firstVisible = item;
-              visibleCount++;
-          });
-      }
-
-      // 💎 Jeweler: Reset Roving Tabindex to first result
-      if (firstVisible) {
-          firstVisible.setAttribute("tabindex", "0");
-      }
-
-      // 💎 Jeweler: Live Region Announcement
-      const announcer = document.getElementById("pickerAnnouncer");
-      if (announcer) {
-          announcer.innerText = `${visibleCount} protocols found`;
-      }
-
-      const emptyState = document.getElementById("pickerEmptyState");
-      if (emptyState) {
-          emptyState.style.display = visibleCount > 0 ? "none" : "flex";
-      }
-  }
-
-  /**
-   * 💎 Jeweler: Handles keyboard navigation within the grid (Roving Tabindex).
-   */
-  handleGridKeydown(e) {
-      const target = e.target;
-      if (!target.classList.contains("mini-agent-card")) return;
-
-      const items = Array.from(document.querySelectorAll(".mini-agent-card")).filter(
-          (el) => el.style.display !== "none"
-      );
-      const index = items.indexOf(target);
-
-      let newIndex = index;
-
-      switch (e.key) {
-          case "ArrowRight":
-          case "ArrowDown": // Simple grid navigation: next item
-              newIndex = index + 1;
-              if (newIndex >= items.length) newIndex = 0;
-              e.preventDefault();
-              break;
-          case "ArrowLeft":
-          case "ArrowUp": // Simple grid navigation: prev item
-              newIndex = index - 1;
-              if (newIndex < 0) newIndex = items.length - 1;
-              e.preventDefault();
-              break;
-          case "Home":
-              newIndex = 0;
-              e.preventDefault();
-              break;
-          case "End":
-              newIndex = items.length - 1;
-              e.preventDefault();
-              break;
-          case "Enter":
-          case " ":
-              e.preventDefault();
-              // Trigger click logic
-              target.click();
-              return;
-          default:
-              return;
-      }
-
-      // Apply Roving Tabindex
-      if (newIndex !== index) {
-          items[index].setAttribute("tabindex", "-1");
-          const newFocus = items[newIndex];
-          newFocus.setAttribute("tabindex", "0");
-          newFocus.focus();
-      }
+    return null;
   }
 
   /**
@@ -508,7 +271,9 @@ class FusionLab {
 
     this.renderFusionResult(result);
 
-    this.runAnimation(agentA, agentB, result);
+    if (this.animation) {
+      this.animation.runAnimation(agentA, agentB, result, () => this.showResult());
+    }
   }
 
   /**
@@ -594,171 +359,6 @@ class FusionLab {
           cardTitle.scrollIntoView({ behavior: "smooth", block: "nearest" });
       }
     }
-  }
-
-  /**
-   * Orchestrates the fusion animation sequence.
-   */
-  async runAnimation(agentA, agentB, result) {
-    const overlay = document.getElementById("fusionAnimationOverlay");
-    const iconLeft = overlay.querySelector(".anim-icon.left");
-    const iconRight = overlay.querySelector(".anim-icon.right");
-    const iconResult = overlay.querySelector(".anim-icon.result");
-    const animResult = overlay.querySelector(".anim-result");
-    const fuseBtn = document.getElementById("fuseBtn");
-    const controls = document.getElementById("fusionLabContent"); // Updated class
-
-    // Close result if open
-    const wrapper = document.getElementById("fusionOutputWrapper");
-    if (wrapper) wrapper.classList.remove("open");
-
-    // Dynamic Tier Styling & Particle Generation
-    const tier = result.tier || "Common";
-    const tierClass = `tier-${tier.toLowerCase()}`;
-
-    // Clean up previous tier classes
-    overlay.className = "fusion-animation-overlay";
-    overlay.classList.add(tierClass);
-
-    const particlesContainer = overlay.querySelector(".anim-particles");
-    if (particlesContainer) {
-      particlesContainer.innerHTML = ""; // Clear previous particles
-
-      let particleCount = 0;
-      let speedMultiplier = 1;
-
-      switch (tier) {
-        case "Common": particleCount = 0; speedMultiplier = 1; break;
-        case "Uncommon": particleCount = 20; speedMultiplier = 1; break;
-        case "Rare": particleCount = 40; speedMultiplier = 1.2; break;
-        case "Epic": particleCount = 160; speedMultiplier = 1.5; break;
-        case "Legendary": particleCount = 300; speedMultiplier = 2; break;
-      }
-
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement("div");
-        particle.className = "anim-particle";
-        // Randomize angle and distance for the particle explosion
-        const angle = Math.random() * Math.PI * 2;
-        const distance = 50 + Math.random() * 150; // pixels to travel
-        const tx = Math.cos(angle) * distance;
-        const ty = Math.sin(angle) * distance;
-
-        particle.style.setProperty("--tx", `${tx}px`);
-        particle.style.setProperty("--ty", `${ty}px`);
-        particle.style.animationDuration = `${0.8 / speedMultiplier}s`;
-        // Delay slightly for Legendary to create a fountain effect
-        if (tier === "Legendary" || tier === "Epic") {
-            particle.style.animationDelay = `${1.5 + Math.random() * 1.5}s`;
-        } else {
-            particle.style.animationDelay = `1.5s`;
-        }
-
-        particlesContainer.appendChild(particle);
-      }
-    }
-
-    // Setup Animation Data
-    iconLeft.innerHTML = agentA.emoji;
-    iconRight.innerHTML = agentB.emoji;
-
-    const icon = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
-    const displayName = FormatUtils.extractDisplayName(result);
-
-    // Set result name with highlighted text and separate emoji
-    animResult.innerHTML = `<span class="highlight">${displayName}</span> ${icon}`;
-
-    // Determine Result Icon
-    if (result.isCustom && result.name) {
-      if (iconResult) iconResult.innerHTML = icon;
-    } else {
-      // Standard Fusion: Emoji Kitchen
-      const iconA = agentA.emoji.trim();
-      const iconB = agentB.emoji.trim();
-
-      // Use Emoji Kitchen API
-      const imgUrl = `${CONFIG.emojiKitchenPrefix}${iconA}_${iconB}?size=128`;
-
-      if (iconResult) {
-        // Gallerist: Premium Asset Loading
-        iconResult.innerHTML = ""; // Clear previous content
-
-        // Create Container
-        const wrapper = document.createElement("div");
-        wrapper.className = "img-wrapper";
-        wrapper.style.fontSize = "inherit"; // Inherit font size from parent
-
-        // Create Placeholder
-        // 💊 Placebo: Use skeleton pulse to mask latency
-        const placeholder = document.createElement("div");
-        placeholder.className = "img-placeholder skeleton-pulse";
-        wrapper.appendChild(placeholder);
-
-        iconResult.appendChild(wrapper);
-
-        // 💊 Placebo: Resilient Image Loading with Exponential Backoff
-        const loadImageWithRetry = (url, retries = 3, backoff = 300) => {
-          const img = new Image();
-          img.src = url;
-          img.alt = result.name;
-          img.loading = "eager";
-          img.className = "img-loading";
-          img.style.width = "100%";
-          img.style.height = "100%";
-          img.style.objectFit = "contain";
-
-          img.onload = () => {
-            wrapper.appendChild(img);
-            // Trigger reflow to ensure CSS transition applies
-            void img.offsetWidth;
-            img.classList.remove("img-loading");
-            img.classList.add("img-loaded");
-            placeholder.classList.add("hidden");
-            // Remove placeholder after transition
-            setTimeout(() => {
-              if (placeholder.parentNode) placeholder.remove();
-            }, 300);
-          };
-
-          img.onerror = () => {
-            if (retries > 0) {
-              console.warn(`💊 Placebo: Image load failed. Retrying... (${retries} left)`);
-              setTimeout(() => loadImageWithRetry(url, retries - 1, backoff * 2), backoff);
-            } else {
-              // Structured logging for hard failures
-              console.error(JSON.stringify({
-                  event: "EMOJI_KITCHEN_API_FAILURE",
-                  url: url,
-                  reason: "All retries exhausted",
-                  timestamp: new Date().toISOString()
-              }));
-              wrapper.remove();
-              // Graceful Fallback
-              iconResult.innerText = `${iconA}${iconB}`;
-            }
-          };
-        };
-
-        // Start async load without blocking the 3500ms timeline
-        loadImageWithRetry(imgUrl);
-      }
-    }
-
-    fuseBtn.disabled = true;
-    fuseBtn.setAttribute("aria-disabled", "true");
-    if (controls) controls.classList.add("fusing");
-
-    // Start Animation
-    overlay.classList.add("active");
-
-    await new Promise(resolve => setTimeout(resolve, 3500));
-
-    overlay.classList.remove("active");
-    fuseBtn.disabled = false;
-    fuseBtn.setAttribute("aria-disabled", "false");
-    if (controls) controls.classList.remove("fusing");
-
-    this.showResult();
   }
 }
 

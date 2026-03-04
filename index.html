@@ -6,72 +6,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="version" content="0.5.0" />
     <title>Autonomous Protocol Matrix</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://emojik.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self';"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https://emojik.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self';"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.css" />
     <link rel="stylesheet" href="js/features/fusion/fusion.css" />
     <style>
       * { box-sizing: border-box; }
       :root {
         color-scheme: dark;
-        --text-3xs: 0.6em; --text-2xs: 0.7rem; --text-xs: 0.85rem; --text-sm: 0.95rem; --text-base: 1rem; --text-md: 1.1rem; --text-lg: 1.25rem; --text-xl: 1.5rem; --text-2xl: 1.75rem; --text-3xl: 2.2rem; --text-4xl: 2.5rem;
-        --weight-normal: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700;
+        --text-3xs: 0.6em; --text-2xs: 0.7rem; --text-xs: 0.85rem; --text-sm: 0.95rem; --text-base: 1rem; --text-md: 1.1rem; --text-lg: 1.25rem; --text-xl: 1.5rem; --text-2xl: 1.75rem; --text-3xl: 2.2rem; --text-4xl: 2.5rem; --text-5xl: 3rem; --text-6xl: 4rem; --text-7xl: 5rem;
+        --weight-normal: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700; --weight-extrabold: 800;
+        --leading-none: 1; --leading-tight: 1.25; --leading-snug: 1.4; --leading-normal: 1.5; --leading-relaxed: 1.625;
         --bg-color: #0f172a; --card-bg: #1e293b; --text-primary: #f8fafc; --text-secondary: #94a3b8; --accent: #38bdf8; --accent-hover: #0ea5e9; --success: #22c55e; --border: #334155; --details-bg: #020617;
       }
 
-      body { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 1.5rem; line-height: 1.5; }
+      body { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 1.5rem; line-height: var(--leading-normal); }
+
+      .clusterize-extra-row {
+        grid-column: 1 / -1 !important;
+      }
 
       /* FLIP CARD REFINEMENTS */
-      .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 20rem; max-width: 24rem; height: 16rem; }
+      .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 20rem; max-width: 24rem; height: 13rem; }
       .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; border-radius: 1rem; cursor: pointer; }
       .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
       
-      .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1rem; padding: 0.75rem 1rem; display: flex; flex-direction: column; background-color: var(--card-bg); border: 1px solid var(--border); box-shadow: 0 0.25rem 0.375rem -1px rgba(0, 0, 0, 0.2); overflow: hidden; }
-      .flip-card-front { align-items: center; justify-content: flex-start; }
+      .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1rem; padding: 1.5rem 1rem; display: flex; flex-direction: column; background-color: var(--card-bg); border: 1px solid var(--border); box-shadow: 0 0.25rem 0.375rem -1px rgba(0, 0, 0, 0.2); overflow: hidden; }
+      .flip-card-front { justify-content: center; }
       .flip-card-back { transform: rotateY(180deg); text-align: left; padding: 0.75rem; cursor: default; }
       
-      .emoji-hero { font-size: var(--text-4xl); margin-bottom: 0.5rem; transition: transform 0.2s ease; }
+      .front-content-wrapper { display: flex; flex-direction: column; width: 100%; margin-top: -0.5rem; }
+      .card-top { display: grid; grid-template-columns: 1fr 2fr; width: 100%; gap: 0.5rem; align-items: center; }
+      .card-top-left { display: flex; justify-content: center; align-items: center; padding-top: 0.25rem; }
+      .card-top-right { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+
+      .emoji-hero { font-size: var(--text-6xl); line-height: var(--leading-none); margin-bottom: 0; transition: transform 0.2s ease; }
       .flip-card-inner:hover .emoji-hero { transform: scale(1.05) translateY(-0.125rem); }
-      .flip-hint { opacity: 0.6; transition: opacity 0.3s; font-family: -apple-system, sans-serif; }
+      .flip-hint { position: absolute; bottom: 0.75rem; right: 0.75rem; font-size: var(--text-lg); opacity: 0.6; transition: opacity 0.3s; font-family: -apple-system, sans-serif; color: var(--text-secondary); }
       .flip-card-inner:hover .flip-hint { opacity: 1; }
 
-      .prompt-scroll-area { flex-grow: 1; overflow-y: auto; background: var(--details-bg); padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem; white-space: pre-wrap; font-family: inherit; }
+      .prompt-scroll-area { flex-grow: 1; overflow-y: auto; background: var(--details-bg); padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: var(--text-2xs); color: var(--text-secondary); margin-bottom: 0.5rem; white-space: pre-wrap; font-family: inherit; }
       .prompt-scroll-area::-webkit-scrollbar { width: 0.25rem; }
       .prompt-scroll-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0.25rem; }
       
       .back-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; border-bottom: 1px solid var(--border); padding-bottom: 0.25rem; cursor: pointer; }
-      .icon-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.25rem; }
+      .icon-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.25rem; transition: all 0.2s; }
       .icon-btn:hover { color: var(--text-primary); }
+      .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.25rem; }
+      .icon-btn:active { transform: scale(0.95); }
 
       /* CORE UI & BRANDING */
       .header { max-width: 56.25rem; margin: 0 auto 3rem auto; text-align: center; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
-      .header h1 { font-size: var(--text-3xl); margin-bottom: 0.5rem; font-weight: 800; letter-spacing: -0.05em; background: linear-gradient(135deg, #38bdf8, #818cf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      .header h1 { font-size: var(--text-3xl); margin-bottom: 0.5rem; font-weight: var(--weight-extrabold); letter-spacing: -0.05em; background: linear-gradient(135deg, #38bdf8, #818cf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
       .header p { font-family: -apple-system, sans-serif; font-size: var(--text-base); }
       
       .search-wrapper { position: relative; width: 100%; max-width: 25rem; margin: 1.5rem auto 0 auto; }
       .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); pointer-events: none; }
-      .clear-search-btn { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%) scale(0.8); background: none; border: none; color: var(--text-secondary); padding: 0.25rem; cursor: pointer; opacity: 0; visibility: hidden; }
+      .clear-search-btn { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%) scale(0.8); background: none; border: none; color: var(--text-secondary); padding: 0.25rem; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.2s; }
       .clear-search-btn.visible { opacity: 1; visibility: visible; transform: translateY(-50%) scale(1); pointer-events: auto; }
-      input[type="text"] { padding: 0.75rem 2.5rem 0.75rem 2.75rem; border-radius: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text-primary); width: 100%; font-family: inherit; }
+      .clear-search-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.25rem; }
+      .clear-search-btn:active { transform: translateY(-50%) scale(0.95); }
+      input[type="text"] { padding: 0.75rem 2.5rem 0.75rem 2.75rem; border-radius: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); color: var(--text-primary); width: 100%; font-family: inherit; transition: all 0.2s; }
+      input[type="text"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       
       button { background-color: var(--accent); color: #0f172a; border: none; padding: 0.5rem 1rem; font-weight: var(--weight-semibold); border-radius: 0.5rem; cursor: pointer; transition: all 0.2s; font-family: -apple-system, sans-serif;}
       button:hover { background-color: var(--accent-hover); }
+      button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      button:active { transform: scale(0.98); }
+      button:disabled { opacity: 0.5; cursor: not-allowed; }
       button.secondary { background-color: var(--card-bg); color: var(--text-primary); border: 1px solid var(--border); }
       button.secondary:hover { border-color: var(--accent); }
+      button.secondary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       
       .section-header { max-width: 75rem; margin: 2rem auto 1rem auto; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
       .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 75rem; margin: 0 auto; }
       
-      .title-group { display: flex; flex-direction: column; align-items: center; gap: 0.1rem; }
+      .title-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1rem; text-align: left; }
       .agent-title { font-size: var(--text-base); font-weight: var(--weight-bold); margin: 0; font-family: -apple-system, sans-serif; }
       .role-tag { font-size: var(--text-3xs); padding: 0.1rem 0.4rem; border-radius: 999px; background-color: rgba(56, 189, 248, 0.1); color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; font-family: -apple-system, sans-serif;}
-      .tag-container { display: flex; flex-wrap: wrap; gap: 0.25rem; }
-      .meta-tag { font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 0.25rem; background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); }
+      .tag-container { display: flex; flex-wrap: wrap; gap: 0.25rem; justify-content: flex-start; }
+      .meta-tag { font-size: var(--text-3xs); padding: 0.1rem 0.4rem; border-radius: 0.25rem; background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); }
       
       /* Dynamic Description Shrinking */
-      .description { color: var(--text-secondary); font-size: clamp(0.75rem, 1.5vw, 0.95rem); line-height: 1.4; margin-bottom: auto; font-family: -apple-system, sans-serif; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; }
+      .description { color: var(--text-secondary); font-size: clamp(0.75rem, 1.5vw, 0.95rem); line-height: var(--leading-snug); font-family: -apple-system, sans-serif; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; }
 
       /* NAVIGATION */
       .category-nav { position: sticky; top: 1rem; z-index: 100; margin: 0 auto 2rem auto; max-width: 50rem; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 999px; padding: 0.35rem; display: flex; justify-content: flex-start; gap: 0.5rem; overflow-x: auto; font-family: -apple-system, sans-serif; }
-      .nav-pill { color: var(--text-secondary); text-decoration: none; font-size: var(--text-xs); font-weight: 600; padding: 0.4rem 0.8rem; border-radius: 999px; }
+      .nav-pill { color: var(--text-secondary); text-decoration: none; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 0.4rem 0.8rem; border-radius: 999px; transition: all 0.2s; }
+      .nav-pill:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
+      .nav-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .nav-pill:active { transform: scale(0.95); }
       .nav-pill.active { background: var(--accent); color: #0f172a; }
 
       /* FOOTER & MASTER CONTROLS */
@@ -81,10 +104,16 @@
       .master-drop-btn { padding: 0 1rem; border-top-left-radius: 0; border-bottom-left-radius: 0; }
       .dropdown-menu { position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; z-index: 50; display: none; flex-direction: column; min-width: 17.5rem; box-shadow: 0 -0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.3); overflow: hidden; }
       .dropdown-menu.visible { display: flex; }
-      .dropdown-item { width: 100%; background: transparent; color: var(--text-primary); border: none; padding: 0.75rem 1rem; text-align: left; font-size: var(--text-sm); border-radius: 0;}
+      .dropdown-item { width: 100%; background: transparent; color: var(--text-primary); border: none; padding: 0.75rem 1rem; text-align: left; font-size: var(--text-sm); border-radius: 0; transition: all 0.2s;}
       .dropdown-item:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
+      .dropdown-item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
       /* UTILS */
+      .favorite-btn { position: absolute; right: 0.75rem; top: 0.75rem; font-size: var(--text-xl); line-height: var(--leading-none); }
+      .title-wrapper { display: flex; justify-content: space-between; width: 100%; }
+      .action-main-btn { border-top-right-radius: 0; border-bottom-right-radius: 0; flex-grow: 1; }
+      .action-toggle-btn { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid var(--border); }
+
       .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
       .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem 1rem; }
       .empty-state.visible { display: flex; }
@@ -92,7 +121,7 @@
       .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 0.625rem 0.9375rem rgba(0,0,0,0.5); transform: translateY(200%); transition: transform 0.3s; z-index: 50; border: 1px solid #16a34a; font-family: -apple-system, sans-serif;}
       .toast.show { transform: translateY(0); }
       /* LOADING SKELETON (ILLUSIONIST) */
-      .skeleton-card { height: 16rem; background-color: var(--card-bg); border: 1px dashed var(--border); border-radius: 1rem; flex: 1 1 20rem; max-width: 24rem; display: flex; align-items: center; justify-content: center; opacity: 0.6; }
+      .skeleton-card { height: 13rem; background-color: var(--card-bg); border: 1px dashed var(--border); border-radius: 1rem; flex: 1 1 20rem; max-width: 24rem; display: flex; align-items: center; justify-content: center; opacity: 0.6; }
       @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
       .skeleton-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
       @media (prefers-reduced-motion: reduce) {
@@ -122,14 +151,20 @@
 
     <div id="searchModeContainer" class="hidden">
         <h2 id="search-mode-header" class="section-header">Search Results</h2>
-        <div class="grid" id="searchResultsGrid"></div>
+        <div id="searchResultsScrollArea" class="clusterize-scroll" style="max-height: 80vh;"><div class="grid clusterize-content" id="searchResultsGrid"></div></div>
     </div>
     <div id="emptyState" class="empty-state">
+      <div style="font-size: var(--text-5xl); margin-bottom: 1rem;">🌌</div>
       <h2>No Protocols Found</h2>
-      <button id="clearSearchEmptyBtn" class="mt-2 secondary">Clear Search</button>
+      <p class="text-secondary mt-2" style="max-width: 25rem; line-height: var(--leading-normal);">We couldn't find any protocols matching your search. Clear your filters to explore the matrix.</p>
+      <button id="clearSearchEmptyBtn" class="mt-3 secondary" aria-label="Clear Search Filters">Clear Search & Explore</button>
     </div>
 
     <main id="main">
+      <h2 id="recent-section" class="section-header" style="display: none;">Recently Used</h2>
+      <div class="grid" id="recentGrid" style="display: none;"></div>
+      <h2 id="favorites-section" class="section-header" style="display: none;">Favorites</h2>
+      <div class="grid" id="favoritesGrid" style="display: none;"></div>
       <h2 id="core-maintenance" class="section-header">Core Maintenance</h2>
       <div class="grid" id="coreGrid"></div>
       <h2 id="architecture-optimization" class="section-header">Architecture & Optimization</h2>
@@ -146,19 +181,19 @@
 
     <div class="fusion-lab-container">
       <h2>🧬 The Fusion Lab</h2>
-      <div id="fusionLabSkeleton" class="fusion-visual-slots skeleton-pulse" aria-hidden="true">
+      <div id="fusionLabSkeleton" class="fusion-visual-slots skeleton-pulse fade-transition" aria-hidden="true">
         <div class="slot-card" style="border-color: var(--border); background-color: var(--card-bg);"></div>
         <div class="fusion-action-area"><div style="width: 12.5rem; height: 3rem; border-radius: 0.5rem; background: var(--border);"></div></div>
         <div class="slot-card" style="border-color: var(--border); background-color: var(--card-bg);"></div>
       </div>
-      <div id="fusionLabContent" class="fusion-visual-slots hidden">
-        <button id="slotACard" class="slot-card">
+      <div id="fusionLabContent" class="fusion-visual-slots fade-transition hidden">
+        <button id="slotACard" class="slot-card" aria-label="Select Primary Protocol">
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent A</span></div>
         </button>
         <div class="fusion-action-area">
-          <button id="fuseBtn" disabled>Ignite Protocol</button>
+          <button id="fuseBtn" disabled aria-label="Fuse Selected Protocols">Ignite Protocol</button>
         </div>
-        <button id="slotBCard" class="slot-card">
+        <button id="slotBCard" class="slot-card" aria-label="Select Secondary Protocol">
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent B</span></div>
         </button>
       </div>
@@ -185,12 +220,12 @@
 
     <footer class="roster-footer">
       <div class="master-export-group">
-        <button id="masterCopyBtn" class="master-main-btn" data-action="copy-all">Copy All Core Prompts</button>
-        <button id="masterDropdownBtn" class="master-drop-btn">▼</button>
+        <button id="masterCopyBtn" class="master-main-btn" data-action="copy-all" aria-label="Copy All Core Prompts to Clipboard">Copy All Core Prompts</button>
+        <button id="masterDropdownBtn" class="master-drop-btn" aria-label="Toggle Export Options">▼</button>
         <div id="masterDropdownMenu" class="dropdown-menu">
-          <button id="masterDownloadCoreBtn" class="dropdown-item" data-action="download-all">Download Core Prompts</button>
-          <button id="masterCopyFusionsBtn" class="dropdown-item" data-action="copy-fusions">Copy Unlocked Fusions</button>
-          <button id="masterDownloadFusionsBtn" class="dropdown-item" data-action="download-fusions">Download Unlocked Fusions</button>
+          <button id="masterDownloadCoreBtn" class="dropdown-item" data-action="download-all" aria-label="Download Core Prompts as JSON">Download Core Prompts</button>
+          <button id="masterCopyFusionsBtn" class="dropdown-item" data-action="copy-fusions" aria-label="Copy Unlocked Fusions to Clipboard">Copy Unlocked Fusions</button>
+          <button id="masterDownloadFusionsBtn" class="dropdown-item" data-action="download-fusions" aria-label="Download Unlocked Fusions as JSON">Download Unlocked Fusions</button>
         </div>
       </div>
     </footer>
@@ -199,7 +234,7 @@
         <div class="picker-container">
             <header class="picker-header">
                 <h3>Select Protocol Component</h3>
-                <button id="closePickerBtn" class="close-btn">✕</button>
+                <button id="closePickerBtn" class="close-btn" aria-label="Close Protocol Selection">✕</button>
             </header>
             <div class="picker-search">
                 <input type="text" id="pickerSearch" placeholder="Filter protocols...">
@@ -220,11 +255,12 @@
           categoryNav: "#category-nav", main: "#main", navPills: ".nav-pill",
           sectionHeader: ".section-header", grid: ".grid", card: ".card"
         },
-        categories: { core: "coreGrid", architecture: "archGrid", hygiene: "hygieneGrid", operations: "opsGrid", context: "contextGrid", monthly: "monthlyGrid" },
-        sectionMap: { coreGrid: "core-maintenance", archGrid: "architecture-optimization", hygieneGrid: "code-hygiene", opsGrid: "operations-release", contextGrid: "context-strategy", monthlyGrid: "monthly-intelligence" }
+        categories: { recent: "recentGrid", favorites: "favoritesGrid", core: "coreGrid", architecture: "archGrid", hygiene: "hygieneGrid", operations: "opsGrid", context: "contextGrid", monthly: "monthlyGrid" },
+        sectionMap: { recentGrid: "recent-section", favoritesGrid: "favorites-section", coreGrid: "core-maintenance", archGrid: "architecture-optimization", hygieneGrid: "code-hygiene", opsGrid: "operations-release", contextGrid: "context-strategy", monthlyGrid: "monthly-intelligence" }
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.js"></script>
     <script src="js/PromptParser.js"></script>
     <script src="js/utils/PromptRenderer.js"></script>
     <script src="js/services/AgentRepository.js"></script>
@@ -236,8 +272,12 @@
     <script src="js/utils/StringUtils.js"></script>
     <script src="js/utils/DownloadUtils.js"></script>
     <script src="js/features/fusion/FusionCompiler.js"></script>
+    <script src="js/features/fusion/AgentPicker.js"></script>
     <script src="js/features/fusion/FusionIndex.js"></script>
+    <script src="js/features/fusion/FusionAnimation.js"></script>
     <script src="js/features/fusion/FusionLab.js"></script>
+    <script src="js/features/favorites/FavoritesManager.js"></script>
+    <script src="js/features/recent/RecentlyUsedManager.js"></script>
     <script src="js/RosterApp.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {

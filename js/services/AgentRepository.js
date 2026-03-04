@@ -166,7 +166,7 @@ class AgentRepository {
                 if (response.status === 404) {
                     return response;
                 }
-                throw new Error(`We couldn't reach the server (Status: ${response.status}). Please check your connection and try again.`);
+                throw new Error("We couldn't reach the server. Please check your internet connection and try again.");
             }
             return response;
         } catch (error) {
@@ -198,7 +198,7 @@ class AgentRepository {
         try {
             return await response.json();
         } catch {
-            throw new Error(`We encountered a problem reading the configuration for ${label}. Please ensure the file is formatted correctly.`);
+            throw new Error("Check the configuration file formatting and try again.");
         }
     }
 
@@ -214,7 +214,7 @@ class AgentRepository {
      */
     validateAgentsData(data) {
         if (!Array.isArray(data)) {
-            throw new Error("The agent data is not in the expected format. Please provide a valid list of agents.");
+            throw new Error("Provide a valid list of agents in the expected format.");
         }
         return data
             .filter((agent) => {

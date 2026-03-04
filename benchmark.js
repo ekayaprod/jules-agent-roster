@@ -29,15 +29,32 @@ global.document = {
     getElementById: (id) => {
         return { style: {}, classList: { add: () => {}, remove: () => {} }, appendChild: () => {}, focus: () => {} };
     },
+    createElement: () => {
+        const attributes = {};
+        return {
+            setAttribute: (k, v) => attributes[k] = v,
+            getAttribute: (k) => attributes[k],
+            removeAttribute: (k) => delete attributes[k],
+            classList: { add: () => {}, remove: () => {} },
+            addEventListener: () => {},
+            style: {},
+            className: '',
+            innerHTML: ''
+        };
+    },
     querySelectorAll: () => [],
     querySelector: () => ({ classList: { add: () => {}, remove: () => {} }, addEventListener: () => {} }),
-    createElement: () => ({ style: {}, classList: { add: () => {}, remove: () => {} } }),
     createDocumentFragment: () => ({ appendChild: () => {} }),
     addEventListener: () => {}
 };
 
+global.Clusterize = class Clusterize {
+    constructor(options) { this.options = options; }
+    update(data) { this.options.rows = data; }
+};
 global.CSS = { escape: (str) => str };
 global.CONFIG = { selectors: {}, categories: {}, sectionMap: {} };
+global.requestAnimationFrame = (cb) => setTimeout(cb, 0);
 
 // Mock AgentCard because RosterApp calls it
 global.AgentCard = {
@@ -45,11 +62,19 @@ global.AgentCard = {
 };
 
 // Load Core logic
-const FusionCompiler = loadClass('js/FusionCompiler.js');
-const FusionIndex = loadClass('js/FusionIndex.js');
-const FusionLab = loadClass('js/FusionLab.js');
+const FusionCompiler = loadClass('js/features/fusion/FusionCompiler.js');
+const FusionIndex = loadClass('js/features/fusion/FusionIndex.js');
+const AgentPicker = loadClass('js/features/fusion/AgentPicker.js');
+const FusionLab = loadClass('js/features/fusion/FusionLab.js');
+global.AgentPicker = AgentPicker;
+
 const AgentRepository = loadClass('js/services/AgentRepository.js');
 const ToastNotification = loadClass('js/ui/ToastNotification.js');
+const FavoritesManager = loadClass('js/features/favorites/FavoritesManager.js');
+global.FavoritesManager = FavoritesManager;
+
+const RecentlyUsedManager = loadClass('js/features/recent/RecentlyUsedManager.js');
+global.RecentlyUsedManager = RecentlyUsedManager;
 const RosterApp = loadClass('js/RosterApp.js');
 
 const runBenchmark = async () => {
@@ -72,13 +97,15 @@ const runBenchmark = async () => {
     };
 
     global.document.getElementById = (id) => {
+        if (id === 'agentPickerModal' || id === 'closePickerBtn' || id === 'pickerSearch' || id === 'clearPickerSearchEmptyBtn' || id === 'pickerEmptyState' || id === 'pickerAnnouncer') return { addEventListener: () => {}, close: () => {}, showModal: () => {}, setAttribute: () => {}, removeAttribute: () => {}, style: {}, innerText: '', focus: () => {} };
         if (id === 'searchResultsGrid') {
             return {
                 innerHTML: '',
                 appendChild: () => {}
             };
         }
-        if (id === 'pickerGrid') return {
+
+        if (id === 'pickerGrid') return { addEventListener: () => {}, appendChild: () => {},
             querySelectorAll: () => {
                 const arr = [];
                 for (let i = 0; i < 5000; i++) {
@@ -108,17 +135,19 @@ const runBenchmark = async () => {
     roster.fusionLab = new FusionLab();
     roster.fusionLab.compiler = new FusionCompiler([], {});
     // Mock modal open behavior to initialize Fuse index once
-    const fakeModal = { showModal: () => {}, setAttribute: () => {} };
+    const fakeModal = { showModal: () => {}, setAttribute: () => {}, addEventListener: () => {}, removeAttribute: () => {}, close: () => {} };
     const originalGetElementById = global.document.getElementById;
     global.document.getElementById = (id) => id === 'agentPickerModal' ? fakeModal : originalGetElementById(id);
 
     // Call openPicker which now internally caches `pickerFuse` based on Pacesetter optimizations
-    roster.fusionLab.openPicker('slotA');
+    global.document.getElementById = (id) => { if(id==='agentPickerModal') return fakeModal; return originalGetElementById(id); };
+    roster.fusionLab.picker = new AgentPicker(mockAgents, () => {}, () => {});
+    roster.fusionLab.picker.openPicker('slotA', null);
 
     // 2. FusionLab Benchmark
     start = performance.now();
     for (let i = 0; i < 5; i++) {
-        roster.fusionLab.filterPicker("picker");
+        roster.fusionLab.picker.filterPicker("picker");
     }
     duration = (performance.now() - start) / 5;
     console.log(`FusionLab cached picker filter execution: ${duration.toFixed(2)}ms`);
