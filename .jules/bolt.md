@@ -13,3 +13,6 @@
 ## 2025-05-27 - Centralized Modal Virtualization
 **Learning:** Modals that dynamically render large lists of options (like the AgentPicker) can cause noticeable layout thrashing when toggled and filtered, even if the main roster view is optimized.
 **Action:** Extended the `Clusterize.js` virtualization pattern to the `AgentPicker` modal. Replaced DocumentFragment manipulation with cached HTML string arrays mapped to `Fuse.js` results. Wrapped the modal's internal grid with a `clusterize-scroll` container to ensure smooth rendering and zero jank during modal interactions.
+## 2025-05-28 - ⚡ Bolt+ - [Startup Promise.all Concurrency]
+**Learning:** Initial application bootstrapping triggers multiple independent async fetches (`#loadStandardAgents`, `#loadCustomAgents`) that shouldn't block each other.
+**Action:** Refactored sequential `await` calls in `AgentRepository.fetchAgents` into a concurrent `Promise.all()` to drastically reduce total network/I/O execution time on startup.
