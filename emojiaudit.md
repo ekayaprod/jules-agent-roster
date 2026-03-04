@@ -16,15 +16,12 @@
 - **Scaffolder**: JSON has `🧰`, MD has `🪜`
 - **Siren**: JSON has `🔊`, MD has `🚨`
 - **Speed Camera**: JSON has `🚥`, MD has `📸`
-- **Streamliner**: JSON has `⛷️`, MD has `🛷`
-- **Stress Tester**: JSON has `🧨`, MD has `🗜️`
 - **Sunsetter**: JSON has `🌅`, MD has `🌇`
-- **Surge Protector**: JSON has `🌩️`, MD has `⚡`
-- **Surgeon**: JSON has `🥼`, MD has `🩺`
+- **Surgeon**: JSON has `🥼`, MD has `🔪`
 - **Synchronizer**: JSON has `🔁`, MD has `🔄`
-- **Threat Modeler**: JSON has `🎯`, MD has `♟️`
+- **Threat Modeler**: JSON has `🎯`, MD has `🏯`
+- **Typesmith**: JSON has `🖋️`, MD has `🔠`
 
 ## Missing in MD
-
 
 ## Missing in JSON
