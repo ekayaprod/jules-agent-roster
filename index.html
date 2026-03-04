@@ -34,6 +34,84 @@
       .flip-card-front { justify-content: center; }
       .flip-card-back { transform: rotateY(180deg); text-align: left; padding: 0.75rem; cursor: default; }
       
+
+      /* Tier Rarity Borders and Effects */
+      .tier-common .flip-card-front, .tier-common .flip-card-back { border-color: rgba(156, 163, 175, 0.6); }
+      .tier-uncommon .flip-card-front, .tier-uncommon .flip-card-back { border-color: rgba(20, 184, 166, 0.6); }
+      .tier-rare .flip-card-front, .tier-rare .flip-card-back { border-color: rgba(59, 130, 246, 0.6); }
+      .tier-epic .flip-card-front, .tier-epic .flip-card-back { border-color: rgba(217, 70, 239, 0.6); box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); }
+
+      @keyframes legendaryPulse {
+          0% { box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); border-color: rgba(251, 191, 36, 0.6); }
+          50% { box-shadow: 0 0 1.5625rem rgba(245, 158, 11, 0.6); border-color: rgba(245, 158, 11, 1); }
+          100% { box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); border-color: rgba(251, 191, 36, 0.6); }
+      }
+      .tier-legendary .flip-card-front, .tier-legendary .flip-card-back { animation: legendaryPulse 4s infinite ease-in-out; }
+
+      /* Particle Effects via Pseudo-elements for Epic & Legendary */
+      .tier-epic .flip-card-front::before, .tier-epic .flip-card-back::before,
+      .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after,
+      .tier-legendary .flip-card-front::before, .tier-legendary .flip-card-back::before,
+      .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after {
+          content: '';
+          position: absolute;
+          border-radius: 50%;
+          pointer-events: none;
+          z-index: 0;
+      }
+
+      @keyframes floatParticlesEpic1 {
+          0% { transform: translateY(0) scale(1); opacity: 0; }
+          20% { opacity: 0.8; }
+          80% { opacity: 0.8; }
+          100% { transform: translateY(-30px) scale(0); opacity: 0; }
+      }
+      @keyframes floatParticlesEpic2 {
+          0% { transform: translateY(0) scale(1); opacity: 0; }
+          20% { opacity: 0.6; }
+          80% { opacity: 0.6; }
+          100% { transform: translateY(-40px) scale(0); opacity: 0; }
+      }
+
+      .tier-epic .flip-card-front::before, .tier-epic .flip-card-back::before {
+          width: 4px; height: 4px; background: rgba(217, 70, 239, 0.8);
+          bottom: 10px; left: 20%;
+          box-shadow: 0 0 8px rgba(217, 70, 239, 0.8), 20px -10px 0 2px rgba(217, 70, 239, 0.6), 50px -5px 0 1px rgba(217, 70, 239, 0.5), 100px -15px 0 2px rgba(217, 70, 239, 0.7);
+          animation: floatParticlesEpic1 3s infinite ease-in;
+      }
+      .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after {
+          width: 3px; height: 3px; background: rgba(217, 70, 239, 0.6);
+          bottom: 15px; right: 25%;
+          box-shadow: 0 0 6px rgba(217, 70, 239, 0.6), -30px 5px 0 1px rgba(217, 70, 239, 0.8), -70px -10px 0 2px rgba(217, 70, 239, 0.5), -120px -5px 0 1px rgba(217, 70, 239, 0.7);
+          animation: floatParticlesEpic2 4s infinite ease-in 1.5s;
+      }
+
+      @keyframes floatParticlesLeg1 {
+          0% { transform: translateY(0) scale(1); opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { transform: translateY(-50px) scale(0); opacity: 0; }
+      }
+      @keyframes floatParticlesLeg2 {
+          0% { transform: translateY(0) scale(1); opacity: 0; }
+          20% { opacity: 0.8; }
+          80% { opacity: 0.8; }
+          100% { transform: translateY(-60px) scale(0); opacity: 0; }
+      }
+
+      .tier-legendary .flip-card-front::before, .tier-legendary .flip-card-back::before {
+          width: 5px; height: 5px; background: rgba(251, 191, 36, 1);
+          bottom: 10px; left: 15%;
+          box-shadow: 0 0 10px rgba(251, 191, 36, 1), 30px -15px 0 2px rgba(251, 191, 36, 0.8), 70px -5px 0 3px rgba(251, 191, 36, 0.6), 130px -20px 0 2px rgba(251, 191, 36, 0.9), 180px -10px 0 1px rgba(251, 191, 36, 0.7);
+          animation: floatParticlesLeg1 2.5s infinite ease-in;
+      }
+      .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after {
+          width: 4px; height: 4px; background: rgba(251, 191, 36, 0.8);
+          bottom: 15px; right: 15%;
+          box-shadow: 0 0 8px rgba(251, 191, 36, 0.8), -40px 10px 0 2px rgba(251, 191, 36, 1), -90px -15px 0 3px rgba(251, 191, 36, 0.7), -150px -5px 0 2px rgba(251, 191, 36, 0.9), -200px -10px 0 1px rgba(251, 191, 36, 0.6);
+          animation: floatParticlesLeg2 3s infinite ease-in 1.2s;
+      }
+
       /* Agent Type Borders */
       .plus-agent .flip-card-front, .plus-agent .flip-card-back { border-color: #8b5cf6; }
       .monthly-agent .flip-card-front, .monthly-agent .flip-card-back { border-color: #fbbf24; }
