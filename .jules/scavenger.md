@@ -29,3 +29,7 @@
 **Learning:** Discovered `FusionAnimation.js` was created to handle the fusion animation sequence, likely by the Sculptor persona extracting logic from `FusionLab.js`. However, `FusionLab.js` was never actually modified to call the extracted `animation.play()` method, instead keeping and using its own monolith `runAnimation` function. This created an entirely dead class that was instantiated but never invoked.
 
 **Action:** Always verify that newly extracted classes are not just instantiated, but actually *used* in place of the original monolith code.
+
+## 2024-05-20 - 🦅 Scavenger: [Major Code Purge: Recently Used Section]
+**Learning:** The 'Recently Used' feature was designated as dead/obsolete code and acted as a cohesive area targeting removal. All references, grid DOM elements, configurations, classes, and logic hooks within RosterApp and benchmarking scripts were successfully purged without touching surrounding business logic.
+**Action:** When acting as Scavenger, ensure dead cohesives are thoroughly searched across UI (HTML), logic (JS), and test environments (benchmark) to prevent orphaned initialization code.

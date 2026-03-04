@@ -14,7 +14,6 @@ class RosterApp {
     this.agentRepo = new AgentRepository();
     this.toast = new ToastNotification(CONFIG.selectors.toast);
     this.favoritesManager = new FavoritesManager();
-    this.recentlyUsedManager = new RecentlyUsedManager();
     this.fusionLab = null;
     this._cardHtmlCache = new Map();
   }
@@ -75,7 +74,6 @@ class RosterApp {
 
     this.renderSkeletons();
     this.renderAgents();
-    this.renderRecentlyUsed();
     this.renderFavorites();
     this.bindEvents();
     this.initObserver();
@@ -113,37 +111,6 @@ class RosterApp {
   }
 
   /**
-   * Renders recently used agents into the recent grid based on RecentlyUsedManager state.
-   */
-  renderRecentlyUsed() {
-    const container = document.getElementById(CONFIG.categories.recent);
-    if (!container) return;
-
-    container.innerHTML = "";
-    const recent = this.recentlyUsedManager.getRecent();
-    const sectionHeader = document.getElementById("recent-section");
-
-    if (recent.length === 0) {
-      if (sectionHeader) sectionHeader.style.display = 'none';
-      container.style.display = 'none';
-      return;
-    }
-
-    if (sectionHeader) sectionHeader.style.display = 'block';
-    container.style.display = 'flex';
-
-    const fragment = document.createDocumentFragment();
-    recent.forEach((keyOrIndex, i) => {
-        let agent = this.agents[keyOrIndex] || (this.customAgents && this.customAgents[keyOrIndex]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[keyOrIndex]);
-        if (agent) {
-             const card = AgentCard.create(agent, keyOrIndex, i);
-             fragment.appendChild(card);
-        }
-    });
-    container.appendChild(fragment);
-  }
-
-  /**
    * Caches critical DOM elements to prevent repeated queries during high-frequency events.
    * @see js/README.md#rosterapp-architecture
    */
@@ -161,7 +128,7 @@ class RosterApp {
    */
   clearSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
-      if (key === 'favorites' || key === 'recent') return;
+      if (key === 'favorites') return;
       const container = document.getElementById(CONFIG.categories[key]);
       if (container) {
         container.innerHTML = "";
@@ -174,7 +141,7 @@ class RosterApp {
    */
   renderSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
-      if (key === 'favorites' || key === 'recent') return;
+      if (key === 'favorites') return;
       const container = document.getElementById(CONFIG.categories[key]);
       if (container) {
         container.innerHTML = "";
@@ -361,11 +328,6 @@ class RosterApp {
           if (card) {
               const index = frontTarget.dataset.index;
 
-              if (index && index !== "fusion-result") {
-                  this.recentlyUsedManager.addRecent(index);
-                  this.renderRecentlyUsed();
-              }
-
               const safeIndex = CSS.escape(String(index));
               const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
               if (promptArea && !promptArea.innerHTML.trim()) {
@@ -422,11 +384,6 @@ class RosterApp {
               agent = this.fusionLab.lastFusionResult;
           }
           if (!agent) return;
-
-          if (index && index !== "fusion-result") {
-              this.recentlyUsedManager.addRecent(index);
-              this.renderRecentlyUsed();
-          }
 
           if (actionBtn.dataset.action === "copy-agent") {
               this.copyAgent(index, actionBtn);

@@ -73,8 +73,6 @@ const ToastNotification = loadClass('js/ui/ToastNotification.js');
 const FavoritesManager = loadClass('js/features/favorites/FavoritesManager.js');
 global.FavoritesManager = FavoritesManager;
 
-const RecentlyUsedManager = loadClass('js/features/recent/RecentlyUsedManager.js');
-global.RecentlyUsedManager = RecentlyUsedManager;
 const RosterApp = loadClass('js/RosterApp.js');
 
 const runBenchmark = async () => {
