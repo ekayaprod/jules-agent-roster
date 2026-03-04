@@ -36,3 +36,7 @@
 ## 2024-05-24 - 📏 Aligner - [Grid Identification & Spacing Standardization]
 **Learning:** Found scattered hardcoded pixel values breaking visual rhythm in presentation layer CSS, such as `max-width: 400px` in `index.html`, `120px` and `200px` in `fusion.css` max-widths, and various animation transforms (`px` mapping). System strictly uses a `rem`-based grid scale (`1rem = 16px`).
 **Action:** Always map raw `px` values representing structural margins, paddings, caps, or layout positioning directly to fractionated `rem` equivalents (e.g., `400px` to `25rem`, `20px` to `1.25rem`). Single `1px` positioning boundaries or borders are exceptions and should remain preserved unless explicitly part of the primary layout grid.
+
+## 2024-05-24 - 🦎 Chameleon - [Interactive States Mutated: Global Controls & Fusion Lab]
+**Learning:** Many custom structural interactive elements (buttons, inputs, cards) lacked consistent `:focus-visible` and tactile `:disabled` states, relying only on basic `:hover` colors which hurts keyboard accessibility.
+**Action:** Spliced strictly distinct `focus-visible`, `active`, and `disabled` CSS pseudo-classes globally, enforcing uniform 2px high-contrast outlines and opacity changes without altering structural geometry.
