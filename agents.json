@@ -2,7 +2,7 @@
   {
     "name": "Bolt+",
     "emoji": "⚡",
-    "short_description": "Hunts down structural bottlenecks and eliminates them through systemic caching, memoization, and virtualization. Makes the application measurably faster and more efficient.",
+    "short_description": "Identifies and implements targeted, systemic performance improvements—such as caching, memoization, and virtualization. Makes the application measurably faster and more efficient across the entire execution stack.",
     "tier": "",
     "category": "core",
     "type": "plus",
@@ -11,7 +11,7 @@
   {
     "name": "Palette+",
     "emoji": "🎨",
-    "short_description": "Transforms clunky, static UI interactions into delightful experiences using loading skeletons and optimistic UI. Prioritizes perceived performance, motion, and universal ARIA accessibility.",
+    "short_description": "Transforms clunky, static UI interactions into delightful, high-performance experiences. Uses loading skeletons, optimistic UI, and strict ARIA accessibility to prioritize perceived performance and motion.",
     "tier": "",
     "category": "core",
     "type": "plus",
@@ -20,7 +20,7 @@
   {
     "name": "Sentinel+",
     "emoji": "🛡️",
-    "short_description": "Hardens the application's trust boundaries by implementing rigid schema validation and secure data-handling protocols. Protects the system from malicious inputs and vulnerabilities.",
+    "short_description": "Identifies and hardens system vulnerabilities by implementing rigid schema validation and secure data-handling protocols. Prioritizes complete defensive layers at the trust boundaries where external data enters the application.",
     "tier": "",
     "category": "core",
     "type": "plus",
@@ -29,7 +29,7 @@
   {
     "name": "Helix",
     "emoji": "🧬",
-    "short_description": "Seeks out duplicated spaghetti code and splices it into pure, centralized utility functions. Ruthlessly abstracts logic to give your application a single source of truth.",
+    "short_description": "Ruthlessly hunts down duplicated logic across the repository. Abstracts it into perfectly pure, centralized single sources of truth, and points all consumers to the new utility.",
     "tier": "",
     "category": "architecture",
     "type": "",
@@ -38,7 +38,7 @@
   {
     "name": "Architect",
     "emoji": "🏗️",
-    "short_description": "Untangles messy directories, splits massive 'God files', and enforces clean colocation. Unifies folder patterns and standardizes import paths for a highly organized repository.",
+    "short_description": "Improves the file-level architecture by unifying folder patterns and splitting unmaintainable monoliths. Standardizes import paths to ensure the repository remains scalable and navigable.",
     "tier": "",
     "category": "architecture",
     "type": "",
@@ -47,7 +47,7 @@
   {
     "name": "Scavenger",
     "emoji": "🦅",
-    "short_description": "Hunts down and permanently eradicates orphaned files, dead code, unused exports, and resolved TODOs. Systematically reduces codebase bloat and technical debt.",
+    "short_description": "Systematically reduces codebase bloat by identifying and safely deleting dead code, orphaned files, and unused exports. Eradicates resolved TODOs that are no longer executed or referenced.",
     "tier": "",
     "category": "hygiene",
     "type": "",
@@ -56,7 +56,7 @@
   {
     "name": "Superintendent",
     "emoji": "🧰",
-    "short_description": "Keeps the repository healthy by safely bumping minor dependencies, deduplicating lockfiles, and standardizing config files. Ensures your project's foundation never decays.",
+    "short_description": "Maintains the project's foundation by ensuring third-party packages, execution engines, and linter configurations never decay. Executes safe, frequent minor updates and configuration standardization.",
     "tier": "",
     "category": "hygiene",
     "type": "",
@@ -65,7 +65,7 @@
   {
     "name": "Modernizer",
     "emoji": "♻️",
-    "short_description": "Upgrades legacy syntax and deprecated patterns to modern standards. Transmutes old callbacks, heavy loops, and outdated libraries into clean, modern language paradigms.",
+    "short_description": "Systematically upgrades legacy syntax and deprecated patterns to modern native language standards (ES6+, Python 3.10+, modern C#). Ensures the codebase remains performant, readable, and free of technical debt.",
     "tier": "",
     "category": "architecture",
     "type": "",
@@ -74,7 +74,7 @@
   {
     "name": "Inspector",
     "emoji": "🕵️",
-    "short_description": "Seeks out the application's most fragile, untested logic and locks it down with rigorous boundary and edge-case test suites. Assaults fragile code with malformed data to ensure stability.",
+    "short_description": "Rigorously hunts down coverage gaps in the application's logic. Writes robust test suites that assault fragile code with edge cases to ensure every execution path is mathematically verified.",
     "tier": "",
     "category": "operations",
     "type": "",
@@ -83,7 +83,7 @@
   {
     "name": "Medic",
     "emoji": "🚑",
-    "short_description": "Stops silent crashes by wrapping fragile network calls and logic in safe error boundaries. Executes deep structural triage to find and cure inexplicable system failures.",
+    "short_description": "Stops silent crashes by wrapping fragile network calls in safe boundaries. Executes deep structural triage to find and fix fatal crashes in broken scripts before they take down the application.",
     "tier": "",
     "category": "operations",
     "type": "",
@@ -92,7 +92,7 @@
   {
     "name": "Cortex",
     "emoji": "🧠",
-    "short_description": "Upgrades legacy LLM SDKs, bumps model versions, and enforces strictly typed JSON outputs for resilient AI integrations. Owns the infrastructure and plumbing of your AI features.",
+    "short_description": "Upgrades AI integrations exclusively at the API, SDK, and model layer. Enforces strictly typed outputs and resilient connectivity to ensure the application's neural plumbing is production-ready.",
     "tier": "",
     "category": "operations",
     "type": "",
@@ -101,7 +101,7 @@
   {
     "name": "Scribe",
     "emoji": "✍️",
-    "short_description": "Clarifies complex, undocumented logic by weaving precise JSDoc, Docstrings, and XML Comments directly into the source code. Explains the 'Why' behind the 'What'.",
+    "short_description": "Clarifies complex, undocumented logic by weaving precise JSDoc, Docstrings, and XML Comments directly into the source code. Adds critical warning labels to explain the \"Why\" behind the \"What.\"",
     "tier": "",
     "category": "context",
     "type": "",
@@ -110,7 +110,7 @@
   {
     "name": "Author",
     "emoji": "📘",
-    "short_description": "Writes high-level README.md files, architectural overviews, and 'Quick Start' guides. Helps developers instantly understand the structure, usage, and setup of the codebase.",
+    "short_description": "Writes structural, high-level documentation—including README.md files, architectural overviews, and \"Quick Start\" guides. Explains the architecture, usage, and setup of the codebase for human developers.",
     "tier": "",
     "category": "context",
     "type": "",
@@ -119,7 +119,7 @@
   {
     "name": "Navigator",
     "emoji": "🧭",
-    "short_description": "Reads the git history to mark features complete on the roadmap, ensuring project tracking documents always reflect codebase reality. Keeps your ROADMAP.md perfectly aligned.",
+    "short_description": "Synchronizes project strategy documents with codebase reality. Ensures ROADMAP.md is the absolute single source of truth by aligning checkboxes, PR links, and active milestones with the git history.",
     "tier": "",
     "category": "context",
     "type": "",
@@ -128,7 +128,7 @@
   {
     "name": "Curator",
     "emoji": "🖼️",
-    "short_description": "Scours public directories to compress heavy images into modern web formats and strip metadata from bloated SVGs. Optimizes static assets to drastically reduce bundle sizes.",
+    "short_description": "Optimizes static assets by compressing heavy images into modern formats and stripping metadata from bloated SVGs. Drastically reduces bundle sizes and network payloads.",
     "tier": "",
     "category": "context",
     "type": "",
@@ -137,7 +137,7 @@
   {
     "name": "Overseer",
     "emoji": "👁️",
-    "short_description": "Runs deep forensic scans on file age, churn, and complexity, generating an objective intelligence report. Acts as the master auditor guiding the rest of the agent roster.",
+    "short_description": "Executes deep forensic codebase scans to generate an objective intelligence report. Identifies areas of decay, risk, and friction to guide the rest of the agent roster.",
     "tier": "",
     "category": "monthly",
     "type": "monthly",
@@ -146,7 +146,7 @@
   {
     "name": "Cartographer",
     "emoji": "🗺️",
-    "short_description": "Translates complex folder structures, data flows, and architectural boundaries into beautiful, readable Mermaid.js diagrams. Helps developers understand the system at a glance.",
+    "short_description": "Translates complex folder structures, data flows, and architectural boundaries into beautiful, readable Mermaid.js diagrams. Helps human developers understand the scale and flow of the codebase at a glance.",
     "tier": "",
     "category": "monthly",
     "type": "monthly",
@@ -155,7 +155,7 @@
   {
     "name": "Spark",
     "emoji": "💡",
-    "short_description": "Audits brittle custom utilities, UX dead-ends, and security risks, suggesting modern, battle-tested solutions to replace them. Systematically identifies innovation opportunities.",
+    "short_description": "Systematically identifies innovation opportunities, UX blindspots, and Developer Experience friction. Audits brittle custom utilities, dead-ends, and security risks to suggest modern, battle-tested solutions.",
     "tier": "",
     "category": "monthly",
     "type": "monthly",
@@ -164,7 +164,7 @@
   {
     "name": "Herald",
     "emoji": "📣",
-    "short_description": "Parses raw git history and internal ticketing jargon into beautifully structured, user-facing semantic changelogs. Broadcasts the reality of the codebase's release notes to the world.",
+    "short_description": "Translates raw git history and internal ticketing jargon into beautifully structured, user-facing semantic changelogs. Broadcasts the reality of the codebase to the world with professional clarity.",
     "tier": "",
     "category": "context",
     "type": "",
@@ -173,7 +173,7 @@
   {
     "name": "Wordsmith",
     "emoji": "🖋️",
-    "short_description": "Red-pens passive, system-centric UI strings and developer jargon into strict, active-voice microcopy. Enforces UX writing heuristics for clarity and actionable resolution paths.",
+    "short_description": "Eradicates developer jargon and dead-end error states by red-penning passive, system-centric strings. Rewrites them into strict, active-voice, user-centric microcopy that explicitly defines the failure state and required action.",
     "tier": "",
     "category": "context",
     "type": "",
@@ -182,7 +182,7 @@
   {
     "name": "Pedant",
     "emoji": "☝️",
-    "short_description": "An uncompromising enforcer of standards. Eradicates implicit types, fixes casing violations, and extracts rogue magic numbers into strict constants across the codebase.",
+    "short_description": "Aggressively enforces line-level style, strict naming conventions, and absolute typological safety across the codebase. Ensures absolute consistency and prevents runtime disasters.",
     "tier": "",
     "category": "hygiene",
     "type": "",
@@ -191,7 +191,7 @@
   {
     "name": "Untangler",
     "emoji": "🧶",
-    "short_description": "Takes deeply nested, unreadable 'Arrow Code' and flattens it out using early returns, guard clauses, and local helper functions. Reduces cognitive complexity in massive scripts.",
+    "short_description": "Reduces cognitive complexity by taking deeply nested, unreadable \"Arrow Code\" and flattening it out. Uses early returns, guard clauses, and local helper functions to clarify execution flow.",
     "tier": "",
     "category": "architecture",
     "type": "",
