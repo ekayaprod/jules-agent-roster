@@ -8,3 +8,7 @@
 ## 2024-05-24 - 🪧 Wayfinder - [Navigation Context Enhanced: AgentPicker Modal]
 **Learning:** The Agent Picker modal `<dialog>` creates an "invisible" dead end by overlaying the UI without modifying the browser's history state, causing the native back button to bypass the modal and unintentionally navigate the user away from the app.
 **Action:** Injected a `history.pushState` operation when opening the modal, and added a global `popstate` event listener to intercept the browser's back button and safely close the modal without losing the underlying application state.
+
+## 2024-05-24 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: FavoritesManager]
+**Learning:** The persistence module `FavoritesManager` lacked context on its architectural role and how its local storage usage works.
+**Action:** Synthesized a high-level `README.md` defining its singleton-like pattern and its usage of `StorageUtils` for `localStorage`, and added granular, strictly typed JSDoc comments to `FavoritesManager.js` using `@see` to link directly back to the `README.md` architecture and quick-start sections.
