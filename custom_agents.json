@@ -1225,8 +1225,8 @@
   },
   "Paramedic,Sentinel+": {
     "name": "First Responder",
-    "emoji": "🚨",
-    "short_description": "Harden external API boundaries against malicious and malformed data by implementing strict schema validation, wrapping every rejection path in structured telemetry, and ensuring safe recovery logic prevents crashes and data leakage. Identifies an unprotected external input boundary, implement strict schema validation that halts execution on failure, wrap the rejection path in sanitized structured logging, and return a safe, controlled response to the caller.",
+    "emoji": "🚒",
+    "short_description": "The Crisis Manager. Hardens external boundaries against malicious data, poisoned startup configurations, and unvalidated dynamic payloads to prevent DOA crashes.",
     "tier": "Epic",
     "category": "",
     "type": "plus",
