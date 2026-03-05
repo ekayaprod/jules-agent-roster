@@ -1,3 +1,6 @@
+const DEFAULT_DURATION = 3000;
+const RESUME_DELAY = 2000;
+
 /**
  * Handles toast notifications for the application.
  */
@@ -31,9 +34,9 @@ class ToastNotification {
      * Clears any existing toast timeout to prevent race conditions.
      * @param {string} [message="Copied to clipboard"] - The message to display.
      * @param {string} [type="success"] - The type of toast ('success', 'error', 'info').
-     * @param {number} [duration=3000] - Duration in milliseconds before auto-dismiss.
+     * @param {number} [duration=DEFAULT_DURATION] - Duration in milliseconds before auto-dismiss.
      */
-    show(message, type = 'success', duration = 3000) {
+    show(message, type = 'success', duration = DEFAULT_DURATION) {
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
@@ -115,7 +118,7 @@ class ToastNotification {
     handleMouseLeave() {
         this.isHovered = false;
         // Resume with a short delay (2s) to allow user to read before it disappears
-        this.startTimer(2000);
+        this.startTimer(RESUME_DELAY);
     }
 
     /**

@@ -1,3 +1,5 @@
+const DEFAULT_SUCCESS_DURATION = 2000;
+
 /**
  * Utility class for handling clipboard operations and button success animations.
  * Centralizes logic previously duplicated in RosterApp and FusionLab.
@@ -44,9 +46,9 @@ class ClipboardUtils {
      * Temporarily changes the button style and text, and toggles icons.
      * @param {HTMLElement} btn - The button element.
      * @param {string} successMessage - The text to display during the success state.
-     * @param {number} [duration=2000] - Duration of the success state in ms.
+     * @param {number} [duration=DEFAULT_SUCCESS_DURATION] - Duration of the success state in ms.
      */
-    static animateButtonSuccess(btn, successMessage, duration = 2000) {
+    static animateButtonSuccess(btn, successMessage, duration = DEFAULT_SUCCESS_DURATION) {
         if (!btn) return;
 
         const span = btn.querySelector("span");

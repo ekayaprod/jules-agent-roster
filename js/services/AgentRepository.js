@@ -197,7 +197,7 @@ class AgentRepository {
      * @see ARCHITECTURE.md#6-data-integrity--parsing
      * @param {Response} response - The fetch response object.
      * @param {string} label - A label for the resource (e.g., "agents.json").
-     * @returns {Promise<any>} The parsed JSON data.
+     * @returns {Promise<Object|Array>} The parsed JSON data.
      * @throws {Error} If parsing fails, with a descriptive message.
      */
     async safeJsonParse(response, label) {
@@ -219,7 +219,7 @@ class AgentRepository {
      * Ensures optional fields like `scope` are of the correct type,
      * defaulting to safe values if invalid.
      *
-     * @param {any} data - The raw JSON data to validate.
+     * @param {unknown} data - The raw JSON data to validate.
      * @returns {Array<Object>} Array of valid, sanitized agent objects.
      * @throws {Error} If the input data is not an array.
      */
