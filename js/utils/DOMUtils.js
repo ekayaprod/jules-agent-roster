@@ -21,6 +21,46 @@ class DOMUtils {
     skeleton.setAttribute("aria-hidden", "true");
     return skeleton;
   }
+
+  /**
+   * Sets the state of a button (e.g., loading, error, ready) and updates ARIA attributes.
+   * Centralizes duplicated UI logic across multiple components.
+   *
+   * @param {HTMLElement} btn - The button element to update.
+   * @param {string} state - The state to apply ('loading', 'error', 'ready', 'disabled').
+   * @param {string} text - The text to display on the button.
+   */
+  static setButtonState(btn, state, text) {
+    if (!btn) return;
+
+    btn.innerText = text;
+    btn.classList.remove("loading", "error");
+
+    switch (state) {
+      case "loading":
+        btn.classList.add("loading");
+        btn.disabled = true;
+        btn.setAttribute("aria-disabled", "true");
+        btn.setAttribute("aria-busy", "true");
+        break;
+      case "error":
+        btn.classList.add("error");
+        btn.disabled = false;
+        btn.setAttribute("aria-disabled", "false");
+        btn.setAttribute("aria-busy", "false");
+        break;
+      case "ready":
+        btn.disabled = false;
+        btn.setAttribute("aria-disabled", "false");
+        btn.setAttribute("aria-busy", "false");
+        break;
+      case "disabled":
+        btn.disabled = true;
+        btn.setAttribute("aria-disabled", "true");
+        btn.setAttribute("aria-busy", "false");
+        break;
+    }
+  }
 }
 
 if (typeof module !== 'undefined' && module.exports) {

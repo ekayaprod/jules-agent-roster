@@ -151,8 +151,7 @@ class FusionAnimation {
       }
     }
 
-    fuseBtn.disabled = true;
-    fuseBtn.setAttribute("aria-disabled", "true");
+    DOMUtils.setButtonState(fuseBtn, "disabled", fuseBtn.innerText);
     if (controls) controls.classList.add("fusing");
 
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -165,8 +164,7 @@ class FusionAnimation {
     }
 
     overlay.classList.remove("active");
-    fuseBtn.disabled = false;
-    fuseBtn.setAttribute("aria-disabled", "false");
+    DOMUtils.setButtonState(fuseBtn, "ready", fuseBtn.innerText);
     if (controls) controls.classList.remove("fusing");
 
     if (showResultCallback) {

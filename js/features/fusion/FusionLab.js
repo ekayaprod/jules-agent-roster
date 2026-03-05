@@ -184,12 +184,7 @@ class FusionLab {
     const fuseBtn = document.getElementById("fuseBtn");
 
     if (fuseBtn) {
-      fuseBtn.classList.remove("loading");
-      fuseBtn.classList.add("error");
-      fuseBtn.innerText = "Ignite Fusion Protocol";
-      fuseBtn.disabled = false;
-      fuseBtn.setAttribute("aria-disabled", "false");
-      fuseBtn.setAttribute("aria-busy", "false");
+      DOMUtils.setButtonState(fuseBtn, "error", "Ignite Fusion Protocol");
     }
 
     if (errorEl) {
@@ -230,11 +225,7 @@ class FusionLab {
     // Reset UI states
     this.clearError();
     if (fuseBtn) {
-      fuseBtn.classList.add("loading");
-      fuseBtn.innerText = "Igniting Protocol...";
-      fuseBtn.disabled = true;
-      fuseBtn.setAttribute("aria-disabled", "true");
-      fuseBtn.setAttribute("aria-busy", "true");
+      DOMUtils.setButtonState(fuseBtn, "loading", "Igniting Protocol...");
     }
 
     const result = this.compiler.fuse(agentA, agentB);
@@ -340,11 +331,7 @@ class FusionLab {
   showResult() {
     const fuseBtn = document.getElementById("fuseBtn");
     if (fuseBtn) {
-      fuseBtn.innerText = "Ignite Fusion Protocol";
-      fuseBtn.classList.remove("loading");
-      fuseBtn.disabled = false;
-      fuseBtn.setAttribute("aria-disabled", "false");
-      fuseBtn.setAttribute("aria-busy", "false");
+      DOMUtils.setButtonState(fuseBtn, "ready", "Ignite Fusion Protocol");
     }
 
     const wrapper = document.getElementById("fusionOutputWrapper");
