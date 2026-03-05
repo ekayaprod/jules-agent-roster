@@ -14,14 +14,27 @@ class AgentPicker {
         this.currentAgent = null;
         this.focusedIndex = 0;
         this.filteredResults = [];
+        this.elements = {};
 
+        this.cacheElements();
         this.bindEvents();
     }
 
+    cacheElements() {
+        this.elements.agentPickerModal = document.getElementById("agentPickerModal");
+        this.elements.closePickerBtn = document.getElementById("closePickerBtn");
+        this.elements.pickerSearch = document.getElementById("pickerSearch");
+        this.elements.pickerScrollArea = document.getElementById("pickerScrollArea");
+        this.elements.pickerGrid = document.getElementById("pickerGrid");
+        this.elements.pickerEmptyState = document.getElementById("pickerEmptyState");
+        this.elements.clearPickerSearchEmptyBtn = document.getElementById("clearPickerSearchEmptyBtn");
+        this.elements.pickerAnnouncer = document.getElementById("pickerAnnouncer");
+    }
+
     bindEvents() {
-        const modal = document.getElementById("agentPickerModal");
-        const closeBtn = document.getElementById("closePickerBtn");
-        const searchInput = document.getElementById("pickerSearch");
+        const modal = this.elements.agentPickerModal;
+        const closeBtn = this.elements.closePickerBtn;
+        const searchInput = this.elements.pickerSearch;
 
         if (modal) {
             // Close on backdrop click
@@ -49,7 +62,7 @@ class AgentPicker {
             }, 300);
             searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
 
-            const clearPickerSearchEmptyBtn = document.getElementById("clearPickerSearchEmptyBtn");
+            const clearPickerSearchEmptyBtn = this.elements.clearPickerSearchEmptyBtn;
             if (clearPickerSearchEmptyBtn) {
                 clearPickerSearchEmptyBtn.addEventListener("click", () => {
                     searchInput.value = "";
@@ -60,7 +73,7 @@ class AgentPicker {
 
         // 💎 Jeweler: Grid Keyboard Navigation
         // Ensure event delegation catches events bubbled from clusterize
-        const pickerScrollArea = document.getElementById("pickerScrollArea");
+        const pickerScrollArea = this.elements.pickerScrollArea;
         if (pickerScrollArea) {
             pickerScrollArea.addEventListener("keydown", (e) => this.handleGridKeydown(e));
 
@@ -127,7 +140,7 @@ class AgentPicker {
      * This makes Clusterize.js compatible with CSS Grid layout.
      */
     getChunkedHtml(htmlResults) {
-        const scrollArea = document.getElementById("pickerScrollArea");
+        const scrollArea = this.elements.pickerScrollArea;
         let columns = 1;
 
         if (scrollArea && scrollArea.clientWidth > 0) {
@@ -186,9 +199,9 @@ class AgentPicker {
     openPicker(slotKey, currentAgent) {
         this.activePickerSlot = slotKey;
         this.currentAgent = currentAgent;
-        const modal = document.getElementById("agentPickerModal");
-        const grid = document.getElementById("pickerGrid");
-        const searchInput = document.getElementById("pickerSearch");
+        const modal = this.elements.agentPickerModal;
+        const grid = this.elements.pickerGrid;
+        const searchInput = this.elements.pickerSearch;
 
         if (!modal || !grid) {
             console.error("Picker modal or grid not found");
@@ -199,7 +212,7 @@ class AgentPicker {
         if (searchInput) searchInput.value = "";
 
         // Hide empty state initially
-        const emptyState = document.getElementById("pickerEmptyState");
+        const emptyState = this.elements.pickerEmptyState;
         if (emptyState) emptyState.style.display = "none";
 
         // 🪄 Illusionist: Add pure CSS loading skeleton to mask DOM generation latency
@@ -265,7 +278,7 @@ class AgentPicker {
      */
     closePicker(navigateBack = true) {
         const slotKey = this.activePickerSlot;
-        const modal = document.getElementById("agentPickerModal");
+        const modal = this.elements.agentPickerModal;
 
         if (this.activePickerSlot && navigateBack && typeof history !== 'undefined' && history.state && history.state.modalOpen) {
             history.back();
@@ -312,12 +325,12 @@ class AgentPicker {
         this.updateGrid();
 
         // 💎 Jeweler: Live Region Announcement
-        const announcer = document.getElementById("pickerAnnouncer");
+        const announcer = this.elements.pickerAnnouncer;
         if (announcer) {
             announcer.innerText = `${visibleCount} protocols found`;
         }
 
-        const emptyState = document.getElementById("pickerEmptyState");
+        const emptyState = this.elements.pickerEmptyState;
         if (emptyState) {
             emptyState.style.display = visibleCount === 0 ? "flex" : "none";
         }
@@ -393,7 +406,7 @@ class AgentPicker {
 
                 setTimeout(() => {
                     // Try to scroll the scrollArea to approximate position based on index height
-                    const scrollArea = document.getElementById("pickerScrollArea");
+                    const scrollArea = this.elements.pickerScrollArea;
                     if (scrollArea) {
                         // Assuming grid cards are ~80px height including gap, and say 4 columns wide
                         const cols = Math.floor(scrollArea.clientWidth / 120) || 1;
