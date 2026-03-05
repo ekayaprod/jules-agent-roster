@@ -1082,7 +1082,7 @@
   "Modernizer,Palette+": {
     "name": "Mobilizer",
     "emoji": "📱",
-    "short_description": "Bridge the gap between desktop and mobile paradigms. Transform rigid layouts and interactions into fluid, universal experiences that scale flawlessly from 320px mobile screens to 4K desktop monitors. Systematically replace fixed pixels with relative scaling, swap mouse-only events for touch-agnostic gestures, and architect layouts that elegantly collapse for mobile and aggressively expand for desktop.",
+    "short_description": "Transforms rigid, fixed-width desktop layouts into fluid, mobile-first paradigms. Sweeps the application to replace hardcoded pixels with fluid percentages, ensuring perfect rendering across all viewports and devices.",
     "tier": "Common",
     "category": "ux",
     "type": "fusion",
