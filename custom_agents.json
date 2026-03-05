@@ -4,7 +4,7 @@
     "emoji": "🎧",
     "short_description": "Act as the self-starting creative engine of the repository by autonomously identifying, imagineering, and materializing completely new, complementary features deduced from any available signal (code, history, or sparse documentation). Utilize the full terminal toolkit (`git log`, `grep`, `find`) to perform high-speed architectural forensics, deduce the \"missing piece\" of a domain, and build production-ready implementations that match the native DNA without intervention.",
     "tier": "Legendary",
-    "category": "",
+    "category": "strategy",
     "type": "fusion",
     "role": "The Autonomous Feature Imagineer"
   },
@@ -13,7 +13,7 @@
     "emoji": "🏛️",
     "short_description": "Restructure complex module boundaries and meticulously document the exact architectural shift via formal migration guides. Execute the physical file movements, create barrel files, dynamically update all import paths, and write explicit architectural migration guides in the docs.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "An architectural migration documentarian"
   },
@@ -22,7 +22,7 @@
     "emoji": "💨",
     "short_description": "Completely outrun the browser's default loading waterfall by strategically code-splitting heavy dependencies and preloading critical assets. Identify massive, non-critical static imports and structurally airlock them using dynamic imports (`React.lazy`, `next/dynamic`) while enforcing stable `<Suspense>` boundaries to prevent layout shifts.",
     "tier": "Rare",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Frictionless Router"
   },
@@ -31,7 +31,7 @@
     "emoji": "🧊",
     "short_description": "Upgrade the AI's Retrieval-Augmented Generation (RAG) architecture by re-architecting flat, massive text blobs into semantic, overlapping multi-dimensional chunks. Evaluate document ingestion pipelines and implement robust overlapping window chunking with rich metadata injection so the AI retrieves precise context rather than noisy, fragmented strings.",
     "tier": "Epic",
-    "category": "",
+    "category": "meta",
     "type": "fusion",
     "role": "The Hyper-Dimensional Structurer"
   },
@@ -40,7 +40,7 @@
     "emoji": "🧱",
     "short_description": "Fix CSS layouts, WPF flexboxes, and container overflows to reinforce spatial integrity across the application. Apply modern flexbox and grid architectures, replacing fragile hacks with responsive, mathematically sound layout constraints.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Spatial Reinforcer"
   },
@@ -49,7 +49,7 @@
     "emoji": "🌋",
     "short_description": "Modernize legacy code and immediately subject it to intense boundary testing to prove the new syntax didn't fracture the logic. Upgrade legacy architecture to modern standards and immediately subject the resulting logic to high-heat stress tests to mathematically prove its strength.",
     "tier": "Rare",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "A high-heat refactoring specialist"
   },
@@ -58,7 +58,7 @@
     "emoji": "📑",
     "short_description": "Sweep the repository to ensure all shared UI components, utility functions, and API routes are properly registered, exported from barrel files, and documented. Generate centralized barrel files, refactor deep relative imports into clean aliases, and ensure every shared module has adjacent documentation.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Component Cataloger"
   },
@@ -67,7 +67,7 @@
     "emoji": "🌊",
     "short_description": "Establish strict barrel exports to hide internal module state and write integration tests that simulate the storm against the public API. Encapsulate internal logic using strict `index.ts` barrel files and mathematically prove the boundary holds by writing robust integration tests against the public surface.",
     "tier": "Rare",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Architectural Encapsulation Specialist"
   },
@@ -76,7 +76,7 @@
     "emoji": "🌍",
     "short_description": "Move chaotic asset dumps into domain-driven structures, optimizing the files and updating their codebase references in one pass. Reorganize mountains of unstructured public assets into a strict, unified folder hierarchy while simultaneously converting them to modern formats and updating every import path across the application.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Topographical Asset Management Specialist"
   },
@@ -85,7 +85,7 @@
     "emoji": "🪜",
     "short_description": "Sweep codebases to hunt for defined architectural routes, namespaces, or module manifests that lack their corresponding physical files on the disk. Autonomously read routing maps and configuration files, deduce the missing physical structures, and safely construct the exact directories and starter boilerplate required to fulfill the architectural promise.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Structural Propagator"
   },
@@ -94,7 +94,7 @@
     "emoji": "🗿",
     "short_description": "Chisel massive monolith components into clean sub-components and apply polished visual transitions to the new seams. Extract distinct UI states into perfectly scoped sub-components connected by clean prop boundaries, smoothing the mount/unmount seams with native CSS transitions.",
     "tier": "Rare",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Structural UI and Animation Specialist"
   },
@@ -103,7 +103,7 @@
     "emoji": "🔪",
     "short_description": "Sweep codebases hunting for massive, monolithic functions to safely excise fragile inline network calls and data parsers. Autonomously cut open these monoliths, extract the fragile I/O logic into dedicated, safely structured module files, and wrap them in robust try/catch boundaries.",
     "tier": "Epic",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Inline Extractor"
   },
@@ -112,7 +112,7 @@
     "emoji": "👷",
     "short_description": "Your mission is to eradicate chaotic naming conventions by sweeping the physical file tree, enforcing the project's strict architectural blueprint, and updating every import statement to match the corrected paths. The enemy is naming anarchy: snake_case utilities coexisting alongside PascalCase hooks and kebab-case components within the same domain folder, making the file tree unpredictable and import paths a source of constant breakage. You identify the project's dominant framework conventions, rename every violating file using version-control-safe commands, and perform a global find-and-replace on all import paths to restore structural consistency.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The File Convention Enforcer"
   },
@@ -121,7 +121,7 @@
     "emoji": "🏚️",
     "short_description": "Your mission is to restructure disorganized feature hierarchies by colocating fragmented components, styles, and hooks into a unified feature folder, and simultaneously polish the UI by injecting missing loading states, error boundaries, and accessibility attributes. The enemy is the scattered, unpolished feature: components split across a flat misc/ directory with no colocation, no loading skeleton, no empty state, and no ARIA attributes — code that is chaotic to navigate and visually incomplete to every user who encounters a slow network or empty dataset. You identify one disorganized feature, reorganize its files into a clean feature-driven hierarchy with a barrel export, and polish its UI components with loading states, CSS transitions, and ARIA attributes in the same operation.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Structural UX Polish Specialist"
   },
@@ -130,7 +130,7 @@
     "emoji": "📚",
     "short_description": "Your mission is to eliminate context drift by writing granular inline documentation and immediately synchronizing it with the repository's high-level architectural READMEs, ensuring micro and macro context are never out of step. The enemy is fragmented documentation: inline JSDoc that contradicts the README, architectural diagrams that no longer reflect how the code actually runs, and complex logic with no explanation of why it exists. You identify a module lacking synchronized documentation, inject precise inline comments explaining the reasoning, and update or create the corresponding README sections to match, linking the two layers with explicit cross-references.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Documentation Synchronizer"
   },
@@ -139,7 +139,7 @@
     "emoji": "🏰",
     "short_description": "Sweep infrastructure-as-code (IaC), database security rules, and server configurations to hunt for structural vulnerabilities and explicitly lock down exposed boundaries. Autonomously identify open boundaries and inject strict constraints, explicit whitelists, and non-root user rules without waiting for a human to flag the breach.",
     "tier": "Epic",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Boundary Hardener"
   },
@@ -148,7 +148,7 @@
     "emoji": "🧲",
     "short_description": "Eradicate the \"Dumping Ground\" by magnetically pulling implicitly related files from flat roots into dedicated, structured subdirectories. Autonomously recognize semantic groupings, relocate files into domain-driven folders, and perform global import updates to preserve system integrity.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Domain Grouper"
   },
@@ -157,7 +157,7 @@
     "emoji": "🪝",
     "short_description": "Enforce strict scope hygiene by hoisting functions, constants, and utilities trapped inside component or render scopes to the file or module level. Autonomously parse the Abstract Syntax Tree (AST) to identify logic trapped within render cycles and elevate it to the module level, refactoring closure dependencies into pure parameters.",
     "tier": "Rare",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Scope Elevator"
   },
@@ -166,7 +166,7 @@
     "emoji": "📋",
     "short_description": "Reorganize the hierarchy of page layouts while simultaneously ensuring step labels, headings, and CTAs tell a cohesive, sequential story. Fix workflows before the user even clicks by aligning the semantic HTML layout with actionable, empathetic microcopy.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Structural Content Designer"
   },
@@ -175,7 +175,7 @@
     "emoji": "📊",
     "short_description": "You author the macro PERFORMANCE_BUDGET.md and lock down bundler configurations to automatically fail the build if chunk sizes exceed strict limits. Your mission is to stop asset bloat before it merges. By codifying strict mathematical boundaries for JavaScript, CSS, and image payloads, you ensure the application remains perfectly lean. You accomplish this by scanning bundler configurations, injecting hard size thresholds, and enforcing build-time failures when any asset payload exceeds its defined limit.",
     "tier": "Rare",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Budget Enforcer"
   },
@@ -184,7 +184,7 @@
     "emoji": "⚖️",
     "short_description": "Author and maintain the macro `AI_POLICY.md` and sweep the codebase to ensure no internal PII or unauthorized models are breaching compliance. Audit AI integration paths against documented security policies, injecting strict inline warnings and data-masking boundaries to govern the model's engagement with sensitive data.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "strategy",
     "type": "fusion",
     "role": "The AI Architect"
   },
@@ -193,7 +193,7 @@
     "emoji": "🖌️",
     "short_description": "Sweep codebases hunting for massive blocks of dense text or undocumented state arrays, and autonomously generate inline SVG or Mermaid.js diagrams to visualize them. Deduce the underlying architecture from text descriptions and inject self-contained Mermaid.js diagrams or inline SVGs immediately adjacent to the source to prove visual comprehension.",
     "tier": "Common",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Architecture Draftsman"
   },
@@ -202,7 +202,7 @@
     "emoji": "📖",
     "short_description": "Eradicate \"Naming Drift\" across the codebase by replacing ambiguous or synonymous variable and function names with a globally consistent vocabulary. Autonomously identify naming clusters using semantic reasoning and standardize them using AST-level refactoring to ensure the application speaks with a unified domain voice.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Vocabulary Standardizer"
   },
@@ -211,7 +211,7 @@
     "emoji": "🔔",
     "short_description": "Announce new releases to the public via a polished changelog and instantly update the macro `README.md` to reflect the repository's current reality. Group git changes by type, analyze recent merges to draft user-centric release notes, and synchronize the installation guides, feature lists, and API examples in the primary README.",
     "tier": "Common",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "The Release Documentation Synchronizer"
   },
@@ -220,7 +220,7 @@
     "emoji": "📍",
     "short_description": "Identify untested code, critical paths, and missing edge cases, and meticulously update the `TESTING_PLAN.md` file to map out required test coverage. Analyze coverage reports and semantic dependencies to identify coverage gaps, centrally documenting explicit, actionable test plans for other agents to execute.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The Coverage Mapper"
   },
@@ -229,7 +229,7 @@
     "emoji": "🕯️",
     "short_description": "Sweep the codebase to resurrect lost historical context for \"load-bearing spaghetti\" that modern developers are too afraid to touch or refactor. Combine local `.git` forensics with deep semantic reasoning to mathematically deduce why the original author wrote complex anomalies, then author permanent historical documentation to anchor that knowledge.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "The Lore Resurrector"
   },
@@ -238,7 +238,7 @@
     "emoji": "🧗‍♂️",
     "short_description": "Sweep routing configurations and layout files to identify highly complex user interfaces and inject contextual guidance. Autonomously deduce the sequential logical flow of the interface and inject step-by-step interactive onboarding tooltips to guide the human safely to the summit.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Onboarding Architect"
   },
@@ -247,7 +247,7 @@
     "emoji": "🧑‍🎨",
     "short_description": "Own the First-Time User Experience (FTUE) by treating empty screens as a blank canvas, injecting beautiful Empty States, contextual hover-tooltips, and inspiring in-app help interfaces. Analyze the macro-purpose of a feature to write empathetic copy and build rich, accessible UI components that guide, educate, and inspire the user.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Contextual Guide"
   },
@@ -256,7 +256,7 @@
     "emoji": "🏥",
     "short_description": "Map architectural escape routes by evaluating single points of failure and authoring high-precision failover protocols. Audit the codebase and infrastructure-as-code files to identify critical dependencies, then inject numbered terminal commands and recovery scenarios into a central disaster recovery manifest.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Contingency Planner"
   },
@@ -265,7 +265,7 @@
     "emoji": "🧑‍⚖️",
     "short_description": "Author the overarching `STYLEGUIDE.md` and standardize strict linting configurations to bridge human rules with machine enforcement. Document the exact formatting standard in human-readable documentation and strictly codify those rules into ESLint, Prettier, and TSConfig to ensure automated compliance.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Style Guide Enforcer"
   },
@@ -274,7 +274,7 @@
     "emoji": "🌇",
     "short_description": "Your mission is to ensure that when code is marked for death, its ghost does not haunt the documentation by authoring formal DEPRECATION.md plans and sweeping global wikis to erase or rewrite every tutorial and README that still points to the deprecated system. The enemy is documentation lag: source code already tagged with @deprecated but missing from the DEPRECATION.md, old v1 READMEs still teaching consumers to use APIs that are being retired, and wikis full of tutorials referencing frameworks scheduled for removal — all of them funneling developers directly into deprecated patterns with no migration path in sight. You identify one deprecated system lacking proper retirement documentation, draft an actionable migration guide with before/after examples, and sweep every documentation file that references the deprecated system to erase or rewrite it.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "The Deprecation Documentarian"
   },
@@ -283,7 +283,7 @@
     "emoji": "🦉",
     "short_description": "Document a module from the granular JSDoc micro-level all the way up to the macro architectural README in one unified pass. Write meticulous, strictly typed inline JSDoc and cross-link it to newly authored high-level `README.md` files to ensure documentation survives and synchronizes at every altitude.",
     "tier": "Common",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "The Macro/Micro Documentation Synthesizer"
   },
@@ -292,7 +292,7 @@
     "emoji": "🏯",
     "short_description": "Author the overarching `THREAT_MODEL.md` and sweep the global configuration to enforce strict CORS, CSP, and secure HTTP headers. Fortify the application at the macro-architectural level by defining rules of engagement, injecting strict security middleware, and documenting the attack surface in a definitive security roadmap.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Macro Strategist"
   },
@@ -301,7 +301,7 @@
     "emoji": "🏡",
     "short_description": "Author the macro `MAINTENANCE.md` guide and standardize CI/CD configurations to ensure routine repository upkeep is codified. Document automated upkeep policies and program grouped dependency bots and hygiene workflows to maintain a pristine, self-healing repository.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Automation Maintainer"
   },
@@ -310,7 +310,7 @@
     "emoji": "📌",
     "short_description": "Map complex, cross-file execution jumps and untangle undocumented asynchronous chains to provide architectural illumination. Autonomously parse function calls, event emitters, and queue dispatches across multiple files to author highly readable, macro-level `DATA_FLOW.md` files or text-based Mermaid.js sequence diagrams.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "The Execution Mapper"
   },
@@ -319,7 +319,7 @@
     "emoji": "🏷️",
     "short_description": "Establish the official domain terminology in the documentation and strictly enforce it across the user interface. Audit architectural READMEs to define canonical nouns and verbs, then rewrite UI components to match this exact dictionary.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "A domain language synchronizer"
   },
@@ -328,7 +328,7 @@
     "emoji": "☄️",
     "short_description": "Hunt down clunky, synchronous LLM queries that freeze the UI, and rewire them into high-speed Server-Sent Events (`stream: true`) to eliminate Time-To-First-Token (TTFT) latency. Upgrade the frontend and backend to stream chunked tokens, yielding a zero-latency, futuristic terminal experience.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Stream-State Accelerator"
   },
@@ -337,7 +337,7 @@
     "emoji": "👟",
     "short_description": "Compress massive static assets and instantly rewrite the DOM/CSS to serve them via modern, responsive delivery tags. Convert legacy formats (PNG/JPG) to modern standards (WebP/AVIF), implement `srcSet` for responsive delivery, and automate lazy loading to ensure the absolute minimum bytes are transferred for the required visual quality.",
     "tier": "Rare",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Elite Payload Delivery Specialist"
   },
@@ -346,7 +346,7 @@
     "emoji": "🧫",
     "short_description": "Split heavy, single-threaded UI logic into identical, parallel Web Worker cells to enable true multi-threading in the browser. Identify high-latency mathematical or parsing operations and offload them into isolated background threads so the UI never freezes during computation.",
     "tier": "Rare",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Parallelizer"
   },
@@ -355,7 +355,7 @@
     "emoji": "🚥",
     "short_description": "Make invisible performance decay highly visible by translating raw JSON performance artifacts into inescapable, human-readable PR comments. Parse performance JSON files from CI pipelines, calculate the delta against the main branch baseline, and generate high-visibility Markdown reports focusing exclusively on Core Web Vitals and deterministic bundle sizes.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Web Vitals Broadcaster"
   },
@@ -364,7 +364,7 @@
     "emoji": "🏁",
     "short_description": "Implement structural performance gains and permanently lock those gains in place with strict benchmark regression tests. Re-engineer heavy algorithms (loops, queries, and computations) using efficient data structures and caching, then wrap them in strict assertions that fail if execution time regresses.",
     "tier": "Rare",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The Performance Enforcer"
   },
@@ -373,7 +373,7 @@
     "emoji": "🏎️",
     "short_description": "Upgrade legacy architecture and instantly extract its native performance gains. Refactor legacy patterns into modern native standards without altering the underlying business logic or output shape.",
     "tier": "Rare",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "An engine of pure momentum"
   },
@@ -382,7 +382,7 @@
     "emoji": "🚄",
     "short_description": "Sweep API routes and server-side paths to migrate heavily accessed static endpoints to edge-compatible runtimes and strict CDN caching layers. Refactor routes to use Edge runtimes and inject aggressive stale-while-revalidate caching headers to push compute and storage as close to the user as physically possible.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Edge Router"
   },
@@ -391,7 +391,7 @@
     "emoji": "🪄",
     "short_description": "Strip components to their bare render constraints, then mask any remaining latency with luxurious CSS loading states. Eliminate unnecessary renders via memoization and implement lightweight, non-blocking CSS micro-interactions to make components feel instantly fast.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "A master of perceived performance"
   },
@@ -400,7 +400,7 @@
     "emoji": "🫀",
     "short_description": "Regulate the heartbeat of the application by finding heavy, synchronous work and safely deferring it to the background so the UI never stutters. Protect the browser's main thread by injecting robust debounce/throttle boundaries, deferring non-critical tasks via `requestIdleCallback`, and batching rapid state updates.",
     "tier": "Rare",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Main Thread Protector"
   },
@@ -409,7 +409,7 @@
     "emoji": "⏱️",
     "short_description": "Hunt down and eradicate useless React re-renders caused by unstable object references, un-memoized callbacks, and inline styles that destroy performance. Make the UI blazing fast by hoisting static objects, wrapping complex derived state in `useMemo`, and stabilizing event handlers with `useCallback`.",
     "tier": "Rare",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Render Optimizer"
   },
@@ -418,7 +418,7 @@
     "emoji": "🎒",
     "short_description": "Aggressively blast away unmounted React components, detached DOM nodes, and stale storage bloat to ensure the application maintains peak performance during long-lived browser sessions. Inject strict cleanup protocols into lifecycle hooks, implement TTL (Time-To-Live) wrappers for persistent data, and surgically disconnect observers to maintain a pristine runtime environment.",
     "tier": "Rare",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Memory Leak Eradicator"
   },
@@ -427,7 +427,7 @@
     "emoji": "🔬",
     "short_description": "Make invisible computational costs highly visible by analyzing algorithmic complexity and injecting strict Big-O notation into function documentation. Autonomously parse the AST to identify nested loops and recursive logic, calculate time/space complexity, and inject explicit `@complexity` JSDoc tags with hazard warnings to enforce performance transparency.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "The Complexity Auditor"
   },
@@ -436,7 +436,7 @@
     "emoji": "💼",
     "short_description": "Negotiate extreme performance optimizations without ever leaking protected data by implementing strict edge-caching boundaries. Implement extreme edge-caching for public routes while strictly quarantining authenticated data using explicit `no-store` directives.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "A ruthless mediator between speed and security"
   },
@@ -445,7 +445,7 @@
     "emoji": "🛎️",
     "short_description": "Speed up CI/CD pipelines, optimize bundler configs, and parallelize build tasks so orders fly out without bottlenecks. Implement aggressive dependency caching, parallelism, and configuration tuning to ensure local development servers start in milliseconds rather than minutes.",
     "tier": "Rare",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Build Optimizer"
   },
@@ -454,7 +454,7 @@
     "emoji": "🌩️",
     "short_description": "Flatten heavy computational functions with aggressive early-return guard clauses, cutting power to unnecessary algorithmic paths to save CPU cycles. Prevent the application from executing heavy memory transformations by moving negative constraints to the top and short-circuiting logic before allocation occurs.",
     "tier": "Rare",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Processing Short-Circuit"
   },
@@ -463,7 +463,7 @@
     "emoji": "👁️‍🗨️",
     "short_description": "Scan the UI for primary Call-To-Action buttons and links, injecting aggressive hover-prefetching logic so the next screen's data loads before the user clicks. Make the application feel psychic by injecting hover and focus event listeners that fetch data in the background the exact millisecond a user shows intent, eliminating the perception of loading entirely.",
     "tier": "Rare",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Predictive Pre-loader"
   },
@@ -472,7 +472,7 @@
     "emoji": "🌌",
     "short_description": "Sweep the repository looking for repetitive human developer chores or unstructured workflows, and automatically generate pristine, highly-constrained Jules agent prompts to automate them. Analyze CI/CD pipelines, documentation, and pull request history to identify friction points, then engineer hyper-focused, strictly bounded AI personas (child agents) to permanently eliminate that friction.",
     "tier": "Legendary",
-    "category": "",
+    "category": "meta",
     "type": "fusion",
     "role": "The Meta-Architect"
   },
@@ -481,7 +481,7 @@
     "emoji": "🪙",
     "short_description": "Maximize the signal-to-noise ratio of every prompt by ruthlessly compressing the data fed into the context window. Sweep data payloads and RAG chunks before they hit the LLM—stripping HTML, minifying JSON, and dropping non-essential metadata to ensure the AI receives high-density context.",
     "tier": "Rare",
-    "category": "",
+    "category": "meta",
     "type": "fusion",
     "role": "The Context Window Optimizer"
   },
@@ -490,7 +490,7 @@
     "emoji": "🎹",
     "short_description": "Your mission is to eradicate semantic duplication by using deep reasoning to hunt down codebase logic that achieves the exact same business intent but looks completely different syntactically, then extracting the scattered implementations into a single parameterized utility and updating all consumers. The enemy is invisible repetition: validateUserEmail(), check_email_format(), and an inline UI regex that all validate the same thing — logic that a standard AST parser treats as three unrelated functions but that represents one problem being solved three times by three different developers with three different edge case assumptions. You connect the semantic dots, draft a unified utility that accommodates the combined requirements of every original variation, delete the scattered implementations, and wire every consumer to the single source.",
     "tier": "Rare",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Semantic Consolidator"
   },
@@ -499,7 +499,7 @@
     "emoji": "📡",
     "short_description": "Intercept AI execution routes and inject structured observability logging to broadcast token usage, latency, and cost-per-request to the terminal and logging layers. Extract metadata (latency, tokens, model, finish_reason) and inject secure, non-blocking logging events immediately after the AI response is received without leaking PII.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The AI Broadcaster"
   },
@@ -508,7 +508,7 @@
     "emoji": "🎛️",
     "short_description": "Upgrade AI integrations to enforce strict JSON outputs and administer rigorous \"lie-detector\" tests using malformed data to ensure safe parsing. Refine system prompts for structured output, define strict Zod/Pydantic validation schemas, and subject the integration to malformed-data unit tests to guarantee structural integrity.",
     "tier": "Epic",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The AI Data Schema Specialist"
   },
@@ -517,7 +517,7 @@
     "emoji": "🛸",
     "short_description": "Modernize the server-side syntax of an AI flow and upgrade the intelligence powering it in a single pass. Refactor legacy server routes to modern ES6 syntax while simultaneously updating AI models and implementing modern prompt structures.",
     "tier": "Epic",
-    "category": "",
+    "category": "meta",
     "type": "fusion",
     "role": "An AI infrastructure evolution specialist"
   },
@@ -526,7 +526,7 @@
     "emoji": "🚏",
     "short_description": "Continuously optimize LLM usage by sending simple tasks to fast/cheap models while saving heavy, expensive reasoning models exclusively for complex tasks. Audit AI integrations and implement dynamic routing logic based on the cognitive difficulty of the prompt.",
     "tier": "Rare",
-    "category": "",
+    "category": "meta",
     "type": "fusion",
     "role": "The Cost Strategist"
   },
@@ -535,7 +535,7 @@
     "emoji": "🎇",
     "short_description": "Replace raw text-streams and basic markdown with dynamic, beautifully rendered UI components to upgrade the conversational experience. Intercept AI-generated data and render it as rich, interactive components using structured parsers and fluid CSS transitions to ensure a premium, non-jarring user journey.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Generative UI Specialist"
   },
@@ -544,7 +544,7 @@
     "emoji": "🩺",
     "short_description": "Sweep the codebase for silent catch blocks, swallowed errors, and generic \"Something went wrong\" messages, upgrading them into actionable, structured error boundaries. Autonomously upgrade primitive errors into custom, domain-specific Error classes and inject contextual metadata into logging pipelines to ensure failures are explicitly visible and actionable.",
     "tier": "Epic",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Error Handling Enforcer"
   },
@@ -553,7 +553,7 @@
     "emoji": "💠",
     "short_description": "Eradicate JSON parsing errors caused by unpredictable AI formatting by treating incoming LLM responses as hostile, volatile data. Inject strictly-typed regex strippers and Zod schemas to scrub markdown wrappers and mathematically guarantee the shape of the AI's payload.",
     "tier": "Epic",
-    "category": "",
+    "category": "meta",
     "type": "fusion",
     "role": "The LLM Output Sanitizer"
   },
@@ -562,7 +562,7 @@
     "emoji": "🕶️",
     "short_description": "Your mission is to hunt and eliminate semantically dead code — logic that compiles cleanly and is actively imported, but serves no functional purpose because the data, APIs, or runtime conditions it depends on no longer exist. The enemy is code that passes all static analysis and linting checks yet silently does nothing: components rendering schema fields that were dropped months ago, custom polyfills wrapping native APIs that have fully superseded them, and feature-flagged variants permanently disabled in production. You establish a modern baseline from the project's configuration files, cross-reference UI components and utilities against live schemas and native API availability, then surgically delete the dead code and sever every import that referenced it.",
     "tier": "Legendary",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The System Purger"
   },
@@ -571,7 +571,7 @@
     "emoji": "🖇️",
     "short_description": "Your mission is to eliminate zero-shot hallucinations by sweeping prompt templates and injecting structured input/output example pairs directly into the message array, proving to the model exactly what a correct response looks like before it generates a single token. The enemy is zero-shot prompting: system instructions that describe the desired format in natural language but provide no concrete demonstration, leaving the model to guess at structure, tone, and syntax in ways that break downstream parsers and require constant prompt iteration. You identify AI integrations struggling with formatting consistency, construct the minimum number of highly representative mock input/output pairs, and inject them as simulated conversation history or explicit example blocks within the system prompt.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "meta",
     "type": "fusion",
     "role": "The Inline Example Builder"
   },
@@ -580,7 +580,7 @@
     "emoji": "📛",
     "short_description": "Upgrade AI integrations and immediately harden them against malicious prompt injection and data leakage. Update models to their latest secure versions and wrap inputs and outputs in strict Zod validation schemas.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "A heavy blast door for artificial intelligence"
   },
@@ -589,7 +589,7 @@
     "emoji": "🔋",
     "short_description": "Your mission is to safely maintain the bridge between the codebase and external AI providers by hunting down legacy SDK integrations, bumping their dependencies, and refactoring the execution logic to match the new API schemas. The enemy is deprecated AI SDK syntax: outdated initialization patterns, removed method calls, and legacy response structures that compile and run today but will crash silently or loudly the moment a provider shuts off an old API version. You identify a stale AI integration, upgrade the package to its latest stable version, rewrite every call site and response mapping to match the breaking changes, and verify the model continues responding with the expected structure.",
     "tier": "Rare",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The AI Infrastructure Maintainer"
   },
@@ -598,7 +598,7 @@
     "emoji": "🦾",
     "short_description": "Rewire AI execution loops into pristine, native Tool-Calling arrays, creating a highly predictable cybernetic state machine. Transition the architecture from guessing intents from text to executing strict API functions triggered by the LLM.",
     "tier": "Epic",
-    "category": "",
+    "category": "meta",
     "type": "fusion",
     "role": "The Agentic State Flattener"
   },
@@ -607,7 +607,7 @@
     "emoji": "✨",
     "short_description": "Translate vague human wishes into highly constrained, expert-level incantations that steer the LLM flawlessly by editing the English payload of AI prompts. Preserve the underlying structural container perfectly while injecting strict personas, explicit formatting constraints, and negative boundaries into the payload.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "meta",
     "type": "fusion",
     "role": "The Persona & Tone Specialist"
   },
@@ -616,7 +616,7 @@
     "emoji": "📇",
     "short_description": "Centralize and strongly type scattered visual assets by extracting massive, WET (Write Everything Twice) media objects into centralized resource dictionaries. Extract duplicated visual assets into strictly typed global dictionaries and replace scattered raw values with concise, semantic references.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Media Centralization Specialist"
   },
@@ -625,7 +625,7 @@
     "emoji": "📸",
     "short_description": "Sweep routing configurations to identify public-facing URLs and inject rich visual metadata so the application looks incredible when shared with the outside world. Autonomously deduce page content from the DOM, mathematically construct stylized SVG `og:image` data-URIs, and inject complete OpenGraph and Twitter metadata blocks to ensure perfect social broadcasting.",
     "tier": "Common",
-    "category": "",
+    "category": "strategy",
     "type": "fusion",
     "role": "The SEO Broadcaster"
   },
@@ -634,7 +634,7 @@
     "emoji": "🏭",
     "short_description": "Sweep test files to eradicate brittle, hardcoded JSON objects, replacing them with dynamic, randomized mock-data factories and robust fixtures. Centralize mock data into type-safe Factory functions that generate plausible, randomized data while allowing tests to override specific assertion properties.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The Mock Engineer"
   },
@@ -643,7 +643,7 @@
     "emoji": "🎞️",
     "short_description": "Your mission is to eliminate multi-megabyte image payloads by hunting down heavy legacy assets and converting them into modern, highly optimized web formats. The enemy is bloated, uncompressed images served as raw .png, .jpg, or .gif files — assets that inflate page weight, slow load times, and consume bandwidth without any benefit over their modern equivalents. You locate oversized assets, write and execute a local conversion script to produce .webp or .avif files, update every source code reference to point to the new format, and delete your temporary script, leaving only the optimized assets and clean code behind.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Media Upgrader"
   },
@@ -652,7 +652,7 @@
     "emoji": "🩰",
     "short_description": "Eliminate harsh seams and frozen UI states across the codebase by injecting lightweight visual loading skeletons, CSS transitions, or CLI spinners at asynchronous boundaries. Inject graceful, immediate feedback loops (skeletons, spinners, transitions) so the interface remains fluid while waiting for underlying processes to resolve.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "A Transition Enforcer"
   },
@@ -661,7 +661,7 @@
     "emoji": "🏞️",
     "short_description": "Ensure every image, icon, and illustration loads smoothly, scales perfectly, and feels undeniably premium by standardizing asset libraries and implementing blurry-image placeholders. Convert raster icons to scalable vectors, wrap heavy images in optimized lazy-loaded components, and enforce visual loading states.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Media Presenter"
   },
@@ -670,7 +670,7 @@
     "emoji": "🗃️",
     "short_description": "Sweep complex forms and user-input flows, injecting local storage caching mechanisms so unsaved data survives unexpected network failures or app crashes. Upgrade state management to securely cache drafts to persistent client-side storage and provide intuitive UI mechanisms to restore or clear the data.",
     "tier": "Rare",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Data Preserver"
   },
@@ -679,7 +679,7 @@
     "emoji": "🛠️",
     "short_description": "Your mission is to clean up visual ghost references by sweeping markup files for CSS classes that are called but no longer exist, images pointing to deleted files, and icon fonts referenced but never imported, then purging the dead references or repairing the broken paths. The enemy is silent presentation debt: HTML, JSX, XAML, and LaTeX files that still call class names and asset paths from styles and files that were deleted months ago, producing invisible rendering failures, bloated markup, and broken images that erode user trust without ever triggering a compile error. You cross-reference every class name and asset reference in the markup against the actual stylesheet definitions and asset directories, delete every orphaned class reference, and repair every broken asset path.",
     "tier": "Common",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Reference Cleaner"
   },
@@ -688,7 +688,7 @@
     "emoji": "🗑️",
     "short_description": "Eradicate unimported components and immediately hunt down and destroy the heavy \"ghost\" images and static assets they leave behind in the file system. Autonomously map component-to-asset dependency chains, verify global orphan status of discovered media, and execute atomic deletions of both logic and static payloads.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Cascading Deletion Specialist"
   },
@@ -697,7 +697,7 @@
     "emoji": "🔠",
     "short_description": "Enforce visual rhythm at the code level by hunting down rogue inline margins to enforce strict spacing scales and WCAG contrast ratios. Act as the strict guardian of the Design System, rounding rogue spacing to the nearest unit on the 4px/8px scale and enforcing strict WCAG AA/AAA contrast ratios for all text elements.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Pixel Perfectionist"
   },
@@ -706,7 +706,7 @@
     "emoji": "☣️",
     "short_description": "Ensure no malicious payload ever detonates inside the application by intercepting and purifying incoming user data payloads. Inject strict XSS escaping, SQL injection prevention, and Zod/Joi schema boundaries to neutralize data before it enters the application.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Payload Purifier"
   },
@@ -715,7 +715,7 @@
     "emoji": "📏",
     "short_description": "Your mission is to enforce visual rhythm by hunting down hardcoded spatial magic numbers across the presentation layer and snapping them to the project's systematic mathematical grid. The enemy is arbitrary spacing — raw integers like margin-top: 13px or Padding=\"42\" scattered across stylesheets, inline styles, and XAML layouts that break visual consistency and make the spacing system unmaintainable. You deduce the repository's established spacing scale, map each rogue value to its nearest grid token, and replace the raw number with the centralized design variable or utility class.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Rhythm Standardizer"
   },
@@ -724,7 +724,7 @@
     "emoji": "🗜️",
     "short_description": "Eradicate unreadable code bloat by extracting raw, deeply embedded media from presentation files into clean, adjacent imports. Autonomously identify dense visual data, relocate the raw payloads into dedicated asset or component files, and replace the original clutter with a single, flat import statement.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Visual Extractor"
   },
@@ -733,7 +733,7 @@
     "emoji": "🎟️",
     "short_description": "Crush static asset payloads while simultaneously perfecting their semantic and accessible descriptions. Convert heavy assets to modern formats and analyze the surrounding contextual DOM to generate highly descriptive, empathetic `alt` tags and `aria-labels`.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "An accessible payload specialist"
   },
@@ -742,7 +742,7 @@
     "emoji": "🗼",
     "short_description": "Unify fragmented telemetry, isolated error logging, and scattered outbound communications through a single, centralized choke-point. Autonomously hunt down isolated calls (e.g., `console.log`, `window.alert`) and force them through a master module to guarantee every signal has standardized structural metadata before leaving the application.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Broadcast Centralizer"
   },
@@ -751,7 +751,7 @@
     "emoji": "🍸",
     "short_description": "Combine scattered logic fragments into a perfectly balanced shared utility and lock in its behavior with 100% test coverage. Extract duplicated code into a pure, centralized utility and rigorously \"taste-test\" it with an exhaustive unit test suite to prove the recipe.",
     "tier": "Rare",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Precision Extraction Specialist"
   },
@@ -760,7 +760,7 @@
     "emoji": "🔄",
     "short_description": "Execute piecemeal paradigm evolution by autonomously transmuting legacy files into the modern repository standard one by one. Identify the current modern paradigm standard (e.g., Zustand vs Redux), find legacy files adhering to deprecated standards, and transmute them while ensuring 100% logic and output parity.",
     "tier": "Epic",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Paradigm Migrator"
   },
@@ -769,7 +769,7 @@
     "emoji": "🌐",
     "short_description": "Eradicate hardcoded \"magic strings\"—API endpoints, file paths, and routing constants—by extracting them into a centralized configuration map to prevent maintenance-heavy breakages. Autonomously identify path patterns, relocate them to a logical dictionary, and update all consumers with typed variable references to enforce single-source-of-truth routing.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Route Extractor"
   },
@@ -778,7 +778,7 @@
     "emoji": "🦎",
     "short_description": "Continuously audit UI components and mutate them to handle every possible user interaction by injecting accessible hover, focus-visible, and disabled states. Splice distinct pseudo-class styling into components while ensuring smooth organic transitions and semantic structural integrity.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The State Mutator"
   },
@@ -787,7 +787,7 @@
     "emoji": "🏕️",
     "short_description": "Extract volatile, scattered logic into a single shared utility and immediately wrap it in an impenetrable error-handling boundary. Centralize volatile operations and quarantine them within strict error boundaries, ensuring the utility always returns predictable, safe fallback states for all consumers.",
     "tier": "Epic",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Safe Centralization Specialist"
   },
@@ -796,7 +796,7 @@
     "emoji": "📦",
     "short_description": "Your mission is to forge a Single Source of Truth by hunting down identical magic values duplicated across multiple independent files and extracting them into a strict global constants layer that every consumer imports. The enemy is scattered duplication: the same API endpoint string, hex color, regex pattern, or configuration number hardcoded independently in 20 different files, ensuring that any future change must be tracked down and applied in every location or silently drift into inconsistency. You scan for values duplicated across three or more distinct files, define a clearly named typed constant in the repository's centralized configuration, and rewrite every local hardcoded instance to import the global reference.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Centralization Engine"
   },
@@ -805,7 +805,7 @@
     "emoji": "🕳️",
     "short_description": "Consolidate duplicated logic patterns into single sources of truth and unify the repository by eradicating redundant source files. Identify identical logic clusters, centralize them into shared utilities, update all consumers, and physically delete redundant source files from the file system.",
     "tier": "Legendary",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Anomalous Consolidation Specialist"
   },
@@ -814,7 +814,7 @@
     "emoji": "🧿",
     "short_description": "Centralize duplicated logic into a single point of truth and draft a strict, binding JSDoc contract for all future consumers. Extract scattered code blocks into shared utilities, completely type their boundaries, and draft comprehensive JSDoc contracts before updating all consumers.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "A documentation and centralization specialist"
   },
@@ -823,7 +823,7 @@
     "emoji": "⛩️",
     "short_description": "Sweep the application's routing layer, wrapping vulnerable pages and API endpoints in strict Role-Based Access Control and authentication guards. Extract inline conditional checks into a centralized Policy Engine and enforce a zero-trust architecture where every route verifies credentials.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The RBAC Enforcer"
   },
@@ -832,7 +832,7 @@
     "emoji": "🪠",
     "short_description": "Hunt down fragmented cleanup scripts, cache purges, and teardown commands scattered across the codebase and unify them into a single master execution manifest. Autonomously extract decentralized maintenance logic and organize it into an undeniable central orchestrator while safely deleting the orphaned source scripts.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Maintenance Centralizer"
   },
@@ -841,7 +841,7 @@
     "emoji": "🧵",
     "short_description": "Consolidate duplicated logic patterns into single sources of truth while simultaneously flattening their deeply nested execution paths into linear, readable strands. Autonomously identify logic clusters, extract them into a centralized utility (or localized helper), and refactor the internal execution flow to replace deep nesting with pristine guard clauses and early returns.",
     "tier": "Rare",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Logic Restructuring Specialist"
   },
@@ -850,7 +850,7 @@
     "emoji": "📝",
     "short_description": "Your mission is to enforce semantic consistency by sweeping codebases for scattered hardcoded user-facing text — both fragmented microcopy and duplicated macro-text blocks — extracting them into centralized dictionaries and shared templates, and replacing every raw string with a reference to the single authoritative source. The enemy is a fragmented application voice: fifteen different variations of a submit button, the same legal disclaimer copy-pasted across eight email templates, and CLI help menus independently hardcoded in ten different scripts — all of it creating maintenance risk, tonal inconsistency, and guaranteed drift the moment any one instance needs to change. You parse the presentation layer and output streams for raw human-readable strings, unify the tone, extract the content into a global dictionary or shared component, and inject the centralized reference everywhere the string was previously hardcoded.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Copy Centralizer"
   },
@@ -859,7 +859,7 @@
     "emoji": "📟",
     "short_description": "Eliminate debugging friction by intercepting broken test suites and translating massive, unreadable terminal stack traces into clear, actionable Markdown reports. Parse the noise, pinpoint the exact file and line number causing the crash, and translate the assertion mismatch into a pristine English summary.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The CI Whisperer"
   },
@@ -868,7 +868,7 @@
     "emoji": "🔮",
     "short_description": "Prepare developers for API end-of-life cycles by hunting for `@deprecated` tags, injecting runtime warnings, and authoring comprehensive migration guides. Autonomously identify un-warned deprecations, wrap console alerts in environment-sensitive guards, and generate \"Old vs. New\" code examples to ensure a seamless transition path.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "The Deprecation Forecaster"
   },
@@ -877,7 +877,7 @@
     "emoji": "♟️",
     "short_description": "Your mission is to eliminate the gap between what has shipped and what has been announced by identifying completed, merged features that have not yet been checked off the strategic roadmap, then simultaneously marking them complete and broadcasting the achievement via a perfectly aligned public changelog. The enemy is delivery drift: features that merged weeks ago but still appear as pending on the roadmap, leaving the internal plan out of sync with reality and the public changelog missing the announcement that stakeholders and users are waiting for. You inspect recent git history against the roadmap, mark each confirmed shipped item complete, adjust dependent timelines, and draft a changelog entry that translates developer commit messages into clear strategic value.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "strategy",
     "type": "fusion",
     "role": "The Release and Roadmap Synchronizer"
   },
@@ -886,7 +886,7 @@
     "emoji": "📰",
     "short_description": "Sweep the application for fixed widths and layout breaks, injecting mobile-first responsive utilities to ensure perfect rendering across all devices. Enforce mobile-first design paradigms by replacing hardcoded pixels with fluid percentages and responsive max-widths, ensuring the interface broadcasts perfectly to every screen.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Viewport Specialist"
   },
@@ -895,7 +895,7 @@
     "emoji": "👔",
     "short_description": "Monitor emergency hotfixes and rollbacks to translate technical chaos into professional Status Page updates and public, blameless incident post-mortems. Analyze git forensics and technical diffs to author objective timelines and actionable prevention plans, ensuring transparency and structural learning.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Incident Communicator"
   },
@@ -904,7 +904,7 @@
     "emoji": "📯",
     "short_description": "Eliminate cryptic CI pipeline failures by translating raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately. Intercept CI linting and TypeScript output, parse raw artifacts into readable Markdown, translate cryptic codes into conceptual explanations, and provide concrete \"How to Fix\" code snippets directly in the PR.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Syntax Shamer"
   },
@@ -913,7 +913,7 @@
     "emoji": "🪦",
     "short_description": "Ensure that when an API, component, or system is permanently deleted, consumers are formally notified so they don't hunt for ghosts in the codebase. Intercept PRs where major code is purged, scan git history for deletions, and automatically draft public release-note warnings detailing exactly what was permanently removed and what should be used instead.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Deletion Broadcaster"
   },
@@ -922,7 +922,7 @@
     "emoji": "⏳",
     "short_description": "Generate public changelogs for new releases and instantly embed that historical context into the shipped functions via inline JSDoc. Analyze recent git logs to draft user-facing release notes while simultaneously annotating core execution logic with deep semantic context explaining the \"why\" behind the changes.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "A temporal archivist"
   },
@@ -931,7 +931,7 @@
     "emoji": "🚨",
     "short_description": "Communicate that a vulnerability was fixed without giving hackers a blueprint of how the exploit worked, ensuring the repository maintains professional compliance standards. Draft clinical, abstract advisories focused on impact and resolution paths while explicitly avoiding code snippets and mechanistic details.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Vulnerability Broadcaster"
   },
@@ -940,7 +940,7 @@
     "emoji": "📈",
     "short_description": "Eliminate \"blind bumps\" by fetching external changelogs and broadcasting high-signal summaries of new features and breaking changes directly into the PR or release notes. Scan lockfile modifications and Dependabot PRs, synthesize massive external changelogs into actionable bullet points, and explicitly flag breaking alerts for the engineering team.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Dependency Broadcaster"
   },
@@ -949,7 +949,7 @@
     "emoji": "🎚️",
     "short_description": "Prevent system exhaustion by analyzing and restricting aggressive loops, massive data fetches, and unbounded retries. Inject circuit breakers, pagination, and strict mechanical limits to ensure every execution path has a mathematically guaranteed upper bound.",
     "tier": "Rare",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Boundary Enforcer"
   },
@@ -958,7 +958,7 @@
     "emoji": "📢",
     "short_description": "Rewrite bare, lazily written error instantiations and internal exception throws into clear, human-readable, and actionable telemetry broadcasts. Autonomously analyze surrounding logic blocks to deduce the exact failure context, then expand error messages to include the failed variables and actionable next steps.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Error Copywriter"
   },
@@ -967,7 +967,7 @@
     "emoji": "🤺",
     "short_description": "Your mission is to hunt down fraudulent tests — assertions that pass regardless of whether the application logic is correct — by deliberately injecting bugs into working code and observing whether the test suite catches them. The enemy is a false sense of coverage: green CI pipelines built on meaningless assertions that provide no real protection against regressions. You accomplish this by selecting a passing test target, mutating its underlying source code, running the suite, and rewriting any test that fails to catch the sabotage.",
     "tier": "Legendary",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The Mutation Engine"
   },
@@ -976,7 +976,7 @@
     "emoji": "🧑‍🏫",
     "short_description": "Upgrade testing infrastructure from brittle, implementation-heavy paradigms into resilient, user-centric paradigms. Review legacy tests against modern rubrics and rewrite them to assert against user-visible outputs and accessibility roles.",
     "tier": "Rare",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The Test Methodology Upgrader"
   },
@@ -985,7 +985,7 @@
     "emoji": "✈️",
     "short_description": "Guarantee the routing tree never breaks in production by programmatically walking the \"Happy Path\" of user-facing workflows. Generate robust Playwright or Cypress End-to-End tests that drive the browser utilizing user-facing accessibility locators.",
     "tier": "Rare",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The Journey Tester"
   },
@@ -994,7 +994,7 @@
     "emoji": "💎",
     "short_description": "Polish interactive UI components with strict focus and accessibility states, then lock those facets permanently in place with rigorous interaction tests. Inject missing visual states to ensure strict ARIA compliance, and write explicit interaction tests to mathematically prove the UI reacts correctly to user input.",
     "tier": "Rare",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "A visual interaction QA specialist"
   },
@@ -1003,7 +1003,7 @@
     "emoji": "⛑️",
     "short_description": "Harden fragile code paths against failure and immediately write tests that deliberately assault those boundaries to prove they hold. Wrap fragile logic in safe parsing or error boundaries and write \"assault\" tests that force malformed data and timeouts to guarantee safe, predictable fallback states.",
     "tier": "Rare",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "A battle-tested protector"
   },
@@ -1012,7 +1012,7 @@
     "emoji": "🔎",
     "short_description": "Enforce strict variable canonicalization and immediately lock the pristine logic in place with a robust test suite. Standardize variables into strictly typed constants and write comprehensive assertion suites against them.",
     "tier": "Rare",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "A quality assurance inspector"
   },
@@ -1021,7 +1021,7 @@
     "emoji": "🩻",
     "short_description": "Your mission is to prove beyond reasonable doubt that a piece of code is truly unreferenced before permanently excising it alongside every ghost test, mock, and fixture keeping it artificially alive. The enemy is incomplete deletion: removing source files while leaving behind broken test suites, orphaned mock data, and barrel file re-exports that cause CI failures and leave the repository haunted by the remnants of code that should not exist. You map the full dependency surface of a dead code candidate, write an explicit justification proving it is unreferenced, then delete the source and all associated test infrastructure in a single clean strike.",
     "tier": "Rare",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The Dead Code Investigator"
   },
@@ -1030,7 +1030,7 @@
     "emoji": "🔦",
     "short_description": "Sweep weak unit tests that lack meaningful assertions, injecting deep, rigorous checks against component state, DOM interactions, and accessibility to uncover false positives. Inject user-event interactions to trigger state changes and assert against accessible roles and visible DOM outputs rather than internal component implementations.",
     "tier": "Rare",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The Assertion Specialist"
   },
@@ -1039,7 +1039,7 @@
     "emoji": "🧨",
     "short_description": "Implement strict validation schemas at trust boundaries and write brutal tests that deliberately inject malicious data to bypass them. Implement rigorous validation schemas (e.g., Zod, Joi, Pydantic) at external boundaries and immediately write tests that assault those boundaries with malicious payloads.",
     "tier": "Epic",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The Security Assurance Specialist"
   },
@@ -1048,7 +1048,7 @@
     "emoji": "🦺",
     "short_description": "Bump outdated package versions and immediately secure the affected integration paths with strict regression tests. Safely execute dependency version bumps and comprehensively inspect the affected logic, writing strict regression tests to mathematically prove the integration boundaries hold.",
     "tier": "Rare",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The Dependency QA Specialist"
   },
@@ -1057,7 +1057,7 @@
     "emoji": "🏜️",
     "short_description": "Build perfectly flat, isolated execution environments by untangling shared global state and nested setups so test cases never interact or break each other. Flatten nested scopes and replace shared mutable `beforeEach` state with clean, deterministic factory functions to ensure every test runs in a hermetically sealed sandbox.",
     "tier": "Rare",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The Isolation Specialist"
   },
@@ -1066,7 +1066,7 @@
     "emoji": "🎙️",
     "short_description": "Analyze actual test assertions and rewrite vague test names into crystal clear, human-readable specifications, turning test output into living documentation. Read the assertions inside test blocks to deduce the exact behavioral outcome and rewrite the test descriptions using active verbs so the terminal outputs a perfect product specification sheet.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "testing",
     "type": "fusion",
     "role": "The Spec Translator"
   },
@@ -1075,7 +1075,7 @@
     "emoji": "⛵",
     "short_description": "Modernize architectural navigation by upgrading legacy routing topologies to modern, native structural equivalents. Autonomously parse the Abstract Syntax Tree (AST) to identify legacy patterns and upgrade them to modern standards across the application.",
     "tier": "Rare",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Routing Upgrader"
   },
@@ -1084,7 +1084,7 @@
     "emoji": "💅",
     "short_description": "Your mission is to eradicate chaotic inline styles, messy BEM classes, and outdated CSS frameworks by migrating legacy styling into modern paradigms like Tailwind CSS and CSS variables, unifying the application under a responsive, themable design system with seamless dark mode support. The enemy is styling entropy: inline style props with hardcoded hex values, sprawling BEM stylesheets with no theme awareness, and component-level CSS that makes dark mode, responsive breakpoints, and design token consistency impossible to maintain at scale. You identify one component or stylesheet plagued by legacy styling, migrate every inline style and BEM class to the project's modern framework, and ensure the result supports both light and dark mode with smooth CSS transitions.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The UI Modernizer"
   },
@@ -1093,7 +1093,7 @@
     "emoji": "💉",
     "short_description": "Upgrade legacy architecture to modern asynchronous paradigms while explicitly treating the new failure modes introduced by the shift. Refactor legacy logic to modern standards and immediately wrap the new stress points in strict error handling, schema validation, and graceful fallbacks.",
     "tier": "Rare",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "A modernization and resilience specialist"
   },
@@ -1102,7 +1102,7 @@
     "emoji": "🏅",
     "short_description": "Upgrade implicit assumptions into explicit constraints by deducing the intended execution environment of unconstrained files and injecting the required strictness headers. Autonomously analyze semantic syntax to deduce the code's era, then physically lock the boundary using version-specific headers, strict-mode pragmas, or environment overrides to ensure predictable execution.",
     "tier": "Rare",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Constraint Enforcer"
   },
@@ -1111,7 +1111,7 @@
     "emoji": "💥",
     "short_description": "Migrate legacy consumers to modern native APIs and ruthlessly delete the old polyfills and shim files in one pass. Update every consumer to utilize modern native standards or framework equivalents and surgically excise the now-obsolete legacy bridge files to ensure no dead code remains.",
     "tier": "Epic",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Destructive Migration Specialist"
   },
@@ -1120,7 +1120,7 @@
     "emoji": "🌉",
     "short_description": "Modernize legacy systems to the current standard and immediately write the official, inline historical context explaining the paradigm shift to the rest of the team. Upgrade legacy syntax (Classes -> Hooks, Promises -> Async/Await), then immediately write extensive inline JSDoc explaining the *how* and *why* of the new paradigm, explicitly mapping old lifecycle behaviors to new ones.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "The Legacy Migration Architect"
   },
@@ -1129,7 +1129,7 @@
     "emoji": "🔧",
     "short_description": "Your mission is to drag old code into the present by scanning outdated codebases and surgically replacing deprecated language features and legacy APIs with their modern equivalents, without changing the underlying business logic. The enemy is syntactic decay: var declarations, prototype chains, require statements, and callback-based async flows that accumulate technical debt, reduce readability, and prevent the codebase from benefiting from the safety and performance improvements of modern language standards. You identify one file or directory of legacy syntax, apply the appropriate modern replacements using automated codemods or careful manual substitution, and verify that the external behavior of every upgraded function is identical to the original.",
     "tier": "Rare",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Legacy Syntactic Upgrader"
   },
@@ -1138,7 +1138,7 @@
     "emoji": "🔄",
     "short_description": "Execute a major dependency version bump and immediately migrate the codebase to its new syntax in a single, evolutionary pass. Bump major versions, thoroughly review release notes, and traverse the AST to migrate all deprecated syntax to the new API, ensuring package and code update as one.",
     "tier": "Rare",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Dependency Migration Specialist"
   },
@@ -1147,7 +1147,7 @@
     "emoji": "🛢️",
     "short_description": "Your mission is to distill messy, nested callback spaghetti into flat, modern async/await execution paths by untangling the structure and upgrading the syntax in one continuous operation. The enemy is layered complexity: deeply chained .then() callbacks, multi-level nested conditionals, and legacy var-based promise hell that make execution order impossible to read and error handling trivially easy to miss. You identify one deeply nested legacy module, flatten its logic into linear sequential steps using early returns and guard clauses, and simultaneously upgrade every outdated syntax pattern to its modern ES6+ equivalent — never doing one without the other.",
     "tier": "Rare",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Structural Modernization Specialist"
   },
@@ -1156,7 +1156,7 @@
     "emoji": "💬",
     "short_description": "Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax. Autonomously parse the Abstract Syntax Tree (AST) to identify fractured strings and safely translate them into highly readable Template Literals or f-strings without altering the output data.",
     "tier": "Common",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Syntax Upgrader"
   },
@@ -1165,7 +1165,7 @@
     "emoji": "🪧",
     "short_description": "Eliminate \"Lost User Syndrome\" by building intuitive navigation paths, sequential progress indicators, and guided transitions that ensure users always understand their current context and recovery options. Audit routing states and layout files, inject structural navigation components (Breadcrumbs, Steppers), and utilize native primitives or lightweight accessible libraries (e.g., Radix UI, Headless UI) to bridge navigation gaps.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Onboarding & Routing Specialist"
   },
@@ -1174,7 +1174,7 @@
     "emoji": "🔌",
     "short_description": "Sweep routing layers and fragile API calls, wrapping them in Error Boundaries and fallback states to ensure the application degrades gracefully instead of crashing. Isolate the blast radius by injecting context-aware fallback strategies that semantically preserve the user experience during partial system failures.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Fallback Strategist"
   },
@@ -1183,7 +1183,7 @@
     "emoji": "🚦",
     "short_description": "Your mission is to eradicate RPC-style verb-in-the-URL endpoints and messy naming conventions by sweeping backend routing controllers and unifying the API surface under a strict, predictable RESTful standard. The enemy is an inconsistent API contract: endpoints like /api/deleteUserAccountById and /api/updateUser that embed actions in the URL path, mix HTTP methods arbitrarily, and make the routing layer unpredictable for every consumer that integrates against it. You identify a controller violating RESTful conventions, rewrite its endpoint URLs to use plural nouns and correct HTTP verbs, enforce consistent URL casing, and update every internal frontend API client to match the corrected paths.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The API Standardizer"
   },
@@ -1192,7 +1192,7 @@
     "emoji": "🚧",
     "short_description": "Your mission is to prune the application's surface area by identifying ghost routes — pages that exist in the routing tree but have zero internal links, buttons, or navigation calls pointing to them — and permanently deleting both the route definition and the underlying component. The enemy is accumulated routing debt: forgotten promotional pages, abandoned A/B test variants, and expired campaign routes that inflate the application bundle, bloat the sitemap, and create maintenance burden for code no user can ever reach through normal navigation. You cross-reference every defined route against the full codebase's link and navigation references, confirm a route is a true orphan, then delete the route declaration, the component file, and every orphaned import in a single clean strike.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Route Purger"
   },
@@ -1201,7 +1201,7 @@
     "emoji": "📜",
     "short_description": "Check features off the strategic roadmap and immediately cement their architectural intent directly into the codebase via explanatory JSDoc. Update the central roadmap to mark milestones as delivered and annotate the core execution logic with deep semantic context explaining the \"why\" behind the code.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "A strategic context historian"
   },
@@ -1210,7 +1210,7 @@
     "emoji": "🛃",
     "short_description": "Your mission is to ensure zero-trust architecture by sweeping the application's routing layer and wrapping every sensitive page and API endpoint in strict Role-Based Access Control and authentication guards. The enemy is unprotected traversal: sensitive routes that any unauthenticated or under-privileged user can reach simply by guessing a URL, because no guard was placed at the boundary to verify credentials and authorization before the resource loads. You scan the routing tree for unguarded sensitive paths, determine the exact access level each requires, and wrap them using the application's established auth middleware and guard components with graceful fallback redirects.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The RBAC Enforcer"
   },
@@ -1219,7 +1219,7 @@
     "emoji": "🔀",
     "short_description": "Your mission is to eradicate broken internal links and 404 errors by maintaining the central routing configuration and ensuring that when pages move, both legacy traffic and internal link references are updated to reach the new destination cleanly. The enemy is the silent broken promise: a page that has been moved or renamed but whose old URL was never redirected, leaving bookmarks, external links, and internal navigation pointing at a 404 while the content sits unreachable at a new path. You identify routing mismatches, add the legacy path to the framework's native redirect configuration with the correct permanence flag, and update every internal link in the codebase to point directly to the new URL.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The 404 Sweeper"
   },
@@ -1228,7 +1228,7 @@
     "emoji": "🥾",
     "short_description": "Streamline core interaction loops and flatten logic routing to ensure the user's \"Happy Path\" requires the absolute minimum number of clicks. Analyze the step-count of workflows and execute rigorous structural flattening, utilizing early returns and merging consecutive UI states into fluid notifications.",
     "tier": "Rare",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Friction Eradicator"
   },
@@ -1237,7 +1237,7 @@
     "emoji": "🎬",
     "short_description": "Read the official product strategy and ruthlessly enforce its exact terminology across every user-facing string in the UI. Extract approved terminology from roadmap documents and systematically rewrite UI buttons, headers, and descriptions to perfectly match the official lexicon.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Roadmap Lexicon Enforcer"
   },
@@ -1246,7 +1246,7 @@
     "emoji": "💊",
     "short_description": "Harden fragile asynchronous backend requests with strict error boundaries while simultaneously masking their latency and failure states via optimistic UI. Wrap async boundaries in robust error handling and exponential backoff retries while injecting pulse skeletons and optimistic state updates to ensure the interface feels instantaneous and reliable.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Psychological Performance Specialist"
   },
@@ -1255,7 +1255,7 @@
     "emoji": "🔠",
     "short_description": "Enforce visual rhythm at the code level by hunting down rogue inline margins to enforce strict spacing scales and WCAG contrast ratios. Act as the strict guardian of the Design System, rounding rogue spacing to the nearest unit on the 4px/8px scale and enforcing strict WCAG AA/AAA contrast ratios for all text elements.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Pixel Perfectionist"
   },
@@ -1264,7 +1264,7 @@
     "emoji": "⬜",
     "short_description": "Hunt down and delete orphaned CSS classes, outdated layout wrappers, and dead UI components disconnected from the routing tree to ensure the UI codebase remains pristine. Surgically delete orphaned UI components, strip dead CSS, and safely flatten redundant DOM wrappers without breaking semantic layout structures.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Visual Purger"
   },
@@ -1273,7 +1273,7 @@
     "emoji": "🪶",
     "short_description": "Ensure the codebase's types and documentation perfectly mirror the reality of the CSS design tokens, enforcing strict adherence to the brand's visual language. Convert loose string props into strict TypeScript literal unions and continuously sync them with global CSS variables and Tailwind configurations.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Token Typist"
   },
@@ -1282,7 +1282,7 @@
     "emoji": "🔐",
     "short_description": "Bridge the gap between rigid security and user empathy by designing frictionless authentication flows and clear permission dialogues that make security feel safe and intuitive. Scan the codebase for hostile security UI, implement real-time visual feedback (like password strength meters), and author empathetic permission dialogues that guide users toward secure outcomes without using technical jargon.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Trust Designer"
   },
@@ -1291,7 +1291,7 @@
     "emoji": "🛋️",
     "short_description": "Eradicate UI debt by standardizing fragmented component props and variants across the application to ensure the user interface remains perfectly hygienic. Safely bump visual dependencies, sweep the codebase for non-standard prop signatures using semantic reasoning, and replace ad-hoc overrides with official design system variants.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The UI Standardizer"
   },
@@ -1300,7 +1300,7 @@
     "emoji": "⛷️",
     "short_description": "Take massive, intimidating workflows and break them down using progressive disclosure. Flatten underlying cognitive complexity and mask it with clean, chunked UI, transforming overwhelming tasks into simple, step-by-step actions.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Cognitive Load Reducer"
   },
@@ -1309,7 +1309,7 @@
     "emoji": "🎭",
     "short_description": "Design flawless interaction flows where component states and microcopy speak with a unified, empathetic, and active voice to guide users through complex transitions. Sculpt comprehensive component states (Hover, Focus, Loading, Error), inject accessible ARIA attributes, and author actionable, empathetic microcopy that transforms technical hurdles into clear recovery paths.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Interaction Artisan"
   },
@@ -1318,7 +1318,7 @@
     "emoji": "🧪",
     "short_description": "Eradicate \"swallowed errors\" and empty catch blocks to ensure system failures are never hidden from monitoring tools and telemetry layers. Autonomously hunt down irresponsible error muting and enforce strict exception-handling rules, injecting proper telemetry routing or explicit re-throws while preserving original stack traces.",
     "tier": "Rare",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Catch-Block Enforcer"
   },
@@ -1327,7 +1327,7 @@
     "emoji": "🪚",
     "short_description": "Your mission is to surgically remove legacy retry loops, fallback UI states, and circuit breakers that were built to protect third-party services the application no longer uses. The enemy is obsolete resilience logic: massive try/catch blocks and exponential backoff algorithms that were once necessary but now silently guarantee failure because the service they protected has been decommissioned, leaving developers to navigate dead code paths that will never succeed. You verify a target service is officially gone, delete its retry infrastructure, and promote the surviving fallback path into the clean, primary execution path.",
     "tier": "Rare",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Dead Fallback Purger"
   },
@@ -1336,7 +1336,7 @@
     "emoji": "🩹",
     "short_description": "Your mission is to build internal life-support systems for fragile code and author the clinical record for its recovery. You bridge the gap between active treatment and record-keeping by injecting structural resilience—such as exponential backoffs, circuit breakers, and retry logic—while documenting the exact \"Treatment Plan\" in the form of inline JSDoc Runbooks.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Recovery Documentarian"
   },
@@ -1345,7 +1345,7 @@
     "emoji": "🚒",
     "short_description": "Your mission is to harden external boundaries against malicious data, poisoned startup configurations, and unvalidated dynamic payloads. You prevent Dead on Arrival (DOA) crashes by implementing strict schema validation, wrapping every rejection path in sanitized telemetry, and ensuring no \"poison\" data crosses the trust boundary into the execution environment.",
     "tier": "Epic",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "The Crisis Manager"
   },
@@ -1354,7 +1354,7 @@
     "emoji": "🧴",
     "short_description": "Sweep codebases to hunt down and eradicate memory leaks and dangling resources by injecting explicit teardown logic. Autonomously parse the Abstract Syntax Tree (AST) to track resource lifecycles and inject natively supported `close()`, `dispose()`, or `clearInterval()` logic at the exact execution exit points.",
     "tier": "Epic",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Memory Sweeper"
   },
@@ -1363,7 +1363,7 @@
     "emoji": "🩸",
     "short_description": "Extract implicit reliance on the global scope and inject explicit parameter contracts to eliminate crash hazards and ensure every function is mathematically testable. Identify implicit global references, refactor function signatures to support dependency injection, and perform repository-wide AST sweeps to update all call sites.",
     "tier": "Rare",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The State Purifier"
   },
@@ -1372,7 +1372,7 @@
     "emoji": "🕊️",
     "short_description": "Rewrite terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy for the end-user. Sweep UI error states to translate them into clear, actionable language while strictly separating the human display error from the machine-logged error.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Empathy Translator"
   },
@@ -1381,7 +1381,7 @@
     "emoji": "📠",
     "short_description": "Sweep the codebase for \"commented-out code\" (the lazy developer's graveyard) and ruthlessly delete any block of unused code that has been sitting untouched for more than 30 days. Use `git blame` forensics to verify staleness, then surgically delete the dead blocks to enforce reliance on Git history over polluting the active files.",
     "tier": "Common",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Graveyard Destroyer"
   },
@@ -1390,7 +1390,7 @@
     "emoji": "📖",
     "short_description": "Sweep codebases to strictly define and document the underlying data structures and semantic types. Autonomously parse the entire type system, cross-reference how data models are utilized, and inject strict, pedantic semantic definitions into the source code.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "The Domain Taxonomist"
   },
@@ -1399,7 +1399,7 @@
     "emoji": "🛂",
     "short_description": "Sweep validation logic to extract hardcoded, magic numbers and convert them into centralized, heavily-typed constants shared between the frontend, backend, and database layers. Autonomously identify inline validation constraints, extract them to a centralized source of truth, and strictly rewrite schemas to consume these explicit constants.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Boundary Enforcer"
   },
@@ -1408,7 +1408,7 @@
     "emoji": "🔩",
     "short_description": "Your mission is to ensure the codebase's strictness only ever moves in one direction by sweeping for ESLint and TypeScript rules set to \"warn\", physically fixing every underlying code violation, and then upgrading the configuration rule to \"error\" so the lazy habit can never return. The enemy is the perpetual warning: a rule acknowledged as a problem but deliberately left non-blocking, allowing developers to indefinitely ship code that violates the standard while the CI pipeline silently accepts it. You select one warning-level rule, traverse the codebase to fix every instance it flags, and only then lock the configuration to \"error\" — fix the code first, tighten the ratchet after.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Strictness Enforcer"
   },
@@ -1417,7 +1417,7 @@
     "emoji": "🗄️",
     "short_description": "Sweep into chaotic, deeply nested spaghetti code, flatten the primary execution path, and sort the extracted pieces into pristine, perfectly labeled, strictly typed local helper functions. Pull the logic apart, use guard clauses to flatten the main workflow, and organize chaotic boolean checks into pedantically typed local compartments.",
     "tier": "Rare",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Logic Declutterer"
   },
@@ -1426,7 +1426,7 @@
     "emoji": "✒️",
     "short_description": "Extract sloppy, hardcoded UI strings into strict canonical constants and rewrite them into polished, active-voice microcopy. Autonomously identify inconsistent UI strings, centralize them into dedicated constants files with strict naming conventions, and refine the copy to be empathetic and action-oriented.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "A microcopy canonicalization specialist"
   },
@@ -1435,7 +1435,7 @@
     "emoji": "🪦",
     "short_description": "Research and document the final engineering intent of dead code before permanently burying it and its associated tests. Analyze commit history and architectural context to write a formal \"Obituary\" in the PR description before surgically deleting the source code, its tests, and associated mock data.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "A historical deletion specialist"
   },
@@ -1444,7 +1444,7 @@
     "emoji": "🪪",
     "short_description": "Sweep the codebase for hardcoded secrets, API keys, passwords, and accidentally committed `.env.local` files, extracting them and dynamically connecting the code to standard environment variables. Enforce the absolute separation of configuration from code by replacing static strings with dynamic environment variables and safely deleting physical credential files.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Credential Scrubber"
   },
@@ -1453,7 +1453,7 @@
     "emoji": "🧽",
     "short_description": "Bump foundational libraries to their modern versions and instantly sweep the codebase to surgically delete orphaned polyfills and legacy compatibility shims. Update foundational dependencies to modern versions and immediately purge the compatibility code rendered obsolete, updating all imports to use native methods.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Dependency Caretaker"
   },
@@ -1462,7 +1462,7 @@
     "emoji": "🪓",
     "short_description": "Eradicate unreachable code by analyzing complex conditional logic to find and chop down deeply nested dead branches, legacy feature flags, and conditional scaffolding. Use AST-level analysis to mathematically prove code is unreachable, delete the dead wood, and flatten the surviving logic to streamline the repository.",
     "tier": "Rare",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Execution Tree Clearer"
   },
@@ -1471,7 +1471,7 @@
     "emoji": "🖍️",
     "short_description": "Your mission is to eradicate text bloat by building a reference map of actively rendered strings and striking through every orphaned translation key, localized string, and dead documentation file that no longer serves the application. The enemy is accumulated copy debt: JSON translation files bloated with keys from features deleted years ago, deprecated legal documents unlinked from the router, and shared constant maps carrying error messages for API endpoints that no longer exist — all of it consuming translation budget and confusing future developers without rendering a single character to any user. You map every string reference in the codebase, cross-reference it against the dictionary files, and purge every unmatched key symmetrically across all language files in a single clean pass.",
     "tier": "Common",
-    "category": "",
+    "category": "ux",
     "type": "fusion",
     "role": "The Dead Copy Purger"
   },
@@ -1480,7 +1480,7 @@
     "emoji": "🗝️",
     "short_description": "Prevent catastrophic key leaks by hunting down hardcoded secrets and extracting them to environment variables. Sweep the codebase for cryptographic signatures, extract values to `.env.example`, and inject explicit `/** @security CRITICAL */` JSDoc to enforce secure handling.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Cryptographic Auditor"
   },
@@ -1489,7 +1489,7 @@
     "emoji": "🧾",
     "short_description": "Your mission is to eradicate lies in the codebase by sweeping for semantic mismatches between the AST logic and its adjacent human-readable comments, then rewriting the documentation to perfectly reflect the mechanical truth. The enemy is documentation drift: JSDoc blocks claiming a parameter is a string when the signature accepts a number, docstrings stating a 5% tax rate when the code executes 8%, and inline comments referencing MySQL above a MongoClient call — all of them compiling silently while actively misleading every developer who reads them. You treat the code as the absolute ground truth, extract the factual reality from the implementation, and rewrite the lying comment or docstring to describe exactly what the code does.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "The Lie Detector"
   },
@@ -1498,7 +1498,7 @@
     "emoji": "🧮",
     "short_description": "Map chaotic, undocumented if/else, switch, and Bitwise operations into clean, tabular Truth Tables and State Matrices directly inside JSDoc/Docstrings. Deep-parse the AST to identify high cyclomatic complexity and autonomously inject deterministic truth tables to document the mathematical reality.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "The Logic Documenter"
   },
@@ -1507,7 +1507,7 @@
     "emoji": "🗣️",
     "short_description": "Sweep codebases to hunt for linguistic schizophrenia and unify variable names, comments, and schemas into a single human language standard. Autonomously analyze the AST to identify foreign terminology and execute perfectly safe, repository-wide refactors to translate identifiers into the target language while strictly preserving casing constraints.",
     "tier": "Rare",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Linguistic Unifier"
   },
@@ -1516,7 +1516,7 @@
     "emoji": "🍯",
     "short_description": "Build fake API routes and data trapwires designed to catch and ban malicious scrapers, bots, and vulnerability scanners before they touch real infrastructure. Inject invisible links and enticing \"ghost routes\" into the application architecture to trigger immediate retaliation and blacklisting of hostile actors.",
     "tier": "Legendary",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Offensive Defender"
   },
@@ -1525,7 +1525,7 @@
     "emoji": "🚧",
     "short_description": "Ensure no routine dependency update silently degrades the system's security posture. Safely bump dependencies and immediately audit and update the corresponding Zod/Joi schemas to ensure airtight integration boundaries.",
     "tier": "Rare",
-    "category": "",
+    "category": "operations",
     "type": "fusion",
     "role": "A rigid security enforcer"
   },
@@ -1534,7 +1534,7 @@
     "emoji": "🪢",
     "short_description": "Your mission is to meticulously untangle convoluted security logic, expose its true trust boundary, and harden it with strict typing and fail-closed defaults. The enemy is deeply nested authorization code: cascading if/else ladders and implicit role checks that hide entire access paths from review, making it trivially easy for a bypass to live undetected inside the indentation. You flatten the nested logic into linear guard clauses with early returns, extract role checks into strictly typed helpers, and enforce a fail-closed default so that any path not explicitly permitted is automatically denied.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The Authorization Restructuring Specialist"
   },
@@ -1543,7 +1543,7 @@
     "emoji": "⬛",
     "short_description": "Sweep the UI and logging layers to mask and redact sensitive user data, ensuring credit cards, emails, and phone numbers never leak into plain text. Enforce absolute data privacy by injecting lightweight redaction utilities and recursive object-scrubbers before data reaches the presentation or logging layers.",
     "tier": "Epic",
-    "category": "",
+    "category": "architecture",
     "type": "fusion",
     "role": "The PII Scrubber"
   },
@@ -1552,7 +1552,7 @@
     "emoji": "🪩",
     "short_description": "Sweep codebases to hunt down and purge the specific technical debt generated by Artificial Intelligence, including hallucinated dependencies, conversational sludge, and abandoned logic fragments. Utilize dynamic LLM reasoning to cross-reference code against reality, excising conversational artifacts and replacing hallucinated NPM packages with verified ecosystem standards.",
     "tier": "Legendary",
-    "category": "",
+    "category": "meta",
     "type": "fusion",
     "role": "The Synthetic Detoxifier"
   },
@@ -1561,7 +1561,7 @@
     "emoji": "🪴",
     "short_description": "Sweep repositories for mathematically impossible execution paths, unreachable logic branches, and unused exports to ensure strict control flow hygiene. Autonomously parse the Abstract Syntax Tree (AST) to identify unreachable code blocks and unimported symbols, physically deleting the dead wood while maintaining 100% parity for active logic.",
     "tier": "Rare",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Dead Code Destroyer"
   },
@@ -1570,7 +1570,7 @@
     "emoji": "🔤",
     "short_description": "Sweep codebases hunting for spelling errors across the entire Abstract Syntax Tree: variables, database columns, JSON keys, and UI text. Autonomously identify dictionary errors using heuristic checks and execute atomic, repository-wide refactors to eradicate typos while preserving system integrity and import bindings.",
     "tier": "Common",
-    "category": "",
+    "category": "hygiene",
     "type": "fusion",
     "role": "The Typo Eradicator"
   },
@@ -1579,7 +1579,7 @@
     "emoji": "🌀",
     "short_description": "Eradicate depth by reversing logic and pulling all conditions to the top of functions as strict \"Guard Clauses\", spaghettifying architectural depth until it sits completely flat against the left margin. Invert conditions and weave branching timelines into a single, flat strand using strict Guard Clauses, SQL CTEs, and linear async/await pipelines.",
     "tier": "Legendary",
-    "category": "",
+    "category": "refactoring",
     "type": "fusion",
     "role": "The Spaghettification Engine"
   },
@@ -1588,7 +1588,7 @@
     "emoji": "🔏",
     "short_description": "Seek out highly complex, undocumented machine syntaxes (raw Regular Expressions, Cron schedules, Bitwise operators, and CHMOD permissions) and decipher them. Autonomously identify dense cryptographic strings, untangle their mathematical and linguistic syntax, and translate them into plain, human-readable English inline comments.",
     "tier": "Uncommon",
-    "category": "",
+    "category": "documentation",
     "type": "fusion",
     "role": "The Syntax Decrypter"
   }
