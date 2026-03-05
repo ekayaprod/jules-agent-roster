@@ -86,7 +86,7 @@ class AgentCard {
                         <button class="secondary action-main-btn" data-action="copy-agent" data-index="${index}" >
                             <span class="btn-text">Copy</span>
                         </button>
-                        <button class="secondary action-toggle-btn px-2" aria-label="Toggle action" >
+                        <button class="secondary action-toggle-btn px-2" aria-label="Toggle Export Options" >
                             ▼
                         </button>
                     </div>

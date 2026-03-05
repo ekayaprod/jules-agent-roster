@@ -112,7 +112,7 @@ describe('AgentRepository', () => {
         it('catches invalid json and throws formatted error', async () => {
             const mockResponse = { json: async () => { throw new Error('Unexpected token'); } };
 
-            await expect(repo.safeJsonParse(mockResponse, 'test.json')).rejects.toThrow("Check the configuration file formatting and try again.");
+            await expect(repo.safeJsonParse(mockResponse, 'test.json')).rejects.toThrow("Check your configuration file formatting and try again.");
             expect(console.error).toHaveBeenCalledTimes(1);
 
             const logArgs = JSON.parse(console.error.mock.calls[0][0]);
