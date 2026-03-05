@@ -209,7 +209,7 @@ class AgentRepository {
                 resource: label,
                 error: error.message
             }));
-            throw new Error("Check the configuration file formatting and try again.");
+            throw new Error("Check your configuration file formatting and try again.");
         }
     }
 
