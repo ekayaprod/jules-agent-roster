@@ -293,6 +293,10 @@ class RosterApp {
       // 0. Toggle Pin (Must be before flip-card to prevent interception)
       const pinTarget = e.target.closest('[data-action="toggle-pin"]');
       if (pinTarget) {
+          const card = pinTarget.closest('.flip-card');
+          if (card && card.classList.contains('flipped')) {
+              return; // Ignore if card is flipped
+          }
           e.stopPropagation();
           e.preventDefault(); // Prevent flip-card action
           const index = pinTarget.dataset.index;
