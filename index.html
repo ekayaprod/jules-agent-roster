@@ -204,8 +204,9 @@
       button.secondary:hover { border-color: var(--accent); }
       button.secondary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       
-      .section-header { max-width: 75rem; margin: 2rem auto 1rem auto; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
-      .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 75rem; margin: 0 auto; }
+      .section-header { flex: 0 0 auto; margin: auto 0; padding: 0 1rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); border-bottom: none; align-self: center; }
+      .grid { display: contents; }
+      #main { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 75rem; margin: 0 auto; }
       
       .title-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1rem; text-align: left; }
       .agent-title { font-size: var(--text-base); font-weight: var(--weight-bold); margin: 0; font-family: -apple-system, sans-serif; }
