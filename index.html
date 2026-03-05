@@ -26,7 +26,7 @@
       }
 
       /* FLIP CARD REFINEMENTS */
-      .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 100%; max-width: 100%; height: 13rem; }
+      .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 100%; max-width: 100%; height: 13rem; position: relative; }
       .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; border-radius: 1rem; cursor: pointer; }
       .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
       
@@ -48,66 +48,111 @@
       }
       .tier-legendary .flip-card-front, .tier-legendary .flip-card-back { animation: legendaryPulse 4s infinite ease-in-out; }
 
-      /* Particle Effects via Pseudo-elements for Epic & Legendary */
-      .tier-epic .flip-card-front::before, .tier-epic .flip-card-back::before,
+      /* Surface Shine and Foil Effects for Rare, Epic, Legendary */
+      .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after,
       .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after,
-      .tier-legendary .flip-card-front::before, .tier-legendary .flip-card-back::before,
       .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          z-index: 10;
+          border-radius: inherit;
+          mix-blend-mode: overlay;
+          background-size: 200% 200%;
+          opacity: 0.6;
+      }
+
+      @keyframes shineRare {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+      }
+      .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after {
+          background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.3) 60%, transparent 80%);
+          animation: shineRare 6s linear infinite;
+      }
+
+      @keyframes shineEpic {
+          0% { background-position: 200% 50%; }
+          100% { background-position: -200% 50%; }
+      }
+      .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after {
+          background: linear-gradient(115deg, transparent 20%, rgba(217, 70, 239, 0.4) 30%, rgba(255, 255, 255, 0.9) 50%, rgba(56, 189, 248, 0.4) 70%, transparent 80%);
+          animation: shineEpic 5s linear infinite;
+          mix-blend-mode: color-dodge;
+          opacity: 0.5;
+      }
+
+      @keyframes holographicFoil {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+      }
+      .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after {
+          background: linear-gradient(115deg, rgba(255, 0, 0, 0.5), rgba(255, 154, 0, 0.5), rgba(208, 222, 33, 0.5), rgba(79, 220, 74, 0.5), rgba(63, 218, 216, 0.5), rgba(47, 201, 226, 0.5), rgba(28, 127, 238, 0.5), rgba(95, 21, 242, 0.5), rgba(186, 12, 248, 0.5), rgba(251, 7, 217, 0.5), rgba(255, 0, 0, 0.5));
+          animation: holographicFoil 4s ease-in-out infinite;
+          mix-blend-mode: color-dodge;
+          opacity: 0.5;
+      }
+
+      /* Particle Effects via Pseudo-elements for Epic & Legendary */
+      .tier-epic::before, .tier-epic::after,
+      .tier-legendary::before, .tier-legendary::after {
           content: '';
           position: absolute;
           border-radius: 50%;
           pointer-events: none;
-          z-index: 0;
+          z-index: -1;
       }
 
       @keyframes floatParticlesEpic1 {
-          0% { transform: translateY(0) scale(1); opacity: 0; }
+          0% { transform: translate(0, 0) scale(1); opacity: 0; }
           20% { opacity: 0.8; }
           80% { opacity: 0.8; }
-          100% { transform: translateY(-30px) scale(0); opacity: 0; }
+          100% { transform: translate(-20px, 30px) scale(0); opacity: 0; }
       }
       @keyframes floatParticlesEpic2 {
-          0% { transform: translateY(0) scale(1); opacity: 0; }
+          0% { transform: translate(0, 0) scale(1); opacity: 0; }
           20% { opacity: 0.6; }
           80% { opacity: 0.6; }
-          100% { transform: translateY(-40px) scale(0); opacity: 0; }
+          100% { transform: translate(20px, -30px) scale(0); opacity: 0; }
       }
 
-      .tier-epic .flip-card-front::before, .tier-epic .flip-card-back::before {
+      .tier-epic::before {
           width: 4px; height: 4px; background: rgba(217, 70, 239, 0.8);
-          bottom: 10px; left: 20%;
+          bottom: -5px; left: 20%;
           box-shadow: 0 0 8px rgba(217, 70, 239, 0.8), 20px -10px 0 2px rgba(217, 70, 239, 0.6), 50px -5px 0 1px rgba(217, 70, 239, 0.5), 100px -15px 0 2px rgba(217, 70, 239, 0.7);
           animation: floatParticlesEpic1 3s infinite ease-in;
       }
-      .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after {
+      .tier-epic::after {
           width: 3px; height: 3px; background: rgba(217, 70, 239, 0.6);
-          bottom: 15px; right: 25%;
+          top: -5px; right: 25%;
           box-shadow: 0 0 6px rgba(217, 70, 239, 0.6), -30px 5px 0 1px rgba(217, 70, 239, 0.8), -70px -10px 0 2px rgba(217, 70, 239, 0.5), -120px -5px 0 1px rgba(217, 70, 239, 0.7);
           animation: floatParticlesEpic2 4s infinite ease-in 1.5s;
       }
 
       @keyframes floatParticlesLeg1 {
-          0% { transform: translateY(0) scale(1); opacity: 0; }
+          0% { transform: translate(0, 0) scale(1); opacity: 0; }
           20% { opacity: 1; }
           80% { opacity: 1; }
-          100% { transform: translateY(-50px) scale(0); opacity: 0; }
+          100% { transform: translate(-30px, 40px) scale(0); opacity: 0; }
       }
       @keyframes floatParticlesLeg2 {
-          0% { transform: translateY(0) scale(1); opacity: 0; }
+          0% { transform: translate(0, 0) scale(1); opacity: 0; }
           20% { opacity: 0.8; }
           80% { opacity: 0.8; }
-          100% { transform: translateY(-60px) scale(0); opacity: 0; }
+          100% { transform: translate(30px, -40px) scale(0); opacity: 0; }
       }
 
-      .tier-legendary .flip-card-front::before, .tier-legendary .flip-card-back::before {
+      .tier-legendary::before {
           width: 5px; height: 5px; background: rgba(251, 191, 36, 1);
-          bottom: 10px; left: 15%;
+          bottom: -5px; left: 15%;
           box-shadow: 0 0 10px rgba(251, 191, 36, 1), 30px -15px 0 2px rgba(251, 191, 36, 0.8), 70px -5px 0 3px rgba(251, 191, 36, 0.6), 130px -20px 0 2px rgba(251, 191, 36, 0.9), 180px -10px 0 1px rgba(251, 191, 36, 0.7);
           animation: floatParticlesLeg1 2.5s infinite ease-in;
       }
-      .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after {
+      .tier-legendary::after {
           width: 4px; height: 4px; background: rgba(251, 191, 36, 0.8);
-          bottom: 15px; right: 15%;
+          top: -5px; right: 15%;
           box-shadow: 0 0 8px rgba(251, 191, 36, 0.8), -40px 10px 0 2px rgba(251, 191, 36, 1), -90px -15px 0 3px rgba(251, 191, 36, 0.7), -150px -5px 0 2px rgba(251, 191, 36, 0.9), -200px -10px 0 1px rgba(251, 191, 36, 0.6);
           animation: floatParticlesLeg2 3s infinite ease-in 1.2s;
       }
