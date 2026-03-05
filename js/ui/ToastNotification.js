@@ -17,8 +17,8 @@ class ToastNotification {
 
         if (this.element) {
             // Pause auto-dismiss on hover
-            this.element.addEventListener('mouseenter', this.handleMouseEnter);
-            this.element.addEventListener('mouseleave', this.handleMouseLeave);
+            this.element.addEventListener('pointerenter', this.handleMouseEnter);
+            this.element.addEventListener('pointerleave', this.handleMouseLeave);
 
             // Delegate click for close button
             this.element.addEventListener('click', (e) => {
