@@ -1085,7 +1085,7 @@
     "short_description": "Transforms rigid, fixed-width desktop layouts into fluid, mobile-first paradigms. Sweeps the application to replace hardcoded pixels with fluid percentages, ensuring perfect rendering across all viewports and devices.",
     "tier": "Common",
     "category": "ux",
-    "type": "",
+    "type": "fusion",
     "role": "The Responsive Modernizer"
   },
   "Modernizer,Paramedic": {
