@@ -404,23 +404,15 @@ class RosterApp {
       searchModeContainer.classList.remove("hidden");
       if(categoryNav) categoryNav.style.display = 'none';
       
-      document.querySelectorAll(CONFIG.selectors.grid).forEach(grid => {
-          if(grid.id !== "searchResultsGrid") grid.style.display = "none";
-      });
-      document.querySelectorAll(CONFIG.selectors.sectionHeader).forEach(header => {
-          if(header.id !== "search-mode-header") header.style.display = "none";
-      });
+      DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "none", "searchResultsGrid");
+      DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "none", "search-mode-header");
     } else {
       this.elements.clearBtn?.classList.remove("visible");
       searchModeContainer.classList.add("hidden");
       if(categoryNav) categoryNav.style.display = 'flex';
       
-      document.querySelectorAll(CONFIG.selectors.grid).forEach(grid => {
-          if(grid.id !== "searchResultsGrid") grid.style.display = "flex";
-      });
-      document.querySelectorAll(CONFIG.selectors.sectionHeader).forEach(header => {
-          if(header.id !== "search-mode-header") header.style.display = "block";
-      });
+      DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "flex", "searchResultsGrid");
+      DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "block", "search-mode-header");
       
       this.elements.emptyState?.classList.remove("visible");
       if (this.elements.announcer) this.elements.announcer.textContent = "";

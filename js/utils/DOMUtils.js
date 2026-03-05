@@ -61,6 +61,22 @@ class DOMUtils {
         break;
     }
   }
+
+  /**
+   * Bulk updates the display style of elements matching a selector, optionally excluding one by ID.
+   * Centralizes duplicated NodeList iteration logic to reduce WET code.
+   *
+   * @param {string} selector - The CSS selector to match elements.
+   * @param {string} display - The CSS display value to apply (e.g., 'none', 'flex', 'block').
+   * @param {string} [excludeId=""] - An optional element ID to exclude from the styling.
+   */
+  static setElementsDisplay(selector, display, excludeId = "") {
+    document.querySelectorAll(selector).forEach(el => {
+      if (!excludeId || el.id !== excludeId) {
+        el.style.display = display;
+      }
+    });
+  }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
