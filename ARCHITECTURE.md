@@ -28,37 +28,92 @@ graph TD;
 
 ## 2. Component Architecture
 
-Detailed view of the JavaScript modules and their relationships.
+Detailed view of the JavaScript modules and their relationships mapped to the current directory structure.
 
 ```mermaid
 graph TD;
     subgraph Core Logic
-        RosterApp[RosterApp.js] -->|Initializes| AgentRepo[AgentRepository.js];
-        RosterApp -->|Initializes| FusionLab[FusionLab.js];
-        FusionLab -->|Uses| FusionCompiler[FusionCompiler.js];
-        FusionCompiler -->|Uses| PromptParser[PromptParser.js];
+        RosterApp[RosterApp.js]
+        PromptParser[PromptParser.js]
+    end
+
+    subgraph Features
+        subgraph Fusion
+            FusionLab[FusionLab.js]
+            FusionCompiler[FusionCompiler.js]
+            FusionIndex[FusionIndex.js]
+            FusionAnimation[FusionAnimation.js]
+            AgentPicker[AgentPicker.js]
+        end
+        subgraph Favorites
+            FavoritesManager[FavoritesManager.js]
+        end
+    end
+
+    subgraph Services
+        AgentRepo[AgentRepository.js]
     end
 
     subgraph UI Components
-        RosterApp -->|Renders| AgentCard[AgentCard.js];
-        RosterApp -->|Uses| Toast[ToastNotification.js];
-        RosterApp -->|Uses| Clipboard[ClipboardUtils.js];
-        FusionLab -->|Uses| Clipboard;
-        FusionLab -->|Uses| FusionIndex[FusionIndex.js];
+        AgentCard[AgentCard.js]
+        Toast[ToastNotification.js]
+        Clipboard[ClipboardUtils.js]
+    end
+
+    subgraph Utilities
+        FormatUtils[FormatUtils.js]
+        DownloadUtils[DownloadUtils.js]
+        PerformanceUtils[PerformanceUtils.js]
+        PromptRenderer[PromptRenderer.js]
+        StorageUtils[StorageUtils.js]
+        StringUtils[StringUtils.js]
     end
 
     subgraph Data Flow
-        AgentRepo -->|Fetches| JSON[JSON Configs];
-        AgentRepo -->|Fetches| MD[Markdown Prompts];
-        AgentRepo -->|Validates| Schema[Data Schema];
+        JSON[JSON Configs]
+        MD[Markdown Prompts]
+        Schema[Data Schema]
     end
 
+    %% Relationships
+    RosterApp -->|Initializes| AgentRepo;
+    RosterApp -->|Initializes| FusionLab;
+    RosterApp -->|Initializes| FavoritesManager;
+    RosterApp -->|Renders| AgentCard;
+    RosterApp -->|Uses| Toast;
+    RosterApp -->|Uses| PerformanceUtils;
+    RosterApp -->|Uses| DownloadUtils;
+    RosterApp -->|Uses| Clipboard;
+
+    FusionLab -->|Uses| FusionCompiler;
+    FusionLab -->|Uses| FusionIndex;
+    FusionLab -->|Uses| FusionAnimation;
+    FusionLab -->|Uses| AgentPicker;
+
+    FusionCompiler -->|Uses| PromptParser;
+    FusionCompiler -->|Uses| PromptRenderer;
+
+    AgentRepo -->|Fetches| JSON;
+    AgentRepo -->|Fetches| MD;
+    AgentRepo -->|Validates| Schema;
+
+    AgentCard -->|Uses| FormatUtils;
+
+    FavoritesManager -->|Uses| StorageUtils;
+    FusionIndex -->|Uses| StorageUtils;
+
     classDef core fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef features fill:#d4edda,stroke:#333,stroke-width:2px;
     classDef ui fill:#ccf,stroke:#333,stroke-width:2px;
     classDef data fill:#ffc,stroke:#333,stroke-width:2px;
+    classDef utils fill:#fff3cd,stroke:#333,stroke-width:2px;
+    classDef services fill:#cce5ff,stroke:#333,stroke-width:2px;
 
-    class RosterApp,FusionLab,FusionCompiler,PromptParser,AgentRepo core;
-    class AgentCard,Toast,Clipboard,FusionIndex ui;
+    class RosterApp,PromptParser core;
+    class FusionLab,FusionCompiler,FusionIndex,FusionAnimation,AgentPicker,FavoritesManager features;
+    class AgentCard,Toast,Clipboard ui;
+    class FormatUtils,DownloadUtils,PerformanceUtils,PromptRenderer,StorageUtils,StringUtils utils;
+    class AgentRepo services;
     class JSON,MD,Schema data;
 ```
 
