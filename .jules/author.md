@@ -1,11 +1,11 @@
-## 2024-05-22 - [Missing Architecture Documentation]
-**Learning:** The `js/` directory contained complex fusion logic (`FusionCompiler.js`, `FusionLab.js`) but lacked any architectural overview, forcing developers to read raw code to understand data flow.
-**Action:** Created `js/README.md` detailing the component hierarchy and data flow. Added `prompts/README.md` to standardize agent creation.
+## 2024-05-24 - 📘 Author - [Standardized Macro-Documentation Formatting]
+**Learning:** Previous directories like `js/` and `prompts/` lacked consistent, structural documentation (missing "Purpose", "Quick Start", and "Architecture"), causing onboarding friction and forcing developers to reverse-engineer data flow.
+**Action:** Overwrote and generated `README.md` files for major domains, enforcing strict macro-documentation standards with clear, imperative sections.
 
-## 2024-05-24 - [Missing Strict Formatting in Major READMEs]
-**Learning:** Found missing documentation standards in major domains like `prompts/README.md` that were missing "Purpose", "Quick Start", and "Architecture" sections, which could block developers trying to add or understand prompt agents.
-**Action:** Overwrote `prompts/README.md` to strictly follow the required macro-documentation format, adding Purpose, Quick Start, and Architecture sections in a clear, imperative voice.
-
-## 2026-03-03 - [Missing Architecture Documentation: js/features/fusion]
+## 2026-03-03 - 📘 Author - [Missing Architecture Documentation: js/features/fusion]
 **Learning:** Found missing documentation in the `js/features/fusion` directory, which could block developers trying to understand the newly refactored features and logic.
 **Action:** Created `js/features/fusion/README.md` containing Purpose, Quick Start, and Architecture sections in a clear, imperative voice to explain the logic of the fusion lab.
+
+## 2026-03-05 - 📘 Author - [Missing Architecture Documentation: prompts/fusions]
+**Learning:** Found missing documentation in the `prompts/fusions/` directory, causing ambiguity regarding the distinction between base agents and fusion agent definitions, as well as missing the strict formatting rules for Custom Fusions.
+**Action:** Created `prompts/fusions/README.md` containing Purpose, Quick Start, and Architecture sections in a strict, imperative voice to define the creation and architectural boundaries of Fusion Agents.
