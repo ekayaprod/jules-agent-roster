@@ -219,10 +219,7 @@ class AgentPicker {
         // 🪄 Illusionist: Add pure CSS loading skeleton to mask DOM generation latency
         grid.innerHTML = "";
         for (let i = 0; i < 12; i++) {
-            const skeleton = document.createElement("div");
-            skeleton.className = "mini-agent-card skeleton-pulse";
-            skeleton.style.minHeight = "4rem";
-            skeleton.setAttribute("aria-hidden", "true");
+            const skeleton = DOMUtils.createSkeletonElement("mini-agent-card skeleton-pulse", "4rem");
             grid.appendChild(skeleton);
         }
 

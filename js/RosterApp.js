@@ -100,9 +100,7 @@ class RosterApp {
       if (container) {
         container.innerHTML = "";
         for (let i = 0; i < 12; i++) {
-          const skeleton = document.createElement("div");
-          skeleton.className = "card skeleton-card skeleton-pulse";
-          skeleton.setAttribute("aria-hidden", "true");
+          const skeleton = DOMUtils.createSkeletonElement("card skeleton-card skeleton-pulse");
           container.appendChild(skeleton);
         }
       }
