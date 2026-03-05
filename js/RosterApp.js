@@ -124,19 +124,6 @@ class RosterApp {
   }
 
   /**
-   * Removes loading skeleton placeholders from all rendering grids.
-   */
-  clearSkeletons() {
-    Object.keys(CONFIG.categories).forEach((key) => {
-      if (key === 'favorites') return;
-      const container = document.getElementById(CONFIG.categories[key]);
-      if (container) {
-        container.innerHTML = "";
-      }
-    });
-  }
-
-  /**
    * Injects CSS loading skeletons into grids to mask latency during data fetching.
    */
   renderSkeletons() {
