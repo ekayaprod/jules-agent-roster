@@ -34,7 +34,7 @@ class StorageUtils {
     /**
      * Serializes and saves data to localStorage.
      * @param {string} key - The localStorage key.
-     * @param {any} data - The data to stringify and save.
+     * @param {unknown} data - The data to stringify and save.
      * @param {string} componentName - The name of the component for warning logs.
      */
     static setJsonItem(key, data, componentName) {
