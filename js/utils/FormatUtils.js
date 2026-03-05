@@ -3,6 +3,14 @@
  * Centralizes duplicate formatting logic across the application.
  */
 class FormatUtils {
+    static get MASTER_ROSTER_HEADER() {
+        return "JULES MASTER AGENT ROSTER\n\n--------------------------------------------------------------------------------\n\n";
+    }
+
+    static get CUSTOM_ROSTER_HEADER() {
+        return "JULES CUSTOM AGENT ROSTER (FUSIONS)\n\n--------------------------------------------------------------------------------\n\n";
+    }
+
     /**
      * Formats an array of agents into a single string of prompts separated by a standard divider.
      * @param {Array<Object>} agents - The array of agent objects to format.

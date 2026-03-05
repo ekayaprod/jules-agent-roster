@@ -267,7 +267,7 @@ class RosterApp {
     document.getElementById('masterCopyFusionsBtn')?.addEventListener("click", async (e) => {
         const validCustomAgents = Object.values(this.customAgents).filter(a => a.prompt && a.prompt.length > 0);
         if (validCustomAgents.length === 0) return this.toast.show("No custom agents unlocked yet.");
-        const header = "JULES CUSTOM AGENT ROSTER (FUSIONS)\n\n--------------------------------------------------------------------------------\n\n";
+        const header = FormatUtils.CUSTOM_ROSTER_HEADER;
         const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(validCustomAgents));
         if (success) {
             this.toast.show("Fusions copied to clipboard");
@@ -532,7 +532,7 @@ class RosterApp {
    * @param {HTMLElement} btn - The trigger button to animate on success.
    */
   downloadCustomAgents(btn) {
-    const header = "JULES CUSTOM AGENT ROSTER (FUSIONS)\n\n--------------------------------------------------------------------------------\n\n";
+    const header = FormatUtils.CUSTOM_ROSTER_HEADER;
     const validCustomAgents = Object.values(this.customAgents).filter(a => a.prompt && a.prompt.length > 0);
     if (validCustomAgents.length === 0) {
       this.toast.show("No custom agents available to download.");
@@ -548,7 +548,7 @@ class RosterApp {
    * @param {HTMLElement} btn - The trigger button to animate on success.
    */
   downloadAll(btn) {
-    const header = "JULES MASTER AGENT ROSTER\n\n--------------------------------------------------------------------------------\n\n";
+    const header = FormatUtils.MASTER_ROSTER_HEADER;
     DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(this.agents), "jules_roster.md");
     ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
   }
@@ -559,7 +559,7 @@ class RosterApp {
    * @returns {Promise<void>} Resolves when the copy action completes.
    */
   async copyAll(btn) {
-    const header = "JULES MASTER AGENT ROSTER\n\n--------------------------------------------------------------------------------\n\n";
+    const header = FormatUtils.MASTER_ROSTER_HEADER;
     const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(this.agents));
     if (success) {
       this.toast.show("Copied to clipboard");
