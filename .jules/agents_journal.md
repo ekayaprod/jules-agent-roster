@@ -3,8 +3,8 @@
 **Action:** Move the `renderSkeletons()` execution block to occur synchronously *before* the `try/catch` block containing the primary data fetch promises, guaranteeing the UI is painted before the JavaScript engine yields to the network request.
 
 ## 2026-03-03 - 🪄 Illusionist - [Perceived Performance: AgentPicker & Animation]
-**Learning:** Rendering massive DOM lists synchronously freezes the main thread. Implementing asynchronous chunking (using `requestAnimationFrame`) fixes this, but requires careful active loop tracking to prevent race conditions. Furthermore, JS timeouts used to sync with CSS animations blindly block execution even when `prefers-reduced-motion` is active, causing users to stare at a stalled UI.
-**Action:** Offload large list DOM generation to asynchronous chunks and mask latency with CSS skeletons. Additionally, implement an early return based on `window.matchMedia('(prefers-reduced-motion: reduce)').matches` to bypass artificial JS delays and instantly resolve the UI state for users preferring reduced motion.
+**Learning:** Rendering massive DOM lists synchronously freezes the main thread. Implementing asynchronous chunking (using `requestAnimationFrame`) fixes this, but requires careful active loop tracking to prevent race conditions.
+**Action:** Offload large list DOM generation to asynchronous chunks and mask latency with CSS skeletons.
 
 ## 2026-03-04 - 🎧 Vibe - [Feature Materialized: Recently Used Feature]
 **Learning:** When generating standalone logic managers in this specific project's architecture (like a new `RecentlyUsedManager.js`), they must be manually injected as script tags into the core HTML layout, and also dynamically imported into `benchmark.js` (using `loadClass`) and bound to the `global` object. Failing to do so causes ReferenceErrors during `npm run test` because standard module loaders or bundlers are intentionally absent.

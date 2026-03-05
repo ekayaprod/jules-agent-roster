@@ -41,7 +41,8 @@ class RosterApp {
         if (skeleton && content) {
             // 🗿 Sculptor: Smooth the seams between loading skeleton and content
             skeleton.style.opacity = '0';
-            setTimeout(() => {
+
+            const revealContent = () => {
                 skeleton.classList.add("hidden");
                 content.style.opacity = '0';
                 content.classList.remove("hidden");
@@ -50,7 +51,13 @@ class RosterApp {
                 content.offsetHeight;
 
                 content.style.opacity = '1';
-            }, 500); // Wait for skeleton fade out
+            };
+
+            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                revealContent();
+            } else {
+                setTimeout(revealContent, 500); // Wait for skeleton fade out
+            }
         }
     } catch (error) {
         if (this.elements.main) {
