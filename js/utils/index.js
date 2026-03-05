@@ -8,12 +8,14 @@ if (typeof module !== 'undefined' && module.exports && typeof require !== 'undef
     const PerformanceUtils = require('./PerformanceUtils');
     const PromptRenderer = require('./PromptRenderer');
     const StringUtils = require('./StringUtils');
+    const PromptParser = require('./PromptParser');
 
     module.exports = {
         DownloadUtils,
         FormatUtils,
         PerformanceUtils,
         PromptRenderer,
-        StringUtils
+        StringUtils,
+        PromptParser
     };
 }
