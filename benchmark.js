@@ -76,8 +76,8 @@ global.AgentPicker = AgentPicker;
 
 const AgentRepository = loadClass('js/services/AgentRepository.js');
 const ToastNotification = loadClass('js/ui/ToastNotification.js');
-const FavoritesManager = loadClass('js/features/favorites/FavoritesManager.js');
-global.FavoritesManager = FavoritesManager;
+const PinnedManager = loadClass('js/features/pinned/PinnedManager.js');
+global.PinnedManager = PinnedManager;
 
 const RosterApp = loadClass('js/RosterApp.js');
 

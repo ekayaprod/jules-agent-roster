@@ -191,7 +191,8 @@
       .dropdown-item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
       /* UTILS */
-      .favorite-btn { position: absolute; right: 0.75rem; top: 0.75rem; font-size: var(--text-xl); line-height: var(--leading-none); }
+      .pin-btn { position: absolute; right: 0.75rem; top: 0.75rem; font-size: var(--text-xl); line-height: var(--leading-none); transition: all 0.2s; opacity: 0.3; filter: grayscale(1); }
+      .pin-btn.pinned { opacity: 1; filter: grayscale(0); transform: rotate(15deg); }
       .title-wrapper { display: flex; justify-content: space-between; width: 100%; }
       .action-main-btn { border-top-right-radius: 0; border-bottom-right-radius: 0; flex-grow: 1; }
       .action-toggle-btn { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid var(--border); }
@@ -254,8 +255,6 @@
     </div>
 
     <main id="main">
-      <h2 id="favorites-section" class="section-header" style="display: none;">Favorites</h2>
-      <div class="grid" id="favoritesGrid" style="display: none;"></div>
       <h2 id="core-maintenance" class="section-header">Core Maintenance</h2>
       <div class="grid" id="coreGrid"></div>
       <h2 id="refactoring" class="section-header">Refactoring</h2>
@@ -356,8 +355,8 @@
           categoryNav: "#category-nav", main: "#main", navPills: ".nav-pill",
           sectionHeader: ".section-header", grid: ".grid", card: ".card"
         },
-        categories: { favorites: "favoritesGrid", core: "coreGrid", refactoring: "refactoringGrid", architecture: "archGrid", hygiene: "hygieneGrid", testing: "testingGrid", operations: "opsGrid", documentation: "documentationGrid", strategy: "strategyGrid", ux: "uxGrid", meta: "metaGrid" },
-        sectionMap: { favoritesGrid: "favorites-section", coreGrid: "core-maintenance", refactoringGrid: "refactoring", archGrid: "architecture", hygieneGrid: "hygiene", testingGrid: "testing", opsGrid: "operations", documentationGrid: "documentation", strategyGrid: "strategy", uxGrid: "ux", metaGrid: "meta" }
+        categories: { core: "coreGrid", refactoring: "refactoringGrid", architecture: "archGrid", hygiene: "hygieneGrid", testing: "testingGrid", operations: "opsGrid", documentation: "documentationGrid", strategy: "strategyGrid", ux: "uxGrid", meta: "metaGrid" },
+        sectionMap: { coreGrid: "core-maintenance", refactoringGrid: "refactoring", archGrid: "architecture", hygieneGrid: "hygiene", testingGrid: "testing", opsGrid: "operations", documentationGrid: "documentation", strategyGrid: "strategy", uxGrid: "ux", metaGrid: "meta" }
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
@@ -378,7 +377,7 @@
     <script src="js/features/fusion/FusionIndex.js"></script>
     <script src="js/features/fusion/FusionAnimation.js"></script>
     <script src="js/features/fusion/FusionLab.js"></script>
-    <script src="js/features/favorites/FavoritesManager.js"></script>
+    <script src="js/features/pinned/PinnedManager.js"></script>
     <script src="js/RosterApp.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {

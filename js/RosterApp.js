@@ -13,7 +13,7 @@ class RosterApp {
     this.elements = {};
     this.agentRepo = new AgentRepository();
     this.toast = new ToastNotification(CONFIG.selectors.toast);
-    this.favoritesManager = new FavoritesManager();
+    this.pinnedManager = new PinnedManager();
     this.fusionLab = null;
     this._cardHtmlCache = new Map();
   }
@@ -74,40 +74,8 @@ class RosterApp {
 
     this.renderSkeletons();
     this.renderAgents();
-    this.renderFavorites();
     this.bindEvents();
     this.initObserver();
-  }
-
-  /**
-   * Renders favorited agents into the favorites grid based on FavoritesManager state.
-   */
-  renderFavorites() {
-    const container = document.getElementById(CONFIG.categories.favorites);
-    if (!container) return;
-
-    container.innerHTML = "";
-    const favorites = this.favoritesManager.getFavorites();
-    const sectionHeader = document.getElementById("favorites-section");
-
-    if (favorites.length === 0) {
-      if (sectionHeader) sectionHeader.style.display = 'none';
-      container.style.display = 'none';
-      return;
-    }
-
-    if (sectionHeader) sectionHeader.style.display = 'block';
-    container.style.display = 'flex';
-
-    const fragment = document.createDocumentFragment();
-    favorites.forEach((keyOrIndex, i) => {
-        let agent = this.agents[keyOrIndex] || (this.customAgents && this.customAgents[keyOrIndex]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[keyOrIndex]);
-        if (agent) {
-             const card = AgentCard.create(agent, keyOrIndex, i);
-             fragment.appendChild(card);
-        }
-    });
-    container.appendChild(fragment);
   }
 
   /**
@@ -128,7 +96,6 @@ class RosterApp {
    */
   renderSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
-      if (key === 'favorites') return;
       const container = document.getElementById(CONFIG.categories[key]);
       if (container) {
         container.innerHTML = "";
@@ -150,13 +117,54 @@ class RosterApp {
   renderAgents() {
     const categoryContainers = {};
     const fragments = {};
+    const categorizedAgents = {};
 
     Object.keys(CONFIG.categories).forEach((key) => {
       const container = document.getElementById(CONFIG.categories[key]);
       categoryContainers[key] = container;
+      categorizedAgents[key] = [];
       if (container) {
         fragments[key] = document.createDocumentFragment();
       }
+    });
+
+    // Populate and group all agents into their respective categories
+    this.agents.forEach((agent, i) => {
+      const category = agent.category || "strategy";
+      if (categorizedAgents[category]) {
+        categorizedAgents[category].push({ agent, indexOrKey: i });
+      }
+    });
+
+    // Add pinned custom/fusion agents to the main display
+    if (this.pinnedManager) {
+        const pinnedKeys = this.pinnedManager.getPinned();
+        pinnedKeys.forEach(key => {
+             // Only add if it's not an index from base agents
+             if (isNaN(key)) {
+                let agent = (this.customAgents && this.customAgents[key]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
+                if (agent) {
+                   const category = agent.category || "strategy";
+                   if (categorizedAgents[category]) {
+                       // Only add it if it isn't already there (shouldn't be, as it's a custom agent)
+                       categorizedAgents[category].push({ agent, indexOrKey: key });
+                   }
+                }
+             }
+        });
+    }
+
+    // Sort each category so pinned agents appear first
+    const flattenedAgents = [];
+    Object.keys(categorizedAgents).forEach(category => {
+       categorizedAgents[category].sort((a, b) => {
+           const aPinned = this.pinnedManager ? this.pinnedManager.isPinned(a.indexOrKey) : false;
+           const bPinned = this.pinnedManager ? this.pinnedManager.isPinned(b.indexOrKey) : false;
+           if (aPinned && !bPinned) return -1;
+           if (!aPinned && bPinned) return 1;
+           return 0; // maintain original relative order otherwise
+       });
+       flattenedAgents.push(...categorizedAgents[category]);
     });
 
     // Cancel any previous renders
@@ -170,24 +178,25 @@ class RosterApp {
     const renderChunk = () => {
       if (this.currentRenderId !== currentRenderId) return; // Cancelled
 
-      const end = Math.min(agentIndex + CHUNK_SIZE, this.agents.length);
+      const end = Math.min(agentIndex + CHUNK_SIZE, flattenedAgents.length);
 
       for (let i = agentIndex; i < end; i++) {
-        const agent = this.agents[i];
-        const container = categoryContainers[agent.category];
+        const { agent, indexOrKey } = flattenedAgents[i];
+        const category = agent.category || "strategy";
+        const container = categoryContainers[category];
         if (!container) continue;
 
-        const card = AgentCard.create(agent, i, globalIndex);
+        const card = AgentCard.create(agent, indexOrKey, globalIndex);
         globalIndex++;
 
-        if (fragments[agent.category]) {
-          fragments[agent.category].appendChild(card);
+        if (fragments[category]) {
+          fragments[category].appendChild(card);
         }
       }
 
       agentIndex = end;
 
-      if (agentIndex < this.agents.length) {
+      if (agentIndex < flattenedAgents.length) {
         // Yield to the main thread before processing the next chunk
         requestAnimationFrame(() => {
           setTimeout(renderChunk, 0);
@@ -276,28 +285,27 @@ class RosterApp {
 
     // Event Delegation for Flip Card Action Buttons & Virtualized Card interactions
     document.addEventListener("click", (e) => {
-      // 0. Toggle Favorite (Must be before flip-card to prevent interception)
-      const favTarget = e.target.closest('[data-action="toggle-favorite"]');
-      if (favTarget) {
+      // 0. Toggle Pin (Must be before flip-card to prevent interception)
+      const pinTarget = e.target.closest('[data-action="toggle-pin"]');
+      if (pinTarget) {
           e.stopPropagation();
           e.preventDefault(); // Prevent flip-card action
-          const index = favTarget.dataset.index;
+          const index = pinTarget.dataset.index;
           if (index) {
-              const isFav = this.favoritesManager.toggleFavorite(index);
+              const isPinned = this.pinnedManager.togglePin(index);
 
               // Update all rendered buttons for this agent dynamically
-              document.querySelectorAll(`[data-action="toggle-favorite"][data-index="${index}"]`).forEach(btn => {
-                  btn.innerHTML = isFav ? '★' : '☆';
-                  if (isFav) {
-                      btn.classList.add('favorited');
+              document.querySelectorAll(`[data-action="toggle-pin"][data-index="${index}"]`).forEach(btn => {
+                  if (isPinned) {
+                      btn.classList.add('pinned');
                   } else {
-                      btn.classList.remove('favorited');
+                      btn.classList.remove('pinned');
                   }
               });
 
-              // Re-render favorites grid to reflect changes immediately
-              this.renderFavorites();
-              this.showToast(isFav ? "Added to Favorites" : "Removed from Favorites");
+              // Re-render agents grids to reflect sorting immediately
+              this.renderAgents();
+              this.showToast(isPinned ? "Pinned" : "Unpinned");
 
               // Invalidate cache for this specific agent to prevent stale UI in search results
               if (this._cardHtmlCache) {

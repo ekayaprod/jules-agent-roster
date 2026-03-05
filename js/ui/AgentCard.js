@@ -47,14 +47,13 @@ class AgentCard {
         const desc = FormatUtils.escapeHTML(agent.short_description || agent.desc || agent.description || '');
         const safeDisplayName = FormatUtils.escapeHTML(displayName);
 
-        const isFav = window.rosterApp && window.rosterApp.favoritesManager && window.rosterApp.favoritesManager.isFavorite(index);
-        const favIcon = isFav ? '★' : '☆';
-        const favClass = isFav ? 'favorited' : '';
+        const isPinned = window.rosterApp && window.rosterApp.pinnedManager && window.rosterApp.pinnedManager.isPinned(index);
+        const pinClass = isPinned ? 'pinned' : '';
 
         card.innerHTML = `
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <button class="icon-btn favorite-btn ${favClass}" data-action="toggle-favorite" data-index="${index}" aria-label="Toggle Favorite" >${favIcon}</button>
+                    <button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" >📌</button>
                     <div class="front-content-wrapper">
                         <div class="card-top">
                             <div class="card-top-left">
