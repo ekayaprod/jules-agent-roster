@@ -16,3 +16,7 @@
 ## 2024-05-24 - Custom Agent Layouts
 **Learning:** Users need a way to personalize their workspace by pinning frequently used or favorite fusion agent cards for quicker access.
 **Action:** When considering UX enhancements, prioritize features that allow for user customization and persistence (e.g., via LocalStorage) without complicating the single-file deployment constraint.
+
+## 2024-05-24 - 💡 Spark - [Stagnant Custom Emoji Logic]
+**Learning:** The project relies on custom, error-prone Regex logic in `js/utils/StringUtils.js` for emoji handling. This is a DX friction point that fails on Unicode edge cases and creates unnecessary technical debt.
+**Action:** When encountering reinvented string manipulation logic for Unicode/emojis, always suggest adopting a robust standard library like `emoji-regex` via CDN to ensure safe processing and standardize DX.
