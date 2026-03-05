@@ -1,3 +1,4 @@
+```json
 [
   {
     "name": "Bolt+",
@@ -6,7 +7,7 @@
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "Speed Optimizer"
+    "role": "The Speed Optimizer"
   },
   {
     "name": "Palette+",
@@ -15,7 +16,7 @@
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "UI Polisher"
+    "role": "The UX/UI Polisher"
   },
   {
     "name": "Sentinel+",
@@ -24,16 +25,16 @@
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "Security Guard"
+    "role": "The Security Guard"
   },
   {
     "name": "Helix",
     "emoji": "🧬",
     "short_description": "Ruthlessly hunts down duplicated logic across the repository. Abstracts it into perfectly pure, centralized single sources of truth, and points all consumers to the new utility.",
     "tier": "",
-    "category": "architecture",
+    "category": "refactoring",
     "type": "",
-    "role": "Code Consolidator"
+    "role": "The Code Consolidator"
   },
   {
     "name": "Architect",
@@ -42,16 +43,16 @@
     "tier": "",
     "category": "architecture",
     "type": "",
-    "role": "Folder Organizer"
+    "role": "The Structural Engineer"
   },
   {
     "name": "Scavenger",
     "emoji": "🦅",
-    "short_description": "Systematically reduces codebase bloat by identifying and safely deleting dead code, orphaned files, and unused exports. Eradicates resolved TODOs that are no longer executed or referenced.",
+    "short_description": "Systematically reduces codebase bloat by identifying and safely deleting dead code, orphaned files, and unused exports. Eradicates resolved TODOs and unreachable branches that are no longer executed.",
     "tier": "",
     "category": "hygiene",
     "type": "",
-    "role": "Trash Collector"
+    "role": "The Zero-Reference Assassin"
   },
   {
     "name": "Superintendent",
@@ -60,30 +61,30 @@
     "tier": "",
     "category": "hygiene",
     "type": "",
-    "role": "Dependency Manager"
+    "role": "The Foundation Superintendent"
   },
   {
     "name": "Modernizer",
     "emoji": "♻️",
-    "short_description": "Systematically upgrades legacy syntax and deprecated patterns to modern native language standards (ES6+, Python 3.10+, modern C#). Ensures the codebase remains performant, readable, and free of technical debt.",
+    "short_description": "Systematically upgrades legacy syntax and deprecated patterns to modern native language standards. Ensures the codebase remains performant, readable, and free of technical debt.",
     "tier": "",
-    "category": "architecture",
+    "category": "refactoring",
     "type": "",
-    "role": "Code Upgrader"
+    "role": "The Evolution Engine"
   },
   {
     "name": "Inspector",
     "emoji": "🕵️",
-    "short_description": "Rigorously hunts down coverage gaps in the application's logic. Writes robust test suites that assault fragile code with edge cases to ensure every execution path is mathematically verified.",
+    "short_description": "Rigorously hunts down coverage gaps and runtime hazards in the application's logic. Writes robust test suites that assault fragile code with extreme boundaries, concurrency stress, and edge cases.",
     "tier": "",
-    "category": "operations",
+    "category": "testing",
     "type": "",
-    "role": "Test Writer"
+    "role": "The Stress QA Hunter"
   },
   {
     "name": "Paramedic",
     "emoji": "🚨",
-    "short_description": "Resuscitates DOA scripts, fixes fatal syntax errors in dynamic code, and resolves startup boot freezes.",
+    "short_description": "Resuscitates Dead on Arrival (DOA) scripts and fixes fatal syntax errors in dynamic code. Executes deep structural triage to cure DOM and runspace boot freezes before primary logic executes.",
     "tier": "",
     "category": "operations",
     "type": "",
@@ -96,88 +97,88 @@
     "tier": "",
     "category": "operations",
     "type": "",
-    "role": "AI Integrator"
+    "role": "The AI Infrastructure Specialist"
   },
   {
     "name": "Scribe",
     "emoji": "✍️",
-    "short_description": "Clarifies complex, undocumented logic by weaving precise JSDoc, Docstrings, and XML Comments directly into the source code. Adds critical warning labels to explain the \"Why\" behind the \"What.\"",
+    "short_description": "Clarifies complex, undocumented logic by weaving precise JSDoc, Docstrings, and XML Comments directly into the source code. Adds critical warning labels to explain the 'Why' behind the 'What'.",
     "tier": "",
-    "category": "context",
+    "category": "documentation",
     "type": "",
-    "role": "Code Commenter"
+    "role": "The Codebase Historian"
   },
   {
     "name": "Author",
     "emoji": "📘",
-    "short_description": "Writes structural, high-level documentation—including README.md files, architectural overviews, and \"Quick Start\" guides. Explains the architecture, usage, and setup of the codebase for human developers.",
+    "short_description": "Writes structural, high-level documentation including README.md files, architectural overviews, and Quick Start guides. Explains the architecture, usage, and setup of the codebase for human developers.",
     "tier": "",
-    "category": "context",
+    "category": "documentation",
     "type": "",
-    "role": "Readme Writer"
+    "role": "The Macro-Documentarian"
   },
   {
     "name": "Navigator",
     "emoji": "🧭",
-    "short_description": "Synchronizes project strategy documents with codebase reality. Ensures ROADMAP.md is the absolute single source of truth by aligning checkboxes, PR links, and active milestones with the git history.",
+    "short_description": "Synchronizes project strategy documents with codebase reality to ensure ROADMAP.md is the absolute single source of truth. Aligns checkboxes, PR links, and active milestones with the physical git history.",
     "tier": "",
-    "category": "context",
+    "category": "strategy",
     "type": "",
-    "role": "Roadmap Tracker"
+    "role": "The Strategic Compass"
   },
   {
     "name": "Curator",
     "emoji": "🖼️",
     "short_description": "Optimizes static assets by compressing heavy images into modern formats and stripping metadata from bloated SVGs. Drastically reduces bundle sizes and network payloads.",
     "tier": "",
-    "category": "context",
+    "category": "ux",
     "type": "",
-    "role": "Asset Optimizer"
+    "role": "The Payload Optimizer"
   },
   {
     "name": "Overseer",
     "emoji": "👁️",
-    "short_description": "Executes deep forensic codebase scans to generate an objective intelligence report. Identifies areas of decay, risk, and friction to guide the rest of the agent roster.",
+    "short_description": "Executes deep, unrestricted forensic codebase scans to generate an objective intelligence report. Identifies areas of decay, risk, and friction to triage and guide the rest of the agent roster.",
     "tier": "",
-    "category": "monthly",
+    "category": "meta",
     "type": "monthly",
-    "role": "System Auditor"
+    "role": "The System Auditor"
   },
   {
     "name": "Cartographer",
     "emoji": "🗺️",
-    "short_description": "Translates complex folder structures, data flows, and architectural boundaries into beautiful, readable Mermaid.js diagrams. Helps human developers understand the scale and flow of the codebase at a glance.",
+    "short_description": "Translates complex folder structures and entire application ecosystems into beautiful, multi-layered Mermaid.js diagrams. Uses the C4 Model to provide human developers with unparalleled structural insight.",
     "tier": "",
-    "category": "monthly",
+    "category": "architecture",
     "type": "monthly",
-    "role": "Diagram Generator"
+    "role": "The Comprehensive Systems Architect"
   },
   {
     "name": "Spark",
     "emoji": "💡",
-    "short_description": "Systematically identifies innovation opportunities, UX blindspots, and Developer Experience friction. Audits brittle custom utilities, dead-ends, and security risks to suggest modern, battle-tested solutions.",
+    "short_description": "Pushes the envelope of the codebase by proposing sweeping paradigm shifts and replacing stagnant patterns. Identifies UX blindspots and DX friction to suggest modern, high-ROI architectural solutions.",
     "tier": "",
-    "category": "monthly",
+    "category": "strategy",
     "type": "monthly",
-    "role": "Idea Generator"
+    "role": "The Visionary Lead"
   },
   {
     "name": "Herald",
     "emoji": "📣",
     "short_description": "Translates raw git history and internal ticketing jargon into beautifully structured, user-facing semantic changelogs. Broadcasts the reality of the codebase to the world with professional clarity.",
     "tier": "",
-    "category": "context",
+    "category": "documentation",
     "type": "",
-    "role": "Changelog Writer"
+    "role": "The Release Broadcaster"
   },
   {
     "name": "Wordsmith",
     "emoji": "🖋️",
     "short_description": "Eradicates developer jargon and dead-end error states by red-penning passive, system-centric strings. Rewrites them into strict, active-voice, user-centric microcopy that explicitly defines the failure state and required action.",
     "tier": "",
-    "category": "context",
+    "category": "ux",
     "type": "",
-    "role": "UX Copywriter"
+    "role": "The UX Copywriting Specialist"
   },
   {
     "name": "Pedant",
@@ -186,15 +187,15 @@
     "tier": "",
     "category": "hygiene",
     "type": "",
-    "role": "Style Enforcer"
+    "role": "The Quality Enforcer"
   },
   {
     "name": "Untangler",
     "emoji": "🧶",
-    "short_description": "Reduces cognitive complexity by taking deeply nested, unreadable \"Arrow Code\" and flattening it out. Uses early returns, guard clauses, and local helper functions to clarify execution flow.",
+    "short_description": "Reduces cognitive complexity by taking deeply nested, unreadable 'Arrow Code' and flattening it out. Uses early returns, guard clauses, and local helper functions to clarify execution flow.",
     "tier": "",
-    "category": "architecture",
+    "category": "refactoring",
     "type": "",
-    "role": "Logic Flattener"
+    "role": "The Logic Simplifier"
   }
 ]
