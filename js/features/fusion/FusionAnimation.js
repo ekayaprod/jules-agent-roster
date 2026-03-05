@@ -155,10 +155,14 @@ class FusionAnimation {
     fuseBtn.setAttribute("aria-disabled", "true");
     if (controls) controls.classList.add("fusing");
 
-    // Start Animation
-    overlay.classList.add("active");
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      // 🪄 Illusionist: Skip animation delay for reduced motion
+    } else {
+      // Start Animation
+      overlay.classList.add("active");
 
-    await new Promise(resolve => setTimeout(resolve, 3500));
+      await new Promise(resolve => setTimeout(resolve, 3500));
+    }
 
     overlay.classList.remove("active");
     fuseBtn.disabled = false;
