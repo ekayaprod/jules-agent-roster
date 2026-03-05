@@ -38,3 +38,9 @@
 ## 2024-03-04 - 🦅 Scavenger - Major Code Purge: Recently Used Section
 **Learning:** The "Recently Used" feature, consisting of UI grid rendering logic and local storage caching, was unused and marked as obsolete debris in the Overseer report.
 **Action:** Removed the `RecentlyUsedManager.js`, associated HTML elements, and references across `RosterApp.js` and `benchmark.js`. The benchmark tests and the core functionality logic continue to perform optimally within standard tolerances.
+
+## 2026-08-01 - 🦅 Scavenger - Purged Root Level Orphaned Scripts and Test Scratchpads
+
+**Learning:** Discovered several orphaned node scripts (`parse_all.js`, `get_type.js`), root-level test scratchpads (`test_card.js`), generated image artifacts (`custom_agents_ui.png`, `verification1.png`), and temporary markdown files (`emojiaudit.md`) polluting the repository root. These files were either one-off utilities or temporary scratchpads that were never cleaned up.
+
+**Action:** Consistently purge root-level generated artifacts, orphaned utility scripts, and test scratchpads that are not part of the active core project functionality or test suite execution to maintain a clean workspace.
