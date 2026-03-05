@@ -49,11 +49,12 @@ class AgentCard {
 
         const isPinned = window.rosterApp && window.rosterApp.pinnedManager && window.rosterApp.pinnedManager.isPinned(index);
         const pinClass = isPinned ? 'pinned' : '';
+        const pinHtml = isNaN(index) ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" >📌</button>` : '';
 
         card.innerHTML = `
             <div class="flip-card-inner">
                 <div class="flip-card-front">
-                    <button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" >📌</button>
+                    ${pinHtml}
                     <div class="front-content-wrapper">
                         <div class="card-top">
                             <div class="card-top-left">
