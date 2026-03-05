@@ -340,7 +340,12 @@
             <div id="pickerScrollArea" class="clusterize-scroll" style="max-height: 50vh; overflow-y: auto;">
                 <div id="pickerGrid" class="picker-grid clusterize-content" style="display: block; grid-template-columns: none;"></div>
             </div>
-            <div id="pickerEmptyState" class="empty-state">No matching protocols found.</div>
+            <div id="pickerEmptyState" class="empty-state">
+                <div style="font-size: var(--text-5xl); margin-bottom: 1rem;">🔍</div>
+                <h3>No Protocols Found</h3>
+                <p class="text-secondary mt-2" style="max-width: 20rem; line-height: var(--leading-normal);">Adjust your search to discover new protocols or create a custom fusion.</p>
+                <button id="clearPickerSearchEmptyBtn" class="mt-3 secondary" aria-label="Clear Search Filters">Clear Search & Explore</button>
+            </div>
         </div>
         <div id="pickerAnnouncer" class="sr-only" aria-live="polite"></div>
     </dialog>

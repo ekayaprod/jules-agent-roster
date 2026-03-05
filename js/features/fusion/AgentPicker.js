@@ -160,7 +160,8 @@ class AgentPicker {
             this.pickerClusterize = new Clusterize({
                 rows: chunkedRows,
                 scrollId: 'pickerScrollArea',
-                contentId: 'pickerGrid'
+                contentId: 'pickerGrid',
+                no_data_text: ''
             });
 
             // Re-calculate chunks if window resizes to ensure grid alignment
