@@ -60,7 +60,7 @@
           border-radius: inherit;
           mix-blend-mode: overlay;
           background-size: 200% 200%;
-          opacity: 0.6;
+          opacity: 0.15;
       }
 
       @keyframes shineRare {
@@ -69,7 +69,7 @@
       }
       .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after {
           background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.3) 60%, transparent 80%);
-          animation: shineRare 6s linear infinite;
+          animation: shineRare 15s linear infinite;
       }
 
       @keyframes shineEpic {
@@ -78,9 +78,9 @@
       }
       .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after {
           background: linear-gradient(115deg, transparent 20%, rgba(217, 70, 239, 0.4) 30%, rgba(255, 255, 255, 0.9) 50%, rgba(56, 189, 248, 0.4) 70%, transparent 80%);
-          animation: shineEpic 5s linear infinite;
+          animation: shineEpic 15s linear infinite;
           mix-blend-mode: color-dodge;
-          opacity: 0.5;
+          opacity: 0.15;
       }
 
       @keyframes holographicFoil {
@@ -90,9 +90,9 @@
       }
       .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after {
           background: linear-gradient(115deg, rgba(255, 0, 0, 0.5), rgba(255, 154, 0, 0.5), rgba(208, 222, 33, 0.5), rgba(79, 220, 74, 0.5), rgba(63, 218, 216, 0.5), rgba(47, 201, 226, 0.5), rgba(28, 127, 238, 0.5), rgba(95, 21, 242, 0.5), rgba(186, 12, 248, 0.5), rgba(251, 7, 217, 0.5), rgba(255, 0, 0, 0.5));
-          animation: holographicFoil 4s ease-in-out infinite;
+          animation: holographicFoil 15s ease-in-out infinite;
           mix-blend-mode: color-dodge;
-          opacity: 0.5;
+          opacity: 0.15;
       }
 
       /* Particle Effects via Pseudo-elements for Epic & Legendary */
