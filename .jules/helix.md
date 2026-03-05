@@ -8,3 +8,6 @@
 ## 2026-03-05 - 🧬 Helix - [Button State Management]
 **Learning:** Found scattered and identical manual DOM manipulations for button states (managing `disabled`, `classList`, `innerText`, and `aria-*` attributes for loading, error, and ready states) repeated across `FusionLab.js` and `FusionAnimation.js`. This WET code increases the risk of accessibility desynchronization and styling bugs.
 **Action:** Abstracted this logic into a pure, centralized utility `DOMUtils.setButtonState(btn, state, text)` to handle all button state transitions consistently.
+## $(date +%Y-%m-%d) - 🧬 Helix - Abstracted WET Roster Headers
+**Learning:** Hardcoded text headers for copying/downloading content in `RosterApp.js` were duplicated. Magic strings like `"JULES MASTER AGENT ROSTER\n\n..."` appeared 4 times across different clipboard and download export methods.
+**Action:** Abstracted the duplicated strings into pure, domain-agnostic `FormatUtils.MASTER_ROSTER_HEADER` and `FormatUtils.CUSTOM_ROSTER_HEADER` static properties. Ensure constants are placed in relevant utility classes (`FormatUtils.js`) rather than creating a generic `constants.js` to preserve domain grouping.
