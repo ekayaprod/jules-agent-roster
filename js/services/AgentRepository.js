@@ -296,7 +296,12 @@ class AgentRepository {
         }
 
         // Security: Check for XSS in name/description using a robust pattern
-        // Targets dangerous tags, event handlers, and URI schemes.
+        // WARN: This regex acts as the final boundary line against DOM-based XSS when injecting dynamic JSON data.
+        // Do not remove tags from this list without cross-referencing OWASP standards.
+        // It strictly checks for:
+        // 1. /<\s*(...)\b/i -> Matches the opening of potentially executable or external-loading HTML tags.
+        // 2. /on\w+\s*=/i -> Matches inline event handlers (e.g., onclick=, onerror=) to prevent execution.
+        // 3. /javascript\s*:|vbscript\s*:/i -> Matches malicious URI schemes often injected into href or src attributes.
         const maliciousPattern = /<\s*(script|iframe|object|embed|style|meta|link|base|svg|math|form|details|button|video|audio|canvas|map|area|plaintext|basefont|listing|xmp)\b|on\w+\s*=|javascript\s*:|vbscript\s*:/i;
         if (
             maliciousPattern.test(data.name) ||
