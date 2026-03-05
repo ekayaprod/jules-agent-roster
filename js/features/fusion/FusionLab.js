@@ -10,6 +10,7 @@ class FusionLab {
       slotA: null,
       slotB: null,
     };
+    this.elements = {};
   }
 
   /**
@@ -47,24 +48,29 @@ class FusionLab {
    * Binds event listeners for the Fusion Lab.
    */
   bindEvents() {
-    const fuseBtn = document.getElementById("fuseBtn");
-    const copyFusionBtn = document.getElementById("copyFusionBtn");
+    // ⚡ Bolt+: Extracted redundant DOM queries outside of individual methods and cached them here to prevent layout thrashing and repeated execution overhead.
+    this.elements = {
+        fuseBtn: document.getElementById("fuseBtn"),
+        copyFusionBtn: document.getElementById("copyFusionBtn"),
+        slotACard: document.getElementById("slotACard"),
+        slotBCard: document.getElementById("slotBCard"),
+        errorEl: document.getElementById("fusionError"),
+        textSpan: document.getElementById("fusionErrorText"),
+        fusionResultContainer: document.getElementById("fusionResultContainer"),
+        fusionOutputWrapper: document.getElementById("fusionOutputWrapper"),
+    };
 
-    // Slot Interactions
-    const slotACard = document.getElementById("slotACard");
-    const slotBCard = document.getElementById("slotBCard");
-
-    if (slotACard) slotACard.addEventListener("click", () => {
+    if (this.elements.slotACard) this.elements.slotACard.addEventListener("click", () => {
         if (this.picker) this.picker.openPicker("slotA", this.state.slotA);
     });
-    if (slotBCard) slotBCard.addEventListener("click", () => {
+    if (this.elements.slotBCard) this.elements.slotBCard.addEventListener("click", () => {
         if (this.picker) this.picker.openPicker("slotB", this.state.slotB);
     });
 
-    if (fuseBtn) fuseBtn.addEventListener("click", () => this.handleFusion());
+    if (this.elements.fuseBtn) this.elements.fuseBtn.addEventListener("click", () => this.handleFusion());
 
-    if (copyFusionBtn) {
-      copyFusionBtn.addEventListener("click", async (e) => {
+    if (this.elements.copyFusionBtn) {
+      this.elements.copyFusionBtn.addEventListener("click", async (e) => {
         const btn = e.currentTarget;
         if (this.lastFusionResult && this.lastFusionResult.prompt) {
           await ClipboardUtils.copyText(this.lastFusionResult.prompt);
@@ -83,7 +89,7 @@ class FusionLab {
    */
   renderSlots() {
     const updateSlotUI = (slotId, agent) => {
-        const card = document.getElementById(slotId + "Card");
+        const card = this.elements[slotId + "Card"];
         if (!card) return;
 
         const content = card.querySelector(".slot-content");
@@ -165,7 +171,7 @@ class FusionLab {
    * Updates the state of the Fusion button and visual indicators.
    */
   updateState() {
-    const fuseBtn = document.getElementById("fuseBtn");
+    const fuseBtn = this.elements.fuseBtn;
 
     if (fuseBtn) {
       const isReady = this.state.slotA !== null && this.state.slotB !== null;
@@ -179,9 +185,9 @@ class FusionLab {
    * @param {string} message - The error message to display.
    */
   showError(message) {
-    const errorEl = document.getElementById("fusionError");
-    const textSpan = document.getElementById("fusionErrorText");
-    const fuseBtn = document.getElementById("fuseBtn");
+    const errorEl = this.elements.errorEl;
+    const textSpan = this.elements.textSpan;
+    const fuseBtn = this.elements.fuseBtn;
 
     if (fuseBtn) {
       DOMUtils.setButtonState(fuseBtn, "error", "Ignite Fusion Protocol");
@@ -198,8 +204,8 @@ class FusionLab {
    * Clears the error state.
    */
   clearError() {
-    const errorEl = document.getElementById("fusionError");
-    const fuseBtn = document.getElementById("fuseBtn");
+    const errorEl = this.elements.errorEl;
+    const fuseBtn = this.elements.fuseBtn;
 
     if (errorEl) {
       errorEl.hidden = true;
@@ -215,7 +221,7 @@ class FusionLab {
    * Handles the fusion logic when the Fuse button is clicked.
    */
   async handleFusion() {
-    const fuseBtn = document.getElementById("fuseBtn");
+    const fuseBtn = this.elements.fuseBtn;
 
     const agentA = this.state.slotA;
     const agentB = this.state.slotB;
@@ -304,7 +310,7 @@ class FusionLab {
   renderFusionResult(result) {
     this.lastFusionResult = result;
 
-    const container = document.getElementById("fusionResultContainer");
+    const container = this.elements.fusionResultContainer;
     if (container) {
       container.innerHTML = ""; // Clear previous
 
@@ -329,12 +335,12 @@ class FusionLab {
    * Reveals the fusion result with smooth transitions.
    */
   showResult() {
-    const fuseBtn = document.getElementById("fuseBtn");
+    const fuseBtn = this.elements.fuseBtn;
     if (fuseBtn) {
       DOMUtils.setButtonState(fuseBtn, "ready", "Ignite Fusion Protocol");
     }
 
-    const wrapper = document.getElementById("fusionOutputWrapper");
+    const wrapper = this.elements.fusionOutputWrapper;
     if (wrapper) {
       wrapper.classList.add("open");
 
