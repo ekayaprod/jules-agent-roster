@@ -1080,13 +1080,13 @@
     "role": "Helm Modernizer"
   },
   "Modernizer,Palette+": {
-    "name": "Stylist",
-    "emoji": "💅",
-    "short_description": "Migrates chaotic inline styles, BEM classes, and outdated CSS frameworks to modern Tailwind and CSS variables. Full dark mode support and design token consistency — legacy styling entropy eliminated.",
+    "name": "Mobilizer",
+    "emoji": "📱",
+    "short_description": "Transforms rigid, fixed-width desktop layouts into fluid, mobile-first paradigms. Sweeps the application to replace hardcoded pixels with fluid percentages, ensuring perfect rendering across all viewports and devices.",
     "tier": "Common",
     "category": "ux",
-    "type": "fusion",
-    "role": "Style Migrator"
+    "type": "",
+    "role": "The Responsive Modernizer"
   },
   "Modernizer,Paramedic": {
     "name": "Inoculator",
