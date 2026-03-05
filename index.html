@@ -231,11 +231,15 @@
 
     <nav id="category-nav" class="category-nav">
       <a href="#core-maintenance" class="nav-pill">Core</a>
-      <a href="#architecture-optimization" class="nav-pill">Architecture</a>
-      <a href="#code-hygiene" class="nav-pill">Hygiene</a>
-      <a href="#operations-release" class="nav-pill">Operations</a>
-      <a href="#context-strategy" class="nav-pill">Context</a>
-      <a href="#monthly-intelligence" class="nav-pill">Monthly</a>
+      <a href="#refactoring" class="nav-pill">Refactoring</a>
+      <a href="#architecture" class="nav-pill">Architecture</a>
+      <a href="#hygiene" class="nav-pill">Hygiene</a>
+      <a href="#testing" class="nav-pill">Testing</a>
+      <a href="#operations" class="nav-pill">Operations</a>
+      <a href="#documentation" class="nav-pill">Documentation</a>
+      <a href="#strategy" class="nav-pill">Strategy</a>
+      <a href="#ux" class="nav-pill">UX</a>
+      <a href="#meta" class="nav-pill">Meta</a>
     </nav>
 
     <div id="searchModeContainer" class="hidden">
@@ -254,16 +258,24 @@
       <div class="grid" id="favoritesGrid" style="display: none;"></div>
       <h2 id="core-maintenance" class="section-header">Core Maintenance</h2>
       <div class="grid" id="coreGrid"></div>
-      <h2 id="architecture-optimization" class="section-header">Architecture & Optimization</h2>
+      <h2 id="refactoring" class="section-header">Refactoring</h2>
+      <div class="grid" id="refactoringGrid"></div>
+      <h2 id="architecture" class="section-header">Architecture</h2>
       <div class="grid" id="archGrid"></div>
-      <h2 id="code-hygiene" class="section-header">Code Hygiene & QA</h2>
+      <h2 id="hygiene" class="section-header">Hygiene</h2>
       <div class="grid" id="hygieneGrid"></div>
-      <h2 id="operations-release" class="section-header">Operations & Release</h2>
+      <h2 id="testing" class="section-header">Testing</h2>
+      <div class="grid" id="testingGrid"></div>
+      <h2 id="operations" class="section-header">Operations</h2>
       <div class="grid" id="opsGrid"></div>
-      <h2 id="context-strategy" class="section-header">Context & Documentation</h2>
-      <div class="grid" id="contextGrid"></div>
-      <h2 id="monthly-intelligence" class="section-header">Monthly Intelligence</h2>
-      <div class="grid" id="monthlyGrid"></div>
+      <h2 id="documentation" class="section-header">Documentation</h2>
+      <div class="grid" id="documentationGrid"></div>
+      <h2 id="strategy" class="section-header">Strategy</h2>
+      <div class="grid" id="strategyGrid"></div>
+      <h2 id="ux" class="section-header">UX</h2>
+      <div class="grid" id="uxGrid"></div>
+      <h2 id="meta" class="section-header">Meta</h2>
+      <div class="grid" id="metaGrid"></div>
     </main>
 
     <div class="fusion-lab-container">
@@ -344,8 +356,8 @@
           categoryNav: "#category-nav", main: "#main", navPills: ".nav-pill",
           sectionHeader: ".section-header", grid: ".grid", card: ".card"
         },
-        categories: { favorites: "favoritesGrid", core: "coreGrid", architecture: "archGrid", hygiene: "hygieneGrid", operations: "opsGrid", context: "contextGrid", monthly: "monthlyGrid" },
-        sectionMap: { favoritesGrid: "favorites-section", coreGrid: "core-maintenance", archGrid: "architecture-optimization", hygieneGrid: "code-hygiene", opsGrid: "operations-release", contextGrid: "context-strategy", monthlyGrid: "monthly-intelligence" }
+        categories: { favorites: "favoritesGrid", core: "coreGrid", refactoring: "refactoringGrid", architecture: "archGrid", hygiene: "hygieneGrid", testing: "testingGrid", operations: "opsGrid", documentation: "documentationGrid", strategy: "strategyGrid", ux: "uxGrid", meta: "metaGrid" },
+        sectionMap: { favoritesGrid: "favorites-section", coreGrid: "core-maintenance", refactoringGrid: "refactoring", archGrid: "architecture", hygieneGrid: "hygiene", testingGrid: "testing", opsGrid: "operations", documentationGrid: "documentation", strategyGrid: "strategy", uxGrid: "ux", metaGrid: "meta" }
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
