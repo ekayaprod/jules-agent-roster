@@ -1287,13 +1287,13 @@
     "role": "Trust Designer"
   },
   "Palette+,Superintendent": {
-    "name": "Upholsterer",
-    "emoji": "🛋️",
-    "short_description": "Standardizes fragmented component props and variants across the application to keep the UI perfectly hygienic. Ad-hoc overrides replaced with official design system variants — no UI debt.",
+    "name": "Stylist",
+    "emoji": "💅",
+    "short_description": "Migrates chaotic inline styles, BEM classes, and outdated CSS frameworks to modern Tailwind and CSS variables. Full dark mode support and design token consistency — legacy styling entropy eliminated.",
     "tier": "Common",
     "category": "ux",
     "type": "fusion",
-    "role": "Prop Standardizer"
+    "role": "Style Migrator"
   },
   "Palette+,Untangler": {
     "name": "Streamliner",
