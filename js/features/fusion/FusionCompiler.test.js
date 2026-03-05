@@ -1,4 +1,4 @@
-const PromptParser = require('../../PromptParser');
+const PromptParser = require('../../utils/PromptParser');
 global.PromptParser = PromptParser;
 const FusionCompiler = require('./FusionCompiler');
 
