@@ -26,6 +26,7 @@ class RosterApp {
    */
   async init() {
     this.cacheElements();
+    this.renderSkeletons();
 
     try {
         const { agents, customAgents } = await this.agentRepo.fetchAgents();
@@ -72,7 +73,6 @@ class RosterApp {
         }
     }
 
-    this.renderSkeletons();
     this.renderAgents();
     this.bindEvents();
     this.initObserver();
