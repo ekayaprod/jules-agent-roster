@@ -86,15 +86,14 @@
       }
 
       @keyframes holographicFoil {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+          0% { background-position: 200% 50%; }
+          100% { background-position: -200% 50%; }
       }
       .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after {
           background-image: linear-gradient(115deg, rgba(255, 0, 0, 0.5), rgba(255, 154, 0, 0.5), rgba(208, 222, 33, 0.5), rgba(79, 220, 74, 0.5), rgba(63, 218, 216, 0.5), rgba(47, 201, 226, 0.5), rgba(28, 127, 238, 0.5), rgba(95, 21, 242, 0.5), rgba(186, 12, 248, 0.5), rgba(251, 7, 217, 0.5), rgba(255, 0, 0, 0.5));
-          animation: holographicFoil 15s ease-in-out infinite;
+          animation: holographicFoil 15s linear infinite;
           mix-blend-mode: color-dodge;
-          opacity: 0.15;
+          opacity: 0.25;
       }
 
       /* Particle Effects via Pseudo-elements for Epic & Legendary */
