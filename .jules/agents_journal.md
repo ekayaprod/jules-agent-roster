@@ -14,9 +14,9 @@
 **Learning:** The Agent Picker modal `<dialog>` creates an "invisible" dead end by overlaying the UI without modifying the browser's history state, causing the native back button to bypass the modal and unintentionally navigate the user away from the app.
 **Action:** Injected a `history.pushState` operation when opening the modal, and added a global `popstate` event listener to intercept the browser's back button and safely close the modal without losing the underlying application state.
 
-## 2024-05-24 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: FavoritesManager]
-**Learning:** The persistence module `FavoritesManager` lacked context on its architectural role and how its local storage usage works.
-**Action:** Synthesized a high-level `README.md` defining its singleton-like pattern and its usage of `StorageUtils` for `localStorage`, and added granular, strictly typed JSDoc comments to `FavoritesManager.js` using `@see` to link directly back to the `README.md` architecture and quick-start sections.
+## 2024-05-24 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: App Core and Persistence]
+**Learning:** Core application modules (like `RosterApp.js` and `FavoritesManager/PinnedManager`) often lack explicit architectural mappings and lifecycle documentation, resulting in isolated methods.
+**Action:** Always map the core lifecycle and architectural constraints in a high-level module `README.md` first, then generate granular, strictly typed JSDoc across all major class methods linking back via `@see README.md#Section` to ensure the macro and micro contexts are permanently synchronized.
 
 ## 2026-03-05 - 📰 Publisher - [Responsive Layout Enforced: Raw CSS Media Queries]
 **Learning:** The project relies on raw vanilla CSS without standard utility frameworks, meaning responsive standard breakpoints (like `sm:` or `md:`) must be manually defined via `@media (min-width: 640px)` to transition from fluid mobile constraints (`100%` width) to fixed dimensions on larger screens, rather than injecting utility classes.
