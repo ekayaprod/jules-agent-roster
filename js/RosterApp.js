@@ -403,6 +403,8 @@ class RosterApp {
       // 7. General Action Buttons (Copy/Download/Launch)
       const actionBtn = e.target.closest('[data-action]');
       if (actionBtn && ["copy-agent", "download-agent", "launch-jules"].includes(actionBtn.dataset.action)) {
+          e.preventDefault();
+          e.stopPropagation();
           const index = actionBtn.dataset.index;
           let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
           if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
@@ -415,7 +417,7 @@ class RosterApp {
               DownloadUtils.downloadTextFile(agent.prompt, `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
               actionBtn.closest('.dropdown-menu')?.classList.remove('visible');
           } else if (actionBtn.dataset.action === "launch-jules") {
-          this.launchJulesSession(agent, actionBtn);
+              this.launchJulesSession(agent, actionBtn);
           }
       }
     });
