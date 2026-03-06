@@ -15,6 +15,8 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 ## 🚀 Phase 2: Expansion & Specialization (Q3)
 *Focus: Broadening the Roster*
 
+- [ ] **Interactive Jules API Dashboard Modal**: Make all active processes in the dashboard clickable to display a full modal thread. When Jules API pauses and requires user input (`Needs Input` status), the modal should provide a chat-like interface to reply and continue the execution thread.
+  - *Estimation*: ~250-300 LOC. Requires creating a new modal UI, rendering markdown for full activity history, and adding `replyToSession` (POST) network methods to `JulesAPI.js`.
 - [ ] **New Agent Categories**: Explore specialized agents for Data Science, DevOps, and Mobile dev.
 - [ ] **Framework-Specific Variants**: Create variants of agents for specific stacks (e.g., Next.js vs. Remix vs. Vue).
 - [ ] **Community Contributions**: Streamline the process for community submitted agents.

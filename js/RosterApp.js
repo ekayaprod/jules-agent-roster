@@ -555,11 +555,15 @@ class RosterApp {
 
               let isCompleted = false;
               let hasError = false;
+              let isWaitingForInput = false;
               let lastProgressTitle = metaDiv.textContent;
 
               activities.forEach(act => {
                   if (act.progressUpdated) {
                       lastProgressTitle = act.progressUpdated.title;
+                  } else if (act.userActionRequired || act.requiresInput || (act.type && act.type.includes('INPUT'))) {
+                      isWaitingForInput = true;
+                      lastProgressTitle = act.title || "Waiting for Input...";
                   } else if (act.sessionCompleted) {
                       isCompleted = true;
 
@@ -602,6 +606,12 @@ class RosterApp {
 
                   clearInterval(this.julesPollingIntervals[sessionId]);
                   delete this.julesPollingIntervals[sessionId];
+              } else if (isWaitingForInput) {
+                  statusBadge.className = "status-badge status-failed";
+                  statusBadge.textContent = "Needs Input";
+                  statusBadge.style.background = "rgba(245, 158, 11, 0.1)";
+                  statusBadge.style.color = "#f59e0b";
+                  statusBadge.style.borderColor = "rgba(245, 158, 11, 0.2)";
               }
 
           } catch (e) {
