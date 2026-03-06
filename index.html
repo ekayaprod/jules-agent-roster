@@ -97,8 +97,8 @@
       }
 
       /* Particle Effects via Pseudo-elements for Epic & Legendary */
-      .tier-epic::before, .tier-epic::after,
-      .tier-legendary::before, .tier-legendary::after {
+      .tier-epic .flip-card-inner::before, .tier-epic .flip-card-inner::after,
+      .tier-legendary .flip-card-inner::before, .tier-legendary .flip-card-inner::after {
           content: '';
           position: absolute;
           border-radius: 50%;
@@ -119,13 +119,13 @@
           100% { transform: translate(20px, -30px) scale(0); opacity: 0; }
       }
 
-      .tier-epic::before {
+      .tier-epic .flip-card-inner::before {
           width: 4px; height: 4px; background: rgba(217, 70, 239, 0.8);
           bottom: -5px; left: 20%;
           box-shadow: 0 0 8px rgba(217, 70, 239, 0.8), 20px -10px 0 2px rgba(217, 70, 239, 0.6), 50px -5px 0 1px rgba(217, 70, 239, 0.5), 100px -15px 0 2px rgba(217, 70, 239, 0.7);
           animation: floatParticlesEpic1 3s infinite ease-in;
       }
-      .tier-epic::after {
+      .tier-epic .flip-card-inner::after {
           width: 3px; height: 3px; background: rgba(217, 70, 239, 0.6);
           top: -5px; right: 25%;
           box-shadow: 0 0 6px rgba(217, 70, 239, 0.6), -30px 5px 0 1px rgba(217, 70, 239, 0.8), -70px -10px 0 2px rgba(217, 70, 239, 0.5), -120px -5px 0 1px rgba(217, 70, 239, 0.7);
@@ -145,13 +145,13 @@
           100% { transform: translate(30px, -40px) scale(0); opacity: 0; }
       }
 
-      .tier-legendary::before {
+      .tier-legendary .flip-card-inner::before {
           width: 5px; height: 5px; background: rgba(251, 191, 36, 1);
           bottom: -5px; left: 15%;
           box-shadow: 0 0 10px rgba(251, 191, 36, 1), 30px -15px 0 2px rgba(251, 191, 36, 0.8), 70px -5px 0 3px rgba(251, 191, 36, 0.6), 130px -20px 0 2px rgba(251, 191, 36, 0.9), 180px -10px 0 1px rgba(251, 191, 36, 0.7);
           animation: floatParticlesLeg1 2.5s infinite ease-in;
       }
-      .tier-legendary::after {
+      .tier-legendary .flip-card-inner::after {
           width: 4px; height: 4px; background: rgba(251, 191, 36, 0.8);
           top: -5px; right: 15%;
           box-shadow: 0 0 8px rgba(251, 191, 36, 0.8), -40px 10px 0 2px rgba(251, 191, 36, 1), -90px -15px 0 3px rgba(251, 191, 36, 0.7), -150px -5px 0 2px rgba(251, 191, 36, 0.9), -200px -10px 0 1px rgba(251, 191, 36, 0.6);
