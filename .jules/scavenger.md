@@ -52,3 +52,7 @@
 ## 2026-03-08 - 🦅 Scavenger - [Purged Zero-Reference Class PromptRenderer]
 **Learning:** Found `PromptRenderer.js` and `PromptRenderer.test.js` where `PromptRenderer` class was fully implemented and tested but never referenced by any runtime code. Even though the method `renderMarkdown` was previously removed, the entire class `PromptRenderer` was still left in the codebase without any usage.
 **Action:** When auditing codebase bloat, check if entire classes and their test suites are actually used by the main application logic. If they are completely unused, remove them entirely to reduce technical debt.
+
+## 2026-03-09 - 🦅 Scavenger - [Purged Zero-Reference Class MarkdownRenderer]
+**Learning:** Found `MarkdownRenderer` fully implemented but never referenced by any runtime code. Even though it was included in the global environment and `index.html`, none of its methods were invoked, making it dead codebase bloat.
+**Action:** Always verify if utility classes included in scripts are actually invoked by the runtime application logic. Delete entire classes to reduce technical debt if they are entirely unreferenced.
