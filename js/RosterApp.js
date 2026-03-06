@@ -5,7 +5,6 @@
 class RosterApp {
   /**
    * Initializes the RosterApp instance, setting up empty states and service dependencies.
-   * @see js/README.md#rosterapp-architecture for the initialization flow.
    */
   constructor() {
     this.agents = [];
@@ -16,17 +15,17 @@ class RosterApp {
     this.pinnedManager = new PinnedManager();
     this.fusionLab = null;
     this._cardHtmlCache = new Map();
+    this.julesPollingInterval = null;
   }
-
 
   /**
    * Bootstraps the application, fetching agent data and initializing UI components.
-   * @see js/README.md#rosterapp-architecture for the complete application lifecycle.
    * @returns {Promise<void>} Resolves when initialization is complete.
    */
   async init() {
     this.cacheElements();
     this.renderSkeletons();
+    await this.initJules(); // Boot up Jules API connection
 
     try {
         const { agents, customAgents } = await this.agentRepo.fetchAgents();
@@ -39,24 +38,19 @@ class RosterApp {
         const skeleton = document.getElementById("fusionLabSkeleton");
         const content = document.getElementById("fusionLabContent");
         if (skeleton && content) {
-            // 🗿 Sculptor: Smooth the seams between loading skeleton and content
             skeleton.style.opacity = '0';
-
             const revealContent = () => {
                 skeleton.classList.add("hidden");
                 content.style.opacity = '0';
                 content.classList.remove("hidden");
-
-                // Force reflow
-                content.offsetHeight;
-
+                content.offsetHeight; // Force reflow
                 content.style.opacity = '1';
             };
 
             if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 revealContent();
             } else {
-                setTimeout(revealContent, 500); // Wait for skeleton fade out
+                setTimeout(revealContent, 500); 
             }
         }
     } catch (error) {
@@ -69,7 +63,7 @@ class RosterApp {
 
             this.elements.main.innerHTML = `
               <div class="empty-state visible">
-                <svg class="empty-icon" aria-hidden="true" focusable="false" width="64" height="64" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
+                <svg class="empty-icon" aria-hidden="true" width="64" height="64" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
                 </svg>
                 <p class="empty-title">${errorTitle}</p>
@@ -86,8 +80,80 @@ class RosterApp {
   }
 
   /**
-   * Caches critical DOM elements to prevent repeated queries during high-frequency events.
-   * @see js/README.md#rosterapp-architecture
+   * Initializes the Jules API connection and Settings Modal logic.
+   */
+  async initJules() {
+      const apiKey = StorageUtils.getItem("jules_api_key");
+      const settingsModal = document.getElementById("settingsModal");
+      const openBtn = document.getElementById("openSettingsBtn");
+      const closeBtn = document.getElementById("closeSettingsBtn");
+      const saveBtn = document.getElementById("saveSettingsBtn");
+      const keyInput = document.getElementById("julesApiKeyInput");
+
+      // Modal Toggles
+      const toggleModal = (show) => {
+          if (show) {
+              keyInput.value = StorageUtils.getItem("jules_api_key");
+              settingsModal.classList.add("visible");
+          } else {
+              settingsModal.classList.remove("visible");
+          }
+      };
+
+      openBtn?.addEventListener("click", () => toggleModal(true));
+      closeBtn?.addEventListener("click", () => toggleModal(false));
+
+      // Save and Connect Logic
+      saveBtn?.addEventListener("click", async () => {
+          const key = keyInput.value.trim();
+          if (!key) return this.toast.show("Please enter an API Key.");
+          
+          StorageUtils.setItem("jules_api_key", key);
+          toggleModal(false);
+          this.toast.show("Connecting to Jules...");
+          
+          if (window.julesService) {
+              window.julesService.configure(key);
+              await this.loadJulesSources();
+          }
+      });
+
+      // Auto-connect if key exists, otherwise prompt user
+      if (apiKey && window.julesService) {
+          window.julesService.configure(apiKey);
+          await this.loadJulesSources();
+      } else {
+          toggleModal(true);
+      }
+  }
+
+  /**
+   * Fetches available GitHub repos and populates the runner dropdown.
+   */
+  async loadJulesSources() {
+      const picker = document.getElementById("julesRepoPicker");
+      if (!picker || !window.julesService) return;
+
+      try {
+          const data = await window.julesService.getSources();
+          if (data.sources) {
+              picker.innerHTML = `<option value="">1. Select GitHub Repository...</option>`;
+              data.sources.forEach(s => {
+                  const opt = document.createElement("option");
+                  opt.value = s.name;
+                  opt.textContent = `${s.githubRepo.owner}/${s.githubRepo.repo}`;
+                  picker.appendChild(opt);
+              });
+              this.toast.show("Jules Repositories Loaded");
+          }
+      } catch (err) {
+          this.toast.show("Failed to fetch Repos. Check API Key.", true);
+          console.error("Jules Source Error:", err);
+      }
+  }
+
+  /**
+   * Caches critical DOM elements.
    */
   cacheElements() {
     Object.keys(CONFIG.selectors).forEach((key) => {
@@ -99,7 +165,7 @@ class RosterApp {
   }
 
   /**
-   * Injects CSS loading skeletons into grids to mask latency during data fetching.
+   * Injects CSS loading skeletons.
    */
   renderSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
@@ -115,9 +181,7 @@ class RosterApp {
   }
 
   /**
-   * Renders agent cards into their respective category grids using asynchronous batch chunking.
-   * Leverages requestAnimationFrame and setTimeout to prevent main-thread blocking.
-   * @see js/README.md#rosterapp-architecture for batch rendering optimizations.
+   * Renders agent cards into their grids.
    */
   renderAgents() {
     const categoryContainers = {};
@@ -133,7 +197,6 @@ class RosterApp {
       }
     });
 
-    // Populate and group all agents into their respective categories
     this.agents.forEach((agent, i) => {
       const category = agent.category || "strategy";
       if (categorizedAgents[category]) {
@@ -141,17 +204,14 @@ class RosterApp {
       }
     });
 
-    // Add pinned custom/fusion agents to the main display
     if (this.pinnedManager) {
         const pinnedKeys = this.pinnedManager.getPinned();
         pinnedKeys.forEach(key => {
-             // Only add if it's not an index from base agents
              if (isNaN(key)) {
                 let agent = (this.customAgents && this.customAgents[key]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
                 if (agent) {
                    const category = agent.category || "strategy";
                    if (categorizedAgents[category]) {
-                       // Only add it if it isn't already there (shouldn't be, as it's a custom agent)
                        categorizedAgents[category].push({ agent, indexOrKey: key });
                    }
                 }
@@ -159,7 +219,6 @@ class RosterApp {
         });
     }
 
-    // Sort each category so pinned agents appear first
     const flattenedAgents = [];
     Object.keys(categorizedAgents).forEach(category => {
        categorizedAgents[category].sort((a, b) => {
@@ -167,12 +226,11 @@ class RosterApp {
            const bPinned = this.pinnedManager ? this.pinnedManager.isPinned(b.indexOrKey) : false;
            if (aPinned && !bPinned) return -1;
            if (!aPinned && bPinned) return 1;
-           return 0; // maintain original relative order otherwise
+           return 0;
        });
        flattenedAgents.push(...categorizedAgents[category]);
     });
 
-    // Cancel any previous renders
     const currentRenderId = Symbol();
     this.currentRenderId = currentRenderId;
 
@@ -181,7 +239,7 @@ class RosterApp {
     let agentIndex = 0;
 
     const renderChunk = () => {
-      if (this.currentRenderId !== currentRenderId) return; // Cancelled
+      if (this.currentRenderId !== currentRenderId) return;
 
       const end = Math.min(agentIndex + CHUNK_SIZE, flattenedAgents.length);
 
@@ -202,53 +260,34 @@ class RosterApp {
       agentIndex = end;
 
       if (agentIndex < flattenedAgents.length) {
-        // Yield to the main thread before processing the next chunk
-        requestAnimationFrame(() => {
-          setTimeout(renderChunk, 0);
-        });
+        requestAnimationFrame(() => setTimeout(renderChunk, 0));
       } else {
-        // All chunks processed, flush fragments to DOM
         requestAnimationFrame(() => {
-          if (this.currentRenderId !== currentRenderId) return; // Cancelled before flushing
-
+          if (this.currentRenderId !== currentRenderId) return;
           Object.keys(categoryContainers).forEach((key) => {
-            if (categoryContainers[key]) {
-              categoryContainers[key].innerHTML = "";
-            }
+            if (categoryContainers[key]) categoryContainers[key].innerHTML = "";
           });
           Object.keys(fragments).forEach(key => {
-            if (categoryContainers[key]) {
-              categoryContainers[key].appendChild(fragments[key]);
-            }
+            if (categoryContainers[key]) categoryContainers[key].appendChild(fragments[key]);
           });
         });
       }
     };
 
-    // Start rendering chunks
-    requestAnimationFrame(() => {
-      setTimeout(renderChunk, 0);
-    });
+    requestAnimationFrame(() => setTimeout(renderChunk, 0));
   }
 
   /**
-   * Attaches event listeners for search input, filtering, and global action delegation.
-   * @see js/README.md#rosterapp-architecture for event delegation strategies.
+   * Attaches global event listeners.
    */
   bindEvents() {
     if (this.elements.searchInput) {
-      const debouncedFilter = PerformanceUtils.debounce((query) => {
-        this.filterAgents(query);
-      }, 300);
+      const debouncedFilter = PerformanceUtils.debounce((query) => this.filterAgents(query), 300);
       this.elements.searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
     }
     
     this.elements.clearBtn?.addEventListener("click", () => this.clearSearch());
-
-    const clearSearchEmptyBtn = document.getElementById("clearSearchEmptyBtn");
-    if (clearSearchEmptyBtn) {
-      clearSearchEmptyBtn.addEventListener("click", () => this.clearSearch());
-    }
+    document.getElementById("clearSearchEmptyBtn")?.addEventListener("click", () => this.clearSearch());
 
     // Footer Master Export Controls
     const masterDropBtn = document.getElementById('masterDropdownBtn');
@@ -259,18 +298,114 @@ class RosterApp {
         masterDropMenu.classList.toggle("visible");
     });
 
+    // Global Click Delegation (Handles Dropdowns, Cards, etc.)
     document.addEventListener("click", (e) => {
-        if (masterDropMenu?.classList.contains("visible") && !masterDropMenu.contains(e.target) && !masterDropBtn.contains(e.target)) {
-            masterDropMenu.classList.remove("visible");
-        }
+      // 1. Close master dropdown if clicked outside
+      if (masterDropMenu?.classList.contains("visible") && !masterDropMenu.contains(e.target) && !masterDropBtn.contains(e.target)) {
+          masterDropMenu.classList.remove("visible");
+      }
+
+      // 2. Close specific card dropdowns if clicked outside
+      document.querySelectorAll('.card-dropdown-menu.visible, .dropdown-menu.visible').forEach(menu => {
+          if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
+              menu.classList.remove('visible');
+          }
+      });
+
+      // 3. Toggle Pin
+      const pinTarget = e.target.closest('[data-action="toggle-pin"]');
+      if (pinTarget) {
+          const card = pinTarget.closest('.flip-card');
+          if (card && card.classList.contains('flipped')) return;
+          e.stopPropagation();
+          e.preventDefault();
+          const index = pinTarget.dataset.index;
+          if (index) {
+              const isPinned = this.pinnedManager.togglePin(index);
+              document.querySelectorAll(`[data-action="toggle-pin"][data-index="${index}"]`).forEach(btn => {
+                  if (isPinned) btn.classList.add('pinned');
+                  else btn.classList.remove('pinned');
+              });
+              this.renderAgents();
+              this.showToast(isPinned ? "Pinned" : "Unpinned");
+              if (this._cardHtmlCache) {
+                  this._cardHtmlCache.delete(String(index));
+                  this._cardHtmlCache.delete(Number(index));
+              }
+          }
+          return;
+      }
+
+      // 4. Flip Card Front (Open)
+      const frontTarget = e.target.closest('[data-action="flip-card"]');
+      if (frontTarget) {
+          const card = frontTarget.closest('.flip-card');
+          if (card) {
+              const index = frontTarget.dataset.index;
+              const safeIndex = CSS.escape(String(index));
+              const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
+              if (promptArea && !promptArea.innerHTML.trim()) {
+                  let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+                  if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
+                  if (agent) promptArea.innerHTML = AgentCard.getPromptHtml(agent);
+              }
+              card.classList.add('flipped');
+          }
+          return;
+      }
+
+      // 5. Flip Card Back (Close)
+      const backTarget = e.target.closest('[data-action="flip-card-back"]');
+      if (backTarget) {
+          e.stopPropagation();
+          const card = backTarget.closest('.flip-card');
+          if (card) card.classList.remove('flipped');
+          return;
+      }
+
+      // 6. Action Dropdown Toggle (For individual cards)
+      const toggleTarget = e.target.closest('[data-action="toggle-card-dropdown"]');
+      if (toggleTarget) {
+          e.stopPropagation();
+          const index = toggleTarget.dataset.index;
+          const safeIndex = CSS.escape(String(index));
+          const dropdown = document.getElementById(`card-dropdown-${safeIndex}`);
+          
+          // Close others
+          document.querySelectorAll('.dropdown-menu.visible').forEach(m => {
+              if (m !== dropdown && m.id !== 'masterDropdownMenu') m.classList.remove('visible');
+          });
+
+          if (dropdown) dropdown.classList.toggle('visible');
+          return;
+      }
+
+      // 7. General Action Buttons (Copy/Download/Launch)
+      const actionBtn = e.target.closest('[data-action]');
+      if (actionBtn && ["copy-agent", "download-agent", "launch-jules"].includes(actionBtn.dataset.action)) {
+          const index = actionBtn.dataset.index;
+          let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
+          if (!agent) return;
+
+          if (actionBtn.dataset.action === "copy-agent") {
+              this.copyAgent(index, actionBtn);
+              actionBtn.closest('.dropdown-menu')?.classList.remove('visible');
+          } else if (actionBtn.dataset.action === "download-agent") {
+              DownloadUtils.downloadTextFile(agent.prompt, `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
+              actionBtn.closest('.dropdown-menu')?.classList.remove('visible');
+          } else if (actionBtn.dataset.action === "launch-jules") {
+              this.launchJulesSession(agent);
+          }
+      }
     });
 
+    // Master Export bindings
     document.getElementById('masterCopyBtn')?.addEventListener("click", (e) => this.copyAll(e.currentTarget));
     document.getElementById('masterDownloadCoreBtn')?.addEventListener("click", (e) => {
         this.downloadAll(e.currentTarget);
         masterDropMenu.classList.remove("visible");
     });
-    
     document.getElementById('masterCopyFusionsBtn')?.addEventListener("click", async (e) => {
         const validCustomAgents = Object.values(this.customAgents).filter(a => a.prompt && a.prompt.length > 0);
         if (validCustomAgents.length === 0) return this.toast.show("No custom agents unlocked yet.");
@@ -282,127 +417,92 @@ class RosterApp {
         }
         masterDropMenu.classList.remove("visible");
     });
-    
     document.getElementById('masterDownloadFusionsBtn')?.addEventListener("click", (e) => {
         this.downloadCustomAgents(e.currentTarget);
         masterDropMenu.classList.remove("visible");
     });
+  }
 
-    // Event Delegation for Flip Card Action Buttons & Virtualized Card interactions
-    document.addEventListener("click", (e) => {
-      // 0. Toggle Pin (Must be before flip-card to prevent interception)
-      const pinTarget = e.target.closest('[data-action="toggle-pin"]');
-      if (pinTarget) {
-          const card = pinTarget.closest('.flip-card');
-          if (card && card.classList.contains('flipped')) {
-              return; // Ignore if card is flipped
-          }
-          e.stopPropagation();
-          e.preventDefault(); // Prevent flip-card action
-          const index = pinTarget.dataset.index;
-          if (index) {
-              const isPinned = this.pinnedManager.togglePin(index);
+  /**
+   * Triggers a new session in the Jules API Runner.
+   */
+  async launchJulesSession(agent) {
+      const sourceName = document.getElementById("julesRepoPicker").value;
+      const userTask = document.getElementById("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
+      
+      if (!sourceName) {
+          this.toast.show("Please select a target repository in the runner panel.", true);
+          document.getElementById("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
+          document.getElementById("julesRepoPicker").focus();
+          return;
+      }
 
-              // Update all rendered buttons for this agent dynamically
-              document.querySelectorAll(`[data-action="toggle-pin"][data-index="${index}"]`).forEach(btn => {
-                  if (isPinned) {
-                      btn.classList.add('pinned');
+      document.getElementById("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
+      const terminal = document.getElementById("julesTerminal");
+      terminal.classList.add('active');
+      terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> 🚀 Launching ${agent.name} (${agent.emoji})...</div>`;
+
+      try {
+          const session = await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name} Execution`);
+          this.startTerminalPolling(session.id, terminal);
+      } catch (err) {
+          terminal.innerHTML += `<div class="terminal-line terminal-error"><span class="terminal-time">[Error]</span> Failed to launch: ${err.message}</div>`;
+      }
+  }
+
+  /**
+   * Polls the Jules API activities endpoint and updates the visual terminal feed.
+   */
+  startTerminalPolling(sessionId, terminal) {
+      if (this.julesPollingInterval) clearInterval(this.julesPollingInterval);
+      
+      let knownActivityIds = new Set();
+      
+      this.julesPollingInterval = setInterval(async () => {
+          try {
+              const data = await window.julesService.getActivities(sessionId);
+              if (!data.activities) return;
+
+              // Sort chronologically
+              const activities = data.activities.sort((a, b) => new Date(a.createTime) - new Date(b.createTime));
+
+              activities.forEach(act => {
+                  if (knownActivityIds.has(act.id)) return;
+                  knownActivityIds.add(act.id);
+
+                  const timeStr = new Date(act.createTime).toLocaleTimeString();
+                  let lineHtml = `<div class="terminal-line"><span class="terminal-time">[${timeStr}]</span> `;
+                  
+                  if (act.progressUpdated) {
+                      lineHtml += `${act.progressUpdated.title}`;
+                      if (act.progressUpdated.description) {
+                           lineHtml += `<br><span style="color:var(--text-secondary); margin-left: 1rem;">↳ ${act.progressUpdated.description}</span>`;
+                      }
+                  } else if (act.planGenerated) {
+                      lineHtml += `<span class="terminal-plan">📋 Plan Generated: ${act.planGenerated.plan.steps.length} steps outlined.</span>`;
+                  } else if (act.sessionCompleted) {
+                      lineHtml += `<span class="terminal-success">✅ Session Completed Successfully.</span>`;
+                      if (act.artifacts && act.artifacts[0]?.changeSet?.gitPatch?.suggestedCommitMessage) {
+                          lineHtml += `<br><span style="color:#f8fafc; background: #1e293b; padding: 0.2rem 0.5rem; margin-top: 0.2rem; display: inline-block;">Drafted PR: ${act.artifacts[0].changeSet.gitPatch.suggestedCommitMessage.split('\n')[0]}</span>`;
+                      }
+                      clearInterval(this.julesPollingInterval);
                   } else {
-                      btn.classList.remove('pinned');
+                      lineHtml += `System Activity Logged.`;
                   }
+                  
+                  lineHtml += `</div>`;
+                  terminal.insertAdjacentHTML('beforeend', lineHtml);
+                  terminal.scrollTop = terminal.scrollHeight; // Auto-scroll
               });
 
-              // Re-render agents grids to reflect sorting immediately
-              this.renderAgents();
-              this.showToast(isPinned ? "Pinned" : "Unpinned");
-
-              // Invalidate cache for this specific agent to prevent stale UI in search results
-              if (this._cardHtmlCache) {
-                  this._cardHtmlCache.delete(String(index));
-                  this._cardHtmlCache.delete(Number(index));
-              }
+          } catch (e) {
+              console.error("Polling error", e);
           }
-          return;
-      }
-
-      // 1. Flip Card Front (Open)
-      const frontTarget = e.target.closest('[data-action="flip-card"]');
-      if (frontTarget) {
-          const card = frontTarget.closest('.flip-card');
-          if (card) {
-              const index = frontTarget.dataset.index;
-
-              const safeIndex = CSS.escape(String(index));
-              const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
-              if (promptArea && !promptArea.innerHTML.trim()) {
-                  // Resolve agent
-                  let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
-                  if (index === "fusion-result" && this.fusionLab) {
-                      agent = this.fusionLab.lastFusionResult;
-                  }
-                  if (agent) {
-                      promptArea.innerHTML = AgentCard.getPromptHtml(agent);
-                  }
-              }
-              card.classList.add('flipped');
-          }
-          return;
-      }
-
-      // 2. Flip Card Back (Close)
-      const backTarget = e.target.closest('[data-action="flip-card-back"]');
-      if (backTarget) {
-          e.stopPropagation();
-          const card = backTarget.closest('.flip-card');
-          if (card) card.classList.remove('flipped');
-          return;
-      }
-
-      // 3. Action Toggle Button (Copy/Download)
-      const toggleTarget = e.target.closest('[data-action="toggle-card-action"]');
-      if (toggleTarget) {
-          e.stopPropagation();
-          const card = toggleTarget.closest('.flip-card');
-          if (card) {
-              const mainBtn = card.querySelector('.action-main-btn');
-              const btnText = card.querySelector('.btn-text');
-              if (mainBtn && btnText) {
-                  if (mainBtn.dataset.action === "copy-agent") {
-                      mainBtn.dataset.action = "download-agent";
-                      btnText.innerText = "Download";
-                  } else {
-                      mainBtn.dataset.action = "copy-agent";
-                      btnText.innerText = "Copy";
-                  }
-              }
-          }
-          return;
-      }
-
-      // 4. Main Action Button
-      const actionBtn = e.target.closest('.action-main-btn');
-      if (actionBtn) {
-          const index = actionBtn.dataset.index;
-          let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
-          if (index === "fusion-result" && this.fusionLab) {
-              agent = this.fusionLab.lastFusionResult;
-          }
-          if (!agent) return;
-
-          if (actionBtn.dataset.action === "copy-agent") {
-              this.copyAgent(index, actionBtn);
-          } else if (actionBtn.dataset.action === "download-agent") {
-              DownloadUtils.downloadTextFile(agent.prompt, `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
-              ClipboardUtils.animateButtonSuccess(actionBtn, "Downloaded!");
-          }
-      }
-    });
+      }, 3000); // Poll every 3 seconds
   }
 
   /**
    * Filters the agent roster using fuzzy search and updates the UI.
-   * Implements Fuse.js memoization and DOM batch insertion to prevent layout thrashing.
-   * @param {string} query - The search query string.
    */
   filterAgents(query) {
     const search = query.toLowerCase();
@@ -430,10 +530,7 @@ class RosterApp {
       return;
     }
 
-    // searchResultsGrid.innerHTML = ""; // Virtualized via Clusterize.js
     let visibleCount = 0;
-
-    // 🏁 Pacesetter: Memoize Fuse index to prevent O(n) array mapping and index rebuilds on every keystroke
     const currentUnlockedSize = (this.fusionLab && this.fusionLab.fusionIndex) ? this.fusionLab.fusionIndex.unlockedKeys.size : 0;
 
     if (!this._searchCache ||
@@ -464,15 +561,12 @@ class RosterApp {
 
     const results = this._searchCache.fuseInstance.search(search);
 
-    // ⚡ Bolt+: Use Clusterize.js to virtualize search results instead of DOM truncation.
-    // This allows navigating the entire search results without layout thrashing.
-    // ⚡ Bolt+: Memoizes AgentCard HTML creation, reducing DOM manipulation overhead and CPU time by ~60% on rapid search filtering.
     const htmlResults = results.map(result => {
         const { agent, keyOrIndex } = result.item;
         let cardHtml = this._cardHtmlCache.get(keyOrIndex);
         if (!cardHtml) {
             const card = AgentCard.create(agent, keyOrIndex, 0);
-            cardHtml = card.outerHTML || ''; // Ensure fallback if missing in pure tests
+            cardHtml = card.outerHTML || ''; 
             this._cardHtmlCache.set(keyOrIndex, cardHtml);
         }
         const delay = `${Math.min(visibleCount * 30, 600)}ms`;
@@ -504,7 +598,7 @@ class RosterApp {
   }
 
   /**
-   * Clears the current search query, resets the search input, and restores the category grid view.
+   * Clears the current search query.
    */
   clearSearch() {
     if (this.elements.searchInput) {
@@ -514,10 +608,7 @@ class RosterApp {
   }
 
   /**
-   * Copies a specific agent's prompt to the user's clipboard and animates the trigger button.
-   * @param {number|string} index - The index or key of the agent in the data store.
-   * @param {HTMLElement} btn - The button element that triggered the action.
-   * @returns {Promise<void>} Resolves when the copy action completes.
+   * Copies a specific agent's prompt to clipboard.
    */
   async copyAgent(index, btn) {
     let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
@@ -530,37 +621,20 @@ class RosterApp {
     }
   }
 
-  /**
-   * Packages and downloads all currently unlocked custom fusion agents as a single Markdown file.
-   * @param {HTMLElement} btn - The trigger button to animate on success.
-   */
   downloadCustomAgents(btn) {
     const header = FormatUtils.CUSTOM_ROSTER_HEADER;
     const validCustomAgents = Object.values(this.customAgents).filter(a => a.prompt && a.prompt.length > 0);
-    if (validCustomAgents.length === 0) {
-      this.toast.show("No custom agents available to download.");
-      return;
-    }
+    if (validCustomAgents.length === 0) return this.toast.show("No custom agents available.");
     DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(validCustomAgents), "jules_custom_agents.md");
     ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
-    if(document.getElementById('masterDropdownMenu')) document.getElementById('masterDropdownMenu').classList.remove("visible");
   }
 
-  /**
-   * Packages and downloads the entire master agent roster as a single Markdown file.
-   * @param {HTMLElement} btn - The trigger button to animate on success.
-   */
   downloadAll(btn) {
     const header = FormatUtils.MASTER_ROSTER_HEADER;
     DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(this.agents), "jules_roster.md");
     ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
   }
 
-  /**
-   * Copies the entire master agent roster to the user's clipboard.
-   * @param {HTMLElement} btn - The trigger button to animate on success.
-   * @returns {Promise<void>} Resolves when the copy action completes.
-   */
   async copyAll(btn) {
     const header = FormatUtils.MASTER_ROSTER_HEADER;
     const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(this.agents));
@@ -570,9 +644,6 @@ class RosterApp {
     }
   }
 
-  /**
-   * Initializes the IntersectionObserver for category navigation scroll-spy functionality.
-   */
   initObserver() {
     const navPills = document.querySelectorAll(CONFIG.selectors.navPills);
     const observer = new IntersectionObserver(
@@ -596,10 +667,6 @@ class RosterApp {
     });
   }
 
-  /**
-   * Displays a global toast notification.
-   * @param {string} message - The message to display.
-   */
   showToast(message) {
       this.toast.show(message);
   }
