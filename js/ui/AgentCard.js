@@ -39,6 +39,16 @@ class AgentCard {
         const pinClass = isPinned ? 'pinned' : '';
         const pinHtml = isNaN(index) ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" >📌</button>` : '';
 
+        const repoPicker = document.getElementById("julesRepoPicker");
+        const isRepoSelected = repoPicker && repoPicker.value !== "";
+
+        const primaryAction = isRepoSelected ? "launch-jules" : "copy-agent";
+        const primaryTitle = isRepoSelected ? "Launch agent via Jules API" : "Copy agent prompt";
+        const primaryText = isRepoSelected ? "Launch in Jules 🚀" : "📋 Copy Prompt";
+
+        const dropdownAction = isRepoSelected ? "copy-agent" : "launch-jules";
+        const dropdownText = isRepoSelected ? "📋 Copy Prompt" : "Launch in Jules 🚀";
+
         card.innerHTML = `
             <div class="flip-card-inner">
                 <div class="flip-card-front" data-action="flip-card" data-index="${index}">
@@ -63,16 +73,13 @@ class AgentCard {
                     <div class="flip-hint" aria-label="Tap to view protocol" >↺</div>
                 </div>
 
-                <div class="flip-card-back">
-                    <div class="back-header" data-action="flip-card-back">
-                        <h3 class="agent-title text-sm truncate">${safeDisplayName}</h3>
-                        <button class="icon-btn flip-back-btn" aria-label="Flip back">✕</button>
-                    </div>
+                <div class="flip-card-back" data-action="flip-card-back">
+                    <div class="flip-hint" aria-label="Tap to view front" >↺</div>
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
                     
                     <div class="card-actions mt-auto pt-2 flex relative">
-                        <button class="secondary action-main-btn" data-action="launch-jules" data-index="${index}" title="Launch agent via Jules API">
-                            <span class="btn-text">Launch in Jules 🚀</span>
+                        <button class="secondary action-main-btn" data-action="${primaryAction}" data-index="${index}" title="${primaryTitle}">
+                            <span class="btn-text">${primaryText}</span>
                         </button>
                         <button class="secondary action-toggle-btn" data-action="toggle-card-dropdown" data-index="${index}" aria-label="More options">
                             ▼
@@ -80,7 +87,7 @@ class AgentCard {
                         
                         <!-- Custom Agent Dropdown -->
                         <div class="dropdown-menu" id="card-dropdown-${index}">
-                            <button class="dropdown-item" data-action="copy-agent" data-index="${index}">📋 Copy Prompt</button>
+                            <button class="dropdown-item" data-action="${dropdownAction}" data-index="${index}">${dropdownText}</button>
                             <button class="dropdown-item" data-action="download-agent" data-index="${index}">💾 Download .md</button>
                         </div>
                     </div>
