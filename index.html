@@ -36,11 +36,11 @@
       .flip-card.flipped .flip-card-front { pointer-events: none; }
       
       /* Tier Rarity Borders and Effects */
-      .tier-common .flip-card-front, .tier-common .flip-card-back { border-color: rgba(156, 163, 175, 0.6); }
-      .tier-uncommon .flip-card-front, .tier-uncommon .flip-card-back { border-color: rgba(20, 184, 166, 0.6); }
-      .tier-rare .flip-card-front, .tier-rare .flip-card-back { border-color: rgba(59, 130, 246, 0.6); }
-      .tier-epic .flip-card-front, .tier-epic .flip-card-back { border-color: rgba(217, 70, 239, 0.6); box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); }
-      .tier-legendary .flip-card-front, .tier-legendary .flip-card-back { box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); border-color: rgba(245, 158, 11, 1); }
+      .tier-common .flip-card-inner { border-color: rgba(156, 163, 175, 0.6); }
+      .tier-uncommon .flip-card-inner { border-color: rgba(20, 184, 166, 0.6); }
+      .tier-rare .flip-card-inner { border-color: rgba(59, 130, 246, 0.6); }
+      .tier-epic .flip-card-inner { border-color: rgba(217, 70, 239, 0.6); box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); }
+      .tier-legendary .flip-card-inner { box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); border-color: rgba(245, 158, 11, 1); }
 
       .front-content-wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; width: 100%; margin-top: -0.5rem; }
       .card-top { display: grid; grid-template-columns: 1fr 2fr; width: 100%; gap: 0.5rem; align-items: center; }
@@ -249,6 +249,7 @@
       <div class="grid" id="strategyGrid"></div>
       <h2 id="ux" class="section-header">UX</h2>
       <div class="grid" id="uxGrid"></div>
+      <div style="flex-basis: 100%; height: 0;"></div>
       <h2 id="meta" class="section-header">Meta</h2>
       <div class="grid" id="metaGrid"></div>
     </main>

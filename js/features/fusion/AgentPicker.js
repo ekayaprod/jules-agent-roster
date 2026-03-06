@@ -250,7 +250,7 @@ class AgentPicker {
                 this.updateGrid();
 
                 // Focus search input on open for immediate typing
-                if (searchInput) {
+                if (searchInput && typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
                     searchInput.focus();
                 }
             }, 0);
