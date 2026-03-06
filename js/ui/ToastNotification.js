@@ -2,9 +2,17 @@ const DEFAULT_DURATION = 3000;
 const RESUME_DELAY = 2000;
 
 /**
- * Handles toast notifications for the application.
+ * Class representing an accessible Toast Notification system.
+ * Handles queuing and display logic, rendering semantic DOM roles to support screen readers.
+ * @see README.md#toastnotification-architecture for accessibility patterns.
  */
 class ToastNotification {
+    /**
+     * Initializes a Toast instance bound to a specific DOM element.
+     * Starts listening for pointer interactions to pause auto-dismiss timers.
+     * @param {string} elementSelector - The CSS selector of the base toast container.
+     * @see README.md#toastnotification-architecture
+     */
     constructor(elementSelector) {
         this.element = document.querySelector(elementSelector);
         this.timeout = null;
@@ -30,11 +38,17 @@ class ToastNotification {
     }
 
     /**
-     * Displays a toast notification with a message and type.
-     * Clears any existing toast timeout to prevent race conditions.
-     * @param {string} [message="Copied to clipboard"] - The message to display.
-     * @param {string} [type="success"] - The type of toast ('success', 'error', 'info').
-     * @param {number} [duration=DEFAULT_DURATION] - Duration in milliseconds before auto-dismiss.
+     * Renders a toast notification into the DOM.
+     * If a toast is currently active, clears the internal timeout to prevent overlaps,
+     * immediately overwriting the state with the new payload.
+     *
+     * Handles accessibility roles depending on the notification type
+     * (e.g., alert/assertive for errors vs status/polite for success).
+     * @param {string} message - The primary message to display. Default behavior expects valid strings.
+     * @param {string} [type="success"] - The status class representing the visual layout ('success', 'error', 'info').
+     * @param {number} [duration=DEFAULT_DURATION] - Duration in milliseconds before auto-dismissing. Set to 0 to disable auto-dismiss.
+     * @returns {void}
+     * @see README.md#toastnotification-architecture
      */
     show(message, type = 'success', duration = DEFAULT_DURATION) {
         if (this.timeout) {
@@ -93,8 +107,11 @@ class ToastNotification {
     }
 
     /**
-     * Starts the auto-dismiss timer.
-     * @param {number} duration
+     * Initializes the asynchronous timeout for auto-dismissal.
+     * Aborts execution if the element is currently hovered by the user.
+     * @param {number} duration - The millisecond delay before triggering dismissal.
+     * @returns {void}
+     * @see README.md#toastnotification-architecture
      */
     startTimer(duration) {
         this.timeout = setTimeout(() => {
@@ -105,7 +122,10 @@ class ToastNotification {
     }
 
     /**
-     * Handles mouse enter event to pause dismissal.
+     * Listener callback attached to `pointerenter` events.
+     * Pauses the auto-dismiss timer logic to prevent the toast from disappearing while a user reads it.
+     * @returns {void}
+     * @see README.md#toastnotification-architecture
      */
     handleMouseEnter() {
         this.isHovered = true;
@@ -113,7 +133,10 @@ class ToastNotification {
     }
 
     /**
-     * Handles mouse leave event to resume dismissal.
+     * Listener callback attached to `pointerleave` events.
+     * Resumes the dismissal behavior with a shortened grace period instead of the full original duration.
+     * @returns {void}
+     * @see README.md#toastnotification-architecture
      */
     handleMouseLeave() {
         this.isHovered = false;
@@ -122,7 +145,10 @@ class ToastNotification {
     }
 
     /**
-     * Dismisses the toast immediately.
+     * Forces immediate dismissal of the toast notification by removing visibility classes.
+     * Used by internal timers or user-triggered close buttons.
+     * @returns {void}
+     * @see README.md#toastnotification-architecture
      */
     dismiss() {
         if (this.element) {
