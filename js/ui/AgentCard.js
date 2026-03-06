@@ -94,14 +94,14 @@ class AgentCard {
                         <button class="secondary action-main-btn" data-action="${primaryAction}" data-index="${index}" title="${primaryTitle}" aria-label="${primaryTitle}">
                             <span class="btn-text">${primaryText}</span>
                         </button>
-                        <button class="secondary action-toggle-btn" data-action="toggle-card-dropdown" data-index="${index}" aria-label="More options">
+                        <button class="secondary action-toggle-btn" data-action="toggle-card-dropdown" data-index="${index}" aria-label="More options" aria-haspopup="menu" aria-expanded="false" aria-controls="card-dropdown-${index}">
                             ▼
                         </button>
                         
                         <!-- Custom Agent Dropdown -->
-                        <div class="dropdown-menu" id="card-dropdown-${index}">
-                            <button class="dropdown-item" data-action="${dropdownAction}" data-index="${index}" aria-label="${dropdownText.replace(/[^a-zA-Z\\s]/g, '').trim()}">${dropdownText}</button>
-                            <button class="dropdown-item" data-action="download-agent" data-index="${index}" aria-label="Download Protocol as Markdown">💾 Download .md</button>
+                        <div class="dropdown-menu" id="card-dropdown-${index}" role="menu">
+                            <button class="dropdown-item" data-action="${dropdownAction}" data-index="${index}" role="menuitem" aria-label="${dropdownText.replace(/[^a-zA-Z\\s]/g, '').trim()}">${dropdownText}</button>
+                            <button class="dropdown-item" data-action="download-agent" data-index="${index}" role="menuitem" aria-label="Download Protocol as Markdown">💾 Download .md</button>
                         </div>
                     </div>
                 </div>

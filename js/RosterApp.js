@@ -141,6 +141,10 @@ class RosterApp {
       const picker = document.getElementById("julesRepoPicker");
       if (!picker || !window.julesService) return;
 
+      const originalText = picker.options.length > 0 ? picker.options[0].textContent : "1. Select GitHub Repository...";
+      picker.innerHTML = `<option value="">Loading repositories...</option>`;
+      picker.disabled = true;
+
       try {
           const data = await window.julesService.getSources();
           if (data.sources) {
@@ -152,10 +156,15 @@ class RosterApp {
                   picker.appendChild(opt);
               });
               this.toast.show("Jules Repositories Loaded");
+          } else {
+              picker.innerHTML = `<option value="">${originalText}</option>`;
           }
       } catch (err) {
+          picker.innerHTML = `<option value="">${originalText}</option>`;
           this.toast.show("Failed to fetch Repos. Check API Key.", true);
           console.error("Jules Source Error:", err);
+      } finally {
+          picker.disabled = false;
       }
   }
 
@@ -334,6 +343,8 @@ class RosterApp {
       document.querySelectorAll('.card-dropdown-menu.visible, .dropdown-menu.visible').forEach(menu => {
           if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
               menu.classList.remove('visible');
+              const toggleBtn = document.querySelector(`[aria-controls="${menu.id}"]`);
+              if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
           }
       });
 
@@ -393,15 +404,21 @@ class RosterApp {
       if (toggleTarget) {
           e.stopPropagation();
           const index = toggleTarget.dataset.index;
-          const safeIndex = CSS.escape(String(index));
-          const dropdown = document.getElementById(`card-dropdown-${safeIndex}`);
+          const dropdown = document.getElementById(`card-dropdown-${index}`);
           
           // Close others
           document.querySelectorAll('.dropdown-menu.visible').forEach(m => {
-              if (m !== dropdown && m.id !== 'masterDropdownMenu') m.classList.remove('visible');
+              if (m !== dropdown && m.id !== 'masterDropdownMenu') {
+                  m.classList.remove('visible');
+                  const otherToggle = document.querySelector(`[aria-controls="${m.id}"]`);
+                  if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+              }
           });
 
-          if (dropdown) dropdown.classList.toggle('visible');
+          if (dropdown) {
+              const isVisible = dropdown.classList.toggle('visible');
+              toggleTarget.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
+          }
           return;
       }
 
@@ -417,10 +434,20 @@ class RosterApp {
 
           if (actionBtn.dataset.action === "copy-agent") {
               this.copyAgent(index, actionBtn);
-              actionBtn.closest('.dropdown-menu')?.classList.remove('visible');
+              const parentMenu = actionBtn.closest('.dropdown-menu');
+              if (parentMenu) {
+                  parentMenu.classList.remove('visible');
+                  const toggleBtn = document.querySelector(`[aria-controls="${parentMenu.id}"]`);
+                  if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+              }
           } else if (actionBtn.dataset.action === "download-agent") {
               DownloadUtils.downloadTextFile(agent.prompt, `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
-              actionBtn.closest('.dropdown-menu')?.classList.remove('visible');
+              const parentMenu = actionBtn.closest('.dropdown-menu');
+              if (parentMenu) {
+                  parentMenu.classList.remove('visible');
+                  const toggleBtn = document.querySelector(`[aria-controls="${parentMenu.id}"]`);
+                  if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+              }
           } else if (actionBtn.dataset.action === "launch-jules") {
               this.launchJulesSession(agent, actionBtn);
           }

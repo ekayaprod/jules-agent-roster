@@ -38,6 +38,10 @@
 **Learning:** Raw AI text streams lack visual structure and can cause layout shifts. However, `innerHTML` and `insertAdjacentHTML` with unescaped AI content streams causes severe XSS risks. Refactoring to Vanilla JS DOM nodes ensures complete safety, but introduces more verbose code structures.
 **Action:** Always prefer a custom DOM-node based Markdown Renderer (using `document.createElement`, `document.createTextNode`, `textContent`) when injecting AI-generated payloads in Vanilla JS projects to maintain safety over code brevity. Include CSS transitions to prevent visual thrashing and simulate an organic growth vibe.
 
+## 2026-03-06 - 🩰 Choreographer - [Fluid Transition Injected: Jules Repo Picker]
+**Learning:** During the asynchronous fetch of Jules API sources (`loadJulesSources`), the repository dropdown remained frozen with its default "Select GitHub Repository..." text, offering no visual feedback that a network request was in progress.
+**Action:** Injected a disabled loading state (`Loading repositories...`) on the `<select>` element prior to the `await` call, and cleanly restored the interactive state or default text upon Promise resolution or failure.
+
 ## 2026-03-08 - ⬜ Minimalist - [Visual Bloat Purged: AgentCard Wrappers]
 **Learning:** The `.front-content-wrapper` and `.title-wrapper` in `AgentCard.js` were redundant DOM layers.
 **Action:** Always verify if a flexbox wrapper contains more than one child or if its positioning can be handled by the parent container before introducing new `<div>` layers.

@@ -1,0 +1,3 @@
+## 2026-03-06 - 🚨 Paramedic - [Unnecessary CSS Escaping on document.getElementById]
+**Learning:** When generating unique dynamic IDs for DOM elements that could contain numbers (like index `0`), applying `CSS.escape()` to the index produces an invalid literal string for `document.getElementById` (e.g., `\\30 `).
+**Action:** Only use `CSS.escape()` when constructing CSS selectors for query APIs like `querySelector`. Pass literal, unescaped string IDs directly to `document.getElementById`.
