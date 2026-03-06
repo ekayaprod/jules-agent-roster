@@ -29,3 +29,7 @@
 ## 2024-05-24 - 🎇 Hologram - [Replaced raw AI terminal output with DOM Nodes]
 **Learning:** Using `innerHTML` and `insertAdjacentHTML` with unescaped AI content streams causes XSS risks. Refactoring to Vanilla JS DOM nodes ensures complete safety, but introduces more verbose code structures.
 **Action:** Always prefer `document.createElement` and `document.createTextNode` or `element.textContent` when injecting AI-generated payloads in Vanilla JS projects to maintain safety over code brevity. Include CSS transitions to prevent visual thrashing.
+
+## 2026-03-06 - ☄️ Tachyon - [Absence of Synchronous LLM Targets]
+**Learning:** Scanned the codebase for synchronous LLM SDK calls (OpenAI, Anthropic, Gemini) with missing `stream: true` flags and found none. The application uses the Jules API, which natively relies on session creation and asynchronous polling (`getActivities`) rather than synchronous monolithic completions.
+**Action:** No streaming rewires can be safely executed. Concluding the task without arbitrary modifications to the transport layer.
