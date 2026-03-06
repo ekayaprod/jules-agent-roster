@@ -6,7 +6,7 @@
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "The Speed Optimizer"
+    "role": "Bottleneck Slayer"
   },
   {
     "name": "Palette+",
@@ -15,7 +15,7 @@
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "The UX/UI Polisher"
+    "role": "Delight Engineer"
   },
   {
     "name": "Sentinel+",
@@ -24,7 +24,7 @@
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "The Security Guard"
+    "role": "Trust Hardener"
   },
   {
     "name": "Helix",
@@ -33,7 +33,7 @@
     "tier": "",
     "category": "refactoring",
     "type": "",
-    "role": "The Code Consolidator"
+    "role": "Logic Centralizer"
   },
   {
     "name": "Architect",
@@ -42,7 +42,7 @@
     "tier": "",
     "category": "architecture",
     "type": "",
-    "role": "The Structural Engineer"
+    "role": "Structure Sculptor"
   },
   {
     "name": "Scavenger",
@@ -51,7 +51,7 @@
     "tier": "",
     "category": "hygiene",
     "type": "",
-    "role": "The Zero-Reference Assassin"
+    "role": "Zero-Reference Assassin"
   },
   {
     "name": "Superintendent",
@@ -60,7 +60,7 @@
     "tier": "",
     "category": "hygiene",
     "type": "",
-    "role": "The Foundation Superintendent"
+    "role": "Foundation Keeper"
   },
   {
     "name": "Modernizer",
@@ -69,7 +69,7 @@
     "tier": "",
     "category": "refactoring",
     "type": "",
-    "role": "The Evolution Engine"
+    "role": "Evolution Engine"
   },
   {
     "name": "Inspector",
@@ -78,7 +78,7 @@
     "tier": "",
     "category": "testing",
     "type": "",
-    "role": "The Stress QA Hunter"
+    "role": "Stress QA Hunter"
   },
   {
     "name": "Paramedic",
@@ -87,7 +87,7 @@
     "tier": "",
     "category": "operations",
     "type": "",
-    "role": "The Crash Specialist"
+    "role": "Crash Surgeon"
   },
   {
     "name": "Cortex",
@@ -96,7 +96,7 @@
     "tier": "",
     "category": "operations",
     "type": "",
-    "role": "The AI Infrastructure Specialist"
+    "role": "Neural Plumber"
   },
   {
     "name": "Scribe",
@@ -105,7 +105,7 @@
     "tier": "",
     "category": "documentation",
     "type": "",
-    "role": "The Codebase Historian"
+    "role": "Codebase Historian"
   },
   {
     "name": "Author",
@@ -114,7 +114,7 @@
     "tier": "",
     "category": "documentation",
     "type": "",
-    "role": "The Macro-Documentarian"
+    "role": "Macro Documentarian"
   },
   {
     "name": "Navigator",
@@ -123,7 +123,7 @@
     "tier": "",
     "category": "strategy",
     "type": "",
-    "role": "The Strategic Compass"
+    "role": "Strategic Compass"
   },
   {
     "name": "Curator",
@@ -132,34 +132,7 @@
     "tier": "",
     "category": "ux",
     "type": "",
-    "role": "The Payload Optimizer"
-  },
-  {
-    "name": "Overseer",
-    "emoji": "👁️",
-    "short_description": "Executes deep, unrestricted forensic codebase scans to generate an objective intelligence report. Identifies areas of decay, risk, and friction to triage and guide the rest of the agent roster.",
-    "tier": "",
-    "category": "meta",
-    "type": "monthly",
-    "role": "The System Auditor"
-  },
-  {
-    "name": "Cartographer",
-    "emoji": "🗺️",
-    "short_description": "Translates complex folder structures and entire application ecosystems into beautiful, multi-layered Mermaid.js diagrams. Uses the C4 Model to provide human developers with unparalleled structural insight.",
-    "tier": "",
-    "category": "architecture",
-    "type": "monthly",
-    "role": "The Comprehensive Systems Architect"
-  },
-  {
-    "name": "Spark",
-    "emoji": "💡",
-    "short_description": "Pushes the envelope of the codebase by proposing sweeping paradigm shifts and replacing stagnant patterns. Identifies UX blindspots and DX friction to suggest modern, high-ROI architectural solutions.",
-    "tier": "",
-    "category": "strategy",
-    "type": "monthly",
-    "role": "The Visionary Lead"
+    "role": "Payload Shrinker"
   },
   {
     "name": "Herald",
@@ -168,7 +141,7 @@
     "tier": "",
     "category": "documentation",
     "type": "",
-    "role": "The Release Broadcaster"
+    "role": "Release Broadcaster"
   },
   {
     "name": "Wordsmith",
@@ -177,7 +150,7 @@
     "tier": "",
     "category": "ux",
     "type": "",
-    "role": "The UX Copywriting Specialist"
+    "role": "Microcopy Surgeon"
   },
   {
     "name": "Pedant",
@@ -186,7 +159,7 @@
     "tier": "",
     "category": "hygiene",
     "type": "",
-    "role": "The Quality Enforcer"
+    "role": "Consistency Enforcer"
   },
   {
     "name": "Untangler",
@@ -195,6 +168,33 @@
     "tier": "",
     "category": "refactoring",
     "type": "",
-    "role": "The Logic Simplifier"
+    "role": "Nesting Destroyer"
+  },
+  {
+    "name": "Overseer",
+    "emoji": "👁️",
+    "short_description": "Executes deep, unrestricted forensic codebase scans to generate an objective intelligence report. Identifies areas of decay, risk, and friction to triage and guide the rest of the agent roster.",
+    "tier": "",
+    "category": "meta",
+    "type": "monthly",
+    "role": "Forensic Auditor"
+  },
+  {
+    "name": "Cartographer",
+    "emoji": "🗺️",
+    "short_description": "Translates complex folder structures and entire application ecosystems into beautiful, multi-layered Mermaid.js diagrams. Uses the C4 Model to provide human developers with unparalleled structural insight.",
+    "tier": "",
+    "category": "meta",
+    "type": "monthly",
+    "role": "Systems Illustrator"
+  },
+  {
+    "name": "Spark",
+    "emoji": "💡",
+    "short_description": "Pushes the envelope of the codebase by proposing sweeping paradigm shifts and replacing stagnant patterns. Identifies UX blindspots and DX friction to suggest modern, high-ROI architectural solutions.",
+    "tier": "",
+    "category": "meta",
+    "type": "monthly",
+    "role": "Paradigm Pusher"
   }
 ]
