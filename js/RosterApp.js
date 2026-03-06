@@ -334,6 +334,8 @@ class RosterApp {
       document.querySelectorAll('.card-dropdown-menu.visible, .dropdown-menu.visible').forEach(menu => {
           if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
               menu.classList.remove('visible');
+              const toggleBtn = document.querySelector(`[aria-controls="${menu.id}"]`);
+              if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
           }
       });
 
@@ -397,10 +399,17 @@ class RosterApp {
           
           // Close others
           document.querySelectorAll('.dropdown-menu.visible').forEach(m => {
-              if (m !== dropdown && m.id !== 'masterDropdownMenu') m.classList.remove('visible');
+              if (m !== dropdown && m.id !== 'masterDropdownMenu') {
+                  m.classList.remove('visible');
+                  const otherToggle = document.querySelector(`[aria-controls="${m.id}"]`);
+                  if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
+              }
           });
 
-          if (dropdown) dropdown.classList.toggle('visible');
+          if (dropdown) {
+              const isVisible = dropdown.classList.toggle('visible');
+              toggleTarget.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
+          }
           return;
       }
 
@@ -416,10 +425,20 @@ class RosterApp {
 
           if (actionBtn.dataset.action === "copy-agent") {
               this.copyAgent(index, actionBtn);
-              actionBtn.closest('.dropdown-menu')?.classList.remove('visible');
+              const parentMenu = actionBtn.closest('.dropdown-menu');
+              if (parentMenu) {
+                  parentMenu.classList.remove('visible');
+                  const toggleBtn = document.querySelector(`[aria-controls="${parentMenu.id}"]`);
+                  if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+              }
           } else if (actionBtn.dataset.action === "download-agent") {
               DownloadUtils.downloadTextFile(agent.prompt, `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
-              actionBtn.closest('.dropdown-menu')?.classList.remove('visible');
+              const parentMenu = actionBtn.closest('.dropdown-menu');
+              if (parentMenu) {
+                  parentMenu.classList.remove('visible');
+                  const toggleBtn = document.querySelector(`[aria-controls="${parentMenu.id}"]`);
+                  if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+              }
           } else if (actionBtn.dataset.action === "launch-jules") {
               this.launchJulesSession(agent, actionBtn);
           }

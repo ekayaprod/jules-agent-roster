@@ -18,3 +18,7 @@
 ## 2026-02-25 - Static Skeleton Loading
 **Learning:** Rendering skeletons via JavaScript (`renderSkeletons`) causes a layout shift and a brief blank screen while the script loads. Using static HTML skeletons provides immediate feedback (First Contentful Paint).
 **Action:** Prefer static HTML skeletons for initial page load states over JS-injected ones. Use `<noscript>` to handle JS-disabled scenarios gracefully.
+
+## 2026-03-06 - 🎨 Palette+ - [ARIA compliance for Agent Cards omni-button]
+**Learning:** When adding ARIA states like aria-expanded to custom JS dropdown menus, ensure you also update global event listeners (like click outside) to correctly synchronize the state by selecting the button via its aria-controls attribute.
+**Action:** Use document.querySelector('[aria-controls="${menu.id}"]') inside global close listeners to reset the toggle button's aria-expanded state to false when a menu is closed externally.
