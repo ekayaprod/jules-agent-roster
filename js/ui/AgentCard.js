@@ -115,3 +115,7 @@ class AgentCard {
         return card;
     }
 }
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = AgentCard;
+}
