@@ -9,3 +9,7 @@
 ## 2026-03-05 - 🕵️ Inspector - [Coverage Added: FormatUtils]
 **Learning:** Found complete lack of coverage (~12%) in `FormatUtils.js`, which centralizes display names, icons, escaping, and format strings throughout the entire app. It relies on a non-injected global dependency (`StringUtils`) to extract emojis.
 **Action:** Wrote an extensive Jest suite testing bounds (empty values, XSS exploits) and mocked the `StringUtils` dependency via the `global` Node.js object to verify logic isolation and achieve 100% path coverage.
+
+## 2026-03-05 - 🕵️ Inspector - [Coverage Added: PromptParser]
+**Learning:** Evaluated the `PromptParser.js` utility responsible for parsing AI agent prompts. Found lack of coverage for XML DOM parsing logic, including unclosed tags, malformed input exceptions, and log extraction boundaries. The utility relies on the native `DOMParser` browser API, which is missing in standard Node.js environments.
+**Action:** Wrote an extensive Jest suite to enforce Mode B Stress testing. Mocked the `DOMParser` browser API securely within Node.js utilizing `@xmldom/xmldom` through the `global` object. Verified 100% path coverage by forcefully injecting parsing errors via `jest.fn()` wrappers.
