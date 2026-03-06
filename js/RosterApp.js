@@ -162,6 +162,12 @@ class RosterApp {
         ? document.getElementById(selector.substring(1))
         : document.querySelectorAll(selector);
     });
+
+    // ⚡ Bolt+: Extracted redundant DOM queries outside of loops and cached the references on initialization.
+    this.categoryElements = {};
+    Object.keys(CONFIG.categories).forEach((key) => {
+      this.categoryElements[key] = document.getElementById(CONFIG.categories[key]);
+    });
   }
 
   /**
@@ -169,7 +175,7 @@ class RosterApp {
    */
   renderSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
-      const container = document.getElementById(CONFIG.categories[key]);
+      const container = this.categoryElements[key];
       if (container) {
         container.innerHTML = "";
         for (let i = 0; i < 12; i++) {
@@ -189,7 +195,7 @@ class RosterApp {
     const categorizedAgents = {};
 
     Object.keys(CONFIG.categories).forEach((key) => {
-      const container = document.getElementById(CONFIG.categories[key]);
+      const container = this.categoryElements[key];
       categoryContainers[key] = container;
       categorizedAgents[key] = [];
       if (container) {

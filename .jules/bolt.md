@@ -16,3 +16,7 @@
 ## 2025-05-28 - ⚡ Bolt+ - [Startup Promise.all Concurrency]
 **Learning:** Initial application bootstrapping triggers multiple independent async fetches (`#loadStandardAgents`, `#loadCustomAgents`) that shouldn't block each other.
 **Action:** Refactored sequential `await` calls in `AgentRepository.fetchAgents` into a concurrent `Promise.all()` to drastically reduce total network/I/O execution time on startup.
+
+## 2025-05-29 - ⚡ Bolt+ - [Redundant DOM Lookup Caching]
+**Learning:** In Vanilla JS architectures, redundant DOM queries (like `document.getElementById`) inside loops or critical render paths (like `renderSkeletons` and `renderAgents`) can cause severe layout thrashing and unnecessary CPU overhead.
+**Action:** Always extract top-level container queries (e.g., mapping category elements) outside of render loops and cache their references on initialization (`cacheElements()`). Never cache dynamic child components using array indices as keys to avoid stale UI bugs and encapsulation violations.
