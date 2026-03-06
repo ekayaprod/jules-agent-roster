@@ -3,6 +3,52 @@
  * Handles source fetching, session creation, and activity polling.
  * Attached to the global window object for standard browser usage.
  */
+
+
+/**
+ * 🎛️ Polygraph: Strict Schema Validators
+ * Prevents hallucinatory JSON responses or malformed data from crashing the application.
+ */
+class JulesSchemaValidator {
+    static validateSources(data) {
+        if (!data || typeof data !== 'object') throw new Error("Invalid response: Expected JSON object");
+        if (!Array.isArray(data.sources)) {
+            // Some endpoints might return empty if no sources, but let's strictly enforce the key or allow undefined if handled properly.
+            // Wait, data.sources might be undefined if empty array in some APIs, but let's strictly enforce array if present.
+            if (data.sources === undefined) data.sources = [];
+            else throw new Error("Invalid schema: 'sources' must be an array");
+        }
+
+        data.sources.forEach(s => {
+            if (!s.name || typeof s.name !== 'string') throw new Error("Invalid schema: Source missing 'name'");
+            if (!s.githubRepo || typeof s.githubRepo !== 'object') throw new Error("Invalid schema: Source missing 'githubRepo' object");
+            if (!s.githubRepo.owner || typeof s.githubRepo.owner !== 'string') throw new Error("Invalid schema: Source missing 'githubRepo.owner'");
+            if (!s.githubRepo.repo || typeof s.githubRepo.repo !== 'string') throw new Error("Invalid schema: Source missing 'githubRepo.repo'");
+        });
+        return data;
+    }
+
+    static validateSession(data) {
+        if (!data || typeof data !== 'object') throw new Error("Invalid response: Expected JSON object");
+        if (!data.id || typeof data.id !== 'string') throw new Error("Invalid schema: Session missing 'id'");
+        return data;
+    }
+
+    static validateActivities(data) {
+        if (!data || typeof data !== 'object') throw new Error("Invalid response: Expected JSON object");
+        if (data.activities !== undefined && !Array.isArray(data.activities)) {
+            throw new Error("Invalid schema: 'activities' must be an array");
+        }
+        if (data.activities) {
+            data.activities.forEach(act => {
+                if (!act.id || typeof act.id !== 'string') throw new Error("Invalid schema: Activity missing 'id'");
+                if (!act.createTime || typeof act.createTime !== 'string') throw new Error("Invalid schema: Activity missing 'createTime'");
+            });
+        }
+        return data;
+    }
+}
+
 class JulesService {
     constructor() {
         this.apiKey = "";
@@ -20,7 +66,7 @@ class JulesService {
     /**
      * Internal helper for Jules API fetches.
      */
-    async _fetch(endpoint, options = {}) {
+    async _fetch(endpoint, options = {}, validator = null) {
         if (!this.apiKey) throw new Error("Jules API Key is missing. Please configure it in Settings.");
 
         const url = `${this.baseUrl}/${endpoint}`;
@@ -51,7 +97,12 @@ class JulesService {
                 throw new Error(errorMsg);
             }
 
-            return response.json();
+
+            const rawJson = await response.json();
+            if (validator) {
+                return validator(rawJson);
+            }
+            return rawJson;
         } catch (error) {
             clearTimeout(timeoutId);
             if (error.name === 'AbortError') {
@@ -65,7 +116,7 @@ class JulesService {
      * Retrieves the list of available GitHub sources connected to the user's Jules account.
      */
     async getSources() {
-        return this._fetch('sources');
+        return this._fetch('sources', {}, JulesSchemaValidator.validateSources);
     }
 
     /**
@@ -98,7 +149,7 @@ ${userTask}`;
         return this._fetch('sessions', {
             method: 'POST',
             body: JSON.stringify(body)
-        });
+        }, JulesSchemaValidator.validateSession);
     }
 
     /**
@@ -106,7 +157,7 @@ ${userTask}`;
      * @param {string} sessionId - The ID of the active session.
      */
     async getActivities(sessionId) {
-        return this._fetch(`sessions/${sessionId}/activities?pageSize=50`);
+        return this._fetch(`sessions/${sessionId}/activities?pageSize=50`, {}, JulesSchemaValidator.validateActivities);
     }
 }
 

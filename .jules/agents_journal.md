@@ -29,3 +29,7 @@
 ## 2024-05-24 - 🎇 Hologram - [Replaced raw AI terminal output with DOM Nodes]
 **Learning:** Using `innerHTML` and `insertAdjacentHTML` with unescaped AI content streams causes XSS risks. Refactoring to Vanilla JS DOM nodes ensures complete safety, but introduces more verbose code structures.
 **Action:** Always prefer `document.createElement` and `document.createTextNode` or `element.textContent` when injecting AI-generated payloads in Vanilla JS projects to maintain safety over code brevity. Include CSS transitions to prevent visual thrashing.
+
+## 2024-05-18 - 🎛️ Polygraph - [JulesAPI Native Schema Validation]
+**Learning:** External API integrations that pass raw `response.json()` directly into the application state are ticking time bombs when faced with hallucinated keys or missing nested arrays, resulting in brittle runtime crashes.
+**Action:** Always intercept `response.json()` logic in fetch wrappers with a strictly typed schema validation layer (like `JulesSchemaValidator`) that mathematically guarantees the shape of expected API data or throws graceful, descriptive errors before it can poison the application state.
