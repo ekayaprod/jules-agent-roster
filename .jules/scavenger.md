@@ -44,3 +44,7 @@
 **Learning:** Discovered several orphaned node scripts (`parse_all.js`, `get_type.js`), root-level test scratchpads (`test_card.js`), generated image artifacts (`custom_agents_ui.png`, `verification1.png`), and temporary markdown files (`emojiaudit.md`) polluting the repository root. These files were either one-off utilities or temporary scratchpads that were never cleaned up.
 
 **Action:** Consistently purge root-level generated artifacts, orphaned utility scripts, and test scratchpads that are not part of the active core project functionality or test suite execution to maintain a clean workspace.
+
+## 2026-03-06 - 🦅 Scavenger - [Purged Zero-Reference Method PromptRenderer.renderMarkdown]
+**Learning:** Found `PromptRenderer.renderMarkdown` fully implemented and tested but never referenced by any runtime code.
+**Action:** When auditing codebase bloat, specifically look for exported methods in utility classes that are tested but never actually imported or called by the application features. Ensure that both the unused method and its associated test block are eradicated.

@@ -4,67 +4,6 @@ const { PromptRenderer, FormatUtils } = require('./index');
 global.FormatUtils = FormatUtils;
 
 describe('PromptRenderer', () => {
-    describe('renderMarkdown', () => {
-        it('should return empty string for null input', () => {
-            expect(PromptRenderer.renderMarkdown(null)).toBe('');
-        });
-
-        it('should return empty string for undefined input', () => {
-            expect(PromptRenderer.renderMarkdown(undefined)).toBe('');
-        });
-
-        it('should return empty string for empty agent object', () => {
-            expect(PromptRenderer.renderMarkdown({})).toBe('');
-        });
-
-        it('should render only the name if other properties are missing', () => {
-            const agent = { name: 'Test Agent' };
-            const result = PromptRenderer.renderMarkdown(agent);
-            expect(result).toBe('# Test Agent');
-        });
-
-        it('should render only the description if other properties are missing', () => {
-            const agent = { description: 'A test agent description.' };
-            const result = PromptRenderer.renderMarkdown(agent);
-            expect(result).toBe('> A test agent description.');
-        });
-
-        it('should render only the prompt if other properties are missing', () => {
-            const agent = { prompt: 'You are a test agent.' };
-            const result = PromptRenderer.renderMarkdown(agent);
-            expect(result).toBe('You are a test agent.');
-        });
-
-        it('should render name and description separated by double newline', () => {
-            const agent = {
-                name: 'Test Agent',
-                description: 'A test agent description.'
-            };
-            const result = PromptRenderer.renderMarkdown(agent);
-            expect(result).toBe('# Test Agent\n\n> A test agent description.');
-        });
-
-        it('should render all properties (name, description, prompt) in correct order', () => {
-            const agent = {
-                name: 'Test Agent',
-                description: 'A test agent description.',
-                prompt: 'You are a test agent.'
-            };
-            const result = PromptRenderer.renderMarkdown(agent);
-            expect(result).toBe('# Test Agent\n\n> A test agent description.\n\nYou are a test agent.');
-        });
-
-        it('should handle falsy property values appropriately', () => {
-            const agent = {
-                name: '',
-                description: null,
-                prompt: 'Prompt text'
-            };
-            const result = PromptRenderer.renderMarkdown(agent);
-            expect(result).toBe('Prompt text');
-        });
-    });
-
     describe('renderXml', () => {
         it('should return empty string for null input', () => {
             expect(PromptRenderer.renderXml(null)).toBe('');
