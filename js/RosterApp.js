@@ -141,6 +141,10 @@ class RosterApp {
       const picker = document.getElementById("julesRepoPicker");
       if (!picker || !window.julesService) return;
 
+      const originalText = picker.options.length > 0 ? picker.options[0].textContent : "1. Select GitHub Repository...";
+      picker.innerHTML = `<option value="">Loading repositories...</option>`;
+      picker.disabled = true;
+
       try {
           const data = await window.julesService.getSources();
           if (data.sources) {
@@ -152,10 +156,15 @@ class RosterApp {
                   picker.appendChild(opt);
               });
               this.toast.show("Jules Repositories Loaded");
+          } else {
+              picker.innerHTML = `<option value="">${originalText}</option>`;
           }
       } catch (err) {
+          picker.innerHTML = `<option value="">${originalText}</option>`;
           this.toast.show("Failed to fetch Repos. Check API Key.", true);
           console.error("Jules Source Error:", err);
+      } finally {
+          picker.disabled = false;
       }
   }
 
