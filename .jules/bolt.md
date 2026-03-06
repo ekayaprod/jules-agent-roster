@@ -13,6 +13,7 @@
 ## 2025-05-27 - Centralized Modal Virtualization
 **Learning:** Modals that dynamically render large lists of options (like the AgentPicker) can cause noticeable layout thrashing when toggled and filtered, even if the main roster view is optimized.
 **Action:** Extended the `Clusterize.js` virtualization pattern to the `AgentPicker` modal. Replaced DocumentFragment manipulation with cached HTML string arrays mapped to `Fuse.js` results. Wrapped the modal's internal grid with a `clusterize-scroll` container to ensure smooth rendering and zero jank during modal interactions.
+
 ## 2025-05-28 - ⚡ Bolt+ - [Startup Promise.all Concurrency]
 **Learning:** Initial application bootstrapping triggers multiple independent async fetches (`#loadStandardAgents`, `#loadCustomAgents`) that shouldn't block each other.
 **Action:** Refactored sequential `await` calls in `AgentRepository.fetchAgents` into a concurrent `Promise.all()` to drastically reduce total network/I/O execution time on startup.
@@ -20,3 +21,7 @@
 ## 2025-05-29 - ⚡ Bolt+ - [Redundant DOM Lookup Caching]
 **Learning:** In Vanilla JS architectures, redundant DOM queries (like `document.getElementById`) inside loops or critical render paths (like `renderSkeletons` and `renderAgents`) can cause severe layout thrashing and unnecessary CPU overhead.
 **Action:** Always extract top-level container queries (e.g., mapping category elements) outside of render loops and cache their references on initialization (`cacheElements()`). Never cache dynamic child components using array indices as keys to avoid stale UI bugs and encapsulation violations.
+
+## 2026-03-06 - ⚡ Bolt+ - [Redundant DOM Lookup Caching in FusionLab]
+**Learning:** High-frequency UI interactions, such as those in `FusionLab.js` involving `resetLab` or `handleFusion`, often repeatedly query the DOM for the same static container elements (e.g., `document.getElementById("fusionLabContent")`), incurring unnecessary layout thrashing and overhead.
+**Action:** Extracted the static `fusionLabContent` DOM query from method bodies into the centralized `this.elements` cache initialized in `bindEvents()`. Reused the cached reference `this.elements.labContent` across all applicable methods to ensure consistent, efficient access without triggering redundant lookups.

@@ -59,6 +59,8 @@ class FusionLab {
         fusionResultContainer: document.getElementById("fusionResultContainer"),
         fusionOutputWrapper: document.getElementById("fusionOutputWrapper"),
         resetLabBtn: document.getElementById("resetLabBtn"),
+        // ⚡ Bolt+: Cached fusionLabContent query to prevent repeated DOM lookups during high-frequency reset/fusion interactions.
+        labContent: document.getElementById("fusionLabContent"),
     };
 
     if (this.elements.slotACard) this.elements.slotACard.addEventListener("click", () => {
@@ -227,7 +229,7 @@ class FusionLab {
    */
   async handleFusion() {
     const fuseBtn = this.elements.fuseBtn;
-    const labContent = document.getElementById("fusionLabContent");
+    const labContent = this.elements.labContent;
 
     const agentA = this.state.slotA;
     const agentB = this.state.slotB;
@@ -356,7 +358,7 @@ class FusionLab {
 
     const wrapper = this.elements.fusionOutputWrapper;
     const resetBtn = this.elements.resetLabBtn;
-    const labContent = document.getElementById("fusionLabContent");
+    const labContent = this.elements.labContent;
     const container = this.elements.fusionResultContainer;
 
     if (wrapper) {
