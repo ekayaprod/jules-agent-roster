@@ -6,14 +6,12 @@ if (typeof module !== 'undefined' && module.exports && typeof require !== 'undef
     const DownloadUtils = require('./DownloadUtils');
     const FormatUtils = require('./FormatUtils');
     const PerformanceUtils = require('./PerformanceUtils');
-    const PromptRenderer = require('./PromptRenderer');
     const PromptParser = require('./PromptParser');
 
     module.exports = {
         DownloadUtils,
         FormatUtils,
         PerformanceUtils,
-        PromptRenderer,
         PromptParser
     };
 }
