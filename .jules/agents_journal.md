@@ -26,10 +26,10 @@
 **Learning:** When injecting an empty state into a picker modal, it's not enough to simply state "No results." A blank screen is a canvas. It needs to include an inspiring icon, empathetic copy, and an actionable Call-To-Action (like a clear search button) to prevent user dead ends and inspire exploration.
 **Action:** Always ensure that Empty State components mimic the structural dimensions of the layout they replace and contain a clear, actionable CTA to guide the user to the next step.
 
-## 2024-05-24 - 🎇 Hologram - [Replaced raw AI terminal output with DOM Nodes]
-**Learning:** Using `innerHTML` and `insertAdjacentHTML` with unescaped AI content streams causes XSS risks. Refactoring to Vanilla JS DOM nodes ensures complete safety, but introduces more verbose code structures.
-**Action:** Always prefer `document.createElement` and `document.createTextNode` or `element.textContent` when injecting AI-generated payloads in Vanilla JS projects to maintain safety over code brevity. Include CSS transitions to prevent visual thrashing.
-
 ## 2026-03-06 - ☄️ Tachyon - [Absence of Synchronous LLM Targets]
 **Learning:** Scanned the codebase for synchronous LLM SDK calls (OpenAI, Anthropic, Gemini) with missing `stream: true` flags and found none. The application uses the Jules API, which natively relies on session creation and asynchronous polling (`getActivities`) rather than synchronous monolithic completions.
 **Action:** No streaming rewires can be safely executed. Concluding the task without arbitrary modifications to the transport layer.
+
+## 2024-05-24 - 🎇 Hologram - [Generative UI Polish: Markdown to DOM]
+**Learning:** Raw AI text streams lack visual structure and can cause layout shifts. However, `innerHTML` and `insertAdjacentHTML` with unescaped AI content streams causes severe XSS risks. Refactoring to Vanilla JS DOM nodes ensures complete safety, but introduces more verbose code structures.
+**Action:** Always prefer a custom DOM-node based Markdown Renderer (using `document.createElement`, `document.createTextNode`, `textContent`) when injecting AI-generated payloads in Vanilla JS projects to maintain safety over code brevity. Include CSS transitions to prevent visual thrashing and simulate an organic growth vibe.
