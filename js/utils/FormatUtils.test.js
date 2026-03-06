@@ -55,22 +55,6 @@ describe('FormatUtils', () => {
     });
 
     describe('extractIcon and extractDisplayName', () => {
-        beforeEach(() => {
-            // Mock StringUtils globally
-            global.StringUtils = {
-                hasEmojiSuffix: jest.fn(),
-                extractEmoji: jest.fn(),
-                hasEmojiPrefix: jest.fn(),
-                extractEmojiPrefix: jest.fn(),
-                extractNameWithoutEmoji: jest.fn(),
-                extractNameWithoutEmojiPrefix: jest.fn()
-            };
-        });
-
-        afterEach(() => {
-            delete global.StringUtils;
-        });
-
         describe('extractIcon', () => {
             it('should return fallback if agent is null', () => {
                 expect(FormatUtils.extractIcon(null)).toBe('🤖');
@@ -84,36 +68,6 @@ describe('FormatUtils', () => {
 
             it('should return fallback if name is empty', () => {
                 expect(FormatUtils.extractIcon({})).toBe('🤖');
-                expect(FormatUtils.extractIcon({ name: '   ' })).toBe('🤖');
-            });
-
-            it('should extract emoji from suffix if present', () => {
-                global.StringUtils.hasEmojiSuffix.mockReturnValue(true);
-                global.StringUtils.extractEmoji.mockReturnValue('💧');
-
-                const agent = { name: 'Water Agent 💧' };
-                expect(FormatUtils.extractIcon(agent)).toBe('💧');
-                expect(global.StringUtils.hasEmojiSuffix).toHaveBeenCalledWith('Water Agent 💧');
-                expect(global.StringUtils.extractEmoji).toHaveBeenCalledWith('Water Agent 💧');
-            });
-
-            it('should extract emoji from prefix if present', () => {
-                global.StringUtils.hasEmojiSuffix.mockReturnValue(false);
-                global.StringUtils.hasEmojiPrefix.mockReturnValue(true);
-                global.StringUtils.extractEmojiPrefix.mockReturnValue('⚡');
-
-                const agent = { name: '⚡ Bolt Agent' };
-                expect(FormatUtils.extractIcon(agent)).toBe('⚡');
-                expect(global.StringUtils.hasEmojiPrefix).toHaveBeenCalledWith('⚡ Bolt Agent');
-                expect(global.StringUtils.extractEmojiPrefix).toHaveBeenCalledWith('⚡ Bolt Agent');
-            });
-
-            it('should return fallback if no emoji in name', () => {
-                global.StringUtils.hasEmojiSuffix.mockReturnValue(false);
-                global.StringUtils.hasEmojiPrefix.mockReturnValue(false);
-
-                const agent = { name: 'Normal Agent' };
-                expect(FormatUtils.extractIcon(agent)).toBe('🤖');
             });
         });
 
@@ -124,50 +78,10 @@ describe('FormatUtils', () => {
                 expect(FormatUtils.extractDisplayName({ name: '' })).toBe('Unknown Protocol');
             });
 
-            it('should strip emoji from suffix if present', () => {
-                global.StringUtils.hasEmojiSuffix.mockReturnValue(true);
-                global.StringUtils.extractNameWithoutEmoji.mockReturnValue('Water Agent');
-
-                const agent = { name: 'Water Agent 💧' };
-                expect(FormatUtils.extractDisplayName(agent)).toBe('Water Agent');
-                expect(global.StringUtils.hasEmojiSuffix).toHaveBeenCalledWith('Water Agent 💧');
-                expect(global.StringUtils.extractNameWithoutEmoji).toHaveBeenCalledWith('Water Agent 💧');
-            });
-
-            it('should strip emoji from prefix if present', () => {
-                global.StringUtils.hasEmojiSuffix.mockReturnValue(false);
-                global.StringUtils.hasEmojiPrefix.mockReturnValue(true);
-                global.StringUtils.extractNameWithoutEmojiPrefix.mockReturnValue('Bolt Agent');
-
-                const agent = { name: '⚡ Bolt Agent' };
-                expect(FormatUtils.extractDisplayName(agent)).toBe('Bolt Agent');
-                expect(global.StringUtils.hasEmojiPrefix).toHaveBeenCalledWith('⚡ Bolt Agent');
-                expect(global.StringUtils.extractNameWithoutEmojiPrefix).toHaveBeenCalledWith('⚡ Bolt Agent');
-            });
-
-            it('should return trimmed name if no emoji present', () => {
-                global.StringUtils.hasEmojiSuffix.mockReturnValue(false);
-                global.StringUtils.hasEmojiPrefix.mockReturnValue(false);
-
+            it('should return trimmed name', () => {
                 const agent = { name: '  Normal Agent  ' };
                 expect(FormatUtils.extractDisplayName(agent)).toBe('Normal Agent');
             });
-        });
-    });
-
-    describe('Edge Cases without StringUtils', () => {
-        beforeEach(() => {
-            delete global.StringUtils;
-        });
-
-        it('extractIcon should fallback gracefully when StringUtils is undefined', () => {
-            const agent = { name: 'Water Agent 💧' };
-            expect(FormatUtils.extractIcon(agent)).toBe('🤖');
-        });
-
-        it('extractDisplayName should fallback gracefully when StringUtils is undefined', () => {
-            const agent = { name: 'Water Agent 💧' };
-            expect(FormatUtils.extractDisplayName(agent)).toBe('Water Agent 💧');
         });
     });
 });

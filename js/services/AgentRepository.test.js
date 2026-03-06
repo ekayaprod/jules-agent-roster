@@ -1,9 +1,5 @@
 const AgentRepository = require('./AgentRepository');
 
-// Setup StringUtils mock globally
-const StringUtils = require('../utils/StringUtils');
-global.StringUtils = StringUtils;
-
 global.CONFIG = { categories: { 'architect': 'Architect', 'developer': 'Developer' } };
 
 describe('AgentRepository', () => {
@@ -212,18 +208,6 @@ describe('AgentRepository', () => {
     });
 
     describe('validateCustomAgent', () => {
-        beforeEach(() => {
-            // Restore mocked StringUtils behavior locally per test if needed
-            global.StringUtils = {
-                hasEmojiSuffix: jest.fn(),
-                extractEmoji: jest.fn(),
-                hasEmojiPrefix: jest.fn(),
-                extractEmojiPrefix: jest.fn(),
-                extractNameWithoutEmoji: jest.fn(),
-                extractNameWithoutEmojiPrefix: jest.fn()
-            };
-        });
-
         it('invalidates non-objects', () => {
             expect(repo.validateCustomAgent('key', null)).toEqual({ valid: false, reason: "Entry is not an object" });
             expect(repo.validateCustomAgent('key', "string")).toEqual({ valid: false, reason: "Entry is not an object" });
@@ -275,51 +259,12 @@ describe('AgentRepository', () => {
             });
         });
 
-        it('extracts emoji suffix and cleans name', () => {
-            global.StringUtils.hasEmojiSuffix.mockReturnValue(true);
-            global.StringUtils.extractEmoji.mockReturnValue("🚀");
-            global.StringUtils.extractNameWithoutEmoji.mockReturnValue("Rocket Agent");
-
-            const res = repo.validateCustomAgent('key', { name: "Rocket Agent 🚀" });
-
-            expect(res.valid).toBe(true);
-            expect(res.sanitized.emoji).toBe("🚀");
-            expect(res.sanitized.name).toBe("Rocket Agent");
-        });
-
-        it('extracts emoji prefix and cleans name', () => {
-            global.StringUtils.hasEmojiSuffix.mockReturnValue(false);
-            global.StringUtils.hasEmojiPrefix.mockReturnValue(true);
-            global.StringUtils.extractEmojiPrefix.mockReturnValue("⚡");
-            global.StringUtils.extractNameWithoutEmojiPrefix.mockReturnValue("Bolt Agent");
-
-            const res = repo.validateCustomAgent('key', { name: "⚡ Bolt Agent" });
-
-            expect(res.valid).toBe(true);
-            expect(res.sanitized.emoji).toBe("⚡");
-            expect(res.sanitized.name).toBe("Bolt Agent");
-        });
-
-        it('uses default fallback emoji if StringUtils is missing or no emoji found', () => {
-            global.StringUtils.hasEmojiSuffix.mockReturnValue(false);
-            global.StringUtils.hasEmojiPrefix.mockReturnValue(false);
-
+        it('uses default fallback emoji if no emoji found in JSON payload', () => {
             const res = repo.validateCustomAgent('key', { name: "Plain Agent" });
 
             expect(res.valid).toBe(true);
             expect(res.sanitized.emoji).toBe("🤖");
             expect(res.sanitized.name).toBe("Plain Agent");
-        });
-
-        it('falls back safely when StringUtils is undefined', () => {
-            const temp = global.StringUtils;
-            global.StringUtils = undefined;
-
-            const res = repo.validateCustomAgent('key', { name: "Agent Without Util" });
-            expect(res.valid).toBe(true);
-            expect(res.sanitized.emoji).toBe("🤖");
-
-            global.StringUtils = temp;
         });
     });
 
