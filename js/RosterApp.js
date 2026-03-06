@@ -554,8 +554,8 @@ class RosterApp {
 
                       if (act.planGenerated.plan && act.planGenerated.plan.steps) {
                           const stepsMarkdown = act.planGenerated.plan.steps.map((step, idx) => {
-                              return \`- **Step \${idx + 1}: \${step.name || step.title || ''}** \${step.description || ''}\`;
-                          }).join('\\n');
+                              return `- **Step ${idx + 1}: ${step.name || step.title || ''}** ${step.description || ''}`;
+                          }).join('\n');
                           planDetails.appendChild(MarkdownRenderer.render(stepsMarkdown));
                       }
                       lineDiv.appendChild(planDetails);
