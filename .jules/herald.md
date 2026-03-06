@@ -1,8 +1,8 @@
 # 📣 Herald's Journal
 
 ## State
-- **Current Version:** 0.5.0
-- **Last Commit:** fff5405
+- **Current Version:** 0.6.0
+- **Last Commit:** b3624bf
 - **Release Status:** Active
 
 ## 2026-03-03 - [Version 0.5.0 Release]
@@ -12,6 +12,11 @@
 ## 2026-03-01 - [Version 0.4.0 Release]
 **Learning:** Significant feature and systemic refactoring updates (e.g., TCG Rarity System, modular UI, light mode) often don't contain a specific Git tag, meaning manual commit parsing since the last tracked commit is required to accurately categorize changes and bump versions.
 **Action:** When no clear version tag exists or tags fail to describe correctly, use `git log --oneline <last_known_commit>..HEAD` to accurately identify untagged feature additions and appropriately enforce a Minor version bump.
+
+
+## 2026-03-06 - [Version 0.6.0 Release]
+**Learning:** Found a high volume of semantic agent PRs indicating rapid codebase iteration and AI persona refinement (e.g., Illusionist, Bolt+, Cortex). Relying purely on specific semantic tags is necessary to filter signal from noise.
+**Action:** When extracting release logs, specifically target prefixes matching active agents (`feat`, `fix`, `chore` alongside emoji tags like ⚡, 🪄, 🧠) to automatically generate structured changelogs mapped to specific domain efforts.
 
 ## Notes
 - Initialized changelog and version tracking.
