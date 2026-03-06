@@ -3,12 +3,15 @@ const DEFAULT_SUCCESS_DURATION = 2000;
 /**
  * Utility class for handling clipboard operations and button success animations.
  * Centralizes logic previously duplicated in RosterApp and FusionLab.
+ * @see README.md#clipboardutils-architecture for implementation details.
  */
 class ClipboardUtils {
     /**
-     * Copies text to the clipboard using the Clipboard API or a fallback.
-     * @param {string} text - The text to copy.
-     * @returns {Promise<boolean>} True if successful, false otherwise.
+     * Copies text to the clipboard using the modern Clipboard API,
+     * seamlessly dropping down to `execCommand('copy')` for older browser compatibility.
+     * @param {string} text - The raw text payload to inject into the clipboard.
+     * @returns {Promise<boolean>} True if the operation was completely successful.
+     * @see README.md#clipboardutils-architecture
      */
     static async copyText(text) {
         // 1. Try Modern Clipboard API
@@ -42,11 +45,14 @@ class ClipboardUtils {
     }
 
     /**
-     * Animates a button to indicate success.
-     * Temporarily changes the button style and text, and toggles icons.
-     * @param {HTMLElement} btn - The button element.
-     * @param {string} successMessage - The text to display during the success state.
-     * @param {number} [duration=DEFAULT_SUCCESS_DURATION] - Duration of the success state in ms.
+     * Executes a temporary visual state transition on a target button to indicate success.
+     * Swaps the default icon for a checkmark and temporarily updates the text span.
+     * Automatically reverts to the original state via a timeout.
+     * @param {HTMLElement} btn - The DOM button element to target.
+     * @param {string} successMessage - The temporary text string to render.
+     * @param {number} [duration=DEFAULT_SUCCESS_DURATION] - The timeout duration in milliseconds before resetting.
+     * @returns {void}
+     * @see README.md#clipboardutils-architecture
      */
     static animateButtonSuccess(btn, successMessage, duration = DEFAULT_SUCCESS_DURATION) {
         if (!btn) return;

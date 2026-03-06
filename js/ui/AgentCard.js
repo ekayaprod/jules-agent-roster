@@ -1,11 +1,28 @@
 /**
  * Component responsible for rendering individual agent cards as 3D interactive flip-cards.
+ * @see README.md#agentcard-architecture for DOM structure and event delegation details.
  */
 class AgentCard {
+    /**
+     * Lazily generates the inner HTML for the back of the card (the prompt preview).
+     * Escapes the raw markdown content to prevent XSS vulnerabilities.
+     * @param {Object} agent - The agent data object containing the prompt string.
+     * @returns {string} The HTML string representing the parsed prompt.
+     * @see README.md#agentcard-architecture
+     */
     static getPromptHtml(agent) {
         return `<div class="details-content">${FormatUtils.escapeHTML(agent.prompt || "No protocol data available.")}</div>`;
     }
 
+    /**
+     * Generates the complete HTML element for a 3D flip-card.
+     * Does not attach inner loop event listeners; relies on parent container delegation.
+     * @param {Object} agent - The complete agent data object.
+     * @param {string|number} index - The unique identifier or array index of the agent.
+     * @param {number} globalIndex - The global render index used to calculate cascading animation delays.
+     * @returns {HTMLElement} The fully constructed DOM element for the card.
+     * @see README.md#agentcard-architecture
+     */
     static create(agent, index, globalIndex) {
         const card = document.createElement("div");
         card.className = "card flip-card pop-in";
