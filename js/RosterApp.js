@@ -401,7 +401,7 @@ class RosterApp {
               DownloadUtils.downloadTextFile(agent.prompt, `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
               actionBtn.closest('.dropdown-menu')?.classList.remove('visible');
           } else if (actionBtn.dataset.action === "launch-jules") {
-              this.launchJulesSession(agent);
+          this.launchJulesSession(agent, actionBtn);
           }
       }
     });
@@ -432,12 +432,12 @@ class RosterApp {
   /**
    * Triggers a new session in the Jules API Runner.
    */
-  async launchJulesSession(agent) {
+  async launchJulesSession(agent, btn = null) {
       const sourceName = document.getElementById("julesRepoPicker").value;
       const userTask = document.getElementById("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
       
       if (!sourceName) {
-          this.toast.show("Please select a target repository in the runner panel.", true);
+          this.toast.show("Please select a target repository in the runner panel.", "error");
           document.getElementById("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
           document.getElementById("julesRepoPicker").focus();
           return;
@@ -456,9 +456,14 @@ class RosterApp {
       line.appendChild(document.createTextNode(` 🚀 Launching ${agent.name} (${agent.emoji})...`));
       terminal.appendChild(line);
 
+      if (btn) {
+          DOMUtils.setButtonState(btn, "loading", "Launching...");
+      }
+
       try {
           const session = await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name} Execution`);
           this.startTerminalPolling(session.id, terminal);
+          this.toast.show(`Session for ${agent.name} launched successfully!`, "success");
       } catch (err) {
           const errorLine = document.createElement("div");
           errorLine.className = "terminal-line terminal-error";
@@ -468,6 +473,11 @@ class RosterApp {
           errorLine.appendChild(errorTimeSpan);
           errorLine.appendChild(document.createTextNode(` Failed to launch: ${err.message}`));
           terminal.appendChild(errorLine);
+          this.toast.show(`Failed to launch session: ${err.message}`, "error");
+      } finally {
+          if (btn) {
+              DOMUtils.setButtonState(btn, "ready", "Launch in Jules 🚀");
+          }
       }
   }
 
