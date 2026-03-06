@@ -7,31 +7,6 @@
  */
 class PromptRenderer {
     /**
-     * Renders a complete prompt string from a single agent or a fused agent.
-     * @param {Object} agent - The agent data object.
-     * @returns {string} The formatted markdown prompt.
-     */
-    static renderMarkdown(agent) {
-        if (!agent) return '';
-
-        const parts = [];
-
-        if (agent.name) {
-            parts.push(`# ${agent.name}`);
-        }
-
-        if (agent.description) {
-            parts.push(`> ${agent.description}`);
-        }
-
-        if (agent.prompt) {
-            parts.push(agent.prompt);
-        }
-
-        return parts.join('\n\n');
-    }
-
-    /**
      * Renders a parsed prompt object into an HTML string for XML formats.
      * @param {Object} parsedPrompt - The parsed prompt object from PromptParser.
      * @returns {string|null} The rendered HTML string, or null if format is not XML.
