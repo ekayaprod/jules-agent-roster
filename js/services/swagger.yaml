@@ -53,6 +53,65 @@ paths:
           description: Unauthorized (Invalid or missing API key)
 
   /sessions:
+    get:
+      summary: List Agent Sessions
+      description: Retrieves a list of sessions for the authenticated user.
+      operationId: listSessions
+      parameters:
+        - name: pageSize
+          in: query
+          required: false
+          description: The number of sessions to return per page.
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: A list of sessions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sessions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        title:
+                          type: string
+                        prompt:
+                          type: string
+                        sourceContext:
+                          type: object
+                          properties:
+                            source:
+                              type: string
+                            githubRepoContext:
+                              type: object
+                              properties:
+                                startingBranch:
+                                  type: string
+                        outputs:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              pullRequest:
+                                type: object
+                                properties:
+                                  url:
+                                    type: string
+                                  title:
+                                    type: string
+                                  description:
+                                    type: string
+        '401':
+          description: Unauthorized
     post:
       summary: Create Agent Session
       description: Initiates a new autonomous agent session bound to a specific GitHub repository source.

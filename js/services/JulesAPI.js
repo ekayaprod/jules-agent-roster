@@ -75,6 +75,16 @@ class JulesService {
     }
 
     /**
+     * Retrieves the list of sessions for the authenticated user.
+     * @param {number} [pageSize=50] - The number of sessions to return.
+     * @returns {Promise<Object>} The JSON response containing the sessions array.
+     * @throws {Error} If the request fails or times out.
+     */
+    async getSessions(pageSize = 50) {
+        return this._fetch(`sessions?pageSize=${pageSize}`);
+    }
+
+    /**
      * Retrieves the list of available GitHub sources connected to the user's Jules account.
      * @returns {Promise<Object>} The JSON response containing the sources array.
      * @throws {Error} If the request fails or times out.
