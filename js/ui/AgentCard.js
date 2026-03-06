@@ -3,18 +3,7 @@
  */
 class AgentCard {
     static getPromptHtml(agent) {
-        const parsed = PromptParser.parsePrompt(agent.prompt || "No protocol data available.");
-        let promptHtml = '';
-
-        if (parsed.format === 'legacy') {
-            promptHtml = `<div class="details-content">${FormatUtils.escapeHTML(agent.prompt)}</div>`;
-        } else if (typeof PromptRenderer !== 'undefined') {
-            const structuredHtml = PromptRenderer.renderXml(parsed);
-            promptHtml = `<div class="details-content">${structuredHtml || FormatUtils.escapeHTML(agent.prompt)}</div>`;
-        } else {
-            promptHtml = `<div class="details-content">${FormatUtils.escapeHTML(agent.prompt)}</div>`;
-        }
-        return promptHtml;
+        return `<div class="details-content">${FormatUtils.escapeHTML(agent.prompt || "No protocol data available.")}</div>`;
     }
 
     static create(agent, index, globalIndex) {
