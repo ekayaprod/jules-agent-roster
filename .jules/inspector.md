@@ -13,3 +13,7 @@
 ## 2026-03-05 - 🕵️ Inspector - [Coverage Added: PromptParser]
 **Learning:** Evaluated the `PromptParser.js` utility responsible for parsing AI agent prompts. Found lack of coverage for XML DOM parsing logic, including unclosed tags, malformed input exceptions, and log extraction boundaries. The utility relies on the native `DOMParser` browser API, which is missing in standard Node.js environments.
 **Action:** Wrote an extensive Jest suite to enforce Mode B Stress testing. Mocked the `DOMParser` browser API securely within Node.js utilizing `@xmldom/xmldom` through the `global` object. Verified 100% path coverage by forcefully injecting parsing errors via `jest.fn()` wrappers.
+
+## 2026-03-06 - 🕵️ Inspector - [Coverage Added: js/ui/]
+**Learning:** Identified lack of test coverage for the core visual UI components within `js/ui/` (`AgentCard.js`, `ClipboardUtils.js`, and `ToastNotification.js`). These modules have significant dynamic DOM generation and DOM interaction, requiring a mock DOM testing environment (`jsdom`).
+**Action:** Installed `jest-environment-jsdom` to support tests requiring `document` or `window`. Wrote test suites to cover visual logic handling boundaries, including malformed HTML preventing XSS on `AgentCard.js`, verifying `ClipboardUtils.js` fallback strategies for unsupported API states, and mocking `setInterval` / timers to prove thread-safety and hover states on `ToastNotification.js`. Achieved > 94% branch coverage across these three components.
