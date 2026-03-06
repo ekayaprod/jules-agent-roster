@@ -13,3 +13,6 @@
 ## 2026-03-06 - 📘 Author - [Macro-Documentation Generated: Jules API Swagger]
 **Learning:** The Jules API endpoints invoked within `js/services/JulesAPI.js` were entirely undocumented, forcing developers to inspect implementation details (e.g. `POST /sessions` payload structure, `GET /activities` pagination) rather than referring to a dedicated API specification.
 **Action:** Generated a strict OpenAPI specification `js/services/swagger.yaml` documenting the payload schemas, query parameters, and responses for the `sources`, `sessions`, and `activities` endpoints utilized by the application.
+## 2026-03-06 - 📘 Author - [Macro-Documentation Generated: Root README]
+**Learning:** The root README lacked strict structural sections (Purpose, Quick Start, Architecture) and contained conversational language.
+**Action:** Rewrote the root README to adhere to macro-documentarian standards, enforcing an imperative tone and copy-pasteable Quick Start.
