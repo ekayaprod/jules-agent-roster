@@ -45,6 +45,35 @@ class StorageUtils {
             console.warn(`${componentName}: Failed to save to localStorage`, error);
         }
     }
+
+    /**
+     * Retrieves a raw string item from localStorage.
+     * @param {string} key - The localStorage key.
+     * @param {string} defaultValue - Fallback if not found.
+     * @returns {string} The stored string.
+     */
+    static getItem(key, defaultValue = "") {
+        try {
+            if (typeof localStorage === 'undefined') return defaultValue;
+            return localStorage.getItem(key) || defaultValue;
+        } catch (error) {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * Saves a raw string item to localStorage.
+     * @param {string} key - The localStorage key.
+     * @param {string} value - The string to save.
+     */
+    static setItem(key, value) {
+        try {
+            if (typeof localStorage === 'undefined') return;
+            localStorage.setItem(key, value);
+        } catch (error) {
+            console.warn(`Failed to save string to localStorage`, error);
+        }
+    }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
