@@ -440,13 +440,28 @@ class RosterApp {
       document.getElementById("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
       const terminal = document.getElementById("julesTerminal");
       terminal.classList.add('active');
-      terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> 🚀 Launching ${agent.name} (${agent.emoji})...</div>`;
+      terminal.innerHTML = "";
+      const line = document.createElement("div");
+      line.className = "terminal-line";
+      const timeSpan = document.createElement("span");
+      timeSpan.className = "terminal-time";
+      timeSpan.textContent = "[System]";
+      line.appendChild(timeSpan);
+      line.appendChild(document.createTextNode(` 🚀 Launching ${agent.name} (${agent.emoji})...`));
+      terminal.appendChild(line);
 
       try {
           const session = await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name} Execution`);
           this.startTerminalPolling(session.id, terminal);
       } catch (err) {
-          terminal.innerHTML += `<div class="terminal-line terminal-error"><span class="terminal-time">[Error]</span> Failed to launch: ${err.message}</div>`;
+          const errorLine = document.createElement("div");
+          errorLine.className = "terminal-line terminal-error";
+          const errorTimeSpan = document.createElement("span");
+          errorTimeSpan.className = "terminal-time";
+          errorTimeSpan.textContent = "[Error]";
+          errorLine.appendChild(errorTimeSpan);
+          errorLine.appendChild(document.createTextNode(` Failed to launch: ${err.message}`));
+          terminal.appendChild(errorLine);
       }
   }
 
@@ -471,27 +486,52 @@ class RosterApp {
                   knownActivityIds.add(act.id);
 
                   const timeStr = new Date(act.createTime).toLocaleTimeString();
-                  let lineHtml = `<div class="terminal-line"><span class="terminal-time">[${timeStr}]</span> `;
+                  const lineDiv = document.createElement("div");
+                  lineDiv.className = "terminal-line";
+
+                  const timeSpan = document.createElement("span");
+                  timeSpan.className = "terminal-time";
+                  timeSpan.textContent = `[${timeStr}] `;
+                  lineDiv.appendChild(timeSpan);
                   
                   if (act.progressUpdated) {
-                      lineHtml += `${act.progressUpdated.title}`;
+                      lineDiv.appendChild(document.createTextNode(act.progressUpdated.title));
                       if (act.progressUpdated.description) {
-                           lineHtml += `<br><span style="color:var(--text-secondary); margin-left: 1rem;">↳ ${act.progressUpdated.description}</span>`;
+                           lineDiv.appendChild(document.createElement("br"));
+                           const descSpan = document.createElement("span");
+                           descSpan.style.color = "var(--text-secondary)";
+                           descSpan.style.marginLeft = "1rem";
+                           descSpan.textContent = `↳ ${act.progressUpdated.description}`;
+                           lineDiv.appendChild(descSpan);
                       }
                   } else if (act.planGenerated) {
-                      lineHtml += `<span class="terminal-plan">📋 Plan Generated: ${act.planGenerated.plan.steps.length} steps outlined.</span>`;
+                      const planSpan = document.createElement("span");
+                      planSpan.className = "terminal-plan";
+                      planSpan.textContent = `📋 Plan Generated: ${act.planGenerated.plan.steps.length} steps outlined.`;
+                      lineDiv.appendChild(planSpan);
                   } else if (act.sessionCompleted) {
-                      lineHtml += `<span class="terminal-success">✅ Session Completed Successfully.</span>`;
+                      const successSpan = document.createElement("span");
+                      successSpan.className = "terminal-success";
+                      successSpan.textContent = "✅ Session Completed Successfully.";
+                      lineDiv.appendChild(successSpan);
+
                       if (act.artifacts && act.artifacts[0]?.changeSet?.gitPatch?.suggestedCommitMessage) {
-                          lineHtml += `<br><span style="color:#f8fafc; background: #1e293b; padding: 0.2rem 0.5rem; margin-top: 0.2rem; display: inline-block;">Drafted PR: ${act.artifacts[0].changeSet.gitPatch.suggestedCommitMessage.split('\n')[0]}</span>`;
+                          lineDiv.appendChild(document.createElement("br"));
+                          const prSpan = document.createElement("span");
+                          prSpan.style.color = "#f8fafc";
+                          prSpan.style.background = "#1e293b";
+                          prSpan.style.padding = "0.2rem 0.5rem";
+                          prSpan.style.marginTop = "0.2rem";
+                          prSpan.style.display = "inline-block";
+                          prSpan.textContent = `Drafted PR: ${act.artifacts[0].changeSet.gitPatch.suggestedCommitMessage.split('\n')[0]}`;
+                          lineDiv.appendChild(prSpan);
                       }
                       clearInterval(this.julesPollingInterval);
                   } else {
-                      lineHtml += `System Activity Logged.`;
+                      lineDiv.appendChild(document.createTextNode("System Activity Logged."));
                   }
                   
-                  lineHtml += `</div>`;
-                  terminal.insertAdjacentHTML('beforeend', lineHtml);
+                  terminal.appendChild(lineDiv);
                   terminal.scrollTop = terminal.scrollHeight; // Auto-scroll
               });
 

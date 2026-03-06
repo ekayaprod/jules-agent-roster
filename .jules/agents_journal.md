@@ -25,3 +25,7 @@
 ## 2024-05-24 - 🧑‍🎨 Muse - [Contextual FTUE: Agent Picker Modal]
 **Learning:** When injecting an empty state into a picker modal, it's not enough to simply state "No results." A blank screen is a canvas. It needs to include an inspiring icon, empathetic copy, and an actionable Call-To-Action (like a clear search button) to prevent user dead ends and inspire exploration.
 **Action:** Always ensure that Empty State components mimic the structural dimensions of the layout they replace and contain a clear, actionable CTA to guide the user to the next step.
+
+## 2024-05-24 - 🎇 Hologram - [Replaced raw AI terminal output with DOM Nodes]
+**Learning:** Using `innerHTML` and `insertAdjacentHTML` with unescaped AI content streams causes XSS risks. Refactoring to Vanilla JS DOM nodes ensures complete safety, but introduces more verbose code structures.
+**Action:** Always prefer `document.createElement` and `document.createTextNode` or `element.textContent` when injecting AI-generated payloads in Vanilla JS projects to maintain safety over code brevity. Include CSS transitions to prevent visual thrashing.
