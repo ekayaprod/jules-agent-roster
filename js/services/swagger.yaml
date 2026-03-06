@@ -1,0 +1,182 @@
+openapi: 3.0.3
+info:
+  title: Jules API (Alpha)
+  version: v1alpha
+  description: >
+    The Jules API integration layer for creating autonomous agent sessions and polling
+    real-time activities from the backend engine.
+
+servers:
+  - url: https://jules.googleapis.com/v1alpha
+    description: Production Alpha Server
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-Goog-Api-Key
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  /sources:
+    get:
+      summary: Retrieve Available Sources
+      description: Returns a list of available GitHub repositories connected to the authenticated user's account.
+      operationId: getSources
+      responses:
+        '200':
+          description: A list of connected sources.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sources:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          description: The full internal source name (e.g., sources/github/owner/repo)
+                        githubRepo:
+                          type: object
+                          properties:
+                            owner:
+                              type: string
+                            repo:
+                              type: string
+        '401':
+          description: Unauthorized (Invalid or missing API key)
+
+  /sessions:
+    post:
+      summary: Create Agent Session
+      description: Initiates a new autonomous agent session bound to a specific GitHub repository source.
+      operationId: createSession
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - prompt
+                - sourceContext
+                - automationMode
+              properties:
+                prompt:
+                  type: string
+                  description: The raw markdown prompt for the agent, including the user's task.
+                sourceContext:
+                  type: object
+                  required:
+                    - source
+                    - githubRepoContext
+                  properties:
+                    source:
+                      type: string
+                      description: Target repository source identifier.
+                    githubRepoContext:
+                      type: object
+                      properties:
+                        startingBranch:
+                          type: string
+                          default: main
+                automationMode:
+                  type: string
+                  enum:
+                    - AUTO_CREATE_PR
+                title:
+                  type: string
+                  description: An optional human-readable title for the session.
+      responses:
+        '200':
+          description: Session created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the created session.
+        '400':
+          description: Bad request (Invalid payload)
+        '401':
+          description: Unauthorized
+
+  /sessions/{sessionId}/activities:
+    get:
+      summary: Poll Session Activities
+      description: Polls the backend for real-time progress activities of an active agent session.
+      operationId: getActivities
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          description: The unique identifier of the session.
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          required: false
+          description: The number of activities to return per page.
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: A list of session activities.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  activities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        createTime:
+                          type: string
+                          format: date-time
+                        progressUpdated:
+                          type: object
+                          properties:
+                            title:
+                              type: string
+                            description:
+                              type: string
+                        planGenerated:
+                          type: object
+                          properties:
+                            plan:
+                              type: object
+                              properties:
+                                steps:
+                                  type: array
+                                  items:
+                                    type: object
+                        sessionCompleted:
+                          type: boolean
+                        artifacts:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              changeSet:
+                                type: object
+                                properties:
+                                  gitPatch:
+                                    type: object
+                                    properties:
+                                      suggestedCommitMessage:
+                                        type: string
+        '404':
+          description: Session not found
