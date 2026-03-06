@@ -536,7 +536,9 @@ class RosterApp {
                            const descSpan = document.createElement("span");
                            descSpan.style.color = "var(--text-secondary)";
                            descSpan.style.marginLeft = "1rem";
-                           descSpan.textContent = `↳ ${act.progressUpdated.description}`;
+                           descSpan.style.transition = "all 0.3s ease";
+                           descSpan.style.display = "block";
+                           descSpan.appendChild(MarkdownRenderer.render(`↳ ${act.progressUpdated.description}`));
                            lineDiv.appendChild(descSpan);
                       }
                   } else if (act.planGenerated) {
@@ -544,6 +546,19 @@ class RosterApp {
                       planSpan.className = "terminal-plan";
                       planSpan.textContent = `📋 Plan Generated: ${act.planGenerated.plan.steps.length} steps outlined.`;
                       lineDiv.appendChild(planSpan);
+
+                      const planDetails = document.createElement("div");
+                      planDetails.style.marginLeft = "1rem";
+                      planDetails.style.marginTop = "0.5rem";
+                      planDetails.style.transition = "all 0.3s ease";
+
+                      if (act.planGenerated.plan && act.planGenerated.plan.steps) {
+                          const stepsMarkdown = act.planGenerated.plan.steps.map((step, idx) => {
+                              return \`- **Step \${idx + 1}: \${step.name || step.title || ''}** \${step.description || ''}\`;
+                          }).join('\\n');
+                          planDetails.appendChild(MarkdownRenderer.render(stepsMarkdown));
+                      }
+                      lineDiv.appendChild(planDetails);
                   } else if (act.sessionCompleted) {
                       const successSpan = document.createElement("span");
                       successSpan.className = "terminal-success";
