@@ -70,23 +70,19 @@ class AgentCard {
             <div class="flip-card-inner">
                 <div class="flip-card-front" data-action="flip-card" data-index="${index}">
                     ${pinHtml}
-                    <div class="front-content-wrapper">
-                        <div class="card-top">
-                            <div class="card-top-left">
-                                <div class="emoji-hero">${icon}</div>
-                            </div>
-                            <div class="card-top-right">
-                                <div class="title-group">
-                                    <div class="title-wrapper">
-                                        <h3 class="agent-title">${safeDisplayName}</h3>
-                                    </div>
-                                    <span class="role-tag">${role}</span>
-                                </div>
-                                <div class="tag-container mt-2">${tags}</div>
-                            </div>
+                    <div class="card-top" style="position: relative; z-index: 1; width: 100%; margin-top: -0.5rem;">
+                        <div class="card-top-left">
+                            <div class="emoji-hero">${icon}</div>
                         </div>
-                        <div class="description mt-3">${desc}</div>
+                        <div class="card-top-right">
+                            <div class="title-group">
+                                <h3 class="agent-title" style="display: flex; justify-content: space-between; width: 100%;">${safeDisplayName}</h3>
+                                <span class="role-tag">${role}</span>
+                            </div>
+                            <div class="tag-container mt-2">${tags}</div>
+                        </div>
                     </div>
+                    <div class="description mt-3" style="position: relative; z-index: 1; width: 100%;">${desc}</div>
                     <div class="flip-hint" aria-label="Tap to view protocol" >↺</div>
                 </div>
 
