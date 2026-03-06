@@ -1,0 +1,1 @@
+## 2026-03-06 - 🧠 Cortex - [API Resilience: Timeout Added]\n**Learning:** Raw fetch calls without timeouts are brittle and can lead to hanging requests.\n**Action:** Implemented a 15-second AbortController timeout for all JulesAPI.js requests to ensure graceful degradation and error handling.

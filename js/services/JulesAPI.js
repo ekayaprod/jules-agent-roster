@@ -29,22 +29,36 @@ class JulesService {
             'X-Goog-Api-Key': this.apiKey
         };
 
-        const response = await fetch(url, {
-            ...options,
-            headers: { ...headers, ...options.headers }
-        });
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            let errorMsg = `Jules API Error ${response.status}`;
-            try {
-                const errJson = JSON.parse(errorText);
-                if (errJson.error?.message) errorMsg = errJson.error.message;
-            } catch(e) {}
-            throw new Error(errorMsg);
+        try {
+            const response = await fetch(url, {
+                ...options,
+                headers: { ...headers, ...options.headers },
+                signal: controller.signal
+            });
+
+            clearTimeout(timeoutId);
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                let errorMsg = `Jules API Error ${response.status}`;
+                try {
+                    const errJson = JSON.parse(errorText);
+                    if (errJson.error?.message) errorMsg = errJson.error.message;
+                } catch(e) {}
+                throw new Error(errorMsg);
+            }
+
+            return response.json();
+        } catch (error) {
+            clearTimeout(timeoutId);
+            if (error.name === 'AbortError') {
+                throw new Error("Jules API Timeout: Request took longer than 15000ms.");
+            }
+            throw error;
         }
-
-        return response.json();
     }
 
     /**
