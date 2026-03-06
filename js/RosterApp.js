@@ -469,15 +469,34 @@ class RosterApp {
       document.getElementById("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
       const terminal = document.getElementById("julesTerminal");
       terminal.classList.add('active');
-      terminal.innerHTML = "";
-      const line = document.createElement("div");
-      line.className = "terminal-line";
-      const timeSpan = document.createElement("span");
-      timeSpan.className = "terminal-time";
-      timeSpan.textContent = "[System]";
-      line.appendChild(timeSpan);
-      line.appendChild(document.createTextNode(` 🚀 Launching ${agent.name} (${agent.emoji})...`));
-      terminal.appendChild(line);
+
+      // Clear the "Awaiting..." placeholder if it's the first execution
+      if (terminal.innerHTML.includes("Awaiting Agent launch command")) {
+          terminal.innerHTML = "";
+      }
+
+      // Generate a temporary ID for the new session
+      const tempId = 'temp-' + Date.now();
+
+      const item = document.createElement("div");
+      item.className = "dashboard-item";
+      item.id = tempId;
+
+      const repoPath = sourceName.replace('sources/github/', '');
+
+      item.innerHTML = `
+          <div class="dashboard-info">
+              <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem;">${agent.emoji}</span>
+              <div>
+                  <div class="dashboard-title">${agent.name}</div>
+                  <div class="dashboard-meta">${repoPath}</div>
+              </div>
+          </div>
+          <div class="dashboard-status">
+              <span class="status-badge status-in-progress" id="status-${tempId}">Launching...</span>
+          </div>
+      `;
+      terminal.appendChild(item);
 
       if (btn) {
           DOMUtils.setButtonState(btn, "loading", "Launching...");
@@ -485,17 +504,24 @@ class RosterApp {
 
       try {
           const session = await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name} Execution`);
-          this.startTerminalPolling(session.id, terminal);
+
+          // Update item with actual session ID
+          item.id = `session-${session.id}`;
+          const statusBadge = item.querySelector(`#status-${tempId}`);
+          statusBadge.id = `status-${session.id}`;
+          statusBadge.textContent = "In Progress";
+
+          this.startTerminalPolling(session.id, item, repoPath);
           this.toast.show(`Session for ${agent.name} launched successfully!`, "success");
       } catch (err) {
-          const errorLine = document.createElement("div");
-          errorLine.className = "terminal-line terminal-error";
-          const errorTimeSpan = document.createElement("span");
-          errorTimeSpan.className = "terminal-time";
-          errorTimeSpan.textContent = "[Error]";
-          errorLine.appendChild(errorTimeSpan);
-          errorLine.appendChild(document.createTextNode(` Failed to launch: ${err.message}`));
-          terminal.appendChild(errorLine);
+          const statusBadge = item.querySelector(`#status-${tempId}`);
+          statusBadge.className = "status-badge status-failed";
+          statusBadge.textContent = "Failed";
+
+          const metaDiv = item.querySelector(".dashboard-meta");
+          metaDiv.textContent = `Launch Error: ${err.message}`;
+          metaDiv.style.color = "#ef4444";
+
           this.toast.show(`Failed to launch session: ${err.message}`, "error");
       } finally {
           if (btn) {
@@ -507,15 +533,19 @@ class RosterApp {
   /**
    * Polls the Jules API activities endpoint and updates the visual terminal feed.
    * @param {string} sessionId - The current Jules session ID.
-   * @param {HTMLElement} terminal - The DOM element representing the terminal output.
+   * @param {HTMLElement} item - The DOM element representing the dashboard item for this session.
+   * @param {string} repoPath - The repository path (e.g. 'owner/repo').
    * @see README.md#rosterapp-architecture
    */
-  startTerminalPolling(sessionId, terminal) {
-      if (this.julesPollingInterval) clearInterval(this.julesPollingInterval);
+  startTerminalPolling(sessionId, item, repoPath) {
+      if (!this.julesPollingIntervals) this.julesPollingIntervals = {};
+      if (this.julesPollingIntervals[sessionId]) clearInterval(this.julesPollingIntervals[sessionId]);
       
-      let knownActivityIds = new Set();
+      const statusBadge = item.querySelector(`#status-${sessionId}`);
+      const metaDiv = item.querySelector(".dashboard-meta");
+      const statusContainer = item.querySelector(".dashboard-status");
       
-      this.julesPollingInterval = setInterval(async () => {
+      this.julesPollingIntervals[sessionId] = setInterval(async () => {
           try {
               const data = await window.julesService.getActivities(sessionId);
               if (!data.activities) return;
@@ -523,74 +553,56 @@ class RosterApp {
               // Sort chronologically
               const activities = data.activities.sort((a, b) => new Date(a.createTime) - new Date(b.createTime));
 
+              let isCompleted = false;
+              let hasError = false;
+              let lastProgressTitle = metaDiv.textContent;
+
               activities.forEach(act => {
-                  if (knownActivityIds.has(act.id)) return;
-                  knownActivityIds.add(act.id);
-
-                  const timeStr = new Date(act.createTime).toLocaleTimeString();
-                  const lineDiv = document.createElement("div");
-                  lineDiv.className = "terminal-line";
-
-                  const timeSpan = document.createElement("span");
-                  timeSpan.className = "terminal-time";
-                  timeSpan.textContent = `[${timeStr}] `;
-                  lineDiv.appendChild(timeSpan);
-                  
                   if (act.progressUpdated) {
-                      lineDiv.appendChild(document.createTextNode(act.progressUpdated.title));
-                      if (act.progressUpdated.description) {
-                           lineDiv.appendChild(document.createElement("br"));
-                           const descSpan = document.createElement("span");
-                           descSpan.style.color = "var(--text-secondary)";
-                           descSpan.style.marginLeft = "1rem";
-                           descSpan.style.transition = "all 0.3s ease";
-                           descSpan.style.display = "block";
-                           descSpan.appendChild(MarkdownRenderer.render(`↳ ${act.progressUpdated.description}`));
-                           lineDiv.appendChild(descSpan);
-                      }
-                  } else if (act.planGenerated) {
-                      const planSpan = document.createElement("span");
-                      planSpan.className = "terminal-plan";
-                      planSpan.textContent = `📋 Plan Generated: ${act.planGenerated.plan.steps.length} steps outlined.`;
-                      lineDiv.appendChild(planSpan);
-
-                      const planDetails = document.createElement("div");
-                      planDetails.style.marginLeft = "1rem";
-                      planDetails.style.marginTop = "0.5rem";
-                      planDetails.style.transition = "all 0.3s ease";
-
-                      if (act.planGenerated.plan && act.planGenerated.plan.steps) {
-                          const stepsMarkdown = act.planGenerated.plan.steps.map((step, idx) => {
-                              return `- **Step ${idx + 1}: ${step.name || step.title || ''}** ${step.description || ''}`;
-                          }).join('\n');
-                          planDetails.appendChild(MarkdownRenderer.render(stepsMarkdown));
-                      }
-                      lineDiv.appendChild(planDetails);
+                      lastProgressTitle = act.progressUpdated.title;
                   } else if (act.sessionCompleted) {
-                      const successSpan = document.createElement("span");
-                      successSpan.className = "terminal-success";
-                      successSpan.textContent = "✅ Session Completed Successfully.";
-                      lineDiv.appendChild(successSpan);
+                      isCompleted = true;
 
                       if (act.artifacts && act.artifacts[0]?.changeSet?.gitPatch?.suggestedCommitMessage) {
-                          lineDiv.appendChild(document.createElement("br"));
-                          const prSpan = document.createElement("span");
-                          prSpan.style.color = "#f8fafc";
-                          prSpan.style.background = "#1e293b";
-                          prSpan.style.padding = "0.2rem 0.5rem";
-                          prSpan.style.marginTop = "0.2rem";
-                          prSpan.style.display = "inline-block";
-                          prSpan.textContent = `Drafted PR: ${act.artifacts[0].changeSet.gitPatch.suggestedCommitMessage.split('\n')[0]}`;
-                          lineDiv.appendChild(prSpan);
+                          const prTitle = act.artifacts[0].changeSet.gitPatch.suggestedCommitMessage.split('\n')[0];
+                          lastProgressTitle = `PR Drafted: ${prTitle}`;
+                      } else {
+                          lastProgressTitle = "Session Completed Successfully.";
                       }
-                      clearInterval(this.julesPollingInterval);
-                  } else {
-                      lineDiv.appendChild(document.createTextNode("System Activity Logged."));
+                  } else if (act.error) {
+                      hasError = true;
+                      lastProgressTitle = "Session Failed.";
                   }
-                  
-                  terminal.appendChild(lineDiv);
-                  terminal.scrollTop = terminal.scrollHeight; // Auto-scroll
               });
+
+              metaDiv.textContent = lastProgressTitle;
+
+              if (isCompleted) {
+                  statusBadge.className = "status-badge status-completed";
+                  statusBadge.textContent = "Completed";
+
+                  // Add PR link
+                  const prLink = document.createElement("a");
+                  prLink.className = "pr-link-btn";
+                  prLink.href = `https://github.com/${repoPath}/pulls`;
+                  prLink.target = "_blank";
+                  prLink.rel = "noopener noreferrer";
+                  prLink.innerHTML = `
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h-4"/><path d="M12 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2"/><polyline points="15 8 18 5 21 8"/></svg>
+                    View PR
+                  `;
+                  statusContainer.appendChild(prLink);
+
+                  clearInterval(this.julesPollingIntervals[sessionId]);
+                  delete this.julesPollingIntervals[sessionId];
+              } else if (hasError) {
+                  statusBadge.className = "status-badge status-failed";
+                  statusBadge.textContent = "Failed";
+                  metaDiv.style.color = "#ef4444";
+
+                  clearInterval(this.julesPollingIntervals[sessionId]);
+                  delete this.julesPollingIntervals[sessionId];
+              }
 
           } catch (e) {
               console.error("Polling error", e);
