@@ -318,9 +318,28 @@ class RosterApp {
     this.elements.clearBtn?.addEventListener("click", () => this.clearSearch());
     document.getElementById("clearSearchEmptyBtn")?.addEventListener("click", () => this.clearSearch());
 
-    document.getElementById('julesRepoPicker')?.addEventListener('change', () => {
+    document.getElementById('julesRepoPicker')?.addEventListener('change', (e) => {
         if (this._cardHtmlCache) this._cardHtmlCache.clear();
         this.renderAgents();
+
+        const sourceName = e.target.value;
+        if (sourceName) {
+            this.loadActiveSessionsForRepo(sourceName);
+        } else {
+            const terminal = document.getElementById("julesTerminal");
+            terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
+            terminal.classList.remove('active');
+            if (this.activeSessionsInterval) {
+                clearInterval(this.activeSessionsInterval);
+                this.activeSessionsInterval = null;
+            }
+            if (this.julesPollingIntervals) {
+                Object.values(this.julesPollingIntervals).forEach(clearInterval);
+                this.julesPollingIntervals = {};
+            }
+            if (this.renderedSessionIds) this.renderedSessionIds.clear();
+            this.currentRepo = null;
+        }
     });
 
     // Footer Master Export Controls
@@ -475,6 +494,162 @@ class RosterApp {
         this.downloadCustomAgents(e.currentTarget);
         masterDropMenu.classList.remove("visible");
     });
+  }
+
+  /**
+   * Loads active sessions for the selected repository and begins polling.
+   * @param {string} sourceName - The target repository source.
+   */
+  async loadActiveSessionsForRepo(sourceName) {
+      const terminal = document.getElementById("julesTerminal");
+      terminal.classList.add('active');
+
+      if (this.currentRepo !== sourceName) {
+          if (this.julesPollingIntervals) {
+              Object.values(this.julesPollingIntervals).forEach(clearInterval);
+              this.julesPollingIntervals = {};
+          }
+          if (this.renderedSessionIds) this.renderedSessionIds.clear();
+
+          terminal.innerHTML = `<div class="terminal-line" id="fetchingIndicator"><span class="terminal-time">[System]</span> Fetching active sessions...</div>`;
+          this.currentRepo = sourceName;
+      }
+
+      if (this.activeSessionsInterval) {
+          clearInterval(this.activeSessionsInterval);
+      }
+
+      const fetchAndRenderSessions = async () => {
+          try {
+              if (!window.julesService || !window.julesService.apiKey) return;
+
+              const data = await window.julesService.getSessions(50);
+              if (!data.sessions) {
+                  if (document.getElementById('fetchingIndicator')) {
+                      terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
+                  }
+                  return;
+              }
+
+              const repoSessions = data.sessions.filter(s => s.sourceContext && s.sourceContext.source === sourceName);
+              const repoPath = sourceName.replace('sources/github/', '');
+
+              // Remove the fetching placeholder if it's there
+              const fetchingIndicator = document.getElementById('fetchingIndicator');
+              if (fetchingIndicator) {
+                  fetchingIndicator.remove();
+              }
+
+              if (repoSessions.length === 0 && terminal.children.length === 0) {
+                  terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
+                  return;
+              }
+
+              // Keep track of rendered sessions to avoid duplicates
+              if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
+              const currentSessionIds = new Set(repoSessions.map(s => s.id));
+
+              // Clean up removed sessions from UI and polling
+              const existingItems = terminal.querySelectorAll('.dashboard-item');
+              existingItems.forEach(item => {
+                  const id = item.id.replace('session-', '');
+                  if (!id.startsWith('temp-') && !currentSessionIds.has(id)) {
+                      item.remove();
+                      this.renderedSessionIds.delete(id);
+                      if (this.julesPollingIntervals && this.julesPollingIntervals[id]) {
+                          clearInterval(this.julesPollingIntervals[id]);
+                          delete this.julesPollingIntervals[id];
+                      }
+                  }
+              });
+
+              if (repoSessions.length > 0 && terminal.querySelector('.terminal-line:not(#fetchingIndicator)')) {
+                  const awaitingMsg = Array.from(terminal.querySelectorAll('.terminal-line')).find(el => el.textContent.includes('Awaiting Agent launch'));
+                  if (awaitingMsg) awaitingMsg.remove();
+              }
+
+              // Render or update sessions
+              for (const session of repoSessions) {
+                  const isCompleted = session.outputs && session.outputs.some(o => o.pullRequest);
+
+                  if (!this.renderedSessionIds.has(session.id)) {
+                      this.renderedSessionIds.add(session.id);
+
+                      const item = document.createElement("div");
+                      item.className = "dashboard-item";
+                      item.id = `session-${session.id}`;
+
+                      const agentName = session.title || "Agent Task";
+                      const prTitle = isCompleted ? session.outputs.find(o => o.pullRequest).pullRequest.title : agentName;
+
+                      item.innerHTML = `
+                          <div class="dashboard-info">
+                              <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem;">🤖</span>
+                              <div>
+                                  <div class="dashboard-title">${agentName}</div>
+                                  <div class="dashboard-meta">${isCompleted ? 'PR Drafted: ' + prTitle : repoPath}</div>
+                              </div>
+                          </div>
+                          <div class="dashboard-status">
+                              <span class="status-badge ${isCompleted ? 'status-completed' : 'status-in-progress'}" id="status-${session.id}">${isCompleted ? 'Completed' : 'Loading...'}</span>
+                          </div>
+                      `;
+
+                      if (isCompleted) {
+                          const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
+                          if (prInfo && prInfo.url) {
+                              const prLink = document.createElement("a");
+                              prLink.className = "pr-link-btn";
+                              prLink.href = prInfo.url;
+                              prLink.target = "_blank";
+                              prLink.rel = "noopener noreferrer";
+                              prLink.innerHTML = `
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h-4"/><path d="M12 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2"/><polyline points="15 8 18 5 21 8"/></svg>
+                                View PR
+                              `;
+                              item.querySelector(".dashboard-status").appendChild(prLink);
+                          }
+                      }
+
+                      terminal.insertBefore(item, terminal.firstChild);
+
+                      if (!isCompleted) {
+                          this.startTerminalPolling(session.id, item, repoPath);
+                      }
+                  } else if (isCompleted && document.getElementById(`status-${session.id}`)?.textContent !== "Completed") {
+                      // Already rendered but state transitioned to completed
+                      const statusBadge = document.getElementById(`status-${session.id}`);
+                      if (statusBadge) {
+                          statusBadge.className = "status-badge status-completed";
+                          statusBadge.textContent = "Completed";
+                          const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
+                          const metaDiv = document.getElementById(`session-${session.id}`).querySelector(".dashboard-meta");
+                          if (metaDiv && prInfo) {
+                              metaDiv.textContent = 'PR Drafted: ' + prInfo.title;
+                          }
+                          if (prInfo && prInfo.url && !document.getElementById(`session-${session.id}`).querySelector(".pr-link-btn")) {
+                              const prLink = document.createElement("a");
+                              prLink.className = "pr-link-btn";
+                              prLink.href = prInfo.url;
+                              prLink.target = "_blank";
+                              prLink.rel = "noopener noreferrer";
+                              prLink.innerHTML = `
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h-4"/><path d="M12 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2"/><polyline points="15 8 18 5 21 8"/></svg>
+                                View PR
+                              `;
+                              document.getElementById(`session-${session.id}`).querySelector(".dashboard-status").appendChild(prLink);
+                          }
+                      }
+                  }
+              }
+
+          } catch (err) {
+              console.error("Failed to load active sessions:", err);
+          }
+      };
+
+      await fetchAndRenderSessions();
+      this.activeSessionsInterval = setInterval(fetchAndRenderSessions, 5000);
   }
 
   /**
