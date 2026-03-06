@@ -1,0 +1,13 @@
+--- js/RosterApp.js
++++ js/RosterApp.js
+@@ -671,8 +671,8 @@
+       searchModeContainer.classList.add("hidden");
+       if(categoryNav) categoryNav.style.display = '';
+
+-      DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "flex", "searchResultsGrid");
+-      DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "block", "search-mode-header");
++      DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "", "searchResultsGrid");
++      DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "", "search-mode-header");
+
+       this.elements.emptyState?.classList.remove("visible");
+       if (this.elements.announcer) this.elements.announcer.textContent = "";

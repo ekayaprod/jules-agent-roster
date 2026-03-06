@@ -55,7 +55,7 @@ class RosterApp {
             if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 revealContent();
             } else {
-                setTimeout(revealContent, 500); 
+                setTimeout(revealContent, 500);
             }
         }
     } catch (error) {
@@ -113,11 +113,11 @@ class RosterApp {
       saveBtn?.addEventListener("click", async () => {
           const key = keyInput.value.trim();
           if (!key) return this.toast.show("Please enter an API Key.");
-          
+
           StorageUtils.setItem("jules_api_key", key);
           toggleModal(false);
           this.toast.show("Connecting to Jules...");
-          
+
           if (window.julesService) {
               window.julesService.configure(key);
               await this.loadJulesSources();
@@ -314,7 +314,7 @@ class RosterApp {
       const debouncedFilter = PerformanceUtils.debounce((query) => this.filterAgents(query), 300);
       this.elements.searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
     }
-    
+
     this.elements.clearBtn?.addEventListener("click", () => this.clearSearch());
     document.getElementById("clearSearchEmptyBtn")?.addEventListener("click", () => this.clearSearch());
 
@@ -326,7 +326,7 @@ class RosterApp {
     // Footer Master Export Controls
     const masterDropBtn = document.getElementById('masterDropdownBtn');
     const masterDropMenu = document.getElementById('masterDropdownMenu');
-    
+
     masterDropBtn?.addEventListener("click", (e) => {
         e.stopPropagation();
         masterDropMenu.classList.toggle("visible");
@@ -405,7 +405,7 @@ class RosterApp {
           e.stopPropagation();
           const index = toggleTarget.dataset.index;
           const dropdown = document.getElementById(`card-dropdown-${index}`);
-          
+
           // Close others
           document.querySelectorAll('.dropdown-menu.visible').forEach(m => {
               if (m !== dropdown && m.id !== 'masterDropdownMenu') {
@@ -485,7 +485,7 @@ class RosterApp {
   async launchJulesSession(agent, btn = null) {
       const sourceName = document.getElementById("julesRepoPicker").value;
       const userTask = document.getElementById("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
-      
+
       if (!sourceName) {
           this.toast.show("Please select a target repository in the runner panel.", "error");
           document.getElementById("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
@@ -567,11 +567,11 @@ class RosterApp {
   startTerminalPolling(sessionId, item, repoPath) {
       if (!this.julesPollingIntervals) this.julesPollingIntervals = {};
       if (this.julesPollingIntervals[sessionId]) clearInterval(this.julesPollingIntervals[sessionId]);
-      
+
       const statusBadge = item.querySelector(`#status-${sessionId}`);
       const metaDiv = item.querySelector(".dashboard-meta");
       const statusContainer = item.querySelector(".dashboard-status");
-      
+
       this.julesPollingIntervals[sessionId] = setInterval(async () => {
           try {
               const data = await window.julesService.getActivities(sessionId);
@@ -658,22 +658,22 @@ class RosterApp {
     const searchModeContainer = document.getElementById("searchModeContainer");
     const searchResultsGrid = document.getElementById("searchResultsGrid");
     const categoryNav = document.getElementById("category-nav");
-    
+
     if (query.length > 0) {
       this.elements.clearBtn?.classList.add("visible");
       searchModeContainer.classList.remove("hidden");
       if(categoryNav) categoryNav.style.display = 'none';
-      
+
       DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "none", "searchResultsGrid");
       DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "none", "search-mode-header");
     } else {
       this.elements.clearBtn?.classList.remove("visible");
       searchModeContainer.classList.add("hidden");
       if(categoryNav) categoryNav.style.display = 'flex';
-      
-      DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "", "searchResultsGrid");
-      DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "", "search-mode-header");
-      
+
+      DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "flex", "searchResultsGrid");
+      DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "block", "search-mode-header");
+
       this.elements.emptyState?.classList.remove("visible");
       if (this.elements.announcer) this.elements.announcer.textContent = "";
       return;
@@ -715,7 +715,7 @@ class RosterApp {
         let cardHtml = this._cardHtmlCache.get(keyOrIndex);
         if (!cardHtml) {
             const card = AgentCard.create(agent, keyOrIndex, 0);
-            cardHtml = card.outerHTML || ''; 
+            cardHtml = card.outerHTML || '';
             this._cardHtmlCache.set(keyOrIndex, cardHtml);
         }
         const delay = `${Math.min(visibleCount * 30, 600)}ms`;
