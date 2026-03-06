@@ -95,7 +95,7 @@ class AgentCard {
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
                     
                     <div class="card-actions mt-auto pt-2 flex relative">
-                        <button class="secondary action-main-btn" data-action="${primaryAction}" data-index="${index}" title="${primaryTitle}">
+                        <button class="secondary action-main-btn" data-action="${primaryAction}" data-index="${index}" title="${primaryTitle}" aria-label="${primaryTitle}">
                             <span class="btn-text">${primaryText}</span>
                         </button>
                         <button class="secondary action-toggle-btn" data-action="toggle-card-dropdown" data-index="${index}" aria-label="More options">
@@ -104,8 +104,8 @@ class AgentCard {
                         
                         <!-- Custom Agent Dropdown -->
                         <div class="dropdown-menu" id="card-dropdown-${index}">
-                            <button class="dropdown-item" data-action="${dropdownAction}" data-index="${index}">${dropdownText}</button>
-                            <button class="dropdown-item" data-action="download-agent" data-index="${index}">💾 Download .md</button>
+                            <button class="dropdown-item" data-action="${dropdownAction}" data-index="${index}" aria-label="${dropdownText.replace(/[^a-zA-Z\\s]/g, '').trim()}">${dropdownText}</button>
+                            <button class="dropdown-item" data-action="download-agent" data-index="${index}" aria-label="Download Protocol as Markdown">💾 Download .md</button>
                         </div>
                     </div>
                 </div>

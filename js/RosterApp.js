@@ -73,7 +73,7 @@ class RosterApp {
                 </svg>
                 <p class="empty-title">${errorTitle}</p>
                 <p class="empty-desc">${errorDesc}</p>
-                <button onclick="window.location.reload()" class="mt-6">Refresh Page</button>
+                <button onclick="window.location.reload()" class="mt-6" aria-label="Refresh Page to Retry Loading">Refresh Page</button>
               </div>
             `;
         }

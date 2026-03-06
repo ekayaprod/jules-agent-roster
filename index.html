@@ -273,8 +273,8 @@
             <a href="https://jules.google.com/settings#api" target="_blank" style="font-size: var(--text-xs); color: var(--accent); text-decoration: none; margin-top: 0.25rem;">How to get an API Key →</a>
         </div>
         <div class="flex" style="gap: 1rem; margin-top: 1rem;">
-            <button id="closeSettingsBtn" class="secondary" style="flex:1;">Cancel</button>
-            <button id="saveSettingsBtn" style="flex:1;">Save & Connect</button>
+            <button id="closeSettingsBtn" class="secondary" style="flex:1;" aria-label="Cancel API Configuration">Cancel</button>
+            <button id="saveSettingsBtn" style="flex:1;" aria-label="Save API Key and Connect to Jules">Save & Connect</button>
         </div>
       </div>
     </div>
@@ -322,12 +322,12 @@
 
     <footer class="roster-footer">
       <div class="flex" style="position: relative;">
-        <button id="masterCopyBtn" class="secondary action-main-btn" data-action="copy-all">Copy All Core Prompts</button>
-        <button id="masterDropdownBtn" class="secondary action-toggle-btn">▼</button>
+        <button id="masterCopyBtn" class="secondary action-main-btn" data-action="copy-all" aria-label="Copy All Core Prompts to Clipboard">Copy All Core Prompts</button>
+        <button id="masterDropdownBtn" class="secondary action-toggle-btn" aria-label="Open Master Export Options">▼</button>
         <div id="masterDropdownMenu" class="dropdown-menu">
-          <button id="masterDownloadCoreBtn" class="dropdown-item">Download Core Prompts</button>
-          <button id="masterCopyFusionsBtn" class="dropdown-item">Copy Unlocked Fusions</button>
-          <button id="masterDownloadFusionsBtn" class="dropdown-item">Download Unlocked Fusions</button>
+          <button id="masterDownloadCoreBtn" class="dropdown-item" aria-label="Download Core Prompts as Markdown">Download Core Prompts</button>
+          <button id="masterCopyFusionsBtn" class="dropdown-item" aria-label="Copy Unlocked Fusions to Clipboard">Copy Unlocked Fusions</button>
+          <button id="masterDownloadFusionsBtn" class="dropdown-item" aria-label="Download Unlocked Fusions as Markdown">Download Unlocked Fusions</button>
         </div>
       </div>
     </footer>

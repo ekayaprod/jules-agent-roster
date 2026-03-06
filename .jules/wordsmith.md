@@ -11,3 +11,7 @@ This journal tracks inconsistent terminology and Voice & Tone patterns across th
 - **Empty States:** Moving from passive "No agents match..." to helpful/active "No agents found. Try adjusting...".
 - **Error Messages:** Replacing technical jargon ("local server", "HTTP error") with user-centric conversational errors ("Check your connection").
 - **Agent Descriptions:** Standardized bundle agent descriptions (Steward, Mechanic, Librarian) to use active voice and full sentences (e.g., "Performs weekly maintenance..." instead of "Weekly maintenance...").
+
+## 2026-03-06 - 🖋️ Wordsmith - [Polished Microcopy for Action Buttons]
+**Learning:** Found several buttons across the app lacking contextual accessibility definitions via aria-labels, even when they possessed text.
+**Action:** Always provide rich, context-aware `aria-label`s for generic actions (like "Cancel", "Save & Connect") and interactive items.
