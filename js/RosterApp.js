@@ -1,10 +1,13 @@
 // --- ROSTER APP ---
 /**
  * Main application class for the Autonomous Protocol Matrix.
+ * Orchestrates the primary application flow, emphasizing asynchronous non-blocking operations and event delegation.
+ * @see README.md#rosterapp-architecture for the core lifecycle and architecture details.
  */
 class RosterApp {
   /**
    * Initializes the RosterApp instance, setting up empty states and service dependencies.
+   * @see README.md#rosterapp-architecture
    */
   constructor() {
     this.agents = [];
@@ -20,7 +23,9 @@ class RosterApp {
 
   /**
    * Bootstraps the application, fetching agent data and initializing UI components.
+   * Executes the Initialization Flow, caching critical DOM elements and handling fallback states.
    * @returns {Promise<void>} Resolves when initialization is complete.
+   * @see README.md#rosterapp-architecture for the Initialization Flow details.
    */
   async init() {
     this.cacheElements();
@@ -81,6 +86,7 @@ class RosterApp {
 
   /**
    * Initializes the Jules API connection and Settings Modal logic.
+   * @see README.md#rosterapp-architecture
    */
   async initJules() {
       const apiKey = StorageUtils.getItem("jules_api_key");
@@ -129,6 +135,7 @@ class RosterApp {
 
   /**
    * Fetches available GitHub repos and populates the runner dropdown.
+   * @see README.md#rosterapp-architecture
    */
   async loadJulesSources() {
       const picker = document.getElementById("julesRepoPicker");
@@ -154,6 +161,8 @@ class RosterApp {
 
   /**
    * Caches critical DOM elements.
+   * Prevents query thrashing during initialization.
+   * @see README.md#rosterapp-architecture
    */
   cacheElements() {
     Object.keys(CONFIG.selectors).forEach((key) => {
@@ -172,6 +181,7 @@ class RosterApp {
 
   /**
    * Injects CSS loading skeletons.
+   * @see README.md#rosterapp-architecture
    */
   renderSkeletons() {
     Object.keys(CONFIG.categories).forEach((key) => {
@@ -188,6 +198,8 @@ class RosterApp {
 
   /**
    * Renders agent cards into their grids.
+   * Utilizes a batch rendering strategy to spread execution across frames using requestAnimationFrame, preventing the main thread from locking.
+   * @see README.md#rosterapp-architecture for the Batch Rendering Strategy details.
    */
   renderAgents() {
     const categoryContainers = {};
@@ -285,6 +297,8 @@ class RosterApp {
 
   /**
    * Attaches global event listeners.
+   * Implements global event delegation, routing interactions securely via dataset actions and abandoning inner loop event listeners.
+   * @see README.md#rosterapp-architecture for Global Event Delegation details.
    */
   bindEvents() {
     if (this.elements.searchInput) {
@@ -431,6 +445,8 @@ class RosterApp {
 
   /**
    * Triggers a new session in the Jules API Runner.
+   * @param {Object} agent - The agent data object.
+   * @see README.md#rosterapp-architecture
    */
   async launchJulesSession(agent) {
       const sourceName = document.getElementById("julesRepoPicker").value;
@@ -473,6 +489,9 @@ class RosterApp {
 
   /**
    * Polls the Jules API activities endpoint and updates the visual terminal feed.
+   * @param {string} sessionId - The current Jules session ID.
+   * @param {HTMLElement} terminal - The DOM element representing the terminal output.
+   * @see README.md#rosterapp-architecture
    */
   startTerminalPolling(sessionId, terminal) {
       if (this.julesPollingInterval) clearInterval(this.julesPollingInterval);
@@ -549,6 +568,9 @@ class RosterApp {
 
   /**
    * Filters the agent roster using fuzzy search and updates the UI.
+   * Rebuilds the internal Fuse.js index only on state boundary changes, limiting results to eradicate layout thrashing.
+   * @param {string} query - The search query string.
+   * @see README.md#rosterapp-architecture for Search & Layout Thrashing Prevention details.
    */
   filterAgents(query) {
     const search = query.toLowerCase();
@@ -645,6 +667,7 @@ class RosterApp {
 
   /**
    * Clears the current search query.
+   * @see README.md#rosterapp-architecture
    */
   clearSearch() {
     if (this.elements.searchInput) {
@@ -655,6 +678,9 @@ class RosterApp {
 
   /**
    * Copies a specific agent's prompt to clipboard.
+   * @param {string|number} index - The index or key of the agent.
+   * @param {HTMLElement} btn - The button element that triggered the action.
+   * @see README.md#rosterapp-architecture
    */
   async copyAgent(index, btn) {
     let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
@@ -667,6 +693,11 @@ class RosterApp {
     }
   }
 
+  /**
+   * Downloads all custom agents as a single markdown file.
+   * @param {HTMLElement} btn - The button element that triggered the action.
+   * @see README.md#rosterapp-architecture
+   */
   downloadCustomAgents(btn) {
     const header = FormatUtils.CUSTOM_ROSTER_HEADER;
     const validCustomAgents = Object.values(this.customAgents).filter(a => a.prompt && a.prompt.length > 0);
@@ -675,12 +706,22 @@ class RosterApp {
     ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
   }
 
+  /**
+   * Downloads all standard agents as a single markdown file.
+   * @param {HTMLElement} btn - The button element that triggered the action.
+   * @see README.md#rosterapp-architecture
+   */
   downloadAll(btn) {
     const header = FormatUtils.MASTER_ROSTER_HEADER;
     DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(this.agents), "jules_roster.md");
     ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
   }
 
+  /**
+   * Copies all standard agent prompts to the clipboard.
+   * @param {HTMLElement} btn - The button element that triggered the action.
+   * @see README.md#rosterapp-architecture
+   */
   async copyAll(btn) {
     const header = FormatUtils.MASTER_ROSTER_HEADER;
     const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(this.agents));
@@ -690,6 +731,10 @@ class RosterApp {
     }
   }
 
+  /**
+   * Initializes the IntersectionObserver for category navigation pills.
+   * @see README.md#rosterapp-architecture
+   */
   initObserver() {
     const navPills = document.querySelectorAll(CONFIG.selectors.navPills);
     const observer = new IntersectionObserver(
@@ -713,6 +758,11 @@ class RosterApp {
     });
   }
 
+  /**
+   * Displays a toast notification with the specified message.
+   * @param {string} message - The message to display.
+   * @see README.md#rosterapp-architecture
+   */
   showToast(message) {
       this.toast.show(message);
   }
