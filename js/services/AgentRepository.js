@@ -323,25 +323,8 @@ class AgentRepository {
             delete data.desc;
         }
 
-        if (typeof StringUtils !== 'undefined') {
-            if (!data.emoji) {
-                data.emoji = StringUtils.hasEmojiSuffix(data.name)
-                    ? StringUtils.extractEmoji(data.name)
-                    : (StringUtils.hasEmojiPrefix(data.name)
-                        ? StringUtils.extractEmojiPrefix(data.name)
-                        : '🤖');
-            }
-            if (StringUtils.hasEmojiSuffix(data.name)) {
-                data.name = StringUtils.extractNameWithoutEmoji(data.name);
-            } else if (StringUtils.hasEmojiPrefix(data.name)) {
-                data.name = StringUtils.extractNameWithoutEmojiPrefix(data.name);
-            }
-        } else {
-            // Safe fallback defaults to avoid duplicating complex logic
-            if (!data.emoji) {
-                data.emoji = '🤖';
-            }
-            // Retain original name if utility is inexplicably missing
+        if (!data.emoji) {
+            data.emoji = '🤖';
         }
 
         return { valid: true, sanitized: data };

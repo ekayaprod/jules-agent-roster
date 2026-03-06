@@ -8,13 +8,11 @@ const loadClass = (filePath) => {
     return eval(content + '\nmodule.exports = ' + path.basename(filePath, '.js') + ';');
 };
 
-const StringUtils = loadClass('js/utils/StringUtils.js');
 const FormatUtils = loadClass('js/utils/FormatUtils.js');
 const StorageUtils = loadClass('js/utils/StorageUtils.js');
 const PerformanceUtils = loadClass('js/utils/PerformanceUtils.js');
 const DOMUtils = loadClass('js/utils/DOMUtils.js');
 
-global.StringUtils = StringUtils;
 global.FormatUtils = FormatUtils;
 global.StorageUtils = StorageUtils;
 global.PerformanceUtils = PerformanceUtils;
