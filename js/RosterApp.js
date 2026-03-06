@@ -393,8 +393,7 @@ class RosterApp {
       if (toggleTarget) {
           e.stopPropagation();
           const index = toggleTarget.dataset.index;
-          const safeIndex = CSS.escape(String(index));
-          const dropdown = document.getElementById(`card-dropdown-${safeIndex}`);
+          const dropdown = document.getElementById(`card-dropdown-${index}`);
           
           // Close others
           document.querySelectorAll('.dropdown-menu.visible').forEach(m => {
