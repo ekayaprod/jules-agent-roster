@@ -39,7 +39,6 @@ class AgentCard {
             card.classList.add(`tier-${lowerTier}`);
         }
 
-        // Fix Fusion Icon Bug: Use centralized utility for icon extraction
         const icon = FormatUtils.extractIcon(agent);
         const displayName = FormatUtils.extractDisplayName(agent);
 
@@ -53,7 +52,7 @@ class AgentCard {
 
         card.innerHTML = `
             <div class="flip-card-inner">
-                <div class="flip-card-front">
+                <div class="flip-card-front" data-action="flip-card" data-index="${index}">
                     ${pinHtml}
                     <div class="front-content-wrapper">
                         <div class="card-top">
@@ -76,37 +75,29 @@ class AgentCard {
                 </div>
 
                 <div class="flip-card-back">
-                    <div class="back-header">
+                    <div class="back-header" data-action="flip-card-back">
                         <h3 class="agent-title text-sm truncate">${safeDisplayName}</h3>
                         <button class="icon-btn flip-back-btn" aria-label="Flip back">✕</button>
                     </div>
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
                     
-                    <div class="card-actions mt-auto pt-2 flex">
-                        <button class="secondary action-main-btn" data-action="copy-agent" data-index="${index}" >
-                            <span class="btn-text">Copy</span>
+                    <div class="card-actions mt-auto pt-2 flex relative">
+                        <button class="secondary action-main-btn" data-action="launch-jules" data-index="${index}" title="Launch agent via Jules API">
+                            <span class="btn-text">Launch in Jules 🚀</span>
                         </button>
-                        <button class="secondary action-toggle-btn px-2" aria-label="Toggle Export Options" >
+                        <button class="secondary action-toggle-btn" data-action="toggle-card-dropdown" data-index="${index}" aria-label="More options">
                             ▼
                         </button>
+                        
+                        <!-- Custom Agent Dropdown -->
+                        <div class="dropdown-menu" id="card-dropdown-${index}">
+                            <button class="dropdown-item" data-action="copy-agent" data-index="${index}">📋 Copy Prompt</button>
+                            <button class="dropdown-item" data-action="download-agent" data-index="${index}">💾 Download .md</button>
+                        </div>
                     </div>
                 </div>
             </div>
         `;
-
-        const front = card.querySelector('.flip-card-front');
-        const backBtn = card.querySelector('.back-header');
-        const toggleBtn = card.querySelector('.action-toggle-btn');
-
-        // Event delegation moved to RosterApp.js so virtualized cards still work
-        // We do NOT add data-action to the front wrapper itself, or it captures everything.
-        // Instead, the container just relies on the global listener checking if a click
-        // landed inside it. Let's make sure it doesn't intercept the button.
-        front.setAttribute('data-action', 'flip-card');
-        front.setAttribute('data-index', index);
-
-        backBtn.setAttribute('data-action', 'flip-card-back');
-        toggleBtn.setAttribute('data-action', 'toggle-card-action');
 
         return card;
     }
