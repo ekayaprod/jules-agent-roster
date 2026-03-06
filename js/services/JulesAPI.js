@@ -1,3 +1,25 @@
+class JulesConfigurationError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'JulesConfigurationError';
+    }
+}
+
+class JulesNetworkError extends Error {
+    constructor(message, statusCode) {
+        super(message);
+        this.name = 'JulesNetworkError';
+        this.statusCode = statusCode;
+    }
+}
+
+class JulesTimeoutError extends Error {
+    constructor(message) {
+        super(message);
+        this.name = 'JulesTimeoutError';
+    }
+}
+
 /**
  * Service for interacting with the Jules API (Alpha).
  * Handles source fetching, session creation, and activity polling.
@@ -21,7 +43,14 @@ class JulesService {
      * Internal helper for Jules API fetches.
      */
     async _fetch(endpoint, options = {}) {
-        if (!this.apiKey) throw new Error("Jules API Key is missing. Please configure it in Settings.");
+        if (!this.apiKey) {
+            console.error(JSON.stringify({
+                event: 'JULES_API_MISSING_KEY',
+                endpoint: endpoint,
+                timestamp: new Date().toISOString()
+            }));
+            throw new JulesConfigurationError("Jules API Key is missing. Please configure it in Settings.");
+        }
 
         const url = `${this.baseUrl}/${endpoint}`;
         const headers = {
@@ -47,16 +76,51 @@ class JulesService {
                 try {
                     const errJson = JSON.parse(errorText);
                     if (errJson.error?.message) errorMsg = errJson.error.message;
-                } catch(e) {}
-                throw new Error(errorMsg);
+                } catch(e) {
+                    console.error(JSON.stringify({
+                        event: 'JULES_API_MALFORMED_ERROR_RESPONSE',
+                        endpoint: endpoint,
+                        status: response.status,
+                        rawResponse: errorText.substring(0, 200),
+                        timestamp: new Date().toISOString()
+                    }));
+                }
+
+                console.error(JSON.stringify({
+                    event: 'JULES_API_NETWORK_ERROR',
+                    endpoint: endpoint,
+                    status: response.status,
+                    message: errorMsg,
+                    timestamp: new Date().toISOString()
+                }));
+                throw new JulesNetworkError(errorMsg, response.status);
             }
 
             return response.json();
         } catch (error) {
             clearTimeout(timeoutId);
             if (error.name === 'AbortError') {
-                throw new Error("Jules API Timeout: Request took longer than 15000ms.");
+                console.error(JSON.stringify({
+                    event: 'JULES_API_TIMEOUT',
+                    endpoint: endpoint,
+                    duration: '15000ms',
+                    timestamp: new Date().toISOString()
+                }));
+                throw new JulesTimeoutError("Jules API Timeout: Request took longer than 15000ms.");
             }
+
+            // Re-throw if it's already a custom error (e.g. from the block above)
+            if (error instanceof JulesNetworkError || error instanceof JulesConfigurationError || error instanceof JulesTimeoutError) {
+                throw error;
+            }
+
+            // Log unexpected fetch errors
+            console.error(JSON.stringify({
+                event: 'JULES_API_UNEXPECTED_ERROR',
+                endpoint: endpoint,
+                message: error.message,
+                timestamp: new Date().toISOString()
+            }));
             throw error;
         }
     }
@@ -112,3 +176,6 @@ ${userTask}`;
 
 // Attach to window for global access
 window.julesService = new JulesService();
+window.JulesConfigurationError = JulesConfigurationError;
+window.JulesNetworkError = JulesNetworkError;
+window.JulesTimeoutError = JulesTimeoutError;

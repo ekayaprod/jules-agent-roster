@@ -29,3 +29,7 @@
 ## 2024-05-24 - 🎇 Hologram - [Replaced raw AI terminal output with DOM Nodes]
 **Learning:** Using `innerHTML` and `insertAdjacentHTML` with unescaped AI content streams causes XSS risks. Refactoring to Vanilla JS DOM nodes ensures complete safety, but introduces more verbose code structures.
 **Action:** Always prefer `document.createElement` and `document.createTextNode` or `element.textContent` when injecting AI-generated payloads in Vanilla JS projects to maintain safety over code brevity. Include CSS transitions to prevent visual thrashing.
+
+## 2026-03-06 - 🩺 Resuscitator - [Error Boundaries Fortified: JulesAPI]
+**Learning:** Generic error throwing in API clients (e.g., `throw new Error('Timeout')`) masks the root cause of network and configuration failures, providing zero debugging value to telemetry systems and allowing the application to continue running in a corrupted state while hiding the failure point.
+**Action:** Upgraded primitive errors in `JulesAPI.js` (`_fetch`) into structured Custom Errors (`JulesConfigurationError`, `JulesNetworkError`, `JulesTimeoutError`) and injected contextual metadata into the logging pipeline via `console.error` *before* throwing, ensuring the telemetry system receives the exact state that caused the crash.
