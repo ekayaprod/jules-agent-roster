@@ -309,6 +309,11 @@ class RosterApp {
     this.elements.clearBtn?.addEventListener("click", () => this.clearSearch());
     document.getElementById("clearSearchEmptyBtn")?.addEventListener("click", () => this.clearSearch());
 
+    document.getElementById('julesRepoPicker')?.addEventListener('change', () => {
+        if (this._cardHtmlCache) this._cardHtmlCache.clear();
+        this.renderAgents();
+    });
+
     // Footer Master Export Controls
     const masterDropBtn = document.getElementById('masterDropdownBtn');
     const masterDropMenu = document.getElementById('masterDropdownMenu');
@@ -376,7 +381,7 @@ class RosterApp {
 
       // 5. Flip Card Back (Close)
       const backTarget = e.target.closest('[data-action="flip-card-back"]');
-      if (backTarget) {
+      if (backTarget && !e.target.closest('.prompt-scroll-area') && !e.target.closest('.card-actions')) {
           e.stopPropagation();
           const card = backTarget.closest('.flip-card');
           if (card) card.classList.remove('flipped');
