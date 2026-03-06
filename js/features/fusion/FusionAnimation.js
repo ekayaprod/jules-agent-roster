@@ -73,7 +73,7 @@ class FusionAnimation {
     const displayName = FormatUtils.extractDisplayName(result);
 
     // Set result name with highlighted text and separate emoji
-    animResult.innerHTML = `<span class="highlight">${displayName}</span> ${icon}`;
+    if (animResult) animResult.innerHTML = `<span class="highlight">${displayName}</span> ${icon}`;
 
     // Determine Result Icon
     if (result.isCustom && result.name) {
