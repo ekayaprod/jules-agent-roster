@@ -58,6 +58,7 @@ class FusionLab {
         textSpan: document.getElementById("fusionErrorText"),
         fusionResultContainer: document.getElementById("fusionResultContainer"),
         fusionOutputWrapper: document.getElementById("fusionOutputWrapper"),
+        resetLabBtn: document.getElementById("resetLabBtn"),
     };
 
     if (this.elements.slotACard) this.elements.slotACard.addEventListener("click", () => {
@@ -68,6 +69,10 @@ class FusionLab {
     });
 
     if (this.elements.fuseBtn) this.elements.fuseBtn.addEventListener("click", () => this.handleFusion());
+
+    if (this.elements.resetLabBtn) {
+        this.elements.resetLabBtn.addEventListener("click", () => this.resetLab());
+    }
 
     if (this.elements.copyFusionBtn) {
       this.elements.copyFusionBtn.addEventListener("click", async (e) => {
@@ -222,6 +227,7 @@ class FusionLab {
    */
   async handleFusion() {
     const fuseBtn = this.elements.fuseBtn;
+    const labContent = document.getElementById("fusionLabContent");
 
     const agentA = this.state.slotA;
     const agentB = this.state.slotB;
@@ -251,6 +257,10 @@ class FusionLab {
 
       this.showError(msg);
       return;
+    }
+
+    if (labContent) {
+        labContent.classList.add("hidden");
     }
 
     // Unlock in Index if it's a valid fusion
@@ -311,6 +321,12 @@ class FusionLab {
     this.lastFusionResult = result;
 
     const container = this.elements.fusionResultContainer;
+    const wrapper = this.elements.fusionOutputWrapper;
+    if (wrapper) {
+      wrapper.classList.remove("open");
+      wrapper.classList.add("hidden");
+    }
+
     if (container) {
       container.innerHTML = ""; // Clear previous
 
@@ -332,6 +348,38 @@ class FusionLab {
   }
 
   /**
+   * Resets the lab state for another fusion.
+   */
+  resetLab() {
+    this.state.slotA = null;
+    this.state.slotB = null;
+
+    const wrapper = this.elements.fusionOutputWrapper;
+    const resetBtn = this.elements.resetLabBtn;
+    const labContent = document.getElementById("fusionLabContent");
+    const container = this.elements.fusionResultContainer;
+
+    if (wrapper) {
+      wrapper.classList.remove("open");
+      wrapper.classList.add("hidden");
+    }
+
+    if (resetBtn) {
+      resetBtn.classList.add("hidden");
+    }
+
+    if (labContent) {
+      labContent.classList.remove("hidden");
+    }
+
+    if (container) {
+      container.innerHTML = "";
+    }
+
+    this.renderSlots();
+  }
+
+  /**
    * Reveals the fusion result with smooth transitions.
    */
   showResult() {
@@ -341,8 +389,15 @@ class FusionLab {
     }
 
     const wrapper = this.elements.fusionOutputWrapper;
+    const resetBtn = this.elements.resetLabBtn;
+
     if (wrapper) {
+      wrapper.classList.remove("hidden");
       wrapper.classList.add("open");
+
+      if (resetBtn) {
+          resetBtn.classList.remove("hidden");
+      }
 
       // Ensure the card inside gets focused for accessibility
       const cardTitle = wrapper.querySelector(".agent-title");
