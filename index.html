@@ -263,7 +263,46 @@
         .flip-card, .skeleton-card {
           flex-basis: 20rem !important;
           max-width: 24rem !important;
+          margin-top: 2rem;
         }
+
+        /* Visually hide the original block headers in desktop mode for continuous card flow,
+           but keep them in the accessibility tree for screen readers. */
+        #main > .section-header {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          margin: -1px;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+        }
+
+        .grid > *:first-child::before {
+          position: absolute;
+          top: -2rem;
+          left: 0.5rem;
+          color: var(--text-secondary);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          font-size: var(--text-sm);
+          font-weight: normal;
+          white-space: nowrap;
+          pointer-events: none;
+        }
+
+        #coreGrid > *:first-child::before { content: "Core Maintenance"; }
+        #refactoringGrid > *:first-child::before { content: "Refactoring"; }
+        #archGrid > *:first-child::before { content: "Architecture"; }
+        #hygieneGrid > *:first-child::before { content: "Hygiene"; }
+        #testingGrid > *:first-child::before { content: "Testing"; }
+        #opsGrid > *:first-child::before { content: "Operations"; }
+        #documentationGrid > *:first-child::before { content: "Documentation"; }
+        #strategyGrid > *:first-child::before { content: "Strategy"; }
+        #uxGrid > *:first-child::before { content: "UX"; }
+        #metaGrid > *:first-child::before { content: "Meta"; }
       }
     </style>
   </head>
