@@ -29,7 +29,7 @@
   {
     "name": "Helix",
     "emoji": "🧬",
-    "short_description": "Ruthlessly hunts down duplicated logic across the repository. Abstracts it into perfectly pure, centralized single sources of truth, and points all consumers to the new utility.",
+    "short_description": "Hunts down duplicated logic across the repository, abstracting it into pure global utilities or highly focused, parameterized local helpers while strictly avoiding control-flow coupling.",
     "tier": "",
     "category": "refactoring",
     "type": "",
