@@ -882,13 +882,13 @@
     "role": "Delivery Chronicler"
   },
   "Herald,Palette+": {
-    "name": "Publisher",
-    "emoji": "📰",
-    "short_description": "Replaces fixed widths and layout breaks with mobile-first responsive utilities for perfect rendering on every screen. Fluid percentages, responsive max-widths — the interface broadcasts everywhere.",
+    "name": "LiveFeed",
+    "emoji": "📺",
+    "short_description": "Eradicates frozen UI by broadcasting the live state of asynchronous backend processes. Wraps silent network requests in polished loading skeletons, spinners, and culminates the flow with beautiful success or error toasts.",
     "tier": "Common",
     "category": "ux",
     "type": "fusion",
-    "role": "Responsive Publisher"
+    "role": "Live Feedback Broadcaster"
   },
   "Herald,Paramedic": {
     "name": "Press Secretary",
@@ -1086,7 +1086,7 @@
     "tier": "Common",
     "category": "ux",
     "type": "fusion",
-    "role": "The Responsive Modernizer"
+    "role": "Responsive Modernizer"
   },
   "Modernizer,Paramedic": {
     "name": "Inoculator",
