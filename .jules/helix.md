@@ -8,10 +8,13 @@
 ## 2026-03-05 - 🧬 Helix - [Button State Management]
 **Learning:** Found scattered and identical manual DOM manipulations for button states (managing `disabled`, `classList`, `innerText`, and `aria-*` attributes for loading, error, and ready states) repeated across `FusionLab.js` and `FusionAnimation.js`. This WET code increases the risk of accessibility desynchronization and styling bugs.
 **Action:** Abstracted this logic into a pure, centralized utility `DOMUtils.setButtonState(btn, state, text)` to handle all button state transitions consistently.
-## $(date +%Y-%m-%d) - 🧬 Helix - Abstracted WET Roster Headers
+## 2026-03-06 - 🧬 Helix - Abstracted WET Roster Headers
 **Learning:** Hardcoded text headers for copying/downloading content in `RosterApp.js` were duplicated. Magic strings like `"JULES MASTER AGENT ROSTER\n\n..."` appeared 4 times across different clipboard and download export methods.
 **Action:** Abstracted the duplicated strings into pure, domain-agnostic `FormatUtils.MASTER_ROSTER_HEADER` and `FormatUtils.CUSTOM_ROSTER_HEADER` static properties. Ensure constants are placed in relevant utility classes (`FormatUtils.js`) rather than creating a generic `constants.js` to preserve domain grouping.
 
 ## 2026-03-05 - 🧬 Helix - Abstracted WET NodeList Display Logic
 **Learning:** Found exact duplicated `.querySelectorAll().forEach()` iterations across multiple branches in `RosterApp.js` `filterAgents` method used to manage component visibility. Repeated NodeList traversals clutter the UI controllers and are a frequent source of "copy-paste" errors if one is updated while another is missed.
 **Action:** `[Safe Merge]` Abstracted the logic into `DOMUtils.setElementsDisplay(selector, display, excludeId)`, successfully centralizing the layout changes without introducing divergence in control flow.
+## 2026-03-06 - 🧬 Helix - [Deduplicated Logic: PR Link Creation]
+**Learning:** Found exact duplicated DOM manipulation logic for creating "View PR" links with identical SVG icons and attributes across multiple branches in `RosterApp.js` session tracking. This WET code clutters the UI controllers and requires redundant changes if the PR link style updates.
+**Action:** `[Safe Merge]` Abstracted the logic into a parameterized local helper `createPRLink(url)` at the top of `js/RosterApp.js`, successfully centralizing the component logic without creating a generic global utility, as it is only used within this file.
