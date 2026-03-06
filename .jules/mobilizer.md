@@ -1,0 +1,3 @@
+## 2024-05-24 - 📱 Mobilizer - [Responsive Geometry & Universal Interactions]
+**Learning:** Fixed pixel widths (e.g., `min-width: 250px`) trap mobile users in cramped or overflowing layouts. Blanket replacement of `click` with `pointerdown` breaks mobile scrolling since `pointerdown` triggers instantly upon touch.
+**Action:** Replaced fixed `min-width` geometry with fluid `width: 100%; max-width: *` constraints. Reverted `pointerdown` handlers back to native `click` to preserve mobile scroll-cancellation capabilities, while keeping touch-friendly CSS `:active` and `:focus-within` states alongside `:hover`.

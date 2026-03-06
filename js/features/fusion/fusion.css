@@ -3,7 +3,7 @@
 .fusion-lab-container h2 { margin-top: 0; margin-bottom: 1.5rem; background: linear-gradient(to right, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: -apple-system, sans-serif; font-weight: var(--weight-extrabold); }
 .fusion-visual-slots { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
 .slot-card { background-color: rgba(15, 23, 42, 0.3); border: 2px dashed var(--border); border-radius: 1rem; flex: 1 1 100%; max-width: 100%; min-height: 7.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; padding: 1rem; text-align: center; transition: all 0.2s; }
-.slot-card:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.05); }
+.slot-card:hover, .slot-card:active { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.05); }
 .slot-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .slot-card:active { transform: scale(0.98); }
 .slot-card.filled { border-style: solid; border-color: var(--accent); background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.6)); }
@@ -20,7 +20,7 @@
 .fusion-slot.locked { opacity: 0.6; cursor: not-allowed; }
 .fusion-slot.locked .slot-icon { filter: brightness(0); }
 .fusion-slot.unlocked { cursor: pointer; border-color: rgba(168, 85, 247, 0.3); }
-.fusion-slot.unlocked:hover { border-color: rgba(168, 85, 247, 0.6); background-color: rgba(168, 85, 247, 0.05); transform: translateY(-2px); }
+.fusion-slot.unlocked:hover, .fusion-slot.unlocked:active { border-color: rgba(168, 85, 247, 0.6); background-color: rgba(168, 85, 247, 0.05); transform: translateY(-2px); }
 .fusion-slot.unlocked:focus-visible { outline: 2px solid rgba(168, 85, 247, 1); outline-offset: 2px; }
 
 .picker-modal { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); border: none; width: 100%; height: 100%; position: fixed; z-index: 100; display: none; align-items: center; justify-content: center; top: 0; left: 0; font-family: -apple-system, sans-serif; padding: 0; color: inherit; }
@@ -30,14 +30,14 @@
 .picker-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
 .picker-header h3 { margin: 0; font-size: var(--text-lg); }
 .close-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.5rem; display: flex; align-items: center; justify-content: center; border-radius: 0.25rem; font-size: var(--text-lg); line-height: var(--leading-none); transition: all 0.2s; min-width: 44px; min-height: 44px; }
-.close-btn:hover { color: var(--text-primary); background-color: rgba(255, 255, 255, 0.1); }
+.close-btn:hover, .close-btn:active { color: var(--text-primary); background-color: rgba(255, 255, 255, 0.1); }
 .close-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .close-btn:active { transform: scale(0.95); }
 .picker-search { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); }
 .picker-search input[type="text"] { padding-left: 1rem; padding-right: 1rem; }
 .picker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(7.5rem, 100%), 1fr)); gap: 0.5rem; padding: 1.5rem; overflow-y: auto; }
 .mini-agent-card { background-color: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.5rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.25rem; text-align: center; transition: all 0.2s ease; }
-.mini-agent-card:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.05); }
+.mini-agent-card:hover, .mini-agent-card:active { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.05); }
 .mini-agent-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .mini-agent-card:active { transform: scale(0.98); }
 .mini-agent-card.selected { border-color: var(--accent); background: radial-gradient(circle at center, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.6)); }
