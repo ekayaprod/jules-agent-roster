@@ -220,13 +220,14 @@ class JulesManager {
         const isCompleted = session.outputs && session.outputs.some(o => o.pullRequest);
         if (this.renderedSessionIds.has(session.id)) {
             if (!isCompleted) return;
-            const statusBadge = terminal.querySelector(`#status-${session.id}`);
+            // ⚡ Bolt+: Replaced terminal.querySelector with document.getElementById for O(1) lookup in polling loops
+            const statusBadge = document.getElementById(`status-${session.id}`);
             if (!statusBadge || statusBadge.textContent === "Completed") return;
 
             statusBadge.className = "status-badge status-completed";
             statusBadge.textContent = "Completed";
             const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
-            const item = terminal.querySelector(`#session-${session.id}`);
+            const item = document.getElementById(`session-${session.id}`);
             const metaDiv = item ? item.querySelector(".dashboard-meta") : null;
             if (metaDiv && prInfo) {
                 metaDiv.textContent = 'PR Drafted: ' + prInfo.title;
@@ -325,16 +326,21 @@ class JulesManager {
 
             // Update item with actual session ID
             item.id = `session-${session.id}`;
-            const statusBadge = item.querySelector(`#status-${tempId}`);
-            statusBadge.id = `status-${session.id}`;
-            statusBadge.textContent = "In Progress";
+            // ⚡ Bolt+: Replaced terminal.querySelector with document.getElementById
+            const statusBadge = document.getElementById(`status-${tempId}`);
+            if (statusBadge) {
+                statusBadge.id = `status-${session.id}`;
+                statusBadge.textContent = "In Progress";
+            }
 
             this.startTerminalPolling(session.id, item, repoPath);
             this.app.toast.show(`Session for ${agent.name} launched successfully!`, "success");
         } catch (err) {
-            const statusBadge = item.querySelector(`#status-${tempId}`);
-            statusBadge.className = "status-badge status-failed";
-            statusBadge.textContent = "Failed";
+            const statusBadge = document.getElementById(`status-${tempId}`);
+            if (statusBadge) {
+                statusBadge.className = "status-badge status-failed";
+                statusBadge.textContent = "Failed";
+            }
 
             const metaDiv = item.querySelector(".dashboard-meta");
             metaDiv.textContent = `Launch Error: ${err.message}`;
