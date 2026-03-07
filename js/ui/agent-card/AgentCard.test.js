@@ -41,17 +41,17 @@ describe('AgentCard', () => {
         jest.restoreAllMocks();
     });
 
-    describe('getPromptHtml', () => {
-        it('should generate escaped prompt HTML correctly', () => {
+    describe('getPromptNode', () => {
+        it('should generate escaped prompt HTML correctly when MarkdownRenderer is missing (fallback)', () => {
             const agent = { prompt: '<script>alert("xss")</script>' };
-            const html = AgentCard.getPromptHtml(agent);
-            expect(html).toContain('&lt;script&gt;alert(&quot;xss&quot;)&lt;/script&gt;');
-            expect(html).toContain('class="details-content"');
+            const node = AgentCard.getPromptNode(agent);
+            expect(node.innerHTML).toContain('&lt;script&gt;alert("xss")&lt;/script&gt;');
+            expect(node.className).toContain('details-content');
         });
 
-        it('should handle missing prompt data', () => {
-            const html = AgentCard.getPromptHtml({});
-            expect(html).toContain('No protocol data available.');
+        it('should handle missing prompt data (fallback)', () => {
+            const node = AgentCard.getPromptNode({});
+            expect(node.innerHTML).toContain('No protocol data available.');
         });
     });
 

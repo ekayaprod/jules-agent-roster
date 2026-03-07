@@ -4,14 +4,22 @@
  */
 class AgentCard {
     /**
-     * Lazily generates the inner HTML for the back of the card (the prompt preview).
-     * Escapes the raw markdown content to prevent XSS vulnerabilities.
+     * Lazily generates a DOM node for the back of the card (the prompt preview).
+     * Uses MarkdownRenderer to prevent XSS vulnerabilities.
      * @param {Object} agent - The agent data object containing the prompt string.
-     * @returns {string} The HTML string representing the parsed prompt.
+     * @returns {HTMLElement} The DOM node representing the parsed prompt.
      * @see README.md#agentcard-architecture
      */
-    static getPromptHtml(agent) {
-        return `<div class="details-content">${FormatUtils.escapeHTML(agent.prompt || "No protocol data available.")}</div>`;
+    static getPromptNode(agent) {
+        if (typeof MarkdownRenderer !== 'undefined') {
+            return MarkdownRenderer.renderToDOM(agent.prompt);
+        } else {
+            // Fallback for tests if MarkdownRenderer is missing
+            const fallback = document.createElement('div');
+            fallback.className = 'details-content';
+            fallback.innerHTML = FormatUtils.escapeHTML(agent.prompt || "No protocol data available.");
+            return fallback;
+        }
     }
 
     /**

@@ -41,3 +41,7 @@
 ## 2026-03-06 - 🩰 Choreographer - [Fluid Transition Injected: Jules Repo Picker]
 **Learning:** During the asynchronous fetch of Jules API sources (`loadJulesSources`), the repository dropdown remained frozen with its default "Select GitHub Repository..." text, offering no visual feedback that a network request was in progress.
 **Action:** Injected a disabled loading state (`Loading repositories...`) on the `<select>` element prior to the `await` call, and cleanly restored the interactive state or default text upon Promise resolution or failure.
+
+## 2024-10-24 - 🎇 Hologram - [Generative UI Polish: AgentCard Prompt Preview]
+**Learning:** Raw markdown in the back of the agent card was being rendered as unstyled text strings, lacking visual structure.
+**Action:** Replaced the static HTML string generation in `AgentCard.getPromptHtml` with a custom DOM-node based markdown renderer (`MarkdownRenderer.renderToDOM`) mapped to the native design system, ensuring XSS safety while providing structured layout.
