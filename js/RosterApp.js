@@ -193,15 +193,18 @@ class RosterApp {
     }
 
     const flattenedAgents = [];
+    // ⚡ Bolt+: Implemented Schwartzian transform to reduce O(N log N) Set lookups to O(N) during sorting.
     Object.keys(categorizedAgents).forEach(category => {
-       categorizedAgents[category].sort((a, b) => {
-           const aPinned = this.pinnedManager ? this.pinnedManager.isPinned(a.indexOrKey) : false;
-           const bPinned = this.pinnedManager ? this.pinnedManager.isPinned(b.indexOrKey) : false;
-           if (aPinned && !bPinned) return -1;
-           if (!aPinned && bPinned) return 1;
+       const mapped = categorizedAgents[category].map(item => ({
+           original: item,
+           isPinned: this.pinnedManager ? this.pinnedManager.isPinned(item.indexOrKey) : false
+       }));
+       mapped.sort((a, b) => {
+           if (a.isPinned && !b.isPinned) return -1;
+           if (!a.isPinned && b.isPinned) return 1;
            return 0;
        });
-       flattenedAgents.push(...categorizedAgents[category]);
+       flattenedAgents.push(...mapped.map(m => m.original));
     });
 
     const currentRenderId = Symbol();

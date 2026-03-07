@@ -29,3 +29,11 @@
 ## 2026-03-06 - ⚡ Bolt+ - [Redundant DOM Lookup Caching in FusionAnimation]
 **Learning:** During high-frequency UI interactions like triggering a fusion animation, repeated deep DOM queries (e.g., `querySelector(".anim-particles")` or `getElementById("fusionAnimationOverlay")`) cause unnecessary CPU overhead and layout thrashing.
 **Action:** Implemented a lazy `cacheElements()` pattern in `FusionAnimation.js` to store references to static DOM nodes on the first run, preventing redundant DOM queries on subsequent animation triggers.
+
+## 2026-03-07 - ⚡ Bolt+ - [Algorithmic Efficiency & DOM Query Minimization in RosterApp]
+**Learning:** O(N log N) sorting algorithms that perform Set lookups on every comparison can significantly delay main thread execution, and running `document.querySelectorAll` on every global `pointerdown` event triggers wasteful NodeList allocations and DOM traversals.
+**Action:** Implemented a Schwartzian transform to pre-calculate Set lookups in O(N) time before sorting. Replaced `document.querySelectorAll` with `document.querySelector` in the global pointerdown listener to strictly fetch the single active dropdown, saving cycles on every document click.
+
+## 2026-03-07 - ⚡ Bolt+ - [Polished Optimization]
+**Learning:** Returning shallow clones `{ ...item }` during a Schwartzian sort transform destroys object reference equality, breaking state mutations downstream. Global `querySelector` cleanup logic must handle edge cases where multiple sub-menus might be orphaned open simultaneously.
+**Action:** Restored object references by strictly using `{ original: item, metric }` mapped patterns, and safely replaced looped `.querySelector` lookups in polling intervals with O(1) `document.getElementById`.
