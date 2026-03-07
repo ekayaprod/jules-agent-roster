@@ -14,7 +14,7 @@ class FusionCompiler {
   constructor(agentsData, customAgentsData) {
     // Only allow base agents to be fused. Monthly/Power agents are excluded to prevent complexity explosion.
     this.baseAgents = agentsData.filter(
-      (a) => a.category !== "monthly" && a.category !== "power",
+      (a) => a.category !== "monthly" && a.category !== "power" && !["Spark", "Overseer", "Cartographer"].includes(a.name)
     );
 
     // Normalize keys to ensure they are sorted alphabetically.
