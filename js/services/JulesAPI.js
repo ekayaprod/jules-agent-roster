@@ -143,4 +143,10 @@ ${userTask}`;
 }
 
 // Attach to window for global access
-window.julesService = new JulesService();
+if (typeof window !== 'undefined') {
+    window.julesService = new JulesService();
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = JulesService;
+}

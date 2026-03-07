@@ -150,6 +150,12 @@ class JulesManager {
                     if (s.outputs && s.outputs.some(o => o.pullRequest && (o.pullRequest.state === 'MERGED' || o.pullRequest.state === 'CLOSED'))) {
                         return false;
                     }
+
+                    // Also filter out any sessions the user has actively dismissed
+                    if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) {
+                        return false;
+                    }
+
                     return true;
                 });
                 const repoPath = sourceName.replace('sources/github/', '');
@@ -427,6 +433,7 @@ class JulesManager {
             this.julesPollingIntervals = {};
         }
         if (this.renderedSessionIds) this.renderedSessionIds.clear();
+        if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
         this.currentRepo = null;
     }
 }
