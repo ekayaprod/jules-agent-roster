@@ -1,4 +1,12 @@
+/**
+ * Manages the interactions and UI reconciliation for the Jules Execution API.
+ * @see README.md#Purpose for the module's high-level architectural goals.
+ */
 class JulesManager {
+    /**
+     * Initializes the JulesManager and binds it to the main application context.
+     * @param {Object} rosterApp - The core application instance for accessing shared utilities like `toast` and agent lists.
+     */
     constructor(rosterApp) {
         this.app = rosterApp;
         this.currentRepo = null;
@@ -9,6 +17,11 @@ class JulesManager {
         this.elements = {};
     }
 
+    /**
+     * Retrieves a DOM element by ID, utilizing a centralized cache to prevent redundant lookups.
+     * @param {string} id - The ID of the DOM element to retrieve.
+     * @returns {HTMLElement|null} The cached or newly queried DOM element, or null if not found.
+     */
     getEl(id) {
         if (!this.elements[id]) {
             this.elements[id] = document.getElementById(id);
@@ -16,6 +29,11 @@ class JulesManager {
         return this.elements[id];
     }
 
+    /**
+     * Actively dismisses a completed or failed session from the UI, stopping any polling and cleaning up DOM nodes.
+     * @param {string} sessionId - The unique identifier of the session to dismiss.
+     * @see README.md#Architecture for details on state tracking and preventing re-rendering.
+     */
     dismissSession(sessionId) {
         this.dismissedSessionIds.add(sessionId);
         this.renderedSessionIds.delete(sessionId);
@@ -27,7 +45,12 @@ class JulesManager {
         if (item) item.remove();
     }
 
-    // Helper for generating PR link buttons
+    /**
+     * Generates a structural PR link button to append to a completed session card.
+     * @param {string} url - The direct GitHub Pull Request URL.
+     * @param {Function} onClick - The callback executed when the button is interacted with (typically for dismissal).
+     * @returns {HTMLElement} The constructed anchor node containing the PR link and SVG icon.
+     */
     createPRLink(url, onClick) {
         const prLink = document.createElement("a");
         prLink.className = "pr-link-btn";
@@ -44,6 +67,12 @@ class JulesManager {
         return prLink;
     }
 
+    /**
+     * Bootstraps the Jules integration by verifying or prompting for the user's API key.
+     * If valid, immediately triggers the loading of available sources.
+     * @async
+     * @see README.md#Lifecycle for the complete execution flow sequence.
+     */
     async init() {
         const apiKey = StorageUtils.getItem("jules_api_key");
         const settingsModal = this.getEl("settingsModal");
@@ -89,6 +118,12 @@ class JulesManager {
         }
     }
 
+    /**
+     * Fetches the available GitHub repositories associated with the user's API key.
+     * Populates the UI picker dropdown while managing loading and disabled states.
+     * @async
+     * @see README.md#Lifecycle for details on defining the execution context.
+     */
     async loadSources() {
         const picker = this.getEl("julesRepoPicker");
         if (!picker || !window.julesService) return;
@@ -120,6 +155,13 @@ class JulesManager {
         }
     }
 
+    /**
+     * Initiates polling to fetch active sessions for a specific target repository.
+     * Handles UI reconciliation to avoid duplicate rendering or overwriting active intervals.
+     * @param {string} sourceName - The fully qualified source name of the target repository (e.g., "sources/github/owner/repo").
+     * @async
+     * @see README.md#Architecture for details on stateful UI reconciliation without WebSockets.
+     */
     async loadActiveSessionsForRepo(sourceName) {
         const terminal = this.getEl("julesTerminal");
         terminal.classList.add('active');
@@ -216,6 +258,14 @@ class JulesManager {
         this.activeSessionsInterval = setInterval(fetchAndRenderSessions, 5000);
     }
 
+    /**
+     * Processes an individual session fetched from the server, determining if it needs rendering, updating, or ignoring.
+     * Optimizes performance by skipping already tracked sessions unless their completion state has mutated.
+     * @param {Object} session - The raw session data object from the Jules API.
+     * @param {HTMLElement} terminal - The container DOM element for appending dashboard items.
+     * @param {string} repoPath - The extracted path of the repository (e.g., "owner/repo") used for fallback PR context.
+     * @private
+     */
     _processSession(session, terminal, repoPath) {
         const isCompleted = session.outputs && session.outputs.some(o => o.pullRequest);
         if (this.renderedSessionIds.has(session.id)) {
@@ -278,6 +328,14 @@ class JulesManager {
         }
     }
 
+    /**
+     * Triggers the launch of a new AI agent execution via the Jules API `createSession` endpoint.
+     * Instantly injects a temporary optimistic UI component while awaiting the real server ID.
+     * @param {Object} agent - The selected agent configuration object containing prompts and metadata.
+     * @param {HTMLElement|null} [btn=null] - Optional reference to the launch button to toggle its loading state.
+     * @async
+     * @see README.md#Lifecycle for the phase transitioning from user command to active polling.
+     */
     async launchSession(agent, btn = null) {
         const sourceName = this.getEl("julesRepoPicker").value;
         const userTask = this.getEl("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
@@ -354,6 +412,14 @@ class JulesManager {
         }
     }
 
+    /**
+     * Establishes a high-frequency interval to poll `getActivities` for an ongoing agent session.
+     * Parses the asynchronous event stream to dynamically update the UI state.
+     * @param {string} sessionId - The unique identifier of the active session.
+     * @param {HTMLElement} item - The dashboard DOM element representing the session.
+     * @param {string} repoPath - The repository path used for generating PR links upon completion.
+     * @see README.md#Lifecycle for the final polling and PR mapping phase.
+     */
     startTerminalPolling(sessionId, item, repoPath) {
         if (!this.julesPollingIntervals) this.julesPollingIntervals = {};
         if (this.julesPollingIntervals[sessionId]) clearInterval(this.julesPollingIntervals[sessionId]);
@@ -388,6 +454,12 @@ class JulesManager {
         }, 3000); // Poll every 3 seconds
     }
 
+    /**
+     * Evaluates a single activity update to determine the current execution state of the session.
+     * @param {Object} act - An individual activity record from the polling stream.
+     * @param {Object} state - The mutable state object passed through the activity array to track the highest priority status.
+     * @private
+     */
     _processActivity(act, state) {
         if (act.progressUpdated) {
             state.lastProgressTitle = act.progressUpdated.title;
@@ -417,6 +489,18 @@ class JulesManager {
         }
     }
 
+    /**
+     * Mutates the session UI based on the computed polling state, applying visual status badges and appending PR links.
+     * Clears the polling interval permanently if the state resolves to completed or failed.
+     * @param {string} sessionId - The ID of the session being updated.
+     * @param {string} repoPath - The repository path to link against if completed.
+     * @param {Object} state - The resolved execution state object derived from activity processing.
+     * @param {HTMLElement} statusBadge - The UI node displaying the status text.
+     * @param {HTMLElement} metaDiv - The UI node displaying the detailed progress string.
+     * @param {HTMLElement} statusContainer - The parent node containing the status elements, used for appending PR links.
+     * @private
+     * @see README.md#Architecture for how error boundaries and completions manifest in the UI.
+     */
     _updatePollingState(sessionId, repoPath, state, statusBadge, metaDiv, statusContainer) {
         if (state.isCompleted) {
             statusBadge.className = "status-badge status-completed";
@@ -449,6 +533,11 @@ class JulesManager {
         }
     }
 
+    /**
+     * Completely unmounts the Jules integration, halting all active intervals and clearing cached sets.
+     * Prevents memory leaks when the overarching application state resets.
+     * @see README.md#Architecture for the context on state tracking intervals.
+     */
     cleanup() {
         if (this.activeSessionsInterval) {
             clearInterval(this.activeSessionsInterval);
@@ -463,7 +552,17 @@ class JulesManager {
         this.currentRepo = null;
     }
 
-    // Helper for generating dashboard item HTML
+    /**
+     * Helper for generating the standardized HTML structure of a session dashboard item.
+     * @param {string} emoji - The visual icon representing the agent.
+     * @param {string} title - The name of the agent or task.
+     * @param {string} meta - The contextual metadata or current execution phase.
+     * @param {string} statusId - The specific element ID for the mutable status badge.
+     * @param {string} statusClass - The initial CSS class for the status style.
+     * @param {string} statusText - The initial textual status of the execution.
+     * @returns {string} The raw HTML template string representing the dashboard item.
+     * @private
+     */
     _createDashboardItemHTML(emoji, title, meta, statusId, statusClass, statusText) {
         return `
             <div class="dashboard-info">
