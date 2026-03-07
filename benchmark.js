@@ -78,6 +78,8 @@ const AgentRepository = loadClass('js/services/AgentRepository.js');
 const ToastNotification = loadClass('js/ui/toast/ToastNotification.js');
 const PinnedManager = loadClass('js/features/pinned/PinnedManager.js');
 global.PinnedManager = PinnedManager;
+const JulesManager = loadClass('js/features/jules/JulesManager.js');
+global.JulesManager = JulesManager;
 
 const RosterApp = loadClass('js/RosterApp.js');
 
