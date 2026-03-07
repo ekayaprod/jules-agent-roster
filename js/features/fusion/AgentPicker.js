@@ -10,7 +10,6 @@ class AgentPicker {
         this.onSelect = onSelect;
         this.getPreMergePreviewHTML = getPreMergePreviewHTML;
         this.activePickerSlot = null;
-        this.pickerFuse = null;
         this.currentAgent = null;
         this.focusedIndex = 0;
         this.filteredResults = [];
@@ -23,18 +22,13 @@ class AgentPicker {
     cacheElements() {
         this.elements.agentPickerModal = document.getElementById("agentPickerModal");
         this.elements.closePickerBtn = document.getElementById("closePickerBtn");
-        this.elements.pickerSearch = document.getElementById("pickerSearch");
         this.elements.pickerScrollArea = document.getElementById("pickerScrollArea");
         this.elements.pickerGrid = document.getElementById("pickerGrid");
-        this.elements.pickerEmptyState = document.getElementById("pickerEmptyState");
-        this.elements.clearPickerSearchEmptyBtn = document.getElementById("clearPickerSearchEmptyBtn");
-        this.elements.pickerAnnouncer = document.getElementById("pickerAnnouncer");
     }
 
     bindEvents() {
         const modal = this.elements.agentPickerModal;
         const closeBtn = this.elements.closePickerBtn;
-        const searchInput = this.elements.pickerSearch;
 
         if (modal) {
             // Close on backdrop pointerdown
@@ -54,21 +48,6 @@ class AgentPicker {
                     this.closePicker(false);
                 }
             });
-        }
-        if (searchInput) {
-            // ⚡ Bolt+: Debounce picker search
-            const debouncedFilter = PerformanceUtils.debounce((query) => {
-                this.filterPicker(query);
-            }, 300);
-            searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
-
-            const clearPickerSearchEmptyBtn = this.elements.clearPickerSearchEmptyBtn;
-            if (clearPickerSearchEmptyBtn) {
-                clearPickerSearchEmptyBtn.addEventListener("pointerdown", () => {
-                    searchInput.value = "";
-                    this.filterPicker("");
-                });
-            }
         }
 
         // 💎 Jeweler: Grid Keyboard Navigation
@@ -107,11 +86,6 @@ class AgentPicker {
                     <span class="mini-role">${agent.role}</span>
                 </div>`;
                 this.cachedHtmlStrings.push({ html: htmlStr, name: agent.name.toLowerCase(), agent: agent });
-            });
-
-            this.pickerFuse = new Fuse(this.cachedHtmlStrings, {
-                keys: ["name"],
-                threshold: 0.4
             });
         }
 
@@ -187,8 +161,6 @@ class AgentPicker {
             this.pickerClusterize.update(chunkedRows);
         }
 
-        // We do NOT call el.focus() here because updateGrid is called by the search filter.
-        // Stealing focus here would rip the cursor out of the search input while the user is typing.
         // Visual focus (.is-focused) is handled via getMemoizedHtml string replacement.
     }
 
@@ -202,19 +174,11 @@ class AgentPicker {
         this.currentAgent = currentAgent;
         const modal = this.elements.agentPickerModal;
         const grid = this.elements.pickerGrid;
-        const searchInput = this.elements.pickerSearch;
 
         if (!modal || !grid) {
             console.error("Picker modal or grid not found");
             return;
         }
-
-        // Reset Search
-        if (searchInput) searchInput.value = "";
-
-        // Hide empty state initially
-        const emptyState = this.elements.pickerEmptyState;
-        if (emptyState) emptyState.style.display = "none";
 
         // 🪄 Illusionist: Add pure CSS loading skeleton to mask DOM generation latency
         grid.innerHTML = "";
@@ -248,11 +212,6 @@ class AgentPicker {
 
                 grid.innerHTML = "";
                 this.updateGrid();
-
-                // Focus search input on open for immediate typing
-                if (searchInput && typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-                    searchInput.focus();
-                }
             }, 0);
         });
     }
@@ -287,7 +246,6 @@ class AgentPicker {
             modal.removeAttribute("open");
         }
         this.activePickerSlot = null;
-        this.pickerFuse = null; // Free memory
         this.currentAgent = null;
 
         // Return focus to trigger
@@ -297,40 +255,6 @@ class AgentPicker {
             setTimeout(() => {
                 if (btn) btn.focus();
             }, 50);
-        }
-    }
-
-    /**
-     * Filters the agent grid in the picker.
-     */
-    filterPicker(query) {
-        const term = query.trim();
-        let visibleCount = 0;
-
-        if (!term) {
-            this.filteredResults = this.cachedHtmlStrings;
-        } else {
-            // 🏁 Pacesetter: Use the pre-computed Fuse instance
-            const results = this.pickerFuse ? this.pickerFuse.search(term) : [];
-            this.filteredResults = results.map(result => result.item);
-        }
-
-        visibleCount = this.filteredResults.length;
-
-        // Reset focus on search
-        this.focusedIndex = 0;
-
-        this.updateGrid();
-
-        // 💎 Jeweler: Live Region Announcement
-        const announcer = this.elements.pickerAnnouncer;
-        if (announcer) {
-            announcer.innerText = `${visibleCount} protocols found`;
-        }
-
-        const emptyState = this.elements.pickerEmptyState;
-        if (emptyState) {
-            emptyState.style.display = visibleCount === 0 ? "flex" : "none";
         }
     }
 
