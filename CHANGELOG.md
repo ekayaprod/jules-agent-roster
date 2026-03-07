@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.7.0 - 2026-03-07
+
+### 🚀 Features
+
+- **Jules Integration**: Implemented polling active tasks for selected Jules repos, including a "Needs Input" status in the execution interface dashboard, and added the ability to dismiss completed tasks.
+- **Fusion Lab**: Registered the new "Yggdrasil" paradigm-mutating agent to the Custom Agents catalog and removed meta-agents from the Fusion Lab menu.
+- **Core UI**: Redesigned the back of the agent card layout and action buttons, including displaying raw markdown in agent card previews.
+
+### 💅 Polish
+
+- **Generative UI**: Deployed fluid generative UI polish across Agent Card protocol previews and the execution interface dashboard, utilizing native DOM nodes over innerHTML.
+- **Visuals & Layouts**: Restored critical Card Rarity shine and foil effects, and injected fluid transitions for the Jules Repo picker. Standardized spatial rhythm and typography across `index.html` and fusion CSS.
+- **Microcopy & Accessibility**: Enforced ARIA compliance for omni-button actions and polished microcopy for action buttons across the app.
+
+### ⚡ Performance
+
+- **DOM Optimization**: Implemented widespread caching of redundant DOM lookups across JulesManager, FusionAnimation, RosterApp, and FusionLab to eliminate layout thrashing.
+- **Algorithmic Efficiency**: Minimized structural DOM query costs, improving perceived startup execution and Agent Card rendering speeds.
+- **Deduplication**: Abstracted and standardized HTML generation templates into structured local helpers for terminal lines, status badges, PR link creation, and dashboard items.
+
+### 🐛 Fixed
+
+- **UI Interactions**: Corrected the inline display styling logic upon search reset to safely preserve CSS grid integrity without overriding global resets. Fixed dynamic agent emojis in the active session terminal feed.
+- **Mobile Experience**: Applied deep responsive layout updates for core UI elements and Fusion interactions to handle varied device dimensions and scroll contexts.
+- **Resilience**: Fixed Omni-button dropdown error propagation and safely decoupled its state tracking.
+
+### 🔧 Chores
+
+- **Architecture**: Enforced "Feature-Based Colocation" directory structures by restructuring domain logic for `js/ui/` and Jules integrations.
+- **Documentation**: Generated high-level structural Macro and Micro documentation for JulesManager, Root components, UI directories, and features.
+- **Code Maintenance**: Purged dead UI code including markdown renderers, outdated Fusion Lab styling structures, and old PromptRenderer logic. Flattened deeply nested logic loops in JulesManager.
+- **Testing**: Injected focused code coverage suites for `PinnedManager` and `js/ui/` components.
+
 ## 0.6.0 - 2026-03-06
 
 ### 🚀 Features
