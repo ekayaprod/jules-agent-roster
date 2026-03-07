@@ -89,10 +89,10 @@
       .runner-inputs { display: flex; gap: 1rem; flex-wrap: wrap; }
       .repo-picker { flex: 1; min-width: 15.625rem; background: var(--details-bg); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem; border-radius: 0.5rem; font-family: inherit; outline: none; }
       .task-input { flex: 2; min-width: 18.75rem; background: var(--details-bg); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem; border-radius: 0.5rem; font-family: -apple-system, sans-serif; resize: vertical; min-height: 3rem; outline: none; }
-      .terminal-feed { background: #020617; border: 1px solid var(--border); border-radius: 0.5rem; padding: 1rem; font-family: -apple-system, sans-serif; font-size: var(--text-sm); color: var(--text-primary); max-height: 25rem; overflow-y: auto; display: none; flex-direction: column; gap: 0.75rem; transition: all 0.3s ease-in-out; }
+      .terminal-feed { background: transparent; border: none; font-family: -apple-system, sans-serif; font-size: var(--text-sm); color: var(--text-primary); max-height: 25rem; overflow-y: auto; display: none; flex-direction: column; gap: 0.75rem; transition: all 0.3s ease-in-out; }
       .terminal-feed.active { display: flex; }
       @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-      .dashboard-item { display: flex; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); border-radius: 0.375rem; padding: 0.75rem 1rem; animation: fadeSlideIn 0.3s ease-out forwards; flex-wrap: wrap; gap: 0.5rem;}
+      .dashboard-item { display: flex; align-items: center; justify-content: space-between; background: var(--details-bg); border: 1px solid var(--border); border-radius: 0.5rem; padding: 1rem 1.25rem; animation: fadeSlideIn 0.3s ease-out forwards; flex-wrap: wrap; gap: 0.5rem;}
       .dashboard-info { display: flex; align-items: center; gap: 1rem; flex: 1; min-width: 15.625rem;}
       .dashboard-title { font-weight: var(--weight-semibold); color: var(--text-primary); }
       .dashboard-meta { font-size: var(--text-xs); color: var(--text-secondary); }
@@ -103,8 +103,6 @@
       .status-failed { background: rgba(239, 68, 68, 0.1); color: #ef4444; border-color: rgba(239, 68, 68, 0.2); }
       .pr-link-btn { background: #2563eb; color: white; text-decoration: none; padding: 0.3rem 0.75rem; border-radius: 0.375rem; font-size: var(--text-xs); font-weight: var(--weight-medium); display: inline-flex; align-items: center; gap: 0.3rem; transition: background 0.2s; }
       .pr-link-btn:hover { background: #1d4ed8; }
-      .terminal-line { border-left: 2px solid var(--border); padding-left: 0.75rem; line-height: var(--leading-relaxed); animation: fadeSlideIn 0.3s ease-out forwards; font-family: monospace; font-size: var(--text-xs); color: #38bdf8;}
-      .terminal-time { color: var(--text-secondary); margin-right: 0.5rem; }
 
       .section-header { flex: 0 0 auto; margin: auto 0; padding: 0 1rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); border-bottom: none; align-self: center; }
       .grid { display: contents; }
@@ -201,7 +199,15 @@
         <textarea id="julesTaskInput" class="task-input" placeholder="2. Enter specific instructions (Optional). E.g., 'Target the user dashboard component.'"></textarea>
       </div>
       <div id="julesTerminal" class="terminal-feed">
-        <div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>
+        <div class="dashboard-item" id="awaitingIndicator">
+            <div class="dashboard-info" style="opacity: 0.5;">
+                <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem; filter: grayscale(1);">⏳</span>
+                <div>
+                    <div class="dashboard-title">Awaiting Instructions</div>
+                    <div class="dashboard-meta">Select a repository to view active sessions.</div>
+                </div>
+            </div>
+        </div>
       </div>
     </div>
 

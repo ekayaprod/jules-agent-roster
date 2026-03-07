@@ -253,7 +253,11 @@ class RosterApp {
             this.julesManager.loadActiveSessionsForRepo(sourceName);
         } else {
             const terminal = document.getElementById("julesTerminal");
-            terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
+            Array.from(terminal.querySelectorAll('.dashboard-item')).forEach(el => {
+                if (el.id !== 'awaitingIndicator') el.remove();
+            });
+            const awaitingInd = document.getElementById("awaitingIndicator");
+            if (awaitingInd) awaitingInd.style.display = 'flex';
             terminal.classList.remove('active');
             this.julesManager.cleanup();
         }

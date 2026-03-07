@@ -100,7 +100,12 @@ class JulesManager {
         try {
             const data = await window.julesService.getSources();
             if (data.sources) {
-                picker.innerHTML = `<option value="">1. Select GitHub Repository...</option>`;
+                picker.innerHTML = "";
+                const defaultOpt = document.createElement("option");
+                defaultOpt.value = "";
+                defaultOpt.textContent = "1. Select GitHub Repository...";
+                picker.appendChild(defaultOpt);
+
                 data.sources.forEach(s => {
                     const opt = document.createElement("option");
                     opt.value = s.name;
@@ -109,10 +114,18 @@ class JulesManager {
                 });
                 this.app.toast.show("Jules Repositories Loaded");
             } else {
-                picker.innerHTML = `<option value="">${originalText}</option>`;
+                picker.innerHTML = "";
+                const fallbackOpt = document.createElement("option");
+                fallbackOpt.value = "";
+                fallbackOpt.textContent = originalText;
+                picker.appendChild(fallbackOpt);
             }
         } catch (err) {
-            picker.innerHTML = `<option value="">${originalText}</option>`;
+            picker.innerHTML = "";
+            const fallbackOpt = document.createElement("option");
+            fallbackOpt.value = "";
+            fallbackOpt.textContent = originalText;
+            picker.appendChild(fallbackOpt);
             this.app.toast.show("Failed to fetch Repos. Check API Key.", true);
             console.error("Jules Source Error:", err);
         } finally {
@@ -131,7 +144,31 @@ class JulesManager {
             }
             if (this.renderedSessionIds) this.renderedSessionIds.clear();
 
-            terminal.innerHTML = `<div class="terminal-line" id="fetchingIndicator"><span class="terminal-time">[System]</span> Fetching active sessions...</div>`;
+            // Clear existing dashboard items except our indicators
+            Array.from(terminal.querySelectorAll('.dashboard-item')).forEach(el => {
+                if (el.id !== 'awaitingIndicator' && el.id !== 'fetchingIndicator') el.remove();
+            });
+
+            const awaitingInd = document.getElementById('awaitingIndicator');
+            if (awaitingInd) awaitingInd.style.display = 'none';
+
+            let fetchingInd = document.getElementById('fetchingIndicator');
+            if (!fetchingInd) {
+                fetchingInd = document.createElement('div');
+                fetchingInd.className = 'dashboard-item';
+                fetchingInd.id = 'fetchingIndicator';
+                fetchingInd.innerHTML = `
+                    <div class="dashboard-info" style="opacity: 0.5;">
+                        <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem; filter: grayscale(1);">📡</span>
+                        <div>
+                            <div class="dashboard-title">Fetching active sessions...</div>
+                            <div class="dashboard-meta">Syncing with Jules API.</div>
+                        </div>
+                    </div>
+                `;
+                terminal.appendChild(fetchingInd);
+            }
+
             this.currentRepo = sourceName;
         }
 
@@ -145,9 +182,12 @@ class JulesManager {
 
                 const data = await window.julesService.getSessions(50);
                 if (!data.sessions) {
-                    if (document.getElementById('fetchingIndicator')) {
-                        terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
-                    }
+                    const fetchingInd = document.getElementById('fetchingIndicator');
+                    if (fetchingInd) fetchingInd.remove();
+
+                    const awaitingInd = document.getElementById('awaitingIndicator');
+                    if (awaitingInd) awaitingInd.style.display = 'flex';
+
                     return;
                 }
 
@@ -169,14 +209,23 @@ class JulesManager {
                 const repoPath = sourceName.replace('sources/github/', '');
 
                 // Remove the fetching placeholder if it's there
-                const fetchingIndicator = document.getElementById('fetchingIndicator');
-                if (fetchingIndicator) {
-                    fetchingIndicator.remove();
+                const fetchingInd = document.getElementById('fetchingIndicator');
+                if (fetchingInd) {
+                    fetchingInd.remove();
                 }
 
-                if (repoSessions.length === 0 && terminal.children.length === 0) {
-                    terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
+                const awaitingInd = document.getElementById('awaitingIndicator');
+
+                // Show awaiting state if no active sessions are found (ignoring our indicators)
+                const activeItemCount = Array.from(terminal.children).filter(el =>
+                    el.id !== 'awaitingIndicator' && el.id !== 'fetchingIndicator'
+                ).length;
+
+                if (repoSessions.length === 0 && activeItemCount === 0) {
+                    if (awaitingInd) awaitingInd.style.display = 'flex';
                     return;
+                } else {
+                    if (awaitingInd) awaitingInd.style.display = 'none';
                 }
 
                 // Keep track of rendered sessions to avoid duplicates
@@ -186,6 +235,8 @@ class JulesManager {
                 // Clean up removed sessions from UI and polling
                 const existingItems = terminal.querySelectorAll('.dashboard-item');
                 existingItems.forEach(item => {
+                    if (item.id === 'awaitingIndicator' || item.id === 'fetchingIndicator') return;
+
                     const id = item.id.replace('session-', '');
                     if (!id.startsWith('temp-') && !currentSessionIds.has(id)) {
                         item.remove();
@@ -196,11 +247,6 @@ class JulesManager {
                         }
                     }
                 });
-
-                if (repoSessions.length > 0 && terminal.querySelector('.terminal-line:not(#fetchingIndicator)')) {
-                    const awaitingMsg = Array.from(terminal.querySelectorAll('.terminal-line')).find(el => el.textContent.includes('Awaiting Agent launch'));
-                    if (awaitingMsg) awaitingMsg.remove();
-                }
 
                 // Render or update sessions
                 for (const session of repoSessions) {
@@ -253,14 +299,14 @@ class JulesManager {
             agentEmoji = matchedAgent.emoji;
         }
 
-        item.innerHTML = this._createDashboardItemHTML(
+        item.appendChild(this._createDashboardItemNodes(
             agentEmoji,
             agentName,
             isCompleted ? 'PR Drafted: ' + prTitle : repoPath,
             `status-${session.id}`,
             isCompleted ? 'status-completed' : 'status-in-progress',
             isCompleted ? 'Completed' : 'Loading...'
-        );
+        ));
 
         if (isCompleted) {
             const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
@@ -292,10 +338,8 @@ class JulesManager {
         const terminal = this.getEl("julesTerminal");
         terminal.classList.add('active');
 
-        // Clear the "Awaiting..." placeholder if it's the first execution
-        if (terminal.innerHTML.includes("Awaiting Agent launch command")) {
-            terminal.innerHTML = "";
-        }
+        const awaitingInd = document.getElementById("awaitingIndicator");
+        if (awaitingInd) awaitingInd.style.display = 'none';
 
         // Generate a temporary ID for the new session
         const tempId = 'temp-' + Date.now();
@@ -306,14 +350,14 @@ class JulesManager {
 
         const repoPath = sourceName.replace('sources/github/', '');
 
-        item.innerHTML = this._createDashboardItemHTML(
+        item.appendChild(this._createDashboardItemNodes(
             agent.emoji,
             agent.name,
             repoPath,
             `status-${tempId}`,
             'status-in-progress',
             'Launching...'
-        );
+        ));
         terminal.appendChild(item);
 
         if (btn) {
@@ -437,19 +481,47 @@ class JulesManager {
         this.currentRepo = null;
     }
 
-    // Helper for generating dashboard item HTML
-    _createDashboardItemHTML(emoji, title, meta, statusId, statusClass, statusText) {
-        return `
-            <div class="dashboard-info">
-                <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem;">${emoji}</span>
-                <div>
-                    <div class="dashboard-title">${title}</div>
-                    <div class="dashboard-meta">${meta}</div>
-                </div>
-            </div>
-            <div class="dashboard-status">
-                <span class="status-badge ${statusClass}" id="${statusId}">${statusText}</span>
-            </div>
-        `;
+    // Helper for generating dashboard item DOM nodes safely
+    _createDashboardItemNodes(emoji, title, meta, statusId, statusClass, statusText) {
+        const fragment = document.createDocumentFragment();
+
+        const infoDiv = document.createElement("div");
+        infoDiv.className = "dashboard-info";
+
+        const emojiSpan = document.createElement("span");
+        emojiSpan.className = "emoji-hero";
+        emojiSpan.style.cssText = "font-size: 1.5rem; margin-right: 0.5rem;";
+        emojiSpan.textContent = emoji;
+
+        const textContainer = document.createElement("div");
+
+        const titleDiv = document.createElement("div");
+        titleDiv.className = "dashboard-title";
+        titleDiv.textContent = title;
+
+        const metaDiv = document.createElement("div");
+        metaDiv.className = "dashboard-meta";
+        metaDiv.textContent = meta;
+
+        textContainer.appendChild(titleDiv);
+        textContainer.appendChild(metaDiv);
+
+        infoDiv.appendChild(emojiSpan);
+        infoDiv.appendChild(textContainer);
+
+        const statusDiv = document.createElement("div");
+        statusDiv.className = "dashboard-status";
+
+        const badgeSpan = document.createElement("span");
+        badgeSpan.className = `status-badge ${statusClass}`;
+        badgeSpan.id = statusId;
+        badgeSpan.textContent = statusText;
+
+        statusDiv.appendChild(badgeSpan);
+
+        fragment.appendChild(infoDiv);
+        fragment.appendChild(statusDiv);
+
+        return fragment;
     }
 }
