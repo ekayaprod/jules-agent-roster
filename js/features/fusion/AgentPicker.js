@@ -1,3 +1,9 @@
+const PICKER_CLUSTERIZE_OPTIONS = {
+    scrollId: 'pickerScrollArea',
+    contentId: 'pickerGrid',
+    no_data_text: ''
+};
+
 class AgentPicker {
     /**
      * Initializes the AgentPicker modal.
@@ -145,10 +151,8 @@ class AgentPicker {
 
         if (!this.pickerClusterize) {
             this.pickerClusterize = new Clusterize({
-                rows: chunkedRows,
-                scrollId: 'pickerScrollArea',
-                contentId: 'pickerGrid',
-                no_data_text: ''
+                ...PICKER_CLUSTERIZE_OPTIONS,
+                rows: chunkedRows
             });
 
             // Re-calculate chunks if window resizes to ensure grid alignment
