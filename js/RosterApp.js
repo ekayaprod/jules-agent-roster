@@ -194,6 +194,9 @@ class RosterApp {
 
     const flattenedAgents = [];
     // ⚡ Bolt+: Implemented Schwartzian transform to reduce O(N log N) Set lookups to O(N) during sorting.
+    // Why: We cache the pin state (`isPinned`) for each agent before sorting. This avoids
+    // calling `this.pinnedManager.isPinned(item.indexOrKey)` inside the `sort` comparator,
+    // which would otherwise be executed `O(N log N)` times, causing a performance bottleneck.
     Object.keys(categorizedAgents).forEach(category => {
        const mapped = categorizedAgents[category].map(item => ({
            original: item,
@@ -214,6 +217,10 @@ class RosterApp {
     const CHUNK_SIZE = 15;
     let agentIndex = 0;
 
+    // WARN: Do NOT convert this recursive `requestAnimationFrame` loop into a synchronous `.map()` or `.forEach()`.
+    // Why: Rendering all DOM nodes synchronously blocks the main thread, causing layout popping,
+    // frozen UI, and delayed skeleton removal. The `requestAnimationFrame(() => setTimeout(..., 0))`
+    // pattern yields control to the browser between chunks to keep the interface responsive.
     const renderChunk = () => {
       if (this.currentRenderId !== currentRenderId) return;
 
