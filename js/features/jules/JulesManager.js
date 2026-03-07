@@ -245,18 +245,14 @@ class JulesManager {
             agentEmoji = matchedAgent.emoji;
         }
 
-        item.innerHTML = `
-            <div class="dashboard-info">
-                <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem;">${agentEmoji}</span>
-                <div>
-                    <div class="dashboard-title">${agentName}</div>
-                    <div class="dashboard-meta">${isCompleted ? 'PR Drafted: ' + prTitle : repoPath}</div>
-                </div>
-            </div>
-            <div class="dashboard-status">
-                <span class="status-badge ${isCompleted ? 'status-completed' : 'status-in-progress'}" id="status-${session.id}">${isCompleted ? 'Completed' : 'Loading...'}</span>
-            </div>
-        `;
+        item.innerHTML = this._createDashboardItemHTML(
+            agentEmoji,
+            agentName,
+            isCompleted ? 'PR Drafted: ' + prTitle : repoPath,
+            `status-${session.id}`,
+            isCompleted ? 'status-completed' : 'status-in-progress',
+            isCompleted ? 'Completed' : 'Loading...'
+        );
 
         if (isCompleted) {
             const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
@@ -302,18 +298,14 @@ class JulesManager {
 
         const repoPath = sourceName.replace('sources/github/', '');
 
-        item.innerHTML = `
-            <div class="dashboard-info">
-                <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem;">${agent.emoji}</span>
-                <div>
-                    <div class="dashboard-title">${agent.name}</div>
-                    <div class="dashboard-meta">${repoPath}</div>
-                </div>
-            </div>
-            <div class="dashboard-status">
-                <span class="status-badge status-in-progress" id="status-${tempId}">Launching...</span>
-            </div>
-        `;
+        item.innerHTML = this._createDashboardItemHTML(
+            agent.emoji,
+            agent.name,
+            repoPath,
+            `status-${tempId}`,
+            'status-in-progress',
+            'Launching...'
+        );
         terminal.appendChild(item);
 
         if (btn) {
@@ -435,5 +427,21 @@ class JulesManager {
         if (this.renderedSessionIds) this.renderedSessionIds.clear();
         if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
         this.currentRepo = null;
+    }
+
+    // Helper for generating dashboard item HTML
+    _createDashboardItemHTML(emoji, title, meta, statusId, statusClass, statusText) {
+        return `
+            <div class="dashboard-info">
+                <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem;">${emoji}</span>
+                <div>
+                    <div class="dashboard-title">${title}</div>
+                    <div class="dashboard-meta">${meta}</div>
+                </div>
+            </div>
+            <div class="dashboard-status">
+                <span class="status-badge ${statusClass}" id="${statusId}">${statusText}</span>
+            </div>
+        `;
     }
 }
