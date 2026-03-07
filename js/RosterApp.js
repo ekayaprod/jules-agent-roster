@@ -545,7 +545,14 @@ class RosterApp {
                   return;
               }
 
-              const repoSessions = data.sessions.filter(s => s.sourceContext && s.sourceContext.source === sourceName);
+              const repoSessions = data.sessions.filter(s => {
+                  if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
+                  // Filter out sessions that have a merged or closed PR
+                  if (s.outputs && s.outputs.some(o => o.pullRequest && (o.pullRequest.state === 'MERGED' || o.pullRequest.state === 'CLOSED'))) {
+                      return false;
+                  }
+                  return true;
+              });
               const repoPath = sourceName.replace('sources/github/', '');
 
               // Remove the fetching placeholder if it's there
