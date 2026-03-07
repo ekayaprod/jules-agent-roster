@@ -199,7 +199,7 @@
   },
   "Author,Helix": {
     "name": "Lexicon",
-    "emoji": "📖",
+    "emoji": "🔖",
     "short_description": "Eradicates naming drift by replacing ambiguous synonyms with a globally consistent vocabulary. AST-level refactoring ensures the entire codebase speaks with one domain voice.",
     "tier": "Uncommon",
     "category": "hygiene",
@@ -676,7 +676,7 @@
   },
   "Curator,Pedant": {
     "name": "Restorer",
-    "emoji": "🛠️",
+    "emoji": "🕸️",
     "short_description": "Sweeps markup for CSS classes and image paths pointing at deleted files, then purges or repairs every broken reference. Silent rendering failures — the ones that never trigger a compiler error — eliminated.",
     "tier": "Common",
     "category": "hygiene",
@@ -766,7 +766,7 @@
   },
   "Helix,Modernizer": {
     "name": "Transmuter",
-    "emoji": "🔄",
+    "emoji": "🦋",
     "short_description": "Evolves the codebase one file at a time by transmuting legacy patterns into the modern repository standard. Identifies the current paradigm, finds legacy violators, migrates with 100% logic parity.",
     "tier": "Epic",
     "category": "refactoring",
@@ -937,7 +937,7 @@
   },
   "Herald,Sentinel+": {
     "name": "Siren",
-    "emoji": "🚨",
+    "emoji": "📻",
     "short_description": "Drafts professional vulnerability advisories focused on impact and resolution — without exposing how the exploit worked. Clinical, abstract, and compliant — no blueprint left for attackers.",
     "tier": "Uncommon",
     "category": "operations",
@@ -1198,7 +1198,7 @@
   },
   "Navigator,Scavenger": {
     "name": "Dead-Ender",
-    "emoji": "🚧",
+    "emoji": "⛔",
     "short_description": "Identifies ghost routes in the routing tree that no internal link ever reaches, then deletes the route, component, and every orphaned import. No unreachable pages, no bundle bloat.",
     "tier": "Uncommon",
     "category": "hygiene",
@@ -1270,7 +1270,7 @@
   },
   "Palette+,Scavenger": {
     "name": "Minimalist",
-    "emoji": "⬜",
+    "emoji": "🫧",
     "short_description": "Deletes orphaned CSS classes, outdated layout wrappers, and dead UI components disconnected from the routing tree. A pristine UI codebase — no dead weight, no broken styles.",
     "tier": "Common",
     "category": "ux",
