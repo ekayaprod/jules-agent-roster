@@ -62,21 +62,21 @@ class FusionLab {
         labContent: document.getElementById("fusionLabContent"),
     };
 
-    if (this.elements.slotACard) this.elements.slotACard.addEventListener("click", () => {
+    if (this.elements.slotACard) this.elements.slotACard.addEventListener("pointerdown", () => {
         if (this.picker) this.picker.openPicker("slotA", this.state.slotA);
     });
-    if (this.elements.slotBCard) this.elements.slotBCard.addEventListener("click", () => {
+    if (this.elements.slotBCard) this.elements.slotBCard.addEventListener("pointerdown", () => {
         if (this.picker) this.picker.openPicker("slotB", this.state.slotB);
     });
 
-    if (this.elements.fuseBtn) this.elements.fuseBtn.addEventListener("click", () => this.handleFusion());
+    if (this.elements.fuseBtn) this.elements.fuseBtn.addEventListener("pointerdown", () => this.handleFusion());
 
     if (this.elements.resetLabBtn) {
-        this.elements.resetLabBtn.addEventListener("click", () => this.resetLab());
+        this.elements.resetLabBtn.addEventListener("pointerdown", () => this.resetLab());
     }
 
     if (this.elements.copyFusionBtn) {
-      this.elements.copyFusionBtn.addEventListener("click", async (e) => {
+      this.elements.copyFusionBtn.addEventListener("pointerdown", async (e) => {
         const btn = e.currentTarget;
         if (this.lastFusionResult && this.lastFusionResult.prompt) {
           await ClipboardUtils.copyText(this.lastFusionResult.prompt);
@@ -224,7 +224,7 @@ class FusionLab {
   }
 
   /**
-   * Handles the fusion logic when the Fuse button is clicked.
+   * Handles the fusion logic when the Fuse button is pointerdowned.
    */
   async handleFusion() {
     const fuseBtn = this.elements.fuseBtn;

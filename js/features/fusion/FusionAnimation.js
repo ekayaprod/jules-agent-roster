@@ -69,8 +69,8 @@ class FusionAnimation {
         const tx = Math.cos(angle) * distance;
         const ty = Math.sin(angle) * distance;
 
-        particle.style.setProperty("--tx", `${tx}px`);
-        particle.style.setProperty("--ty", `${ty}px`);
+        particle.style.setProperty("--tx", `${tx/16}rem`);
+        particle.style.setProperty("--ty", `${ty/16}rem`);
         particle.style.animationDuration = `${0.8 / speedMultiplier}s`;
         // Delay slightly for Legendary to create a fountain effect
         if (tier === "Legendary" || tier === "Epic") {
