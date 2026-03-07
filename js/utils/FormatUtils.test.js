@@ -84,4 +84,14 @@ describe('FormatUtils', () => {
             });
         });
     });
+
+    describe('createTerminalLineHTML', () => {
+        it('should format a basic terminal line without an ID', () => {
+            expect(FormatUtils.createTerminalLineHTML("Awaiting Agent launch command...")).toBe('<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>');
+        });
+
+        it('should format a terminal line with an ID', () => {
+            expect(FormatUtils.createTerminalLineHTML("Fetching active sessions...", "fetchingIndicator")).toBe('<div class="terminal-line" id="fetchingIndicator"><span class="terminal-time">[System]</span> Fetching active sessions...</div>');
+        });
+    });
 });
