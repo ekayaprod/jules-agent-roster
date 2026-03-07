@@ -1442,7 +1442,7 @@
   "Scavenger,Scribe": {
     "name": "Obituary Writer",
     "emoji": "🪦",
-    "short_description": "Researches the final engineering intent of dead code via commit history, documents it as a formal 'Obituary', then deletes the source, tests, and mock data. A clean burial with a permanent record.",
+    "short_description": "Researches the final engineering intent of dead code, documents its history in a permanent GRAVEYARD.md archive, and then physically deletes the source files. A clean burial with a permanent historical record.",
     "tier": "Uncommon",
     "category": "documentation",
     "type": "fusion",
