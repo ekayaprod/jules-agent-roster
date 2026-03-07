@@ -13,3 +13,6 @@
 ## 2026-03-06 - 📘 Author - [Macro-Documentation Generated: Jules API Swagger]
 **Learning:** The Jules API endpoints invoked within `js/services/JulesAPI.js` were entirely undocumented, forcing developers to inspect implementation details (e.g. `POST /sessions` payload structure, `GET /activities` pagination) rather than referring to a dedicated API specification.
 **Action:** Generated a strict OpenAPI specification `js/services/swagger.yaml` documenting the payload schemas, query parameters, and responses for the `sources`, `sessions`, and `activities` endpoints utilized by the application.
+## 2026-03-08 - 📘 Author - [Missing Architecture Documentation: js/features/]
+**Learning:** Found missing documentation in the `js/features/` directory, which could block developers trying to understand the feature-based colocation structure.
+**Action:** Created `js/features/README.md` containing Purpose, Quick Start, and Architecture sections in a clear, imperative voice to explain the logic of feature modules.
