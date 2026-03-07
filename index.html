@@ -42,6 +42,51 @@
       .tier-epic .flip-card-inner { border-color: rgba(217, 70, 239, 0.6); box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); }
       .tier-legendary .flip-card-inner { box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); border-color: rgba(245, 158, 11, 1); }
 
+      /* Surface Shine and Foil Effects for Rare, Epic, Legendary */
+      .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after,
+      .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after,
+      .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          z-index: 10;
+          border-radius: inherit;
+          mix-blend-mode: overlay;
+          background-size: 200% 200%;
+          opacity: 0.15;
+      }
+
+      @keyframes shineRare {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+      }
+      .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after {
+          background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.3) 60%, transparent 80%);
+          animation: shineRare 15s linear infinite;
+      }
+
+      @keyframes shineEpic {
+          0% { background-position: 200% 50%; }
+          100% { background-position: -200% 50%; }
+      }
+      .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after {
+          background: linear-gradient(115deg, transparent 20%, rgba(217, 70, 239, 0.4) 30%, rgba(255, 255, 255, 0.9) 50%, rgba(56, 189, 248, 0.4) 70%, transparent 80%);
+          animation: shineEpic 15s linear infinite;
+          mix-blend-mode: color-dodge;
+      }
+
+      @keyframes holographicFoil {
+          0% { background-position: 200% 50%; }
+          100% { background-position: -200% 50%; }
+      }
+      .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after {
+          background: linear-gradient(115deg, rgba(255, 0, 0, 0.5), rgba(255, 154, 0, 0.5), rgba(208, 222, 33, 0.5), rgba(79, 220, 74, 0.5), rgba(63, 218, 216, 0.5), rgba(47, 201, 226, 0.5), rgba(28, 127, 238, 0.5), rgba(95, 21, 242, 0.5), rgba(186, 12, 248, 0.5), rgba(251, 7, 217, 0.5), rgba(255, 0, 0, 0.5));
+          animation: holographicFoil 15s linear infinite;
+          mix-blend-mode: color-dodge;
+          opacity: 0.25;
+      }
+
       .front-content-wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; width: 100%; margin-top: -0.5rem; }
       .card-top { display: grid; grid-template-columns: 1fr 2fr; width: 100%; gap: 0.5rem; align-items: center; }
       .card-top-left { display: flex; justify-content: center; align-items: center; padding-top: 0.25rem; }
