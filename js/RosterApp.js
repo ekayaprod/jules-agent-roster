@@ -1,3 +1,18 @@
+const FUSE_OPTIONS = {
+    keys: ["agent.name", "agent.short_description"],
+    threshold: 0.4
+};
+
+const SEARCH_CLUSTERIZE_OPTIONS = {
+    scrollId: 'searchResultsScrollArea',
+    contentId: 'searchResultsGrid'
+};
+
+const OBSERVER_OPTIONS = {
+    rootMargin: "-80px 0px -60% 0px",
+    threshold: 0
+};
+
 // Helper for closing a dropdown menu and syncing its aria-expanded state
 function closeDropdownMenu(menu) {
     if (!menu) return;
@@ -533,10 +548,7 @@ class RosterApp {
             });
         }
 
-        const fuse = new Fuse(allAgents, {
-            keys: ["agent.name", "agent.short_description"],
-            threshold: 0.4
-        });
+        const fuse = new Fuse(allAgents, FUSE_OPTIONS);
 
         this._searchCache = {
             agentCount: this.agents.length,
@@ -563,9 +575,8 @@ class RosterApp {
 
     if (!this.searchClusterize) {
       this.searchClusterize = new Clusterize({
-        rows: htmlResults,
-        scrollId: 'searchResultsScrollArea',
-        contentId: 'searchResultsGrid'
+        ...SEARCH_CLUSTERIZE_OPTIONS,
+        rows: htmlResults
       });
     } else {
       this.searchClusterize.update(htmlResults);
@@ -669,7 +680,7 @@ class RosterApp {
           }
         });
       },
-      { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
+      OBSERVER_OPTIONS
     );
 
     Object.keys(CONFIG.sectionMap).forEach((gridId) => {
