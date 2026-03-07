@@ -46,7 +46,7 @@
   },
   {
     "name": "Scavenger",
-    "emoji": "🦅",
+    "emoji": "🦝",
     "short_description": "Systematically reduces codebase bloat by identifying and safely deleting dead code, orphaned files, and unused exports. Eradicates resolved TODOs and unreachable branches that are no longer executed.",
     "tier": "",
     "category": "hygiene",
