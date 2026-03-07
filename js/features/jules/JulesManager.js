@@ -364,63 +364,83 @@ class JulesManager {
                 // Sort chronologically
                 const activities = data.activities.sort((a, b) => new Date(a.createTime) - new Date(b.createTime));
 
-                let isCompleted = false;
-                let hasError = false;
-                let isWaitingForInput = false;
-                let lastProgressTitle = metaDiv.textContent;
+                const state = {
+                    isCompleted: false,
+                    hasError: false,
+                    isWaitingForInput: false,
+                    lastProgressTitle: metaDiv.textContent
+                };
 
-                activities.forEach(act => {
-                    if (act.progressUpdated) {
-                        lastProgressTitle = act.progressUpdated.title;
-                    } else if (act.userActionRequired || act.requiresInput || (act.type && act.type.includes('INPUT'))) {
-                        isWaitingForInput = true;
-                        lastProgressTitle = act.title || "Waiting for Input...";
-                    } else if (act.sessionCompleted) {
-                        isCompleted = true;
+                activities.forEach(act => this._processActivity(act, state));
 
-                        if (act.artifacts && act.artifacts[0]?.changeSet?.gitPatch?.suggestedCommitMessage) {
-                            const prTitle = act.artifacts[0].changeSet.gitPatch.suggestedCommitMessage.split('\n')[0];
-                            lastProgressTitle = `PR Drafted: ${prTitle}`;
-                        } else {
-                            lastProgressTitle = "Session Completed Successfully.";
-                        }
-                    } else if (act.error) {
-                        hasError = true;
-                        lastProgressTitle = "Session Failed.";
-                    }
-                });
-
-                metaDiv.textContent = lastProgressTitle;
-
-                if (isCompleted) {
-                    statusBadge.className = "status-badge status-completed";
-                    statusBadge.textContent = "Completed";
-
-                    // Add PR link
-                    const prLink = this.createPRLink(`https://github.com/${repoPath}/pulls`, () => this.dismissSession(sessionId));
-                    statusContainer.appendChild(prLink);
-
-                    clearInterval(this.julesPollingIntervals[sessionId]);
-                    delete this.julesPollingIntervals[sessionId];
-                } else if (hasError) {
-                    statusBadge.className = "status-badge status-failed";
-                    statusBadge.textContent = "Failed";
-                    metaDiv.style.color = "#ef4444";
-
-                    clearInterval(this.julesPollingIntervals[sessionId]);
-                    delete this.julesPollingIntervals[sessionId];
-                } else if (isWaitingForInput) {
-                    statusBadge.className = "status-badge status-failed";
-                    statusBadge.textContent = "Needs Input";
-                    statusBadge.style.background = "rgba(245, 158, 11, 0.1)";
-                    statusBadge.style.color = "#f59e0b";
-                    statusBadge.style.borderColor = "rgba(245, 158, 11, 0.2)";
-                }
+                metaDiv.textContent = state.lastProgressTitle;
+                this._updatePollingState(sessionId, repoPath, state, statusBadge, metaDiv, statusContainer);
 
             } catch (e) {
                 console.error("Polling error", e);
             }
         }, 3000); // Poll every 3 seconds
+    }
+
+    _processActivity(act, state) {
+        if (act.progressUpdated) {
+            state.lastProgressTitle = act.progressUpdated.title;
+            return;
+        }
+
+        if (act.userActionRequired || act.requiresInput || (act.type && act.type.includes('INPUT'))) {
+            state.isWaitingForInput = true;
+            state.lastProgressTitle = act.title || "Waiting for Input...";
+            return;
+        }
+
+        if (act.sessionCompleted) {
+            state.isCompleted = true;
+            if (act.artifacts && act.artifacts[0]?.changeSet?.gitPatch?.suggestedCommitMessage) {
+                const prTitle = act.artifacts[0].changeSet.gitPatch.suggestedCommitMessage.split('\n')[0];
+                state.lastProgressTitle = `PR Drafted: ${prTitle}`;
+            } else {
+                state.lastProgressTitle = "Session Completed Successfully.";
+            }
+            return;
+        }
+
+        if (act.error) {
+            state.hasError = true;
+            state.lastProgressTitle = "Session Failed.";
+        }
+    }
+
+    _updatePollingState(sessionId, repoPath, state, statusBadge, metaDiv, statusContainer) {
+        if (state.isCompleted) {
+            statusBadge.className = "status-badge status-completed";
+            statusBadge.textContent = "Completed";
+
+            const prLink = this.createPRLink(`https://github.com/${repoPath}/pulls`, () => this.dismissSession(sessionId));
+            statusContainer.appendChild(prLink);
+
+            clearInterval(this.julesPollingIntervals[sessionId]);
+            delete this.julesPollingIntervals[sessionId];
+            return;
+        }
+
+        if (state.hasError) {
+            statusBadge.className = "status-badge status-failed";
+            statusBadge.textContent = "Failed";
+            metaDiv.style.color = "#ef4444";
+
+            clearInterval(this.julesPollingIntervals[sessionId]);
+            delete this.julesPollingIntervals[sessionId];
+            return;
+        }
+
+        if (state.isWaitingForInput) {
+            statusBadge.className = "status-badge status-failed";
+            statusBadge.textContent = "Needs Input";
+            statusBadge.style.background = "rgba(245, 158, 11, 0.1)";
+            statusBadge.style.color = "#f59e0b";
+            statusBadge.style.borderColor = "rgba(245, 158, 11, 0.2)";
+        }
     }
 
     cleanup() {
