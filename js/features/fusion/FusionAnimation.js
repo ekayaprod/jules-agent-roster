@@ -1,15 +1,40 @@
 class FusionAnimation {
+  constructor() {
+    this.elements = null;
+  }
+
+  /**
+   * Caches static DOM elements on first run to prevent redundant layout thrashing.
+   */
+  cacheElements() {
+    if (this.elements) return;
+    const overlay = document.getElementById("fusionAnimationOverlay");
+    if (!overlay) return;
+
+    this.elements = {
+      overlay,
+      iconLeft: overlay.querySelector(".anim-icon.left"),
+      iconRight: overlay.querySelector(".anim-icon.right"),
+      iconResult: overlay.querySelector(".anim-icon.result"),
+      animResult: overlay.querySelector(".anim-result"),
+      fuseBtn: document.getElementById("fuseBtn"),
+      controls: document.getElementById("fusionLabContent"), // Updated class
+      wrapper: document.getElementById("fusionOutputWrapper"),
+      particlesContainer: overlay.querySelector(".anim-particles")
+    };
+  }
+
   /**
    * Orchestrates the fusion animation sequence.
    */
   async runAnimation(agentA, agentB, result, showResultCallback) {
-    const overlay = document.getElementById("fusionAnimationOverlay");
-    const iconLeft = overlay.querySelector(".anim-icon.left");
-    const iconRight = overlay.querySelector(".anim-icon.right");
-    const iconResult = overlay.querySelector(".anim-icon.result");
-    const animResult = overlay.querySelector(".anim-result");
-    const fuseBtn = document.getElementById("fuseBtn");
-    const controls = document.getElementById("fusionLabContent"); // Updated class
+    this.cacheElements();
+    if (!this.elements) return;
+
+    const { overlay, iconLeft, iconRight, iconResult, animResult, fuseBtn, controls, wrapper, particlesContainer } = this.elements;
+
+    // Close result if open
+    if (wrapper) wrapper.classList.remove("open");
 
     // Dynamic Tier Styling & Particle Generation
     const tier = result.tier || "Common";
@@ -19,7 +44,6 @@ class FusionAnimation {
     overlay.className = "fusion-animation-overlay";
     overlay.classList.add(tierClass);
 
-    const particlesContainer = overlay.querySelector(".anim-particles");
     if (particlesContainer) {
       particlesContainer.innerHTML = ""; // Clear previous particles
 
@@ -87,17 +111,17 @@ class FusionAnimation {
         iconResult.innerHTML = ""; // Clear previous content
 
         // Create Container
-        const wrapper = document.createElement("div");
-        wrapper.className = "img-wrapper";
-        wrapper.style.fontSize = "inherit"; // Inherit font size from parent
+        const imgContainer = document.createElement("div");
+        imgContainer.className = "img-wrapper";
+        imgContainer.style.fontSize = "inherit"; // Inherit font size from parent
 
         // Create Placeholder
         // 💊 Placebo: Use skeleton pulse to mask latency
         const placeholder = document.createElement("div");
         placeholder.className = "img-placeholder skeleton-pulse";
-        wrapper.appendChild(placeholder);
+        imgContainer.appendChild(placeholder);
 
-        iconResult.appendChild(wrapper);
+        iconResult.appendChild(imgContainer);
 
         // 💊 Placebo: Resilient Image Loading with Exponential Backoff
         const loadImageWithRetry = (url, retries = 3, backoff = 300) => {
@@ -111,7 +135,7 @@ class FusionAnimation {
           img.style.objectFit = "contain";
 
           img.onload = () => {
-            wrapper.appendChild(img);
+            imgContainer.appendChild(img);
             // Trigger reflow to ensure CSS transition applies
             void img.offsetWidth;
             img.classList.remove("img-loading");
@@ -135,7 +159,7 @@ class FusionAnimation {
                   reason: "All retries exhausted",
                   timestamp: new Date().toISOString()
               }));
-              wrapper.remove();
+              imgContainer.remove();
               // Graceful Fallback
               iconResult.innerText = `${iconA}${iconB}`;
             }
