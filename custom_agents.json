@@ -693,13 +693,13 @@
     "role": "Cascading Deletion Specialist"
   },
   "Curator,Scribe": {
-    "name": "Typesmith",
-    "emoji": "🔠",
-    "short_description": "Enforces the Design System's spacing scale and WCAG contrast ratios by hunting rogue inline values across the codebase. Every spacing rounded to 4px/8px, every text element in AA/AAA compliance.",
+    "name": "Swatch",
+    "emoji": "📒",
+    "short_description": "Extracts raw design variables, hex codes, and spacing scales from configuration files and autonomously generates a centralized, highly visual STYLEGUIDE.md registry.",
     "tier": "Common",
-    "category": "ux",
+    "category": "documentation",
     "type": "fusion",
-    "role": "Pixel Perfectionist"
+    "role": "Design Documentarian"
   },
   "Curator,Sentinel+": {
     "name": "Hazmat",
