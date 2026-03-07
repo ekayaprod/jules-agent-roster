@@ -3,7 +3,7 @@ class FusionIndex {
    * Manages the collectible shelf of fusion agents.
    * @param {string} containerId - The ID of the container element.
    * @param {Object} customAgentsData - The map of custom agent fusions.
-   * @param {Function} onSelectCallback - Function to call when an unlocked slot is pointerdowned.
+   * @param {Function} onSelectCallback - Function to call when an unlocked slot is clicked.
    */
   constructor(containerId, customAgentsData, onSelectCallback) {
     this.containerId = containerId;
@@ -129,7 +129,7 @@ class FusionIndex {
       if (this.onSelectCallback) this.onSelectCallback(key);
     };
 
-    slot.addEventListener("pointerdown", handleSelect);
+    slot.addEventListener("click", handleSelect);
     slot.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -169,7 +169,7 @@ class FusionIndex {
       }
       slot.setAttribute("title", agentData.name);
 
-      // Re-bind pointerdown event
+      // Re-bind click event
       this._bindSlotInteractions(slot, agentData, key);
 
       // Remove animation class after animation

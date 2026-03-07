@@ -39,7 +39,7 @@ class JulesManager {
             View PR
         `;
         if (onClick) {
-            prLink.addEventListener("pointerdown", onClick);
+            prLink.addEventListener("click", onClick);
         }
         return prLink;
     }
@@ -62,11 +62,11 @@ class JulesManager {
             }
         };
 
-        openBtn?.addEventListener("pointerdown", () => toggleModal(true));
-        closeBtn?.addEventListener("pointerdown", () => toggleModal(false));
+        openBtn?.addEventListener("click", () => toggleModal(true));
+        closeBtn?.addEventListener("click", () => toggleModal(false));
 
         // Save and Connect Logic
-        saveBtn?.addEventListener("pointerdown", async () => {
+        saveBtn?.addEventListener("click", async () => {
             const key = keyInput.value.trim();
             if (!key) return this.app.toast.show("Please enter an API Key.");
 
