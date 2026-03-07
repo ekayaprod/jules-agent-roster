@@ -568,7 +568,7 @@
   },
   "Cortex,Scribe": {
     "name": "Few-Shot Forger",
-    "emoji": "🖇️",
+    "emoji": "💭",
     "short_description": "Eliminates zero-shot hallucinations by injecting structured input/output example pairs directly into AI prompt templates. The model sees exactly what 'correct' looks like before generating its first token.",
     "tier": "Uncommon",
     "category": "meta",
@@ -1549,7 +1549,7 @@
   },
   "Sentinel+,Wordsmith": {
     "name": "Redactor",
-    "emoji": "⬛",
+    "emoji": "🥷",
     "short_description": "Sweeps UI and logging layers to ensure credit cards, emails, and phone numbers never appear in plain text. Lightweight redaction utilities and recursive object-scrubbers injected before the presentation layer.",
     "tier": "Epic",
     "category": "architecture",
