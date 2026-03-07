@@ -18,3 +18,9 @@
 ## 2026-03-06 - 🧬 Helix - [Deduplicated Logic: PR Link Creation]
 **Learning:** Found exact duplicated DOM manipulation logic for creating "View PR" links with identical SVG icons and attributes across multiple branches in `RosterApp.js` session tracking. This WET code clutters the UI controllers and requires redundant changes if the PR link style updates.
 **Action:** `[Safe Merge]` Abstracted the logic into a parameterized local helper `createPRLink(url)` at the top of `js/RosterApp.js`, successfully centralizing the component logic without creating a generic global utility, as it is only used within this file.
+## 2026-03-07 - 🧬 Helix - [Test Deduplication]
+**Learning:** Evaluated identical redundant test cases in `PromptParser.test.js` validating the exact same underlying logic for error logs.
+**Action:** `[Skip]` Test cases validate scenarios rather than application logic, deduplication clutters the test description output.
+## 2026-03-07 - 🧬 Helix - [Dropdown State Management]
+**Learning:** Found scattered and identical manual DOM manipulations for closing dropdown menus (managing `classList` and `aria-expanded` attributes on associated toggle buttons by using `document.querySelector`) repeated across the `RosterApp.js` `handleClick` listener. This WET code increases the risk of accessibility desynchronization.
+**Action:** `[Safe Merge]` Abstracted this logic into a pure, centralized parameterized local helper `closeDropdownMenu(menu)` at the top of `js/RosterApp.js` to handle all dropdown closing transitions consistently without creating a generic global utility, as it is only used within this file.
