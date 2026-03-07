@@ -42,6 +42,10 @@
 **Learning:** Raw AI text streams lack visual structure and can cause layout shifts. However, `innerHTML` and `insertAdjacentHTML` with unescaped AI content streams causes severe XSS risks. Refactoring to Vanilla JS DOM nodes ensures complete safety, but introduces more verbose code structures.
 **Action:** Always prefer a custom DOM-node based Markdown Renderer (using `document.createElement`, `document.createTextNode`, `textContent`) when injecting AI-generated payloads in Vanilla JS projects to maintain safety over code brevity. Include CSS transitions to prevent visual thrashing and simulate an organic growth vibe.
 
+## 2024-05-24 - 🎇 Hologram - [Generative UI Polish: Agent Card Protocol Preview]
+**Learning:** Rendering parsed markdown protocols natively inside `.innerHTML` (as seen in `AgentCard.js`) leaves the component exposed to XSS vectors or breaks styling on fast tokens, even when strings are escaped globally. Constructing UI components securely without frameworks requires pure DOM abstractions.
+**Action:** Migrated the raw `getPromptHtml` to a secure `MarkdownRenderer` utility class that builds nodes directly via `document.createElement`. Injected the results safely via `appendChild()`, completely bypassing string-to-DOM template limits.
+
 ## 2026-03-06 - 🩰 Choreographer - [Fluid Transition Injected: Jules Repo Picker]
 **Learning:** During the asynchronous fetch of Jules API sources (`loadJulesSources`), the repository dropdown remained frozen with its default "Select GitHub Repository..." text, offering no visual feedback that a network request was in progress.
 **Action:** Injected a disabled loading state (`Loading repositories...`) on the `<select>` element prior to the `await` call, and cleanly restored the interactive state or default text upon Promise resolution or failure.
