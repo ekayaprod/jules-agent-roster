@@ -737,6 +737,15 @@
     "type": "fusion",
     "role": "Alt Tag Crafter"
   },
+  "Helix,Helix": {
+    "name": "Yggdrasil",
+    "emoji": "🌳",
+    "short_description": "Triggers an evolutionary divergence by completely mutating outdated architectural paradigms. Reincarnates legacy OOP classes into functional pipelines and imperative loops into declarative strands.",
+    "tier": "Legendary",
+    "category": "refactoring",
+    "type": "fusion",
+    "role": "Paradigm Mutator"
+  },
   "Helix,Herald": {
     "name": "Tower",
     "emoji": "🗼",
