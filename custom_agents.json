@@ -217,7 +217,7 @@
   },
   "Author,Inspector": {
     "name": "Mapper",
-    "emoji": "📍",
+    "emoji": "🛰️",
     "short_description": "Identifies untested code, critical paths, and missing edge cases, then documents them in TESTING_PLAN.md. Flags exactly what needs testing next — no guesswork for the next agent.",
     "tier": "Uncommon",
     "category": "testing",
@@ -856,7 +856,7 @@
   },
   "Helix,Wordsmith": {
     "name": "Standardizer",
-    "emoji": "📝",
+    "emoji": "🔣",
     "short_description": "Sweeps for scattered hardcoded user-facing strings and extracts them into centralized dictionaries and shared templates. One authoritative source for every button label, message, and string.",
     "tier": "Uncommon",
     "category": "ux",
