@@ -1,3 +1,14 @@
+// Helper to uniformly update status badge UI state
+function updateBadgeUI(badge, className, text, styles = null) {
+    if (!badge) return;
+    badge.className = `status-badge ${className}`;
+    badge.textContent = text;
+    badge.removeAttribute('style');
+    if (styles) {
+        Object.assign(badge.style, styles);
+    }
+}
+
 class JulesManager {
     constructor(rosterApp) {
         this.app = rosterApp;
@@ -250,8 +261,7 @@ class JulesManager {
                         // Already rendered but state transitioned to completed
                         const statusBadge = document.getElementById(`status-${session.id}`);
                         if (statusBadge) {
-                            statusBadge.className = "status-badge status-completed";
-                            statusBadge.textContent = "Completed";
+                            updateBadgeUI(statusBadge, "status-completed", "Completed");
                             const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
                             const metaDiv = document.getElementById(`session-${session.id}`).querySelector(".dashboard-meta");
                             if (metaDiv && prInfo) {
@@ -328,14 +338,13 @@ class JulesManager {
             item.id = `session-${session.id}`;
             const statusBadge = item.querySelector(`#status-${tempId}`);
             statusBadge.id = `status-${session.id}`;
-            statusBadge.textContent = "In Progress";
+            updateBadgeUI(statusBadge, "status-in-progress", "In Progress");
 
             this.startTerminalPolling(session.id, item, repoPath);
             this.app.toast.show(`Session for ${agent.name} launched successfully!`, "success");
         } catch (err) {
             const statusBadge = item.querySelector(`#status-${tempId}`);
-            statusBadge.className = "status-badge status-failed";
-            statusBadge.textContent = "Failed";
+            updateBadgeUI(statusBadge, "status-failed", "Failed");
 
             const metaDiv = item.querySelector(".dashboard-meta");
             metaDiv.textContent = `Launch Error: ${err.message}`;
@@ -394,8 +403,7 @@ class JulesManager {
                 metaDiv.textContent = lastProgressTitle;
 
                 if (isCompleted) {
-                    statusBadge.className = "status-badge status-completed";
-                    statusBadge.textContent = "Completed";
+                    updateBadgeUI(statusBadge, "status-completed", "Completed");
 
                     // Add PR link
                     const prLink = this.createPRLink(`https://github.com/${repoPath}/pulls`, sessionId);
@@ -404,18 +412,17 @@ class JulesManager {
                     clearInterval(this.julesPollingIntervals[sessionId]);
                     delete this.julesPollingIntervals[sessionId];
                 } else if (hasError) {
-                    statusBadge.className = "status-badge status-failed";
-                    statusBadge.textContent = "Failed";
+                    updateBadgeUI(statusBadge, "status-failed", "Failed");
                     metaDiv.style.color = "#ef4444";
 
                     clearInterval(this.julesPollingIntervals[sessionId]);
                     delete this.julesPollingIntervals[sessionId];
                 } else if (isWaitingForInput) {
-                    statusBadge.className = "status-badge status-failed";
-                    statusBadge.textContent = "Needs Input";
-                    statusBadge.style.background = "rgba(245, 158, 11, 0.1)";
-                    statusBadge.style.color = "#f59e0b";
-                    statusBadge.style.borderColor = "rgba(245, 158, 11, 0.2)";
+                    updateBadgeUI(statusBadge, "status-failed", "Needs Input", {
+                        background: "rgba(245, 158, 11, 0.1)",
+                        color: "#f59e0b",
+                        borderColor: "rgba(245, 158, 11, 0.2)"
+                    });
                 }
 
             } catch (e) {
