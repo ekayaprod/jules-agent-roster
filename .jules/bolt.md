@@ -29,3 +29,7 @@
 ## 2026-03-06 - ⚡ Bolt+ - [Redundant DOM Lookup Caching in JulesManager]
 **Learning:** When managing high-frequency polling or interactive vanilla JS classes (like `JulesManager`), repeatedly executing `document.getElementById` inside intervals (e.g., polling every 3s) causes significant CPU overhead and layout thrashing.
 **Action:** Prevent redundant DOM queries by caching structural element lookups in a centralized class property (`this.elements`) using a memoization helper method (`getEl(id)`) on first access, replacing all raw `document.getElementById` calls.
+
+## 2026-03-06 - ⚡ Bolt+ - [Redundant DOM Lookup Caching in FusionAnimation]
+**Learning:** During high-frequency UI interactions like triggering a fusion animation, repeated deep DOM queries (e.g., `querySelector(".anim-particles")` or `getElementById("fusionAnimationOverlay")`) cause unnecessary CPU overhead and layout thrashing.
+**Action:** Implemented a lazy `cacheElements()` pattern in `FusionAnimation.js` to store references to static DOM nodes on the first run, preventing redundant DOM queries on subsequent animation triggers.

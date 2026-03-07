@@ -1,18 +1,39 @@
 class FusionAnimation {
+  constructor() {
+    this.elements = null;
+  }
+
+  /**
+   * Caches static DOM elements on first run to prevent redundant layout thrashing.
+   */
+  cacheElements() {
+    if (this.elements) return;
+    const overlay = document.getElementById("fusionAnimationOverlay");
+    if (!overlay) return;
+
+    this.elements = {
+      overlay,
+      iconLeft: overlay.querySelector(".anim-icon.left"),
+      iconRight: overlay.querySelector(".anim-icon.right"),
+      iconResult: overlay.querySelector(".anim-icon.result"),
+      animResult: overlay.querySelector(".anim-result"),
+      fuseBtn: document.getElementById("fuseBtn"),
+      controls: document.getElementById("fusionLabContent"), // Updated class
+      wrapper: document.getElementById("fusionOutputWrapper"),
+      particlesContainer: overlay.querySelector(".anim-particles")
+    };
+  }
+
   /**
    * Orchestrates the fusion animation sequence.
    */
   async runAnimation(agentA, agentB, result, showResultCallback) {
-    const overlay = document.getElementById("fusionAnimationOverlay");
-    const iconLeft = overlay.querySelector(".anim-icon.left");
-    const iconRight = overlay.querySelector(".anim-icon.right");
-    const iconResult = overlay.querySelector(".anim-icon.result");
-    const animResult = overlay.querySelector(".anim-result");
-    const fuseBtn = document.getElementById("fuseBtn");
-    const controls = document.getElementById("fusionLabContent"); // Updated class
+    this.cacheElements();
+    if (!this.elements) return;
+
+    const { overlay, iconLeft, iconRight, iconResult, animResult, fuseBtn, controls, wrapper, particlesContainer } = this.elements;
 
     // Close result if open
-    const wrapper = document.getElementById("fusionOutputWrapper");
     if (wrapper) wrapper.classList.remove("open");
 
     // Dynamic Tier Styling & Particle Generation
@@ -23,7 +44,6 @@ class FusionAnimation {
     overlay.className = "fusion-animation-overlay";
     overlay.classList.add(tierClass);
 
-    const particlesContainer = overlay.querySelector(".anim-particles");
     if (particlesContainer) {
       particlesContainer.innerHTML = ""; // Clear previous particles
 
