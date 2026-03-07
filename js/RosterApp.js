@@ -58,8 +58,8 @@ class RosterApp {
         this.fusionLab = new FusionLab();
         this.fusionLab.init(this.agents, this.customAgents);
 
-        const skeleton = document.getElementById("fusionLabSkeleton");
-        const content = document.getElementById("fusionLabContent");
+        const skeleton = this.elements.fusionLabSkeleton;
+        const content = this.elements.fusionLabContent;
         if (skeleton && content) {
             skeleton.style.opacity = '0';
             const revealContent = () => {
@@ -120,6 +120,17 @@ class RosterApp {
     this.categoryElements = {};
     Object.keys(CONFIG.categories).forEach((key) => {
       this.categoryElements[key] = document.getElementById(CONFIG.categories[key]);
+    });
+
+    // Cache static elements used frequently during high-frequency events or initialization
+    const staticIds = [
+      "searchInput", "clearBtn", "fusionLabSkeleton", "fusionLabContent", "clearSearchEmptyBtn", "julesRepoPicker",
+      "julesTerminal", "masterDropdownBtn", "masterDropdownMenu", "masterCopyBtn",
+      "masterDownloadCoreBtn", "masterCopyFusionsBtn", "masterDownloadFusionsBtn",
+      "searchModeContainer", "searchResultsGrid", "category-nav"
+    ];
+    staticIds.forEach(id => {
+      this.elements[id] = document.getElementById(id);
     });
   }
 
@@ -267,9 +278,9 @@ class RosterApp {
     }
     
     this.elements.clearBtn?.addEventListener("click", () => this.clearSearch());
-    document.getElementById("clearSearchEmptyBtn")?.addEventListener("click", () => this.clearSearch());
+    this.elements.clearSearchEmptyBtn?.addEventListener("click", () => this.clearSearch());
 
-    document.getElementById('julesRepoPicker')?.addEventListener('change', (e) => {
+    this.elements.julesRepoPicker?.addEventListener('change', (e) => {
         if (this._cardHtmlCache) this._cardHtmlCache.clear();
         if (this._domNodeCache) this._domNodeCache.clear();
         this.renderAgents();
@@ -278,20 +289,22 @@ class RosterApp {
         if (sourceName) {
             this.julesManager.loadActiveSessionsForRepo(sourceName);
         } else {
-            const terminal = document.getElementById("julesTerminal");
-            terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
-            terminal.classList.remove('active');
+            const terminal = this.elements.julesTerminal;
+            if (terminal) {
+              terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
+              terminal.classList.remove('active');
+            }
             this.julesManager.cleanup();
         }
     });
 
     // Footer Master Export Controls
-    const masterDropBtn = document.getElementById('masterDropdownBtn');
-    const masterDropMenu = document.getElementById('masterDropdownMenu');
+    const masterDropBtn = this.elements.masterDropdownBtn;
+    const masterDropMenu = this.elements.masterDropdownMenu;
     
     masterDropBtn?.addEventListener("click", (e) => {
         e.stopPropagation();
-        masterDropMenu.classList.toggle("visible");
+        masterDropMenu?.classList.toggle("visible");
     });
 
     // Global Click Delegation (Handles Dropdowns, Cards, etc.)
@@ -406,12 +419,12 @@ class RosterApp {
     });
 
     // Master Export bindings
-    document.getElementById('masterCopyBtn')?.addEventListener("click", (e) => this.copyAll(e.currentTarget));
-    document.getElementById('masterDownloadCoreBtn')?.addEventListener("click", (e) => {
+    this.elements.masterCopyBtn?.addEventListener("click", (e) => this.copyAll(e.currentTarget));
+    this.elements.masterDownloadCoreBtn?.addEventListener("click", (e) => {
         this.downloadAll(e.currentTarget);
-        masterDropMenu.classList.remove("visible");
+        masterDropMenu?.classList.remove("visible");
     });
-    document.getElementById('masterCopyFusionsBtn')?.addEventListener("click", async (e) => {
+    this.elements.masterCopyFusionsBtn?.addEventListener("click", async (e) => {
         const validCustomAgents = Object.values(this.customAgents).filter(a => a.prompt && a.prompt.length > 0);
         if (validCustomAgents.length === 0) return this.toast.show("No custom agents unlocked yet.");
         const header = FormatUtils.CUSTOM_ROSTER_HEADER;
@@ -420,11 +433,11 @@ class RosterApp {
             this.toast.show("Fusions copied to clipboard");
             ClipboardUtils.animateButtonSuccess(e.currentTarget, "Copied!");
         }
-        masterDropMenu.classList.remove("visible");
+        masterDropMenu?.classList.remove("visible");
     });
-    document.getElementById('masterDownloadFusionsBtn')?.addEventListener("click", (e) => {
+    this.elements.masterDownloadFusionsBtn?.addEventListener("click", (e) => {
         this.downloadCustomAgents(e.currentTarget);
-        masterDropMenu.classList.remove("visible");
+        masterDropMenu?.classList.remove("visible");
     });
   }
 
@@ -439,20 +452,20 @@ class RosterApp {
    */
   filterAgents(query) {
     const search = query.toLowerCase();
-    const searchModeContainer = document.getElementById("searchModeContainer");
-    const searchResultsGrid = document.getElementById("searchResultsGrid");
-    const categoryNav = document.getElementById("category-nav");
+    const searchModeContainer = this.elements.searchModeContainer;
+    const searchResultsGrid = this.elements.searchResultsGrid;
+    const categoryNav = this.elements["category-nav"];
     
     if (query.length > 0) {
       this.elements.clearBtn?.classList.add("visible");
-      searchModeContainer.classList.remove("hidden");
+      searchModeContainer?.classList.remove("hidden");
       if(categoryNav) categoryNav.style.display = 'none';
       
       DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "none", "searchResultsGrid");
       DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "none", "search-mode-header");
     } else {
       this.elements.clearBtn?.classList.remove("visible");
-      searchModeContainer.classList.add("hidden");
+      searchModeContainer?.classList.add("hidden");
       if(categoryNav) categoryNav.style.display = 'flex';
       
       DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "", "searchResultsGrid");
@@ -520,7 +533,7 @@ class RosterApp {
 
     if (results.length === 0) {
       this.elements.emptyState?.classList.add("visible");
-      searchModeContainer.classList.add("hidden");
+      searchModeContainer?.classList.add("hidden");
     } else {
       this.elements.emptyState?.classList.remove("visible");
     }
@@ -618,7 +631,9 @@ class RosterApp {
     );
 
     Object.keys(CONFIG.sectionMap).forEach((gridId) => {
-      const el = document.getElementById(gridId);
+      // ⚡ Bolt+: Utilize cached category elements to prevent repeated query execution
+      const catKey = Object.keys(CONFIG.categories).find(k => CONFIG.categories[k] === gridId);
+      const el = catKey ? this.categoryElements[catKey] : document.getElementById(gridId);
       if (el) observer.observe(el);
     });
   }
