@@ -603,9 +603,17 @@ class RosterApp {
                       const agentName = session.title || "Agent Task";
                       const prTitle = isCompleted ? session.outputs.find(o => o.pullRequest).pullRequest.title : agentName;
 
+                      // Try to find the correct emoji from agents list based on session title matching agent name
+                      let agentEmoji = "🤖";
+                      const matchedAgent = this.agents.find(a => a.name === agentName) ||
+                                           (this.customAgents && Object.values(this.customAgents).find(a => a.name === agentName));
+                      if (matchedAgent && matchedAgent.emoji) {
+                          agentEmoji = matchedAgent.emoji;
+                      }
+
                       item.innerHTML = `
                           <div class="dashboard-info">
-                              <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem;">🤖</span>
+                              <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem;">${agentEmoji}</span>
                               <div>
                                   <div class="dashboard-title">${agentName}</div>
                                   <div class="dashboard-meta">${isCompleted ? 'PR Drafted: ' + prTitle : repoPath}</div>
