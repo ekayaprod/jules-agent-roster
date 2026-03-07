@@ -91,7 +91,7 @@ class RosterApp {
                 </svg>
                 <p class="empty-title">${errorTitle}</p>
                 <p class="empty-desc">${errorDesc}</p>
-                <button onpointerdown="window.location.reload()" class="mt-6" aria-label="Refresh Page to Retry Loading">Refresh Page</button>
+                <button onclick="window.location.reload()" class="mt-6" aria-label="Refresh Page to Retry Loading">Refresh Page</button>
               </div>
             `;
         }
@@ -287,8 +287,8 @@ class RosterApp {
       this.elements.searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
     }
     
-    this.elements.clearBtn?.addEventListener("pointerdown", () => this.clearSearch());
-    this.elements.clearSearchEmptyBtn?.addEventListener("pointerdown", () => this.clearSearch());
+    this.elements.clearBtn?.addEventListener("click", () => this.clearSearch());
+    this.elements.clearSearchEmptyBtn?.addEventListener("click", () => this.clearSearch());
 
     this.elements.julesRepoPicker?.addEventListener('change', (e) => {
         if (this._cardHtmlCache) this._cardHtmlCache.clear();
@@ -312,19 +312,19 @@ class RosterApp {
     const masterDropBtn = this.elements.masterDropdownBtn;
     const masterDropMenu = this.elements.masterDropdownMenu;
     
-    masterDropBtn?.addEventListener("pointerdown", (e) => {
+    masterDropBtn?.addEventListener("click", (e) => {
         e.stopPropagation();
         masterDropMenu?.classList.toggle("visible");
     });
 
     // Global Click Delegation (Handles Dropdowns, Cards, etc.)
-    document.addEventListener("pointerdown", (e) => {
-      // 1. Close master dropdown if pointerdowned outside
+    document.addEventListener("click", (e) => {
+      // 1. Close master dropdown if clicked outside
       if (masterDropMenu?.classList.contains("visible") && !masterDropMenu.contains(e.target) && !masterDropBtn.contains(e.target)) {
           masterDropMenu.classList.remove("visible");
       }
 
-      // 2. Close specific card dropdowns if pointerdowned outside
+      // 2. Close specific card dropdowns if clicked outside
       document.querySelectorAll('.card-dropdown-menu.visible, .dropdown-menu.visible').forEach(menu => {
           if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
               closeDropdownMenu(menu);
@@ -432,12 +432,12 @@ class RosterApp {
     });
 
     // Master Export bindings
-    this.elements.masterCopyBtn?.addEventListener("pointerdown", (e) => this.copyAll(e.currentTarget));
-    this.elements.masterDownloadCoreBtn?.addEventListener("pointerdown", (e) => {
+    this.elements.masterCopyBtn?.addEventListener("click", (e) => this.copyAll(e.currentTarget));
+    this.elements.masterDownloadCoreBtn?.addEventListener("click", (e) => {
         this.downloadAll(e.currentTarget);
         masterDropMenu?.classList.remove("visible");
     });
-    this.elements.masterCopyFusionsBtn?.addEventListener("pointerdown", async (e) => {
+    this.elements.masterCopyFusionsBtn?.addEventListener("click", async (e) => {
         const validCustomAgents = Object.values(this.customAgents).filter(a => a.prompt && a.prompt.length > 0);
         if (validCustomAgents.length === 0) return this.toast.show("No custom agents unlocked yet.");
         const header = FormatUtils.CUSTOM_ROSTER_HEADER;
@@ -448,7 +448,7 @@ class RosterApp {
         }
         masterDropMenu?.classList.remove("visible");
     });
-    this.elements.masterDownloadFusionsBtn?.addEventListener("pointerdown", (e) => {
+    this.elements.masterDownloadFusionsBtn?.addEventListener("click", (e) => {
         this.downloadCustomAgents(e.currentTarget);
         masterDropMenu?.classList.remove("visible");
     });
