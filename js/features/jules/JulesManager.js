@@ -151,7 +151,7 @@ class JulesManager {
                     return;
                 }
 
-                const repoSessions = data.sessions.filter(s => {
+                let repoSessions = data.sessions.filter(s => {
                     if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
                     if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
                     // Filter out sessions that have a merged or closed PR
@@ -166,6 +166,11 @@ class JulesManager {
 
                     return true;
                 });
+
+                // Sort descending (most recent first) and cap at 5
+                // Assuming API returns chronological order since no timestamp is provided on the list response
+                repoSessions = [...repoSessions].reverse().slice(0, 5);
+
                 const repoPath = sourceName.replace('sources/github/', '');
 
                 // Remove the fetching placeholder if it's there
@@ -207,6 +212,15 @@ class JulesManager {
                     this._processSession(session, terminal, repoPath);
                 }
 
+                // Enforce DOM order based on sorted array (repoSessions is newest to oldest)
+                // Append each item in order to the terminal so the DOM matches the array visually.
+                for (const session of repoSessions) {
+                    const item = document.getElementById(`session-${session.id}`);
+                    if (item) {
+                        terminal.appendChild(item);
+                    }
+                }
+
             } catch (err) {
                 console.error("Failed to load active sessions:", err);
             }
@@ -232,9 +246,21 @@ class JulesManager {
             if (metaDiv && prInfo) {
                 metaDiv.textContent = 'PR Drafted: ' + prInfo.title;
             }
-            if (item && prInfo && prInfo.url && !item.querySelector(".pr-link-btn")) {
-                const prLink = this.createPRLink(prInfo.url, () => this.dismissSession(session.id));
-                item.querySelector(".dashboard-status").appendChild(prLink);
+            if (item) {
+                item.style.cursor = 'pointer';
+                if (!item.dataset.clickListenerAttached) {
+                    item.addEventListener('click', (e) => {
+                        if (!e.target.closest('.pr-link-btn')) {
+                            this.dismissSession(session.id);
+                        }
+                    });
+                    item.dataset.clickListenerAttached = 'true';
+                }
+
+                if (prInfo && prInfo.url && !item.querySelector(".pr-link-btn")) {
+                    const prLink = this.createPRLink(prInfo.url, () => this.dismissSession(session.id));
+                    item.querySelector(".dashboard-status").appendChild(prLink);
+                }
             }
             return;
         }
@@ -265,6 +291,14 @@ class JulesManager {
         ));
 
         if (isCompleted) {
+            item.style.cursor = 'pointer';
+            item.addEventListener('click', (e) => {
+                if (!e.target.closest('.pr-link-btn')) {
+                    this.dismissSession(session.id);
+                }
+            });
+            item.dataset.clickListenerAttached = 'true';
+
             const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
             if (prInfo && prInfo.url) {
                 const prLink = this.createPRLink(prInfo.url, () => this.dismissSession(session.id));
