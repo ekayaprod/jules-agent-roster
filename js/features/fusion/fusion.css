@@ -235,19 +235,6 @@
   90% { transform: translate(-10px, 5px) rotate(-2deg); }
 }
 
-@keyframes shake-anomalous {
-  0%, 100% { transform: translate(0, 0) scale(1); filter: invert(0); }
-  10% { transform: translate(-20px, 20px) scale(1.05); filter: invert(1); }
-  20% { transform: translate(20px, -20px) scale(0.95); filter: invert(0); }
-  30% { transform: translate(-25px, -15px) scale(1.1); filter: invert(1); }
-  40% { transform: translate(25px, 15px) scale(0.9); filter: invert(0); }
-  50% { transform: translate(-20px, 25px) scale(1.05); filter: invert(1); }
-  60% { transform: translate(20px, -25px) scale(0.95); filter: invert(0); }
-  70% { transform: translate(-15px, -20px) scale(1.1); filter: invert(1); }
-  80% { transform: translate(15px, 20px) scale(0.9); filter: invert(0); }
-  90% { transform: translate(-20px, 15px) scale(1.05); filter: invert(1); }
-}
-
 @keyframes flash {
   0% { opacity: 1; transform: translate(-50%, -50%) scale(0.1); }
   50% { opacity: 1; transform: translate(-50%, -50%) scale(2); }

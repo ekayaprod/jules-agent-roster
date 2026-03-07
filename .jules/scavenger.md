@@ -56,3 +56,7 @@
 ## 2026-03-09 - 🦅 Scavenger - [Purged Zero-Reference Class MarkdownRenderer]
 **Learning:** Found `MarkdownRenderer` fully implemented but never referenced by any runtime code. Even though it was included in the global environment and `index.html`, none of its methods were invoked, making it dead codebase bloat.
 **Action:** Always verify if utility classes included in scripts are actually invoked by the runtime application logic. Delete entire classes to reduce technical debt if they are entirely unreferenced.
+
+## 2026-03-09 - 🦅 Scavenger - [Purged Zero-Reference CSS Keyframe shake-anomalous]
+**Learning:** Discovered `@keyframes shake-anomalous` in `fusion.css` that was completely mathematically dead and never referenced by any runtime DOM elements or JS animation sequences. CSS visual debris can accumulate when animations are designed but never implemented in the final UI logic.
+**Action:** Use tools like `uncss` and regular text search to cross-reference CSS keyframes against active class additions in JS. Strip out unreachable visual debris to keep stylesheets lean.
