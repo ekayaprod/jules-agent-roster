@@ -57,7 +57,6 @@ class FusionLab {
         errorEl: document.getElementById("fusionError"),
         textSpan: document.getElementById("fusionErrorText"),
         fusionResultContainer: document.getElementById("fusionResultContainer"),
-        fusionOutputWrapper: document.getElementById("fusionOutputWrapper"),
         resetLabBtn: document.getElementById("resetLabBtn"),
         // ⚡ Bolt+: Cached fusionLabContent query to prevent repeated DOM lookups during high-frequency reset/fusion interactions.
         labContent: document.getElementById("fusionLabContent"),
@@ -323,13 +322,9 @@ class FusionLab {
     this.lastFusionResult = result;
 
     const container = this.elements.fusionResultContainer;
-    const wrapper = this.elements.fusionOutputWrapper;
-    if (wrapper) {
-      wrapper.classList.remove("open");
-      wrapper.classList.add("hidden");
-    }
-
     if (container) {
+      container.classList.add("hidden");
+      container.classList.remove("fusion-revealed");
       container.innerHTML = ""; // Clear previous
 
       if (typeof AgentCard !== "undefined") {
@@ -356,14 +351,13 @@ class FusionLab {
     this.state.slotA = null;
     this.state.slotB = null;
 
-    const wrapper = this.elements.fusionOutputWrapper;
     const resetBtn = this.elements.resetLabBtn;
     const labContent = this.elements.labContent;
     const container = this.elements.fusionResultContainer;
 
-    if (wrapper) {
-      wrapper.classList.remove("open");
-      wrapper.classList.add("hidden");
+    if (container) {
+      container.classList.add("hidden");
+      container.classList.remove("fusion-revealed");
     }
 
     if (resetBtn) {
@@ -390,19 +384,19 @@ class FusionLab {
       DOMUtils.setButtonState(fuseBtn, "ready", "Ignite Fusion Protocol");
     }
 
-    const wrapper = this.elements.fusionOutputWrapper;
+    const container = this.elements.fusionResultContainer;
     const resetBtn = this.elements.resetLabBtn;
 
-    if (wrapper) {
-      wrapper.classList.remove("hidden");
-      wrapper.classList.add("open");
+    if (container) {
+      container.classList.remove("hidden");
+      container.classList.add("fusion-revealed");
 
       if (resetBtn) {
           resetBtn.classList.remove("hidden");
       }
 
       // Ensure the card inside gets focused for accessibility
-      const cardTitle = wrapper.querySelector(".agent-title");
+      const cardTitle = container.querySelector(".agent-title");
       if (cardTitle) {
           cardTitle.setAttribute("tabindex", "-1");
           cardTitle.focus();
