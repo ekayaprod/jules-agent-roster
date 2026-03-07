@@ -5,12 +5,22 @@ class JulesManager {
         this.activeSessionsInterval = null;
         this.julesPollingIntervals = {};
         this.renderedSessionIds = new Set();
-        // Track sessions the user has dismissed so they aren't re-rendered on next poll
         this.dismissedSessionIds = new Set();
     }
 
+    dismissSession(sessionId) {
+        this.dismissedSessionIds.add(sessionId);
+        this.renderedSessionIds.delete(sessionId);
+        if (this.julesPollingIntervals && this.julesPollingIntervals[sessionId]) {
+            clearInterval(this.julesPollingIntervals[sessionId]);
+            delete this.julesPollingIntervals[sessionId];
+        }
+        const item = document.getElementById(`session-${sessionId}`);
+        if (item) item.remove();
+    }
+
     // Helper for generating PR link buttons
-    createPRLink(url, sessionId) {
+    createPRLink(url, onClick) {
         const prLink = document.createElement("a");
         prLink.className = "pr-link-btn";
         prLink.href = url;
@@ -20,22 +30,9 @@ class JulesManager {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h-4"/><path d="M12 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2"/><polyline points="15 8 18 5 21 8"/></svg>
             View PR
         `;
-
-        if (sessionId) {
-            prLink.addEventListener('click', () => {
-                // When PR link is clicked, we can remove the item visually
-                const item = document.getElementById(`session-${sessionId}`);
-                if (item) {
-                    // Small delay to let the click register before removing
-                    setTimeout(() => {
-                        item.remove();
-                        this.renderedSessionIds.delete(sessionId);
-                        this.dismissedSessionIds.add(sessionId);
-                    }, 500);
-                }
-            });
+        if (onClick) {
+            prLink.addEventListener("click", onClick);
         }
-
         return prLink;
     }
 
@@ -148,9 +145,8 @@ class JulesManager {
 
                 const repoSessions = data.sessions.filter(s => {
                     if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
-                    // Note: Instead of filtering out here, we allow the user to clear it
-                    // via clicking the PR link. But if the PR is fully merged/closed, it
-                    // should still probably not load on a fresh refresh to keep it clean.
+                    if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
+                    // Filter out sessions that have a merged or closed PR
                     if (s.outputs && s.outputs.some(o => o.pullRequest && (o.pullRequest.state === 'MERGED' || o.pullRequest.state === 'CLOSED'))) {
                         return false;
                     }
@@ -200,69 +196,7 @@ class JulesManager {
 
                 // Render or update sessions
                 for (const session of repoSessions) {
-                    const isCompleted = session.outputs && session.outputs.some(o => o.pullRequest);
-
-                    if (!this.renderedSessionIds.has(session.id)) {
-                        this.renderedSessionIds.add(session.id);
-
-                        const item = document.createElement("div");
-                        item.className = "dashboard-item";
-                        item.id = `session-${session.id}`;
-
-                        const agentName = session.title || "Agent Task";
-                        const prTitle = isCompleted ? session.outputs.find(o => o.pullRequest).pullRequest.title : agentName;
-
-                        // Try to find the correct emoji from agents list based on session title matching agent name
-                        let agentEmoji = "🤖";
-                        const matchedAgent = this.app.agents.find(a => a.name === agentName) ||
-                                             (this.app.customAgents && Object.values(this.app.customAgents).find(a => a.name === agentName));
-                        if (matchedAgent && matchedAgent.emoji) {
-                            agentEmoji = matchedAgent.emoji;
-                        }
-
-                        item.innerHTML = `
-                            <div class="dashboard-info">
-                                <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem;">${agentEmoji}</span>
-                                <div>
-                                    <div class="dashboard-title">${agentName}</div>
-                                    <div class="dashboard-meta">${isCompleted ? 'PR Drafted: ' + prTitle : repoPath}</div>
-                                </div>
-                            </div>
-                            <div class="dashboard-status">
-                                <span class="status-badge ${isCompleted ? 'status-completed' : 'status-in-progress'}" id="status-${session.id}">${isCompleted ? 'Completed' : 'Loading...'}</span>
-                            </div>
-                        `;
-
-                        if (isCompleted) {
-                            const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
-                            if (prInfo && prInfo.url) {
-                                const prLink = this.createPRLink(prInfo.url, session.id);
-                                item.querySelector(".dashboard-status").appendChild(prLink);
-                            }
-                        }
-
-                        terminal.insertBefore(item, terminal.firstChild);
-
-                        if (!isCompleted) {
-                            this.startTerminalPolling(session.id, item, repoPath);
-                        }
-                    } else if (isCompleted && document.getElementById(`status-${session.id}`)?.textContent !== "Completed") {
-                        // Already rendered but state transitioned to completed
-                        const statusBadge = document.getElementById(`status-${session.id}`);
-                        if (statusBadge) {
-                            statusBadge.className = "status-badge status-completed";
-                            statusBadge.textContent = "Completed";
-                            const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
-                            const metaDiv = document.getElementById(`session-${session.id}`).querySelector(".dashboard-meta");
-                            if (metaDiv && prInfo) {
-                                metaDiv.textContent = 'PR Drafted: ' + prInfo.title;
-                            }
-                            if (prInfo && prInfo.url && !document.getElementById(`session-${session.id}`).querySelector(".pr-link-btn")) {
-                                const prLink = this.createPRLink(prInfo.url, session.id);
-                                document.getElementById(`session-${session.id}`).querySelector(".dashboard-status").appendChild(prLink);
-                            }
-                        }
-                    }
+                    this._processSession(session, terminal, repoPath);
                 }
 
             } catch (err) {
@@ -272,6 +206,71 @@ class JulesManager {
 
         await fetchAndRenderSessions();
         this.activeSessionsInterval = setInterval(fetchAndRenderSessions, 5000);
+    }
+
+    _processSession(session, terminal, repoPath) {
+        const isCompleted = session.outputs && session.outputs.some(o => o.pullRequest);
+        if (this.renderedSessionIds.has(session.id)) {
+            if (!isCompleted) return;
+            const statusBadge = document.getElementById(`status-${session.id}`);
+            if (!statusBadge || statusBadge.textContent === "Completed") return;
+
+            statusBadge.className = "status-badge status-completed";
+            statusBadge.textContent = "Completed";
+            const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
+            const item = document.getElementById(`session-${session.id}`);
+            const metaDiv = item.querySelector(".dashboard-meta");
+            if (metaDiv && prInfo) {
+                metaDiv.textContent = 'PR Drafted: ' + prInfo.title;
+            }
+            if (prInfo && prInfo.url && !item.querySelector(".pr-link-btn")) {
+                const prLink = this.createPRLink(prInfo.url, () => this.dismissSession(session.id));
+                item.querySelector(".dashboard-status").appendChild(prLink);
+            }
+            return;
+        }
+
+        this.renderedSessionIds.add(session.id);
+        const item = document.createElement("div");
+        item.className = "dashboard-item";
+        item.id = `session-${session.id}`;
+
+        const agentName = session.title || "Agent Task";
+        const prTitle = isCompleted ? session.outputs.find(o => o.pullRequest).pullRequest.title : agentName;
+
+        let agentEmoji = "🤖";
+        const matchedAgent = this.app.agents.find(a => a.name === agentName) ||
+                             (this.app.customAgents && Object.values(this.app.customAgents).find(a => a.name === agentName));
+        if (matchedAgent && matchedAgent.emoji) {
+            agentEmoji = matchedAgent.emoji;
+        }
+
+        item.innerHTML = `
+            <div class="dashboard-info">
+                <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem;">${agentEmoji}</span>
+                <div>
+                    <div class="dashboard-title">${agentName}</div>
+                    <div class="dashboard-meta">${isCompleted ? 'PR Drafted: ' + prTitle : repoPath}</div>
+                </div>
+            </div>
+            <div class="dashboard-status">
+                <span class="status-badge ${isCompleted ? 'status-completed' : 'status-in-progress'}" id="status-${session.id}">${isCompleted ? 'Completed' : 'Loading...'}</span>
+            </div>
+        `;
+
+        if (isCompleted) {
+            const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
+            if (prInfo && prInfo.url) {
+                const prLink = this.createPRLink(prInfo.url, () => this.dismissSession(session.id));
+                item.querySelector(".dashboard-status").appendChild(prLink);
+            }
+        }
+
+        terminal.insertBefore(item, terminal.firstChild);
+
+        if (!isCompleted) {
+            this.startTerminalPolling(session.id, item, repoPath);
+        }
     }
 
     async launchSession(agent, btn = null) {
@@ -398,7 +397,7 @@ class JulesManager {
                     statusBadge.textContent = "Completed";
 
                     // Add PR link
-                    const prLink = this.createPRLink(`https://github.com/${repoPath}/pulls`, sessionId);
+                    const prLink = this.createPRLink(`https://github.com/${repoPath}/pulls`, () => this.dismissSession(sessionId));
                     statusContainer.appendChild(prLink);
 
                     clearInterval(this.julesPollingIntervals[sessionId]);
