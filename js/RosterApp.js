@@ -253,7 +253,7 @@ class RosterApp {
             this.julesManager.loadActiveSessionsForRepo(sourceName);
         } else {
             const terminal = document.getElementById("julesTerminal");
-            terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
+            terminal.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting Agent launch command...");
             terminal.classList.remove('active');
             this.julesManager.cleanup();
         }

@@ -131,7 +131,7 @@ class JulesManager {
             }
             if (this.renderedSessionIds) this.renderedSessionIds.clear();
 
-            terminal.innerHTML = `<div class="terminal-line" id="fetchingIndicator"><span class="terminal-time">[System]</span> Fetching active sessions...</div>`;
+            terminal.innerHTML = FormatUtils.createTerminalLineHTML("Fetching active sessions...", "fetchingIndicator");
             this.currentRepo = sourceName;
         }
 
@@ -146,7 +146,7 @@ class JulesManager {
                 const data = await window.julesService.getSessions(50);
                 if (!data.sessions) {
                     if (document.getElementById('fetchingIndicator')) {
-                        terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
+                        terminal.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting Agent launch command...");
                     }
                     return;
                 }
@@ -175,7 +175,7 @@ class JulesManager {
                 }
 
                 if (repoSessions.length === 0 && terminal.children.length === 0) {
-                    terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
+                    terminal.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting Agent launch command...");
                     return;
                 }
 
