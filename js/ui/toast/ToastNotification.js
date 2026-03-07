@@ -28,8 +28,8 @@ class ToastNotification {
             this.element.addEventListener('pointerenter', this.handleMouseEnter);
             this.element.addEventListener('pointerleave', this.handleMouseLeave);
 
-            // Delegate pointerdown for close button
-            this.element.addEventListener('pointerdown', (e) => {
+            // Delegate click for close button
+            this.element.addEventListener('click', (e) => {
                 if (e.target.closest('.toast-close-btn')) {
                     this.dismiss();
                 }

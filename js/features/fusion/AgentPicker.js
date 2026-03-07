@@ -31,18 +31,18 @@ class AgentPicker {
         const closeBtn = this.elements.closePickerBtn;
 
         if (modal) {
-            // Close on backdrop pointerdown
-            modal.addEventListener("pointerdown", (e) => {
+            // Close on backdrop click
+            modal.addEventListener("click", (e) => {
                 if (e.target === modal) this.closePicker();
             });
         }
-        if (closeBtn) closeBtn.addEventListener("pointerdown", () => this.closePicker());
+        if (closeBtn) closeBtn.addEventListener("click", () => this.closePicker());
 
         // 🪧 Wayfinder: Handle browser back button to close modal instead of leaving page
         if (typeof window !== 'undefined') {
             window.addEventListener("popstate", (e) => {
                 if (this.activePickerSlot) {
-                    // The user pointerdowned "Back" while the modal was open.
+                    // The user clicked "Back" while the modal was open.
                     // We close the picker but tell it NOT to call history.back() again,
                     // because the browser has already popped the state.
                     this.closePicker(false);
@@ -57,7 +57,7 @@ class AgentPicker {
             pickerScrollArea.addEventListener("keydown", (e) => this.handleGridKeydown(e));
 
             // Global event delegation for memoized/virtualized grid items
-            pickerScrollArea.addEventListener("pointerdown", (e) => {
+            pickerScrollArea.addEventListener("click", (e) => {
                 const target = e.target.closest(".mini-agent-card");
                 if (target) {
                     const agentName = target.getAttribute("data-name");
@@ -290,7 +290,7 @@ class AgentPicker {
             case "Enter":
             case " ":
                 e.preventDefault();
-                // Trigger pointerdown logic
+                // Trigger click logic
                 const focusedItem = this.filteredResults[this.focusedIndex];
                 if (focusedItem) {
                     const agent = this.baseAgents.find(a => a.name.toLowerCase() === focusedItem.name);
