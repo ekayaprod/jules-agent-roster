@@ -60,3 +60,7 @@
 ## 2026-03-09 - 🦅 Scavenger - [Purged Zero-Reference CSS Keyframe shake-anomalous]
 **Learning:** Discovered `@keyframes shake-anomalous` in `fusion.css` that was completely mathematically dead and never referenced by any runtime DOM elements or JS animation sequences. CSS visual debris can accumulate when animations are designed but never implemented in the final UI logic.
 **Action:** Use tools like `uncss` and regular text search to cross-reference CSS keyframes against active class additions in JS. Strip out unreachable visual debris to keep stylesheets lean.
+
+## 2026-03-09 - 🦅 Scavenger - [Purged Root Level Orphaned Scripts, Diff, Text and Generated Image Artifacts]
+**Learning:** Found several floating scripts, diff, txt and image files in the repository root (e.g., `fix_css_shadow_px.js`, `jules_dashboard.png`, `verify_jules_2.py`) which appear to be test scratchpads or outputs of temporary execution scripts left uncleaned.
+**Action:** Always prioritize keeping the repository root clean. Scratchpad and experimental test scripts, logs, and screenshots should be strictly ephemeral and deleted to prevent repository bloat.
