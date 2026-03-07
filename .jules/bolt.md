@@ -25,3 +25,7 @@
 ## 2025-05-30 - ⚡ Bolt+ - [Initial Page Loading: Defer Scripts & Concurrent API Calls]
 **Learning:** Initial page loading can be heavily blocked by sequential async calls and render-blocking `<script>` tags without `defer`.
 **Action:** Added `defer` to all `<script>` tags in `index.html` to prevent render blocking, allowing HTML parsing to complete faster. Also refactored sequential `await` calls in `RosterApp.init()` (where `this.julesManager.init()` and `this.agentRepo.fetchAgents()` were executed sequentially) into a concurrent `Promise.all()` to drastically reduce time-to-interactive.
+
+## 2026-03-06 - ⚡ Bolt+ - [Redundant DOM Lookup Caching in FusionAnimation]
+**Learning:** During high-frequency UI interactions like triggering a fusion animation, repeated deep DOM queries (e.g., `querySelector(".anim-particles")` or `getElementById("fusionAnimationOverlay")`) cause unnecessary CPU overhead and layout thrashing.
+**Action:** Implemented a lazy `cacheElements()` pattern in `FusionAnimation.js` to store references to static DOM nodes on the first run, preventing redundant DOM queries on subsequent animation triggers.
