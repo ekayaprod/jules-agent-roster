@@ -11,12 +11,14 @@ class FusionIndex {
     this.onSelectCallback = onSelectCallback;
     this.storageKey = "fusion_discovery_state";
     this.unlockedKeys = new Set();
+    this.elements = {};
   }
 
   /**
    * Initializes the Fusion Index.
    */
   init() {
+    this.elements.container = document.getElementById(this.containerId);
     this.loadState();
     this.render();
   }
@@ -54,7 +56,7 @@ class FusionIndex {
    * Renders the Fusion Index shelf.
    */
   render() {
-    const container = document.getElementById(this.containerId);
+    const container = this.elements.container || document.getElementById(this.containerId);
     if (!container) return;
 
     container.innerHTML = "";

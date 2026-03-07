@@ -39,10 +39,13 @@ class RosterApp {
   async init() {
     this.cacheElements();
     this.renderSkeletons();
-    await this.julesManager.init(); // Boot up Jules API connection
 
     try {
-        const { agents, customAgents } = await this.agentRepo.fetchAgents();
+        const [ , { agents, customAgents } ] = await Promise.all([
+            this.julesManager.init(), // Boot up Jules API connection concurrently
+            this.agentRepo.fetchAgents()
+        ]);
+
         this.agents = agents;
         this.customAgents = customAgents;
 

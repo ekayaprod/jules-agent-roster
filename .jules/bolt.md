@@ -22,10 +22,6 @@
 **Learning:** In Vanilla JS architectures, redundant DOM queries (like `document.getElementById`) inside loops or critical render paths (like `renderSkeletons` and `renderAgents`) can cause severe layout thrashing and unnecessary CPU overhead.
 **Action:** Always extract top-level container queries (e.g., mapping category elements) outside of render loops and cache their references on initialization (`cacheElements()`). Never cache dynamic child components using array indices as keys to avoid stale UI bugs and encapsulation violations.
 
-## 2026-03-06 - ⚡ Bolt+ - [Redundant DOM Lookup Caching in FusionLab]
-**Learning:** High-frequency UI interactions, such as those in `FusionLab.js` involving `resetLab` or `handleFusion`, often repeatedly query the DOM for the same static container elements (e.g., `document.getElementById("fusionLabContent")`), incurring unnecessary layout thrashing and overhead.
-**Action:** Extracted the static `fusionLabContent` DOM query from method bodies into the centralized `this.elements` cache initialized in `bindEvents()`. Reused the cached reference `this.elements.labContent` across all applicable methods to ensure consistent, efficient access without triggering redundant lookups.
-
-## 2026-03-06 - ⚡ Bolt+ - [Redundant DOM Lookup Caching in JulesManager]
-**Learning:** When managing high-frequency polling or interactive vanilla JS classes (like `JulesManager`), repeatedly executing `document.getElementById` inside intervals (e.g., polling every 3s) causes significant CPU overhead and layout thrashing.
-**Action:** Prevent redundant DOM queries by caching structural element lookups in a centralized class property (`this.elements`) using a memoization helper method (`getEl(id)`) on first access, replacing all raw `document.getElementById` calls.
+## 2025-05-30 - ⚡ Bolt+ - [Initial Page Loading: Defer Scripts & Concurrent API Calls]
+**Learning:** Initial page loading can be heavily blocked by sequential async calls and render-blocking `<script>` tags without `defer`.
+**Action:** Added `defer` to all `<script>` tags in `index.html` to prevent render blocking, allowing HTML parsing to complete faster. Also refactored sequential `await` calls in `RosterApp.init()` (where `this.julesManager.init()` and `this.agentRepo.fetchAgents()` were executed sequentially) into a concurrent `Promise.all()` to drastically reduce time-to-interactive.
