@@ -1,3 +1,17 @@
+// Helper for generating PR link buttons
+function createPRLink(url) {
+    const prLink = document.createElement("a");
+    prLink.className = "pr-link-btn";
+    prLink.href = url;
+    prLink.target = "_blank";
+    prLink.rel = "noopener noreferrer";
+    prLink.innerHTML = `
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h-4"/><path d="M12 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2"/><polyline points="15 8 18 5 21 8"/></svg>
+        View PR
+    `;
+    return prLink;
+}
+
 // --- ROSTER APP ---
 /**
  * Main application class for the Autonomous Protocol Matrix.
@@ -598,15 +612,7 @@ class RosterApp {
                       if (isCompleted) {
                           const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
                           if (prInfo && prInfo.url) {
-                              const prLink = document.createElement("a");
-                              prLink.className = "pr-link-btn";
-                              prLink.href = prInfo.url;
-                              prLink.target = "_blank";
-                              prLink.rel = "noopener noreferrer";
-                              prLink.innerHTML = `
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h-4"/><path d="M12 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2"/><polyline points="15 8 18 5 21 8"/></svg>
-                                View PR
-                              `;
+                              const prLink = createPRLink(prInfo.url);
                               item.querySelector(".dashboard-status").appendChild(prLink);
                           }
                       }
@@ -628,15 +634,7 @@ class RosterApp {
                               metaDiv.textContent = 'PR Drafted: ' + prInfo.title;
                           }
                           if (prInfo && prInfo.url && !document.getElementById(`session-${session.id}`).querySelector(".pr-link-btn")) {
-                              const prLink = document.createElement("a");
-                              prLink.className = "pr-link-btn";
-                              prLink.href = prInfo.url;
-                              prLink.target = "_blank";
-                              prLink.rel = "noopener noreferrer";
-                              prLink.innerHTML = `
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h-4"/><path d="M12 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2"/><polyline points="15 8 18 5 21 8"/></svg>
-                                View PR
-                              `;
+                              const prLink = createPRLink(prInfo.url);
                               document.getElementById(`session-${session.id}`).querySelector(".dashboard-status").appendChild(prLink);
                           }
                       }
@@ -788,15 +786,7 @@ class RosterApp {
                   statusBadge.textContent = "Completed";
 
                   // Add PR link
-                  const prLink = document.createElement("a");
-                  prLink.className = "pr-link-btn";
-                  prLink.href = `https://github.com/${repoPath}/pulls`;
-                  prLink.target = "_blank";
-                  prLink.rel = "noopener noreferrer";
-                  prLink.innerHTML = `
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h-4"/><path d="M12 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2"/><polyline points="15 8 18 5 21 8"/></svg>
-                    View PR
-                  `;
+                  const prLink = createPRLink(`https://github.com/${repoPath}/pulls`);
                   statusContainer.appendChild(prLink);
 
                   clearInterval(this.julesPollingIntervals[sessionId]);
