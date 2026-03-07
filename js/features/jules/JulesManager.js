@@ -254,14 +254,15 @@ class JulesManager {
             agentEmoji = matchedAgent.emoji;
         }
 
-        item.innerHTML = this._createDashboardItemHTML(
+        item.innerHTML = '';
+        item.append(...this._createDashboardItemNodes(
             agentEmoji,
             agentName,
             isCompleted ? 'PR Drafted: ' + prTitle : repoPath,
             `status-${session.id}`,
             isCompleted ? 'status-completed' : 'status-in-progress',
             isCompleted ? 'Completed' : 'Loading...'
-        );
+        ));
 
         if (isCompleted) {
             const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
@@ -307,14 +308,15 @@ class JulesManager {
 
         const repoPath = sourceName.replace('sources/github/', '');
 
-        item.innerHTML = this._createDashboardItemHTML(
+        item.innerHTML = '';
+        item.append(...this._createDashboardItemNodes(
             agent.emoji,
             agent.name,
             repoPath,
             `status-${tempId}`,
             'status-in-progress',
             'Launching...'
-        );
+        ));
         terminal.appendChild(item);
 
         if (btn) {
@@ -463,19 +465,43 @@ class JulesManager {
         this.currentRepo = null;
     }
 
-    // Helper for generating dashboard item HTML
-    _createDashboardItemHTML(emoji, title, meta, statusId, statusClass, statusText) {
-        return `
-            <div class="dashboard-info">
-                <span class="emoji-hero" style="font-size: 1.5rem; margin-right: 0.5rem;">${emoji}</span>
-                <div>
-                    <div class="dashboard-title">${title}</div>
-                    <div class="dashboard-meta">${meta}</div>
-                </div>
-            </div>
-            <div class="dashboard-status">
-                <span class="status-badge ${statusClass}" id="${statusId}">${statusText}</span>
-            </div>
-        `;
+    // Helper for generating dashboard item nodes
+    _createDashboardItemNodes(emoji, title, meta, statusId, statusClass, statusText) {
+        const infoDiv = document.createElement("div");
+        infoDiv.className = "dashboard-info";
+
+        const emojiSpan = document.createElement("span");
+        emojiSpan.className = "emoji-hero";
+        emojiSpan.style.fontSize = "1.5rem";
+        emojiSpan.style.marginRight = "0.5rem";
+        emojiSpan.textContent = emoji;
+
+        const textDiv = document.createElement("div");
+
+        const titleDiv = document.createElement("div");
+        titleDiv.className = "dashboard-title";
+        titleDiv.textContent = title;
+
+        const metaDiv = document.createElement("div");
+        metaDiv.className = "dashboard-meta";
+        metaDiv.textContent = meta;
+
+        textDiv.appendChild(titleDiv);
+        textDiv.appendChild(metaDiv);
+
+        infoDiv.appendChild(emojiSpan);
+        infoDiv.appendChild(textDiv);
+
+        const statusDiv = document.createElement("div");
+        statusDiv.className = "dashboard-status";
+
+        const statusSpan = document.createElement("span");
+        statusSpan.className = `status-badge ${statusClass}`;
+        statusSpan.id = statusId;
+        statusSpan.textContent = statusText;
+
+        statusDiv.appendChild(statusSpan);
+
+        return [infoDiv, statusDiv];
     }
 }
