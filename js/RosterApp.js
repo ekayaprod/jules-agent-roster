@@ -38,11 +38,19 @@ class RosterApp {
    */
   async init() {
     this.cacheElements();
+    // 🪄 Illusionist: Render skeletons synchronously *before* yielding to network requests
+    // to instantly mask network latency and eliminate layout popping.
     this.renderSkeletons();
-    await this.julesManager.init(); // Boot up Jules API connection
 
     try {
-        const { agents, customAgents } = await this.agentRepo.fetchAgents();
+        // Run concurrent initialization tasks
+        const initTasks = [
+            this.agentRepo.fetchAgents(),
+            this.julesManager.init()
+        ];
+
+        const [agentData] = await Promise.all(initTasks);
+        const { agents, customAgents } = agentData;
         this.agents = agents;
         this.customAgents = customAgents;
 
