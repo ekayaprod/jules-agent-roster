@@ -6,6 +6,24 @@ class JulesManager {
         this.julesPollingIntervals = {};
         this.renderedSessionIds = new Set();
         this.dismissedSessionIds = new Set();
+        this.elements = {};
+    }
+
+    cacheElements() {
+        if (Object.keys(this.elements).length > 0) return;
+        // ⚡ Bolt+: Extracted redundant DOM queries outside of loops and cached the references.
+        // Impact: Eliminates repetitive `document.getElementById` layout thrashing across all high-frequency polling and interactive methods.
+        this.elements = {
+            settingsModal: document.getElementById("settingsModal"),
+            openBtn: document.getElementById("openSettingsBtn"),
+            closeBtn: document.getElementById("closeSettingsBtn"),
+            saveBtn: document.getElementById("saveSettingsBtn"),
+            keyInput: document.getElementById("julesApiKeyInput"),
+            picker: document.getElementById("julesRepoPicker"),
+            terminal: document.getElementById("julesTerminal"),
+            taskInput: document.getElementById("julesTaskInput"),
+            runnerPanel: document.getElementById("julesRunnerPanel")
+        };
     }
 
     dismissSession(sessionId) {
@@ -37,20 +55,17 @@ class JulesManager {
     }
 
     async init() {
+        this.cacheElements();
         const apiKey = StorageUtils.getItem("jules_api_key");
-        const settingsModal = document.getElementById("settingsModal");
-        const openBtn = document.getElementById("openSettingsBtn");
-        const closeBtn = document.getElementById("closeSettingsBtn");
-        const saveBtn = document.getElementById("saveSettingsBtn");
-        const keyInput = document.getElementById("julesApiKeyInput");
+        const { settingsModal, openBtn, closeBtn, saveBtn, keyInput } = this.elements;
 
         // Modal Toggles
         const toggleModal = (show) => {
             if (show) {
-                keyInput.value = StorageUtils.getItem("jules_api_key");
-                settingsModal.classList.add("visible");
+                if (keyInput) keyInput.value = StorageUtils.getItem("jules_api_key");
+                if (settingsModal) settingsModal.classList.add("visible");
             } else {
-                settingsModal.classList.remove("visible");
+                if (settingsModal) settingsModal.classList.remove("visible");
             }
         };
 
@@ -59,7 +74,7 @@ class JulesManager {
 
         // Save and Connect Logic
         saveBtn?.addEventListener("click", async () => {
-            const key = keyInput.value.trim();
+            const key = keyInput ? keyInput.value.trim() : "";
             if (!key) return this.app.toast.show("Please enter an API Key.");
 
             StorageUtils.setItem("jules_api_key", key);
@@ -82,7 +97,8 @@ class JulesManager {
     }
 
     async loadSources() {
-        const picker = document.getElementById("julesRepoPicker");
+        this.cacheElements();
+        const picker = this.elements.picker;
         if (!picker || !window.julesService) return;
 
         const originalText = picker.options.length > 0 ? picker.options[0].textContent : "1. Select GitHub Repository...";
@@ -113,8 +129,9 @@ class JulesManager {
     }
 
     async loadActiveSessionsForRepo(sourceName) {
-        const terminal = document.getElementById("julesTerminal");
-        terminal.classList.add('active');
+        this.cacheElements();
+        const terminal = this.elements.terminal;
+        if (terminal) terminal.classList.add('active');
 
         if (this.currentRepo !== sourceName) {
             if (this.julesPollingIntervals) {
@@ -123,7 +140,7 @@ class JulesManager {
             }
             if (this.renderedSessionIds) this.renderedSessionIds.clear();
 
-            terminal.innerHTML = `<div class="terminal-line" id="fetchingIndicator"><span class="terminal-time">[System]</span> Fetching active sessions...</div>`;
+            if (terminal) terminal.innerHTML = `<div class="terminal-line" id="fetchingIndicator"><span class="terminal-time">[System]</span> Fetching active sessions...</div>`;
             this.currentRepo = sourceName;
         }
 
@@ -137,7 +154,7 @@ class JulesManager {
 
                 const data = await window.julesService.getSessions(50);
                 if (!data.sessions) {
-                    if (document.getElementById('fetchingIndicator')) {
+                    if (document.getElementById('fetchingIndicator') && terminal) {
                         terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
                     }
                     return;
@@ -166,7 +183,7 @@ class JulesManager {
                     fetchingIndicator.remove();
                 }
 
-                if (repoSessions.length === 0 && terminal.children.length === 0) {
+                if (repoSessions.length === 0 && terminal && terminal.children.length === 0) {
                     terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
                     return;
                 }
@@ -176,7 +193,7 @@ class JulesManager {
                 const currentSessionIds = new Set(repoSessions.map(s => s.id));
 
                 // Clean up removed sessions from UI and polling
-                const existingItems = terminal.querySelectorAll('.dashboard-item');
+                const existingItems = terminal ? terminal.querySelectorAll('.dashboard-item') : [];
                 existingItems.forEach(item => {
                     const id = item.id.replace('session-', '');
                     if (!id.startsWith('temp-') && !currentSessionIds.has(id)) {
@@ -189,7 +206,7 @@ class JulesManager {
                     }
                 });
 
-                if (repoSessions.length > 0 && terminal.querySelector('.terminal-line:not(#fetchingIndicator)')) {
+                if (repoSessions.length > 0 && terminal && terminal.querySelector('.terminal-line:not(#fetchingIndicator)')) {
                     const awaitingMsg = Array.from(terminal.querySelectorAll('.terminal-line')).find(el => el.textContent.includes('Awaiting Agent launch'));
                     if (awaitingMsg) awaitingMsg.remove();
                 }
@@ -266,7 +283,7 @@ class JulesManager {
             }
         }
 
-        terminal.insertBefore(item, terminal.firstChild);
+        if (terminal) terminal.insertBefore(item, terminal.firstChild);
 
         if (!isCompleted) {
             this.startTerminalPolling(session.id, item, repoPath);
@@ -274,23 +291,26 @@ class JulesManager {
     }
 
     async launchSession(agent, btn = null) {
-        const sourceName = document.getElementById("julesRepoPicker").value;
-        const userTask = document.getElementById("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
+        this.cacheElements();
+        const { picker, taskInput, runnerPanel, terminal } = this.elements;
+        const sourceName = picker ? picker.value : "";
+        const userTask = taskInput ? taskInput.value.trim() || "Analyze and optimize the repository based on your directives." : "Analyze and optimize the repository based on your directives.";
 
         if (!sourceName) {
             this.app.toast.show("Please select a target repository in the runner panel.", "error");
-            document.getElementById("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
-            document.getElementById("julesRepoPicker").focus();
+            if (runnerPanel) runnerPanel.scrollIntoView({ behavior: 'smooth' });
+            if (picker) picker.focus();
             return;
         }
 
-        document.getElementById("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
-        const terminal = document.getElementById("julesTerminal");
-        terminal.classList.add('active');
+        if (runnerPanel) runnerPanel.scrollIntoView({ behavior: 'smooth' });
+        if (terminal) {
+            terminal.classList.add('active');
 
-        // Clear the "Awaiting..." placeholder if it's the first execution
-        if (terminal.innerHTML.includes("Awaiting Agent launch command")) {
-            terminal.innerHTML = "";
+            // Clear the "Awaiting..." placeholder if it's the first execution
+            if (terminal.innerHTML.includes("Awaiting Agent launch command")) {
+                terminal.innerHTML = "";
+            }
         }
 
         // Generate a temporary ID for the new session
@@ -314,7 +334,7 @@ class JulesManager {
                 <span class="status-badge status-in-progress" id="status-${tempId}">Launching...</span>
             </div>
         `;
-        terminal.appendChild(item);
+        if (terminal) terminal.appendChild(item);
 
         if (btn) {
             DOMUtils.setButtonState(btn, "loading", "Launching...");

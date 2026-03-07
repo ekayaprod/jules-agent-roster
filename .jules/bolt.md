@@ -25,3 +25,7 @@
 ## 2026-03-06 - ⚡ Bolt+ - [Redundant DOM Lookup Caching in FusionLab]
 **Learning:** High-frequency UI interactions, such as those in `FusionLab.js` involving `resetLab` or `handleFusion`, often repeatedly query the DOM for the same static container elements (e.g., `document.getElementById("fusionLabContent")`), incurring unnecessary layout thrashing and overhead.
 **Action:** Extracted the static `fusionLabContent` DOM query from method bodies into the centralized `this.elements` cache initialized in `bindEvents()`. Reused the cached reference `this.elements.labContent` across all applicable methods to ensure consistent, efficient access without triggering redundant lookups.
+
+## 2026-03-07 - ⚡ Bolt+ - [Redundant DOM Lookup Caching in JulesManager]
+**Learning:** High-frequency UI interactions and polling methods within `JulesManager.js` often query the DOM for identical structural container elements (e.g., `document.getElementById("julesTerminal")`), incurring unnecessary layout thrashing, DOM overhead, and possible memory pressure during polling updates.
+**Action:** Defined a centralized `this.elements` map on initialization. Added a `cacheElements()` helper to evaluate and store structural UI container lookups like the terminal, API key input, and runner panel on their first access, eliminating redundant `document.getElementById` queries across all lifecycle and interactive methods.
