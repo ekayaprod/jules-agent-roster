@@ -127,7 +127,7 @@ class RosterApp {
       "searchInput", "clearBtn", "fusionLabSkeleton", "fusionLabContent", "clearSearchEmptyBtn", "julesRepoPicker",
       "julesTerminal", "masterDropdownBtn", "masterDropdownMenu", "masterCopyBtn",
       "masterDownloadCoreBtn", "masterCopyFusionsBtn", "masterDownloadFusionsBtn",
-      "searchModeContainer", "searchResultsGrid", "category-nav"
+      "searchModeContainer", "searchResultsGrid", "category-nav", "searchTriggerBtn"
     ];
     staticIds.forEach(id => {
       this.elements[id] = document.getElementById(id);
@@ -287,6 +287,14 @@ class RosterApp {
       this.elements.searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
     }
     
+    this.elements.searchTriggerBtn?.addEventListener("pointerdown", (e) => {
+      const nav = this.elements["category-nav"];
+      if (nav) {
+        nav.classList.add("search-active");
+        setTimeout(() => this.elements.searchInput?.focus(), 50);
+      }
+    });
+
     this.elements.clearBtn?.addEventListener("pointerdown", () => this.clearSearch());
     this.elements.clearSearchEmptyBtn?.addEventListener("pointerdown", () => this.clearSearch());
 
@@ -319,6 +327,14 @@ class RosterApp {
 
     // Global Click Delegation (Handles Dropdowns, Cards, etc.)
     document.addEventListener("pointerdown", (e) => {
+      // Close search if clicked outside and input is empty
+      const nav = this.elements["category-nav"];
+      if (nav && nav.classList.contains("search-active")) {
+          if (!nav.contains(e.target) && (!this.elements.searchInput || this.elements.searchInput.value.trim() === "")) {
+              this.clearSearch();
+          }
+      }
+
       // 1. Close master dropdown if pointerdowned outside
       if (masterDropMenu?.classList.contains("visible") && !masterDropMenu.contains(e.target) && !masterDropBtn.contains(e.target)) {
           masterDropMenu.classList.remove("visible");
@@ -431,6 +447,16 @@ class RosterApp {
       }
     });
 
+    // Close search on Escape key
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            const nav = this.elements["category-nav"];
+            if (nav && nav.classList.contains("search-active")) {
+                this.clearSearch();
+            }
+        }
+    });
+
     // Master Export bindings
     this.elements.masterCopyBtn?.addEventListener("pointerdown", (e) => this.copyAll(e.currentTarget));
     this.elements.masterDownloadCoreBtn?.addEventListener("pointerdown", (e) => {
@@ -472,14 +498,15 @@ class RosterApp {
     if (query.length > 0) {
       this.elements.clearBtn?.classList.add("visible");
       searchModeContainer?.classList.remove("hidden");
-      if(categoryNav) categoryNav.style.display = 'none';
       
       DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "none", "searchResultsGrid");
       DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "none", "search-mode-header");
     } else {
       this.elements.clearBtn?.classList.remove("visible");
       searchModeContainer?.classList.add("hidden");
-      if(categoryNav) categoryNav.style.display = 'flex';
+      // Intentionally DO NOT remove the search-active class here.
+      // This prevents the search bar from abruptly collapsing when the user deletes their query via backspace.
+      // The search-active class is managed by the click outside listener and the clearSearch method.
       
       DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "", "searchResultsGrid");
       DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "", "search-mode-header");
@@ -565,6 +592,8 @@ class RosterApp {
       this.elements.searchInput.value = "";
       this.filterAgents("");
     }
+    const nav = this.elements["category-nav"];
+    if (nav) nav.classList.remove("search-active");
   }
 
   /**
