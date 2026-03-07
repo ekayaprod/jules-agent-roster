@@ -37,18 +37,18 @@ class AgentPicker {
         const searchInput = this.elements.pickerSearch;
 
         if (modal) {
-            // Close on backdrop click
-            modal.addEventListener("click", (e) => {
+            // Close on backdrop pointerdown
+            modal.addEventListener("pointerdown", (e) => {
                 if (e.target === modal) this.closePicker();
             });
         }
-        if (closeBtn) closeBtn.addEventListener("click", () => this.closePicker());
+        if (closeBtn) closeBtn.addEventListener("pointerdown", () => this.closePicker());
 
         // 🪧 Wayfinder: Handle browser back button to close modal instead of leaving page
         if (typeof window !== 'undefined') {
             window.addEventListener("popstate", (e) => {
                 if (this.activePickerSlot) {
-                    // The user clicked "Back" while the modal was open.
+                    // The user pointerdowned "Back" while the modal was open.
                     // We close the picker but tell it NOT to call history.back() again,
                     // because the browser has already popped the state.
                     this.closePicker(false);
@@ -64,7 +64,7 @@ class AgentPicker {
 
             const clearPickerSearchEmptyBtn = this.elements.clearPickerSearchEmptyBtn;
             if (clearPickerSearchEmptyBtn) {
-                clearPickerSearchEmptyBtn.addEventListener("click", () => {
+                clearPickerSearchEmptyBtn.addEventListener("pointerdown", () => {
                     searchInput.value = "";
                     this.filterPicker("");
                 });
@@ -78,7 +78,7 @@ class AgentPicker {
             pickerScrollArea.addEventListener("keydown", (e) => this.handleGridKeydown(e));
 
             // Global event delegation for memoized/virtualized grid items
-            pickerScrollArea.addEventListener("click", (e) => {
+            pickerScrollArea.addEventListener("pointerdown", (e) => {
                 const target = e.target.closest(".mini-agent-card");
                 if (target) {
                     const agentName = target.getAttribute("data-name");
@@ -366,7 +366,7 @@ class AgentPicker {
             case "Enter":
             case " ":
                 e.preventDefault();
-                // Trigger click logic
+                // Trigger pointerdown logic
                 const focusedItem = this.filteredResults[this.focusedIndex];
                 if (focusedItem) {
                     const agent = this.baseAgents.find(a => a.name.toLowerCase() === focusedItem.name);

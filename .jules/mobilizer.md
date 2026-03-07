@@ -1,0 +1,3 @@
+## 2024-05-24 - 📱 Mobilizer - Initial Analysis
+**Learning:** Found multiple instances of `px` based fixed dimension values in `index.html`, `js/features/fusion/fusion.css`, and other files. The `FusionAnimation` logic heavily manipulates hardcoded pixel values (`--tx: 50px`). Also, many hover events are not yet universal pointer events.
+**Action:** Replace absolute pixel constraints with rems and fluid tailwind-like utility classes (`w-full`, `max-w-`) when appropriate. Upgrade basic `click` listeners to `pointerdown` for broader touch/stylus support on mobile in vanilla JS components. However, this is largely a web app and already somewhat responsive via max-widths, but some specific UI elements can be expanded or refactored to remove fixed layout traps.

@@ -38,7 +38,7 @@ describe('ToastNotification', () => {
 
             expect(addEventListenerSpy).toHaveBeenCalledWith('pointerenter', expect.any(Function));
             expect(addEventListenerSpy).toHaveBeenCalledWith('pointerleave', expect.any(Function));
-            expect(addEventListenerSpy).toHaveBeenCalledWith('click', expect.any(Function));
+            expect(addEventListenerSpy).toHaveBeenCalledWith('pointerdown', expect.any(Function));
         });
 
         it('should handle missing element gracefully', () => {
@@ -158,7 +158,7 @@ describe('ToastNotification', () => {
             const closeBtn = container.querySelector('.toast-close-btn');
 
             // Simulate delegated click
-            const event = new MouseEvent('click', { bubbles: true });
+            const event = new MouseEvent('pointerdown', { bubbles: true });
             Object.defineProperty(event, 'target', { value: closeBtn, enumerable: true });
 
             // We need to trigger the event manually on the container to test delegation
@@ -172,7 +172,7 @@ describe('ToastNotification', () => {
 
              const messageSpan = container.querySelector('.toast-message');
 
-             const event = new MouseEvent('click', { bubbles: true });
+             const event = new MouseEvent('pointerdown', { bubbles: true });
              Object.defineProperty(event, 'target', { value: messageSpan, enumerable: true });
 
              container.dispatchEvent(event);
