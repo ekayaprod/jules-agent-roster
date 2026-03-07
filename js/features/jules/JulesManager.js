@@ -23,7 +23,7 @@ class JulesManager {
             clearInterval(this.julesPollingIntervals[sessionId]);
             delete this.julesPollingIntervals[sessionId];
         }
-        const item = document.getElementById(`session-${sessionId}`);
+        const item = this.getEl("julesTerminal")?.querySelector(`#session-${sessionId}`);
         if (item) item.remove();
     }
 
@@ -145,7 +145,7 @@ class JulesManager {
 
                 const data = await window.julesService.getSessions(50);
                 if (!data.sessions) {
-                    if (document.getElementById('fetchingIndicator')) {
+                    if (terminal.querySelector('#fetchingIndicator')) {
                         terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
                     }
                     return;
@@ -169,7 +169,7 @@ class JulesManager {
                 const repoPath = sourceName.replace('sources/github/', '');
 
                 // Remove the fetching placeholder if it's there
-                const fetchingIndicator = document.getElementById('fetchingIndicator');
+                const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
                 if (fetchingIndicator) {
                     fetchingIndicator.remove();
                 }
@@ -220,18 +220,18 @@ class JulesManager {
         const isCompleted = session.outputs && session.outputs.some(o => o.pullRequest);
         if (this.renderedSessionIds.has(session.id)) {
             if (!isCompleted) return;
-            const statusBadge = document.getElementById(`status-${session.id}`);
+            const statusBadge = terminal.querySelector(`#status-${session.id}`);
             if (!statusBadge || statusBadge.textContent === "Completed") return;
 
             statusBadge.className = "status-badge status-completed";
             statusBadge.textContent = "Completed";
             const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
-            const item = document.getElementById(`session-${session.id}`);
-            const metaDiv = item.querySelector(".dashboard-meta");
+            const item = terminal.querySelector(`#session-${session.id}`);
+            const metaDiv = item ? item.querySelector(".dashboard-meta") : null;
             if (metaDiv && prInfo) {
                 metaDiv.textContent = 'PR Drafted: ' + prInfo.title;
             }
-            if (prInfo && prInfo.url && !item.querySelector(".pr-link-btn")) {
+            if (item && prInfo && prInfo.url && !item.querySelector(".pr-link-btn")) {
                 const prLink = this.createPRLink(prInfo.url, () => this.dismissSession(session.id));
                 item.querySelector(".dashboard-status").appendChild(prLink);
             }
