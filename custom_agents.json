@@ -918,13 +918,13 @@
     "role": "Syntax Shamer"
   },
   "Herald,Scavenger": {
-    "name": "Undertaker",
-    "emoji": "🪦",
-    "short_description": "Intercepts PRs that delete major code and drafts formal release-note warnings detailing what was removed and what to use instead. Consumers never hunt for APIs that no longer exist.",
+    "name": "Silencer",
+    "emoji": "🔕",
+    "short_description": "Autonomously hunts and eradicates conversational comments, verbose over-explanations, and abandoned mock scaffolding. Ensures the codebase contains only pure logic, free from chatty artifacts and leftover placeholders.",
     "tier": "Uncommon",
-    "category": "operations",
+    "category": "hygiene",
     "type": "fusion",
-    "role": "Deletion Broadcaster"
+    "role": "Noise Assassin"
   },
   "Herald,Scribe": {
     "name": "Historian",
