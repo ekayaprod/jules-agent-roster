@@ -6,6 +6,14 @@ class JulesManager {
         this.julesPollingIntervals = {};
         this.renderedSessionIds = new Set();
         this.dismissedSessionIds = new Set();
+        this.elements = {};
+    }
+
+    getEl(id) {
+        if (!this.elements[id]) {
+            this.elements[id] = document.getElementById(id);
+        }
+        return this.elements[id];
     }
 
     dismissSession(sessionId) {
@@ -38,11 +46,11 @@ class JulesManager {
 
     async init() {
         const apiKey = StorageUtils.getItem("jules_api_key");
-        const settingsModal = document.getElementById("settingsModal");
-        const openBtn = document.getElementById("openSettingsBtn");
-        const closeBtn = document.getElementById("closeSettingsBtn");
-        const saveBtn = document.getElementById("saveSettingsBtn");
-        const keyInput = document.getElementById("julesApiKeyInput");
+        const settingsModal = this.getEl("settingsModal");
+        const openBtn = this.getEl("openSettingsBtn");
+        const closeBtn = this.getEl("closeSettingsBtn");
+        const saveBtn = this.getEl("saveSettingsBtn");
+        const keyInput = this.getEl("julesApiKeyInput");
 
         // Modal Toggles
         const toggleModal = (show) => {
@@ -82,7 +90,7 @@ class JulesManager {
     }
 
     async loadSources() {
-        const picker = document.getElementById("julesRepoPicker");
+        const picker = this.getEl("julesRepoPicker");
         if (!picker || !window.julesService) return;
 
         const originalText = picker.options.length > 0 ? picker.options[0].textContent : "1. Select GitHub Repository...";
@@ -113,7 +121,7 @@ class JulesManager {
     }
 
     async loadActiveSessionsForRepo(sourceName) {
-        const terminal = document.getElementById("julesTerminal");
+        const terminal = this.getEl("julesTerminal");
         terminal.classList.add('active');
 
         if (this.currentRepo !== sourceName) {
@@ -270,18 +278,18 @@ class JulesManager {
     }
 
     async launchSession(agent, btn = null) {
-        const sourceName = document.getElementById("julesRepoPicker").value;
-        const userTask = document.getElementById("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
+        const sourceName = this.getEl("julesRepoPicker").value;
+        const userTask = this.getEl("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
 
         if (!sourceName) {
             this.app.toast.show("Please select a target repository in the runner panel.", "error");
-            document.getElementById("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
-            document.getElementById("julesRepoPicker").focus();
+            this.getEl("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
+            this.getEl("julesRepoPicker").focus();
             return;
         }
 
-        document.getElementById("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
-        const terminal = document.getElementById("julesTerminal");
+        this.getEl("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
+        const terminal = this.getEl("julesTerminal");
         terminal.classList.add('active');
 
         // Clear the "Awaiting..." placeholder if it's the first execution
