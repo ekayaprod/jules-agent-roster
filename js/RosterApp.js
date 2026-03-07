@@ -27,6 +27,7 @@ class RosterApp {
     this.pinnedManager = new PinnedManager();
     this.fusionLab = null;
     this._cardHtmlCache = new Map();
+    this._domNodeCache = new Map();
     this.julesManager = new JulesManager(this);
   }
 
@@ -202,7 +203,14 @@ class RosterApp {
         const container = categoryContainers[category];
         if (!container) continue;
 
-        const card = AgentCard.create(agent, indexOrKey, globalIndex);
+        let card = this._domNodeCache.get(String(indexOrKey));
+        if (card) {
+            // Re-use cached node but recalculate animation delay
+            card.style.animationDelay = `${Math.min(globalIndex * 30, 600)}ms`;
+        } else {
+            card = AgentCard.create(agent, indexOrKey, globalIndex);
+            this._domNodeCache.set(String(indexOrKey), card);
+        }
         globalIndex++;
 
         if (fragments[category]) {
@@ -223,6 +231,15 @@ class RosterApp {
           Object.keys(fragments).forEach(key => {
             if (categoryContainers[key]) categoryContainers[key].appendChild(fragments[key]);
           });
+
+          // 🪄 Illusionist: Dismiss loading overlay after DOM is generated
+          const overlay = document.getElementById("initial-loading-overlay");
+          if (overlay && !overlay.classList.contains("hidden")) {
+              overlay.classList.add("hidden");
+              setTimeout(() => {
+                  if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+              }, 500);
+          }
         });
       }
     };
@@ -246,6 +263,7 @@ class RosterApp {
 
     document.getElementById('julesRepoPicker')?.addEventListener('change', (e) => {
         if (this._cardHtmlCache) this._cardHtmlCache.clear();
+        if (this._domNodeCache) this._domNodeCache.clear();
         this.renderAgents();
 
         const sourceName = e.target.value;
@@ -296,6 +314,9 @@ class RosterApp {
                   if (isPinned) btn.classList.add('pinned');
                   else btn.classList.remove('pinned');
               });
+              if (this._domNodeCache) {
+                  this._domNodeCache.delete(String(index));
+              }
               this.renderAgents();
               this.showToast(isPinned ? "Pinned" : "Unpinned");
               if (this._cardHtmlCache) {
