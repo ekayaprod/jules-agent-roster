@@ -5,10 +5,12 @@ class JulesManager {
         this.activeSessionsInterval = null;
         this.julesPollingIntervals = {};
         this.renderedSessionIds = new Set();
+        // Track sessions the user has dismissed so they aren't re-rendered on next poll
+        this.dismissedSessionIds = new Set();
     }
 
     // Helper for generating PR link buttons
-    createPRLink(url) {
+    createPRLink(url, sessionId) {
         const prLink = document.createElement("a");
         prLink.className = "pr-link-btn";
         prLink.href = url;
@@ -18,6 +20,22 @@ class JulesManager {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h-4"/><path d="M12 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2"/><polyline points="15 8 18 5 21 8"/></svg>
             View PR
         `;
+
+        if (sessionId) {
+            prLink.addEventListener('click', () => {
+                // When PR link is clicked, we can remove the item visually
+                const item = document.getElementById(`session-${sessionId}`);
+                if (item) {
+                    // Small delay to let the click register before removing
+                    setTimeout(() => {
+                        item.remove();
+                        this.renderedSessionIds.delete(sessionId);
+                        this.dismissedSessionIds.add(sessionId);
+                    }, 500);
+                }
+            });
+        }
+
         return prLink;
     }
 
@@ -130,10 +148,18 @@ class JulesManager {
 
                 const repoSessions = data.sessions.filter(s => {
                     if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
-                    // Filter out sessions that have a merged or closed PR
+                    // Note: Instead of filtering out here, we allow the user to clear it
+                    // via clicking the PR link. But if the PR is fully merged/closed, it
+                    // should still probably not load on a fresh refresh to keep it clean.
                     if (s.outputs && s.outputs.some(o => o.pullRequest && (o.pullRequest.state === 'MERGED' || o.pullRequest.state === 'CLOSED'))) {
                         return false;
                     }
+
+                    // Also filter out any sessions the user has actively dismissed
+                    if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) {
+                        return false;
+                    }
+
                     return true;
                 });
                 const repoPath = sourceName.replace('sources/github/', '');
@@ -210,7 +236,7 @@ class JulesManager {
                         if (isCompleted) {
                             const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
                             if (prInfo && prInfo.url) {
-                                const prLink = this.createPRLink(prInfo.url);
+                                const prLink = this.createPRLink(prInfo.url, session.id);
                                 item.querySelector(".dashboard-status").appendChild(prLink);
                             }
                         }
@@ -232,7 +258,7 @@ class JulesManager {
                                 metaDiv.textContent = 'PR Drafted: ' + prInfo.title;
                             }
                             if (prInfo && prInfo.url && !document.getElementById(`session-${session.id}`).querySelector(".pr-link-btn")) {
-                                const prLink = this.createPRLink(prInfo.url);
+                                const prLink = this.createPRLink(prInfo.url, session.id);
                                 document.getElementById(`session-${session.id}`).querySelector(".dashboard-status").appendChild(prLink);
                             }
                         }
@@ -372,7 +398,7 @@ class JulesManager {
                     statusBadge.textContent = "Completed";
 
                     // Add PR link
-                    const prLink = this.createPRLink(`https://github.com/${repoPath}/pulls`);
+                    const prLink = this.createPRLink(`https://github.com/${repoPath}/pulls`, sessionId);
                     statusContainer.appendChild(prLink);
 
                     clearInterval(this.julesPollingIntervals[sessionId]);
@@ -408,6 +434,7 @@ class JulesManager {
             this.julesPollingIntervals = {};
         }
         if (this.renderedSessionIds) this.renderedSessionIds.clear();
+        if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
         this.currentRepo = null;
     }
 }
