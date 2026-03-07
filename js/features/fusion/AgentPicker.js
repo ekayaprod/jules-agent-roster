@@ -163,6 +163,7 @@ class AgentPicker {
             }
         } else {
             this.pickerClusterize.update(chunkedRows);
+            this.pickerClusterize.refresh(true);
         }
 
         // Visual focus (.is-focused) is handled via getMemoizedHtml string replacement.

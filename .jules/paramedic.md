@@ -1,3 +1,5 @@
 ## 2026-03-06 - 🚨 Paramedic - [Unnecessary CSS Escaping on document.getElementById]
 **Learning:** When generating unique dynamic IDs for DOM elements that could contain numbers (like index `0`), applying `CSS.escape()` to the index produces an invalid literal string for `document.getElementById` (e.g., `\\30 `).
-**Action:** Only use `CSS.escape()` when constructing CSS selectors for query APIs like `querySelector`. Pass literal, unescaped string IDs directly to `document.getElementById`.
+**Action:** Only use `CSS.escape()` when constructing CSS selectors for query APIs like `querySelector`. Pass literal, unescaped string IDs directly to `document.getElementById`.## 2024-03-07 - 🚨 Paramedic - [Clusterize Visibility Bug in AgentPicker]
+**Learning:** Clusterize.js relies on reading the container's scroll height and dimensions to render virtual rows. If its parent container (like a `<dialog>` modal) is hidden and then re-shown, Clusterize does not automatically re-render its items, resulting in a blank list for the user.
+**Action:** Always call `instance.refresh(true)` on Clusterize instances when they undergo a state transition from hidden to visible within UI elements.
