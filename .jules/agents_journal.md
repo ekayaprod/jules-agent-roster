@@ -6,6 +6,10 @@
 **Learning:** Rendering massive DOM lists synchronously freezes the main thread. Implementing asynchronous chunking (using `requestAnimationFrame`) fixes this, but requires careful active loop tracking to prevent race conditions.
 **Action:** Offload large list DOM generation to asynchronous chunks and mask latency with CSS skeletons.
 
+## 202X-XX-XX - 🪄 Illusionist - [Perceived Performance: Initial Page Loading]
+**Learning:** Initial DOM rendering of complex list applications can cause a blank screen or layout thrashing before the main UI paints. Repeatedly tearing down and recreating identical DOM nodes during re-renders (like pinning an item) exacerbates this by locking the main thread.
+**Action:** Inject a synchronous, lightweight CSS loading overlay in the HTML payload to immediately mask the blank screen while the JS executes. Simultaneously, memoize heavy component DOM nodes using a local cache (`Map`) to recycle elements during state changes instead of rebuilding them from scratch, drastically reducing layout thrashing.
+
 ## 2026-03-04 - 🎧 Vibe - [Feature Materialized: Recently Used Feature]
 **Learning:** When generating standalone logic managers in this specific project's architecture (like a new `RecentlyUsedManager.js`), they must be manually injected as script tags into the core HTML layout, and also dynamically imported into `benchmark.js` (using `loadClass`) and bound to the `global` object. Failing to do so causes ReferenceErrors during `npm run test` because standard module loaders or bundlers are intentionally absent.
 **Action:** When writing standalone script classes, always add a script tag into `index.html` before the application script (`RosterApp.js`), and strictly update `benchmark.js` to `loadClass` and bind the class globally.
@@ -41,3 +45,7 @@
 ## 2026-03-06 - 🩰 Choreographer - [Fluid Transition Injected: Jules Repo Picker]
 **Learning:** During the asynchronous fetch of Jules API sources (`loadJulesSources`), the repository dropdown remained frozen with its default "Select GitHub Repository..." text, offering no visual feedback that a network request was in progress.
 **Action:** Injected a disabled loading state (`Loading repositories...`) on the `<select>` element prior to the `await` call, and cleanly restored the interactive state or default text upon Promise resolution or failure.
+
+## 2026-03-07 - ⬜ Minimalist - [Visual Bloat Purged: Fusion Lab Wrapper]
+**Learning:** Redundant layout wrappers (`<div id="fusionOutputWrapper">`) that solely exist to control visibility or basic flex alignment for a single dynamic child often create unnecessary DOM depth and brittle CSS rules (`#fusionOutputWrapper.open`). When child elements (like `#fusionResultContainer` and `#resetLabBtn`) can manage their own display states via simple utility classes (like `.hidden` and `.fusion-revealed`), the parent wrapper becomes visual dead weight.
+**Action:** Always verify if a container `<div>` is actively controlling Grid/Flexbox positioning for *multiple* siblings that must move together. If the children can be toggled and styled individually without breaking the semantic layout flow, surgically flatten the DOM by deleting the wrapper and migrating the visibility controls directly to the target elements.

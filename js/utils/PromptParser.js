@@ -37,36 +37,27 @@ const PromptParser = {
       }
 
       const root = xmlDoc.documentElement;
-      const sections = [];
       const validTags = ['system', 'task', 'step', 'output'];
 
-      for (let i = 0; i < root.childNodes.length; i++) {
-        const node = root.childNodes[i];
-
-        // We only care about element nodes
-        if (node.nodeType === 1) { // Node.ELEMENT_NODE
-          const tag = node.tagName.toLowerCase();
-
-          if (validTags.includes(tag)) {
-            const section = {
-              tag: tag,
-              // textContent extracts text, but we might want to preserve inner structure
-              // if we treated it as HTML? The requirements say "content: string".
-              // For XML, textContent is appropriate.
-              content: node.textContent.trim(),
-              id: node.getAttribute('id') || null,
-              name: node.getAttribute('name') || null
-            };
-            sections.push(section);
-          }
-        }
-      }
+      const sections = Array.from(root.childNodes)
+        .filter(node => node.nodeType === 1) // Node.ELEMENT_NODE
+        .map(node => ({
+          tag: node.tagName.toLowerCase(),
+          node
+        }))
+        .filter(({ tag }) => validTags.includes(tag))
+        .map(({ tag, node }) => ({
+          tag,
+          content: node.textContent.trim(),
+          id: node.getAttribute('id') || null,
+          name: node.getAttribute('name') || null
+        }));
 
       if (sections.length === 0) {
          return { format: 'legacy', raw: rawText };
       }
 
-      return { format: 'xml', sections: sections };
+      return { format: 'xml', sections };
 
     } catch (e) {
       console.error(
