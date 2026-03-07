@@ -44,9 +44,9 @@ These components follow a strict Vanilla JS philosophy without a build step or v
 
 The `AgentCard.js` module renders individual agents as 3D interactive flip-cards.
 
-*   **Lazy Loading:** To minimize initial DOM size and prevent rendering bottlenecks, complex nested HTML (like parsed prompts) is loaded lazily using `AgentCard.getPromptHtml(agent)`. The prompt content is injected only when the card is flipped.
+*   **Lazy Loading:** To minimize initial DOM size and prevent rendering bottlenecks, complex nested elements (like parsed prompts) are loaded lazily using `AgentCard.getPromptNode(agent)`. The prompt content is injected only when the card is flipped.
 *   **Encapsulation:** The `create` method strictly constructs the HTML string for the component without attaching any inner loop event listeners. It relies entirely on the global event delegation defined in `RosterApp.js`.
-*   **Security:** To prevent XSS vulnerabilities, all raw markdown content from the prompt payload must be routed through `FormatUtils.escapeHTML()` before being inserted into the DOM.
+*   **Security:** To prevent XSS vulnerabilities, raw markdown content is securely rendered into pure DOM nodes using a custom `MarkdownRenderer` in `AgentCard.getPromptNode(agent)`, avoiding `innerHTML` entirely.
 
 ### <a id="clipboardutils-architecture"></a> ClipboardUtils Architecture
 

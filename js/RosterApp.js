@@ -359,7 +359,10 @@ class RosterApp {
               if (promptArea && !promptArea.innerHTML.trim()) {
                   let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
                   if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
-                  if (agent) promptArea.innerHTML = AgentCard.getPromptHtml(agent);
+                  if (agent) {
+                      promptArea.innerHTML = '';
+                      promptArea.appendChild(AgentCard.getPromptNode(agent));
+                  }
               }
               card.classList.add('flipped');
           }
