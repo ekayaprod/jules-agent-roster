@@ -11,10 +11,6 @@ class FusionAnimation {
     const fuseBtn = document.getElementById("fuseBtn");
     const controls = document.getElementById("fusionLabContent"); // Updated class
 
-    // Close result if open
-    const wrapper = document.getElementById("fusionOutputWrapper");
-    if (wrapper) wrapper.classList.remove("open");
-
     // Dynamic Tier Styling & Particle Generation
     const tier = result.tier || "Common";
     const tierClass = `tier-${tier.toLowerCase()}`;

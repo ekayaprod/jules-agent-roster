@@ -45,3 +45,7 @@
 ## 2026-03-06 - 🩰 Choreographer - [Fluid Transition Injected: Jules Repo Picker]
 **Learning:** During the asynchronous fetch of Jules API sources (`loadJulesSources`), the repository dropdown remained frozen with its default "Select GitHub Repository..." text, offering no visual feedback that a network request was in progress.
 **Action:** Injected a disabled loading state (`Loading repositories...`) on the `<select>` element prior to the `await` call, and cleanly restored the interactive state or default text upon Promise resolution or failure.
+
+## 2026-03-07 - ⬜ Minimalist - [Visual Bloat Purged: Fusion Lab Wrapper]
+**Learning:** Redundant layout wrappers (`<div id="fusionOutputWrapper">`) that solely exist to control visibility or basic flex alignment for a single dynamic child often create unnecessary DOM depth and brittle CSS rules (`#fusionOutputWrapper.open`). When child elements (like `#fusionResultContainer` and `#resetLabBtn`) can manage their own display states via simple utility classes (like `.hidden` and `.fusion-revealed`), the parent wrapper becomes visual dead weight.
+**Action:** Always verify if a container `<div>` is actively controlling Grid/Flexbox positioning for *multiple* siblings that must move together. If the children can be toggled and styled individually without breaking the semantic layout flow, surgically flatten the DOM by deleting the wrapper and migrating the visibility controls directly to the target elements.
