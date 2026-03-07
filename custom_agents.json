@@ -1385,6 +1385,15 @@
     "type": "fusion",
     "role": "Empathy Translator"
   },
+  "Pedant,Pedant": {
+    "name": "Zealot",
+    "emoji": "🔱",
+    "short_description": "The ultimate zero-tolerance enforcer. Identifies rules currently configured as 'warnings,' mechanically resolves every violation across the codebase, and then permanently locks the rule as a fatal 'error.' Zero warnings allowed.",
+    "tier": "Legendary",
+    "category": "hygiene",
+    "type": "fusion",
+    "role": "Absolute Enforcer"
+  },
   "Pedant,Scavenger": {
     "name": "Shredder",
     "emoji": "📠",
