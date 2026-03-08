@@ -165,8 +165,17 @@ class AgentRepository {
      * @throws {Error} If all retries fail.
      */
     async fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000);
+
         try {
-            const response = await fetch(url, options);
+            const response = await fetch(url, {
+                ...options,
+                signal: options.signal || controller.signal,
+            });
+
+            clearTimeout(timeoutId);
+
             if (!response.ok) {
                 // Paramedic: Do not retry 404s, they are likely permanent
                 if (response.status === 404) {
@@ -176,6 +185,7 @@ class AgentRepository {
             }
             return response;
         } catch (error) {
+            clearTimeout(timeoutId);
             if (retries > 0) {
                 console.warn(`Retrying ${url} (${retries} left)...`);
                 await new Promise((resolve) => setTimeout(resolve, backoff));
