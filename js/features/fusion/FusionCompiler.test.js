@@ -10,7 +10,8 @@ describe('FusionCompiler', () => {
     { name: 'Janitor', emoji: '🧹', prompt: '## BOUNDARIES\nJanitor Bound\n## PROCESS\nJanitor Proc' },
     { name: 'MonthlyAgent', emoji: '📅', category: 'monthly', prompt: '' },
     { name: 'PowerAgent', emoji: '🔋', category: 'power', prompt: '' },
-    { name: 'Unknown', emoji: '❓', prompt: 'Unknown Prompt' }
+    { name: 'Unknown', emoji: '❓', prompt: 'Unknown Prompt' },
+    { name: 'Spark', emoji: '✨', prompt: '' }
   ];
 
   const mockCustomAgents = {
@@ -24,8 +25,14 @@ describe('FusionCompiler', () => {
 
   describe('constructor', () => {
     it('filters out monthly and power agents', () => {
-      expect(compiler.baseAgents.length).toBe(4);
+      expect(compiler.baseAgents.length).toBe(4); // Spark should be filtered out
       expect(compiler.baseAgents.find(a => a.name === 'MonthlyAgent')).toBeUndefined();
+      expect(compiler.baseAgents.find(a => a.name === 'Spark')).toBeUndefined();
+    });
+
+    it('handles undefined agentsData gracefully', () => {
+      const c = new FusionCompiler(undefined, null);
+      expect(c.baseAgents).toEqual([]);
     });
 
     it('normalizes custom agents keys by trimming and sorting', () => {
@@ -200,6 +207,19 @@ describe('FusionCompiler', () => {
       expect(fused.prompt).toBe('Custom Prompt Here');
     });
 
+    it('returns a custom agent with fallback description', () => {
+      const c = new FusionCompiler(mockBaseAgents, {
+         'Architect,Helix': { name: 'The Void', prompt: null, description: 'Fallback desc' }
+      });
+      const fused = c.fuse(
+        { name: 'Architect', emoji: '📐' },
+        { name: 'Helix', emoji: '🧬' }
+      );
+      expect(fused.name).toBe('The Void');
+      expect(fused.isCustom).toBe(true);
+      expect(fused.short_description).toBe('Fallback desc');
+    });
+
     it('stitches the void dynamic prompt if custom prompt is null', () => {
       const fused = compiler.fuse(
         { name: 'Helix', emoji: '🧬', prompt: '' },
@@ -219,6 +239,15 @@ describe('FusionCompiler', () => {
       expect(fused.isCustom).toBe(false);
       expect(fused.short_description).toContain('combining the strengths');
       expect(fused.prompt).toContain('You are a dynamic Fusion Agent');
+    });
+  });
+
+  describe('Environment Initialization', () => {
+    it('should successfully export the module when required', () => {
+         jest.isolateModules(() => {
+             const fc = require('./FusionCompiler');
+             expect(typeof fc).toBe('function');
+         });
     });
   });
 });
