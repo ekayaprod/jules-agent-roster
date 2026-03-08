@@ -20,3 +20,7 @@
 ## 2024-05-19 - 🕵️ Inspector - Coverage Added: JulesAPI.js
 **Learning:** The Jules API service is heavily dependent on the native `fetch` API, and features complex logic for `AbortController` timeouts (15000ms) and JSON fallback logic. When writing async tests involving `setTimeout` within promises that handle `AbortError`, using `jest.useFakeTimers()` in combination with a mocked `fetch` requires explicit manual triggering of the signal's `abort` event listener to properly simulate the timeout rejection, as simply advancing timers won't automatically trigger the mock's internal promise resolution without firing the native abort event.
 **Action:** Always manually trigger `options.signal.addEventListener('abort', ...)` within mocked fetch promises when testing `AbortController` timeouts with fake timers in Jest to accurately replicate the browser's cancellation behavior.
+
+## 2026-03-07 - 🕵️ Inspector - [Coverage Added: FusionCompiler Edge Cases Tested]
+**Learning:** Found boundary edge cases around `undefined` initial states mapping in `FusionCompiler`, and fallback data structures for dynamically generated custom fusions.
+**Action:** Always write boundary tests covering array and object inputs to functional compilers like `(agentsData || []).filter(...)` or custom descriptions mapping.
