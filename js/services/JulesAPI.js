@@ -56,7 +56,7 @@ class JulesService {
 
             if (!response.ok) {
                 const errorText = await response.text();
-                let errorMsg = `Jules API Error ${response.status}`;
+                let errorMsg = `We encountered a server error (${response.status}). Please wait a moment and try again.`;
                 try {
                     const errJson = JSON.parse(errorText);
                     if (errJson.error?.message) errorMsg = errJson.error.message;
@@ -68,7 +68,7 @@ class JulesService {
         } catch (error) {
             clearTimeout(timeoutId);
             if (error.name === 'AbortError') {
-                throw new Error("Jules API Timeout: Request took longer than 15000ms.");
+                throw new Error("The request timed out. Please check your connection and try again.");
             }
             throw error;
         }
