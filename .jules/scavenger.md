@@ -171,3 +171,7 @@ Action: [How to apply next time]
 **Learning:** The Jules repository relies primarily on native browser class loading via sequential `<script>` tags in `index.html`. During development, `index.js` barrel files were generated for Node.js exports but later abandoned for native CommonJS testing mock architectures without bundler dependencies. `ts-prune` flagged `js/ui/index.js`, `js/utils/index.js`, and `js/features/fusion/index.js` as having zero AST references inside the repository.
 
 **Action:** Eradicated the unreferenced barrel files. Kept test suites intact as Jest natively loads standard mock implementations directly from their relative `.js` endpoints rather than routing through unused barrel indices.
+
+## YYYY-MM-DD - 🦝 Scavenger - [Purged Dead Benchmark Code in benchmark.js]
+**Learning:** Found a failing benchmark execution loop in `benchmark.js` targeting a `filterPicker` method on `AgentPicker`. Code history revealed `filterPicker` was eradicated and replaced by a different architecture, leaving this benchmark mathematically dead and functionally broken.
+**Action:** When auditing tests or benchmarks, identify blocks that test APIs or methods that no longer exist and surgically remove the execution blocks rather than deleting the entire test file, especially if the file serves multiple purposes or is integrated into package scripts.
