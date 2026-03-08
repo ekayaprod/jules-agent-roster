@@ -47,10 +47,10 @@ class RosterApp {
   }
 
   /**
-   * Bootstraps the application, fetching agent data and initializing UI components.
-   * Executes the Initialization Flow, caching critical DOM elements and handling fallback states.
+   * Bootstraps the application by concurrently resolving external dependencies,
+   * injecting placeholder skeletons to mask latency, and triggering the rendering loop.
+   * @see README.md#rosterapp-architecture for the Boot/Fetch lifecycle.
    * @returns {Promise<void>} Resolves when initialization is complete.
-   * @see README.md#rosterapp-architecture for the Initialization Flow details.
    */
   async init() {
     this.cacheElements();
@@ -119,8 +119,8 @@ class RosterApp {
 
 
   /**
-   * Caches critical DOM elements.
-   * Prevents query thrashing during initialization.
+   * Caches critical DOM elements locally via `document.querySelector`.
+   * Executed strictly once during boot to prevent continuous N-time DOM traversal penalties.
    * @see README.md#rosterapp-architecture
    */
   cacheElements() {
@@ -150,7 +150,8 @@ class RosterApp {
   }
 
   /**
-   * Injects CSS loading skeletons.
+   * Synchronously injects CSS loading skeletons into all predefined grid containers
+   * to provide immediate visual feedback before asynchronous fetches resolve.
    * @see README.md#rosterapp-architecture
    */
   renderSkeletons() {
@@ -167,9 +168,11 @@ class RosterApp {
   }
 
   /**
-   * Renders agent cards into their grids.
-   * Utilizes a batch rendering strategy to spread execution across frames using requestAnimationFrame, preventing the main thread from locking.
-   * @see README.md#rosterapp-architecture for the Batch Rendering Strategy details.
+   * Orchestrates the rendering of agent cards into their respective grid containers.
+   * Flattens and chunks the 3D card generation using `requestAnimationFrame` to
+   * prevent the main thread from locking up under heavy DOM hydration.
+   * Handles pin-status sorting and cache invalidation automatically.
+   * @see README.md#rosterapp-architecture
    */
   renderAgents() {
     const categoryContainers = {};
@@ -292,9 +295,10 @@ class RosterApp {
   }
 
   /**
-   * Attaches global event listeners.
-   * Implements global event delegation, routing interactions securely via dataset actions and abandoning inner loop event listeners.
-   * @see README.md#rosterapp-architecture for Global Event Delegation details.
+   * Centralizes all event binding into a single delegation pattern at the `document` level.
+   * Prevents attaching individual handlers to thousands of interactive child nodes.
+   * Intercepts and delegates actions based on the `data-action` attribute.
+   * @see README.md#rosterapp-architecture
    */
   bindEvents() {
     if (this.elements.searchInput) {
@@ -499,10 +503,11 @@ class RosterApp {
 
 
   /**
-   * Filters the agent roster using fuzzy search and updates the UI.
-   * Rebuilds the internal Fuse.js index only on state boundary changes, limiting results to eradicate layout thrashing.
+   * Executes a fuzzy match against all loaded agents using the provided query string.
+   * Initializes or updates a virtual scrolling `Clusterize.js` instance to render
+   * matches without triggering massive native DOM reflows.
    * @param {string} query - The search query string.
-   * @see README.md#rosterapp-architecture for Search & Layout Thrashing Prevention details.
+   * @see README.md#search-mechanics
    */
   filterAgents(query) {
     const search = query.toLowerCase();
@@ -595,8 +600,9 @@ class RosterApp {
   }
 
   /**
-   * Clears the current search query.
-   * @see README.md#rosterapp-architecture
+   * Clears the active search query, destroys the search results view,
+   * and resets the UI back to the default categorized master layout.
+   * @see README.md#search-mechanics
    */
   clearSearch() {
     if (this.elements.searchInput) {
@@ -608,10 +614,11 @@ class RosterApp {
   }
 
   /**
-   * Copies a specific agent's prompt to clipboard.
-   * @param {string|number} index - The index or key of the agent.
+   * Retrieves an agent's prompt text and pushes it to the system clipboard.
+   * Triggers a temporary success animation on the executing button via `ClipboardUtils`.
+   * @param {string|number} index - The unique identifier or index of the agent.
    * @param {HTMLElement} btn - The button element that triggered the action.
-   * @see README.md#rosterapp-architecture
+   * @returns {Promise<void>}
    */
   async copyAgent(index, btn) {
     let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
@@ -625,9 +632,9 @@ class RosterApp {
   }
 
   /**
-   * Downloads all custom agents as a single markdown file.
-   * @param {HTMLElement} btn - The button element that triggered the action.
-   * @see README.md#rosterapp-architecture
+   * Triggers a browser download of the user's unlocked custom fusions
+   * formatted as a structured JSON backup.
+   * @param {HTMLElement} btn - The interacting element to animate on success.
    */
   downloadCustomAgents(btn) {
     const header = FormatUtils.CUSTOM_ROSTER_HEADER;
@@ -638,9 +645,9 @@ class RosterApp {
   }
 
   /**
-   * Downloads all standard agents as a single markdown file.
-   * @param {HTMLElement} btn - The button element that triggered the action.
-   * @see README.md#rosterapp-architecture
+   * Compiles all master and unlocked custom agent prompts into a single concatenated
+   * markdown payload and forces a file download.
+   * @param {HTMLElement} btn - The interacting element to animate on success.
    */
   downloadAll(btn) {
     const header = FormatUtils.MASTER_ROSTER_HEADER;
@@ -649,9 +656,10 @@ class RosterApp {
   }
 
   /**
-   * Copies all standard agent prompts to the clipboard.
-   * @param {HTMLElement} btn - The button element that triggered the action.
-   * @see README.md#rosterapp-architecture
+   * Compiles all master and custom agent prompts into a single string
+   * and pushes the payload directly to the user's system clipboard.
+   * @param {HTMLElement} btn - The interacting element to animate on success.
+   * @returns {Promise<void>}
    */
   async copyAll(btn) {
     const header = FormatUtils.MASTER_ROSTER_HEADER;
@@ -663,8 +671,8 @@ class RosterApp {
   }
 
   /**
-   * Initializes the IntersectionObserver for category navigation pills.
-   * @see README.md#rosterapp-architecture
+   * Initializes an `IntersectionObserver` to trigger the active state of navigation pills
+   * natively as the user scrolls past each categorized grid section.
    */
   initObserver() {
     const navPills = document.querySelectorAll(CONFIG.selectors.navPills);
@@ -692,9 +700,9 @@ class RosterApp {
   }
 
   /**
-   * Displays a toast notification with the specified message.
-   * @param {string} message - The message to display.
-   * @see README.md#rosterapp-architecture
+   * Intercepts string messages and passes them to the dedicated `ToastNotification` system
+   * for accessible, auto-dismissing feedback alerts.
+   * @param {string} message - The notification payload to display.
    */
   showToast(message) {
       this.toast.show(message);

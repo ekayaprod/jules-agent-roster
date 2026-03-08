@@ -84,6 +84,8 @@
 
 **Learning:** Found redundant domain drift across `JulesManager.js` and `AgentRepository.js` where `data` was used ambiguously to store API responses and JSON payloads.
 **Action:** Applied AST-level standardization to rename all parameter and variable occurrences of `data` to their contextual typed equivalents (`sourcesResponse`, `sessionsResponse`, `activitiesResponse`, and `agentPayload`) to improve domain clarity and prevent cognitive friction.
+
 ## 2026-03-08 - 🪙 Tokenizer - [Context Payload Optimized: FusionCompiler]
+
 **Learning:** Minified the hardcoded JSON schema in `FusionCompiler.js`'s `stitch` function output template to eliminate non-essential whitespace and indentation tokens consumed by the context window when enforcing the structured JSON output schema on the LLM.
 **Action:** Always minify hardcoded JSON schemas in output templates to save tokens.
