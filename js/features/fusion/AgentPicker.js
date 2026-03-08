@@ -316,10 +316,11 @@ class AgentPicker {
 
             if (el) {
                 // If it's already in the DOM, simply move focus without a full Clusterize re-render
-                document.querySelectorAll('#pickerGrid .mini-agent-card.is-focused').forEach(node => {
-                    node.classList.remove('is-focused');
-                    node.setAttribute('tabindex', '-1');
-                });
+                const focusedNode = document.querySelector('#pickerGrid .mini-agent-card.is-focused');
+                if (focusedNode) {
+                    focusedNode.classList.remove('is-focused');
+                    focusedNode.setAttribute('tabindex', '-1');
+                }
                 el.classList.add('is-focused');
                 el.setAttribute('tabindex', '0');
                 el.focus();

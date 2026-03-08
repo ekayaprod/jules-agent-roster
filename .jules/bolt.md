@@ -37,3 +37,7 @@
 ## 2026-03-07 - ⚡ Bolt+ - [Polished Optimization]
 **Learning:** Returning shallow clones `{ ...item }` during a Schwartzian sort transform destroys object reference equality, breaking state mutations downstream. Global `querySelector` cleanup logic must handle edge cases where multiple sub-menus might be orphaned open simultaneously.
 **Action:** Restored object references by strictly using `{ original: item, metric }` mapped patterns, and safely replaced looped `.querySelector` lookups in polling intervals with O(1) `document.getElementById`.
+
+## 2026-03-08 - ⚡ Bolt+ - [DOM Query Optimization for Singular States]
+**Learning:** Using `document.querySelectorAll(...).forEach(...)` to find and manipulate elements that have a mutually exclusive singular state (like `.is-focused` within a grid) is inefficient. It forces the browser to traverse the entire subtree and allocate memory for a NodeList, resulting in an O(N) operation instead of O(1).
+**Action:** Replaced `document.querySelectorAll` with a single `document.querySelector` call when searching for mutually exclusive states. This halts the DOM traversal early once the element is found and prevents unnecessary memory allocations, which is especially important during rapid repetitive triggers like keyboard navigation (`handleGridKeydown`).
