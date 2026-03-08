@@ -60,7 +60,7 @@ describe('JulesService', () => {
             // Advance timers to trigger the setTimeout in _fetch
             jest.advanceTimersByTime(15000);
 
-            await expect(fetchPromise).rejects.toThrow("Jules API Timeout: Request took longer than 15000ms.");
+            await expect(fetchPromise).rejects.toThrow("The request timed out. Please check your connection and try again.");
             jest.useRealTimers();
         });
 
@@ -110,7 +110,7 @@ describe('JulesService', () => {
                 text: async () => "Internal Server Error Text" // Not JSON
             });
 
-            await expect(service._fetch('test')).rejects.toThrow("Jules API Error 500");
+            await expect(service._fetch('test')).rejects.toThrow("We encountered a server error (500). Please wait a moment and try again.");
         });
 
         it('should throw error with fallback message on non-ok response with JSON lacking error.message', async () => {
@@ -121,7 +121,7 @@ describe('JulesService', () => {
                 text: async () => JSON.stringify({ someOtherField: "value" })
             });
 
-            await expect(service._fetch('test')).rejects.toThrow("Jules API Error 403");
+            await expect(service._fetch('test')).rejects.toThrow("We encountered a server error (403). Please wait a moment and try again.");
         });
     });
 

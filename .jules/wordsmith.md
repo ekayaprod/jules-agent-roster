@@ -15,3 +15,6 @@ This journal tracks inconsistent terminology and Voice & Tone patterns across th
 ## 2026-03-06 - 🖋️ Wordsmith - [Polished Microcopy for Action Buttons]
 **Learning:** Found several buttons across the app lacking contextual accessibility definitions via aria-labels, even when they possessed text.
 **Action:** Always provide rich, context-aware `aria-label`s for generic actions (like "Cancel", "Save & Connect") and interactive items.
+## 2026-03-08 - 🖋️ Wordsmith - [Polished Microcopy for Jules API Errors]
+**Learning:** Found passive, technical timeout/HTTP errors like "Jules API Error ${response.status}" and "Request took longer than 15000ms" leaking to the UI via exception throws.
+**Action:** Always rewrite backend timeout and 500-level errors into actionable, polite UI strings that explicitly state the impact ("We encountered a server error", "The request timed out") and provide a concrete resolution path ("Please check your connection and try again").
