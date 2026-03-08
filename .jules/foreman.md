@@ -1,0 +1,3 @@
+## 2026-03-08 - 👷 Foreman - [File Conventions Enforced: Javascript Class Directories]
+**Learning:** In this vanilla JS architecture, almost all `.js` files export PascalCase ES6 classes (e.g., `AgentCard`, `ClipboardUtils`, `FusionCompiler`). However, these files were nested inside a chaotic mixture of lowercase and kebab-case directories (e.g., `js/ui/agent-card/`, `js/features/fusion/`). This caused naming anarchy and unpredictable import paths. The physical file tree structure should directly mirror the exported domain convention.
+**Action:** PascalCase applied globally to all feature, service, utility, and UI component directories to establish a predictable, strictly aligned file tree.

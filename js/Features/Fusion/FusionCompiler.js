@@ -133,17 +133,7 @@ ${proc2}
 
 ## OUTPUT FORMAT
 You must return your final response as a strict JSON object adhering to this schema:
-{
-  "phase1": {
-    "thought_process": "string",
-    "output": "string"
-  },
-  "phase2": {
-    "thought_process": "string",
-    "output": "string"
-  },
-  "pr_title": "${prTitle}"
-}`;
+{"phase1":{"thought_process":"string","output":"string"},"phase2":{"thought_process":"string","output":"string"},"pr_title":"${prTitle}"}`;
   };
 
   /**

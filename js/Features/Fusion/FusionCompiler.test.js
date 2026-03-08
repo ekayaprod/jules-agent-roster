@@ -1,4 +1,4 @@
-const PromptParser = require('../../utils/PromptParser');
+const PromptParser = require('../../Utils/PromptParser');
 global.PromptParser = PromptParser;
 const FusionCompiler = require('./FusionCompiler');
 
@@ -182,7 +182,7 @@ describe('FusionCompiler', () => {
       const agent1 = mockBaseAgents.find(a => a.name === 'Janitor');
       const agent2 = mockBaseAgents.find(a => a.name === 'Helix');
       const stitched = compiler.stitch(agent1, agent2, 'Custom Title Override');
-      expect(stitched).toContain('"pr_title": "Custom Title Override"');
+      expect(stitched).toContain('"pr_title":"Custom Title Override"');
     });
   });
 
