@@ -72,6 +72,7 @@ class JulesManager {
             if (show) {
                 keyInput.value = StorageUtils.getItem("jules_api_key");
                 settingsModal.classList.add("visible");
+                setTimeout(() => keyInput.focus(), 10);
             } else {
                 settingsModal.classList.remove("visible");
             }

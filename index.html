@@ -343,9 +343,9 @@
     </main>
 
     <!-- Settings Modal -->
-    <div id="settingsModal" class="modal-backdrop">
+    <div id="settingsModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
       <div class="modal-content">
-        <h3>API Configuration</h3>
+        <h3 id="settingsModalTitle">API Configuration</h3>
         <p>To launch agents directly from this dashboard, enter your Jules API Key. Your key is stored securely in your browser's local storage and is never sent anywhere except the official Google Jules API.</p>
         <div style="display:flex; flex-direction:column; gap: 0.5rem;">
             <label for="julesApiKeyInput" style="font-size: var(--text-xs); color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">Jules API Key</label>
