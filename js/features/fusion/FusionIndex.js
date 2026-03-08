@@ -2,12 +2,12 @@ class FusionIndex {
   /**
    * Manages the collectible shelf of fusion agents.
    * @param {string} containerId - The ID of the container element.
-   * @param {Object} customAgentsData - The map of custom agent fusions.
+   * @param {Object} customAgents - The map of custom agent fusions.
    * @param {Function} onSelectCallback - Function to call when an unlocked slot is clicked.
    */
-  constructor(containerId, customAgentsData, onSelectCallback) {
+  constructor(containerId, customAgents, onSelectCallback) {
     this.containerId = containerId;
-    this.customAgentsData = customAgentsData;
+    this.customAgents = customAgents;
     this.onSelectCallback = onSelectCallback;
     this.storageKey = "fusion_discovery_state";
     this.unlockedKeys = new Set();
@@ -72,8 +72,8 @@ class FusionIndex {
     const grid = document.createElement("div");
     grid.className = "fusion-shelf-grid";
 
-    Object.keys(this.customAgentsData).forEach((key) => {
-      const agentData = this.customAgentsData[key];
+    Object.keys(this.customAgents).forEach((key) => {
+      const agentData = this.customAgents[key];
       const isUnlocked = this.unlockedKeys.has(key);
       const emoji = this.getEmoji(agentData);
 
@@ -107,7 +107,7 @@ class FusionIndex {
    * Updates the progress counter.
    */
   updateProgress(element) {
-    const total = Object.keys(this.customAgentsData).length;
+    const total = Object.keys(this.customAgents).length;
     const current = this.unlockedKeys.size;
     element.innerText = `${current} / ${total} Protocols Discovered`;
   }
@@ -143,7 +143,7 @@ class FusionIndex {
    * @param {string} key - The fusion key.
    */
   unlock(key) {
-    if (!this.customAgentsData[key]) return;
+    if (!this.customAgents[key]) return;
 
     if (!this.unlockedKeys.has(key)) {
       this.unlockedKeys.add(key);
@@ -161,7 +161,7 @@ class FusionIndex {
     const safeKey = key.replace(/"/g, '\\"');
     const slot = document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
     if (slot) {
-      const agentData = this.customAgentsData[key];
+      const agentData = this.customAgents[key];
       slot.classList.remove("locked");
       slot.classList.add("unlocked", "just-unlocked");
       if (agentData.tier) {

@@ -15,12 +15,12 @@ class FusionLab {
 
   /**
    * Initializes the Fusion Lab component.
-   * @param {Array} agentsData - The list of agents.
-   * @param {Object} customAgentsData - The map of custom agent fusions.
+   * @param {Array} agents - The list of agents.
+   * @param {Object} customAgents - The map of custom agent fusions.
    */
-  init(agentsData, customAgentsData) {
-    this.agents = agentsData;
-    this.compiler = new FusionCompiler(agentsData, customAgentsData);
+  init(agents, customAgents) {
+    this.agents = agents;
+    this.compiler = new FusionCompiler(agents, customAgents);
 
     // Initialize Fusion Index (Collectible Shelf)
     if (typeof FusionIndex !== "undefined") {
@@ -269,7 +269,7 @@ class FusionLab {
       try {
         const key = [agentA.name, agentB.name].sort().join(",");
         // Check if it's a known custom fusion
-        if (this.fusionIndex.customAgentsData[key]) {
+        if (this.fusionIndex.customAgents[key]) {
           this.fusionIndex.unlock(key);
         }
       } catch (e) {
