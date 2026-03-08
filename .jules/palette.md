@@ -26,3 +26,7 @@
 ## 2026-03-08 - 🎨 Palette+ - [Mobile UX improvement for Jules dashboard]
 **Learning:** Using `flex-wrap: wrap` inside flex items on mobile can cause components to rapidly stack into huge vertical blocks as text overflows. Wrapping text in a sub-container with `min-width: 0` inside a `flex-wrap: nowrap` parent correctly engages the CSS `text-overflow: ellipsis` engine on mobile screens without breaking grid structures.
 **Action:** When migrating from terminal feeds to dashboard cards, explicitly force `nowrap` on the parent row and apply `min-width: 0` plus `overflow: hidden` to textual flex children to preserve screen real estate on mobile devices.
+
+## 2026-03-09 - 🎨 Palette+ - [Fixed Agent Card Shines]
+**Learning:** Using the CSS `background` shorthand with a `linear-gradient` inadvertently resets previously defined background properties like `background-size: 200% auto;`. This breaks `background-position` animations required for looping gradients.
+**Action:** Use `background-image: linear-gradient(...)` when applying gradients to elements that rely on separate `background-size` rules for smooth CSS animations.
