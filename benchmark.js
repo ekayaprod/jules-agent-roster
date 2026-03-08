@@ -81,7 +81,7 @@ global.PinnedManager = PinnedManager;
 const JulesManager = loadClass('js/features/jules/JulesManager.js');
 global.JulesManager = JulesManager;
 
-const RosterApp = loadClass('js/RosterApp.js');
+const RosterApp = loadClass('js/core/RosterApp.js');
 
 const runBenchmark = async () => {
     console.log("🏁 Pacesetter Benchmark Suite Starting...");
