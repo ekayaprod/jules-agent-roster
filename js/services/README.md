@@ -62,5 +62,4 @@ The `JulesService` manages the network boundary with the Jules backend.
 
 1. **Asynchronous Polling vs Streaming:** Unlike standard LLM integrations that utilize synchronous completions or SSE (`stream: true`), the Jules API is asynchronous. Generating a response requires creating a stateful Session (`createSession`) and then continuously polling its Activities (`getActivities`) until completion.
 2. **Network Resilience:** All network requests in `_fetch` are aggressively wrapped in a 15-second `AbortController` timeout to prevent hanging UI states if the API becomes unresponsive.
-3. **System Override Wrapping:** The `createSession` method automatically wraps the incoming `agentMarkdown` within a `[SYSTEM OVERRIDE: IMMEDIATE EXECUTION]` block. This enforces the persona execution and explicitly prevents the AI from saving the raw prompt text into the target repository.
-4. **Global Attachment:** The service is instantiated and bound directly to `window.julesService` to allow universal access across the decoupled vanilla JS UI components without relying on a centralized dependency injector.
+3. **Global Attachment:** The service is instantiated and bound directly to `window.julesService` to allow universal access across the decoupled vanilla JS UI components without relying on a centralized dependency injector.

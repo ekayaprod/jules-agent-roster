@@ -95,21 +95,16 @@ class JulesService {
     }
 
     /**
-     * Initiates a new Jules session using the System Override wrapper to prevent file-creation traps.
+     * Initiates a new Jules session.
      * @param {string} agentMarkdown - The raw markdown prompt of the selected agent.
      * @param {string} userTask - The specific task the user wants to execute.
      * @param {string} sourceName - The target repository (e.g., 'sources/github/user/repo').
      * @param {string} [title="Agent Task"] - Optional title for the session.
      * @returns {Promise<Object>} The JSON response containing the created session details.
      * @throws {Error} If the request fails or times out.
-     * @see README.md#julesapi-architecture for details on the System Override prompt wrapper.
      */
     async createSession(agentMarkdown, userTask, sourceName, title = "Agent Task") {
-        const prompt = `[SYSTEM OVERRIDE: IMMEDIATE EXECUTION]
-Do NOT write the following text to a file. Do NOT save this as a prompt. 
-You must immediately adopt the persona defined below and execute Step 1 of its "Daily Process" against the current repository.
-
-${agentMarkdown}
+        const prompt = `${agentMarkdown}
 
 USER TASK TO EXECUTE:
 ${userTask}`;
