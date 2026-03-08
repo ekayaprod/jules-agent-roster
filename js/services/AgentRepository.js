@@ -36,11 +36,11 @@ class AgentRepository {
     async #loadStandardAgents() {
         const response = await this.fetchWithRetry("agents.json");
         const rawData = await this.safeJsonParse(response, "agents.json");
-        const agentsData = this.validateAgentsData(rawData);
+        const agents = this.validateAgentsData(rawData);
 
         // Fetch Prompts for Standard Agents
         await Promise.all(
-            agentsData.map(async (agent) => {
+            agents.map(async (agent) => {
                 agent.prompt = await this.fetchPrompt(
                     agent.name,
                     `prompts/${agent.name}.md`,
@@ -49,7 +49,7 @@ class AgentRepository {
             }),
         );
 
-        return agentsData;
+        return agents;
     }
 
     async #loadCustomAgents() {

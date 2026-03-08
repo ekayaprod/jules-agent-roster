@@ -8,7 +8,7 @@
  * // ✅ GOOD: Yggdrasil triggered an evolutionary branch. The rigid OOP class has been mutated into a pure, composable functional pipeline.
  */
 
-const FusionCompiler = function (agentsData, customAgentsData) {
+const FusionCompiler = function (agents, customAgents) {
   // WARN: This is a strict Directed Acyclic Graph (DAG).
   // The order determines which agent runs as Phase 1 (Upstream) vs Phase 2 (Downstream).
   // Example: Architect (Design) always comes before Builder (Implementation).
@@ -35,7 +35,7 @@ const FusionCompiler = function (agentsData, customAgentsData) {
   ];
 
   // Only allow base agents to be fused. Monthly/Power agents are excluded to prevent complexity explosion.
-  const baseAgents = (agentsData || []).filter(
+  const baseAgents = (agents || []).filter(
     (a) => a.category !== "monthly" && a.category !== "power" && !["Spark", "Overseer", "Cartographer"].includes(a.name)
   );
 
@@ -51,7 +51,7 @@ const FusionCompiler = function (agentsData, customAgentsData) {
         )
       : {};
 
-  const customAgentsMap = normalizeKeys(customAgentsData);
+  const customAgentsMap = normalizeKeys(customAgents);
 
   /**
    * Extracts a specific Markdown section from a raw prompt string.

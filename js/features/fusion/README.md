@@ -9,17 +9,17 @@ To initialize the complete Fusion Lab environment:
 ```javascript
 // 1. Ensure a DOM element with ID 'fusionLabContent' exists.
 // 2. Instantiate and inject the dependencies.
-const compiler = new FusionCompiler(agentsData, customAgentsData);
+const compiler = new FusionCompiler(agents, customAgents);
 const lab = new FusionLab();
 
 // 3. Boot the lab with the required data sets.
-lab.init(agentsData, customAgentsData);
+lab.init(agents, customAgents);
 ```
 
 To execute a headless fusion directly via the compiler:
 
 ```javascript
-const compiler = new FusionCompiler(agentsData, customAgentsData);
+const compiler = new FusionCompiler(agents, customAgents);
 
 // Fuse Agent A and Agent B (Order is automatically resolved via DAG pipeline)
 const result = compiler.fuse(agentA, agentB);
@@ -31,7 +31,7 @@ console.log("Fused Prompt Content:", result.prompt);
 To parse the discovered fusion keys from storage:
 
 ```javascript
-const index = new FusionIndex('containerId', customAgentsData, callback);
+const index = new FusionIndex('containerId', customAgents, callback);
 index.loadState();
 console.log("Unlocked Fusions:", Array.from(index.unlockedKeys));
 ```

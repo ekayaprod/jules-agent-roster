@@ -33,7 +33,7 @@ describe('FusionCompiler', () => {
       expect(compiler.customAgentsMap['Helix,Janitor']).toBeDefined();
     });
 
-    it('handles null/undefined customAgentsData gracefully', () => {
+    it('handles null/undefined customAgents gracefully', () => {
       const c = new FusionCompiler([], null);
       expect(c.customAgentsMap).toEqual({});
     });
