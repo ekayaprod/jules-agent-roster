@@ -387,7 +387,8 @@ class JulesManager {
                 if (!activitiesResponse.activities) return;
 
                 // Sort chronologically
-                const activities = activitiesResponse.activities.sort((a, b) => new Date(a.createTime) - new Date(b.createTime));
+                // ⚡ Bolt+: Eliminated O(N log N) Date parsing overhead during high-frequency polling by using native ISO string comparison instead of new Date().
+                const activities = activitiesResponse.activities.sort((a, b) => a.createTime < b.createTime ? -1 : (a.createTime > b.createTime ? 1 : 0));
 
                 const state = {
                     isCompleted: false,
