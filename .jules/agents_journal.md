@@ -61,3 +61,7 @@
 ## 2026-03-07 - 🔖 Lexicon - [Vocabulary Standardized: agentsData -> agents]
 **Learning:** Found redundant domain drift across the Fusion Lab ecosystem (`FusionCompiler.js`, `FusionIndex.js`, `FusionLab.js`) and `AgentRepository.js` where the domain models were passed as `agentsData` and `customAgentsData`. The `Data` suffix is a redundant, ambiguous term when passing array/object collections of models.
 **Action:** Applied AST-level standardization to rename all parameter and variable occurrences of `agentsData` and `customAgentsData` to exactly match their conceptual collections: `agents` and `customAgents`.
+
+## 2024-05-24 - 🪙 Tokenizer - [Context Payload Optimized: FusionCompiler]
+**Learning:** Sprawling JSON schemas defined with whitespace and indentation inside the prompt (like in `FusionCompiler.js`) unnecessarily inflate the token count without improving the LLM's comprehension of the structural constraints.
+**Action:** Minified the hardcoded JSON output schema injected into the `stitch` prompt template, ensuring the LLM receives the exact same schema structure for validation but with zero wasted tokens on formatting.
