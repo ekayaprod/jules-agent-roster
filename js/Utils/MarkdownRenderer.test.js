@@ -42,4 +42,72 @@ describe('MarkdownRenderer', () => {
         const paragraphs = result.querySelectorAll('.markdown-p');
         expect(paragraphs.length).toBe(2);
     });
+
+    it('should parse inline markdown (**bold**, *italic*, `code`) correctly', () => {
+        const result = MarkdownRenderer.render('Here is **bold**, *italic*, and `code` text.');
+        const p = result.querySelector('.markdown-p');
+        expect(p).not.toBeNull();
+        expect(p.innerHTML).toContain('Here is <strong>bold</strong>, <em>italic</em>, and <code>code</code> text.');
+
+        // Test edge cases with no surrounding text
+        const result2 = MarkdownRenderer.render('**bold** *italic* `code`');
+        const p2 = result2.querySelector('.markdown-p');
+        expect(p2.innerHTML).toContain('<strong>bold</strong> <em>italic</em> <code>code</code>');
+    });
+
+    it('should render blockquotes correctly, including multiple lines', () => {
+        const result = MarkdownRenderer.render('> First line\n> Second line\nSome other text');
+        const bq = result.querySelector('.markdown-blockquote');
+        expect(bq).not.toBeNull();
+        expect(bq.innerHTML).toContain('First line');
+        expect(bq.innerHTML).toContain('<br>');
+        expect(bq.innerHTML).toContain('Second line');
+
+        const p = result.querySelector('.markdown-p');
+        expect(p).not.toBeNull();
+        expect(p.textContent).toBe('Some other text');
+    });
+
+    it('should render code blocks correctly', () => {
+        const result = MarkdownRenderer.render('```\nconst x = 1;\nconsole.log(x);\n```\nAfter code');
+        const pre = result.querySelector('.markdown-code');
+        expect(pre).not.toBeNull();
+        const code = pre.querySelector('code');
+        expect(code).not.toBeNull();
+        expect(code.textContent).toBe('const x = 1;\nconsole.log(x);\n');
+
+        const p = result.querySelector('.markdown-p');
+        expect(p).not.toBeNull();
+        expect(p.textContent).toBe('After code');
+    });
+
+    it('should render tables correctly, ignoring separator lines', () => {
+        const tableMarkdown = `
+| Header 1 | Header 2 |
+|---|:---:|
+| Cell 1 | Cell 2 |
+| Cell 3 | Cell 4 |
+`;
+        const result = MarkdownRenderer.render(tableMarkdown);
+        const table = result.querySelector('.markdown-table');
+        expect(table).not.toBeNull();
+
+        const ths = table.querySelectorAll('thead th');
+        expect(ths.length).toBe(2);
+        expect(ths[0].textContent).toBe('Header 1');
+        expect(ths[1].textContent).toBe('Header 2');
+
+        const trs = table.querySelectorAll('tbody tr');
+        expect(trs.length).toBe(2);
+
+        const tds1 = trs[0].querySelectorAll('td');
+        expect(tds1.length).toBe(2);
+        expect(tds1[0].textContent).toBe('Cell 1');
+        expect(tds1[1].textContent).toBe('Cell 2');
+
+        const tds2 = trs[1].querySelectorAll('td');
+        expect(tds2.length).toBe(2);
+        expect(tds2[0].textContent).toBe('Cell 3');
+        expect(tds2[1].textContent).toBe('Cell 4');
+    });
 });
