@@ -220,24 +220,24 @@ describe('AgentRepository', () => {
         });
 
         it('sanitizes description fields to strings', () => {
-            const data = { name: "Valid", desc: 123, description: 456, short_description: 789 };
-            const res = repo.validateCustomAgent('key', data);
+            const mockAgentPayload = { name: "Valid", desc: 123, description: 456, short_description: 789 };
+            const res = repo.validateCustomAgent('key', mockAgentPayload);
 
             expect(res.valid).toBe(true);
             expect(res.sanitized.short_description).toBe("789");
         });
 
         it('normalizes desc to short_description', () => {
-            const data = { name: "Valid", desc: "My Desc" };
-            const res = repo.validateCustomAgent('key', data);
+            const mockAgentPayload = { name: "Valid", desc: "My Desc" };
+            const res = repo.validateCustomAgent('key', mockAgentPayload);
             expect(res.valid).toBe(true);
             expect(res.sanitized.short_description).toBe("My Desc");
             expect(res.sanitized.desc).toBeUndefined();
         });
 
         it('normalizes description to short_description', () => {
-            const data = { name: "Valid", description: "My Full Desc" };
-            const res = repo.validateCustomAgent('key', data);
+            const mockAgentPayload = { name: "Valid", description: "My Full Desc" };
+            const res = repo.validateCustomAgent('key', mockAgentPayload);
             expect(res.valid).toBe(true);
             expect(res.sanitized.short_description).toBe("My Full Desc");
             expect(res.sanitized.description).toBeUndefined();
@@ -252,8 +252,8 @@ describe('AgentRepository', () => {
                 { name: "<iframe src='bad.com'></iframe>" }
             ];
 
-            maliciousData.forEach(data => {
-                const res = repo.validateCustomAgent('key', data);
+            maliciousData.forEach(mockAgentPayload => {
+                const res = repo.validateCustomAgent('key', mockAgentPayload);
                 expect(res.valid).toBe(false);
                 expect(res.reason).toBe("Potential malicious content detected");
             });

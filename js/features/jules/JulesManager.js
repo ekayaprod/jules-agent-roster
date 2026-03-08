@@ -98,10 +98,10 @@ class JulesManager {
         picker.disabled = true;
 
         try {
-            const data = await window.julesService.getSources();
-            if (data.sources) {
+            const sourcesResponse = await window.julesService.getSources();
+            if (sourcesResponse.sources) {
                 picker.innerHTML = `<option value="">1. Select GitHub Repository...</option>`;
-                data.sources.forEach(s => {
+                sourcesResponse.sources.forEach(s => {
                     const opt = document.createElement("option");
                     opt.value = s.name;
                     opt.textContent = `${s.githubRepo.owner}/${s.githubRepo.repo}`;
@@ -143,15 +143,15 @@ class JulesManager {
             try {
                 if (!window.julesService || !window.julesService.apiKey) return;
 
-                const data = await window.julesService.getSessions(50);
-                if (!data.sessions) {
+                const sessionsResponse = await window.julesService.getSessions(50);
+                if (!sessionsResponse.sessions) {
                     if (terminal.querySelector('#fetchingIndicator')) {
                         terminal.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting Agent launch command...");
                     }
                     return;
                 }
 
-                let repoSessions = data.sessions.filter(s => {
+                let repoSessions = sessionsResponse.sessions.filter(s => {
                     if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
                     if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
                     // Filter out sessions that have a merged or closed PR
@@ -400,11 +400,11 @@ class JulesManager {
 
         this.julesPollingIntervals[sessionId] = setInterval(async () => {
             try {
-                const data = await window.julesService.getActivities(sessionId);
-                if (!data.activities) return;
+                const activitiesResponse = await window.julesService.getActivities(sessionId);
+                if (!activitiesResponse.activities) return;
 
                 // Sort chronologically
-                const activities = data.activities.sort((a, b) => new Date(a.createTime) - new Date(b.createTime));
+                const activities = activitiesResponse.activities.sort((a, b) => new Date(a.createTime) - new Date(b.createTime));
 
                 const state = {
                     isCompleted: false,
