@@ -1448,6 +1448,15 @@
     "type": "fusion",
     "role": "String Canonicalizer"
   },
+  "Scavenger,Scavenger": {
+    "name": "Hitman",
+    "emoji": "🕴️",
+    "short_description": "Hunts macro-level architectural decay and unrequested LLM scope creep. Operates strictly on a contract basis, presenting a Target Dossier PR and executing massive deletions only after explicit ChatOps authorization.",
+    "tier": "Legendary",
+    "category": "hygiene",
+    "type": "fusion",
+    "role": "Corporate Fixer"
+  },
   "Scavenger,Scribe": {
     "name": "Obituary Writer",
     "emoji": "🪦",
