@@ -511,6 +511,7 @@ class JulesManager {
         emojiSpan.textContent = emoji;
 
         const textDiv = document.createElement("div");
+        textDiv.className = "dashboard-text";
 
         const titleDiv = document.createElement("div");
         titleDiv.className = "dashboard-title";

@@ -22,3 +22,7 @@
 ## 2026-03-06 - 🎨 Palette+ - [ARIA compliance for Agent Cards omni-button]
 **Learning:** When adding ARIA states like aria-expanded to custom JS dropdown menus, ensure you also update global event listeners (like click outside) to correctly synchronize the state by selecting the button via its aria-controls attribute.
 **Action:** Use document.querySelector('[aria-controls="${menu.id}"]') inside global close listeners to reset the toggle button's aria-expanded state to false when a menu is closed externally.
+
+## 2026-03-08 - 🎨 Palette+ - [Mobile UX improvement for Jules dashboard]
+**Learning:** Using `flex-wrap: wrap` inside flex items on mobile can cause components to rapidly stack into huge vertical blocks as text overflows. Wrapping text in a sub-container with `min-width: 0` inside a `flex-wrap: nowrap` parent correctly engages the CSS `text-overflow: ellipsis` engine on mobile screens without breaking grid structures.
+**Action:** When migrating from terminal feeds to dashboard cards, explicitly force `nowrap` on the parent row and apply `min-width: 0` plus `overflow: hidden` to textual flex children to preserve screen real estate on mobile devices.
