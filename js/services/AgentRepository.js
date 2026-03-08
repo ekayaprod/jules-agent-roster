@@ -219,15 +219,15 @@ class AgentRepository {
      * Ensures optional fields like `scope` are of the correct type,
      * defaulting to safe values if invalid.
      *
-     * @param {unknown} data - The raw JSON data to validate.
+     * @param {unknown} agentPayload - The raw JSON data to validate.
      * @returns {Array<Object>} Array of valid, sanitized agent objects.
      * @throws {Error} If the input data is not an array.
      */
-    validateAgentsData(data) {
-        if (!Array.isArray(data)) {
+    validateAgentsData(agentPayload) {
+        if (!Array.isArray(agentPayload)) {
             throw new Error("Provide a valid list of agents in the expected format.");
         }
-        return data
+        return agentPayload
             .filter((agent) => {
                 const isValid =
                     agent &&
@@ -266,33 +266,33 @@ class AgentRepository {
      * @see ARCHITECTURE.md#4-trust-boundaries
      * @see ARCHITECTURE.md#7-security-model
      * @param {string} key - The dictionary key (agent ingredients).
-     * @param {Object} data - The raw agent data.
+     * @param {Object} agentPayload - The raw agent data.
      * @returns {Object} { valid: boolean, sanitized?: Object, reason?: string }
      */
-    validateCustomAgent(key, data) {
-        if (!data || typeof data !== "object") {
+    validateCustomAgent(key, agentPayload) {
+        if (!agentPayload || typeof agentPayload !== "object") {
             return { valid: false, reason: "Entry is not an object" };
         }
         // Critical: Name is required
         if (
-            !data.name ||
-            typeof data.name !== "string" ||
-            data.name.trim() === ""
+            !agentPayload.name ||
+            typeof agentPayload.name !== "string" ||
+            agentPayload.name.trim() === ""
         ) {
             return { valid: false, reason: "Missing or invalid 'name' field" };
         }
 
         // First Responder: Sanitize optional fields
         // If description exists but is not a string, cast it.
-        if (data.desc !== undefined && typeof data.desc !== "string") {
-            data.desc = String(data.desc);
+        if (agentPayload.desc !== undefined && typeof agentPayload.desc !== "string") {
+            agentPayload.desc = String(agentPayload.desc);
         }
-        if (data.description !== undefined && typeof data.description !== "string") {
-            data.description = String(data.description);
+        if (agentPayload.description !== undefined && typeof agentPayload.description !== "string") {
+            agentPayload.description = String(agentPayload.description);
         }
-        if (data.short_description !== undefined && typeof data.short_description !== "string") {
+        if (agentPayload.short_description !== undefined && typeof agentPayload.short_description !== "string") {
             console.warn(`[First Responder] Sanitizing ${key}: short_description must be string. Casting.`);
-            data.short_description = String(data.short_description);
+            agentPayload.short_description = String(agentPayload.short_description);
         }
 
         // Security: Check for XSS in name/description using a robust pattern
@@ -304,30 +304,30 @@ class AgentRepository {
         // 3. /javascript\s*:|vbscript\s*:/i -> Matches malicious URI schemes often injected into href or src attributes.
         const maliciousPattern = /<\s*(script|iframe|object|embed|style|meta|link|base|svg|math|form|details|button|video|audio|canvas|map|area|plaintext|basefont|listing|xmp)\b|on\w+\s*=|javascript\s*:|vbscript\s*:/i;
         if (
-            maliciousPattern.test(data.name) ||
-            (data.short_description && maliciousPattern.test(data.short_description)) ||
-            (data.desc && maliciousPattern.test(data.desc)) ||
-            (data.description && maliciousPattern.test(data.description))
+            maliciousPattern.test(agentPayload.name) ||
+            (agentPayload.short_description && maliciousPattern.test(agentPayload.short_description)) ||
+            (agentPayload.desc && maliciousPattern.test(agentPayload.desc)) ||
+            (agentPayload.description && maliciousPattern.test(agentPayload.description))
         ) {
             return { valid: false, reason: "Potential malicious content detected" };
         }
 
         // Standardize schema to match agents.json (desc, icon, clean name)
         // Standardize schema
-        if (data.description !== undefined && data.short_description === undefined) {
-            data.short_description = data.description;
-            delete data.description;
+        if (agentPayload.description !== undefined && agentPayload.short_description === undefined) {
+            agentPayload.short_description = agentPayload.description;
+            delete agentPayload.description;
         }
-        if (data.desc !== undefined && data.short_description === undefined) {
-            data.short_description = data.desc;
-            delete data.desc;
-        }
-
-        if (!data.emoji) {
-            data.emoji = '🤖';
+        if (agentPayload.desc !== undefined && agentPayload.short_description === undefined) {
+            agentPayload.short_description = agentPayload.desc;
+            delete agentPayload.desc;
         }
 
-        return { valid: true, sanitized: data };
+        if (!agentPayload.emoji) {
+            agentPayload.emoji = '🤖';
+        }
+
+        return { valid: true, sanitized: agentPayload };
     }
 }
 
