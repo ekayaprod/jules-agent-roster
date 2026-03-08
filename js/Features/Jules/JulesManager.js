@@ -1,14 +1,36 @@
+/**
+ * Manages the core operations for interacting with Jules APIs.
+ * This class orchestrates authentication, source repository discovery,
+ * and handles the lifecycle of agent execution sessions via real-time polling.
+ *
+ * @see README.md#Jules-Manager-Architecture for the overarching flow.
+ */
 class JulesManager {
+    /**
+     * @param {Object} rosterApp - The main application instance.
+     */
     constructor(rosterApp) {
+        /** @type {Object} The main application instance */
         this.app = rosterApp;
+        /** @type {string|null} The current target repository source name */
         this.currentRepo = null;
+        /** @type {number|null} Interval ID for polling the active sessions list */
         this.activeSessionsInterval = null;
+        /** @type {Object<string, number>} Map of session IDs to their polling interval IDs */
         this.julesPollingIntervals = {};
+        /** @type {Set<string>} Track rendered session IDs to prevent duplicate DOM items */
         this.renderedSessionIds = new Set();
+        /** @type {Set<string>} Track session IDs explicitly dismissed by the user */
         this.dismissedSessionIds = new Set();
+        /** @type {Object<string, HTMLElement>} Cached DOM element references */
         this.elements = {};
     }
 
+    /**
+     * Retrieves and caches a DOM element by its ID.
+     * @param {string} id - The DOM element ID.
+     * @returns {HTMLElement|null} The cached element.
+     */
     getEl(id) {
         if (!this.elements[id]) {
             this.elements[id] = document.getElementById(id);
@@ -16,6 +38,10 @@ class JulesManager {
         return this.elements[id];
     }
 
+    /**
+     * Hides a specific session from the UI and ceases its polling interval.
+     * @param {string} sessionId - The ID of the session to dismiss.
+     */
     dismissSession(sessionId) {
         this.dismissedSessionIds.add(sessionId);
         this.renderedSessionIds.delete(sessionId);
@@ -27,6 +53,12 @@ class JulesManager {
         if (item) item.remove();
     }
 
+    /**
+     * Initializes the manager by checking stored credentials and
+     * triggering the authentication flow if required.
+     * @see README.md#1-Initialization-init for the complete auth sequence.
+     * @returns {Promise<void>}
+     */
     async init() {
         const apiKey = StorageUtils.getItem("jules_api_key");
         const settingsModal = this.getEl("settingsModal");
@@ -72,6 +104,12 @@ class JulesManager {
         }
     }
 
+    /**
+     * Fetches the user's available GitHub source repositories and populates
+     * the repository selector UI.
+     * @see README.md#2-Loading-Sources-loadSources
+     * @returns {Promise<void>}
+     */
     async loadSources() {
         const picker = this.getEl("julesRepoPicker");
         if (!picker || !window.julesService) return;
@@ -103,6 +141,13 @@ class JulesManager {
         }
     }
 
+    /**
+     * Fetches and continually polls the active sessions associated with a given
+     * repository source, rendering them to the Jules Terminal dashboard.
+     * @see README.md#3-Session-Management-launchSession--loadActiveSessionsForRepo
+     * @param {string} sourceName - The full API source name (e.g. 'sources/github/owner/repo').
+     * @returns {Promise<void>}
+     */
     async loadActiveSessionsForRepo(sourceName) {
         const terminal = this.getEl("julesTerminal");
         terminal.classList.add('active');
@@ -213,6 +258,14 @@ class JulesManager {
         this.activeSessionsInterval = setInterval(fetchAndRenderSessions, 5000);
     }
 
+    /**
+     * Validates an incoming session payload and determines whether it should
+     * be skipped, updated, or initially rendered to the terminal.
+     * @private
+     * @param {Object} session - The session metadata from the API.
+     * @param {HTMLElement} terminal - The terminal container element.
+     * @param {string} repoPath - The visual path (e.g. 'owner/repo') of the target repo.
+     */
     _processSession(session, terminal, repoPath) {
         const isCompleted = session.outputs && session.outputs.some(o => o.pullRequest);
         if (this.renderedSessionIds.has(session.id)) {
@@ -296,6 +349,14 @@ class JulesManager {
         }
     }
 
+    /**
+     * Executes a new task session on a selected repository using the provided agent's
+     * instructions and user input.
+     * @see README.md#3-Session-Management-launchSession--loadActiveSessionsForRepo
+     * @param {Object} agent - The agent configuration object.
+     * @param {HTMLElement} [btn=null] - Optional launch button to reflect loading state.
+     * @returns {Promise<void>}
+     */
     async launchSession(agent, btn = null) {
         const sourceName = this.getEl("julesRepoPicker").value;
         const userTask = this.getEl("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
@@ -373,6 +434,14 @@ class JulesManager {
         }
     }
 
+    /**
+     * Begins an active 3-second polling interval to fetch deep activity logs for a specific session,
+     * maintaining real-time UI states until completion, failure, or user input is requested.
+     * @see README.md#4-Real-Time-Terminal-Polling-startTerminalPolling
+     * @param {string} sessionId - The active session ID.
+     * @param {HTMLElement} item - The dashboard DOM item representing the session.
+     * @param {string} repoPath - The target repository path.
+     */
     startTerminalPolling(sessionId, item, repoPath) {
         if (!this.julesPollingIntervals) this.julesPollingIntervals = {};
         if (this.julesPollingIntervals[sessionId]) clearInterval(this.julesPollingIntervals[sessionId]);
@@ -408,6 +477,13 @@ class JulesManager {
         }, 3000); // Poll every 3 seconds
     }
 
+    /**
+     * Parses a single activity object from the session logs and updates the
+     * aggregate polling state accumulator.
+     * @private
+     * @param {Object} act - The individual activity record from the API.
+     * @param {Object} state - The accumulator object containing current polling boolean flags.
+     */
     _processActivity(act, state) {
         if (act.progressUpdated) {
             state.lastProgressTitle = act.progressUpdated.title;
@@ -437,6 +513,17 @@ class JulesManager {
         }
     }
 
+    /**
+     * Mutates the session UI based on the computed final polling state, effectively
+     * managing completion states, failures, and required inputs.
+     * @private
+     * @param {string} sessionId - The session ID.
+     * @param {string} repoPath - The GitHub repository target string.
+     * @param {Object} state - The finalized polling flags computed via _processActivity.
+     * @param {HTMLElement} statusBadge - The badge element reflecting progress status.
+     * @param {HTMLElement} metaDiv - The sub-text element beneath the session title.
+     * @param {HTMLElement} statusContainer - The container holding the status badge.
+     */
     _updatePollingState(sessionId, repoPath, state, statusBadge, metaDiv, statusContainer) {
         if (state.isCompleted) {
             statusBadge.className = "status-badge status-completed";
@@ -469,6 +556,11 @@ class JulesManager {
         }
     }
 
+    /**
+     * Tears down all active intervals and resets UI state caches
+     * to prevent memory leaks when navigating or changing scopes.
+     * @see README.md#5-Cleanup-cleanup
+     */
     cleanup() {
         if (this.activeSessionsInterval) {
             clearInterval(this.activeSessionsInterval);
@@ -483,7 +575,18 @@ class JulesManager {
         this.currentRepo = null;
     }
 
-    // Helper for generating dashboard item nodes
+    /**
+     * Helper to consistently construct the complex internal node structure for a
+     * session card within the dashboard terminal UI.
+     * @private
+     * @param {string} emoji - The visual emoji for the session's executing agent.
+     * @param {string} title - The main name of the executing agent or session.
+     * @param {string} meta - Secondary sub-text or repository path.
+     * @param {string} statusId - The element ID for the generated status badge.
+     * @param {string} statusClass - CSS classes to append to the status badge.
+     * @param {string} statusText - The human-readable textual status.
+     * @returns {Array<HTMLElement>} An array containing the generated [infoDiv, statusDiv] elements.
+     */
     _createDashboardItemNodes(emoji, title, meta, statusId, statusClass, statusText) {
         const infoDiv = document.createElement("div");
         infoDiv.className = "dashboard-info";
