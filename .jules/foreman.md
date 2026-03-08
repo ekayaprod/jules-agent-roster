@@ -1,0 +1,3 @@
+## 2026-03-08 - 👷 Foreman - [Javascript Vanilla Class File Paths Enforced]
+**Learning:** In a vanilla JS architecture where files export PascalCase ES6 classes (e.g., `AgentCard`, `ClipboardUtils`), nesting them inside lowercase or kebab-case directories (e.g., `js/ui/agent-card/`) creates naming anarchy and unpredictable import paths. The directory structure should mirror the exported domain convention.
+**Action:** Use PascalCase globally for all Javascript feature, service, utility, and UI component directories (e.g., `js/UI/AgentCard/`) to establish a predictable, strictly aligned file tree that mirrors the actual class names they contain.

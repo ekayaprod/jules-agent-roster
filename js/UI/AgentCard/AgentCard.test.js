@@ -2,8 +2,8 @@
  * @jest-environment jsdom
  */
 const AgentCard = require('./AgentCard');
-const FormatUtils = require('../../utils/FormatUtils');
-const MarkdownRenderer = require('../../utils/MarkdownRenderer');
+const FormatUtils = require('../../Utils/FormatUtils');
+const MarkdownRenderer = require('../../Utils/MarkdownRenderer');
 
 describe('AgentCard', () => {
     let mockAgent;
