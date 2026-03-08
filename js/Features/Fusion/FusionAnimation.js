@@ -91,9 +91,10 @@ class FusionAnimation {
 
     const icon = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
     const displayName = FormatUtils.extractDisplayName(result);
+    const safeDisplayName = FormatUtils.escapeHTML(displayName);
 
     // Set result name with highlighted text and separate emoji
-    if (animResult) animResult.innerHTML = `<span class="highlight">${displayName}</span> ${icon}`;
+    if (animResult) animResult.innerHTML = `<span class="highlight">${safeDisplayName}</span> ${icon}`;
 
     // Determine Result Icon
     if (result.isCustom && result.name) {
