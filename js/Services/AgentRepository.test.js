@@ -27,6 +27,29 @@ describe('AgentRepository', () => {
     });
 
     describe('fetchWithRetry', () => {
+        it('aborts and throws error if fetch takes longer than 10 seconds', async () => {
+            jest.useFakeTimers();
+
+            global.fetch.mockImplementation(async (url, options) => {
+                return new Promise((resolve, reject) => {
+                    options.signal.addEventListener('abort', () => {
+                        const err = new Error('AbortError');
+                        err.name = 'AbortError';
+                        reject(err);
+                    });
+                });
+            });
+
+            const fetchPromise = repo.fetchWithRetry('http://example.com', {}, 0); // 0 retries to prevent recursive looping for this test
+
+            // Advance timers by exactly 10s to trigger the abort controller
+            jest.advanceTimersByTime(10000);
+
+            await expect(fetchPromise).rejects.toThrow("AbortError");
+
+            jest.useRealTimers();
+        });
+
         it('returns response immediately on successful fetch', async () => {
             const mockResponse = { ok: true, json: async () => ({}) };
             global.fetch.mockResolvedValueOnce(mockResponse);
