@@ -5,6 +5,30 @@
 class MarkdownRenderer {
 
     /**
+     * Creates a DOM element from a matched inline markdown string.
+     * @param {string} matchedString - The matched markdown string (e.g. **text**).
+     * @returns {HTMLElement|null} The created DOM element.
+     */
+    static _createInlineElement(matchedString) {
+        if (matchedString.startsWith('**') && matchedString.endsWith('**')) {
+            const strong = document.createElement('strong');
+            strong.textContent = matchedString.substring(2, matchedString.length - 2);
+            return strong;
+        }
+        if (matchedString.startsWith('*') && matchedString.endsWith('*')) {
+            const em = document.createElement('em');
+            em.textContent = matchedString.substring(1, matchedString.length - 1);
+            return em;
+        }
+        if (matchedString.startsWith('`') && matchedString.endsWith('`')) {
+            const code = document.createElement('code');
+            code.textContent = matchedString.substring(1, matchedString.length - 1);
+            return code;
+        }
+        return null;
+    }
+
+    /**
      * Parses a single line for basic inline markdown (**, *, `) and appends to the target element.
      * @param {HTMLElement} element - The target DOM element.
      * @param {string} text - The line of text to parse.
@@ -21,19 +45,9 @@ class MarkdownRenderer {
                 element.appendChild(document.createTextNode(text.substring(lastIndex, match.index)));
             }
 
-            const matchedString = match[0];
-            if (matchedString.startsWith('**') && matchedString.endsWith('**')) {
-                const strong = document.createElement('strong');
-                strong.textContent = matchedString.substring(2, matchedString.length - 2);
-                element.appendChild(strong);
-            } else if (matchedString.startsWith('*') && matchedString.endsWith('*')) {
-                const em = document.createElement('em');
-                em.textContent = matchedString.substring(1, matchedString.length - 1);
-                element.appendChild(em);
-            } else if (matchedString.startsWith('`') && matchedString.endsWith('`')) {
-                const code = document.createElement('code');
-                code.textContent = matchedString.substring(1, matchedString.length - 1);
-                element.appendChild(code);
+            const inlineElement = MarkdownRenderer._createInlineElement(match[0]);
+            if (inlineElement) {
+                element.appendChild(inlineElement);
             }
 
             lastIndex = regex.lastIndex;
