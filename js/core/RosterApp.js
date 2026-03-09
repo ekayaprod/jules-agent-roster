@@ -133,8 +133,11 @@ class RosterApp {
 
     // ⚡ Bolt+: Extracted redundant DOM queries outside of loops and cached the references on initialization.
     this.categoryElements = {};
+    this.categoryLookup = {};
     Object.keys(CONFIG.categories).forEach((key) => {
-      this.categoryElements[key] = document.getElementById(CONFIG.categories[key]);
+      const gridId = CONFIG.categories[key];
+      this.categoryElements[key] = document.getElementById(gridId);
+      this.categoryLookup[gridId] = key;
     });
 
     // Cache static elements used frequently during high-frequency events or initialization
@@ -700,8 +703,8 @@ class RosterApp {
     );
 
     Object.keys(CONFIG.sectionMap).forEach((gridId) => {
-      // ⚡ Bolt+: Utilize cached category elements to prevent repeated query execution
-      const catKey = Object.keys(CONFIG.categories).find(k => CONFIG.categories[k] === gridId);
+      // ⚡ Bolt+: Utilize cached category elements and O(1) reversed lookups to prevent repeated query execution.
+      const catKey = this.categoryLookup[gridId];
       const el = catKey ? this.categoryElements[catKey] : document.getElementById(gridId);
       if (el) observer.observe(el);
     });
