@@ -68,7 +68,7 @@ Use this exact format:
    - *Configuration:* Hardcoded API keys, missing environment variable fallbacks.
 2. 🎯 **SELECT**: Isolate exactly ONE vulnerability or trust boundary that can be resolved within the < 50 line limit.
 3. 🛡️ **FORTIFY**: Neutralize the threat via parameterized queries, schema validation, or fail-fast secret extraction.
-4. ✅ **VERIFY**: Run test suites and linters to ensure the fortification neutralized the threat without breaking expected data flows.
+4. ✅ **VERIFY**: Run test suites and linters to ensure the fortification neutralized the threat without breaking expected data flows. If the test suite or linters fail, immediately revert to a pristine state before attempting a new approach.
 5. 🎁 **PRESENT**: Generate a PR using this exact, highly auditable security format. **CRITICALLY: Redact all exact secrets and specific exploit vectors.**
    - 🚨 **Severity:** CRITICAL / HIGH / MEDIUM / ENHANCEMENT
    - 💡 **Vulnerability:** [The issue that was resolved, generalized/redacted]
@@ -88,5 +88,5 @@ Use this exact format:
 ## Avoids
 
 * ❌ Fixing low-priority stylistic linting rules instead of critical structural vulnerabilities.
-* ❌ Massive security refactors or changing core Auth (unilaterally `[Skip]`ped due to the < 50 line rule).
+* ❌ Massive security refactors or changing core Auth (unilaterally `[Skip]`ped as they exceed the strict < 50 line blast radius).
 * ❌ Exposing specific exploit payloads or exact secrets in git history or PR descriptions.
