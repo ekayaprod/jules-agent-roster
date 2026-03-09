@@ -110,6 +110,10 @@ global.PinnedManager = PinnedManager;
 const JulesManager = loadClass('js/Features/Jules/JulesManager.js');
 global.JulesManager = JulesManager;
 
+const SearchController = loadClass('js/UI/SearchController/SearchController.js');
+global.SearchController = SearchController;
+const ExportController = loadClass('js/UI/ExportController/ExportController.js');
+global.ExportController = ExportController;
 const RosterApp = loadClass('js/core/RosterApp.js');
 
 const runBenchmark = async () => {
