@@ -1,13 +1,18 @@
 /**
- * PromptParser
- * Parses AI agent prompts into structured sections or legacy text.
- * Handles both new XML format and legacy Markdown format.
+ * Utility for parsing AI agent prompts into structured sections or legacy text.
+ * Handles both the new strict XML format and the legacy Markdown format.
+ * @see README.md#promptparser-architecture
  */
 const PromptParser = {
   /**
-   * Parses a raw prompt string into a structured object.
-   * @param {string} rawText - The raw prompt text.
-   * @returns {Object} Parsed result: { format: 'xml'|'legacy', sections: Array, raw: string }
+   * Parses a raw prompt string into a structured object containing format metadata and sections.
+   * It attempts to detect XML boundaries ('<system>', '<task>', '<step>', '<output>') and
+   * uses the native DOMParser to extract valid nodes. If parsing fails, malformed XML is detected,
+   * or the input lacks XML tags, it cleanly falls back to rendering the payload as a legacy string.
+   *
+   * @param {string} rawText - The raw prompt text from the repository or agent definition.
+   * @returns {{ format: 'xml'|'legacy', sections?: Array<{tag: string, content: string, id: string|null, name: string|null}>, raw?: string }} The parsed structured result.
+   * @see README.md#promptparser-architecture
    */
   parsePrompt(rawText) {
     if (!rawText || typeof rawText !== 'string') {

@@ -25,16 +25,6 @@
 **Learning:** The Agent Picker modal `<dialog>` creates an "invisible" dead end by overlaying the UI without modifying the browser's history state, causing the native back button to bypass the modal and unintentionally navigate the user away from the app.
 **Action:** Injected a `history.pushState` operation when opening the modal, and added a global `popstate` event listener to intercept the browser's back button and safely close the modal without losing the underlying application state.
 
-## 2024-05-24 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: Architectural Synthesis]
-
-**Learning:** Core application modules and UI Components often lack explicit architectural mappings and lifecycle documentation, resulting in isolated methods.
-**Action:** Always map the core lifecycle and architectural constraints in a high-level module `README.md` first, then generate granular, strictly typed JSDoc across all major class methods linking back via `@see README.md#Section` to ensure the macro and micro contexts are permanently synchronized.
-
-## 2024-05-24 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: UI Components]
-
-**Learning:** Specific implementation details for UI components (like `AgentCard` lazy loading, `ClipboardUtils` fallbacks, and `ToastNotification` accessibility rules) were hidden within isolated JSDoc comments or completely undocumented, leading to developer confusion regarding system interaction.
-**Action:** Wrote meticulous JSDoc outlining parameter constraints and accessibility patterns for the UI modules (`js/ui/`), and cross-linked them explicitly to newly structured architectural sections within `js/ui/README.md` to ensure the logic and macro intent never drift out of sync.
-
 ## 2026-03-05 - 📰 Publisher - [Responsive Layout Enforced: Raw CSS Media Queries]
 
 **Learning:** The project relies on raw vanilla CSS without standard utility frameworks, meaning responsive standard breakpoints (like `sm:` or `md:`) must be manually defined via `@media (min-width: 640px)` to transition from fluid mobile constraints (`100%` width) to fixed dimensions on larger screens, rather than injecting utility classes.
@@ -94,3 +84,8 @@
 
 **Learning:** Pure DOM implementations for complex Markdown structures like tables and code blocks can become extremely verbose and tricky to state-manage line-by-line without relying on `innerHTML`. However, keeping `.innerHTML` out of AI streams is essential to prevent XSS.
 **Action:** Extended the custom `MarkdownRenderer` utility to manage cursor state natively. Added `codeBlockPre`, `codeBlockCode`, and `tableElement` state tracking within the array loop to construct `<table>`, `<blockquote>`, and `<pre><code>` UI components directly via `document.createElement`, matching the app's visual design system.
+
+## 2026-03-09 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: PromptParser]
+
+**Learning:** When cross-linking granular JSDoc to high-level architecture documents in utility folders (like `js/Utils/PromptParser.js`), legacy documentation naming drift often occurs (e.g. referencing non-existent files like `PromptRenderer.js`), creating organized misinformation that confuses developers.
+**Action:** Always verify that the file names referenced in the high-level `README.md` actually match the existing file tree and update them to accurately reflect the class names and their architectural responsibilities (e.g., `PromptParser Architecture`), linking them with precise `@see README.md#Section` anchor tags.

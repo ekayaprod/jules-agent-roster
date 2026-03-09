@@ -1,9 +1,11 @@
 # Utilities
 
 ## Purpose
+
 This directory contains pure functions and stateless utilities that provide essential support for performance optimization, data rendering, and file operations across the entire application.
 
 ## Quick Start
+
 To debounce a search input:
 
 ```javascript
@@ -16,16 +18,14 @@ const handleSearch = PerformanceUtils.debounce((event) => {
 searchInput.addEventListener('input', handleSearch);
 ```
 
-To render structured XML prompt sections into HTML:
+To parse a raw AI agent prompt payload:
 
 ```javascript
-const parsedPrompt = {
-    role: "Software Architect",
-    context: "Analyze the directory structure."
-};
+const rawPrompt = "<system>Act as a senior engineer</system><task>Optimize the loop</task>";
+const parsedResult = PromptParser.parsePrompt(rawPrompt);
 
-const htmlString = PromptRenderer.renderPrompt(parsedPrompt);
-document.getElementById('prompt-container').innerHTML = htmlString;
+console.log(parsedResult.format); // "xml"
+console.log(parsedResult.sections.length); // 2
 ```
 
 To download a generated file:
@@ -36,9 +36,10 @@ DownloadUtils.downloadBlob(blobData, "output.txt");
 ```
 
 ## Architecture
+
 All modules within `/js/utils/` are completely isolated and free from DOM dependencies, side effects, and state tracking.
 
-1.  **Reusability:** Functions act as standalone helpers without being tied to a specific UI component or domain logic.
-2.  **Performance Tuning:** The `PerformanceUtils.js` module implements debouncing to ensure event handlers attached to fast-firing events (like `input` or `scroll`) do not cause layout thrashing or lag.
-3.  **HTML Generation Engine:** The `PromptRenderer.js` converts parsed JSON structures (originating from `PromptParser.js`) into visual HTML elements using mapping functions, ensuring consistency between `AgentCard` details and `FusionLab` output.
-4.  **Blob File Handling:** The `DownloadUtils.js` abstracts standard file download behavior (Blob creation, URL generation, anchor click simulations) and makes it available globally to the application.
+1. **Reusability:** Functions act as standalone helpers without being tied to a specific UI component or domain logic.
+2. **Performance Tuning:** The `PerformanceUtils.js` module implements debouncing to ensure event handlers attached to fast-firing events (like `input` or `scroll`) do not cause layout thrashing or lag.
+3. **<a id="promptparser-architecture"></a>PromptParser Architecture:** The `PromptParser.js` parses AI agent prompts into structured sections or legacy text. It dynamically detects whether the input string adheres to the strict XML schema (`<system>`, `<task>`, etc.) and uses the native `DOMParser` to extract valid nodes. If parsing fails or tags are missing, it safely falls back to a "legacy" format, ensuring legacy markdown data never crashes the UI.
+4. **Blob File Handling:** The `DownloadUtils.js` abstracts standard file download behavior (Blob creation, URL generation, anchor click simulations) and makes it available globally to the application.
