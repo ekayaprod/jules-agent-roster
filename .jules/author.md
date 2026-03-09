@@ -1,18 +1,11 @@
-## 2024-05-24 - 📘 Author - [Standardized Macro-Documentation Formatting]
-**Learning:** Previous directories like `js/` and `prompts/` lacked consistent, structural documentation (missing "Purpose", "Quick Start", and "Architecture"), causing onboarding friction and forcing developers to reverse-engineer data flow.
-**Action:** Overwrote and generated `README.md` files for major domains, enforcing strict macro-documentation standards with clear, imperative sections.
+# Author's Journal
 
-## 2026-03-03 - 📘 Author - [Missing Architecture Documentation: js/features/fusion]
-**Learning:** Found missing documentation in the `js/features/fusion` directory, which could block developers trying to understand the newly refactored features and logic.
-**Action:** Created `js/features/fusion/README.md` containing Purpose, Quick Start, and Architecture sections in a clear, imperative voice to explain the logic of the fusion lab.
+`2024-05-24 to 2026-03-08`
+**Title**: [Macro-Documentation Backfill]
+**Learning**: Legacy directories (`js/`, `prompts/`, `js/features/`, `js/features/fusion`, `prompts/fusions/`) lacked structural documentation outlining their purpose and architecture. Additionally, the Jules API lacked a defined Swagger spec, causing friction for developers trying to reverse-engineer data flow or construct the application mentally.
+**Action**: Generated missing `README.md` and `swagger.yaml` files, adopting strict, imperative language and explicit "Quick Start" usage instructions.
 
-## 2026-03-05 - 📘 Author - [Missing Architecture Documentation: prompts/fusions]
-**Learning:** Found missing documentation in the `prompts/fusions/` directory, causing ambiguity regarding the distinction between base agents and fusion agent definitions, as well as missing the strict formatting rules for Custom Fusions.
-**Action:** Created `prompts/fusions/README.md` containing Purpose, Quick Start, and Architecture sections in a strict, imperative voice to define the creation and architectural boundaries of Fusion Agents.
-
-## 2026-03-06 - 📘 Author - [Macro-Documentation Generated: Jules API Swagger]
-**Learning:** The Jules API endpoints invoked within `js/services/JulesAPI.js` were entirely undocumented, forcing developers to inspect implementation details (e.g. `POST /sessions` payload structure, `GET /activities` pagination) rather than referring to a dedicated API specification.
-**Action:** Generated a strict OpenAPI specification `js/services/swagger.yaml` documenting the payload schemas, query parameters, and responses for the `sources`, `sessions`, and `activities` endpoints utilized by the application.
-## 2026-03-08 - 📘 Author - [Missing Architecture Documentation: js/features/]
-**Learning:** Found missing documentation in the `js/features/` directory, which could block developers trying to understand the feature-based colocation structure.
-**Action:** Created `js/features/README.md` containing Purpose, Quick Start, and Architecture sections in a clear, imperative voice to explain the logic of feature modules.
+`2026-03-09`
+**Title**: [Synthesize Missing Contribution Guide]
+**Learning**: Found missing `CONTRIBUTING.md` file in the root directory. Further repository inspection revealed a counterintuitive dual-test configuration: standard `npm test` runs performance benchmarks, while `npx jest` is specifically required to execute functional unit tests via JSDOM. Leaving this undocumented creates high onboarding friction.
+**Action**: Synthesized a root `CONTRIBUTING.md` adopting the repository's casual, emoji-heavy tone, explicitly clarifying the required `npm install` setup and the vital distinction between `npm test` and `npx jest` to eliminate developer confusion.
