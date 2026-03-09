@@ -198,15 +198,14 @@ class RosterApp {
     if (this.pinnedManager) {
         const pinnedKeys = this.pinnedManager.getPinned();
         pinnedKeys.forEach(key => {
-             if (isNaN(key)) {
-                let agent = (this.customAgents && this.customAgents[key]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
-                if (agent) {
-                   const category = agent.category || "strategy";
-                   if (categorizedAgents[category]) {
-                       categorizedAgents[category].push({ agent, indexOrKey: key });
-                   }
-                }
-             }
+             if (!isNaN(key)) return;
+
+             let agent = (this.customAgents && this.customAgents[key]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
+             if (!agent) return;
+
+             const category = agent.category || "strategy";
+             if (!categorizedAgents[category]) return;
+             categorizedAgents[category].push({ agent, indexOrKey: key });
         });
     }
 
@@ -373,22 +372,24 @@ class RosterApp {
           if (card && card.classList.contains('flipped')) return;
           e.stopPropagation();
           e.preventDefault();
+
           const index = pinTarget.dataset.index;
-          if (index) {
-              const isPinned = this.pinnedManager.togglePin(index);
-              document.querySelectorAll(`[data-action="toggle-pin"][data-index="${index}"]`).forEach(btn => {
-                  if (isPinned) btn.classList.add('pinned');
-                  else btn.classList.remove('pinned');
-              });
-              if (this._domNodeCache) {
-                  this._domNodeCache.delete(String(index));
-              }
-              this.renderAgents();
-              this.showToast(isPinned ? "Pinned" : "Unpinned");
-              if (this._cardHtmlCache) {
-                  this._cardHtmlCache.delete(String(index));
-                  this._cardHtmlCache.delete(Number(index));
-              }
+          if (!index) return;
+
+          const isPinned = this.pinnedManager.togglePin(index);
+          document.querySelectorAll(`[data-action="toggle-pin"][data-index="${index}"]`).forEach(btn => {
+              if (isPinned) btn.classList.add('pinned');
+              else btn.classList.remove('pinned');
+          });
+
+          if (this._domNodeCache) this._domNodeCache.delete(String(index));
+
+          this.renderAgents();
+          this.showToast(isPinned ? "Pinned" : "Unpinned");
+
+          if (this._cardHtmlCache) {
+              this._cardHtmlCache.delete(String(index));
+              this._cardHtmlCache.delete(Number(index));
           }
           return;
       }
@@ -397,20 +398,21 @@ class RosterApp {
       const frontTarget = e.target.closest('[data-action="flip-card"]');
       if (frontTarget) {
           const card = frontTarget.closest('.flip-card');
-          if (card) {
-              const index = frontTarget.dataset.index;
-              const safeIndex = CSS.escape(String(index));
-              const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
-              if (promptArea && !promptArea.innerHTML.trim()) {
-                  let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
-                  if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
-                  if (agent) {
-                      promptArea.innerHTML = '';
-                      promptArea.appendChild(AgentCard.getPromptNode(agent));
-                  }
+          if (!card) return;
+
+          const index = frontTarget.dataset.index;
+          const safeIndex = CSS.escape(String(index));
+          const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
+
+          if (promptArea && !promptArea.innerHTML.trim()) {
+              let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+              if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
+              if (agent) {
+                  promptArea.innerHTML = '';
+                  promptArea.appendChild(AgentCard.getPromptNode(agent));
               }
-              card.classList.add('flipped');
           }
+          card.classList.add('flipped');
           return;
       }
 
@@ -419,7 +421,8 @@ class RosterApp {
       if (backTarget && !e.target.closest('.prompt-scroll-area') && !e.target.closest('.card-actions')) {
           e.stopPropagation();
           const card = backTarget.closest('.flip-card');
-          if (card) card.classList.remove('flipped');
+          if (!card) return;
+          card.classList.remove('flipped');
           return;
       }
 
@@ -437,10 +440,9 @@ class RosterApp {
               }
           });
 
-          if (dropdown) {
-              const isVisible = dropdown.classList.toggle('visible');
-              toggleTarget.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
-          }
+          if (!dropdown) return;
+          const isVisible = dropdown.classList.toggle('visible');
+          toggleTarget.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
           return;
       }
 
@@ -454,14 +456,20 @@ class RosterApp {
           if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
           if (!agent) return;
 
-          if (actionBtn.dataset.action === "copy-agent") {
+          const action = actionBtn.dataset.action;
+          if (action === "copy-agent") {
               this.copyAgent(index, actionBtn);
               closeDropdownMenu(actionBtn.closest('.dropdown-menu'));
-          } else if (actionBtn.dataset.action === "download-agent") {
+              return;
+          }
+          if (action === "download-agent") {
               DownloadUtils.downloadTextFile(agent.prompt, `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
               closeDropdownMenu(actionBtn.closest('.dropdown-menu'));
-          } else if (actionBtn.dataset.action === "launch-jules") {
+              return;
+          }
+          if (action === "launch-jules") {
               this.julesManager.launchSession(agent, actionBtn);
+              return;
           }
       }
     });
