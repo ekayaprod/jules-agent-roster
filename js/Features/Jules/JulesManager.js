@@ -184,14 +184,7 @@ class JulesManager {
                     if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
                     if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
                     // Filter out sessions that have a merged or closed PR
-                    if (s.outputs && s.outputs.some(o => o.pullRequest && (o.pullRequest.state === 'MERGED' || o.pullRequest.state === 'CLOSED'))) {
-                        return false;
-                    }
-
-                    // Also filter out any sessions the user has actively dismissed
-                    if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) {
-                        return false;
-                    }
+                    if (s.outputs && s.outputs.some(o => o.pullRequest && (o.pullRequest.state === 'MERGED' || o.pullRequest.state === 'CLOSED'))) return false;
 
                     return true;
                 });
