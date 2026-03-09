@@ -168,88 +168,85 @@ class JulesManager {
             clearInterval(this.activeSessionsInterval);
         }
 
-        const fetchAndRenderSessions = async () => {
-            try {
-                if (!window.julesService || !window.julesService.apiKey) return;
+        const boundFetch = () => this._fetchAndRenderSessions(sourceName, terminal);
+        await boundFetch();
+        this.activeSessionsInterval = setInterval(boundFetch, 5000);
+    }
 
-                const sessionsResponse = await window.julesService.getSessions(50);
-                if (!sessionsResponse.sessions) {
-                    if (terminal.querySelector('#fetchingIndicator')) {
-                        terminal.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting Agent launch command...");
-                    }
-                    return;
-                }
+    /**
+     * Internal implementation to fetch active sessions and render them.
+     * @private
+     * @param {string} sourceName - The active repository source name.
+     * @param {HTMLElement} terminal - The terminal UI container.
+     */
+    async _fetchAndRenderSessions(sourceName, terminal) {
+        try {
+            if (!window.julesService || !window.julesService.apiKey) return;
 
-                let repoSessions = sessionsResponse.sessions.filter(s => {
-                    if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
-                    if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
-                    // Filter out sessions that have a merged or closed PR
-                    if (s.outputs && s.outputs.some(o => o.pullRequest && (o.pullRequest.state === 'MERGED' || o.pullRequest.state === 'CLOSED'))) return false;
-
-                    return true;
-                });
-
-                // Sort descending (most recent first) and cap at 5
-                // Assuming API returns chronological order since no timestamp is provided on the list response
-                repoSessions = [...repoSessions].reverse().slice(0, 5);
-
-                const repoPath = sourceName.replace('sources/github/', '');
-
-                // Remove the fetching placeholder if it's there
-                const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
-                if (fetchingIndicator) {
-                    fetchingIndicator.remove();
-                }
-
-                if (repoSessions.length === 0 && terminal.children.length === 0) {
+            const sessionsResponse = await window.julesService.getSessions(50);
+            if (!sessionsResponse.sessions) {
+                if (terminal.querySelector('#fetchingIndicator')) {
                     terminal.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting Agent launch command...");
-                    return;
                 }
-
-                // Keep track of rendered sessions to avoid duplicates
-                if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
-                const currentSessionIds = new Set(repoSessions.map(s => s.id));
-
-                // Clean up removed sessions from UI and polling
-                const existingItems = terminal.querySelectorAll('.dashboard-item');
-                existingItems.forEach(item => {
-                    const id = item.id.replace('session-', '');
-                    if (!id.startsWith('temp-') && !currentSessionIds.has(id)) {
-                        item.remove();
-                        this.renderedSessionIds.delete(id);
-                        if (this.julesPollingIntervals && this.julesPollingIntervals[id]) {
-                            clearInterval(this.julesPollingIntervals[id]);
-                            delete this.julesPollingIntervals[id];
-                        }
-                    }
-                });
-
-                if (repoSessions.length > 0 && terminal.querySelector('.terminal-line:not(#fetchingIndicator)')) {
-                    const awaitingMsg = Array.from(terminal.querySelectorAll('.terminal-line')).find(el => el.textContent.includes('Awaiting Agent launch'));
-                    if (awaitingMsg) awaitingMsg.remove();
-                }
-
-                // Render or update sessions
-                for (const session of repoSessions) {
-                    this._processSession(session, terminal, repoPath);
-                }
-
-                // Enforce DOM order based on sorted array (repoSessions is newest to oldest)
-                // Append each item in order to the terminal so the DOM matches the array visually.
-                for (const session of repoSessions) {
-                    const item = document.getElementById(`session-${session.id}`);
-                    if (item) {
-                        terminal.appendChild(item);
-                    }
-                }
-
-            } catch (err) {
-                console.error("Failed to load active sessions:", err);
+                return;
             }
-        };
 
-        await fetchAndRenderSessions();
-        this.activeSessionsInterval = setInterval(fetchAndRenderSessions, 5000);
+            let repoSessions = sessionsResponse.sessions.filter(s => {
+                if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
+                if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
+                // Filter out sessions that have a merged or closed PR
+                if (s.outputs && s.outputs.some(o => o.pullRequest && (o.pullRequest.state === 'MERGED' || o.pullRequest.state === 'CLOSED'))) return false;
+
+                return true;
+            });
+
+            // Sort descending (most recent first) and cap at 5
+            repoSessions = [...repoSessions].reverse().slice(0, 5);
+            const repoPath = sourceName.replace('sources/github/', '');
+
+            const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
+            if (fetchingIndicator) fetchingIndicator.remove();
+
+            if (repoSessions.length === 0 && terminal.children.length === 0) {
+                terminal.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting Agent launch command...");
+                return;
+            }
+
+            if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
+            const currentSessionIds = new Set(repoSessions.map(s => s.id));
+
+            // Clean up removed sessions from UI and polling
+            const existingItems = terminal.querySelectorAll('.dashboard-item');
+            existingItems.forEach(item => {
+                const id = item.id.replace('session-', '');
+                if (!id.startsWith('temp-') && !currentSessionIds.has(id)) {
+                    item.remove();
+                    this.renderedSessionIds.delete(id);
+                    if (this.julesPollingIntervals && this.julesPollingIntervals[id]) {
+                        clearInterval(this.julesPollingIntervals[id]);
+                        delete this.julesPollingIntervals[id];
+                    }
+                }
+            });
+
+            if (repoSessions.length > 0 && terminal.querySelector('.terminal-line:not(#fetchingIndicator)')) {
+                const awaitingMsg = Array.from(terminal.querySelectorAll('.terminal-line')).find(el => el.textContent.includes('Awaiting Agent launch'));
+                if (awaitingMsg) awaitingMsg.remove();
+            }
+
+            for (const session of repoSessions) {
+                this._processSession(session, terminal, repoPath);
+            }
+
+            // Enforce DOM order based on sorted array (repoSessions is newest to oldest)
+            for (const session of repoSessions) {
+                const item = document.getElementById(`session-${session.id}`);
+                if (item) terminal.appendChild(item);
+            }
+
+        } catch (err) {
+            console.error("Failed to load active sessions:", err);
+        }
     }
 
     /**

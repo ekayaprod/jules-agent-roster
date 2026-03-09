@@ -19,3 +19,8 @@
 
 **Learning:** Dense `else if` chains checking for string prefixes inside `while` loops increase complexity and hide the underlying element creation purpose.
 **Action:** Extract the element creation conditional blocks into a dedicated `_createInlineElement` method with early returns, allowing the core parsing loop to remain flat and strictly focused on traversal and appending.
+
+## 2024-05-24 - 🧶 Untangler - [JulesManager.loadActiveSessionsForRepo logic flattening]
+
+**Learning:** Declaring complex asynchronous polling loops inline inside larger structural methods causes extreme cognitive load and function bloat.
+**Action:** Extract the inline async polling loop into a dedicated, flat `_fetchAndRenderSessions` class method, utilizing early returns to avoid deeply nested conditionals, ensuring the main method remains a readable facade.
