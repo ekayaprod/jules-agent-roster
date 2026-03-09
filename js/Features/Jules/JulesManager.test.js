@@ -52,6 +52,7 @@ describe('JulesManager', () => {
             <button id="closeSettingsBtn"></button>
             <button id="saveSettingsBtn"></button>
             <input id="julesApiKeyInput" />
+            <span id="julesApiKeyError"></span>
             <select id="julesRepoPicker"></select>
             <div id="julesTerminal"></div>
             <div id="julesRunnerPanel"></div>
@@ -127,7 +128,7 @@ describe('JulesManager', () => {
             document.getElementById('julesApiKeyInput').value = '   ';
             await document.getElementById('saveSettingsBtn').click();
 
-            expect(mockToast.show).toHaveBeenCalledWith('Please enter an API Key.');
+            expect(document.getElementById('julesApiKeyError').textContent).toBe('An API Key is required to connect.');
             expect(StorageUtils.setItem).not.toHaveBeenCalled();
         });
     });

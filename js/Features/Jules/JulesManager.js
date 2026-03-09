@@ -66,6 +66,7 @@ class JulesManager {
         const closeBtn = this.getEl("closeSettingsBtn");
         const saveBtn = this.getEl("saveSettingsBtn");
         const keyInput = this.getEl("julesApiKeyInput");
+        const errorSpan = this.getEl("julesApiKeyError");
 
         // Modal Toggles
         const toggleModal = (show) => {
@@ -73,26 +74,47 @@ class JulesManager {
                 keyInput.value = StorageUtils.getItem("jules_api_key");
                 settingsModal.classList.add("visible");
                 setTimeout(() => keyInput.focus(), 10);
+                this._clearKeyError(keyInput, errorSpan);
             } else {
                 settingsModal.classList.remove("visible");
+                this._clearKeyError(keyInput, errorSpan);
             }
         };
 
         openBtn?.addEventListener("click", () => toggleModal(true));
         closeBtn?.addEventListener("click", () => toggleModal(false));
 
+        keyInput?.addEventListener("blur", () => {
+            if (!keyInput.value.trim()) {
+                this._showKeyError(keyInput, errorSpan, "An API Key is required to connect.");
+            } else {
+                this._clearKeyError(keyInput, errorSpan);
+            }
+        });
+
         // Save and Connect Logic
         saveBtn?.addEventListener("click", async () => {
             const key = keyInput.value.trim();
-            if (!key) return this.app.toast.show("Please enter an API Key.");
+            if (!key) {
+                this._showKeyError(keyInput, errorSpan, "An API Key is required to connect.");
+                return;
+            }
 
-            StorageUtils.setItem("jules_api_key", key);
-            toggleModal(false);
-            this.app.toast.show("Connecting to Jules...");
+            try {
+                if (saveBtn) DOMUtils.setButtonState(saveBtn, "loading", "Connecting...");
+                if (keyInput) keyInput.disabled = true;
 
-            if (window.julesService) {
-                window.julesService.configure(key);
-                await this.loadSources();
+                StorageUtils.setItem("jules_api_key", key);
+                toggleModal(false);
+                this.app.toast.show("Connecting to Jules...");
+
+                if (window.julesService) {
+                    window.julesService.configure(key);
+                    await this.loadSources();
+                }
+            } finally {
+                if (saveBtn) DOMUtils.setButtonState(saveBtn, "ready", "Save & Connect");
+                if (keyInput) keyInput.disabled = false;
             }
         });
 
@@ -103,6 +125,24 @@ class JulesManager {
         } else {
             toggleModal(true);
         }
+    }
+
+    _showKeyError(input, span, message) {
+        if (!input || !span) return;
+        input.setAttribute("aria-invalid", "true");
+        input.setAttribute("aria-describedby", span.id);
+        input.style.borderColor = "#ef4444";
+        span.textContent = message;
+        span.style.display = "block";
+    }
+
+    _clearKeyError(input, span) {
+        if (!input || !span) return;
+        input.removeAttribute("aria-invalid");
+        input.removeAttribute("aria-describedby");
+        input.style.borderColor = "";
+        span.textContent = "";
+        span.style.display = "none";
     }
 
     /**
