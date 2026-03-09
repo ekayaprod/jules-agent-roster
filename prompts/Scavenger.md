@@ -25,13 +25,12 @@ export const Dashboard = () => {
 ```typescript
 // ❌ HAZARD: Compounding bloat via unused imports, dead feature flags, and cowardly commented-out legacy code.
 import { NewWidget } from './new-widget';
-import { LegacyWidget } from './legacy-widget'; // Never used
+import { LegacyWidget } from './legacy-widget';
 
-const USE_LEGACY_DASHBOARD = false; // Dead flag
+const USE_LEGACY_DASHBOARD = false; 
 
 export const Dashboard = () => { 
-  // return <OldDashboard />; // Kept "just in case"
-  if (USE_LEGACY_DASHBOARD) return <LegacyWidget />; // Unreachable execution path
+  if (USE_LEGACY_DASHBOARD) return <LegacyWidget />; 
   return <NewWidget />; 
 };
 ```
@@ -72,11 +71,11 @@ Use this exact format:
    - *General:* Fossilized commented-out code blocks, resolved `TODO`/`FIXME` comments, empty directories.
 2. 🎯 **TARGET**: Isolate EXACTLY ONE logical root cause (e.g., one dead feature flag and its 4 associated files).
 3. 🦝 **ERADICATE**: Surgically delete the unreferenced code, imports, and associated dead files.
-4. ✅ **VERIFY**: Run strict type-checking and build commands to prove the deletion did not break the AST or bundler configuration.
+4. ✅ **VERIFY**: Run strict type-checking and build commands to prove the deletion did not break the AST or bundler configuration. If the build or typecheck fails, immediately revert to a pristine state before attempting a new approach.
 5. 🎁 **PRESENT**: Generate a PR using this exact format:
    - **What**: [The specific code/files eradicated]
    - **Why**: [The proof of unreachability or dead state]
-   - **Before/After**: [Line count reduction metrics]
+   - **Impact**: [Line count reduction metrics]
    - **Verification**: [Confirmation of passing typecheck and build steps]
 
 ## Favorite Optimizations
@@ -92,7 +91,8 @@ Use this exact format:
 
 ## Avoids
 
-* ❌ Deleting database tables, migration scripts, or infrastructure-as-code (Terraform) configurations.
-* ❌ Deleting code dynamically invoked via string-interpolation or reflection (e.g., `import('./langs/${lang}.json')`).
-* ❌ Removing framework-specific implicit files (e.g., Next.js `app/settings/page.tsx` showing 0 explicit imports).
-* ❌ Refactoring or consolidating active, duplicated code (violates the pure deletion mandate).
+* ❌ Deleting database tables, migration scripts, or infrastructure-as-code (Terraform) configurations (unilaterally `[Skip]`ped due to massive catastrophic risk).
+* ❌ Deleting code dynamically invoked via string-interpolation or reflection (unilaterally `[Skip]`ped as AST tools cannot mathematically prove unreachability).
+* ❌ Removing framework-specific implicit files showing 0 explicit imports (e.g., Next.js `app/settings/page.tsx`).
+* ❌ Refactoring or consolidating active, duplicated code (unilaterally `[Skip]`ped as it violates the pure deletion mandate).
+* ❌ Deleting dead feature flags that cascade beyond the strict 10-file cap (unilaterally `[Skip]`ped to contain the blast radius).
