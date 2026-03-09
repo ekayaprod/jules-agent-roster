@@ -1,13 +1,3 @@
-const FUSE_OPTIONS = {
-    keys: ["agent.name", "agent.short_description"],
-    threshold: 0.4
-};
-
-const SEARCH_CLUSTERIZE_OPTIONS = {
-    scrollId: 'searchResultsScrollArea',
-    contentId: 'searchResultsGrid'
-};
-
 const OBSERVER_OPTIONS = {
     rootMargin: "-80px 0px -60% 0px",
     threshold: 0
@@ -44,6 +34,8 @@ class RosterApp {
     this._cardHtmlCache = new Map();
     this._domNodeCache = new Map();
     this.julesManager = new JulesManager(this);
+    this.searchController = new SearchController(this);
+    this.exportController = new ExportController(this);
   }
 
   /**
@@ -518,92 +510,8 @@ class RosterApp {
    * @see README.md#search-mechanics
    */
   filterAgents(query) {
-    const search = query.toLowerCase();
-    const searchModeContainer = this.elements.searchModeContainer;
-    const searchResultsGrid = this.elements.searchResultsGrid;
-    const categoryNav = this.elements["category-nav"];
-    
-    if (query.length > 0) {
-      this.elements.clearBtn?.classList.add("visible");
-      searchModeContainer?.classList.remove("hidden");
-      
-      DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "none", "searchResultsGrid");
-      DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "none", "search-mode-header");
-    } else {
-      this.elements.clearBtn?.classList.remove("visible");
-      searchModeContainer?.classList.add("hidden");
-      // Intentionally DO NOT remove the search-active class here.
-      // This prevents the search bar from abruptly collapsing when the user deletes their query via backspace.
-      // The search-active class is managed by the click outside listener and the clearSearch method.
-      
-      DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "", "searchResultsGrid");
-      DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "", "search-mode-header");
-      
-      this.elements.emptyState?.classList.remove("visible");
-      if (this.elements.announcer) this.elements.announcer.textContent = "";
-      return;
-    }
-
-    let visibleCount = 0;
-    const currentUnlockedSize = (this.fusionLab && this.fusionLab.fusionIndex) ? this.fusionLab.fusionIndex.unlockedKeys.size : 0;
-
-    if (!this._searchCache ||
-        this._searchCache.agentCount !== this.agents.length ||
-        this._searchCache.unlockedSize !== currentUnlockedSize) {
-
-        const allAgents = this.agents.map((agent, index) => ({ agent, keyOrIndex: index }));
-        if (this.fusionLab && this.fusionLab.fusionIndex) {
-            this.fusionLab.fusionIndex.unlockedKeys.forEach(key => {
-                let agent = this.customAgents[key] || this.fusionLab.compiler.customAgentsMap[key];
-                if (agent) {
-                    allAgents.push({ agent, keyOrIndex: key });
-                }
-            });
-        }
-
-        const fuse = new Fuse(allAgents, FUSE_OPTIONS);
-
-        this._searchCache = {
-            agentCount: this.agents.length,
-            unlockedSize: currentUnlockedSize,
-            fuseInstance: fuse
-        };
-    }
-
-    const results = this._searchCache.fuseInstance.search(search);
-
-    const htmlResults = results.map(result => {
-        const { agent, keyOrIndex } = result.item;
-        let cardHtml = this._cardHtmlCache.get(keyOrIndex);
-        if (!cardHtml) {
-            const card = AgentCard.create(agent, keyOrIndex, 0);
-            cardHtml = card.outerHTML || ''; 
-            this._cardHtmlCache.set(keyOrIndex, cardHtml);
-        }
-        const delay = `${Math.min(visibleCount * 30, 600)}ms`;
-        const renderedHtml = typeof cardHtml === 'string' ? cardHtml.replace(/animation-delay:\s*0ms;?/, `animation-delay: ${delay};`) : '';
-        visibleCount++;
-        return renderedHtml;
-    });
-
-    if (!this.searchClusterize) {
-      this.searchClusterize = new Clusterize({
-        ...SEARCH_CLUSTERIZE_OPTIONS,
-        rows: htmlResults
-      });
-    } else {
-      this.searchClusterize.update(htmlResults);
-    }
-
-    if (results.length === 0) {
-      this.elements.emptyState?.classList.add("visible");
-      searchModeContainer?.classList.add("hidden");
-    } else {
-      this.elements.emptyState?.classList.remove("visible");
-    }
-
-    if (this.elements.announcer) {
-      this.elements.announcer.textContent = results.length === 0 ? "No protocols found." : `Found ${results.length} protocols.`;
+    if (this.searchController) {
+        this.searchController.filterAgents(query);
     }
   }
 
@@ -613,12 +521,9 @@ class RosterApp {
    * @see README.md#search-mechanics
    */
   clearSearch() {
-    if (this.elements.searchInput) {
-      this.elements.searchInput.value = "";
-      this.filterAgents("");
+    if (this.searchController) {
+        this.searchController.clearSearch();
     }
-    const nav = this.elements["category-nav"];
-    if (nav) nav.classList.remove("search-active");
   }
 
   /**
@@ -629,13 +534,8 @@ class RosterApp {
    * @returns {Promise<void>}
    */
   async copyAgent(index, btn) {
-    let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
-    if (!agent) return;
-
-    const success = await ClipboardUtils.copyText(agent.prompt);
-    if (success) {
-      this.toast.show("Copied to clipboard");
-      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+    if (this.exportController) {
+        return this.exportController.copyAgent(index, btn);
     }
   }
 
@@ -645,11 +545,9 @@ class RosterApp {
    * @param {HTMLElement} btn - The interacting element to animate on success.
    */
   downloadCustomAgents(btn) {
-    const header = FormatUtils.CUSTOM_ROSTER_HEADER;
-    const validCustomAgents = Object.values(this.customAgents).filter(a => a.prompt && a.prompt.length > 0);
-    if (validCustomAgents.length === 0) return this.toast.show("No custom agents available.");
-    DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(validCustomAgents), "jules_custom_agents.md");
-    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
+    if (this.exportController) {
+        this.exportController.downloadCustomAgents(btn);
+    }
   }
 
   /**
@@ -658,9 +556,9 @@ class RosterApp {
    * @param {HTMLElement} btn - The interacting element to animate on success.
    */
   downloadAll(btn) {
-    const header = FormatUtils.MASTER_ROSTER_HEADER;
-    DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(this.agents), "jules_roster.md");
-    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
+    if (this.exportController) {
+        this.exportController.downloadAll(btn);
+    }
   }
 
   /**
@@ -670,11 +568,8 @@ class RosterApp {
    * @returns {Promise<void>}
    */
   async copyAll(btn) {
-    const header = FormatUtils.MASTER_ROSTER_HEADER;
-    const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(this.agents));
-    if (success) {
-      this.toast.show("Copied to clipboard");
-      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+    if (this.exportController) {
+        return this.exportController.copyAll(btn);
     }
   }
 
