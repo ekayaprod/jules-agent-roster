@@ -19,3 +19,8 @@
 
 **Learning:** Discovered complete lack of logic coverage (~45%) for `MarkdownRenderer.js` handling complex inline elements (`**`, `*`, `\``), multiline code blocks, markdown tables, and grouping of consecutive blockquotes. This module performs critical pure-DOM generation without relying on`innerHTML` to prevent XSS.
 **Action:** Enforced `jsdom` environment and wrote rigorous boundary test suites for `_parseInline` verifying mixed and consecutive markers. Expanded `render`testing to cover unclosed code blocks, ignored table separators (`|---|`), and dynamic blockquote`<br>` concatenation to achieve 100% branch and statement coverage.
+
+2026-03-10
+**Title**: 🕵️ Inspector - [Coverage Added: JulesManager]
+**Learning**: Discovered a complete lack of test coverage for the core `JulesManager` class, exposing fragile boundaries around async polling (`setInterval`), DOM manipulation during session state transitions, and missing negative test coverage for Jules API failures.
+**Action**: Enforced Mode B Stress Testing by creating a rigorous `jsdom` test suite. Used `jest.useFakeTimers()` to strictly control polling cycles, isolated `window.julesService` mocks to verify network failure boundaries, and achieved excellent logic path coverage for session status updates without race conditions.

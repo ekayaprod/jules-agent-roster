@@ -618,3 +618,7 @@ class JulesManager {
         return [infoDiv, statusDiv];
     }
 }
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = JulesManager;
+}
