@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Fusion Lab Project",
   "scripts": {
-    "test": "node benchmark.js",
-    "benchmark": "node benchmark.js"
+    "benchmark": "node benchmark.js",
+    "test": "node benchmark.js"
   },
   "devDependencies": {
     "@xmldom/xmldom": "^0.8.11",
