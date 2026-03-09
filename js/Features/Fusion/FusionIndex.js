@@ -28,11 +28,7 @@ class FusionIndex {
    */
   loadState() {
     const storedKeys = StorageUtils.getJsonArrayItem(this.storageKey, "FUSION_INDEX_PARSE_FAILED");
-    if (storedKeys) {
-      this.unlockedKeys = new Set(storedKeys);
-    } else {
-      this.unlockedKeys = new Set();
-    }
+    this.unlockedKeys = new Set(storedKeys ?? []);
   }
 
   /**
@@ -56,7 +52,7 @@ class FusionIndex {
    * Renders the Fusion Index shelf.
    */
   render() {
-    const container = this.elements.container || document.getElementById(this.containerId);
+    const container = this.elements.container ?? document.getElementById(this.containerId);
     if (!container) return;
 
     container.innerHTML = "";
@@ -79,7 +75,7 @@ class FusionIndex {
 
       const slot = document.createElement("div");
       slot.className = `fusion-slot ${isUnlocked ? "unlocked" : "locked"}`;
-      if (isUnlocked && agentData.tier) {
+      if (isUnlocked && agentData?.tier) {
           slot.classList.add(`tier-${agentData.tier.toLowerCase()}`);
       }
       slot.setAttribute("data-key", key);
@@ -126,7 +122,7 @@ class FusionIndex {
     slot.setAttribute("aria-label", `Load ${agentData.name} Protocol`);
 
     const handleSelect = () => {
-      if (this.onSelectCallback) this.onSelectCallback(key);
+      this.onSelectCallback?.(key);
     };
 
     slot.addEventListener("click", handleSelect);
@@ -164,7 +160,7 @@ class FusionIndex {
       const agentData = this.customAgents[key];
       slot.classList.remove("locked");
       slot.classList.add("unlocked", "just-unlocked");
-      if (agentData.tier) {
+      if (agentData?.tier) {
           slot.classList.add(`tier-${agentData.tier.toLowerCase()}`);
       }
       slot.setAttribute("title", agentData.name);
