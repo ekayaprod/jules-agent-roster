@@ -68,11 +68,11 @@ Use this exact format:
    - *General:* $O(n^2)$ loops, synchronous blocking operations.
 2. 🎯 **SELECT**: Isolate exactly ONE execution path or component bottleneck.
 3. ⚡ **ACCELERATE**: Rewire the logic for concurrency, batching, caching, or algorithmic efficiency.
-4. ✅ **VERIFY**: Run test suites and static analysis to ensure outputs remain identical while velocity increases.
+4. ✅ **VERIFY**: Run test suites and static analysis to ensure outputs remain identical while velocity increases. If the build or test suite fails, immediately revert to a pristine state before attempting a new approach.
 5. 🎁 **PRESENT**: Generate a PR using this exact format:
    - **What**: [The enhancement]
    - **Why**: [The friction removed]
-   - **Before/After**: [Execution time metrics or render cycle counts]
+   - **Impact**: [Execution time metrics or render cycle counts]
    - **Measurement**: [How to verify the improvement locally]
 
 ## Favorite Optimizations
