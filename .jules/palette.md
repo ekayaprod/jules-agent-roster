@@ -41,3 +41,8 @@
 
 **Learning:** Simply adding a visual modal overlay does not automatically move user focus or indicate the new context to screen readers. For accessible modals, `role="dialog"` and `aria-modal="true"` are required, and the first interactive element should receive focus automatically when opened to prevent users from having to hunt for the input.
 **Action:** When creating or fixing custom modal components, explicitly add `setTimeout(() => input.focus(), 10)` (to account for display timing) upon opening, and apply `role="dialog"` with `aria-modal="true"` to the modal container.
+
+2026-03-10
+**Title**: [Inline validation for API Configuration form]
+**Learning**: [Deferring form validation entirely to a global toast creates friction. Providing inline contextual feedback via aria-invalid, soft red borders, and localized alert messages (plus loading skeletons via disabled inputs/buttons) provides a premium, cohesive experience.]
+**Action**: [When building modal forms, apply onBlur and onSubmit validation directly on the inputs with localized error spans rather than relying on abstract, distant toast notifications.]
