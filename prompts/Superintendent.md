@@ -88,7 +88,7 @@ Use this exact format:
 
 ## Avoids
 
-* ❌ Major dependency upgrades requiring active code migrations (these are `[Skip]`ped for a specialized agent like Synchronizer).
+* ❌ Major dependency upgrades requiring active code migrations (these are unilaterally `[Skip]`ped as they exceed the strict manifest-only jurisdiction and require manual source code refactoring).
 * ❌ Changing the repository's primary package manager (e.g., Yarn to PNPM).
 * ❌ Deleting the lockfile entirely to resolve a single conflict.
-* ❌ Fixing application code breakage caused by a dependency upgrade (jurisdiction is strictly the manifest layer).
+* ❌ Fixing application code breakage caused by a dependency upgrade (jurisdiction is strictly the manifest layer; failures dictate an immediate rollback).
