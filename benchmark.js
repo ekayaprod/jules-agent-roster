@@ -31,25 +31,54 @@ global.Fuse = class Fuse {
 };
 
 // Global DOM Mocks for testing algorithms in a pure Node environment
+const createMockElement = (id = '') => {
+    const attributes = {};
+    const classes = new Set();
+    return {
+        id,
+        setAttribute: (k, v) => attributes[k] = v,
+        getAttribute: (k) => attributes[k],
+        removeAttribute: (k) => delete attributes[k],
+        classList: {
+            add: (c) => classes.add(c),
+            remove: (c) => classes.delete(c),
+            contains: (c) => classes.has(c),
+            toggle: (c) => {
+                if (classes.has(c)) { classes.delete(c); return false; }
+                else { classes.add(c); return true; }
+            }
+        },
+        addEventListener: () => {},
+        style: {},
+        className: '',
+        innerHTML: '',
+        innerText: '',
+        textContent: '',
+        appendChild: (child) => child,
+        focus: () => {},
+        close: () => {},
+        showModal: () => {},
+        querySelectorAll: () => [],
+        querySelector: () => null,
+        value: '',
+        contains: () => false
+    };
+};
+
+const elementMap = {};
+const getMockElement = (id) => {
+    if (!elementMap[id]) elementMap[id] = createMockElement(id);
+    return elementMap[id];
+};
+
 global.document = {
-    getElementById: (id) => {
-        return { style: {}, classList: { add: () => {}, remove: () => {} }, appendChild: () => {}, focus: () => {} };
-    },
-    createElement: () => {
-        const attributes = {};
-        return {
-            setAttribute: (k, v) => attributes[k] = v,
-            getAttribute: (k) => attributes[k],
-            removeAttribute: (k) => delete attributes[k],
-            classList: { add: () => {}, remove: () => {} },
-            addEventListener: () => {},
-            style: {},
-            className: '',
-            innerHTML: ''
-        };
-    },
+    getElementById: (id) => getMockElement(id),
+    createElement: (tag) => createMockElement(),
     querySelectorAll: () => [],
-    querySelector: () => ({ classList: { add: () => {}, remove: () => {} }, addEventListener: () => {}, focus: () => {} }),
+    querySelector: (sel) => {
+        if (typeof sel === 'string' && sel.startsWith('#')) return getMockElement(sel.substring(1));
+        return createMockElement();
+    },
     createDocumentFragment: () => ({ appendChild: () => {} }),
     addEventListener: () => {}
 };
@@ -96,38 +125,22 @@ const runBenchmark = async () => {
 
     // Fix: Properly mock elements so appending results works and index gets tested
     roster.elements = {
-        clearBtn: null,
-        searchInput: null,
-        emptyState: null,
-        announcer: null
+        clearBtn: getMockElement('clearBtn'),
+        searchInput: getMockElement('searchInput'),
+        emptyState: getMockElement('emptyState'),
+        announcer: getMockElement('announcer'),
+        searchModeContainer: getMockElement('searchModeContainer'),
+        searchResultsGrid: getMockElement('searchResultsGrid'),
+        'category-nav': getMockElement('category-nav')
     };
 
-    global.document.getElementById = (id) => {
-        if (id === 'agentPickerModal' || id === 'closePickerBtn' || id === 'pickerSearch' || id === 'clearPickerSearchEmptyBtn' || id === 'pickerEmptyState' || id === 'pickerAnnouncer') return { addEventListener: () => {}, close: () => {}, showModal: () => {}, setAttribute: () => {}, removeAttribute: () => {}, style: {}, innerText: '', focus: () => {} };
-        if (id === 'searchResultsGrid') {
-            return {
-                innerHTML: '',
-                appendChild: () => {}
-            };
+    // Override some specific behaviors for benchmark consistency
+    getMockElement('pickerGrid').querySelectorAll = () => {
+        const arr = [];
+        for (let i = 0; i < 5000; i++) {
+            arr.push(createMockElement());
         }
-
-        if (id === 'pickerScrollArea') {
-            return {
-                addEventListener: () => {}
-            };
-        }
-
-        if (id === 'pickerGrid') return { addEventListener: () => {}, appendChild: () => {},
-            querySelectorAll: () => {
-                const arr = [];
-                for (let i = 0; i < 5000; i++) {
-                    arr.push({ getAttribute: () => 'picker agent ' + i, style: {}, setAttribute: () => {} });
-                }
-                return arr;
-            },
-            innerHTML: ''
-        };
-        return { style: {}, classList: { add: () => {}, remove: () => {} }, appendChild: () => {}, focus: () => {}, addEventListener: () => {} };
+        return arr;
     };
 
     // 1. RosterApp Benchmark
@@ -145,16 +158,28 @@ const runBenchmark = async () => {
 
     // Setup FusionLab
     roster.fusionLab = new FusionLab();
-    roster.fusionLab.compiler = new FusionCompiler([], {});
+    roster.fusionLab.compiler = new FusionCompiler(mockAgents, {
+        "Agent 0,Agent 1": { name: "Fusion 1", prompt: "Fusion 1 Prompt", category: "strategy" }
+    });
+    // Mock FusionIndex
+    roster.fusionLab.fusionIndex = {
+        unlockedKeys: new Set(["Agent 0,Agent 1"])
+    };
+
     // Mock modal open behavior to initialize Fuse index once
-    const fakeModal = { showModal: () => {}, setAttribute: () => {}, addEventListener: () => {}, removeAttribute: () => {}, close: () => {} };
-    const originalGetElementById = global.document.getElementById;
-    global.document.getElementById = (id) => id === 'agentPickerModal' ? fakeModal : originalGetElementById(id);
+    const fakeModal = getMockElement('agentPickerModal');
 
     // Call openPicker which now internally caches `pickerFuse` based on Pacesetter optimizations
-    global.document.getElementById = (id) => { if(id==='agentPickerModal') return fakeModal; return originalGetElementById(id); };
     roster.fusionLab.picker = new AgentPicker(mockAgents, () => {}, () => {});
     roster.fusionLab.picker.openPicker('slotA', null);
+
+    // Re-run filter benchmark with unlocked fusion to test cache invalidation logic
+    start = performance.now();
+    for (let i = 0; i < 5; i++) {
+        roster.filterAgents("fusion");
+    }
+    duration = (performance.now() - start) / 5;
+    console.log(`RosterApp search with unlocked fusions: ${duration.toFixed(2)}ms`);
 
     console.log("✅ All benchmarks passed within structural limits.");
 };
