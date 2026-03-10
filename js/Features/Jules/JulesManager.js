@@ -251,19 +251,18 @@ class JulesManager {
             if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
             const currentSessionIds = new Set(repoSessions.map(s => s.id));
 
-            // Clean up removed sessions from UI and polling
-            const existingItems = terminal.querySelectorAll('.dashboard-item');
-            existingItems.forEach(item => {
-                const id = item.id.replace('session-', '');
-                if (!id.startsWith('temp-') && !currentSessionIds.has(id)) {
-                    item.remove();
+            // ⚡ Bolt+: Replaced expensive terminal.querySelectorAll() DOM traversal during polling with an O(1) iteration over the in-memory renderedSessionIds Set.
+            for (const id of this.renderedSessionIds) {
+                if (!currentSessionIds.has(id)) {
+                    const item = document.getElementById(`session-${id}`);
+                    if (item) item.remove();
                     this.renderedSessionIds.delete(id);
                     if (this.julesPollingIntervals && this.julesPollingIntervals[id]) {
                         clearInterval(this.julesPollingIntervals[id]);
                         delete this.julesPollingIntervals[id];
                     }
                 }
-            });
+            }
 
             if (repoSessions.length > 0 && terminal.querySelector('.terminal-line:not(#fetchingIndicator)')) {
                 const awaitingMsg = Array.from(terminal.querySelectorAll('.terminal-line')).find(el => el.textContent.includes('Awaiting Agent launch'));
