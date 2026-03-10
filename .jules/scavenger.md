@@ -179,7 +179,3 @@ Action: [How to apply next time]
 ## YYYY-MM-DD - 🦅 Scavenger - [Purged Zero-Reference CSS Classes]
 **Learning:** Tools like `uncss` or `PurgeCSS` can surface CSS debris that appears "dead" to generic regex searches. However, these tools sometimes flag actively injected JS classes or utility classes that are not statically analyzable.
 **Action:** Always cross-reference `uncss` findings against the full codebase (JS source and HTML) to mathematically prove a class is zero-reference before surgical eradication.
-
-## YYYY-MM-DD - 🦝 Scavenger - [Purged Zero-Reference DOM Overlays and Extracted Ghost Class]
-**Learning:** A refactored animation ghost class \`FusionAnimation.js\` was instantiated but never implemented, leading to unreachable HTML bindings (such as \`fusionErrorText\`, \`copyFusionBtn\`) that were stranded in the controller state.
-**Action:** When an AST tool flags a module as unreferenced, surgically strip out its initialization sites and any surrounding floating logic (like stranded DOM bindings or wrappers) that exist merely to handle the dead dependency, ensuring safe, line-by-line removal without triggering large regex mismatches.

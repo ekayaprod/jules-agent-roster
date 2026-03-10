@@ -4,6 +4,7 @@ class FusionLab {
     this.compiler = null;
     this.lastFusionResult = null;
     this.picker = null;
+    this.animation = typeof FusionAnimation !== "undefined" ? new FusionAnimation() : null;
     // Internal State for Selection
     this.state = {
       slotA: null,
@@ -50,9 +51,9 @@ class FusionLab {
     // ⚡ Bolt+: Extracted redundant DOM queries outside of individual methods and cached them here to prevent layout thrashing and repeated execution overhead.
     this.elements = {
         fuseBtn: document.getElementById("fuseBtn"),
-        slotACard: document.getElementById("slotACard"),
+                slotACard: document.getElementById("slotACard"),
         slotBCard: document.getElementById("slotBCard"),
-        fusionResultContainer: document.getElementById("fusionResultContainer"),
+                        fusionResultContainer: document.getElementById("fusionResultContainer"),
         resetLabBtn: document.getElementById("resetLabBtn"),
         // ⚡ Bolt+: Cached fusionLabContent query to prevent repeated DOM lookups during high-frequency reset/fusion interactions.
         labContent: document.getElementById("fusionLabContent"),
@@ -180,7 +181,6 @@ class FusionLab {
     if (fuseBtn) {
       DOMUtils.setButtonState(fuseBtn, "error", "Ignite Fusion Protocol");
     }
-
   }
 
   /**
@@ -188,7 +188,6 @@ class FusionLab {
    */
   clearError() {
     const fuseBtn = this.elements.fuseBtn;
-
 
     if (fuseBtn) {
       fuseBtn.classList.remove("error");
@@ -251,7 +250,9 @@ class FusionLab {
 
     this.renderFusionResult(result);
 
-    this.showResult();
+    if (this.animation) {
+      this.animation.runAnimation(agentA, agentB, result, () => this.showResult());
+    }
   }
 
   /**

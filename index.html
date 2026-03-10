@@ -377,6 +377,18 @@
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent B</span></div>
         </button>
       </div>
+      <div id="fusionAnimationOverlay" class="fusion-animation-overlay" aria-hidden="true">
+        <div class="anim-arena">
+          <div class="anim-icon left"></div>
+          <div class="anim-shockwave"></div>
+          <div class="anim-particles"></div>
+          <div class="anim-flash"></div>
+          <div class="anim-icon right"></div>
+          <div class="anim-icon result"></div>
+        </div>
+        <div class="anim-result"></div>
+      </div>
+
       <div id="fusionResultContainer" class="grid mt-6 overflow-hidden hidden"></div>
       <button id="resetLabBtn" class="hidden mt-6 secondary" aria-label="Fuse Another Protocol">Fuse Another Protocol</button>
     </div>
@@ -440,6 +452,7 @@
     <script defer src="js/Features/Fusion/FusionCompiler.js"></script>
     <script defer src="js/Features/Fusion/AgentPicker.js"></script>
     <script defer src="js/Features/Fusion/FusionIndex.js"></script>
+    <script defer src="js/Features/Fusion/FusionAnimation.js"></script>
     <script defer src="js/Features/Fusion/FusionLab.js"></script>
     <script defer src="js/Features/Pinned/PinnedManager.js"></script>
     <script defer src="js/Features/Jules/JulesManager.js"></script>
