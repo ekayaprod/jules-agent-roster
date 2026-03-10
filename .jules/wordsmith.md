@@ -18,3 +18,6 @@ This journal tracks inconsistent terminology and Voice & Tone patterns across th
 ## 2026-03-08 - 🖋️ Wordsmith - [Polished Microcopy for Jules API Errors]
 **Learning:** Found passive, technical timeout/HTTP errors like "Jules API Error ${response.status}" and "Request took longer than 15000ms" leaking to the UI via exception throws.
 **Action:** Always rewrite backend timeout and 500-level errors into actionable, polite UI strings that explicitly state the impact ("We encountered a server error", "The request timed out") and provide a concrete resolution path ("Please check your connection and try again").
+## 2026-03-09 - 🖋️ Wordsmith - [Polished Microcopy for Status Codes]
+**Learning:** Found an error message in the Jules API service exposing raw HTTP status codes (e.g., `We encountered a server error (500)`) directly to the user.
+**Action:** Always rewrite backend errors to completely remove technical status codes and jargon, maintaining a clear, actionable resolution path ("Please wait a moment and try again").

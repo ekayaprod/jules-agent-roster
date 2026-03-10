@@ -56,7 +56,7 @@ class JulesService {
 
             if (!response.ok) {
                 const errorText = await response.text();
-                let errorMsg = `We encountered a server error (${response.status}). Please wait a moment and try again.`;
+                let errorMsg = `We encountered a server error. Please wait a moment and try again.`;
                 try {
                     const errJson = JSON.parse(errorText);
                     if (errJson.error?.message) errorMsg = errJson.error.message;
