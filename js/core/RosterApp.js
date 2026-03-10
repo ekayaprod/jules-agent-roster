@@ -142,6 +142,8 @@ class RosterApp {
     staticIds.forEach(id => {
       this.elements[id] = document.getElementById(id);
     });
+
+    this.elements.navPills = document.querySelectorAll(CONFIG.selectors.navPills);
   }
 
   /**
@@ -586,15 +588,22 @@ class RosterApp {
    * natively as the user scrolls past each categorized grid section.
    */
   initObserver() {
-    const navPills = document.querySelectorAll(CONFIG.selectors.navPills);
+    // ⚡ Bolt+: Extracted redundant and repetitive DOM attribute parsing (getAttribute)
+    // outside of the high-frequency intersection observer callback, caching the structured references in memory.
+    const cachedPills = this.elements.navPills
+        ? Array.from(this.elements.navPills).map(pill => ({
+            el: pill,
+            targetHref: pill.getAttribute("href").substring(1)
+        }))
+        : [];
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const targetId = CONFIG.sectionMap[entry.target.id];
-            navPills.forEach((pill) => {
-              const href = pill.getAttribute("href").substring(1);
-              pill.classList.toggle("active", href === targetId);
+            cachedPills.forEach(({ el, targetHref }) => {
+                el.classList.toggle("active", targetHref === targetId);
             });
           }
         });
