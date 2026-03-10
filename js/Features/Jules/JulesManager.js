@@ -194,11 +194,7 @@ class JulesManager {
         terminal.classList.add('active');
 
         if (this.currentRepo !== sourceName) {
-            if (this.julesPollingIntervals) {
-                Object.values(this.julesPollingIntervals).forEach(clearInterval);
-                this.julesPollingIntervals = {};
-            }
-            if (this.renderedSessionIds) this.renderedSessionIds.clear();
+            this._clearPollingAndCache();
 
             terminal.innerHTML = FormatUtils.createTerminalLineHTML("Fetching active sessions...", "fetchingIndicator");
             this.currentRepo = sourceName;
@@ -314,20 +310,7 @@ class JulesManager {
                 metaDiv.textContent = 'PR Drafted: ' + prInfo.title;
             }
             if (item) {
-                item.style.cursor = 'pointer';
-                if (!item.dataset.clickListenerAttached) {
-                    item.addEventListener('click', (e) => {
-                        if (!e.target.closest('.pr-link-btn')) {
-                            this.dismissSession(session.id);
-                        }
-                    });
-                    item.dataset.clickListenerAttached = 'true';
-                }
-
-                if (prInfo && prInfo.url && !item.querySelector(".pr-link-btn")) {
-                    const prLink = DOMUtils.createPRLink(prInfo.url, () => this.dismissSession(session.id));
-                    item.querySelector(".dashboard-status").appendChild(prLink);
-                }
+                this._attachCompletedItemListeners(item, session.id, prInfo);
             }
             return;
         }
@@ -358,19 +341,8 @@ class JulesManager {
         ));
 
         if (isCompleted) {
-            item.style.cursor = 'pointer';
-            item.addEventListener('click', (e) => {
-                if (!e.target.closest('.pr-link-btn')) {
-                    this.dismissSession(session.id);
-                }
-            });
-            item.dataset.clickListenerAttached = 'true';
-
             const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
-            if (prInfo && prInfo.url) {
-                const prLink = DOMUtils.createPRLink(prInfo.url, () => this.dismissSession(session.id));
-                item.querySelector(".dashboard-status").appendChild(prLink);
-            }
+            this._attachCompletedItemListeners(item, session.id, prInfo);
         }
 
         terminal.insertBefore(item, terminal.firstChild);
@@ -597,13 +569,34 @@ class JulesManager {
             clearInterval(this.activeSessionsInterval);
             this.activeSessionsInterval = null;
         }
+        this._clearPollingAndCache();
+        if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
+        this.currentRepo = null;
+    }
+
+    _clearPollingAndCache() {
         if (this.julesPollingIntervals) {
             Object.values(this.julesPollingIntervals).forEach(clearInterval);
             this.julesPollingIntervals = {};
         }
         if (this.renderedSessionIds) this.renderedSessionIds.clear();
-        if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
-        this.currentRepo = null;
+    }
+
+    _attachCompletedItemListeners(item, sessionId, prInfo) {
+        item.style.cursor = 'pointer';
+        if (!item.dataset.clickListenerAttached) {
+            item.addEventListener('click', (e) => {
+                if (!e.target.closest('.pr-link-btn')) {
+                    this.dismissSession(sessionId);
+                }
+            });
+            item.dataset.clickListenerAttached = 'true';
+        }
+
+        if (prInfo && prInfo.url && !item.querySelector(".pr-link-btn")) {
+            const prLink = DOMUtils.createPRLink(prInfo.url, () => this.dismissSession(sessionId));
+            item.querySelector(".dashboard-status").appendChild(prLink);
+        }
     }
 
     /**
