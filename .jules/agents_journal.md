@@ -94,3 +94,8 @@
 
 **Learning:** Discovered that the `ExportController` completely lacks internal state for operations, meaning copy commands must manually aggregate agent definitions from three distinct, deeply-nested domain locations (`app.agents`, `app.customAgents`, `app.fusionLab.compiler.customAgentsMap`) sequentially to resolve valid payloads.
 **Action:** When documenting controller-level operations in vanilla architectures, explicitly map out state aggregation pathways in the architecture `README.md` so downstream consumers understand where the data payload originates before the operation is triggered.
+
+2026-03-10
+**Title**: 🎭 Virtuoso - [Accessible Error UI Injection]
+**Learning**: Raw technical error strings ("Error 500: ...") alienate users and provide no recovery path. When refactoring raw errors into accessible components (`role="alert"`), they must be constructed with pure DOM nodes instead of `innerHTML` to satisfy both XSS prevention rules (🎇 Hologram) and accessibility standards, ensuring empathetic and actionable microcopy is delivered safely.
+**Action**: Replaced a raw string dump in `JulesManager.js` with a purely constructed DOM component containing an SVG icon, empathetic active-voice microcopy, and a `role="alert"` attribute to provide a beautifully styled, accessible recovery path.
