@@ -44,3 +44,8 @@
 ## 2026-03-09 - ⚡ Bolt+ - [Algorithmic Efficiency: High-Frequency Date Sorting]
 **Learning:** During high-frequency polling functions (e.g., refreshing active sessions every 3 seconds), performing `.sort((a, b) => new Date(a.date) - new Date(b.date))` on arrays creates massive O(N log N) instantiation and parsing overhead, causing severe memory allocation spikes and main-thread blockage.
 **Action:** When sorting standard ISO 8601 date strings, completely eliminate the `new Date()` parsing by relying on native string comparison operators (e.g., `a.date < b.date ? -1 : (a.date > b.date ? 1 : 0)`). This achieves mathematically identical chronological sorting with zero allocation overhead.
+
+2026-03-10
+**Title**: [Enhancement Title: Redundant DOM Query Elimination Before Re-Renders]
+**Learning**: [Critical insight: Using expensive operations like `document.querySelectorAll(...).forEach(...)` to mutate DOM state is entirely redundant when the application immediately follows it with a complete, caching-aware component re-render (like `this.renderAgents()`). This creates a structural bottleneck where cycles are wasted on an intermediate DOM state that will instantly be blown away and replaced.]
+**Action**: [Standard applied: Eliminated the redundant `querySelectorAll` DOM mutation step inside the global event handler, strictly delegating the UI state update to the subsequent top-down re-render pipeline, saving synchronous main-thread cycles.]

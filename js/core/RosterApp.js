@@ -376,11 +376,8 @@ class RosterApp {
           if (!index) return;
 
           const isPinned = this.pinnedManager.togglePin(index);
-          document.querySelectorAll(`[data-action="toggle-pin"][data-index="${index}"]`).forEach(btn => {
-              if (isPinned) btn.classList.add('pinned');
-              else btn.classList.remove('pinned');
-          });
 
+          // ⚡ Bolt+: Eliminated redundant DOM query and mutation; state is fully updated by the immediate this.renderAgents() call below.
           if (this._domNodeCache) this._domNodeCache.delete(String(index));
 
           this.renderAgents();
