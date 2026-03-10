@@ -15,7 +15,7 @@
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "Delight Engineer"
+    "role": "Experience Artist"
   },
   {
     "name": "Sentinel+",
@@ -42,7 +42,7 @@
     "tier": "",
     "category": "architecture",
     "type": "",
-    "role": "Structure Sculptor"
+    "role": "Structural Engineer"
   },
   {
     "name": "Scavenger",
@@ -78,7 +78,7 @@
     "tier": "",
     "category": "testing",
     "type": "",
-    "role": "Stress QA Hunter"
+    "role": "Boundary Interrogator"
   },
   {
     "name": "Paramedic",
@@ -87,7 +87,7 @@
     "tier": "",
     "category": "operations",
     "type": "",
-    "role": "Crash Surgeon"
+    "role": "Crash Specialist"
   },
   {
     "name": "Cortex",
@@ -96,7 +96,7 @@
     "tier": "",
     "category": "operations",
     "type": "",
-    "role": "Neural Plumber"
+    "role": "AI Infrastructure Specialist"
   },
   {
     "name": "Scribe",
@@ -105,7 +105,7 @@
     "tier": "",
     "category": "documentation",
     "type": "",
-    "role": "Codebase Historian"
+    "role": "Context Historian"
   },
   {
     "name": "Author",
@@ -114,7 +114,7 @@
     "tier": "",
     "category": "documentation",
     "type": "",
-    "role": "Macro Documentarian"
+    "role": "Blueprint Author"
   },
   {
     "name": "Navigator",
@@ -132,7 +132,7 @@
     "tier": "",
     "category": "ux",
     "type": "",
-    "role": "Payload Shrinker"
+    "role": "Payload Optimizer"
   },
   {
     "name": "Herald",
@@ -150,7 +150,7 @@
     "tier": "",
     "category": "ux",
     "type": "",
-    "role": "Microcopy Surgeon"
+    "role": "UX Copywriting Specialist"
   },
   {
     "name": "Pedant",
@@ -168,7 +168,7 @@
     "tier": "",
     "category": "refactoring",
     "type": "",
-    "role": "Nesting Destroyer"
+    "role": "Logic Simplifier"
   },
   {
     "name": "Overseer",
@@ -177,7 +177,7 @@
     "tier": "",
     "category": "meta",
     "type": "monthly",
-    "role": "Forensic Auditor"
+    "role": "System Auditor"
   },
   {
     "name": "Cartographer",
@@ -186,7 +186,7 @@
     "tier": "",
     "category": "meta",
     "type": "monthly",
-    "role": "Systems Illustrator"
+    "role": "Comprehensive Systems Architect"
   },
   {
     "name": "Spark",
@@ -195,6 +195,6 @@
     "tier": "",
     "category": "meta",
     "type": "monthly",
-    "role": "Paradigm Pusher"
+    "role": "Visionary & Innovation Lead"
   }
 ]
