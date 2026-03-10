@@ -1,19 +1,45 @@
+/**
+ * Configuration options for Fuse.js fuzzy matching.
+ * @type {Object}
+ * @see README.md#fuzzy-matching
+ */
 const FUSE_OPTIONS = {
     keys: ["agent.name", "agent.short_description"],
     threshold: 0.4
 };
 
+/**
+ * Configuration options for Clusterize.js virtual scrolling.
+ * @type {Object}
+ * @see README.md#virtual-scrolling
+ */
 const SEARCH_CLUSTERIZE_OPTIONS = {
     scrollId: 'searchResultsScrollArea',
     contentId: 'searchResultsGrid'
 };
 
+/**
+ * Controller responsible for orchestrating search operations, fuzzy matching, and virtual DOM rendering.
+ * @see README.md#searchcontroller-architecture
+ */
 class SearchController {
+  /**
+   * Initializes the SearchController with the application context.
+   * @param {Object} app - The main RosterApp instance providing global state and DOM elements.
+   * @see README.md#initialization
+   */
   constructor(app) {
     this.app = app;
     this.clusterize = null;
   }
 
+  /**
+   * Filters the agent roster based on a fuzzy search query and updates the virtual scroll view.
+   * Manages DOM visibility toggling and caching of the search index to prevent layout thrashing.
+   * @param {string} query - The search string provided by the user.
+   * @returns {void}
+   * @see README.md#search-mechanics
+   */
   filterAgents(query) {
     const search = query.toLowerCase();
     const searchModeContainer = this.app.elements.searchModeContainer;
@@ -102,6 +128,11 @@ class SearchController {
     }
   }
 
+  /**
+   * Clears the current search query, resets the input field, and restores the default agent grid layout.
+   * @returns {void}
+   * @see README.md#search-mechanics
+   */
   clearSearch() {
     if (this.app.elements.searchInput) {
       this.app.elements.searchInput.value = "";
