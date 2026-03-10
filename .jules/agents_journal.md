@@ -94,3 +94,8 @@
 
 **Learning:** Discovered that the `ExportController` completely lacks internal state for operations, meaning copy commands must manually aggregate agent definitions from three distinct, deeply-nested domain locations (`app.agents`, `app.customAgents`, `app.fusionLab.compiler.customAgentsMap`) sequentially to resolve valid payloads.
 **Action:** When documenting controller-level operations in vanilla architectures, explicitly map out state aggregation pathways in the architecture `README.md` so downstream consumers understand where the data payload originates before the operation is triggered.
+
+## 2024-05-24 - 🦎 Chameleon - [Tactile Feedback Spliced: Global Button States]
+
+**Learning:** The foundational `<button>` CSS reset in the application entirely lacked `:focus-visible` rings and `:active` scale states, rendering all primary and secondary buttons inaccessible for keyboard navigators and lifeless during click interactions.
+**Action:** Injected standard `focus-visible: outline...` and `active: transform scale()` pseudo-classes directly into the base CSS declarations for `button` and `button.secondary` to organically distribute tactile accessibility across the entire UI.
