@@ -55,10 +55,7 @@ class SearchController {
             });
         }
 
-        const fuse = new Fuse(allAgents, {
-    keys: ["agent.name", "agent.short_description"],
-    threshold: 0.4
-});
+        const fuse = new Fuse(allAgents, FUSE_OPTIONS);
 
         this.app._searchCache = {
             agentCount: this.app.agents.length,
@@ -85,10 +82,7 @@ class SearchController {
 
     if (!this.clusterize) {
       this.clusterize = new Clusterize({
-        ...{
-    scrollId: 'searchResultsScrollArea',
-    contentId: 'searchResultsGrid'
-},
+        ...SEARCH_CLUSTERIZE_OPTIONS,
         rows: htmlResults
       });
     } else {

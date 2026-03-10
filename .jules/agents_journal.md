@@ -60,10 +60,10 @@
 **Learning:** Redundant layout wrappers (`<div id="fusionOutputWrapper">`) that solely exist to control visibility or basic flex alignment for a single dynamic child often create unnecessary DOM depth and brittle CSS rules (`#fusionOutputWrapper.open`). When child elements (like `#fusionResultContainer` and `#resetLabBtn`) can manage their own display states via simple utility classes (like `.hidden` and `.fusion-revealed`), the parent wrapper becomes visual dead weight.
 **Action:** Always verify if a container `<div>` is actively controlling Grid/Flexbox positioning for *multiple* siblings that must move together. If the children can be toggled and styled individually without breaking the semantic layout flow, surgically flatten the DOM by deleting the wrapper and migrating the visibility controls directly to the target elements.
 
-## 2026-03-07 - ⏱️ Millisecond - [Render Stability Optimized: Inline Objects Hoisted]
-
-**Learning:** Even in a vanilla JS architecture, dynamically defining configuration objects (like `Fuse` options, `IntersectionObserver` properties, and `Clusterize` base states) inside loops or frequent cache-invalidation flows leads to continuous object recreation and garbage collection overhead.
-**Action:** Extract all static `options` and `config` objects out of class methods and hoist them as top-level `const` references outside the class, preventing unnecessary memory allocation and thrashing during repetitive logic flows like fuzzy searching and chunked DOM generation.
+2024-05-24
+**Title**: ⏱️ Millisecond - [Render Stability Optimized: Inline Objects Hoisted]
+**Learning**: Even in a vanilla JS architecture, dynamically defining configuration objects (like `Fuse` options, `IntersectionObserver` properties, and `Clusterize` base states) inside loops or frequent cache-invalidation flows leads to continuous object recreation and garbage collection overhead.
+**Action**: Extract all static `options` and `config` objects out of class methods and hoist them as top-level `const` references outside the class, preventing unnecessary memory allocation and thrashing during repetitive logic flows like fuzzy searching and chunked DOM generation.
 
 ## 2026-03-07 - 🔖 Lexicon - [Vocabulary Standardized: agentsData -> agents]
 
