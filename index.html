@@ -21,7 +21,6 @@
 
       body { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 1.5rem; line-height: var(--leading-normal); }
 
-      .clusterize-extra-row { grid-column: 1 / -1 !important; }
 
       /* FLIP CARD REFINEMENTS */
       .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 100%; max-width: 100%; height: 11.5rem; position: relative; z-index: 1;}
@@ -207,10 +206,9 @@
       /* UTILS */
       .pin-btn { position: absolute; z-index: 2; right: 0; top: 0; font-size: var(--text-lg); line-height: var(--leading-none); transition: all 0.2s; opacity: 0.6; filter: grayscale(1); min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; color: var(--text-secondary); padding: 0; cursor: pointer; }
       .pin-btn.pinned { opacity: 1; filter: grayscale(0); transform: rotate(15deg); color: var(--text-primary); }
-      .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
       .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem 1rem; }
       .empty-state.visible { display: flex; }
-      .hidden { display: none !important; } .mt-6 { margin-top: 1.5rem; } .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .flex { display: flex; } .truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .hidden { display: none !important; } .mt-6 { margin-top: 1.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .flex { display: flex; }
       .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: white; padding: 1rem 1.5rem; border-radius: 0.5rem; box-shadow: 0 0.625rem 0.9375rem rgba(0,0,0,0.5); transform: translateY(200%); transition: transform 0.3s; z-index: 1000; border: 1px solid #16a34a; font-family: -apple-system, sans-serif;}
       .toast.show { transform: translateY(0); }
       

@@ -175,3 +175,7 @@ Action: [How to apply next time]
 ## YYYY-MM-DD - 🦝 Scavenger - [Purged Dead Benchmark Code in benchmark.js]
 **Learning:** Found a failing benchmark execution loop in `benchmark.js` targeting a `filterPicker` method on `AgentPicker`. Code history revealed `filterPicker` was eradicated and replaced by a different architecture, leaving this benchmark mathematically dead and functionally broken.
 **Action:** When auditing tests or benchmarks, identify blocks that test APIs or methods that no longer exist and surgically remove the execution blocks rather than deleting the entire test file, especially if the file serves multiple purposes or is integrated into package scripts.
+
+## YYYY-MM-DD - 🦅 Scavenger - [Purged Zero-Reference CSS Classes]
+**Learning:** Tools like `uncss` or `PurgeCSS` can surface CSS debris that appears "dead" to generic regex searches. However, these tools sometimes flag actively injected JS classes or utility classes that are not statically analyzable.
+**Action:** Always cross-reference `uncss` findings against the full codebase (JS source and HTML) to mathematically prove a class is zero-reference before surgical eradication.
