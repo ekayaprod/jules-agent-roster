@@ -110,7 +110,7 @@ describe('JulesService', () => {
                 text: async () => "Internal Server Error Text" // Not JSON
             });
 
-            await expect(service._fetch('test')).rejects.toThrow("We encountered a server error (500). Please wait a moment and try again.");
+            await expect(service._fetch('test')).rejects.toThrow("We encountered a server error. Please wait a moment and try again.");
         });
 
         it('should throw error with fallback message on non-ok response with JSON lacking error.message', async () => {
@@ -121,7 +121,7 @@ describe('JulesService', () => {
                 text: async () => JSON.stringify({ someOtherField: "value" })
             });
 
-            await expect(service._fetch('test')).rejects.toThrow("We encountered a server error (403). Please wait a moment and try again.");
+            await expect(service._fetch('test')).rejects.toThrow("We encountered a server error. Please wait a moment and try again.");
         });
     });
 
