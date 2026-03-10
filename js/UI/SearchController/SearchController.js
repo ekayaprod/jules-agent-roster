@@ -24,14 +24,15 @@ class SearchController {
       this.app.elements.clearBtn?.classList.add("visible");
       searchModeContainer?.classList.remove("hidden");
 
-      DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "none", "searchResultsGrid");
-      DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "none", "search-mode-header");
+      // ⚡ Bolt+: Pass pre-cached NodeLists from this.app.elements instead of repeatedly querying the DOM
+      DOMUtils.setElementsDisplay(this.app.elements.grid || CONFIG.selectors.grid, "none", "searchResultsGrid");
+      DOMUtils.setElementsDisplay(this.app.elements.sectionHeader || CONFIG.selectors.sectionHeader, "none", "search-mode-header");
     } else {
       this.app.elements.clearBtn?.classList.remove("visible");
       searchModeContainer?.classList.add("hidden");
 
-      DOMUtils.setElementsDisplay(CONFIG.selectors.grid, "", "searchResultsGrid");
-      DOMUtils.setElementsDisplay(CONFIG.selectors.sectionHeader, "", "search-mode-header");
+      DOMUtils.setElementsDisplay(this.app.elements.grid || CONFIG.selectors.grid, "", "searchResultsGrid");
+      DOMUtils.setElementsDisplay(this.app.elements.sectionHeader || CONFIG.selectors.sectionHeader, "", "search-mode-header");
 
       this.app.elements.emptyState?.classList.remove("visible");
       if (this.app.elements.announcer) this.app.elements.announcer.textContent = "";
