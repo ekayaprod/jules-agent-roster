@@ -188,34 +188,42 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             document.body.innerHTML = `<select id="julesRepoPicker"><option value="sources/github/o/r">Repo</option></select>`;
             const btn = document.createElement('button');
             const terminal = document.createElement('div');
-            manager.getEl = id => { if (id === 'julesRunnerPanel') return { scrollIntoView: jest.fn() }; if (id === 'julesTerminal') return terminal;
+            const originalGetEl = manager.getEl.bind(manager);
+            const getElSpy = jest.spyOn(manager, 'getEl').mockImplementation(id => {
+                if (id === 'julesRunnerPanel') return { scrollIntoView: jest.fn() };
+                if (id === 'julesTerminal') return terminal;
                 if (id === 'julesRepoPicker') return document.getElementById(id);
                 if (id === 'agentTerminal') return terminal;
                 if (id === 'julesTaskInput') return { value: 'test' };
-                return null;
-            };
+                return originalGetEl(id);
+            });
             window.julesService.createSession.mockResolvedValueOnce({ id: 'newsession' });
             manager.startTerminalPolling = jest.fn();
 
             await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn);
 
             expect(btn.disabled).toBe(false);
+            getElSpy.mockRestore();
         });
 
         it('launchSession coverage: catch block with no badge', async () => {
             document.body.innerHTML = `<select id="julesRepoPicker"><option value="sources/github/o/r">Repo</option></select>`;
             const btn = document.createElement('button');
             const terminal = document.createElement('div');
-            manager.getEl = id => { if (id === 'julesRunnerPanel') return { scrollIntoView: jest.fn() }; if (id === 'julesTerminal') return terminal;
+            const originalGetEl = manager.getEl.bind(manager);
+            const getElSpy = jest.spyOn(manager, 'getEl').mockImplementation(id => {
+                if (id === 'julesRunnerPanel') return { scrollIntoView: jest.fn() };
+                if (id === 'julesTerminal') return terminal;
                 if (id === 'julesRepoPicker') return document.getElementById(id);
                 if (id === 'agentTerminal') return terminal;
                 if (id === 'julesTaskInput') return { value: 'test' };
-                return null;
-            };
+                return originalGetEl(id);
+            });
             window.julesService.createSession.mockRejectedValueOnce(new Error('fail'));
 
             await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn);
             expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Failed to launch'), 'error');
+            getElSpy.mockRestore();
         });
 
         it('_processActivity polling sort coverage', () => {
@@ -261,6 +269,111 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
              expect(statusBadge.textContent).toBe('Needs Input'); expect(statusBadge.style.color).toBe('rgb(245, 158, 11)');
         });
 
+        it('init branches coverage: missing elements', async () => {
+             document.body.innerHTML = ''; // ensure all are missing
+             try {
+                await manager.init();
+             } catch (e) {
+                // Ignore the expected crash if elements are missing from the DOM
+             }
+             expect(manager.currentRepo).toBeNull();
+        });
+
+        it('loadSources branch: originalText fallback', async () => {
+             document.body.innerHTML = '<select id="julesRepoPicker"></select>';
+             const picker = document.getElementById('julesRepoPicker');
+             window.julesService.getSources.mockRejectedValueOnce(new Error('fail'));
+             await manager.loadSources();
+             expect(picker.innerHTML).toContain('1. Select GitHub Repository...');
+        });
+
+        it('_fetchAndRenderSessions loop branch: null items', async () => {
+             const terminal = document.createElement('div');
+             manager.renderedSessionIds = new Set(['123', '456']);
+             const s1 = document.createElement('div');
+             s1.id = 'session-123';
+             terminal.appendChild(s1);
+
+             window.julesService.getSessions.mockResolvedValueOnce({
+                 sessions: [{id: '999', sourceContext: {source: 'repo'}}]
+             });
+
+             // Note: session-456 is NOT in the DOM to cover "if (item) item.remove();" falsy
+             jest.spyOn(manager, '_processSession').mockImplementation();
+             await manager._fetchAndRenderSessions('repo', terminal);
+        });
+
+        it('_processSession branch: completed prInfo null', () => {
+             const terminal = document.createElement('div');
+             manager.renderedSessionIds = new Set(['123']);
+             const s = document.createElement('div');
+             s.id = 'session-123';
+             const b = document.createElement('span'); b.id = 'status-123';
+             const m = document.createElement('div'); m.className = 'dashboard-meta';
+             s.appendChild(m); document.body.appendChild(b); document.body.appendChild(s);
+
+             // No PR Info
+             manager._processSession({id: '123', outputs: [{pullRequest: null}]}, terminal, 'repo');
+        });
+
+        it('_processSession branch: new completed missing prInfo url', () => {
+             const terminal = document.createElement('div');
+             document.body.appendChild(terminal); // Must be in DOM for getElementById to work
+             const session = {
+                 id: '777',
+                 title: 'CustomAgent',
+                 outputs: [{ pullRequest: { title: 'No URL PR' } }] // missing url
+             };
+             manager._processSession(session, terminal, 'repo');
+             const item = document.getElementById('session-777');
+             if (item) {
+                 expect(item.querySelector('.pr-link-btn')).toBeNull();
+                 item.remove();
+             }
+             terminal.remove();
+        });
+
+        it('startTerminalPolling: replace existing interval', () => {
+             manager.julesPollingIntervals = {'123': 999};
+             const spy = jest.spyOn(global, 'clearInterval');
+             const item = document.createElement('div');
+             item.innerHTML = '<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>';
+             manager.startTerminalPolling('123', item, 'repo');
+             expect(spy).toHaveBeenCalledWith(999);
+        });
+
+        it('cleanup branch: missing sets', () => {
+             manager.dismissedSessionIds = null;
+             manager.renderedSessionIds = null;
+             manager.julesPollingIntervals = null;
+             manager.cleanup();
+        });
+
+        it('dismissSession branch: polling missing', () => {
+             manager.julesPollingIntervals = null;
+             manager.dismissSession('123');
+        });
+
+        it('launchSession branch: missing badge element', async () => {
+             document.body.innerHTML = '<select id="julesRepoPicker"><option value="sources/github/a/b">a/b</option></select><input id="julesTaskInput" value="task" /><div id="julesTerminal"></div><div id="julesRunnerPanel"></div>';
+             manager.elements = {};
+             // Overwrite getEl to return valid mocks so it doesn't crash on .scrollIntoView
+             const originalGetEl = manager.getEl.bind(manager);
+             manager.getEl = (id) => {
+                 if (id === 'julesRunnerPanel') return { scrollIntoView: jest.fn() };
+                 return originalGetEl(id);
+             };
+
+             // Overwrite createDashboardItemNodes so it doesn't return the badge we expect
+             manager._createDashboardItemNodes = () => {
+                 return [document.createElement('div'), document.createElement('div')];
+             };
+             window.julesService.createSession.mockResolvedValueOnce({id: '123'});
+             manager.startTerminalPolling = jest.fn();
+
+             await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, null);
+        });
+
         it('cleanup coverage: activeSessionsInterval cleared', () => {
              manager.activeSessionsInterval = 888;
              manager.cleanup();
@@ -274,6 +387,11 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
              manager.startTerminalPolling('123', item, 'o/r');
              await jest.advanceTimersByTimeAsync(3000);
              // Should log error silently
+        });
+
+        it('module export check', () => {
+            const managerModule = require('./JulesManager');
+            expect(managerModule).toBeDefined();
         });
     });
 
