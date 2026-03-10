@@ -6,7 +6,7 @@
     "tier": "Legendary",
     "category": "strategy",
     "type": "fusion",
-    "role": "Autonomous Feature Imagineer"
+    "role": "Feature Imagineer"
   },
   "Architect,Author": {
     "name": "City Clerk",
@@ -15,7 +15,7 @@
     "tier": "Uncommon",
     "category": "architecture",
     "type": "fusion",
-    "role": "Architectural Migration Documentarian"
+    "role": "Migration Scribe"
   },
   "Architect,Bolt+": {
     "name": "Slipstream",
@@ -33,7 +33,7 @@
     "tier": "Epic",
     "category": "meta",
     "type": "fusion",
-    "role": "Hyper-Dimensional Structurer"
+    "role": "Chunk Architect"
   },
   "Architect,Curator": {
     "name": "Mason",
@@ -51,7 +51,7 @@
     "tier": "Rare",
     "category": "refactoring",
     "type": "fusion",
-    "role": "High-heat Refactoring Specialist"
+    "role": "High-Heat Refactorer"
   },
   "Architect,Herald": {
     "name": "Registrar",
@@ -69,7 +69,7 @@
     "tier": "Rare",
     "category": "architecture",
     "type": "fusion",
-    "role": "Architectural Encapsulation Specialist"
+    "role": "Encapsulation Specialist"
   },
   "Architect,Modernizer": {
     "name": "Terraformer",
@@ -78,7 +78,7 @@
     "tier": "Uncommon",
     "category": "architecture",
     "type": "fusion",
-    "role": "Topographical Asset Management Specialist"
+    "role": "Asset Reshaper"
   },
   "Architect,Navigator": {
     "name": "Scaffolder",
@@ -96,7 +96,7 @@
     "tier": "Rare",
     "category": "ux",
     "type": "fusion",
-    "role": "Structural UI And Animation Specialist"
+    "role": "UI Animator"
   },
   "Architect,Paramedic": {
     "name": "Surgeon",
@@ -114,7 +114,7 @@
     "tier": "Uncommon",
     "category": "architecture",
     "type": "fusion",
-    "role": "File Convention Enforcer"
+    "role": "Convention Enforcer"
   },
   "Architect,Scavenger": {
     "name": "Renovator",
@@ -123,7 +123,7 @@
     "tier": "Uncommon",
     "category": "ux",
     "type": "fusion",
-    "role": "Structural UX Polish Specialist"
+    "role": "UX Polisher"
   },
   "Architect,Scribe": {
     "name": "Archivist",
@@ -132,7 +132,7 @@
     "tier": "Uncommon",
     "category": "documentation",
     "type": "fusion",
-    "role": "Documentation Synchronizer"
+    "role": "Context Linker"
   },
   "Architect,Sentinel+": {
     "name": "Bastion",
@@ -150,7 +150,7 @@
     "tier": "Uncommon",
     "category": "architecture",
     "type": "fusion",
-    "role": "Domain Grouper"
+    "role": "Semantic Organizer"
   },
   "Architect,Untangler": {
     "name": "Hoister",
@@ -168,7 +168,7 @@
     "tier": "Common",
     "category": "ux",
     "type": "fusion",
-    "role": "Structural Content Designer"
+    "role": "Layout Narrator"
   },
   "Author,Bolt+": {
     "name": "Accountant",
@@ -339,7 +339,7 @@
     "tier": "Rare",
     "category": "ux",
     "type": "fusion",
-    "role": "Elite Payload Delivery Specialist"
+    "role": "Elite Payload Delivery"
   },
   "Bolt+,Helix": {
     "name": "Mitosis",
@@ -375,7 +375,7 @@
     "tier": "Rare",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Engine Of Pure Momentum"
+    "role": "Of Pure Momentum"
   },
   "Bolt+,Navigator": {
     "name": "Hyperloop",
@@ -393,7 +393,7 @@
     "tier": "Common",
     "category": "ux",
     "type": "fusion",
-    "role": "Master Of Perceived Performance"
+    "role": "Of Perceived Performance"
   },
   "Bolt+,Paramedic": {
     "name": "Pacemaker",
@@ -438,7 +438,7 @@
     "tier": "Epic",
     "category": "core",
     "type": "fusion",
-    "role": "Ruthless Mediator Between Speed And Security"
+    "role": "Speed And Security"
   },
   "Bolt+,Superintendent": {
     "name": "Expediter",
@@ -510,7 +510,7 @@
     "tier": "Epic",
     "category": "testing",
     "type": "fusion",
-    "role": "AI Data Schema Specialist"
+    "role": "AI Data Schema"
   },
   "Cortex,Modernizer": {
     "name": "Futurist",
@@ -582,7 +582,7 @@
     "tier": "Epic",
     "category": "meta",
     "type": "fusion",
-    "role": "Heavy Blast Door For Artificial Intelligence"
+    "role": "For Artificial Intelligence"
   },
   "Cortex,Superintendent": {
     "name": "Electrician",
@@ -609,7 +609,7 @@
     "tier": "Uncommon",
     "category": "meta",
     "type": "fusion",
-    "role": "Persona & Tone Specialist"
+    "role": "Persona & Tone"
   },
   "Curator,Helix": {
     "name": "Catalogue",
@@ -825,7 +825,7 @@
     "tier": "Uncommon",
     "category": "documentation",
     "type": "fusion",
-    "role": "Documentation And Centralization Specialist"
+    "role": "Documentation And Centralization"
   },
   "Helix,Sentinel+": {
     "name": "Gatekeeper",
@@ -888,7 +888,7 @@
     "tier": "Uncommon",
     "category": "strategy",
     "type": "fusion",
-    "role": "Release And Roadmap Synchronizer"
+    "role": "And Roadmap Synchronizer"
   },
   "Herald,Palette+": {
     "name": "LiveFeed",
@@ -1005,7 +1005,7 @@
     "tier": "Rare",
     "category": "ux",
     "type": "fusion",
-    "role": "Visual Interaction QA Specialist"
+    "role": "Visual Interaction QA"
   },
   "Inspector,Paramedic": {
     "name": "Guardian",
@@ -1104,7 +1104,7 @@
     "tier": "Rare",
     "category": "operations",
     "type": "fusion",
-    "role": "Modernization And Resilience Specialist"
+    "role": "Modernization And Resilience"
   },
   "Modernizer,Pedant": {
     "name": "Prefect",
@@ -1176,7 +1176,7 @@
     "tier": "Common",
     "category": "ux",
     "type": "fusion",
-    "role": "Onboarding & Routing Specialist"
+    "role": "Onboarding & Routing"
   },
   "Navigator,Paramedic": {
     "name": "Circuit Breaker",
