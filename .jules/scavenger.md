@@ -179,3 +179,8 @@ Action: [How to apply next time]
 ## YYYY-MM-DD - 🦅 Scavenger - [Purged Zero-Reference CSS Classes]
 **Learning:** Tools like `uncss` or `PurgeCSS` can surface CSS debris that appears "dead" to generic regex searches. However, these tools sometimes flag actively injected JS classes or utility classes that are not statically analyzable.
 **Action:** Always cross-reference `uncss` findings against the full codebase (JS source and HTML) to mathematically prove a class is zero-reference before surgical eradication.
+
+## YYYY-MM-DD - 🦝 Scavenger - Extracted copyCustomAgents to ExportController
+
+**Learning:** `RosterApp.js` contained inline logic for copying custom agents (fusions) to the clipboard within the `masterCopyFusionsBtn` event listener. This violated the architecture where `ExportController` should manage all copy and download operations.
+**Action:** Created `copyCustomAgents(btn)` in `ExportController.js`, added a wrapper method in `RosterApp.js`, and refactored the event listener to delegate the logic. This centralizes clipboard operations and removes business logic from the UI binding layer.

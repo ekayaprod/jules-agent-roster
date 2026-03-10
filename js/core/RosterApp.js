@@ -493,13 +493,8 @@ class RosterApp {
         masterDropMenu?.classList.remove("visible");
     });
     this.elements.masterCopyFusionsBtn?.addEventListener("click", async (e) => {
-        const validCustomAgents = Object.values(this.customAgents).filter(a => a.prompt && a.prompt.length > 0);
-        if (validCustomAgents.length === 0) return this.toast.show("No custom agents unlocked yet.");
-        const header = FormatUtils.CUSTOM_ROSTER_HEADER;
-        const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(validCustomAgents));
-        if (success) {
-            this.toast.show("Fusions copied to clipboard");
-            ClipboardUtils.animateButtonSuccess(e.currentTarget, "Copied!");
+        if (this.exportController) {
+            await this.exportController.copyCustomAgents(e.currentTarget);
         }
         masterDropMenu?.classList.remove("visible");
     });
@@ -557,6 +552,18 @@ class RosterApp {
   downloadCustomAgents(btn) {
     if (this.exportController) {
         this.exportController.downloadCustomAgents(btn);
+    }
+  }
+
+  /**
+   * Compiles all unlocked custom agent prompts into a single string
+   * and pushes the payload directly to the user's system clipboard.
+   * @param {HTMLElement} btn - The interacting element to animate on success.
+   * @returns {Promise<void>}
+   */
+  async copyCustomAgents(btn) {
+    if (this.exportController) {
+        return this.exportController.copyCustomAgents(btn);
     }
   }
 

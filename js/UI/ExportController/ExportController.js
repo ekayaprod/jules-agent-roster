@@ -30,8 +30,27 @@ class ExportController {
     }
   }
 
+
+  /**
+   * Compiles and copies all currently valid custom user agents to the clipboard.
+   * Injects the custom roster markdown header prior to formatting.
+   * @param {HTMLElement} btn - The DOM element triggering the action, targeted for success animation.
+   * @returns {Promise<void>}
+   */
+  async copyCustomAgents(btn) {
+    const validCustomAgents = Object.values(this.app.customAgents).filter(a => a.prompt && a.prompt.length > 0);
+    if (validCustomAgents.length === 0) return this.app.toast.show("No custom agents unlocked yet.");
+    const header = FormatUtils.CUSTOM_ROSTER_HEADER;
+    const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(validCustomAgents));
+    if (success) {
+      this.app.toast.show("Fusions copied to clipboard");
+      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+    }
+  }
+
   /**
    * Compiles and triggers a file download of all currently valid custom user agents.
+
    * Injects the custom roster markdown header prior to formatting.
    * @param {HTMLElement} btn - The DOM element triggering the action, targeted for success animation.
    * @returns {void}
