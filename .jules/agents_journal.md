@@ -87,5 +87,10 @@
 
 ## 2026-03-09 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: PromptParser]
 
-**Learning:** When cross-linking granular JSDoc to high-level architecture documents in utility folders (like `js/Utils/PromptParser.js`), legacy documentation naming drift often occurs (e.g. referencing non-existent files like `PromptRenderer.js`), creating organized misinformation that confuses developers.
-**Action:** Always verify that the file names referenced in the high-level `README.md` actually match the existing file tree and update them to accurately reflect the class names and their architectural responsibilities (e.g., `PromptParser Architecture`), linking them with precise `@see README.md#Section` anchor tags.
+**Learning:** Legacy documentation naming drift often references non-existent files (e.g., `PromptRenderer.js` instead of `PromptParser.js`), creating organized misinformation.
+**Action:** Verify file names referenced in `README.md` match the file tree and update them to accurately reflect class names, linking them with precise `@see README.md#Section` tags.
+
+## 2026-03-10 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: ExportController]
+
+**Learning:** Discovered that the `ExportController` completely lacks internal state for operations, meaning copy commands must manually aggregate agent definitions from three distinct, deeply-nested domain locations (`app.agents`, `app.customAgents`, `app.fusionLab.compiler.customAgentsMap`) sequentially to resolve valid payloads.
+**Action:** When documenting controller-level operations in vanilla architectures, explicitly map out state aggregation pathways in the architecture `README.md` so downstream consumers understand where the data payload originates before the operation is triggered.
