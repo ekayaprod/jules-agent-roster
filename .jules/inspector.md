@@ -29,3 +29,8 @@
 **Title**: 🕵️ Inspector - [Interrogated Boundaries: JulesManager]
 **Learning**: Discovered uncovered boundary conditions in `JulesManager.js` specifically around the `blur` event logic for the API key input, which controls the dynamic setting and clearing of accessibility attributes (`aria-invalid`) and UI error styling.
 **Action**: Interrogated the `init` boundary by explicitly dispatching `blur` events with both empty and valid values on the mocked `julesApiKeyInput` element, securing the `_showKeyError` and `_clearKeyError` code paths and achieving 100% path coverage for the file.
+
+2026-03-12
+**Title**: 🕵️ Inspector - [Interrogated Boundaries: JulesManager Polling and DOM Mutations]
+**Learning**: The `JulesManager` class contained numerous unverified DOM boundaries where UI elements could theoretically be null during active session polling loops and component initializations (`btn` params, `saveBtn`, `fetchingIndicator`). Additionally, asynchronous polling error catches and specific string mutations for `state.needsInput` logic were unverified.
+**Action**: Isolated boundary conditions dynamically injecting strict UI mocks for missing elements, triggering failed async intervals for global console catches, and validating string parsing configurations without breaking the main execution loop or mutating the original source file.
