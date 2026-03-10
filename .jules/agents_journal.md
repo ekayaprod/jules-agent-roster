@@ -103,3 +103,7 @@
 
 **Learning:** The foundational `<button>` CSS reset in the application entirely lacked `:focus-visible` rings and `:active` scale states, rendering all primary and secondary buttons inaccessible for keyboard navigators and lifeless during click interactions.
 **Action:** Injected standard `focus-visible: outline...` and `active: transform scale()` pseudo-classes directly into the base CSS declarations for `button` and `button.secondary` to organically distribute tactile accessibility across the entire UI.
+
+## 2024-05-24 - 🌌 Singularity - [Strict Markdown-JSON Alignment Required]
+**Learning:** The project mandates an absolute 1:1 synchronization between the dynamic agent JSON registries (`agents.json` / `custom_agents.json`) and the static `.md` source files in the `prompts/` directory. Roles extracted from markdown headers (e.g., `You are "[Name]" [emoji] - The [Role].`) must perfectly match the corresponding JSON objects.
+**Action:** Spawn agents designed to autonomously scan, extract, and apply these specific markdown structures to maintain a truthful, self-healing registry without relying on heavy external schema validation tools.
