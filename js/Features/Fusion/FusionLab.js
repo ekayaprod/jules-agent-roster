@@ -4,7 +4,6 @@ class FusionLab {
     this.compiler = null;
     this.lastFusionResult = null;
     this.picker = null;
-    this.animation = typeof FusionAnimation !== "undefined" ? new FusionAnimation() : null;
     // Internal State for Selection
     this.state = {
       slotA: null,
@@ -51,11 +50,8 @@ class FusionLab {
     // ⚡ Bolt+: Extracted redundant DOM queries outside of individual methods and cached them here to prevent layout thrashing and repeated execution overhead.
     this.elements = {
         fuseBtn: document.getElementById("fuseBtn"),
-        copyFusionBtn: document.getElementById("copyFusionBtn"),
         slotACard: document.getElementById("slotACard"),
         slotBCard: document.getElementById("slotBCard"),
-        errorEl: document.getElementById("fusionError"),
-        textSpan: document.getElementById("fusionErrorText"),
         fusionResultContainer: document.getElementById("fusionResultContainer"),
         resetLabBtn: document.getElementById("resetLabBtn"),
         // ⚡ Bolt+: Cached fusionLabContent query to prevent repeated DOM lookups during high-frequency reset/fusion interactions.
@@ -75,18 +71,6 @@ class FusionLab {
         this.elements.resetLabBtn.addEventListener("click", () => this.resetLab());
     }
 
-    if (this.elements.copyFusionBtn) {
-      this.elements.copyFusionBtn.addEventListener("click", async (e) => {
-        const btn = e.currentTarget;
-        if (this.lastFusionResult && this.lastFusionResult.prompt) {
-          await ClipboardUtils.copyText(this.lastFusionResult.prompt);
-          if (window.rosterApp && window.rosterApp.showToast) {
-            window.rosterApp.showToast("Fusion copied to clipboard");
-          }
-          ClipboardUtils.animateButtonSuccess(btn, "Copied!");
-        }
-      });
-    }
 
   }
 
@@ -191,32 +175,20 @@ class FusionLab {
    * @param {string} message - The error message to display.
    */
   showError(message) {
-    const errorEl = this.elements.errorEl;
-    const textSpan = this.elements.textSpan;
     const fuseBtn = this.elements.fuseBtn;
 
     if (fuseBtn) {
       DOMUtils.setButtonState(fuseBtn, "error", "Ignite Fusion Protocol");
     }
 
-    if (errorEl) {
-      errorEl.hidden = false;
-      errorEl.setAttribute("aria-live", "assertive");
-      if (textSpan) textSpan.innerText = message;
-    }
   }
 
   /**
    * Clears the error state.
    */
   clearError() {
-    const errorEl = this.elements.errorEl;
     const fuseBtn = this.elements.fuseBtn;
 
-    if (errorEl) {
-      errorEl.hidden = true;
-      errorEl.removeAttribute("aria-live");
-    }
 
     if (fuseBtn) {
       fuseBtn.classList.remove("error");
@@ -279,9 +251,7 @@ class FusionLab {
 
     this.renderFusionResult(result);
 
-    if (this.animation) {
-      this.animation.runAnimation(agentA, agentB, result, () => this.showResult());
-    }
+    this.showResult();
   }
 
   /**
