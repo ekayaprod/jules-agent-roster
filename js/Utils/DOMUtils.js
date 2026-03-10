@@ -66,12 +66,17 @@ class DOMUtils {
    * Bulk updates the display style of elements matching a selector, optionally excluding one by ID.
    * Centralizes duplicated NodeList iteration logic to reduce WET code.
    *
-   * @param {string} selector - The CSS selector to match elements.
+   * @param {string|Iterable<HTMLElement>} selectorOrElements - The CSS selector or an iterable of elements to update.
    * @param {string} display - The CSS display value to apply (e.g., 'none', 'flex', 'block').
    * @param {string} [excludeId=""] - An optional element ID to exclude from the styling.
    */
-  static setElementsDisplay(selector, display, excludeId = "") {
-    document.querySelectorAll(selector).forEach(el => {
+  static setElementsDisplay(selectorOrElements, display, excludeId = "") {
+    // ⚡ Bolt+: Accepts pre-cached NodeLists/Iterables to bypass expensive document.querySelectorAll lookups
+    const elements = typeof selectorOrElements === 'string' ? document.querySelectorAll(selectorOrElements) : selectorOrElements;
+
+    if (!elements) return;
+
+    elements.forEach(el => {
       if (!excludeId || el.id !== excludeId) {
         el.style.display = display;
       }
