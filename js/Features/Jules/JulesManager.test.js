@@ -591,4 +591,106 @@ describe('JulesManager', () => {
             expect(document.getElementById('session-123')).toBeNull();
         });
     });
+
+    describe('Additional Coverage', () => {
+        it('should handle dismissSession when julesPollingIntervals is defined and node does not exist', () => {
+            manager.julesPollingIntervals = { '123': setInterval(() => {}, 1000) };
+            manager.dismissSession('123');
+            expect(manager.julesPollingIntervals['123']).toBeUndefined();
+        });
+
+        it('should clear julesPollingIntervals correctly in loadActiveSessionsForRepo if they exist', async () => {
+            manager.julesPollingIntervals = { '456': setInterval(() => {}, 1000) };
+            const spyClear = jest.spyOn(global, 'clearInterval');
+            await manager.loadActiveSessionsForRepo('sources/github/new/repo');
+            expect(spyClear).toHaveBeenCalled();
+            expect(manager.currentRepo).toBe('sources/github/new/repo');
+        });
+
+        it('should handle createDashboardItemNodes directly to verify nodes', () => {
+            const [info, status] = manager._createDashboardItemNodes('?', 'Agent', 'Meta', 'id-1', 'active', 'Running');
+            expect(info.className).toBe('dashboard-info');
+            expect(status.className).toBe('dashboard-status');
+            expect(status.querySelector('#id-1').textContent).toBe('Running');
+        });
+
+        it('should update state to hasError when activity state indicates FAILED', () => {
+            const state = { hasError: false, lastProgressTitle: '' };
+            manager._processActivity({ error: true }, state);
+            expect(state.hasError).toBe(true);
+            expect(state.lastProgressTitle).toBe('Session Failed.');
+
+            manager.julesPollingIntervals = { '123': setInterval(() => {}, 10) };
+            const badge = document.createElement('div');
+            const metaDiv = document.createElement('div');
+            const container = document.createElement('div');
+
+            manager._updatePollingState('123', 'repo', state, badge, metaDiv, container);
+
+            expect(badge.className).toContain('status-failed');
+            expect(badge.textContent).toBe('Failed');
+            expect(metaDiv.style.color).toBe('rgb(239, 68, 68)');
+            expect(manager.julesPollingIntervals['123']).toBeUndefined();
+        });
+
+        it('should handle isWaitingForInput in _processActivity', () => {
+            const state = { isWaitingForInput: false, lastProgressTitle: '' };
+            manager._processActivity({ userActionRequired: true, title: 'Input required' }, state);
+            expect(state.isWaitingForInput).toBe(true);
+            expect(state.lastProgressTitle).toBe('Input required');
+
+            const badge = document.createElement('div');
+            manager._updatePollingState('123', 'repo', state, badge, document.createElement('div'), document.createElement('div'));
+
+            expect(badge.className).toContain('status-failed');
+            expect(badge.textContent).toBe('Needs Input');
+            expect(badge.style.color).toBe('rgb(245, 158, 11)');
+        });
+
+        it('should handle progressUpdated in _processActivity', () => {
+            const state = { lastProgressTitle: '' };
+            manager._processActivity({ progressUpdated: { title: 'Updating...' } }, state);
+            expect(state.lastProgressTitle).toBe('Updating...');
+        });
+
+        it('should clear everything in cleanup', () => {
+            manager.activeSessionsInterval = setInterval(() => {}, 1000);
+            manager.julesPollingIntervals = { 'tst': setInterval(() => {}, 1000) };
+            manager.renderedSessionIds = new Set(['1']);
+            manager.dismissedSessionIds = new Set(['2']);
+            manager.currentRepo = 'repo';
+
+            manager.cleanup();
+
+            expect(manager.activeSessionsInterval).toBeNull();
+            expect(Object.keys(manager.julesPollingIntervals).length).toBe(0);
+            expect(manager.currentRepo).toBeNull();
+        });
+
+        it('should handle dismissSession with a non-existent element gracefully', () => {
+            manager.julesPollingIntervals = { 'test-sess': 123 };
+            manager.dismissSession('test-sess');
+            expect(manager.dismissedSessionIds.has('test-sess')).toBe(true);
+        });
+
+        it('launchSession focuses input and returns early if repo is empty', async () => {
+            document.body.innerHTML = '<select id="julesRepoPicker"><option value=""></option></select><input id="julesTaskInput" value="task" /><div id="julesRunnerPanel"></div>';
+
+            manager.elements = {};
+            const runnerPanel = document.getElementById('julesRunnerPanel');
+            const repoPicker = document.getElementById('julesRepoPicker');
+            runnerPanel.scrollIntoView = jest.fn();
+            repoPicker.focus = jest.fn();
+
+            manager.elements['julesRunnerPanel'] = runnerPanel;
+            manager.elements['julesRepoPicker'] = repoPicker;
+            manager.elements['julesTaskInput'] = document.getElementById('julesTaskInput');
+
+            manager.app = { toast: { show: jest.fn() } };
+
+            const btn = document.createElement('button');
+            await manager.launchSession({ emoji: 'a', name: 'b', description: 'c', getMarkdown: () => ''}, btn);
+            expect(manager.app.toast.show).toHaveBeenCalledWith("Please select a target repository in the runner panel.", "error");
+        });
+    });
 });
