@@ -131,6 +131,41 @@ describe('JulesManager', () => {
             expect(document.getElementById('julesApiKeyError').textContent).toBe('An API Key is required to connect.');
             expect(StorageUtils.setItem).not.toHaveBeenCalled();
         });
+
+        it('should apply error styling when API key input loses focus with an empty value', async () => {
+            await manager.init();
+            const keyInput = document.getElementById('julesApiKeyInput');
+            const errorSpan = document.getElementById('julesApiKeyError');
+
+            keyInput.value = '   ';
+            keyInput.dispatchEvent(new Event('blur'));
+
+            expect(keyInput.getAttribute('aria-invalid')).toBe('true');
+            expect(keyInput.getAttribute('aria-describedby')).toBe(errorSpan.id);
+            expect(keyInput.style.borderColor).toBe('rgb(239, 68, 68)'); // #ef4444
+            expect(errorSpan.textContent).toBe('An API Key is required to connect.');
+            expect(errorSpan.style.display).toBe('block');
+        });
+
+        it('should clear error styling when API key input loses focus with a valid value', async () => {
+            await manager.init();
+            const keyInput = document.getElementById('julesApiKeyInput');
+            const errorSpan = document.getElementById('julesApiKeyError');
+
+            // Set to error state first
+            keyInput.value = '';
+            keyInput.dispatchEvent(new Event('blur'));
+
+            // Now set a valid value and blur again
+            keyInput.value = 'valid-key';
+            keyInput.dispatchEvent(new Event('blur'));
+
+            expect(keyInput.hasAttribute('aria-invalid')).toBe(false);
+            expect(keyInput.hasAttribute('aria-describedby')).toBe(false);
+            expect(keyInput.style.borderColor).toBe('');
+            expect(errorSpan.textContent).toBe('');
+            expect(errorSpan.style.display).toBe('none');
+        });
     });
 
     describe('loadSources', () => {

@@ -24,3 +24,8 @@
 **Title**: 🕵️ Inspector - [Coverage Added: JulesManager]
 **Learning**: Discovered a complete lack of test coverage for the core `JulesManager` class, exposing fragile boundaries around async polling (`setInterval`), DOM manipulation during session state transitions, and missing negative test coverage for Jules API failures.
 **Action**: Enforced Mode B Stress Testing by creating a rigorous `jsdom` test suite. Used `jest.useFakeTimers()` to strictly control polling cycles, isolated `window.julesService` mocks to verify network failure boundaries, and achieved excellent logic path coverage for session status updates without race conditions.
+
+2026-03-11
+**Title**: 🕵️ Inspector - [Interrogated Boundaries: JulesManager]
+**Learning**: Discovered uncovered boundary conditions in `JulesManager.js` specifically around the `blur` event logic for the API key input, which controls the dynamic setting and clearing of accessibility attributes (`aria-invalid`) and UI error styling.
+**Action**: Interrogated the `init` boundary by explicitly dispatching `blur` events with both empty and valid values on the mocked `julesApiKeyInput` element, securing the `_showKeyError` and `_clearKeyError` code paths and achieving 100% path coverage for the file.
