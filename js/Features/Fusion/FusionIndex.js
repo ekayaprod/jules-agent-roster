@@ -84,28 +84,53 @@ class FusionIndex {
     header.className = "fusion-index-header";
     container.appendChild(header);
 
-    const grid = document.createElement("div");
-    grid.className = "fusion-shelf-grid";
-    container.appendChild(grid);
-
     // Handle both categorized (nested) and flat structures
     const customAgentsSafe = this.customAgents || {};
     const isCategorized = Object.values(customAgentsSafe).some(val => val && typeof val === "object" && val.name === undefined);
 
-    let entriesToRender = [];
     if (isCategorized) {
-        Object.values(customAgentsSafe).forEach(categoryAgents => {
+        Object.entries(customAgentsSafe).forEach(([categoryName, categoryAgents]) => {
             if (categoryAgents && typeof categoryAgents === "object") {
-                Object.entries(categoryAgents).forEach(([k, v]) => {
-                    entriesToRender.push([k, v]);
+                // Category Header
+                const catHeader = document.createElement("h4");
+                catHeader.className = "fusion-category-header";
+                catHeader.innerText = categoryName;
+                container.appendChild(catHeader);
+
+                // Category Grid
+                const grid = document.createElement("div");
+                grid.className = "fusion-shelf-grid";
+                container.appendChild(grid);
+
+                Object.entries(categoryAgents).forEach(([key, agentData]) => {
+                    this._renderSlot(grid, key, agentData);
                 });
             }
         });
     } else {
-        entriesToRender = Object.entries(customAgentsSafe);
+        // Fallback for flat structure
+        const grid = document.createElement("div");
+        grid.className = "fusion-shelf-grid";
+        container.appendChild(grid);
+
+        Object.entries(customAgentsSafe).forEach(([key, agentData]) => {
+             this._renderSlot(grid, key, agentData);
+        });
     }
 
-    entriesToRender.forEach(([key, agentData]) => {
+    // Progress Counter
+    const progress = document.createElement("div");
+    progress.className = "fusion-progress";
+    this.updateProgress(progress);
+    container.appendChild(progress);
+    this.progressEl = progress;
+  }
+
+  /**
+   * Helper to render an individual fusion slot.
+   * @private
+   */
+  _renderSlot(grid, key, agentData) {
       const isUnlocked = this.unlockedKeys.has(key);
       const emoji = this.getEmoji(agentData);
 
@@ -123,14 +148,6 @@ class FusionIndex {
       }
 
       grid.appendChild(slot);
-    });
-
-    // Progress Counter
-    const progress = document.createElement("div");
-    progress.className = "fusion-progress";
-    this.updateProgress(progress);
-    container.appendChild(progress);
-    this.progressEl = progress;
   }
 
   /**
