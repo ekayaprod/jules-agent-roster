@@ -97,6 +97,9 @@ global.AgentCard = {
 };
 
 // Load Core logic
+const RarityEngine = loadClass('js/Features/Fusion/RarityEngine.js');
+global.RarityEngine = RarityEngine;
+
 const FusionCompiler = loadClass('js/Features/Fusion/FusionCompiler.js');
 const FusionIndex = loadClass('js/Features/Fusion/FusionIndex.js');
 const AgentPicker = loadClass('js/Features/Fusion/AgentPicker.js');
