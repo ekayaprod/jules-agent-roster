@@ -13,16 +13,20 @@ class JulesService {
         /** @type {string} */
         this.apiKey = "";
         /** @type {string} */
+        this.githubToken = "";
+        /** @type {string} */
         this.baseUrl = "https://jules.googleapis.com/v1alpha";
     }
 
     /**
      * Configures the service with the user's API key.
      * @param {string} apiKey - The Jules API key.
+     * @param {string} githubToken - The user's GitHub Personal Access Token.
      * @see README.md#julesapi-quick-start for configuration workflow.
      */
-    configure(apiKey) {
+    configure(apiKey, githubToken = "") {
         this.apiKey = apiKey;
+        this.githubToken = githubToken;
     }
 
     /**
@@ -170,8 +174,15 @@ ${userTask}`;
         const repoPath = sourceName.replace('sources/github/', '');
         const url = `https://api.github.com/repos/${repoPath}/pulls?state=open`;
 
+        const options = {};
+        if (this.githubToken) {
+            options.headers = {
+                'Authorization': `token ${this.githubToken}`
+            };
+        }
+
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, options);
             if (!response.ok) {
                 if (response.status === 404) {
                     return [];
