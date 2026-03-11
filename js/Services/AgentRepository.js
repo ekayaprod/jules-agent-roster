@@ -24,6 +24,22 @@ class AgentRepository {
             const customAgents = await this.#loadCustomAgents();
             this.customAgents = customAgents;
 
+            // 🚨 Paramedic: Cured load-order race condition where this.agents was uninitialized during concurrent Promise.all execution.
+            if (typeof RarityEngine !== 'undefined') {
+                Object.values(this.customAgents).forEach(categoryAgents => {
+                    Object.entries(categoryAgents).forEach(([key, agent]) => {
+                        const [name1, name2] = key.split(",");
+                        const a1 = this.agents.find(a => a.name === name1);
+                        const a2 = this.agents.find(a => a.name === name2);
+                        if (a1 && a2) {
+                            agent.tier = RarityEngine.calculateRarity(a1, a2);
+                        } else {
+                            agent.tier = "Common";
+                        }
+                    });
+                });
+            }
+
             return { agents: this.agents, customAgents: this.customAgents };
         } catch (error) {
             console.error("Failed to load agents.json", error);
@@ -69,19 +85,8 @@ class AgentRepository {
                         Object.entries(categoryAgents).map(async ([key, custom]) => {
                             const agent = await this.#processCustomAgent(key, custom);
                             if (agent) {
-                                // Compute tier dynamically using RarityEngine
-                                if (typeof RarityEngine !== 'undefined') {
-                                    const [name1, name2] = key.split(",");
-                                    const a1 = this.agents.find(a => a.name === name1);
-                                    const a2 = this.agents.find(a => a.name === name2);
-                                    if (a1 && a2) {
-                                        agent.tier = RarityEngine.calculateRarity(a1, a2);
-                                    } else {
-                                        agent.tier = "Common";
-                                    }
-                                } else {
-                                    agent.tier = "Common";
-                                }
+                                // Default tier until post-processing resolves the race condition
+                                agent.tier = "Common";
                                 validatedCustomData[categoryName][key] = agent;
                             }
                         })
