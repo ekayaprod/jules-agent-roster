@@ -19,6 +19,9 @@ class FusionIndex {
    * Initializes the Fusion Index.
    */
   init() {
+    // 🚨 RESUSCITATE: Explicitly verifies environment context before executing boot logic.
+    if (typeof document === 'undefined') return;
+
     this.elements.container = document.getElementById(this.containerId);
     this.loadState();
     this.render();
@@ -86,11 +89,12 @@ class FusionIndex {
     container.appendChild(grid);
 
     // Handle both categorized (nested) and flat structures
-    const isCategorized = Object.values(this.customAgents).some(val => val && typeof val === "object" && val.name === undefined);
+    const customAgentsSafe = this.customAgents || {};
+    const isCategorized = Object.values(customAgentsSafe).some(val => val && typeof val === "object" && val.name === undefined);
 
     let entriesToRender = [];
     if (isCategorized) {
-        Object.values(this.customAgents).forEach(categoryAgents => {
+        Object.values(customAgentsSafe).forEach(categoryAgents => {
             if (categoryAgents && typeof categoryAgents === "object") {
                 Object.entries(categoryAgents).forEach(([k, v]) => {
                     entriesToRender.push([k, v]);
@@ -98,7 +102,7 @@ class FusionIndex {
             }
         });
     } else {
-        entriesToRender = Object.entries(this.customAgents);
+        entriesToRender = Object.entries(customAgentsSafe);
     }
 
     entriesToRender.forEach(([key, agentData]) => {

@@ -9,3 +9,8 @@
 ## 2024-05-20 - 🚨 Paramedic - [Boot Race Condition Cure in AgentRepository]
 **Learning:** Computing relational attributes (like Rarity Tier) during concurrent network fetches (`Promise.all`) creates a fatal race condition if the computation depends on sibling data streams (like `this.agents`) that haven't fully resolved.
 **Action:** Extract all relational attribute computations out of concurrent fetch loops and inject them into a synchronous post-processing phase that explicitly executes only after all dependent data arrays are fully initialized.
+
+2024-05-24
+**Title**: [Uninitialized State Triage in FusionIndex Render Pass]
+**Learning**: Directly passing an uninitialized or asynchronously loaded state parameter (e.g., `this.customAgents`) to an iterator pattern like `Object.values()` without guarding causes an immediate `TypeError` that will abort the entire rendering pipeline.
+**Action**: Explicitly verify environment contexts (`typeof document === 'undefined'`) and inject fallback assignments (`this.customAgents || {}`) before passing objects down the execution chain during component initialization.
