@@ -220,22 +220,14 @@ class JulesManager {
                 if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
                 if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
                 
-                // Cross-reference completed sessions with open PRs
                 const isCompleted = s.outputs && s.outputs.some(hasPullRequest);
-                if (isCompleted && this.openPRUrls.size > 0) {
-                    const pr = s.outputs.find(hasPullRequest).pullRequest;
-                    const prUrl = pr.url || pr.html_url;
-                    let isPrStillOpen = false;
-                    this.openPRUrls.forEach(openUrl => {
-                        if (openUrl === prUrl || (pr.number && openUrl.includes(`/${pr.number}`))) {
-                            isPrStillOpen = true;
-                        }
-                    });
-                    if (!isPrStillOpen) {
-                        this.dismissedSessionIds.add(s.id);
-                        return false;
-                    }
+                
+                // ONLY show sessions that are actively running, OR completed ones we JUST watched finish.
+                // This permanently hides 100+ historical completed tasks from spawning infinitely.
+                if (isCompleted && !this.renderedSessionIds.has(s.id)) {
+                    return false;
                 }
+                
                 return true;
             });
 
@@ -289,15 +281,25 @@ class JulesManager {
         
         const agentName = session.title || "Agent Task";
         let agentEmoji = "🤖";
-        const matchedAgent = this.app.agents.find(a => a.name === agentName) ||
-                             (this.app.customAgents && Object.values(this.app.customAgents).find(a => a.name === agentName));
+        let safeAgentName = agentName.replace(/"/g, '');
+        
+        // Deep search for emoji (handles core agents AND nested custom fusion matrices)
+        let matchedAgent = this.app.agents.find(a => safeAgentName.includes(a.name));
+        if (!matchedAgent && this.app.customAgents) {
+            const flatCustoms = [];
+            for (const category in this.app.customAgents) {
+                if (typeof this.app.customAgents[category] === 'object') {
+                    flatCustoms.push(...Object.values(this.app.customAgents[category]));
+                }
+            }
+            matchedAgent = flatCustoms.find(a => a.name && safeAgentName.includes(a.name));
+        }
         if (matchedAgent && matchedAgent.emoji) agentEmoji = matchedAgent.emoji;
 
         const block = document.createElement("div");
         block.className = `term-session-block ${isCompleted ? 'state-completed' : 'state-active'}`;
         block.id = `session-${session.id}`;
 
-        const safeAgentName = agentName.replace(/"/g, '');
         const commandStr = `~ ❯ jules run <span class="term-arg">${agentEmoji} ${safeAgentName}</span>`;
 
         block.innerHTML = `
