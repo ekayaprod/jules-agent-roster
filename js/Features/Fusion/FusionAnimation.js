@@ -56,6 +56,7 @@ class FusionAnimation {
         case "Rare": particleCount = 40; speedMultiplier = 1.2; break;
         case "Epic": particleCount = 160; speedMultiplier = 1.5; break;
         case "Legendary": particleCount = 300; speedMultiplier = 2; break;
+        case "Mythic": particleCount = 500; speedMultiplier = 2.5; break;
       }
 
       const fragment = document.createDocumentFragment();
@@ -73,7 +74,7 @@ class FusionAnimation {
         particle.style.setProperty("--ty", `${ty/16}rem`);
         particle.style.animationDuration = `${0.8 / speedMultiplier}s`;
         // Delay slightly for Legendary to create a fountain effect
-        if (tier === "Legendary" || tier === "Epic") {
+        if (tier === "Legendary" || tier === "Epic" || tier === "Mythic") {
             particle.style.animationDelay = `${1.5 + Math.random() * 1.5}s`;
         } else {
             particle.style.animationDelay = `1.5s`;

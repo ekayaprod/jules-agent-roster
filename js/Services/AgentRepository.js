@@ -65,11 +65,16 @@ class AgentRepository {
             const validatedCustomData = {};
 
             await Promise.all(
-                Object.entries(rawCustomData).map(async ([key, custom]) => {
-                    const agent = await this.#processCustomAgent(key, custom);
-                    if (agent) {
-                        validatedCustomData[key] = agent;
-                    }
+                Object.entries(rawCustomData).map(async ([categoryName, categoryAgents]) => {
+                    validatedCustomData[categoryName] = {};
+                    await Promise.all(
+                        Object.entries(categoryAgents).map(async ([key, custom]) => {
+                            const agent = await this.#processCustomAgent(key, custom);
+                            if (agent) {
+                                validatedCustomData[categoryName][key] = agent;
+                            }
+                        })
+                    );
                 }),
             );
 

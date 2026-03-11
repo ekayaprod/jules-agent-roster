@@ -49,6 +49,17 @@ class FusionIndex {
   }
 
   /**
+   * Helper to retrieve a custom agent from the nested dictionary.
+   */
+  getCustomAgent(key) {
+      if (!this.customAgents) return undefined;
+      for (const category of Object.values(this.customAgents)) {
+          if (category[key]) return category[key];
+      }
+      return undefined;
+  }
+
+  /**
    * Renders the Fusion Index shelf.
    */
   render() {
@@ -64,32 +75,40 @@ class FusionIndex {
     header.className = "fusion-index-header";
     container.appendChild(header);
 
-    // Grid
-    const grid = document.createElement("div");
-    grid.className = "fusion-shelf-grid";
+    // Iterate over nested categories
+    Object.entries(this.customAgents).forEach(([categoryName, categoryAgents]) => {
+        const catHeader = document.createElement("h4");
+        catHeader.innerText = categoryName;
+        catHeader.className = "fusion-index-category";
+        catHeader.style.cssText = "margin: 1.5rem 0 0.5rem 0; font-size: var(--text-sm); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;";
+        container.appendChild(catHeader);
 
-    Object.keys(this.customAgents).forEach((key) => {
-      const agentData = this.customAgents[key];
-      const isUnlocked = this.unlockedKeys.has(key);
-      const emoji = this.getEmoji(agentData);
+        const grid = document.createElement("div");
+        grid.className = "fusion-shelf-grid";
 
-      const slot = document.createElement("div");
-      slot.className = `fusion-slot ${isUnlocked ? "unlocked" : "locked"}`;
-      if (isUnlocked && agentData?.tier) {
-          slot.classList.add(`tier-${agentData.tier.toLowerCase()}`);
-      }
-      slot.setAttribute("data-key", key);
-      slot.setAttribute("title", isUnlocked ? agentData.name : "Locked Protocol");
-      slot.innerHTML = `<span class="slot-icon">${emoji}</span>`;
+        Object.keys(categoryAgents).forEach((key) => {
+          const agentData = categoryAgents[key];
+          const isUnlocked = this.unlockedKeys.has(key);
+          const emoji = this.getEmoji(agentData);
 
-      if (isUnlocked) {
-        this._bindSlotInteractions(slot, agentData, key);
-      }
+          const slot = document.createElement("div");
+          slot.className = `fusion-slot ${isUnlocked ? "unlocked" : "locked"}`;
+          if (isUnlocked && agentData?.tier) {
+              slot.classList.add(`tier-${agentData.tier.toLowerCase()}`);
+          }
+          slot.setAttribute("data-key", key);
+          slot.setAttribute("title", isUnlocked ? agentData.name : "Locked Protocol");
+          slot.innerHTML = `<span class="slot-icon">${emoji}</span>`;
 
-      grid.appendChild(slot);
+          if (isUnlocked) {
+            this._bindSlotInteractions(slot, agentData, key);
+          }
+
+          grid.appendChild(slot);
+        });
+
+        container.appendChild(grid);
     });
-
-    container.appendChild(grid);
 
     // Progress Counter
     const progress = document.createElement("div");
@@ -103,7 +122,12 @@ class FusionIndex {
    * Updates the progress counter.
    */
   updateProgress(element) {
-    const total = Object.keys(this.customAgents).length;
+    let total = 0;
+    if (this.customAgents) {
+        Object.values(this.customAgents).forEach(cat => {
+            total += Object.keys(cat).length;
+        });
+    }
     const current = this.unlockedKeys.size;
     element.innerText = `${current} / ${total} Protocols Discovered`;
   }
@@ -139,7 +163,7 @@ class FusionIndex {
    * @param {string} key - The fusion key.
    */
   unlock(key) {
-    if (!this.customAgents[key]) return;
+    if (!this.getCustomAgent(key)) return;
 
     if (!this.unlockedKeys.has(key)) {
       this.unlockedKeys.add(key);
@@ -157,7 +181,8 @@ class FusionIndex {
     const safeKey = key.replace(/"/g, '\\"');
     const slot = document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
     if (slot) {
-      const agentData = this.customAgents[key];
+      const agentData = this.getCustomAgent(key);
+      if (!agentData) return;
       slot.classList.remove("locked");
       slot.classList.add("unlocked", "just-unlocked");
       if (agentData?.tier) {

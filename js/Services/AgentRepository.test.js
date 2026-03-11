@@ -317,7 +317,9 @@ describe('AgentRepository', () => {
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => ({
-                        "custom1": { name: "Custom", category: "developer" }
+                        "1. Category": {
+                            "custom1": { name: "Custom", category: "developer" }
+                        }
                     })
                 });
 
@@ -327,7 +329,7 @@ describe('AgentRepository', () => {
             expect(results.agents[0].name).toBe("Standard");
 
             expect(Object.keys(results.customAgents)).toHaveLength(1);
-            expect(results.customAgents.custom1.name).toBe("Custom");
+            expect(results.customAgents['1. Category'].custom1.name).toBe("Custom");
 
             expect(repo.fetchWithRetry).toHaveBeenCalledTimes(2);
         });
@@ -343,14 +345,16 @@ describe('AgentRepository', () => {
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => ({
-                        "invalid1": { name: null }, // Invalid
-                        "valid1": { name: "Custom 🔥", category: "developer" } // Valid
+                        "1. Category": {
+                            "invalid1": { name: null }, // Invalid
+                            "valid1": { name: "Custom 🔥", category: "developer" } // Valid
+                        }
                     })
                 });
 
             const results = await repo.fetchAgents();
-            expect(Object.keys(results.customAgents)).toHaveLength(1);
-            expect(results.customAgents.valid1.name).toBe("Custom 🔥");
+            expect(Object.keys(results.customAgents['1. Category'])).toHaveLength(1);
+            expect(results.customAgents['1. Category'].valid1.name).toBe("Custom 🔥");
         });
 
         it('handles processCustomAgent error throwing when fetchPrompt throws internally', async () => {
@@ -358,7 +362,11 @@ describe('AgentRepository', () => {
                 .mockResolvedValueOnce({ ok: true, json: async () => [] }) // Empty std
                 .mockResolvedValueOnce({
                     ok: true,
-                    json: async () => ({ "err1": { name: "Error Agent" } })
+                    json: async () => ({
+                        "1. Category": {
+                            "err1": { name: "Error Agent" }
+                        }
+                    })
                 });
 
             repo.fetchPrompt.mockRejectedValue(new Error("File error"));
@@ -366,7 +374,7 @@ describe('AgentRepository', () => {
             const results = await repo.fetchAgents();
 
             // It swallows the error and returns null, which filters out the custom agent
-            expect(Object.keys(results.customAgents)).toHaveLength(0);
+            expect(Object.keys(results.customAgents['1. Category'])).toHaveLength(0);
         });
 
         it('handles safeJsonParse throwing errors gracefully for standard agents', async () => {
@@ -403,11 +411,13 @@ describe('AgentRepository', () => {
             repo.fetchWithRetry = jest.fn()
                 .mockResolvedValueOnce({ ok: true, json: async () => [] })
                 .mockResolvedValueOnce({ ok: true, json: async () => ({
-                    "no_desc": { name: "Agent" }
+                    "1. Category": {
+                        "no_desc": { name: "Agent" }
+                    }
                 })});
 
             const results = await repo.fetchAgents();
-            expect(results.customAgents.no_desc.name).toBe("Agent");
+            expect(results.customAgents['1. Category'].no_desc.name).toBe("Agent");
         });
     });
 });

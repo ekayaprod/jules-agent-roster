@@ -269,7 +269,17 @@ class FusionLab {
       try {
         const key = [agentA.name, agentB.name].sort().join(",");
         // Check if it's a known custom fusion
-        if (this.fusionIndex.customAgents[key]) {
+        let isKnown = false;
+        if (this.fusionIndex.customAgents) {
+            for (const category of Object.values(this.fusionIndex.customAgents)) {
+                if (category[key]) {
+                    isKnown = true;
+                    break;
+                }
+            }
+        }
+
+        if (isKnown) {
           this.fusionIndex.unlock(key);
         }
       } catch (e) {
