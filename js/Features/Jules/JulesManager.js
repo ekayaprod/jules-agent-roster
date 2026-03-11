@@ -69,23 +69,29 @@ class JulesManager {
      */
     async init() {
         const apiKey = StorageUtils.getItem("jules_api_key");
+        const githubToken = StorageUtils.getItem("github_api_key");
         const settingsModal = this.getEl("settingsModal");
         const openBtn = this.getEl("openSettingsBtn");
         const closeBtn = this.getEl("closeSettingsBtn");
         const saveBtn = this.getEl("saveSettingsBtn");
         const keyInput = this.getEl("julesApiKeyInput");
         const errorSpan = this.getEl("julesApiKeyError");
+        const githubTokenInput = this.getEl("githubTokenInput");
+        const githubTokenErrorSpan = this.getEl("githubTokenError");
 
         // Modal Toggles
         const toggleModal = (show) => {
             if (show) {
                 keyInput.value = StorageUtils.getItem("jules_api_key");
+                if (githubTokenInput) githubTokenInput.value = StorageUtils.getItem("github_api_key");
                 settingsModal.classList.add("visible");
                 setTimeout(() => keyInput.focus(), 10);
                 this._clearKeyError(keyInput, errorSpan);
+                this._clearKeyError(githubTokenInput, githubTokenErrorSpan);
             } else {
                 settingsModal.classList.remove("visible");
                 this._clearKeyError(keyInput, errorSpan);
+                this._clearKeyError(githubTokenInput, githubTokenErrorSpan);
             }
         };
 
@@ -103,6 +109,8 @@ class JulesManager {
         // Save and Connect Logic
         saveBtn?.addEventListener("click", async () => {
             const key = keyInput.value.trim();
+            const githubKey = githubTokenInput ? githubTokenInput.value.trim() : "";
+
             if (!key) {
                 this._showKeyError(keyInput, errorSpan, "An API Key is required to connect.");
                 return;
@@ -111,24 +119,27 @@ class JulesManager {
             try {
                 if (saveBtn) DOMUtils.setButtonState(saveBtn, "loading", "Connecting...");
                 if (keyInput) keyInput.disabled = true;
+                if (githubTokenInput) githubTokenInput.disabled = true;
 
                 StorageUtils.setItem("jules_api_key", key);
+                StorageUtils.setItem("github_api_key", githubKey);
                 toggleModal(false);
                 this.app.toast.show("Connecting to Jules...");
 
                 if (window.julesService) {
-                    window.julesService.configure(key);
+                    window.julesService.configure(key, githubKey);
                     await this.loadSources();
                 }
             } finally {
                 if (saveBtn) DOMUtils.setButtonState(saveBtn, "ready", "Save & Connect");
                 if (keyInput) keyInput.disabled = false;
+                if (githubTokenInput) githubTokenInput.disabled = false;
             }
         });
 
         // Auto-connect if key exists, otherwise prompt user
         if (apiKey && window.julesService) {
-            window.julesService.configure(apiKey);
+            window.julesService.configure(apiKey, githubToken);
             await this.loadSources();
         } else {
             toggleModal(true);

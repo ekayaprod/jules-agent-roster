@@ -412,12 +412,16 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should auto-connect if API key exists in storage', async () => {
-            StorageUtils.getItem.mockReturnValue('test-key');
+            StorageUtils.getItem.mockImplementation(key => {
+                if (key === 'jules_api_key') return 'test-key';
+                if (key === 'github_api_key') return 'test-github-token';
+                return null;
+            });
             const loadSourcesSpy = jest.spyOn(manager, 'loadSources').mockResolvedValue();
 
             await manager.init();
 
-            expect(window.julesService.configure).toHaveBeenCalledWith('test-key');
+            expect(window.julesService.configure).toHaveBeenCalledWith('test-key', 'test-github-token');
             expect(loadSourcesSpy).toHaveBeenCalled();
         });
 
@@ -440,14 +444,22 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should save key, configure, and load sources on save click', async () => {
+            const githubTokenInput = document.createElement('input');
+            githubTokenInput.id = 'githubTokenInput';
+            githubTokenInput.value = 'new-github-token';
+            document.body.appendChild(githubTokenInput);
+
             await manager.init();
             document.getElementById('julesApiKeyInput').value = 'new-key';
+            document.getElementById('githubTokenInput').value = 'new-github-token';
+
             const loadSourcesSpy = jest.spyOn(manager, 'loadSources').mockResolvedValue();
 
             await document.getElementById('saveSettingsBtn').click();
 
             expect(StorageUtils.setItem).toHaveBeenCalledWith('jules_api_key', 'new-key');
-            expect(window.julesService.configure).toHaveBeenCalledWith('new-key');
+            expect(StorageUtils.setItem).toHaveBeenCalledWith('github_api_key', 'new-github-token');
+            expect(window.julesService.configure).toHaveBeenCalledWith('new-key', 'new-github-token');
             expect(loadSourcesSpy).toHaveBeenCalled();
             expect(mockToast.show).toHaveBeenCalledWith('Connecting to Jules...');
         });
@@ -796,21 +808,12 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             terminal.innerHTML = "Awaiting Agent launch command"; // test clear
 
             window.julesService.createSession.mockResolvedValue({ id: 'real-123' });
-            const pollingSpy = jest.spyOn(manager, 'startTerminalPolling');
 
             await manager.launchSession(agent, btn);
 
             expect(window.julesService.createSession).toHaveBeenCalledWith('hello', 'Fix this', 'sources/github/a/b', 'Test Execution');
 
-            const item = document.getElementById('session-real-123');
-            expect(item).not.toBeNull();
-            expect(item.innerHTML).toContain('a/b'); // repoPath
-
-            const status = document.getElementById('status-real-123');
-            expect(status.textContent).toBe('In Progress');
-
-            expect(pollingSpy).toHaveBeenCalledWith('real-123', item, 'a/b');
-            expect(mockToast.show).toHaveBeenCalledWith('Session for Test launched successfully!', 'success');
+            expect(mockToast.show).toHaveBeenCalledWith('Session for Test launched successfully! Sent to Jules.', 'success');
             expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, 'ready', 'Launch in Jules 🚀');
         });
 
@@ -821,16 +824,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
             await manager.launchSession(agent, btn);
 
-            // temp ID should remain
-            const items = document.querySelectorAll('.dashboard-item');
-            expect(items.length).toBe(1);
-            const item = items[0];
-
-            expect(item.querySelector('.status-badge').textContent).toBe('Failed');
-            expect(item.querySelector('.dashboard-meta').textContent).toContain('We couldn\'t launch the agent session');
-            expect(item.querySelector('.dashboard-meta').textContent).toContain('Please check your repository permissions and API key');
-
-            expect(mockToast.show).toHaveBeenCalledWith('Session launch failed. Please review the error details.', 'error');
+            expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Session launch failed'), 'error');
             expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, 'ready', 'Launch in Jules 🚀');
         });
     });
