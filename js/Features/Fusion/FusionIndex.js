@@ -50,12 +50,17 @@ class FusionIndex {
   }
 
   /**
-   * Helper to retrieve a custom agent from the nested dictionary.
+   * Helper to retrieve a custom agent from the nested or flat dictionary.
    */
   getCustomAgent(key) {
       if (!this.customAgents) return undefined;
-      for (const category of Object.values(this.customAgents)) {
-          if (category[key]) return category[key];
+      const isCategorized = Object.values(this.customAgents).some(val => val && typeof val === "object" && val.name === undefined);
+      if (isCategorized) {
+          for (const category of Object.values(this.customAgents)) {
+              if (category[key]) return category[key];
+          }
+      } else {
+          if (this.customAgents[key]) return this.customAgents[key];
       }
       return undefined;
   }
@@ -80,28 +85,40 @@ class FusionIndex {
     grid.className = "fusion-shelf-grid";
     container.appendChild(grid);
 
-    // Iterate over nested categories
-    Object.entries(this.customAgents).forEach(([categoryName, categoryAgents]) => {
-        Object.keys(categoryAgents).forEach((key) => {
-          const agentData = categoryAgents[key];
-          const isUnlocked = this.unlockedKeys.has(key);
-          const emoji = this.getEmoji(agentData);
+    // Handle both categorized (nested) and flat structures
+    const isCategorized = Object.values(this.customAgents).some(val => val && typeof val === "object" && val.name === undefined);
 
-          const slot = document.createElement("div");
-          slot.className = `fusion-slot ${isUnlocked ? "unlocked" : "locked"}`;
-          if (isUnlocked && agentData?.tier) {
-              slot.classList.add(`tier-${agentData.tier.toLowerCase()}`);
-          }
-          slot.setAttribute("data-key", key);
-          slot.setAttribute("title", isUnlocked ? agentData.name : "Locked Protocol");
-          slot.innerHTML = `<span class="slot-icon">${emoji}</span>`;
-
-          if (isUnlocked) {
-            this._bindSlotInteractions(slot, agentData, key);
-          }
-
-          grid.appendChild(slot);
+    let entriesToRender = [];
+    if (isCategorized) {
+        Object.values(this.customAgents).forEach(categoryAgents => {
+            if (categoryAgents && typeof categoryAgents === "object") {
+                Object.entries(categoryAgents).forEach(([k, v]) => {
+                    entriesToRender.push([k, v]);
+                });
+            }
         });
+    } else {
+        entriesToRender = Object.entries(this.customAgents);
+    }
+
+    entriesToRender.forEach(([key, agentData]) => {
+      const isUnlocked = this.unlockedKeys.has(key);
+      const emoji = this.getEmoji(agentData);
+
+      const slot = document.createElement("div");
+      slot.className = `fusion-slot ${isUnlocked ? "unlocked" : "locked"}`;
+      if (isUnlocked && agentData?.tier) {
+          slot.classList.add(`tier-${agentData.tier.toLowerCase()}`);
+      }
+      slot.setAttribute("data-key", key);
+      slot.setAttribute("title", isUnlocked ? agentData.name : "Locked Protocol");
+      slot.innerHTML = `<span class="slot-icon">${emoji}</span>`;
+
+      if (isUnlocked) {
+        this._bindSlotInteractions(slot, agentData, key);
+      }
+
+      grid.appendChild(slot);
     });
 
     // Progress Counter
@@ -118,9 +135,16 @@ class FusionIndex {
   updateProgress(element) {
     let total = 0;
     if (this.customAgents) {
-        Object.values(this.customAgents).forEach(cat => {
-            total += Object.keys(cat).length;
-        });
+        const isCategorized = Object.values(this.customAgents).some(val => val && typeof val === "object" && val.name === undefined);
+        if (isCategorized) {
+            Object.values(this.customAgents).forEach(cat => {
+                if (cat && typeof cat === "object") {
+                    total += Object.keys(cat).length;
+                }
+            });
+        } else {
+            total = Object.keys(this.customAgents).length;
+        }
     }
     const current = this.unlockedKeys.size;
     element.innerText = `${current} / ${total} Protocols Discovered`;
