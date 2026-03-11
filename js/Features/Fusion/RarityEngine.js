@@ -6,6 +6,12 @@
 
 const RarityEngine = (function() {
 
+    /**
+     * Determines the overarching classification category (Super Domain) of an agent.
+     * @param {Object} agent - The agent to evaluate.
+     * @returns {string} The resolved Super Domain ("Destructive", "Plus", "Integrity", "Visible", "Invisible", or "Unknown").
+     * @see README.md#rarity-system for macro domain taxonomy.
+     */
     function getSuperDomain(agent) {
         if (!agent) return "Unknown";
         if (agent.name === "Scavenger") return "Destructive";
@@ -19,6 +25,12 @@ const RarityEngine = (function() {
         return "Unknown";
     }
 
+    /**
+     * Resolves the matching Super Domain for a given Plus (+) agent.
+     * @param {string} agentName - The name of the Plus agent (e.g., "Bolt+").
+     * @returns {string|null} The corresponding Super Domain ("Invisible", "Visible", "Integrity") or null if not a Plus agent.
+     * @see README.md#rarity-system for Plus agent affinities.
+     */
     function getPlusMatchingDomain(agentName) {
         if (agentName === "Bolt+") return "Invisible";
         if (agentName === "Palette+") return "Visible";
@@ -31,6 +43,7 @@ const RarityEngine = (function() {
      * @param {Object} agent1 - The first agent in the fusion.
      * @param {Object} agent2 - The second agent in the fusion.
      * @returns {string} The computed tier name (e.g., "Mythic", "Legendary").
+     * @see README.md#rarity-system for the tier matrix combinations and exact thresholds.
      */
     function calculateRarity(agent1, agent2) {
         if (!agent1 || !agent2) return "Common";
