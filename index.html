@@ -25,12 +25,12 @@
       /* FLIP CARD REFINEMENTS */
       .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 100%; max-width: 100%; height: 11.5rem; position: relative; z-index: 1;}
       .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; border-radius: 1rem; cursor: pointer; }
-      .flip-card.flipped { z-index: 10; } /* Elevate flipped cards so dropdowns don't clip */
+      .flip-card.flipped { z-index: 10; }
       .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
       
       .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1rem; padding: 0.75rem 1rem; display: flex; flex-direction: column; background-color: var(--card-bg); border: 1px solid var(--border); box-shadow: 0 0.25rem 0.375rem -1px rgba(0, 0, 0, 0.2); overflow: hidden; }
       .flip-card-front { justify-content: center; }
-      .flip-card-back { transform: rotateY(180deg); text-align: left; padding: 1.25rem; cursor: pointer; pointer-events: none; overflow: visible;} /* visible for dropdowns */
+      .flip-card-back { transform: rotateY(180deg); text-align: left; padding: 1.25rem; cursor: pointer; pointer-events: none; overflow: visible;}
       .flip-card.flipped .flip-card-back { pointer-events: auto; }
       .flip-card.flipped .flip-card-front { pointer-events: none; }
       
@@ -60,7 +60,6 @@
       }
       .tier-mythic .flip-card-front, .tier-mythic .flip-card-back { border-color: rgba(244, 63, 94, 1); box-shadow: 0 0 0.9375rem rgba(225, 29, 72, 0.4); animation: mythicPulse 3s infinite ease-in-out; }
 
-      /* Surface Shine and Foil Effects for Rare, Epic, Legendary, Mythic */
       .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after,
       .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after,
       .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after,
@@ -76,48 +75,17 @@
           opacity: 0.15;
       }
 
-      @keyframes shineRareLoop {
-          0% { background-position: 200% center; }
-          100% { background-position: -200% center; }
-      }
-      .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after {
-          background-image: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.3) 60%, transparent 80%);
-          animation: shineRareLoop 15s linear infinite;
-      }
+      @keyframes shineRareLoop { 0% { background-position: 200% center; } 100% { background-position: -200% center; } }
+      .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after { background-image: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.3) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.3) 60%, transparent 80%); animation: shineRareLoop 15s linear infinite; }
 
-      @keyframes shineEpicLoop {
-          0% { background-position: 200% center; }
-          100% { background-position: -200% center; }
-      }
-      .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after {
-          background-image: linear-gradient(115deg, transparent 20%, rgba(217, 70, 239, 0.4) 30%, rgba(255, 255, 255, 0.9) 50%, rgba(56, 189, 248, 0.4) 70%, transparent 80%);
-          animation: shineEpicLoop 15s linear infinite;
-          mix-blend-mode: color-dodge;
-      }
+      @keyframes shineEpicLoop { 0% { background-position: 200% center; } 100% { background-position: -200% center; } }
+      .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after { background-image: linear-gradient(115deg, transparent 20%, rgba(217, 70, 239, 0.4) 30%, rgba(255, 255, 255, 0.9) 50%, rgba(56, 189, 248, 0.4) 70%, transparent 80%); animation: shineEpicLoop 15s linear infinite; mix-blend-mode: color-dodge; }
 
-      @keyframes holographicFoilLoop {
-          0% { background-position: 200% center; }
-          100% { background-position: -200% center; }
-      }
-      .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after {
-          background-image: linear-gradient(115deg, transparent 20%, rgba(255, 0, 0, 0.5) 30%, rgba(255, 154, 0, 0.5) 35%, rgba(208, 222, 33, 0.5) 40%, rgba(79, 220, 74, 0.5) 45%, rgba(63, 218, 216, 0.5) 50%, rgba(47, 201, 226, 0.5) 55%, rgba(28, 127, 238, 0.5) 60%, rgba(95, 21, 242, 0.5) 65%, rgba(186, 12, 248, 0.5) 70%, rgba(251, 7, 217, 0.5) 75%, transparent 80%);
-          animation: holographicFoilLoop 15s linear infinite;
-          mix-blend-mode: color-dodge;
-          opacity: 0.25;
-      }
+      @keyframes holographicFoilLoop { 0% { background-position: 200% center; } 100% { background-position: -200% center; } }
+      .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after { background-image: linear-gradient(115deg, transparent 20%, rgba(255, 0, 0, 0.5) 30%, rgba(255, 154, 0, 0.5) 35%, rgba(208, 222, 33, 0.5) 40%, rgba(79, 220, 74, 0.5) 45%, rgba(63, 218, 216, 0.5) 50%, rgba(47, 201, 226, 0.5) 55%, rgba(28, 127, 238, 0.5) 60%, rgba(95, 21, 242, 0.5) 65%, rgba(186, 12, 248, 0.5) 70%, rgba(251, 7, 217, 0.5) 75%, transparent 80%); animation: holographicFoilLoop 15s linear infinite; mix-blend-mode: color-dodge; opacity: 0.25; }
 
-      @keyframes mythicGlitchLoop {
-          0% { background-position: 200% center; filter: hue-rotate(0deg) contrast(1); }
-          50% { background-position: 0% center; filter: hue-rotate(180deg) contrast(1.5) blur(1px); }
-          100% { background-position: -200% center; filter: hue-rotate(360deg) contrast(1); }
-      }
-      .tier-mythic .flip-card-front::after, .tier-mythic .flip-card-back::after {
-          background-image: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.9) 30%, rgba(225, 29, 72, 0.9) 40%, rgba(59, 130, 246, 0.8) 50%, rgba(244, 63, 94, 0.9) 60%, rgba(255, 255, 255, 0.9) 70%, transparent 80%);
-          animation: mythicGlitchLoop 4s linear infinite;
-          mix-blend-mode: color-dodge;
-          opacity: 0.6;
-          box-shadow: inset 0 0 20px rgba(255,255,255,0.5);
-      }
+      @keyframes mythicGlitchLoop { 0% { background-position: 200% center; filter: hue-rotate(0deg) contrast(1); } 50% { background-position: 0% center; filter: hue-rotate(180deg) contrast(1.5) blur(1px); } 100% { background-position: -200% center; filter: hue-rotate(360deg) contrast(1); } }
+      .tier-mythic .flip-card-front::after, .tier-mythic .flip-card-back::after { background-image: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.9) 30%, rgba(225, 29, 72, 0.9) 40%, rgba(59, 130, 246, 0.8) 50%, rgba(244, 63, 94, 0.9) 60%, rgba(255, 255, 255, 0.9) 70%, transparent 80%); animation: mythicGlitchLoop 4s linear infinite; mix-blend-mode: color-dodge; opacity: 0.6; box-shadow: inset 0 0 20px rgba(255,255,255,0.5); }
 
       .front-content-wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; width: 100%; margin-top: -0.5rem; }
       .card-top { display: grid; grid-template-columns: 1fr 2fr; width: 100%; gap: 0.5rem; align-items: center; }
@@ -138,7 +106,7 @@
       .icon-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.25rem; transition: all 0.2s; min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; }
       .icon-btn:hover { color: var(--text-primary); }
 
-      /* HEADER AND CONTROLS (Redesigned) */
+      /* HEADER AND CONTROLS */
       .header { max-width: 75rem; margin: 0 auto 1.5rem auto; display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
       .header-title-group { display: flex; flex-direction: column; }
       .header h1 { font-size: var(--text-2xl); margin: 0; font-weight: var(--weight-extrabold); letter-spacing: -0.05em; background: linear-gradient(135deg, #38bdf8, #818cf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
@@ -161,7 +129,7 @@
       button.secondary:hover { border-color: var(--accent); }
       button.secondary:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
       
-      /* JULES RUNNER PANEL */
+      /* --- REDESIGNED JULES RUNNER PANEL & TERMINAL --- */
       .jules-runner-panel { max-width: 75rem; margin: 0 auto 2.5rem auto; background: rgba(30, 41, 59, 0.4); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; box-shadow: inset 0 0 1.25rem rgba(0,0,0,0.2);}
       .runner-header { display: flex; justify-content: space-between; align-items: center; font-family: -apple-system, sans-serif; }
       .runner-header h2 { margin: 0; font-size: var(--text-md); display: flex; align-items: center; gap: 0.5rem;}
@@ -169,23 +137,44 @@
       .runner-inputs { display: flex; gap: 1rem; flex-wrap: wrap; }
       .repo-picker { flex: 1; min-width: 15.625rem; background: var(--details-bg); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem; border-radius: 0.5rem; font-family: inherit; outline: none; }
       .task-input { flex: 2; min-width: 18.75rem; background: var(--details-bg); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem; border-radius: 0.5rem; font-family: -apple-system, sans-serif; resize: vertical; min-height: 3rem; outline: none; }
-      .terminal-feed { background: #020617; border: 1px solid var(--border); border-radius: 0.5rem; padding: 1rem; font-family: -apple-system, sans-serif; font-size: var(--text-sm); color: var(--text-primary); max-height: 25rem; overflow-y: auto; display: none; flex-direction: column; gap: 0.75rem; transition: all 0.3s ease-in-out; }
+      
+      /* Session Cards Terminal Feed */
+      .terminal-feed { background: transparent; display: none; flex-direction: column; gap: 1rem; transition: all 0.3s ease-in-out; }
       .terminal-feed.active { display: flex; }
       @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-      .dashboard-item { display: flex; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); border-radius: 0.375rem; padding: 0.75rem 1rem; animation: fadeSlideIn 0.3s ease-out forwards; flex-wrap: nowrap; gap: 0.75rem; overflow: hidden; }
-      .dashboard-info { display: flex; align-items: center; gap: 0.75rem; flex: 1; min-width: 0; overflow: hidden; }
-      .dashboard-text { display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
-      .dashboard-title { font-weight: var(--weight-semibold); color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .dashboard-meta { font-size: var(--text-xs); color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .dashboard-status { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+      
+      .session-card { background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border); border-radius: 0.5rem; display: flex; flex-direction: column; overflow: hidden; animation: fadeSlideIn 0.3s ease-out forwards; }
+      .session-header { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: rgba(2, 6, 23, 0.5); border-bottom: 1px solid var(--border); }
+      .session-title-group { display: flex; align-items: center; gap: 0.75rem; }
+      .session-title { font-weight: var(--weight-semibold); color: var(--text-primary); }
+      
+      /* Real-time scrolling log window */
+      .session-logs { padding: 1rem; font-family: monospace; font-size: var(--text-xs); color: var(--text-secondary); max-height: 12rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.35rem; }
+      .session-logs::-webkit-scrollbar { width: 0.35rem; }
+      .session-logs::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0.25rem; }
+      .log-line { border-left: 2px solid var(--border); padding-left: 0.5rem; word-break: break-word; }
+      .log-line.user { border-left-color: var(--accent); color: var(--text-primary); }
+      .log-line.system { border-left-color: #f59e0b; color: #f59e0b; }
+      .log-line.error { border-left-color: #ef4444; color: #ef4444; }
+      
+      /* Footer containing input and actions */
+      .session-footer { padding: 0.75rem 1rem; background: rgba(2, 6, 23, 0.5); border-top: 1px solid var(--border); display: flex; gap: 0.5rem; align-items: center; }
+      .reply-input-wrapper { display: flex; gap: 0.5rem; flex: 1; }
+      .reply-input { flex: 1; background: var(--bg-color); border: 1px solid var(--border); color: var(--text-primary); padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-family: inherit; font-size: var(--text-sm); outline: none; }
+      .reply-input:focus { border-color: var(--accent); }
+      .reply-btn { background: var(--accent); color: #0f172a; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; font-weight: bold; cursor: pointer; transition: background 0.2s; }
+      .reply-btn:hover { background: var(--accent-hover); }
+      .dismiss-btn { background: transparent; color: var(--text-secondary); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; transition: all 0.2s; }
+      .dismiss-btn:hover { color: #ef4444; border-color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+      
       .status-badge { padding: 0.2rem 0.6rem; border-radius: 999px; font-size: var(--text-xs); font-weight: var(--weight-medium); border: 1px solid transparent; }
       .status-in-progress { background: rgba(56, 189, 248, 0.1); color: #38bdf8; border-color: rgba(56, 189, 248, 0.2); }
       .status-completed { background: rgba(16, 185, 129, 0.1); color: var(--success); border-color: rgba(16, 185, 129, 0.2); }
       .status-failed { background: rgba(239, 68, 68, 0.1); color: #ef4444; border-color: rgba(239, 68, 68, 0.2); }
-      .pr-link-btn { background: #2563eb; color: white; text-decoration: none; padding: 0.3rem 0.75rem; border-radius: 0.375rem; font-size: var(--text-xs); font-weight: var(--weight-medium); display: inline-flex; align-items: center; gap: 0.3rem; transition: background 0.2s; }
+      .status-waiting { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border-color: rgba(245, 158, 11, 0.2); }
+      
+      .pr-link-btn { background: #2563eb; color: white; text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 0.25rem; font-size: var(--text-xs); font-weight: var(--weight-medium); display: inline-flex; align-items: center; gap: 0.3rem; transition: background 0.2s; }
       .pr-link-btn:hover { background: #1d4ed8; }
-      .terminal-line { border-left: 2px solid var(--border); padding-left: 0.75rem; line-height: var(--leading-relaxed); animation: fadeSlideIn 0.3s ease-out forwards; font-family: monospace; font-size: var(--text-xs); color: #38bdf8;}
-      .terminal-time { color: var(--text-secondary); margin-right: 0.5rem; }
 
       .section-header { flex: 0 0 auto; margin: auto 0; padding: 0 1rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); border-bottom: none; align-self: center; }
       .grid { display: contents; }
@@ -300,7 +289,9 @@
         <textarea id="julesTaskInput" class="task-input" placeholder="2. Enter specific instructions (Optional). E.g., 'Target the user dashboard component.'"></textarea>
       </div>
       <div id="julesTerminal" class="terminal-feed">
-        <div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>
+        <div class="session-card" id="fetchingIndicator" style="background: transparent; border: none; align-items: center; padding: 2rem;">
+            <div style="font-family: monospace; color: var(--text-secondary);">Awaiting Agent launch command...</div>
+        </div>
       </div>
     </div>
 
@@ -465,31 +456,31 @@
         sectionMap: { coreGrid: "core-maintenance", refactoringGrid: "refactoring", archGrid: "architecture", hygieneGrid: "hygiene", testingGrid: "testing", opsGrid: "operations", documentationGrid: "documentation", strategyGrid: "strategy", uxGrid: "ux", metaGrid: "meta" }
       };
     </script>
-    <script defer src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.js"></script>
-    <script defer src="js/Utils/StorageUtils.js"></script>
-    <script defer src="js/Services/JulesAPI.js"></script>
-    <script defer src="js/Utils/PromptParser.js"></script>
-    <script defer src="js/Utils/MarkdownRenderer.js"></script>
-    <script defer src="js/Services/AgentRepository.js"></script>
-    <script defer src="js/UI/Toast/ToastNotification.js"></script>
-    <script defer src="js/UI/AgentCard/AgentCard.js"></script>
-    <script defer src="js/UI/Clipboard/ClipboardUtils.js"></script>
-    <script defer src="js/Utils/FormatUtils.js"></script>
-    <script defer src="js/Utils/PerformanceUtils.js"></script>
-    <script defer src="js/Utils/DownloadUtils.js"></script>
-    <script defer src="js/Utils/DOMUtils.js"></script>
-    <script defer src="js/Features/Fusion/RarityEngine.js"></script>
-    <script defer src="js/Features/Fusion/FusionCompiler.js"></script>
-    <script defer src="js/Features/Fusion/AgentPicker.js"></script>
-    <script defer src="js/Features/Fusion/FusionIndex.js"></script>
-    <script defer src="js/Features/Fusion/FusionAnimation.js"></script>
-    <script defer src="js/Features/Fusion/FusionLab.js"></script>
-    <script defer src="js/Features/Pinned/PinnedManager.js"></script>
-    <script defer src="js/Features/Jules/JulesManager.js"></script>
-    <script defer src="js/UI/SearchController/SearchController.js"></script>
-    <script defer src="js/UI/ExportController/ExportController.js"></script>
-    <script defer src="js/core/RosterApp.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.js"></script>
+    <script src="js/Utils/StorageUtils.js"></script>
+    <script src="js/Services/JulesAPI.js"></script>
+    <script src="js/Utils/PromptParser.js"></script>
+    <script src="js/Utils/MarkdownRenderer.js"></script>
+    <script src="js/Services/AgentRepository.js"></script>
+    <script src="js/UI/Toast/ToastNotification.js"></script>
+    <script src="js/UI/AgentCard/AgentCard.js"></script>
+    <script src="js/UI/Clipboard/ClipboardUtils.js"></script>
+    <script src="js/Utils/FormatUtils.js"></script>
+    <script src="js/Utils/PerformanceUtils.js"></script>
+    <script src="js/Utils/DownloadUtils.js"></script>
+    <script src="js/Utils/DOMUtils.js"></script>
+    <script src="js/Features/Fusion/RarityEngine.js"></script>
+    <script src="js/Features/Fusion/FusionCompiler.js"></script>
+    <script src="js/Features/Fusion/AgentPicker.js"></script>
+    <script src="js/Features/Fusion/FusionIndex.js"></script>
+    <script src="js/Features/Fusion/FusionAnimation.js"></script>
+    <script src="js/Features/Fusion/FusionLab.js"></script>
+    <script src="js/Features/Pinned/PinnedManager.js"></script>
+    <script src="js/Features/Jules/JulesManager.js"></script>
+    <script src="js/UI/SearchController/SearchController.js"></script>
+    <script src="js/UI/ExportController/ExportController.js"></script>
+    <script src="js/core/RosterApp.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         window.rosterApp = new RosterApp();
