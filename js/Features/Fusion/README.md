@@ -1,9 +1,11 @@
 # Fusion Feature
 
 ## Purpose
+
 This directory encapsulates the core business logic, UI orchestration, and collectible state management for the "Fusion Lab" feature. It isolates the complex interactions required to combine two discrete agent prompts into a single synthesized protocol, ensuring the logic remains decoupled from the main application roster.
 
 ## Quick Start
+
 To initialize the complete Fusion Lab environment:
 
 ```javascript
@@ -37,10 +39,11 @@ console.log("Unlocked Fusions:", Array.from(index.unlockedKeys));
 ```
 
 ## Architecture
+
 The Fusion feature adheres to a modular, vanilla JavaScript architecture without reliance on external frameworks. Components communicate via direct instantiation and callback delegation.
 
-1. **`FusionLab.js` (Orchestrator):** The primary controller. It holds the UI state (selected slots), coordinates the sub-components (`FusionIndex`, `AgentPicker`, `FusionAnimation`), and binds global event listeners to the `#fusionLabContent` DOM container.
-2. **`FusionCompiler.js` (Neural Center):** The pure logic engine. It enforces a strict Directed Acyclic Graph (DAG) defined in `this.EXECUTION_PIPELINE` to determine the upstream/downstream order of fused agents, regardless of user selection order. It handles schema validation and string synthesis.
-3. **`FusionIndex.js` (State Manager):** Manages the "collectible shelf". It handles persistence by directly interfacing with `localStorage` (key: `fusion_discovery_state`) and safely parsing JSON arrays to determine unlocked states.
-4. **`AgentPicker.js` & `FusionAnimation.js` (UI Controllers):** Manage localized interaction logic. `AgentPicker` handles the modal overlay and search filtering for slot selection. `FusionAnimation` handles the CSS class toggling and timing required for the merge visualization.
-5. **`fusion.css` & `index.js` (Colocation):** Styles specific to the fusion UI are colocated to prevent global CSS bloat. The `index.js` barrel file standardizes CommonJS exports for potential Node.js testing environments while protecting against browser `require` errors.
+1. <a id="fusion-lab"></a>**`FusionLab.js` (Orchestrator):** The primary controller. It holds the UI state (selected slots), coordinates the sub-components (`FusionIndex`, `AgentPicker`, `FusionAnimation`), and binds global event listeners to the `#fusionLabContent` DOM container.
+2. <a id="fusion-compiler"></a>**`FusionCompiler.js` (Neural Center):** The pure logic engine. It enforces a strict Directed Acyclic Graph (DAG) defined in `EXECUTION_PIPELINE` to determine the upstream/downstream order of fused agents, regardless of user selection order. It handles schema validation and string synthesis via a pure, composable functional pipeline.
+3. <a id="fusion-index"></a>**`FusionIndex.js` (State Manager):** Manages the "collectible shelf". It handles persistence by directly interfacing with `localStorage` (key: `fusion_discovery_state`) and safely parsing JSON arrays to determine unlocked states.
+4. <a id="agent-picker"></a>**`AgentPicker.js` & `FusionAnimation.js` (UI Controllers):** Manage localized interaction logic. `AgentPicker` handles the modal overlay and search filtering for slot selection. `FusionAnimation` handles the CSS class toggling and timing required for the merge visualization.
+5. **`Fusion.css` (Colocation):** Styles specific to the fusion UI are colocated to prevent global CSS bloat.
