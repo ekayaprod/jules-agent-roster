@@ -161,7 +161,7 @@ class JulesManager {
         
         if (this.currentRepo !== sourceName) {
             this._clearPollingAndCache();
-            terminal.innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[System] Fetching active routines for ${sourceName.replace('sources/github/', '')}...</div>`;
+            terminal.innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Fetching active routines for ${sourceName.replace('sources/github/', '')}...</div>`;
             this.currentRepo = sourceName;
         }
 
@@ -198,9 +198,9 @@ class JulesManager {
             const item = document.createElement("div");
             item.className = "term-pr-item";
             item.innerHTML = `
-                <svg class="term-pr-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M13 6h3a2 2 0 0 1 2 2v7"></path><line x1="6" y1="9" x2="6" y2="21"></line></svg>
-                <div class="term-pr-title">#${pr.number} ${pr.title}</div>
-                <a href="${pr.html_url}" target="_blank" rel="noopener noreferrer" class="term-pr-link">View PR ↗</a>
+                <span style="color: var(--term-success); font-weight: 600;">[OPEN PR]</span> 
+                <span class="term-pr-title">#${pr.number} ${pr.title}</span>
+                <a href="${pr.html_url}" target="_blank" rel="noopener noreferrer" class="term-link">[View ↗]</a>
             `;
             terminal.insertBefore(item, terminal.firstChild);
         });
@@ -269,7 +269,7 @@ class JulesManager {
     _checkEmptyTerminal() {
         const terminal = this.getEl("julesTerminal");
         if (terminal.children.length === 0 || (terminal.children.length === 1 && terminal.firstElementChild.id === 'fetchingIndicator')) {
-             terminal.innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[System] Awaiting execution commands...</div>`;
+             terminal.innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Awaiting execution commands...</div>`;
         }
     }
 
@@ -297,15 +297,13 @@ class JulesManager {
         block.className = `term-session-block ${isCompleted ? 'state-completed' : 'state-active'}`;
         block.id = `session-${session.id}`;
 
+        const safeAgentName = agentName.replace(/"/g, '');
+        const commandStr = `~ ❯ jules run <span class="term-arg">${agentEmoji} ${safeAgentName}</span>`;
+
         block.innerHTML = `
-            <div class="term-header">
-                <div class="term-agent-info">
-                    <span class="term-agent-emoji">${agentEmoji}</span>
-                    <span>${agentName}</span>
-                </div>
-            </div>
+            <div class="term-command-line">${commandStr}</div>
             <div class="term-log-stream" id="logs-${session.id}">
-                ${isCompleted ? '' : '<div class="term-log-line system">> Initializing execution environment...</div>'}
+                ${isCompleted ? '' : '<div class="term-log-line system">  [SYS] Initializing execution environment...</div>'}
             </div>
             <div class="term-input-container" id="input-${session.id}"></div>
         `;
@@ -327,17 +325,28 @@ class JulesManager {
 
     _markBlockCompleted(block, session) {
         block.className = "term-session-block state-completed";
-        const prInfo = session.outputs.find(hasPullRequest).pullRequest;
+        const prInfo = session.outputs.find(hasPullRequest)?.pullRequest;
         const logStream = block.querySelector('.term-log-stream');
         const inputContainer = block.querySelector('.term-input-container');
         
         if (inputContainer) inputContainer.innerHTML = '';
         
-        if (prInfo) {
+        if (prInfo && logStream) {
             logStream.innerHTML = `
-                <div class="term-log-line success">> Routine complete.</div>
-                <div class="term-log-line action">> PR Drafted: <a href="${prInfo.html_url || prInfo.url}" target="_blank" style="color:var(--term-system);">${prInfo.title}</a></div>
+                <div class="term-log-line success">  [OK] Routine complete.</div>
             `;
+            
+            const actionLine = document.createElement("div");
+            actionLine.className = "term-log-line action";
+            actionLine.innerHTML = `  [PR] <a href="${prInfo.html_url || prInfo.url}" target="_blank" class="term-link">${prInfo.title} ↗</a> `;
+            
+            const dismissBtn = document.createElement("button");
+            dismissBtn.className = "term-action-btn";
+            dismissBtn.textContent = "[Dismiss ✕]";
+            dismissBtn.onclick = () => this.dismissSession(session.id);
+            
+            actionLine.appendChild(dismissBtn);
+            logStream.appendChild(actionLine);
         }
         
         if (this.julesPollingIntervals[session.id]) {
@@ -397,11 +406,21 @@ class JulesManager {
                 const logLines = [];
                 activities.forEach(act => {
                     let logClass = "system";
+                    let prefix = "[SYS]";
                     let logText = act.title || act.description || "Processing...";
-                    if (act.type && act.type.includes('USER_INPUT')) { logClass = "user"; logText = act.message || act.title || "User input received."; }
-                    if (act.error) { logClass = "error"; logText = "Exception: " + (act.error.message || "Unknown error"); }
                     
-                    logLines.push(`<div class="term-log-line ${logClass}">> ${FormatUtils.escapeHTML(logText)}</div>`);
+                    if (act.type && act.type.includes('USER_INPUT')) { 
+                        logClass = "user"; 
+                        prefix = "[USR]";
+                        logText = act.message || act.title || "User input received."; 
+                    }
+                    if (act.error) { 
+                        logClass = "error"; 
+                        prefix = "[ERR]";
+                        logText = "Exception: " + (act.error.message || "Unknown error"); 
+                    }
+                    
+                    logLines.push(`<div class="term-log-line ${logClass}">  ${prefix} ${FormatUtils.escapeHTML(logText)}</div>`);
 
                     if (act.userActionRequired || act.requiresInput || (act.type && act.type.includes('INPUT'))) state.isWaitingForInput = true;
                     if (act.sessionCompleted) state.isCompleted = true;
@@ -425,17 +444,22 @@ class JulesManager {
 
     _updatePollingState(sessionId, block, state, inputContainer) {
         if (state.isCompleted) {
-            block.className = "term-session-block state-completed";
-            if (inputContainer) inputContainer.innerHTML = '';
-            clearInterval(this.julesPollingIntervals[sessionId]);
+            this._markBlockCompleted(block, { outputs: [{ pullRequest: {} }] }); // Safety fallback if array somehow empties mid-poll
             return;
         }
 
         if (state.hasError) {
             block.className = "term-session-block state-error";
-            if (inputContainer) inputContainer.innerHTML = `
-                <button class="term-dismiss-btn" onclick="document.getElementById('session-${sessionId}').remove();" style="margin-top:0.5rem; padding:0;">[ Dismiss Error ]</button>
-            `;
+            if (inputContainer) {
+                inputContainer.innerHTML = '';
+                const dismissBtn = document.createElement("button");
+                dismissBtn.className = "term-action-btn";
+                dismissBtn.style.marginTop = "0.5rem";
+                dismissBtn.style.padding = "0";
+                dismissBtn.textContent = "[Dismiss Error ✕]";
+                dismissBtn.onclick = () => this.dismissSession(sessionId);
+                inputContainer.appendChild(dismissBtn);
+            }
             clearInterval(this.julesPollingIntervals[sessionId]);
             return;
         }
@@ -447,7 +471,7 @@ class JulesManager {
                 inputContainer.innerHTML = `
                     <div class="term-input-group">
                         <span class="term-prompt-symbol">❯</span>
-                        <input type="text" class="term-input" placeholder="Type response (e.g. 'proceed')..." />
+                        <input type="text" class="term-input" placeholder="Awaiting instruction (e.g. 'proceed')..." />
                     </div>
                 `;
                 
@@ -458,7 +482,7 @@ class JulesManager {
                     if (!text) return;
                     
                     replyInput.disabled = true;
-                    inputContainer.innerHTML = `<span style="color:var(--term-muted); font-size:0.9em;">> Transmitting...</span>`;
+                    inputContainer.innerHTML = `<span style="color:var(--term-muted); font-size:0.9em; margin-left: 0.35rem; padding-left: 1rem; border-left: 1px solid #27272a;">  [USR] Transmitting...</span>`;
                     
                     try {
                         await window.julesService.sendUserInput(sessionId, text);
