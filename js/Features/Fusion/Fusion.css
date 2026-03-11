@@ -245,19 +245,36 @@
     border: 1px solid var(--border);
     border-radius: 0.5rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
-    aspect-ratio: 1;
+    padding: 0.75rem;
+    gap: 0.5rem;
+    min-width: 44px;
+    min-height: 44px;
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
     overflow: hidden;
+    user-select: none;
+    touch-action: manipulation;
 }
 
-.fusion-slot:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+@media (hover: hover) and (pointer: fine) {
+    .fusion-slot:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.fusion-slot:active {
+    transform: scale(0.95);
+}
+
+.slot-name {
+    font-size: 0.75rem;
+    text-align: center;
+    opacity: 0.8;
 }
 
 .fusion-slot.locked .slot-icon {
