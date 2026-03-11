@@ -17,13 +17,11 @@ class AgentRepository {
      */
     async fetchAgents() {
         try {
-            // ⚡ Bolt+: Refactored sequential await calls into a concurrent Promise.all() to drastically reduce total network/I/O execution time on startup.
-            const [agents, customAgents] = await Promise.all([
-                this.#loadStandardAgents(),
-                this.#loadCustomAgents()
-            ]);
-
+            // Reverted sequential await calls because custom agents depend on base agents for rarity computation.
+            const agents = await this.#loadStandardAgents();
             this.agents = agents;
+
+            const customAgents = await this.#loadCustomAgents();
             this.customAgents = customAgents;
 
             return { agents: this.agents, customAgents: this.customAgents };
