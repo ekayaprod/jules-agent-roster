@@ -29,11 +29,13 @@ class JulesService {
      * Internal helper for Jules API fetches implementing network resilience.
      * @param {string} endpoint - The API endpoint relative to the base URL.
      * @param {RequestInit} [options={}] - Standard fetch options.
+     * @param {number} [retries=3] - Number of retries for transient errors.
+     * @param {number} [backoff=300] - Initial backoff delay in ms.
      * @returns {Promise<any>} The parsed JSON response.
      * @throws {Error} If the API key is missing, the request times out (15s), or the API returns an error status.
      * @see README.md#julesapi-architecture for details on the AbortController timeout mechanism.
      */
-    async _fetch(endpoint, options = {}) {
+    async _fetch(endpoint, options = {}, retries = 3, backoff = 300) {
         if (!this.apiKey) throw new Error("Jules API Key is missing. Please configure it in Settings.");
 
         const url = `${this.baseUrl}/${endpoint}`;
@@ -55,6 +57,9 @@ class JulesService {
             clearTimeout(timeoutId);
 
             if (!response.ok) {
+                if (response.status >= 500) {
+                    throw new Error(`Server returned ${response.status}`);
+                }
                 const errorText = await response.text();
                 let errorMsg = `We encountered a server error. Please wait a moment and try again.`;
                 try {
@@ -67,9 +72,25 @@ class JulesService {
             return response.json();
         } catch (error) {
             clearTimeout(timeoutId);
+
             if (error.name === 'AbortError') {
                 throw new Error("The request timed out. Please check your connection and try again.");
             }
+
+            // Retry on network errors or 5xx server errors
+            const isServerError = error.message && error.message.startsWith('Server returned');
+            const isNetworkError = error.message === 'Network Error' || error.name === 'TypeError' || isServerError;
+
+            if (retries > 0 && isNetworkError) {
+                console.warn(`Retrying Jules API ${endpoint} (${retries} left)...`);
+                await new Promise((resolve) => setTimeout(resolve, backoff));
+                return this._fetch(endpoint, options, retries - 1, backoff * 2);
+            }
+
+            if (isServerError) {
+                throw new Error("We encountered a server error. Please wait a moment and try again.");
+            }
+
             throw error;
         }
     }

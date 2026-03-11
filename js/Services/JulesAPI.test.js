@@ -64,11 +64,24 @@ describe('JulesService', () => {
             jest.useRealTimers();
         });
 
-        it('should throw generic error if fetch fails completely', async () => {
+        it('should throw generic error if fetch fails completely after retries', async () => {
             service.configure('test-api-key');
             global.fetch.mockRejectedValue(new Error("Network Error"));
 
-            await expect(service._fetch('test')).rejects.toThrow("Network Error");
+            await expect(service._fetch('test', {}, 2, 10)).rejects.toThrow("Network Error");
+            expect(global.fetch).toHaveBeenCalledTimes(3);
+        });
+
+        it('should retry on 5xx server errors and eventually throw fallback message', async () => {
+            service.configure('test-api-key');
+            global.fetch.mockResolvedValue({
+                ok: false,
+                status: 502,
+                text: async () => "Bad Gateway"
+            });
+
+            await expect(service._fetch('test', {}, 2, 10)).rejects.toThrow("We encountered a server error. Please wait a moment and try again.");
+            expect(global.fetch).toHaveBeenCalledTimes(3);
         });
 
         it('should return parsed JSON response on success', async () => {
@@ -91,7 +104,21 @@ describe('JulesService', () => {
             );
         });
 
-        it('should throw error with specific JSON message on non-ok response', async () => {
+        it('should return parsed JSON response on success after retrying', async () => {
+            service.configure('test-api-key');
+            global.fetch
+                .mockRejectedValueOnce(new Error("Network Error"))
+                .mockResolvedValueOnce({
+                    ok: true,
+                    json: async () => ({ success: true })
+                });
+
+            const response = await service._fetch('test', {}, 2, 10);
+            expect(response.success).toBe(true);
+            expect(global.fetch).toHaveBeenCalledTimes(2);
+        });
+
+        it('should throw error with specific JSON message on non-ok response without retrying on 4xx', async () => {
             service.configure('test-api-key');
             global.fetch.mockResolvedValue({
                 ok: false,
@@ -100,17 +127,19 @@ describe('JulesService', () => {
             });
 
             await expect(service._fetch('test')).rejects.toThrow("Bad Request details");
+            expect(global.fetch).toHaveBeenCalledTimes(1);
         });
 
-        it('should throw error with fallback message on non-ok response with malformed JSON', async () => {
+        it('should throw error with fallback message on non-ok response with malformed JSON without retrying on 4xx', async () => {
             service.configure('test-api-key');
             global.fetch.mockResolvedValue({
                 ok: false,
-                status: 500,
-                text: async () => "Internal Server Error Text" // Not JSON
+                status: 403,
+                text: async () => "Forbidden" // Not JSON
             });
 
             await expect(service._fetch('test')).rejects.toThrow("We encountered a server error. Please wait a moment and try again.");
+            expect(global.fetch).toHaveBeenCalledTimes(1);
         });
 
         it('should throw error with fallback message on non-ok response with JSON lacking error.message', async () => {
