@@ -218,6 +218,64 @@ class JulesManager {
     }
 
     /**
+     * Fetches open pull requests for the repository via the GitHub API and renders them.
+     * @param {string} sourceName - The active repository source name.
+     */
+    async loadPullRequestsForRepo(sourceName) {
+        const prFeed = this.getEl("julesPullRequests");
+        if (!prFeed) return;
+
+        prFeed.classList.add('active');
+        prFeed.innerHTML = FormatUtils.createTerminalLineHTML("Fetching open pull requests...", "fetchingPRIndicator");
+
+        if (!window.julesService) return;
+
+        try {
+            const pullRequests = await window.julesService.getPullRequests(sourceName);
+
+            const fetchingIndicator = prFeed.querySelector('#fetchingPRIndicator');
+            if (fetchingIndicator) fetchingIndicator.remove();
+
+            if (!pullRequests || pullRequests.length === 0) {
+                prFeed.innerHTML = FormatUtils.createTerminalLineHTML("No open pull requests found.");
+                return;
+            }
+
+            prFeed.innerHTML = ''; // Clear contents
+
+            pullRequests.forEach(pr => {
+                const item = document.createElement("div");
+                item.className = "dashboard-item";
+
+                const prNumber = pr.number;
+                const prTitle = pr.title;
+                const prUrl = pr.html_url;
+                const prUser = pr.user ? pr.user.login : 'Unknown';
+
+                item.innerHTML = '';
+                item.append(...this._createDashboardItemNodes(
+                    "📝",
+                    `#${prNumber}: ${prTitle}`,
+                    `Opened by ${prUser}`,
+                    `pr-status-${prNumber}`,
+                    'status-completed',
+                    'Open'
+                ));
+
+                // Add link directly to PR
+                const prLink = DOMUtils.createPRLink(prUrl);
+                item.querySelector(".dashboard-status").appendChild(prLink);
+
+                prFeed.appendChild(item);
+            });
+
+        } catch (error) {
+            console.error("Failed to load pull requests:", error);
+            prFeed.innerHTML = FormatUtils.createTerminalLineHTML("Error fetching pull requests.");
+        }
+    }
+
+    /**
      * Internal implementation to fetch active sessions and render them.
      * @private
      * @param {string} sourceName - The active repository source name.
@@ -621,6 +679,12 @@ class JulesManager {
         this._clearPollingAndCache();
         if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
         this.currentRepo = null;
+
+        const prFeed = this.getEl("julesPullRequests");
+        if (prFeed) {
+            prFeed.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting PR fetch command...");
+            prFeed.classList.remove('active');
+        }
     }
 
     _clearPollingAndCache() {
