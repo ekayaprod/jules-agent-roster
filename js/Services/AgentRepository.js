@@ -26,11 +26,14 @@ class AgentRepository {
 
             // 🚨 Paramedic: Cured load-order race condition where this.agents was uninitialized during concurrent Promise.all execution.
             if (typeof RarityEngine !== 'undefined') {
+                // ⚡ Bolt+: Algorithmic Flattening - Replace O(n) array traversal with O(1) Map lookup
+                const agentMap = new Map();
+                this.agents.forEach(a => agentMap.set(a.name, a));
                 Object.values(this.customAgents).forEach(categoryAgents => {
                     Object.entries(categoryAgents).forEach(([key, agent]) => {
                         const [name1, name2] = key.split(",");
-                        const a1 = this.agents.find(a => a.name === name1);
-                        const a2 = this.agents.find(a => a.name === name2);
+                        const a1 = agentMap.get(name1);
+                        const a2 = agentMap.get(name2);
                         if (a1 && a2) {
                             agent.tier = RarityEngine.calculateRarity(a1, a2);
                         } else {
