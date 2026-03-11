@@ -369,15 +369,11 @@ class RosterApp {
       }
 
       // 2. Close specific card dropdowns if clicked outside
-      // ⚡ Bolt+: Replaced document.querySelectorAll with document.querySelector inside a while loop to halt DOM traversal early upon the first match, preventing unnecessary NodeList memory allocation on every click.
-      let visibleMenu;
-      while ((visibleMenu = document.querySelector('.card-dropdown-menu.visible, .dropdown-menu.visible'))) {
-          if (visibleMenu.id !== 'masterDropdownMenu' && !visibleMenu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
-              closeDropdownMenu(visibleMenu);
-          } else {
-              break;
+      document.querySelectorAll('.card-dropdown-menu.visible, .dropdown-menu.visible').forEach(menu => {
+          if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
+              closeDropdownMenu(menu);
           }
-      }
+      });
 
       // 3. Toggle Pin
       const pinTarget = e.target.closest('[data-action="toggle-pin"]');
@@ -445,15 +441,11 @@ class RosterApp {
           const dropdown = document.getElementById(`card-dropdown-${index}`);
           
           // Close others
-          // ⚡ Bolt+: Replaced document.querySelectorAll with document.querySelector inside a while loop to halt DOM traversal early.
-          let otherMenu;
-          while ((otherMenu = document.querySelector('.dropdown-menu.visible:not(#masterDropdownMenu)'))) {
-              if (otherMenu !== dropdown) {
-                  closeDropdownMenu(otherMenu);
-              } else {
-                  break;
+          document.querySelectorAll('.dropdown-menu.visible:not(#masterDropdownMenu)').forEach(menu => {
+              if (menu !== dropdown) {
+                  closeDropdownMenu(menu);
               }
-          }
+          });
 
           if (!dropdown) return;
           const isVisible = dropdown.classList.toggle('visible');
