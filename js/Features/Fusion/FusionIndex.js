@@ -4,6 +4,7 @@ class FusionIndex {
    * @param {string} containerId - The ID of the container element.
    * @param {Object} customAgents - The map of custom agent fusions.
    * @param {Function} onSelectCallback - Function to call when an unlocked slot is clicked.
+   * @see README.md#fusion-index
    */
   constructor(containerId, customAgents, onSelectCallback) {
     this.containerId = containerId;

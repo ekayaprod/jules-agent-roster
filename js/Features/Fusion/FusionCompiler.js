@@ -4,6 +4,7 @@
  * The neural center of the application, responsible for "fusing" two agents into a single,
  * cohesive workflow. It manages the dependency graph (DAG), parses prompt structures,
  * and ensures output safety via schema validation.
+ * @see README.md#fusion-compiler for macro architecture details.
  *
  * // ✅ GOOD: Yggdrasil triggered an evolutionary branch. The rigid OOP class has been mutated into a pure, composable functional pipeline.
  */
@@ -39,9 +40,14 @@ const FusionCompiler = function (agents, customAgents) {
     (a) => a.category !== "monthly" && a.category !== "power" && !["Spark", "Overseer", "Cartographer"].includes(a.name)
   );
 
-  // Normalize keys to ensure they are sorted alphabetically via a pure, declarative functional pipeline.
-  // This guarantees that "Bolt+Architect" and "Architect+Bolt" resolve to the same fusion.
-  // It also correctly flattens nested categories dynamically (e.g., from custom_agents.json)
+  /**
+   * Normalizes keys to ensure they are sorted alphabetically via a pure, declarative functional pipeline.
+   * This guarantees that "Bolt+Architect" and "Architect+Bolt" resolve to the same fusion.
+   * It also correctly flattens nested categories dynamically (e.g., from custom_agents.json)
+   * @param {Object} data - The raw custom agents dictionary.
+   * @returns {Object} A flattened dictionary with sorted keys.
+   * @see README.md#fusion-compiler
+   */
   const normalizeKeys = (data) => {
     if (!data) return {};
 
@@ -72,6 +78,10 @@ const FusionCompiler = function (agents, customAgents) {
 
   /**
    * Extracts a specific Markdown section from a raw prompt string.
+   * @param {string} prompt - The raw markdown prompt text.
+   * @param {string} header - The section header to extract (e.g. "BOUNDARIES").
+   * @returns {string} The extracted section content or a fallback message.
+   * @see README.md#fusion-compiler
    */
   const extractSection = (prompt, header) => {
     if (typeof prompt !== "string") return "Prompt data missing.";
@@ -84,6 +94,9 @@ const FusionCompiler = function (agents, customAgents) {
 
   /**
    * Extracts content from an agent prompt, handling both XML and Legacy formats.
+   * @param {string} prompt - The raw agent prompt text.
+   * @returns {{boundaries: string, process: string}} An object containing the extracted boundaries and process rules.
+   * @see README.md#fusion-compiler
    */
   const extractAgentContent = (prompt) => {
     if (!prompt) return { boundaries: "Missing prompt.", process: "Missing prompt." };
@@ -114,6 +127,11 @@ const FusionCompiler = function (agents, customAgents) {
   /**
    * Stitches two agents together into a single prompt.
    * Enforces DAG order and wraps content in a strict JSON output schema.
+   * @param {Object} agent1 - The first agent.
+   * @param {Object} agent2 - The second agent.
+   * @param {string|null} [overrideName=null] - Optional override for the PR title template.
+   * @returns {string} The synthesized dual-phase prompt.
+   * @see README.md#fusion-compiler
    */
   const stitch = (agent1, agent2, overrideName = null) => {
     const idx1 = EXECUTION_PIPELINE.indexOf(agent1.name);
@@ -156,6 +174,10 @@ You must return your final response as a strict JSON object adhering to this sch
   /**
    * Public API to fuse two agents.
    * Handles custom "named" fusions and falls back to dynamic stitching.
+   * @param {Object} agent1 - The first agent.
+   * @param {Object} agent2 - The second agent.
+   * @returns {Object} A fully structured fusion agent object.
+   * @see README.md#fusion-compiler
    */
   const fuse = (agent1, agent2) => {
     if (!agent1 || !agent2) return { name: "Error", prompt: "Invalid agents selected." };
