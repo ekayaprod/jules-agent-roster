@@ -36,7 +36,7 @@ const RarityEngine = (function() {
         if (!agent1 || !agent2) return "Common";
 
         // Tier 6: Mythic - The Glitch: Any Agent combined with Itself.
-        if (agent1.name === agent2.name) return "Mythic";
+        if (agent1.name && agent2.name && agent1.name === agent2.name) return "Mythic";
 
         const isScavenger1 = agent1.name === "Scavenger";
         const isScavenger2 = agent2.name === "Scavenger";

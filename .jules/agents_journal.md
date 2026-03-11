@@ -127,3 +127,8 @@
 **Title**: [Fusion Feature Module Documentation Synthesized]
 **Learning**: [The architectural README claimed FusionCompiler was an OOP class and referenced a non-existent index.js barrel file. Synthesis aligned the macro documentation to reflect the actual functional pipeline evolution and removed the hallucinated index.js colocation note.]
 **Action**: [When updating feature module documentations, strictly verify colocation notes against the actual file tree and ensure legacy OOP explanations are updated if the underlying architecture has been mutated to functional pipelines.]
+
+2024-05-24
+**Title**: Tactile Rarity States Spliced
+**Learning**: Unlocked fusion slots and rarity flip cards shared generic interaction styles, overriding their specific Epic/Legendary/Mythic tier color identities on hover or focus.
+**Action**: Injected rarity-specific pseudo-classes (`:hover`, `:focus-visible`, `:active`) to preserve the component's tier color identity during interaction.

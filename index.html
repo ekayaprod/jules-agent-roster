@@ -25,6 +25,18 @@
       /* FLIP CARD REFINEMENTS */
       .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 100%; max-width: 100%; height: 11.5rem; position: relative; z-index: 1;}
       .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; border-radius: 1rem; cursor: pointer; }
+
+      .flip-card:focus-visible { outline: none; }
+      .flip-card:focus-visible .flip-card-front, .flip-card:focus-visible .flip-card-back { outline: 2px solid var(--accent); outline-offset: 2px; }
+      .flip-card.tier-common:focus-visible .flip-card-front, .flip-card.tier-common:focus-visible .flip-card-back { outline-color: var(--text-secondary); }
+      .flip-card.tier-uncommon:focus-visible .flip-card-front, .flip-card.tier-uncommon:focus-visible .flip-card-back { outline-color: rgba(20, 184, 166, 1); }
+      .flip-card.tier-rare:focus-visible .flip-card-front, .flip-card.tier-rare:focus-visible .flip-card-back { outline-color: rgba(59, 130, 246, 1); }
+      .flip-card.tier-epic:focus-visible .flip-card-front, .flip-card.tier-epic:focus-visible .flip-card-back { outline-color: rgba(217, 70, 239, 1); }
+      .flip-card.tier-legendary:focus-visible .flip-card-front, .flip-card.tier-legendary:focus-visible .flip-card-back { outline-color: rgba(251, 191, 36, 1); }
+      .flip-card.tier-mythic:focus-visible .flip-card-front, .flip-card.tier-mythic:focus-visible .flip-card-back { outline-color: rgba(244, 63, 94, 1); }
+
+      .flip-card:active .flip-card-inner { transform: scale(0.98); }
+      .flip-card.flipped:active .flip-card-inner { transform: rotateY(180deg) scale(0.98); }
       .flip-card.flipped { z-index: 10; } /* Elevate flipped cards so dropdowns don't clip */
       .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
       

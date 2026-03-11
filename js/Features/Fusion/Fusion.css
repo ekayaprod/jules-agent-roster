@@ -22,6 +22,26 @@
 .fusion-slot.unlocked { cursor: pointer; border-color: rgba(168, 85, 247, 0.3); }
 .fusion-slot.unlocked:hover { border-color: rgba(168, 85, 247, 0.6); background-color: rgba(168, 85, 247, 0.05); transform: translateY(-2px); }
 .fusion-slot.unlocked:focus-visible { outline: 2px solid rgba(168, 85, 247, 1); outline-offset: 2px; }
+.fusion-slot.unlocked:active { transform: translateY(0) scale(0.95); }
+
+/* Rarity-specific Interaction States */
+.fusion-slot.unlocked.tier-common:hover { border-color: var(--text-secondary); background-color: rgba(148, 163, 184, 0.05); }
+.fusion-slot.unlocked.tier-common:focus-visible { outline: 2px solid var(--text-secondary); outline-offset: 2px; }
+
+.fusion-slot.unlocked.tier-uncommon:hover { border-color: rgba(20, 184, 166, 1); background-color: rgba(20, 184, 166, 0.1); }
+.fusion-slot.unlocked.tier-uncommon:focus-visible { outline: 2px solid rgba(20, 184, 166, 1); outline-offset: 2px; }
+
+.fusion-slot.unlocked.tier-rare:hover { border-color: rgba(59, 130, 246, 1); background-color: rgba(59, 130, 246, 0.1); }
+.fusion-slot.unlocked.tier-rare:focus-visible { outline: 2px solid rgba(59, 130, 246, 1); outline-offset: 2px; }
+
+.fusion-slot.unlocked.tier-epic:hover { border-color: rgba(217, 70, 239, 1); background-color: rgba(217, 70, 239, 0.1); }
+.fusion-slot.unlocked.tier-epic:focus-visible { outline: 2px solid rgba(217, 70, 239, 1); outline-offset: 2px; }
+
+.fusion-slot.unlocked.tier-legendary:hover { border-color: rgba(251, 191, 36, 1); background-color: rgba(251, 191, 36, 0.1); }
+.fusion-slot.unlocked.tier-legendary:focus-visible { outline: 2px solid rgba(251, 191, 36, 1); outline-offset: 2px; }
+
+.fusion-slot.unlocked.tier-mythic:hover { border-color: rgba(244, 63, 94, 1); background-color: rgba(244, 63, 94, 0.1); }
+.fusion-slot.unlocked.tier-mythic:focus-visible { outline: 2px solid rgba(244, 63, 94, 1); outline-offset: 2px; }
 
 .picker-modal { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); border: none; width: 100%; height: 100%; position: fixed; z-index: 100; display: none; align-items: center; justify-content: center; top: 0; left: 0; font-family: -apple-system, sans-serif; padding: 0; color: inherit; }
 .picker-modal::backdrop { background: transparent; }
