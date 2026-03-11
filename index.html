@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="version" content="0.7.0" />
+    <meta name="version" content="0.8.0" />
     <title>Jules Agent Roster</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; connect-src 'self' https://jules.googleapis.com https://api.github.com; img-src 'self' data: https://emojik.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self';"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.css" />
@@ -20,14 +20,15 @@
         
         /* Terminal specific colors */
         --term-bg: #0d1117;
+        --term-panel-bg: #09090b;
         --term-border: #30363d;
         --term-text: #c9d1d9;
-        --term-muted: #8b949e;
+        --term-muted: #71717a;
         --term-system: #58a6ff;
-        --term-success: #3fb950;
-        --term-warning: #d29922;
-        --term-error: #f85149;
-        --term-user: #a5d6ff;
+        --term-success: #10b981;
+        --term-warning: #f59e0b;
+        --term-error: #ef4444;
+        --term-user: #a855f7;
       }
 
       body { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 1.5rem; line-height: var(--leading-normal); }
@@ -168,7 +169,7 @@
         display: flex; 
         align-items: center; 
         gap: 0.5rem;
-        font-weight: 500;
+        font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
@@ -211,129 +212,88 @@
       
       /* The sleek IDE viewport */
       .ide-viewport {
-        padding: 1rem;
+        background: var(--term-panel-bg);
+        padding: 1.5rem;
         min-height: 15rem;
         max-height: 35rem;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 1.5rem;
         font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
         font-size: 13px;
         line-height: 1.6;
+        color: var(--term-text);
         scroll-behavior: smooth;
       }
       .ide-viewport::-webkit-scrollbar { width: 8px; }
       .ide-viewport::-webkit-scrollbar-track { background: transparent; }
-      .ide-viewport::-webkit-scrollbar-thumb { background: #484f58; border-radius: 4px; border: 2px solid var(--term-bg); }
+      .ide-viewport::-webkit-scrollbar-thumb { background: #484f58; border-radius: 4px; border: 2px solid var(--term-panel-bg); }
 
-      /* Session Block container inside the viewport */
+      /* Session Block container */
       .term-session-block {
         display: flex;
         flex-direction: column;
-        border-left: 2px solid var(--term-border);
-        padding-left: 1rem;
-        position: relative;
         animation: fadeIn 0.3s ease-out forwards;
       }
-      .term-session-block::before {
-        content: '';
-        position: absolute;
-        left: -5px;
-        top: 6px;
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--term-muted);
-      }
-      .term-session-block.state-active::before { background: var(--term-system); box-shadow: 0 0 8px var(--term-system); }
-      .term-session-block.state-waiting::before { background: var(--term-warning); box-shadow: 0 0 8px var(--term-warning); }
-      .term-session-block.state-completed::before { background: var(--term-success); box-shadow: 0 0 8px var(--term-success); }
-      .term-session-block.state-error::before { background: var(--term-error); box-shadow: 0 0 8px var(--term-error); }
-
-      .term-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+      
+      .term-command-line {
+        color: var(--term-success);
         margin-bottom: 0.5rem;
-      }
-      .term-agent-info {
+        font-weight: 600;
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        color: var(--term-text);
-        font-weight: 600;
       }
-      .term-agent-emoji { font-size: 1.1em; }
+      .term-arg { color: var(--term-system); }
       
       .term-log-stream {
         display: flex;
         flex-direction: column;
         gap: 0.25rem;
-        color: var(--term-muted);
+        padding-left: 1rem;
+        border-left: 1px solid #27272a;
+        margin-left: 0.35rem;
       }
+      
       .term-log-line { word-break: break-word; }
       .term-log-line.system { color: var(--term-muted); }
-      .term-log-line.action { color: var(--term-system); }
+      .term-log-line.action { color: #e4e4e7; }
       .term-log-line.user { color: var(--term-user); }
       .term-log-line.error { color: var(--term-error); }
       .term-log-line.success { color: var(--term-success); }
       
+      .term-link { color: var(--term-system); text-decoration: none; transition: color 0.2s; }
+      .term-link:hover { color: #bae6fd; text-decoration: underline; }
+      
+      .term-action-btn { background: none; border: none; color: var(--term-muted); cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; margin-left: 0.5rem; transition: color 0.2s; }
+      .term-action-btn:hover { color: var(--term-error); }
+      
+      /* Inline Input */
       .term-input-group {
         display: flex;
         gap: 0.5rem;
-        margin-top: 0.75rem;
+        margin-top: 0.5rem;
+        padding-left: 1rem;
+        margin-left: 0.35rem;
+        border-left: 1px solid var(--term-warning);
         animation: fadeIn 0.3s ease-out forwards;
       }
-      .term-prompt-symbol {
-        color: var(--term-warning);
-        font-weight: bold;
-        user-select: none;
-        padding-top: 0.2rem;
-      }
-      .term-input {
-        flex: 1;
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid var(--term-warning);
-        color: var(--term-text);
-        font-family: inherit;
-        font-size: inherit;
-        padding: 0.2rem 0;
-        outline: none;
-      }
-      .term-input:focus { border-bottom-color: var(--term-user); }
+      .term-prompt-symbol { color: var(--term-warning); font-weight: bold; padding-top: 0.1rem; }
+      .term-input { flex: 1; background: transparent; border: none; color: #e4e4e7; font-family: inherit; font-size: inherit; outline: none; padding: 0.1rem 0; }
       
       /* Compact PR Item */
       .term-pr-item {
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        padding: 0.5rem;
-        background: rgba(63, 185, 80, 0.1);
-        border: 1px solid rgba(63, 185, 80, 0.2);
-        border-radius: 0.25rem;
-        color: var(--term-text);
-        margin-top: 0.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px dashed #27272a;
+        color: #e4e4e7;
+        margin-bottom: 0.5rem;
         animation: fadeIn 0.3s ease-out forwards;
       }
-      .term-pr-icon { color: var(--term-success); }
-      .term-pr-title { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .term-pr-link {
-        color: var(--term-system);
-        text-decoration: none;
-        font-size: 0.9em;
-      }
-      .term-pr-link:hover { text-decoration: underline; }
-      .term-dismiss-btn {
-        background: transparent;
-        border: none;
-        color: var(--term-muted);
-        cursor: pointer;
-        padding: 0.2rem 0.5rem;
-        font-size: 0.9em;
-      }
-      .term-dismiss-btn:hover { color: var(--term-error); }
+      .term-pr-title { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 500;}
 
       @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -453,7 +413,7 @@
         <textarea id="julesTaskInput" class="task-input" placeholder="2. Enter specific instructions (Optional). E.g., 'Target the user dashboard component.'"></textarea>
       </div>
       <div id="julesTerminal" class="ide-viewport">
-        <div id="fetchingIndicator" style="color: var(--term-muted);">[System] Awaiting repository connection...</div>
+        <div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Awaiting repository connection...</div>
         <!-- Terminal Sessions and PRs injected here -->
       </div>
     </div>
