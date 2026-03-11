@@ -51,3 +51,8 @@
 **Title**: [Dropped live Jules dashboard monitoring to reduce visual clutter]
 **Learning**: [When external APIs provide varying states that cause visual clutter in UI feeds (like robot heads and random fast-changing text during 'In Progress' states), dropping live intermediate tracking entirely and only rendering critical state changes (like 'Needs Input' or 'Failed') creates a sleeker, frictionless user experience.]
 **Action**: [When updating external API progress monitoring components, simplify the UI by removing intermediate polling states (like 'In Progress' or 'Completed') from the visual feed, instead relying on immediate success toasts and only rendering interactive cards for terminal states that require user attention.]
+
+2024-05-23
+**Title**: [Combined Jules Execution and GitHub PR UI]
+**Learning**: [Separating conceptually similar inbound/outbound feeds (like Jules execution sessions and the resulting GitHub PRs) into distinct UI panels creates visual clutter and forces users to split their attention. Furthermore, rendering "completed" AI sessions that already have associated PRs duplicates information.]
+**Action**: [When dealing with an AI agent that generates external artifacts (like PRs), merge their execution feed with the artifact feed into a single unified terminal/timeline. Filter out the raw AI session logs once the resulting artifact (PR) is created to keep the UI focused on actionable, current states.]

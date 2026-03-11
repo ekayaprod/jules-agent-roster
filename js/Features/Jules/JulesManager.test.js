@@ -635,11 +635,11 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             expect(processSpy.mock.calls[0][0].id).toBe('2');
         });
 
-        it('should filter out completed merged/closed PR sessions', async () => {
+        it('should filter out all sessions with drafted PRs', async () => {
              window.julesService.getSessions.mockResolvedValue({
                  sessions: [
                      { id: '1', sourceContext: { source: 'repo' }, outputs: [{ pullRequest: { state: 'MERGED' } }] },
-                     { id: '2', sourceContext: { source: 'repo' }, outputs: [{ pullRequest: { state: 'OPEN' } }] },
+                     { id: '2', sourceContext: { source: 'repo' }, outputs: [] },
                  ]
              });
 

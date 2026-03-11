@@ -3,7 +3,6 @@
  * continuous garbage collection overhead during setInterval ticks.
  */
 const hasPullRequest = o => o.pullRequest;
-const hasCompletedPR = o => o.pullRequest && (o.pullRequest.state === 'MERGED' || o.pullRequest.state === 'CLOSED');
 const sortByCreateTime = (a, b) => a.createTime < b.createTime ? -1 : (a.createTime > b.createTime ? 1 : 0);
 
 /**
@@ -233,30 +232,44 @@ class JulesManager {
      * @param {string} sourceName - The active repository source name.
      */
     async loadPullRequestsForRepo(sourceName) {
-        const prFeed = this.getEl("julesPullRequests");
-        if (!prFeed) return;
+        const terminal = this.getEl("julesTerminal");
+        if (!terminal) return;
 
-        prFeed.classList.add('active');
-        prFeed.innerHTML = FormatUtils.createTerminalLineHTML("Fetching open pull requests...", "fetchingPRIndicator");
+        terminal.classList.add('active');
+
+        // Render fetching indicator
+        const fetchingId = "fetchingPRIndicator";
+        if (!terminal.querySelector(`#${fetchingId}`)) {
+             const indicator = document.createElement('div');
+             indicator.innerHTML = FormatUtils.createTerminalLineHTML("Fetching open pull requests...", fetchingId);
+             terminal.appendChild(indicator.firstElementChild);
+        }
 
         if (!window.julesService) return;
 
         try {
             const pullRequests = await window.julesService.getPullRequests(sourceName);
 
-            const fetchingIndicator = prFeed.querySelector('#fetchingPRIndicator');
+            const fetchingIndicator = terminal.querySelector(`#${fetchingId}`);
             if (fetchingIndicator) fetchingIndicator.remove();
 
+            // Clear previously rendered GitHub PR elements
+            document.querySelectorAll('.github-pr-item').forEach(el => el.remove());
+
             if (!pullRequests || pullRequests.length === 0) {
-                prFeed.innerHTML = FormatUtils.createTerminalLineHTML("No open pull requests found.");
+                // To avoid cluttering the terminal, we don't display "No PRs found".
                 return;
             }
 
-            prFeed.innerHTML = ''; // Clear contents
+            // Remove awaiting messages if PRs are successfully loaded
+            if (pullRequests.length > 0 && terminal.querySelector('.terminal-line:not(#fetchingIndicator)')) {
+                const awaitingMsg = Array.from(terminal.querySelectorAll('.terminal-line')).find(el => el.textContent.includes('Awaiting Agent launch'));
+                if (awaitingMsg) awaitingMsg.remove();
+            }
 
             pullRequests.forEach(pr => {
                 const item = document.createElement("div");
-                item.className = "dashboard-item";
+                item.className = "dashboard-item github-pr-item";
 
                 const prNumber = pr.number;
                 const prTitle = pr.title;
@@ -277,12 +290,13 @@ class JulesManager {
                 const prLink = DOMUtils.createPRLink(prUrl);
                 item.querySelector(".dashboard-status").appendChild(prLink);
 
-                prFeed.appendChild(item);
+                terminal.appendChild(item);
             });
 
         } catch (error) {
             console.error("Failed to load pull requests:", error);
-            prFeed.innerHTML = FormatUtils.createTerminalLineHTML("Error fetching pull requests.");
+            const fetchingIndicator = terminal.querySelector(`#fetchingPRIndicator`);
+            if (fetchingIndicator) fetchingIndicator.remove();
         }
     }
 
@@ -307,8 +321,8 @@ class JulesManager {
             let repoSessions = sessionsResponse.sessions.filter(s => {
                 if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
                 if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
-                // Filter out sessions that have a merged or closed PR
-                if (s.outputs && s.outputs.some(hasCompletedPR)) return false;
+                // Filter out sessions that have a drafted PR
+                if (s.outputs && s.outputs.some(hasPullRequest)) return false;
 
                 return true;
             });
@@ -601,11 +615,7 @@ class JulesManager {
         if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
         this.currentRepo = null;
 
-        const prFeed = this.getEl("julesPullRequests");
-        if (prFeed) {
-            prFeed.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting PR fetch command...");
-            prFeed.classList.remove('active');
-        }
+        document.querySelectorAll('.github-pr-item').forEach(el => el.remove());
     }
 
     _clearPollingAndCache() {
