@@ -2,6 +2,9 @@
   "name": "fusion-lab",
   "version": "1.0.0",
   "description": "Fusion Lab Project",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "benchmark": "node benchmark.js",
     "test": "node benchmark.js"
