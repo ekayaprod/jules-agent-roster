@@ -304,6 +304,16 @@
       </div>
     </div>
 
+    <!-- Jules Pull Requests Panel -->
+    <div id="julesPRPanel" class="jules-runner-panel" style="margin-top: -1.5rem;">
+      <div class="runner-header">
+        <h2>📝 Open Pull Requests <span>GitHub API</span></h2>
+      </div>
+      <div id="julesPullRequests" class="terminal-feed">
+        <div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting PR fetch command...</div>
+      </div>
+    </div>
+
     <!-- Navigation & Search -->
     <div class="controls-bar" style="justify-content: center;">
       <nav id="category-nav" class="category-nav">
@@ -374,6 +384,12 @@
             <input type="password" id="julesApiKeyInput" class="modal-input" placeholder="Paste key here..." />
             <span id="julesApiKeyError" role="alert" style="font-size: var(--text-xs); color: #ef4444; display: none; transition: all 0.2s;"></span>
             <a href="https://jules.google.com/settings#api" target="_blank" style="font-size: var(--text-xs); color: var(--accent); text-decoration: none; margin-top: 0.25rem;">How to get an API Key →</a>
+        </div>
+        <div style="display:flex; flex-direction:column; gap: 0.5rem; margin-top: 0.5rem;">
+            <label for="githubTokenInput" style="font-size: var(--text-xs); color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">GitHub Token</label>
+            <input type="password" id="githubTokenInput" class="modal-input" placeholder="Paste token here..." />
+            <span id="githubTokenError" role="alert" style="font-size: var(--text-xs); color: #ef4444; display: none; transition: all 0.2s;"></span>
+            <a href="https://github.com/settings/tokens" target="_blank" style="font-size: var(--text-xs); color: var(--accent); text-decoration: none; margin-top: 0.25rem;">How to get a GitHub Token →</a>
         </div>
         <div class="flex" style="gap: 1rem; margin-top: 1rem;">
             <button id="closeSettingsBtn" class="secondary" style="flex:1;" aria-label="Cancel API Configuration">Cancel</button>

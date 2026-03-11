@@ -13,16 +13,20 @@ class JulesService {
         /** @type {string} */
         this.apiKey = "";
         /** @type {string} */
+        this.githubToken = "";
+        /** @type {string} */
         this.baseUrl = "https://jules.googleapis.com/v1alpha";
     }
 
     /**
      * Configures the service with the user's API key.
      * @param {string} apiKey - The Jules API key.
+     * @param {string} githubToken - The user's GitHub Personal Access Token.
      * @see README.md#julesapi-quick-start for configuration workflow.
      */
-    configure(apiKey) {
+    configure(apiKey, githubToken = "") {
         this.apiKey = apiKey;
+        this.githubToken = githubToken;
     }
 
     /**
@@ -155,6 +159,41 @@ ${userTask}`;
      */
     async getActivities(sessionId) {
         return this._fetch(`sessions/${sessionId}/activities?pageSize=50`);
+    }
+
+    /**
+     * Retrieves the list of open pull requests for a given repository via the GitHub API.
+     * @param {string} sourceName - The target repository source name (e.g., 'sources/github/owner/repo').
+     * @returns {Promise<Array>} The JSON response containing the open pull requests.
+     */
+    async getPullRequests(sourceName) {
+        if (!sourceName.startsWith('sources/github/')) {
+            throw new Error('Unsupported source format for pull requests');
+        }
+
+        const repoPath = sourceName.replace('sources/github/', '');
+        const url = `https://api.github.com/repos/${repoPath}/pulls?state=open`;
+
+        const options = {};
+        if (this.githubToken) {
+            options.headers = {
+                'Authorization': `token ${this.githubToken}`
+            };
+        }
+
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) {
+                if (response.status === 404) {
+                    return [];
+                }
+                throw new Error(`GitHub API returned ${response.status}`);
+            }
+            return response.json();
+        } catch (error) {
+            console.error("Failed to fetch pull requests:", error);
+            return [];
+        }
     }
 }
 
