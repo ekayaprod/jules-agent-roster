@@ -3,7 +3,6 @@
  * continuous garbage collection overhead during setInterval ticks.
  */
 const hasPullRequest = o => o.pullRequest;
-const hasCompletedPR = o => o.pullRequest && (o.pullRequest.state === 'MERGED' || o.pullRequest.state === 'CLOSED');
 const sortByCreateTime = (a, b) => a.createTime < b.createTime ? -1 : (a.createTime > b.createTime ? 1 : 0);
 
 /**
@@ -69,23 +68,29 @@ class JulesManager {
      */
     async init() {
         const apiKey = StorageUtils.getItem("jules_api_key");
+        const githubToken = StorageUtils.getItem("github_api_key");
         const settingsModal = this.getEl("settingsModal");
         const openBtn = this.getEl("openSettingsBtn");
         const closeBtn = this.getEl("closeSettingsBtn");
         const saveBtn = this.getEl("saveSettingsBtn");
         const keyInput = this.getEl("julesApiKeyInput");
         const errorSpan = this.getEl("julesApiKeyError");
+        const githubTokenInput = this.getEl("githubTokenInput");
+        const githubTokenErrorSpan = this.getEl("githubTokenError");
 
         // Modal Toggles
         const toggleModal = (show) => {
             if (show) {
                 keyInput.value = StorageUtils.getItem("jules_api_key");
+                if (githubTokenInput) githubTokenInput.value = StorageUtils.getItem("github_api_key");
                 settingsModal.classList.add("visible");
                 setTimeout(() => keyInput.focus(), 10);
                 this._clearKeyError(keyInput, errorSpan);
+                this._clearKeyError(githubTokenInput, githubTokenErrorSpan);
             } else {
                 settingsModal.classList.remove("visible");
                 this._clearKeyError(keyInput, errorSpan);
+                this._clearKeyError(githubTokenInput, githubTokenErrorSpan);
             }
         };
 
@@ -103,6 +108,8 @@ class JulesManager {
         // Save and Connect Logic
         saveBtn?.addEventListener("click", async () => {
             const key = keyInput.value.trim();
+            const githubKey = githubTokenInput ? githubTokenInput.value.trim() : "";
+
             if (!key) {
                 this._showKeyError(keyInput, errorSpan, "An API Key is required to connect.");
                 return;
@@ -111,24 +118,27 @@ class JulesManager {
             try {
                 if (saveBtn) DOMUtils.setButtonState(saveBtn, "loading", "Connecting...");
                 if (keyInput) keyInput.disabled = true;
+                if (githubTokenInput) githubTokenInput.disabled = true;
 
                 StorageUtils.setItem("jules_api_key", key);
+                StorageUtils.setItem("github_api_key", githubKey);
                 toggleModal(false);
                 this.app.toast.show("Connecting to Jules...");
 
                 if (window.julesService) {
-                    window.julesService.configure(key);
+                    window.julesService.configure(key, githubKey);
                     await this.loadSources();
                 }
             } finally {
                 if (saveBtn) DOMUtils.setButtonState(saveBtn, "ready", "Save & Connect");
                 if (keyInput) keyInput.disabled = false;
+                if (githubTokenInput) githubTokenInput.disabled = false;
             }
         });
 
         // Auto-connect if key exists, otherwise prompt user
         if (apiKey && window.julesService) {
-            window.julesService.configure(apiKey);
+            window.julesService.configure(apiKey, githubToken);
             await this.loadSources();
         } else {
             toggleModal(true);
@@ -222,30 +232,44 @@ class JulesManager {
      * @param {string} sourceName - The active repository source name.
      */
     async loadPullRequestsForRepo(sourceName) {
-        const prFeed = this.getEl("julesPullRequests");
-        if (!prFeed) return;
+        const terminal = this.getEl("julesTerminal");
+        if (!terminal) return;
 
-        prFeed.classList.add('active');
-        prFeed.innerHTML = FormatUtils.createTerminalLineHTML("Fetching open pull requests...", "fetchingPRIndicator");
+        terminal.classList.add('active');
+
+        // Render fetching indicator
+        const fetchingId = "fetchingPRIndicator";
+        if (!terminal.querySelector(`#${fetchingId}`)) {
+             const indicator = document.createElement('div');
+             indicator.innerHTML = FormatUtils.createTerminalLineHTML("Fetching open pull requests...", fetchingId);
+             terminal.appendChild(indicator.firstElementChild);
+        }
 
         if (!window.julesService) return;
 
         try {
             const pullRequests = await window.julesService.getPullRequests(sourceName);
 
-            const fetchingIndicator = prFeed.querySelector('#fetchingPRIndicator');
+            const fetchingIndicator = terminal.querySelector(`#${fetchingId}`);
             if (fetchingIndicator) fetchingIndicator.remove();
 
+            // Clear previously rendered GitHub PR elements
+            document.querySelectorAll('.github-pr-item').forEach(el => el.remove());
+
             if (!pullRequests || pullRequests.length === 0) {
-                prFeed.innerHTML = FormatUtils.createTerminalLineHTML("No open pull requests found.");
+                // To avoid cluttering the terminal, we don't display "No PRs found".
                 return;
             }
 
-            prFeed.innerHTML = ''; // Clear contents
+            // Remove awaiting messages if PRs are successfully loaded
+            if (pullRequests.length > 0 && terminal.querySelector('.terminal-line:not(#fetchingIndicator)')) {
+                const awaitingMsg = Array.from(terminal.querySelectorAll('.terminal-line')).find(el => el.textContent.includes('Awaiting Agent launch'));
+                if (awaitingMsg) awaitingMsg.remove();
+            }
 
             pullRequests.forEach(pr => {
                 const item = document.createElement("div");
-                item.className = "dashboard-item";
+                item.className = "dashboard-item github-pr-item";
 
                 const prNumber = pr.number;
                 const prTitle = pr.title;
@@ -266,12 +290,13 @@ class JulesManager {
                 const prLink = DOMUtils.createPRLink(prUrl);
                 item.querySelector(".dashboard-status").appendChild(prLink);
 
-                prFeed.appendChild(item);
+                terminal.appendChild(item);
             });
 
         } catch (error) {
             console.error("Failed to load pull requests:", error);
-            prFeed.innerHTML = FormatUtils.createTerminalLineHTML("Error fetching pull requests.");
+            const fetchingIndicator = terminal.querySelector(`#fetchingPRIndicator`);
+            if (fetchingIndicator) fetchingIndicator.remove();
         }
     }
 
@@ -296,8 +321,8 @@ class JulesManager {
             let repoSessions = sessionsResponse.sessions.filter(s => {
                 if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
                 if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
-                // Filter out sessions that have a merged or closed PR
-                if (s.outputs && s.outputs.some(hasCompletedPR)) return false;
+                // Filter out sessions that have a drafted PR
+                if (s.outputs && s.outputs.some(hasPullRequest)) return false;
 
                 return true;
             });
@@ -437,106 +462,16 @@ class JulesManager {
         }
 
         this.getEl("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
-        const terminal = this.getEl("julesTerminal");
-        terminal.classList.add('active');
-
-        // Clear the "Awaiting..." placeholder if it's the first execution
-        if (terminal.innerHTML.includes("Awaiting Agent launch command")) {
-            terminal.innerHTML = "";
-        }
-
-        // Generate a temporary ID for the new session
-        const tempId = 'temp-' + Date.now();
-
-        const item = document.createElement("div");
-        item.className = "dashboard-item";
-        item.id = tempId;
-
-        const repoPath = sourceName.replace('sources/github/', '');
-
-        item.innerHTML = '';
-        item.append(...this._createDashboardItemNodes(
-            agent.emoji,
-            agent.name,
-            repoPath,
-            `status-${tempId}`,
-            'status-in-progress',
-            'Launching...'
-        ));
-        terminal.appendChild(item);
 
         if (btn) {
             DOMUtils.setButtonState(btn, "loading", "Launching...");
         }
 
         try {
-            const session = await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name} Execution`);
-
-            // Update item with actual session ID
-            item.id = `session-${session.id}`;
-            // ⚡ Bolt+: Replaced terminal.querySelector with document.getElementById
-            const statusBadge = document.getElementById(`status-${tempId}`);
-            if (statusBadge) {
-                statusBadge.id = `status-${session.id}`;
-                statusBadge.textContent = "In Progress";
-            }
-
-            this.startTerminalPolling(session.id, item, repoPath);
-            this.app.toast.show(`Session for ${agent.name} launched successfully!`, "success");
+            await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name} Execution`);
+            this.app.toast.show(`Session for ${agent.name} launched successfully! Sent to Jules.`, "success");
         } catch (err) {
-            const statusBadge = document.getElementById(`status-${tempId}`);
-            if (statusBadge) {
-                statusBadge.className = "status-badge status-failed";
-                statusBadge.textContent = "Failed";
-            }
-
-            const metaDiv = item.querySelector(".dashboard-meta");
-            metaDiv.textContent = '';
-            metaDiv.style.color = "";
-
-            const errorContainer = document.createElement("div");
-            errorContainer.style.display = "flex";
-            errorContainer.style.alignItems = "flex-start";
-            errorContainer.style.gap = "0.75rem";
-            errorContainer.style.padding = "1rem";
-            errorContainer.style.borderLeft = "4px solid #ef4444";
-            errorContainer.style.backgroundColor = "rgba(239, 68, 68, 0.1)";
-            errorContainer.style.borderRadius = "0 0.5rem 0.5rem 0";
-            errorContainer.style.marginTop = "0.5rem";
-            errorContainer.setAttribute("role", "alert");
-
-            const iconSpan = document.createElement("span");
-            iconSpan.textContent = "⚠️";
-            iconSpan.style.color = "#ef4444";
-            iconSpan.style.flexShrink = "0";
-            iconSpan.setAttribute("aria-hidden", "true");
-
-            const textContainer = document.createElement("div");
-            textContainer.style.display = "flex";
-            textContainer.style.flexDirection = "column";
-            textContainer.style.gap = "0.25rem";
-
-            const errorTitle = document.createElement("p");
-            errorTitle.style.fontSize = "0.875rem";
-            errorTitle.style.fontWeight = "600";
-            errorTitle.style.color = "#f8fafc";
-            errorTitle.style.margin = "0";
-            errorTitle.textContent = "We couldn't launch the agent session";
-
-            const errorDesc = document.createElement("p");
-            errorDesc.style.fontSize = "0.875rem";
-            errorDesc.style.color = "#94a3b8";
-            errorDesc.style.margin = "0";
-            errorDesc.textContent = "Please check your repository permissions and API key, then try again.";
-
-            textContainer.appendChild(errorTitle);
-            textContainer.appendChild(errorDesc);
-            errorContainer.appendChild(iconSpan);
-            errorContainer.appendChild(textContainer);
-
-            metaDiv.appendChild(errorContainer);
-
-            this.app.toast.show(`Session launch failed. Please review the error details.`, "error");
+            this.app.toast.show(`Session launch failed. Please check your repository permissions and API key.`, "error");
         } finally {
             if (btn) {
                 DOMUtils.setButtonState(btn, "ready", "Launch in Jules 🚀");
@@ -680,11 +615,7 @@ class JulesManager {
         if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
         this.currentRepo = null;
 
-        const prFeed = this.getEl("julesPullRequests");
-        if (prFeed) {
-            prFeed.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting PR fetch command...");
-            prFeed.classList.remove('active');
-        }
+        document.querySelectorAll('.github-pr-item').forEach(el => el.remove());
     }
 
     _clearPollingAndCache() {
