@@ -1,4 +1,4 @@
-const FormatUtils = require('./FormatUtils');
+const { FormatUtils } = require('./index');
 
 describe('FormatUtils', () => {
     describe('Constants', () => {
