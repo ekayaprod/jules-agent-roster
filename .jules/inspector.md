@@ -42,3 +42,8 @@
 **Title**: 🕵️ Inspector - [Coverage Added: RarityEngine]
 **Learning**: The `RarityEngine.js` class contains logic gaps within `calculateRarity` where `domains.includes("Visible")` evaluation combined with `domains.includes("Invisible")` results in incorrect combinations leading to Mythic instead of expected tiers. Furthermore, "Epic" logic checks for "Integrity" and ("Visible" or "Invisible") return Mythic due to array combination overlap edge cases.
 **Action**: Generated pure test suite mocking specific agent domains directly to interrogate these matrix edge cases. Successfully exposed functional boundaries without modifying the application code.
+
+2026-03-14
+**Title**: 🕵️ Inspector - [Interrogated Boundaries: RarityEngine False Positives]
+**Learning**: Mocked tests lacking strict property bounds (e.g., omitting the `name` property entirely on `agent1` and `agent2`) caused unintended evaluation of `undefined === undefined` returning "Mythic", masking subsequent array boundary failures.
+**Action**: Modified `RarityEngine.test.js` to ensure all mocks possess explicit `name` properties. This successfully cleared the "Mythic" false positive boundary, interrogating the true Epic/Rare structural domain mapping and allowing isolation of mathematically unreachable code (line 26).
