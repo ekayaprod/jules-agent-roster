@@ -41,15 +41,24 @@ const FusionCompiler = function (agents, customAgents) {
 
   // Normalize keys to ensure they are sorted alphabetically via a pure, declarative functional pipeline.
   // This guarantees that "Bolt+Architect" and "Architect+Bolt" resolve to the same fusion.
-  const normalizeKeys = (data) =>
-    data
-      ? Object.fromEntries(
-          Object.entries(data).map(([key, val]) => [
-            key.split(",").map((s) => s.trim()).sort().join(","),
-            val,
-          ])
-        )
-      : {};
+  const normalizeKeys = (data) => {
+    if (!data) return {};
+    const result = {};
+    for (const [key, val] of Object.entries(data)) {
+      if (val && typeof val === "object" && !val.name && !val.emoji && !val.short_description) {
+        // Handle nested categories (e.g., from custom_agents.json)
+        for (const [subKey, subVal] of Object.entries(val)) {
+          const sortedKey = subKey.split(",").map((s) => s.trim()).sort().join(",");
+          result[sortedKey] = subVal;
+        }
+      } else {
+        // Handle flat structure (e.g., from tests)
+        const sortedKey = key.split(",").map((s) => s.trim()).sort().join(",");
+        result[sortedKey] = val;
+      }
+    }
+    return result;
+  };
 
   const customAgentsMap = normalizeKeys(customAgents);
 
