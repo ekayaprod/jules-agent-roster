@@ -1,10 +1,5 @@
 # Agents Journal
 
-2026-03-11
-**Title**: ⏱️ Millisecond - [Search Render Optimized: Static Mapper and Regex Hoisting]
-**Learning**: During high-frequency virtual scrolling render updates, using inline arrow functions in `.map()` and inline regex literals within `.replace()` operations inside massive arrays causes significant CPU thrashing and continuous garbage collection, dragging down search response times.
-**Action**: Extracted the search item mapping arrow function and the animation-delay CSS regex into file-scoped constants, stabilizing references and slashing the performance cost of rendering massive result sets.
-
 ## 2026-03-03 - 🪄 Illusionist - [Perceived Performance: Agent Cards]
 
 **Learning:** Loading skeletons serve no purpose if they are injected *after* the blocking asynchronous operations they are meant to mask. In `RosterApp.js`, `renderSkeletons()` was called after `await this.agentRepo.fetchAgents()`, resulting in users seeing a blank screen during the fetch rather than the skeleton UI.

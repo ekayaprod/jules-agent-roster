@@ -19,6 +19,16 @@ const SEARCH_CLUSTERIZE_OPTIONS = {
 };
 
 /**
+ * ⏱️ CALIBRATE: Hoisted static mapper to prevent inline arrow function allocations on every search.
+ */
+const MAP_AGENT_TO_SEARCH_ITEM = (agent, index) => ({ agent, keyOrIndex: index });
+
+/**
+ * ⏱️ CALIBRATE: Hoisted inline regex to prevent re-compilation in massive mapping loops.
+ */
+const ANIMATION_DELAY_REGEX = /animation-delay:\s*0ms;?/;
+
+/**
  * Controller responsible for orchestrating search operations, fuzzy matching, and virtual DOM rendering.
  * @see README.md#searchcontroller-architecture
  */
@@ -72,7 +82,7 @@ class SearchController {
         this.app._searchCache.agentCount !== this.app.agents.length ||
         this.app._searchCache.unlockedSize !== currentUnlockedSize) {
 
-        const allAgents = this.app.agents.map((agent, index) => ({ agent, keyOrIndex: index }));
+        const allAgents = this.app.agents.map(MAP_AGENT_TO_SEARCH_ITEM);
         if (this.app.fusionLab && this.app.fusionLab.fusionIndex) {
             this.app.fusionLab.fusionIndex.unlockedKeys.forEach(key => {
                 let agent = this.app.getCustomAgent(key) || this.app.fusionLab.compiler.customAgentsMap[key];
@@ -102,7 +112,7 @@ class SearchController {
             this.app._cardHtmlCache.set(keyOrIndex, cardHtml);
         }
         const delay = `${Math.min(visibleCount * 30, 600)}ms`;
-        const renderedHtml = typeof cardHtml === 'string' ? cardHtml.replace(/animation-delay:\s*0ms;?/, `animation-delay: ${delay};`) : '';
+        const renderedHtml = typeof cardHtml === 'string' ? cardHtml.replace(ANIMATION_DELAY_REGEX, `animation-delay: ${delay};`) : '';
         visibleCount++;
         return renderedHtml;
     });
