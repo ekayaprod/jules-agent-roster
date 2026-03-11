@@ -164,6 +164,8 @@ You must return your final response as a strict JSON object adhering to this sch
     const name2 = agent2.name ? agent2.name.trim() : "";
     const key = [name1, name2].sort().join(",");
 
+    const computedTier = typeof RarityEngine !== 'undefined' ? RarityEngine.calculateRarity(agent1, agent2) : "Common";
+
     if (customAgentsMap[key]) {
       const custom = customAgentsMap[key];
       return {
@@ -172,6 +174,7 @@ You must return your final response as a strict JSON object adhering to this sch
         isCustom: true,
         short_description: custom.short_description || custom.desc || custom.description,
         prompt: custom.prompt === null ? stitch(agent1, agent2, custom.name) : custom.prompt,
+        tier: computedTier
       };
     }
 
@@ -180,6 +183,7 @@ You must return your final response as a strict JSON object adhering to this sch
       isCustom: false,
       short_description: `A synthesized protocol combining the strengths of ${agent1.name} and ${agent2.name}.`,
       prompt: stitch(agent1, agent2),
+      tier: computedTier
     };
   };
 

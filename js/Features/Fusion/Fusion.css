@@ -317,6 +317,38 @@
     pointer-events: none;
     z-index: 1000;
 }
+
+/* Mythic Effects */
+.tier-mythic .anim-particle { --particle-color: #f43f5e; box-shadow: 0 0 10px #f43f5e, 0 0 20px #e11d48; }
+.fusion-animation-overlay.active.tier-mythic .anim-arena { animation: shake-mythic 1.8s steps(2, end) 1.2s infinite; filter: contrast(1.5) drop-shadow(0 0 10px #f43f5e); }
+
+@keyframes shake-mythic {
+    0%, 100% { transform: translate(0, 0) skewX(0deg); }
+    10% { transform: translate(-1.25rem, 0.625rem) skewX(10deg); filter: hue-rotate(90deg); }
+    20% { transform: translate(1.25rem, -0.625rem) skewX(-10deg); filter: hue-rotate(-90deg); }
+    30% { transform: translate(-1.25rem, -0.625rem) skewX(15deg); }
+    40% { transform: translate(1.25rem, 0.625rem) skewX(-15deg); filter: invert(0.8); }
+    50% { transform: translate(0, 0) skewX(0deg); filter: invert(0); }
+}
+
+.fusion-animation-overlay.active.tier-mythic::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle, rgba(244,63,94,0.4) 0%, transparent 70%);
+    opacity: 0;
+    animation: mythic-nova 3.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    pointer-events: none;
+    z-index: 1000;
+    mix-blend-mode: color-dodge;
+}
+
+@keyframes mythic-nova {
+    0%, 30% { opacity: 0; transform: scale(0.5); }
+    45% { opacity: 1; transform: scale(1.5); }
+    60% { opacity: 0; transform: scale(2); }
+    100% { opacity: 0; }
+}
 @keyframes flash-white {
     0%, 40% { opacity: 0; }
     50% { opacity: 1; }

@@ -71,6 +71,19 @@ class AgentRepository {
                         Object.entries(categoryAgents).map(async ([key, custom]) => {
                             const agent = await this.#processCustomAgent(key, custom);
                             if (agent) {
+                                // Compute tier dynamically using RarityEngine
+                                if (typeof RarityEngine !== 'undefined') {
+                                    const [name1, name2] = key.split(",");
+                                    const a1 = this.agents.find(a => a.name === name1);
+                                    const a2 = this.agents.find(a => a.name === name2);
+                                    if (a1 && a2) {
+                                        agent.tier = RarityEngine.calculateRarity(a1, a2);
+                                    } else {
+                                        agent.tier = "Common";
+                                    }
+                                } else {
+                                    agent.tier = "Common";
+                                }
                                 validatedCustomData[categoryName][key] = agent;
                             }
                         })
