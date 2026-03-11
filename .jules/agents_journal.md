@@ -117,3 +117,8 @@
 ## 2024-05-24 - 🌌 Singularity - [Strict Markdown-JSON Alignment Required]
 **Learning:** The project mandates an absolute 1:1 synchronization between the dynamic agent JSON registries (`agents.json` / `custom_agents.json`) and the static `.md` source files in the `prompts/` directory. Roles extracted from markdown headers (e.g., `You are "[Name]" [emoji] - The [Role].`) must perfectly match the corresponding JSON objects.
 **Action:** Spawn agents designed to autonomously scan, extract, and apply these specific markdown structures to maintain a truthful, self-healing registry without relying on heavy external schema validation tools.
+
+2024-05-15
+**Title**: Search Empty State Refinement
+**Learning**: Discovered the repository's native empty state container in `index.html` under `#emptyState`. Modified it to correctly handle active search filter dead-ends rather than generic "No data" screens, relying purely on the existing `empty-state` and `secondary` utility classes without bootstrapping new CSS.
+**Action**: Replaced a generic 🌌 "No Protocols Found" empty state with a context-rich 🔍 "No results match your filters" state, and changed the CTA to "Clear Filters".
