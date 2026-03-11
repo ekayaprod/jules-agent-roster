@@ -433,10 +433,52 @@ class JulesManager {
             }
 
             const metaDiv = item.querySelector(".dashboard-meta");
-            metaDiv.textContent = `Launch Error: ${err.message}`;
-            metaDiv.style.color = "#ef4444";
+            metaDiv.textContent = '';
+            metaDiv.style.color = "";
 
-            this.app.toast.show(`Failed to launch session: ${err.message}`, "error");
+            const errorContainer = document.createElement("div");
+            errorContainer.style.display = "flex";
+            errorContainer.style.alignItems = "flex-start";
+            errorContainer.style.gap = "0.75rem";
+            errorContainer.style.padding = "1rem";
+            errorContainer.style.borderLeft = "4px solid #ef4444";
+            errorContainer.style.backgroundColor = "rgba(239, 68, 68, 0.1)";
+            errorContainer.style.borderRadius = "0 0.5rem 0.5rem 0";
+            errorContainer.style.marginTop = "0.5rem";
+            errorContainer.setAttribute("role", "alert");
+
+            const iconSpan = document.createElement("span");
+            iconSpan.textContent = "⚠️";
+            iconSpan.style.color = "#ef4444";
+            iconSpan.style.flexShrink = "0";
+            iconSpan.setAttribute("aria-hidden", "true");
+
+            const textContainer = document.createElement("div");
+            textContainer.style.display = "flex";
+            textContainer.style.flexDirection = "column";
+            textContainer.style.gap = "0.25rem";
+
+            const errorTitle = document.createElement("p");
+            errorTitle.style.fontSize = "0.875rem";
+            errorTitle.style.fontWeight = "600";
+            errorTitle.style.color = "#f8fafc";
+            errorTitle.style.margin = "0";
+            errorTitle.textContent = "We couldn't launch the agent session";
+
+            const errorDesc = document.createElement("p");
+            errorDesc.style.fontSize = "0.875rem";
+            errorDesc.style.color = "#94a3b8";
+            errorDesc.style.margin = "0";
+            errorDesc.textContent = "Please check your repository permissions and API key, then try again.";
+
+            textContainer.appendChild(errorTitle);
+            textContainer.appendChild(errorDesc);
+            errorContainer.appendChild(iconSpan);
+            errorContainer.appendChild(textContainer);
+
+            metaDiv.appendChild(errorContainer);
+
+            this.app.toast.show(`Session launch failed. Please review the error details.`, "error");
         } finally {
             if (btn) {
                 DOMUtils.setButtonState(btn, "ready", "Launch in Jules 🚀");
