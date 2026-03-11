@@ -127,3 +127,7 @@
 **Title**: [Fusion Feature Module Documentation Synthesized]
 **Learning**: [The architectural README claimed FusionCompiler was an OOP class and referenced a non-existent index.js barrel file. Synthesis aligned the macro documentation to reflect the actual functional pipeline evolution and removed the hallucinated index.js colocation note.]
 **Action**: [When updating feature module documentations, strictly verify colocation notes against the actual file tree and ensure legacy OOP explanations are updated if the underlying architecture has been mutated to functional pipelines.]
+
+## 2024-05-24 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: Toast Notification]
+**Learning:** The Toast Notification UI component was missing an overarching macro documentation mapping out its accessibility patterns (role='alert', aria-live) and lifecycle flow (hover pausing). Granular JSDoc without macro context creates cognitive friction.
+**Action:** Synthesize a complete high-level `README.md` for UI components and explicitly cross-link JSDoc tags using `@see README.md#Section` to ensure comprehensive accessibility and lifecycle logic is fully documented and synchronized at every altitude.
