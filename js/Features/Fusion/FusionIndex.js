@@ -75,17 +75,12 @@ class FusionIndex {
     header.className = "fusion-index-header";
     container.appendChild(header);
 
+    const grid = document.createElement("div");
+    grid.className = "fusion-shelf-grid";
+    container.appendChild(grid);
+
     // Iterate over nested categories
     Object.entries(this.customAgents).forEach(([categoryName, categoryAgents]) => {
-        const catHeader = document.createElement("h4");
-        catHeader.innerText = categoryName;
-        catHeader.className = "fusion-index-category";
-        catHeader.style.cssText = "margin: 1.5rem 0 0.5rem 0; font-size: var(--text-sm); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;";
-        container.appendChild(catHeader);
-
-        const grid = document.createElement("div");
-        grid.className = "fusion-shelf-grid";
-
         Object.keys(categoryAgents).forEach((key) => {
           const agentData = categoryAgents[key];
           const isUnlocked = this.unlockedKeys.has(key);
@@ -106,8 +101,6 @@ class FusionIndex {
 
           grid.appendChild(slot);
         });
-
-        container.appendChild(grid);
     });
 
     // Progress Counter
