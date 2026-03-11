@@ -29,6 +29,8 @@ class JulesManager {
         this.renderedSessionIds = new Set();
         /** @type {Set<string>} Track session IDs explicitly dismissed by the user */
         this.dismissedSessionIds = new Set();
+        /** @type {Set<string>} Track open PR URLs fetched from GitHub */
+        this.openPRUrls = new Set();
         /** @type {Object<string, HTMLElement>} Cached DOM element references */
         this.elements = {};
     }
@@ -213,8 +215,7 @@ class JulesManager {
 
         if (this.currentRepo !== sourceName) {
             this._clearPollingAndCache();
-
-            terminal.innerHTML = FormatUtils.createTerminalLineHTML("Fetching active sessions...", "fetchingIndicator");
+            terminal.innerHTML = `<div class="session-card" id="fetchingIndicator" style="background: transparent; border: none; align-items: center; padding: 2rem;"><div style="font-family: monospace; color: var(--text-secondary);">Fetching active sessions...</div></div>`;
             this.currentRepo = sourceName;
         }
 
@@ -229,79 +230,24 @@ class JulesManager {
 
     /**
      * Fetches open pull requests for the repository via the GitHub API and renders them.
+     * Stores the open PR URLs to allow filtering of completed Jules tasks.
      * @param {string} sourceName - The active repository source name.
      */
     async loadPullRequestsForRepo(sourceName) {
-        const terminal = this.getEl("julesTerminal");
-        if (!terminal) return;
-
-        terminal.classList.add('active');
-
-        // Render fetching indicator
-        const fetchingId = "fetchingPRIndicator";
-        if (!terminal.querySelector(`#${fetchingId}`)) {
-             const indicator = document.createElement('div');
-             indicator.innerHTML = FormatUtils.createTerminalLineHTML("Fetching open pull requests...", fetchingId);
-             terminal.appendChild(indicator.firstElementChild);
-        }
-
         if (!window.julesService) return;
-
         try {
             const pullRequests = await window.julesService.getPullRequests(sourceName);
-
-            const fetchingIndicator = terminal.querySelector(`#${fetchingId}`);
-            if (fetchingIndicator) fetchingIndicator.remove();
-
-            // Clear previously rendered GitHub PR elements
-            document.querySelectorAll('.github-pr-item').forEach(el => el.remove());
-
-            if (!pullRequests || pullRequests.length === 0) {
-                // To avoid cluttering the terminal, we don't display "No PRs found".
-                return;
-            }
-
-            // Remove awaiting messages if PRs are successfully loaded
-            if (pullRequests.length > 0 && terminal.querySelector('.terminal-line:not(#fetchingIndicator)')) {
-                const awaitingMsg = Array.from(terminal.querySelectorAll('.terminal-line')).find(el => el.textContent.includes('Awaiting Agent launch'));
-                if (awaitingMsg) awaitingMsg.remove();
-            }
-
-            pullRequests.forEach(pr => {
-                const item = document.createElement("div");
-                item.className = "dashboard-item github-pr-item";
-
-                const prNumber = pr.number;
-                const prTitle = pr.title;
-                const prUrl = pr.html_url;
-                const prUser = pr.user ? pr.user.login : 'Unknown';
-
-                item.innerHTML = '';
-                item.append(...this._createDashboardItemNodes(
-                    "📝",
-                    `#${prNumber}: ${prTitle}`,
-                    `Opened by ${prUser}`,
-                    `pr-status-${prNumber}`,
-                    'status-completed',
-                    'Open'
-                ));
-
-                // Add link directly to PR
-                const prLink = DOMUtils.createPRLink(prUrl);
-                item.querySelector(".dashboard-status").appendChild(prLink);
-
-                terminal.appendChild(item);
-            });
-
+            // Cache the active PR URLs so we can cross-reference them and dismiss closed sessions
+            this.openPRUrls = new Set(pullRequests.map(pr => pr.html_url || pr.url));
         } catch (error) {
             console.error("Failed to load pull requests:", error);
-            const fetchingIndicator = terminal.querySelector(`#fetchingPRIndicator`);
-            if (fetchingIndicator) fetchingIndicator.remove();
+            this.openPRUrls = new Set();
         }
     }
 
     /**
      * Internal implementation to fetch active sessions and render them.
+     * It cross-references GitHub's open PR list to ensure merged/closed tasks are removed.
      * @private
      * @param {string} sourceName - The active repository source name.
      * @param {HTMLElement} terminal - The terminal UI container.
@@ -313,7 +259,7 @@ class JulesManager {
             const sessionsResponse = await window.julesService.getSessions(50);
             if (!sessionsResponse.sessions) {
                 if (terminal.querySelector('#fetchingIndicator')) {
-                    terminal.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting Agent launch command...");
+                    terminal.innerHTML = `<div class="session-card" id="fetchingIndicator" style="background: transparent; border: none; align-items: center; padding: 2rem;"><div style="font-family: monospace; color: var(--text-secondary);">Awaiting Agent launch command...</div></div>`;
                 }
                 return;
             }
@@ -321,28 +267,46 @@ class JulesManager {
             let repoSessions = sessionsResponse.sessions.filter(s => {
                 if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
                 if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
-                // Filter out sessions that have a drafted PR
-                if (s.outputs && s.outputs.some(hasPullRequest)) return false;
+                
+                // Cross-Reference: If it's a completed task that generated a PR, verify the PR is still open in GitHub.
+                const isCompleted = s.outputs && s.outputs.some(hasPullRequest);
+                if (isCompleted && this.openPRUrls.size > 0) {
+                    const pr = s.outputs.find(hasPullRequest).pullRequest;
+                    const prUrl = pr.url || pr.html_url;
+                    
+                    let isPrStillOpen = false;
+                    this.openPRUrls.forEach(openUrl => {
+                        // Check for standard matching or fallback to comparing the PR number strings
+                        if (openUrl === prUrl || (pr.number && openUrl.includes(`/${pr.number}`))) {
+                            isPrStillOpen = true;
+                        }
+                    });
 
+                    // If the PR is no longer open in GitHub, auto-dismiss this session to declutter the viewport.
+                    if (!isPrStillOpen) {
+                        this.dismissedSessionIds.add(s.id);
+                        return false;
+                    }
+                }
                 return true;
             });
 
-            // Sort descending (most recent first) and cap at 5
-            repoSessions = [...repoSessions].reverse().slice(0, 5);
+            // Sort descending (most recent first) and cap at 10
+            repoSessions = [...repoSessions].reverse().slice(0, 10);
             const repoPath = sourceName.replace('sources/github/', '');
 
             const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
             if (fetchingIndicator) fetchingIndicator.remove();
 
             if (repoSessions.length === 0 && terminal.children.length === 0) {
-                terminal.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting Agent launch command...");
+                terminal.innerHTML = `<div class="session-card" id="fetchingIndicator" style="background: transparent; border: none; align-items: center; padding: 2rem;"><div style="font-family: monospace; color: var(--text-secondary);">Awaiting Agent launch command...</div></div>`;
                 return;
             }
 
             if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
             const currentSessionIds = new Set(repoSessions.map(s => s.id));
 
-            // ⚡ Bolt+: Replaced expensive terminal.querySelectorAll() DOM traversal during polling with an O(1) iteration over the in-memory renderedSessionIds Set.
+            // Clean up old elements no longer returned by the API or newly filtered
             for (const id of this.renderedSessionIds) {
                 if (!currentSessionIds.has(id)) {
                     const item = document.getElementById(`session-${id}`);
@@ -355,16 +319,11 @@ class JulesManager {
                 }
             }
 
-            if (repoSessions.length > 0 && terminal.querySelector('.terminal-line:not(#fetchingIndicator)')) {
-                const awaitingMsg = Array.from(terminal.querySelectorAll('.terminal-line')).find(el => el.textContent.includes('Awaiting Agent launch'));
-                if (awaitingMsg) awaitingMsg.remove();
-            }
-
             for (const session of repoSessions) {
                 this._processSession(session, terminal, repoPath);
             }
 
-            // Enforce DOM order based on sorted array (repoSessions is newest to oldest)
+            // Enforce DOM order based on sorted array
             for (const session of repoSessions) {
                 const item = document.getElementById(`session-${session.id}`);
                 if (item) terminal.appendChild(item);
@@ -376,8 +335,7 @@ class JulesManager {
     }
 
     /**
-     * Validates an incoming session payload and determines whether it should
-     * be skipped, updated, or initially rendered to the terminal.
+     * Validates an incoming session payload and constructs the full interactive Session Card.
      * @private
      * @param {Object} session - The session metadata from the API.
      * @param {HTMLElement} terminal - The terminal container element.
@@ -385,21 +343,21 @@ class JulesManager {
      */
     _processSession(session, terminal, repoPath) {
         const isCompleted = session.outputs && session.outputs.some(hasPullRequest);
+        
         if (this.renderedSessionIds.has(session.id)) {
             if (!isCompleted) return;
-            // ⚡ Bolt+: Replaced terminal.querySelector with document.getElementById for O(1) lookup in polling loops
             const statusBadge = document.getElementById(`status-${session.id}`);
             if (!statusBadge || statusBadge.textContent === "Completed") return;
 
             statusBadge.className = "status-badge status-completed";
             statusBadge.textContent = "Completed";
+            
             const prInfo = session.outputs.find(hasPullRequest).pullRequest;
             const item = document.getElementById(`session-${session.id}`);
-            const metaDiv = item ? item.querySelector(".dashboard-meta") : null;
-            if (metaDiv && prInfo) {
-                metaDiv.textContent = 'PR Drafted: ' + prInfo.title;
-            }
-            if (item) {
+            
+            if (item && prInfo) {
+                const titleEl = item.querySelector(".session-title");
+                if (titleEl) titleEl.textContent = `PR Drafted: ${prInfo.title}`;
                 this._attachCompletedItemListeners(item, session.id, prInfo);
             }
             return;
@@ -407,7 +365,7 @@ class JulesManager {
 
         this.renderedSessionIds.add(session.id);
         const item = document.createElement("div");
-        item.className = "dashboard-item";
+        item.className = "session-card";
         item.id = `session-${session.id}`;
 
         const agentName = session.title || "Agent Task";
@@ -423,8 +381,7 @@ class JulesManager {
         item.innerHTML = '';
         item.append(...this._createDashboardItemNodes(
             agentEmoji,
-            agentName,
-            isCompleted ? 'PR Drafted: ' + prTitle : repoPath,
+            isCompleted ? `PR Drafted: ${prTitle}` : agentName,
             `status-${session.id}`,
             isCompleted ? 'status-completed' : 'status-in-progress',
             isCompleted ? 'Completed' : 'Loading...'
@@ -492,29 +449,32 @@ class JulesManager {
         if (this.julesPollingIntervals[sessionId]) clearInterval(this.julesPollingIntervals[sessionId]);
 
         const statusBadge = item.querySelector(`#status-${sessionId}`);
-        const metaDiv = item.querySelector(".dashboard-meta");
-        const statusContainer = item.querySelector(".dashboard-status");
+        const logWindow = item.querySelector(".session-logs");
+        const footerControls = item.querySelector(".session-footer");
 
         this.julesPollingIntervals[sessionId] = setInterval(async () => {
             try {
                 const activitiesResponse = await window.julesService.getActivities(sessionId);
                 if (!activitiesResponse.activities) return;
 
-                // Sort chronologically
-                // ⚡ Bolt+: Eliminated O(N log N) Date parsing overhead during high-frequency polling by using native ISO string comparison instead of new Date().
                 const activities = activitiesResponse.activities.sort(sortByCreateTime);
 
                 const state = {
                     isCompleted: false,
                     hasError: false,
                     isWaitingForInput: false,
-                    lastProgressTitle: metaDiv.textContent
+                    logsHtml: ""
                 };
 
                 activities.forEach(act => this._processActivity(act, state));
 
-                metaDiv.textContent = state.lastProgressTitle;
-                this._updatePollingState(sessionId, repoPath, state, statusBadge, metaDiv, statusContainer);
+                // Batch DOM update for logs
+                if (logWindow && logWindow.innerHTML !== state.logsHtml) {
+                    logWindow.innerHTML = state.logsHtml;
+                    logWindow.scrollTop = logWindow.scrollHeight;
+                }
+
+                this._updatePollingState(sessionId, repoPath, state, statusBadge, footerControls);
 
             } catch (e) {
                 console.error("Polling error", e);
@@ -523,59 +483,70 @@ class JulesManager {
     }
 
     /**
-     * Parses a single activity object from the session logs and updates the
-     * aggregate polling state accumulator.
+     * Parses a single activity object from the session logs and maps it into
+     * human-readable HTML for the scrolling log window, while updating the polling flags.
      * @private
      * @param {Object} act - The individual activity record from the API.
-     * @param {Object} state - The accumulator object containing current polling boolean flags.
+     * @param {Object} state - The accumulator object containing current polling boolean flags and HTML.
      */
     _processActivity(act, state) {
-        if (act.progressUpdated) {
-            state.lastProgressTitle = act.progressUpdated.title;
-            return;
+        // Build the Log Output
+        let logClass = "system";
+        let logText = act.title || act.description || "Processing...";
+
+        if (act.type && act.type.includes('USER_INPUT')) {
+            logClass = "user";
+            logText = act.title || act.message || "User replied.";
         }
 
+        if (act.error) {
+            logClass = "error";
+            logText = "Execution failed: " + (act.error.message || "Unknown error");
+        }
+
+        state.logsHtml += `<div class="log-line ${logClass}">> ${FormatUtils.escapeHTML(logText)}</div>`;
+
+        // Update State Flags
         if (act.userActionRequired || act.requiresInput || (act.type && act.type.includes('INPUT'))) {
             state.isWaitingForInput = true;
-            state.lastProgressTitle = act.title || "Waiting for Input...";
             return;
         }
 
         if (act.sessionCompleted) {
             state.isCompleted = true;
-            if (act.artifacts && act.artifacts[0]?.changeSet?.gitPatch?.suggestedCommitMessage) {
-                const prTitle = act.artifacts[0].changeSet.gitPatch.suggestedCommitMessage.split('\n')[0];
-                state.lastProgressTitle = `PR Drafted: ${prTitle}`;
-            } else {
-                state.lastProgressTitle = "Session Completed Successfully.";
-            }
             return;
         }
 
         if (act.error) {
             state.hasError = true;
-            state.lastProgressTitle = "Session Failed.";
         }
     }
 
     /**
      * Mutates the session UI based on the computed final polling state, effectively
-     * managing completion states, failures, and required inputs.
+     * managing completion states, failures, and revealing the input box when required.
      * @private
      * @param {string} sessionId - The session ID.
      * @param {string} repoPath - The GitHub repository target string.
-     * @param {Object} state - The finalized polling flags computed via _processActivity.
+     * @param {Object} state - The finalized polling flags.
      * @param {HTMLElement} statusBadge - The badge element reflecting progress status.
-     * @param {HTMLElement} metaDiv - The sub-text element beneath the session title.
-     * @param {HTMLElement} statusContainer - The container holding the status badge.
+     * @param {HTMLElement} footerControls - The footer containing the reply input and dismiss buttons.
      */
-    _updatePollingState(sessionId, repoPath, state, statusBadge, metaDiv, statusContainer) {
+    _updatePollingState(sessionId, repoPath, state, statusBadge, footerControls) {
         if (state.isCompleted) {
             statusBadge.className = "status-badge status-completed";
             statusBadge.textContent = "Completed";
 
+            // If completed, inject the PR Link into the footer and hide the input box
+            footerControls.innerHTML = "";
             const prLink = DOMUtils.createPRLink(`https://github.com/${repoPath}/pulls`, () => this.dismissSession(sessionId));
-            statusContainer.appendChild(prLink);
+            const dismissBtn = document.createElement("button");
+            dismissBtn.className = "dismiss-btn";
+            dismissBtn.textContent = "Dismiss";
+            dismissBtn.onclick = () => this.dismissSession(sessionId);
+
+            footerControls.appendChild(prLink);
+            footerControls.appendChild(dismissBtn);
 
             clearInterval(this.julesPollingIntervals[sessionId]);
             delete this.julesPollingIntervals[sessionId];
@@ -585,7 +556,13 @@ class JulesManager {
         if (state.hasError) {
             statusBadge.className = "status-badge status-failed";
             statusBadge.textContent = "Failed";
-            metaDiv.style.color = "#ef4444";
+
+            footerControls.innerHTML = "";
+            const dismissBtn = document.createElement("button");
+            dismissBtn.className = "dismiss-btn";
+            dismissBtn.textContent = "Dismiss Error";
+            dismissBtn.onclick = () => this.dismissSession(sessionId);
+            footerControls.appendChild(dismissBtn);
 
             clearInterval(this.julesPollingIntervals[sessionId]);
             delete this.julesPollingIntervals[sessionId];
@@ -593,11 +570,51 @@ class JulesManager {
         }
 
         if (state.isWaitingForInput) {
-            statusBadge.className = "status-badge status-failed";
+            statusBadge.className = "status-badge status-waiting";
             statusBadge.textContent = "Needs Input";
-            statusBadge.style.background = "rgba(245, 158, 11, 0.1)";
-            statusBadge.style.color = "#f59e0b";
-            statusBadge.style.borderColor = "rgba(245, 158, 11, 0.2)";
+            
+            // Only inject the reply wrapper if it doesn't already exist
+            if (!footerControls.querySelector(".reply-input-wrapper")) {
+                footerControls.innerHTML = `
+                    <div class="reply-input-wrapper">
+                        <input type="text" class="reply-input" placeholder="Type 'proceed', 'yes', or provide instructions..." />
+                        <button class="reply-btn">Reply</button>
+                    </div>
+                `;
+                
+                const replyInput = footerControls.querySelector(".reply-input");
+                const replyBtn = footerControls.querySelector(".reply-btn");
+                
+                // Bind Reply Action
+                const handleReply = async () => {
+                    const text = replyInput.value.trim();
+                    if (!text) return;
+                    
+                    DOMUtils.setButtonState(replyBtn, "loading", "...");
+                    replyInput.disabled = true;
+                    
+                    try {
+                        await window.julesService.sendUserInput(sessionId, text);
+                        statusBadge.className = "status-badge status-in-progress";
+                        statusBadge.textContent = "Resuming...";
+                        footerControls.innerHTML = `<span style="font-size: var(--text-xs); color: var(--text-secondary);">Command sent. Awaiting logs...</span>`;
+                    } catch (e) {
+                        this.app.toast.show("Failed to send reply to Jules.", "error");
+                        DOMUtils.setButtonState(replyBtn, "ready", "Reply");
+                        replyInput.disabled = false;
+                    }
+                };
+                
+                replyBtn.addEventListener("click", handleReply);
+                replyInput.addEventListener("keydown", (e) => {
+                    if (e.key === "Enter") handleReply();
+                });
+            }
+        } else {
+            // Actively running, ensure the badge is pulsing and footer is clean
+            statusBadge.className = "status-badge status-in-progress";
+            statusBadge.textContent = "Running...";
+            footerControls.innerHTML = `<span style="font-size: var(--text-xs); color: var(--text-secondary);">Executing routines...</span>`;
         }
     }
 
@@ -614,8 +631,6 @@ class JulesManager {
         this._clearPollingAndCache();
         if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
         this.currentRepo = null;
-
-        document.querySelectorAll('.github-pr-item').forEach(el => el.remove());
     }
 
     _clearPollingAndCache() {
@@ -627,19 +642,18 @@ class JulesManager {
     }
 
     _attachCompletedItemListeners(item, sessionId, prInfo) {
-        item.style.cursor = 'pointer';
-        if (!item.dataset.clickListenerAttached) {
-            item.addEventListener('click', (e) => {
-                if (!e.target.closest('.pr-link-btn')) {
-                    this.dismissSession(sessionId);
-                }
-            });
-            item.dataset.clickListenerAttached = 'true';
-        }
-
-        if (prInfo && prInfo.url && !item.querySelector(".pr-link-btn")) {
+        // Removed global click-to-dismiss to prevent accidental closure of the entire card
+        const footerControls = item.querySelector(".session-footer");
+        if (footerControls && prInfo && prInfo.url && !footerControls.querySelector(".pr-link-btn")) {
+            footerControls.innerHTML = "";
             const prLink = DOMUtils.createPRLink(prInfo.url, () => this.dismissSession(sessionId));
-            item.querySelector(".dashboard-status").appendChild(prLink);
+            const dismissBtn = document.createElement("button");
+            dismissBtn.className = "dismiss-btn";
+            dismissBtn.textContent = "Dismiss";
+            dismissBtn.onclick = () => this.dismissSession(sessionId);
+            
+            footerControls.appendChild(prLink);
+            footerControls.appendChild(dismissBtn);
         }
     }
 
@@ -649,50 +663,50 @@ class JulesManager {
      * @private
      * @param {string} emoji - The visual emoji for the session's executing agent.
      * @param {string} title - The main name of the executing agent or session.
-     * @param {string} meta - Secondary sub-text or repository path.
      * @param {string} statusId - The element ID for the generated status badge.
      * @param {string} statusClass - CSS classes to append to the status badge.
      * @param {string} statusText - The human-readable textual status.
-     * @returns {Array<HTMLElement>} An array containing the generated [infoDiv, statusDiv] elements.
+     * @returns {Array<HTMLElement>} An array containing the generated [header, logs, footer] elements.
      */
-    _createDashboardItemNodes(emoji, title, meta, statusId, statusClass, statusText) {
-        const infoDiv = document.createElement("div");
-        infoDiv.className = "dashboard-info";
+    _createDashboardItemNodes(emoji, title, statusId, statusClass, statusText) {
+        // Header
+        const headerDiv = document.createElement("div");
+        headerDiv.className = "session-header";
 
+        const titleGroup = document.createElement("div");
+        titleGroup.className = "session-title-group";
+        
         const emojiSpan = document.createElement("span");
         emojiSpan.className = "emoji-hero";
-        emojiSpan.style.fontSize = "1.5rem";
-        emojiSpan.style.marginRight = "0.5rem";
+        emojiSpan.style.fontSize = "1.25rem";
         emojiSpan.textContent = emoji;
 
-        const textDiv = document.createElement("div");
-        textDiv.className = "dashboard-text";
+        const titleSpan = document.createElement("span");
+        titleSpan.className = "session-title";
+        titleSpan.textContent = title;
 
-        const titleDiv = document.createElement("div");
-        titleDiv.className = "dashboard-title";
-        titleDiv.textContent = title;
-
-        const metaDiv = document.createElement("div");
-        metaDiv.className = "dashboard-meta";
-        metaDiv.textContent = meta;
-
-        textDiv.appendChild(titleDiv);
-        textDiv.appendChild(metaDiv);
-
-        infoDiv.appendChild(emojiSpan);
-        infoDiv.appendChild(textDiv);
-
-        const statusDiv = document.createElement("div");
-        statusDiv.className = "dashboard-status";
+        titleGroup.appendChild(emojiSpan);
+        titleGroup.appendChild(titleSpan);
 
         const statusSpan = document.createElement("span");
         statusSpan.className = `status-badge ${statusClass}`;
         statusSpan.id = statusId;
         statusSpan.textContent = statusText;
 
-        statusDiv.appendChild(statusSpan);
+        headerDiv.appendChild(titleGroup);
+        headerDiv.appendChild(statusSpan);
 
-        return [infoDiv, statusDiv];
+        // Logs Window
+        const logsDiv = document.createElement("div");
+        logsDiv.className = "session-logs";
+        logsDiv.innerHTML = `<div class="log-line system">> Initializing execution environment...</div>`;
+
+        // Footer Actions
+        const footerDiv = document.createElement("div");
+        footerDiv.className = "session-footer";
+        footerDiv.innerHTML = `<span style="font-size: var(--text-xs); color: var(--text-secondary);">Connecting to target repository...</span>`;
+
+        return [headerDiv, logsDiv, footerDiv];
     }
 }
 
