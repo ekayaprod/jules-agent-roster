@@ -148,7 +148,7 @@ class RosterApp {
     // Cache static elements used frequently during high-frequency events or initialization
     const staticIds = [
       "searchInput", "clearBtn", "fusionLabSkeleton", "fusionLabContent", "clearSearchEmptyBtn", "julesRepoPicker",
-      "julesTerminal", "masterDropdownBtn", "masterDropdownMenu", "masterCopyBtn",
+      "julesTerminal", "julesPullRequests", "masterDropdownBtn", "masterDropdownMenu", "masterCopyBtn",
       "masterDownloadCoreBtn", "masterCopyFusionsBtn", "masterDownloadFusionsBtn",
       "searchModeContainer", "searchResultsGrid", "category-nav", "searchTriggerBtn"
     ];
@@ -334,11 +334,17 @@ class RosterApp {
         const sourceName = e.target.value;
         if (sourceName) {
             this.julesManager.loadActiveSessionsForRepo(sourceName);
+            this.julesManager.loadPullRequestsForRepo(sourceName);
         } else {
             const terminal = this.elements.julesTerminal;
             if (terminal) {
               terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
               terminal.classList.remove('active');
+            }
+            const prFeed = this.elements.julesPullRequests;
+            if (prFeed) {
+                prFeed.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting PR fetch command...</div>`;
+                prFeed.classList.remove('active');
             }
             this.julesManager.cleanup();
         }

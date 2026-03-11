@@ -156,6 +156,34 @@ ${userTask}`;
     async getActivities(sessionId) {
         return this._fetch(`sessions/${sessionId}/activities?pageSize=50`);
     }
+
+    /**
+     * Retrieves the list of open pull requests for a given repository via the GitHub API.
+     * @param {string} sourceName - The target repository source name (e.g., 'sources/github/owner/repo').
+     * @returns {Promise<Array>} The JSON response containing the open pull requests.
+     */
+    async getPullRequests(sourceName) {
+        if (!sourceName.startsWith('sources/github/')) {
+            throw new Error('Unsupported source format for pull requests');
+        }
+
+        const repoPath = sourceName.replace('sources/github/', '');
+        const url = `https://api.github.com/repos/${repoPath}/pulls?state=open`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                if (response.status === 404) {
+                    return [];
+                }
+                throw new Error(`GitHub API returned ${response.status}`);
+            }
+            return response.json();
+        } catch (error) {
+            console.error("Failed to fetch pull requests:", error);
+            return [];
+        }
+    }
 }
 
 // Attach to window for global access
