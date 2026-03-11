@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-const MarkdownRenderer = require('./MarkdownRenderer');
+const { MarkdownRenderer } = require('./index');
 
 describe('MarkdownRenderer', () => {
     it('should render "No protocol data available" if text is empty', () => {
