@@ -111,6 +111,19 @@ class RosterApp {
 
 
   /**
+   * Helper to retrieve a custom agent from the nested dictionary by its combination key.
+   * @param {string} key - The fusion combination key (e.g. "Architect,Author")
+   * @returns {Object|undefined} The agent object or undefined if not found.
+   */
+  getCustomAgent(key) {
+      if (!this.customAgents) return undefined;
+      for (const category of Object.values(this.customAgents)) {
+          if (category[key]) return category[key];
+      }
+      return undefined;
+  }
+
+  /**
    * Caches critical DOM elements locally via `document.querySelector`.
    * Executed strictly once during boot to prevent continuous N-time DOM traversal penalties.
    * @see README.md#rosterapp-architecture
@@ -197,7 +210,7 @@ class RosterApp {
         pinnedKeys.forEach(key => {
              if (!isNaN(key)) return;
 
-             let agent = (this.customAgents && this.customAgents[key]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
+             let agent = this.getCustomAgent(key) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
              if (!agent) return;
 
              const category = agent.category || "strategy";
@@ -403,7 +416,7 @@ class RosterApp {
           const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
 
           if (promptArea && !promptArea.innerHTML.trim()) {
-              let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+              let agent = this.agents[index] || this.getCustomAgent(index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
               if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
               if (agent) {
                   promptArea.innerHTML = '';
@@ -454,7 +467,7 @@ class RosterApp {
           e.preventDefault();
           e.stopPropagation();
           const index = actionBtn.dataset.index;
-          let agent = this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          let agent = this.agents[index] || this.getCustomAgent(index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
           if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
           if (!agent) return;
 
@@ -493,7 +506,9 @@ class RosterApp {
         masterDropMenu?.classList.remove("visible");
     });
     this.elements.masterCopyFusionsBtn?.addEventListener("click", async (e) => {
-        const validCustomAgents = Object.values(this.customAgents).filter(a => a.prompt && a.prompt.length > 0);
+        const validCustomAgents = Object.values(this.customAgents)
+            .flatMap(category => Object.values(category))
+            .filter(a => a.prompt && a.prompt.length > 0);
         if (validCustomAgents.length === 0) return this.toast.show("No custom agents unlocked yet.");
         const header = FormatUtils.CUSTOM_ROSTER_HEADER;
         const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(validCustomAgents));
