@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="version" content="0.8.0" />
+    <meta name="version" content="0.8.1" />
     <title>Jules Agent Roster</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; connect-src 'self' https://jules.googleapis.com https://api.github.com; img-src 'self' data: https://emojik.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self';"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.css" />
@@ -144,7 +144,7 @@
       /* --- REDESIGNED IDE TERMINAL RUNNER --- */
       .jules-runner-panel { 
         max-width: 75rem; 
-        margin: 0 auto 2.5rem auto; 
+        margin: 0 auto 1.5rem auto; 
         background: var(--term-bg); 
         border: 1px solid var(--term-border); 
         border-radius: 0.5rem; 
@@ -176,7 +176,7 @@
       .runner-inputs { 
         display: flex; 
         gap: 1rem; 
-        padding: 1rem; 
+        padding: 0.75rem 1rem; 
         background: rgba(22, 27, 34, 0.5);
         border-bottom: 1px solid var(--term-border);
       }
@@ -213,13 +213,13 @@
       /* The sleek IDE viewport */
       .ide-viewport {
         background: var(--term-panel-bg);
-        padding: 1.5rem;
-        min-height: 15rem;
-        max-height: 35rem;
+        padding: 1rem;
+        min-height: 10rem;
+        max-height: 20rem; /* Constrained for mobile by default */
         overflow-y: auto;
         display: flex;
         flex-direction: column;
-        gap: 1.5rem;
+        gap: 1rem;
         font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
         font-size: 13px;
         line-height: 1.6;
@@ -239,7 +239,7 @@
       
       .term-command-line {
         color: var(--term-success);
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.25rem;
         font-weight: 600;
         display: flex;
         align-items: center;
@@ -362,7 +362,9 @@
         .loading-spinner { animation: none; border-color: var(--accent); }
       }
 
+      /* Desktop Expansion */
       @media (min-width: 640px) {
+        .ide-viewport { max-height: 35rem; padding: 1.5rem; gap: 1.5rem; }
         .flip-card, .skeleton-card { flex-basis: 20rem !important; max-width: 24rem !important; margin-top: 2rem; }
         #main > .section-header { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
         .grid > *:first-child::before { position: absolute; top: -2rem; left: 0.5rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); font-weight: normal; white-space: nowrap; pointer-events: none; }
