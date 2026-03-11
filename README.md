@@ -1,7 +1,7 @@
 # Jules Agent Roster 🤖
 
 > **Current Version:** 0.2.0
-
+>
 > The complete, enhanced agent system for Jules AI, featuring the **Overseer Protocol** and **Plus-tier** specialists.
 
 This repository hosts a curated collection of advanced agent prompts designed to work seamlessly with Jules. It moves beyond simple "chat" interactions into a robust, structured workflow where agents have specific roles, scopes, and memory.
@@ -103,6 +103,16 @@ The Fusion Lab allows you to combine any two agents to create a specialized hybr
 * **The Catalyst ⚡** (Bolt+ + Modernizer): Upgrades legacy syntax and instantly extracts native performance gains.
 
 * **The Historian ⏳** (Herald + Scribe): Documents a release in the Changelog and the codebase JSDoc simultaneously.
+
+### 💎 The Rarity System
+
+Every fusion is automatically assigned a **Rarity Tier** by the `RarityEngine` based on the synergy of the combined domains. Higher tiers indicate more complex, powerful, or volatile combinations!
+
+* **Mythic (The Glitch):** Fusing an agent with itself. Infinite recursion, infinite power! 🤯
+* **Legendary (The Paradox):** Combining a destructive force (like the Scavenger) with a builder, or creating a Micro/Macro paradox (Architect + Pedant). 🌪️
+* **Epic (QA Bridge):** Linking an Integrity agent (Testing/Hygiene) with a Visible (UX/Docs) or Invisible (Architecture/Ops) domain. 🌉
+* **Rare (Full-Stack Bridge):** Bridging the frontend and backend (Visible + Invisible). 🤝
+* **Uncommon & Common:** Standard synergies, Plus-tier affinities, and same-domain interactions. 🛠️
 
 ## 🤝 Contributing
 
