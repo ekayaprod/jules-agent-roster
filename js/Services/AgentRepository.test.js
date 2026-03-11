@@ -334,6 +334,37 @@ describe('AgentRepository', () => {
             expect(repo.fetchWithRetry).toHaveBeenCalledTimes(2);
         });
 
+        it('computes rarity tiers for custom agents when RarityEngine is defined', async () => {
+            global.RarityEngine = { calculateRarity: jest.fn().mockReturnValue('Legendary') };
+
+            try {
+                repo.fetchWithRetry = jest.fn()
+                    .mockResolvedValueOnce({
+                        ok: true,
+                        json: async () => [
+                            { name: "Agent1", category: "architect", promptFile: "std.md" },
+                            { name: "Agent2", category: "developer", promptFile: "std.md" }
+                        ]
+                    })
+                    .mockResolvedValueOnce({
+                        ok: true,
+                        json: async () => ({
+                            "Fusions": {
+                                "Agent1,Agent2": { name: "Fusion1", category: "developer" },
+                                "Agent1,Unknown": { name: "Fusion2", category: "developer" }
+                            }
+                        })
+                    });
+
+                const results = await repo.fetchAgents();
+
+                expect(results.customAgents['Fusions']['Agent1,Agent2'].tier).toBe('Legendary');
+                expect(results.customAgents['Fusions']['Agent1,Unknown'].tier).toBe('Common');
+            } finally {
+                delete global.RarityEngine;
+            }
+        });
+
         it('fetchAgents throws on top-level network failure', async () => {
             repo.fetchWithRetry = jest.fn().mockRejectedValue(new Error("Network Error"));
             await expect(repo.fetchAgents()).rejects.toThrow("Network Error");
@@ -390,6 +421,24 @@ describe('AgentRepository', () => {
             }
             expect(console.error).toHaveBeenCalled();
 
+        });
+
+        it('logs a critical error when custom_agents.json fails to parse due to malformed JSON', async () => {
+            // safeJsonParse wraps the error message, so we mock safeJsonParse itself
+            // or we throw an error with "parse JSON" from safeJsonParse so we trigger the exact branch
+            repo.safeJsonParse = jest.fn()
+                .mockResolvedValueOnce([]) // for agents.json
+                .mockRejectedValueOnce(new Error('Failed to parse JSON')); // for custom_agents.json
+
+            repo.fetchWithRetry = jest.fn().mockResolvedValue({ ok: true });
+
+            const results = await repo.fetchAgents();
+
+            expect(console.error).toHaveBeenCalledWith(
+                "CRITICAL: custom_agents.json is malformed. Fusion data may be incomplete.",
+                expect.any(Error)
+            );
+            expect(results.customAgents).toEqual({});
         });
 
         it('handles safeJsonParse throwing errors gracefully for custom agents', async () => {
