@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="version" content="0.6.0" />
+    <meta name="version" content="0.7.0" />
     <title>Jules Agent Roster</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; connect-src 'self' https://jules.googleapis.com; img-src 'self' data: https://emojik.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self';"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; connect-src 'self' https://jules.googleapis.com https://api.github.com; img-src 'self' data: https://emojik.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self';"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.css" />
     <link rel="stylesheet" href="js/Features/Fusion/Fusion.css" />
     <style>
@@ -16,7 +16,18 @@
         --text-3xs: 0.6em; --text-2xs: 0.7rem; --text-xs: 0.85rem; --text-sm: 0.95rem; --text-base: 1rem; --text-md: 1.1rem; --text-lg: 1.25rem; --text-xl: 1.5rem; --text-2xl: 1.75rem; --text-3xl: 2.2rem; --text-4xl: 2.5rem; --text-5xl: 3rem; --text-6xl: 4rem; --text-7xl: 5rem;
         --weight-normal: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700; --weight-extrabold: 800;
         --leading-none: 1; --leading-tight: 1.25; --leading-snug: 1.4; --leading-normal: 1.5; --leading-relaxed: 1.625;
-        --bg-color: #0f172a; --card-bg: #1e293b; --text-primary: #f8fafc; --text-secondary: #94a3b8; --accent: #38bdf8; --accent-hover: #0ea5e9; --success: #22c55e; --border: #334155; --details-bg: #020617;
+        --bg-color: #0f172a; --card-bg: #1e293b; --text-primary: #f8fafc; --text-secondary: #94a3b8; --accent: #38bdf8; --accent-hover: #0ea5e9; --success: #10b981; --warning: #f59e0b; --error: #ef4444; --border: #334155; --details-bg: #020617;
+        
+        /* Terminal specific colors */
+        --term-bg: #0d1117;
+        --term-border: #30363d;
+        --term-text: #c9d1d9;
+        --term-muted: #8b949e;
+        --term-system: #58a6ff;
+        --term-success: #3fb950;
+        --term-warning: #d29922;
+        --term-error: #f85149;
+        --term-user: #a5d6ff;
       }
 
       body { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 1.5rem; line-height: var(--leading-normal); }
@@ -129,52 +140,202 @@
       button.secondary:hover { border-color: var(--accent); }
       button.secondary:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
       
-      /* --- REDESIGNED JULES RUNNER PANEL & TERMINAL --- */
-      .jules-runner-panel { max-width: 75rem; margin: 0 auto 2.5rem auto; background: rgba(30, 41, 59, 0.4); border: 1px solid var(--border); border-radius: 1rem; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; box-shadow: inset 0 0 1.25rem rgba(0,0,0,0.2);}
-      .runner-header { display: flex; justify-content: space-between; align-items: center; font-family: -apple-system, sans-serif; }
-      .runner-header h2 { margin: 0; font-size: var(--text-md); display: flex; align-items: center; gap: 0.5rem;}
-      .runner-header span { font-size: var(--text-xs); color: var(--text-secondary); background: var(--details-bg); padding: 0.2rem 0.5rem; border-radius: 999px; border: 1px solid var(--border); }
-      .runner-inputs { display: flex; gap: 1rem; flex-wrap: wrap; }
-      .repo-picker { flex: 1; min-width: 15.625rem; background: var(--details-bg); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem; border-radius: 0.5rem; font-family: inherit; outline: none; }
-      .task-input { flex: 2; min-width: 18.75rem; background: var(--details-bg); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem; border-radius: 0.5rem; font-family: -apple-system, sans-serif; resize: vertical; min-height: 3rem; outline: none; }
+      /* --- REDESIGNED IDE TERMINAL RUNNER --- */
+      .jules-runner-panel { 
+        max-width: 75rem; 
+        margin: 0 auto 2.5rem auto; 
+        background: var(--term-bg); 
+        border: 1px solid var(--term-border); 
+        border-radius: 0.5rem; 
+        display: flex; 
+        flex-direction: column; 
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      }
+      .runner-header { 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        background: #161b22; 
+        padding: 0.5rem 1rem; 
+        border-bottom: 1px solid var(--term-border);
+      }
+      .runner-header h2 { 
+        margin: 0; 
+        font-size: var(--text-xs); 
+        font-family: -apple-system, sans-serif;
+        color: var(--term-muted);
+        display: flex; 
+        align-items: center; 
+        gap: 0.5rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .runner-inputs { 
+        display: flex; 
+        gap: 1rem; 
+        padding: 1rem; 
+        background: rgba(22, 27, 34, 0.5);
+        border-bottom: 1px solid var(--term-border);
+      }
+      .repo-picker { 
+        flex: 1; 
+        min-width: 15rem; 
+        background: var(--term-bg); 
+        border: 1px solid var(--term-border); 
+        color: var(--term-text); 
+        padding: 0.5rem; 
+        border-radius: 0.25rem; 
+        font-family: inherit; 
+        font-size: var(--text-xs);
+        outline: none; 
+      }
+      .repo-picker:focus { border-color: var(--term-system); }
       
-      /* Session Cards Terminal Feed */
-      .terminal-feed { background: transparent; display: none; flex-direction: column; gap: 1rem; transition: all 0.3s ease-in-out; }
-      .terminal-feed.active { display: flex; }
-      @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+      .task-input { 
+        flex: 2; 
+        min-width: 18rem; 
+        background: var(--term-bg); 
+        border: 1px solid var(--term-border); 
+        color: var(--term-text); 
+        padding: 0.5rem; 
+        border-radius: 0.25rem; 
+        font-family: inherit; 
+        font-size: var(--text-xs);
+        resize: vertical; 
+        min-height: 2.5rem; 
+        outline: none; 
+      }
+      .task-input:focus { border-color: var(--term-system); }
       
-      .session-card { background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border); border-radius: 0.5rem; display: flex; flex-direction: column; overflow: hidden; animation: fadeSlideIn 0.3s ease-out forwards; }
-      .session-header { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; background: rgba(2, 6, 23, 0.5); border-bottom: 1px solid var(--border); }
-      .session-title-group { display: flex; align-items: center; gap: 0.75rem; }
-      .session-title { font-weight: var(--weight-semibold); color: var(--text-primary); }
+      /* The sleek IDE viewport */
+      .ide-viewport {
+        padding: 1rem;
+        min-height: 15rem;
+        max-height: 35rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+        font-size: 13px;
+        line-height: 1.6;
+        scroll-behavior: smooth;
+      }
+      .ide-viewport::-webkit-scrollbar { width: 8px; }
+      .ide-viewport::-webkit-scrollbar-track { background: transparent; }
+      .ide-viewport::-webkit-scrollbar-thumb { background: #484f58; border-radius: 4px; border: 2px solid var(--term-bg); }
+
+      /* Session Block container inside the viewport */
+      .term-session-block {
+        display: flex;
+        flex-direction: column;
+        border-left: 2px solid var(--term-border);
+        padding-left: 1rem;
+        position: relative;
+        animation: fadeIn 0.3s ease-out forwards;
+      }
+      .term-session-block::before {
+        content: '';
+        position: absolute;
+        left: -5px;
+        top: 6px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--term-muted);
+      }
+      .term-session-block.state-active::before { background: var(--term-system); box-shadow: 0 0 8px var(--term-system); }
+      .term-session-block.state-waiting::before { background: var(--term-warning); box-shadow: 0 0 8px var(--term-warning); }
+      .term-session-block.state-completed::before { background: var(--term-success); box-shadow: 0 0 8px var(--term-success); }
+      .term-session-block.state-error::before { background: var(--term-error); box-shadow: 0 0 8px var(--term-error); }
+
+      .term-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.5rem;
+      }
+      .term-agent-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--term-text);
+        font-weight: 600;
+      }
+      .term-agent-emoji { font-size: 1.1em; }
       
-      /* Real-time scrolling log window */
-      .session-logs { padding: 1rem; font-family: monospace; font-size: var(--text-xs); color: var(--text-secondary); max-height: 12rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.35rem; }
-      .session-logs::-webkit-scrollbar { width: 0.35rem; }
-      .session-logs::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0.25rem; }
-      .log-line { border-left: 2px solid var(--border); padding-left: 0.5rem; word-break: break-word; }
-      .log-line.user { border-left-color: var(--accent); color: var(--text-primary); }
-      .log-line.system { border-left-color: #f59e0b; color: #f59e0b; }
-      .log-line.error { border-left-color: #ef4444; color: #ef4444; }
+      .term-log-stream {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        color: var(--term-muted);
+      }
+      .term-log-line { word-break: break-word; }
+      .term-log-line.system { color: var(--term-muted); }
+      .term-log-line.action { color: var(--term-system); }
+      .term-log-line.user { color: var(--term-user); }
+      .term-log-line.error { color: var(--term-error); }
+      .term-log-line.success { color: var(--term-success); }
       
-      /* Footer containing input and actions */
-      .session-footer { padding: 0.75rem 1rem; background: rgba(2, 6, 23, 0.5); border-top: 1px solid var(--border); display: flex; gap: 0.5rem; align-items: center; }
-      .reply-input-wrapper { display: flex; gap: 0.5rem; flex: 1; }
-      .reply-input { flex: 1; background: var(--bg-color); border: 1px solid var(--border); color: var(--text-primary); padding: 0.5rem 0.75rem; border-radius: 0.25rem; font-family: inherit; font-size: var(--text-sm); outline: none; }
-      .reply-input:focus { border-color: var(--accent); }
-      .reply-btn { background: var(--accent); color: #0f172a; border: none; padding: 0.5rem 1rem; border-radius: 0.25rem; font-weight: bold; cursor: pointer; transition: background 0.2s; }
-      .reply-btn:hover { background: var(--accent-hover); }
-      .dismiss-btn { background: transparent; color: var(--text-secondary); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; transition: all 0.2s; }
-      .dismiss-btn:hover { color: #ef4444; border-color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+      .term-input-group {
+        display: flex;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+        animation: fadeIn 0.3s ease-out forwards;
+      }
+      .term-prompt-symbol {
+        color: var(--term-warning);
+        font-weight: bold;
+        user-select: none;
+        padding-top: 0.2rem;
+      }
+      .term-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--term-warning);
+        color: var(--term-text);
+        font-family: inherit;
+        font-size: inherit;
+        padding: 0.2rem 0;
+        outline: none;
+      }
+      .term-input:focus { border-bottom-color: var(--term-user); }
       
-      .status-badge { padding: 0.2rem 0.6rem; border-radius: 999px; font-size: var(--text-xs); font-weight: var(--weight-medium); border: 1px solid transparent; }
-      .status-in-progress { background: rgba(56, 189, 248, 0.1); color: #38bdf8; border-color: rgba(56, 189, 248, 0.2); }
-      .status-completed { background: rgba(16, 185, 129, 0.1); color: var(--success); border-color: rgba(16, 185, 129, 0.2); }
-      .status-failed { background: rgba(239, 68, 68, 0.1); color: #ef4444; border-color: rgba(239, 68, 68, 0.2); }
-      .status-waiting { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border-color: rgba(245, 158, 11, 0.2); }
-      
-      .pr-link-btn { background: #2563eb; color: white; text-decoration: none; padding: 0.4rem 0.75rem; border-radius: 0.25rem; font-size: var(--text-xs); font-weight: var(--weight-medium); display: inline-flex; align-items: center; gap: 0.3rem; transition: background 0.2s; }
-      .pr-link-btn:hover { background: #1d4ed8; }
+      /* Compact PR Item */
+      .term-pr-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem;
+        background: rgba(63, 185, 80, 0.1);
+        border: 1px solid rgba(63, 185, 80, 0.2);
+        border-radius: 0.25rem;
+        color: var(--term-text);
+        margin-top: 0.5rem;
+        animation: fadeIn 0.3s ease-out forwards;
+      }
+      .term-pr-icon { color: var(--term-success); }
+      .term-pr-title { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .term-pr-link {
+        color: var(--term-system);
+        text-decoration: none;
+        font-size: 0.9em;
+      }
+      .term-pr-link:hover { text-decoration: underline; }
+      .term-dismiss-btn {
+        background: transparent;
+        border: none;
+        color: var(--term-muted);
+        cursor: pointer;
+        padding: 0.2rem 0.5rem;
+        font-size: 0.9em;
+      }
+      .term-dismiss-btn:hover { color: var(--term-error); }
+
+      @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
       .section-header { flex: 0 0 auto; margin: auto 0; padding: 0 1rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); border-bottom: none; align-self: center; }
       .grid { display: contents; }
@@ -276,10 +437,13 @@
       </button>
     </header>
 
-    <!-- Jules Execution Runner -->
+    <!-- IDE Terminal Runner Panel -->
     <div id="julesRunnerPanel" class="jules-runner-panel">
       <div class="runner-header">
-        <h2>🚀 Execution Interface <span>Jules API</span></h2>
+        <h2>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+          Jules Terminal
+        </h2>
       </div>
       <div class="runner-inputs">
         <select id="julesRepoPicker" class="repo-picker">
@@ -288,10 +452,9 @@
         </select>
         <textarea id="julesTaskInput" class="task-input" placeholder="2. Enter specific instructions (Optional). E.g., 'Target the user dashboard component.'"></textarea>
       </div>
-      <div id="julesTerminal" class="terminal-feed">
-        <div class="session-card" id="fetchingIndicator" style="background: transparent; border: none; align-items: center; padding: 2rem;">
-            <div style="font-family: monospace; color: var(--text-secondary);">Awaiting Agent launch command...</div>
-        </div>
+      <div id="julesTerminal" class="ide-viewport">
+        <div id="fetchingIndicator" style="color: var(--term-muted);">[System] Awaiting repository connection...</div>
+        <!-- Terminal Sessions and PRs injected here -->
       </div>
     </div>
 
