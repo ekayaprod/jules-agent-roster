@@ -65,6 +65,11 @@
 **Learning**: Even in a vanilla JS architecture, dynamically defining configuration objects (like `Fuse` options, `IntersectionObserver` properties, and `Clusterize` base states) inside loops or frequent cache-invalidation flows leads to continuous object recreation and garbage collection overhead.
 **Action**: Extract all static `options` and `config` objects out of class methods and hoist them as top-level `const` references outside the class, preventing unnecessary memory allocation and thrashing during repetitive logic flows like fuzzy searching and chunked DOM generation.
 
+2026-03-10
+**Title**: ⏱️ Millisecond - [Polling Stability Optimized: Callback Hoisting]
+**Learning**: In Vanilla JS, passing inline arrow functions directly into array methods (`.filter()`, `.some()`, `.find()`, `.sort()`) inside high-frequency `setInterval` polling loops causes continuous, wasteful memory allocation and garbage collection overhead.
+**Action**: Hoisted pure callback functions (`hasPullRequest`, `hasCompletedPR`, `sortByCreateTime`) to the file scope as static constant references, stabilizing the polling execution graph and reducing memory thrashing.
+
 ## 2026-03-07 - 🔖 Lexicon - [Vocabulary Standardized: agentsData -> agents]
 
 **Learning:** Found redundant domain drift across the Fusion Lab ecosystem (`FusionCompiler.js`, `FusionIndex.js`, `FusionLab.js`) and `AgentRepository.js` where the domain models were passed as `agentsData` and `customAgentsData`. The `Data` suffix is a redundant, ambiguous term when passing array/object collections of models.

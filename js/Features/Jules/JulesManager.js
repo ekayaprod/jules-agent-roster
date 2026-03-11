@@ -1,4 +1,12 @@
 /**
+ * Polling array callbacks hoisted to the file scope to prevent
+ * continuous garbage collection overhead during setInterval ticks.
+ */
+const hasPullRequest = o => o.pullRequest;
+const hasCompletedPR = o => o.pullRequest && (o.pullRequest.state === 'MERGED' || o.pullRequest.state === 'CLOSED');
+const sortByCreateTime = (a, b) => a.createTime < b.createTime ? -1 : (a.createTime > b.createTime ? 1 : 0);
+
+/**
  * Manages the core operations for interacting with Jules APIs.
  * This class orchestrates authentication, source repository discovery,
  * and handles the lifecycle of agent execution sessions via real-time polling.
@@ -231,7 +239,7 @@ class JulesManager {
                 if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
                 if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
                 // Filter out sessions that have a merged or closed PR
-                if (s.outputs && s.outputs.some(o => o.pullRequest && (o.pullRequest.state === 'MERGED' || o.pullRequest.state === 'CLOSED'))) return false;
+                if (s.outputs && s.outputs.some(hasCompletedPR)) return false;
 
                 return true;
             });
@@ -293,7 +301,7 @@ class JulesManager {
      * @param {string} repoPath - The visual path (e.g. 'owner/repo') of the target repo.
      */
     _processSession(session, terminal, repoPath) {
-        const isCompleted = session.outputs && session.outputs.some(o => o.pullRequest);
+        const isCompleted = session.outputs && session.outputs.some(hasPullRequest);
         if (this.renderedSessionIds.has(session.id)) {
             if (!isCompleted) return;
             // ⚡ Bolt+: Replaced terminal.querySelector with document.getElementById for O(1) lookup in polling loops
@@ -302,7 +310,7 @@ class JulesManager {
 
             statusBadge.className = "status-badge status-completed";
             statusBadge.textContent = "Completed";
-            const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
+            const prInfo = session.outputs.find(hasPullRequest).pullRequest;
             const item = document.getElementById(`session-${session.id}`);
             const metaDiv = item ? item.querySelector(".dashboard-meta") : null;
             if (metaDiv && prInfo) {
@@ -320,7 +328,7 @@ class JulesManager {
         item.id = `session-${session.id}`;
 
         const agentName = session.title || "Agent Task";
-        const prTitle = isCompleted ? session.outputs.find(o => o.pullRequest).pullRequest.title : agentName;
+        const prTitle = isCompleted ? session.outputs.find(hasPullRequest).pullRequest.title : agentName;
 
         let agentEmoji = "🤖";
         const matchedAgent = this.app.agents.find(a => a.name === agentName) ||
@@ -340,7 +348,7 @@ class JulesManager {
         ));
 
         if (isCompleted) {
-            const prInfo = session.outputs.find(o => o.pullRequest).pullRequest;
+            const prInfo = session.outputs.find(hasPullRequest).pullRequest;
             this._attachCompletedItemListeners(item, session.id, prInfo);
         }
 
@@ -459,7 +467,7 @@ class JulesManager {
 
                 // Sort chronologically
                 // ⚡ Bolt+: Eliminated O(N log N) Date parsing overhead during high-frequency polling by using native ISO string comparison instead of new Date().
-                const activities = activitiesResponse.activities.sort((a, b) => a.createTime < b.createTime ? -1 : (a.createTime > b.createTime ? 1 : 0));
+                const activities = activitiesResponse.activities.sort(sortByCreateTime);
 
                 const state = {
                     isCompleted: false,
