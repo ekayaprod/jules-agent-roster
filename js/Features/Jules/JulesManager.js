@@ -379,106 +379,16 @@ class JulesManager {
         }
 
         this.getEl("julesRunnerPanel").scrollIntoView({ behavior: 'smooth' });
-        const terminal = this.getEl("julesTerminal");
-        terminal.classList.add('active');
-
-        // Clear the "Awaiting..." placeholder if it's the first execution
-        if (terminal.innerHTML.includes("Awaiting Agent launch command")) {
-            terminal.innerHTML = "";
-        }
-
-        // Generate a temporary ID for the new session
-        const tempId = 'temp-' + Date.now();
-
-        const item = document.createElement("div");
-        item.className = "dashboard-item";
-        item.id = tempId;
-
-        const repoPath = sourceName.replace('sources/github/', '');
-
-        item.innerHTML = '';
-        item.append(...this._createDashboardItemNodes(
-            agent.emoji,
-            agent.name,
-            repoPath,
-            `status-${tempId}`,
-            'status-in-progress',
-            'Launching...'
-        ));
-        terminal.appendChild(item);
 
         if (btn) {
             DOMUtils.setButtonState(btn, "loading", "Launching...");
         }
 
         try {
-            const session = await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name} Execution`);
-
-            // Update item with actual session ID
-            item.id = `session-${session.id}`;
-            // ⚡ Bolt+: Replaced terminal.querySelector with document.getElementById
-            const statusBadge = document.getElementById(`status-${tempId}`);
-            if (statusBadge) {
-                statusBadge.id = `status-${session.id}`;
-                statusBadge.textContent = "In Progress";
-            }
-
-            this.startTerminalPolling(session.id, item, repoPath);
-            this.app.toast.show(`Session for ${agent.name} launched successfully!`, "success");
+            await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name} Execution`);
+            this.app.toast.show(`Session for ${agent.name} launched successfully! Sent to Jules.`, "success");
         } catch (err) {
-            const statusBadge = document.getElementById(`status-${tempId}`);
-            if (statusBadge) {
-                statusBadge.className = "status-badge status-failed";
-                statusBadge.textContent = "Failed";
-            }
-
-            const metaDiv = item.querySelector(".dashboard-meta");
-            metaDiv.textContent = '';
-            metaDiv.style.color = "";
-
-            const errorContainer = document.createElement("div");
-            errorContainer.style.display = "flex";
-            errorContainer.style.alignItems = "flex-start";
-            errorContainer.style.gap = "0.75rem";
-            errorContainer.style.padding = "1rem";
-            errorContainer.style.borderLeft = "4px solid #ef4444";
-            errorContainer.style.backgroundColor = "rgba(239, 68, 68, 0.1)";
-            errorContainer.style.borderRadius = "0 0.5rem 0.5rem 0";
-            errorContainer.style.marginTop = "0.5rem";
-            errorContainer.setAttribute("role", "alert");
-
-            const iconSpan = document.createElement("span");
-            iconSpan.textContent = "⚠️";
-            iconSpan.style.color = "#ef4444";
-            iconSpan.style.flexShrink = "0";
-            iconSpan.setAttribute("aria-hidden", "true");
-
-            const textContainer = document.createElement("div");
-            textContainer.style.display = "flex";
-            textContainer.style.flexDirection = "column";
-            textContainer.style.gap = "0.25rem";
-
-            const errorTitle = document.createElement("p");
-            errorTitle.style.fontSize = "0.875rem";
-            errorTitle.style.fontWeight = "600";
-            errorTitle.style.color = "#f8fafc";
-            errorTitle.style.margin = "0";
-            errorTitle.textContent = "We couldn't launch the agent session";
-
-            const errorDesc = document.createElement("p");
-            errorDesc.style.fontSize = "0.875rem";
-            errorDesc.style.color = "#94a3b8";
-            errorDesc.style.margin = "0";
-            errorDesc.textContent = "Please check your repository permissions and API key, then try again.";
-
-            textContainer.appendChild(errorTitle);
-            textContainer.appendChild(errorDesc);
-            errorContainer.appendChild(iconSpan);
-            errorContainer.appendChild(textContainer);
-
-            metaDiv.appendChild(errorContainer);
-
-            this.app.toast.show(`Session launch failed. Please review the error details.`, "error");
+            this.app.toast.show(`Session launch failed. Please check your repository permissions and API key.`, "error");
         } finally {
             if (btn) {
                 DOMUtils.setButtonState(btn, "ready", "Launch in Jules 🚀");
