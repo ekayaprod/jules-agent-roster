@@ -116,7 +116,7 @@ class FusionIndex {
       }
       slot.setAttribute("data-key", key);
       slot.setAttribute("title", isUnlocked ? agentData.name : "Locked Protocol");
-      slot.innerHTML = `<span class="slot-icon">${emoji}</span>`;
+      slot.innerHTML = `<span class="slot-icon">${emoji}</span><span class="slot-name">${isUnlocked ? agentData.name : "Locked"}</span>`;
 
       if (isUnlocked) {
         this._bindSlotInteractions(slot, agentData, key);
@@ -171,7 +171,7 @@ class FusionIndex {
       this.onSelectCallback?.(key);
     };
 
-    slot.addEventListener("click", handleSelect);
+    slot.addEventListener("pointerdown", handleSelect);
     slot.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -211,6 +211,11 @@ class FusionIndex {
           slot.classList.add(`tier-${agentData.tier.toLowerCase()}`);
       }
       slot.setAttribute("title", agentData.name);
+
+      const nameSpan = slot.querySelector('.slot-name');
+      if (nameSpan) {
+          nameSpan.innerText = agentData.name;
+      }
 
       // Re-bind click event
       this._bindSlotInteractions(slot, agentData, key);
