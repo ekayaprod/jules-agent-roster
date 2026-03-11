@@ -222,7 +222,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             window.julesService.createSession.mockRejectedValueOnce(new Error('fail'));
 
             await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn);
-            expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Failed to launch'), 'error');
+            expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Session launch failed'), 'error');
             getElSpy.mockRestore();
         });
 
@@ -827,9 +827,10 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             const item = items[0];
 
             expect(item.querySelector('.status-badge').textContent).toBe('Failed');
-            expect(item.querySelector('.dashboard-meta').textContent).toBe('Launch Error: Auth failed');
+            expect(item.querySelector('.dashboard-meta').textContent).toContain('We couldn\'t launch the agent session');
+            expect(item.querySelector('.dashboard-meta').textContent).toContain('Please check your repository permissions and API key');
 
-            expect(mockToast.show).toHaveBeenCalledWith('Failed to launch session: Auth failed', 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Session launch failed. Please review the error details.', 'error');
             expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, 'ready', 'Launch in Jules 🚀');
         });
     });
