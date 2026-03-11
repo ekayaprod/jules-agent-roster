@@ -37,3 +37,8 @@
 ## 2025-03-10 - 🕵️ Inspector - [Coverage Added: JulesManager.js]
 **Learning:** High-frequency polling loops and deeply nested async components heavily utilizing DOM manipulation (like `JulesManager.js`) inherently require rigorous boundary testing against missing payloads, null element references, and explicit asynchronous `catch` blocks that usually get swept under the rug as "ghost" branches.
 **Action:** When mocking structural components (like `manager.getEl`) in a `jsdom` testing environment, explicitly isolate the behavior using `jest.spyOn()` and restore the method via `.mockRestore()` to prevent cascading global state pollution. Strictly clean up all automation scripts and temporary scratchpad artifacts before proceeding to final validation.
+
+2026-03-13
+**Title**: 🕵️ Inspector - [Coverage Added: RarityEngine]
+**Learning**: The `RarityEngine.js` class contains logic gaps within `calculateRarity` where `domains.includes("Visible")` evaluation combined with `domains.includes("Invisible")` results in incorrect combinations leading to Mythic instead of expected tiers. Furthermore, "Epic" logic checks for "Integrity" and ("Visible" or "Invisible") return Mythic due to array combination overlap edge cases.
+**Action**: Generated pure test suite mocking specific agent domains directly to interrogate these matrix edge cases. Successfully exposed functional boundaries without modifying the application code.
