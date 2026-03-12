@@ -166,7 +166,7 @@ Action: [How to apply next time]
 **Learning:** Found several floating scripts, diff, txt and image files in the repository root (e.g., `fix_css_shadow_px.js`, `jules_dashboard.png`, `verify_jules_2.py`) which appear to be test scratchpads or outputs of temporary execution scripts left uncleaned.
 **Action:** Always prioritize keeping the repository root clean. Scratchpad and experimental test scripts, logs, and screenshots should be strictly ephemeral and deleted to prevent repository bloat.
 
-## YYYY-MM-DD - 🦝 Scavenger - Orphaned Barrel Exports
+## 2026-10-27 - 🦝 Scavenger - Orphaned Barrel Exports
 
 **Learning:** The Jules repository relies primarily on native browser class loading via sequential `<script>` tags in `index.html`. During development, `index.js` barrel files were generated for Node.js exports but later abandoned for native CommonJS testing mock architectures without bundler dependencies. `ts-prune` flagged `js/ui/index.js`, `js/utils/index.js`, and `js/features/fusion/index.js` as having zero AST references inside the repository.
 
