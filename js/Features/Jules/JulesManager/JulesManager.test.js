@@ -22,10 +22,7 @@ global.DOMUtils = {
 };
 
 global.FormatUtils = {
-    escapeHTML: jest.fn().mockImplementation((str) => str),
-    createTerminalLineHTML: jest.fn().mockImplementation((msg, id) => {
-        return `<div class="terminal-line"${id ? ` id="${id}"` : ''}>${msg}</div>`;
-    })
+    escapeHTML: jest.fn().mockImplementation((str) => str)
 };
 
 describe('JulesManager', () => {
@@ -610,7 +607,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
                  sessions: [{ id: '1', sourceContext: { source: 'repo' } }]
              });
              // test lines 233-234 where awaitingMsg is removed when repoSessions > 0
-             terminal.innerHTML = FormatUtils.createTerminalLineHTML("Awaiting Agent launch command...");
+             terminal.innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Ready. Awaiting execution commands...</div>`;
 
              jest.spyOn(manager, '_processSession').mockImplementation();
              await manager._fetchAndRenderSessions('repo', terminal);
