@@ -197,16 +197,25 @@ ${userTask}`;
             };
         }
 
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
+
         try {
-            const response = await fetch(url, options);
+            const response = await fetch(url, {
+                ...options,
+                signal: controller.signal
+            });
+            clearTimeout(timeoutId);
+
             if (!response.ok) {
                 if (response.status === 404) {
                     return [];
                 }
                 throw new Error(`GitHub API returned ${response.status}`);
             }
-            return response.json();
+            return await response.json();
         } catch (error) {
+            clearTimeout(timeoutId);
             console.error("Failed to fetch pull requests:", error);
             return [];
         }

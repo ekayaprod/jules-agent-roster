@@ -232,6 +232,92 @@ describe('createSession', () => {
 });
 
 
+    describe('getPullRequests', () => {
+        it('should throw an error for unsupported source formats', async () => {
+            await expect(service.getPullRequests('invalid-source')).rejects.toThrow('Unsupported source format for pull requests');
+        });
+
+        it('should apply githubToken to headers if configured', async () => {
+            service.configure('api-key', 'test-token');
+            global.fetch.mockResolvedValue({
+                ok: true,
+                json: async () => ([])
+            });
+
+            await service.getPullRequests('sources/github/owner/repo');
+
+            expect(global.fetch).toHaveBeenCalledWith(
+                'https://api.github.com/repos/owner/repo/pulls?state=open',
+                expect.objectContaining({
+                    headers: { 'Authorization': 'token test-token' }
+                })
+            );
+        });
+
+        it('should return empty array on 404 status code', async () => {
+            global.fetch.mockResolvedValue({
+                ok: false,
+                status: 404
+            });
+
+            const response = await service.getPullRequests('sources/github/owner/repo');
+            expect(response).toEqual([]);
+            expect(global.fetch).toHaveBeenCalledWith(
+                'https://api.github.com/repos/owner/repo/pulls?state=open',
+                expect.any(Object)
+            );
+        });
+
+        it('should return empty array and log error on network error', async () => {
+            global.fetch.mockRejectedValue(new Error("Network Error"));
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+            const response = await service.getPullRequests('sources/github/owner/repo');
+            expect(response).toEqual([]);
+            expect(consoleSpy).toHaveBeenCalledWith("Failed to fetch pull requests:", expect.any(Error));
+
+            consoleSpy.mockRestore();
+        });
+
+        it('should return empty array and log error on non-404 status code', async () => {
+            global.fetch.mockResolvedValue({
+                ok: false,
+                status: 500
+            });
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+            const response = await service.getPullRequests('sources/github/owner/repo');
+            expect(response).toEqual([]);
+            expect(consoleSpy).toHaveBeenCalledWith("Failed to fetch pull requests:", expect.any(Error));
+
+            consoleSpy.mockRestore();
+        });
+
+        it('should return empty array and log error on invalid format (JSON parsing error)', async () => {
+            global.fetch.mockResolvedValue({
+                ok: true,
+                json: async () => { throw new Error("Invalid JSON"); }
+            });
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+            const response = await service.getPullRequests('sources/github/owner/repo');
+            expect(response).toEqual([]);
+            expect(consoleSpy).toHaveBeenCalledWith("Failed to fetch pull requests:", expect.any(Error));
+
+            consoleSpy.mockRestore();
+        });
+
+        it('should return pull requests on success', async () => {
+            global.fetch.mockResolvedValue({
+                ok: true,
+                json: async () => ([{ id: 1, title: 'Test PR' }])
+            });
+
+            const response = await service.getPullRequests('sources/github/owner/repo');
+            expect(response).toEqual([{ id: 1, title: 'Test PR' }]);
+        });
+    });
+
     describe('Environment Initialization', () => {
         it('should attach to window object if window is defined', () => {
              expect(window.julesService).toBeDefined();
