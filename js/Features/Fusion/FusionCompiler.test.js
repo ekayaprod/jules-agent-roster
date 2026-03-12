@@ -36,8 +36,8 @@ describe('FusionCompiler', () => {
     });
 
     it('normalizes custom agents keys by trimming and sorting', () => {
-      expect(compiler.customAgentsMap['Architect,Helix']).toBeDefined();
-      expect(compiler.customAgentsMap['Helix,Janitor']).toBeDefined();
+      expect(compiler.customAgentsMap['Architect,Helix'].name).toBe('The Void');
+      expect(compiler.customAgentsMap['Helix,Janitor'].name).toBe('Clean Code');
     });
 
     it('handles null/undefined customAgents gracefully', () => {

@@ -157,11 +157,15 @@ class FusionAnimation {
     if (result.emoji) {
       iconResult.innerText = result.emoji;
     } else {
-      // Logic for Emoji Kitchen fallback execution
+      // ✍️ ILLUMINATE: The Google Emoji Kitchen API is an undocumented, unversioned endpoint.
+      // WARN: The `v=20231116` parameter is a hardcoded dataset snapshot date. Do not update this string unless you
+      // have manually verified that Google has released a newer dataset snapshot that still supports the identical routing structure.
+      // The API strictly enforces alphabetical ordering for unicode code points in its URL paths, but fails silently (404s).
+      // We must explicitly fetch both permutations (`u1_u2` and `u2_u1`) as a fallback mechanic to guarantee a match regardless of argument order.
       const u1 = Array.from(iconA).map(c => c.codePointAt(0).toString(16)).join('-');
       const u2 = Array.from(iconB).map(c => c.codePointAt(0).toString(16)).join('-');
       
-      const v = "20231116"; // Date param for Google Emoji Kitchen API
+      const v = "20231116";
       const u1_u2_url = `https://www.gstatic.com/android/keyboard/emojikitchen/${v}/u${u1}/u${u1}_u${u2}.png`;
       const u2_u1_url = `https://www.gstatic.com/android/keyboard/emojikitchen/${v}/u${u2}/u${u2}_u${u1}.png`;
 

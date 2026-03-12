@@ -6,6 +6,11 @@
 - **Last Commit:** 144ce55
 - **Release Status:** Active
 
+## 2026-03-12 - [Version 0.8.0 Release]
+
+**Learning:** Differentiating between standard chore operations and deep architectural restructurings requires cross-referencing PR agent profiles. `Architect` and `Foreman` agents signal systemic re-wiring, separating code maintenance from raw file organization and structure enforcement.
+**Action:** When categorizing `[Architecture]` or `[Chores]`, aggregate the semantic actions of restructuring, standardizing conventions, and component extraction to highlight systemic improvements versus typical bug-fixing maintenance.
+
 ## 2026-03-07 - [Version 0.7.0 Release]
 
 **Learning:** High volume of DOM caching and deduplication changes grouped easily into '⚡ Performance', allowing the minor version bump to reflect improved runtime efficiency clearly. Agent activity like 'Bolt+' and 'Helix' were excellent signals for performance and structural improvements.

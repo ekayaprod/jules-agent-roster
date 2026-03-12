@@ -17,3 +17,7 @@
 ## 2024-05-24 - 🦉 Scholar - [JulesManager Architecture Synthesis]
 **Learning:** Documenting the `JulesManager` highlighted that attempting to modify tests immediately reveals deeply coupled UI rendering logic not built for isolation. Writing documentation must be constrained strictly to describing the state of the system, not trying to enforce execution tests that are currently broken by previous architectural changes.
 **Action:** When acting as Scholar, focus solely on synthesizing standard `@see` cross-linked JSDoc and `README.md` artifacts. Never attempt to "fix" the tests, as altering functional assertions constitutes code execution modification.
+2024-03-12
+**Title**: 🦉 Scholar: [AgentCard Module Synthesis]
+**Learning**: Discovered an orphaned inline JSDoc reference (`@see README.md#agentcard-architecture`) in `AgentCard.js` where the target `README.md` file did not exist in the module directory.
+**Action**: Synthesized a comprehensive macro architecture `README.md` mapping the DOM structure, event delegation, contextual actions, and render throttling, and strictly typed/cross-linked the inline JSDoc comments to establish a verified single source of truth.
