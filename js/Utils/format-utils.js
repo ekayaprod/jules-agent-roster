@@ -65,16 +65,6 @@ class FormatUtils {
         return agent.name.trim();
     }
 
-    /**
-     * Constructs the HTML for a terminal line.
-     * @param {string} message - The message to display.
-     * @param {string|null} id - Optional ID for the element.
-     * @returns {string} The HTML string.
-     */
-    static createTerminalLineHTML(message, id = null) {
-        const idAttr = id ? ` id="${id}"` : '';
-        return `<div class="terminal-line"${idAttr}><span class="terminal-time">[System]</span> ${message}</div>`;
-    }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
