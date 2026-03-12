@@ -22,6 +22,7 @@ global.DOMUtils = {
 };
 
 global.FormatUtils = {
+    escapeHTML: jest.fn().mockImplementation((str) => str),
     createTerminalLineHTML: jest.fn().mockImplementation((msg, id) => {
         return `<div class="terminal-line"${id ? ` id="${id}"` : ''}>${msg}</div>`;
     })
