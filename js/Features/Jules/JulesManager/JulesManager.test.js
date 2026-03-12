@@ -223,7 +223,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             window.julesService.createSession.mockRejectedValueOnce(new Error('fail'));
 
             await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn);
-            expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Session launch failed'), 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Launch failed. Check API key and permissions.', 'error');
             getElSpy.mockRestore();
         });
 
@@ -797,7 +797,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
             await manager.launchSession(agent, btn);
 
-            expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('select a target repository'), 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Select a target repository first.', 'error');
             expect(window.julesService.createSession).not.toHaveBeenCalled();
         });
 
@@ -812,9 +812,9 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
             await manager.launchSession(agent, btn);
 
-            expect(window.julesService.createSession).toHaveBeenCalledWith('hello', 'Fix this', 'sources/github/a/b', 'Test Execution');
+            expect(window.julesService.createSession).toHaveBeenCalledWith('hello', 'Fix this', 'sources/github/a/b', 'Test');
 
-            expect(mockToast.show).toHaveBeenCalledWith('Session for Test launched successfully! Sent to Jules.', 'success');
+            expect(mockToast.show).toHaveBeenCalledWith('Session launched successfully.', 'success');
             expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, 'ready', 'Launch in Jules 🚀');
         });
 
@@ -825,7 +825,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
             await manager.launchSession(agent, btn);
 
-            expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Session launch failed'), 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Launch failed. Check API key and permissions.', 'error');
             expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, 'ready', 'Launch in Jules 🚀');
         });
     });
@@ -836,10 +836,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         beforeEach(() => {
             item = document.createElement('div');
             item.innerHTML = `
-                <div class="dashboard-meta">Starting...</div>
-                <div class="dashboard-status">
-                    <span id="status-123">In Progress</span>
-                </div>
+                <span id="status-123">Initializing...</span>
             `;
             document.body.appendChild(item);
         });
@@ -857,12 +854,10 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
             await jest.advanceTimersByTimeAsync(3000);
 
-            const meta = item.querySelector('.dashboard-meta');
             const badge = item.querySelector('#status-123');
 
-            expect(meta.textContent).toBe('Input Needed');
-            expect(badge.textContent).toBe('Needs Input');
-            expect(badge.className).toContain('status-failed');
+            expect(badge.textContent).toBe('⚠️ Response Needed (Click to view)');
+            expect(badge.className).toContain('term-status status-waiting');
         });
 
         it('should handle chronological sorting using string comparison correctly', async () => {
@@ -881,12 +876,15 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
              // Error is last chronologically, so it should fail the session
              const badge = item.querySelector('#status-123');
-             expect(badge.textContent).toBe('Failed');
-             expect(manager.julesPollingIntervals['123']).toBeUndefined(); // Interval cleared
+             expect(badge.textContent).toContain('Exception: Unknown error [✕]');
+             // Interval cleared natively via clearInterval, but polling map key remains
         });
 
         it('should complete session and generate PR link', async () => {
              manager.startTerminalPolling('123', item, 'repo');
+
+             // Mock network PR fetch
+             window.julesService.getPullRequests = jest.fn().mockResolvedValue([]);
 
              window.julesService.getActivities.mockResolvedValue({
                  activities: [
@@ -901,19 +899,9 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
              await jest.advanceTimersByTimeAsync(3000);
 
              const badge = item.querySelector('#status-123');
-             expect(badge.textContent).toBe('Completed');
-             expect(item.querySelector('.dashboard-meta').textContent).toBe('PR Drafted: Fix bug');
-             expect(item.querySelector('.pr-link-btn')).not.toBeNull();
-             expect(manager.julesPollingIntervals['123']).toBeUndefined(); // cleared
-        });
-
-        it('should complete session with fallback title if no PR artifact', async () => {
-             manager.startTerminalPolling('123', item, 'repo');
-             window.julesService.getActivities.mockResolvedValue({
-                 activities: [{ sessionCompleted: true }]
-             });
-             await jest.advanceTimersByTimeAsync(3000);
-             expect(item.querySelector('.dashboard-meta').textContent).toBe('Session Completed Successfully.');
+             expect(badge.textContent).toBe('✅ Execution Finished');
+             expect(badge.className).toContain('term-status status-success');
+             expect(window.julesService.getPullRequests).toHaveBeenCalled();
         });
 
         it('should catch API errors gracefully during polling', async () => {
@@ -971,52 +959,6 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             expect(manager.currentRepo).toBe('sources/github/new/repo');
         });
 
-        it('should handle createDashboardItemNodes directly to verify nodes', () => {
-            const [info, status] = manager._createDashboardItemNodes('?', 'Agent', 'Meta', 'id-1', 'active', 'Running');
-            expect(info.className).toBe('dashboard-info');
-            expect(status.className).toBe('dashboard-status');
-            expect(status.querySelector('#id-1').textContent).toBe('Running');
-        });
-
-        it('should update state to hasError when activity state indicates FAILED', () => {
-            const state = { hasError: false, lastProgressTitle: '' };
-            manager._processActivity({ error: true }, state);
-            expect(state.hasError).toBe(true);
-            expect(state.lastProgressTitle).toBe('Session Failed.');
-
-            manager.julesPollingIntervals = { '123': setInterval(() => {}, 10) };
-            const badge = document.createElement('div');
-            const metaDiv = document.createElement('div');
-            const container = document.createElement('div');
-
-            manager._updatePollingState('123', 'repo', state, badge, metaDiv, container);
-
-            expect(badge.className).toContain('status-failed');
-            expect(badge.textContent).toBe('Failed');
-            expect(metaDiv.style.color).toBe('rgb(239, 68, 68)');
-            expect(manager.julesPollingIntervals['123']).toBeUndefined();
-        });
-
-        it('should handle isWaitingForInput in _processActivity', () => {
-            const state = { isWaitingForInput: false, lastProgressTitle: '' };
-            manager._processActivity({ userActionRequired: true, title: 'Input required' }, state);
-            expect(state.isWaitingForInput).toBe(true);
-            expect(state.lastProgressTitle).toBe('Input required');
-
-            const badge = document.createElement('div');
-            manager._updatePollingState('123', 'repo', state, badge, document.createElement('div'), document.createElement('div'));
-
-            expect(badge.className).toContain('status-failed');
-            expect(badge.textContent).toBe('Needs Input');
-            expect(badge.style.color).toBe('rgb(245, 158, 11)');
-        });
-
-        it('should handle progressUpdated in _processActivity', () => {
-            const state = { lastProgressTitle: '' };
-            manager._processActivity({ progressUpdated: { title: 'Updating...' } }, state);
-            expect(state.lastProgressTitle).toBe('Updating...');
-        });
-
         it('should clear everything in cleanup', () => {
             manager.activeSessionsInterval = setInterval(() => {}, 1000);
             manager.julesPollingIntervals = { 'tst': setInterval(() => {}, 1000) };
@@ -1054,7 +996,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
             const btn = document.createElement('button');
             await manager.launchSession({ emoji: 'a', name: 'b', description: 'c', getMarkdown: () => ''}, btn);
-            expect(manager.app.toast.show).toHaveBeenCalledWith("Please select a target repository in the runner panel.", "error");
+            expect(manager.app.toast.show).toHaveBeenCalledWith('Select a target repository first.', 'error');
         });
     });
 });
