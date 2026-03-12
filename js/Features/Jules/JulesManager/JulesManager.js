@@ -286,8 +286,8 @@ class JulesManager {
             const item = document.createElement("div");
             item.className = "term-pr-item";
             item.innerHTML = `
-                <span style="color: var(--term-success); font-weight: 600; flex-shrink: 0;">[PR]</span> 
-                <a href="${pr.html_url}" target="_blank" rel="noopener noreferrer" class="term-pr-title term-link">#${pr.number} ${pr.title} ↗</a>
+                <span style="color: var(--term-success); font-weight: 600; flex-shrink: 0;">[PR OPEN]</span> 
+                <a href="${pr.html_url}" target="_blank" rel="noopener noreferrer" class="term-pr-title term-link">#${pr.number} ${pr.title}</a>
             `;
             terminal.insertBefore(item, terminal.firstChild);
         });
@@ -405,8 +405,7 @@ class JulesManager {
             terminal.appendChild(block);
         }
 
-        // Pass the session payload to polling for accurate state checks
-        this.startTerminalPolling(session, block, safeAgentName, agentEmoji);
+        this.startTerminalPolling(session.id, block, safeAgentName, agentEmoji);
     }
 
     async launchSession(agent, btn = null) {
@@ -431,8 +430,7 @@ class JulesManager {
         }
     }
 
-    startTerminalPolling(sessionData, block, agentName, agentEmoji) {
-        const sessionId = sessionData.id;
+    startTerminalPolling(sessionId, block, agentName, agentEmoji) {
         if (!this.julesPollingIntervals) this.julesPollingIntervals = {};
         if (this.julesPollingIntervals[sessionId]) clearInterval(this.julesPollingIntervals[sessionId]);
 
@@ -451,11 +449,10 @@ class JulesManager {
                     rawMessage: "Processing..."
                 };
 
-                // Extract only the absolute latest status string
                 activities.forEach(act => {
                     let text = act.title || act.description || "";
                     if (text) {
-                        state.rawMessage = act.description || act.title; // Keep full text for modal
+                        state.rawMessage = act.description || act.title; 
                         if (text.length > 70) text = text.substring(0, 70) + "...";
                         state.latestLog = text;
                     }
@@ -470,7 +467,6 @@ class JulesManager {
                         state.rawMessage = state.latestLog;
                     }
 
-                    // Robust checks for waiting state
                     if (
                         act.userActionRequired || 
                         act.requiresInput || 
@@ -480,16 +476,10 @@ class JulesManager {
                     ) {
                         state.isWaitingForInput = true;
                     }
-                    // Reset waiting if an approval follows
                     if (act.planApproved) state.isWaitingForInput = false;
 
                     if (act.sessionCompleted) state.isCompleted = true;
                 });
-                
-                // Fallback check on the root session object state if the activities are vague
-                if (sessionData.state === 'NEEDS_ATTENTION' || sessionData.state === 'WAITING_FOR_INPUT') {
-                    state.isWaitingForInput = true;
-                }
 
                 this._updatePollingState(sessionId, block, state, agentName, agentEmoji);
 
@@ -503,12 +493,11 @@ class JulesManager {
         const statusSpan = block.querySelector(`#status-${sessionId}`);
         if (!statusSpan) return;
 
-        // If the task completes natively, force a GitHub PR fetch, then delete the Jules active line.
         if (state.isCompleted) {
             statusSpan.className = "term-status status-success";
             statusSpan.innerHTML = `✅ Execution Finished`;
             this.loadPullRequestsForRepo(this.currentRepo); 
-            setTimeout(() => this.dismissSession(sessionId), 2000); // Give user 2s to see it succeeded before removing
+            setTimeout(() => this.dismissSession(sessionId), 2000);
             return;
         }
 
@@ -522,7 +511,6 @@ class JulesManager {
         if (state.isWaitingForInput) {
             statusSpan.className = "term-status status-waiting";
             statusSpan.innerHTML = `⚠️ Response Needed (Click to view)`;
-            // Attach modal trigger with the full, un-truncated message text
             statusSpan.onclick = () => {
                 this._showInteractionModal(sessionId, agentEmoji, agentName, state.rawMessage);
             };
