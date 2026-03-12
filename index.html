@@ -506,6 +506,18 @@
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent B</span></div>
         </button>
       </div>
+
+      <!-- 🎭 SCULPT: A designed error state paired with empathetic, actionable microcopy and ARIA contexts. -->
+      <div id="fusionError" class="flex items-start gap-3 p-4 hidden fade-transition" role="alert" style="border-left: 4px solid #ef4444; background-color: #fef2f2; border-radius: 0 0.5rem 0.5rem 0; margin-top: 1.5rem; display: flex; align-items: flex-start; gap: 0.75rem; padding: 1rem;">
+        <svg class="text-red-500 shrink-0 mt-1" style="color: #ef4444; width: 1.5rem; height: 1.5rem; flex-shrink: 0;" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+        </svg>
+        <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+          <p style="margin: 0; font-size: 0.875rem; font-weight: 600; color: #7f1d1d;">Protocol Error</p>
+          <p id="fusionErrorText" style="margin: 0; font-size: 0.875rem; color: #b91c1c;">Please verify your selections and try again.</p>
+        </div>
+      </div>
+
       <div id="fusionAnimationOverlay" class="fusion-animation-overlay" aria-hidden="true">
         <div class="anim-arena">
           <div class="anim-icon left"></div>
