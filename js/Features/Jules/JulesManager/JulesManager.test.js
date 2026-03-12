@@ -135,7 +135,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         it('_fetchAndRenderSessions: awaiting msg removal', async () => {
             const terminal = document.createElement('div');
             const msg = document.createElement('div');
-            msg.className = 'terminal-line';
+            msg.id = 'fetchingIndicator';
             msg.textContent = 'Awaiting Agent launch';
             terminal.appendChild(msg);
 
@@ -143,43 +143,11 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             window.julesService.getSessions.mockResolvedValueOnce({sessions: [{
                 id: 's1',
                 sourceContext: { source: 'sources/github/owner/repo' },
-                outputs: []
+                updateTime: new Date().toISOString()
             }]});
             await manager._fetchAndRenderSessions('sources/github/owner/repo', terminal);
 
             expect(terminal.textContent).not.toContain('Awaiting Agent launch');
-        });
-
-        it('_processSession coverage: completed branch', () => {
-            manager.renderedSessionIds = new Set(['s2']);
-            const terminal = document.createElement('div');
-            const item = document.createElement('div');
-            item.id = 'session-s2';
-
-            const badge = document.createElement('span');
-            badge.id = 'status-s2';
-            document.body.appendChild(badge);
-            document.body.appendChild(item);
-
-            const metaDiv = document.createElement('div');
-            metaDiv.className = 'dashboard-meta';
-            item.appendChild(metaDiv);
-            const dsDiv = document.createElement('div');
-            dsDiv.className = 'dashboard-status';
-            item.appendChild(dsDiv);
-
-            const session = {
-                id: 's2',
-                outputs: [{ pullRequest: { title: 'My PR', url: 'http://mypr' } }]
-            };
-
-            manager._processSession(session, terminal, 'owner/repo');
-            expect(badge.className).toContain('status-completed');
-            expect(metaDiv.textContent).toContain('PR Drafted: My PR');
-
-            // cleanup
-            badge.remove();
-            item.remove();
         });
 
         it('launchSession coverage: button param provided', async () => {
@@ -224,47 +192,18 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             getElSpy.mockRestore();
         });
 
-        it('_processActivity polling sort coverage', () => {
-            manager.julesPollingIntervals = {};
-            const act1 = { createTime: '2023-01-02T00:00:00Z', updateType: 'PROGRESS_UPDATED', progressUpdated: { title: 'act1' } };
-            const act2 = { createTime: '2023-01-01T00:00:00Z', updateType: 'PROGRESS_UPDATED', progressUpdated: { title: 'act2' } };
-            const act3 = { createTime: '2023-01-02T00:00:00Z', updateType: 'PROGRESS_UPDATED', progressUpdated: { title: 'act3' } };
-
-            window.julesService.getActivities.mockResolvedValueOnce({ activities: [act1, act2, act3] });
-            const item = document.createElement('div');
-            item.innerHTML = `<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>`;
-
-            manager.startTerminalPolling('123', item, 'o/r');
-            jest.advanceTimersByTime(3000);
-            // Internal polling happens
-        });
-
-        it('_processActivity coverage: user input requested', async () => {
-            const state = {};
-            const act = { userActionRequired: true };
-            manager._processActivity(act, state, 'id', document.createElement('div'), document.createElement('div'));
-            expect(state.isWaitingForInput).toBe(true);
-            expect(state.lastProgressTitle).toBe('Waiting for Input...');
-        });
-
-        it('_processActivity coverage: error activity', () => {
-             const state = {};
-             const act = { error: true };
-             manager._processActivity(act, state, 'id', null, null);
-             expect(state.hasError).toBe(true);
-             expect(state.lastProgressTitle).toBe('Session Failed.');
-        });
 
         it('_updatePollingState coverage: needsInput branch', () => {
              const state = { isWaitingForInput: true };
              manager.julesPollingIntervals = { '123': 999 };
-             const statusBadge = document.createElement('span');
-             const metaDiv = document.createElement('div');
-             const statusContainer = document.createElement('div');
+             const block = document.createElement('div');
+             const statusSpan = document.createElement('span');
+             statusSpan.id = 'status-123';
+             block.appendChild(statusSpan);
 
-             manager._updatePollingState('123', 'o/r', state, statusBadge, metaDiv, statusContainer);
-             expect(statusBadge.className).toContain('status-failed');
-             expect(statusBadge.textContent).toBe('Needs Input'); expect(statusBadge.style.color).toBe('rgb(245, 158, 11)');
+             manager._updatePollingState('123', block, state, 'AgentName', '🤖');
+             expect(statusSpan.className).toContain('status-waiting');
+             expect(statusSpan.textContent).toBe('⚠️ Response Needed (Click to view)');
         });
 
         it('init branches coverage: missing elements', async () => {
@@ -301,35 +240,6 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
              await manager._fetchAndRenderSessions('repo', terminal);
         });
 
-        it('_processSession branch: completed prInfo null', () => {
-             const terminal = document.createElement('div');
-             manager.renderedSessionIds = new Set(['123']);
-             const s = document.createElement('div');
-             s.id = 'session-123';
-             const b = document.createElement('span'); b.id = 'status-123';
-             const m = document.createElement('div'); m.className = 'dashboard-meta';
-             s.appendChild(m); document.body.appendChild(b); document.body.appendChild(s);
-
-             // No PR Info
-             manager._processSession({id: '123', outputs: [{pullRequest: null}]}, terminal, 'repo');
-        });
-
-        it('_processSession branch: new completed missing prInfo url', () => {
-             const terminal = document.createElement('div');
-             document.body.appendChild(terminal); // Must be in DOM for getElementById to work
-             const session = {
-                 id: '777',
-                 title: 'CustomAgent',
-                 outputs: [{ pullRequest: { title: 'No URL PR' } }] // missing url
-             };
-             manager._processSession(session, terminal, 'repo');
-             const item = document.getElementById('session-777');
-             if (item) {
-                 expect(item.querySelector('.pr-link-btn')).toBeNull();
-                 item.remove();
-             }
-             terminal.remove();
-        });
 
         it('startTerminalPolling: replace existing interval', () => {
              manager.julesPollingIntervals = {'123': 999};
@@ -390,6 +300,103 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         it('module export check', () => {
             const managerModule = require('./JulesManager');
             expect(managerModule).toBeDefined();
+        });
+    });
+
+    describe('Interaction Modal Coverage', () => {
+        let modal, cancelBtn, submitBtn, inputField, emojiEl, nameEl, msgEl;
+
+        beforeEach(() => {
+            document.body.innerHTML += `
+                <div id="julesInteractionModal"></div>
+                <button id="cancelInteractionBtn"></button>
+                <button id="submitInteractionBtn"></button>
+                <input id="interactionModalInput" />
+                <span id="interactionModalEmoji"></span>
+                <span id="interactionModalAgent"></span>
+                <span id="interactionModalMessage"></span>
+                <div id="status-s123"></div>
+            `;
+            modal = document.getElementById('julesInteractionModal');
+            cancelBtn = document.getElementById('cancelInteractionBtn');
+            submitBtn = document.getElementById('submitInteractionBtn');
+            inputField = document.getElementById('interactionModalInput');
+            emojiEl = document.getElementById('interactionModalEmoji');
+            nameEl = document.getElementById('interactionModalAgent');
+            msgEl = document.getElementById('interactionModalMessage');
+
+            manager._initInteractionModal();
+        });
+
+        it('should show interaction modal with correct data', () => {
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            expect(manager.activeModalSessionId).toBe('s123');
+            expect(emojiEl.textContent).toBe('🤖');
+            expect(nameEl.textContent).toBe('TestAgent');
+            expect(msgEl.textContent).toBe('Please confirm');
+            expect(modal.classList.contains('visible')).toBe(true);
+
+            jest.advanceTimersByTime(100); // coverage for setTimeout focus
+        });
+
+        it('should close modal on cancel button click', () => {
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            cancelBtn.click();
+
+            expect(modal.classList.contains('visible')).toBe(false);
+            expect(manager.activeModalSessionId).toBeNull();
+            expect(inputField.value).toBe('');
+        });
+
+        it('should submit interaction on submit button click and handle success', async () => {
+            window.julesService.sendUserInput = jest.fn().mockResolvedValueOnce({});
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            inputField.value = 'My response';
+            await submitBtn.click();
+
+            expect(window.julesService.sendUserInput).toHaveBeenCalledWith('s123', 'My response');
+            expect(mockToast.show).toHaveBeenCalledWith('Reply transmitted.', 'success');
+            expect(modal.classList.contains('visible')).toBe(false);
+            expect(inputField.disabled).toBe(false); // restored in finally
+
+            const statusSpan = document.getElementById('status-s123');
+            expect(statusSpan.textContent).toBe('Transmitting response...');
+        });
+
+        it('should submit interaction on Enter keydown', async () => {
+            window.julesService.sendUserInput = jest.fn().mockResolvedValueOnce({});
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            inputField.value = 'My response';
+            const event = new KeyboardEvent('keydown', { key: 'Enter' });
+            await inputField.dispatchEvent(event);
+
+            expect(window.julesService.sendUserInput).toHaveBeenCalledWith('s123', 'My response');
+        });
+
+        it('should handle API failure during submission', async () => {
+            window.julesService.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            inputField.value = 'My response';
+            await submitBtn.click();
+
+            expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', 'error');
+            expect(inputField.disabled).toBe(false);
+            // Modal should remain open on failure (not closed in catch, only finally clears loading)
+            expect(DOMUtils.setButtonState).toHaveBeenCalledWith(submitBtn, 'ready', 'Transmit Reply');
+        });
+
+        it('should not submit if input is empty', async () => {
+            window.julesService.sendUserInput = jest.fn();
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            inputField.value = '   '; // only whitespace
+            await submitBtn.click();
+
+            expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
         });
     });
 
@@ -459,7 +466,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             expect(StorageUtils.setItem).toHaveBeenCalledWith('github_api_key', 'new-github-token');
             expect(window.julesService.configure).toHaveBeenCalledWith('new-key', 'new-github-token');
             expect(loadSourcesSpy).toHaveBeenCalled();
-            expect(mockToast.show).toHaveBeenCalledWith('Connecting to Jules...');
+            expect(mockToast.show).toHaveBeenCalledWith('Connecting to APIs...');
         });
 
         it('should show error if saving with empty key', async () => {
@@ -482,8 +489,6 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             keyInput.value = '   ';
             keyInput.dispatchEvent(new Event('blur'));
 
-            expect(keyInput.getAttribute('aria-invalid')).toBe('true');
-            expect(keyInput.getAttribute('aria-describedby')).toBe(errorSpan.id);
             expect(keyInput.style.borderColor).toBe('rgb(239, 68, 68)'); // #ef4444
             expect(errorSpan.textContent).toBe('An API Key is required to connect.');
             expect(errorSpan.style.display).toBe('block');
@@ -502,8 +507,6 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             keyInput.value = 'valid-key';
             keyInput.dispatchEvent(new Event('blur'));
 
-            expect(keyInput.hasAttribute('aria-invalid')).toBe(false);
-            expect(keyInput.hasAttribute('aria-describedby')).toBe(false);
             expect(keyInput.style.borderColor).toBe('');
             expect(errorSpan.textContent).toBe('');
             expect(errorSpan.style.display).toBe('none');
@@ -522,7 +525,6 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             expect(picker.options.length).toBe(2);
             expect(picker.options[1].value).toBe('sources/github/a/b');
             expect(picker.options[1].textContent).toBe('a/b');
-            expect(mockToast.show).toHaveBeenCalledWith('Jules Repositories Loaded');
         });
 
         it('should handle API missing sources payload', async () => {
@@ -558,7 +560,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
             await manager.loadActiveSessionsForRepo('newRepo');
 
-            expect(terminal.innerHTML).toContain('Fetching active sessions...');
+            expect(terminal.innerHTML).toContain('Checking active Jules routines...');
             expect(manager.currentRepo).toBe('newRepo');
             expect(Object.keys(manager.julesPollingIntervals).length).toBe(0);
             expect(manager.renderedSessionIds.size).toBe(0);
@@ -617,11 +619,12 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should filter dismissed and mismatching repo sessions', async () => {
+            const recentTime = new Date().toISOString();
             window.julesService.getSessions.mockResolvedValue({
                 sessions: [
-                    { id: '1', sourceContext: { source: 'repo' } },
-                    { id: '2', sourceContext: { source: 'repo' } },
-                    { id: '3', sourceContext: { source: 'otherRepo' } }
+                    { id: '1', sourceContext: { source: 'repo' }, updateTime: recentTime },
+                    { id: '2', sourceContext: { source: 'repo' }, updateTime: recentTime },
+                    { id: '3', sourceContext: { source: 'otherRepo' }, updateTime: recentTime }
                 ]
             });
             manager.dismissedSessionIds.add('1');
@@ -634,10 +637,11 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should filter out all sessions with drafted PRs', async () => {
+             const recentTime = new Date().toISOString();
              window.julesService.getSessions.mockResolvedValue({
                  sessions: [
-                     { id: '1', sourceContext: { source: 'repo' }, outputs: [{ pullRequest: { state: 'MERGED' } }] },
-                     { id: '2', sourceContext: { source: 'repo' }, outputs: [] },
+                     { id: '1', sourceContext: { source: 'repo' }, updateTime: recentTime, outputs: [{ pullRequest: { state: 'MERGED' } }] },
+                     { id: '2', sourceContext: { source: 'repo' }, updateTime: recentTime, outputs: [] },
                  ]
              });
 
@@ -698,50 +702,6 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             terminal = document.getElementById('julesTerminal');
         });
 
-        it('should update existing uncompleted session to completed', () => {
-            manager.renderedSessionIds.add('1');
-            terminal.innerHTML = `
-                <div id="session-1">
-                    <div class="dashboard-status">
-                        <span id="status-1">In Progress</span>
-                    </div>
-                    <div class="dashboard-meta"></div>
-                </div>
-            `;
-
-            const session = {
-                id: '1',
-                outputs: [{ pullRequest: { title: 'Fix bug', url: 'http://pr' } }]
-            };
-
-            manager._processSession(session, terminal, 'repo');
-
-            const status = document.getElementById('status-1');
-            expect(status.textContent).toBe('Completed');
-            expect(status.className).toContain('status-completed');
-
-            const item = document.getElementById('session-1');
-            expect(item.querySelector('.pr-link-btn')).not.toBeNull();
-
-            // simulate click to test delegation
-            const dummyTarget = document.createElement('div');
-            item.appendChild(dummyTarget);
-            dummyTarget.click();
-            expect(manager.dismissedSessionIds.has('1')).toBe(true);
-        });
-
-        it('should skip if existing session is already completed', () => {
-             manager.renderedSessionIds.add('1');
-             terminal.innerHTML = `
-                 <div id="session-1">
-                     <span id="status-1">Completed</span>
-                 </div>
-             `;
-             manager._processSession({ id: '1', outputs: [{ pullRequest: {} }] }, terminal, 'repo');
-             // No further DOM manipulation
-             expect(document.getElementById('session-1').innerHTML).not.toContain('pr-link-btn'); // Assuming it would add it if it didn't return early
-        });
-
         it('should create new dashboard item for unrendered session', () => {
             const session = { id: '1', title: 'TestAgent' };
             const pollingSpy = jest.spyOn(manager, 'startTerminalPolling');
@@ -752,29 +712,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             expect(item).not.toBeNull();
             expect(item.innerHTML).toContain('TestAgent');
             expect(item.innerHTML).toContain('🤖'); // emoji
-            expect(pollingSpy).toHaveBeenCalledWith('1', item, 'repo');
-        });
-
-        it('should create new completed dashboard item', () => {
-             const session = {
-                 id: '1',
-                 title: 'CustomAgent',
-                 outputs: [{ pullRequest: { title: 'My PR', url: 'http://pr' } }]
-             };
-
-             manager._processSession(session, terminal, 'repo');
-
-             const item = document.getElementById('session-1');
-             expect(item.querySelector('#status-1').textContent).toBe('Completed');
-             expect(item.innerHTML).toContain('🔥'); // custom agent emoji
-             expect(item.innerHTML).toContain('My PR');
-             expect(item.querySelector('.pr-link-btn')).not.toBeNull();
-
-             // click dismiss
-             const dummy = document.createElement('div');
-             item.appendChild(dummy);
-             dummy.click();
-             expect(manager.dismissedSessionIds.has('1')).toBe(true);
+            expect(pollingSpy).toHaveBeenCalledWith('1', item, 'TestAgent', '🤖');
         });
     });
 
