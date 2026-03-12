@@ -1,11 +1,13 @@
 # Agent Services
 
 ## Purpose
+
 This directory contains the data fetching, validation, and external integration layers for the Jules Roster application. The components here abstract the file system (`AgentRepository.js`) and network calls to external LLM services (`JulesAPI.js`) required to load agent definitions and orchestrate live protocol sessions.
 
 ## Quick Start
 
 ### AgentRepository Quick Start
+
 To fetch all agents (standard and custom fusions) and their associated prompts:
 
 ```javascript
@@ -25,6 +27,7 @@ loadData();
 ```
 
 ### JulesAPI Quick Start
+
 To configure the service and initiate an agent session:
 
 ```javascript
@@ -50,6 +53,7 @@ const activities = await window.julesService.getActivities(session.name);
 ## Architecture
 
 ### AgentRepository Architecture
+
 The `AgentRepository` acts as the single source of truth for agent data.
 
 1. **Fetching:** It fetches `agents.json` and `custom_agents.json` via the native `fetch` API, implementing an exponential backoff retry mechanism (`fetchWithRetry`) for network resilience.
@@ -58,6 +62,7 @@ The `AgentRepository` acts as the single source of truth for agent data.
 4. **Environment Agnostic:** The service is written in standard ES6 classes and supports CommonJS exports (`module.exports`) to allow execution in Node.js test environments without transpilation.
 
 ### JulesAPI Architecture
+
 The `JulesService` manages the network boundary with the Jules backend.
 
 1. **Asynchronous Polling vs Streaming:** Unlike standard LLM integrations that utilize synchronous completions or SSE (`stream: true`), the Jules API is asynchronous. Generating a response requires creating a stateful Session (`createSession`) and then continuously polling its Activities (`getActivities`) until completion.
