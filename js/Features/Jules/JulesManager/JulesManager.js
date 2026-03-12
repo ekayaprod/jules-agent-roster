@@ -4,9 +4,17 @@
 const hasPullRequest = o => o.pullRequest;
 const sortByCreateTime = (a, b) => a.createTime < b.createTime ? -1 : (a.createTime > b.createTime ? 1 : 0);
 
+// Hardcoded fallback for missing core metadata
+const CORE_EMOJIS = {
+    "Architect": "🏗️", "Navigator": "🧭", "Helix": "🧬", "Modernizer": "🚀", "Untangler": "🧶",
+    "Scavenger": "🗑️", "Superintendent": "🧽", "Pedant": "🧐", "Paramedic": "🚑", "Cortex": "🧠",
+    "Author": "✍️", "Scribe": "🖋️", "Herald": "📣", "Wordsmith": "🔤", "Curator": "🖼️", "Inspector": "🕵️",
+    "Bolt+": "⚡", "Palette+": "🎨", "Sentinel+": "🛡️"
+};
+
 /**
  * Manages the core operations for interacting with Jules APIs.
- * Redesigned to act as a sleek, code-editor style terminal rather than a dashboard of cards.
+ * Engineered for a single-line terminal output where GitHub handles completions.
  */
 class JulesManager {
     constructor(rosterApp) {
@@ -16,8 +24,10 @@ class JulesManager {
         this.julesPollingIntervals = {};
         this.renderedSessionIds = new Set();
         this.dismissedSessionIds = new Set();
-        this.openPRUrls = new Set();
         this.elements = {};
+        
+        // Modal State
+        this.activeModalSessionId = null;
     }
 
     getEl(id) {
@@ -61,8 +71,6 @@ class JulesManager {
                 this._clearKeyError(githubTokenInput, githubTokenErrorSpan);
             } else {
                 settingsModal.classList.remove("visible");
-                this._clearKeyError(keyInput, errorSpan);
-                this._clearKeyError(githubTokenInput, githubTokenErrorSpan);
             }
         };
 
@@ -91,7 +99,7 @@ class JulesManager {
                 StorageUtils.setItem("jules_api_key", key);
                 StorageUtils.setItem("github_api_key", githubKey);
                 toggleModal(false);
-                this.app.toast.show("Connecting to Jules...");
+                this.app.toast.show("Connecting to APIs...");
 
                 if (window.julesService) {
                     window.julesService.configure(key, githubKey);
@@ -104,12 +112,79 @@ class JulesManager {
             }
         });
 
+        this._initInteractionModal();
+
         if (apiKey && window.julesService) {
             window.julesService.configure(apiKey, githubToken);
             await this.loadSources();
         } else {
             toggleModal(true);
         }
+    }
+
+    _initInteractionModal() {
+        const modal = this.getEl("julesInteractionModal");
+        const cancelBtn = this.getEl("cancelInteractionBtn");
+        const submitBtn = this.getEl("submitInteractionBtn");
+        const inputField = this.getEl("interactionModalInput");
+
+        if (!modal) return;
+
+        const closeModal = () => {
+            modal.classList.remove("visible");
+            this.activeModalSessionId = null;
+            if (inputField) inputField.value = "";
+        };
+
+        const handleSubmit = async () => {
+            const text = inputField.value.trim();
+            if (!text || !this.activeModalSessionId) return;
+
+            DOMUtils.setButtonState(submitBtn, "loading", "...");
+            inputField.disabled = true;
+
+            try {
+                await window.julesService.sendUserInput(this.activeModalSessionId, text);
+                this.app.toast.show("Reply transmitted.", "success");
+                
+                const statusSpan = document.getElementById(`status-${this.activeModalSessionId}`);
+                if (statusSpan) {
+                    statusSpan.className = "term-status";
+                    statusSpan.textContent = "Transmitting response...";
+                    statusSpan.onclick = null;
+                }
+                closeModal();
+            } catch (e) {
+                this.app.toast.show("Failed to send reply.", "error");
+            } finally {
+                DOMUtils.setButtonState(submitBtn, "ready", "Transmit Reply");
+                inputField.disabled = false;
+            }
+        };
+
+        cancelBtn?.addEventListener("click", closeModal);
+        submitBtn?.addEventListener("click", handleSubmit);
+        inputField?.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") handleSubmit();
+        });
+    }
+
+    _showInteractionModal(sessionId, agentEmoji, agentName, promptText) {
+        this.activeModalSessionId = sessionId;
+        const modal = this.getEl("julesInteractionModal");
+        const emojiEl = this.getEl("interactionModalEmoji");
+        const nameEl = this.getEl("interactionModalAgent");
+        const msgEl = this.getEl("interactionModalMessage");
+        const inputField = this.getEl("interactionModalInput");
+
+        if (!modal) return;
+
+        if (emojiEl) emojiEl.textContent = agentEmoji;
+        if (nameEl) nameEl.textContent = agentName;
+        if (msgEl) msgEl.textContent = promptText;
+        
+        modal.classList.add("visible");
+        setTimeout(() => inputField?.focus(), 50);
     }
 
     _showKeyError(input, span, message) {
@@ -144,7 +219,21 @@ class JulesManager {
                     opt.textContent = `${s.githubRepo.owner}/${s.githubRepo.repo}`;
                     picker.appendChild(opt);
                 });
-                this.app.toast.show("Jules Repositories Loaded");
+                
+                // Directly bind the dropdown change to trigger BOTH APIs
+                if (!picker.dataset.listenerAttached) {
+                    picker.addEventListener("change", (e) => {
+                        const sourceName = e.target.value;
+                        if (sourceName) {
+                            this.loadPullRequestsForRepo(sourceName);
+                            this.loadActiveSessionsForRepo(sourceName);
+                        } else {
+                            this._clearPollingAndCache();
+                            this.getEl("julesTerminal").innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Awaiting repository connection...</div>`;
+                        }
+                    });
+                    picker.dataset.listenerAttached = "true";
+                }
             } else {
                 picker.innerHTML = `<option value="">${originalText}</option>`;
             }
@@ -161,7 +250,10 @@ class JulesManager {
         
         if (this.currentRepo !== sourceName) {
             this._clearPollingAndCache();
-            terminal.innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Fetching active routines for ${sourceName.replace('sources/github/', '')}...</div>`;
+            const existingInd = terminal.querySelector('#fetchingIndicator');
+            if (!existingInd) {
+                 terminal.innerHTML += `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Checking active Jules routines...</div>`;
+            }
             this.currentRepo = sourceName;
         }
 
@@ -176,18 +268,14 @@ class JulesManager {
         if (!window.julesService) return;
         try {
             const pullRequests = await window.julesService.getPullRequests(sourceName);
-            this.openPRUrls = new Set(pullRequests.map(pr => pr.html_url || pr.url));
             this._renderPullRequests(pullRequests, this.getEl("julesTerminal"));
         } catch (error) {
             console.error("Failed to load pull requests:", error);
-            this.openPRUrls = new Set();
         }
     }
 
     _renderPullRequests(prs, terminal) {
-        // Clear old PR renders
         terminal.querySelectorAll('.term-pr-item').forEach(el => el.remove());
-        
         if (!prs || prs.length === 0) return;
 
         const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
@@ -198,9 +286,8 @@ class JulesManager {
             const item = document.createElement("div");
             item.className = "term-pr-item";
             item.innerHTML = `
-                <span style="color: var(--term-success); font-weight: 600;">[OPEN PR]</span> 
-                <span class="term-pr-title">#${pr.number} ${pr.title}</span>
-                <a href="${pr.html_url}" target="_blank" rel="noopener noreferrer" class="term-link">[View ↗]</a>
+                <span style="color: var(--term-success); font-weight: 600;">[PR OPEN]</span> 
+                <a href="${pr.html_url}" target="_blank" rel="noopener noreferrer" class="term-pr-title" style="color: #e4e4e7; text-decoration: none;">#${pr.number} ${pr.title} ↗</a>
             `;
             terminal.insertBefore(item, terminal.firstChild);
         });
@@ -220,19 +307,24 @@ class JulesManager {
                 if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
                 if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
                 
-                const isCompleted = s.outputs && s.outputs.some(hasPullRequest);
-                
-                // ONLY show sessions that are actively running, OR completed ones we JUST watched finish.
-                // This permanently hides 100+ historical completed tasks from spawning infinitely.
-                if (isCompleted && !this.renderedSessionIds.has(s.id)) {
+                const timeStr = s.updateTime || s.createTime || s.startTime;
+                if (timeStr) {
+                    const ageHours = (Date.now() - new Date(timeStr).getTime()) / (1000 * 60 * 60);
+                    if (ageHours > 2) return false; 
+                } else if (!this.renderedSessionIds.has(s.id)) {
                     return false;
                 }
+
+                // If a ticket reached a terminal state (done, failed, drafted PR), it is NO LONGER 
+                // shown in the active Jules feed. We completely rely on the GitHub PR fetch to show completions.
+                const isEnded = s.state === 'COMPLETED' || s.state === 'FAILED' || s.state === 'ERROR' || s.state === 'CANCELLED' || (s.outputs && s.outputs.some(hasPullRequest));
+                
+                if (isEnded) return false; 
                 
                 return true;
             });
 
-            // Sort newest first
-            repoSessions = [...repoSessions].reverse().slice(0, 10);
+            repoSessions = [...repoSessions].reverse().slice(0, 3);
             const repoPath = sourceName.replace('sources/github/', '');
 
             const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
@@ -261,29 +353,18 @@ class JulesManager {
     _checkEmptyTerminal() {
         const terminal = this.getEl("julesTerminal");
         if (terminal.children.length === 0 || (terminal.children.length === 1 && terminal.firstElementChild.id === 'fetchingIndicator')) {
-             terminal.innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Awaiting execution commands...</div>`;
+             terminal.innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Ready. Awaiting execution commands...</div>`;
         }
     }
 
     _processSession(session, terminal, repoPath) {
-        const isCompleted = session.outputs && session.outputs.some(hasPullRequest);
-        
-        if (this.renderedSessionIds.has(session.id)) {
-            if (!isCompleted) return;
-            const block = document.getElementById(`session-${session.id}`);
-            if (block && !block.classList.contains("state-completed")) {
-                this._markBlockCompleted(block, session);
-            }
-            return;
-        }
-
+        if (this.renderedSessionIds.has(session.id)) return;
         this.renderedSessionIds.add(session.id);
         
         const agentName = session.title || "Agent Task";
-        let agentEmoji = "🤖";
         let safeAgentName = agentName.replace(/"/g, '');
+        let agentEmoji = "🤖";
         
-        // Deep search for emoji (handles core agents AND nested custom fusion matrices)
         let matchedAgent = this.app.agents.find(a => safeAgentName.includes(a.name));
         if (!matchedAgent && this.app.customAgents) {
             const flatCustoms = [];
@@ -294,67 +375,37 @@ class JulesManager {
             }
             matchedAgent = flatCustoms.find(a => a.name && safeAgentName.includes(a.name));
         }
-        if (matchedAgent && matchedAgent.emoji) agentEmoji = matchedAgent.emoji;
+
+        if (matchedAgent && matchedAgent.emoji) {
+            agentEmoji = matchedAgent.emoji;
+        } else {
+            for (const [name, emoji] of Object.entries(CORE_EMOJIS)) {
+                if (safeAgentName.includes(name)) {
+                    agentEmoji = emoji;
+                    break;
+                }
+            }
+        }
 
         const block = document.createElement("div");
-        block.className = `term-session-block ${isCompleted ? 'state-completed' : 'state-active'}`;
+        block.className = `term-session-line state-active`;
         block.id = `session-${session.id}`;
 
-        const commandStr = `~ ❯ jules run <span class="term-arg">${agentEmoji} ${safeAgentName}</span>`;
-
+        // 1-line Minimalist layout
         block.innerHTML = `
-            <div class="term-command-line">${commandStr}</div>
-            <div class="term-log-stream" id="logs-${session.id}">
-                ${isCompleted ? '' : '<div class="term-log-line system">  [SYS] Initializing execution environment...</div>'}
-            </div>
-            <div class="term-input-container" id="input-${session.id}"></div>
+            <span class="term-agent-name">${agentEmoji} ${safeAgentName}</span> 
+            <span class="term-separator">—</span>
+            <span class="term-status" id="status-${session.id}">Initializing...</span>
         `;
 
-        // Append to terminal (below PR items, above older sessions)
-        const firstSession = terminal.querySelector('.term-session-block');
+        const firstSession = terminal.querySelector('.term-session-line');
         if (firstSession) {
             terminal.insertBefore(block, firstSession);
         } else {
             terminal.appendChild(block);
         }
 
-        if (isCompleted) {
-            this._markBlockCompleted(block, session);
-        } else {
-            this.startTerminalPolling(session.id, block, repoPath);
-        }
-    }
-
-    _markBlockCompleted(block, session) {
-        block.className = "term-session-block state-completed";
-        const prInfo = session.outputs.find(hasPullRequest)?.pullRequest;
-        const logStream = block.querySelector('.term-log-stream');
-        const inputContainer = block.querySelector('.term-input-container');
-        
-        if (inputContainer) inputContainer.innerHTML = '';
-        
-        if (prInfo && logStream) {
-            logStream.innerHTML = `
-                <div class="term-log-line success">  [OK] Routine complete.</div>
-            `;
-            
-            const actionLine = document.createElement("div");
-            actionLine.className = "term-log-line action";
-            actionLine.innerHTML = `  [PR] <a href="${prInfo.html_url || prInfo.url}" target="_blank" class="term-link">${prInfo.title} ↗</a> `;
-            
-            const dismissBtn = document.createElement("button");
-            dismissBtn.className = "term-action-btn";
-            dismissBtn.textContent = "[Dismiss ✕]";
-            dismissBtn.onclick = () => this.dismissSession(session.id);
-            
-            actionLine.appendChild(dismissBtn);
-            logStream.appendChild(actionLine);
-        }
-        
-        if (this.julesPollingIntervals[session.id]) {
-            clearInterval(this.julesPollingIntervals[session.id]);
-            delete this.julesPollingIntervals[session.id];
-        }
+        this.startTerminalPolling(session.id, block, safeAgentName, agentEmoji);
     }
 
     async launchSession(agent, btn = null) {
@@ -374,7 +425,6 @@ class JulesManager {
         try {
             await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
             this.app.toast.show(`Session launched successfully.`, "success");
-            // Force an immediate poll
             this._fetchAndRenderSessions(sourceName, this.getEl("julesTerminal"));
         } catch (err) {
             this.app.toast.show(`Launch failed. Check API key and permissions.`, "error");
@@ -383,12 +433,9 @@ class JulesManager {
         }
     }
 
-    startTerminalPolling(sessionId, block, repoPath) {
+    startTerminalPolling(sessionId, block, agentName, agentEmoji) {
         if (!this.julesPollingIntervals) this.julesPollingIntervals = {};
         if (this.julesPollingIntervals[sessionId]) clearInterval(this.julesPollingIntervals[sessionId]);
-
-        const logStream = block.querySelector(`#logs-${sessionId}`);
-        const inputContainer = block.querySelector(`#input-${sessionId}`);
 
         this.julesPollingIntervals[sessionId] = setInterval(async () => {
             try {
@@ -401,42 +448,34 @@ class JulesManager {
                     isCompleted: false,
                     hasError: false,
                     isWaitingForInput: false,
-                    logsHtml: ""
+                    latestLog: "Processing...",
+                    rawMessage: "Processing..."
                 };
 
-                // Build HTML feed (last 5 lines to keep it sleek)
-                const logLines = [];
+                // Extract only the absolute latest status string
                 activities.forEach(act => {
-                    let logClass = "system";
-                    let prefix = "[SYS]";
-                    let logText = act.title || act.description || "Processing...";
+                    let text = act.title || act.description || "";
+                    if (text) {
+                        state.rawMessage = act.description || act.title; // Keep full text for modal
+                        if (text.length > 70) text = text.substring(0, 70) + "...";
+                        state.latestLog = text;
+                    }
                     
                     if (act.type && act.type.includes('USER_INPUT')) { 
-                        logClass = "user"; 
-                        prefix = "[USR]";
-                        logText = act.message || act.title || "User input received."; 
-                    }
-                    if (act.error) { 
-                        logClass = "error"; 
-                        prefix = "[ERR]";
-                        logText = "Exception: " + (act.error.message || "Unknown error"); 
+                        state.latestLog = "User input transmitted.";
                     }
                     
-                    logLines.push(`<div class="term-log-line ${logClass}">  ${prefix} ${FormatUtils.escapeHTML(logText)}</div>`);
+                    if (act.error) { 
+                        state.hasError = true; 
+                        state.latestLog = "Exception: " + (act.error.message || "Unknown error"); 
+                        state.rawMessage = state.latestLog;
+                    }
 
                     if (act.userActionRequired || act.requiresInput || (act.type && act.type.includes('INPUT'))) state.isWaitingForInput = true;
                     if (act.sessionCompleted) state.isCompleted = true;
-                    if (act.error) state.hasError = true;
                 });
 
-                // Slice to last few to prevent massive scroll blobs per session
-                state.logsHtml = logLines.slice(-5).join("");
-
-                if (logStream && logStream.innerHTML !== state.logsHtml) {
-                    logStream.innerHTML = state.logsHtml;
-                }
-
-                this._updatePollingState(sessionId, block, state, inputContainer);
+                this._updatePollingState(sessionId, block, state, agentName, agentEmoji);
 
             } catch (e) {
                 console.error("Polling error", e);
@@ -444,67 +483,37 @@ class JulesManager {
         }, 3000);
     }
 
-    _updatePollingState(sessionId, block, state, inputContainer) {
+    _updatePollingState(sessionId, block, state, agentName, agentEmoji) {
+        const statusSpan = block.querySelector(`#status-${sessionId}`);
+        if (!statusSpan) return;
+
+        // If the task completes natively, force a GitHub PR fetch, then delete the Jules active line.
         if (state.isCompleted) {
-            this._markBlockCompleted(block, { outputs: [{ pullRequest: {} }] }); // Safety fallback if array somehow empties mid-poll
+            statusSpan.className = "term-status status-success";
+            statusSpan.innerHTML = `✅ Execution Finished`;
+            this.loadPullRequestsForRepo(this.currentRepo); 
+            setTimeout(() => this.dismissSession(sessionId), 2000); // Give user 2s to see it succeeded before removing
             return;
         }
 
         if (state.hasError) {
-            block.className = "term-session-block state-error";
-            if (inputContainer) {
-                inputContainer.innerHTML = '';
-                const dismissBtn = document.createElement("button");
-                dismissBtn.className = "term-action-btn";
-                dismissBtn.style.marginTop = "0.5rem";
-                dismissBtn.style.padding = "0";
-                dismissBtn.textContent = "[Dismiss Error ✕]";
-                dismissBtn.onclick = () => this.dismissSession(sessionId);
-                inputContainer.appendChild(dismissBtn);
-            }
+            statusSpan.className = "term-status status-error";
+            statusSpan.innerHTML = `${FormatUtils.escapeHTML(state.latestLog)} <button class="term-action-btn" onclick="document.getElementById('session-${sessionId}').remove()">[✕]</button>`;
             clearInterval(this.julesPollingIntervals[sessionId]);
             return;
         }
 
         if (state.isWaitingForInput) {
-            block.className = "term-session-block state-waiting";
-            
-            if (!inputContainer.querySelector(".term-input-group")) {
-                inputContainer.innerHTML = `
-                    <div class="term-input-group">
-                        <span class="term-prompt-symbol">❯</span>
-                        <input type="text" class="term-input" placeholder="Awaiting instruction (e.g. 'proceed')..." />
-                    </div>
-                `;
-                
-                const replyInput = inputContainer.querySelector(".term-input");
-                
-                const handleReply = async () => {
-                    const text = replyInput.value.trim();
-                    if (!text) return;
-                    
-                    replyInput.disabled = true;
-                    inputContainer.innerHTML = `<span style="color:var(--term-muted); font-size:0.9em; margin-left: 0.35rem; padding-left: 1rem; border-left: 1px solid #27272a;">  [USR] Transmitting...</span>`;
-                    
-                    try {
-                        await window.julesService.sendUserInput(sessionId, text);
-                        block.className = "term-session-block state-active";
-                    } catch (e) {
-                        this.app.toast.show("Failed to send reply.", "error");
-                        // Reset input if failed
-                        inputContainer.innerHTML = '';
-                    }
-                };
-                
-                replyInput.addEventListener("keydown", (e) => {
-                    if (e.key === "Enter") handleReply();
-                });
-                
-                setTimeout(() => replyInput.focus(), 50);
-            }
+            statusSpan.className = "term-status status-waiting";
+            statusSpan.innerHTML = `⚠️ Response Needed (Click to view)`;
+            // Attach modal trigger with the full, un-truncated message text
+            statusSpan.onclick = () => {
+                this._showInteractionModal(sessionId, agentEmoji, agentName, state.rawMessage);
+            };
         } else {
-            block.className = "term-session-block state-active";
-            if (inputContainer) inputContainer.innerHTML = '';
+            statusSpan.className = "term-status";
+            statusSpan.onclick = null; 
+            statusSpan.textContent = state.latestLog;
         }
     }
 
