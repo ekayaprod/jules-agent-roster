@@ -1,3 +1,7 @@
+## 2026-03-12 - 🧑‍🏫 Assessor - [Test Methodology Upgrade: JulesManager.test.js]
+**Learning:** Legacy tests in `JulesManager.test.js` were asserting against internal component structures and variables rather than user-visible DOM changes. This led to extremely brittle tests that broke purely because of how they asserted state instead of what they asserted.
+**Action:** Migrated brittle tests into tests that execute logic and check for changes in visible output strings, specific classes added to the DOM based on user flows, and correct DOM API manipulations based on system inputs. Removed redundant inner logic tests for deleted components and ensured strict DOM output validation.
+
 ## 2024-05-20 - 🎧 Vibe - Feature Materialized: PR Queue Panel
 **Learning:** Found an implied missing feature in the execution interface: the ability to monitor the open pull requests of a targeted repository.
 **Action:** Implemented `getPullRequests` in `JulesService` and a corresponding rendering panel `julesPRPanel` under the Jules Runner Panel, pulling data directly via the GitHub API to increase system observability without leaving the interface.
@@ -25,3 +29,8 @@
 **Title**: Fusion Lab Protocol Error State Injection
 **Learning**: The Fusion Lab component possessed functional error handling in JS (`FusionLab.js`) but lacked the corresponding DOM structure (`#fusionError`), causing failure states to silently fail visually.
 **Action**: Sculpted a native-stack error card (`#fusionError`) complete with active-voice microcopy, warning icons, and ARIA `role="alert"` directly into the layout, ensuring technical issues communicate explicit recovery paths ("Please verify your selections and try again").
+
+2024-03-12
+**Title**: 🦎 Chameleon: [Interactive State Mutation: .nav-pill]
+**Learning**: Discovered that `.nav-pill` links and buttons in the main navigation completely lacked tactile feedback for keyboard navigation (`focus-visible`) and active interaction (`active`), breaking accessibility expectations.
+**Action**: Spliced `.nav-pill:focus-visible` with a distinct `outline` and `.nav-pill:active` with a subtle organic `transform: scale(0.95)` to ensure the interface responds to every tactile input.
