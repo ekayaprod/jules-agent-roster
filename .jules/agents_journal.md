@@ -34,3 +34,7 @@
 **Title**: 🦎 Chameleon: [Interactive State Mutation: .nav-pill]
 **Learning**: Discovered that `.nav-pill` links and buttons in the main navigation completely lacked tactile feedback for keyboard navigation (`focus-visible`) and active interaction (`active`), breaking accessibility expectations.
 **Action**: Spliced `.nav-pill:focus-visible` with a distinct `outline` and `.nav-pill:active` with a subtle organic `transform: scale(0.95)` to ensure the interface responds to every tactile input.
+
+## 2026-03-12 - 🧽 Steward - [Bumped & Purged: @xmldom/xmldom]
+**Learning:** Found `@xmldom/xmldom` being used as a polyfill in tests because the underlying node environment natively lacked `DOMParser` (which is used safely in the browser). Updating Jest to align with `jest-environment-jsdom` 30.3.0 and injecting `/** @jest-environment jsdom */` allowed us to safely purge the polyfill, using native browser API emulation instead.
+**Action:** When tests mock standard web APIs using custom packages, check if updating the test environment (like JSDOM) can provide the APIs natively, allowing the removal of the dependency and complex mocking boilerplate.
