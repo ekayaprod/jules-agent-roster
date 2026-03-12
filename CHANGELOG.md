@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.8.0 - 2026-03-12
+
+### 🚀 Features
+
+- **Jules Integration**: Combined Jules execution and GitHub PR UI, added an open pull requests panel, and included GitHub Token configuration in the API settings. Limited the task dashboard to 5 items and allowed click-to-dismiss.
+- **Fusion Lab**: Rebuilt the Fusion Index as a Pokedex-style categorized grid with silhouettes for locked agents and restored the grid layout. Removed filter search from the protocol component picker and decoupled crafting rarity into a centralized engine (`RarityEngine`).
+- **New Agents**: Introduced the Mythic rarity tier, added the new 'Hitman' (Scavenger+Scavenger) custom agent, and the 'Zealot' (Pedant+Pedant) custom agent. Enabled Yggdrasil paradigm mutation for PinnedManager.
+- **Security**: Mitigated a high-severity DOM-based XSS vulnerability via innerHTML in `FusionAnimation`.
+
+### 💅 Polish
+
+- **UI & Accessibility**: Refactored raw error states to accessible DOM components with keyboard fluidity. Enforced modal focus trapping for better accessibility, provided inline API Key modal validation, and refined empty states.
+- **Visuals & Layouts**: Polished mobile UX for the Jules dashboard, fixed agent card shines and flip animations, and modernized Fusion Index syntax while maintaining a responsive paradigm.
+- **Microcopy**: Polished UX copy for Jules API error states and HTTP status codes, and standardized data payload vocabulary (e.g., `agentsData` to `agents`).
+- **Documentation**: Synthesized macro and micro documentation for AgentCard, RarityEngine, Fusion Module, SearchController, ExportController, Core RosterApp, and JulesManager.
+
+### ⚡ Performance
+
+- **DOM Optimization**: Minimized DOM querying overhead in global click handlers, `AgentPicker`, polling loops, and dropdowns. Cached redundant DOM lookups in search loops.
+- **Algorithmic Efficiency**: Optimized IntersectionObserver key lookup in RosterApp, algorithmic flattening for Rarity System lookups, and ISO date sorting logic to improve overall stability.
+
+### 🐛 Fixed
+
+- **Resilience**: Fixed fatal uninitialized boot crashes in FusionIndex, cured a dynamic parsing hazard, fixed RarityEngine uninitialized state bug, and resolved a boot race condition in AgentRepository. Added retry implementation for API resilience.
+- **UI Interactions**: Resuscitated the Fusion Lab Agent Picker system and resolved overlapping/visual rendering anomalies in the Fusion Index grid.
+
+### 🔧 Chores
+
+- **Architecture**: Executed broad structural reinforcement blueprints across JulesManager, UI, Fusion, Utils, and Core App domains by extracting controllers (Search/Export) and enforcing utility file kebab-case conventions.
+- **Code Maintenance**: Untangled and flattened complex logic blocks (`loadActiveSessionsForRepo`, `_parseInline`), purged orphaned barrel exports, dead benchmark code, and dead CSS wrappers.
+- **Testing**: Added focused test coverage suites for RarityEngine, JulesManager, FusionCompiler, and JulesAPI boundary defenses.
+- **Tooling**: Created target dossiers for macro decay tracking, synchronized the roadmap, and standardized package.json script configurations.
+
 ## 0.7.0 - 2026-03-07
 
 ### 🚀 Features
