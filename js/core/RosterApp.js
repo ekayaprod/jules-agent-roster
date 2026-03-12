@@ -536,9 +536,9 @@ class RosterApp {
    * @param {string} query - The search query string.
    * @see README.md#search-mechanics
    */
-  filterAgents(query) {
+  async filterAgents(query) {
     if (this.searchController) {
-        this.searchController.filterAgents(query);
+        await this.searchController.filterAgents(query);
     }
   }
 
@@ -547,9 +547,9 @@ class RosterApp {
    * and resets the UI back to the default categorized master layout.
    * @see README.md#search-mechanics
    */
-  clearSearch() {
+  async clearSearch() {
     if (this.searchController) {
-        this.searchController.clearSearch();
+        await this.searchController.clearSearch();
     }
   }
 
