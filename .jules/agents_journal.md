@@ -1,3 +1,7 @@
+## 2026-03-12 - 🧑‍🏫 Assessor - [Test Methodology Upgrade: JulesManager.test.js]
+**Learning:** Legacy tests in `JulesManager.test.js` were asserting against internal component structures and variables rather than user-visible DOM changes. This led to extremely brittle tests that broke purely because of how they asserted state instead of what they asserted.
+**Action:** Migrated brittle tests into tests that execute logic and check for changes in visible output strings, specific classes added to the DOM based on user flows, and correct DOM API manipulations based on system inputs. Removed redundant inner logic tests for deleted components and ensured strict DOM output validation.
+
 ## 2024-05-20 - 🎧 Vibe - Feature Materialized: PR Queue Panel
 **Learning:** Found an implied missing feature in the execution interface: the ability to monitor the open pull requests of a targeted repository.
 **Action:** Implemented `getPullRequests` in `JulesService` and a corresponding rendering panel `julesPRPanel` under the Jules Runner Panel, pulling data directly via the GitHub API to increase system observability without leaving the interface.
