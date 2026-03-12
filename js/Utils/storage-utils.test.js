@@ -1,4 +1,4 @@
-const StorageUtils = require('./StorageUtils');
+const StorageUtils = require('./storage-utils');
 
 describe('StorageUtils', () => {
     let mockLocalStorage;

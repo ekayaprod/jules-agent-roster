@@ -5,13 +5,16 @@ const { performance } = require('perf_hooks');
 // Native node execution using eval to prevent external tooling
 const loadClass = (filePath) => {
     const content = fs.readFileSync(path.join(__dirname, filePath), 'utf-8');
-    return eval(content + '\nmodule.exports = ' + path.basename(filePath, '.js') + ';');
+    const baseName = path.basename(filePath, '.js');
+    let className = baseName.split('-').map(part => part.charAt(0).toUpperCase() + part.slice(1)).join('');
+    if (className === 'DomUtils') className = 'DOMUtils';
+    return eval(content + '\nmodule.exports = ' + className + ';');
 };
 
-const FormatUtils = loadClass('js/Utils/FormatUtils.js');
-const StorageUtils = loadClass('js/Utils/StorageUtils.js');
-const PerformanceUtils = loadClass('js/Utils/PerformanceUtils.js');
-const DOMUtils = loadClass('js/Utils/DOMUtils.js');
+const FormatUtils = loadClass('js/Utils/format-utils.js');
+const StorageUtils = loadClass('js/Utils/storage-utils.js');
+const PerformanceUtils = loadClass('js/Utils/performance-utils.js');
+const DOMUtils = loadClass('js/Utils/dom-utils.js');
 
 global.FormatUtils = FormatUtils;
 global.StorageUtils = StorageUtils;
