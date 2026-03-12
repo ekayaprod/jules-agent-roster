@@ -334,7 +334,6 @@
   animation: moveInRight 1.5s cubic-bezier(0.5, 0, 0.2, 1) forwards;
 }
 
-<<<<<<< jules-7948609370238156991-90e2c0d5
 /* Tier Overrides for Fusion Slots */
 .fusion-slot.tier-common { border-color: #64748b; }
 .fusion-slot.tier-common:hover, .fusion-slot.tier-common:focus-visible, .fusion-slot.tier-common:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); }
@@ -348,7 +347,127 @@
 .fusion-slot.tier-legendary:hover, .fusion-slot.tier-legendary:focus-visible, .fusion-slot.tier-legendary:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(245, 158, 11, 0.3); }
 .fusion-slot.tier-mythic { border-color: #f43f5e; box-shadow: inset 0 0 20px rgba(244, 63, 94, 0.4); }
 .fusion-slot.tier-mythic:hover, .fusion-slot.tier-mythic:focus-visible, .fusion-slot.tier-mythic:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(244, 63, 94, 0.4); }
-=======
+
+/* Pokedex Style Grid Shelf */
+.fusion-archive-container {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.fusion-index-wrapper {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.fusion-index-header {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: var(--text-xl);
+    font-weight: var(--weight-extrabold);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+}
+
+.fusion-category-header {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: var(--text-md);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.fusion-shelf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.fusion-slot {
+    aspect-ratio: 1;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.5rem;
+    position: relative;
+    transition: all 0.2s ease;
+    border: 2px solid var(--border);
+    background: rgba(15, 23, 42, 0.5);
+}
+
+.fusion-slot.locked {
+    opacity: 0.5;
+    filter: grayscale(100%);
+    cursor: not-allowed;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(15, 23, 42, 0.5),
+        rgba(15, 23, 42, 0.5) 10px,
+        rgba(30, 41, 59, 0.5) 10px,
+        rgba(30, 41, 59, 0.5) 20px
+    );
+}
+
+.fusion-slot.unlocked {
+    cursor: pointer;
+    background: var(--card-bg);
+}
+
+.fusion-slot.unlocked:hover, .fusion-slot.unlocked:focus-visible {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+.fusion-slot .slot-icon {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.fusion-slot.locked .slot-icon {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    filter: brightness(0);
+}
+
+.fusion-slot .slot-name {
+    font-size: var(--text-3xs);
+    font-weight: var(--weight-semibold);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.fusion-slot.just-unlocked {
+    animation: popUnlock 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes popUnlock {
+    0% { transform: scale(0.8); opacity: 0; filter: grayscale(100%); }
+    50% { transform: scale(1.1); filter: grayscale(0%); box-shadow: 0 0 20px rgba(56, 189, 248, 0.5); }
+    100% { transform: scale(1); filter: grayscale(0%); }
+}
+
+.fusion-progress {
+    text-align: center;
+    font-size: var(--text-sm);
+    color: var(--text-secondary);
+    font-weight: var(--weight-semibold);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
 .fusion-animation-overlay.active .anim-shockwave {
   animation: shockwave 0.8s cubic-bezier(0.1, 0.8, 0.2, 1) 1.4s forwards;
 }
@@ -383,7 +502,6 @@
   0% { transform: translate(-50%, -50%) scale(0); opacity: 1; border-width: 10px; }
   100% { transform: translate(-50%, -50%) scale(20); opacity: 0; border-width: 1px; }
 }
->>>>>>> main
 
 @keyframes flash {
   0% { opacity: 0; }
