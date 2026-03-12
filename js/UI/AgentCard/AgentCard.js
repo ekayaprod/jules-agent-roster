@@ -76,9 +76,7 @@ class AgentCard {
                             </div>
                             <div class="card-top-right">
                                 <div class="title-group">
-                                    <div class="title-wrapper">
-                                        <h3 class="agent-title">${safeDisplayName}</h3>
-                                    </div>
+                                    <h3 class="agent-title">${safeDisplayName}</h3>
                                     <span class="role-tag">${role}</span>
                                 </div>
                                 <div class="tag-container mt-2">${tags}</div>
