@@ -273,11 +273,11 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
              statusSpan.id = 'status-123';
              block.appendChild(statusSpan);
 
-             const block = document.createElement('div'); block.id = 'session-123';
-             const stSpan = document.createElement('span'); stSpan.id = 'status-123'; block.appendChild(stSpan);
+             block.id = 'session-123';
+             // stSpan is already created as statusSpan
              manager._updatePollingState('123', block, state, 'Agent', '🤖');
-             expect(stSpan.className).toContain('status-waiting');
-             expect(stSpan.textContent).toBe('⚠️ Response Needed (Click to view)');
+             expect(statusSpan.className).toContain('status-waiting');
+             expect(statusSpan.textContent).toBe('⚠️ Response Needed (Click to view)');
         });
 
         it('init branches coverage: missing elements', async () => {

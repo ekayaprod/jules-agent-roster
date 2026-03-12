@@ -34,3 +34,7 @@
 **Title**: 🦎 Chameleon: [Interactive State Mutation: .nav-pill]
 **Learning**: Discovered that `.nav-pill` links and buttons in the main navigation completely lacked tactile feedback for keyboard navigation (`focus-visible`) and active interaction (`active`), breaking accessibility expectations.
 **Action**: Spliced `.nav-pill:focus-visible` with a distinct `outline` and `.nav-pill:active` with a subtle organic `transform: scale(0.95)` to ensure the interface responds to every tactile input.
+
+## 2026-03-12 - 🪄 Illusionist - [Perceived Performance: JulesManager]
+**Learning:** Loading states implemented as simple unstyled text strings (like `[SYS] Awaiting repository connection...`) fail to provide adequate perceived performance feedback during network latency and can cause layout jitter when replaced by fully styled components.
+**Action:** Upgraded terminal fetching indicators in `JulesManager.js` and `index.html` to utilize pure CSS `.skeleton-pulse` and structured `.term-session-line` classes, providing immediate, luxurious visual feedback without introducing blocking JS animations or backend complexity.

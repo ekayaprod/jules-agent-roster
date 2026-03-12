@@ -229,7 +229,7 @@ class JulesManager {
                             this.loadActiveSessionsForRepo(sourceName);
                         } else {
                             this._clearPollingAndCache();
-                            this.getEl("julesTerminal").innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Awaiting repository connection...</div>`;
+                            this.getEl("julesTerminal").innerHTML = `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] Awaiting repository connection...</div>`;
                         }
                     });
                     picker.dataset.listenerAttached = "true";
@@ -252,7 +252,7 @@ class JulesManager {
             this._clearPollingAndCache();
             const existingInd = terminal.querySelector('#fetchingIndicator');
             if (!existingInd) {
-                 terminal.innerHTML += `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Checking active Jules routines...</div>`;
+                 terminal.innerHTML += `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] Checking active Jules routines...</div>`;
             }
             this.currentRepo = sourceName;
         }
