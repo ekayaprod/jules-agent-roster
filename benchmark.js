@@ -110,7 +110,7 @@ const AgentRepository = loadClass('js/Services/AgentRepository.js');
 const ToastNotification = loadClass('js/UI/Toast/ToastNotification.js');
 const PinnedManager = loadClass('js/Features/Pinned/PinnedManager.js');
 global.PinnedManager = PinnedManager;
-const JulesManager = loadClass('js/Features/Jules/JulesManager.js');
+const JulesManager = loadClass('js/Features/Jules/JulesManager/JulesManager.js');
 global.JulesManager = JulesManager;
 
 const SearchController = loadClass('js/UI/SearchController/SearchController.js');
