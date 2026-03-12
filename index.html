@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="version" content="0.9.0" />
+    <meta name="version" content="0.9.5" />
     <title>Jules Agent Roster</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; connect-src 'self' https://jules.googleapis.com https://api.github.com; img-src 'self' data: https://emojik.vercel.app; object-src 'none'; base-uri 'self'; form-action 'self';"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.css" />
@@ -171,42 +171,35 @@
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
+      /* MOBILE-FRIENDLY FLEX INPUTS */
       .runner-inputs { 
         display: flex; 
+        flex-wrap: wrap; 
         gap: 0.5rem; 
         padding: 0.5rem; 
         background: rgba(22, 27, 34, 0.5);
         border-bottom: 1px solid var(--term-border);
       }
-      .repo-picker { 
-        flex: 1; 
-        min-width: 15rem; 
+      .repo-picker, .task-input { 
+        flex: 1 1 100%; /* Force full width on mobile */
+        min-width: 0; 
         background: var(--term-bg); 
         border: 1px solid var(--term-border); 
         color: var(--term-text); 
-        padding: 0.4rem; 
+        padding: 0.4rem 0.75rem; 
         border-radius: 0.25rem; 
         font-family: inherit; 
         font-size: var(--text-xs);
         outline: none; 
       }
-      .repo-picker:focus { border-color: var(--term-system); }
+      .repo-picker:focus, .task-input:focus { border-color: var(--term-system); }
+      .task-input { resize: vertical; min-height: 2.25rem; }
       
-      .task-input { 
-        flex: 2; 
-        min-width: 18rem; 
-        background: var(--term-bg); 
-        border: 1px solid var(--term-border); 
-        color: var(--term-text); 
-        padding: 0.4rem; 
-        border-radius: 0.25rem; 
-        font-family: inherit; 
-        font-size: var(--text-xs);
-        resize: vertical; 
-        min-height: 2rem; 
-        outline: none; 
+      @media (min-width: 640px) {
+        .runner-inputs { flex-wrap: nowrap; }
+        .repo-picker { flex: 1; }
+        .task-input { flex: 2; }
       }
-      .task-input:focus { border-color: var(--term-system); }
       
       .ide-viewport {
         background: var(--term-panel-bg);
@@ -227,7 +220,7 @@
       .ide-viewport::-webkit-scrollbar-thumb { background: #484f58; border-radius: 3px; border: 1px solid var(--term-panel-bg); }
 
       /* 1-Line Component Blocks */
-      .term-session-line, .term-pr-item {
+      .term-session-line {
         display: flex;
         flex-wrap: wrap;
         align-items: baseline;
@@ -235,6 +228,27 @@
         padding: 0.15rem 0;
         animation: fadeIn 0.2s ease-out forwards;
         word-break: break-word;
+      }
+
+      /* Compact 1-Line PR Item */
+      .term-pr-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.15rem 0;
+        color: #e4e4e7;
+        font-size: 0.9em;
+        flex-wrap: nowrap; /* Strictly prevent wrapping */
+        overflow: hidden;
+        animation: fadeIn 0.2s ease-out forwards;
+      }
+      .term-pr-title { 
+        white-space: nowrap; 
+        overflow: hidden; 
+        text-overflow: ellipsis; 
+        font-weight: 500; 
+        flex: 1; 
+        min-width: 0; /* Required for flexbox ellipsis to work */
       }
       
       .term-agent-name { font-weight: 600; color: #e4e4e7; }
@@ -246,9 +260,9 @@
       .status-waiting { color: var(--term-warning); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; font-weight: bold;}
       .status-waiting:hover { color: #fcd34d; }
 
-      .term-link { color: var(--term-system); text-decoration: none; transition: color 0.2s; }
+      .term-link { color: var(--term-system); text-decoration: none; transition: color 0.2s; flex-shrink: 0; }
       .term-link:hover { color: #bae6fd; text-decoration: underline; }
-      .term-action-btn { background: none; border: none; color: var(--term-muted); cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; margin-left: 0.5rem; transition: color 0.2s; }
+      .term-action-btn { background: none; border: none; color: var(--term-muted); cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; margin-left: 0.5rem; transition: color 0.2s; flex-shrink: 0;}
       .term-action-btn:hover { color: var(--term-error); }
 
       @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -274,6 +288,7 @@
       .nav-pill:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
       .nav-pill.active { background: var(--accent); color: #0f172a; }
 
+      .title-wrapper { display: flex; justify-content: space-between; width: 100%; }
       .action-main-btn { border-top-right-radius: 0; border-bottom-right-radius: 0; flex-grow: 1; padding: 0.5rem; font-size: var(--text-sm);}
       .action-toggle-btn { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid var(--border); padding: 0 0.75rem;}
       
@@ -546,7 +561,7 @@
           sectionHeader: ".section-header", grid: ".grid", card: ".card"
         },
         categories: { core: "coreGrid", refactoring: "refactoringGrid", architecture: "archGrid", hygiene: "hygieneGrid", testing: "testingGrid", operations: "opsGrid", documentation: "documentationGrid", strategy: "strategyGrid", ux: "uxGrid", meta: "metaGrid" },
-        sectionMap: { coreGrid: "core-maintenance", refactoringGrid: "refactoring", archGrid: "architecture", hygieneGrid: "hygiene", testingGrid: "testing", opsGrid: "operations", documentationGrid: "documentation", strategyGrid: "strategy", uxGrid: "ux", metaGrid: "meta" }
+        sectionMap: { coreGrid: "core-maintenance", refactoringGrid: "refactoring", archGrid: "architecture", hygiene: "hygiene", testingGrid: "testing", opsGrid: "operations", documentationGrid: "documentation", strategyGrid: "strategy", uxGrid: "ux", metaGrid: "meta" }
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
@@ -570,7 +585,7 @@
     <script src="js/Features/Fusion/FusionAnimation.js"></script>
     <script src="js/Features/Fusion/FusionLab.js"></script>
     <script src="js/Features/Pinned/PinnedManager.js"></script>
-    <script src="js/Features/Jules/JulesManager/JulesManager.js"></script>
+    <script src="js/Features/Jules/JulesManager.js"></script>
     <script src="js/UI/SearchController/SearchController.js"></script>
     <script src="js/UI/ExportController/ExportController.js"></script>
     <script src="js/core/RosterApp.js"></script>
