@@ -4,11 +4,14 @@ const OBSERVER_OPTIONS = {
 };
 
 // Helper for closing a dropdown menu and syncing its aria-expanded state
-function closeDropdownMenu(menu) {
+function closeDropdownMenu(menu, appContext) {
     if (!menu) return;
     menu.classList.remove('visible');
     const toggleBtn = document.querySelector(`[aria-controls="${menu.id}"]`);
     if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+    if (appContext && appContext.activeDropdowns) {
+        appContext.activeDropdowns.delete(menu);
+    }
 }
 
 
@@ -27,6 +30,7 @@ class RosterApp {
     this.agents = [];
     this.customAgents = {};
     this.elements = {};
+    this.activeDropdowns = new Set();
     this.agentRepo = new AgentRepository();
     this.toast = new ToastNotification(CONFIG.selectors.toast);
     this.pinnedManager = new PinnedManager();
@@ -370,9 +374,9 @@ class RosterApp {
       }
 
       // 2. Close specific card dropdowns if clicked outside
-      document.querySelectorAll('.card-dropdown-menu.visible, .dropdown-menu.visible').forEach(menu => {
+      this.activeDropdowns.forEach(menu => {
           if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
-              closeDropdownMenu(menu);
+              closeDropdownMenu(menu, this);
           }
       });
 
@@ -442,14 +446,19 @@ class RosterApp {
           const dropdown = document.getElementById(`card-dropdown-${index}`);
           
           // Close others
-          document.querySelectorAll('.dropdown-menu.visible:not(#masterDropdownMenu)').forEach(menu => {
+          this.activeDropdowns.forEach(menu => {
               if (menu !== dropdown) {
-                  closeDropdownMenu(menu);
+                  closeDropdownMenu(menu, this);
               }
           });
 
           if (!dropdown) return;
           const isVisible = dropdown.classList.toggle('visible');
+          if (isVisible) {
+              this.activeDropdowns.add(dropdown);
+          } else {
+              this.activeDropdowns.delete(dropdown);
+          }
           toggleTarget.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
           return;
       }
@@ -467,12 +476,12 @@ class RosterApp {
           const action = actionBtn.dataset.action;
           if (action === "copy-agent") {
               this.copyAgent(index, actionBtn);
-              closeDropdownMenu(actionBtn.closest('.dropdown-menu'));
+              closeDropdownMenu(actionBtn.closest('.dropdown-menu'), this);
               return;
           }
           if (action === "download-agent") {
               DownloadUtils.downloadTextFile(agent.prompt, `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
-              closeDropdownMenu(actionBtn.closest('.dropdown-menu'));
+              closeDropdownMenu(actionBtn.closest('.dropdown-menu'), this);
               return;
           }
           if (action === "launch-jules") {
