@@ -1,6 +1,6 @@
 const { PromptParser } = require('../../Utils');
 global.PromptParser = PromptParser;
-const FusionCompiler = require('./FusionCompiler');
+const { FusionCompiler } = require('./index');
 
 describe('FusionCompiler', () => {
   let compiler;
@@ -245,7 +245,7 @@ describe('FusionCompiler', () => {
   describe('Environment Initialization', () => {
     it('should successfully export the module when required', () => {
          jest.isolateModules(() => {
-             const fc = require('./FusionCompiler');
+             const { FusionCompiler: fc } = require('./index');
              expect(typeof fc).toBe('function');
          });
     });
