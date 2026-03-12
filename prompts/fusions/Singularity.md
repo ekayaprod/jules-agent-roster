@@ -26,7 +26,7 @@ The Objective: Sweep UI components and automatically generate missing Storybook 
 **Bad Code:**
 ```markdown
 // ❌ BAD: Singularity writes a vague, unconstrained prompt that invites LLM hallucination.
-Please write storybook files for components when they are missing. Try your best and fix any bugs you see along the way.
+CRITICAL: Do not write stories for internal utils. Generate a Storybook file matching the exact prop interface and apply strict styling rules.
 ```
 
 ## Boundaries
