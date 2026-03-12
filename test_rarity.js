@@ -1,5 +1,5 @@
 const fs = require('fs');
-const RarityEngine = require('./js/Features/Fusion/RarityEngine.js');
+const { RarityEngine } = require('./js/Features/Fusion/index.js');
 const agents = JSON.parse(fs.readFileSync('agents.json', 'utf8'));
 
 const a1 = agents.find(a => a.name === "Bolt+");

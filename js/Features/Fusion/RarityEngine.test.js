@@ -1,4 +1,4 @@
-const RarityEngine = require('./RarityEngine');
+const { RarityEngine } = require('./index');
 
 describe('RarityEngine', () => {
     describe('getSuperDomain', () => {
