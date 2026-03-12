@@ -1,7 +1,5 @@
-/**
- * @jest-environment jsdom
- */
-const { PromptParser } = require('./index');
+const { DOMParser } = require('@xmldom/xmldom');
+const PromptParser = require('./prompt-parser');
 
 describe('PromptParser', () => {
   let consoleErrorSpy;
