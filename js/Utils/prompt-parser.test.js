@@ -1,5 +1,5 @@
 const { DOMParser } = require('@xmldom/xmldom');
-const { PromptParser } = require('./index');
+const PromptParser = require('./prompt-parser');
 
 describe('PromptParser', () => {
   let originalDOMParser;

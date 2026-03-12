@@ -268,10 +268,6 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         it('_updatePollingState coverage: needsInput branch', () => {
              const state = { isWaitingForInput: true };
              manager.julesPollingIntervals = { '123': 999 };
-             const block = document.createElement('div');
-             const statusSpan = document.createElement('span');
-             statusSpan.id = 'status-123';
-             block.appendChild(statusSpan);
 
              const block = document.createElement('div'); block.id = 'session-123';
              const stSpan = document.createElement('span'); stSpan.id = 'status-123'; block.appendChild(stSpan);
@@ -565,7 +561,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
             // The component logic native to JulesManager doesn't set ARIA props automatically. Just UI border.
             // expect(keyInput.getAttribute('aria-invalid')).toBe('true');
-            expect(keyInput.style.borderColor).toBe('rgb(239, 68, 68)'); // #ef4444
+            expect(keyInput.style.borderColor).toMatch(/#ef4444|rgb\(239,\s*68,\s*68\)/); // #ef4444
             expect(errorSpan.textContent).toBe('An API Key is required to connect.');
             expect(errorSpan.style.display).toBe('block');
         });
