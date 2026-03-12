@@ -2,17 +2,7 @@ const { DOMParser } = require('@xmldom/xmldom');
 const PromptParser = require('./prompt-parser');
 
 describe('PromptParser', () => {
-  let originalDOMParser;
   let consoleErrorSpy;
-
-  beforeAll(() => {
-    originalDOMParser = global.DOMParser;
-    global.DOMParser = DOMParser;
-  });
-
-  afterAll(() => {
-    global.DOMParser = originalDOMParser;
-  });
 
   beforeEach(() => {
     consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
@@ -81,24 +71,17 @@ describe('PromptParser', () => {
     // Malformed XML - unclosed tag inside the root
     const rawText = '<system>Unclosed <tag></system>';
 
-    // @xmldom/xmldom handles some malformed XML differently than browser DOMParser,
-    // so we simulate the parser error by mocking parseFromString
-    const mockParser = {
-      parseFromString: jest.fn().mockImplementation(() => {
-        const doc = new DOMParser().parseFromString('<root><parsererror>error</parsererror></root>', 'text/xml');
-        return doc;
-      })
-    };
+    // native browser DOMParser handles parser errors gracefully without throwing,
+    // but appends a `<parsererror>` element to the document instead.
+    // However, sometimes it actually throws.
+    // The source code checks for `getElementsByTagName("parsererror")`.
 
-    const originalDOMParserRef = global.DOMParser;
-    global.DOMParser = jest.fn(() => mockParser);
-
+    // So we don't need to mock anything, native DOMParser will create a parsererror element
+    // when given malformed XML like unclosed tags.
     const result = PromptParser.parsePrompt(rawText);
 
     expect(result.format).toBe('legacy');
     expect(result.raw).toBe(rawText);
-
-    global.DOMParser = originalDOMParserRef;
   });
 
   it('catches exceptions during XML parsing with a long string input and returns legacy format', () => {
