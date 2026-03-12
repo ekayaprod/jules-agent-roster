@@ -1,18 +1,11 @@
-const { DOMParser } = require('@xmldom/xmldom');
+/**
+ * @jest-environment jsdom
+ */
+
 const { PromptParser } = require('./index');
 
 describe('PromptParser', () => {
-  let originalDOMParser;
   let consoleErrorSpy;
-
-  beforeAll(() => {
-    originalDOMParser = global.DOMParser;
-    global.DOMParser = DOMParser;
-  });
-
-  afterAll(() => {
-    global.DOMParser = originalDOMParser;
-  });
 
   beforeEach(() => {
     consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
@@ -81,24 +74,11 @@ describe('PromptParser', () => {
     // Malformed XML - unclosed tag inside the root
     const rawText = '<system>Unclosed <tag></system>';
 
-    // @xmldom/xmldom handles some malformed XML differently than browser DOMParser,
-    // so we simulate the parser error by mocking parseFromString
-    const mockParser = {
-      parseFromString: jest.fn().mockImplementation(() => {
-        const doc = new DOMParser().parseFromString('<root><parsererror>error</parsererror></root>', 'text/xml');
-        return doc;
-      })
-    };
-
-    const originalDOMParserRef = global.DOMParser;
-    global.DOMParser = jest.fn(() => mockParser);
-
+    // JSDOM DOMParser produces a document containing a <parsererror> element
     const result = PromptParser.parsePrompt(rawText);
 
     expect(result.format).toBe('legacy');
     expect(result.raw).toBe(rawText);
-
-    global.DOMParser = originalDOMParserRef;
   });
 
   it('catches exceptions during XML parsing with a long string input and returns legacy format', () => {

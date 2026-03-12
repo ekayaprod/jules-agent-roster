@@ -10,7 +10,6 @@
     "test": "node benchmark.js"
   },
   "devDependencies": {
-    "@xmldom/xmldom": "^0.8.11",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^30.3.0"
   },
