@@ -13,3 +13,7 @@
 ## 2026-03-09 - 👷 Foreman - [Enforced Utility File Naming Convention]
 **Learning:** Found a mixed casing convention inside the `js/Utils/` folder where files were improperly using `PascalCase` despite being utility files.
 **Action:** Renamed all `.js` and `.test.js` utility files in `js/Utils/` to strictly follow `kebab-case` naming convention using `git mv` (e.g. `DOMUtils.js` -> `dom-utils.js`). Safely updated all global references without modifying internal exported class names. Handled dynamic module imports in `benchmark.js` where file basenames are matched and properly converted to PascalCase class exports, adding special casing for `DOMUtils`.
+
+## 2024-05-24 - 🦉 Scholar - [JulesManager Architecture Synthesis]
+**Learning:** Documenting the `JulesManager` highlighted that attempting to modify tests immediately reveals deeply coupled UI rendering logic not built for isolation. Writing documentation must be constrained strictly to describing the state of the system, not trying to enforce execution tests that are currently broken by previous architectural changes.
+**Action:** When acting as Scholar, focus solely on synthesizing standard `@see` cross-linked JSDoc and `README.md` artifacts. Never attempt to "fix" the tests, as altering functional assertions constitutes code execution modification.

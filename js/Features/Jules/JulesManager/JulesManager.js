@@ -15,8 +15,13 @@ const CORE_EMOJIS = {
 /**
  * Manages the core operations for interacting with Jules APIs.
  * Engineered for a single-line terminal output where GitHub handles completions.
+ * @see README.md#Overview for the complete high-level architecture.
  */
 class JulesManager {
+    /**
+     * Initializes a new instance of the JulesManager.
+     * @param {Object} rosterApp - The main application instance containing globally shared state (e.g., agents, customAgents, toast).
+     */
     constructor(rosterApp) {
         this.app = rosterApp;
         this.currentRepo = null;
@@ -30,6 +35,11 @@ class JulesManager {
         this.activeModalSessionId = null;
     }
 
+    /**
+     * Retrieves and caches a DOM element by its ID.
+     * @param {string} id - The HTML ID of the element to retrieve.
+     * @returns {HTMLElement|null} The cached DOM element or null if not found.
+     */
     getEl(id) {
         if (!this.elements[id]) {
             this.elements[id] = document.getElementById(id);
@@ -37,6 +47,10 @@ class JulesManager {
         return this.elements[id];
     }
 
+    /**
+     * Clears a specific session from tracking, polling, and the DOM.
+     * @param {string} sessionId - The unique identifier of the session to dismiss.
+     */
     dismissSession(sessionId) {
         this.dismissedSessionIds.add(sessionId);
         this.renderedSessionIds.delete(sessionId);
@@ -49,6 +63,11 @@ class JulesManager {
         this._checkEmptyTerminal();
     }
 
+    /**
+     * Bootstraps the JulesManager. Initializes settings, binds modal events, and connects to the APIs if keys exist.
+     * @see README.md#1-Initialization-and-Authentication
+     * @returns {Promise<void>} Resolves when initialization completes.
+     */
     async init() {
         const apiKey = StorageUtils.getItem("jules_api_key");
         const githubToken = StorageUtils.getItem("github_api_key");
@@ -122,6 +141,10 @@ class JulesManager {
         }
     }
 
+    /**
+     * Initializes the modal used to request required human-in-the-loop interactions.
+     * @private
+     */
     _initInteractionModal() {
         const modal = this.getEl("julesInteractionModal");
         const cancelBtn = this.getEl("cancelInteractionBtn");
@@ -169,6 +192,14 @@ class JulesManager {
         });
     }
 
+    /**
+     * Displays the interaction modal and binds the session context.
+     * @param {string} sessionId - The ID of the session waiting for input.
+     * @param {string} agentEmoji - The emoji representing the agent.
+     * @param {string} agentName - The name of the agent.
+     * @param {string} promptText - The prompt/question presented to the user.
+     * @private
+     */
     _showInteractionModal(sessionId, agentEmoji, agentName, promptText) {
         this.activeModalSessionId = sessionId;
         const modal = this.getEl("julesInteractionModal");
@@ -187,6 +218,13 @@ class JulesManager {
         setTimeout(() => inputField?.focus(), 50);
     }
 
+    /**
+     * Displays an error message on a given input field and error span.
+     * @param {HTMLElement} input - The input element to style with an error.
+     * @param {HTMLElement} span - The text element to populate with the error message.
+     * @param {string} message - The error message text.
+     * @private
+     */
     _showKeyError(input, span, message) {
         if (!input || !span) return;
         input.style.borderColor = "#ef4444";
@@ -194,6 +232,12 @@ class JulesManager {
         span.style.display = "block";
     }
 
+    /**
+     * Clears the error state from a given input field and error span.
+     * @param {HTMLElement} input - The input element to reset.
+     * @param {HTMLElement} span - The text element to hide.
+     * @private
+     */
     _clearKeyError(input, span) {
         if (!input || !span) return;
         input.style.borderColor = "";
@@ -201,6 +245,11 @@ class JulesManager {
         span.style.display = "none";
     }
 
+    /**
+     * Fetches and populates available GitHub repositories for selection.
+     * @see README.md#2-Repository-Source-Selection
+     * @returns {Promise<void>}
+     */
     async loadSources() {
         const picker = this.getEl("julesRepoPicker");
         if (!picker || !window.julesService) return;
@@ -245,6 +294,11 @@ class JulesManager {
         }
     }
 
+    /**
+     * Initializes and starts polling for active Jules sessions associated with a specific repository.
+     * @param {string} sourceName - The repository source identifier (e.g., "sources/github/...").
+     * @returns {Promise<void>}
+     */
     async loadActiveSessionsForRepo(sourceName) {
         const terminal = this.getEl("julesTerminal");
         
@@ -264,6 +318,12 @@ class JulesManager {
         this.activeSessionsInterval = setInterval(boundFetch, 5000);
     }
 
+    /**
+     * Fetches and renders the open pull requests associated with a specific repository.
+     * @see README.md#4-Pull-Request-Rendering
+     * @param {string} sourceName - The repository source identifier.
+     * @returns {Promise<void>}
+     */
     async loadPullRequestsForRepo(sourceName) {
         if (!window.julesService) return;
         try {
@@ -274,6 +334,12 @@ class JulesManager {
         }
     }
 
+    /**
+     * Renders an array of pull requests as clickable lines in the provided terminal DOM container.
+     * @param {Array<Object>} prs - Array of pull request objects from the GitHub API.
+     * @param {HTMLElement} terminal - The DOM container to append the generated elements to.
+     * @private
+     */
     _renderPullRequests(prs, terminal) {
         terminal.querySelectorAll('.term-pr-item').forEach(el => el.remove());
         if (!prs || prs.length === 0) return;
@@ -293,6 +359,13 @@ class JulesManager {
         });
     }
 
+    /**
+     * Internal routine to pull recent sessions from the API, filter them, and route them to rendering logic.
+     * @param {string} sourceName - The repository source identifier.
+     * @param {HTMLElement} terminal - The DOM container to append the generated session elements to.
+     * @private
+     * @returns {Promise<void>}
+     */
     async _fetchAndRenderSessions(sourceName, terminal) {
         try {
             if (!window.julesService || !window.julesService.apiKey) return;
@@ -350,6 +423,10 @@ class JulesManager {
         }
     }
 
+    /**
+     * Checks if the terminal DOM element has any visible children and displays an awaiting indicator if not.
+     * @private
+     */
     _checkEmptyTerminal() {
         const terminal = this.getEl("julesTerminal");
         if (terminal.children.length === 0 || (terminal.children.length === 1 && terminal.firstElementChild.id === 'fetchingIndicator')) {
@@ -357,6 +434,13 @@ class JulesManager {
         }
     }
 
+    /**
+     * Creates and appends a DOM line for a given active session, then initiates granular log polling.
+     * @param {Object} session - The session object from the API.
+     * @param {HTMLElement} terminal - The DOM container to append the line to.
+     * @param {string} repoPath - The simplified repository path string.
+     * @private
+     */
     _processSession(session, terminal, repoPath) {
         if (this.renderedSessionIds.has(session.id)) return;
         this.renderedSessionIds.add(session.id);
@@ -408,6 +492,12 @@ class JulesManager {
         this.startTerminalPolling(session.id, block, safeAgentName, agentEmoji);
     }
 
+    /**
+     * Dispatches a request to create a new session executing a given agent task on the selected source.
+     * @param {Object} agent - The agent data object containing the prompt.
+     * @param {HTMLElement|null} btn - The DOM button that triggered the launch, for loading state management.
+     * @returns {Promise<void>}
+     */
     async launchSession(agent, btn = null) {
         const sourceName = this.getEl("julesRepoPicker").value;
         const userTask = this.getEl("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
@@ -433,6 +523,14 @@ class JulesManager {
         }
     }
 
+    /**
+     * Periodically queries the Jules API for activities and statuses tied to a running session.
+     * @see README.md#3-Polling-and-Session-Management
+     * @param {string} sessionId - The ID of the session to poll.
+     * @param {HTMLElement} block - The DOM block representing the session line.
+     * @param {string} agentName - The name of the agent processing the session.
+     * @param {string} agentEmoji - The emoji corresponding to the agent.
+     */
     startTerminalPolling(sessionId, block, agentName, agentEmoji) {
         if (!this.julesPollingIntervals) this.julesPollingIntervals = {};
         if (this.julesPollingIntervals[sessionId]) clearInterval(this.julesPollingIntervals[sessionId]);
@@ -483,6 +581,15 @@ class JulesManager {
         }, 3000);
     }
 
+    /**
+     * Processes activity state changes, updating the DOM and routing specific states like completion and waiting for input.
+     * @param {string} sessionId - The ID of the session.
+     * @param {HTMLElement} block - The DOM element representing the session line.
+     * @param {Object} state - Object encapsulating the calculated state from polled activities.
+     * @param {string} agentName - The name of the agent processing the session.
+     * @param {string} agentEmoji - The emoji corresponding to the agent.
+     * @private
+     */
     _updatePollingState(sessionId, block, state, agentName, agentEmoji) {
         const statusSpan = block.querySelector(`#status-${sessionId}`);
         if (!statusSpan) return;
@@ -517,6 +624,9 @@ class JulesManager {
         }
     }
 
+    /**
+     * Disposes of intervals, tracking sets, and current scope references. Used primarily during app teardown or resets.
+     */
     cleanup() {
         if (this.activeSessionsInterval) {
             clearInterval(this.activeSessionsInterval);
@@ -527,6 +637,10 @@ class JulesManager {
         this.currentRepo = null;
     }
 
+    /**
+     * Clears activity polling intervals and the rendered session IDs cache.
+     * @private
+     */
     _clearPollingAndCache() {
         if (this.julesPollingIntervals) {
             Object.values(this.julesPollingIntervals).forEach(clearInterval);
