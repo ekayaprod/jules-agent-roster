@@ -21,3 +21,8 @@
 **Title**: 🦉 Scholar: [AgentCard Module Synthesis]
 **Learning**: Discovered an orphaned inline JSDoc reference (`@see README.md#agentcard-architecture`) in `AgentCard.js` where the target `README.md` file did not exist in the module directory.
 **Action**: Synthesized a comprehensive macro architecture `README.md` mapping the DOM structure, event delegation, contextual actions, and render throttling, and strictly typed/cross-linked the inline JSDoc comments to establish a verified single source of truth.
+
+2024-03-12
+**Title**: 🦎 Chameleon: [Interactive State Mutation: .nav-pill]
+**Learning**: Discovered that `.nav-pill` links and buttons in the main navigation completely lacked tactile feedback for keyboard navigation (`focus-visible`) and active interaction (`active`), breaking accessibility expectations.
+**Action**: Spliced `.nav-pill:focus-visible` with a distinct `outline` and `.nav-pill:active` with a subtle organic `transform: scale(0.95)` to ensure the interface responds to every tactile input.
