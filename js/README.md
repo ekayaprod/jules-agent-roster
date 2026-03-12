@@ -31,7 +31,7 @@ The `RosterApp` orchestrates the primary application flow, emphasizing asynchron
 
 * **`FusionLab.js`**: Manages the "Fusion Lab" UI component (the bottom section), handling agent selection, animation states, and fusion execution.
 * **`FusionCompiler.js`**: The brain of the fusion system. Contains the logic for combining two agent prompts into a single, cohesive "Fusion Protocol" (XML/JSON output).
-* **`utils/PromptParser.js`**: A utility for parsing and structuring raw Markdown prompts into machine-readable formats (e.g., XML sections).
+* **`utils/prompt-parser.js`**: A utility for parsing and structuring raw Markdown prompts into machine-readable formats (e.g., XML sections).
 * **`FusionIndex.js`**: Manages the "Fusion Index" (the shelf), persisting discovered fusions to `localStorage` and unlocking them as users experiment.
 
 ### Services (`/services`)

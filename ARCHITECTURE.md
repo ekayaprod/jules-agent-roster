@@ -34,7 +34,7 @@ Detailed view of the JavaScript modules and their relationships mapped to the cu
 graph TD;
     subgraph Core Logic
         RosterApp[RosterApp.js]
-        PromptParser[utils/PromptParser.js]
+        PromptParser[utils/prompt-parser.js]
     end
 
     subgraph Features

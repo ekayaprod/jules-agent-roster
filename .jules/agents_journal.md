@@ -9,3 +9,7 @@
 ## 2024-05-20 - ⬜ Minimalist - [Visual Bloat Purged: AgentCard Wrappers]
 **Learning:** Found an unused CSS class `.picker-search` and an empty nested wrapper `.title-wrapper` inside the AgentCard component that contributed only to visual bloat and a bloated DOM. A flexbox wrapper with a single element child doesn't accomplish anything special relative to layout.
 **Action:** Flattened empty DOM structure in `AgentCard.js` by dropping `.title-wrapper` and removing dead CSS classes to shrink file sizes. Use native `npx purgecss` to verify orphaned CSS references prior to removing them.
+
+## 2026-03-09 - 👷 Foreman - [Enforced Utility File Naming Convention]
+**Learning:** Found a mixed casing convention inside the `js/Utils/` folder where files were improperly using `PascalCase` despite being utility files.
+**Action:** Renamed all `.js` and `.test.js` utility files in `js/Utils/` to strictly follow `kebab-case` naming convention using `git mv` (e.g. `DOMUtils.js` -> `dom-utils.js`). Safely updated all global references without modifying internal exported class names. Handled dynamic module imports in `benchmark.js` where file basenames are matched and properly converted to PascalCase class exports, adding special casing for `DOMUtils`.
