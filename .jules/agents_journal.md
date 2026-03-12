@@ -13,3 +13,8 @@
 ## 2026-03-09 - 👷 Foreman - [Enforced Utility File Naming Convention]
 **Learning:** Found a mixed casing convention inside the `js/Utils/` folder where files were improperly using `PascalCase` despite being utility files.
 **Action:** Renamed all `.js` and `.test.js` utility files in `js/Utils/` to strictly follow `kebab-case` naming convention using `git mv` (e.g. `DOMUtils.js` -> `dom-utils.js`). Safely updated all global references without modifying internal exported class names. Handled dynamic module imports in `benchmark.js` where file basenames are matched and properly converted to PascalCase class exports, adding special casing for `DOMUtils`.
+
+2024-03-12
+**Title**: 🦉 Scholar: [AgentCard Module Synthesis]
+**Learning**: Discovered an orphaned inline JSDoc reference (`@see README.md#agentcard-architecture`) in `AgentCard.js` where the target `README.md` file did not exist in the module directory.
+**Action**: Synthesized a comprehensive macro architecture `README.md` mapping the DOM structure, event delegation, contextual actions, and render throttling, and strictly typed/cross-linked the inline JSDoc comments to establish a verified single source of truth.

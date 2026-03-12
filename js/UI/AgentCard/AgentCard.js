@@ -5,9 +5,10 @@
 class AgentCard {
     /**
      * Lazily generates the DOM nodes for the back of the card (the prompt preview).
+     * Parses the raw agent prompt using the external MarkdownRenderer utility.
      * @param {Object} agent - The agent data object containing the prompt string.
      * @returns {HTMLElement} The HTML element representing the parsed prompt.
-     * @see README.md#agentcard-architecture
+     * @see README.md#agentcard-architecture for DOM structure and generation details.
      */
     static getPromptNode(agent) {
         return MarkdownRenderer.render(agent.prompt || "No protocol data available.");
@@ -16,11 +17,12 @@ class AgentCard {
     /**
      * Generates the complete HTML element for a 3D flip-card.
      * Does not attach inner loop event listeners; relies on parent container delegation.
-     * @param {Object} agent - The complete agent data object.
+     * Autonomously adjusts its primary action button depending on the global repository selection state.
+     * @param {Object} agent - The complete agent data object containing core metadata (tier, scope, role, etc.).
      * @param {string|number} index - The unique identifier or array index of the agent.
      * @param {number} globalIndex - The global render index used to calculate cascading animation delays.
-     * @returns {HTMLElement} The fully constructed DOM element for the card.
-     * @see README.md#agentcard-architecture
+     * @returns {HTMLElement} The fully constructed DOM element for the card, ready for virtual insertion.
+     * @see README.md#agentcard-architecture for DOM structure, render throttling, and event delegation patterns.
      */
     static create(agent, index, globalIndex) {
         const card = document.createElement("div");
