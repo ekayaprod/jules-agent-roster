@@ -334,17 +334,26 @@
 
 /* Tier Overrides for Fusion Slots */
 .fusion-slot.tier-common { border-color: #64748b; }
-.fusion-slot.tier-common:hover, .fusion-slot.tier-common:focus-visible, .fusion-slot.tier-common:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); }
+.fusion-slot.tier-common:focus-visible, .fusion-slot.tier-common:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); z-index: 10; }
 .fusion-slot.tier-uncommon { border-color: #22c55e; }
-.fusion-slot.tier-uncommon:hover, .fusion-slot.tier-uncommon:focus-visible, .fusion-slot.tier-uncommon:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); }
+.fusion-slot.tier-uncommon:focus-visible, .fusion-slot.tier-uncommon:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); z-index: 10; }
 .fusion-slot.tier-rare { border-color: #3b82f6; }
-.fusion-slot.tier-rare:hover, .fusion-slot.tier-rare:focus-visible, .fusion-slot.tier-rare:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); }
+.fusion-slot.tier-rare:focus-visible, .fusion-slot.tier-rare:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); z-index: 10; }
 .fusion-slot.tier-epic { border-color: #a855f7; box-shadow: inset 0 0 10px rgba(168, 85, 247, 0.2); }
-.fusion-slot.tier-epic:hover, .fusion-slot.tier-epic:focus-visible, .fusion-slot.tier-epic:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(168, 85, 247, 0.2); }
+.fusion-slot.tier-epic:focus-visible, .fusion-slot.tier-epic:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(168, 85, 247, 0.2); z-index: 10; }
 .fusion-slot.tier-legendary { border-color: #f59e0b; box-shadow: inset 0 0 15px rgba(245, 158, 11, 0.3); }
-.fusion-slot.tier-legendary:hover, .fusion-slot.tier-legendary:focus-visible, .fusion-slot.tier-legendary:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(245, 158, 11, 0.3); }
+.fusion-slot.tier-legendary:focus-visible, .fusion-slot.tier-legendary:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(245, 158, 11, 0.3); z-index: 10; }
 .fusion-slot.tier-mythic { border-color: #f43f5e; box-shadow: inset 0 0 20px rgba(244, 63, 94, 0.4); }
-.fusion-slot.tier-mythic:hover, .fusion-slot.tier-mythic:focus-visible, .fusion-slot.tier-mythic:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(244, 63, 94, 0.4); }
+.fusion-slot.tier-mythic:focus-visible, .fusion-slot.tier-mythic:active { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(244, 63, 94, 0.4); z-index: 10; }
+
+@media (hover: hover) and (pointer: fine) {
+  .fusion-slot.tier-common:hover { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); z-index: 10; }
+  .fusion-slot.tier-uncommon:hover { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); z-index: 10; }
+  .fusion-slot.tier-rare:hover { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); z-index: 10; }
+  .fusion-slot.tier-epic:hover { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(168, 85, 247, 0.2); z-index: 10; }
+  .fusion-slot.tier-legendary:hover { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 15px rgba(245, 158, 11, 0.3); z-index: 10; }
+  .fusion-slot.tier-mythic:hover { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(244, 63, 94, 0.4); z-index: 10; }
+}
 
 /* Pokedex Style Grid Shelf */
 .fusion-archive-container {
@@ -382,24 +391,27 @@
 
 .fusion-shelf-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr));
     margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    overflow: hidden;
 }
 
 .fusion-slot {
     aspect-ratio: 1;
-    border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0;
     position: relative;
     transition: all 0.2s ease;
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     background: rgba(15, 23, 42, 0.5);
+    touch-action: manipulation;
+    user-select: none;
 }
 
 .fusion-slot.locked {
@@ -420,14 +432,22 @@
     background: var(--card-bg);
 }
 
-.fusion-slot.unlocked:hover, .fusion-slot.unlocked:focus-visible {
+.fusion-slot.unlocked:focus-visible {
     transform: translateY(-2px);
     border-color: var(--accent);
+    z-index: 10;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .fusion-slot.unlocked:hover {
+        transform: translateY(-2px) scale(1.05);
+        border-color: var(--accent);
+        z-index: 10;
+    }
 }
 
 .fusion-slot .slot-icon {
     font-size: 2rem;
-    margin-bottom: 0.25rem;
     display: block;
 }
 
@@ -435,15 +455,6 @@
     font-size: 1.5rem;
     color: var(--text-secondary);
     filter: brightness(0);
-}
-
-.fusion-slot .slot-name {
-    font-size: var(--text-3xs);
-    font-weight: var(--weight-semibold);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
 }
 
 .fusion-slot.just-unlocked {
