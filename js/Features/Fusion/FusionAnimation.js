@@ -1,7 +1,6 @@
 class FusionAnimation {
   constructor() {
     this.elements = null;
-    this.particleIntervals = [];
   }
 
   /**
@@ -26,106 +25,6 @@ class FusionAnimation {
   }
 
   /**
-   * Resolves the CSS color hex for particle generation based on tier.
-   */
-  getTierColor(tier) {
-    const map = {
-        "Common": "#64748b",
-        "Uncommon": "#22c55e",
-        "Rare": "#3b82f6",
-        "Epic": "#a855f7",
-        "Legendary": "#f59e0b", // Amber/Gold
-        "Mythic": "#f43f5e"     // Rose/Magenta base
-    };
-    return map[tier] || map["Common"];
-  }
-
-  /**
-   * Generates localized physics particles for the cinematic overlay.
-   */
-  createParticles(tier, container) {
-      // Clear old particles
-      container.innerHTML = '';
-      this.particleIntervals.forEach(clearInterval);
-      this.particleIntervals = [];
-
-      let particleCount = 50;
-      let physicsType = "standard";
-
-      if (tier === "Legendary") {
-          particleCount = 150;
-          physicsType = "ember";
-      } else if (tier === "Mythic") {
-          particleCount = 250;
-          physicsType = "streak";
-      }
-
-      const color = this.getTierColor(tier);
-      const centerX = window.innerWidth / 2;
-      const centerY = window.innerHeight / 2;
-
-      for (let i = 0; i < particleCount; i++) {
-          const p = document.createElement("div");
-          p.className = "anim-particle";
-          p.style.setProperty('--particle-color', color);
-          
-          // Initial placement
-          const angle = Math.random() * Math.PI * 2;
-          const distance = Math.random() * 200 + 50;
-          let x = centerX + Math.cos(angle) * distance;
-          let y = centerY + Math.sin(angle) * distance;
-          
-          p.style.left = `${x}px`;
-          p.style.top = `${y}px`;
-
-          let size = Math.random() * 4 + 2;
-          let vx = 0;
-          let vy = 0;
-
-          // Apply specialized physics variables
-          if (physicsType === "ember") {
-              // Embers drift upwards and shrink
-              vy = -(Math.random() * 3 + 1);
-              vx = (Math.random() - 0.5) * 2;
-              size = Math.random() * 6 + 3;
-          } else if (physicsType === "streak") {
-              // Mythic streaks pull toward the center (implosion), then shoot out
-              const pullFactor = 0.05;
-              vx = (centerX - x) * pullFactor;
-              vy = (centerY - y) * pullFactor;
-              size = Math.random() * 3 + 1;
-              p.style.width = `${size * 3}px`; // Streched look
-              p.style.height = `${size}px`;
-              p.style.transform = `rotate(${angle}rad)`;
-          }
-
-          p.style.width = physicsType === "streak" ? p.style.width : `${size}px`;
-          p.style.height = `${size}px`;
-          container.appendChild(p);
-
-          // Animation loop
-          const tick = setInterval(() => {
-              x += vx;
-              y += vy;
-
-              if (physicsType === "ember") {
-                  x += Math.sin(y * 0.05); // Swaying motion
-              }
-
-              p.style.left = `${x}px`;
-              p.style.top = `${y}px`;
-
-              // Fade out and cleanup if out of bounds
-              if (y < -50 || y > window.innerHeight + 50 || x < -50 || x > window.innerWidth + 50) {
-                  p.style.opacity = 0;
-              }
-          }, 16); // ~60fps
-
-          this.particleIntervals.push(tick);
-      }
-  }
-
-  /**
    * Orchestrates the fusion animation sequence.
    */
   async runAnimation(agentA, agentB, result, showResultCallback) {
@@ -134,81 +33,126 @@ class FusionAnimation {
 
     const { overlay, iconLeft, iconRight, iconResult, animResult, fuseBtn, controls, wrapper, particlesContainer } = this.elements;
 
-    // Close result if open
     if (wrapper) wrapper.classList.remove("open");
 
-    // Dynamic Tier Styling
     const tier = result.tier || "Common";
     const tierClass = `tier-${tier.toLowerCase()}`;
 
-    // Clean up previous tier classes and apply new one
     overlay.className = "fusion-animation-overlay";
     overlay.classList.add(tierClass);
 
-    // Setup visual icons
-    iconLeft.innerText = agentA.emoji || "❓";
-    iconRight.innerText = agentB.emoji || "❓";
-    
-    // Emoji Kitchen resolution or standard fallback
-    const iconA = agentA.emoji || "❓";
-    const iconB = agentB.emoji || "❓";
-    iconResult.innerHTML = ""; 
+    // Particle Injection (Synced to the 1.8s flashburst keyframe)
+    if (particlesContainer) {
+      particlesContainer.innerHTML = "";
 
-    if (result.emoji) {
-      iconResult.innerText = result.emoji;
+      let particleCount = 0;
+      let speedMultiplier = 1;
+
+      switch (tier) {
+        case "Common": particleCount = 0; speedMultiplier = 1; break;
+        case "Uncommon": particleCount = 20; speedMultiplier = 1; break;
+        case "Rare": particleCount = 40; speedMultiplier = 1.2; break;
+        case "Epic": particleCount = 160; speedMultiplier = 1.5; break;
+        case "Legendary": particleCount = 300; speedMultiplier = 2; break;
+        case "Mythic": particleCount = 500; speedMultiplier = 2.5; break;
+      }
+
+      const fragment = document.createDocumentFragment();
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement("div");
+        particle.className = "anim-particle";
+        
+        // Randomize burst angle and travel distance
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 50 + Math.random() * 200;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance;
+
+        particle.style.setProperty("--tx", `${tx/16}rem`);
+        particle.style.setProperty("--ty", `${ty/16}rem`);
+        
+        // Sync duration to the explosion curve
+        particle.style.animationDuration = `${1.0 / speedMultiplier}s`;
+        
+        // Lock delay exactly to the 1.8s flash frame
+        particle.style.animationDelay = `1.8s`;
+        particle.style.animationTimingFunction = "cubic-bezier(0.1, 0.8, 0.3, 1)";
+
+        fragment.appendChild(particle);
+      }
+
+      particlesContainer.appendChild(fragment);
+    }
+
+    iconLeft.innerHTML = agentA.emoji;
+    iconRight.innerHTML = agentB.emoji;
+
+    const icon = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
+    const displayName = FormatUtils.extractDisplayName(result);
+    const safeDisplayName = FormatUtils.escapeHTML(displayName);
+
+    if (animResult) animResult.innerHTML = `<span class="highlight">${safeDisplayName}</span> ${icon}`;
+
+    if (result.isCustom && result.name) {
+      if (iconResult) iconResult.innerHTML = icon;
     } else {
-      // ✍️ ILLUMINATE: The Google Emoji Kitchen API is an undocumented, unversioned endpoint.
-      // WARN: The `v=20231116` parameter is a hardcoded dataset snapshot date. Do not update this string unless you
-      // have manually verified that Google has released a newer dataset snapshot that still supports the identical routing structure.
-      // The API strictly enforces alphabetical ordering for unicode code points in its URL paths, but fails silently (404s).
-      // We must explicitly fetch both permutations (`u1_u2` and `u2_u1`) as a fallback mechanic to guarantee a match regardless of argument order.
-      const u1 = Array.from(iconA).map(c => c.codePointAt(0).toString(16)).join('-');
-      const u2 = Array.from(iconB).map(c => c.codePointAt(0).toString(16)).join('-');
-      
-      const v = "20231116";
-      const u1_u2_url = `https://www.gstatic.com/android/keyboard/emojikitchen/${v}/u${u1}/u${u1}_u${u2}.png`;
-      const u2_u1_url = `https://www.gstatic.com/android/keyboard/emojikitchen/${v}/u${u2}/u${u2}_u${u1}.png`;
+      const iconA = agentA.emoji.trim();
+      const iconB = agentB.emoji.trim();
+      const imgUrl = `${CONFIG.emojiKitchenPrefix}${iconA}_${iconB}?size=128`;
 
-      // Helper function to try loading an image
-      const checkImage = (url) => {
-        return new Promise((resolve, reject) => {
+      if (iconResult) {
+        iconResult.innerHTML = "";
+        const imgContainer = document.createElement("div");
+        imgContainer.className = "img-wrapper";
+        imgContainer.style.fontSize = "inherit";
+
+        const placeholder = document.createElement("div");
+        placeholder.className = "img-placeholder skeleton-pulse";
+        imgContainer.appendChild(placeholder);
+        iconResult.appendChild(imgContainer);
+
+        const loadImageWithRetry = (url, retries = 3, backoff = 300) => {
           const img = new Image();
-          img.onload = () => resolve(url);
-          img.onerror = () => reject();
           img.src = url;
-        });
-      };
+          img.alt = result.name;
+          img.loading = "eager";
+          img.className = "img-loading";
+          img.style.width = "100%";
+          img.style.height = "100%";
+          img.style.objectFit = "contain";
 
-      try {
-        const url = await checkImage(u1_u2_url).catch(() => checkImage(u2_u1_url));
-        const img = document.createElement("img");
-        img.src = url;
-        img.style.width = "100%";
-        img.style.height = "100%";
-        iconResult.appendChild(img);
-      } catch (e) {
-        iconResult.innerText = `${iconA}${iconB}`;
+          img.onload = () => {
+            imgContainer.appendChild(img);
+            void img.offsetWidth;
+            img.classList.remove("img-loading");
+            img.classList.add("img-loaded");
+            placeholder.classList.add("hidden");
+            setTimeout(() => { if (placeholder.parentNode) placeholder.remove(); }, 300);
+          };
+
+          img.onerror = () => {
+            if (retries > 0) {
+              setTimeout(() => loadImageWithRetry(url, retries - 1, backoff * 2), backoff);
+            } else {
+              imgContainer.remove();
+              iconResult.innerText = `${iconA}${iconB}`;
+            }
+          };
+        };
+
+        loadImageWithRetry(imgUrl);
       }
     }
 
     DOMUtils.setButtonState(fuseBtn, "disabled", fuseBtn.innerText);
     if (controls) controls.classList.add("fusing");
 
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      // Skip animation timeline for reduced motion
-    } else {
-      // Execute standard cinematic timeline
+    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       overlay.classList.add("active");
-      this.createParticles(tier, particlesContainer);
-      
-      // Wait for cinematic completion
       await new Promise(resolve => setTimeout(resolve, 3500));
     }
 
-    // Cleanup physics and DOM
-    this.particleIntervals.forEach(clearInterval);
-    particlesContainer.innerHTML = '';
-    
     overlay.classList.remove("active");
     DOMUtils.setButtonState(fuseBtn, "ready", fuseBtn.innerText);
     if (controls) controls.classList.remove("fusing");
