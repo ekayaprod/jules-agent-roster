@@ -6,3 +6,8 @@ YYYY-MM-DD
 **Title**: [UI] structural reinforcement
 **Learning**: Grouping domain components without a unified entry point creates fragmented consumption.
 **Action**: [Excavate] Erected `js/UI/index.js` to serve as a cohesive load-bearing node for the UI domain, properly routing `AgentCard`, `ClipboardUtils`, `ExportController`, `SearchController`, and `ToastNotification` through a single barrel file to simplify imports for test scaffolding.
+
+YYYY-MM-DD
+**Title**: [JulesManager] structural reinforcement
+**Learning**: Discovered `JulesManager` sitting as an isolated module within `js/Features/Jules/`, violating the barrel export pattern used elsewhere.
+**Action**: Executed `[Excavate]`. Moved `JulesManager.js` and `JulesManager.test.js` to `js/Features/Jules/JulesManager/`, creating a cohesive domain foundation capped with an `index.js` barrel file. Rewired DOM `<script>` imports natively.
