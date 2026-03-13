@@ -64,3 +64,8 @@
 ## 2026-03-13 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: ClipboardUtils]
 **Learning:** Discovered the `ClipboardUtils` module entirely lacked a macro-architecture `README.md` while inline JSDoc `@see` tags optimistically referenced `#clipboardutils-architecture`.
 **Action:** Synthesized a complete `README.md` defining the primary/fallback execution paths for `copyText` and the visual state manipulation for `animateButtonSuccess`. Refined inline JSDoc comments to link directly to the newly authored `#1-clipboard-operations` and `#2-temporal-ui-states` sections, eliminating disconnected documentation.
+
+2026-03-13
+**Title**: Gap Spacing Modernization for Agent Cards
+**Learning**: Identified a legacy structural spacing hack relying on magic negative margins (`margin-top: -0.5rem`) within a nested flexbox structure (`.front-content-wrapper` and `.flip-card-front`).
+**Action**: Replaced fragile negative margins with an organic, mathematically predictable `gap: 0.5rem` on the parent flex container, enforcing structural integrity and responsive alignment.
