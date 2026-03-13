@@ -321,7 +321,11 @@
 
       .splay-btn { position: absolute; z-index: 2; right: 2.75rem; top: 0; font-size: var(--text-lg); line-height: var(--leading-none); transition: all 0.2s; opacity: 0.8; min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; padding: 0; cursor: pointer; }
       .splay-btn:hover { transform: scale(1.1); opacity: 1; }
-      .splay-menu { top: 2.75rem; bottom: auto; right: 2.75rem; max-height: 15rem; overflow-y: auto; z-index: 60; }
+      .splay-menu { top: 1.5rem; bottom: auto; right: 3rem; z-index: 60; background: transparent; border: none; box-shadow: none; pointer-events: none; }
+      .splay-menu.visible { pointer-events: auto; }
+      .splayed-card { position: absolute; top: 0; right: 0; width: 2.5rem; height: 3.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.25rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s; opacity: 0; transform-origin: top right; z-index: calc(10 - var(--splay-idx)); transform: translate(0, 0) rotate(0deg) scale(0.5); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5); padding: 0; }
+      .splayed-card:hover { filter: brightness(1.2); z-index: 20 !important; }
+      .splay-menu.visible .splayed-card { opacity: 1; transform: translate(calc(var(--splay-idx) * -2rem), calc(var(--splay-idx) * 0.5rem)) rotate(calc(var(--splay-idx) * -15deg)) scale(1); }
       .dropdown-header { padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: bold; color: var(--text-secondary); text-transform: uppercase; border-bottom: 1px solid var(--border); }
       .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem 1rem; }
       .empty-state.visible { display: flex; }

@@ -408,7 +408,7 @@ class RosterApp {
 
       // 4. Flip Card Front (Open)
       const frontTarget = e.target.closest('[data-action="flip-card"]');
-      if (frontTarget) {
+      if (frontTarget && !e.target.closest('[data-action="toggle-splay"]') && !e.target.closest('.splay-menu')) {
           const card = frontTarget.closest('.flip-card');
           if (!card) return;
 
