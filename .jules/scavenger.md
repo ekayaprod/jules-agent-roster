@@ -179,3 +179,7 @@ Action: [How to apply next time]
 ## YYYY-MM-DD - 🦅 Scavenger - [Purged Zero-Reference CSS Classes]
 **Learning:** Tools like `uncss` or `PurgeCSS` can surface CSS debris that appears "dead" to generic regex searches. However, these tools sometimes flag actively injected JS classes or utility classes that are not statically analyzable.
 **Action:** Always cross-reference `uncss` findings against the full codebase (JS source and HTML) to mathematically prove a class is zero-reference before surgical eradication.
+
+## 2024-05-24 - 🦝 Scavenger - [Code Purge: Dead DOMUtils Method]
+**Learning:** Discovered `DOMUtils.createPRLink` was fully implemented in `js/Utils/dom-utils.js` but completely unused by any application logic, only being referenced in its own mocked test file `js/Features/Jules/JulesManager/JulesManager.test.js`.
+**Action:** When auditing utilities, look out for methods that have been extracted or refactored away from the main application but left behind in the utility files and mocked in test suites. Deleting them reduces visual noise and cognitive load.
