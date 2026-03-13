@@ -1,3 +1,6 @@
+## 2024-05-24 - 🎧 Vibe - Focus Trap Modal A11y
+**Learning:** When integrating focus management libraries like `focus-trap` into dynamically populated DOM elements (e.g., virtualized grids or lists using Clusterize.js), `trap.activate()` must be invoked only after the inner HTML has been fully updated and rendered (e.g., inside the rendering timeout block) to ensure correct initial focus allocation.
+**Action:** When implementing modal accessibilty, avoid brute-forcing `activate()` on empty nodes. Defer activation until DOM painting is complete, and supply a `fallbackFocus` configuration for safety.
 ## 2026-03-12 - 🧫 Mitosis - [Parallelized Logic: SearchController]
 **Learning:** Offloading `Fuse.js` initialization and `.search()` operations across a massive payload (>5000 items) to a background Web Worker drastically improves the main UI thread's responsiveness, preventing scrolling/typing lag during queries.
 **Action:** Extract heavy iterative operations to a `Worker` file (importing required libraries via `importScripts`), wrap the execution in a Promise map tied to a unique `searchId`, handle racing overlaps gracefully by discarding stale results, and maintain a synchronous fallback block when `typeof Worker === 'undefined'` to ensure Node.js compatibility for test suites.
