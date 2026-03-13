@@ -609,6 +609,51 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
              await manager.loadSources();
              expect(window.julesService.getSources).not.toHaveBeenCalled();
         });
+
+        it('should trigger concurrent API loads on valid repo change', async () => {
+            window.julesService.getSources.mockResolvedValue({
+                sources: [{ name: 'sources/github/a/b', githubRepo: { owner: 'a', repo: 'b' } }]
+            });
+            await manager.loadSources();
+
+            const loadPRSpy = jest.spyOn(manager, 'loadPullRequestsForRepo').mockResolvedValue();
+            const loadSessionsSpy = jest.spyOn(manager, 'loadActiveSessionsForRepo').mockResolvedValue();
+
+            const picker = document.getElementById('julesRepoPicker');
+            picker.value = 'sources/github/a/b';
+
+            // Dispatch change event to trigger listeners
+            const event = new Event('change');
+            picker.dispatchEvent(event);
+
+            // Wait for microtasks to resolve the async event listener promise execution
+            await Promise.resolve();
+            await Promise.resolve();
+
+            expect(loadPRSpy).toHaveBeenCalledWith('sources/github/a/b');
+            expect(loadSessionsSpy).toHaveBeenCalledWith('sources/github/a/b');
+        });
+
+        it('should clear state and show fetching indicator on empty repo change', async () => {
+            window.julesService.getSources.mockResolvedValue({
+                sources: [{ name: 'sources/github/a/b', githubRepo: { owner: 'a', repo: 'b' } }]
+            });
+            await manager.loadSources();
+
+            const clearSpy = jest.spyOn(manager, '_clearPollingAndCache');
+
+            const picker = document.getElementById('julesRepoPicker');
+            picker.value = '';
+
+            const event = new Event('change');
+            picker.dispatchEvent(event);
+
+            await Promise.resolve();
+            await Promise.resolve();
+
+            expect(clearSpy).toHaveBeenCalled();
+            expect(document.getElementById('julesTerminal').innerHTML).toContain('[SYS] Awaiting repository connection...');
+        });
     });
 
     describe('loadActiveSessionsForRepo', () => {

@@ -219,7 +219,7 @@
 .tier-legendary .anim-particle { --particle-color: #fbbf24; }
 
 /* Mythic Effects Sync */
-.tier-mythic .anim-particle { --particle-color: #f43f5e; box-shadow: 0 0 10px #f43f5e, 0 0 20px #e11d48; }
+.tier-mythic .anim-particle { --particle-color: #10b981; box-shadow: 0 0 10px #10b981, 0 0 20px #059669; }
 
 .fade-transition { transition: opacity 0.5s ease-in-out; }
 

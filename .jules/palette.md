@@ -61,3 +61,13 @@
 **Title**: [Harmonized Jules Interaction Modal with Inline Validation & Accessibility]
 **Learning**: [Silent validation failures on mandatory input fields cause confusion. Combining explicit ARIA attributes (like `aria-invalid` and `aria-describedby`) with contextual, visual inline error messages creates a far more responsive, premium, and accessible interaction flow than doing nothing.]
 **Action**: [When implementing modals requiring user input, enforce inline validation with actionable error states and clear visual feedback instead of silent returns.]
+
+2026-03-24
+**Title**: Refined Mythic Card Effect
+**Learning**: Continuous high-contrast hue-rotation animations cause visual fatigue and blend in with generic sweeping gradients.
+**Action**: Replaced the sweeping gradient with a subtle chromatic aberration border pulse and sporadic CSS clip-path glitch bands, maintaining the "mythic/glitch" theme while reducing intensity.
+
+2026-03-24
+**Title**: [Refined Mythic Glitch Animation]
+**Learning**: [Short animation loops (e.g., 3s) for intense glitch effects using `clip-path` are jarring and cause visual fatigue. Red/blue color schemes can also be too intense. Lengthening the animation interval and switching to a cooler color palette (e.g., green) makes the effect subtle, premium, and less overwhelming.]
+**Action**: [When implementing "glitch" visual effects, use long animation intervals (e.g., 10s) with concentrated, sporadic keyframes (e.g., 2%-4% and 30%-32%) to space out the disruption, and prefer softer chromatic aberration colors (like greens) to maintain a premium feel without fatiguing the user.]
