@@ -4,6 +4,9 @@
  * Attached to the global window object for standard browser usage.
  * @see README.md#julesapi-architecture for network resilience and data flow.
  */
+const REQUEST_TIMEOUT_MS = 15000;
+const DEFAULT_PAGE_SIZE = 50;
+
 class JulesService {
     /**
      * Constructs a new JulesService instance with default configurations.
@@ -35,7 +38,7 @@ class JulesService {
      * @param {RequestInit} [options={}] - Standard fetch options.
      * @param {number} [retries=3] - Number of retries for transient errors.
      * @param {number} [backoff=300] - Initial backoff delay in ms.
-     * @returns {Promise<any>} The parsed JSON response.
+     * @returns {Promise<Object|Array>} The parsed JSON response.
      * @throws {Error} If the API key is missing, the request times out (15s), or the API returns an error status.
      * @see README.md#julesapi-architecture for details on the AbortController timeout mechanism.
      */
@@ -49,7 +52,7 @@ class JulesService {
         };
 
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 15000);
+        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
         try {
             const response = await fetch(url, {
@@ -101,11 +104,11 @@ class JulesService {
 
     /**
      * Retrieves the list of sessions for the authenticated user.
-     * @param {number} [pageSize=50] - The number of sessions to return.
+     * @param {number} [pageSize=DEFAULT_PAGE_SIZE] - The number of sessions to return.
      * @returns {Promise<Object>} The JSON response containing the sessions array.
      * @throws {Error} If the request fails or times out.
      */
-    async getSessions(pageSize = 50) {
+    async getSessions(pageSize = DEFAULT_PAGE_SIZE) {
         return this._fetch(`sessions?pageSize=${pageSize}`);
     }
 
@@ -174,13 +177,15 @@ ${userTask}`;
      * @see README.md#julesapi-architecture for asynchronous polling strategy instead of synchronous streaming.
      */
     async getActivities(sessionId) {
-        return this._fetch(`sessions/${sessionId}/activities?pageSize=50`);
+        return this._fetch(`sessions/${sessionId}/activities?pageSize=${DEFAULT_PAGE_SIZE}`);
     }
 
+    // ✍️ ILLUMINATE: The getPullRequests polling loop explicitly swallows all network errors, non-404 statuses, and invalid formats.
+    // Returning a safe fallback empty array [] prevents the entire RosterApp UI from crashing when the GitHub API rate limits or times out.
     /**
      * Retrieves the list of open pull requests for a given repository via the GitHub API.
      * @param {string} sourceName - The target repository source name (e.g., 'sources/github/owner/repo').
-     * @returns {Promise<Array>} The JSON response containing the open pull requests.
+     * @returns {Promise<Array>} The JSON response containing the open pull requests, or a safe fallback [] on failure.
      */
     async getPullRequests(sourceName) {
         if (!sourceName.startsWith('sources/github/')) {
@@ -198,7 +203,7 @@ ${userTask}`;
         }
 
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 15000);
+        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
         try {
             const response = await fetch(url, {

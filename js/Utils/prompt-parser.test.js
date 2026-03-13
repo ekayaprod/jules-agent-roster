@@ -1,4 +1,6 @@
-/** @jest-environment jsdom */
+/**
+ * @jest-environment jsdom
+ */
 const PromptParser = require('./prompt-parser');
 
 describe('PromptParser', () => {

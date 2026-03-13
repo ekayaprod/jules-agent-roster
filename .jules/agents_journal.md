@@ -1,9 +1,13 @@
 ## 2026-03-12 - 🧫 Mitosis - [Parallelized Logic: SearchController]
 **Learning:** Offloading `Fuse.js` initialization and `.search()` operations across a massive payload (>5000 items) to a background Web Worker drastically improves the main UI thread's responsiveness, preventing scrolling/typing lag during queries.
 **Action:** Extract heavy iterative operations to a `Worker` file (importing required libraries via `importScripts`), wrap the execution in a Promise map tied to a unique `searchId`, handle racing overlaps gracefully by discarding stale results, and maintain a synchronous fallback block when `typeof Worker === 'undefined'` to ensure Node.js compatibility for test suites.
-## 2026-03-12 - 🧑‍🏫 Assessor - [Test Methodology Upgrade: JulesManager.test.js]
-**Learning:** Legacy tests in `JulesManager.test.js` were asserting against internal component structures and variables rather than user-visible DOM changes. This led to extremely brittle tests that broke purely because of how they asserted state instead of what they asserted.
-**Action:** Migrated brittle tests into tests that execute logic and check for changes in visible output strings, specific classes added to the DOM based on user flows, and correct DOM API manipulations based on system inputs. Removed redundant inner logic tests for deleted components and ensured strict DOM output validation.
+## 2026-03-12 - 🧑‍🏫 Assessor - [Test Methodology Upgrade]
+**Learning:** Legacy tests were asserting against internal component structures and using third-party polyfills like `@xmldom/xmldom` instead of native APIs.
+**Action:** Migrated tests to assert visible outputs, ensured strict DOM validation, and leveraged `jsdom` to replace external polyfills with native `DOMParser`.
+
+## 2026-03-13 - 🧑‍🏫 Assessor - [Test Methodology Upgrade: PromptParser]
+**Learning:** `prompt-parser.test.js` was relying on the external `@xmldom/xmldom` polyfill to test `DOMParser` logic, creating brittle dependency reliance instead of testing the native browser API behavior.
+**Action:** Upgraded the test file to use the native JSDOM environment by injecting `/** @jest-environment jsdom */` and purging the `@xmldom/xmldom` dependency, aligning the test methodology with native web standards.
 
 ## 2024-05-20 - 🎧 Vibe - Feature Materialized: PR Queue Panel
 **Learning:** Found an implied missing feature in the execution interface: the ability to monitor the open pull requests of a targeted repository.
@@ -48,3 +52,8 @@
 **Title**: ⏱️ Millisecond: [Native Stack Render Optimization Bypass]
 **Learning**: Discovered that the codebase strictly follows a Vanilla JS architecture (`js/UI/README.md:37`) without utilizing Virtual DOM frameworks like React. Attempting to inject `useCallback`, `useMemo`, or `React.memo` would bootstrap foreign frameworks and violate the mandate to adapt to the native stack.
 **Action**: Unilaterally `[Skip]`ped React-specific render execution optimizations since there are no functional components or Virtual DOM reconciliation loops to stabilize.
+
+2026-03-13
+**Title**: 🦉 Scholar: [Macro/Micro Documentation Synthesized: JulesManager]
+**Learning**: Discovered the JulesManager component possessed large internal methods (like `launchSession` and `cleanup`) entirely disconnected from any macro-documentation architecture.
+**Action**: Authored and injected strict, type-safe inline `JSDoc` comments onto major execution methods and bound them with mandatory `@see` references to a successfully synthesized macro `README.md`.
