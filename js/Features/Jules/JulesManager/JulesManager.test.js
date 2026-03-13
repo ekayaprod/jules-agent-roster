@@ -11,14 +11,7 @@ global.StorageUtils = {
 };
 
 global.DOMUtils = {
-    setButtonState: jest.fn(),
-    createPRLink: jest.fn().mockImplementation((url, cb) => {
-        const a = document.createElement('a');
-        a.href = url;
-        a.className = 'pr-link-btn';
-        if (cb) a.addEventListener('click', cb);
-        return a;
-    })
+    setButtonState: jest.fn()
 };
 
 global.FormatUtils = {

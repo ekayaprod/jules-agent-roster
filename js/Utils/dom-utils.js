@@ -83,29 +83,6 @@ class DOMUtils {
     });
   }
 
-  /**
-   * Helper for generating PR link buttons.
-   * Centralizes duplicated UI logic across JulesManager and RosterApp.
-   *
-   * @param {string} url - The pull request URL to link to.
-   * @param {function} [onClick] - Optional click handler for the link.
-   * @returns {HTMLElement} The constructed anchor tag.
-   */
-  static createPRLink(url, onClick) {
-    const prLink = document.createElement("a");
-    prLink.className = "pr-link-btn";
-    prLink.href = url;
-    prLink.target = "_blank";
-    prLink.rel = "noopener noreferrer";
-    prLink.innerHTML = `
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-2a4 4 0 0 0-4-4h-4"/><path d="M12 5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2"/><polyline points="15 8 18 5 21 8"/></svg>
-        View PR
-    `;
-    if (onClick) {
-        prLink.addEventListener("click", onClick);
-    }
-    return prLink;
-  }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
