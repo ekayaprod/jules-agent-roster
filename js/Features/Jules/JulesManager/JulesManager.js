@@ -222,14 +222,16 @@ class JulesManager {
                 
                 // Directly bind the dropdown change to trigger BOTH APIs
                 if (!picker.dataset.listenerAttached) {
-                    picker.addEventListener("change", (e) => {
+                    picker.addEventListener("change", async (e) => {
                         const sourceName = e.target.value;
                         if (sourceName) {
-                            this.loadPullRequestsForRepo(sourceName);
-                            this.loadActiveSessionsForRepo(sourceName);
+                            await Promise.all([
+                                this.loadPullRequestsForRepo(sourceName),
+                                this.loadActiveSessionsForRepo(sourceName)
+                            ]);
                         } else {
                             this._clearPollingAndCache();
-                            this.getEl("julesTerminal").innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Awaiting repository connection...</div>`;
+                            this.getEl("julesTerminal").innerHTML = `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] Awaiting repository connection...</div>`;
                         }
                     });
                     picker.dataset.listenerAttached = "true";
@@ -252,7 +254,7 @@ class JulesManager {
             this._clearPollingAndCache();
             const existingInd = terminal.querySelector('#fetchingIndicator');
             if (!existingInd) {
-                 terminal.innerHTML += `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Checking active Jules routines...</div>`;
+                 terminal.innerHTML += `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] Checking active Jules routines...</div>`;
             }
             this.currentRepo = sourceName;
         }
@@ -353,7 +355,7 @@ class JulesManager {
     _checkEmptyTerminal() {
         const terminal = this.getEl("julesTerminal");
         if (terminal.children.length === 0 || (terminal.children.length === 1 && terminal.firstElementChild.id === 'fetchingIndicator')) {
-             terminal.innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Ready. Awaiting execution commands...</div>`;
+             terminal.innerHTML = `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] Ready. Awaiting execution commands...</div>`;
         }
     }
 
