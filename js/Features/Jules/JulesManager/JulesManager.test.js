@@ -447,9 +447,8 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             await submitBtn.click();
 
             expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', 'error');
-            expect(inputField.disabled).toBe(false);
-            // Modal should remain open on failure (not closed in catch, only finally clears loading)
-            expect(DOMUtils.setButtonState).toHaveBeenCalledWith(submitBtn, 'ready', 'Transmit Reply');
+            // Illusionist: Modal now closes immediately due to optimistic UI.
+            expect(modal.classList.contains('visible')).toBe(false);
         });
 
         it('should not submit if input is empty', async () => {
