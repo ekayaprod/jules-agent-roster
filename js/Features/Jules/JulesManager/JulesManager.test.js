@@ -610,11 +610,10 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
              expect(window.julesService.getSources).not.toHaveBeenCalled();
         });
 
+
         it('prevents race conditions during concurrent updates exposing unhandled Promise.all rejections safely', async () => {
             // 🕵️ INTERROGATE: Mocked infrastructure boundaries, concurrency stress, and negative assertions.
             window.julesService.getSources.mockResolvedValueOnce({
-        it('should trigger concurrent API loads on valid repo change', async () => {
-            window.julesService.getSources.mockResolvedValue({
                 sources: [{ name: 'sources/github/a/b', githubRepo: { owner: 'a', repo: 'b' } }]
             });
             await manager.loadSources();
@@ -659,6 +658,14 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             } finally {
                 promiseAllSpy.mockRestore();
             }
+        });
+
+        it('should trigger concurrent API loads on valid repo change', async () => {
+            window.julesService.getSources.mockResolvedValue({
+                sources: [{ name: 'sources/github/a/b', githubRepo: { owner: 'a', repo: 'b' } }]
+            });
+            await manager.loadSources();
+
             const loadPRSpy = jest.spyOn(manager, 'loadPullRequestsForRepo').mockResolvedValue();
             const loadSessionsSpy = jest.spyOn(manager, 'loadActiveSessionsForRepo').mockResolvedValue();
 
