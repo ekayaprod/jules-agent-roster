@@ -75,7 +75,7 @@ class AgentCard {
                 });
 
                 splayHtml = `
-                    <button class="icon-btn splay-btn" data-action="toggle-splay" data-index="${index}" aria-label="Show Child Fusions" aria-haspopup="menu" aria-expanded="false" aria-controls="splay-menu-${index}">🎴</button>
+                    <button class="splay-btn" data-action="toggle-splay" data-index="${index}" aria-label="Show Child Fusions" aria-haspopup="menu" aria-expanded="false" aria-controls="splay-menu-${index}"></button>
                     <div class="splay-menu dropdown-menu" id="splay-menu-${index}" role="menu">
                         ${splayItems}
                     </div>
