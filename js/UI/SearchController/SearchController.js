@@ -41,16 +41,35 @@ class SearchController {
   constructor(app) {
     this.app = app;
     this.clusterize = null;
+    this.searchId = 0;
+    this._resolveMap = new Map();
+
+    // 🧫 Mitosis: Initialize Web Worker for background fuzzy searching
+    if (typeof Worker !== 'undefined') {
+        this.worker = new Worker('js/UI/SearchController/searchWorker.js');
+        this.worker.onmessage = (e) => {
+            const { type, results, searchId, message } = e.data;
+            if (this._resolveMap.has(searchId)) {
+                if (type === 'results') {
+                    this._resolveMap.get(searchId)(results);
+                } else if (type === 'error') {
+                    console.error("Search Worker Error:", message);
+                    this._resolveMap.get(searchId)([]);
+                }
+                this._resolveMap.delete(searchId);
+            }
+        };
+    }
   }
 
   /**
    * Filters the agent roster based on a fuzzy search query and updates the virtual scroll view.
    * Manages DOM visibility toggling and caching of the search index to prevent layout thrashing.
    * @param {string} query - The search string provided by the user.
-   * @returns {void}
+   * @returns {Promise<void>}
    * @see README.md#search-mechanics
    */
-  filterAgents(query) {
+  async filterAgents(query) {
     const search = query.toLowerCase();
     const searchModeContainer = this.app.elements.searchModeContainer;
     const searchResultsGrid = this.app.elements.searchResultsGrid;
@@ -92,16 +111,40 @@ class SearchController {
             });
         }
 
-        const fuse = new Fuse(allAgents, FUSE_OPTIONS);
-
-        this.app._searchCache = {
-            agentCount: this.app.agents.length,
-            unlockedSize: currentUnlockedSize,
-            fuseInstance: fuse
-        };
+        if (this.worker) {
+             this.worker.postMessage({ type: 'init', data: allAgents, options: FUSE_OPTIONS });
+             this.app._searchCache = {
+                 agentCount: this.app.agents.length,
+                 unlockedSize: currentUnlockedSize,
+                 useWorker: true
+             };
+        } else {
+             const fuse = new Fuse(allAgents, FUSE_OPTIONS);
+             this.app._searchCache = {
+                 agentCount: this.app.agents.length,
+                 unlockedSize: currentUnlockedSize,
+                 fuseInstance: fuse,
+                 useWorker: false
+             };
+        }
     }
 
-    const results = this.app._searchCache.fuseInstance.search(search);
+    const currentSearchId = ++this.searchId;
+    let results;
+
+    if (this.app._searchCache.useWorker) {
+        // 🧫 Mitosis: Async Web Worker background processing
+        results = await new Promise(resolve => {
+            this._resolveMap.set(currentSearchId, resolve);
+            this.worker.postMessage({ type: 'search', query: search, searchId: currentSearchId });
+        });
+
+        // Discard stale search results
+        if (currentSearchId !== this.searchId) return;
+    } else {
+        // Fallback for purely synchronous environments without Web Worker support
+        results = this.app._searchCache.fuseInstance.search(search);
+    }
 
     const htmlResults = results.map(result => {
         const { agent, keyOrIndex } = result.item;

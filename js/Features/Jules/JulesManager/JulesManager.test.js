@@ -262,9 +262,9 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
              const state = { isWaitingForInput: true };
              manager.julesPollingIntervals = { '123': 999 };
 
-             const block = document.createElement('div'); block.id = 'session-123';
-             const stSpan = document.createElement('span'); stSpan.id = 'status-123'; block.appendChild(stSpan);
-             manager._updatePollingState('123', block, state, 'Agent', '🤖');
+             const testBlock = document.createElement('div'); testBlock.id = 'session-123';
+             const stSpan = document.createElement('span'); stSpan.id = 'status-123'; testBlock.appendChild(stSpan);
+             manager._updatePollingState('123', testBlock, state, 'Agent', '🤖');
              expect(stSpan.className).toContain('status-waiting');
              expect(stSpan.textContent).toBe('⚠️ Response Needed (Click to view)');
         });

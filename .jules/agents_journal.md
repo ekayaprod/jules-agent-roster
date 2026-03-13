@@ -1,3 +1,6 @@
+## 2026-03-12 - 🧫 Mitosis - [Parallelized Logic: SearchController]
+**Learning:** Offloading `Fuse.js` initialization and `.search()` operations across a massive payload (>5000 items) to a background Web Worker drastically improves the main UI thread's responsiveness, preventing scrolling/typing lag during queries.
+**Action:** Extract heavy iterative operations to a `Worker` file (importing required libraries via `importScripts`), wrap the execution in a Promise map tied to a unique `searchId`, handle racing overlaps gracefully by discarding stale results, and maintain a synchronous fallback block when `typeof Worker === 'undefined'` to ensure Node.js compatibility for test suites.
 ## 2026-03-12 - 🧑‍🏫 Assessor - [Test Methodology Upgrade: JulesManager.test.js]
 **Learning:** Legacy tests in `JulesManager.test.js` were asserting against internal component structures and variables rather than user-visible DOM changes. This led to extremely brittle tests that broke purely because of how they asserted state instead of what they asserted.
 **Action:** Migrated brittle tests into tests that execute logic and check for changes in visible output strings, specific classes added to the DOM based on user flows, and correct DOM API manipulations based on system inputs. Removed redundant inner logic tests for deleted components and ensured strict DOM output validation.
