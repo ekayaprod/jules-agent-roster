@@ -140,25 +140,33 @@ class JulesManager {
             const text = inputField.value.trim();
             if (!text || !this.activeModalSessionId) return;
 
-            DOMUtils.setButtonState(submitBtn, "loading", "...");
-            inputField.disabled = true;
+            // 🪄 CONJURE: Optimistic UI with silent rollback for interaction modal
+            const sessionId = this.activeModalSessionId;
+            const statusSpan = document.getElementById(`status-${sessionId}`);
+            const previousStatusHtml = statusSpan ? statusSpan.innerHTML : "";
+            const previousStatusClass = statusSpan ? statusSpan.className : "";
+            const previousStatusOnclick = statusSpan ? statusSpan.onclick : null;
+
+            closeModal();
+            this.app.toast.show("Transmitting reply...", "info");
+
+            if (statusSpan) {
+                statusSpan.className = "term-status skeleton-pulse";
+                statusSpan.textContent = "Transmitting response...";
+                statusSpan.onclick = null;
+            }
 
             try {
-                await window.julesService.sendUserInput(this.activeModalSessionId, text);
+                await window.julesService.sendUserInput(sessionId, text);
                 this.app.toast.show("Reply transmitted.", "success");
-                
-                const statusSpan = document.getElementById(`status-${this.activeModalSessionId}`);
-                if (statusSpan) {
-                    statusSpan.className = "term-status";
-                    statusSpan.textContent = "Transmitting response...";
-                    statusSpan.onclick = null;
-                }
-                closeModal();
             } catch (e) {
                 this.app.toast.show("Failed to send reply.", "error");
-            } finally {
-                DOMUtils.setButtonState(submitBtn, "ready", "Transmit Reply");
-                inputField.disabled = false;
+                // Silent rollback on error
+                if (statusSpan) {
+                    statusSpan.className = previousStatusClass || "term-status status-waiting";
+                    statusSpan.innerHTML = previousStatusHtml || `⚠️ Response Needed (Click to view)`;
+                    statusSpan.onclick = previousStatusOnclick;
+                }
             }
         };
 
@@ -419,16 +427,42 @@ class JulesManager {
             return;
         }
 
+        // 🪄 CONJURE: Optimistic UI for Session Launch with CSS skeletal rendering
+        const terminal = this.getEl("julesTerminal");
+        const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
+        if (fetchingIndicator) fetchingIndicator.style.display = 'none';
+
+        const optimisticBlock = document.createElement("div");
+        optimisticBlock.className = `term-session-line state-active skeleton-pulse`;
+        let agentEmoji = agent.emoji || "🤖";
+        let safeAgentName = agent.name ? agent.name.replace(/"/g, '') : "Agent Task";
+
+        optimisticBlock.innerHTML = `
+            <span class="term-agent-name">${agentEmoji} ${safeAgentName}</span>
+            <span class="term-separator">—</span>
+            <span class="term-status">Conjuring session...</span>
+        `;
+
+        const firstSession = terminal.querySelector('.term-session-line:not(#fetchingIndicator)');
+        if (firstSession) {
+            terminal.insertBefore(optimisticBlock, firstSession);
+        } else {
+            terminal.appendChild(optimisticBlock);
+        }
+
         if (btn) DOMUtils.setButtonState(btn, "loading", "Launching...");
 
         try {
             await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
             this.app.toast.show(`Session launched successfully.`, "success");
-            this._fetchAndRenderSessions(sourceName, this.getEl("julesTerminal"));
+            await this._fetchAndRenderSessions(sourceName, terminal);
         } catch (err) {
             this.app.toast.show(`Launch failed. Check API key and permissions.`, "error");
+            if (fetchingIndicator) fetchingIndicator.style.display = '';
         } finally {
+            if (optimisticBlock.parentNode) optimisticBlock.remove();
             if (btn) DOMUtils.setButtonState(btn, "ready", "Launch in Jules 🚀");
+            this._checkEmptyTerminal();
         }
     }
 
