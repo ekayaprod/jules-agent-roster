@@ -44,3 +44,7 @@
 ## 2026-03-12 - 🧽 Steward - [Bumped & Purged: @xmldom/xmldom]
 **Learning:** Found `@xmldom/xmldom` being used as a polyfill in tests because the underlying node environment natively lacked `DOMParser` (which is used safely in the browser). Updating Jest to align with `jest-environment-jsdom` 30.3.0 and injecting `/** @jest-environment jsdom */` allowed us to safely purge the polyfill, using native browser API emulation instead.
 **Action:** When tests mock standard web APIs using custom packages, check if updating the test environment (like JSDOM) can provide the APIs natively, allowing the removal of the dependency and complex mocking boilerplate.
+2026-03-13
+**Title**: ⏱️ Millisecond: [Native Stack Render Optimization Bypass]
+**Learning**: Discovered that the codebase strictly follows a Vanilla JS architecture (`js/UI/README.md:37`) without utilizing Virtual DOM frameworks like React. Attempting to inject `useCallback`, `useMemo`, or `React.memo` would bootstrap foreign frameworks and violate the mandate to adapt to the native stack.
+**Action**: Unilaterally `[Skip]`ped React-specific render execution optimizations since there are no functional components or Virtual DOM reconciliation loops to stabilize.
