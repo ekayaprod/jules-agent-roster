@@ -279,6 +279,17 @@ describe('createSession', () => {
             consoleSpy.mockRestore();
         });
 
+        it('should not throw a ReferenceError when a fetch rejects due to a network error', async () => {
+            global.fetch.mockRejectedValue(new Error("Network Error"));
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+            const response = await service.getPullRequests('sources/github/owner/repo');
+            expect(response).toEqual([]);
+            expect(consoleSpy).toHaveBeenCalledWith("Failed to fetch pull requests:", expect.any(Error));
+
+            consoleSpy.mockRestore();
+        });
+
         it('should return empty array and log error on non-404 status code', async () => {
             global.fetch.mockResolvedValue({
                 ok: false,

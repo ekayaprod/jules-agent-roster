@@ -220,7 +220,6 @@ ${userTask}`;
             }
             return await response.json();
         } catch (error) {
-            clearTimeout(timeoutId);
             console.error("Failed to fetch pull requests:", error);
             return [];
         }
