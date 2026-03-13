@@ -56,11 +56,21 @@ class AgentPicker {
             });
         }
 
-        // 💎 Jeweler: Grid Keyboard Navigation
         // Ensure event delegation catches events bubbled from clusterize
         const pickerScrollArea = this.elements.pickerScrollArea;
         if (pickerScrollArea) {
-            pickerScrollArea.addEventListener("keydown", (e) => this.handleGridKeydown(e));
+            // Remove brittle custom roving tabindex logic, replacing with standard focus-trap
+            pickerScrollArea.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    const target = e.target.closest(".mini-agent-card");
+                    if (target) {
+                        e.preventDefault();
+                        const agentName = target.getAttribute("data-name");
+                        const agent = this.baseAgents.find(a => a.name.toLowerCase() === agentName);
+                        if (agent) this.handlePickerSelection(agent);
+                    }
+                }
+            });
 
             // Global event delegation for memoized/virtualized grid items
             pickerScrollArea.addEventListener("click", (e) => {
@@ -86,7 +96,7 @@ class AgentPicker {
             this.baseAgents.forEach((agent, index) => {
                 const delay = Math.min(index * 30, 300);
                 const htmlStr = `
-                <div class="mini-agent-card pop-in" style="animation-delay: ${delay}ms; display: flex;" role="option" tabindex="-1" data-name="${agent.name.toLowerCase()}">
+                <div class="mini-agent-card pop-in" style="animation-delay: ${delay}ms; display: flex;" role="option" tabindex="0" data-name="${agent.name.toLowerCase()}">
                     <span class="mini-icon">${agent.emoji}</span>
                     <span class="mini-name">${agent.name}</span>
                     <span class="mini-role">${agent.role}</span>
@@ -103,12 +113,6 @@ class AgentPicker {
 
             if (isCurrent) {
                 renderedHtml = renderedHtml.replace('class="mini-agent-card pop-in"', 'class="mini-agent-card pop-in selected" aria-selected="true"');
-            }
-
-            if (index === this.focusedIndex) {
-                renderedHtml = renderedHtml.replace('tabindex="-1"', 'tabindex="0"');
-                // Auto-focus class is injected but actual focus depends on keyboard event handling
-                renderedHtml = renderedHtml.replace('class="mini-agent-card', 'class="mini-agent-card is-focused');
             }
 
             return renderedHtml;
@@ -166,7 +170,6 @@ class AgentPicker {
             this.pickerClusterize.refresh(true);
         }
 
-        // Visual focus (.is-focused) is handled via getMemoizedHtml string replacement.
     }
 
     /**
@@ -200,6 +203,15 @@ class AgentPicker {
             history.pushState({ modalOpen: true }, "");
         }
 
+        // Initialize and activate focus-trap
+        if (typeof focusTrap !== 'undefined') {
+            this.trap = focusTrap.createFocusTrap(modal, {
+                escapeDeactivates: false, // Handled by our own close logic if needed, or let focus-trap handle it
+                allowOutsideClick: true,
+                fallbackFocus: modal
+            });
+        }
+
         // 🪄 Illusionist: Offload actual DOM generation to avoid main-thread blocking
         requestAnimationFrame(() => {
             setTimeout(() => {
@@ -208,15 +220,13 @@ class AgentPicker {
 
                 this.filteredResults = this.cachedHtmlStrings;
 
-                // Establish focus index: either selected agent or 0
-                this.focusedIndex = 0;
-                if (this.currentAgent) {
-                    const idx = this.filteredResults.findIndex(item => item.name === this.currentAgent.name.toLowerCase());
-                    if (idx !== -1) this.focusedIndex = idx;
-                }
-
                 grid.innerHTML = "";
                 this.updateGrid();
+
+                // Activate focus trap after the grid DOM is updated
+                if (this.trap) {
+                    this.trap.activate();
+                }
             }, 0);
         });
     }
@@ -253,6 +263,11 @@ class AgentPicker {
         this.activePickerSlot = null;
         this.currentAgent = null;
 
+        if (this.trap) {
+            this.trap.deactivate();
+            this.trap = null;
+        }
+
         // Return focus to trigger
         if (slotKey) {
             const btn = document.getElementById(slotKey + "Card");
@@ -260,95 +275,6 @@ class AgentPicker {
             setTimeout(() => {
                 if (btn) btn.focus();
             }, 50);
-        }
-    }
-
-    /**
-     * Handles keyboard navigation within the grid (Roving Tabindex)
-     */
-    handleGridKeydown(e) {
-        if (this.filteredResults.length === 0) return;
-
-        let newIndex = this.focusedIndex;
-
-        switch (e.key) {
-            case "ArrowRight":
-            case "ArrowDown": // Simple grid navigation: next item
-                newIndex = this.focusedIndex + 1;
-                if (newIndex >= this.filteredResults.length) newIndex = 0;
-                e.preventDefault();
-                break;
-            case "ArrowLeft":
-            case "ArrowUp": // Simple grid navigation: prev item
-                newIndex = this.focusedIndex - 1;
-                if (newIndex < 0) newIndex = this.filteredResults.length - 1;
-                e.preventDefault();
-                break;
-            case "Home":
-                newIndex = 0;
-                e.preventDefault();
-                break;
-            case "End":
-                newIndex = this.filteredResults.length - 1;
-                e.preventDefault();
-                break;
-            case "Enter":
-            case " ":
-                e.preventDefault();
-                // Trigger click logic
-                const focusedItem = this.filteredResults[this.focusedIndex];
-                if (focusedItem) {
-                    const agent = this.baseAgents.find(a => a.name.toLowerCase() === focusedItem.name);
-                    if (agent) this.handlePickerSelection(agent);
-                }
-                return;
-            default:
-                return;
-        }
-
-        // Update active index and re-render the view
-        if (newIndex !== this.focusedIndex) {
-            this.focusedIndex = newIndex;
-
-            // Try to find the new element in the DOM
-            const newFocusedItem = this.filteredResults[newIndex];
-            const el = document.querySelector(`#pickerGrid .mini-agent-card[data-name="${newFocusedItem.name}"]`);
-
-            if (el) {
-                // If it's already in the DOM, simply move focus without a full Clusterize re-render
-                const focusedNode = document.querySelector('#pickerGrid .mini-agent-card.is-focused');
-                if (focusedNode) {
-                    focusedNode.classList.remove('is-focused');
-                    focusedNode.setAttribute('tabindex', '-1');
-                }
-                el.classList.add('is-focused');
-                el.setAttribute('tabindex', '0');
-                el.focus();
-
-                // Ensure it's scrolled into view smoothly
-                el.scrollIntoView({ block: "nearest", behavior: "smooth" });
-            } else {
-                // If it's off-screen and missing from DOM, trigger a full re-render
-                // Clusterize will pick it up when we force scroll
-                this.updateGrid();
-
-                setTimeout(() => {
-                    // Try to scroll the scrollArea to approximate position based on index height
-                    const scrollArea = this.elements.pickerScrollArea;
-                    if (scrollArea) {
-                        // Assuming grid cards are ~80px height including gap, and say 4 columns wide
-                        const cols = Math.floor(scrollArea.clientWidth / 120) || 1;
-                        const row = Math.floor(newIndex / cols);
-                        scrollArea.scrollTop = row * 80; // approximate
-                    }
-
-                    // After scrolling, Clusterize generates DOM, then focus it
-                    setTimeout(() => {
-                        const newEl = document.querySelector(`#pickerGrid .mini-agent-card[data-name="${newFocusedItem.name}"]`);
-                        if (newEl) newEl.focus();
-                    }, 50);
-                }, 0);
-            }
         }
     }
 

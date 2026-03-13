@@ -1,5 +1,8 @@
 const { DOMParser } = require('@xmldom/xmldom');
 global.DOMParser = DOMParser;
+/**
+ * @jest-environment jsdom
+ */
 const PromptParser = require('./prompt-parser');
 
 describe('PromptParser', () => {

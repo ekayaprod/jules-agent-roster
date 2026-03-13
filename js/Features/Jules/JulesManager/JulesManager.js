@@ -15,6 +15,7 @@ const CORE_EMOJIS = {
 /**
  * Manages the core operations for interacting with Jules APIs.
  * Engineered for a single-line terminal output where GitHub handles completions.
+ * @see README.md#overview for the macro architectural scope.
  */
 class JulesManager {
     constructor(rosterApp) {
@@ -49,6 +50,11 @@ class JulesManager {
         this._checkEmptyTerminal();
     }
 
+    /**
+     * Bootstraps the manager, loads cached API keys, and initializes the modal.
+     * @returns {Promise<void>}
+     * @see README.md#1-initialization-and-authentication
+     */
     async init() {
         const apiKey = StorageUtils.getItem("jules_api_key");
         const githubToken = StorageUtils.getItem("github_api_key");
@@ -127,38 +133,66 @@ class JulesManager {
         const cancelBtn = this.getEl("cancelInteractionBtn");
         const submitBtn = this.getEl("submitInteractionBtn");
         const inputField = this.getEl("interactionModalInput");
+        const errorSpan = this.getEl("interactionModalError");
 
         if (!modal) return;
 
         const closeModal = () => {
             modal.classList.remove("visible");
             this.activeModalSessionId = null;
-            if (inputField) inputField.value = "";
+            if (inputField) {
+                inputField.value = "";
+                inputField.style.borderColor = "";
+                inputField.removeAttribute("aria-invalid");
+                inputField.removeAttribute("aria-describedby");
+            }
+            if (errorSpan) {
+                errorSpan.textContent = "";
+                errorSpan.classList.add("hidden");
+            }
         };
 
         const handleSubmit = async () => {
             const text = inputField.value.trim();
-            if (!text || !this.activeModalSessionId) return;
+            if (!text) {
+                if (inputField && errorSpan) {
+                    inputField.style.borderColor = "#ef4444";
+                    inputField.setAttribute("aria-invalid", "true");
+                    inputField.setAttribute("aria-describedby", "interactionModalError");
+                    errorSpan.textContent = "Please provide a response before transmitting.";
+                    errorSpan.classList.remove("hidden");
+                }
+                return;
+            }
+            if (!this.activeModalSessionId) return;
 
-            DOMUtils.setButtonState(submitBtn, "loading", "...");
-            inputField.disabled = true;
+            // 🪄 CONJURE: Optimistic UI with silent rollback for interaction modal
+            const sessionId = this.activeModalSessionId;
+            const statusSpan = document.getElementById(`status-${sessionId}`);
+            const previousStatusHtml = statusSpan ? statusSpan.innerHTML : "";
+            const previousStatusClass = statusSpan ? statusSpan.className : "";
+            const previousStatusOnclick = statusSpan ? statusSpan.onclick : null;
+
+            closeModal();
+            this.app.toast.show("Transmitting reply...", "info");
+
+            if (statusSpan) {
+                statusSpan.className = "term-status skeleton-pulse";
+                statusSpan.textContent = "Transmitting response...";
+                statusSpan.onclick = null;
+            }
 
             try {
-                await window.julesService.sendUserInput(this.activeModalSessionId, text);
+                await window.julesService.sendUserInput(sessionId, text);
                 this.app.toast.show("Reply transmitted.", "success");
-                
-                const statusSpan = document.getElementById(`status-${this.activeModalSessionId}`);
-                if (statusSpan) {
-                    statusSpan.className = "term-status";
-                    statusSpan.textContent = "Transmitting response...";
-                    statusSpan.onclick = null;
-                }
-                closeModal();
             } catch (e) {
                 this.app.toast.show("Failed to send reply.", "error");
-            } finally {
-                DOMUtils.setButtonState(submitBtn, "ready", "Transmit Reply");
-                inputField.disabled = false;
+                // Silent rollback on error
+                if (statusSpan) {
+                    statusSpan.className = previousStatusClass || "term-status status-waiting";
+                    statusSpan.innerHTML = previousStatusHtml || `⚠️ Response Needed (Click to view)`;
+                    statusSpan.onclick = previousStatusOnclick;
+                }
             }
         };
 
@@ -166,6 +200,15 @@ class JulesManager {
         submitBtn?.addEventListener("click", handleSubmit);
         inputField?.addEventListener("keydown", (e) => {
             if (e.key === "Enter") handleSubmit();
+        });
+        inputField?.addEventListener("input", () => {
+            if (inputField && errorSpan) {
+                inputField.style.borderColor = "";
+                inputField.removeAttribute("aria-invalid");
+                inputField.removeAttribute("aria-describedby");
+                errorSpan.textContent = "";
+                errorSpan.classList.add("hidden");
+            }
         });
     }
 
@@ -201,6 +244,11 @@ class JulesManager {
         span.style.display = "none";
     }
 
+    /**
+     * Fetches the connected source repositories and populates the source dropdown picker.
+     * @returns {Promise<void>}
+     * @see README.md#2-repository-source-selection
+     */
     async loadSources() {
         const picker = this.getEl("julesRepoPicker");
         if (!picker || !window.julesService) return;
@@ -247,6 +295,12 @@ class JulesManager {
         }
     }
 
+    /**
+     * Initializes a recurring active session polling loop for a specific repository.
+     * @param {string} sourceName - The target source/repo identifier (e.g. sources/github/owner/repo)
+     * @returns {Promise<void>}
+     * @see README.md#4-active-sessions-polling
+     */
     async loadActiveSessionsForRepo(sourceName) {
         const terminal = this.getEl("julesTerminal");
         
@@ -266,6 +320,12 @@ class JulesManager {
         this.activeSessionsInterval = setInterval(boundFetch, 5000);
     }
 
+    /**
+     * Retrieves the latest active PRs for the repository to synchronize the UI with actual VCS state.
+     * @param {string} sourceName - The targeted repository.
+     * @returns {Promise<void>}
+     * @see README.md#6-pull-request-rendering
+     */
     async loadPullRequestsForRepo(sourceName) {
         if (!window.julesService) return;
         try {
@@ -369,13 +429,16 @@ class JulesManager {
         
         let matchedAgent = this.app.agents.find(a => safeAgentName.includes(a.name));
         if (!matchedAgent && this.app.customAgents) {
-            const flatCustoms = [];
-            for (const category in this.app.customAgents) {
-                if (typeof this.app.customAgents[category] === 'object') {
-                    flatCustoms.push(...Object.values(this.app.customAgents[category]));
+            // ⚡ ACCELERATE: Cache the flattened custom agents to eliminate redundant O(N) Object.values traversals inside the session loop.
+            if (!this._flatCustomsCache) {
+                this._flatCustomsCache = [];
+                for (const category in this.app.customAgents) {
+                    if (typeof this.app.customAgents[category] === 'object') {
+                        this._flatCustomsCache.push(...Object.values(this.app.customAgents[category]));
+                    }
                 }
             }
-            matchedAgent = flatCustoms.find(a => a.name && safeAgentName.includes(a.name));
+            matchedAgent = this._flatCustomsCache.find(a => a.name && safeAgentName.includes(a.name));
         }
 
         if (matchedAgent && matchedAgent.emoji) {
@@ -410,6 +473,14 @@ class JulesManager {
         this.startTerminalPolling(session.id, block, safeAgentName, agentEmoji);
     }
 
+    /**
+     * Orchestrates the creation of a new task session execution.
+     * Implements an optimistic UI state block that handles silent rollback on API failure.
+     * @param {Object} agent - The agent data representing the logic to execute.
+     * @param {HTMLElement} [btn=null] - Optional launch button reference for state manipulation.
+     * @returns {Promise<void>}
+     * @see README.md#3-session-launching
+     */
     async launchSession(agent, btn = null) {
         const sourceName = this.getEl("julesRepoPicker").value;
         const userTask = this.getEl("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
@@ -419,19 +490,55 @@ class JulesManager {
             return;
         }
 
+        // 🪄 CONJURE: Optimistic UI for Session Launch with CSS skeletal rendering
+        const terminal = this.getEl("julesTerminal");
+        const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
+        if (fetchingIndicator) fetchingIndicator.style.display = 'none';
+
+        const optimisticBlock = document.createElement("div");
+        optimisticBlock.className = `term-session-line state-active skeleton-pulse`;
+        let agentEmoji = agent.emoji || "🤖";
+        let safeAgentName = agent.name ? agent.name.replace(/"/g, '') : "Agent Task";
+
+        optimisticBlock.innerHTML = `
+            <span class="term-agent-name">${agentEmoji} ${safeAgentName}</span>
+            <span class="term-separator">—</span>
+            <span class="term-status">Conjuring session...</span>
+        `;
+
+        const firstSession = terminal.querySelector('.term-session-line:not(#fetchingIndicator)');
+        if (firstSession) {
+            terminal.insertBefore(optimisticBlock, firstSession);
+        } else {
+            terminal.appendChild(optimisticBlock);
+        }
+
         if (btn) DOMUtils.setButtonState(btn, "loading", "Launching...");
 
         try {
             await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
             this.app.toast.show(`Session launched successfully.`, "success");
-            this._fetchAndRenderSessions(sourceName, this.getEl("julesTerminal"));
+            await this._fetchAndRenderSessions(sourceName, terminal);
         } catch (err) {
             this.app.toast.show(`Launch failed. Check API key and permissions.`, "error");
+            if (fetchingIndicator) fetchingIndicator.style.display = '';
         } finally {
+            if (optimisticBlock.parentNode) optimisticBlock.remove();
             if (btn) DOMUtils.setButtonState(btn, "ready", "Launch in Jules 🚀");
+            this._checkEmptyTerminal();
         }
     }
 
+    /**
+     * Attaches an active heartbeat to a specific session execution.
+     * Polls the backend every 3 seconds to gather new terminal states or block on user input requests.
+     * @param {string} sessionId - The backend ID for the active execution.
+     * @param {HTMLElement} block - The terminal line DOM element for updates.
+     * @param {string} agentName - The agent's title.
+     * @param {string} agentEmoji - The UI icon representing the agent.
+     * @returns {void}
+     * @see README.md#5-terminal-state-updates
+     */
     startTerminalPolling(sessionId, block, agentName, agentEmoji) {
         if (!this.julesPollingIntervals) this.julesPollingIntervals = {};
         if (this.julesPollingIntervals[sessionId]) clearInterval(this.julesPollingIntervals[sessionId]);
@@ -523,6 +630,12 @@ class JulesManager {
         }
     }
 
+    /**
+     * Flushes all active polling timers, removes zombie callbacks, and unbinds state IDs
+     * to prevent memory leaks when changing contexts.
+     * @returns {void}
+     * @see README.md#7-memory-management
+     */
     cleanup() {
         if (this.activeSessionsInterval) {
             clearInterval(this.activeSessionsInterval);
@@ -531,6 +644,7 @@ class JulesManager {
         this._clearPollingAndCache();
         if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
         this.currentRepo = null;
+        this._flatCustomsCache = null;
     }
 
     _clearPollingAndCache() {
@@ -539,6 +653,7 @@ class JulesManager {
             this.julesPollingIntervals = {};
         }
         if (this.renderedSessionIds) this.renderedSessionIds.clear();
+        this._flatCustomsCache = null;
     }
 }
 

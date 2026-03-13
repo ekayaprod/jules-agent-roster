@@ -11,7 +11,7 @@ class ClipboardUtils {
      * seamlessly dropping down to `execCommand('copy')` for older browser compatibility.
      * @param {string} text - The raw text payload to inject into the clipboard.
      * @returns {Promise<boolean>} True if the operation was completely successful.
-     * @see README.md#clipboardutils-architecture
+     * @see README.md#1-clipboard-operations for the fallback mechanics details.
      */
     static async copyText(text) {
         // 1. Try Modern Clipboard API
@@ -52,7 +52,7 @@ class ClipboardUtils {
      * @param {string} successMessage - The temporary text string to render.
      * @param {number} [duration=DEFAULT_SUCCESS_DURATION] - The timeout duration in milliseconds before resetting.
      * @returns {void}
-     * @see README.md#clipboardutils-architecture
+     * @see README.md#2-temporal-ui-states for visual rollback logic and styling interactions.
      */
     static animateButtonSuccess(btn, successMessage, duration = DEFAULT_SUCCESS_DURATION) {
         if (!btn) return;

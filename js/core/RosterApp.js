@@ -375,7 +375,7 @@ class RosterApp {
 
       // 2. Close specific card dropdowns if clicked outside
       this.activeDropdowns.forEach(menu => {
-          if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
+          if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]') && !e.target.closest('[data-action="toggle-splay"]')) {
               closeDropdownMenu(menu, this);
           }
       });
@@ -408,7 +408,7 @@ class RosterApp {
 
       // 4. Flip Card Front (Open)
       const frontTarget = e.target.closest('[data-action="flip-card"]');
-      if (frontTarget) {
+      if (frontTarget && !e.target.closest('[data-action="toggle-splay"]') && !e.target.closest('.splay-menu')) {
           const card = frontTarget.closest('.flip-card');
           if (!card) return;
 
@@ -440,6 +440,30 @@ class RosterApp {
 
       // 6. Action Dropdown Toggle (For individual cards)
       const toggleTarget = e.target.closest('[data-action="toggle-card-dropdown"]');
+      const splayTarget = e.target.closest('[data-action="toggle-splay"]');
+
+      if (splayTarget) {
+          e.stopPropagation();
+          const index = splayTarget.dataset.index;
+          const dropdown = document.getElementById(`splay-menu-${index}`);
+
+          // Close others
+          this.activeDropdowns.forEach(menu => {
+              if (menu !== dropdown) {
+                  closeDropdownMenu(menu, this);
+              }
+          });
+
+          if (!dropdown) return;
+          const isVisible = dropdown.classList.toggle('visible');
+          if (isVisible) {
+              this.activeDropdowns.add(dropdown);
+          } else {
+              this.activeDropdowns.delete(dropdown);
+          }
+          splayTarget.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
+          return;
+      }
       if (toggleTarget) {
           e.stopPropagation();
           const index = toggleTarget.dataset.index;

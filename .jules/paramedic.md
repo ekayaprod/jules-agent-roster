@@ -14,3 +14,12 @@
 **Title**: [Uninitialized State Triage in FusionIndex Render Pass]
 **Learning**: Directly passing an uninitialized or asynchronously loaded state parameter (e.g., `this.customAgents`) to an iterator pattern like `Object.values()` without guarding causes an immediate `TypeError` that will abort the entire rendering pipeline.
 **Action**: Explicitly verify environment contexts (`typeof document === 'undefined'`) and inject fallback assignments (`this.customAgents || {}`) before passing objects down the execution chain during component initialization.
+2024-05-25
+**Title**: [Dynamic Parsing Hazard in JulesAPI Polling]
+**Learning**: In modern asynchronous Javascript network requests using `AbortController`, referencing an out-of-scope `timeoutId` inside a `catch` block (e.g. `clearTimeout(timeoutId)`) throws an immediate `ReferenceError`. This overrides the network error being handled and bypasses intended safe-fallback array returns `[]`, triggering fatal `TypeError` crashes in downstream UI boot sequences.
+**Action**: Clean up dangling identifiers like `clearTimeout(timeoutId)` from `catch` blocks when transitioning from `setTimeout`-based timeouts to modern `AbortController` request signals.
+
+2026-03-13
+**Title**: [Event Delegation Race Condition Triage in UI Rendering]
+**Learning**: Broad event delegation patterns (like capturing clicks on `.flip-card`) can swallow interactions intended for nested interactive elements (like a splay menu). Clicking the nested element correctly triggers its local logic but simultaneously triggers the broader parent event, leading to conflicting visual states.
+**Action**: Implement explicit structural exclusion guards (e.g., `!e.target.closest('[data-action="toggle-splay"]')`) within broad parent delegation handlers to ensure mutually exclusive interaction zones for complex nested components.

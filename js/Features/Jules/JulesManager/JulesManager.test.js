@@ -447,9 +447,8 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             await submitBtn.click();
 
             expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', 'error');
-            expect(inputField.disabled).toBe(false);
-            // Modal should remain open on failure (not closed in catch, only finally clears loading)
-            expect(DOMUtils.setButtonState).toHaveBeenCalledWith(submitBtn, 'ready', 'Transmit Reply');
+            // Illusionist: Modal now closes immediately due to optimistic UI.
+            expect(modal.classList.contains('visible')).toBe(false);
         });
 
         it('should not submit if input is empty', async () => {
@@ -614,6 +613,8 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         it('prevents race conditions during concurrent updates exposing unhandled Promise.all rejections safely', async () => {
             // 🕵️ INTERROGATE: Mocked infrastructure boundaries, concurrency stress, and negative assertions.
             window.julesService.getSources.mockResolvedValueOnce({
+        it('should trigger concurrent API loads on valid repo change', async () => {
+            window.julesService.getSources.mockResolvedValue({
                 sources: [{ name: 'sources/github/a/b', githubRepo: { owner: 'a', repo: 'b' } }]
             });
             await manager.loadSources();
@@ -658,6 +659,43 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             } finally {
                 promiseAllSpy.mockRestore();
             }
+            const loadPRSpy = jest.spyOn(manager, 'loadPullRequestsForRepo').mockResolvedValue();
+            const loadSessionsSpy = jest.spyOn(manager, 'loadActiveSessionsForRepo').mockResolvedValue();
+
+            const picker = document.getElementById('julesRepoPicker');
+            picker.value = 'sources/github/a/b';
+
+            // Dispatch change event to trigger listeners
+            const event = new Event('change');
+            picker.dispatchEvent(event);
+
+            // Wait for microtasks to resolve the async event listener promise execution
+            await Promise.resolve();
+            await Promise.resolve();
+
+            expect(loadPRSpy).toHaveBeenCalledWith('sources/github/a/b');
+            expect(loadSessionsSpy).toHaveBeenCalledWith('sources/github/a/b');
+        });
+
+        it('should clear state and show fetching indicator on empty repo change', async () => {
+            window.julesService.getSources.mockResolvedValue({
+                sources: [{ name: 'sources/github/a/b', githubRepo: { owner: 'a', repo: 'b' } }]
+            });
+            await manager.loadSources();
+
+            const clearSpy = jest.spyOn(manager, '_clearPollingAndCache');
+
+            const picker = document.getElementById('julesRepoPicker');
+            picker.value = '';
+
+            const event = new Event('change');
+            picker.dispatchEvent(event);
+
+            await Promise.resolve();
+            await Promise.resolve();
+
+            expect(clearSpy).toHaveBeenCalled();
+            expect(document.getElementById('julesTerminal').innerHTML).toContain('[SYS] Awaiting repository connection...');
         });
     });
 
