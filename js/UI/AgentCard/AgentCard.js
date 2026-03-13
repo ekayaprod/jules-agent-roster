@@ -57,6 +57,33 @@ class AgentCard {
         const pinClass = isPinned ? 'pinned' : '';
         const pinHtml = isNaN(index) ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" >📌</button>` : '';
 
+        // Splay Out Child Fusions Logic
+        let splayHtml = '';
+        if (!isNaN(index) && window.rosterApp && window.rosterApp.fusionLab && window.rosterApp.fusionLab.fusionIndex) {
+            const unlockedKeys = window.rosterApp.fusionLab.fusionIndex.unlockedKeys;
+            const childKeys = Array.from(unlockedKeys).filter(key => key.includes(agent.name));
+
+            if (childKeys.length > 0) {
+                let splayItems = '';
+                childKeys.forEach(childKey => {
+                    const childAgent = window.rosterApp.getCustomAgent(childKey) || window.rosterApp.fusionLab.compiler.customAgentsMap[childKey];
+                    if (childAgent) {
+                        const childIcon = FormatUtils.extractIcon(childAgent);
+                        const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
+                        splayItems += `<button class="dropdown-item" data-action="launch-jules" data-index="${childKey}" role="menuitem" aria-label="Launch ${safeChildName}">${childIcon} ${safeChildName}</button>`;
+                    }
+                });
+
+                splayHtml = `
+                    <button class="icon-btn splay-btn" data-action="toggle-splay" data-index="${index}" aria-label="Show Child Fusions" aria-haspopup="menu" aria-expanded="false" aria-controls="splay-menu-${index}">🧬</button>
+                    <div class="splay-menu dropdown-menu" id="splay-menu-${index}" role="menu">
+                        <div class="dropdown-header">Unlocked Fusions</div>
+                        ${splayItems}
+                    </div>
+                `;
+            }
+        }
+
         const repoPicker = document.getElementById("julesRepoPicker");
         const isRepoSelected = repoPicker && repoPicker.value !== "";
 
@@ -71,6 +98,7 @@ class AgentCard {
             <div class="flip-card-inner">
                 <div class="flip-card-front" data-action="flip-card" data-index="${index}">
                     ${pinHtml}
+                    ${splayHtml}
                     <div class="front-content-wrapper">
                         <div class="card-top">
                             <div class="card-top-left">
