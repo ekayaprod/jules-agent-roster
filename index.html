@@ -311,6 +311,11 @@
       /* UTILS */
       .pin-btn { position: absolute; z-index: 2; right: 0; top: 0; font-size: var(--text-lg); line-height: var(--leading-none); transition: all 0.2s; opacity: 0.6; filter: grayscale(1); min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; color: var(--text-secondary); padding: 0; cursor: pointer; }
       .pin-btn.pinned { opacity: 1; filter: grayscale(0); transform: rotate(15deg); color: var(--text-primary); }
+
+      .splay-btn { position: absolute; z-index: 2; right: 2.75rem; top: 0; font-size: var(--text-lg); line-height: var(--leading-none); transition: all 0.2s; opacity: 0.8; min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; padding: 0; cursor: pointer; }
+      .splay-btn:hover { transform: scale(1.1); opacity: 1; }
+      .splay-menu { top: 2.75rem; bottom: auto; right: 2.75rem; max-height: 15rem; overflow-y: auto; z-index: 60; }
+      .dropdown-header { padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: bold; color: var(--text-secondary); text-transform: uppercase; border-bottom: 1px solid var(--border); }
       .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem 1rem; }
       .empty-state.visible { display: flex; }
       .hidden { display: none !important; } .mt-6 { margin-top: 1.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .flex { display: flex; }
