@@ -429,13 +429,16 @@ class JulesManager {
         
         let matchedAgent = this.app.agents.find(a => safeAgentName.includes(a.name));
         if (!matchedAgent && this.app.customAgents) {
-            const flatCustoms = [];
-            for (const category in this.app.customAgents) {
-                if (typeof this.app.customAgents[category] === 'object') {
-                    flatCustoms.push(...Object.values(this.app.customAgents[category]));
+            // ⚡ ACCELERATE: Cache the flattened custom agents to eliminate redundant O(N) Object.values traversals inside the session loop.
+            if (!this._flatCustomsCache) {
+                this._flatCustomsCache = [];
+                for (const category in this.app.customAgents) {
+                    if (typeof this.app.customAgents[category] === 'object') {
+                        this._flatCustomsCache.push(...Object.values(this.app.customAgents[category]));
+                    }
                 }
             }
-            matchedAgent = flatCustoms.find(a => a.name && safeAgentName.includes(a.name));
+            matchedAgent = this._flatCustomsCache.find(a => a.name && safeAgentName.includes(a.name));
         }
 
         if (matchedAgent && matchedAgent.emoji) {
@@ -641,6 +644,7 @@ class JulesManager {
         this._clearPollingAndCache();
         if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
         this.currentRepo = null;
+        this._flatCustomsCache = null;
     }
 
     _clearPollingAndCache() {
@@ -649,6 +653,7 @@ class JulesManager {
             this.julesPollingIntervals = {};
         }
         if (this.renderedSessionIds) this.renderedSessionIds.clear();
+        this._flatCustomsCache = null;
     }
 }
 
