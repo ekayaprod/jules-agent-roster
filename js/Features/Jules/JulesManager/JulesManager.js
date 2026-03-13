@@ -127,18 +127,38 @@ class JulesManager {
         const cancelBtn = this.getEl("cancelInteractionBtn");
         const submitBtn = this.getEl("submitInteractionBtn");
         const inputField = this.getEl("interactionModalInput");
+        const errorSpan = this.getEl("interactionModalError");
 
         if (!modal) return;
 
         const closeModal = () => {
             modal.classList.remove("visible");
             this.activeModalSessionId = null;
-            if (inputField) inputField.value = "";
+            if (inputField) {
+                inputField.value = "";
+                inputField.style.borderColor = "";
+                inputField.removeAttribute("aria-invalid");
+                inputField.removeAttribute("aria-describedby");
+            }
+            if (errorSpan) {
+                errorSpan.textContent = "";
+                errorSpan.classList.add("hidden");
+            }
         };
 
         const handleSubmit = async () => {
             const text = inputField.value.trim();
-            if (!text || !this.activeModalSessionId) return;
+            if (!text) {
+                if (inputField && errorSpan) {
+                    inputField.style.borderColor = "#ef4444";
+                    inputField.setAttribute("aria-invalid", "true");
+                    inputField.setAttribute("aria-describedby", "interactionModalError");
+                    errorSpan.textContent = "Please provide a response before transmitting.";
+                    errorSpan.classList.remove("hidden");
+                }
+                return;
+            }
+            if (!this.activeModalSessionId) return;
 
             // 🪄 CONJURE: Optimistic UI with silent rollback for interaction modal
             const sessionId = this.activeModalSessionId;
@@ -174,6 +194,15 @@ class JulesManager {
         submitBtn?.addEventListener("click", handleSubmit);
         inputField?.addEventListener("keydown", (e) => {
             if (e.key === "Enter") handleSubmit();
+        });
+        inputField?.addEventListener("input", () => {
+            if (inputField && errorSpan) {
+                inputField.style.borderColor = "";
+                inputField.removeAttribute("aria-invalid");
+                inputField.removeAttribute("aria-describedby");
+                errorSpan.textContent = "";
+                errorSpan.classList.add("hidden");
+            }
         });
     }
 
