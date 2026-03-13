@@ -177,10 +177,12 @@ ${userTask}`;
         return this._fetch(`sessions/${sessionId}/activities?pageSize=50`);
     }
 
+    // ✍️ ILLUMINATE: The getPullRequests polling loop explicitly swallows all network errors, non-404 statuses, and invalid formats.
+    // Returning a safe fallback empty array [] prevents the entire RosterApp UI from crashing when the GitHub API rate limits or times out.
     /**
      * Retrieves the list of open pull requests for a given repository via the GitHub API.
      * @param {string} sourceName - The target repository source name (e.g., 'sources/github/owner/repo').
-     * @returns {Promise<Array>} The JSON response containing the open pull requests.
+     * @returns {Promise<Array>} The JSON response containing the open pull requests, or a safe fallback [] on failure.
      */
     async getPullRequests(sourceName) {
         if (!sourceName.startsWith('sources/github/')) {
