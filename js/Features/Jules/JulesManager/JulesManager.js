@@ -15,6 +15,7 @@ const CORE_EMOJIS = {
 /**
  * Manages the core operations for interacting with Jules APIs.
  * Engineered for a single-line terminal output where GitHub handles completions.
+ * @see README.md#overview for the macro architectural scope.
  */
 class JulesManager {
     constructor(rosterApp) {
@@ -49,6 +50,11 @@ class JulesManager {
         this._checkEmptyTerminal();
     }
 
+    /**
+     * Bootstraps the manager, loads cached API keys, and initializes the modal.
+     * @returns {Promise<void>}
+     * @see README.md#1-initialization-and-authentication
+     */
     async init() {
         const apiKey = StorageUtils.getItem("jules_api_key");
         const githubToken = StorageUtils.getItem("github_api_key");
@@ -238,6 +244,11 @@ class JulesManager {
         span.style.display = "none";
     }
 
+    /**
+     * Fetches the connected source repositories and populates the source dropdown picker.
+     * @returns {Promise<void>}
+     * @see README.md#2-repository-source-selection
+     */
     async loadSources() {
         const picker = this.getEl("julesRepoPicker");
         if (!picker || !window.julesService) return;
@@ -284,6 +295,12 @@ class JulesManager {
         }
     }
 
+    /**
+     * Initializes a recurring active session polling loop for a specific repository.
+     * @param {string} sourceName - The target source/repo identifier (e.g. sources/github/owner/repo)
+     * @returns {Promise<void>}
+     * @see README.md#4-active-sessions-polling
+     */
     async loadActiveSessionsForRepo(sourceName) {
         const terminal = this.getEl("julesTerminal");
         
@@ -303,6 +320,12 @@ class JulesManager {
         this.activeSessionsInterval = setInterval(boundFetch, 5000);
     }
 
+    /**
+     * Retrieves the latest active PRs for the repository to synchronize the UI with actual VCS state.
+     * @param {string} sourceName - The targeted repository.
+     * @returns {Promise<void>}
+     * @see README.md#6-pull-request-rendering
+     */
     async loadPullRequestsForRepo(sourceName) {
         if (!window.julesService) return;
         try {
@@ -447,6 +470,14 @@ class JulesManager {
         this.startTerminalPolling(session.id, block, safeAgentName, agentEmoji);
     }
 
+    /**
+     * Orchestrates the creation of a new task session execution.
+     * Implements an optimistic UI state block that handles silent rollback on API failure.
+     * @param {Object} agent - The agent data representing the logic to execute.
+     * @param {HTMLElement} [btn=null] - Optional launch button reference for state manipulation.
+     * @returns {Promise<void>}
+     * @see README.md#3-session-launching
+     */
     async launchSession(agent, btn = null) {
         const sourceName = this.getEl("julesRepoPicker").value;
         const userTask = this.getEl("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
@@ -495,6 +526,16 @@ class JulesManager {
         }
     }
 
+    /**
+     * Attaches an active heartbeat to a specific session execution.
+     * Polls the backend every 3 seconds to gather new terminal states or block on user input requests.
+     * @param {string} sessionId - The backend ID for the active execution.
+     * @param {HTMLElement} block - The terminal line DOM element for updates.
+     * @param {string} agentName - The agent's title.
+     * @param {string} agentEmoji - The UI icon representing the agent.
+     * @returns {void}
+     * @see README.md#5-terminal-state-updates
+     */
     startTerminalPolling(sessionId, block, agentName, agentEmoji) {
         if (!this.julesPollingIntervals) this.julesPollingIntervals = {};
         if (this.julesPollingIntervals[sessionId]) clearInterval(this.julesPollingIntervals[sessionId]);
@@ -586,6 +627,12 @@ class JulesManager {
         }
     }
 
+    /**
+     * Flushes all active polling timers, removes zombie callbacks, and unbinds state IDs
+     * to prevent memory leaks when changing contexts.
+     * @returns {void}
+     * @see README.md#7-memory-management
+     */
     cleanup() {
         if (this.activeSessionsInterval) {
             clearInterval(this.activeSessionsInterval);
