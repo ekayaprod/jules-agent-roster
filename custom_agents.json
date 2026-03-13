@@ -9,12 +9,12 @@
       "role": "Of Perceived Performance"
     },
     "Bolt+,Sentinel+": {
-      "name": "Broker",
-      "emoji": "💼",
+      "name": "Payload",
+      "emoji": "🚂",
       "short_description": "Implements extreme edge-caching for public routes while quarantining authenticated data with strict no-store directives. Maximum speed where it's safe, zero exposure where it's not.",
       "category": "core",
       "type": "fusion",
-      "role": "Speed And Security"
+      "role": "Armored Express"
     },
     "Palette+,Sentinel+": {
       "name": "Warden",
