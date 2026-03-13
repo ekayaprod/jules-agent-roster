@@ -481,11 +481,13 @@
             </h3>
             <div id="interactionModalMessage" style="background: var(--term-bg); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--term-border); font-family: monospace; font-size: var(--text-xs); color: var(--text-primary); max-height: 15rem; overflow-y: auto; white-space: pre-wrap; margin-bottom: 0.5rem;"></div>
             <div style="display:flex; flex-direction:column; gap: 0.5rem;">
-                <input type="text" id="interactionModalInput" class="modal-input" placeholder="Type 'proceed', 'yes', or provide specific instructions..." style="font-family: monospace;" />
+                <label for="interactionModalInput" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Your reply</label>
+                <input type="text" id="interactionModalInput" class="modal-input transition-all duration-200" placeholder="Type 'proceed', 'yes', or provide specific instructions..." style="font-family: monospace;" />
+                <span id="interactionModalError" role="alert" class="text-xs hidden" style="color: #ef4444; margin-top: 0.25rem;"></span>
             </div>
             <div class="flex" style="gap: 1rem; margin-top: 0.5rem;">
-                <button id="cancelInteractionBtn" class="secondary" style="flex:1;">Cancel</button>
-                <button id="submitInteractionBtn" style="flex:1;">Transmit Reply</button>
+                <button id="cancelInteractionBtn" class="secondary" style="flex:1;" aria-label="Cancel Reply">Cancel</button>
+                <button id="submitInteractionBtn" style="flex:1;" aria-label="Transmit Reply">Transmit Reply</button>
             </div>
         </div>
     </div>

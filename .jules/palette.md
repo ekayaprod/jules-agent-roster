@@ -56,3 +56,8 @@
 **Title**: [Combined Jules Execution and GitHub PR UI]
 **Learning**: [Separating conceptually similar inbound/outbound feeds (like Jules execution sessions and the resulting GitHub PRs) into distinct UI panels creates visual clutter and forces users to split their attention. Furthermore, rendering "completed" AI sessions that already have associated PRs duplicates information.]
 **Action**: [When dealing with an AI agent that generates external artifacts (like PRs), merge their execution feed with the artifact feed into a single unified terminal/timeline. Filter out the raw AI session logs once the resulting artifact (PR) is created to keep the UI focused on actionable, current states.]
+
+2026-03-13
+**Title**: [Harmonized Jules Interaction Modal with Inline Validation & Accessibility]
+**Learning**: [Silent validation failures on mandatory input fields cause confusion. Combining explicit ARIA attributes (like `aria-invalid` and `aria-describedby`) with contextual, visual inline error messages creates a far more responsive, premium, and accessible interaction flow than doing nothing.]
+**Action**: [When implementing modals requiring user input, enforce inline validation with actionable error states and clear visual feedback instead of silent returns.]
