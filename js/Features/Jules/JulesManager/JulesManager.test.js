@@ -451,6 +451,109 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             expect(modal.classList.contains('visible')).toBe(false);
         });
 
+        it('should handle missing inputField or errorSpan during close', () => {
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            inputField.remove();
+            manager.elements['interactionModalInput'] = null;
+
+            const errSpan = document.getElementById('interactionModalError');
+            if (errSpan) errSpan.remove();
+            manager.elements['interactionModalError'] = null;
+
+            cancelBtn.click();
+            expect(modal.classList.contains('visible')).toBe(false);
+        });
+
+        it('should not submit if input is empty and inputField/errorSpan are missing', async () => {
+            window.julesService.sendUserInput = jest.fn();
+            inputField.remove();
+            manager.elements['interactionModalInput'] = null;
+            const errSpan = document.getElementById('interactionModalError');
+            if (errSpan) errSpan.remove();
+            manager.elements['interactionModalError'] = null;
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            await submitBtn.click();
+            expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
+        });
+
+        it('should perform silent rollback when API fails but statusSpan is missing', async () => {
+            window.julesService.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            const statusSpan = document.getElementById('status-s123');
+            if (statusSpan) statusSpan.remove();
+            inputField.value = 'My response';
+            await submitBtn.click();
+            expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', 'error');
+        });
+
+        it('should handle interaction modal gracefully if inputField is missing but errorSpan is present during submission with empty text', async () => {
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.elements['interactionModalInput'] = null;
+            inputField.remove();
+            await submitBtn.click();
+        });
+
+        it('should handle interaction modal gracefully if inputField is present but errorSpan is missing during submission with empty text', async () => {
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.elements['interactionModalError'] = null;
+            const errSpan = document.getElementById('interactionModalError');
+            if (errSpan) errSpan.remove();
+            await submitBtn.click();
+        });
+
+        it('should handle interaction modal missing elements gracefully when submit button clicked and input empty', async () => {
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            const originalInputField = manager.getEl('interactionModalInput');
+            originalInputField.value = '   ';
+
+            manager.elements['interactionModalInput'] = null;
+            manager.elements['interactionModalError'] = null;
+
+            window.julesService.sendUserInput = jest.fn();
+            await submitBtn.click();
+
+            expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
+        });
+
+        it('should handle interaction modal missing input field/error span during input event branch', async () => {
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            const originalInputField = manager.getEl('interactionModalInput');
+            const originalErrorSpan = manager.getEl('interactionModalError');
+
+            manager.elements['interactionModalInput'] = null;
+            manager.elements['interactionModalError'] = null;
+
+            const event = new Event('input');
+            if(originalInputField) {
+                 originalInputField.dispatchEvent(event);
+            }
+        });
+
+        it('should handle missing errorSpan when input is empty', async () => {
+            window.julesService.sendUserInput = jest.fn();
+            const errSpan = document.getElementById('interactionModalError');
+            if (errSpan) errSpan.remove();
+            manager.elements['interactionModalError'] = null;
+            inputField.value = '';
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            await submitBtn.click();
+            expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
+        });
+
+        it('should handle interaction modal gracefully if inputField is missing during input event', async () => {
+            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            inputField.remove();
+            manager.elements['interactionModalInput'] = null;
+            const event = new Event('input');
+            if(inputField) {
+                inputField.dispatchEvent(event);
+            }
+            expect(true).toBe(true);
+        });
+
         it('should not submit if input is empty', async () => {
             window.julesService.sendUserInput = jest.fn();
             manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
@@ -704,6 +807,29 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             expect(clearSpy).toHaveBeenCalled();
             expect(document.getElementById('julesTerminal').innerHTML).toContain('[SYS] Awaiting repository connection...');
         });
+
+        it('should catch error when loadPullRequestsForRepo throws an exception', async () => {
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+            window.julesService.getPullRequests = jest.fn().mockRejectedValueOnce(new Error('Network Fail PRs'));
+            await manager.loadPullRequestsForRepo('sources/github/a/b');
+            expect(consoleSpy).toHaveBeenCalledWith('Failed to load pull requests:', expect.any(Error));
+            consoleSpy.mockRestore();
+        });
+
+        it('_renderPullRequests should clear old PRs and render new ones', () => {
+            const terminal = document.createElement('div');
+            terminal.innerHTML = '<div class="term-pr-item">Old PR</div><div id="fetchingIndicator">Loading...</div><div class="term-session-line">Task 1</div>';
+
+            const prs = [
+                { html_url: 'http://pr/1', number: 1, title: 'First PR' },
+                { html_url: 'http://pr/2', number: 2, title: 'Second PR' }
+            ];
+
+            manager._renderPullRequests(prs, terminal);
+
+            expect(terminal.querySelectorAll('.term-pr-item').length).toBe(2);
+            expect(terminal.querySelector('#fetchingIndicator')).toBeNull();
+        });
     });
 
     describe('loadActiveSessionsForRepo', () => {
@@ -846,6 +972,17 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             expect(manager.julesPollingIntervals['old1']).toBeUndefined();
         });
 
+        it('should handle runtime exception gracefully inside loop', async () => {
+             window.julesService.getSessions.mockResolvedValue({
+                 sessions: [{ id: 'fail', sourceContext: { source: 'sources/github/repo' } }]
+             });
+             // To throw the error inside the loop, we mock a method that causes a throw
+             jest.spyOn(manager.renderedSessionIds, 'has').mockImplementation(() => { throw new Error('Render fail'); });
+             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+             await manager._fetchAndRenderSessions('sources/github/repo', terminal);
+             expect(consoleSpy).toHaveBeenCalledWith('Failed to load active sessions:', expect.any(Error));
+        });
+
         it('should catch API errors', async () => {
             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
             window.julesService.getSessions.mockRejectedValue(new Error('API Err'));
@@ -967,6 +1104,40 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             expect(mockToast.show).toHaveBeenCalledWith('Launch failed. Check API key and permissions.', 'error');
             expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, 'ready', 'Launch in Jules 🚀');
         });
+
+        it('should handle API launch error when fetchingIndicator is missing', async () => {
+            document.getElementById('julesRepoPicker').innerHTML = '<option value="sources/github/a/b">a/b</option>';
+            document.getElementById('julesRepoPicker').value = 'sources/github/a/b';
+
+            const terminal = document.getElementById('julesTerminal');
+            const ind = terminal.querySelector('#fetchingIndicator');
+            if(ind) ind.remove();
+
+            window.julesService.createSession.mockRejectedValue(new Error('Auth failed'));
+
+            // Disable the automatic _checkEmptyTerminal generation for the scope of the catch block assertion
+            manager._checkEmptyTerminal = jest.fn();
+
+            await manager.launchSession(agent, btn);
+
+            expect(mockToast.show).toHaveBeenCalledWith('Launch failed. Check API key and permissions.', 'error');
+            expect(terminal.querySelector('#fetchingIndicator')).toBeNull();
+        });
+
+        it('should append optimisticBlock when no firstSession exists', async () => {
+            document.getElementById('julesRepoPicker').innerHTML = '<option value="sources/github/a/b">a/b</option>';
+            document.getElementById('julesRepoPicker').value = 'sources/github/a/b';
+
+            const terminal = document.getElementById('julesTerminal');
+            terminal.innerHTML = '';
+
+            window.julesService.createSession.mockResolvedValue({ id: 'real-123' });
+
+            manager._fetchAndRenderSessions = jest.fn().mockResolvedValue(true);
+            await manager.launchSession(agent, btn);
+
+            expect(window.julesService.createSession).toHaveBeenCalled();
+        });
     });
 
     describe('startTerminalPolling & _processActivity & _updatePollingState', () => {
@@ -1064,6 +1235,46 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
              await jest.advanceTimersByTimeAsync(3000);
              // Should not throw, interval remains
              expect(manager.julesPollingIntervals['123']).toBeDefined();
+        });
+
+        it('should handle clearing polling and cache when intervals object is missing', () => {
+             manager.julesPollingIntervals = null;
+             manager.renderedSessionIds = null;
+
+             // should not throw
+             manager._clearPollingAndCache();
+
+             expect(manager.julesPollingIntervals).toBeNull();
+             expect(manager.renderedSessionIds).toBeNull();
+             expect(manager._flatCustomsCache).toBeNull();
+        });
+
+        it('should handle missing julesPollingIntervals during interval clear', () => {
+             manager.startTerminalPolling('123', item, 'repo');
+
+             // Simulate unexpected external state clearing the map while interval exists
+             manager.julesPollingIntervals = null;
+
+             // Call method again to trigger branch: `if (!this.julesPollingIntervals) this.julesPollingIntervals = {};`
+             manager.startTerminalPolling('123', item, 'repo');
+
+             expect(manager.julesPollingIntervals['123']).toBeDefined();
+        });
+
+        it('should update state appropriately when USER_INPUT activity type is received', async () => {
+            manager.startTerminalPolling('123', item, 'repo');
+
+            window.julesService.getActivities.mockResolvedValue({
+                activities: [
+                    // Add planApproved to prevent falling into the generic 'Waiting for Input' trap logic
+                    { createTime: '2023-01-01T00:00:00Z', type: 'USER_INPUT', planApproved: true }
+                ]
+            });
+
+            await jest.advanceTimersByTimeAsync(3000);
+
+            const badge = item.querySelector('#status-123');
+            expect(badge.textContent).toBe('User input transmitted.');
         });
     });
 

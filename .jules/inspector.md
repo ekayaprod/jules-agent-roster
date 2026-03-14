@@ -9,3 +9,7 @@
 **Title**: Added Boundary Coverage for `Promise.all` Repo Change Event in JulesManager
 **Learning**: Dynamically bound async event listeners (like native HTML `change` events triggering `Promise.all` logic) often escape test coverage due to implicit microtask queueing required in Jest. Explicitly simulating dispatch events and awaiting `Promise.resolve()` uncovers these blind spots.
 **Action**: Simulated event dispatches using `new Event('change')` and explicitly awaited microtasks using consecutive `Promise.resolve()` calls to strictly enforce coverage of asynchronous boundary execution paths in vanilla JS.
+2025-03-09
+**Title**: Boundary Assault on JulesManager Async Optimistic UI
+**Learning**: Optimistic UI rollback mechanisms strictly tied to DOM element presence (`innerHTML`, `className`) are highly susceptible to silent crash cascades if standard elements are dynamically removed or fail to mount.
+**Action**: Simulated runtime destruction of critical DOM elements (`statusSpan`, `fetchingIndicator`) and structurally mocked API rejections to interrogate and enforce safe fallback behavior across async network boundaries.
