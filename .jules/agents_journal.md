@@ -12,6 +12,10 @@
 **Learning:** `prompt-parser.test.js` was relying on the external `@xmldom/xmldom` polyfill to test `DOMParser` logic, creating brittle dependency reliance instead of testing the native browser API behavior.
 **Action:** Upgraded the test file to use the native JSDOM environment by injecting `/** @jest-environment jsdom */` and purging the `@xmldom/xmldom` dependency, aligning the test methodology with native web standards.
 
+## 2026-10-24 - 🧑‍🏫 Assessor - [Test Methodology Upgrade: ToastNotification]
+**Learning:** `ToastNotification.test.js` relied on archaic `document.querySelector` and `classList.contains` lookups to verify component behavior. Event dispatching was also brittle, relying on manual `MouseEvent` configurations instead of semantic user interactions.
+**Action:** Refactored tests to use `@testing-library/dom` (`screen.getByRole`, `screen.getByText`) and `@testing-library/jest-dom` matchers (`toHaveClass`, `toHaveAttribute`). Migrated manual events to `fireEvent.click`, `fireEvent.pointerEnter`, ensuring the tests evaluate user-visible accessibility attributes and outputs rather than internal HTML structure.
+
 ## 2024-05-20 - 🎧 Vibe - Feature Materialized: PR Queue Panel
 **Learning:** Found an implied missing feature in the execution interface: the ability to monitor the open pull requests of a targeted repository.
 **Action:** Implemented `getPullRequests` in `JulesService` and a corresponding rendering panel `julesPRPanel` under the Jules Runner Panel, pulling data directly via the GitHub API to increase system observability without leaving the interface.

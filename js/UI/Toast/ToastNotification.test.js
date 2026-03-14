@@ -3,6 +3,8 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { screen, fireEvent, waitFor } = require('@testing-library/dom');
+require('@testing-library/jest-dom');
 
 const ToastNotification = require('./ToastNotification');
 
@@ -54,29 +56,34 @@ describe('ToastNotification', () => {
         it('should render a success toast with default parameters', () => {
             toast.show('Success message');
 
-            expect(container.classList.contains('show')).toBe(true);
-            expect(container.classList.contains('success')).toBe(true);
-            expect(container.getAttribute('role')).toBe('status');
-            expect(container.getAttribute('aria-live')).toBe('polite');
-            expect(container.querySelector('.toast-message').textContent).toBe('Success message');
+            expect(container).toHaveClass('show', 'success');
+            const statusElement = screen.getByRole('status');
+            expect(statusElement).toBeInTheDocument();
+            expect(statusElement).toHaveAttribute('aria-live', 'polite');
+            expect(screen.getByText('Success message')).toBeInTheDocument();
         });
 
         it('should render an error toast with correct attributes', () => {
             toast.show('Error message', 'error');
 
-            expect(container.classList.contains('error')).toBe(true);
-            expect(container.getAttribute('role')).toBe('alert');
-            expect(container.getAttribute('aria-live')).toBe('assertive');
+            expect(container).toHaveClass('error');
+            const alertElement = screen.getByRole('alert');
+            expect(alertElement).toBeInTheDocument();
+            expect(alertElement).toHaveAttribute('aria-live', 'assertive');
+            expect(screen.getByText('Error message')).toBeInTheDocument();
         });
 
         it('should render an info toast', () => {
             toast.show('Info message', 'info');
-            expect(container.classList.contains('info')).toBe(true);
+
+            expect(container).toHaveClass('info');
+            expect(screen.getByText('Info message')).toBeInTheDocument();
         });
 
         it('should fallback to default message if empty', () => {
             toast.show('');
-            expect(container.querySelector('.toast-message').textContent).toBe('Notification');
+
+            expect(screen.getByText('Notification')).toBeInTheDocument();
         });
 
         it('should clear existing timeout if called repeatedly', () => {
@@ -87,7 +94,8 @@ describe('ToastNotification', () => {
             const secondTimeout = toast.timeout;
 
             expect(firstTimeout).not.toBe(secondTimeout);
-            expect(container.querySelector('.toast-message').textContent).toBe('Second');
+            expect(screen.getByText('Second')).toBeInTheDocument();
+            expect(screen.queryByText('First')).not.toBeInTheDocument();
         });
 
         it('should handle duration = 0 by not setting a timer', () => {
@@ -106,8 +114,9 @@ describe('ToastNotification', () => {
              // In the implementation `icons[type] || icons.success`
              // If type is `true`, `icons[true]` is undefined, so it falls back to `icons.success`
              // But the class added is literally 'true'. We verify it doesn't accidentally become 'error'
-             expect(container.classList.contains('error')).toBe(false);
-             expect(container.classList.contains('true')).toBe(true);
+             expect(container).not.toHaveClass('error');
+             expect(container).toHaveClass('true');
+             expect(screen.getByRole('status')).toBeInTheDocument(); // Defaults to status for non-error types
         });
     });
 
@@ -115,39 +124,39 @@ describe('ToastNotification', () => {
         it('should auto-dismiss after the duration', () => {
             toast.show('Test', 'success', 3000);
 
-            expect(container.classList.contains('show')).toBe(true);
+            expect(container).toHaveClass('show');
 
             jest.advanceTimersByTime(3000);
 
-            expect(container.classList.contains('show')).toBe(false);
+            expect(container).not.toHaveClass('show');
         });
 
         it('should not dismiss if hovered', () => {
             toast.show('Test', 'success', 3000);
 
-            // Simulate mouse enter
-            toast.handleMouseEnter();
+            // Simulate pointer enter on the container (which toast.element is bound to)
+            fireEvent.pointerEnter(container);
 
             jest.advanceTimersByTime(3000);
 
             // Should still be visible
-            expect(container.classList.contains('show')).toBe(true);
+            expect(container).toHaveClass('show');
         });
 
         it('should resume dismissal with delay after mouse leave', () => {
             toast.show('Test', 'success', 3000);
 
-            toast.handleMouseEnter();
+            fireEvent.pointerEnter(container);
             jest.advanceTimersByTime(3000); // Original time passes
 
-            toast.handleMouseLeave(); // Mouse leaves
+            fireEvent.pointerLeave(container); // Mouse leaves
 
             // Default RESUME_DELAY is 2000
             jest.advanceTimersByTime(1999);
-            expect(container.classList.contains('show')).toBe(true);
+            expect(container).toHaveClass('show');
 
             jest.advanceTimersByTime(1);
-            expect(container.classList.contains('show')).toBe(false);
+            expect(container).not.toHaveClass('show');
         });
     });
 
@@ -155,29 +164,21 @@ describe('ToastNotification', () => {
         it('should dismiss when the close button is clicked', () => {
             toast.show('Test');
 
-            const closeBtn = container.querySelector('.toast-close-btn');
+            const closeBtn = screen.getByRole('button', { name: /close notification/i });
 
-            // Simulate delegated click
-            const event = new MouseEvent('click', { bubbles: true });
-            Object.defineProperty(event, 'target', { value: closeBtn, enumerable: true });
+            fireEvent.click(closeBtn);
 
-            // We need to trigger the event manually on the container to test delegation
-            container.dispatchEvent(event);
-
-            expect(container.classList.contains('show')).toBe(false);
+            expect(container).not.toHaveClass('show');
         });
 
         it('should not dismiss when clicking elsewhere in the toast', () => {
              toast.show('Test');
 
-             const messageSpan = container.querySelector('.toast-message');
+             const messageSpan = screen.getByText('Test');
 
-             const event = new MouseEvent('click', { bubbles: true });
-             Object.defineProperty(event, 'target', { value: messageSpan, enumerable: true });
+             fireEvent.click(messageSpan);
 
-             container.dispatchEvent(event);
-
-             expect(container.classList.contains('show')).toBe(true);
+             expect(container).toHaveClass('show');
         });
     });
 });
