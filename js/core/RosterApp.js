@@ -115,16 +115,13 @@ class RosterApp {
 
 
   /**
-   * Helper to retrieve a custom agent from the nested dictionary by its combination key.
+   * Helper to retrieve a custom agent from the flat dictionary by its combination key.
    * @param {string} key - The fusion combination key (e.g. "Architect,Author")
    * @returns {Object|undefined} The agent object or undefined if not found.
    */
   getCustomAgent(key) {
       if (!this.customAgents) return undefined;
-      for (const category of Object.values(this.customAgents)) {
-          if (category[key]) return category[key];
-      }
-      return undefined;
+      return this.customAgents[key];
   }
 
   /**
@@ -533,7 +530,6 @@ class RosterApp {
     });
     this.elements.masterCopyFusionsBtn?.addEventListener("click", async (e) => {
         const validCustomAgents = Object.values(this.customAgents)
-            .flatMap(category => Object.values(category))
             .filter(a => a.prompt && a.prompt.length > 0);
         if (validCustomAgents.length === 0) return this.toast.show("No custom agents unlocked yet.");
         const header = FormatUtils.CUSTOM_ROSTER_HEADER;
