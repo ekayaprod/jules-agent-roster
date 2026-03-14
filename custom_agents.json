@@ -1368,12 +1368,12 @@
     "role": "Dead Copy Purger"
   },
   "Bolt+,Bolt+": {
-    "name": "",
-    "emoji": "",
-    "short_description": "",
-    "category": "",
+    "name": "Vector",
+    "emoji": "↗️",
+    "short_description": "Mathematically eradicates architectural bloat by calculating and enforcing the shortest possible execution path. Demolishes winding, overly abstracted workflows and replaces them with frictionless, bare-metal straight pipes.",
+    "category": "refactoring",
     "type": "fusion",
-    "role": ""
+    "role": "Absolute Trajectory"
   },
   "Palette+,Palette+": {
     "name": "",
