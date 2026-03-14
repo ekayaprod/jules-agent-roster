@@ -270,21 +270,8 @@ class FusionLab {
         const key = [agentA.name, agentB.name].sort().join(",");
         // Check if it's a known custom fusion
         let isKnown = false;
-        if (this.fusionIndex.customAgents) {
-            const agents = this.fusionIndex.customAgents;
-            const isCategorized = Object.values(agents).some(val => val && typeof val === "object" && val.name === undefined);
-            if (isCategorized) {
-                for (const category of Object.values(agents)) {
-                    if (category && category[key]) {
-                        isKnown = true;
-                        break;
-                    }
-                }
-            } else {
-                if (agents[key]) {
-                    isKnown = true;
-                }
-            }
+        if (this.fusionIndex.customAgents && this.fusionIndex.customAgents[key]) {
+            isKnown = true;
         }
 
         if (isKnown) {
