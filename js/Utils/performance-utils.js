@@ -1,13 +1,16 @@
 /**
  * Utility class for performance optimizations.
  * Centralizes common patterns like debouncing and throttling to prevent layout thrashing and excessive computations.
+ * @see README.md#performanceutils-architecture for details on how this mitigates layout thrashing.
  */
 class PerformanceUtils {
   /**
-   * Creates a debounced function that delays invoking func until after wait milliseconds have elapsed since the last time the debounced function was invoked.
+   * Creates a debounced function that delays invoking `func` until after `wait` milliseconds have elapsed
+   * since the last time the debounced function was invoked.
    * Implemented to fulfill ROADMAP [Performance] Idea: "Implement debounce pattern".
-   * Reduces layout thrashing and computational overhead during rapid search input events by delaying execution until the user pauses.
-   * @see ROADMAP.md
+   * Reduces layout thrashing and computational overhead during rapid events (like search input or scroll)
+   * by delaying execution until the user pauses.
+   * @see README.md#performanceutils-architecture
    *
    * @param {Function} func - The function to debounce.
    * @param {number} wait - The number of milliseconds to delay.

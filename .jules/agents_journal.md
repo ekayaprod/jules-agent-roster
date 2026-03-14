@@ -32,13 +32,9 @@
 **Learning:** Found a mixed casing convention inside the `js/Utils/` folder where files were improperly using `PascalCase` despite being utility files.
 **Action:** Renamed all `.js` and `.test.js` utility files in `js/Utils/` to strictly follow `kebab-case` naming convention using `git mv` (e.g. `DOMUtils.js` -> `dom-utils.js`). Safely updated all global references without modifying internal exported class names. Handled dynamic module imports in `benchmark.js` where file basenames are matched and properly converted to PascalCase class exports, adding special casing for `DOMUtils`.
 
-## 2024-05-24 - 🦉 Scholar - [JulesManager Architecture Synthesis]
-**Learning:** Documenting the `JulesManager` highlighted that attempting to modify tests immediately reveals deeply coupled UI rendering logic not built for isolation. Writing documentation must be constrained strictly to describing the state of the system, not trying to enforce execution tests that are currently broken by previous architectural changes.
-**Action:** When acting as Scholar, focus solely on synthesizing standard `@see` cross-linked JSDoc and `README.md` artifacts. Never attempt to "fix" the tests, as altering functional assertions constitutes code execution modification.
-2024-03-12
-**Title**: 🦉 Scholar: [AgentCard Module Synthesis]
-**Learning**: Discovered an orphaned inline JSDoc reference (`@see README.md#agentcard-architecture`) in `AgentCard.js` where the target `README.md` file did not exist in the module directory.
-**Action**: Synthesized a comprehensive macro architecture `README.md` mapping the DOM structure, event delegation, contextual actions, and render throttling, and strictly typed/cross-linked the inline JSDoc comments to establish a verified single source of truth.
+## 2024-05-24 - 🦉 Scholar - [Historical Synthesis & Test Constraints]
+**Learning:** Previous documentation efforts across components (`JulesManager`, `AgentCard`, `ClipboardUtils`) revealed that tests often break due to deeply coupled logic, and orphaned inline JSDoc references can point to non-existent architecture files.
+**Action:** Focus strictly on synthesizing standard `@see` cross-linked JSDoc and `README.md` artifacts without attempting to "fix" broken functional tests. Ensure all inline JSDoc targets exist in the module's macro `README.md`.
 2026-03-12
 **Title**: Fusion Lab Protocol Error State Injection
 **Learning**: The Fusion Lab component possessed functional error handling in JS (`FusionLab.js`) but lacked the corresponding DOM structure (`#fusionError`), causing failure states to silently fail visually.
@@ -60,14 +56,6 @@
 **Learning**: Discovered that the codebase strictly follows a Vanilla JS architecture (`js/UI/README.md:37`) without utilizing Virtual DOM frameworks like React. Attempting to inject `useCallback`, `useMemo`, or `React.memo` would bootstrap foreign frameworks and violate the mandate to adapt to the native stack.
 **Action**: Unilaterally `[Skip]`ped React-specific render execution optimizations since there are no functional components or Virtual DOM reconciliation loops to stabilize.
 
-2026-03-13
-**Title**: 🦉 Scholar: [Macro/Micro Documentation Synthesized: JulesManager]
-**Learning**: Discovered the JulesManager component possessed large internal methods (like `launchSession` and `cleanup`) entirely disconnected from any macro-documentation architecture.
-**Action**: Authored and injected strict, type-safe inline `JSDoc` comments onto major execution methods and bound them with mandatory `@see` references to a successfully synthesized macro `README.md`.
-
-## 2026-03-13 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: ClipboardUtils]
-**Learning:** Discovered the `ClipboardUtils` module entirely lacked a macro-architecture `README.md` while inline JSDoc `@see` tags optimistically referenced `#clipboardutils-architecture`.
-**Action:** Synthesized a complete `README.md` defining the primary/fallback execution paths for `copyText` and the visual state manipulation for `animateButtonSuccess`. Refined inline JSDoc comments to link directly to the newly authored `#1-clipboard-operations` and `#2-temporal-ui-states` sections, eliminating disconnected documentation.
 
 2026-03-13
 **Title**: Gap Spacing Modernization for Agent Cards
@@ -76,7 +64,6 @@
 ## 2026-03-13 - 🪩 Vibe Check - [Synthetic Sludge Purged: PromptParser Tests]
 **Learning:** Found the test suite `js/Utils/prompt-parser.test.js` importing a third-party package `@xmldom/xmldom` to polyfill `DOMParser` behavior. The dependency acts as synthetic sludge because `jest-environment-jsdom` provides the `DOMParser` natively and correctly reflects browser logic, making the polyfill a hallucinated and brittle dependency that causes build failures when missing.
 **Action:** Uninstalled the hallucinated `@xmldom/xmldom` package entirely and removed its import/mocking logic from the tests. Adapted the test environment directly to the native JSDOM standard, removing the conversational logic and ensuring testing reflects reality.
-2026-03-13
-**Title**: ⏱️ Millisecond: [Native Stack Render Optimization Bypass]
-**Learning**: Discovered that the codebase strictly follows a Vanilla JS architecture (`js/UI/README.md:37`) without utilizing Virtual DOM frameworks like React. Attempting to inject `useCallback`, `useMemo`, or `React.memo` would bootstrap foreign frameworks and violate the mandate to adapt to the native stack.
-**Action**: Unilaterally `[Skip]`ped React-specific render execution optimizations since there are no functional components or Virtual DOM reconciliation loops to stabilize.
+## 2026-03-13 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: PerformanceUtils]
+**Learning:** Discovered that the `PerformanceUtils` class had standard `JSDoc` comments but lacked specific architectural documentation explaining its strategic value (mitigating layout thrashing via debouncing).
+**Action:** Expanded the module's macro `README.md` to define the "PerformanceUtils Architecture" and linked the granular `debounce` function JSDoc to this new thesis using `@see`, ensuring the documentation survives and synchronizes across altitudes.
