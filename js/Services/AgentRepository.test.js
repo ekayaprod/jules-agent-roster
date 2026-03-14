@@ -332,6 +332,25 @@ describe('AgentRepository', () => {
             expect(repo.fetchWithRetry).toHaveBeenCalledTimes(2);
         });
 
+        // 🕵️ INTERROGATE: Mocked infrastructure boundaries, concurrency stress, and negative assertions.
+        it('fails securely or parses correctly when custom_agents.json lacks domain headers (flat structure)', async () => {
+            repo.fetchWithRetry = jest.fn()
+                .mockResolvedValueOnce({
+                    ok: true,
+                    json: async () => [{ name: "Agent1", category: "architect", promptFile: "std.md" }]
+                })
+                .mockResolvedValueOnce({
+                    ok: true,
+                    json: async () => ({
+                        "Agent1,Agent2": { name: "Fusion1", category: "developer" }
+                    })
+                });
+
+            const results = await repo.fetchAgents();
+            expect(results.customAgents["Agent1,Agent2"]).toBeDefined();
+            expect(results.customAgents["Agent1,Agent2"].name).toBe("Fusion1");
+        });
+
         it('computes rarity tiers for custom agents when RarityEngine is defined', async () => {
             global.RarityEngine = { calculateRarity: jest.fn().mockReturnValue('Legendary') };
 
