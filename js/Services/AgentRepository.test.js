@@ -448,6 +448,30 @@ describe('AgentRepository', () => {
 
         });
 
+
+        it('🕵️ INTERROGATE: fails to parse flattened custom_agents.json structure without domain categories', async () => {
+            repo.fetchWithRetry = jest.fn()
+                .mockResolvedValueOnce({ ok: true, json: async () => [] }) // Empty standard
+                .mockResolvedValueOnce({
+                    ok: true,
+                    json: async () => ({
+                        "Agent1,Agent2": { name: "Fusion Agent", short_description: "A flat agent" },
+                        "Agent3,Agent4": { name: "Another Fusion", short_description: "Another flat agent" }
+                    })
+                });
+
+            const results = await repo.fetchAgents();
+
+            // The test expects fetchAgents to successfully parse the flattened JSON.
+            // Because AgentRepository.js currently assumes a nested category structure
+            // (e.g., Object.entries(categoryAgents).map...), it will fail to read properties
+            // like .name out of characters of strings if it misinterprets the data shape,
+            // or simply return an empty or malformed result.
+            expect(results.customAgents["Agent1,Agent2"]).toBeDefined();
+            expect(results.customAgents["Agent1,Agent2"].name).toBe("Fusion Agent");
+            expect(results.customAgents["Agent3,Agent4"]).toBeDefined();
+            expect(results.customAgents["Agent3,Agent4"].name).toBe("Another Fusion");
+        });
         it('catches missing properties in validateCustomAgent (first responder missing desc logic)', async () => {
             repo.fetchWithRetry = jest.fn()
                 .mockResolvedValueOnce({ ok: true, json: async () => [] })
