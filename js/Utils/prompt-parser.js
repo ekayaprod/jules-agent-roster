@@ -44,19 +44,22 @@ const PromptParser = {
       const root = xmlDoc.documentElement;
       const validTags = ['system', 'task', 'step', 'output'];
 
-      const sections = Array.from(root.childNodes)
-        .filter(node => node.nodeType === 1) // Node.ELEMENT_NODE
-        .map(node => ({
-          tag: node.tagName.toLowerCase(),
-          node
-        }))
-        .filter(({ tag }) => validTags.includes(tag))
-        .map(({ tag, node }) => ({
-          tag,
-          content: node.textContent.trim(),
-          id: node.getAttribute('id') || null,
-          name: node.getAttribute('name') || null
-        }));
+      // ↗️ VECTORIZE: The Single-Pass Pipeline.
+      // We ignore the heavily abstracted layers and execute the calculation in one direct, zero-allocation pass.
+      const sections = Array.from(root.childNodes).reduce((acc, node) => {
+        if (node.nodeType === 1) { // Node.ELEMENT_NODE
+          const tag = node.tagName.toLowerCase();
+          if (validTags.includes(tag)) {
+            acc.push({
+              tag,
+              content: node.textContent.trim(),
+              id: node.getAttribute('id') || null,
+              name: node.getAttribute('name') || null
+            });
+          }
+        }
+        return acc;
+      }, []);
 
       if (sections.length === 0) {
          return { format: 'legacy', raw: rawText };
