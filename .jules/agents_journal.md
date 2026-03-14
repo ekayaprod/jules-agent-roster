@@ -69,6 +69,10 @@
 **Learning:** Discovered the `ClipboardUtils` module entirely lacked a macro-architecture `README.md` while inline JSDoc `@see` tags optimistically referenced `#clipboardutils-architecture`.
 **Action:** Synthesized a complete `README.md` defining the primary/fallback execution paths for `copyText` and the visual state manipulation for `animateButtonSuccess`. Refined inline JSDoc comments to link directly to the newly authored `#1-clipboard-operations` and `#2-temporal-ui-states` sections, eliminating disconnected documentation.
 
+2026-03-13
+**Title**: Gap Spacing Modernization for Agent Cards
+**Learning**: Identified a legacy structural spacing hack relying on magic negative margins (`margin-top: -0.5rem`) within a nested flexbox structure (`.front-content-wrapper` and `.flip-card-front`).
+**Action**: Replaced fragile negative margins with an organic, mathematically predictable `gap: 0.5rem` on the parent flex container, enforcing structural integrity and responsive alignment.
 ## 2026-03-13 - 🪩 Vibe Check - [Synthetic Sludge Purged: PromptParser Tests]
 **Learning:** Found the test suite `js/Utils/prompt-parser.test.js` importing a third-party package `@xmldom/xmldom` to polyfill `DOMParser` behavior. The dependency acts as synthetic sludge because `jest-environment-jsdom` provides the `DOMParser` natively and correctly reflects browser logic, making the polyfill a hallucinated and brittle dependency that causes build failures when missing.
 **Action:** Uninstalled the hallucinated `@xmldom/xmldom` package entirely and removed its import/mocking logic from the tests. Adapted the test environment directly to the native JSDOM standard, removing the conversational logic and ensuring testing reflects reality.
