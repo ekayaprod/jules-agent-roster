@@ -124,4 +124,74 @@ describe('RarityEngine', () => {
              expect(RarityEngine.calculateRarity({ name: 'A', category: 'testing' }, { name: 'B', category: 'fake' })).toBe('Common');
         });
     });
+
+    describe('getFusionDomain', () => {
+        it('returns "Unknown Domain" if agent1 or agent2 is missing', () => {
+            expect(RarityEngine.getFusionDomain(null, { name: 'Agent1' })).toBe('Unknown Domain');
+            expect(RarityEngine.getFusionDomain({ name: 'Agent1' }, null)).toBe('Unknown Domain');
+        });
+
+        it('returns "12. Plus Glitch" or "13. Core Glitch" for identically named agents', () => {
+            expect(RarityEngine.getFusionDomain({ name: 'Bolt+' }, { name: 'Bolt+' })).toBe('12. Plus Glitch');
+            expect(RarityEngine.getFusionDomain({ name: 'Agent1' }, { name: 'Agent1' })).toBe('13. Core Glitch');
+        });
+
+        it('returns "10. Plus Paradox" or "11. Core Paradox" when Scavenger is combined', () => {
+            // Plus Paradox
+            expect(RarityEngine.getFusionDomain({ name: 'Scavenger' }, { name: 'Bolt+' })).toBe('10. Plus Paradox');
+            expect(RarityEngine.getFusionDomain({ name: 'Palette+' }, { name: 'Scavenger' })).toBe('10. Plus Paradox');
+            // Core Paradox
+            expect(RarityEngine.getFusionDomain({ name: 'Scavenger' }, { name: 'Architect' })).toBe('11. Core Paradox');
+            expect(RarityEngine.getFusionDomain({ name: 'Agent1' }, { name: 'Scavenger' })).toBe('11. Core Paradox');
+        });
+
+        it('returns "11. Core Paradox" for Architect + Pedant', () => {
+            expect(RarityEngine.getFusionDomain({ name: 'Architect' }, { name: 'Pedant' })).toBe('11. Core Paradox');
+            expect(RarityEngine.getFusionDomain({ name: 'Pedant' }, { name: 'Architect' })).toBe('11. Core Paradox');
+        });
+
+        it('returns "9. QA Bridge" for Integrity + Visible/Invisible', () => {
+            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'testing' }, { name: 'B', category: 'ux' })).toBe('9. QA Bridge');
+            expect(RarityEngine.getFusionDomain({ name: 'C', category: 'architecture' }, { name: 'D', category: 'hygiene' })).toBe('9. QA Bridge');
+        });
+
+        it('returns "8. Full-Stack Bridge" for Visible + Invisible', () => {
+            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'ux' }, { name: 'B', category: 'architecture' })).toBe('8. Full-Stack Bridge');
+        });
+
+        describe('Plus domains', () => {
+            it('returns "1. Base Synthesis" for Plus + Plus', () => {
+                expect(RarityEngine.getFusionDomain({ name: 'Bolt+' }, { name: 'Palette+' })).toBe('1. Base Synthesis');
+            });
+
+            it('returns "2. Plus Affinity" for Plus + Matching Domain', () => {
+                expect(RarityEngine.getFusionDomain({ name: 'Bolt+' }, { name: 'A', category: 'architecture' })).toBe('2. Plus Affinity');
+                expect(RarityEngine.getFusionDomain({ name: 'B', category: 'ux' }, { name: 'Palette+' })).toBe('2. Plus Affinity');
+            });
+
+            it('returns "4. Plus Bridge" for Plus + Unmatched Domain', () => {
+                expect(RarityEngine.getFusionDomain({ name: 'Bolt+' }, { name: 'A', category: 'ux' })).toBe('4. Plus Bridge');
+            });
+        });
+
+        it('returns "3. Domain Mastery" for same category', () => {
+            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'ux' }, { name: 'B', category: 'ux' })).toBe('3. Domain Mastery');
+        });
+
+        it('returns "5. Frontend Synergy" for Visible + Visible', () => {
+            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'ux' }, { name: 'B', category: 'documentation' })).toBe('5. Frontend Synergy');
+        });
+
+        it('returns "7. Integrity Synergy" for Integrity + Integrity', () => {
+            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'testing' }, { name: 'B', category: 'hygiene' })).toBe('7. Integrity Synergy');
+        });
+
+        it('returns "6. Backend Synergy" for Invisible + Invisible', () => {
+            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'architecture' }, { name: 'B', category: 'refactoring' })).toBe('6. Backend Synergy');
+        });
+
+        it('returns "Unknown Domain" for fallback mixed domains', () => {
+            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'unknown_a' }, { name: 'B', category: 'unknown_b' })).toBe('Unknown Domain');
+        });
+    });
 });

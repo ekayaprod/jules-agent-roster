@@ -25,3 +25,7 @@
 **Title**: [Flat `custom_agents.json` Structural Mismatch]
 **Learning**: The `custom_agents.json` structure was flattened, but `AgentRepository` still parses it using nested domain header iteration, causing valid custom agents to be discarded.
 **Action**: [Interrogate] Added definitive structural test to expose the boundary mismatch. Fix skipped to enforce sandbox isolation constraints.
+2025-03-14
+**Title**: Boundary Coverage for RarityEngine `getFusionDomain`
+**Learning**: The central categorization mapping for fusion domains (`getFusionDomain`) lacked complete branch coverage (44.45% uncovered lines). Unverified domains are a hazard for UI rendering of core mechanics like "Micro/Macro Paradox".
+**Action**: [Investigate] Assured 100% path coverage by writing a complete suite encompassing boundary nulls, identical name collisions (Glitches), Scavenger checks (Paradoxes), and all possible matrix combinations of Plus agents and Super Domains.
