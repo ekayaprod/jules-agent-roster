@@ -13,3 +13,7 @@
 **Title**: Boundary Assault on JulesManager Async Optimistic UI
 **Learning**: Optimistic UI rollback mechanisms strictly tied to DOM element presence (`innerHTML`, `className`) are highly susceptible to silent crash cascades if standard elements are dynamically removed or fail to mount.
 **Action**: Simulated runtime destruction of critical DOM elements (`statusSpan`, `fetchingIndicator`) and structurally mocked API rejections to interrogate and enforce safe fallback behavior across async network boundaries.
+2026-03-14
+**Title**: Boundary Assault on Flat vs Nested JSON Structures
+**Learning**: Hardcoding parsing logic to expect a specific level of dictionary nesting (like `{ "Category": { "AgentKey": {} } }`) creates a brittle execution boundary. When data configuration files are optimized and flattened to remove unnecessary domain headers, the parsing layer inherently fails silently because it interprets the flat keys as categories rather than data entries.
+**Action**: Interrogated the JSON parsing boundary with a strictly mocked flat `custom_agents.json` response to definitively prove that `AgentRepository` silently fails to map flat agent structures into its internal state, leaving an accurately failing test as documentation of this structural fault line.
