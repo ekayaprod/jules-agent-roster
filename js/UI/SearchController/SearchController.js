@@ -72,8 +72,6 @@ class SearchController {
   async filterAgents(query) {
     const search = query.toLowerCase();
     const searchModeContainer = this.app.elements.searchModeContainer;
-    const searchResultsGrid = this.app.elements.searchResultsGrid;
-    const categoryNav = this.app.elements["category-nav"];
 
     if (query.length > 0) {
       this.app.elements.clearBtn?.classList.add("visible");
