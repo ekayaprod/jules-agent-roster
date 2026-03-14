@@ -29,17 +29,15 @@ class AgentRepository {
                 // ⚡ Bolt+: Algorithmic Flattening - Replace O(n) array traversal with O(1) Map lookup
                 const agentMap = new Map();
                 this.agents.forEach(a => agentMap.set(a.name, a));
-                Object.values(this.customAgents).forEach(categoryAgents => {
-                    Object.entries(categoryAgents).forEach(([key, agent]) => {
-                        const [name1, name2] = key.split(",");
-                        const a1 = agentMap.get(name1);
-                        const a2 = agentMap.get(name2);
-                        if (a1 && a2) {
-                            agent.tier = RarityEngine.calculateRarity(a1, a2);
-                        } else {
-                            agent.tier = "Common";
-                        }
-                    });
+                Object.entries(this.customAgents).forEach(([key, agent]) => {
+                    const [name1, name2] = key.split(",");
+                    const a1 = agentMap.get(name1);
+                    const a2 = agentMap.get(name2);
+                    if (a1 && a2) {
+                        agent.tier = RarityEngine.calculateRarity(a1, a2);
+                    } else {
+                        agent.tier = "Common";
+                    }
                 });
             }
 
@@ -82,19 +80,14 @@ class AgentRepository {
             const validatedCustomData = {};
 
             await Promise.all(
-                Object.entries(rawCustomData).map(async ([categoryName, categoryAgents]) => {
-                    validatedCustomData[categoryName] = {};
-                    await Promise.all(
-                        Object.entries(categoryAgents).map(async ([key, custom]) => {
-                            const agent = await this.#processCustomAgent(key, custom);
-                            if (agent) {
-                                // Default tier until post-processing resolves the race condition
-                                agent.tier = "Common";
-                                validatedCustomData[categoryName][key] = agent;
-                            }
-                        })
-                    );
-                }),
+                Object.entries(rawCustomData).map(async ([key, custom]) => {
+                    const agent = await this.#processCustomAgent(key, custom);
+                    if (agent) {
+                        // Default tier until post-processing resolves the race condition
+                        agent.tier = "Common";
+                        validatedCustomData[key] = agent;
+                    }
+                })
             );
 
             return validatedCustomData;
