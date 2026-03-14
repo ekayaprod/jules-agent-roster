@@ -431,12 +431,7 @@ class JulesManager {
         if (!matchedAgent && this.app.customAgents) {
             // ⚡ ACCELERATE: Cache the flattened custom agents to eliminate redundant O(N) Object.values traversals inside the session loop.
             if (!this._flatCustomsCache) {
-                this._flatCustomsCache = [];
-                for (const category in this.app.customAgents) {
-                    if (typeof this.app.customAgents[category] === 'object') {
-                        this._flatCustomsCache.push(...Object.values(this.app.customAgents[category]));
-                    }
-                }
+                this._flatCustomsCache = Object.values(this.app.customAgents);
             }
             matchedAgent = this._flatCustomsCache.find(a => a.name && safeAgentName.includes(a.name));
         }

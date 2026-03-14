@@ -317,9 +317,7 @@ describe('AgentRepository', () => {
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => ({
-                        "1. Category": {
-                            "custom1": { name: "Custom", category: "developer" }
-                        }
+                        "custom1": { name: "Custom", category: "developer" }
                     })
                 });
 
@@ -329,7 +327,7 @@ describe('AgentRepository', () => {
             expect(results.agents[0].name).toBe("Standard");
 
             expect(Object.keys(results.customAgents)).toHaveLength(1);
-            expect(results.customAgents['1. Category'].custom1.name).toBe("Custom");
+            expect(results.customAgents['custom1'].name).toBe("Custom");
 
             expect(repo.fetchWithRetry).toHaveBeenCalledTimes(2);
         });
@@ -368,17 +366,15 @@ describe('AgentRepository', () => {
                     .mockResolvedValueOnce({
                         ok: true,
                         json: async () => ({
-                            "Fusions": {
-                                "Agent1,Agent2": { name: "Fusion1", category: "developer" },
-                                "Agent1,Unknown": { name: "Fusion2", category: "developer" }
-                            }
+                            "Agent1,Agent2": { name: "Fusion1", category: "developer" },
+                            "Agent1,Unknown": { name: "Fusion2", category: "developer" }
                         })
                     });
 
                 const results = await repo.fetchAgents();
 
-                expect(results.customAgents['Fusions']['Agent1,Agent2'].tier).toBe('Legendary');
-                expect(results.customAgents['Fusions']['Agent1,Unknown'].tier).toBe('Common');
+                expect(results.customAgents['Agent1,Agent2'].tier).toBe('Legendary');
+                expect(results.customAgents['Agent1,Unknown'].tier).toBe('Common');
             } finally {
                 delete global.RarityEngine;
             }
@@ -395,16 +391,14 @@ describe('AgentRepository', () => {
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => ({
-                        "1. Category": {
-                            "invalid1": { name: null }, // Invalid
-                            "valid1": { name: "Custom 🔥", category: "developer" } // Valid
-                        }
+                        "invalid1": { name: null }, // Invalid
+                        "valid1": { name: "Custom 🔥", category: "developer" } // Valid
                     })
                 });
 
             const results = await repo.fetchAgents();
-            expect(Object.keys(results.customAgents['1. Category'])).toHaveLength(1);
-            expect(results.customAgents['1. Category'].valid1.name).toBe("Custom 🔥");
+            expect(Object.keys(results.customAgents)).toHaveLength(1);
+            expect(results.customAgents['valid1'].name).toBe("Custom 🔥");
         });
 
         it('handles processCustomAgent error throwing when fetchPrompt throws internally', async () => {
@@ -413,9 +407,7 @@ describe('AgentRepository', () => {
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => ({
-                        "1. Category": {
-                            "err1": { name: "Error Agent" }
-                        }
+                        "err1": { name: "Error Agent" }
                     })
                 });
 
@@ -424,7 +416,7 @@ describe('AgentRepository', () => {
             const results = await repo.fetchAgents();
 
             // It swallows the error and returns null, which filters out the custom agent
-            expect(Object.keys(results.customAgents['1. Category'])).toHaveLength(0);
+            expect(Object.keys(results.customAgents)).toHaveLength(0);
         });
 
         it('handles safeJsonParse throwing errors gracefully for standard agents', async () => {
@@ -475,17 +467,39 @@ describe('AgentRepository', () => {
 
         });
 
+
+        it('🕵️ INTERROGATE: fails to parse flattened custom_agents.json structure without domain categories', async () => {
+            repo.fetchWithRetry = jest.fn()
+                .mockResolvedValueOnce({ ok: true, json: async () => [] }) // Empty standard
+                .mockResolvedValueOnce({
+                    ok: true,
+                    json: async () => ({
+                        "Agent1,Agent2": { name: "Fusion Agent", short_description: "A flat agent" },
+                        "Agent3,Agent4": { name: "Another Fusion", short_description: "Another flat agent" }
+                    })
+                });
+
+            const results = await repo.fetchAgents();
+
+            // The test expects fetchAgents to successfully parse the flattened JSON.
+            // Because AgentRepository.js currently assumes a nested category structure
+            // (e.g., Object.entries(categoryAgents).map...), it will fail to read properties
+            // like .name out of characters of strings if it misinterprets the data shape,
+            // or simply return an empty or malformed result.
+            expect(results.customAgents["Agent1,Agent2"]).toBeDefined();
+            expect(results.customAgents["Agent1,Agent2"].name).toBe("Fusion Agent");
+            expect(results.customAgents["Agent3,Agent4"]).toBeDefined();
+            expect(results.customAgents["Agent3,Agent4"].name).toBe("Another Fusion");
+        });
         it('catches missing properties in validateCustomAgent (first responder missing desc logic)', async () => {
             repo.fetchWithRetry = jest.fn()
                 .mockResolvedValueOnce({ ok: true, json: async () => [] })
                 .mockResolvedValueOnce({ ok: true, json: async () => ({
-                    "1. Category": {
-                        "no_desc": { name: "Agent" }
-                    }
+                    "no_desc": { name: "Agent" }
                 })});
 
             const results = await repo.fetchAgents();
-            expect(results.customAgents['1. Category'].no_desc.name).toBe("Agent");
+            expect(results.customAgents['no_desc'].name).toBe("Agent");
         });
     });
 });
