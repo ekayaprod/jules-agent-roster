@@ -12,6 +12,10 @@
 **Learning:** `prompt-parser.test.js` was relying on the external `@xmldom/xmldom` polyfill to test `DOMParser` logic, creating brittle dependency reliance instead of testing the native browser API behavior.
 **Action:** Upgraded the test file to use the native JSDOM environment by injecting `/** @jest-environment jsdom */` and purging the `@xmldom/xmldom` dependency, aligning the test methodology with native web standards.
 
+## 2026-10-24 - 🧑‍🏫 Assessor - [Test Methodology Upgrade: ToastNotification]
+**Learning:** `ToastNotification.test.js` relied on archaic `document.querySelector` and `classList.contains` lookups to verify component behavior. Event dispatching was also brittle, relying on manual `MouseEvent` configurations instead of semantic user interactions.
+**Action:** Refactored tests to use `@testing-library/dom` (`screen.getByRole`, `screen.getByText`) and `@testing-library/jest-dom` matchers (`toHaveClass`, `toHaveAttribute`). Migrated manual events to `fireEvent.click`, `fireEvent.pointerEnter`, ensuring the tests evaluate user-visible accessibility attributes and outputs rather than internal HTML structure.
+
 ## 2024-05-20 - 🎧 Vibe - Feature Materialized: PR Queue Panel
 **Learning:** Found an implied missing feature in the execution interface: the ability to monitor the open pull requests of a targeted repository.
 **Action:** Implemented `getPullRequests` in `JulesService` and a corresponding rendering panel `julesPRPanel` under the Jules Runner Panel, pulling data directly via the GitHub API to increase system observability without leaving the interface.
@@ -69,3 +73,10 @@
 **Title**: Gap Spacing Modernization for Agent Cards
 **Learning**: Identified a legacy structural spacing hack relying on magic negative margins (`margin-top: -0.5rem`) within a nested flexbox structure (`.front-content-wrapper` and `.flip-card-front`).
 **Action**: Replaced fragile negative margins with an organic, mathematically predictable `gap: 0.5rem` on the parent flex container, enforcing structural integrity and responsive alignment.
+## 2026-03-13 - 🪩 Vibe Check - [Synthetic Sludge Purged: PromptParser Tests]
+**Learning:** Found the test suite `js/Utils/prompt-parser.test.js` importing a third-party package `@xmldom/xmldom` to polyfill `DOMParser` behavior. The dependency acts as synthetic sludge because `jest-environment-jsdom` provides the `DOMParser` natively and correctly reflects browser logic, making the polyfill a hallucinated and brittle dependency that causes build failures when missing.
+**Action:** Uninstalled the hallucinated `@xmldom/xmldom` package entirely and removed its import/mocking logic from the tests. Adapted the test environment directly to the native JSDOM standard, removing the conversational logic and ensuring testing reflects reality.
+2026-03-13
+**Title**: ⏱️ Millisecond: [Native Stack Render Optimization Bypass]
+**Learning**: Discovered that the codebase strictly follows a Vanilla JS architecture (`js/UI/README.md:37`) without utilizing Virtual DOM frameworks like React. Attempting to inject `useCallback`, `useMemo`, or `React.memo` would bootstrap foreign frameworks and violate the mandate to adapt to the native stack.
+**Action**: Unilaterally `[Skip]`ped React-specific render execution optimizations since there are no functional components or Virtual DOM reconciliation loops to stabilize.

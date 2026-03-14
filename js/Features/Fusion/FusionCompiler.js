@@ -51,20 +51,8 @@ const FusionCompiler = function (agents, customAgents) {
   const normalizeKeys = (data) => {
     if (!data) return {};
 
-    const isCategorized = Object.values(data).some(val => val && typeof val === "object" && val.name === undefined);
     let entries = [];
-
-    if (isCategorized) {
-      Object.values(data).forEach(categoryGroup => {
-        if (categoryGroup && typeof categoryGroup === "object") {
-          Object.entries(categoryGroup).forEach(([k, v]) => {
-            entries.push([k, v]);
-          });
-        }
-      });
-    } else {
-      entries = Object.entries(data);
-    }
+    entries = Object.entries(data);
 
     return Object.fromEntries(
       entries.map(([key, val]) => [

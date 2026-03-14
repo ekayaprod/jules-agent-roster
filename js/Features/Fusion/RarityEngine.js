@@ -49,7 +49,13 @@ const RarityEngine = (function() {
         if (!agent1 || !agent2) return "Common";
 
         // Tier 6: Mythic - The Glitch: Any Agent combined with Itself.
-        if (agent1.name && agent1.name === agent2.name) return "Mythic";
+        if (agent1.name && agent1.name === agent2.name) {
+            // Check Plus/Core Glitch
+            if (["Bolt+", "Palette+", "Sentinel+"].includes(agent1.name)) {
+                return "Mythic"; // Plus Glitch
+            }
+            return "Mythic"; // Core Glitch
+        }
 
         const isScavenger1 = agent1.name === "Scavenger";
         const isScavenger2 = agent2.name === "Scavenger";
@@ -57,12 +63,19 @@ const RarityEngine = (function() {
         // Tier 5: Legendary - The Paradox: Any Builder Agent + Destructive Agent (Scavenger)
         // Note: A Builder Agent is any non-Scavenger agent in this context.
         // We already checked for Scavenger + Scavenger (which is Mythic).
-        if (isScavenger1 || isScavenger2) return "Legendary";
+        if (isScavenger1 || isScavenger2) {
+            // Check Plus Paradox
+            if (isScavenger1 && ["Bolt+", "Palette+", "Sentinel+"].includes(agent2.name) ||
+                isScavenger2 && ["Bolt+", "Palette+", "Sentinel+"].includes(agent1.name)) {
+                return "Legendary"; // Plus Paradox
+            }
+            return "Legendary"; // Core Paradox
+        }
 
         // Tier 5: Legendary - Micro/Macro Paradox: Architecture Agent + Pedant.
         const isArchitectPedant = (agent1.name === "Architect" && agent2.name === "Pedant") ||
                                   (agent2.name === "Architect" && agent1.name === "Pedant");
-        if (isArchitectPedant) return "Legendary";
+        if (isArchitectPedant) return "Legendary"; // Core Paradox
 
         const sd1 = getSuperDomain(agent1);
         const sd2 = getSuperDomain(agent2);
@@ -80,7 +93,7 @@ const RarityEngine = (function() {
 
         // Tier 2: Uncommon & Tier 1: Common - Plus interactions
         if (domains.includes("Plus")) {
-            // Plus + Plus (Different) is Common.
+            // Plus + Plus (Different) is Common. (Base Synthesis)
             if (sd1 === "Plus" && sd2 === "Plus") return "Common";
 
             const plusAgent = sd1 === "Plus" ? agent1 : agent2;
@@ -95,7 +108,7 @@ const RarityEngine = (function() {
             return "Uncommon";
         }
 
-        // Exact same sub-category (e.g., Docs + Docs) -> Common
+        // Exact same sub-category (e.g., Docs + Docs) -> Common (Domain Mastery)
         if (agent1.category === agent2.category) {
             return "Common";
         }
@@ -115,10 +128,80 @@ const RarityEngine = (function() {
         return "Common";
     }
 
+    /**
+     * Determines the domain of the fused agent (e.g. "1. Base Synthesis", "2. Plus Affinity", etc)
+     * @param {Object} agent1 - The first agent in the fusion.
+     * @param {Object} agent2 - The second agent in the fusion.
+     * @returns {string} The fusion domain
+     */
+    function getFusionDomain(agent1, agent2) {
+        if (!agent1 || !agent2) return "Unknown Domain";
+
+        if (agent1.name && agent1.name === agent2.name) {
+            if (["Bolt+", "Palette+", "Sentinel+"].includes(agent1.name)) {
+                return "12. Plus Glitch";
+            }
+            return "13. Core Glitch";
+        }
+
+        const isScavenger1 = agent1.name === "Scavenger";
+        const isScavenger2 = agent2.name === "Scavenger";
+
+        if (isScavenger1 || isScavenger2) {
+            if (isScavenger1 && ["Bolt+", "Palette+", "Sentinel+"].includes(agent2.name) ||
+                isScavenger2 && ["Bolt+", "Palette+", "Sentinel+"].includes(agent1.name)) {
+                return "10. Plus Paradox";
+            }
+            return "11. Core Paradox";
+        }
+
+        const isArchitectPedant = (agent1.name === "Architect" && agent2.name === "Pedant") ||
+                                  (agent2.name === "Architect" && agent1.name === "Pedant");
+        if (isArchitectPedant) return "11. Core Paradox";
+
+        const sd1 = getSuperDomain(agent1);
+        const sd2 = getSuperDomain(agent2);
+        const domains = [sd1, sd2];
+
+        if (domains.includes("Integrity") && (domains.includes("Visible") || domains.includes("Invisible"))) {
+            return "9. QA Bridge";
+        }
+
+        if (domains.includes("Visible") && domains.includes("Invisible")) {
+            return "8. Full-Stack Bridge";
+        }
+
+        if (domains.includes("Plus")) {
+            if (sd1 === "Plus" && sd2 === "Plus") return "1. Base Synthesis";
+
+            const plusAgent = sd1 === "Plus" ? agent1 : agent2;
+            const otherSd = sd1 === "Plus" ? sd2 : sd1;
+
+            if (getPlusMatchingDomain(plusAgent.name) === otherSd) {
+                return "2. Plus Affinity";
+            }
+
+            return "4. Plus Bridge";
+        }
+
+        if (agent1.category === agent2.category) {
+            return "3. Domain Mastery";
+        }
+
+        if (sd1 === "Visible" && sd2 === "Visible") return "5. Frontend Synergy";
+
+        if (sd1 === "Integrity" && sd2 === "Integrity") return "7. Integrity Synergy";
+
+        if (sd1 === "Invisible" && sd2 === "Invisible") return "6. Backend Synergy";
+
+        return "Unknown Domain";
+    }
+
     // Return frozen API
     return Object.freeze({
         calculateRarity,
-        getSuperDomain
+        getSuperDomain,
+        getFusionDomain
     });
 })();
 
