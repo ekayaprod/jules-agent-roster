@@ -16,8 +16,8 @@
     "role": "Armored Express"
   },
   "Palette+,Sentinel+": {
-    "name": "Warden",
-    "emoji": "🔐",
+    "name": "Watermark",
+    "emoji": "💮",
     "short_description": "Designs frictionless authentication flows and empathetic permission dialogues that make security feel safe and intuitive. Real-time visual feedback guides users toward secure outcomes without jargon.",
     "category": "documentation",
     "type": "fusion",
