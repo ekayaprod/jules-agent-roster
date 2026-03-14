@@ -80,3 +80,7 @@
 **Title**: ⏱️ Millisecond: [Native Stack Render Optimization Bypass]
 **Learning**: Discovered that the codebase strictly follows a Vanilla JS architecture (`js/UI/README.md:37`) without utilizing Virtual DOM frameworks like React. Attempting to inject `useCallback`, `useMemo`, or `React.memo` would bootstrap foreign frameworks and violate the mandate to adapt to the native stack.
 **Action**: Unilaterally `[Skip]`ped React-specific render execution optimizations since there are no functional components or Virtual DOM reconciliation loops to stabilize.
+
+## 2026-10-24 - 🗃️ Registrar - [Registry Synchronized: Illusionist]
+**Learning:** Found a role mismatch for the fusion agent `Illusionist` (`Bolt+,Palette+`) between the Markdown source (`prompts/fusions/Illusionist.md`) specifying `Master of Perceived Performance` and the JSON registry (`custom_agents.json`) reflecting an older or incorrect value `Of Perceived Performance`.
+**Action:** Autonomously updated `custom_agents.json` to align the `role` property with the Markdown source of truth, ensuring the JSON registry correctly reflects the agent's defined role.
