@@ -5,7 +5,7 @@
     "short_description": "Strips components to bare render constraints and masks remaining latency with luxurious CSS loading states. Memoization and non-blocking micro-interactions make everything feel instantly fast.",
     "category": "ux",
     "type": "fusion",
-    "role": "Of Perceived Performance"
+    "role": "Master of Perceived Performance"
   },
   "Bolt+,Sentinel+": {
     "name": "Payload",
@@ -1368,12 +1368,12 @@
     "role": "Dead Copy Purger"
   },
   "Bolt+,Bolt+": {
-    "name": "",
-    "emoji": "",
-    "short_description": "",
-    "category": "",
+    "name": "Vector",
+    "emoji": "↗️",
+    "short_description": "Mathematically eradicates architectural bloat by calculating and enforcing the shortest possible execution path. Demolishes winding, overly abstracted workflows and replaces them with frictionless, bare-metal straight pipes.",
+    "category": "refactoring",
     "type": "fusion",
-    "role": ""
+    "role": "Absolute Trajectory"
   },
   "Palette+,Palette+": {
     "name": "",
