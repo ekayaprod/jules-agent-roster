@@ -57,15 +57,7 @@ class FusionIndex {
    */
   getCustomAgent(key) {
       if (!this.customAgents) return undefined;
-      const isCategorized = Object.values(this.customAgents).some(val => val && typeof val === "object" && val.name === undefined);
-      if (isCategorized) {
-          for (const category of Object.values(this.customAgents)) {
-              if (category[key]) return category[key];
-          }
-      } else {
-          if (this.customAgents[key]) return this.customAgents[key];
-      }
-      return undefined;
+      return this.customAgents[key];
   }
 
   /**
@@ -86,37 +78,31 @@ class FusionIndex {
 
     // Handle both categorized (nested) and flat structures
     const customAgentsSafe = this.customAgents || {};
-    const isCategorized = Object.values(customAgentsSafe).some(val => val && typeof val === "object" && val.name === undefined);
+    // Group by Domain dynamically using RarityEngine
+    const groupedAgents = {};
+    Object.entries(customAgentsSafe).forEach(([key, agentData]) => {
+        const agentNames = key.split(",");
+        const agent1 = window.rosterApp?.agents?.find(a => a.name === agentNames[0]) || { name: agentNames[0], category: agentData.category || "unknown" };
+        const agent2 = window.rosterApp?.agents?.find(a => a.name === agentNames[1]) || { name: agentNames[1], category: "unknown" };
+        const domain = typeof RarityEngine !== 'undefined' ? RarityEngine.getFusionDomain(agent1, agent2) : "Unknown Domain";
+        if (!groupedAgents[domain]) groupedAgents[domain] = {};
+        groupedAgents[domain][key] = agentData;
+    });
 
-    if (isCategorized) {
-        Object.entries(customAgentsSafe).forEach(([categoryName, categoryAgents]) => {
-            if (categoryAgents && typeof categoryAgents === "object") {
-                // Category Header
-                const catHeader = document.createElement("h4");
-                catHeader.className = "fusion-category-header";
-                catHeader.innerText = categoryName;
-                container.appendChild(catHeader);
+    Object.entries(groupedAgents).sort(([a], [b]) => a.localeCompare(b)).forEach(([categoryName, categoryAgents]) => {
+        const catHeader = document.createElement("h4");
+        catHeader.className = "fusion-category-header";
+        catHeader.innerText = categoryName;
+        container.appendChild(catHeader);
 
-                // Category Grid
-                const grid = document.createElement("div");
-                grid.className = "fusion-shelf-grid";
-                container.appendChild(grid);
-
-                Object.entries(categoryAgents).forEach(([key, agentData]) => {
-                    this._renderSlot(grid, key, agentData);
-                });
-            }
-        });
-    } else {
-        // Fallback for flat structure
         const grid = document.createElement("div");
         grid.className = "fusion-shelf-grid";
         container.appendChild(grid);
 
-        Object.entries(customAgentsSafe).forEach(([key, agentData]) => {
-             this._renderSlot(grid, key, agentData);
+        Object.entries(categoryAgents).forEach(([key, agentData]) => {
+            this._renderSlot(grid, key, agentData);
         });
-    }
+    });
 
     // Progress Counter
     const progress = document.createElement("div");
@@ -156,16 +142,7 @@ class FusionIndex {
   updateProgress(element) {
     let total = 0;
     if (this.customAgents) {
-        const isCategorized = Object.values(this.customAgents).some(val => val && typeof val === "object" && val.name === undefined);
-        if (isCategorized) {
-            Object.values(this.customAgents).forEach(cat => {
-                if (cat && typeof cat === "object") {
-                    total += Object.keys(cat).length;
-                }
-            });
-        } else {
-            total = Object.keys(this.customAgents).length;
-        }
+        total = Object.keys(this.customAgents).length;
     }
     const current = this.unlockedKeys.size;
     element.innerText = `${current} / ${total} Protocols Discovered`;
