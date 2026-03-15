@@ -1,0 +1,1 @@
+**Vector**: When executing array transformations containing multiple phases (like \`.filter()\` then \`.map()\`) -> FUSE the abstractions into a Single-Pass Pipeline utilizing a direct \`for\` loop to prevent excessive garbage collection and redundant iterations.
