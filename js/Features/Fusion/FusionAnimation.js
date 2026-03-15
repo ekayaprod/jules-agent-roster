@@ -112,36 +112,28 @@ class FusionAnimation {
         imgContainer.appendChild(placeholder);
         iconResult.appendChild(imgContainer);
 
-        const loadImageWithRetry = (url, retries = 3, backoff = 300) => {
-          const img = new Image();
-          img.src = url;
-          img.alt = result.name;
-          img.loading = "eager";
-          img.className = "img-loading";
-          img.style.width = "100%";
-          img.style.height = "100%";
-          img.style.objectFit = "contain";
+        const img = new Image();
+        img.src = imgUrl;
+        img.alt = result.name;
+        img.loading = "eager";
+        img.className = "img-loading";
+        img.style.width = "100%";
+        img.style.height = "100%";
+        img.style.objectFit = "contain";
 
-          img.onload = () => {
-            imgContainer.appendChild(img);
-            void img.offsetWidth;
-            img.classList.remove("img-loading");
-            img.classList.add("img-loaded");
-            placeholder.classList.add("hidden");
-            setTimeout(() => { if (placeholder.parentNode) placeholder.remove(); }, 300);
-          };
-
-          img.onerror = () => {
-            if (retries > 0) {
-              setTimeout(() => loadImageWithRetry(url, retries - 1, backoff * 2), backoff);
-            } else {
-              imgContainer.remove();
-              iconResult.innerText = `${iconA}${iconB}`;
-            }
-          };
+        img.onload = () => {
+          imgContainer.appendChild(img);
+          void img.offsetWidth;
+          img.classList.remove("img-loading");
+          img.classList.add("img-loaded");
+          placeholder.classList.add("hidden");
+          setTimeout(() => { if (placeholder.parentNode) placeholder.remove(); }, 300);
         };
 
-        loadImageWithRetry(imgUrl);
+        img.onerror = () => {
+          imgContainer.remove();
+          iconResult.innerText = `${iconA}${iconB}`;
+        };
       }
     }
 
