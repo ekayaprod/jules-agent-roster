@@ -75,3 +75,7 @@
 ## 2026-10-24 - 🗃️ Registrar - [Registry Synchronized: Illusionist]
 **Learning:** Found a role mismatch for the fusion agent `Illusionist` (`Bolt+,Palette+`) between the Markdown source (`prompts/fusions/Illusionist.md`) specifying `Master of Perceived Performance` and the JSON registry (`custom_agents.json`) reflecting an older or incorrect value `Of Perceived Performance`.
 **Action:** Autonomously updated `custom_agents.json` to align the `role` property with the Markdown source of truth, ensuring the JSON registry correctly reflects the agent's defined role.
+
+## 2024-05-24 - 🎒 Proton Pack - [Memory Leak Eradicated: IntersectionObserver]
+**Learning:** Found an `IntersectionObserver` leak in `RosterApp.js` where the `initObserver` function instantiated a new observer without disconnecting the previous one, potentially causing duplicate instances in memory during app reinitialization or lifecycle resets.
+**Action:** Stored the `IntersectionObserver` instance on the class context (`this.observer`) and implemented a `.disconnect()` cleanup guard at the start of `initObserver()` to ensure only one active observer runs at a time.

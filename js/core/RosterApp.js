@@ -625,6 +625,10 @@ class RosterApp {
    * natively as the user scrolls past each categorized grid section.
    */
   initObserver() {
+    if (this.observer) {
+        this.observer.disconnect();
+    }
+
     // ⚡ Bolt+: Extracted redundant and repetitive DOM attribute parsing (getAttribute)
     // outside of the high-frequency intersection observer callback, caching the structured references in memory.
     const cachedPills = this.elements.navPills
@@ -634,7 +638,7 @@ class RosterApp {
         }))
         : [];
 
-    const observer = new IntersectionObserver(
+    this.observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
@@ -652,7 +656,7 @@ class RosterApp {
       // ⚡ Bolt+: Utilize cached category elements and O(1) reversed lookups to prevent repeated query execution.
       const catKey = this.categoryLookup[gridId];
       const el = catKey ? this.categoryElements[catKey] : document.getElementById(gridId);
-      if (el) observer.observe(el);
+      if (el) this.observer.observe(el);
     });
   }
 
