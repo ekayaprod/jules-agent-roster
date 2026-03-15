@@ -1,23 +1,22 @@
 1. **Explore & Analyze**:
-   - `RarityEngine.js` has a large coverage gap in the `getFusionDomain` function (lines 138-197), which represents 44.45% of uncovered lines in this module (overall module coverage is 58.82% Stmts, 54.86% Branch).
-   - The missing coverage includes all branches of `getFusionDomain`, such as:
-     - Null/missing agents ("Unknown Domain")
-     - Plus/Core Glitch
-     - Plus/Core Paradox
-     - Micro/Macro Paradox (Architect + Pedant)
-     - QA Bridge
-     - Full-Stack Bridge
-     - Base Synthesis, Plus Affinity, Plus Bridge
-     - Domain Mastery
-     - Frontend Synergy, Backend Synergy, Integrity Synergy
-     - Unknown Domain fallback
-2. **Implement Tests**:
-   - Add a new `describe('getFusionDomain')` block in `js/Features/Fusion/RarityEngine.test.js`.
-   - Write comprehensive tests for every domain tier in `getFusionDomain` to achieve 100% path coverage for that function.
-   - Use boundary values like null/undefined arguments and edge cases like identical agents, "Scavenger", "Architect"/"Pedant", Plus agents, and different combinations of Super Domains.
+   - The user task is to "Analyze and optimize the repository based on your directives."
+   - The persona is "Singularity". My job is to identify a repetitive manual chore, structural gap, or CI/CD friction and create a `protocol` (a markdown file under `prompts/fusions/`) for a new persona.
+   - Looking at `git log --grep="update emojis"`, I see multiple repetitive commits:
+     - `94e2bc4 chore: update emojis for Standardizer and Mapper fusions`
+     - `a08145a chore(agents): update emojis for specific fusion agents`
+     - `18bfced chore: update emojis for 19 agents in custom_agents.json and fusions directory`
+     - `8611332 chore: update agent emojis`
+     - `8518282 chore: update fusions emojis`
+     - `1634857 chore: update custom agents emojis`
+   - Developers frequently manually update emojis across `custom_agents.json` / `agents.json` and the corresponding Markdown files in `prompts/` and `prompts/fusions/`. While `Registrar` exists to sync JSON from the Markdown files, there is no persona tasked with auditing and updating emojis across the Markdown files themselves, resulting in manual syncing between the text and UI representations.
+   - I will create a protocol for a new agent called `Iconographer` 🔣 (or `Symbologist` / `Lexicographer`) which will be placed in `prompts/fusions/Iconographer.md`.
+2. **Implement**:
+   - Create a strictly formatted 9-part markdown document for the new `Iconographer` persona.
+   - Define clear boundaries: strictly updating emojis in the markdown files or JSON directly to maintain semantic meaning without altering core logic.
+   - Follow the `Prune-First` protocol to add an entry in `.jules/singularity.md` summarizing this learning and action.
 3. **Verify**:
-   - Run `npx jest --coverage js/Features/Fusion/RarityEngine.test.js` to ensure the new tests pass and branch coverage reaches or approaches 100% for `RarityEngine.js`.
-4. **Pre-commit Instructions**:
+   - Run the native markdown linter (`npx markdownlint-cli prompts/fusions/Iconographer.md` or similar, depending on `.markdownlint.json`).
+4. **Pre commit steps**:
    - Call `pre_commit_instructions` tool to perform verification and reflections.
 5. **Submit**:
-   - Submit the PR using the Inspector's standard PR format.
+   - Submit the PR using the Singularity's standard PR format `🌌 Singularity: [Agent Spawned: Iconographer - Emoji Synchronization]`.
