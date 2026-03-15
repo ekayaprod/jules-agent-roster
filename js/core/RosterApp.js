@@ -221,22 +221,30 @@ class RosterApp {
     }
 
     const flattenedAgents = [];
-    // ⚡ Bolt+: Implemented Schwartzian transform to reduce O(N log N) Set lookups to O(N) during sorting.
-    // Why: We cache the pin state (`isPinned`) for each agent before sorting. This avoids
-    // calling `this.pinnedManager.isPinned(item.indexOrKey)` inside the `sort` comparator,
-    // which would otherwise be executed `O(N log N)` times, causing a performance bottleneck.
-    Object.keys(categorizedAgents).forEach(category => {
-       const mapped = categorizedAgents[category].map(item => ({
-           original: item,
-           isPinned: this.pinnedManager ? this.pinnedManager.isPinned(item.indexOrKey) : false
-       }));
-       mapped.sort((a, b) => {
+    // ↗️ VECTORIZE: The Single-Pass Pipeline. We bypass the redundant O(N) intermediate array creations
+    // from the chained .map() calls. The static check for `pinnedManager` is hoisted out of the loop.
+    // We instantiate a new array with the pinned state cached to avoid mutating the source data structures.
+    const keys = Object.keys(categorizedAgents);
+    for (let i = 0; i < keys.length; i++) {
+        const categoryList = categorizedAgents[keys[i]];
+        const mappedList = new Array(categoryList.length);
+
+        for (let j = 0; j < categoryList.length; j++) {
+            const item = categoryList[j];
+            const isPinned = this.pinnedManager ? this.pinnedManager.isPinned(item.indexOrKey) : false;
+            mappedList[j] = { original: item, isPinned };
+        }
+
+        mappedList.sort((a, b) => {
            if (a.isPinned && !b.isPinned) return -1;
            if (!a.isPinned && b.isPinned) return 1;
            return 0;
-       });
-       flattenedAgents.push(...mapped.map(m => m.original));
-    });
+        });
+
+        for (let j = 0; j < mappedList.length; j++) {
+            flattenedAgents.push(mappedList[j].original);
+        }
+    }
 
     const currentRenderId = Symbol();
     this.currentRenderId = currentRenderId;
