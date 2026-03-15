@@ -21,3 +21,7 @@ This journal tracks inconsistent terminology and Voice & Tone patterns across th
 ## 2026-03-09 - 🖋️ Wordsmith - [Polished Microcopy for Status Codes]
 **Learning:** Found an error message in the Jules API service exposing raw HTTP status codes (e.g., `We encountered a server error (500)`) directly to the user.
 **Action:** Always rewrite backend errors to completely remove technical status codes and jargon, maintaining a clear, actionable resolution path ("Please wait a moment and try again").
+2026-03-15
+**Title**: Fixing Missing Aria-Label in Polling Error State
+**Learning**: Jest tests often verify exact text nodes (e.g. `[✕]`) instead of visual semantic structure. Changing error strings tested literally will break snapshots and behavior assertions.
+**Action**: When fixing accessibility, inject standard HTML properties (like `aria-label`) that don't modify the `textContent` inner nodes to ensure 100% snapshot parity.
