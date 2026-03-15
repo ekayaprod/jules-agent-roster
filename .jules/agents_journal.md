@@ -79,3 +79,7 @@
 ## 2024-05-24 - 🎒 Proton Pack - [Memory Leak Eradicated: IntersectionObserver]
 **Learning:** Found an `IntersectionObserver` leak in `RosterApp.js` where the `initObserver` function instantiated a new observer without disconnecting the previous one, potentially causing duplicate instances in memory during app reinitialization or lifecycle resets.
 **Action:** Stored the `IntersectionObserver` instance on the class context (`this.observer`) and implemented a `.disconnect()` cleanup guard at the start of `initObserver()` to ensure only one active observer runs at a time.
+
+## 2026-03-15 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: StorageUtils]
+**Learning:** Discovered that the `StorageUtils` class had standard JSDoc comments but lacked specific architectural documentation explaining its strategic value (abstracting `localStorage` to provide safe JSON serialization/deserialization and centralized error handling, preventing silent component crashes when storage is unavailable).
+**Action:** Expanded the module's macro `README.md` to define the "StorageUtils Architecture" and linked the granular JSDoc of its class and methods to this new thesis using `@see`, ensuring the documentation survives and synchronizes across altitudes.
