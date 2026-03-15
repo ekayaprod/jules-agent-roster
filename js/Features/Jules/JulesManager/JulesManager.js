@@ -607,7 +607,7 @@ class JulesManager {
 
         if (state.hasError) {
             statusSpan.className = "term-status status-error";
-            statusSpan.innerHTML = `${FormatUtils.escapeHTML(state.latestLog)} <button class="term-action-btn" onclick="document.getElementById('session-${sessionId}').remove()">[✕]</button>`;
+            statusSpan.innerHTML = `${FormatUtils.escapeHTML(state.latestLog)} <button class="term-action-btn" aria-label="Dismiss task error" onclick="document.getElementById('session-${sessionId}').remove()">[✕]</button>`;
             clearInterval(this.julesPollingIntervals[sessionId]);
             return;
         }
