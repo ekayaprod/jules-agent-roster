@@ -79,3 +79,6 @@
 ## 2024-05-24 - 🎒 Proton Pack - [Memory Leak Eradicated: IntersectionObserver]
 **Learning:** Found an `IntersectionObserver` leak in `RosterApp.js` where the `initObserver` function instantiated a new observer without disconnecting the previous one, potentially causing duplicate instances in memory during app reinitialization or lifecycle resets.
 **Action:** Stored the `IntersectionObserver` instance on the class context (`this.observer`) and implemented a `.disconnect()` cleanup guard at the start of `initObserver()` to ensure only one active observer runs at a time.
+## 2026-03-15 - 🗃️ Registrar - Strict JSON Boundaries
+**Learning:** Fixing a sorting issue is necessary but not sufficient. Registries must simultaneously uphold their strict structural schema boundaries across all edits (e.g., ensuring all required keys like 'tier' are present on every object).
+**Action:** Always map the entire required key array over modified registry objects to fill missing schemas with empty string defaults during any structural mutation, rather than solely fixing the isolated target (like sorting).
