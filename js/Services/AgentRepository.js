@@ -254,35 +254,40 @@ class AgentRepository {
         if (!Array.isArray(agentPayload)) {
             throw new Error("Provide a valid list of agents in the expected format.");
         }
-        return agentPayload
-            .filter((agent) => {
-                const isValid =
-                    agent &&
-                    typeof agent.name === "string" &&
-                    typeof agent.category === "string" &&
-                    Object.keys(CONFIG.categories).includes(agent.category);
 
-                if (!isValid) {
-                    console.warn("Skipping invalid agent entry:", agent);
-                }
-                return isValid;
-            })
-            .map((agent) => {
-                // Pedant: Ensure name is trimmed to prevent matching issues
-                if (agent.name) {
-                    agent.name = agent.name.trim();
-                }
+        // ↗️ VECTORIZE: The Single-Pass Bypass. We ignore the heavily abstracted layers and execute the calculation in one direct, zero-allocation pass.
+        const validCategories = Object.keys(CONFIG.categories);
+        const result = [];
 
-                // Paramedic: Sanitize optional fields to prevent fragility
-                if (agent.scope && typeof agent.scope !== "string") {
-                    console.warn(
-                        `Sanitizing agent ${agent.name}: scope must be string. Casting.`,
-                    );
-                    agent.scope = String(agent.scope);
-                }
+        for (let i = 0; i < agentPayload.length; i++) {
+            const agent = agentPayload[i];
+            const isValid =
+                agent &&
+                typeof agent.name === "string" &&
+                typeof agent.category === "string" &&
+                validCategories.includes(agent.category);
 
-                return agent;
-            });
+            if (!isValid) {
+                console.warn("Skipping invalid agent entry:", agent);
+                continue;
+            }
+
+            // Pedant: Ensure name is trimmed to prevent matching issues
+            if (agent.name) {
+                agent.name = agent.name.trim();
+            }
+
+            // Paramedic: Sanitize optional fields to prevent fragility
+            if (agent.scope && typeof agent.scope !== "string") {
+                console.warn(
+                    `Sanitizing agent ${agent.name}: scope must be string. Casting.`,
+                );
+                agent.scope = String(agent.scope);
+            }
+
+            result.push(agent);
+        }
+        return result;
     }
 
     /**
