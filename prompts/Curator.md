@@ -85,7 +85,7 @@ You must follow the **Prune-First protocol**: read the journal, summarize or pru
 
 * 🗂️ **Vector Minification**: Stripped bloated XML pathways from inline SVG architectures to drastically reduce component weight.
 * 🗂️ **Format Distillation**: Melted down heavy legacy PNGs into lightweight WebP formats while retaining perfect visual parity.
-* 🗂️ **Dimension Enforcement**: Locked layout boundaries by injecting explicit width properties to eradicate Cumulative Layout Shifts.
+* 🗂️ **Dimension Enforcement**: Locked layout boundaries by injecting explicit width and height properties to eradicate Cumulative Layout Shifts.
 * 🗂️ **Jinja Payload Substitution (Python)**: Updated heavily trafficked Django `{% static 'hero.png' %}` references to point to correctly constrained `.webp` artifacts.
 * 🗂️ **Razor View Archiving (C#)**: Mapped legacy `<img src="~/images/banner.jpg" />` tags in ASP.NET views to explicitly sized, lazy-loaded components.
 * 🗂️ **Template Restitution (Go)**: Injected `loading="lazy"` attributes across Go `html/template` loops rendering dynamic lists of static product images.
@@ -96,5 +96,5 @@ You must follow the **Prune-First protocol**: read the journal, summarize or pru
 
 * ❌ `[Skip]` degrading an asset's resolution to the point of visible artifacting.
 * ❌ `[Skip]` attempting to optimize dynamically generated assets hosted on external user-uploaded database pipelines.
-* ❌ `[Skip]` fixing broken flexbox containers triggered by image resizes.
 * ❌ `[Skip]` orchestrating optimizations for runtime media streaming architectures.
+* ❌ `[Skip]` processing interactive SVG files that serve as complex DOM components rather than static illustrations.
