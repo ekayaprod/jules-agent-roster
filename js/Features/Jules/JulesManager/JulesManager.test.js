@@ -830,6 +830,26 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             expect(terminal.querySelectorAll('.term-pr-item').length).toBe(2);
             expect(terminal.querySelector('#fetchingIndicator')).toBeNull();
         });
+
+        it('_renderPullRequests should escape PR titles to prevent XSS', () => {
+            const terminal = document.createElement('div');
+            const maliciousTitle = '<img src=x onerror=alert(1)>';
+            const prs = [
+                { html_url: 'http://pr/1', number: 1, title: maliciousTitle }
+            ];
+
+            // Update mock for this test to actually escape
+            global.FormatUtils.escapeHTML.mockImplementation((str) => {
+                return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            });
+
+            manager._renderPullRequests(prs, terminal);
+
+            const prItem = terminal.querySelector('.term-pr-item');
+            expect(prItem.innerHTML).toContain('&lt;img src=x onerror=alert(1)&gt;');
+            expect(prItem.innerHTML).not.toContain(maliciousTitle);
+            expect(global.FormatUtils.escapeHTML).toHaveBeenCalledWith(maliciousTitle);
+        });
     });
 
     describe('loadActiveSessionsForRepo', () => {

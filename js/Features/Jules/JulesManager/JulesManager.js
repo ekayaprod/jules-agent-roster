@@ -349,7 +349,7 @@ class JulesManager {
             item.className = "term-pr-item";
             item.innerHTML = `
                 <span style="color: var(--term-success); font-weight: 600; flex-shrink: 0;">[PR OPEN]</span> 
-                <a href="${pr.html_url}" target="_blank" rel="noopener noreferrer" class="term-pr-title term-link">#${pr.number} ${pr.title}</a>
+                <a href="${pr.html_url}" target="_blank" rel="noopener noreferrer" class="term-pr-title term-link">#${pr.number} ${FormatUtils.escapeHTML(pr.title)}</a>
             `;
             terminal.insertBefore(item, terminal.firstChild);
         });
