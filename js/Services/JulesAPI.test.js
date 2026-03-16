@@ -1,12 +1,11 @@
 /**
- * @jest-environment jsdom
+ * @jest-environment node
  */
 const JulesService = require('./JulesAPI');
 
 describe('JulesService', () => {
     let service;
     let originalFetch;
-    let originalWindow;
 
     beforeEach(() => {
         service = new JulesService();
@@ -268,54 +267,38 @@ describe('createSession', () => {
             );
         });
 
-        it('should return empty array and log error on network error', async () => {
+        it('should throw error on network error', async () => {
             global.fetch.mockRejectedValue(new Error("Network Error"));
-            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-
-            const response = await service.getPullRequests('sources/github/owner/repo');
-            expect(response).toEqual([]);
-            expect(consoleSpy).toHaveBeenCalledWith("Failed to fetch pull requests:", expect.any(Error));
-
-            consoleSpy.mockRestore();
+            await expect(service.getPullRequests('sources/github/owner/repo')).rejects.toThrow("Network Error");
         });
 
-        it('should not throw a ReferenceError when a fetch rejects due to a network error', async () => {
-            global.fetch.mockRejectedValue(new Error("Network Error"));
-            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-
-            const response = await service.getPullRequests('sources/github/owner/repo');
-            expect(response).toEqual([]);
-            expect(consoleSpy).toHaveBeenCalledWith("Failed to fetch pull requests:", expect.any(Error));
-
-            consoleSpy.mockRestore();
-        });
-
-        it('should return empty array and log error on non-404 status code', async () => {
+        it('should throw error on non-404 status code', async () => {
             global.fetch.mockResolvedValue({
                 ok: false,
-                status: 500
+                status: 500,
+                text: async () => "Internal Server Error"
             });
-            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-            const response = await service.getPullRequests('sources/github/owner/repo');
-            expect(response).toEqual([]);
-            expect(consoleSpy).toHaveBeenCalledWith("Failed to fetch pull requests:", expect.any(Error));
-
-            consoleSpy.mockRestore();
+            await expect(service.getPullRequests('sources/github/owner/repo')).rejects.toThrow("GitHub API returned 500");
         });
 
-        it('should return empty array and log error on invalid format (JSON parsing error)', async () => {
+        it('should extract message from GitHub API error response', async () => {
+            global.fetch.mockResolvedValue({
+                ok: false,
+                status: 403,
+                text: async () => JSON.stringify({ message: "API rate limit exceeded" })
+            });
+
+            await expect(service.getPullRequests('sources/github/owner/repo')).rejects.toThrow("API rate limit exceeded");
+        });
+
+        it('should throw error on invalid format (JSON parsing error)', async () => {
             global.fetch.mockResolvedValue({
                 ok: true,
                 json: async () => { throw new Error("Invalid JSON"); }
             });
-            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-            const response = await service.getPullRequests('sources/github/owner/repo');
-            expect(response).toEqual([]);
-            expect(consoleSpy).toHaveBeenCalledWith("Failed to fetch pull requests:", expect.any(Error));
-
-            consoleSpy.mockRestore();
+            await expect(service.getPullRequests('sources/github/owner/repo')).rejects.toThrow("Invalid JSON");
         });
 
         it('should return pull requests on success', async () => {
@@ -331,8 +314,20 @@ describe('createSession', () => {
 
     describe('Environment Initialization', () => {
         it('should attach to window object if window is defined', () => {
-             expect(window.julesService).toBeDefined();
-             expect(window.julesService instanceof JulesService).toBe(true);
+             const originalWindow = global.window;
+             global.window = {};
+
+             // Re-require to trigger the side effect
+             jest.isolateModules(() => {
+                 require('./JulesAPI');
+                 expect(global.window.julesService).toBeDefined();
+             });
+
+             if (originalWindow === undefined) {
+                 delete global.window;
+             } else {
+                 global.window = originalWindow;
+             }
         });
     });
 });
