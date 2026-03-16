@@ -180,12 +180,12 @@ ${userTask}`;
         return this._fetch(`sessions/${sessionId}/activities?pageSize=${DEFAULT_PAGE_SIZE}`);
     }
 
-    // ✍️ ILLUMINATE: The getPullRequests polling loop explicitly swallows all network errors, non-404 statuses, and invalid formats.
-    // Returning a safe fallback empty array [] prevents the entire RosterApp UI from crashing when the GitHub API rate limits or times out.
     /**
      * Retrieves the list of open pull requests for a given repository via the GitHub API.
      * @param {string} sourceName - The target repository source name (e.g., 'sources/github/owner/repo').
-     * @returns {Promise<Array>} The JSON response containing the open pull requests, or a safe fallback [] on failure.
+     * @returns {Promise<Array>} The JSON response containing the open pull requests, or a safe fallback [] on 404.
+     * @throws {Error} If the request fails, times out, or returns a non-404 error status.
+     * @see README.md#6-pull-request-rendering for the UI synchronization flow.
      */
     async getPullRequests(sourceName) {
         if (!sourceName.startsWith('sources/github/')) {
@@ -210,18 +210,22 @@ ${userTask}`;
                 ...options,
                 signal: controller.signal
             });
-            clearTimeout(timeoutId);
 
             if (!response.ok) {
                 if (response.status === 404) {
                     return [];
                 }
-                throw new Error(`GitHub API returned ${response.status}`);
+                const errorText = await response.text();
+                let errorMsg = `GitHub API returned ${response.status}`;
+                try {
+                    const errJson = JSON.parse(errorText);
+                    if (errJson.message) errorMsg = errJson.message;
+                } catch(e) {}
+                throw new Error(errorMsg);
             }
             return await response.json();
-        } catch (error) {
-            console.error("Failed to fetch pull requests:", error);
-            return [];
+        } finally {
+            clearTimeout(timeoutId);
         }
     }
 }

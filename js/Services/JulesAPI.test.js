@@ -6,7 +6,6 @@ const JulesService = require('./JulesAPI');
 describe('JulesService', () => {
     let service;
     let originalFetch;
-    let originalWindow;
 
     beforeEach(() => {
         service = new JulesService();
@@ -268,15 +267,9 @@ describe('createSession', () => {
             );
         });
 
-        it('should return empty array and log error on network error', async () => {
+        it('should throw error on network error', async () => {
             global.fetch.mockRejectedValue(new Error("Network Error"));
-            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-
-            const response = await service.getPullRequests('sources/github/owner/repo');
-            expect(response).toEqual([]);
-            expect(consoleSpy).toHaveBeenCalledWith("Failed to fetch pull requests:", expect.any(Error));
-
-            consoleSpy.mockRestore();
+            await expect(service.getPullRequests('sources/github/owner/repo')).rejects.toThrow("Network Error");
         });
 
         it('should return empty array and log error on timeout', async () => {
@@ -303,32 +296,23 @@ describe('createSession', () => {
             jest.useRealTimers();
         });
 
-        it('should return empty array and log error on non-404 status code', async () => {
+        it('should extract message from GitHub API error response', async () => {
             global.fetch.mockResolvedValue({
                 ok: false,
-                status: 500
+                status: 403,
+                text: async () => JSON.stringify({ message: "API rate limit exceeded" })
             });
-            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-            const response = await service.getPullRequests('sources/github/owner/repo');
-            expect(response).toEqual([]);
-            expect(consoleSpy).toHaveBeenCalledWith("Failed to fetch pull requests:", expect.any(Error));
-
-            consoleSpy.mockRestore();
+            await expect(service.getPullRequests('sources/github/owner/repo')).rejects.toThrow("API rate limit exceeded");
         });
 
-        it('should return empty array and log error on invalid format (JSON parsing error)', async () => {
+        it('should throw error on invalid format (JSON parsing error)', async () => {
             global.fetch.mockResolvedValue({
                 ok: true,
                 json: async () => { throw new Error("Invalid JSON"); }
             });
-            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-            const response = await service.getPullRequests('sources/github/owner/repo');
-            expect(response).toEqual([]);
-            expect(consoleSpy).toHaveBeenCalledWith("Failed to fetch pull requests:", expect.any(Error));
-
-            consoleSpy.mockRestore();
+            await expect(service.getPullRequests('sources/github/owner/repo')).rejects.toThrow("Invalid JSON");
         });
 
         it('should return pull requests on success', async () => {
