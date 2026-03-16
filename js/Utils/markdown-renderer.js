@@ -1,6 +1,7 @@
 /**
  * Custom DOM-node based Markdown Renderer.
  * Ensures complete protection against XSS vulnerabilities by avoiding innerHTML.
+ * @see README.md#markdownrenderer-architecture
  */
 class MarkdownRenderer {
 
@@ -8,6 +9,7 @@ class MarkdownRenderer {
      * Creates a DOM element from a matched inline markdown string.
      * @param {string} matchedString - The matched markdown string (e.g. **text**).
      * @returns {HTMLElement|null} The created DOM element.
+     * @see README.md#markdownrenderer-architecture
      */
     static _createInlineElement(matchedString) {
         if (matchedString.startsWith('**') && matchedString.endsWith('**')) {
@@ -32,6 +34,7 @@ class MarkdownRenderer {
      * Parses a single line for basic inline markdown (**, *, `) and appends to the target element.
      * @param {HTMLElement} element - The target DOM element.
      * @param {string} text - The line of text to parse.
+     * @see README.md#markdownrenderer-architecture
      */
     static _parseInline(element, text) {
         // Simple regex to match **bold**, *italic*, `code`
@@ -63,6 +66,7 @@ class MarkdownRenderer {
      * Parses raw markdown text and renders it into a DOM container using pure DOM methods.
      * @param {string} text - The raw markdown text.
      * @returns {HTMLElement} A DOM element containing the parsed and styled content.
+     * @see README.md#markdownrenderer-architecture
      */
     static render(text) {
         const container = document.createElement("div");

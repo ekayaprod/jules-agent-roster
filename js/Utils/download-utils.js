@@ -1,6 +1,7 @@
 /**
  * Utility class for handling file download operations.
  * Centralizes logic previously duplicated in RosterApp.
+ * @see README.md#downloadutils-architecture
  */
 class DownloadUtils {
     /**
@@ -8,6 +9,7 @@ class DownloadUtils {
      * @param {string} content - The content of the file.
      * @param {string} filename - The name of the file to download.
      * @param {string} [type="text/markdown"] - The MIME type of the file.
+     * @see README.md#downloadutils-architecture
      */
     static downloadTextFile(content, filename, type = "text/markdown") {
         const blob = new Blob([content], { type });

@@ -1,6 +1,7 @@
 /**
  * Utility class for common DOM operations.
  * Centralizes duplicate UI logic such as generating CSS loading skeletons.
+ * @see README.md#domutils-architecture
  */
 class DOMUtils {
   /**
@@ -11,6 +12,7 @@ class DOMUtils {
    * @param {string} className - The CSS class name(s) to apply to the skeleton.
    * @param {string} [minHeight] - Optional minimum height constraint (e.g., "4rem").
    * @returns {HTMLElement} The constructed skeleton DIV element with aria-hidden set.
+   * @see README.md#domutils-architecture
    */
   static createSkeletonElement(className, minHeight = "") {
     const skeleton = document.createElement("div");
@@ -29,6 +31,7 @@ class DOMUtils {
    * @param {HTMLElement} btn - The button element to update.
    * @param {string} state - The state to apply ('loading', 'error', 'ready', 'disabled').
    * @param {string} text - The text to display on the button.
+   * @see README.md#domutils-architecture
    */
   static setButtonState(btn, state, text) {
     if (!btn) return;
@@ -69,6 +72,7 @@ class DOMUtils {
    * @param {string|Iterable<HTMLElement>} selectorOrElements - The CSS selector or an iterable of elements to update.
    * @param {string} display - The CSS display value to apply (e.g., 'none', 'flex', 'block').
    * @param {string} [excludeId=""] - An optional element ID to exclude from the styling.
+   * @see README.md#domutils-architecture
    */
   static setElementsDisplay(selectorOrElements, display, excludeId = "") {
     // ⚡ Bolt+: Accepts pre-cached NodeLists/Iterables to bypass expensive document.querySelectorAll lookups
