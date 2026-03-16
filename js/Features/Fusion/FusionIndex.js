@@ -78,30 +78,14 @@ class FusionIndex {
 
     // Handle both categorized (nested) and flat structures
     const customAgentsSafe = this.customAgents || {};
-    // Group by Domain dynamically using RarityEngine
-    const groupedAgents = {};
+
+    const grid = document.createElement("div");
+    grid.className = "fusion-shelf-grid";
+    container.appendChild(grid);
+
+    // Render slots for all custom agents without grouping
     Object.entries(customAgentsSafe).forEach(([key, agentData]) => {
-        const agentNames = key.split(",");
-        const agent1 = window.rosterApp?.agents?.find(a => a.name === agentNames[0]) || { name: agentNames[0], category: agentData.category || "unknown" };
-        const agent2 = window.rosterApp?.agents?.find(a => a.name === agentNames[1]) || { name: agentNames[1], category: "unknown" };
-        const domain = typeof RarityEngine !== 'undefined' ? RarityEngine.getFusionDomain(agent1, agent2) : "Unknown Domain";
-        if (!groupedAgents[domain]) groupedAgents[domain] = {};
-        groupedAgents[domain][key] = agentData;
-    });
-
-    Object.entries(groupedAgents).sort(([a], [b]) => a.localeCompare(b)).forEach(([categoryName, categoryAgents]) => {
-        const catHeader = document.createElement("h4");
-        catHeader.className = "fusion-category-header";
-        catHeader.innerText = categoryName;
-        container.appendChild(catHeader);
-
-        const grid = document.createElement("div");
-        grid.className = "fusion-shelf-grid";
-        container.appendChild(grid);
-
-        Object.entries(categoryAgents).forEach(([key, agentData]) => {
-            this._renderSlot(grid, key, agentData);
-        });
+        this._renderSlot(grid, key, agentData);
     });
 
     // Progress Counter
