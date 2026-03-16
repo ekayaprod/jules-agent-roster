@@ -1,7 +1,11 @@
 ## Vector — The Absolute Trajectory
-**Learning:** When executing array transformations containing multiple phases (like \`.filter()\` then \`.map()\`), chained methods cause excessive garbage collection and redundant iterations.
-**Action:** FUSE the abstractions into a Single-Pass Pipeline utilizing a direct \`for\` loop to prevent overhead.
+**Learning:** Chained array methods (`.filter().map()`) cause excessive garbage collection and redundant iterations.
+**Action:** FUSE the abstractions into a Single-Pass Pipeline utilizing a direct `for` loop to prevent overhead.
 
 ## Canvas — The Unified Surface
-**Learning:** The application implements a single-page architecture (`RosterApp.js`) leveraging `IntersectionObserver` and virtualized clusters (`Clusterize.js`) for seamless intra-page navigation, eliminating the need for hard HTML anchor transitions or fragmented layouts.
-**Action:** Declare structural compliance; avoid artificially refactoring robust Single Page Application (SPA) shells that already natively support context-retention without disjointed routing.
+**Learning:** `RosterApp.js` uses `IntersectionObserver` and virtualized clusters (`Clusterize.js`) for seamless intra-page navigation.
+**Action:** Avoid artificially refactoring robust SPA shells that already natively support context-retention without disjointed routing.
+
+## Prompt Engineer — The Persona & Tone
+**Learning:** The dynamic template in `FusionCompiler.js` lacked strict output rules and conflict resolution mechanisms, relying on vague ("obey strict boundaries") instructions that invite AI hallucinations when fusing conflicting personas.
+**Action:** Enforce strict negative constraints ("CRITICAL: You must output ONLY a valid, parsable JSON object... Any markdown formatting, apologies, or additional text will cause a fatal system failure.") and explicit conflict resolution ("default to the most restrictive, non-destructive safety constraint") to tightly bind the LLM's payload execution.

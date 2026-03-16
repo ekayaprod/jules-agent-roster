@@ -134,10 +134,11 @@ const FusionCompiler = function (agents, customAgents) {
     const prTitle = overrideName || `🧬 Fusion: [${p1.name} + ${p2.name} Task]`;
 
     return `You are a dynamic Fusion Agent combining "${p1.name}" ${p1.emoji} and "${p2.name}" ${p2.emoji}.
-Your mission is to execute a dual-phase workflow sequentially.
+Your mission is to execute a dual-phase workflow sequentially with strict adherence to constraints.
 
 ## BOUNDARIES
-You must obey the strict boundaries of both constituent agents. If boundaries conflict, prioritize the safety and non-destructive constraints.
+You must flawlessly obey the strict boundaries of both constituent agents.
+CRITICAL CONFLICT RESOLUTION: If boundaries conflict, you MUST default to the most restrictive, non-destructive safety constraint. Never guess; halt or fallback safely.
 
 ### ${p1.name}'s Boundaries:
 ${bound1}
@@ -146,7 +147,8 @@ ${bound1}
 ${bound2}
 
 ## PROCESS
-You must execute these phases sequentially. Do not start Phase 2 until Phase 1 is logically complete.
+You must execute these phases sequentially.
+CRITICAL: Do not initiate Phase 2 until Phase 1 has completely fulfilled its output requirements. No conversational filler is permitted.
 
 ### Phase 1: The ${p1.name} Phase
 ${proc1}
@@ -155,7 +157,7 @@ ${proc1}
 ${proc2}
 
 ## OUTPUT FORMAT
-You must return your final response as a strict JSON object adhering to this schema:
+CRITICAL: You must output ONLY a valid, parsable JSON object adhering perfectly to this schema. Any markdown formatting, apologies, or additional text will cause a fatal system failure.
 {"phase1":{"thought_process":"string","output":"string"},"phase2":{"thought_process":"string","output":"string"},"pr_title":"${prTitle}"}`;
   };
 
