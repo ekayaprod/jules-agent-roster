@@ -83,3 +83,7 @@
 ## 2026-03-15 - 🦉 Scholar - [Macro/Micro Documentation Synthesized: StorageUtils]
 **Learning:** Discovered that the `StorageUtils` class had standard JSDoc comments but lacked specific architectural documentation explaining its strategic value (abstracting `localStorage` to provide safe JSON serialization/deserialization and centralized error handling, preventing silent component crashes when storage is unavailable).
 **Action:** Expanded the module's macro `README.md` to define the "StorageUtils Architecture" and linked the granular JSDoc of its class and methods to this new thesis using `@see`, ensuring the documentation survives and synchronizes across altitudes.
+
+## 2026-03-16 - 🗃️ Registrar - [Registry Synchronized: Curator]
+**Learning:** Found a role and emoji mismatch in agents.json where Curator was labeled 'Payload Optimizer' with '🖼️' instead of 'Payload Conservator' with '🗂️' as defined in prompts/Curator.md.
+**Action:** Automatically updated agents.json to perfectly reflect the markdown file's title line.

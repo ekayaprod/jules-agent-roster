@@ -127,12 +127,12 @@
   },
   {
     "name": "Curator",
-    "emoji": "🖼️",
+    "emoji": "🗂️",
     "short_description": "Optimizes static assets by compressing heavy images, upgrading to modern formats, and stripping metadata from bloated SVGs. Autonomously updates source code references to drastically reduce bundle sizes and network payloads without degrading visual fidelity.",
     "tier": "",
     "category": "ux",
     "type": "",
-    "role": "Payload Optimizer"
+    "role": "Payload Conservator"
   },
   {
     "name": "Herald",
