@@ -140,7 +140,8 @@ class RosterApp {
     // ⚡ Bolt+: Extracted redundant DOM queries outside of loops and cached the references on initialization.
     this.categoryElements = {};
     this.categoryLookup = {};
-    Object.keys(CONFIG.categories).forEach((key) => {
+    this.categoryKeys = Object.keys(CONFIG.categories);
+    this.categoryKeys.forEach((key) => {
       const gridId = CONFIG.categories[key];
       this.categoryElements[key] = document.getElementById(gridId);
       this.categoryLookup[gridId] = key;
@@ -166,16 +167,17 @@ class RosterApp {
    * @see README.md#rosterapp-architecture
    */
   renderSkeletons() {
-    Object.keys(CONFIG.categories).forEach((key) => {
+    for (let i = 0; i < this.categoryKeys.length; i++) {
+      const key = this.categoryKeys[i];
       const container = this.categoryElements[key];
       if (container) {
         container.innerHTML = "";
-        for (let i = 0; i < 12; i++) {
+        for (let j = 0; j < 12; j++) {
           const skeleton = DOMUtils.createSkeletonElement("card skeleton-card skeleton-pulse");
           container.appendChild(skeleton);
         }
       }
-    });
+    }
   }
 
   /**
@@ -190,14 +192,15 @@ class RosterApp {
     const fragments = {};
     const categorizedAgents = {};
 
-    Object.keys(CONFIG.categories).forEach((key) => {
+    for (let i = 0; i < this.categoryKeys.length; i++) {
+      const key = this.categoryKeys[i];
       const container = this.categoryElements[key];
       categoryContainers[key] = container;
       categorizedAgents[key] = [];
       if (container) {
         fragments[key] = document.createDocumentFragment();
       }
-    });
+    }
 
     this.agents.forEach((agent, i) => {
       const category = agent.category || "strategy";
@@ -224,9 +227,8 @@ class RosterApp {
     // ↗️ VECTORIZE: The Single-Pass Pipeline. We bypass the redundant O(N) intermediate array creations
     // from the chained .map() calls. The static check for `pinnedManager` is hoisted out of the loop.
     // We instantiate a new array with the pinned state cached to avoid mutating the source data structures.
-    const keys = Object.keys(categorizedAgents);
-    for (let i = 0; i < keys.length; i++) {
-        const categoryList = categorizedAgents[keys[i]];
+    for (let i = 0; i < this.categoryKeys.length; i++) {
+        const categoryList = categorizedAgents[this.categoryKeys[i]];
         const mappedList = new Array(categoryList.length);
 
         for (let j = 0; j < categoryList.length; j++) {
@@ -290,12 +292,15 @@ class RosterApp {
       } else {
         requestAnimationFrame(() => {
           if (this.currentRenderId !== currentRenderId) return;
-          Object.keys(categoryContainers).forEach((key) => {
-            if (categoryContainers[key]) categoryContainers[key].innerHTML = "";
-          });
-          Object.keys(fragments).forEach(key => {
-            if (categoryContainers[key]) categoryContainers[key].appendChild(fragments[key]);
-          });
+          for (let i = 0; i < this.categoryKeys.length; i++) {
+            const key = this.categoryKeys[i];
+            const container = categoryContainers[key];
+            if (container) {
+              container.innerHTML = "";
+              const fragment = fragments[key];
+              if (fragment) container.appendChild(fragment);
+            }
+          }
 
           // 🪄 Illusionist: Dismiss loading overlay after DOM is generated
           const overlay = document.getElementById("initial-loading-overlay");
