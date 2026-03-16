@@ -238,7 +238,7 @@ describe('FusionCompiler', () => {
       expect(fused.name).toBe('📐🧹 Architect-Janitor Fusion');
       expect(fused.isCustom).toBe(false);
       expect(fused.short_description).toContain('combining the strengths');
-      expect(fused.prompt).toContain('You are a dynamic Fusion Agent');
+      expect(fused.prompt).toContain('You are an Expert Execution Pipeline');
     });
   });
 
