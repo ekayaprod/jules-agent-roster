@@ -210,6 +210,68 @@ class JulesManager {
                 errorSpan.classList.add("hidden");
             }
         });
+
+        const cancelHistoryBtn = this.getEl("cancelHistoryBtn");
+        const submitHistoryBtn = this.getEl("submitHistoryBtn");
+        const historyModalInput = this.getEl("historyModalInput");
+        const historyErrorSpan = this.getEl("historyModalError");
+        const historyModal = this.getEl("julesHistoryModal");
+
+        const closeHistoryModal = () => {
+            if (historyModal) {
+                historyModal.classList.remove("visible");
+                if (historyModalInput) historyModalInput.value = "";
+                if (historyErrorSpan) {
+                    historyErrorSpan.textContent = "";
+                    historyErrorSpan.classList.add("hidden");
+                }
+            }
+            this.activeModalSessionId = null;
+        };
+
+        const handleHistorySubmit = async () => {
+            if (!this.activeModalSessionId) return;
+            const text = historyModalInput?.value?.trim();
+            if (!text) {
+                this._showKeyError(historyModalInput, historyErrorSpan, "Please enter a response.");
+                return;
+            }
+
+            const sessionId = this.activeModalSessionId;
+            const statusSpan = document.getElementById(`status-${sessionId}`);
+
+            closeHistoryModal();
+            this.app.toast.show("Transmitting reply...", "info");
+
+            if (statusSpan) {
+                statusSpan.className = "term-status skeleton-pulse";
+                statusSpan.textContent = "Transmitting response...";
+                statusSpan.onclick = null;
+            }
+
+            try {
+                await window.julesService.replyToSession(sessionId, text);
+                this.app.toast.show("Reply transmitted.", "success");
+            } catch (err) {
+                console.error("Failed to send reply:", err);
+                this.app.toast.show("Failed to send reply.", "error");
+            }
+        };
+
+        cancelHistoryBtn?.addEventListener("click", closeHistoryModal);
+        submitHistoryBtn?.addEventListener("click", handleHistorySubmit);
+        historyModalInput?.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") handleHistorySubmit();
+        });
+        historyModalInput?.addEventListener("input", () => {
+            if (historyModalInput && historyErrorSpan) {
+                historyModalInput.style.borderColor = "";
+                historyModalInput.removeAttribute("aria-invalid");
+                historyModalInput.removeAttribute("aria-describedby");
+                historyErrorSpan.textContent = "";
+                historyErrorSpan.classList.add("hidden");
+            }
+        });
     }
 
     _showInteractionModal(sessionId, agentEmoji, agentName, promptText) {
@@ -226,6 +288,24 @@ class JulesManager {
         if (nameEl) nameEl.textContent = agentName;
         if (msgEl) msgEl.textContent = promptText;
         
+        modal.classList.add("visible");
+        setTimeout(() => inputField?.focus(), 50);
+    }
+
+    _showHistoryModal(sessionId, agentEmoji, agentName) {
+        this.activeModalSessionId = sessionId;
+        const modal = this.getEl("julesHistoryModal");
+        const emojiEl = this.getEl("historyModalEmoji");
+        const nameEl = this.getEl("historyModalAgent");
+        const msgEl = this.getEl("historyModalContent");
+        const inputField = this.getEl("historyModalInput");
+
+        if (!modal) return;
+
+        if (emojiEl) emojiEl.textContent = agentEmoji;
+        if (nameEl) nameEl.textContent = agentName;
+        if (msgEl) msgEl.innerHTML = '<span class="term-status skeleton-pulse">Loading execution thread...</span>';
+
         modal.classList.add("visible");
         setTimeout(() => inputField?.focus(), 50);
     }
@@ -451,6 +531,11 @@ class JulesManager {
         block.className = `term-session-line state-active`;
         block.id = `session-${session.id}`;
 
+        block.style.cursor = "pointer";
+        block.onclick = () => {
+            this._showHistoryModal(session.id, agentEmoji, safeAgentName);
+        };
+
         // 1-line Minimalist layout
         block.innerHTML = `
             <span class="term-agent-name">${agentEmoji} ${safeAgentName}</span> 
@@ -494,6 +579,8 @@ class JulesManager {
         optimisticBlock.className = `term-session-line state-active skeleton-pulse`;
         let agentEmoji = agent.emoji || "🤖";
         let safeAgentName = agent.name ? agent.name.replace(/"/g, '') : "Agent Task";
+
+        optimisticBlock.style.cursor = "pointer";
 
         optimisticBlock.innerHTML = `
             <span class="term-agent-name">${agentEmoji} ${safeAgentName}</span>
@@ -553,8 +640,25 @@ class JulesManager {
                     rawMessage: "Processing..."
                 };
 
+                let fullHistoryMarkdown = "";
+
                 activities.forEach(act => {
                     let text = act.title || act.description || "";
+
+                    if (act.title) {
+                        fullHistoryMarkdown += `**${act.title}**\n\n`;
+                    }
+                    if (act.description) {
+                        fullHistoryMarkdown += `${act.description}\n\n`;
+                    }
+                    if (act.type && act.type.includes('USER_INPUT') && act.message) {
+                        fullHistoryMarkdown += `*You:* ${act.message}\n\n`;
+                    }
+                    if (act.error) {
+                        fullHistoryMarkdown += `**Error:** ${act.error.message}\n\n`;
+                    }
+                    fullHistoryMarkdown += `---\n\n`;
+
                     if (text) {
                         state.rawMessage = act.description || act.title; 
                         if (text.length > 70) text = text.substring(0, 70) + "...";
@@ -584,6 +688,14 @@ class JulesManager {
 
                     if (act.sessionCompleted) state.isCompleted = true;
                 });
+
+                if (this.activeModalSessionId === sessionId) {
+                    const contentEl = this.getEl("historyModalContent");
+                    if (contentEl) {
+                        contentEl.innerHTML = MarkdownRenderer.render(fullHistoryMarkdown);
+                        contentEl.scrollTop = contentEl.scrollHeight;
+                    }
+                }
 
                 this._updatePollingState(sessionId, block, state, agentName, agentEmoji);
 

@@ -490,6 +490,26 @@
       </div>
     </div>
 
+    <!-- Jules History Modal -->
+    <div id="julesHistoryModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="historyModalTitle">
+        <div class="modal-content" style="max-width: 48rem;">
+            <h3 id="historyModalTitle" style="font-size: var(--text-base); display:flex; align-items:center; gap:0.5rem;">
+                <span id="historyModalEmoji">🤖</span>
+                <span id="historyModalAgent">Agent Task</span>
+            </h3>
+            <div id="historyModalContent" style="background: var(--term-bg); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--term-border); max-height: 25rem; overflow-y: auto; margin-bottom: 0.5rem;"></div>
+            <div style="display:flex; flex-direction:column; gap: 0.5rem;">
+                <label for="historyModalInput" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Your reply</label>
+                <input type="text" id="historyModalInput" class="modal-input transition-all duration-200" placeholder="Type instructions or feedback..." style="font-family: monospace;" />
+                <span id="historyModalError" role="alert" class="text-xs hidden" style="color: #ef4444; margin-top: 0.25rem;"></span>
+            </div>
+            <div class="flex" style="gap: 1rem; margin-top: 0.5rem;">
+                <button id="cancelHistoryBtn" class="secondary" style="flex:1;" aria-label="Close History">Close</button>
+                <button id="submitHistoryBtn" style="flex:1;" aria-label="Send Reply">Send Reply</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Jules Interaction Modal -->
     <div id="julesInteractionModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="interactionModalTitle">
         <div class="modal-content" style="max-width: 32rem;">
