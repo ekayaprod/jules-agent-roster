@@ -179,7 +179,7 @@ class FusionIndex {
    */
   updateSlot(key) {
     const safeKey = key.replace(/["\\]/g, '\\$&');
-    const slot = document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
+    const slot = this.elements.container?.querySelector(`.fusion-slot[data-key="${safeKey}"]`) || document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
     if (slot) {
       const agentData = this.getCustomAgent(key);
       if (!agentData) return;
