@@ -69,110 +69,11 @@ const FusionCompiler = function (agents, customAgents) {
 
   const customAgentsMap = normalizeKeys(customAgents);
 
-  /**
-   * Extracts a specific Markdown section from a raw prompt string.
-   * @param {string} prompt - The raw markdown prompt text.
-   * @param {string} header - The section header to extract (e.g. "BOUNDARIES").
-   * @returns {string} The extracted section content or a fallback message.
-   * @see README.md#fusion-compiler
-   */
-  const extractSection = (prompt, header) => {
-    if (typeof prompt !== "string") return "Prompt data missing.";
 
-    const escapedHeader = header.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const regex = new RegExp(`## ${escapedHeader}\\s*([\\s\\S]*?)(?=##|$)`, "i");
-    const match = prompt.match(regex);
-    return match ? match[1].trim() : "Section extraction failed. Follow standard constraints.";
-  };
 
-  /**
-   * Extracts content from an agent prompt, handling both XML and Legacy formats.
-   * @param {string} prompt - The raw agent prompt text.
-   * @returns {{boundaries: string, process: string}} An object containing the extracted boundaries and process rules.
-   * @see README.md#fusion-compiler
-   */
-  const extractAgentContent = (prompt) => {
-    if (!prompt) return { boundaries: "Missing prompt.", process: "Missing prompt." };
-
-    let parsed = null;
-    if (typeof PromptParser !== "undefined" && PromptParser.parsePrompt) {
-      parsed = PromptParser.parsePrompt(prompt);
-    }
-
-    if (parsed && parsed.format === "xml") {
-      const taskSection = parsed.sections.find((s) => s.tag === "task");
-      const boundaries = taskSection ? taskSection.content : "No explicit boundaries found in XML.";
-
-      // ↗️ VECTORIZE: The Single-Pass Pipeline. We avoid the .filter().map().join() chain
-      // by iterating over the sections exactly once and directly concatenating the strings.
-      let processStr = "";
-      for (let i = 0; i < parsed.sections.length; i++) {
-        const s = parsed.sections[i];
-        if (s.tag === "step") {
-          if (processStr.length > 0) processStr += "\n\n";
-          processStr += `Step ${s.id || "?"}: ${s.name || "Action"}\n${s.content}`;
-        }
-      }
-
-      return { boundaries, process: processStr || "No explicit steps found in XML." };
-    }
-
-    return {
-      boundaries: extractSection(prompt, "BOUNDARIES"),
-      process: extractSection(prompt, "PROCESS"),
-    };
-  };
-
-  /**
-   * Stitches two agents together into a single prompt.
-   * Enforces DAG order and wraps content in a strict JSON output schema.
-   * @param {Object} agent1 - The first agent.
-   * @param {Object} agent2 - The second agent.
-   * @param {string|null} [overrideName=null] - Optional override for the PR title template.
-   * @returns {string} The synthesized dual-phase prompt.
-   * @see README.md#fusion-compiler
-   */
-  const stitch = (agent1, agent2, overrideName = null) => {
-    const idx1 = EXECUTION_PIPELINE.indexOf(agent1.name);
-    const idx2 = EXECUTION_PIPELINE.indexOf(agent2.name);
-
-    // DAG ENFORCEMENT via declarative array destructuring swap
-    const [p1, p2] = idx1 !== -1 && idx2 !== -1 && idx2 < idx1 ? [agent2, agent1] : [agent1, agent2];
-
-    const { boundaries: bound1, process: proc1 } = extractAgentContent(p1.prompt);
-    const { boundaries: bound2, process: proc2 } = extractAgentContent(p2.prompt);
-
-    const prTitle = overrideName || `🧬 Fusion: [${p1.name} + ${p2.name} Task]`;
-
-    return `You are a dynamic Fusion Agent combining "${p1.name}" ${p1.emoji} and "${p2.name}" ${p2.emoji}.
-Your mission is to execute a dual-phase workflow sequentially.
-
-## BOUNDARIES
-You must obey the strict boundaries of both constituent agents. If boundaries conflict, prioritize the safety and non-destructive constraints.
-
-### ${p1.name}'s Boundaries:
-${bound1}
-
-### ${p2.name}'s Boundaries:
-${bound2}
-
-## PROCESS
-You must execute these phases sequentially. Do not start Phase 2 until Phase 1 is logically complete.
-
-### Phase 1: The ${p1.name} Phase
-${proc1}
-
-### Phase 2: The ${p2.name} Phase
-${proc2}
-
-## OUTPUT FORMAT
-You must return your final response as a strict JSON object adhering to this schema:
-{"phase1":{"thought_process":"string","output":"string"},"phase2":{"thought_process":"string","output":"string"},"pr_title":"${prTitle}"}`;
-  };
-
-  /**
+    /**
    * Public API to fuse two agents.
-   * Handles custom "named" fusions and falls back to dynamic stitching.
+   * Handles custom "named" fusions and returns an Error for unknown combinations.
    * @param {Object} agent1 - The first agent.
    * @param {Object} agent2 - The second agent.
    * @returns {Object} A fully structured fusion agent object.
@@ -194,18 +95,12 @@ You must return your final response as a strict JSON object adhering to this sch
         name: custom.name,
         isCustom: true,
         short_description: custom.short_description || custom.desc || custom.description,
-        prompt: custom.prompt === null ? stitch(agent1, agent2, custom.name) : custom.prompt,
+        prompt: custom.prompt,
         tier: computedTier
       };
     }
 
-    return {
-      name: `${agent1.emoji}${agent2.emoji} ${agent1.name}-${agent2.name} Fusion`,
-      isCustom: false,
-      short_description: `A synthesized protocol combining the strengths of ${agent1.name} and ${agent2.name}.`,
-      prompt: stitch(agent1, agent2),
-      tier: computedTier
-    };
+    return { name: "Error", prompt: "Invalid agents selected." };
   };
 
   // Return a frozen public API interface, eliminating 'this' context bindings and enforcing immutability
@@ -213,9 +108,6 @@ You must return your final response as a strict JSON object adhering to this sch
     EXECUTION_PIPELINE,
     baseAgents,
     customAgentsMap,
-    extractSection,
-    extractAgentContent,
-    stitch,
     fuse,
   });
 };

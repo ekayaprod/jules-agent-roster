@@ -94,48 +94,7 @@ class FusionAnimation {
 
     if (animResult) animResult.innerHTML = `<span class="highlight">${safeDisplayName}</span> ${icon}`;
 
-    if (result.isCustom && result.name) {
-      if (iconResult) iconResult.innerHTML = icon;
-    } else {
-      const iconA = agentA.emoji.trim();
-      const iconB = agentB.emoji.trim();
-      const imgUrl = `${CONFIG.emojiKitchenPrefix}${iconA}_${iconB}?size=128`;
-
-      if (iconResult) {
-        iconResult.innerHTML = "";
-        const imgContainer = document.createElement("div");
-        imgContainer.className = "img-wrapper";
-        imgContainer.style.fontSize = "inherit";
-
-        const placeholder = document.createElement("div");
-        placeholder.className = "img-placeholder skeleton-pulse";
-        imgContainer.appendChild(placeholder);
-        iconResult.appendChild(imgContainer);
-
-        const img = new Image();
-        img.src = imgUrl;
-        img.alt = result.name;
-        img.loading = "eager";
-        img.className = "img-loading";
-        img.style.width = "100%";
-        img.style.height = "100%";
-        img.style.objectFit = "contain";
-
-        img.onload = () => {
-          imgContainer.appendChild(img);
-          void img.offsetWidth;
-          img.classList.remove("img-loading");
-          img.classList.add("img-loaded");
-          placeholder.classList.add("hidden");
-          setTimeout(() => { if (placeholder.parentNode) placeholder.remove(); }, 300);
-        };
-
-        img.onerror = () => {
-          imgContainer.remove();
-          iconResult.innerText = `${iconA}${iconB}`;
-        };
-      }
-    }
+    if (iconResult) iconResult.innerHTML = icon;
 
     DOMUtils.setButtonState(fuseBtn, "disabled", fuseBtn.innerText);
     if (controls) controls.classList.add("fusing");

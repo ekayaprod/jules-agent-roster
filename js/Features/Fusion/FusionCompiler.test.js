@@ -46,145 +46,8 @@ describe('FusionCompiler', () => {
     });
   });
 
-  describe('extractSection', () => {
-    it('returns fallback if prompt is missing or not a string', () => {
-      expect(compiler.extractSection(null, 'BOUNDARIES')).toBe('Prompt data missing.');
-      expect(compiler.extractSection(123, 'BOUNDARIES')).toBe('Prompt data missing.');
-    });
 
-    it('extracts content between header and next header', () => {
-      const prompt = '## BOUNDARIES\nThis is a boundary.\n## PROCESS\nThis is a process.';
-      expect(compiler.extractSection(prompt, 'BOUNDARIES')).toBe('This is a boundary.');
-    });
 
-    it('extracts content between header and end of string', () => {
-      const prompt = '## PROCESS\nThis is a process.\nIt spans lines.';
-      expect(compiler.extractSection(prompt, 'PROCESS')).toBe('This is a process.\nIt spans lines.');
-    });
-
-    it('returns fallback if header is not found', () => {
-      const prompt = '## OTHER\nSome content';
-      expect(compiler.extractSection(prompt, 'BOUNDARIES')).toBe('Section extraction failed. Follow standard constraints.');
-    });
-
-    it('escapes regex characters in header name', () => {
-      const prompt = '## C++\nPlus plus\n## OTHER';
-      expect(compiler.extractSection(prompt, 'C++')).toBe('Plus plus');
-    });
-  });
-
-  describe('extractAgentContent', () => {
-    it('returns fallbacks if prompt is missing', () => {
-      expect(compiler.extractAgentContent('')).toEqual({ boundaries: 'Missing prompt.', process: 'Missing prompt.' });
-      expect(compiler.extractAgentContent(null)).toEqual({ boundaries: 'Missing prompt.', process: 'Missing prompt.' });
-    });
-
-    it('uses legacy markdown extraction if PromptParser is undefined', () => {
-      const originalPromptParser = global.PromptParser;
-      global.PromptParser = undefined;
-      const prompt = '## BOUNDARIES\nBnd\n## PROCESS\nPrc';
-      expect(compiler.extractAgentContent(prompt)).toEqual({ boundaries: 'Bnd', process: 'Prc' });
-      global.PromptParser = originalPromptParser;
-    });
-
-    it('uses legacy extraction if PromptParser returns legacy format', () => {
-      global.PromptParser = { parsePrompt: () => ({ format: 'legacy' }) };
-      const prompt = '## BOUNDARIES\nBnd\n## PROCESS\nPrc';
-      expect(compiler.extractAgentContent(prompt)).toEqual({ boundaries: 'Bnd', process: 'Prc' });
-      global.PromptParser = PromptParser; // restore
-    });
-
-    it('uses XML extraction if PromptParser returns xml format', () => {
-      global.PromptParser = { parsePrompt: () => ({
-        format: 'xml',
-        sections: [
-          { tag: 'task', content: 'XML Boundary' },
-          { tag: 'step', id: '1', name: 'Init', content: 'Do something' }
-        ]
-      })};
-
-      expect(compiler.extractAgentContent('<prompt></prompt>')).toEqual({
-        boundaries: 'XML Boundary',
-        process: 'Step 1: Init\nDo something'
-      });
-      global.PromptParser = PromptParser; // restore
-    });
-
-    it('handles XML format without explicitly defined task boundaries', () => {
-      global.PromptParser = { parsePrompt: () => ({
-        format: 'xml',
-        sections: [
-          { tag: 'step', content: 'Do something' }
-        ]
-      })};
-
-      expect(compiler.extractAgentContent('<prompt></prompt>')).toEqual({
-        boundaries: 'No explicit boundaries found in XML.',
-        process: 'Step ?: Action\nDo something'
-      });
-      global.PromptParser = PromptParser; // restore
-    });
-
-    it('handles XML format without step sections', () => {
-      global.PromptParser = { parsePrompt: () => ({
-        format: 'xml',
-        sections: [
-          { tag: 'task', content: 'Task' }
-        ]
-      })};
-
-      expect(compiler.extractAgentContent('<prompt></prompt>')).toEqual({
-        boundaries: 'Task',
-        process: 'No explicit steps found in XML.'
-      });
-      global.PromptParser = PromptParser; // restore
-    });
-  });
-
-  describe('stitch', () => {
-    beforeEach(() => {
-      global.PromptParser = undefined; // Force legacy for consistent testing
-    });
-
-    afterEach(() => {
-      global.PromptParser = PromptParser;
-    });
-
-    it('enforces DAG ordering by swapping if idx2 < idx1', () => {
-      const agent1 = mockBaseAgents.find(a => a.name === 'Helix'); // index 3
-      const agent2 = mockBaseAgents.find(a => a.name === 'Janitor'); // index 0
-
-      const stitched = compiler.stitch(agent1, agent2);
-      // Janitor should be phase 1, Helix should be phase 2
-      expect(stitched).toContain('Phase 1: The Janitor Phase');
-      expect(stitched).toContain('Phase 2: The Helix Phase');
-    });
-
-    it('keeps ordering if idx1 < idx2', () => {
-      const agent1 = mockBaseAgents.find(a => a.name === 'Janitor'); // index 0
-      const agent2 = mockBaseAgents.find(a => a.name === 'Helix'); // index 3
-
-      const stitched = compiler.stitch(agent1, agent2);
-      expect(stitched).toContain('Phase 1: The Janitor Phase');
-      expect(stitched).toContain('Phase 2: The Helix Phase');
-    });
-
-    it('keeps ordering if agents are unknown (not in pipeline)', () => {
-      const agent1 = mockBaseAgents.find(a => a.name === 'Unknown');
-      const agent2 = mockBaseAgents.find(a => a.name === 'Architect');
-
-      const stitched = compiler.stitch(agent1, agent2);
-      expect(stitched).toContain('Phase 1: The Unknown Phase');
-      expect(stitched).toContain('Phase 2: The Architect Phase');
-    });
-
-    it('uses overrideName for PR Title if provided', () => {
-      const agent1 = mockBaseAgents.find(a => a.name === 'Janitor');
-      const agent2 = mockBaseAgents.find(a => a.name === 'Helix');
-      const stitched = compiler.stitch(agent1, agent2, 'Custom Title Override');
-      expect(stitched).toContain('"pr_title":"Custom Title Override"');
-    });
-  });
 
   describe('fuse', () => {
     it('returns error if agent1 or agent2 is missing', () => {
@@ -194,7 +57,7 @@ describe('FusionCompiler', () => {
 
     it('handles agents without names gracefully', () => {
       const fused = compiler.fuse({}, {});
-      expect(fused.name).toBe('undefinedundefined undefined-undefined Fusion');
+      expect(fused.name).toBe('Error');
     });
 
     it('returns a custom agent if it matches sorted keys and has a custom prompt', () => {
@@ -222,23 +85,21 @@ describe('FusionCompiler', () => {
 
     it('stitches the void dynamic prompt if custom prompt is null', () => {
       const fused = compiler.fuse(
-        { name: 'Helix', emoji: '🧬', prompt: '' },
-        { name: 'Architect', emoji: '📐', prompt: '' }
+        { name: 'Architect', emoji: '📐', prompt: '' },
+        { name: 'Helix', emoji: '🧬', prompt: '' }
       );
       expect(fused.name).toBe('The Void');
       expect(fused.isCustom).toBe(true);
-      expect(fused.prompt).toContain('The Void'); // The PR title from stitch overrideName
+      expect(fused.prompt).toBeNull();
     });
 
-    it('dynamically stitches normal pairs', () => {
+    it('returns an error if combination is unknown', () => {
       const fused = compiler.fuse(
         { name: 'Architect', emoji: '📐', prompt: '' },
         { name: 'Janitor', emoji: '🧹', prompt: '' }
       );
-      expect(fused.name).toBe('📐🧹 Architect-Janitor Fusion');
-      expect(fused.isCustom).toBe(false);
-      expect(fused.short_description).toContain('combining the strengths');
-      expect(fused.prompt).toContain('You are a dynamic Fusion Agent');
+      expect(fused.name).toBe('Error');
+      expect(fused.prompt).toBe('Invalid agents selected.');
     });
   });
 
