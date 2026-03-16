@@ -1,6 +1,7 @@
 /**
  * Utility class for formatting text and strings.
  * Centralizes duplicate formatting logic across the application.
+ * @see README.md#formatutils-architecture
  */
 class FormatUtils {
     static get MASTER_ROSTER_HEADER() {
@@ -15,6 +16,7 @@ class FormatUtils {
      * Formats an array of agents into a single string of prompts separated by a standard divider.
      * @param {Array<Object>} agents - The array of agent objects to format.
      * @returns {string} The combined and formatted prompt string.
+     * @see README.md#formatutils-architecture
      */
     static formatAgentPrompts(agents) {
         if (!Array.isArray(agents)) return "";
@@ -30,6 +32,7 @@ class FormatUtils {
      * Escapes HTML characters in a string to prevent XSS.
      * @param {string} str - The string to escape.
      * @returns {string} The escaped string.
+     * @see README.md#formatutils-architecture
      */
     static escapeHTML(str) {
         if (!str) return "";
@@ -46,6 +49,7 @@ class FormatUtils {
      * @param {Object} agent - The agent object.
      * @param {string} fallback - Optional fallback icon.
      * @returns {string} The extracted icon or the fallback.
+     * @see README.md#formatutils-architecture
      */
     static extractIcon(agent, fallback = '🤖') {
         if (!agent) return fallback;
@@ -58,6 +62,7 @@ class FormatUtils {
      * Extracts a clean display name from an agent by stripping icons.
      * @param {Object} agent - The agent object.
      * @returns {string} The display name without icons.
+     * @see README.md#formatutils-architecture
      */
     static extractDisplayName(agent) {
         if (!agent || !agent.name) return 'Unknown Protocol';
