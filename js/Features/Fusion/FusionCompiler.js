@@ -51,15 +51,20 @@ const FusionCompiler = function (agents, customAgents) {
   const normalizeKeys = (data) => {
     if (!data) return {};
 
-    let entries = [];
-    entries = Object.entries(data);
-
-    return Object.fromEntries(
-      entries.map(([key, val]) => [
-        key.split(",").map((s) => s.trim()).sort().join(","),
-        val,
-      ])
-    );
+    const result = {};
+    for (const rawKey in data) {
+      if (Object.prototype.hasOwnProperty.call(data, rawKey)) {
+        // ↗️ VECTORIZE: The Single-Pass Bypass. Direct string manipulation in a single loop avoids
+        // the massive garbage collection overhead of chained Object.entries().map().map().sort().join().
+        const parts = rawKey.split(",");
+        for (let i = 0; i < parts.length; i++) {
+          parts[i] = parts[i].trim();
+        }
+        parts.sort();
+        result[parts.join(",")] = data[rawKey];
+      }
+    }
+    return result;
   };
 
   const customAgentsMap = normalizeKeys(customAgents);
@@ -98,12 +103,18 @@ const FusionCompiler = function (agents, customAgents) {
       const taskSection = parsed.sections.find((s) => s.tag === "task");
       const boundaries = taskSection ? taskSection.content : "No explicit boundaries found in XML.";
 
-      const steps = parsed.sections.filter((s) => s.tag === "step");
-      const process = steps.length > 0
-        ? steps.map((s) => `Step ${s.id || "?"}: ${s.name || "Action"}\n${s.content}`).join("\n\n")
-        : "No explicit steps found in XML.";
+      // ↗️ VECTORIZE: The Single-Pass Pipeline. We avoid the .filter().map().join() chain
+      // by iterating over the sections exactly once and directly concatenating the strings.
+      let processStr = "";
+      for (let i = 0; i < parsed.sections.length; i++) {
+        const s = parsed.sections[i];
+        if (s.tag === "step") {
+          if (processStr.length > 0) processStr += "\n\n";
+          processStr += `Step ${s.id || "?"}: ${s.name || "Action"}\n${s.content}`;
+        }
+      }
 
-      return { boundaries, process };
+      return { boundaries, process: processStr || "No explicit steps found in XML." };
     }
 
     return {
