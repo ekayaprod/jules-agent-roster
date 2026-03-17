@@ -5,7 +5,7 @@
     "short_description": "Autonomously imagines and builds brand-new features by reading your codebase's DNA. No brief needed — it hunts for the missing piece and ships production-ready code.",
     "category": "strategy",
     "type": "fusion",
-    "role": "Feature Imagineer"
+    "role": "Flow State Hacker"
   },
   "Architect,Author": {
     "name": "City Clerk",
@@ -557,7 +557,7 @@
     "short_description": "Translates vague wishes into expert-level AI prompt incantations that steer the LLM precisely. Injects strict personas, formatting constraints, and negative boundaries — structure untouched.",
     "category": "meta",
     "type": "fusion",
-    "role": "Persona & Tone"
+    "role": "Prompt Evolutionist"
   },
   "Curator,Curator": {
     "name": "",
@@ -1206,7 +1206,7 @@
     "short_description": "Designs frictionless authentication flows and empathetic permission dialogues that make security feel safe and intuitive. Real-time visual feedback guides users toward secure outcomes without jargon.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Trust Designer"
+    "role": "Embedded Trust"
   },
   "Palette+,Superintendent": {
     "name": "Stylist",
@@ -1478,7 +1478,7 @@
     "short_description": "Hunts and purges AI-generated technical debt — hallucinated dependencies, conversational sludge, and abandoned logic fragments. Cross-referenced against reality, hallucinated packages replaced with verified standards.",
     "category": "meta",
     "type": "fusion",
-    "role": "Synthetic Detoxifier"
+    "role": "Reality Anchor"
   },
   "Superintendent,Untangler": {
     "name": "Pruner",
