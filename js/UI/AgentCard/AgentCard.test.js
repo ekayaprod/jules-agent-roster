@@ -58,6 +58,81 @@ describe('AgentCard', () => {
     });
 
     describe('create', () => {
+        it('should handle empty childKeys safely', () => {
+            window.rosterApp.fusionLab = {
+                fusionIndex: {
+                    unlockedKeys: new Set(['Different Agent+Other']) // does not include agent.name
+                },
+                compiler: {
+                    customAgentsMap: {}
+                }
+            };
+
+            const card = AgentCard.create(mockAgent, 1, 0);
+
+            // Should not generate a splay menu because no child keys matched
+            expect(card.innerHTML).not.toContain('splay-btn');
+            expect(card.innerHTML).not.toContain('splay-menu');
+        });
+
+        it('should skip child agents that evaluate to falsy', () => {
+            window.rosterApp.fusionLab = {
+                fusionIndex: {
+                    unlockedKeys: new Set(['Test Agent+Ghost']) // includes agent.name
+                },
+                compiler: {
+                    customAgentsMap: {} // Missing from compiler map
+                }
+            };
+            // Mock getCustomAgent to return null
+            window.rosterApp.getCustomAgent = jest.fn().mockReturnValue(null);
+
+            const card = AgentCard.create(mockAgent, 1, 0);
+
+            // Should render the splay menu outer shell, but no child buttons inside it
+            expect(card.innerHTML).toContain('splay-btn');
+            expect(card.innerHTML).toContain('splay-menu-1');
+            expect(card.innerHTML).not.toContain('splayed-card'); // No item rendered
+            expect(card.innerHTML).not.toContain('data-index="Test Agent+Ghost"');
+        });
+
+        it('should generate splay html for unlocked fusion children from compiler or rosterApp', () => {
+            window.rosterApp.fusionLab = {
+                fusionIndex: {
+                    unlockedKeys: new Set(['Test Agent+Other', 'Test Agent+Another'])
+                },
+                compiler: {
+                    customAgentsMap: {
+                        'Test Agent+Other': {
+                            name: 'Test Agent+Other',
+                            emoji: '✨',
+                            tier: 'legendary'
+                        }
+                    }
+                }
+            };
+            window.rosterApp.getCustomAgent = jest.fn().mockImplementation((key) => {
+                if (key === 'Test Agent+Another') {
+                    return {
+                        name: 'Test Agent+Another',
+                        emoji: '🔥',
+                        tier: 'epic'
+                    };
+                }
+                return null;
+            });
+
+            const card = AgentCard.create(mockAgent, 1, 0);
+
+            expect(card.innerHTML).toContain('splay-btn');
+            expect(card.innerHTML).toContain('data-action="toggle-splay"');
+            expect(card.innerHTML).toContain('splay-menu-1');
+            expect(card.innerHTML).toContain('data-index="Test Agent+Other"');
+            expect(card.innerHTML).toContain('data-index="Test Agent+Another"');
+            expect(card.innerHTML).toContain('✨');
+            expect(card.innerHTML).toContain('🔥');
+        });
+
         it('should create a basic agent card DOM element', () => {
             const card = AgentCard.create(mockAgent, 1, 0);
             expect(card).toBeInstanceOf(HTMLElement);
