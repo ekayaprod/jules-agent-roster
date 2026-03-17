@@ -76,3 +76,8 @@
 **Title**: [Harmonized Agent Card Height]
 **Learning**: [Small adjustments to parent container heights (e.g., from 11.5rem to 11rem) can significantly improve visual density without requiring complex re-calculations of inner child line-clamps or paddings, provided the original typography values (line-height, font-size clamps) leave enough breathing room.]
 **Action**: [When requested to slightly reduce component height without compressing multi-line text, first try a minor adjustment to the parent's fixed height property. If the text uses `line-clamp` and responsive typography, it will naturally flow into the slightly reduced space without issue.]
+
+2024-06-05
+**Title**: Mythic Matrix Glitch
+**Learning**: The previous mythic effect was weak and didn't convey the "glitching out" video game nature of fusing an agent with itself. Strong, high-contrast matrix green pixelation and chromatic aberration shifts create a much more impactful "glitch" aesthetic.
+**Action**: Rewrote the Mythic tier visual effect to invoke a strong video game/Matrix glitch aesthetic with sharp step-end keyframes, scanline patterns, and pixelated particle bursts.
