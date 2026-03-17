@@ -13,3 +13,7 @@
 **Title**: [Architecture Map Remediation]
 **Learning**: Discovered extreme architectural rot in `ARCHITECTURE.md` where the `js/` directory was represented as a flat structure with non-existent files (e.g., `FavoritesManager.js`, `StringUtils.js`) and omitted major critical feature directories like `js/Features/Jules` and `js/Features/Fusion`. Furthermore, the trust boundaries incorrectly claimed no backend interactions exist despite the integration of the `JulesAPI`.
 **Action**: Synthesized and completely rewrote `ARCHITECTURE.md` to map the actual application directory structure (e.g., `js/Features`, `js/UI`, `js/Utils`, `js/Services`), integrated the `JulesService` backend boundaries, fixed `Mermaid.js` syntax, and fully adopted the repository's casual, emoji-heavy writing style. Verified via markdownlint.
+
+## Author — The Blueprint Author
+**Learning:** Foundational documentation files (`CONTRIBUTING.md` and `js/README.md`) contained deprecated `npx jest` setup instructions, creating a discrepancy with the standard `package.json` scripts where unit tests are correctly executed via `npm run test:unit`.
+**Action:** Synthesized both files to use the accurate `npm run test:unit` command, ensuring setup commands are physically tied to the execution reality of `package.json` scripts rather than scattered standalone binary calls.

@@ -90,5 +90,5 @@ We have a two-pronged testing strategy to make sure the foundation is solid whil
 * **Unit Tests (The Code):** When touching logic modules or modifying the DOM generators (the `*.test.js` files), you must run Jest to use JSDOM:
 
   ```bash
-  npx jest
+  npm run test:unit
   ```
