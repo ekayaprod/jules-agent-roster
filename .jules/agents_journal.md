@@ -99,3 +99,8 @@
 
 **Learning:** Prior documentation of `PerformanceUtils` and `StorageUtils` laid the groundwork for utility documentation. Extending this, multiple utility modules (`FormatUtils`, `DOMUtils`, `DownloadUtils`, and `MarkdownRenderer`) possessed standard JSDoc comments but lacked overarching architectural narratives defining their strategic value (e.g., mitigating layout thrashing, centralizing formatting, standardizing DOM transitions).
 **Action:** Pruned scattered Scholar entries into a cohesive historical record. Expanded `js/Utils/README.md` to define architectural theses for all remaining core utilities and cross-linked their granular JSDoc entries using strictly typed `@see` tags, finalizing the macro/micro documentation synchronization for the entire `js/Utils` directory.
+
+## 2024-05-24 - ⛑️ Guardian - [Hardened & Proven: getPullRequests]
+
+**Learning:** Unbounded fetch calls missing a generic `catch` block (even when wrapped in a `try...finally`) can leak unhandled exceptions like `AbortError` directly to the caller during a network timeout, crashing the parent process or silently breaking UI state without providing a predictable fallback.
+**Action:** Always verify that network requests have an explicit `catch` block preceding `finally`. In `JulesService.getPullRequests`, catching `AbortError` and returning a safe empty array `[]` ensures the application correctly handles latency and missing GitHub tokens without crashing.
