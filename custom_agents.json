@@ -49,7 +49,7 @@
   },
   "Architect,Herald": {
     "name": "Registrar",
-    "emoji": "📑",
+    "emoji": "🗃️",
     "short_description": "Ensures every shared component, utility, and API route is registered, exported, and documented. Generates barrel files, cleans up deep relative imports, and adds adjacent docs in one sweep.",
     "category": "architecture",
     "type": "fusion",
