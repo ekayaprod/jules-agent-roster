@@ -240,6 +240,12 @@ ${userTask}`;
                 throw new Error(errorMsg);
             }
             return await response.json();
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                console.error("Failed to fetch pull requests:", error);
+                return [];
+            }
+            throw error;
         } finally {
             clearTimeout(timeoutId);
         }
