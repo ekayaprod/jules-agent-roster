@@ -99,3 +99,6 @@
 
 **Learning:** Prior documentation of `PerformanceUtils` and `StorageUtils` laid the groundwork for utility documentation. Extending this, multiple utility modules (`FormatUtils`, `DOMUtils`, `DownloadUtils`, and `MarkdownRenderer`) possessed standard JSDoc comments but lacked overarching architectural narratives defining their strategic value (e.g., mitigating layout thrashing, centralizing formatting, standardizing DOM transitions).
 **Action:** Pruned scattered Scholar entries into a cohesive historical record. Expanded `js/Utils/README.md` to define architectural theses for all remaining core utilities and cross-linked their granular JSDoc entries using strictly typed `@see` tags, finalizing the macro/micro documentation synchronization for the entire `js/Utils` directory.
+## 2024-05-18 - 🗃️ Registrar - [Registry Synchronized: Paramedic]
+**Learning:** Found a mismatch in the registry (`agents.json`) where the Paramedic agent's role and emoji ("Crash Specialist", "🚨") drifted from the true markdown source ("Contingency Planner", "🏥").
+**Action:** Autonomously synchronized the JSON registry directly from the `prompts/Paramedic.md` header using inline node scripts to fix the target drift without creating excessive complex script files.
