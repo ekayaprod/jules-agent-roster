@@ -14,3 +14,8 @@
 
 **Learning:** Object-Oriented classes managing internal mutable state (e.g. `this.pinned = new Set()`) can be cleanly mutated into pure functional closures. The state is sequestered inside the closure instead of attached to `this`, preventing external mutation and `this` context issues, while the factory function returns an `Object.freeze` containing the public API methods to perfectly maintain backward compatibility with `new ClassName()`.
 **Action:** Always favor factory functions returning frozen objects over ES6 classes for singleton state managers to strictly control state access and eliminate `this` context binding overhead.
+
+## 2025-02-13 - 🌳 Yggdrasil - [Paradigm Mutated: js/Features/Fusion/FusionAnimation.js]
+
+**Learning:** Legacy classes relying heavily on internal state mutation (`this.elements`) and imperative iteration (`for (let i = 0...`) can be reincarnated into pure functional modules. Using declarative array manipulation (`Array.from({length}).map(...)`) combined with a factory closure and `Object.freeze()` preserves the original API contract without leaking internal state.
+**Action:** Replace `class` structures with factory closures returning `Object.freeze({ ...methods })`. Target imperative DOM rendering loops and convert them into declarative pipeline transformations.
