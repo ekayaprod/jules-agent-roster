@@ -71,3 +71,8 @@
 **Title**: [Refined Mythic Glitch Animation]
 **Learning**: [Short animation loops (e.g., 3s) for intense glitch effects using `clip-path` are jarring and cause visual fatigue. Red/blue color schemes can also be too intense. Lengthening the animation interval and switching to a cooler color palette (e.g., green) makes the effect subtle, premium, and less overwhelming.]
 **Action**: [When implementing "glitch" visual effects, use long animation intervals (e.g., 10s) with concentrated, sporadic keyframes (e.g., 2%-4% and 30%-32%) to space out the disruption, and prefer softer chromatic aberration colors (like greens) to maintain a premium feel without fatiguing the user.]
+
+2024-05-24
+**Title**: [Harmonized Agent Card Height]
+**Learning**: [Small adjustments to parent container heights (e.g., from 11.5rem to 11rem) can significantly improve visual density without requiring complex re-calculations of inner child line-clamps or paddings, provided the original typography values (line-height, font-size clamps) leave enough breathing room.]
+**Action**: [When requested to slightly reduce component height without compressing multi-line text, first try a minor adjustment to the parent's fixed height property. If the text uses `line-clamp` and responsive typography, it will naturally flow into the slightly reduced space without issue.]
