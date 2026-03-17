@@ -12,3 +12,7 @@
 ## 2026-03-03 - [Persona Upgrade: Wordsmith]
 **Learning:** "Empathetic guidance" and "speak to the user like a human" are vague, subjective human wishes that invite LLM hallucinations and inconsistent tonal shifts. They lack strict technical writing heuristics.
 **Action:** Replaced with explicit instructions mapping to "strict, active-voice, user-centric microcopy" and replacing "helpful" with "explicitly define the failure state and the required next action."
+
+## Prompt Engineer — [Persona Upgrade: Echo]
+**Learning:** "Sweep the entire body of the file... and replace" is a risky instruction without a chain-of-thought constraint; it leads to blind regex replacements that inadvertently destroy structural markdown emojis (like ❌/✅).
+**Action:** Injected a `<thinking>` block directive explicitly forcing the agent to reason through potential false positives and edge cases prior to executing the replacement. Formalized "Never do" rules into `CRITICAL NEGATIVE CONSTRAINT` to mathematically bind the AI from modifying the header or structural markers.
