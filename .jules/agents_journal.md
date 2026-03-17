@@ -1,5 +1,10 @@
 # Jules Agents Journal
 
+## 2024-05-20 - 🔣 Iconographer - [Emoji Taxonomy Refined]
+
+**Learning:** Found multiple distinct agents sharing generic or duplicated emojis (e.g., Echo and Polyglot both using 🗣️, Test Pilot and Autopilot both using ✈️, Blackbox and Registrar both using 🗃️, Standardizer and Iconographer both using 🔣). This created semantic ambiguity and visual duplication.
+**Action:** Refined the visual taxonomy by assigning unique, context-specific emojis to each affected agent (Echo 🔊, Polyglot 🗺️, Test Pilot 🛩️, Autopilot 🧭, Blackbox 💾, Standardizer 📝) directly in their markdown headers to ensure distinct visual identities.
+
 ## 2024-05-24 - 🎧 Vibe - Focus Trap Modal A11y
 
 **Learning:** When integrating focus management libraries like `focus-trap` into dynamically populated DOM elements (e.g., virtualized grids or lists using Clusterize.js), `trap.activate()` must be invoked only after the inner HTML has been fully updated and rendered (e.g., inside the rendering timeout block) to ensure correct initial focus allocation.
