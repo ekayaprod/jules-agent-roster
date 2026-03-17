@@ -522,8 +522,15 @@ class RosterApp {
         masterDropMenu?.classList.remove("visible");
     });
     this.elements.masterCopyFusionsBtn?.addEventListener("click", async (e) => {
-        const validCustomAgents = Object.values(this.customAgents)
-            .filter(a => a.prompt && a.prompt.length > 0);
+        // ↗️ VECTORIZE: The Single-Pass Pipeline. We ignore the abstracted layers and execute the calculation in one direct pass.
+        const validCustomAgents = [];
+        for (const key in this.customAgents) {
+            if (Object.prototype.hasOwnProperty.call(this.customAgents, key)) {
+                const a = this.customAgents[key];
+                if (a.prompt && a.prompt.length > 0) validCustomAgents.push(a);
+            }
+        }
+
         if (validCustomAgents.length === 0) return this.toast.show("No custom agents unlocked yet.");
         const header = FormatUtils.CUSTOM_ROSTER_HEADER;
         const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(validCustomAgents));
@@ -624,12 +631,17 @@ class RosterApp {
 
     // ⚡ Bolt+: Extracted redundant and repetitive DOM attribute parsing (getAttribute)
     // outside of the high-frequency intersection observer callback, caching the structured references in memory.
-    const cachedPills = this.elements.navPills
-        ? Array.from(this.elements.navPills).map(pill => ({
-            el: pill,
-            targetHref: pill.getAttribute("href").substring(1)
-        }))
-        : [];
+    // ↗️ VECTORIZE: The Single-Pass Pipeline. We ignore the abstracted array layers and map directly.
+    const cachedPills = [];
+    if (this.elements.navPills) {
+        for (let i = 0; i < this.elements.navPills.length; i++) {
+            const pill = this.elements.navPills[i];
+            cachedPills.push({
+                el: pill,
+                targetHref: pill.getAttribute("href").substring(1)
+            });
+        }
+    }
 
     this.observer = new IntersectionObserver(
       (entries) => {

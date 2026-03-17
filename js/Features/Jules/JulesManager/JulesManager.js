@@ -473,7 +473,12 @@ class JulesManager {
             if (fetchingIndicator) fetchingIndicator.remove();
 
             if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
-            const currentSessionIds = new Set(repoSessions.map(s => s.id));
+
+            // ↗️ VECTORIZE: The Single-Pass Pipeline. Bypassing map() and directly constructing the Set prevents intermediate array allocation.
+            const currentSessionIds = new Set();
+            for (let i = 0; i < repoSessions.length; i++) {
+                currentSessionIds.add(repoSessions[i].id);
+            }
 
             for (const id of this.renderedSessionIds) {
                 if (!currentSessionIds.has(id)) {
