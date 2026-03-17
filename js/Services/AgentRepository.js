@@ -54,15 +54,15 @@ class AgentRepository {
         const agents = this.validateAgentsData(rawData);
 
         // Fetch Prompts for Standard Agents
-        await Promise.all(
-            agents.map(async (agent) => {
-                agent.prompt = await this.fetchPrompt(
-                    agent.name,
-                    `prompts/${agent.name}.md`,
-                    "Prompt missing.",
-                );
-            }),
-        );
+        const promptPromises = [];
+        for (let i = 0; i < agents.length; i++) {
+            const agent = agents[i];
+            promptPromises.push(
+                this.fetchPrompt(agent.name, `prompts/${agent.name}.md`, "Prompt missing.")
+                    .then(prompt => { agent.prompt = prompt; })
+            );
+        }
+        await Promise.all(promptPromises);
 
         return agents;
     }
@@ -79,16 +79,21 @@ class AgentRepository {
 
             const validatedCustomData = {};
 
-            await Promise.all(
-                Object.entries(rawCustomData).map(async ([key, custom]) => {
-                    const agent = await this.#processCustomAgent(key, custom);
-                    if (agent) {
-                        // Default tier until post-processing resolves the race condition
-                        agent.tier = "Common";
-                        validatedCustomData[key] = agent;
-                    }
-                })
-            );
+            const customKeys = Object.keys(rawCustomData);
+            const processPromises = [];
+            for (let i = 0; i < customKeys.length; i++) {
+                const key = customKeys[i];
+                const custom = rawCustomData[key];
+                processPromises.push(
+                    this.#processCustomAgent(key, custom).then(agent => {
+                        if (agent) {
+                            agent.tier = "Common";
+                            validatedCustomData[key] = agent;
+                        }
+                    })
+                );
+            }
+            await Promise.all(processPromises);
 
             return validatedCustomData;
         } catch (e) {
