@@ -1,17 +1,15 @@
-class FusionAnimation {
-  constructor() {
-    this.elements = null;
-  }
+const FusionAnimation = function () {
+  let elements = null;
 
   /**
    * Caches static DOM elements on first run to prevent redundant layout thrashing.
    */
-  cacheElements() {
-    if (this.elements) return;
+  const cacheElements = () => {
+    if (elements) return elements;
     const overlay = document.getElementById("fusionAnimationOverlay");
-    if (!overlay) return;
+    if (!overlay) return null;
 
-    this.elements = {
+    elements = {
       overlay,
       iconLeft: overlay.querySelector(".anim-icon.left"),
       iconRight: overlay.querySelector(".anim-icon.right"),
@@ -22,16 +20,17 @@ class FusionAnimation {
       wrapper: document.getElementById("fusionOutputWrapper"),
       particlesContainer: overlay.querySelector(".anim-particles")
     };
-  }
+    return elements;
+  };
 
   /**
    * Orchestrates the fusion animation sequence.
    */
-  async runAnimation(agentA, agentB, result, showResultCallback) {
-    this.cacheElements();
-    if (!this.elements) return;
+  const runAnimation = async (agentA, agentB, result, showResultCallback) => {
+    const activeElements = cacheElements();
+    if (!activeElements) return;
 
-    const { overlay, iconLeft, iconRight, iconResult, animResult, fuseBtn, controls, wrapper, particlesContainer } = this.elements;
+    const { overlay, iconLeft, iconRight, iconResult, animResult, fuseBtn, controls, wrapper, particlesContainer } = activeElements;
 
     if (wrapper) wrapper.classList.remove("open");
 
@@ -57,9 +56,8 @@ class FusionAnimation {
         case "Mythic": particleCount = 500; speedMultiplier = 2.5; break;
       }
 
-      const fragment = document.createDocumentFragment();
-
-      for (let i = 0; i < particleCount; i++) {
+      // 🌳 Yggdrasil Mutation: Mutated imperative loop to pure functional pipeline
+      const particles = Array.from({ length: particleCount }).map(() => {
         const particle = document.createElement("div");
         particle.className = "anim-particle";
         
@@ -79,9 +77,11 @@ class FusionAnimation {
         particle.style.animationDelay = `1.8s`;
         particle.style.animationTimingFunction = "cubic-bezier(0.1, 0.8, 0.3, 1)";
 
-        fragment.appendChild(particle);
-      }
+        return particle;
+      });
 
+      const fragment = document.createDocumentFragment();
+      particles.forEach(p => fragment.appendChild(p));
       particlesContainer.appendChild(fragment);
     }
 
@@ -111,8 +111,12 @@ class FusionAnimation {
     if (showResultCallback) {
       showResultCallback();
     }
-  }
-}
+  };
+
+  return Object.freeze({
+    runAnimation
+  });
+};
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = FusionAnimation;
