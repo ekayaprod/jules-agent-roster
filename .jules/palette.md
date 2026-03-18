@@ -81,3 +81,8 @@
 **Title**: Mythic Matrix Glitch
 **Learning**: The previous mythic effect was weak and didn't convey the "glitching out" video game nature of fusing an agent with itself. Strong, high-contrast matrix green pixelation and chromatic aberration shifts create a much more impactful "glitch" aesthetic.
 **Action**: Rewrote the Mythic tier visual effect to invoke a strong video game/Matrix glitch aesthetic with sharp step-end keyframes, scanline patterns, and pixelated particle bursts.
+
+2026-03-24
+**Title**: Refined CRT Mythic Glitch
+**Learning**: Harsh flashing matrix glitches with invert filters cause visual fatigue and jarring transitions.
+**Action**: Replaced vertical jarring shifts and intense color inversions with a steady green pulse and horizontal CRT tearing effects (translateX and clip-path insets) for a smoother, premium feel.
