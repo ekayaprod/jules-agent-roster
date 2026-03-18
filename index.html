@@ -64,10 +64,17 @@
       .tier-legendary .flip-card-front, .tier-legendary .flip-card-back { border-color: rgba(245, 158, 11, 1); box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); animation: legendaryPulse 4s infinite ease-in-out; }
 
       @keyframes mythicPulse {
-          0%, 100% { box-shadow: -2px 0 10px rgba(16, 185, 129, 0.4), 2px 0 10px rgba(52, 211, 153, 0.4); border-color: rgba(16, 185, 129, 0.5); }
-          50% { box-shadow: -4px 0 15px rgba(16, 185, 129, 0.6), 4px 0 15px rgba(52, 211, 153, 0.6); border-color: rgba(52, 211, 153, 0.8); }
+          0%, 100% { box-shadow: -2px 0 10px rgba(16, 185, 129, 0.4), 2px 0 10px rgba(52, 211, 153, 0.4); border-color: rgba(16, 185, 129, 0.5); filter: hue-rotate(0deg) brightness(1); }
+          10% { box-shadow: -10px 0 20px rgba(16, 185, 129, 0.8), 10px 0 20px rgba(52, 211, 153, 0.8); border-color: #10b981; filter: hue-rotate(45deg) brightness(1.5); }
+          12% { box-shadow: -5px 5px 0px rgba(255, 0, 0, 0.8), 5px -5px 0px rgba(0, 0, 255, 0.8); border-color: #fff; filter: invert(1) hue-rotate(180deg) brightness(2); }
+          14% { box-shadow: 10px 0 20px rgba(16, 185, 129, 0.8), -10px 0 20px rgba(52, 211, 153, 0.8); border-color: #10b981; filter: hue-rotate(-45deg) brightness(1.5); }
+          16% { box-shadow: -2px 0 10px rgba(16, 185, 129, 0.4), 2px 0 10px rgba(52, 211, 153, 0.4); border-color: rgba(16, 185, 129, 0.5); filter: hue-rotate(0deg) brightness(1); }
+          50% { box-shadow: -4px 0 15px rgba(16, 185, 129, 0.6), 4px 0 15px rgba(52, 211, 153, 0.6); border-color: rgba(52, 211, 153, 0.8); filter: hue-rotate(0deg) brightness(1); }
+          60% { box-shadow: 2px 0 10px rgba(16, 185, 129, 0.4), -2px 0 10px rgba(52, 211, 153, 0.4); border-color: rgba(16, 185, 129, 0.5); filter: hue-rotate(0deg) brightness(1); }
+          62% { box-shadow: -5px -5px 0px rgba(0, 255, 0, 0.8), 5px 5px 0px rgba(255, 0, 255, 0.8); border-color: #fff; filter: invert(0.8) hue-rotate(90deg) brightness(2); }
+          64% { box-shadow: -2px 0 10px rgba(16, 185, 129, 0.4), 2px 0 10px rgba(52, 211, 153, 0.4); border-color: rgba(16, 185, 129, 0.5); filter: hue-rotate(0deg) brightness(1); }
       }
-      .tier-mythic .flip-card-front, .tier-mythic .flip-card-back { border-color: rgba(16, 185, 129, 0.5); box-shadow: -2px 0 10px rgba(16, 185, 129, 0.4), 2px 0 10px rgba(52, 211, 153, 0.4); animation: mythicPulse 3s infinite ease-in-out; }
+      .tier-mythic .flip-card-front, .tier-mythic .flip-card-back { border-color: rgba(16, 185, 129, 0.5); box-shadow: -2px 0 10px rgba(16, 185, 129, 0.4), 2px 0 10px rgba(52, 211, 153, 0.4); animation: mythicPulse 4s infinite step-end; }
 
       .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after,
       .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after,
@@ -94,15 +101,21 @@
       .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after { background-image: linear-gradient(115deg, transparent 20%, rgba(255, 0, 0, 0.5) 30%, rgba(255, 154, 0, 0.5) 35%, rgba(208, 222, 33, 0.5) 40%, rgba(79, 220, 74, 0.5) 45%, rgba(63, 218, 216, 0.5) 50%, rgba(47, 201, 226, 0.5) 55%, rgba(28, 127, 238, 0.5) 60%, rgba(95, 21, 242, 0.5) 65%, rgba(186, 12, 248, 0.5) 70%, rgba(251, 7, 217, 0.5) 75%, transparent 80%); animation: holographicFoilLoop 15s linear infinite; mix-blend-mode: color-dodge; opacity: 0.25; }
 
       @keyframes mythicGlitchLoop {
-          0%, 100% { clip-path: inset(0 0 0 0); opacity: 0.1; transform: translate(0); }
-          2% { clip-path: inset(10% 0 80% 0); opacity: 0.5; transform: translate(-2px, 1px); }
-          4% { clip-path: inset(0 0 0 0); opacity: 0.1; transform: translate(0); }
-          15% { clip-path: inset(50% 0 30% 0); opacity: 0.5; transform: translate(2px, -1px); }
-          17% { clip-path: inset(0 0 0 0); opacity: 0.1; transform: translate(0); }
-          30% { clip-path: inset(20% 0 60% 0); opacity: 0.4; transform: translate(-1px, 2px); }
-          32% { clip-path: inset(0 0 0 0); opacity: 0.1; transform: translate(0); }
+          0%, 100% { clip-path: inset(0 0 0 0); opacity: 0.2; transform: translate(0); }
+          2% { clip-path: inset(10% 0 80% 0); opacity: 0.8; transform: translate(-4px, 2px); filter: hue-rotate(90deg); }
+          4% { clip-path: inset(0 0 0 0); opacity: 0.2; transform: translate(0); }
+          15% { clip-path: inset(50% 0 30% 0); opacity: 0.9; transform: translate(4px, -2px); filter: hue-rotate(-90deg); }
+          17% { clip-path: inset(0 0 0 0); opacity: 0.2; transform: translate(0); }
+          30% { clip-path: inset(20% 0 60% 0); opacity: 0.7; transform: translate(-2px, 4px); filter: invert(1); }
+          32% { clip-path: inset(0 0 0 0); opacity: 0.2; transform: translate(0); }
+          45% { clip-path: inset(80% 0 5% 0); opacity: 0.8; transform: translate(2px, -4px); filter: hue-rotate(180deg); }
+          47% { clip-path: inset(0 0 0 0); opacity: 0.2; transform: translate(0); }
       }
-      .tier-mythic .flip-card-front::after, .tier-mythic .flip-card-back::after { background-image: linear-gradient(115deg, rgba(16, 185, 129, 0.5), rgba(52, 211, 153, 0.5)); animation: mythicGlitchLoop 10s infinite; mix-blend-mode: color-dodge; opacity: 0.1; }
+      .tier-mythic .flip-card-front::after, .tier-mythic .flip-card-back::after {
+        background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(16, 185, 129, 0.3) 2px, rgba(16, 185, 129, 0.3) 4px), repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(16, 185, 129, 0.3) 2px, rgba(16, 185, 129, 0.3) 4px);
+        background-size: 100% 100%;
+        animation: mythicGlitchLoop 6s infinite step-end; mix-blend-mode: screen; opacity: 0.2; z-index: 20;
+      }
 
       .front-content-wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; width: 100%; }
       .card-top { display: grid; grid-template-columns: 1fr 2fr; width: 100%; gap: 0.5rem; align-items: center; }
