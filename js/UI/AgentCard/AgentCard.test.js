@@ -3,7 +3,6 @@
  */
 const AgentCard = require('./AgentCard');
 const FormatUtils = require('../../Utils/format-utils');
-const MarkdownRenderer = require('../../Utils/markdown-renderer');
 
 describe('AgentCard', () => {
     let mockAgent;
@@ -11,7 +10,6 @@ describe('AgentCard', () => {
     beforeEach(() => {
         // Set up global mocks that AgentCard might need
         global.FormatUtils = FormatUtils;
-        global.MarkdownRenderer = MarkdownRenderer;
 
         // Mock DOM elements that AgentCard queries
         const repoPicker = document.createElement('input');
@@ -44,16 +42,18 @@ describe('AgentCard', () => {
     });
 
     describe('getPromptNode', () => {
-        it('should generate escaped prompt DOM nodes correctly', () => {
+        it('should generate raw prompt DOM nodes correctly', () => {
             const agent = { prompt: '<script>alert("xss")</script>' };
             const node = AgentCard.getPromptNode(agent);
-            expect(node.innerHTML).toContain('&lt;script&gt;alert("xss")&lt;/script&gt;');
-            expect(node.className).toContain('details-content');
+            expect(node.tagName).toBe('PRE');
+            expect(node.textContent).toBe('<script>alert("xss")</script>');
+            expect(node.className).toContain('markdown-raw details-content');
         });
 
         it('should handle missing prompt data', () => {
             const node = AgentCard.getPromptNode({});
             expect(node.textContent).toContain('No protocol data available.');
+            expect(node.tagName).toBe('PRE');
         });
     });
 

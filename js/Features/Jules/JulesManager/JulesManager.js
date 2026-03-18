@@ -697,7 +697,13 @@ class JulesManager {
                 if (this.activeModalSessionId === sessionId) {
                     const contentEl = this.getEl("historyModalContent");
                     if (contentEl) {
-                        contentEl.innerHTML = MarkdownRenderer.render(fullHistoryMarkdown);
+                        contentEl.innerHTML = "";
+                        const pre = document.createElement("pre");
+                        pre.className = "markdown-raw details-content";
+                        pre.style.whiteSpace = "pre-wrap";
+                        pre.style.wordBreak = "break-word";
+                        pre.textContent = fullHistoryMarkdown || "No history available.";
+                        contentEl.appendChild(pre);
                         contentEl.scrollTop = contentEl.scrollHeight;
                     }
                 }
