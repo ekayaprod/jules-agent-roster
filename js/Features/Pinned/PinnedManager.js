@@ -2,7 +2,7 @@
  * PinnedManager
  *
  * Manages the persistence and state of user's pinned agents using localStorage.
- * @see README.md#Architecture for details on state persistence.
+ * @see ../../../docs/architecture/Features/Pinned.md#Architecture for details on state persistence.
  */
 // ✅ GOOD: Yggdrasil triggered an evolutionary branch. The rigid OOP class has been mutated into a pure, composable functional closure.
 const PinnedManager = function() {
@@ -12,7 +12,7 @@ const PinnedManager = function() {
     /**
      * Initializes the manager by loading saved pinned from localStorage.
      * Falls back to an empty set if parsing fails or no data is found.
-     * @see README.md#Architecture for details on the storage key used.
+     * @see ../../../docs/architecture/Features/Pinned.md#Architecture for details on the storage key used.
      */
     const init = () => {
         const storedKeys = StorageUtils.getJsonArrayItem(storageKey, "PINNED_LOAD_FAILED");
@@ -22,7 +22,7 @@ const PinnedManager = function() {
     /**
      * Saves the current set of pinned to localStorage.
      * Converts the internal Set to an Array before serialization.
-     * @see README.md#Architecture for serialization details.
+     * @see ../../../docs/architecture/Features/Pinned.md#Architecture for serialization details.
      */
     const save = () => {
         StorageUtils.setJsonItem(storageKey, Array.from(pinned), "PinnedManager");
@@ -33,7 +33,7 @@ const PinnedManager = function() {
      * Automatically saves the updated set to localStorage.
      * @param {string} key - The unique identifier of the agent.
      * @returns {boolean} True if the agent is now pinned, false otherwise.
-     * @see README.md#Quick-Start for an example of toggling pinned.
+     * @see ../../../docs/architecture/Features/Pinned.md#Quick-Start for an example of toggling pinned.
      */
     const togglePin = (key) => {
         if (!key && key !== 0) return false;
@@ -53,7 +53,7 @@ const PinnedManager = function() {
      * Checks if an agent is currently pinned.
      * @param {string} key - The unique identifier of the agent.
      * @returns {boolean} True if the agent is in the pinned set.
-     * @see README.md#Quick-Start for an example of checking pinned status.
+     * @see ../../../docs/architecture/Features/Pinned.md#Quick-Start for an example of checking pinned status.
      */
     const isPinned = (key) => {
         if (!key && key !== 0) return false;
@@ -63,7 +63,7 @@ const PinnedManager = function() {
     /**
      * Retrieves all pinned agent keys.
      * @returns {Array<string>} An array of pinned keys.
-     * @see README.md#Quick-Start for an example of retrieving all pinned.
+     * @see ../../../docs/architecture/Features/Pinned.md#Quick-Start for an example of retrieving all pinned.
      */
     const getPinned = () => Array.from(pinned);
 

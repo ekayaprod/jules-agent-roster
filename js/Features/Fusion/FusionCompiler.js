@@ -4,7 +4,7 @@
  * The neural center of the application, responsible for "fusing" two agents into a single,
  * cohesive workflow. It manages the dependency graph (DAG), parses prompt structures,
  * and ensures output safety via schema validation.
- * @see README.md#fusion-compiler for macro architecture details.
+ * @see ../../../docs/architecture/Features/Fusion.md#fusion-compiler for macro architecture details.
  *
  * // ✅ GOOD: Yggdrasil triggered an evolutionary branch. The rigid OOP class has been mutated into a pure, composable functional pipeline.
  */
@@ -46,7 +46,7 @@ const FusionCompiler = function (agents, customAgents) {
    * It also correctly flattens nested categories dynamically (e.g., from custom_agents.json)
    * @param {Object} data - The raw custom agents dictionary.
    * @returns {Object} A flattened dictionary with sorted keys.
-   * @see README.md#fusion-compiler
+   * @see ../../../docs/architecture/Features/Fusion.md#fusion-compiler
    */
   const normalizeKeys = (data) => {
     if (!data) return {};
@@ -77,7 +77,7 @@ const FusionCompiler = function (agents, customAgents) {
    * @param {Object} agent1 - The first agent.
    * @param {Object} agent2 - The second agent.
    * @returns {Object} A fully structured fusion agent object.
-   * @see README.md#fusion-compiler
+   * @see ../../../docs/architecture/Features/Fusion.md#fusion-compiler
    */
   const fuse = (agent1, agent2) => {
     if (!agent1 || !agent2) return { name: "Error", prompt: "Invalid agents selected." };

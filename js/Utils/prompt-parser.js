@@ -1,7 +1,7 @@
 /**
  * Utility for parsing AI agent prompts into structured sections or legacy text.
  * Handles both the new strict XML format and the legacy Markdown format.
- * @see README.md#promptparser-architecture
+ * @see ../../docs/architecture/Utils/README.md#promptparser-architecture
  */
 const PromptParser = {
   /**
@@ -12,7 +12,7 @@ const PromptParser = {
    *
    * @param {string} rawText - The raw prompt text from the repository or agent definition.
    * @returns {{ format: 'xml'|'legacy', sections?: Array<{tag: string, content: string, id: string|null, name: string|null}>, raw?: string }} The parsed structured result.
-   * @see README.md#promptparser-architecture
+   * @see ../../docs/architecture/Utils/README.md#promptparser-architecture
    */
   parsePrompt(rawText) {
     if (!rawText || typeof rawText !== 'string') {

@@ -8,7 +8,7 @@ let fuseInstance = null;
 
 /**
  * Web Worker message handler for offloading fuzzy search execution.
- * @see README.md#fuzzy-matching for the macro architecture of fuzzy matching.
+ * @see ../../../docs/architecture/UI/SearchController.md#fuzzy-matching for the macro architecture of fuzzy matching.
  *
  * @param {MessageEvent} e - The message event from the main thread.
  * @param {Object} e.data - The payload.

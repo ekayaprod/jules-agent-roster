@@ -1,7 +1,7 @@
 /**
  * Utility class for performance optimizations.
  * Centralizes common patterns like debouncing and throttling to prevent layout thrashing and excessive computations.
- * @see README.md#performanceutils-architecture for details on how this mitigates layout thrashing.
+ * @see ../../docs/architecture/Utils/README.md#performanceutils-architecture for details on how this mitigates layout thrashing.
  */
 class PerformanceUtils {
   /**
@@ -10,7 +10,7 @@ class PerformanceUtils {
    * Implemented to fulfill ROADMAP [Performance] Idea: "Implement debounce pattern".
    * Reduces layout thrashing and computational overhead during rapid events (like search input or scroll)
    * by delaying execution until the user pauses.
-   * @see README.md#performanceutils-architecture
+   * @see ../../docs/architecture/Utils/README.md#performanceutils-architecture
    *
    * @param {Function} func - The function to debounce.
    * @param {number} wait - The number of milliseconds to delay.

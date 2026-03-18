@@ -4,14 +4,14 @@ const RESUME_DELAY = 2000;
 /**
  * Class representing an accessible Toast Notification system.
  * Handles queuing and display logic, rendering semantic DOM roles to support screen readers.
- * @see README.md#Architecture for accessibility patterns.
+ * @see ../../../docs/architecture/UI/Toast.md#Architecture for accessibility patterns.
  */
 class ToastNotification {
     /**
      * Initializes a Toast instance bound to a specific DOM element.
      * Starts listening for pointer interactions to pause auto-dismiss timers.
      * @param {string} elementSelector - The CSS selector of the base toast container.
-     * @see README.md#Architecture
+     * @see ../../../docs/architecture/UI/Toast.md#Architecture
      */
     constructor(elementSelector) {
         this.element = document.querySelector(elementSelector);
@@ -48,7 +48,7 @@ class ToastNotification {
      * @param {string} [type="success"] - The status class representing the visual layout ('success', 'error', 'info').
      * @param {number} [duration=DEFAULT_DURATION] - Duration in milliseconds before auto-dismissing. Set to 0 to disable auto-dismiss.
      * @returns {void}
-     * @see README.md#Accessibility-Patterns
+     * @see ../../../docs/architecture/UI/Toast.md#Accessibility-Patterns
      */
     show(message, type = 'success', duration = DEFAULT_DURATION) {
         if (this.timeout) {
@@ -111,7 +111,7 @@ class ToastNotification {
      * Aborts execution if the element is currently hovered by the user.
      * @param {number} duration - The millisecond delay before triggering dismissal.
      * @returns {void}
-     * @see README.md#Lifecycle-&-Dismissal-Flow
+     * @see ../../../docs/architecture/UI/Toast.md#Lifecycle-&-Dismissal-Flow
      */
     startTimer(duration) {
         this.timeout = setTimeout(() => {
@@ -125,7 +125,7 @@ class ToastNotification {
      * Listener callback attached to `pointerenter` events.
      * Pauses the auto-dismiss timer logic to prevent the toast from disappearing while a user reads it.
      * @returns {void}
-     * @see README.md#Lifecycle-&-Dismissal-Flow
+     * @see ../../../docs/architecture/UI/Toast.md#Lifecycle-&-Dismissal-Flow
      */
     handleMouseEnter() {
         this.isHovered = true;
@@ -136,7 +136,7 @@ class ToastNotification {
      * Listener callback attached to `pointerleave` events.
      * Resumes the dismissal behavior with a shortened grace period instead of the full original duration.
      * @returns {void}
-     * @see README.md#Lifecycle-&-Dismissal-Flow
+     * @see ../../../docs/architecture/UI/Toast.md#Lifecycle-&-Dismissal-Flow
      */
     handleMouseLeave() {
         this.isHovered = false;
@@ -148,7 +148,7 @@ class ToastNotification {
      * Forces immediate dismissal of the toast notification by removing visibility classes.
      * Used by internal timers or user-triggered close buttons.
      * @returns {void}
-     * @see README.md#Lifecycle-&-Dismissal-Flow
+     * @see ../../../docs/architecture/UI/Toast.md#Lifecycle-&-Dismissal-Flow
      */
     dismiss() {
         if (this.element) {

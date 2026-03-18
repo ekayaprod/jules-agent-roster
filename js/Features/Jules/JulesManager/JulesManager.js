@@ -15,7 +15,7 @@ const CORE_EMOJIS = {
 /**
  * Manages the core operations for interacting with Jules APIs.
  * Engineered for a single-line terminal output where GitHub handles completions.
- * @see README.md#overview for the macro architectural scope.
+ * @see ../../../docs/architecture/Features/JulesManager.md#overview for the macro architectural scope.
  */
 class JulesManager {
     constructor(rosterApp) {
@@ -53,7 +53,7 @@ class JulesManager {
     /**
      * Bootstraps the manager, loads cached API keys, and initializes the modal.
      * @returns {Promise<void>}
-     * @see README.md#1-initialization-and-authentication
+     * @see ../../../docs/architecture/Features/JulesManager.md#1-initialization-and-authentication
      */
     async init() {
         const apiKey = StorageUtils.getItem("jules_api_key");
@@ -327,7 +327,7 @@ class JulesManager {
     /**
      * Fetches the connected source repositories and populates the source dropdown picker.
      * @returns {Promise<void>}
-     * @see README.md#2-repository-source-selection
+     * @see ../../../docs/architecture/Features/JulesManager.md#2-repository-source-selection
      */
     async loadSources() {
         const picker = this.getEl("julesRepoPicker");
@@ -379,7 +379,7 @@ class JulesManager {
      * Initializes a recurring active session polling loop for a specific repository.
      * @param {string} sourceName - The target source/repo identifier (e.g. sources/github/owner/repo)
      * @returns {Promise<void>}
-     * @see README.md#4-active-sessions-polling
+     * @see ../../../docs/architecture/Features/JulesManager.md#4-active-sessions-polling
      */
     async loadActiveSessionsForRepo(sourceName) {
         const terminal = this.getEl("julesTerminal");
@@ -404,7 +404,7 @@ class JulesManager {
      * Retrieves the latest active PRs for the repository to synchronize the UI with actual VCS state.
      * @param {string} sourceName - The targeted repository.
      * @returns {Promise<void>}
-     * @see README.md#6-pull-request-rendering
+     * @see ../../../docs/architecture/Features/JulesManager.md#6-pull-request-rendering
      */
     async loadPullRequestsForRepo(sourceName) {
         if (!window.julesService) return;
@@ -564,7 +564,7 @@ class JulesManager {
      * @param {Object} agent - The agent data representing the logic to execute.
      * @param {HTMLElement} [btn=null] - Optional launch button reference for state manipulation.
      * @returns {Promise<void>}
-     * @see README.md#3-session-launching
+     * @see ../../../docs/architecture/Features/JulesManager.md#3-session-launching
      */
     async launchSession(agent, btn = null) {
         const sourceName = this.getEl("julesRepoPicker").value;
@@ -624,7 +624,7 @@ class JulesManager {
      * @param {string} agentName - The agent's title.
      * @param {string} agentEmoji - The UI icon representing the agent.
      * @returns {void}
-     * @see README.md#5-terminal-state-updates
+     * @see ../../../docs/architecture/Features/JulesManager.md#5-terminal-state-updates
      */
     startTerminalPolling(sessionId, block, agentName, agentEmoji) {
         if (!this.julesPollingIntervals) this.julesPollingIntervals = {};
@@ -746,7 +746,7 @@ class JulesManager {
      * Flushes all active polling timers, removes zombie callbacks, and unbinds state IDs
      * to prevent memory leaks when changing contexts.
      * @returns {void}
-     * @see README.md#7-memory-management
+     * @see ../../../docs/architecture/Features/JulesManager.md#7-memory-management
      */
     cleanup() {
         if (this.activeSessionsInterval) {
