@@ -19,12 +19,12 @@ function closeDropdownMenu(menu, appContext) {
 /**
  * Main application class for the Autonomous Protocol Matrix.
  * Orchestrates the primary application flow, emphasizing asynchronous non-blocking operations and event delegation.
- * @see README.md#rosterapp-architecture for the core lifecycle and architecture details.
+ * @see ../../docs/architecture/core/README.md#rosterapp-architecture for the core lifecycle and architecture details.
  */
 class RosterApp {
   /**
    * Initializes the RosterApp instance, setting up empty states and service dependencies.
-   * @see README.md#rosterapp-architecture
+   * @see ../../docs/architecture/core/README.md#rosterapp-architecture
    */
   constructor() {
     this.agents = [];
@@ -45,7 +45,7 @@ class RosterApp {
   /**
    * Bootstraps the application by concurrently resolving external dependencies,
    * injecting placeholder skeletons to mask latency, and triggering the rendering loop.
-   * @see README.md#rosterapp-architecture for the Boot/Fetch lifecycle.
+   * @see ../../docs/architecture/core/README.md#rosterapp-architecture for the Boot/Fetch lifecycle.
    * @returns {Promise<void>} Resolves when initialization is complete.
    */
   async init() {
@@ -127,7 +127,7 @@ class RosterApp {
   /**
    * Caches critical DOM elements locally via `document.querySelector`.
    * Executed strictly once during boot to prevent continuous N-time DOM traversal penalties.
-   * @see README.md#rosterapp-architecture
+   * @see ../../docs/architecture/core/README.md#rosterapp-architecture
    */
   cacheElements() {
     Object.keys(CONFIG.selectors).forEach((key) => {
@@ -164,7 +164,7 @@ class RosterApp {
   /**
    * Synchronously injects CSS loading skeletons into all predefined grid containers
    * to provide immediate visual feedback before asynchronous fetches resolve.
-   * @see README.md#rosterapp-architecture
+   * @see ../../docs/architecture/core/README.md#rosterapp-architecture
    */
   renderSkeletons() {
     for (let i = 0; i < this.categoryKeys.length; i++) {
@@ -185,7 +185,7 @@ class RosterApp {
    * Flattens and chunks the 3D card generation using `requestAnimationFrame` to
    * prevent the main thread from locking up under heavy DOM hydration.
    * Handles pin-status sorting and cache invalidation automatically.
-   * @see README.md#rosterapp-architecture
+   * @see ../../docs/architecture/core/README.md#rosterapp-architecture
    */
   renderAgents() {
     const categoryContainers = {};
@@ -321,7 +321,7 @@ class RosterApp {
    * Centralizes all event binding into a single delegation pattern at the `document` level.
    * Prevents attaching individual handlers to thousands of interactive child nodes.
    * Intercepts and delegates actions based on the `data-action` attribute.
-   * @see README.md#rosterapp-architecture
+   * @see ../../docs/architecture/core/README.md#rosterapp-architecture
    */
   bindEvents() {
     if (this.elements.searchInput) {
@@ -554,7 +554,7 @@ class RosterApp {
    * Initializes or updates a virtual scrolling `Clusterize.js` instance to render
    * matches without triggering massive native DOM reflows.
    * @param {string} query - The search query string.
-   * @see README.md#search-mechanics
+   * @see ../../docs/architecture/UI/SearchController.md#search-mechanics
    */
   async filterAgents(query) {
     if (this.searchController) {
@@ -565,7 +565,7 @@ class RosterApp {
   /**
    * Clears the active search query, destroys the search results view,
    * and resets the UI back to the default categorized master layout.
-   * @see README.md#search-mechanics
+   * @see ../../docs/architecture/UI/SearchController.md#search-mechanics
    */
   async clearSearch() {
     if (this.searchController) {

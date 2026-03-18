@@ -1,6 +1,6 @@
 /**
  * Controller responsible for managing all copy and download operations for agent prompts.
- * @see README.md#ExportController-Architecture for state aggregation patterns.
+ * @see ../../../docs/architecture/UI/ExportController.md#ExportController-Architecture for state aggregation patterns.
  */
 class ExportController {
   /**
@@ -17,7 +17,7 @@ class ExportController {
    * @param {string|number} index - The unique identifier or array index of the target agent.
    * @param {HTMLElement} btn - The DOM element triggering the action, targeted for success animation.
    * @returns {Promise<void>}
-   * @see README.md#copy-operations for clipboard fallback mechanics.
+   * @see ../../../docs/architecture/UI/ExportController.md#copy-operations for clipboard fallback mechanics.
    */
   async copyAgent(index, btn) {
     let agent = this.app.agents[index] || (this.app.customAgents && this.app.customAgents[index]) || (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
@@ -35,7 +35,7 @@ class ExportController {
    * Injects the custom roster markdown header prior to formatting.
    * @param {HTMLElement} btn - The DOM element triggering the action, targeted for success animation.
    * @returns {void}
-   * @see README.md#download-operations for blob execution details.
+   * @see ../../../docs/architecture/UI/ExportController.md#download-operations for blob execution details.
    */
   downloadCustomAgents(btn) {
     const header = FormatUtils.CUSTOM_ROSTER_HEADER;
@@ -59,7 +59,7 @@ class ExportController {
    * Injects the master roster markdown header prior to formatting.
    * @param {HTMLElement} btn - The DOM element triggering the action, targeted for success animation.
    * @returns {void}
-   * @see README.md#download-operations for blob execution details.
+   * @see ../../../docs/architecture/UI/ExportController.md#download-operations for blob execution details.
    */
   downloadAll(btn) {
     const header = FormatUtils.MASTER_ROSTER_HEADER;
@@ -71,7 +71,7 @@ class ExportController {
    * Copies the entire core agent roster to the user's clipboard.
    * @param {HTMLElement} btn - The DOM element triggering the action, targeted for success animation.
    * @returns {Promise<void>}
-   * @see README.md#copy-operations for clipboard fallback mechanics.
+   * @see ../../../docs/architecture/UI/ExportController.md#copy-operations for clipboard fallback mechanics.
    */
   async copyAll(btn) {
     const header = FormatUtils.MASTER_ROSTER_HEADER;

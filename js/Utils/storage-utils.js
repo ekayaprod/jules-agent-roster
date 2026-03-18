@@ -1,7 +1,7 @@
 /**
  * Utility class for interacting with localStorage.
  * Centralizes duplicate parsing, stringifying, and error handling logic.
- * @see README.md#storageutils-architecture for details on safe serialization boundaries.
+ * @see ../../docs/architecture/Utils/README.md#storageutils-architecture for details on safe serialization boundaries.
  */
 class StorageUtils {
     /**
@@ -9,7 +9,7 @@ class StorageUtils {
      * @param {string} key - The localStorage key.
      * @param {string} errorEventName - The name of the event for error logging.
      * @returns {Array|null} The parsed array, or null if parsing fails or item doesn't exist.
-     * @see README.md#storageutils-architecture
+     * @see ../../docs/architecture/Utils/README.md#storageutils-architecture
      */
     static getJsonArrayItem(key, errorEventName) {
         let stored = null;
@@ -38,7 +38,7 @@ class StorageUtils {
      * @param {string} key - The localStorage key.
      * @param {unknown} data - The data to stringify and save.
      * @param {string} componentName - The name of the component for warning logs.
-     * @see README.md#storageutils-architecture
+     * @see ../../docs/architecture/Utils/README.md#storageutils-architecture
      */
     static setJsonItem(key, data, componentName) {
         try {
@@ -54,7 +54,7 @@ class StorageUtils {
      * @param {string} key - The localStorage key.
      * @param {string} defaultValue - Fallback if not found.
      * @returns {string} The stored string.
-     * @see README.md#storageutils-architecture
+     * @see ../../docs/architecture/Utils/README.md#storageutils-architecture
      */
     static getItem(key, defaultValue = "") {
         try {
@@ -69,7 +69,7 @@ class StorageUtils {
      * Saves a raw string item to localStorage.
      * @param {string} key - The localStorage key.
      * @param {string} value - The string to save.
-     * @see README.md#storageutils-architecture
+     * @see ../../docs/architecture/Utils/README.md#storageutils-architecture
      */
     static setItem(key, value) {
         try {

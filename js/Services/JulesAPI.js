@@ -2,7 +2,7 @@
  * Service for interacting with the Jules API (Alpha).
  * Handles source fetching, session creation, and activity polling.
  * Attached to the global window object for standard browser usage.
- * @see README.md#julesapi-architecture for network resilience and data flow.
+ * @see ../../docs/architecture/Services/README.md#julesapi-architecture for network resilience and data flow.
  */
 const REQUEST_TIMEOUT_MS = 15000;
 const DEFAULT_PAGE_SIZE = 50;
@@ -10,7 +10,7 @@ const DEFAULT_PAGE_SIZE = 50;
 class JulesService {
     /**
      * Constructs a new JulesService instance with default configurations.
-     * @see README.md#julesapi-quick-start for initialization details.
+     * @see ../../docs/architecture/Services/README.md#julesapi-quick-start for initialization details.
      */
     constructor() {
         /** @type {string} */
@@ -25,7 +25,7 @@ class JulesService {
      * Configures the service with the user's API key.
      * @param {string} apiKey - The Jules API key.
      * @param {string} githubToken - The user's GitHub Personal Access Token.
-     * @see README.md#julesapi-quick-start for configuration workflow.
+     * @see ../../docs/architecture/Services/README.md#julesapi-quick-start for configuration workflow.
      */
     configure(apiKey, githubToken = "") {
         this.apiKey = apiKey;
@@ -40,7 +40,7 @@ class JulesService {
      * @param {number} [backoff=300] - Initial backoff delay in ms.
      * @returns {Promise<Object|Array>} The parsed JSON response.
      * @throws {Error} If the API key is missing, the request times out (15s), or the API returns an error status.
-     * @see README.md#julesapi-architecture for details on the AbortController timeout mechanism.
+     * @see ../../docs/architecture/Services/README.md#julesapi-architecture for details on the AbortController timeout mechanism.
      */
     async _fetch(endpoint, options = {}, retries = 3, backoff = 300) {
         if (!this.apiKey) throw new Error("Jules API Key is missing. Please configure it in Settings.");
@@ -116,7 +116,7 @@ class JulesService {
      * Retrieves the list of available GitHub sources connected to the user's Jules account.
      * @returns {Promise<Object>} The JSON response containing the sources array.
      * @throws {Error} If the request fails or times out.
-     * @see README.md#julesapi-architecture for source fetching flow.
+     * @see ../../docs/architecture/Services/README.md#julesapi-architecture for source fetching flow.
      */
     async getSources() {
         return this._fetch('sources');
@@ -190,7 +190,7 @@ ${userTask}`;
      * @param {string} sessionId - The ID of the active session.
      * @returns {Promise<Object>} The JSON response containing the session activities.
      * @throws {Error} If the request fails or times out.
-     * @see README.md#julesapi-architecture for asynchronous polling strategy instead of synchronous streaming.
+     * @see ../../docs/architecture/Services/README.md#julesapi-architecture for asynchronous polling strategy instead of synchronous streaming.
      */
     async getActivities(sessionId) {
         return this._fetch(`sessions/${sessionId}/activities?pageSize=${DEFAULT_PAGE_SIZE}`);
@@ -201,7 +201,7 @@ ${userTask}`;
      * @param {string} sourceName - The target repository source name (e.g., 'sources/github/owner/repo').
      * @returns {Promise<Array>} The JSON response containing the open pull requests, or a safe fallback [] on 404.
      * @throws {Error} If the request fails, times out, or returns a non-404 error status.
-     * @see README.md#6-pull-request-rendering for the UI synchronization flow.
+     * @see ../../docs/architecture/Features/JulesManager.md#6-pull-request-rendering for the UI synchronization flow.
      */
     async getPullRequests(sourceName) {
         if (!sourceName.startsWith('sources/github/')) {
