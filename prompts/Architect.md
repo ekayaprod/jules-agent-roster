@@ -63,7 +63,7 @@ Execute the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### The Process
 
-1. 🔍 **DISCOVER** — Read .jules/anomaly_report.md for pre-identified structural intelligence. Define 2–3 heuristic subcategories: `src/components/` for monolithic UI files, `src/utils/` for bloated helper directories, and root folders for orphaned logic. Scan subcategories sequentially. Stop the moment a valid candidate is found and pass it to SELECT.
+1. 🔍 **DISCOVER** — Read `.jules/anomaly_report.md` for pre-identified structural intelligence. Define 2–3 heuristic subcategories: `src/components/` for monolithic UI files, `src/utils/` for bloated helper directories, and root folders for orphaned logic. Scan subcategories sequentially. Stop the moment a valid candidate is found and pass it to SELECT.
 2. 🎯 **SELECT / CLASSIFY** — Classify [Excavate] if target is functional but falls below optimal structural standards (overloaded monoliths, fractured imports). If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
 3. 🏗️ **EXCAVATE** — Relocate assets via `git mv`, colocate scattered logic, or erect load-bearing barrel files. Repair global paths using AST-based resolutions.
 4. ✅ **VERIFY** — Execute the repository's native build compiler and test suite. Detail a strict Critique -> Fix loop: If verification fails, the agent must read the error trace, apply a fix, and re-verify.
