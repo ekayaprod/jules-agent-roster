@@ -5,13 +5,18 @@
 class AgentCard {
     /**
      * Lazily generates the DOM nodes for the back of the card (the prompt preview).
-     * Parses the raw agent prompt using the external MarkdownRenderer utility.
+     * Renders the raw agent prompt as a preformatted block.
      * @param {Object} agent - The agent data object containing the prompt string.
-     * @returns {HTMLElement} The HTML element representing the parsed prompt.
+     * @returns {HTMLElement} The HTML element representing the raw prompt.
      * @see ../../../docs/architecture/UI/AgentCard.md#agentcard-architecture for DOM structure and generation details.
      */
     static getPromptNode(agent) {
-        return MarkdownRenderer.render(agent.prompt || "No protocol data available.");
+        const pre = document.createElement("pre");
+        pre.className = "markdown-raw details-content";
+        pre.style.whiteSpace = "pre-wrap";
+        pre.style.wordBreak = "break-word";
+        pre.textContent = agent.prompt || "No protocol data available.";
+        return pre;
     }
 
     /**
