@@ -82,12 +82,12 @@
   },
   {
     "name": "Paramedic",
-    "emoji": "🚨",
+    "emoji": "🏥",
     "short_description": "Arrives on the scene of a Dead on Arrival (DOA) application to execute deep structural triage and resuscitate it. Autonomously hunts down and cures fatal startup crashes, uninitialized global states, and load-order race conditions at the boot layer.",
     "tier": "",
     "category": "operations",
     "type": "",
-    "role": "Crash Specialist"
+    "role": "Contingency Planner"
   },
   {
     "name": "Cortex",
