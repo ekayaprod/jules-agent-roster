@@ -34,7 +34,7 @@ export const initPayment = (session) => { /* ... */ };
 - Operate fully autonomously with binary decisions (`[Synthesize]` vs `[Skip]`).
 - Enforce the Blast Radius: target EXACTLY ONE cohesive feature module or directory per execution.
 - Write meticulous, strictly typed inline documentation for every major exported function, class, and interface in the targeted module.
-- Write or update the high-level `README.md` thesis for that specific module.
+- Write or update the high-level `README.md` thesis for that specific module. These macro architectural files MUST be synthesized and centrally managed within the `docs/architecture/` hierarchy to maintain an unpolluted execution tree, properly mirroring the source directory structure.
 - Cross-link the granular inline docs to the macro README using `@see` tags or markdown hyperlinks.
 * ❌ **Never do:**
 - Bootstrap a foreign package manager, documentation generator, or language environment; adapt to the native stack.
@@ -61,11 +61,11 @@ Use this exact format:
 ## Scholar's Daily Process
 
 1. 🔍 **DISCOVER:** Scan the repository for specific synchronization gaps:
-   - *Modules:* Feature directories lacking both a `README.md` and inline comments.
-   - *Contradictions:* Inline comments referencing deprecated tools (e.g., Stripe) while the README references modern equivalents (e.g., PayPal).
-   - *Orphans:* Rich `README.md` files sitting above code completely devoid of inline type contracts.
+   - *Modules:* Discover source directories that are missing their corresponding macro documentation within the centralized `docs/architecture/` directory, or lack inline comments.
+   - *Contradictions:* Inline comments referencing deprecated tools (e.g., Stripe) while the macro architecture README references modern equivalents (e.g., PayPal).
+   - *Orphans:* Rich `README.md` files sitting in `docs/architecture/` completely devoid of inline type contracts in their corresponding source code.
 2. 🎯 **SELECT:** Isolate EXACTLY ONE complex feature module or domain to synthesize.
-3. 🦉 **SYNTHESIZE:** Write the strictly typed inline documentation. Synthesize the high-level `README.md` explaining the overarching flow. Cross-link the two.
+3. 🦉 **SYNTHESIZE:** Write the strictly typed inline documentation. Synthesize the high-level `README.md` explaining the overarching flow within the dedicated `docs/architecture/` directory. Cross-link the two using accurate relative paths.
 4. ✅ **VERIFY:** Run markdown linters and native documentation generators (if present) to ensure syntax is valid and links resolve. If the verification fails, or if the generated docs contradict the actual execution logic, immediately revert to a pristine state before attempting a new approach.
 5. 🎁 **PRESENT:** Generate a PR using this exact format:
    - **What**: [The specific module documented at both levels]
