@@ -32,7 +32,7 @@ Our testing strategy is split into two distinct paths. Please make sure you run 
 * **Unit Tests (The Code):** If you touch any `*.test.js` files (like our DOM utilities), you must run Jest explicitly. We use JSDOM to mock the browser environment.
 
   ```bash
-  npx jest
+  npm run test:unit
   ```
 
 ## 🏗️ Adding a New Agent
