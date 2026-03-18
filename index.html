@@ -64,10 +64,11 @@
       .tier-legendary .flip-card-front, .tier-legendary .flip-card-back { border-color: rgba(245, 158, 11, 1); box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); animation: legendaryPulse 4s infinite ease-in-out; }
 
       @keyframes mythicPulse {
-          0%, 100% { box-shadow: 0 0 10px rgba(16, 185, 129, 0.4); border-color: rgba(16, 185, 129, 0.5); }
-          50% { box-shadow: 0 0 20px rgba(16, 185, 129, 0.8); border-color: rgba(16, 185, 129, 0.8); }
+          0% { box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.6); }
+          50% { box-shadow: 0 0 1.5rem rgba(16, 185, 129, 0.4); border-color: rgba(16, 185, 129, 0.9); }
+          100% { box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.6); }
       }
-      .tier-mythic .flip-card-front, .tier-mythic .flip-card-back { border-color: rgba(16, 185, 129, 0.5); box-shadow: -2px 0 10px rgba(16, 185, 129, 0.4), 2px 0 10px rgba(52, 211, 153, 0.4); animation: mythicPulse 4s infinite step-end; }
+      .tier-mythic .flip-card-front, .tier-mythic .flip-card-back { border-color: rgba(16, 185, 129, 0.6); box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); animation: mythicPulse 4s infinite ease-in-out; }
 
       .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after,
       .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after,
@@ -77,7 +78,7 @@
           position: absolute;
           inset: 0;
           pointer-events: none;
-          z-index: 10;
+          z-index: 0;
           border-radius: inherit;
           mix-blend-mode: overlay;
           background-size: 200% auto;
@@ -93,21 +94,26 @@
       @keyframes holographicFoilLoop { 0% { background-position: 200% center; } 100% { background-position: -200% center; } }
       .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after { background-image: linear-gradient(115deg, transparent 20%, rgba(255, 0, 0, 0.5) 30%, rgba(255, 154, 0, 0.5) 35%, rgba(208, 222, 33, 0.5) 40%, rgba(79, 220, 74, 0.5) 45%, rgba(63, 218, 216, 0.5) 50%, rgba(47, 201, 226, 0.5) 55%, rgba(28, 127, 238, 0.5) 60%, rgba(95, 21, 242, 0.5) 65%, rgba(186, 12, 248, 0.5) 70%, rgba(251, 7, 217, 0.5) 75%, transparent 80%); animation: holographicFoilLoop 15s linear infinite; mix-blend-mode: color-dodge; opacity: 0.25; }
 
+      @keyframes mythicCRTLoop {
+          0% { background-position: 0 0, 0 0; }
+          100% { background-position: 0 100%, 0 0; }
+      }
       @keyframes mythicGlitchLoop {
-          0%, 100% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
-          10% { clip-path: inset(10% 0 85% 0); opacity: 0.5; transform: translateX(-5px); }
-          12% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
-          25% { clip-path: inset(45% 0 45% 0); opacity: 0.6; transform: translateX(5px); }
-          27% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
-          50% { clip-path: inset(75% 0 15% 0); opacity: 0.4; transform: translateX(-3px); }
-          52% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
-          75% { clip-path: inset(25% 0 65% 0); opacity: 0.5; transform: translateX(4px); }
-          77% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
+          0%, 94% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
+          95% { clip-path: inset(10% 0 85% 0); opacity: 0.5; transform: translateX(-5px); }
+          96% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
+          97% { clip-path: inset(45% 0 45% 0); opacity: 0.6; transform: translateX(5px); }
+          98% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
+          99% { clip-path: inset(75% 0 15% 0); opacity: 0.4; transform: translateX(-3px); }
+          100% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
       }
       .tier-mythic .flip-card-front::after, .tier-mythic .flip-card-back::after {
-        background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(16, 185, 129, 0.3) 2px, rgba(16, 185, 129, 0.3) 4px), repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(16, 185, 129, 0.3) 2px, rgba(16, 185, 129, 0.3) 4px);
-        background-size: 100% 100%;
-        animation: mythicGlitchLoop 6s infinite step-end; mix-blend-mode: screen; opacity: 0.2; z-index: 20;
+        background-image: linear-gradient(180deg, transparent 0%, rgba(16, 185, 129, 0.1) 50%, rgba(16, 185, 129, 0.4) 100%), repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(16, 185, 129, 0.3) 2px, rgba(16, 185, 129, 0.3) 4px);
+        background-size: 100% 200%, 100% 100%;
+        animation: mythicCRTLoop 10s linear infinite, mythicGlitchLoop 10s infinite step-end;
+        mix-blend-mode: screen;
+        opacity: 0.3;
+        z-index: 0;
       }
 
       .front-content-wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; width: 100%; }
