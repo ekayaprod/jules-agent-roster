@@ -61,7 +61,12 @@ class AgentCard {
         let splayHtml = '';
         if (!isNaN(index) && window.rosterApp && window.rosterApp.fusionLab && window.rosterApp.fusionLab.fusionIndex) {
             const unlockedKeys = window.rosterApp.fusionLab.fusionIndex.unlockedKeys;
-            const childKeys = Array.from(unlockedKeys).filter(key => key.includes(agent.name));
+
+            // ↗️ VECTORIZE: The Single-Pass Pipeline. We bypass Array.from().filter() wrapper allocations for a direct loop.
+            const childKeys = [];
+            for (const key of unlockedKeys) {
+                if (key.includes(agent.name)) childKeys.push(key);
+            }
 
             if (childKeys.length > 0) {
                 let splayItems = '';
