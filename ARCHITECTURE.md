@@ -60,6 +60,12 @@ graph TD;
         subgraph Jules Integration
             JulesManager[js/Features/Jules/JulesManager/JulesManager.js]
         end
+        subgraph Search
+            SearchCtrl[js/Features/Search/SearchController.js]
+        end
+        subgraph Export
+            ExportCtrl[js/Features/Export/ExportController.js]
+        end
     end
 
     subgraph Services
@@ -71,8 +77,6 @@ graph TD;
         AgentCard[js/UI/AgentCard/AgentCard.js]
         Toast[js/UI/Toast/ToastNotification.js]
         Clipboard[js/UI/Clipboard/ClipboardUtils.js]
-        SearchCtrl[js/UI/SearchController/SearchController.js]
-        ExportCtrl[js/UI/ExportController/ExportController.js]
     end
 
     subgraph Utilities
@@ -134,8 +138,8 @@ graph TD;
     classDef services fill:#cce5ff,stroke:#333,stroke-width:2px;
 
     class RosterApp core;
-    class FusionLab,FusionCompiler,FusionIndex,FusionAnimation,AgentPicker,RarityEngine,PinnedManager,JulesManager features;
-    class AgentCard,Toast,Clipboard,SearchCtrl,ExportCtrl ui;
+    class FusionLab,FusionCompiler,FusionIndex,FusionAnimation,AgentPicker,RarityEngine,PinnedManager,JulesManager,SearchCtrl,ExportCtrl features;
+    class AgentCard,Toast,Clipboard ui;
     class FormatUtils,DownloadUtils,PerformanceUtils,MarkdownRenderer,StorageUtils,PromptParser,DomUtils utils;
     class AgentRepo,JulesService services;
     class JSON,MD,Schema data;

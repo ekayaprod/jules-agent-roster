@@ -104,3 +104,7 @@
 
 **Learning:** Unbounded fetch calls missing a generic `catch` block (even when wrapped in a `try...finally`) can leak unhandled exceptions like `AbortError` directly to the caller during a network timeout, crashing the parent process or silently breaking UI state without providing a predictable fallback.
 **Action:** Always verify that network requests have an explicit `catch` block preceding `finally`. In `JulesService.getPullRequests`, catching `AbortError` and returning a safe empty array `[]` ensures the application correctly handles latency and missing GitHub tokens without crashing.
+
+## 2026-03-18 - 🏛️ City Clerk - [Architectural Shift & Migration Guide: Search and Export]
+**Learning:** Moving isolated domain utilities out of monolithic UI folders prevents tangled generic dependency mapping and supports explicit architectural encapsulation.
+**Action:** Migrated `SearchController` and `ExportController` into explicit `js/Features/` colocation domains, updated barrel files, corrected all consumer paths, and logged the shift in the CHANGELOG.md.

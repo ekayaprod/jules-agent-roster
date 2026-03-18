@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.8.0 - 2026-03-12
 
+### 🏛️ Architecture Migration
+
+- **City Clerk Restructure**: The `SearchController` and `ExportController` modules have been broken out of `js/UI` and moved to `js/Features/Search` and `js/Features/Export` to establish feature-based colocation. Import paths and architecture graphs have been updated to reflect the new canonical paths.
+
 ### 🚀 Features
 
 - **Jules Integration**: Combined Jules execution and GitHub PR UI, added an open pull requests panel, and included GitHub Token configuration in the API settings. Limited the task dashboard to 5 items and allowed click-to-dismiss.
