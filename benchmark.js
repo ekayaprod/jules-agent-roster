@@ -208,9 +208,9 @@ global.PinnedManager = PinnedManager;
 const JulesManager = loadClass('js/Features/Jules/JulesManager/JulesManager.js');
 global.JulesManager = JulesManager;
 
-const SearchController = loadClass('js/UI/SearchController/SearchController.js');
+const SearchController = loadClass('js/Features/Search/SearchController.js');
 global.SearchController = SearchController;
-const ExportController = loadClass('js/UI/ExportController/ExportController.js');
+const ExportController = loadClass('js/Features/Export/ExportController.js');
 global.ExportController = ExportController;
 const RosterApp = loadClass('js/core/RosterApp.js');
 
