@@ -26,6 +26,29 @@ describe('AgentRepository', () => {
         jest.clearAllMocks();
     });
 
+    describe('constructor', () => {
+        it('handles invalid JSON in localStorage gracefully without throwing', () => {
+            const originalLocalStorage = global.localStorage;
+
+            Object.defineProperty(global, 'localStorage', {
+                value: {
+                    getItem: jest.fn().mockReturnValue('invalid json string')
+                },
+                writable: true
+            });
+
+            expect(() => {
+                new AgentRepository();
+            }).not.toThrow();
+
+            if (originalLocalStorage) {
+                global.localStorage = originalLocalStorage;
+            } else {
+                delete global.localStorage;
+            }
+        });
+    });
+
     describe('fetchWithRetry', () => {
         it('aborts and throws error if fetch takes longer than 10 seconds', async () => {
             jest.useFakeTimers();
