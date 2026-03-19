@@ -1,8 +1,17 @@
+/**
+ * FusionAnimation
+ *
+ * UI Controller for managing localized interaction logic related to fusion visualizations.
+ * Handles CSS class toggling and timing required for the merge visualization.
+ * @see ../../../docs/architecture/Features/Fusion.md#agent-picker
+ */
 const FusionAnimation = function () {
   let elements = null;
 
   /**
    * Caches static DOM elements on first run to prevent redundant layout thrashing.
+   * @returns {Object|null} Caches and returns DOM elements if successful.
+   * @see ../../../docs/architecture/Features/Fusion.md#agent-picker
    */
   const cacheElements = () => {
     if (elements) return elements;
@@ -25,6 +34,12 @@ const FusionAnimation = function () {
 
   /**
    * Orchestrates the fusion animation sequence.
+   * @param {Object} agentA - The first agent.
+   * @param {Object} agentB - The second agent.
+   * @param {Object} result - The fused agent result containing tier and emoji.
+   * @param {Function} showResultCallback - The callback function to execute after the animation.
+   * @returns {Promise<void>}
+   * @see ../../../docs/architecture/Features/Fusion.md#agent-picker
    */
   const runAnimation = async (agentA, agentB, result, showResultCallback) => {
     const activeElements = cacheElements();

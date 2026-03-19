@@ -5,3 +5,6 @@
 ## Scholar — [Dynamic Architecture Taxonomy]
 **Learning:** Hardcoding documentation paths (like `docs/architecture/`) creates brittle agents that fail across different repositories. Each repository has a unique taxonomy that must be discovered dynamically before synthesizing files.
 **Action:** When synthesizing new macro documentation, ALWAYS analyze the specific repository's taxonomy first (e.g., scan for dedicated `docs/` or `architecture/` directories). Generate macro blueprints centrally within that dynamically discovered location to maintain an unpolluted execution tree, defaulting to local module directories only if no central structure exists.
+## Scholar — UI Controller Alignment
+**Learning:** Missing JSDoc tags on tightly coupled UI animation components can cause developers to misinterpret where logic is managed. Ensuring that these visual orchestrators cross-reference the macro documentation explicitly enforces UI boundaries and provides context on feature colocation.
+**Action:** When documenting UI-driven controllers like `FusionAnimation.js`, cross-reference the macro `docs/` guides directly within the inline `@see` annotations, to connect granular interaction handling back to the broader structural blueprint.
