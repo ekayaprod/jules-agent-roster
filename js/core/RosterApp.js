@@ -554,7 +554,7 @@ class RosterApp {
    * Initializes or updates a virtual scrolling `Clusterize.js` instance to render
    * matches without triggering massive native DOM reflows.
    * @param {string} query - The search query string.
-   * @see ../../docs/architecture/UI/SearchController.md#search-mechanics
+   * @see ../../docs/architecture/Features/Search/SearchController.md#search-mechanics
    */
   async filterAgents(query) {
     if (this.searchController) {
@@ -565,7 +565,7 @@ class RosterApp {
   /**
    * Clears the active search query, destroys the search results view,
    * and resets the UI back to the default categorized master layout.
-   * @see ../../docs/architecture/UI/SearchController.md#search-mechanics
+   * @see ../../docs/architecture/Features/Search/SearchController.md#search-mechanics
    */
   async clearSearch() {
     if (this.searchController) {
