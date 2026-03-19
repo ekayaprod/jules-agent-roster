@@ -16,3 +16,7 @@ YYYY-MM-DD
 **Title**: [Excavate] Extracted domain classification logic from custom_agents.json
 **Learning**: Domain classification logic for custom fusions (e.g., Glitch, Paradox) was previously coupled with the structural layout of `custom_agents.json`. This made the JSON file harder to parse programmatically and mixed data definition with business logic.
 **Action**: Flattened `custom_agents.json` to act strictly as a dictionary mapping fusion coordinates to agent definitions. Extracted the domain classification logic into a new `getFusionDomain` function within `RarityEngine.js`, centralizing all domain and rarity calculation in one authoritative module.
+
+## Architect — Structural Engineer
+**Learning:** The `SearchController` and `ExportController` components have been structurally migrated from `js/UI/` to `js/Features/Search/` and `js/Features/Export/` under feature-based colocation, with their architecture graph representations updated accordingly in `ARCHITECTURE.md`.
+**Action:** Ensure structural shifts into the feature colocation layer are synchronized across both internal module bindings (DOM `<script>`, Workers) and external architecture documentation correctly.

@@ -71,8 +71,8 @@ graph TD;
         AgentCard[js/UI/AgentCard/AgentCard.js]
         Toast[js/UI/Toast/ToastNotification.js]
         Clipboard[js/UI/Clipboard/ClipboardUtils.js]
-        SearchCtrl[js/UI/SearchController/SearchController.js]
-        ExportCtrl[js/UI/ExportController/ExportController.js]
+        SearchCtrl[js/Features/Search/SearchController.js]
+        ExportCtrl[js/Features/Export/ExportController.js]
     end
 
     subgraph Utilities
