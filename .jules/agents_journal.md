@@ -1,3 +1,7 @@
+## 2026-03-19 - 🗃️ Registrar - [Registry Synchronized: Bolt+]
+**Learning:** Identified a role mismatch for Bolt+ where the JSON had "Bottleneck Slayer" but the markdown source of truth specified "Performance Engineer".
+**Action:** Autonomously updated agents.json to perfectly align with prompts/Bolt+.md to ensure registry synchronization.
+
 # Jules Agents Journal
 
 ## 2024-05-24 - 🎧 Vibe - Focus Trap Modal A11y
