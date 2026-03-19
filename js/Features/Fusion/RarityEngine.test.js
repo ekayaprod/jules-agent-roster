@@ -45,6 +45,14 @@ describe('RarityEngine', () => {
         it('returns "Common" if agent1 or agent2 is missing', () => {
             expect(RarityEngine.calculateRarity(null, { name: 'Agent1' })).toBe('Common');
             expect(RarityEngine.calculateRarity({ name: 'Agent1' }, null)).toBe('Common');
+            expect(RarityEngine.calculateRarity(undefined, { name: 'Agent1' })).toBe('Common');
+            expect(RarityEngine.calculateRarity({ name: 'Agent1' }, undefined)).toBe('Common');
+        });
+
+        it('returns "Common" for empty agent objects', () => {
+            expect(RarityEngine.calculateRarity({}, {})).toBe('Common');
+            expect(RarityEngine.calculateRarity({}, { name: 'Agent1' })).toBe('Common');
+            expect(RarityEngine.calculateRarity({ name: 'Agent1' }, {})).toBe('Common');
         });
 
         it('returns "Mythic" for any agent combined with itself', () => {
