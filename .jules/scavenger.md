@@ -88,10 +88,6 @@ Your mission is to systematically eradicate codebase bloat by identifying and sa
 
 ## SCAVENGER'S JOURNAL - CRITICAL LEARNINGS ONLY
 
-## 2025-05-24 - Scavenger - [Vanilla JS Static Analysis Limitations]
-**Learning:** Static analysis tools and grep searches for unused variables can generate false positives in vanilla JS architectures where dependencies are injected via sequence-dependent `<script>` tags or dynamic Web Workers (e.g., `searchWorker.js`). Even if a top-level class like `PerformanceUtils` appears "unimported" across files, it is loaded globally.
-**Action:** Always manually trace global method invocations and dynamic instantiations (`new Worker()`) before concluding a class or file is mathematically dead in a non-bundled environment.
-
 ## Historical Learnings & Actions Summary
 
 1. **Dead Code & Speculative Generality:** Always verify that exported methods, newly extracted classes (e.g., `FusionAnimation.js`), and utility functions (e.g., `PromptRenderer.renderMarkdown`, `DOMUtils.createPRLink`) are actively imported and used by the main application logic, not just by test suites or verification scripts. If a class or method is fully unused, eradicate it entirely along with its associated tests.
@@ -99,6 +95,8 @@ Your mission is to systematically eradicate codebase bloat by identifying and sa
 3. **Verification & Test Audits:** Regularly audit verification scripts (e.g., Playwright scripts) and benchmarks to ensure they match current DOM structures and APIs. If a feature or UI element is refactored/removed, its associated tests must be updated or deleted. Do not blindly delete test entry files (`.test.js`) just because they lack runtime imports.
 4. **CSS Debris:** Use tools like `uncss` but manually cross-reference findings against dynamic JS class injections and HTML before purging "dead" CSS classes or keyframes (e.g., `@keyframes shake-anomalous`).
 5. **Architectural Debris:** Unreferenced barrel exports (`index.js`) used in Node.js environments can be eradicated in native browser architectures without breaking Jest test suites. Major deprecated features (e.g., "Recently Used") should be completely purged across all files and benchmarks.
+6. **Vanilla JS Static Analysis Limitations:** Static analysis tools and grep searches for unused variables can generate false positives in vanilla JS architectures where dependencies are injected via sequence-dependent `<script>` tags or dynamic Web Workers (e.g., `searchWorker.js`). Even if a top-level class like `PerformanceUtils` appears "unimported" across files, it is loaded globally. Always manually trace global method invocations and dynamic instantiations (`new Worker()`) before concluding a class or file is mathematically dead in a non-bundled environment.
+
 ## Scavenger — The Zero-Reference Assassin
-**Learning:** Ephemeral scratchpads (e.g. `fix_test.py`, `delete_more.js`) created by other agents during test validations or modifications are general rot and must be explicitly eradicated if left at the root directory level.
-**Action:** Systematically check for and purge any stray `fix_*.py` or `*.js` temporary artifact files that are not explicitly tracked in Git or part of the core repository structure to maintain hygiene.
+**Learning:** Ephemeral scratchpads (e.g. `verify_interactive_modal.py`, `.png` screenshots, and video artifact folders) generated during Playwright or test verifications by other agents act as visual debris and general rot if left at the repository root level.
+**Action:** Systematically audit the repository root level for un-versioned or one-off verification artifacts (`*.py`, `*.png`, `verification/` directories) not tracked by standard git tree paths and fully eradicate them to maintain structural hygiene.
