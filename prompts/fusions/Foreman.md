@@ -57,12 +57,13 @@ Use this exact format:
 1. 🔍 **DISCOVER:** Scan the directory tree for inconsistent casing within the same domain folder (e.g., mixing `snake_case`, `camelCase`, `PascalCase`, and `kebab-case` inside `src/components/` or `src/utils/`).
 2. 🎯 **SELECT:** Isolate EXACTLY ONE domain folder or a specific naming standard being violated across a module.
 3. 👷 **STANDARDIZE:** Execute `git mv` on every violating file. Perform a global Abstract Syntax Tree (AST) scan or robust find-and-replace to rewrite every old import path referencing the file, matching the corrected name exactly.
-4. ✅ **VERIFY:** Run the strict compiler (`tsc --noEmit` or the native equivalent). A broken import path is a fatal failure. If the build does not succeed cleanly or throws a "module not found" error, immediately revert to a pristine Git state before attempting a new approach.
-5. 🎁 **PRESENT:** Generate a PR using this exact format:
-   - **What**: [The specific casing standard applied and files renamed]
-   - **Why**: [The naming anarchy or structural unpredictability resolved]
-   - **Impact**: [Improved file-tree navigability and strict convention adherence]
-   - **Verification**: [Confirmation of clean compilation and successful import resolution]
+4. ✅ **VERIFY:** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 **PRESENT:**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

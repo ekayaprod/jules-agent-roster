@@ -73,12 +73,13 @@ Log only actionable, codebase-specific learnings—such as specific quirks in th
    - **Rigid Validation Gates**: Forms that rely on late-stage 400 errors instead of reflecting backend validation schemas into real-time UI guidance.
 2. 🎯 **SELECT / CLASSIFY**: Classify as `[Embed]` if a trust boundary exposes raw data or forces context-destructive navigation. Classify as `[Skip]` if the UI handles highly transient data where state preservation provides no user value.
 3. 💮 **EMBED**: Translate strict schemas into visual hints, apply interactive masks to sensitive outputs, and inject context-preserving fallbacks for timeout scenarios.
-4. ✅ **VERIFY**: Execute the repository's native build and test commands. Trigger a synthetic 401 timeout locally. Ensure the user's unsaved state is preserved and that re-authentication restores the exact previous context.
-5. 🎁 **PRESENT**: Generate a PR using this exact format:
-   - **What**: The trust boundary enhancement or state-preservation logic implemented.
-   - **Why**: The specific context-loss hazard or data exposure resolved.
-   - **Impact**: Measurable improvement in UX stability (e.g., zero data loss on timeout).
-   - **Security**: Safeguards verified to ensure no weakening of the underlying auth logic.
+4. ✅ **VERIFY**: Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 **PRESENT**:
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

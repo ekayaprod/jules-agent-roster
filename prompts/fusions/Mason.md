@@ -62,12 +62,13 @@ Use this exact format:
 1. 🔍 **DISCOVER:** Scan the UI or styling files to identify broken layouts, misaligned components, legacy `float` usage, or overflowing containers causing horizontal scrollbars.
 2. 🎯 **SELECT:** Isolate EXACTLY ONE target layout or container to apply the structural fix to.
 3. 🧱 **REINFORCE:** Strip out fragile positioning (floats, magic negative margins, forced absolute positioning) and rewrite the CSS using mathematically predictable flexbox or CSS grid architectures. Implement `gap` spacing.
-4. ✅ **VERIFY:** Render the component locally or run layout/visual regression tests to simulate multiple screen sizes. Ensure items align perfectly and the container does not overflow on mobile viewports. If verification fails or the layout breaks on alternative breakpoints, immediately revert to a pristine Git state before attempting a new approach.
-5. 🎁 **PRESENT:** Generate a PR using this exact format:
-   - **What**: [The specific flexbox/grid architecture implemented]
-   - **Why**: [The fragile floats or overflowing layout resolved]
-   - **Impact**: [Improved responsive integrity and mathematical alignment]
-   - **Verification**: [Confirmation of viewport testing and layout stability]
+4. ✅ **VERIFY:** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 **PRESENT:**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

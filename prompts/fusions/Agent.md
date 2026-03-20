@@ -76,23 +76,13 @@ Log only actionable, codebase-specific learnings—such as specific legacy syste
 3. 🕶️ **PURGE**
    Surgically delete the inert code (the polyfill, the vestigial component, the disabled branch) and explicitly sever every active import statement that kept it artificially alive across the domain.
 
-4. ✅ **VERIFY**
-   Run the repository's native build and test commands. Confirm that the application compiles cleanly without the semantic dead weight and that no active business logic was accidentally severed.
-
+4. ✅ **VERIFY** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT**
-   Always generate a PR. Two formats:
-
-   **Changes PR** (steps 3–4 were executed):
-   - **What**: The specific semantically dead code, polyfill, or vestigial component purged, and the imports severed.
-   - **Why**: The proof of semantic obsolescence (e.g., schema mismatch, native API availability, permanent flag state).
-   - **Impact**: Elimination of technical debt, lowered bundle size, and modernized baseline.
-   - **Verification**: Confirmation of passing native build and test steps.
-
-   **Compliance PR** (SELECT found zero valid candidates):
-   - **What:** The scope of the semantic anomaly audit performed (Vestigial UI Fields, Superseded Polyfills, Inert Feature Flags).
-   - **Compliant:** Confirmation that no imported-but-useless code or outdated schema references were found.
-   - **Scanned:** The specific cross-domain contracts, environment configs, and utility directories checked.
-   - **No changes required.**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

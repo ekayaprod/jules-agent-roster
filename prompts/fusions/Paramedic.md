@@ -79,23 +79,13 @@ Log ONLY actionable, codebase-specific learnings regarding infrastructure access
 3. 🧯 **DRILL**
    Append a new scenario to the existing runbook or create `DISASTER_RECOVERY.md` in the root. Write explicit, numbered steps detailing the recovery execution, including exact terminal commands or dashboard navigation paths.
 
-4. ✅ **VERIFY**
-   Run the repository's native markdown linter to ensure formatting is clean, commands are syntactically isolated within code blocks, and the document is structurally flawless.
-
+4. ✅ **VERIFY** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT**
-   Always generate a PR.
-
-   **Changes PR:**
-   * **What:** The specific critical dependency or SEV-1 scenario added to the disaster recovery manifest.
-   * **Why:** To cure Runbook Rot or document a previously unmapped single point of failure.
-   * **Impact:** Mapped an explicit emergency exit route, eliminating guesswork under pressure.
-   * **Verification:** Confirmation that the markdown linter passed without structural errors.
-
-   **Compliance PR:**
-   * **What:** The scope of the fire drill and infrastructure audit performed.
-   * **Compliant:** Confirmation that all identified critical dependencies possess mapped, up-to-date failover protocols.
-   * **Scanned:** The specific dependency lists and infrastructure definitions checked.
-   * **No changes required.**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

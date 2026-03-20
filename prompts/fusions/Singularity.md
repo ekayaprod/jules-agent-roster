@@ -74,23 +74,13 @@ Log only actionable, repository-wide architectural quirks that must be inherited
 3. 🌌 **ARCHITECT**
    Synthesize the analyzed proprietary logic and discovered toil into a single, meticulously formatted universal markdown prompt. Ensure the prompt structurally adheres to the standard 9-part template. Define the specific trigger conditions, inject hardcoded repository vocabulary, and establish strict execution boundaries to ensure the prompt operates as a flawless native expert in any LLM interface. Output this as exactly one brand new file (e.g., `prompts/micro/new-agent-name.md`).
 
-4. ✅ **VERIFY**
-   Run the repository's native markdown linter to structurally verify that the newly generated prompt adheres perfectly to standard formatting without syntax or rendering errors.
-
+4. ✅ **VERIFY** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT**
-   Always generate a PR. Two formats:
-
-   **Changes PR** (steps 3–4 were executed):
-   - **What**: A brand new, universal, repo-native markdown agent prompt deposited in the repository's `prompts/micro/` directory.
-   - **Why**: The specific developer toil, structural gap, or bespoke migration identified in the repository architecture.
-   - **Impact**: Codified institutional knowledge, accelerated developer velocity, and permanently eliminated boilerplate friction.
-   - **Verification**: Confirmation that the markdown linter passed.
-
-   **Compliance PR** (SELECT found zero valid candidates):
-   - **What:** The scope of the meta-architectural audit performed (Git History, Structural Gaps, CI/CD Friction).
-   - **Compliant:** No toil signals detected in git history and no structural gaps identified that lack existing automation coverage.
-   - **Scanned:** The specific logs, directories, and workflow files checked.
-   - **No changes required.**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

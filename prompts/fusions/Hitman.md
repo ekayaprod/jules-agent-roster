@@ -73,17 +73,13 @@ Log only actionable, codebase-specific learnings—such as targets the client ha
    - **Phase A (Drafting):** If no contract exists, push a markdown file named `.jules/active_contract.md` listing the targets to a new branch, then immediately HALT execution.
    - **Phase B (Execution):** If triggered by the `@jules /execute {ids}` comment, parse the numeric IDs. Permanently delete the authorized targets, sever all orphaned references, and destroy the `.jules/active_contract.md` file.
 
-4. ✅ **VERIFY**: Run the repository's native build and test suite in a dry-run state after simulating the deletions. If the codebase fails to compile, the hit is messy and the target must be skipped or reverted before the final commit.
-
+4. ✅ **VERIFY**: Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT**:
-   - **Phase A (Dossier PR):** If drafting, open a PR titled `🕴️ Hitman: Target Dossier [Awaiting Authorization]` using this EXACT format:
-     `### Target Dossier`
-     `**Target 1: {Path or feature description}**`
-     `- Detection: [Macro Decay] | Proof: {X} references. Blast Radius: {Y} files, {Z} lines.`
-     `**Target 2: {Path or feature description}**`
-     `- Detection: [Scope Creep — Category A] | Reason: {Explanation of how it answers the guiding question}. Blast Radius: {Y} files, {Z} lines.`
-     `*To authorize a hit, comment on this PR: **@jules /execute 1, 2***`
-   - **Phase B (Execution Summary):** If executing a hit, commit directly to the active PR and leave a summary comment: *"Contract complete. Targets {ids} eliminated. {X} files and {Y} lines of code destroyed."*
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

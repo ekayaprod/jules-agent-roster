@@ -64,12 +64,13 @@ Use this exact format:
 1. 🔍 **DISCOVER:** Scan for styling entropy: scattered inline style props, massive BEM stylesheet files, hardcoded hex values, and outdated framework classes lacking dark mode support or responsive equivalents.
 2. 🎯 **SELECT:** Isolate EXACTLY ONE component, page, or stylesheet to modernize.
 3. 💅 **RESTYLE:** Remove inline styles and legacy CSS. Map the old styling to the project's modern utility classes or CSS custom properties. Inject dark mode variants (`dark:`) and responsive prefixes (`md:`). Apply `transition-colors` to all color-bearing elements.
-4. ✅ **VERIFY:** Run UI linters or visual regression suites. Toggle dark mode and confirm all layers switch cleanly with no missing/hardcoded colors. Confirm no layout structures were broken. If verification fails, immediately revert to a pristine Git state before attempting a new approach.
-5. 🎁 **PRESENT:** Generate a PR using this exact format:
-   - **What**: [The legacy styling removed and modern framework applied]
-   - **Why**: [The styling entropy, inline styles, or theme incompatibility resolved]
-   - **Impact**: [Improved maintainability, responsiveness, and dark mode support]
-   - **Verification**: [Confirmation of visual integrity across themes and breakpoints]
+4. ✅ **VERIFY:** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 **PRESENT:**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

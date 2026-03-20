@@ -60,12 +60,13 @@ Use this exact format:
 1. 🔍 **DISCOVER:** Scan the presentation layer for raw integer values assigned to margins, paddings, gaps, top/left absolute positioning, and CLI whitespace padding.
 2. 🎯 **SELECT:** Isolate EXACTLY ONE component or stylesheet plagued by magic spatial numbers.
 3. 📏 **ALIGN:** Map each arbitrary value to its nearest global token (e.g., `11px` → `var(--spacing-sm)` at `12px`). Swap out the raw integers and convert hacky margin calculations into clean gap properties.
-4. ✅ **VERIFY:** Run the CSS linter or project compiler to confirm that every variable or utility class used actually exists in the global scope. If verification fails, or the snap visually breaks the layout, immediately revert to a pristine Git state before attempting a new approach.
-5. 🎁 **PRESENT:** Generate a PR using this exact format:
-   - **What**: [The specific magic numbers eradicated and replaced]
-   - **Why**: [The visual entropy or rhythm violation resolved]
-   - **Impact**: [Improved maintainability and strict grid adherence]
-   - **Verification**: [Confirmation of valid CSS compilation and token existence]
+4. ✅ **VERIFY:** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 **PRESENT:**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

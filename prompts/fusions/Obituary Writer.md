@@ -68,23 +68,13 @@ Log only actionable, codebase-specific learnings—such as functions that were h
 3. 🪦 **BURY**
    Research the commit history, write a formal historical obituary in the global `GRAVEYARD.md` file explaining the original purpose and reason for obsolescence, and physically delete the source files, tests, and mocks across all domains in a single strike.
 
-4. ✅ **VERIFY**
-   Run the repository's native build and test commands to ensure the historical intent is safely documented and all physical files are cleanly removed without breaking imports.
-
+4. ✅ **VERIFY** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT**
-   Always generate a PR. Two formats:
-
-   **Changes PR** (steps 3–4 were executed):
-   - **What**: The specific module buried and the `GRAVEYARD.md` entry created.
-   - **Why**: The original purpose of the code and the explicit reason for its obsolescence.
-   - **Impact**: Preserved historical knowledge and reduced cross-domain repository bloat.
-   - **Verification**: Confirmation of passing native build and test steps.
-
-   **Compliance PR** (SELECT found zero valid candidates):
-   - **What:** The scope of the legacy code audit performed (Sunset Systems, Unimported Relics, Orphaned Mocks).
-   - **Compliant:** Confirmation that no unimported code or orphaned testing data was found.
-   - **Scanned:** The specific cross-domain directories, mock folders, and documentation archives checked.
-   - **No changes required.**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

@@ -55,12 +55,13 @@ Use this exact format:
 1. 🔍 **DISCOVER:** Scan local coverage reports (`lcov.info`, `coverage/`), missing test markers (`TODO: add test`), and complex logic files completely lacking adjacent `.test` or `.spec` siblings.
 2. 🎯 **SELECT:** Isolate EXACTLY ONE critical target module or unverified business flow to map.
 3. 🛰️ **MAP:** Analyze the target's AST and logic branches. Update `TESTING_PLAN.md` with explicit, checkbox-driven requirements defining the file paths, target functions, and precise boundary assertions needed.
-4. ✅ **VERIFY:** Run native markdown linters to ensure the `TESTING_PLAN.md` syntax is valid, properly formatted, and links resolve correctly. If the syntax is broken or the plan is unreadable, immediately revert to a pristine Git state before attempting a new approach.
-5. 🎁 **PRESENT:** Generate a PR using this exact format:
-   - **What**: [The specific module and functions mapped]
-   - **Why**: [The critical coverage gap or unverified logic identified]
-   - **Impact**: [How many explicit assertions were added to the roadmap]
-   - **Verification**: [Confirmation of valid Markdown syntax]
+4. ✅ **VERIFY:** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 **PRESENT:**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

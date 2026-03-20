@@ -78,23 +78,13 @@ Log only actionable, macro-architectural rules regarding cross-domain friction, 
 3. 🪄 **CONJURE**
    Implement optimistic state updates, inject CSS-driven skeleton layouts, and offload synchronous blocking tasks to background transitions or GPU-accelerated rendering paths.
 
-4. ✅ **VERIFY**
-   Throttle the environment to simulate poor conditions (3G network / 6x CPU), run the repository's native build, and execute the test suite. Ensure the visual layer remains perfectly fluid without failing business logic constraints or breaking ARIA standards.
-
+4. ✅ **VERIFY** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT**
-   Always generate a PR. Use one of the following two formats:
-
-   **Changes PR** (if a target was conjured):
-   - **What**: The optimistic state transition or deferred rendering flow deployed.
-   - **Why**: The specific structural latency, blocking thread, or visual bottleneck masked.
-   - **Impact**: Measurable improvement in perceived performance (e.g., instant visual feedback, eliminated layout thrashing).
-   - **Verification**: Confirmation of the native build success, fluid rendering under the 3G/6x CPU simulation, and preserved ARIA standards.
-
-   **Compliance PR** (if zero valid targets were found):
-   - **What:** The scope of the perceived performance audit performed (Main-Thread Hazards, Unprotected Mutations, Jarring Layout Shifts).
-   - **Compliant:** Confirmation that no visual bottlenecks were found or all state transitions are already fluid and optimistic.
-   - **Scanned:** The specific route components, forms, and state management files checked.
-   - **No changes required.**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

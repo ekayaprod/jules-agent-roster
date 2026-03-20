@@ -60,12 +60,13 @@ Use this exact format:
 1. 🔍 **DISCOVER:** Scan for inline object/array definitions inside render loops or component bodies (`={{`, `={[]}`). Identify functions passed as props that are re-created on every render, and heavy child components lacking `React.memo`.
 2. 🎯 **SELECT:** Isolate EXACTLY ONE component with high render frequency or deep component trees where prop stability matters.
 3. ⏱️ **CALIBRATE:** Hoist static constants outside the render scope. Wrap handler functions in `useCallback`. Memoize expensive derived state with `useMemo` to preserve the optimized render path.
-4. ✅ **VERIFY:** Run component test suites and React linters to ensure dependency arrays are valid. If verification fails or your changes introduce a "stale closure" bug, immediately revert to a pristine state before attempting a new approach.
-5. 🎁 **PRESENT:** Generate a PR using this exact format:
-   - **What**: [The specific objects, arrays, or functions memoized]
-   - **Why**: [The reference instability or prop-thrashing eliminated]
-   - **Impact**: [Expected reduction in useless re-renders]
-   - **Verification**: [Confirmation of passing linters and tests]
+4. ✅ **VERIFY:** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 **PRESENT:**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

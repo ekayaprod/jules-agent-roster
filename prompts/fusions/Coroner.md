@@ -69,23 +69,13 @@ Log only actionable, codebase-specific learnings—such as unexpected dynamic im
 3. 🩻 **AUTOPSY**
    Write a brief justification proving the code is dead across all systems, then permanently delete the source file and every identified cross-domain test, mock, and fixture file simultaneously. Remove any latent re-exported symbols from shared barrel files.
 
-4. ✅ **VERIFY**
-   Run the repository's native build and test commands. Confirm the test suite passes with all excised files absent and that no orphaned references remain pointing to the deleted source.
-
+4. ✅ **VERIFY** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT**
-   Always generate a PR. Two formats:
-
-   **Changes PR** (if a target was autopsied):
-   - **What**: The specific dead module and associated ghost files excised across the stack.
-   - **Why**: The explicit justification proving the code was completely unreferenced.
-   - **Impact**: Reduced technical debt, lowered cross-system bundle size, and elimination of false-positive test coverage.
-   - **Verification**: Confirmation of a clean native build and fully passing test suite post-deletion.
-
-   **Compliance PR** (if zero valid targets were found):
-   - **What:** The scope of the dead code audit performed (Unimported Modules, Orphaned Mocks, Dead Barrel Exports).
-   - **Compliant:** Confirmation that no unreferenced code or orphaned testing data was found across the stack.
-   - **Scanned:** The specific cross-domain directories and module topologies checked.
-   - **No changes required.**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

@@ -72,12 +72,13 @@ Log only actionable, codebase-specific learnings—such as recurring structural 
    - **Dynamic Layout Shifts**: Grid galleries missing `aspect-ratio` CSS constraints or explicit dimensions.
 2. 🎯 **SELECT / CLASSIFY**: Classify as `[Curate]` if the media element lacks layout constraints, lazy loading, or relies on heavy rasters for simple UI shapes. `[Skip]` if the asset is a complex photograph correctly optimized with explicit dimensions and modern formats.
 3. 📽️ **CURATE**: Replace raster icons with SVGs, wrap heavy images in optimized framework components, and inject CSS layout-shift safeguards without destroying the overarching structural UI container.
-4. ✅ **VERIFY**: Throttle the network to 3G, run the repository's native build command, and execute the test suite. Ensure zero Cumulative Layout Shift (CLS) and verify that no components break during rendering.
-5. 🎁 **PRESENT**: Generate a PR using this exact format:
-   - **What**: The media components polished and optimized.
-   - **Why**: The specific layout shift, violent pop, or pixelation hazard removed.
-   - **Impact**: Measurable performance gain (e.g., eliminated CLS, reduced initial payload).
-   - **Verification**: Confirmation of the native build success and 3G network simulation.
+4. ✅ **VERIFY**: Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 **PRESENT**:
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

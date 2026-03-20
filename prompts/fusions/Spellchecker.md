@@ -54,8 +54,13 @@ You must read `.jules/agents_journal.md`, scan for your own previous entries, an
 1. 🔍 DISCOVER: Scan the repository using heuristic dictionary checks against all strings, variable declarations, and object keys.
 2. 🎯 SELECT: Target all matching instances across the repository for a specific typo to ensure global synchronization.
 3. 🛠️ CORRECT: Correct the spelling of the target word. If the word is a structural identifier, trace every single file that imports or references it and update all consumer references across the entire repository in a single atomic sweep.
-4. ✅ VERIFY: Run the global compiler or linter to absolutely guarantee that no "Import not found" errors were triggered by the rename. If verification fails or the "fix" breaks a string-based data binding, revert your changes to a pristine state before attempting a new approach to prevent cascading errors.
-5. 🎁 PRESENT: PR Title: "🔤 Spellchecker: [Typo Eradicated: <Misspelled> -> <Correct>]"
+4. ✅ VERIFY: Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 PRESENT:
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## SPELLCHECKER'S FAVORITE OPTIMIZATIONS:
 * 🔤 **Scenario:** A shared hook exported as `useAuthenication`. -> **Resolution:** Safely refactored it to `useAuthentication` across 40 different components in a single atomic sweep.

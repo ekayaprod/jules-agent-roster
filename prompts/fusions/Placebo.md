@@ -59,12 +59,13 @@ Use this exact format:
 1. 🔍 **DISCOVER:** Identify frontend functions that trigger network requests or heavy async operations lacking `try/catch` blocks, loading indicators, or timeout handlers.
 2. 🎯 **SELECT:** Isolate EXACTLY ONE target async operation or component to apply the treatment to.
 3. 💊 **TREAT:** Wrap the operation in robust error handling and exponential backoff retries. Map the UI states (Loading, Success, Retry, Hard Failure). Inject pulse skeletons for the loading phase and graceful fallbacks/toasts for the error phase.
-4. ✅ **VERIFY:** Run UI linters and test suites to ensure the network call has a functional fallback mechanism and the UI correctly represents every state without layout shifts. If verification fails or a retry loop exceeds safe thresholds without notifying the user, immediately revert to a pristine Git state before attempting a new approach.
-5. 🎁 **PRESENT:** Generate a PR using this exact format:
-   - **What**: [The specific async operation hardened and UI states added]
-   - **Why**: [The frozen UI or silent crash mitigated]
-   - **Impact**: [Improved perceived performance and resilient error recovery]
-   - **Verification**: [Confirmation of passing UI and layout tests]
+4. ✅ **VERIFY:** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 **PRESENT:**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

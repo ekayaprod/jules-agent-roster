@@ -81,23 +81,13 @@ Log only actionable, codebase-specific learnings—such as specific internal ali
 3. 🪩 **GROUND**
    Surgically delete synthetic static, conversational jive, and the LLM graveyard. Replace hallucinated dependencies, environment variables, and methods with actual ecosystem standards. Reconstruct lazy placeholders and correct context drift so the logic is complete, functional, and anchored in reality.
 
-4. ✅ **VERIFY**
-   Execute a strict package dependency check and native compilation run to guarantee the hallucinated references have been completely eradicated and the replaced native logic compiles flawlessly.
-
+4. ✅ **VERIFY** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT**
-   Always generate a PR. Two formats:
-
-   **Changes PR** (steps 3–4 were executed):
-   - **What**: The specific LLM graveyard, synthetic static, context drift, lazy placeholder, or hallucinated dependency grounded.
-   - **Why**: The risk of runtime failure or cognitive overhead caused by the generative AI bad trip.
-   - **Impact**: Restored codebase reality, completed logic, and eradicated synthetic debt.
-   - **Verification**: Confirmation of passing lockfile checks and native compilation.
-
-   **Compliance PR** (SELECT found zero valid candidates):
-   - **What:** The scope of the synthetic artifact audit performed (Mirages, LLM Graveyards, Lazy Placeholders, Synthetic Static).
-   - **Compliant:** Confirmation that no conversational artifacts, fake dependencies, ghost edits, or lazy placeholders were found.
-   - **Scanned:** The specific cross-domain source directories, environment manifests, and lockfiles checked.
-   - **No changes required.**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

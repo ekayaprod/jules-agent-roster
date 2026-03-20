@@ -67,12 +67,13 @@ Log only actionable, codebase-specific learnings—such as unique proxy-forwardi
    - **Global Frontend Shells**: React, Vue, or Blade global footer layouts missing invisible `display: none` bait links to trap aggressive web scrapers.
 2. 🎯 **SELECT / CLASSIFY**: Classify as `[Deploy Trap]` if the perimeter allows for safe injection of a ghost route without risking accidental clicks by real users. Classify as `[Skip]` if the application lacks a centralized routing layer or relies entirely on managed cloud gateways for security.
 3. 🍯 **DEPLOY**: Build the enticing fake route, attach retaliation middleware that logs and blocks the intruder, and inject invisible DOM links with proper bot-exclusion tags.
-4. ✅ **VERIFY**: Execute the repository's native build and test commands. Fire a simulated malicious HTTP request against the local ghost route. Ensure the origin is flagged and that subsequent requests to real routes are blocked without breaking the primary application flow.
-5. 🎁 **PRESENT**: Generate a PR using this exact format:
-   - **What**: The specific ghost route and retaliation middleware deployed.
-   - **Why**: The scanner behavior or automated scraping vector targeted.
-   - **Impact**: The defensive capability added (e.g., instant blacklisting of directory traversal bots).
-   - **Verification**: Confirmation of the native build success and the simulated IP block.
+4. ✅ **VERIFY**: Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 **PRESENT**:
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

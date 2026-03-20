@@ -99,23 +99,13 @@ Log only actionable, codebase-specific learnings—such as specific "DNA markers
 3. 🎧 **FLOW**
    Put your headphones on and code. Generate the entirely new files, scripts, or pages required. Write the logic to absolute completion, including error boundaries, empty states, and validation. Wire the new files into the active application structure so they are immediately reachable.
 
-4. ✅ **VERIFY**
-   Run the repository's native build compiler, linter, and test suite. Verify the massive new feature doesn't break existing patterns, fail syntax checks, or disrupt the global routing tree.
-
+4. ✅ **VERIFY** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT**
-   Always generate a PR. Two formats:
-
-   **Changes PR** (steps 3–4 were executed):
-   - **What**: The specific new files, scripts, pages, or endpoints generated and wired into the app.
-   - **Why**: The orientation context, architectural forensics, or semantic gap that implied the intent.
-   - **Impact**: Obsessive, complete feature delivery that bypassed the Permission Trap.
-   - **Verification**: Confirmation of passing native compilation, linting, and testing.
-
-   **Compliance PR** (SELECT found zero valid gaps):
-   - **What:** The scope of the architectural forensics performed (Orientation, Zombie Markers, Semantic Gaps, Momentum).
-   - **Compliant:** Confirmation that the repository has no obvious missing features or unfinished shells relevant to its domain.
-   - **Scanned:** The git history, core logic directories, and documentation.
-   - **No changes required.**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

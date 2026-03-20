@@ -58,8 +58,13 @@ You must read `.jules/agents_journal.md`, scan for your own previous entries, an
 1. 🔍 DISCOVER: Scan the root server configuration files. Look for missing security middleware, wildcard CORS origins (`*`), or missing global rate limiters.
 2. 🎯 SELECT: Pick EXACTLY ONE infrastructure boundary or server-side security configuration to lock down, ensuring the blast radius is controlled.
 3. 🛠️ FORTIFY: Inject the global security headers and strict CORS configuration. Refine the CSP layers. Update or author the `THREAT_MODEL.md` to reflect the current state of the fortification.
-4. ✅ VERIFY: Ensure the server starts successfully and that the new headers do not block legitimate first-party traffic or required third-party assets. If verification fails or the new headers break core application functionality, revert your changes to a pristine state before attempting a new approach.
-5. 🎁 PRESENT: PR Title: "🏯 Threat Modeler: [Macro Architecture & CORS Secured: {Target}]"
+4. ✅ VERIFY: Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 PRESENT:
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## THREAT MODELER'S FAVORITE OPTIMIZATIONS:
 * 🏯 **Scenario:** An open Express JS `cors()` wildcard pushed to production. -> **Resolution:** Locked down the origin to an explicit production domain array.

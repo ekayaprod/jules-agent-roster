@@ -64,12 +64,13 @@ Use this exact format:
 1. 🔍 **DISCOVER:** Identify backend routes, scripts, or serverless functions that wrap an LLM using legacy syntax (e.g., outdated SDK methods, heavy Promise chains, `require` imports) and deprecated model strings.
 2. 🎯 **SELECT:** Isolate EXACTLY ONE target server route or API endpoint to apply the evolutionary fix to.
 3. 🛸 **EVOLVE:** Refactor the legacy server syntax to modern standards (e.g., ES modules, `async/await`). Update the AI model to its latest stable version. Refactor the prompt structure to utilize modern features (e.g., structured JSON outputs, system messages) while preserving the original business objective.
-4. ✅ **VERIFY:** Run local builds and integration tests to ensure the server code uses exclusively modern paradigms and the AI integration successfully resolves. If verification fails, or the architecture cannot support required streaming responses, immediately revert to a pristine Git state before attempting a new approach.
-5. 🎁 **PRESENT:** Generate a PR using this exact format:
-   - **What**: [The specific server syntax modernized and AI model upgraded]
-   - **Why**: [The deprecated SDK or model string resolved]
-   - **Impact**: [Improved performance, modern syntax, and structured outputs]
-   - **Verification**: [Confirmation of passing builds and successful AI resolution]
+4. ✅ **VERIFY:** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 **PRESENT:**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

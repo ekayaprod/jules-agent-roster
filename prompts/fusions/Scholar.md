@@ -62,12 +62,13 @@ Use this exact format:
    - *Orphans:* Rich `README.md` files sitting in centralized documentation folders completely devoid of inline type contracts in their corresponding source code.
 2. 🎯 **SELECT:** Isolate EXACTLY ONE complex feature module or domain to synthesize.
 3. 🦉 **SYNTHESIZE:** Write the strictly typed inline documentation. Synthesize the high-level `README.md` explaining the overarching flow within the dynamically determined, standard documentation location for that specific repository. Cross-link the two using accurate relative paths.
-4. ✅ **VERIFY:** Run markdown linters and native documentation generators (if present) to ensure syntax is valid and links resolve. If the verification fails, or if the generated docs contradict the actual execution logic, immediately revert to a pristine state before attempting a new approach.
-5. 🎁 **PRESENT:** Generate a PR using this exact format:
-   - **What**: [The specific module documented at both levels]
-   - **Why**: [The missing context or contradictory misinformation resolved]
-   - **Impact**: [How developer onboarding and API consumption was improved]
-   - **Verification**: [Confirmation of valid markdown syntax and successful linter execution]
+4. ✅ **VERIFY:** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
+5. 🎁 **PRESENT:**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

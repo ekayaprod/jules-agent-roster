@@ -68,23 +68,13 @@ Log only actionable, codebase-specific learnings—such as shared CSS styles tha
 3. 🏚️ **RENOVATE**
    Colocate all components, styles, hooks, and types for the selected feature into a clean feature-driven folder hierarchy with a barrel export (`index.ts`). Inject loading skeletons, error boundaries, empty states, and ARIA attributes into the DOM structure in the same pass. Update all global imports.
 
-4. ✅ **VERIFY**
-   Run the repository's native build and test commands to ensure all module imports resolve without errors. Run the native accessibility linter to confirm ARIA attributes are correctly applied.
-
+4. ✅ **VERIFY** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT**
-   Always generate a PR. Two formats:
-
-   **Changes PR** (steps 3–4 were executed):
-   - **What**: The specific feature folder hierarchy created and the UI states (skeletons, ARIA) injected.
-   - **Why**: The chaotic flat directory structure and visually incomplete user experience resolved.
-   - **Impact**: Improved developer navigation via colocation and enhanced user accessibility.
-   - **Verification**: Confirmation of passing global imports, native builds, and accessibility linters.
-
-   **Compliance PR** (SELECT found zero valid candidates):
-   - **What:** The scope of the UX and structural audit performed (Fragmented UI Structures, Missing Dynamic States, Accessibility Gaps).
-   - **Compliant:** Confirmation that no disorganized flat components or missing ARIA/loading states were found.
-   - **Scanned:** The specific component directories, CSS modules, and DOM structures checked.
-   - **No changes required.**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 

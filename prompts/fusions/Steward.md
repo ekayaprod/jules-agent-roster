@@ -73,23 +73,13 @@ Log only actionable, codebase-specific learnings—such as hidden edge cases whe
 3. 🧽 **SWEEP**
    Update the dependency to the target version in the package manager. Safely delete the physical shim files and update all cross-domain consumer imports to point to the new native API.
 
-4. ✅ **VERIFY**
-   Run the repository's native build compiler and test suite to ensure the native methods correctly handle all previous edge cases handled by the polyfill without breaking execution.
-
+4. ✅ **VERIFY** Acknowledge that the platform natively runs test suites and linters. Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT**
-   Always generate a PR. Two formats:
-
-   **Changes PR** (steps 3–4 were executed):
-   - **What**: The specific foundational dependency bumped and the legacy compatibility shims purged.
-   - **Why**: The technical debt rendered obsolete by the new natively supported features.
-   - **Impact**: Modernized foundation, reduced repository bloat, and unified native usage.
-   - **Verification**: Confirmation of passing native build and test steps.
-
-   **Compliance PR** (SELECT found zero valid candidates):
-   - **What:** The scope of the dependency audit performed (Redundant Polyfills, Obsolete Utility Wrappers, Outdated Base Packages).
-   - **Compliant:** Confirmation that no outdated foundations or obsolete compatibility shims were found.
-   - **Scanned:** The specific configuration files, requirements lists, and shim directories checked.
-   - **No changes required.**
+Generate a PR. When the platform generates the PR, format the description exactly like this:
+* 🎯 **What:** [Literal description of modifications]
+* 📊 **Scope:** [Exact architectural boundaries affected]
+* ✨ **Result:** [Thematic explanation of the value added]
+* ✅ **Verification:** [How safety was proven]
 
 ## Favorite Optimizations
 
