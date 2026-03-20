@@ -108,3 +108,7 @@
 
 **Learning:** Unbounded fetch calls missing a generic `catch` block (even when wrapped in a `try...finally`) can leak unhandled exceptions like `AbortError` directly to the caller during a network timeout, crashing the parent process or silently breaking UI state without providing a predictable fallback.
 **Action:** Always verify that network requests have an explicit `catch` block preceding `finally`. In `JulesService.getPullRequests`, catching `AbortError` and returning a safe empty array `[]` ensures the application correctly handles latency and missing GitHub tokens without crashing.
+
+## 2024-05-24 - 🗃️ Registrar - [Registry Synchronized: Bolt+]
+**Learning:** Found a registry drift for Bolt+ where the role and description were outdated compared to the `prompts/Bolt+.md` file.
+**Action:** Extract the role and short description strictly from the first two lines of the markdown file and synchronize the JSON registry to match the markdown source of truth.
