@@ -385,7 +385,7 @@ class RosterApp {
 
       // 2. Close specific card dropdowns if clicked outside
       this.activeDropdowns.forEach(menu => {
-          if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]') && !e.target.closest('[data-action="toggle-splay"]')) {
+          if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
               closeDropdownMenu(menu, this);
           }
       });
@@ -418,7 +418,7 @@ class RosterApp {
 
       // 4. Flip Card Front (Open)
       const frontTarget = e.target.closest('[data-action="flip-card"]');
-      if (frontTarget && !e.target.closest('[data-action="toggle-splay"]') && !e.target.closest('.splay-menu')) {
+      if (frontTarget && !e.target.closest('.fusion-quick-btn')) {
           const card = frontTarget.closest('.flip-card');
           if (!card) return;
 
@@ -450,13 +450,11 @@ class RosterApp {
 
       // 6. Action Dropdown Toggle (For individual cards)
       const toggleTarget = e.target.closest('[data-action="toggle-card-dropdown"]');
-      const splayTarget = e.target.closest('[data-action="toggle-splay"]');
-      const targetBtn = splayTarget || toggleTarget;
 
-      if (targetBtn) {
+      if (toggleTarget) {
           e.stopPropagation();
-          const index = targetBtn.dataset.index;
-          const dropdownId = splayTarget ? `splay-menu-${index}` : `card-dropdown-${index}`;
+          const index = toggleTarget.dataset.index;
+          const dropdownId = `card-dropdown-${index}`;
           const dropdown = document.getElementById(dropdownId);
 
           // Close others
@@ -473,7 +471,7 @@ class RosterApp {
           } else {
               this.activeDropdowns.delete(dropdown);
           }
-          targetBtn.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
+          toggleTarget.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
           return;
       }
 
