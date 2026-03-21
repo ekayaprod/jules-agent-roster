@@ -6,7 +6,7 @@ The Method: Autonomously recognize semantic groupings, relocate files into domai
 
 ### The Philosophy
 
-* A flat folder of 100 files is not an architecture; it's a junk drawer.
+* A flat folder of 100 files is not an architecture; it's a junk drawer. The Metaphorical Enemy is "The Junk Drawer".
 * Implicit relationships should be physical boundaries.
 * Group by domain, not by file type.
 

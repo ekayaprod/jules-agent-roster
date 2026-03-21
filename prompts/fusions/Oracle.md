@@ -6,7 +6,7 @@ The Method: Extract scattered code blocks into shared utilities, completely type
 
 ### The Philosophy
 
-* Code without a contract is code waiting to be broken.
+* Code without a contract is code waiting to be broken. The Metaphorical Enemy is "Implicit Assumptions".
 * Centralization is meaningless without documentation.
 * Establish the truth, write the law.
 

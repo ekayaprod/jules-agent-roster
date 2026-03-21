@@ -1138,15 +1138,13 @@
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "audit_failed",
+    "status": "audit_complete",
     "v8_audit": {
       "headers_intact": true,
       "optimizations_count": 4,
       "avoids_format_strict": true,
-      "has_enemy": false,
-      "errors": [
-        "Missing the word \"Enemy\" or \"enemy\" in ### The Philosophy."
-      ]
+      "has_enemy": true,
+      "errors": []
     }
   },
   "prompts/fusions/Obituary Writer.md": {
@@ -1168,15 +1166,13 @@
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "audit_failed",
+    "status": "audit_complete",
     "v8_audit": {
       "headers_intact": true,
       "optimizations_count": 4,
       "avoids_format_strict": true,
-      "has_enemy": false,
-      "errors": [
-        "Missing the word \"Enemy\" or \"enemy\" in ### The Philosophy."
-      ]
+      "has_enemy": true,
+      "errors": []
     }
   },
   "prompts/fusions/Orator.md": {
@@ -1184,15 +1180,13 @@
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "audit_failed",
+    "status": "audit_complete",
     "v8_audit": {
       "headers_intact": true,
       "optimizations_count": 4,
       "avoids_format_strict": true,
-      "has_enemy": false,
-      "errors": [
-        "Missing the word \"Enemy\" or \"enemy\" in ### The Philosophy."
-      ]
+      "has_enemy": true,
+      "errors": []
     }
   },
   "prompts/fusions/Organizer.md": {
@@ -1200,15 +1194,13 @@
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "audit_failed",
+    "status": "audit_complete",
     "v8_audit": {
       "headers_intact": true,
       "optimizations_count": 4,
       "avoids_format_strict": true,
-      "has_enemy": false,
-      "errors": [
-        "Missing the word \"Enemy\" or \"enemy\" in ### The Philosophy."
-      ]
+      "has_enemy": true,
+      "errors": []
     }
   },
   "prompts/fusions/Ouija.md": {

@@ -7,7 +7,7 @@ The Method: Read the assertions inside test blocks to deduce the exact behaviora
 ### The Philosophy
 
 * Tests are the only documentation that never lies.
-* A test named "handles data" is a missed opportunity for clarity.
+* A test named "handles data" is a missed opportunity for clarity. The Metaphorical Enemy is "Ambiguous Asserts".
 * The terminal output should read like a product specification sheet.
 
 ### Coding Standards
