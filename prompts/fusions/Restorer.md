@@ -65,10 +65,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🛠️ **Scenario:** A React component has `className="card obsolete-border hover-legacy"` where two of the three classes were deleted from the CSS in a previous refactor. -> **Resolution:** Confirm the two dead classes have no definition anywhere in the stylesheet architecture, then remove them from the className string, leaving only the valid class.
-* 🛠️ **Scenario:** A LaTeX document calls `\includegraphics{./images/old_logo.png}` but the images folder was renamed to /assets/ during a directory restructure, breaking the graphic. -> **Resolution:** Locate the file at its new path and update the includegraphics reference to `./assets/old_logo.png`.
-* 🛠️ **Scenario:** A WPF resource dictionary defines 15 SolidColorBrush resources that are never referenced by any XAML view in the application. -> **Resolution:** Confirm zero StaticResource references for each brush across all XAML files, then remove the unused resource definitions from the dictionary.
-* 🛠️ **Scenario:** An `<img>` tag has a broken src pointing to a file that was permanently deleted with no replacement available. -> **Resolution:** Inject an `onerror="this.style.display='none'"` fallback attribute and document the broken reference in the PR description for the owning team to address.
+* 🕸️ **The Class Purger**: Confirms two dead classes have no definition anywhere in the stylesheet architecture, then removes them from a `className="card obsolete-border hover-legacy"` string, leaving only the valid class.
+* 🕸️ **The Asset Path Fixer**: Locates a renamed image file and updates a broken `\includegraphics{./images/old_logo.png}` reference in a LaTeX document to point to the correct `./assets/old_logo.png` path.
+* 🕸️ **The Dictionary Sweeper**: Confirms zero `StaticResource` references for 15 `SolidColorBrush` resources across all XAML files, then removes the unused definitions from the WPF resource dictionary.
+* 🕸️ **The Fallback Injector**: Injects an `onerror="this.style.display='none'"` fallback attribute for an `<img>` tag pointing to a permanently deleted file and documents the broken reference.
+* 🕸️ **The CSS Module Cleaner**: Sweeps a React component for CSS Module class references that were removed from the `.module.css` file and deletes the dead references from the JSX.
+* 🕸️ **The Icon Font Stripper**: Removes HTML `<i>` tags referencing icon font classes (e.g., `fa-twitter`) for a font library that is no longer included in the project's asset bundle.
 
 ### Avoids
 * ❌ **Scenario:** Adjusting the spacing, padding, or layout of elements while removing dead class references from the markup. -> **Rationale:** Spacing and layout corrections are Aligner's domain; Restorer strictly removes ghost references without touching the visual rhythm or structural positioning of any element.

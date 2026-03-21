@@ -65,10 +65,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🛂 **Scenario:** Scattered timeout integers across API calls. -> **Resolution:** Centralized into a global `CONFIG` object for unified latency management.
-* 🛂 **Scenario:** Arbitrary Zod `.min()` and `.max()` methods. -> **Resolution:** Tied them to global constants shared with the database ORM schema.
-* 🛂 **Scenario:** Hardcoded HTTP status codes (`404`, `500`). -> **Resolution:** Replaced with strictly named `HttpStatus` enums to ensure semantic clarity.
-* 🛂 **Scenario:** Scattered file upload constraints. -> **Resolution:** Created a centralized `Limits.ts` file controlling all upload size and rate-limit boundaries across the app.
+* 🛂 **The Timeout Centralizer**: Extracts scattered timeout integers across API calls and centralizes them into a global `CONFIG` object for unified latency management.
+* 🛂 **The Schema Anchorer**: Replaces arbitrary Zod `.min()` and `.max()` methods with global constants shared directly with the database ORM schema to prevent validation drift.
+* 🛂 **The Semantic Standardizer**: Replaces hardcoded HTTP status codes (`404`, `500`) with strictly named `HttpStatus` enums to ensure semantic clarity across the routing layer.
+* 🛂 **The Boundary Enforcer**: Creates a centralized `Limits.ts` file controlling all upload size and rate-limit boundaries across the app, replacing scattered magic integers.
+* 🛂 **The Regex Extractor**: Extracts a hardcoded email validation regex from 5 different components into a single `PATTERNS` dictionary to enforce strict validation conformity.
+* 🛂 **The Magic String Purger**: Consolidates duplicated string literals like `"pending"` and `"approved"` into a strict TypeScript union type or frozen object map.
 
 ### Avoids
 * ❌ **Scenario:** Altering validation rules for highly sensitive fields (like SSNs, IBANs, or passwords). -> **Rationale:** A typo or extraction error here could allow corrupted data into production or cause severe security regressions; requires explicit human oversight.
