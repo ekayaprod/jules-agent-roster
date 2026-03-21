@@ -1,0 +1,1283 @@
+{
+  "prompts/fusions/Accountant.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Adversary.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Agent.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Aligner.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Amputator.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Archivist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Assessor.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Auditor.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Automata.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Autopilot.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Bastion.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Blackbox.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Brand Manager.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Calligrapher.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Canvas.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Captionist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Catalogue.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Catalyst.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Chameleon.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Checkpoint.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass4"
+  },
+  "prompts/fusions/Choreographer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Chronicler.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Circuit Breaker.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/City Clerk.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Construct.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Coroner.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Cryptographer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Customs.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Cypher.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Darkroom.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Dead-Ender.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Decoder.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Defuser.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Diplomat.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Discharge.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Dispatcher.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Electrician.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Expediter.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Fabricator.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Few-Shot Forger.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Firewall.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/First Responder.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Foreman.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Futurist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Gallerist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Gatekeeper.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Glossary.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Grammarian.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Groundskeeper.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Guardian.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Hazmat.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Helmsman.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Historian.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Hitman.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Hoister.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Hologram.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Honeypot.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Hyperloop.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Illuminator.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Illusionist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Information Architect.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Inoculator.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Interpolator.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Interrogator.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Janitor.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Jeweler.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Keymaster.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Kiln.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Lexicon.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Limiter.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Liquidator.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/LiveFeed.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Logician.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Lumberjack.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Mapper.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Mason.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Millisecond.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Minimalist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Mitosis.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Mixologist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Mobilizer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Muse.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Narrator.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Obituary Writer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Oracle.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Orator.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Organizer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Ouija.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Pacemaker.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Pacesetter.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Paramedic.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/PathCentralizer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Pathfinder.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Payload.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Placebo.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Policy Maker.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Polyglot.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Polygraph.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Prefect.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Press Secretary.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Press.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Profiler.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Prompt Engineer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Prophet.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Proton Pack.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Pruner.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Publicist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Purger.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Quarantine.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Quartermaster.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/README.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": false,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "skipped_requires_manual_fix"
+  },
+  "prompts/fusions/REST Enforcer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Ratchet.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Redactor.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Redirector.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Redliner.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Refiner.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Registrar.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Regulator.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Renovator.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Restorer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Resuscitator.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Retrofitter.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Revisionist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Revoker.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Rulemaker.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Safety Inspector.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Sandboxer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Sanitizer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Scaffolder.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Scholar.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Script Supervisor.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Sculptor.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Seawall.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Sherpa.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Shredder.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Silencer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Singularity.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Siren.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Slipstream.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Speed Camera.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Spellchecker.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Sprinter.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Standardizer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Steward.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Strategist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Streamliner.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Stress Tester.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Stylist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Sunsetter.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Surge Protector.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Surgeon.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Swatch.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Synchronizer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Synthesizer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Systematizer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Tachyon.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Telemetrist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Telepath.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Temporal Loom.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Terraformer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Threat Modeler.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Tokenizer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Tower.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Town Crier.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Toxicologist.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Tracer.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Transfusion.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Transition Manager.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Transmuter.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Typesetter.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Upgrader.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Vector.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Vibe Check.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Vibe.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Virtuoso.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Void.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Watermark.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Wayfinder.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Weaver.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Whistleblower.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Yggdrasil.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  },
+  "prompts/fusions/Zealot.md": {
+    "pass1_boundaries": true,
+    "pass2_structure": true,
+    "pass3_top_half_llm": false,
+    "pass4_bottom_half_llm": false,
+    "status": "ready_for_pass3"
+  }
+}
