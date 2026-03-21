@@ -124,7 +124,8 @@
       .emoji-hero { font-size: var(--text-6xl); line-height: var(--leading-none); margin-bottom: 0; transition: transform 0.2s ease; }
       .flip-card-inner:hover .emoji-hero { transform: scale(1.05) translateY(-0.125rem); }
       .flip-hint { position: absolute; z-index: 2; bottom: 0; right: 0; font-size: var(--text-lg); opacity: 0.6; transition: opacity 0.3s; font-family: -apple-system, sans-serif; color: var(--text-secondary); min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; }
-      .flip-card-inner:hover .flip-hint { opacity: 1; }
+      .fusions-hint { position: absolute; z-index: 2; bottom: 0; left: 0; font-size: var(--text-lg); opacity: 0.6; transition: opacity 0.3s; font-family: -apple-system, sans-serif; color: var(--text-secondary); min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+      .flip-card-inner:hover .flip-hint, .flip-card-inner:hover .fusions-hint { opacity: 1; }
       .flip-card-back .flip-hint { top: 0; right: 0; bottom: auto; }
 
       .prompt-scroll-area { position: relative; z-index: 1; flex-grow: 1; overflow-y: auto; background: var(--details-bg); padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: var(--text-2xs); color: var(--text-secondary); margin-bottom: 0.5rem; white-space: pre-wrap; font-family: inherit; cursor: text; }
@@ -613,6 +614,19 @@
             </div>
         </div>
     </dialog>
+
+    <div id="fusionsModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="fusionsModalTitle">
+      <div class="modal-content" style="max-width: 24rem;">
+        <h3 id="fusionsModalTitle" style="font-size: var(--text-base); display:flex; align-items:center; gap:0.5rem;">
+          <span id="fusionsModalEmoji">🧬</span>
+          <span id="fusionsModalAgent">Available Fusions</span>
+        </h3>
+        <div id="fusionsModalContent" style="padding: 1rem 0; max-height: 15rem; overflow-y: auto;"></div>
+        <div class="flex" style="gap: 1rem; margin-top: 0.5rem;">
+          <button id="closeFusionsModalBtn" class="secondary" style="flex:1;" aria-label="Close Fusions Modal">Close</button>
+        </div>
+      </div>
+    </div>
 
     <div id="toast" class="toast"></div>
 

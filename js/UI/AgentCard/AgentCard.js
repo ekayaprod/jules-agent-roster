@@ -62,7 +62,7 @@ class AgentCard {
         const pinClass = isPinned ? 'pinned' : '';
         const pinHtml = isNaN(index) ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" >📌</button>` : '';
 
-        // Splay Out Child Fusions Logic (Refactored to Inline List)
+        // Splay Out Child Fusions Logic (Refactored to Modal Trigger)
         let fusionQuickListHtml = '';
         if (!isNaN(index) && window.rosterApp && window.rosterApp.fusionLab && window.rosterApp.fusionLab.fusionIndex) {
             const unlockedKeys = window.rosterApp.fusionLab.fusionIndex.unlockedKeys;
@@ -74,30 +74,7 @@ class AgentCard {
             }
 
             if (childKeys.length > 0) {
-                let listItems = '';
-                childKeys.forEach((childKey) => {
-                    const childAgent = window.rosterApp.getCustomAgent(childKey) || window.rosterApp.fusionLab.compiler.customAgentsMap[childKey];
-                    if (childAgent) {
-                        const childIcon = FormatUtils.extractIcon(childAgent);
-                        const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
-                        listItems += `
-                            <li>
-                                <button class="fusion-quick-btn" data-action="launch-jules" data-index="${childKey}" aria-label="Launch ${safeChildName}" title="${safeChildName}">
-                                    ${childIcon}
-                                </button>
-                            </li>
-                        `;
-                    }
-                });
-
-                fusionQuickListHtml = `
-                    <div class="fusion-quick-container mt-3">
-                        <span class="fusion-quick-label" id="fusion-quick-label-${index}">Available Fusions</span>
-                        <ul class="fusion-quick-list" role="group" aria-labelledby="fusion-quick-label-${index}">
-                            ${listItems}
-                        </ul>
-                    </div>
-                `;
+                fusionQuickListHtml = `<div class="fusions-hint" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
             }
         }
 
@@ -129,8 +106,8 @@ class AgentCard {
                             </div>
                         </div>
                         <div class="description mt-3">${desc}</div>
-                        ${fusionQuickListHtml}
                     </div>
+                    ${fusionQuickListHtml}
                     <div class="flip-hint" aria-label="Tap to view protocol" >↺</div>
                 </div>
 
