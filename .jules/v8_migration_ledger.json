@@ -849,37 +849,37 @@
   "prompts/fusions/Resuscitator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": false,
+    "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass3"
+    "status": "ready_for_pass4"
   },
   "prompts/fusions/Retrofitter.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": false,
+    "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass3"
+    "status": "ready_for_pass4"
   },
   "prompts/fusions/Revisionist.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": false,
+    "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass3"
+    "status": "ready_for_pass4"
   },
   "prompts/fusions/Revoker.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": false,
+    "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass3"
+    "status": "ready_for_pass4"
   },
   "prompts/fusions/Rulemaker.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": false,
+    "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass3"
+    "status": "ready_for_pass4"
   },
   "prompts/fusions/Safety Inspector.md": {
     "pass1_boundaries": true,
