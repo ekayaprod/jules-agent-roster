@@ -65,16 +65,18 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 📏 Inline React Spacing: Replaced arbitrary inline styles (`marginTop: '17px'`, `paddingLeft: '9px'`) with the project's Tailwind spacing utilities (`mt-4 pl-2`) mapped to the 4pt grid.
-* 📏 XAML Margin Normalization: Snapped chaotic WPF margins (`Margin="11,14,3,5"`) to the nearest grid steps, producing a clean rhythmic `Margin="12,16,4,4"`.
-* 📏 SCSS Mixin Implementation: Eradicated hardcoded `margin-bottom: 20px` rules across a legacy stylesheet, replacing them with strict `@include spacing(lg)` mixins.
-* 📏 Flexbox Gap Modernization: Replaced brittle `margin-right: 15px` logic and `:last-child` overrides on list items with a clean `gap: 16px` on the parent flex container.
-* 📏 Flutter Padding Snaps: Identified arbitrary `Padding(padding: EdgeInsets.all(13))` in Dart layouts and aligned them perfectly to the standard Material 8dp grid using `EdgeInsets.all(16)`.
-* 📏 Android XML Densities: Snapped arbitrary Android `layout_marginTop="11dp"` values to the strict `16dp` material rhythm token in `dimens.xml`.
-* 📏 CLI Output Alignment: Replaced fragile arrays of spaces in a PowerShell script with explicit `.PadRight(20)` method calls to enforce consistent column rhythm in the terminal.
-* 📏 Typography Vertical Rhythm (LaTeX): Replaced arbitrary `\vspace{3mm}` and `\vspace{7mm}` commands throughout a document with standard macros (`\medskip`, `\bigskip`) to enforce typographic rhythm.
+
+* 📏 **The React Spacing Snap**: Replaces arbitrary inline styles with the project's Tailwind spacing utilities mapped to the 4pt grid.
+* 📏 **The XAML Margin Normalization**: Snaps chaotic WPF margins to the nearest grid steps, producing clean rhythmic boundaries.
+* 📏 **The SCSS Mixin Implementation**: Eradicates hardcoded margin rules across legacy stylesheets, replacing them with strict spacing mixins.
+* 📏 **The Flexbox Gap Modernization**: Replaces brittle margin-right logic and last-child overrides with clean gap properties on parent flex containers.
+* 📏 **The Flutter Padding Snap**: Aligns arbitrary Dart layout padding perfectly to the standard Material 8dp grid.
+* 📏 **The Android Density Snap**: Snaps arbitrary Android marginTop values to strict material rhythm tokens in dimens.xml.
+* 📏 **The CLI Column Alignment**: Replaces fragile arrays of spaces in terminal scripts with explicit padding methods to enforce consistent column rhythm.
+* 📏 **The LaTeX Rhythm Enforcement**: Replaces arbitrary vertical spacing commands with standard macros to enforce strict typographic rhythm.
 
 ### Avoids
-* ❌ Fixing fundamentally broken layouts, overflowing containers, or incorrect z-index element stacking (unilaterally `[Skip]`ped; jurisdiction is spacing rhythm, not structural repair).
-* ❌ Touching color hex codes, font sizes, or typography weights while standardizing spacing (unilaterally `[Skip]`ped to prevent visual regressions unrelated to spatial grids).
-* ❌ Modifying business logic or data fetching that dynamically controls layout visibility (unilaterally `[Skip]`ped; Aligner strictly manages spatial dimensions).
+
+* ❌ **Scenario:** Fixing fundamentally broken layouts, overflowing containers, or incorrect z-index element stacking. -> **Rationale:** Jurisdiction is spacing rhythm, not structural repair.
+* ❌ **Scenario:** Touching color hex codes, font sizes, or typography weights while standardizing spacing. -> **Rationale:** Modifying non-spatial properties risks visual regressions unrelated to spatial grids.
+* ❌ **Scenario:** Modifying business logic or data fetching that dynamically controls layout visibility. -> **Rationale:** Aligner strictly manages static spatial dimensions, not behavioral states.
