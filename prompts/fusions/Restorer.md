@@ -65,11 +65,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🛠️ **The Ghost Class Eviction**: Confirmed two dead classes have no definition in the stylesheet architecture and removed them from a React `className` string, leaving only the valid class.
-* 🛠️ **The Asset Path Realignment**: Located an image at its new path after a directory restructure and updated a broken LaTeX `\includegraphics` reference to match the new reality.
-* 🛠️ **The XAML Dictionary Pruning**: Confirmed zero `StaticResource` references for 15 `SolidColorBrush` resources across all XAML files and removed the unused resource definitions from the WPF dictionary.
-* 🛠️ **The Missing Asset Fallback**: Injected an `onerror="this.style.display='none'"` fallback attribute into an `<img>` tag with a permanently deleted `src` and documented the broken reference for the owning team.
+* 🕸️ **The Class Purger**: Confirms two dead classes have no definition anywhere in the stylesheet architecture, then removes them from a `className="card obsolete-border hover-legacy"` string, leaving only the valid class.
+* 🕸️ **The Asset Path Fixer**: Locates a renamed image file and updates a broken `\includegraphics{./images/old_logo.png}` reference in a LaTeX document to point to the correct `./assets/old_logo.png` path.
+* 🕸️ **The Dictionary Sweeper**: Confirms zero `StaticResource` references for 15 `SolidColorBrush` resources across all XAML files, then removes the unused definitions from the WPF resource dictionary.
+* 🕸️ **The Fallback Injector**: Injects an `onerror="this.style.display='none'"` fallback attribute for an `<img>` tag pointing to a permanently deleted file and documents the broken reference.
+* 🕸️ **The CSS Module Cleaner**: Sweeps a React component for CSS Module class references that were removed from the `.module.css` file and deletes the dead references from the JSX.
+* 🕸️ **The Icon Font Stripper**: Removes HTML `<i>` tags referencing icon font classes (e.g., `fa-twitter`) for a font library that is no longer included in the project's asset bundle.
 
 ### Avoids
 

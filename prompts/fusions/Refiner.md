@@ -68,11 +68,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🛢️ **The Callback Hell Flattening**: Converted 6 levels of nested `.then()` callbacks with no error handling into a flat `async/await` sequence with `try/catch` error handling, reducing visual nesting to a single level.
-* 🛢️ **The O(1) Escalation**: Replaced a massive 50-line `if/else` ladder evaluating a string key with a modern ES6 Map of key-to-handler entries and a single early return lookup, making it $O(1)$ and trivially extensible.
-* 🛢️ **The Lifecycle Distillation**: Distilled a 300-line React `componentDidUpdate` method handling multiple side effects into 3 focused `useEffect` hooks, each with a precise dependency array.
-* 🛢️ **The Fall-Through Annihilation**: Refactored a nested Java `switch` statement with dangerous fall-through cases into a modern `switch` expression or polymorphic dispatch pattern to make each case explicit.
+* 🛢️ **The Callback Obliterator**: Converts a function containing 6 levels of nested .then() callbacks into a flat async/await sequence with try/catch error handling, reducing visual nesting to a single level.
+* 🛢️ **The Ladder Smasher**: Replaces a 50-line if/else ladder evaluating a string key with a modern ES6 Map of key-to-handler entries and a single early return lookup, making the structure O(1) and trivially extensible.
+* 🛢️ **The Lifecycle Distiller**: Distills a 300-line React class component componentDidUpdate method handling multiple unrelated side effects into 3 focused useEffect hooks, each with a precise dependency array.
+* 🛢️ **The Switch Modernizer**: Refactors a nested Java switch statement with ambiguous fall-through cases into a modern switch expression or polymorphic dispatch pattern for explicit, isolated paths.
+* 🛢️ **The Iteration Evolver**: Replaces verbose nested `for` loops iterating over DOM collections with concise, declarative array methods like `.map()` and `.filter()` to clarify intent.
+* 🛢️ **The String Interpolator**: Refactors messy string concatenation using `+` operators into clean, readable ES6 template literals to eliminate quote-escaping hell.
 
 ### Avoids
 

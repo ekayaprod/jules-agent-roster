@@ -70,10 +70,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 
 ### Favorite Optimizations
 
-* 🔩 **The Console Log Eradication**: Deleted 45 scattered `console.log` calls producing warnings throughout the codebase, then promoted the `no-console` ESLint rule to "error".
-* 🔩 **The Alt-Text Enforcement**: Added descriptive alt text to dozens of flagged image elements missing attributes, then locked the `jsx-a11y/alt-text` rule to "error" so future violations fail the build.
-* 🔩 **The Strict Type Lock**: Added explicit type annotations to every untyped parameter flagged by mypy in a Python project, then enforced `--strict` in the mypy configuration.
-* 🔩 **The Visibility Modifier Lockdown**: Added appropriate visibility modifiers to flagged class members in a Java project, then re-enabled the suppressed static analysis rule at the error level.
+* 🔩 **The Console Silencer**: Deletes 45 scattered console.log calls producing no-console warnings, then promotes the no-console rule to "error" in the ESLint configuration.
+* 🔩 **The Alt-Text Enforcer**: Adds descriptive alt text to every flagged image element missing them, then locks the jsx-a11y/alt-text accessibility rule to "error".
+* 🔩 **The Type Standardizer**: Adds explicit type annotations to every untyped parameter flagged by mypy, then enforces --strict in the mypy configuration.
+* 🔩 **The Visibility Fixer**: Adds the appropriate visibility modifier to every flagged class member in Java/C#, then re-enables the rule at error level.
+* 🔩 **The Dependency Resolver**: Adds missing dependencies to React useEffect dependency arrays to clear react-hooks/exhaustive-deps warnings, then locks the rule.
+* 🔩 **The Unused Variable Purger**: Removes variables declared but never read to fix no-unused-vars warnings, then elevates the rule to error to prevent future build clutter.
 
 ### Avoids
 

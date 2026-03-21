@@ -70,11 +70,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🧾 **The Parameter Type Alignment**: Updated a TypeScript `@param {string}` tag to `@param {number}` to match the true parameter type of the actual function signature, preventing misrepresentation of the API contract.
-* 🧾 **The Data Store Clarification**: Rewrote an inline comment `# Connects to legacy MySQL` directly above a `MongoClient(URI)` call to accurately describe the MongoDB connection being established.
-* 🧾 **The Return Value Correction**: Corrected an XML doc block `<returns>A list of users</returns>` to `<returns>A single User object matching the provided ID</returns>` to match the C# implementation.
-* 🧾 **The Service Target Fix**: Updated a PowerShell help block left over from a copy-paste during a refactor to name the actual service that the script restarts.
+* 🧾 **The Type Corrector**: Updates a TypeScript JSDoc `@param {string} userId` tag to `@param {number} userId` to match the true parameter type required by the actual function signature.
+* 🧾 **The Database Clarifier**: Rewrites an inline comment stating `# Connects to legacy MySQL` directly above a `MongoClient(URI)` call to accurately describe the MongoDB connection being established.
+* 🧾 **The Return Aligner**: Corrects a C# XML doc block's `<returns>A list of users</returns>` tag to `<returns>A single User object matching the provided ID</returns>` to reflect the implementation.
+* 🧾 **The Service Validator**: Updates a PowerShell help block to name the correct target service that the script actually restarts, fixing a copy-paste error from an old refactor.
+* 🧾 **The Tax Exposer**: Rewrites a docstring claiming a "5% tax rate" to accurately state "8%" after the implementation logic was updated but the documentation was abandoned.
+* 🧾 **The Deprecation Sweeper**: Strips obsolete configuration instructions from a README section detailing environment variables that were completely removed from the parsing logic three versions ago.
 
 ### Avoids
 

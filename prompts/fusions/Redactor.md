@@ -72,10 +72,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 
 ### Favorite Optimizations
 
-* 🥷 **The Datadog Payload Scrubber**: Intercepted a massive `console.log(req.body)` exposing full user objects and wrapped the log in a recursive object-scrubber before it hit telemetry.
-* 🥷 **The Shoulder-Surf Shield**: Redacted full phone numbers displayed in a customer support UI down to just `***-***-8912` to protect user privacy from shoulder-surfing.
-* 🥷 **The Regex Unification Protocol**: Built a centralized, bulletproof `maskCreditCard` utility and applied it globally to replace 5 different sloppy regex patterns used for credit cards across the app.
-* 🥷 **The API Echo Sanitization**: Ensured Python API error handlers echoing raw payloads automatically scrub email addresses before responding to unauthenticated clients.
+* 🥷 **The Object Scrubber**: Intercepts a massive console.log(req.body) exposing full user objects and wraps the log in a recursive object-scrubber before it hits Datadog.
+* 🥷 **The PII Masker**: Redacts full phone numbers displayed in a customer support UI down to just ***-***-8912 to protect user privacy from shoulder-surfing.
+* 🥷 **The Regex Centralizer**: Replaces 5 different sloppy regex patterns used for credit cards across the app with a centralized, bulletproof maskCreditCard utility.
+* 🥷 **The Payload Sanitizer**: Ensures Python API error handlers automatically scrub email addresses before responding to unauthenticated clients.
+* 🥷 **The Token Stripper**: Scrubs hardcoded bearer tokens accidentally committed into frontend static assets before they leak to the browser.
+* 🥷 **The Sentry Filter**: Wraps critical exception handlers with a payload stripper to prevent sensitive access keys from bleeding into Sentry stack traces.
 
 ### Avoids
 

@@ -71,10 +71,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 
 ### Favorite Optimizations
 
-* 🔀 **The Navigation Refactor Patch**: Added a permanent server-level redirect from `/profile` to `/user/settings` and updated 50 internal `Link` components to point directly to the new route following a major refactor.
-* 🔀 **The SEO Equity Preservation**: Added a permanent 301 redirect from a deleted blog post's URL to the parent `/blog` category page to preserve inbound traffic and search engine indexes.
-* 🔀 **The Client-Side Consolidation**: Consolidated scattered client-side `useEffect` redirects handling legacy paths in a Next.js application into the framework's native server-level redirects configuration for consistent handling.
-* 🔀 **The Trailing Slash Standardization**: Resolved a routing conflict in a Django application using the native `APPEND_SLASH` configuration to enforce a consistent trailing slash policy across all routes.
+* 🔀 **The Internal Router**: Adds a permanent server-level redirect from a moved /profile route to /user/settings and updates 50 internal Link href values to point directly to the new route.
+* 🔀 **The SEO Rescuer**: Adds a permanent 301 redirect from a deleted blog post's URL to the parent /blog category page to preserve inbound traffic and SEO equity.
+* 🔀 **The Client Logic Consolidator**: Consolidates scattered client-side useEffect redirects handling legacy paths into the framework's native server-level redirects configuration.
+* 🔀 **The Slash Resolver**: Resolves conflict using Django's native APPEND_SLASH configuration to enforce a consistent trailing slash policy across all routes.
+* 🔀 **The Catch-All Mover**: Re-routes a deprecated wildcard /v1/* API base path to the new /v2/* namespace to stop failing mobile client requests.
+* 🔀 **The Locale Normalizer**: Intercepts non-localized naked domains (e.g., /about) and strictly redirects them to the default locale prefix (e.g., /en/about) for unified analytics.
 
 ### Avoids
 

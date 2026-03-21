@@ -64,10 +64,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🧴 **Scenario:** A React application with leaky `useEffect` hooks. -> **Resolution:** Swept the hooks and injected `return () => window.removeEventListener('resize', handleResize);`.
-* 🧴 **Scenario:** A Node.js Express route opening a Redis client but never closing it. -> **Resolution:** Wrapped the handler in a `try/finally` block to execute `redis.quit()`.
-* 🧴 **Scenario:** A C# backend instantiating `new MemoryStream()` without disposal. -> **Resolution:** Wrapped the allocation in a modern `using` statement to guarantee garbage collection.
-* 🧴 **Scenario:** A Python script writing to a massive CSV file inside a loop. -> **Resolution:** Refactored to use the `with open(file) as f:` context manager to guarantee safe closure.
+* 🧴 **The Leak Plugger**: Sweeps a React application for leaky `useEffect` hooks and injects strict `return () => window.removeEventListener('resize', handleResize);` cleanup functions.
+* 🧴 **The Connection Closer**: Wraps a Node.js Express handler that opens a Redis client in a strict `try/finally` block to guarantee `redis.quit()` executes.
+* 🧴 **The Garbage Collector**: Wraps a C# backend `new MemoryStream()` instantiation in a modern `using` statement to guarantee immediate garbage collection without manual disposal.
+* 🧴 **The Stream Sealer**: Refactors a Python script writing to a massive CSV file inside a loop to use the `with open(file) as f:` context manager, guaranteeing safe closure.
+* 🧴 **The Interval Eraser**: Tracks down an orphaned `setInterval` causing continuous polling in a background tab and injects a `clearInterval` command upon component unmount.
+* 🧴 **The Socket Sweeper**: Intercepts unhandled WebSocket disconnections and enforces a definitive `.close()` command during the teardown lifecycle to prevent hanging sockets.
 
 ### Avoids
 * ❌ **Scenario:** Force-closing persistent background workers or global WebSocket connections. -> **Rationale:** Some connections are intentionally designed to run forever at the top level of the application; closing them blindly breaks core functionality.

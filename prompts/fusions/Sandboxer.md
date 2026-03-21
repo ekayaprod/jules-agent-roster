@@ -72,10 +72,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🏜️ **Scenario:** An enormous, shared `beforeEach` mock DB instantiation. -> **Resolution:** Extracted into explicit factory functions, allowing tests to build exactly what they needed and nothing more.
-* 🏜️ **Scenario:** A 5-level deep `describe` pyramid. -> **Resolution:** Flattened into clean, independent test suites, massively improving readability and error tracing.
-* 🏜️ **Scenario:** Global `jest.mock` calls leaking across boundaries. -> **Resolution:** Replaced with scoped mocks that reset perfectly after execution.
-* 🏜️ **Scenario:** A flaky test suite randomly failing in CI. -> **Resolution:** Isolated the suite by ensuring the DOM's `localStorage` state was perfectly cleared between every single run.
+* 🏜️ **The Factory Extractor**: Extracts an enormous, shared `beforeEach` mock DB instantiation into explicit factory functions, allowing tests to build exactly what they needed and nothing more.
+* 🏜️ **The Pyramid Smasher**: Flattens a 5-level deep `describe` pyramid into clean, independent test suites, massively improving readability and error tracing.
+* 🏜️ **The Scope Enforcer**: Replaces global `jest.mock` calls leaking across boundaries with strictly scoped mocks that reset perfectly after every execution.
+* 🏜️ **The State Purger**: Isolates a flaky test suite randomly failing in CI by ensuring the DOM's `localStorage` state is perfectly cleared between every single run.
+* 🏜️ **The Clock Synchronizer**: Intercepts flaky tests relying on native `setTimeout` and forces them into deterministic execution using `jest.useFakeTimers()`.
+* 🏜️ **The Context Isolator**: Prevents React context bleed between tests by wrapping component renders in distinct, isolated provider states rather than reusing a global wrapper.
 
 ### Avoids
 * ❌ **Scenario:** Deleting global `setupTests.js` files that configure the entire test runner. -> **Rationale:** Modifies the global test infrastructure and can break the entire pipeline; Sandboxer focuses on individual test suite isolation, not global test configurations.

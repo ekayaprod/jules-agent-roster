@@ -65,10 +65,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 
 ### Favorite Optimizations
 
-* 🚦 **The Verb Eviction**: Renamed `POST /api/settings/update_password` to `PATCH /api/settings/password`, enforcing the correct HTTP method for partial updates and removing the action verb from the path.
-* 🚦 **The Read Operation Singularity**: Unified inconsistent endpoints like `/getUser`, `/fetchUser`, and `/readUser` under a single `GET /api/users` resource endpoint and updated every internal consumer.
-* 🚦 **The Kebab-Case Mandate**: Enforced strict kebab-case across all `/api/*` routes in a controller that mixed kebab-case, snake_case, and camelCase paths, updating all corresponding frontend client references.
-* 🚦 **The RPC Identifier Purge**: Renamed a GraphQL mutation `deleteUserAccountById` to `deleteUser`, following the convention of verb + singular resource noun without redundant identifiers.
+* 🚦 **The Method Purifier**: Renames a password update route implemented as POST /api/settings/update_password to PATCH /api/settings/password, using PATCH for partial resource update and a noun-only path.
+* 🚦 **The Endpoint Unifier**: Unifies twenty different endpoints — /getUser, /fetchUser, /readUser — under a single GET /api/users resource endpoint and updates every internal consumer to use the canonical path.
+* 🚦 **The Casing Enforcer**: Enforces strict kebab-case across all /api/* routes in an affected controller and updates all corresponding frontend client references to resolve mixed casing.
+* 🚦 **The GraphQL Pruner**: Renames a GraphQL mutation named deleteUserAccountById to deleteUser, following the convention of verb + singular resource noun without redundant identifiers.
+* 🚦 **The Noun Standardizer**: Converts a POST /api/createAccount endpoint into a strict POST /api/accounts endpoint to enforce standard RESTful resource creation conventions.
+* 🚦 **The Sub-Resource Clarifier**: Refactors a nested GET /api/users/getUserPosts into a strict RESTful GET /api/users/:id/posts endpoint and propagates the changes to all calling services.
 
 ### Avoids
 

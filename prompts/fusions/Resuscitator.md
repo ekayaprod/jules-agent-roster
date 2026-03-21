@@ -71,11 +71,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🩺 **The Semantic Exception Upgrade**: Replaced 15 scattered `throw new Error("Bad ID")` calls with a strongly typed `new InvalidArgumentError("Missing User ID")`.
-* 🩺 **The Silent Failure Catch**: Caught a silent `JSON.parse()` failure returning an empty object and wrapped it in a structured `try/catch` that logs the malformed string context.
-* 🩺 **The React Boundary Net**: Wrapped a React SPA crashing to a white screen in an `<ErrorBoundary>` with an actionable fallback UI.
-* 🩺 **The API Error Normalization**: Normalized inconsistent Express.js backend errors into a standard `{ statusCode, message, code }` JSON response.
+* 🩺 **The Error Typist**: Replaces 15 scattered `throw new Error("Bad ID")` calls with a strongly typed `new InvalidArgumentError("Missing User ID")` to standardize failure cases.
+* 🩺 **The Silent Catcher**: Intercepts a silent `JSON.parse()` failure returning an empty object by wrapping it in a structured `try/catch` that logs the malformed string context.
+* 🩺 **The Screen Rescuer**: Wraps an unhandled exception white-screening a React SPA inside a robust `<ErrorBoundary>` component with an actionable fallback UI.
+* 🩺 **The JSON Normalizer**: Normalizes inconsistent Express.js backend errors into a strict, predictable `{ statusCode, message, code }` JSON response contract across all endpoints.
+* 🩺 **The Axios Interceptor**: Injects a global error interceptor into an Axios client to catch and format 401 Unauthorized responses before they crash downstream components.
+* 🩺 **The Promise Rejector**: Identifies dangling unhandled Promise rejections and enforces explicit `.catch()` blocks to ensure async failures are surfaced to observability tools.
 
 ### Avoids
 

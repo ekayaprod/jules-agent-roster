@@ -68,11 +68,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🪪 **The Legacy Credential Purge**: Purged a legacy `aws_access_key_id` hardcoded inside a deprecated cron job script from the file system and migrated it to a safe environment variable reference.
-* 🪪 **The Stray Backup Deletion**: Safely deleted a stray `database-prod.env.bak` file committed three years ago and added strict wildcard `.env*` rules to the global `.gitignore`.
-* 🪪 **The URI Segmentation**: Extracted database passwords embedded in raw connection string URIs into segmented `process.env.DB_PASS` references.
-* 🪪 **The Config Separation Enforcement**: Removed hardcoded Stripe test keys in a configuration file and replaced them with robust `.env` references to properly separate configuration from code.
+* 🪪 **The Key Purger**: Purges a legacy `aws_access_key_id` hardcoded inside a deprecated cron job script and migrates it to a safe environment variable reference.
+* 🪪 **The Backup Obliterator**: Safely deletes a stray `database-prod.env.bak` file committed three years ago and adds strict wildcard `.env*` rules to the global `.gitignore`.
+* 🪪 **The URI Segmenter**: Extracts database passwords embedded in raw connection string URIs into segmented `process.env.DB_PASS` references to prevent credential leakage in logs.
+* 🪪 **The Test Key Extractor**: Removes hardcoded Stripe test keys from a configuration file and replaces them with robust `.env` references to properly separate configuration from code.
+* 🪪 **The Token Stripper**: Sweeps frontend static assets to eradicate a hardcoded JWT bearer token accidentally committed into an API client, routing it through secure runtime injection.
+* 🪪 **The SSH Key Validator**: Deletes an orphaned, unprotected `id_rsa` test key file left behind in a test fixtures directory and asserts strict file permissions for the directory.
 
 ### Avoids
 

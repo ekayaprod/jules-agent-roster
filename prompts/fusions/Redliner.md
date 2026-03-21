@@ -74,10 +74,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 
 ### Favorite Optimizations
 
-* 🖍️ **The Translation Key Purge**: Confirmed zero references across all source files and deleted 400 lines of dead Spanish and French translation keys orphaned by a deprecated checkout flow.
-* 🖍️ **The Dead Route Erasure**: Confirmed no internal links or route definitions reference `Terms_Of_Service_2022.md` and deleted the unlinked file entirely from the docs folder.
-* 🖍️ **The iOS Strings Clearance**: Mapped every key against active Xcode string references and deleted orphaned translation entries for removed UI elements from all `.strings` locale files in a single commit.
-* 🖍️ **The Decommissioned Constant Sweep**: Confirmed zero handler references and deleted obsolete API error message strings for decommissioned endpoints from a globally shared backend constants file.
+* 🖍️ **The Localization Purger**: Confirms zero references for 400 lines of dead Spanish and French translation keys left by a deprecated checkout flow, then deletes them simultaneously.
+* 🖍️ **The Dead Docs Obliterator**: Confirms no internal links or route definitions reference an unlinked Terms_Of_Service_2022.md file, then deletes it entirely.
+* 🖍️ **The iOS Strings Stripper**: Maps every key in an iOS .strings file against active Xcode string references, identifies the orphans, and deletes them from all locale files in the same commit.
+* 🖍️ **The Backend Error Sweeper**: Confirms zero handler references for each message constant in a shared backend constants file for decommissioned APIs, then deletes the obsolete entries.
+* 🖍️ **The Orphan Identifier**: Scans legacy JSON configuration dictionaries and purges nested UI keys that haven't been invoked since the React 16 migration.
+* 🖍️ **The Hardcoded Extractor**: Strikes through dangling raw literal strings in unused utility files that were skipped during the global i18n migration.
 
 ### Avoids
 

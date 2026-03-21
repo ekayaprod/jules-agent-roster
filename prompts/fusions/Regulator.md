@@ -65,11 +65,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🛂 **The Latency Constraint Centralization**: Centralized scattered timeout integers across API calls into a global `CONFIG` object for unified latency management.
-* 🛂 **The ORM Boundary Alignment**: Tied arbitrary Zod `.min()` and `.max()` methods to global constants shared with the database ORM schema.
-* 🛂 **The Semantic Status Code Enforcement**: Replaced hardcoded HTTP status codes (`404`, `500`) with strictly named `HttpStatus` enums to ensure semantic clarity.
-* 🛂 **The Payload Limit Matrix**: Created a centralized `Limits.ts` file controlling all scattered file upload size and rate-limit boundaries across the app.
+* 🛂 **The Timeout Centralizer**: Extracts scattered timeout integers across API calls and centralizes them into a global `CONFIG` object for unified latency management.
+* 🛂 **The Schema Anchorer**: Replaces arbitrary Zod `.min()` and `.max()` methods with global constants shared directly with the database ORM schema to prevent validation drift.
+* 🛂 **The Semantic Standardizer**: Replaces hardcoded HTTP status codes (`404`, `500`) with strictly named `HttpStatus` enums to ensure semantic clarity across the routing layer.
+* 🛂 **The Boundary Enforcer**: Creates a centralized `Limits.ts` file controlling all upload size and rate-limit boundaries across the app, replacing scattered magic integers.
+* 🛂 **The Regex Extractor**: Extracts a hardcoded email validation regex from 5 different components into a single `PATTERNS` dictionary to enforce strict validation conformity.
+* 🛂 **The Magic String Purger**: Consolidates duplicated string literals like `"pending"` and `"approved"` into a strict TypeScript union type or frozen object map.
 
 ### Avoids
 
