@@ -255,141 +255,141 @@
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Expediter.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Fabricator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Few-Shot Forger.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Firewall.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/First Responder.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Foreman.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Futurist.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Gallerist.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Gatekeeper.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Glossary.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Grammarian.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Groundskeeper.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Guardian.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Hazmat.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Helmsman.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Historian.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Hitman.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Hoister.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Hologram.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Honeypot.md": {
     "pass1_boundaries": true,
@@ -409,43 +409,43 @@
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Illusionist.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Information Architect.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Inoculator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Interpolator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Interrogator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Janitor.md": {
     "pass1_boundaries": true,

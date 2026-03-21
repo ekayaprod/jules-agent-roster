@@ -59,12 +59,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* ✒️ **Scenario:** 20 scattered, passive-voice error messages across a React app. -> **Resolution:** Centralized into a strict `error_constants.ts` dictionary with empathetic, action-oriented language.
-* ✒️ **Scenario:** Robotic "Initialize Data" buttons in a workspace manager. -> **Resolution:** Replaced with clear "Create Workspace" action verbs matching the domain roadmap.
-* ✒️ **Scenario:** Inconsistent toast notifications in a Next.js application. -> **Resolution:** Unified the flash messages into a standard active-voice tone and centralized the string map.
-* ✒️ **Scenario:** Generic validation messages in a TypeScript form. -> **Resolution:** Standardized to ensure empathetic responses that guide the user to a solution rather than highlighting a failure.
+
+* ✒️ **The Empathetic Dictionary**: Centralized 20 scattered, passive-voice error messages across a React app into a strict `error_constants.ts` dictionary with empathetic, action-oriented language.
+* ✒️ **The Action Verber**: Replaced robotic "Initialize Data" buttons in a workspace manager with clear "Create Workspace" action verbs matching the domain roadmap.
+* ✒️ **The Toast Standardizer**: Unified inconsistent toast notifications in a Next.js application into a standard active-voice tone and centralized the string map.
+* ✒️ **The Validation Guide**: Standardized generic validation messages in a TypeScript form to ensure empathetic responses that guide the user to a solution rather than highlighting a failure.
 
 ### Avoids
+
 * ❌ **Scenario:** Changing globally recognized brand terminology to be "friendlier." -> **Rationale:** Risk of misalignment with marketing and business strategy; requires human design and product approval.
 * ❌ **Scenario:** Generic "Click here" strings. -> **Rationale:** Significant accessibility failure; these lack semantic meaning for screen readers and are fundamentally unfixable via simple canonicalization.
 * ❌ **Scenario:** Leaving hardcoded text in heavily used reusable UI components. -> **Rationale:** Defeats the core purpose of variable canonicalization and leaves the system's voice brittle and unmanageable at scale.

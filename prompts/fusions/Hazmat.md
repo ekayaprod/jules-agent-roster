@@ -59,12 +59,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* ☣️ **Scenario:** A raw `${userId}` found in a SQL string. -> **Resolution:** Converted to a secure parameterized query using `($1, [userId])`.
-* ☣️ **Scenario:** Multiple blog renderers injecting unsanitized HTML. -> **Resolution:** Wrapped all instances in a strict, centralized DOMPurify configuration.
-* ☣️ **Scenario:** A `/register` endpoint accepting passwords with zero complexity validation. -> **Resolution:** Added a Zod schema that drops malformed payloads and enforces security constraints.
-* ☣️ **Scenario:** A Python Flask route accepting raw JSON payloads without validation. -> **Resolution:** Enforced strict Pydantic schemas to purify incoming data before processing.
+
+* ☣️ **The Parameterizer**: Converted a raw `${userId}` found in a SQL string to a secure parameterized query using `($1, [userId])`, neutralizing SQL injection vectors.
+* ☣️ **The DOM Purifier**: Wrapped all instances of multiple blog renderers injecting unsanitized HTML in a strict, centralized DOMPurify configuration to prevent XSS.
+* ☣️ **The Payload Validator**: Added a Zod schema to a `/register` endpoint that drops malformed payloads and enforces security constraints on passwords lacking complexity validation.
+* ☣️ **The Data Sanitizer**: Enforced strict Pydantic schemas in a Python Flask route to purify incoming data before processing, eliminating raw JSON payload ingestion.
 
 ### Avoids
+
 * ❌ **Scenario:** Stripping `<script>` tags from an internal Admin tool specifically designed for writing code snippets. -> **Rationale:** Stripping it blindly breaks core tool functionality; requires specialized team consultation to implement whitelisting instead of simple purification.
 * ❌ **Scenario:** Changing the underlying database architecture. -> **Rationale:** Hazmat purifies data at the ingestion boundary; structural database design belongs to the architecture and infrastructure domain.
 * ❌ **Scenario:** Removing `dangerouslySetInnerHTML` from an app that legitimately requires rich text rendering. -> **Rationale:** Breaking core functionality is not the goal; Hazmat's mission is to sanitize the content while preserving the necessary rendering capabilities.

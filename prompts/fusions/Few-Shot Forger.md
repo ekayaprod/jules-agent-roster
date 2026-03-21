@@ -70,11 +70,13 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 💭 **Scenario:** A Node.js integration calls a JSON extraction endpoint zero-shot, and the model consistently prepends "Here is your JSON:" before the array, breaking the parser. -> **Resolution:** Inject a single assistant-turn example showing the raw JSON array with no preamble, immediately eliminating the extraneous text.
-* 💭 **Scenario:** A Python LangChain integration has no example of graceful failure handling, causing the model to return inconsistent error formats when input is malformed. -> **Resolution:** Add a few-shot example demonstrating the exact structured error object the integration expects when input cannot be processed.
-* 💭 **Scenario:** A C# API route generates SQL queries zero-shot, and the model alternates between dialects, producing queries incompatible with the target database engine. -> **Resolution:** Inject an example query in the correct dialect to anchor the model's output to the required SQL syntax.
-* 💭 **Scenario:** A Go text-processing agent is instructed to rewrite passive voice as active voice but produces inconsistent results due to the abstract nature of the instruction. -> **Resolution:** Add a before/after example pair demonstrating an explicit passive-to-active rewrite so the model has a concrete pattern to replicate.
+
+* 💭 **The Preamble Pruner**: Inject a single assistant-turn example showing the raw JSON array with no preamble to immediately eliminate extraneous text from a Node.js JSON extraction endpoint.
+* 💭 **The Error Architect**: Add a few-shot example demonstrating the exact structured error object expected when input cannot be processed, fixing inconsistent error formats in a Python LangChain integration.
+* 💭 **The Dialect Anchor**: Inject an example query in the correct dialect to anchor the model's output to the required SQL syntax on a C# API route generating zero-shot SQL queries.
+* 💭 **The Style Converter**: Add a before/after example pair demonstrating an explicit passive-to-active rewrite so the model has a concrete pattern to replicate in a Go text-processing agent.
 
 ### Avoids
+
 * ❌ **Scenario:** Injecting 10 or more near-identical examples to reinforce a single formatting rule. -> **Rationale:** Redundant examples consume context window budget without meaningfully improving model behavior; 1 to 3 well-chosen, distinct examples are sufficient to establish a pattern.
 * ❌ **Scenario:** Writing few-shot examples that use domain content entirely unrelated to the prompt's actual use case. -> **Rationale:** Off-domain examples teach the wrong pattern and can actively mislead the model about the expected input space, producing worse results than a well-written zero-shot instruction.

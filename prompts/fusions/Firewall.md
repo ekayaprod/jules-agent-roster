@@ -62,12 +62,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 📛 **Scenario:** Naked string prompts vulnerable to injection. -> **Resolution:** Replaced with strict System/User message arrays in JavaScript.
-* 📛 **Scenario:** Raw LLM text outputs crashing downstream parsers. -> **Resolution:** Enforced Zod parsing to mathematically guarantee the shape of the payload.
-* 📛 **Scenario:** Deprecated and vulnerable LLM models in a LangChain.js pipeline. -> **Resolution:** Upgraded the models while adding strict prompt-injection guards.
-* 📛 **Scenario:** Unescaped user inputs allowing context-window hijacking. -> **Resolution:** Escaped delimiter characters in user input before passing them to the AI in an Express.js API.
+
+* 📛 **The Injection Shield**: Replaced naked string prompts vulnerable to injection with strict System/User message arrays in JavaScript.
+* 📛 **The Output Validator**: Enforced Zod parsing to mathematically guarantee the shape of the payload, preventing raw LLM text outputs from crashing downstream parsers.
+* 📛 **The Core Upgrade**: Upgraded deprecated and vulnerable LLM models in a LangChain.js pipeline while adding strict prompt-injection guards.
+* 📛 **The Escaper**: Escaped delimiter characters in user input before passing them to the AI in an Express.js API to prevent unescaped user inputs from hijacking the context window.
 
 ### Avoids
+
 * ❌ **Scenario:** Switching AI providers entirely (e.g., moving from Anthropic to Google). -> **Rationale:** Introduces completely different API SDKs and breaks existing system contracts; stick to optimizing and securing within the current provider.
 * ❌ **Scenario:** Trusting the LLM to format JSON correctly without validation. -> **Rationale:** LLMs are probabilistic engines; validation mathematically guarantees the shape, preventing severe downstream crashes.
 * ❌ **Scenario:** Letting the LLM generate raw HTML that is rendered directly to the DOM. -> **Rationale:** Creates immediate and severe Cross-Site Scripting (XSS) vulnerabilities.

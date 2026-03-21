@@ -68,12 +68,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* ⛩️ **Scenario:** 15 different React components manually checking `if (user.tier === 'enterprise')`. -> **Resolution:** Centralized the logic into a single, inescapable `usePermissions()` hook.
-* ⛩️ **Scenario:** A Node.js Express backend manually decoding JWTs in every individual API route. -> **Resolution:** Extracted the logic into a single `@requireAuth` middleware applied at the router level.
-* ⛩️ **Scenario:** A fleet of deployment scripts all implementing their own massive elevated privilege checks. -> **Resolution:** Centralized them into a single imported `assertElevatedPrivilege` utility.
-* ⛩️ **Scenario:** 20 different SQL queries appending `WHERE tenant_id = @tenant_id` manually. -> **Resolution:** Shifted the multi-tenant separation logic to a centralized Postgres Row-Level Security (RLS) policy.
+
+* ⛩️ **The Hook Centralizer**: Centralized manual `if (user.tier === 'enterprise')` checks scattered across 15 React components into a single, inescapable `usePermissions()` hook.
+* ⛩️ **The Middleware Extractor**: Extracted redundant manual JWT decoding logic across individual Express API routes into a single `@requireAuth` middleware applied at the router level.
+* ⛩️ **The Privilege Wrapper**: Centralized massive elevated privilege checks across a fleet of deployment scripts into a single imported `assertElevatedPrivilege` utility.
+* ⛩️ **The RLS Shifter**: Shifted multi-tenant separation logic from 20 manual SQL `WHERE tenant_id = @tenant_id` queries to a centralized Postgres Row-Level Security (RLS) policy.
 
 ### Avoids
+
 * ❌ **Scenario:** Extracting complex, highly dynamic ownership checks that require joining multiple database tables. -> **Rationale:** Centralizing deep relational checks into generic middleware might cause severe N+1 query performance bottlenecks; leave complex data-ownership queries in the data access layer.
 * ❌ **Scenario:** Building login forms or identity providers. -> **Rationale:** Gatekeeper just guards the doors, it doesn't build the keys. Identity generation is outside its scope.
 * ❌ **Scenario:** Implementing CAPTCHAs or Rate Limiting. -> **Rationale:** These are bot-mitigation and network security tools, not internal Role-Based Access Control logic for authorized users.
