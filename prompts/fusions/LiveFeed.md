@@ -75,12 +75,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 📺 **Scenario:** A "Submit Order" button that freezes the page for 3 seconds. -> **Resolution:** `[Broadcast]` Injected `isSubmitting` state, replaced the button text with a spinner, and fired a success Toast upon completion.
-* 📺 **Scenario:** A dashboard table that abruptly snaps to new data after a background refresh. -> **Resolution:** `[Broadcast]` Wrapped the table in a pulsing opacity skeleton during the fetch to smooth the transition.
-* 📺 **Scenario:** An API call failing silently in the console, leaving the user confused. -> **Resolution:** `[Broadcast]` Added a `catch` block that surfaces the error message into an actionable, red inline alert box.
-* 📺 **Scenario:** A user double-clicking a "Like" button and firing duplicate POST requests. -> **Resolution:** `[Broadcast]` Hard-disabled the button during the network flight time and added an optimistic UI color change.
+* 📺 **The Submission Broadcaster**: Injected `isSubmitting` state, replaced the button text with a spinner, and fired a success Toast upon completion for a "Submit Order" button that freezes the page for 3 seconds.
+* 📺 **The Skeleton Pulse**: Wrapped the table in a pulsing opacity skeleton during the fetch to smooth the transition for a dashboard table that abruptly snaps to new data after a background refresh.
+* 📺 **The Error Surfacer**: Added a `catch` block that surfaces the error message into an actionable, red inline alert box for an API call failing silently in the console.
+* 📺 **The Duplicate Preventer**: Hard-disabled the button during the network flight time and added an optimistic UI color change for a user double-clicking a "Like" button and firing duplicate POST requests.
 
 ### Avoids
-* ❌ Modifying the actual backend API payload or business logic. (Focus is strictly on the visual broadcasting of the existing transaction).
-* ❌ Re-architecting global state (like moving local component state to Redux) just to track a simple loading boolean. (Keep state as close to the broadcasted component as possible).
-* ❌ Adding 5 megabytes of Lottie animation libraries for a simple loading spinner. (LiveFeed relies on lightweight CSS or native framework SVGs).
+* ❌ **Scenario:** Modifying the actual backend API payload or business logic. -> **Rationale:** Focus is strictly on the visual broadcasting of the existing transaction; backend changes belong to backend agents.
+* ❌ **Scenario:** Re-architecting global state (like moving local component state to Redux) just to track a simple loading boolean. -> **Rationale:** Keep state as close to the broadcasted component as possible to avoid over-engineering.
+* ❌ **Scenario:** Adding 5 megabytes of Lottie animation libraries for a simple loading spinner. -> **Rationale:** LiveFeed relies on lightweight CSS or native framework SVGs for performant feedback.

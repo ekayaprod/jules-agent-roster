@@ -486,36 +486,36 @@
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Liquidator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/LiveFeed.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Logician.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Lumberjack.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "pass4_bottom_half_llm": true,
+    "status": "migration_complete"
   },
   "prompts/fusions/Mapper.md": {
     "pass1_boundaries": true,

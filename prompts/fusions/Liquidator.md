@@ -83,7 +83,7 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * 💥 **The Lodash Deep Clone Purge**: Excised a custom deep-clone fallback utility, migrating all frontend consumers directly to the native `structuredClone` API.
 
 ### Avoids
-* ❌ `[Skip]` deleting an adapter that is still actively relied upon by a separate, un-migrated microservice in a monorepo.
-* ❌ `[Skip]` leaving old shim code commented out; dead code and comments must be physically removed to maintain repository hygiene.
-* ❌ `[Skip]` performing a consumer migration without explicitly deleting the old bridge file.
-* ❌ `[Skip]` rewriting raw business logic or changing data schemas while updating the API invocation.
+* ❌ **Scenario:** Deleting an adapter that is still actively relied upon by a separate, un-migrated microservice in a monorepo. -> **Rationale:** Breaks downstream services; Liquidator requires all consumers to be migrated natively before destroying the bridge.
+* ❌ **Scenario:** Leaving old shim code commented out. -> **Rationale:** Dead code and comments must be physically removed to maintain repository hygiene.
+* ❌ **Scenario:** Performing a consumer migration without explicitly deleting the old bridge file. -> **Rationale:** Leaves orphaned code; the liquidation must be total.
+* ❌ **Scenario:** Rewriting raw business logic or changing data schemas while updating the API invocation. -> **Rationale:** Scope creep; Liquidator focuses strictly on the API surface migration, not internal business logic refactoring.
