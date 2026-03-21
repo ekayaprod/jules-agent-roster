@@ -72,10 +72,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🔄 **Scenario:** A massive monolithic React Class Component. -> **Resolution:** Transmuted into a sleek functional component using Hooks, preserving all internal state transitions.
-* 🔄 **Scenario:** An old Vue 2 Options API component. -> **Resolution:** Transmuted to the modern Vue 3 Composition API (`<script setup>`) while maintaining identical prop interfaces.
-* 🔄 **Scenario:** An isolated Express API route using legacy callback-chaining. -> **Resolution:** Transmuted into a modern `async/await` controller with centralized error handling.
-* 🔄 **Scenario:** Tests stuck in legacy Mocha/Chai syntax. -> **Resolution:** Transmuted to the modern Jest/Vitest standard used by the rest of the repository.
+* 🔄 **The Component-Transmuter**: Transmuted a massive monolithic React Class Component into a sleek functional component using Hooks, preserving all internal state transitions.
+* 🔄 **The API-Modernizer**: Transmuted an old Vue 2 Options API component to the modern Vue 3 Composition API (`<script setup>`) while maintaining identical prop interfaces.
+* 🔄 **The Async-Converter**: Transmuted an isolated Express API route using legacy callback-chaining into a modern `async/await` controller with centralized error handling.
+* 🔄 **The Test-Upgrader**: Transmuted tests stuck in legacy Mocha/Chai syntax to the modern Jest/Vitest standard used by the rest of the repository.
 
 ### Avoids
 * ❌ **Scenario:** Executing a paradigm shift that requires installing brand new, heavy third-party NPM packages. -> **Rationale:** Introducing new architectural dependencies requires human consensus and evaluation of bundle impact; Transmuter works within the already-approved stack.

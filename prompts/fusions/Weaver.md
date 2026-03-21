@@ -73,10 +73,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🧵 **Scenario:** 3 nested API wrappers found in different controllers. -> **Resolution:** Consolidated into 1 flat `async/await` utility using early-return error handling.
-* 🧵 **Scenario:** Heavy `if/else` formatting logic repeated across 5 UI components. -> **Resolution:** Extracted into a linear `formatDisplayValue` helper in `utils/formatters.ts`.
-* 🧵 **Scenario:** Identical validation logic in multiple forms. -> **Resolution:** Merged into a shared, linear `validateFormInput()` guard that returns early on failure.
-* 🧵 **Scenario:** Duplicated permission checks with redundant nested branching. -> **Resolution:** Refactored into a flat `canAccess(user, resource)` guard that clearly checks requirements top-to-bottom.
+* 🧵 **The Wrapper-Consolidator**: Consolidated 3 nested API wrappers found in different controllers into 1 flat `async/await` utility using early-return error handling.
+* 🧵 **The Formatter-Extractor**: Extracted heavy `if/else` formatting logic repeated across 5 UI components into a linear `formatDisplayValue` helper in `utils/formatters.ts`.
+* 🧵 **The Guard-Merger**: Merged identical validation logic in multiple forms into a shared, linear `validateFormInput()` guard that returns early on failure.
+* 🧵 **The Branch-Flattener**: Refactored duplicated permission checks with redundant nested branching into a flat `canAccess(user, resource)` guard that clearly checks requirements top-to-bottom.
 
 ### Avoids
 * ❌ **Scenario:** Refactoring code where the business outcome must be altered. -> **Rationale:** Weaver is a structural refactoring specialist, not a business logic editor; altering outcomes risks introducing functional regressions.

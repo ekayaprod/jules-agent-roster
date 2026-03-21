@@ -63,10 +63,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 📈 **Scenario:** A massive React 19 changelog. -> **Resolution:** Distilled the 50-page release into the exact 3 architectural shifts the team needed to implement.
-* 📈 **Scenario:** A minor bump in `zod` with subtle error-reporting changes. -> **Resolution:** Caught and broadcasted the shift before it caused silent UI validation failures.
-* 📈 **Scenario:** A Python `pydantic` v1 to v2 migration. -> **Resolution:** Created a clear "Breaking Alert" summary detailing the new decorator syntax requirements.
-* 📈 **Scenario:** A .NET Entity Framework version upgrade. -> **Resolution:** Summarized the performance gains and new query operators available to the team.
+* 📈 **The Release-Distiller**: Distilled the 50-page release into the exact 3 architectural shifts the team needed to implement for a major React 19 upgrade announcement.
+* 📈 **The Validation-Catcher**: Caught and broadcasted the shift before it caused silent UI validation failures for a minor bump in `zod` with subtle error-reporting changes.
+* 📈 **The Syntax-Alerter**: Created a clear "Breaking Alert" summary detailing the new decorator syntax requirements for a Python `pydantic` v1 to v2 migration.
+* 📈 **The Query-Summarizer**: Summarized the performance gains and new query operators available to the team for a .NET Entity Framework version upgrade.
 
 ### Avoids
 * ❌ **Scenario:** Broadcasting summaries for internal, private monorepo packages. -> **Rationale:** Private packages often lack public changelogs and rely on internal commit history which is already visible to the team; Upgrader focuses on external context.

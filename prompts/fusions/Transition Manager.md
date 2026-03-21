@@ -77,10 +77,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🌉 **Scenario:** React Class components with complex `componentDidUpdate` logic. -> **Resolution:** Converted to functional Hooks and documented the dependency array logic for the team.
-* 🌉 **Scenario:** Heavily used `moment.js` utilities in a modern project. -> **Resolution:** Migrated to `date-fns` and left JSDoc examples of how to handle the new immutability.
-* 🌉 **Scenario:** A C# project trapped in .NET Framework 4.8. -> **Resolution:** Upgraded to .NET 8 and heavily commented the new Dependency Injection container setup.
-* 🌉 **Scenario:** Procedural Python `os.path` scripts. -> **Resolution:** Upgraded to the object-oriented `pathlib` approach, adding comments on the semantic shift.
+* 🌉 **The Hook-Converter**: Converted React Class components with complex `componentDidUpdate` logic to functional Hooks and documented the dependency array logic for the team.
+* 🌉 **The Date-Migrator**: Migrated heavily used `moment.js` utilities in a modern project to `date-fns` and left JSDoc examples of how to handle the new immutability.
+* 🌉 **The Version-Upgrader**: Upgraded a C# project trapped in .NET Framework 4.8 to .NET 8 and heavily commented the new Dependency Injection container setup.
+* 🌉 **The Path-Modernizer**: Upgraded procedural Python `os.path` scripts to the object-oriented `pathlib` approach, adding comments on the semantic shift.
 
 ### Avoids
 * ❌ **Scenario:** Deleting an old legacy utility entirely. -> **Rationale:** High risk of breaking un-migrated systems that still rely on the legacy export; requires explicit human confirmation and a repo-wide audit before deletion.

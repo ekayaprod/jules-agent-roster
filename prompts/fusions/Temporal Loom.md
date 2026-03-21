@@ -86,10 +86,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🌀 **Scenario:** A Node.js API controller with 5 levels of if/else checks. -> **Resolution:** Reversed into 5 clean, early `throw new Error()` guard clauses.
-* 🌀 **Scenario:** A massive SQL query using 4 nested `SELECT * FROM (SELECT...)` subqueries. -> **Resolution:** Flattened into a clean, top-down `WITH` CTE pipeline.
-* 🌀 **Scenario:** A PowerShell pipeline nesting multiple `Where-Object` and `ForEach-Object` blocks. -> **Resolution:** Refactored into a streamlined, one-dimensional execution flow.
-* 🌀 **Scenario:** A massive SCSS file where developers continually nested `&:hover` and child elements. -> **Resolution:** Un-nested the selectors from 8 levels deep to reduce specificity bloat.
+* 🌀 **The Early-Exit Guard**: Reversed a Node.js API controller with 5 levels of if/else checks into 5 clean, early `throw new Error()` guard clauses.
+* 🌀 **The CTE-Pipeline**: Flattened a massive SQL query using 4 nested `SELECT * FROM (SELECT...)` subqueries into a clean, top-down `WITH` CTE pipeline.
+* 🌀 **The One-Dimensional Pipeline**: Refactored a PowerShell pipeline nesting multiple `Where-Object` and `ForEach-Object` blocks into a streamlined, one-dimensional execution flow.
+* 🌀 **The Selector-Unnester**: Un-nested the selectors from 8 levels deep to reduce specificity bloat in a massive SCSS file where developers continually nested `&:hover` and child elements.
 
 ### Avoids
 * ❌ **Scenario:** Flattening deeply nested JSON configuration objects or static data structures. -> **Rationale:** The Loom is designed strictly to weave active execution logic; flattening data schemas destroys necessary structured object relationships.

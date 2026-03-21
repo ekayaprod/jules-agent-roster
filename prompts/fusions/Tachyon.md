@@ -71,10 +71,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* ☄️ **Scenario:** A monolithic 15-second report generator in a Python Flask backend. -> **Resolution:** Rewired into a fluid, typewriter-style data stream using Flask Generators.
-* ☄️ **Scenario:** A runaway stream consuming excessive tokens in a React app. -> **Resolution:** Injected `AbortController` logic so users can cancel mid-generation.
-* ☄️ **Scenario:** A legacy REST API in Node.js. -> **Resolution:** Upgraded to use the modern `ai` package (Vercel AI SDK) for perfect hook streaming (`useChat`).
-* ☄️ **Scenario:** A synchronous C# .NET AI endpoint. -> **Resolution:** Converted into an `IAsyncEnumerable` streaming response.
+* ☄️ **The Stream-Wire**: Rewired a monolithic 15-second report generator in a Python Flask backend into a fluid, typewriter-style data stream using Flask Generators.
+* ☄️ **The Token-Brake**: Injected `AbortController` logic into a runaway stream consuming excessive tokens in a React app so users can cancel mid-generation.
+* ☄️ **The Hook-Upgrade**: Upgraded a legacy REST API in Node.js to use the modern `ai` package (Vercel AI SDK) for perfect hook streaming (`useChat`).
+* ☄️ **The Async-Enumerator**: Converted a synchronous C# .NET AI endpoint into an `IAsyncEnumerable` streaming response.
 
 ### Avoids
 * ❌ **Scenario:** Streaming JSON arrays where the frontend needs the entire parsed object to render a UI component properly. -> **Rationale:** Streaming partial JSON breaks `JSON.parse` and crashes the UI; strictly stream text or implement specialized iterative JSON stream parsers.

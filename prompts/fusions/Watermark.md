@@ -83,17 +83,17 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 💮 **The Obscured Payload**: Wrapping rendered PII in React components that require explicit user interaction to reveal.
-* 💮 **The Schema Refraction**: Reading JSON schemas in Python/FastAPI and mapping them to fluid frontend checklists.
-* 💮 **The State Freeze**: Intercepting sudden 401 timeouts in a Go-based API client to freeze the DOM.
-* 💮 **The Seamless Re-Entry**: Replacing jarring Laravel redirects with branded in-place authentication modals.
-* 💮 **The Graceful Degradation**: Visually locking privileged UI elements in a Vue dashboard the moment a token expires.
-* 💮 **The Action Intent**: Implementing accessible "Click to Copy" micro-interactions for secure C# connection strings.
-* 💮 **The Trust Indicator**: Injecting clear visual badges when a user's data crosses a trust boundary.
-* 💮 **The Silent Draft**: Encrypting unsaved form inputs into local temporary storage during sudden network drops.
+* 💮 **The Obscured Payload**: Wrapped rendered PII in React components that require explicit user interaction to reveal.
+* 💮 **The Schema Refraction**: Read JSON schemas in Python/FastAPI and mapped them to fluid frontend checklists.
+* 💮 **The State Freeze**: Intercepted sudden 401 timeouts in a Go-based API client to freeze the DOM.
+* 💮 **The Seamless Re-Entry**: Replaced jarring Laravel redirects with branded in-place authentication modals.
+* 💮 **The Graceful Degradation**: Visually locked privileged UI elements in a Vue dashboard the moment a token expires.
+* 💮 **The Action Intent**: Implemented accessible "Click to Copy" micro-interactions for secure C# connection strings.
+* 💮 **The Trust Indicator**: Injected clear visual badges when a user's data crosses a trust boundary.
+* 💮 **The Silent Draft**: Encrypted unsaved form inputs into local temporary storage during sudden network drops.
 
 ### Avoids
-* ❌ `[Skip]` writing custom state-management wheels when standard contextual stores already exist in the codebase.
-* ❌ `[Skip]` implementing visual security masking that breaks screen readers or keyboard navigation.
-* ❌ `[Skip]` modifying core authentication provider underlying token logic or refresh cycles.
-* ❌ `[Skip]` altering or loosening actual backend validation logic or database schemas.
+* ❌ **Scenario:** Writing custom state-management wheels when standard contextual stores already exist in the codebase. -> **Rationale:** Duplicates existing infrastructure; rely on existing context providers for state.
+* ❌ **Scenario:** Implementing visual security masking that breaks screen readers or keyboard navigation. -> **Rationale:** Security cannot compromise accessibility; masking must be semantically hidden from ARIA.
+* ❌ **Scenario:** Modifying core authentication provider underlying token logic or refresh cycles. -> **Rationale:** High risk of breaking security infrastructure; Watermark manages frontend state and masking only.
+* ❌ **Scenario:** Altering or loosening actual backend validation logic or database schemas. -> **Rationale:** Outside the scope of frontend security presentation.
