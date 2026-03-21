@@ -90,9 +90,9 @@ describe('AgentCard', () => {
             const card = AgentCard.create(mockAgent, 1, 0);
 
             // Should render the splay menu outer shell, but no child buttons inside it
-            expect(card.innerHTML).toContain('splay-btn');
-            expect(card.innerHTML).toContain('splay-menu-1');
-            expect(card.innerHTML).not.toContain('splayed-card'); // No item rendered
+            expect(card.innerHTML).toContain('fusion-quick-container');
+            expect(card.innerHTML).toContain('fusion-quick-list');
+            expect(card.innerHTML).not.toContain('fusion-quick-btn'); // No item rendered
             expect(card.innerHTML).not.toContain('data-index="Test Agent+Ghost"');
         });
 
@@ -124,9 +124,9 @@ describe('AgentCard', () => {
 
             const card = AgentCard.create(mockAgent, 1, 0);
 
-            expect(card.innerHTML).toContain('splay-btn');
-            expect(card.innerHTML).toContain('data-action="toggle-splay"');
-            expect(card.innerHTML).toContain('splay-menu-1');
+            expect(card.innerHTML).toContain('fusion-quick-container');
+            expect(card.innerHTML).toContain('fusion-quick-list');
+            expect(card.innerHTML).toContain('fusion-quick-btn');
             expect(card.innerHTML).toContain('data-index="Test Agent+Other"');
             expect(card.innerHTML).toContain('data-index="Test Agent+Another"');
             expect(card.innerHTML).toContain('✨');
