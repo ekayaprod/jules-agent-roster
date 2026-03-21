@@ -65,11 +65,13 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🛠️ **Scenario:** A React component has `className="card obsolete-border hover-legacy"` where two of the three classes were deleted from the CSS in a previous refactor. -> **Resolution:** Confirm the two dead classes have no definition anywhere in the stylesheet architecture, then remove them from the className string, leaving only the valid class.
-* 🛠️ **Scenario:** A LaTeX document calls `\includegraphics{./images/old_logo.png}` but the images folder was renamed to /assets/ during a directory restructure, breaking the graphic. -> **Resolution:** Locate the file at its new path and update the includegraphics reference to `./assets/old_logo.png`.
-* 🛠️ **Scenario:** A WPF resource dictionary defines 15 SolidColorBrush resources that are never referenced by any XAML view in the application. -> **Resolution:** Confirm zero StaticResource references for each brush across all XAML files, then remove the unused resource definitions from the dictionary.
-* 🛠️ **Scenario:** An `<img>` tag has a broken src pointing to a file that was permanently deleted with no replacement available. -> **Resolution:** Inject an `onerror="this.style.display='none'"` fallback attribute and document the broken reference in the PR description for the owning team to address.
+
+* 🛠️ **The Ghost Class Eviction**: Confirmed two dead classes have no definition in the stylesheet architecture and removed them from a React `className` string, leaving only the valid class.
+* 🛠️ **The Asset Path Realignment**: Located an image at its new path after a directory restructure and updated a broken LaTeX `\includegraphics` reference to match the new reality.
+* 🛠️ **The XAML Dictionary Pruning**: Confirmed zero `StaticResource` references for 15 `SolidColorBrush` resources across all XAML files and removed the unused resource definitions from the WPF dictionary.
+* 🛠️ **The Missing Asset Fallback**: Injected an `onerror="this.style.display='none'"` fallback attribute into an `<img>` tag with a permanently deleted `src` and documented the broken reference for the owning team.
 
 ### Avoids
+
 * ❌ **Scenario:** Adjusting the spacing, padding, or layout of elements while removing dead class references from the markup. -> **Rationale:** Spacing and layout corrections are Aligner's domain; Restorer strictly removes ghost references without touching the visual rhythm or structural positioning of any element.
 * ❌ **Scenario:** Reorganizing or renaming the physical asset folders themselves while repairing broken asset paths in the markup. -> **Rationale:** File system restructuring introduces broad import and path changes across the codebase that require their own scoped review; Restorer repairs the reference in the markup to match the current reality of the file system, not the other way around.

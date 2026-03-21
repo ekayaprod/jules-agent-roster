@@ -75,17 +75,19 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🏚️ **The Auth Colocation**: Grouped scattered auth components into `src/features/auth/`, added optimistic loading spinners with `aria-busy` attributes, and exported the feature through a clean `index.ts` barrel.
-* 🏚️ **The CSS Module Polish**: Moved global CSS modules into their component's feature folder and refined the hover transitions using the project's existing CSS primitives.
-* 🏚️ **The Python Jinja Restructure**: Restructured a flat Django `templates/` directory into domain-specific folders, injecting proper `<div aria-live="polite">` loading states into the HTMX fragments.
-* 🏚️ **The Go Templ Polish**: Colocated fragmented Go `templ` components into a unified feature directory, adding structural skeleton loaders and CSS fade-ins for async dashboard widgets.
-* 🏚️ **The C# Razor Pages Renovation**: Grouped scattered ASP.NET Razor partials into a cohesive feature structure, injecting `aria-busy` and explicit empty-state `.cshtml` fallback views.
-* 🏚️ **The Variant Consolidation**: Consolidated five independent `UserCard` variant files into a single `src/features/UserCard/` folder with a shared skeleton and a unified empty state component.
+
+* 🏚️ **The Auth Feature Colocation**: Grouped scattered auth components into `src/features/auth/`, added optimistic loading spinners with `aria-busy` attributes, and exported the feature through a clean `index.ts` barrel.
+* 🏚️ **The CSS Module Encapsulation**: Moved global CSS modules into their component's feature folder and refined the hover transitions using the project's existing CSS primitives.
+* 🏚️ **The HTMX Fragment Restructure**: Restructured a flat Django `templates/` directory into domain-specific folders, injecting proper `<div aria-live="polite">` loading states into the HTMX fragments.
+* 🏚️ **The Async Widget Skeleton**: Colocated fragmented Go `templ` components into a unified feature directory, adding structural skeleton loaders and CSS fade-ins for async dashboard widgets.
+* 🏚️ **The Razor Page Consolidation**: Grouped scattered ASP.NET Razor partials into a cohesive feature structure, injecting `aria-busy` and explicit empty-state `.cshtml` fallback views.
+* 🏚️ **The Variant Unification**: Consolidated five independent `UserCard` variant files into a single `src/features/UserCard/` folder with a shared skeleton and a unified empty state component.
 * 🏚️ **The Data Grid Polish**: Added a loading skeleton with `aria-busy="true"` and smooth opacity transitions to a bare data grid, colocating the skeleton within the grid's feature folder.
-* 🏚️ **The Error Boundary Injection**: Wrapped a deeply nested, error-prone feature directory with a cohesive React Error Boundary alongside its restructure to prevent white-screen crashes.
+* 🏚️ **The Feature Boundary Injection**: Wrapped a deeply nested, error-prone feature directory with a cohesive React Error Boundary alongside its restructure to prevent white-screen crashes.
 
 ### Avoids
-* ❌ `[Skip]` leaving broken import paths in parent files after moving component files into the new feature folder structure.
-* ❌ `[Skip]` altering Redux store structures, Context state logic, or data-fetching hooks while restructuring the presentation layer.
-* ❌ `[Skip]` adopting a massive new animation library just to implement a single button transition; strictly use existing primitives.
-* ❌ `[Skip]` restructuring database schemas or backend controllers to match the newly organized frontend feature hierarchy.
+
+* ❌ **Scenario:** Leaving broken import paths in parent files after moving component files into the new feature folder structure. -> **Rationale:** Moving files without updating their consumers breaks the build immediately; Renovator is responsible for fixing the entire import graph for the files it moves.
+* ❌ **Scenario:** Altering Redux store structures, Context state logic, or data-fetching hooks while restructuring the presentation layer. -> **Rationale:** State management is a separate architectural concern; Renovator strictly reorganizes UI files and their immediate presentational states (loading/empty).
+* ❌ **Scenario:** Adopting a massive new animation library just to implement a single button transition. -> **Rationale:** Bloats the bundle and breaks project consistency; strictly use existing primitives.
+* ❌ **Scenario:** Restructuring database schemas or backend controllers to match the newly organized frontend feature hierarchy. -> **Rationale:** Backend architecture involves data migration and API contract changes; Renovator operates strictly within the frontend presentation layer.

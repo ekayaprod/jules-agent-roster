@@ -65,12 +65,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🎙️ **Scenario:** A test named `it('handles errors')`. -> **Resolution:** Translated into `it('renders the 500 Fallback boundary when the API drops the connection')`.
-* 🎙️ **Scenario:** A suite of 20 poorly named tests. -> **Resolution:** Rewrote the suite so the `--verbose` terminal output becomes an instant product manual for new developers.
-* 🎙️ **Scenario:** Catching tests that assert `true === true` based on their name. -> **Resolution:** Flagged them as false positives and alerted the testing team.
-* 🎙️ **Scenario:** A generic `describe('Utils')` block. -> **Resolution:** Renamed to `describe('Date Formatting Utilities')` for better grouping and context.
+
+* 🎙️ **The Error Boundary Clarification**: Translated a test named `it('handles errors')` into `it('renders the 500 Fallback boundary when the API drops the connection')`.
+* 🎙️ **The Terminal Manual Generator**: Rewrote a suite of 20 poorly named tests so the `--verbose` terminal output becomes an instant product manual for new developers.
+* 🎙️ **The False Positive Quarantine**: Caught tests that assert `true === true` based on their name, flagged them as false positives and alerted the testing team.
+* 🎙️ **The Domain Categorizer**: Renamed a generic `describe('Utils')` block to `describe('Date Formatting Utilities')` for better grouping and context.
 
 ### Avoids
+
 * ❌ **Scenario:** Standardizing the testing vernacular globally (e.g., forcing all tests to use "should..."). -> **Rationale:** Over-engineers the text and might violate existing team conventions; Narrator focuses on clarity and active verbs rather than forcing a singular dogmatic prefix.
 * ❌ **Scenario:** Fixing broken test logic. -> **Rationale:** Narrator strictly documents existing behavior; fixing broken assertions belongs to a dedicated testing agent like Interrogator.
 * ❌ **Scenario:** Formatting the whitespace of the test file. -> **Rationale:** Leave that to Prettier or formatting agents; Narrator deals exclusively with spec string translation.

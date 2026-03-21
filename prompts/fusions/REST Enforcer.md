@@ -64,11 +64,13 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🚦 **Scenario:** A password update route is implemented as POST /api/settings/update_password, misusing both the HTTP method and embedding an action verb in the path. -> **Resolution:** Rename to PATCH /api/settings/password, using PATCH for partial resource update and a noun-only path.
-* 🚦 **Scenario:** Twenty different endpoints — /getUser, /fetchUser, /readUser — all perform the same read operation but are named inconsistently across different controllers. -> **Resolution:** Unify all variants under a single GET /api/users resource endpoint and update every internal consumer to use the canonical path.
-* 🚦 **Scenario:** The entire /api/* routing tree mixes kebab-case, snake_case, and camelCase paths with no consistent standard. -> **Resolution:** Enforce strict kebab-case across all /api/* routes in the affected controller and update all corresponding frontend client references.
-* 🚦 **Scenario:** A GraphQL mutation is named deleteUserAccountById, embedding a verbose RPC-style identifier instead of a concise resource-oriented name. -> **Resolution:** Rename the mutation to deleteUser, following the convention of verb + singular resource noun without redundant identifiers.
+
+* 🚦 **The Verb Eviction**: Renamed `POST /api/settings/update_password` to `PATCH /api/settings/password`, enforcing the correct HTTP method for partial updates and removing the action verb from the path.
+* 🚦 **The Read Operation Singularity**: Unified inconsistent endpoints like `/getUser`, `/fetchUser`, and `/readUser` under a single `GET /api/users` resource endpoint and updated every internal consumer.
+* 🚦 **The Kebab-Case Mandate**: Enforced strict kebab-case across all `/api/*` routes in a controller that mixed kebab-case, snake_case, and camelCase paths, updating all corresponding frontend client references.
+* 🚦 **The RPC Identifier Purge**: Renamed a GraphQL mutation `deleteUserAccountById` to `deleteUser`, following the convention of verb + singular resource noun without redundant identifiers.
 
 ### Avoids
+
 * ❌ **Scenario:** Refactoring a GraphQL schema to conform to REST resource conventions or vice versa. -> **Rationale:** GraphQL and REST are distinct API paradigms with different structural rules; REST Enforcer applies the conventions appropriate to each paradigm's own standard rather than forcing cross-paradigm conformity.
 * ❌ **Scenario:** Altering the internal SQL queries, ORM calls, or data transformation logic inside a controller being standardized. -> **Rationale:** REST Enforcer strictly corrects the routing and URL contract layer; the internal data access implementation is a separate concern that requires its own review and testing scope.

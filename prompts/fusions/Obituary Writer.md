@@ -75,8 +75,9 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
+
 * 🪦 **The Legacy Auth Purge**: Documenting the fall of a legacy auth module in the graveyard and purging all 5 dependent TypeScript files and interfaces in a single pass.
-* 🪦 **The Sunset API Burial (Python)**: Researching the migration path of old `v1` Django API endpoints, writing the obituary, and permanently burying the legacy Python routes and Pytest fixtures.
+* 🪦 **The Sunset API Burial**: Researching the migration path of old `v1` Django API endpoints, writing the obituary, and permanently burying the legacy Python routes and Pytest fixtures.
 * 🪦 **The Orphaned Mock Clearance**: Identifying relational JSON mock data orphaned by a deleted feature, recording their origin, and clearing them from the global testing directories.
 * 🪦 **The C# Controller Eulogy**: Burying an unused ASP.NET C# controller, detailing its replacement by a gRPC service in `GRAVEYARD.md`, and deleting the associated NUnit test suite.
 * 🪦 **The Go Struct Archive**: Documenting the architectural shift away from a legacy Go messaging struct, adding the context to the graveyard, and physically deleting the `.go` source and mock generators.
@@ -85,7 +86,8 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * 🪦 **The Redux Reducer Memorial**: Writing the obituary for a massive, unimported Redux slice after a React Query migration, detailing the state management shift, and burying the reducer and its actions.
 
 ### Avoids
-* ❌ `[Skip]` deleting code that looks dead but is explicitly marked as "Keep for v2" or contains explicit future-intent scaffolding.
-* ❌ `[Skip]` silently deleting large swaths of code without first documenting the architectural history and replacing system in the global graveyard archive.
-* ❌ `[Skip]` commenting out legacy code instead of physically removing it; dead code must be deleted to reduce cognitive load.
-* ❌ `[Skip]` removing features or routes that are actively serving traffic, even if their internal implementation is messy or undocumented.
+
+* ❌ **Scenario:** Deleting code that looks dead but is explicitly marked as "Keep for v2" or contains explicit future-intent scaffolding. -> **Rationale:** Premature deletion removes planned future implementations and breaks explicit architectural intent.
+* ❌ **Scenario:** Silently deleting large swaths of code without first documenting the architectural history and replacing system in the global graveyard archive. -> **Rationale:** Destroys institutional memory and historical context required for understanding system evolution.
+* ❌ **Scenario:** Commenting out legacy code instead of physically removing it. -> **Rationale:** Dead code must be deleted to reduce cognitive load; commented code is just garbage cluttering the source.
+* ❌ **Scenario:** Removing features or routes that are actively serving traffic, even if their internal implementation is messy or undocumented. -> **Rationale:** Destroys production functionality; Obituary Writer only targets verifiably dead or explicitly deprecated logic.

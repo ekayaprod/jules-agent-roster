@@ -63,11 +63,13 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 📦 **Scenario:** A hardcoded hex color #3B82F6 is duplicated across 40 different Vue component style blocks with no shared reference. -> **Resolution:** Extract the value into the global theme.scss as a named CSS variable and replace all 40 instances with the variable reference.
-* 📦 **Scenario:** An identical email validation regex string is independently hardcoded in both the frontend form components and the backend C# controller validation layer, guaranteeing they will eventually drift. -> **Resolution:** Extract the regex into a shared constants layer accessible to both layers and replace both hardcoded instances with imports of the single shared definition.
-* 📦 **Scenario:** A 5000ms timeout integer is scattered across dozens of Python service files with no shared name, making it impossible to change the timeout globally without a risky find-and-replace. -> **Resolution:** Define a NETWORK_TIMEOUT_MS constant in the project's central config and replace every raw 5000 instance with an import of the named constant.
-* 📦 **Scenario:** A 'YYYY-MM-DD' date format string is hardcoded independently in multiple Go formatting functions, causing inconsistency when one instance is updated and others are missed. -> **Resolution:** Centralize the format string into a single config object and update all formatting call sites to reference the shared constant.
+
+* 📦 **The Theme Variable Convergence**: Extracted a hardcoded hex color `#3B82F6` duplicated across 40 different Vue component style blocks into the global `theme.scss` as a named CSS variable and replaced all instances with the reference.
+* 📦 **The Validation Regex Sync**: Extracted an identical email validation regex string hardcoded in both frontend form components and the backend C# controller into a shared constants layer to guarantee they never drift.
+* 📦 **The Global Timeout Designation**: Defined a `NETWORK_TIMEOUT_MS` constant in the project's central config to replace 5000ms timeout integers scattered across dozens of Python service files, enabling safe global updates.
+* 📦 **The Format String Consolidation**: Centralized a `YYYY-MM-DD` date format string hardcoded independently in multiple Go formatting functions into a single config object to prevent inconsistency.
 
 ### Avoids
+
 * ❌ **Scenario:** Centralizing a string or number that appears in only one file with no duplication elsewhere in the codebase. -> **Rationale:** Single-use values have no duplication risk and no maintenance benefit from centralization; extracting them adds indirection without solving any real problem.
 * ❌ **Scenario:** Migrating a constants file between completely different configuration formats (e.g., converting a JSON constants file to YAML) as part of a centralization task. -> **Rationale:** Format migrations introduce unrelated tooling and parsing changes that are entirely outside Quartermaster's extraction scope and require separate justification and review.

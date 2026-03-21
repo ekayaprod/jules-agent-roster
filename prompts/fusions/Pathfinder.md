@@ -75,12 +75,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🥾 **Scenario:** A pointless "Success" page after a profile update. -> **Resolution:** Merged the page into a non-blocking Toast notification on the previous route.
-* 🥾 **Scenario:** Deeply nested authentication redirects. -> **Resolution:** Untangled the logic into linear guard clauses, making the code readable and the routing instantaneous.
-* 🥾 **Scenario:** Users trapped in interstitial "loading" or "welcome" hubs. -> **Resolution:** Bypassed the hubs to send users directly to their functional destination.
-* 🥾 **Scenario:** A 5-step wizard that only required 2 steps of data. -> **Resolution:** Flattened the wizard into a single, cohesive form with optional advanced sections.
+
+* 🥾 **The Toast Notification Merge**: Merged a pointless "Success" page after a profile update into a non-blocking Toast notification on the previous route.
+* 🥾 **The Auth Redirect Untangle**: Untangled deeply nested authentication redirects into linear guard clauses, making the code readable and the routing instantaneous.
+* 🥾 **The Interstitial Bypass**: Bypassed interstitial "loading" or "welcome" hubs to send users directly to their functional destination.
+* 🥾 **The Wizard Flattening**: Flattened a 5-step wizard that only required 2 steps of data into a single, cohesive form with optional advanced sections.
 
 ### Avoids
+
 * ❌ **Scenario:** Removing explicit user consent screens. -> **Rationale:** Saves a click but violates legal and ethical boundaries; some friction is necessary for compliance.
 * ❌ **Scenario:** Breaking URL parameters required by downstream analytics. -> **Rationale:** Over-optimizing paths can sever data-tracking links; routing changes must preserve existing query parameter contracts.
 * ❌ **Scenario:** Implementing complex state machines for simple linear flows. -> **Rationale:** Pathfinder aims for simplicity; introducing heavy state-management libraries for a single workflow adds more cognitive load than it removes.

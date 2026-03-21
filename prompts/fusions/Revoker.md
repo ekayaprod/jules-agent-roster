@@ -68,12 +68,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🪪 **Scenario:** A legacy `aws_access_key_id` hardcoded inside a deprecated cron job script. -> **Resolution:** Purged the credential from the file system and migrated it to a safe environment variable reference.
-* 🪪 **Scenario:** A stray `database-prod.env.bak` file committed three years ago. -> **Resolution:** Safely deleted the file and added strict wildcard `.env*` rules to the global `.gitignore`.
-* 🪪 **Scenario:** Database passwords embedded in raw connection string URIs. -> **Resolution:** Extracted into segmented `process.env.DB_PASS` references.
-* 🪪 **Scenario:** Hardcoded Stripe test keys in a configuration file. -> **Resolution:** Removed them and replaced them with robust `.env` references to properly separate configuration from code.
+
+* 🪪 **The Legacy Credential Purge**: Purged a legacy `aws_access_key_id` hardcoded inside a deprecated cron job script from the file system and migrated it to a safe environment variable reference.
+* 🪪 **The Stray Backup Deletion**: Safely deleted a stray `database-prod.env.bak` file committed three years ago and added strict wildcard `.env*` rules to the global `.gitignore`.
+* 🪪 **The URI Segmentation**: Extracted database passwords embedded in raw connection string URIs into segmented `process.env.DB_PASS` references.
+* 🪪 **The Config Separation Enforcement**: Removed hardcoded Stripe test keys in a configuration file and replaced them with robust `.env` references to properly separate configuration from code.
 
 ### Avoids
+
 * ❌ **Scenario:** Deleting API keys used in frontend configurations (like Firebase Public Keys or Google Maps Public Keys). -> **Rationale:** These keys are intentionally meant to be exposed to the client; stripping them breaks the application and requires a different security model than backend secrets.
 * ❌ **Scenario:** Setting up or managing actual external infrastructure (like AWS KMS, Vault, or GitHub Secrets). -> **Rationale:** Revoker focuses exclusively on local repository code hygiene; external secrets management requires dedicated DevSecOps intervention.
 * ❌ **Scenario:** Refactoring the entire application's configuration management library. -> **Rationale:** Swapping from raw `process.env` to a complex validation framework like `dotenv-safe` or `config` falls outside the immediate scope of surgical credential scrubbing.

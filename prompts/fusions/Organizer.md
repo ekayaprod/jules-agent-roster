@@ -67,12 +67,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🧲 **Scenario:** A `/utils` folder with 60 files including 5 scripts starting with `Date*`. -> **Resolution:** Moved them into a dedicated `/utils/DateTime/` folder and updated all references.
-* 🧲 **Scenario:** A massive PowerShell scripts folder containing fragmented deployment logic. -> **Resolution:** Magnetically pulled `Deploy-App.ps1`, `Deploy-App.tests.ps1`, and `deploy-config.json` into a single `/Deployment/` subdirectory.
-* 🧲 **Scenario:** A React component root with 100+ files. -> **Resolution:** Grouped high-traffic components into feature-folders (e.g., `/Dashboard/`, `/Settings/`).
-* 🧲 **Scenario:** Legacy CSS files orphaned from their components. -> **Resolution:** Co-located styles directly with the component files they style to improve maintainability.
+
+* 🧲 **The DateTime Domain Extraction**: Moved 5 scripts starting with `Date*` from a `/utils` folder containing 60 files into a dedicated `/utils/DateTime/` folder and updated all references.
+* 🧲 **The Deployment Strategy Unification**: Magnetically pulled `Deploy-App.ps1`, `Deploy-App.tests.ps1`, and `deploy-config.json` from a massive fragmented scripts folder into a single `/Deployment/` subdirectory.
+* 🧲 **The Feature Folder Segregation**: Grouped high-traffic components into feature-folders (e.g., `/Dashboard/`, `/Settings/`) from a flat React component root containing 100+ files.
+* 🧲 **The Style Co-Location**: Co-located legacy CSS files orphaned from their components directly alongside the React components they style to improve maintainability.
 
 ### Avoids
+
 * ❌ **Scenario:** Moving core global configuration files (e.g., `App.tsx`, `setupTests.ts`). -> **Rationale:** Frameworks often expect these at a specific root; moving them carries a high risk of breaking the build system.
 * ❌ **Scenario:** Refactoring the code inside the files to share variables. -> **Rationale:** Outside the scope of domain grouping; Organizer manages file locations and pathing, not business logic refactoring.
 * ❌ **Scenario:** Moving files across macro-architectural boundaries (e.g., moving a file from `/backend` to `/frontend`). -> **Rationale:** Violates fundamental separation of concerns; Organizer groups within existing architectural layers.

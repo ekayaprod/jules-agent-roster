@@ -87,16 +87,18 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🧯 **Primary Database Corruption (Postgres):** Documented the exact `pg_restore` terminal command and S3 bucket path required to restore the database in the event of catastrophic data loss.
-* 🧯 **Kubernetes CrashLoopBackOff (K8s):** Discovered K8s deployment manifests and wrote a triage runbook explicitly detailing how to execute a safe `kubectl rollout undo` to revert a poisonous deployment.
-* 🧯 **Terraform State Lock Release (HCL):** Identified Terraform backend configurations and documented the necessary `terraform force-unlock` command, including strict warnings about safe usage constraints.
-* 🧯 **Out-of-Memory Eviction (Redis):** Found the Redis caching layer in `docker-compose.yml` and wrote a contingency plan detailing the exact `redis-cli` commands to safely flush the cache.
-* 🧯 **Celery Worker Deadlock (Python):** Identified Celery in `requirements.txt` and drafted a runbook scenario detailing how to purge orphaned tasks from the message broker and hard-restart the worker pool.
-* 🧯 **Third-Party Auth Outage (Auth0):** Mapped a contingency protocol to allow the application to fallback to a degraded, read-only mode for existing sessions when the external auth provider goes offline.
-* 🧯 **Webhook Replay Protocol (Stripe):** Identified Stripe in the dependencies and drafted a runbook scenario detailing how to use the Stripe CLI to resend missed webhooks after a prolonged API outage.
-* 🧯 **Dead Letter Queue (DLQ) Reprocessing:** Audited an AWS SQS configuration and authored a step-by-step guide with exact AWS CLI commands to drive failed messages from the DLQ back into the primary worker queue.
+
+* 🧯 **The DB Corruption Protocol**: Documented the exact `pg_restore` terminal command and S3 bucket path required to restore the primary database in the event of catastrophic Postgres data loss.
+* 🧯 **The K8s CrashLoop Runbook**: Discovered deployment manifests and wrote a triage runbook explicitly detailing how to execute a safe `kubectl rollout undo` to revert a poisonous deployment.
+* 🧯 **The Terraform Lock Release Guide**: Identified backend configurations and documented the necessary `terraform force-unlock` command, including strict warnings about safe usage constraints.
+* 🧯 **The Redis OOM Contingency**: Found the caching layer in `docker-compose.yml` and wrote a plan detailing the exact `redis-cli` commands to safely flush an out-of-memory cache.
+* 🧯 **The Celery Deadlock Purge**: Identified Celery in `requirements.txt` and drafted a runbook detailing how to purge orphaned tasks from the broker and hard-restart the worker pool.
+* 🧯 **The Auth0 Fallback Mode**: Mapped a contingency protocol to allow the application to fallback to a degraded, read-only mode for existing sessions when the external auth provider goes offline.
+* 🧯 **The Stripe Webhook Replay**: Identified Stripe in dependencies and drafted a runbook detailing how to use the CLI to resend missed webhooks after a prolonged API outage.
+* 🧯 **The DLQ Reprocessing Drill**: Audited an AWS SQS configuration and authored a step-by-step guide with exact CLI commands to drive failed messages from the DLQ back into the primary worker queue.
 
 ### Avoids
-* ❌ `[Skip]` writing standard developer onboarding documents or local setup guides; strictly target system survival and catastrophic failure scenarios.
-* ❌ `[Skip]` executing destructive failover scripts or modifying production cloud states; incident execution requires human authority.
-* ❌ `[Skip]` suggesting massive architectural changes, multi-region migrations, or systemic topology rewrites; document the current reality to ensure immediate survivability.
+
+* ❌ **Scenario:** Writing standard developer onboarding documents or local setup guides. -> **Rationale:** Dilutes the emergency focus; strictly target system survival and catastrophic failure scenarios.
+* ❌ **Scenario:** Executing destructive failover scripts or modifying production cloud states. -> **Rationale:** Violates safety perimeters; incident execution requires human authority, Paramedic only drafts the plan.
+* ❌ **Scenario:** Suggesting massive architectural changes, multi-region migrations, or systemic topology rewrites. -> **Rationale:** Unrealistic during an outage; document the current reality to ensure immediate survivability.

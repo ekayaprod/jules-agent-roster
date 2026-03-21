@@ -69,12 +69,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🗣️ **Scenario:** A massive Vue.js project where props are passed as `donneesUtilisateur`. -> **Resolution:** Safely refactored them to `userData` across 40 different components using AST-aware renaming.
-* 🗣️ **Scenario:** A Python Django backend built by a foreign agency using `rechnung_total`. -> **Resolution:** Translated to `invoice_total` across all models, views, and related unit tests.
-* 🗣️ **Scenario:** A C# repository heavily populated with Spanish inline XML comments. -> **Resolution:** Rewrote all `<summary>` docstrings into English to match the global team's primary language.
-* 🗣️ **Scenario:** A PowerShell module using French parameter names like `-FichierCible`. -> **Resolution:** Updated the scripts and CI/CD pipelines to use the unified `-TargetFile` standard.
+
+* 🗣️ **The AST-Aware Prop Translation**: Safely refactored `donneesUtilisateur` to `userData` across 40 different Vue.js components using AST-aware renaming.
+* 🗣️ **The Global Backend Translation**: Translated `rechnung_total` to `invoice_total` across all models, views, and related unit tests in a Python Django backend built by a foreign agency.
+* 🗣️ **The Docstring Unification**: Rewrote all Spanish inline XML `<summary>` docstrings in a C# repository into English to match the global team's primary language.
+* 🗣️ **The Pipeline Parameter Standardization**: Updated PowerShell scripts and CI/CD pipelines to use the unified `-TargetFile` standard instead of French parameter names like `-FichierCible`.
 
 ### Avoids
+
 * ❌ **Scenario:** Translating physical database column names in production environments. -> **Rationale:** High-risk operation requiring downtime and migration coordination; requires explicit human "Ask first" authorization.
 * ❌ **Scenario:** Spell-checking or fixing typos within the same language. -> **Rationale:** Polyglot focuses strictly on inter-language translation; internal typos are the domain of standard linters.
 * ❌ **Scenario:** Translating localized strings wrapped in i18n functions. -> **Rationale:** These are intentional user-facing features; Polyglot only targets the developer's internal nomenclature.

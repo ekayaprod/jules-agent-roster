@@ -81,17 +81,19 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🚂 **Public Edge Acceleration**: Injecting maximum TTL `Cache-Control: public` headers onto Express.js static asset routes to push the payload to the absolute network edge.
-* 🚂 **The Django Vault Car**: Enforcing strict `@never_cache` decorators on authenticated Python/Django views while wrapping public catalogs in targeted `@cache_page` boundaries.
-* 🚂 **The Go Middleware Split**: Refactoring a monolithic Go/Gin middleware that applied blanket caching to branch its logic based on JWT presence, isolating the private track.
-* 🚂 **The Razor Payload Minification**: Stripping internal database keys and nulls from C# ASP.NET DTOs just before JSON serialization to speed up transit.
-* 🚂 **Cargo Splitting**: Refactoring monolithic REST endpoints that mix public catalogs with private user states into distinct, parallel tracks.
-* 🚂 **Tenant-Keyed Isolation**: Upgrading generic Node.js memory caches to require strict cryptographic User/Tenant IDs as mandatory cache keys to eliminate cross-tenant data bleed.
-* 🚂 **Safe-State Hydration**: Architecting Next.js endpoints to serve a hyper-fast globally cached static shell while leaving the client to fetch heavily armored private data asynchronously.
-* 🚂 **Pre-flight Armoring**: Enforcing strict CORS policies and caching `OPTIONS` preflight checks across API gateways to prevent cross-origin data theft while stripping connection friction.
+
+* 🚂 **The Public Edge Acceleration**: Injected maximum TTL `Cache-Control: public` headers onto Express.js static asset routes to push the payload to the absolute network edge.
+* 🚂 **The Django Vault Car**: Enforced strict `@never_cache` decorators on authenticated Python/Django views while wrapping public catalogs in targeted `@cache_page` boundaries.
+* 🚂 **The Go Middleware Split**: Refactored a monolithic Go/Gin middleware that applied blanket caching to branch its logic based on JWT presence, isolating the private track.
+* 🚂 **The Razor Payload Minification**: Stripped internal database keys and nulls from C# ASP.NET DTOs just before JSON serialization to speed up transit.
+* 🚂 **The Cargo Splitting**: Refactored monolithic REST endpoints that mix public catalogs with private user states into distinct, parallel tracks.
+* 🚂 **The Tenant-Keyed Isolation**: Upgraded generic Node.js memory caches to require strict cryptographic User/Tenant IDs as mandatory cache keys to eliminate cross-tenant data bleed.
+* 🚂 **The Safe-State Hydration**: Architected Next.js endpoints to serve a hyper-fast globally cached static shell while leaving the client to fetch heavily armored private data asynchronously.
+* 🚂 **The Pre-flight Armoring**: Enforced strict CORS policies and caching `OPTIONS` preflight checks across API gateways to prevent cross-origin data theft while stripping connection friction.
 
 ### Avoids
-* ❌ `[Skip]` implementing complex Redis or Memcached infrastructure if native in-memory or HTTP header caching suffices.
-* ❌ `[Skip]` modifying frontend state management or UI rendering pipelines; focus strictly on network transit.
-* ❌ `[Skip]` applying any caching strategies to inherently mutative REST operations (e.g., POST, PUT, DELETE).
-* ❌ `[Skip]` stripping critical metadata that external API consumers rely on for pagination or versioning during serialization.
+
+* ❌ **Scenario:** Implementing complex Redis or Memcached infrastructure if native in-memory or HTTP header caching suffices. -> **Rationale:** Over-engineers the network layer; Payload prioritizes native transport headers over external state dependencies.
+* ❌ **Scenario:** Modifying frontend state management or UI rendering pipelines. -> **Rationale:** Violates architectural boundaries; focus strictly on network transit and HTTP boundaries.
+* ❌ **Scenario:** Applying any caching strategies to inherently mutative REST operations (e.g., POST, PUT, DELETE). -> **Rationale:** Causes severe state corruption; mutative data must never be cached.
+* ❌ **Scenario:** Stripping critical metadata that external API consumers rely on for pagination or versioning during serialization. -> **Rationale:** Breaks external contracts; payload reduction must only target internal or null data.

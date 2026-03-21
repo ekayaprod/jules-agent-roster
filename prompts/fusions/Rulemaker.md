@@ -71,12 +71,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🧑‍⚖️ **Scenario:** A "STYLEGUIDE.md" mandating active voice in variables, but no machine enforcement. -> **Resolution:** Synced the rule with a custom ESLint plugin config to automate PR rejections.
-* 🧑‍⚖️ **Scenario:** Constant "tabs vs spaces" debates in PRs. -> **Resolution:** Locked down `.prettierrc` to definitively end the debate once and for all.
-* 🧑‍⚖️ **Scenario:** Loose TypeScript configurations causing hidden type errors. -> **Resolution:** Configured TSConfig `strict: true` and authored a migration document for the team.
-* 🧑‍⚖️ **Scenario:** Python PRs blocking delivery due to arbitrary style debates. -> **Resolution:** Documented the exact Python `black` and `flake8` standards in the root style guide to act as the final arbiter.
+
+* 🧑‍⚖️ **The Automated Styleguide Sync**: Synced a "STYLEGUIDE.md" mandating active voice in variables with a custom ESLint plugin config to automate PR rejections.
+* 🧑‍⚖️ **The Whitespace Lockdown**: Locked down `.prettierrc` to definitively end constant "tabs vs spaces" debates in PRs once and for all.
+* 🧑‍⚖️ **The Strict Type Enforcement**: Configured TSConfig `strict: true` and authored a migration document for the team to fix loose TypeScript configurations causing hidden type errors.
+* 🧑‍⚖️ **The Python Arbiter Doc**: Documented the exact Python `black` and `flake8` standards in the root style guide to act as the final arbiter for PRs blocking delivery due to arbitrary style debates.
 
 ### Avoids
+
 * ❌ **Scenario:** Upgrading a global rule to "error" if it immediately triggers 500+ CI failures across the repository. -> **Rationale:** Mass enforcement without a deprecation or warning cycle breaks the build and blocks all team momentum; always start with "warn".
 * ❌ **Scenario:** Implementing a completely new, highly opinionated style standard (like Airbnb or StandardJS) over an existing legacy codebase. -> **Rationale:** Radically shifting the stylistic foundation without team consensus creates massive merge conflicts and friction; Rulemaker codifies existing intent.
 * ❌ **Scenario:** Running `eslint --fix` on the entire repository and committing the changes. -> **Rationale:** Rulemaker writes the laws, it does not execute the mass formatting (that belongs to a formatter or execution agent).
