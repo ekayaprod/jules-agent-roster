@@ -390,6 +390,57 @@ class RosterApp {
           }
       });
 
+      // 2.5 Open Fusions Modal
+      const fusionsTarget = e.target.closest('[data-action="open-fusions-modal"]');
+      if (fusionsTarget) {
+          e.stopPropagation();
+          e.preventDefault();
+
+          const index = fusionsTarget.dataset.index;
+          let agent = this.agents[index] || this.getCustomAgent(index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          if (!agent) return;
+
+          const modal = document.getElementById("fusionsModal");
+          const contentArea = document.getElementById("fusionsModalContent");
+
+          if (modal && contentArea && this.fusionLab && this.fusionLab.fusionIndex) {
+              const unlockedKeys = this.fusionLab.fusionIndex.unlockedKeys;
+              let listItems = '';
+
+              for (const key of unlockedKeys) {
+                  if (key.includes(agent.name)) {
+                      const childAgent = this.getCustomAgent(key) || this.fusionLab.compiler.customAgentsMap[key];
+                      if (childAgent) {
+                          const childIcon = FormatUtils.extractIcon(childAgent);
+                          const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
+                          listItems += `
+                              <li style="list-style: none;">
+                                  <button class="fusion-quick-btn" data-action="launch-jules" data-index="${key}" aria-label="Launch ${safeChildName}" title="${safeChildName}">
+                                      ${childIcon}
+                                  </button>
+                              </li>
+                          `;
+                      }
+                  }
+              }
+
+              if (listItems) {
+                  contentArea.innerHTML = `<ul class="fusion-quick-list" style="padding: 0; margin: 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">${listItems}</ul>`;
+                  modal.classList.add("visible");
+              }
+          }
+          return;
+      }
+
+      const closeFusionsModalBtn = e.target.closest('#closeFusionsModalBtn');
+      if (closeFusionsModalBtn) {
+          e.stopPropagation();
+          e.preventDefault();
+          const modal = document.getElementById("fusionsModal");
+          if (modal) modal.classList.remove("visible");
+          return;
+      }
+
       // 3. Toggle Pin
       const pinTarget = e.target.closest('[data-action="toggle-pin"]');
       if (pinTarget) {
@@ -498,6 +549,10 @@ class RosterApp {
           }
           if (action === "launch-jules") {
               this.julesManager.launchSession(agent, actionBtn);
+              const modal = document.getElementById("fusionsModal");
+              if (modal && modal.contains(actionBtn)) {
+                  modal.classList.remove("visible");
+              }
               return;
           }
       }

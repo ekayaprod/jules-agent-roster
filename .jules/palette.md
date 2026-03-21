@@ -89,3 +89,6 @@
 
 **Learning:** Splayed absolute-positioned dropdowns relying on brittle z-index `.splay-menu` structures can block touch boundaries and interfere with parent click delegation, especially on complex 3D CSS flip-cards.
 **Action:** Replace arbitrary wrapper `div` collections with semantic inline `<ul role="group">` lists, and remove their event exclusion overhead in the application's global click handler to naturally integrate button states.
+
+**Learning:** Replaced inline semantic lists for unlocked fusions with an isolated, dynamically hydrated modal to reduce DOM crowding on the flip card face.
+**Action:** Re-anchored fusion quick-launch interactions to a singular '.fusions-hint' button on the card, delegating list generation to the 'fusionsModal' invoked via 'open-fusions-modal' data action.

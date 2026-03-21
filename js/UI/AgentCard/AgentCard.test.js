@@ -75,7 +75,7 @@ describe('AgentCard', () => {
             expect(card.innerHTML).not.toContain('splay-menu');
         });
 
-        it('should skip child agents that evaluate to falsy', () => {
+        it('should render the modal trigger even if child agents evaluate to falsy', () => {
             window.rosterApp.fusionLab = {
                 fusionIndex: {
                     unlockedKeys: new Set(['Test Agent+Ghost']) // includes agent.name
@@ -89,14 +89,13 @@ describe('AgentCard', () => {
 
             const card = AgentCard.create(mockAgent, 1, 0);
 
-            // Should render the splay menu outer shell, but no child buttons inside it
-            expect(card.innerHTML).toContain('fusion-quick-container');
-            expect(card.innerHTML).toContain('fusion-quick-list');
-            expect(card.innerHTML).not.toContain('fusion-quick-btn'); // No item rendered
-            expect(card.innerHTML).not.toContain('data-index="Test Agent+Ghost"');
+            // It should render the modal trigger since the key matched, even if the agent is invalid later.
+            expect(card.innerHTML).toContain('fusions-hint');
+            expect(card.innerHTML).toContain('open-fusions-modal');
+            expect(card.innerHTML).toContain('data-index="1"');
         });
 
-        it('should generate splay html for unlocked fusion children from compiler or rosterApp', () => {
+        it('should generate modal trigger for unlocked fusion children from compiler or rosterApp', () => {
             window.rosterApp.fusionLab = {
                 fusionIndex: {
                     unlockedKeys: new Set(['Test Agent+Other', 'Test Agent+Another'])
@@ -124,13 +123,9 @@ describe('AgentCard', () => {
 
             const card = AgentCard.create(mockAgent, 1, 0);
 
-            expect(card.innerHTML).toContain('fusion-quick-container');
-            expect(card.innerHTML).toContain('fusion-quick-list');
-            expect(card.innerHTML).toContain('fusion-quick-btn');
-            expect(card.innerHTML).toContain('data-index="Test Agent+Other"');
-            expect(card.innerHTML).toContain('data-index="Test Agent+Another"');
-            expect(card.innerHTML).toContain('✨');
-            expect(card.innerHTML).toContain('🔥');
+            expect(card.innerHTML).toContain('fusions-hint');
+            expect(card.innerHTML).toContain('open-fusions-modal');
+            expect(card.innerHTML).toContain('data-index="1"');
         });
 
         it('should create a basic agent card DOM element', () => {
