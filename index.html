@@ -339,6 +339,16 @@
       .fusion-quick-btn:hover, .fusion-quick-btn:focus-visible { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.1); transform: translateY(-2px); }
       .fusion-quick-btn:active { transform: translateY(0); }
 
+      .fusion-detailed-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+      .fusion-list-item { display: block; width: 100%; }
+      .fusion-list-btn { width: 100%; display: flex; align-items: center; gap: 1rem; padding: 0.75rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; cursor: pointer; transition: all 0.2s ease; text-align: left; }
+      .fusion-list-btn:hover, .fusion-list-btn:focus-visible { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.05); transform: translateY(-2px); }
+      .fusion-list-btn:active { transform: translateY(0); }
+      .fusion-list-icon { font-size: var(--text-2xl); flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 3rem; height: 3rem; background: rgba(15, 23, 42, 0.5); border-radius: 0.5rem; border: 1px solid var(--border); }
+      .fusion-list-details { display: flex; flex-direction: column; gap: 0.25rem; overflow: hidden; }
+      .fusion-list-name { font-size: var(--text-sm); font-weight: var(--weight-bold); color: var(--text-primary); font-family: -apple-system, sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .fusion-list-desc { font-size: var(--text-xs); color: var(--text-secondary); font-family: -apple-system, sans-serif; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
       .dropdown-header { padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: bold; color: var(--text-secondary); text-transform: uppercase; border-bottom: 1px solid var(--border); }
       .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem 1rem; }
       .empty-state.visible { display: flex; }
@@ -616,7 +626,7 @@
     </dialog>
 
     <div id="fusionsModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="fusionsModalTitle">
-      <div class="modal-content" style="max-width: 24rem;">
+      <div class="modal-content" style="max-width: 32rem;">
         <h3 id="fusionsModalTitle" style="font-size: var(--text-base); display:flex; align-items:center; gap:0.5rem;">
           <span id="fusionsModalEmoji">🧬</span>
           <span id="fusionsModalAgent">Available Fusions</span>
