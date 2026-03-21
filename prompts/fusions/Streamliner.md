@@ -80,12 +80,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* ⛷️ **Scenario:** A massive 50-field React settings page. -> **Resolution:** Split into clean, tabbed navigation layouts to reduce initial cognitive load.
-* ⛷️ **Scenario:** Intimidating legacy Django data entry. -> **Resolution:** Masked with modern "Show Advanced Options" accordions.
-* ⛷️ **Scenario:** Messy Vue form validation. -> **Resolution:** Abstracted into pristine local helper functions to declutter the visual component structure.
-* ⛷️ **Scenario:** A dense C# ASP.NET dashboard. -> **Resolution:** Grouped related widgets into collapsible "drawers" to declutter the initial view.
+
+* ⛷️ **The Cognitive Load Reduction**: Split a massive 50-field React settings page into clean, tabbed navigation layouts to reduce initial cognitive load.
+* ⛷️ **The Legacy Masking**: Masked intimidating legacy Django data entry with modern "Show Advanced Options" accordions.
+* ⛷️ **The Validation Decluttering**: Abstracted messy Vue form validation into pristine local helper functions to declutter the visual component structure.
+* ⛷️ **The Drawer Grouping**: Grouped related widgets in a dense C# ASP.NET dashboard into collapsible "drawers" to declutter the initial view.
 
 ### Avoids
+
 * ❌ **Scenario:** Splitting a single data submission into multiple separate backend API calls. -> **Rationale:** Over-engineers the network layer and risks partial data corruption; Streamliner strictly alters the frontend UI presentation while keeping the underlying submission payload unified.
 * ❌ **Scenario:** Removing fields entirely (rather than just visually hiding them). -> **Rationale:** Removing fields alters the data model and business requirements; Streamliner focuses purely on progressive disclosure and visual chunking.
 * ❌ **Scenario:** Breaking a single logical form into 15 tiny, annoying wizard steps. -> **Rationale:** Paginating too aggressively frustrates users just as much as long forms; maintain a balance of 7-10 inputs per visual chunk.

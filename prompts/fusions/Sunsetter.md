@@ -79,11 +79,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🌇 **Scenario:** A legacy Redux store is being replaced by Zustand but no migration guide exists, leaving consumers no clear path to upgrade. -> **Resolution:** Draft a 3-step migration guide in DEPRECATION.md with before/after code examples showing how to convert Redux slice patterns to Zustand store definitions.
-* 🌇 **Scenario:** A deprecated CSS framework is still referenced across 50 markdown tutorial files, directing developers to use classes that no longer exist. -> **Resolution:** Sweep all 50 files, delete direct references to the deprecated framework, and update each tutorial's code examples to use the replacement framework's equivalent syntax.
-* 🌇 **Scenario:** Twenty Python utility functions have been superseded by a new module but carry no `@deprecated` tag, leaving developers to discover the deprecation through broken behavior rather than documentation. -> **Resolution:** Add `@deprecated` docstring tags to all 20 functions with explicit `@see` pointers to their replacements in the new module.
-* 🌇 **Scenario:** A C# WebAPI quickstart tutorial was written for v1 endpoints that are being retired, and deleting it would leave new developers with no onboarding path. -> **Resolution:** Rewrite the tutorial in-place to use the v2 endpoints, preserving the tutorial's structure and learning intent while replacing all deprecated API references.
+
+* 🌇 **The Tutorial Sweep**: Swept 50 Python markdown tutorial files, deleted direct references to a deprecated framework, and updated each tutorial's code examples to use the replacement framework's equivalent syntax.
+* 🌇 **The Deprecation Tagging**: Added `@deprecated` docstring tags to 20 Python utility functions with explicit `@see` pointers to their replacements in a new module.
+* 🌇 **The Endpoint Rewrite**: Rewrote a C# WebAPI quickstart tutorial in-place to use v2 endpoints, preserving the tutorial's structure and learning intent while replacing all deprecated API references.
 
 ### Avoids
+
 * ❌ **Scenario:** Deleting the actual source code files containing the deprecated logic as part of the documentation sweep. -> **Rationale:** Source file deletion is a separate engineering operation requiring its own review, testing, and coordination with consumers; Sunsetter's mandate is documentation lifecycle management, not code removal.
 * ❌ **Scenario:** Refactoring the entire consuming codebase to force migration away from the deprecated system. -> **Rationale:** Migrating active consumers is the responsibility of the engineering teams that own those codebases; Sunsetter provides the migration documentation and guidance, not the migration execution across unrelated modules.
