@@ -92,3 +92,7 @@
 
 **Learning:** Replaced inline semantic lists for unlocked fusions with an isolated, dynamically hydrated modal to reduce DOM crowding on the flip card face.
 **Action:** Re-anchored fusion quick-launch interactions to a singular '.fusions-hint' button on the card, delegating list generation to the 'fusionsModal' invoked via 'open-fusions-modal' data action.
+
+
+**Learning:** Fusions Menu was using raw inline styling and lacked semantic DOM structures for detailed descriptions, hindering interaction clarity.
+**Action:** Replaced inline objects with native CSS classes, added ARIA lists, handled empty states with `role="status"`, and injected name/description properties to the UI.
