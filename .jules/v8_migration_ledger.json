@@ -4,392 +4,784 @@
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Adversary.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Agent.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 8,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Aligner.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 8,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Amputator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Archivist.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Assessor.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Auditor.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Automata.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Autopilot.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Bastion.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Blackbox.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Brand Manager.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Calligrapher.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Canvas.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Captionist.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Catalogue.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Catalyst.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Chameleon.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Checkpoint.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Choreographer.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Chronicler.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Circuit Breaker.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/City Clerk.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Construct.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Coroner.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Cryptographer.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Customs.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Cypher.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Darkroom.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Dead-Ender.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Decoder.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Defuser.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Diplomat.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Discharge.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Dispatcher.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Electrician.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Expediter.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Fabricator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Few-Shot Forger.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Firewall.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/First Responder.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Foreman.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 8,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Futurist.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 8,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Gallerist.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 8,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Gatekeeper.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Glossary.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Grammarian.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Groundskeeper.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Guardian.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Hazmat.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Helmsman.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Historian.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Hitman.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 8,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Hoister.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Hologram.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Honeypot.md": {
     "pass1_boundaries": true,
@@ -410,42 +802,84 @@
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Illusionist.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 8,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Information Architect.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Inoculator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Interpolator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Interrogator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "migration_complete"
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 4,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Janitor.md": {
     "pass1_boundaries": true,
