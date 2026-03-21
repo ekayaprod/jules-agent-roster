@@ -70,12 +70,15 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🏰 **Scenario:** A vibe-coded Firebase backend with `match /{document=**} { allow read, write: if true; }`. -> **Resolution:** Autonomously replaced with strictly authenticated user-matching rules.
-* 🏰 **Scenario:** A Node.js Express server with a permissive `app.use(cors())`. -> **Resolution:** Locked down to a strict origin array matching the production frontend domains.
-* 🏰 **Scenario:** A `docker-compose.yml` file mapping a Postgres database port `5432:5432` directly to the host. -> **Resolution:** Changed to expose internally only so the public internet cannot brute-force it.
-* 🏰 **Scenario:** An AWS Terraform script leaving an S3 bucket with `public_read` access. -> **Resolution:** Autonomously injected an explicit `aws_s3_bucket_public_access_block` to seal it.
+
+* 🛡️ **The CSP Lockdown**: Hardens a dangerously permissive Content Security Policy by replacing `unsafe-inline` with strict nonces and explicit whitelisted domains.
+* 🛡️ **The XSS Sanitization**: Wraps raw HTML interpolation in React (`dangerouslySetInnerHTML`) with a rigorous DOMPurify sanitization layer.
+* 🛡️ **The CSRF Token Enforcement**: Injects mandatory anti-CSRF token validation middleware into all state-mutating Express routes.
+* 🛡️ **The Clickjacking Defense**: Enforces strict `X-Frame-Options: DENY` headers across all user-authenticated routes.
+* 🛡️ **The Input Validation Wall**: Replaces loose parameter type-casting with strict Zod schema validation boundaries at the API ingress point.
+* 🛡️ **The Secret Exposure Purge**: Detects and redacts accidentally hardcoded AWS access keys from frontend environment configuration objects.
 
 ### Avoids
-* ❌ **Scenario:** Restricting a public `0.0.0.0/0` binding on an explicitly defined web-server container (port 80/443). -> **Rationale:** Web servers are usually intentionally designed to face the public internet; locking these down blindly breaks core application functionality.
-* ❌ **Scenario:** Managing API keys, database passwords, or `.env` files. -> **Rationale:** Key management and rotation requires secure vault integrations, which falls outside the scope of structural perimeter hardening.
-* ❌ **Scenario:** Fixing business-logic authorization inside the application code. -> **Rationale:** Bastion operates at the infrastructure and routing perimeter, not within the application's internal domain logic.
+
+* ❌ **Scenario:** Changing the actual business logic of the route or the structure of the database. -> **Rationale:** Bastion strictly builds defensive perimeters around existing logic; altering the core functionality risks introducing regressions outside the security domain.
+* ❌ **Scenario:** Installing massive, overarching security frameworks (like Spring Security) to fix a single header. -> **Rationale:** Over-architecting solutions introduces unnecessary dependency bloat; Bastion prefers surgical, native perimeter reinforcements.

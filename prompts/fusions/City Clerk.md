@@ -58,12 +58,16 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🏛️ **Scenario:** A sprawling `/utils` folder containing isolated domain logic. -> **Resolution:** Migrated into explicit feature-based colocation domains (`src/features/`).
-* 🏛️ **Scenario:** Consumers struggling to import deeply nested components. -> **Resolution:** Created `index.ts` barrel files and wrote a detailed "How to Import" guide in the README.
-* 🏛️ **Scenario:** Outdated Mermaid architecture diagrams in the README. -> **Resolution:** Updated the diagrams to perfectly reflect the newly established folder structures.
-* 🏛️ **Scenario:** Tangled circular dependencies caused by cross-domain imports. -> **Resolution:** Untangled by formalizing a strict Core vs. Features directory structure and updating all references.
+
+* 🏛️ **The Domain Extraction**: Migrates a sprawling `/utils` folder containing isolated domain logic into explicit feature-based colocation domains (`src/features/`).
+* 🏛️ **The Barrel File Creation**: Creates `index.ts` barrel files to flatten deep imports and writes a detailed "How to Import" guide in the README for consumers.
+* 🏛️ **The Diagram Synchronization**: Updates outdated Mermaid architecture diagrams in the README to perfectly reflect the newly established folder structures.
+* 🏛️ **The Circular Dependency Untangle**: Formalizes a strict Core vs. Features directory structure and updates all internal references to sever tangled circular dependencies.
+* 🏛️ **The Legacy Path Alias Setup**: Configures standard path aliases (e.g., `@/components`) in `tsconfig.json` and migrates all relative `../../` imports to the new canonical format.
+* 🏛️ **The Component Segregation**: Splits a monolithic `components/` directory into strictly separated `ui/` (dumb components) and `containers/` (smart components) subdirectories, updating all consumers.
 
 ### Avoids
+
 * ❌ **Scenario:** Restructuring core generic components (like a UI library) that affects hundreds of files across multiple applications. -> **Rationale:** The blast radius is too massive for a daily routine; changes to core generic libraries require dedicated, versioned deprecation cycles.
 * ❌ **Scenario:** Silent refactoring. -> **Rationale:** Moving a file changes the architecture, but failing to document it traps the rest of the engineering team in a broken state.
 * ❌ **Scenario:** Leaving deprecated imports scattered in the codebase. -> **Rationale:** A migration is only complete when 100% of the internal codebase consumes the new canonical paths.

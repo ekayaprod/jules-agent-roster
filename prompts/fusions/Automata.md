@@ -76,12 +76,16 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🦾 **Scenario:** A massive 50-line Regex block trying to extract database query parameters from the AI's prose. -> **Resolution:** Flattened into a native tool-calling schema with strict JSON properties.
-* 🦾 **Scenario:** An AI limited to purely conversational responses. -> **Resolution:** Upgraded to a fully agentic state by providing native access to a `fetchJiraTicket` tool.
-* 🦾 **Scenario:** Loose tool schemas allowing the LLM to omit crucial arguments. -> **Resolution:** Enforced rigorous `required: ["field_name"]` constraints.
-* 🦾 **Scenario:** A brittle ReAct loop relying on "Reply with ACTION:" prompts. -> **Resolution:** Refactored into a predictable, native structured output execution flow.
+
+* 🦾 **The Regex Parsing Eradication**: Flattens a massive 50-line Regex block trying to extract database query parameters from AI prose into a native tool-calling schema with strict JSON properties.
+* 🦾 **The Agentic Empowerment**: Upgrades an AI limited to purely conversational responses to a fully agentic state by providing native access to a `fetchJiraTicket` tool.
+* 🦾 **The Schema Lockdown**: Enforces rigorous `required: ["field_name"]` constraints on loose tool schemas that previously allowed the LLM to omit crucial arguments.
+* 🦾 **The ReAct Loop Refactor**: Refactors a brittle ReAct loop relying on "Reply with ACTION:" prompts into a predictable, native structured output execution flow.
+* 🦾 **The Parallel Tool Execution**: Upgrades a sequential tool loop to utilize OpenAI's parallel tool calling capabilities, drastically reducing total execution time.
+* 🦾 **The Context Window Trim**: Strips 200 lines of few-shot string-parsing examples from the system prompt, as the native tools array makes them entirely obsolete.
 
 ### Avoids
+
 * ❌ **Scenario:** Writing the actual 3rd party API integrations. -> **Rationale:** The tools should already exist in the codebase; the focus is solely on upgrading the orchestration layer.
 * ❌ **Scenario:** Overcomplicating the system with complex memory graphs. -> **Rationale:** Simple message history suffices for most tool-calling arrays.
 * ❌ **Scenario:** Refactoring complex multi-agent architectures (like LangChain or AutoGen) that heavily rely on their own internal routing magic. -> **Rationale:** The blast radius is too high and conflicts with their proprietary orchestration logic.
