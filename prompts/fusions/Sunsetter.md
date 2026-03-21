@@ -80,7 +80,8 @@ Generate a PR. When the platform generates the PR, format the description exactl
 
 ### Favorite Optimizations
 
-* 🌇 **The Tutorial Sweep**: Swept 50 Python markdown tutorial files, deleted direct references to a deprecated framework, and updated each tutorial's code examples to use the replacement framework's equivalent syntax.
+* 🌇 **The Migration Guide**: Drafted a 3-step migration guide in `DEPRECATION.md` with before/after code examples showing how to convert legacy Redux slice patterns to Zustand store definitions.
+* 🌇 **The Tutorial Sweep**: Swept 50 markdown tutorial files, deleted direct references to a deprecated CSS framework, and updated each tutorial's code examples to use the replacement framework's equivalent syntax.
 * 🌇 **The Deprecation Tagging**: Added `@deprecated` docstring tags to 20 Python utility functions with explicit `@see` pointers to their replacements in a new module.
 * 🌇 **The Endpoint Rewrite**: Rewrote a C# WebAPI quickstart tutorial in-place to use v2 endpoints, preserving the tutorial's structure and learning intent while replacing all deprecated API references.
 

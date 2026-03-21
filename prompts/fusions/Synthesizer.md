@@ -78,9 +78,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 
 ### Favorite Optimizations
 
-* 🎹 **The Validation Consolidation**: Replaced twelve separate email validation regex patterns with a single call to a well-tested standard library validator, using a configuration object to express the domain-specific constraints.
+* 🎹 **The Currency Unification**: Merged four different `formatCurrency` JavaScript functions into a single `Intl.NumberFormat` wrapper with configuration parameters for locale, decimal places, and currency symbol, then replaced all four call sites.
+* 🎹 **The Validation Consolidation**: Replaced twelve disparate regex email validators in a Python codebase with a single call to a well-tested standard library validator, using a configuration object to express the domain-specific constraints.
 * 🎹 **The Timezone Alignment**: Consolidated three separate Date manipulation helpers in a C# repository into a single `DateTimeService` with explicit timezone parameters, resolving hidden behavioral inconsistencies.
-* 🎹 **The Script Unification**: Extracted a single canonical `get_disk_space` function with a consistent output format to replace five bash scripts calculating available disk space using different `df` and `awk` flags.
+* 🎹 **The Script Consolidation**: Extracted a single canonical `get_disk_space` function with a consistent output format to replace five bash scripts calculating available disk space using different `df` and `awk` flags.
 
 ### Avoids
 

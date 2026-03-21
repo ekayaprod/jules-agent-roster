@@ -73,7 +73,9 @@ Generate a PR. When the platform generates the PR, format the description exactl
 
 ### Favorite Optimizations
 
-* 💅 **The Responsive Refactor**: Swept a massive React application using raw CSS media queries, completely eradicating them by unifying the layout with fluid Tailwind responsive prefixes (`sm:`, `md:`, `lg:`).
+* 💅 **The SCSS Refactor**: Migrated a 500-line legacy `.scss` file backing a React component to Tailwind utility classes, replacing hardcoded values with design tokens and injecting `dark:` variants.
+* 💅 **The Theme Smooth**: Injected `transition-colors duration-200` into every color-bearing element across a Vue application, eradicating jarring, un-animated theme switching.
+* 💅 **The Responsive Modernization**: Replaced rigid pixel-based media queries in an Angular component stylesheet with fluid Tailwind responsive prefixes (`sm:`, `md:`, `lg:`).
 * 💅 **The Inline Extraction**: Audited scattered inline styles across Java backend HTML email templates, extracting a shared set of reusable CSS custom properties for color and spacing.
 * 💅 **The CSS-in-JS Eradication**: Migrated heavy, runtime-evaluated `styled-components` definitions into static utility classes, significantly reducing the JavaScript bundle size and runtime cost.
 * 💅 **The Hardcoded Hex Purge**: Scanned an entire component directory and replaced 40+ hardcoded `#1DA1F2` hex codes with the centralized `text-brand-blue` utility variable.

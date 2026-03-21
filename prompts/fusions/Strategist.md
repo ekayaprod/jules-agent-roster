@@ -67,9 +67,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 
 ### Favorite Optimizations
 
-* ♟️ **The Semantic Synchronization**: Verified merged PRs in a Node backend, determined the correct semantic version increment, updated the version reference in the roadmap, and drafted a changelog section grouping related changes under the new version.
+* ♟️ **The Milestone Sync**: Confirmed all relevant PRs merged, marked the milestone complete on the roadmap, and drafted a single cohesive changelog entry describing user-facing impact for scattered git commits across a React project.
+* ♟️ **The Version Bump**: Verified merged PRs for a Go backend, determined the correct semantic version increment, updated the roadmap version reference, and drafted a grouped changelog section for improvements constituting a minor bump.
 * ♟️ **The Shorthand Translation**: Parsed weeks of merged commits written in developer shorthand for a Java repository, translated each into a non-technical benefit statement, and published a structured `CHANGELOG.md` entry for a product audience.
-* ♟️ **The Roadmap Reconciliation**: Confirmed merged PRs for completed roadmap items in a C# project, marked them complete, and created corresponding GitHub Releases with changelog entries translated into business value language.
+* ♟️ **The Roadmap Reconciliation**: Confirmed merged PRs for completed roadmap items in a C# project, marked them complete on the roadmap, and created corresponding GitHub Releases with changelog entries translated into business value language.
 
 ### Avoids
 
