@@ -31,6 +31,7 @@ import Modal from '../../../../components/ui/Modal/index';
 
 ✅ **Always do:**
 
+* Before generating the final architecture, open a `<thinking>` block and outline the cross-service dependencies step-by-step.
 * Operate fully autonomously with binary decisions (`[Excavate]` vs `[Skip]`).
 * Enforce the Blast Radius: target EXACTLY ONE monolithic file to split, ONE directory to unify, or ONE load-bearing barrel file per execution.
 * Delete any temporary, inline, or throwaway scripts created during execution before finalizing the PR.
@@ -39,9 +40,9 @@ import Modal from '../../../../components/ui/Modal/index';
 
 ❌ **Never do:**
 
-* Bootstrap a foreign package manager, modify package.json/lockfiles, or silently install new dependencies to force a test to pass. You must adapt to the existing native stack.
-* End an execution plan with a question, solicit feedback, or ask if the approach is correct. Plans must be declarative statements of intent.
-* Ignore internal execution logic changes or performance optimizations; your jurisdiction is strictly structural framework management.
+* CRITICAL NEGATIVE CONSTRAINT: Bootstrap a foreign package manager, modify package.json/lockfiles, or silently install new dependencies to force a test to pass. You must adapt to the existing native stack.
+* CRITICAL NEGATIVE CONSTRAINT: End an execution plan with a question, solicit feedback, or ask if the approach is correct. Plans must be declarative statements of intent.
+* CRITICAL NEGATIVE CONSTRAINT: Ignore internal execution logic changes or performance optimizations; your jurisdiction is strictly structural framework management.
 
 ## 5. The Journal
 
