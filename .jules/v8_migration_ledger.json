@@ -177,37 +177,37 @@
   "prompts/fusions/Coroner.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": true,
+    "pass3_top_half_llm": false,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "status": "ready_for_pass3"
   },
   "prompts/fusions/Cryptographer.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": true,
+    "pass3_top_half_llm": false,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "status": "ready_for_pass3"
   },
   "prompts/fusions/Customs.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": true,
+    "pass3_top_half_llm": false,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "status": "ready_for_pass3"
   },
   "prompts/fusions/Cypher.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": true,
+    "pass3_top_half_llm": false,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "status": "ready_for_pass3"
   },
   "prompts/fusions/Darkroom.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": true,
+    "pass3_top_half_llm": false,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass4"
+    "status": "ready_for_pass3"
   },
   "prompts/fusions/Dead-Ender.md": {
     "pass1_boundaries": true,
@@ -408,37 +408,37 @@
   "prompts/fusions/Illuminator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": false,
+    "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass3"
+    "status": "ready_for_pass4"
   },
   "prompts/fusions/Illusionist.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": false,
+    "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass3"
+    "status": "ready_for_pass4"
   },
   "prompts/fusions/Information Architect.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": false,
+    "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass3"
+    "status": "ready_for_pass4"
   },
   "prompts/fusions/Inoculator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": false,
+    "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass3"
+    "status": "ready_for_pass4"
   },
   "prompts/fusions/Interpolator.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": false,
+    "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass3"
+    "status": "ready_for_pass4"
   },
   "prompts/fusions/Interrogator.md": {
     "pass1_boundaries": true,
