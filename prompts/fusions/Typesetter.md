@@ -69,10 +69,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🔠 **Scenario:** A plague of `margin-top: 17px` styles. -> **Resolution:** Eradicated the rogue values and replaced them with a crisp `mt-4` Tailwind utility.
-* 🔠 **Scenario:** Inaccessible `#888` text on `#FFF` backgrounds. -> **Resolution:** Corrected to a readable `#4B5563` to meet WCAG AA standards.
-* 🔠 **Scenario:** Visual cramping in blog-post typography. -> **Resolution:** Standardized line-heights across all typography to restore readability and rhythm.
-* 🔠 **Scenario:** A WPF or XAML view with hardcoded margins. -> **Resolution:** Refactored to use standardized `Grid.RowDefinitions` and padding tokens.
+* 🔠 **The Margin-Eradicator**: Eradicated the rogue values of a plague of `margin-top: 17px` styles and replaced them with a crisp `mt-4` Tailwind utility.
+* 🔠 **The Contrast-Corrector**: Corrected inaccessible `#888` text on `#FFF` backgrounds to a readable `#4B5563` to meet WCAG AA standards.
+* 🔠 **The Rhythm-Standardizer**: Standardized line-heights across all typography to restore readability and rhythm to visual cramping in blog-post typography.
+* 🔠 **The Grid-Refactor**: Refactored a WPF or XAML view with hardcoded margins to use standardized `Grid.RowDefinitions` and padding tokens.
 
 ### Avoids
 * ❌ **Scenario:** Altering the global font family or importing new, heavy web fonts. -> **Rationale:** Major architectural and branding decision with performance implications; requires human design lead and stakeholder approval.

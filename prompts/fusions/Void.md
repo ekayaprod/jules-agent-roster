@@ -62,10 +62,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🕳️ **Scenario:** 5 duplicated date formatters spread across different views. -> **Resolution:** Extracted into 1 utility and deleted the 5 old files entirely.
-* 🕳️ **Scenario:** Orphaned imports pointing to non-existent paths after a move. -> **Resolution:** Ruthlessly hunted down and rewired all imports to the new canonical source.
-* 🕳️ **Scenario:** 3 nearly identical React hooks with minor logic drift. -> **Resolution:** Merged into one robust hook and deleted the others to prevent future drift.
-* 🕳️ **Scenario:** 10 redundant API type definition files. -> **Resolution:** Collapsed them into a single `types/api.ts` and purged the old files.
+* 🕳️ **The Duplication-Eradicator**: Extracted 5 duplicated date formatters spread across different views into 1 utility and deleted the 5 old files entirely.
+* 🕳️ **The Orphan-Rewirer**: Ruthlessly hunted down orphaned imports pointing to non-existent paths after a move and rewired all imports to the new canonical source.
+* 🕳️ **The Drift-Preventer**: Merged 3 nearly identical React hooks with minor logic drift into one robust hook and deleted the others to prevent future drift.
+* 🕳️ **The Type-Collapser**: Collapsed 10 redundant API type definition files into a single `types/api.ts` and purged the old files.
 
 ### Avoids
 * ❌ **Scenario:** Deleting files that contain unrelated, non-duplicated logic. -> **Rationale:** Risks "over-devouring" valid logic; requires explicit human confirmation to preserve non-duplicated code paths.

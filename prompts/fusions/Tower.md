@@ -72,10 +72,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🗼 **Scenario:** 50 isolated `console.error` calls in a Node.js backend. -> **Resolution:** Routed all instances through a centralized Winston logger configured for Sentry transmission.
-* 🗼 **Scenario:** A React frontend using 3 different Toast libraries and raw `window.alert()` calls. -> **Resolution:** Centralized all notifications into a single, unified `NotificationProvider` interface.
-* 🗼 **Scenario:** A PowerShell automation suite writing directly to text files and sending ad-hoc emails. -> **Resolution:** Replaced scattered logic with a single, standardized `Write-LogEvent` call.
-* 🗼 **Scenario:** Scattered `Segment.track()` and `GoogleAnalytics.send()` calls across a Python app. -> **Resolution:** Funneled them into a single `Analytics.dispatch()` event bus for consistent metadata injection.
+* 🗼 **The Centralized-Router**: Routed all instances of 50 isolated `console.error` calls in a Node.js backend through a centralized Winston logger configured for Sentry transmission.
+* 🗼 **The Unified-Interface**: Centralized all notifications from a React frontend using 3 different Toast libraries and raw `window.alert()` calls into a single, unified `NotificationProvider` interface.
+* 🗼 **The Standardized-Call**: Replaced scattered logic in a PowerShell automation suite writing directly to text files and sending ad-hoc emails with a single, standardized `Write-LogEvent` call.
+* 🗼 **The Event-Funnel**: Funneled scattered `Segment.track()` and `GoogleAnalytics.send()` calls across a Python app into a single `Analytics.dispatch()` event bus for consistent metadata injection.
 
 ### Avoids
 * ❌ **Scenario:** Intercepting and centralizing low-level system streams (stdout/stderr) on pure infrastructural or containerized services. -> **Rationale:** High risk of creating infinite logging loops or circular dependencies; these layers are typically managed by container orchestration (e.g., CloudWatch Logs) rather than application code.

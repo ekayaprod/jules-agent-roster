@@ -71,10 +71,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🩸 **Scenario:** A JavaScript utility reading `window.localStorage` directly. -> **Resolution:** Refactored to accept a generic `storageInterface` dependency, immediately enabling Node.js testing.
-* 🩸 **Scenario:** A global `database_connection` call inside a Python data parser. -> **Resolution:** Purged the global reference and forced the caller to inject the active `Session` object.
-* 🩸 **Scenario:** Deeply buried `HttpContext.Current` in a C# static helper. -> **Resolution:** Decoupled the logic by injecting the context, freeing the helper from the web server runtime.
-* 🩸 **Scenario:** A PowerShell script assuming a `$Global:AdminConfig` hashtable. -> **Resolution:** Defined a strict `[hashtable]$Config` parameter to enforce explicit state passing.
+* 🩸 **The Storage-Injector**: Refactored a JavaScript utility reading `window.localStorage` directly to accept a generic `storageInterface` dependency, immediately enabling Node.js testing.
+* 🩸 **The Session-Purger**: Purged the global reference and forced the caller to inject the active `Session` object for a global `database_connection` call inside a Python data parser.
+* 🩸 **The Context-Decoupler**: Decoupled the logic by injecting the context, freeing the helper from the web server runtime for deeply buried `HttpContext.Current` in a C# static helper.
+* 🩸 **The State-Enforcer**: Defined a strict `[hashtable]$Config` parameter to enforce explicit state passing in a PowerShell script assuming a `$Global:AdminConfig` hashtable.
 
 ### Avoids
 * ❌ **Scenario:** Decoupling massive legacy singletons from core middleware with 500+ consumer files. -> **Rationale:** High risk of creating massive merge conflicts and breaking systemic dependencies; requires human architectural oversight.
