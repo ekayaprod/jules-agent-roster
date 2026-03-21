@@ -86,3 +86,6 @@
 **Title**: Refined CRT Mythic Glitch
 **Learning**: Harsh flashing matrix glitches with invert filters cause visual fatigue and jarring transitions.
 **Action**: Replaced vertical jarring shifts and intense color inversions with a steady green pulse and horizontal CRT tearing effects (translateX and clip-path insets) for a smoother, premium feel.
+
+**Learning:** Splayed absolute-positioned dropdowns relying on brittle z-index `.splay-menu` structures can block touch boundaries and interfere with parent click delegation, especially on complex 3D CSS flip-cards.
+**Action:** Replace arbitrary wrapper `div` collections with semantic inline `<ul role="group">` lists, and remove their event exclusion overhead in the application's global click handler to naturally integrate button states.

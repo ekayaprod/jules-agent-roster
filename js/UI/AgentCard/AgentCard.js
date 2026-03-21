@@ -62,8 +62,8 @@ class AgentCard {
         const pinClass = isPinned ? 'pinned' : '';
         const pinHtml = isNaN(index) ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" >📌</button>` : '';
 
-        // Splay Out Child Fusions Logic
-        let splayHtml = '';
+        // Splay Out Child Fusions Logic (Refactored to Inline List)
+        let fusionQuickListHtml = '';
         if (!isNaN(index) && window.rosterApp && window.rosterApp.fusionLab && window.rosterApp.fusionLab.fusionIndex) {
             const unlockedKeys = window.rosterApp.fusionLab.fusionIndex.unlockedKeys;
 
@@ -74,20 +74,28 @@ class AgentCard {
             }
 
             if (childKeys.length > 0) {
-                let splayItems = '';
-                childKeys.forEach((childKey, i) => {
+                let listItems = '';
+                childKeys.forEach((childKey) => {
                     const childAgent = window.rosterApp.getCustomAgent(childKey) || window.rosterApp.fusionLab.compiler.customAgentsMap[childKey];
                     if (childAgent) {
                         const childIcon = FormatUtils.extractIcon(childAgent);
                         const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
-                        splayItems += `<button class="splayed-card" style="--splay-idx: ${i};" data-action="launch-jules" data-index="${childKey}" role="menuitem" aria-label="Launch ${safeChildName}" title="${safeChildName}">${childIcon}</button>`;
+                        listItems += `
+                            <li>
+                                <button class="fusion-quick-btn" data-action="launch-jules" data-index="${childKey}" aria-label="Launch ${safeChildName}" title="${safeChildName}">
+                                    ${childIcon}
+                                </button>
+                            </li>
+                        `;
                     }
                 });
 
-                splayHtml = `
-                    <button class="splay-btn" data-action="toggle-splay" data-index="${index}" aria-label="Show Child Fusions" aria-haspopup="menu" aria-expanded="false" aria-controls="splay-menu-${index}"></button>
-                    <div class="splay-menu dropdown-menu" id="splay-menu-${index}" role="menu">
-                        ${splayItems}
+                fusionQuickListHtml = `
+                    <div class="fusion-quick-container mt-3">
+                        <span class="fusion-quick-label" id="fusion-quick-label-${index}">Available Fusions</span>
+                        <ul class="fusion-quick-list" role="group" aria-labelledby="fusion-quick-label-${index}">
+                            ${listItems}
+                        </ul>
                     </div>
                 `;
             }
@@ -107,7 +115,6 @@ class AgentCard {
             <div class="flip-card-inner">
                 <div class="flip-card-front" data-action="flip-card" data-index="${index}">
                     ${pinHtml}
-                    ${splayHtml}
                     <div class="front-content-wrapper">
                         <div class="card-top">
                             <div class="card-top-left">
@@ -122,6 +129,7 @@ class AgentCard {
                             </div>
                         </div>
                         <div class="description mt-3">${desc}</div>
+                        ${fusionQuickListHtml}
                     </div>
                     <div class="flip-hint" aria-label="Tap to view protocol" >↺</div>
                 </div>
