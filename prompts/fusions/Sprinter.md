@@ -64,12 +64,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 👟 **Scenario:** Unresponsive hero images in a Next.js application. -> **Resolution:** Implemented responsive `srcSet` logic and automatic WebP conversion, reducing initial load weight by 1.2MB.
-* 👟 **Scenario:** A Django template serving massive legacy PNGs. -> **Resolution:** Swapped all instances to optimized WebP format with JPG fallbacks, dropping the total page weight by 60%.
-* 👟 **Scenario:** A monolithic ASP.NET application with heavy CSS background images. -> **Resolution:** Preloaded critical background assets and converted them to modern formats to eliminate the "pop-in" effect.
-* 👟 **Scenario:** A Vue codebase with 200+ unminified SVGs. -> **Resolution:** Stripped dead XML metadata across all assets, shaving 400kb of total uncompressed text from the repository.
+
+* 👟 **The Hero Transformation**: Implemented responsive `srcSet` logic and automatic WebP conversion for unresponsive hero images in a Next.js application, reducing initial load weight by 1.2MB.
+* 👟 **The Payload Decimation**: Swapped massive legacy PNGs in a Django template to optimized WebP format with JPG fallbacks, dropping the total page weight by 60%.
+* 👟 **The Pop-in Eliminator**: Preloaded critical background assets and converted them to modern formats in a monolithic ASP.NET application to eliminate the "pop-in" effect.
+* 👟 **The Vector Minification**: Stripped dead XML metadata across 200+ unminified SVGs in a Vue codebase, shaving 400kb of total uncompressed text from the repository.
 
 ### Avoids
+
 * ❌ **Scenario:** Downscaling image dimensions so aggressively that it becomes blurry. -> **Rationale:** Over-optimization that destroys the visual brand; requires human design oversight to determine the "floor" of acceptable quality.
 * ❌ **Scenario:** Deleting assets before updating their references in the code. -> **Rationale:** Risks breaking the production build; references must be verified and updated before the physical file is removed.
 * ❌ **Scenario:** Stripping accessibility metadata (alt tags). -> **Rationale:** Violates core accessibility standards; performance must not come at the cost of screen-reader support.

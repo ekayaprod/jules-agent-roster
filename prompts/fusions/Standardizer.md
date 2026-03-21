@@ -80,11 +80,13 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 📝 **Scenario:** A React application has 15 different button label variations for the same confirmation action (Submit, Done, Save, Finish, Confirm) spread across unrelated components. -> **Resolution:** Audit all variations, select the canonical label, define it as UI_STRINGS.buttons.submit in the central constants file, and replace all 15 instances with the shared reference.
-* 📝 **Scenario:** A Django application has an HTML legal disclaimer copy-pasted with minor variations across 8 different email templates, guaranteeing they will drift. -> **Resolution:** Extract the canonical disclaimer into a single `_legal_footer.html` partial and replace all 8 inline instances with a template include.
-* 📝 **Scenario:** A PowerShell automation suite has 10 different scripts that each hardcode their own ASCII-art help menus with inconsistent formatting and content. -> **Resolution:** Extract the canonical help structure into a shared `Get-StandardHelp` function and replace every script's inline help block with a call to the shared function.
-* 📝 **Scenario:** A Node.js API has error messages hardcoded at each throw site with inconsistent phrasing, making it impossible to audit or update them globally. -> **Resolution:** Extract all user-facing error strings into a single `ERROR_MESSAGES.EN.json` dictionary and replace every inline string with a reference to the appropriate key.
+
+* 🔣 **The Microcopy Unification**: Audited 15 different button label variations for a React confirmation action, defined the canonical label as `UI_STRINGS.buttons.submit`, and replaced all instances.
+* 🔣 **The Legal Extraction**: Extracted a copy-pasted HTML legal disclaimer from 8 Django email templates into a single `_legal_footer.html` partial and replaced inline instances with a template include.
+* 🔣 **The CLI Standardization**: Extracted canonical ASCII-art help structures from 10 PowerShell scripts into a shared `Get-StandardHelp` function and replaced inline blocks.
+* 🔣 **The Error Centralization**: Extracted all user-facing error strings from a Node.js API into a single `ERROR_MESSAGES.EN.json` dictionary and replaced inline strings with key references.
 
 ### Avoids
+
 * ❌ **Scenario:** Altering CSS styles, typography variables, or font weight declarations while extracting the text content they style. -> **Rationale:** Presentation styling is a separate concern from copy centralization; Standardizer extracts the text content only and leaves all styling declarations untouched.
-* ❌ **Scenario:** Standardizing backend database schema names, internal class identifiers, or machine-to-machine variable nomenclature. -> **Rationale:** Internal technical identifiers are not user-facing copy and are governed by separate naming conventions; Standardizer operates strictly on human-readable strings that are rendered to users or operators.
+* ❌ **Scenario:** Standardizing backend database schema names, internal class identifiers, or machine-to-machine variable nomenclature. -> **Rationale:** Internal technical identifiers are not user-facing copy and are governed by separate naming conventions; Standardizer operates strictly on human-readable strings.

@@ -77,11 +77,13 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🎹 **Scenario:** Four different formatCurrency JavaScript functions exist across the codebase, each handling decimal padding and locale formatting slightly differently depending on when they were written. -> **Resolution:** Merge all four into a single Intl.NumberFormat wrapper with configuration parameters for locale, decimal places, and currency symbol, then replace all four call sites.
-* 🎹 **Scenario:** Twelve disparate, brittle regex email validators exist in a Python codebase, each with different edge case coverage for subdomains, plus-addressing, and TLD length. -> **Resolution:** Replace all twelve with a single call to a well-tested standard library validator, using a configuration object to express the domain-specific constraints each original function was enforcing.
-* 🎹 **Scenario:** Three separate Date manipulation helpers in a C# repository each format, parse, and compare dates with subtly different timezone handling assumptions. -> **Resolution:** Consolidate the three into a single DateTimeService with explicit timezone parameters, resolving the hidden behavioral inconsistency while maintaining all original use cases.
-* 🎹 **Scenario:** Five bash scripts all calculate available disk space using slightly different combinations of df and awk flags, producing inconsistent output formats. -> **Resolution:** Extract a single canonical get_disk_space function with a consistent output format and replace all five inline calculations with calls to the shared function.
+
+* 🎹 **The Currency Unification**: Merged four different `formatCurrency` JavaScript functions into a single `Intl.NumberFormat` wrapper with configuration parameters for locale, decimal places, and currency symbol, then replaced all four call sites.
+* 🎹 **The Validation Consolidation**: Replaced twelve disparate regex email validators in a Python codebase with a single call to a well-tested standard library validator, using a configuration object to express the domain-specific constraints.
+* 🎹 **The Timezone Alignment**: Consolidated three separate Date manipulation helpers in a C# repository into a single `DateTimeService` with explicit timezone parameters, resolving hidden behavioral inconsistencies.
+* 🎹 **The Script Consolidation**: Extracted a single canonical `get_disk_space` function with a consistent output format to replace five bash scripts calculating available disk space using different `df` and `awk` flags.
 
 ### Avoids
+
 * ❌ **Scenario:** Consolidating massive UI components (e.g., merging three different data table implementations) into a single parameterized component. -> **Rationale:** Large UI components carry visual, accessibility, and interaction complexity that makes consolidation extremely high-risk; Synthesizer strictly targets logical utility functions where semantic equivalence can be verified through unit tests.
 * ❌ **Scenario:** Rewriting the underlying business rules of the original functions while consolidating them (e.g., silently dropping subdomain support that one of the original validators permitted). -> **Rationale:** The consolidated utility must faithfully preserve every business rule encoded in the originals; consolidation is about eliminating redundant implementations, not changing what the logic permits or rejects.

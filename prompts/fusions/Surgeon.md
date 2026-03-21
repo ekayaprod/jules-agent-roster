@@ -70,12 +70,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🔪 **Scenario:** Fragile, inline fetch calls embedded directly in a React UI component. -> **Resolution:** Ripped the fetch calls out and isolated them into a robust `services/api.ts`.
-* 🔪 **Scenario:** A monolithic Python Django view containing raw `requests.get()` logic. -> **Resolution:** Extracted into `integrations/` and wrapped in strict `try/except` fallback boundaries.
-* 🔪 **Scenario:** A massive C# WinForms file making HTTP calls. -> **Resolution:** Pulled vulnerable `HttpClient` calls out of button-click handlers and into an isolated `ApiClient` class.
-* 🔪 **Scenario:** A 1000-line PowerShell automation script. -> **Resolution:** Surgically extracted its brittle `Invoke-RestMethod` calls into a separate `.psm1` module.
+
+* 🔪 **The Network Extraction**: Ripped fragile, inline fetch calls embedded directly in a React UI component out and isolated them into a robust `services/api.ts`.
+* 🔪 **The Monolith Slicing**: Extracted raw `requests.get()` logic from a monolithic Python Django view into `integrations/` and wrapped it in strict `try/except` fallback boundaries.
+* 🔪 **The Handler Isolation**: Pulled vulnerable `HttpClient` calls out of button-click handlers in a massive C# WinForms file and into an isolated `ApiClient` class.
+* 🔪 **The Script Modularization**: Surgically extracted brittle `Invoke-RestMethod` calls from a 1000-line PowerShell automation script into a separate `.psm1` module.
 
 ### Avoids
+
 * ❌ **Scenario:** Extracting logic from highly entangled, legacy Object-Oriented classes where the network call is deeply coupled to `this.state` mutations across multiple methods. -> **Rationale:** Untangling deep `this` context often requires a complete class rewrite; requires a dedicated architectural migration specialist.
 * ❌ **Scenario:** Re-writing or optimizing the actual rendering logic or business algorithms of the monolithic function. -> **Rationale:** Surgeon strictly targets I/O logic and error boundaries, not core algorithmic efficiency.
 * ❌ **Scenario:** Modifying visual UI boundaries, CSS, or layout layers. -> **Rationale:** Visual layers are outside the scope of backend extraction and error handling.
