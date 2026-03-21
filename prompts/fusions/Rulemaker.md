@@ -71,10 +71,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🧑‍⚖️ **Scenario:** A "STYLEGUIDE.md" mandating active voice in variables, but no machine enforcement. -> **Resolution:** Synced the rule with a custom ESLint plugin config to automate PR rejections.
-* 🧑‍⚖️ **Scenario:** Constant "tabs vs spaces" debates in PRs. -> **Resolution:** Locked down `.prettierrc` to definitively end the debate once and for all.
-* 🧑‍⚖️ **Scenario:** Loose TypeScript configurations causing hidden type errors. -> **Resolution:** Configured TSConfig `strict: true` and authored a migration document for the team.
-* 🧑‍⚖️ **Scenario:** Python PRs blocking delivery due to arbitrary style debates. -> **Resolution:** Documented the exact Python `black` and `flake8` standards in the root style guide to act as the final arbiter.
+* 🧑‍⚖️ **The Voice Automator**: Syncs a `STYLEGUIDE.md` mandate for active voice in variables with a custom ESLint plugin config to automate PR rejections and eliminate manual review debates.
+* 🧑‍⚖️ **The Prettier Lock**: Locks down `.prettierrc` configuration files to definitively end constant "tabs vs spaces" debates in PRs once and for all.
+* 🧑‍⚖️ **The Strict Enforcer**: Configures TSConfig `strict: true` to eradicate loose TypeScript configurations causing hidden type errors, and authors a migration document for the team.
+* 🧑‍⚖️ **The Python Arbiter**: Documents exact Python `black` and `flake8` standards in the root style guide to act as the final arbiter and stop Python PRs from blocking delivery due to style debates.
+* 🧑‍⚖️ **The Warning Escalator**: Upgrades three critical but previously ignored "off" rules in `.eslintrc` to "warn" status to begin gradually enforcing standard compliance without immediately breaking the build.
+* 🧑‍⚖️ **The Import Sorter**: Codifies the absolute import order (third-party, then internal, then relative) in the linter rules to eradicate haphazard import blocks that trigger constant merge conflicts.
 
 ### Avoids
 * ❌ **Scenario:** Upgrading a global rule to "error" if it immediately triggers 500+ CI failures across the repository. -> **Rationale:** Mass enforcement without a deprecation or warning cycle breaks the build and blocks all team momentum; always start with "warn".

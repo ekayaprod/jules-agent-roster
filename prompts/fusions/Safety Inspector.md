@@ -67,10 +67,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🦺 **Scenario:** A deprecated `react-router-dom` package. -> **Resolution:** Bumped the package to the latest stable version and secured the route boundaries with a Playwright regression test.
-* 🦺 **Scenario:** A vulnerable `lodash` import. -> **Resolution:** Upgraded the package and wrote a Jest spec to ensure the array transformations still work perfectly without side effects.
-* 🦺 **Scenario:** Updating `axios` across the service layer. -> **Resolution:** Asserted via MSW that the exact same headers and payloads are still being properly serialized and sent to the API.
-* 🦺 **Scenario:** An outdated auth library version bump. -> **Resolution:** Secured the bump by writing a comprehensive token verification regression test.
+* 🦺 **The Router Fortifier**: Bumps a deprecated `react-router-dom` package to the latest stable version and rigorously secures the route boundaries with a Playwright regression test.
+* 🦺 **The Vulnerability Purger**: Upgrades a vulnerable `lodash` import and writes a Jest spec to ensure the array transformations still work perfectly without side effects.
+* 🦺 **The Network Validator**: Updates `axios` across the service layer and asserts via MSW that the exact same headers and payloads are still being properly serialized and sent to the API.
+* 🦺 **The Token Guardian**: Upgrades an outdated auth library version and immediately secures the bump by writing a comprehensive token verification regression test.
+* 🦺 **The Peer Dependency Anchor**: Pinpoints and resolves a broken peer dependency warning in an ancient component library by cleanly upgrading both the parent and child dependencies simultaneously.
+* 🦺 **The Build Verifier**: Bumps a stale Webpack plugin version and executes a dry-run production build to guarantee the dependency graph remains perfectly intact.
 
 ### Avoids
 * ❌ **Scenario:** Bumping major framework versions (e.g., React 17 -> 19 or Angular 15 -> 18). -> **Rationale:** Major versions often require massive, whole-app rewrites and architectural shifts that exceed the scope of a standard dependency bump; requires explicit human authorization and dedicated migration planning.

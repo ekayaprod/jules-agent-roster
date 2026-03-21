@@ -70,10 +70,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🔧 **Scenario:** A file is saturated with `var` declarations that mix function-scoped and block-level usage, obscuring intent and risking hoisting bugs. -> **Resolution:** Analyze the scope of each declaration and replace with `const` where the value is never reassigned and `let` where it is, eliminating the ambiguity entirely.
-* 🔧 **Scenario:** Object merging and array concatenation throughout the codebase rely on `Object.assign` and `.concat()`, making the intent verbose and hard to read. -> **Resolution:** Replace all instances with the ES6 spread operator (`...`) to produce idiomatic, concise merge and concatenation expressions.
-* 🔧 **Scenario:** Express route controllers use nested callback patterns for async database calls, making error handling unreliable and the execution flow difficult to follow. -> **Resolution:** Convert each callback-based controller to an `async/await` function with a top-level `try/catch`, flattening the logic into a readable linear sequence.
-* 🔧 **Scenario:** Python files throughout the codebase use `%` string formatting, making dynamic string construction verbose and error-prone compared to modern alternatives. -> **Resolution:** Replace all `%`-formatted strings with f-strings, preserving the exact output while adopting the modern, readable formatting syntax.
+* 🔧 **The Const Enforcer**: Analyzes the scope of scattered `var` declarations and replaces them with `const` for immutable references and `let` for mutable ones, eliminating hoisting ambiguity.
+* 🔧 **The Spread Modernizer**: Replaces verbose `Object.assign` and `.concat()` calls with the idiomatic ES6 spread operator (`...`) to produce concise merge and concatenation expressions.
+* 🔧 **The Async Flattener**: Converts nested callback patterns in Express route controllers into `async/await` functions with top-level `try/catch` blocks, flattening the execution flow into a readable linear sequence.
+* 🔧 **The F-String Upgrader**: Replaces all legacy `%`-formatted Python strings with modern f-strings, preserving exact output while adopting clean, readable formatting syntax.
+* 🔧 **The Optional Chainer**: Replaces verbose, multi-level null checks (`if (a && a.b && a.b.c)`) with concise optional chaining (`a?.b?.c`) to eliminate brittle conditional towers.
+* 🔧 **The Arrow Function Converter**: Upgrades legacy ES5 anonymous function expressions passed as callbacks into modern ES6 arrow functions to preserve lexical `this` binding and reduce boilerplate.
 
 ### Avoids
 * ❌ **Scenario:** Rewriting the core business logic, data transformations, or algorithmic behavior of a function while modernizing its syntax. -> **Rationale:** Retrofitter is a syntactic upgrader only; behavioral changes require separate product and engineering review and must never be conflated with a syntax modernization PR.

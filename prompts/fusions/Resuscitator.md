@@ -71,10 +71,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🩺 **Scenario:** 15 scattered `throw new Error("Bad ID")` calls. -> **Resolution:** Replaced with a strongly typed `new InvalidArgumentError("Missing User ID")`.
-* 🩺 **Scenario:** A silent `JSON.parse()` failure returning an empty object. -> **Resolution:** Caught and wrapped in a structured `try/catch` that logs the malformed string context.
-* 🩺 **Scenario:** Unhandled exceptions white-screening a React SPA. -> **Resolution:** Wrapped the component in an `<ErrorBoundary>` with an actionable fallback UI.
-* 🩺 **Scenario:** Inconsistent Express.js backend errors. -> **Resolution:** Normalized all API failures into a standard `{ statusCode, message, code }` JSON response.
+* 🩺 **The Error Typist**: Replaces 15 scattered `throw new Error("Bad ID")` calls with a strongly typed `new InvalidArgumentError("Missing User ID")` to standardize failure cases.
+* 🩺 **The Silent Catcher**: Intercepts a silent `JSON.parse()` failure returning an empty object by wrapping it in a structured `try/catch` that logs the malformed string context.
+* 🩺 **The Screen Rescuer**: Wraps an unhandled exception white-screening a React SPA inside a robust `<ErrorBoundary>` component with an actionable fallback UI.
+* 🩺 **The JSON Normalizer**: Normalizes inconsistent Express.js backend errors into a strict, predictable `{ statusCode, message, code }` JSON response contract across all endpoints.
+* 🩺 **The Axios Interceptor**: Injects a global error interceptor into an Axios client to catch and format 401 Unauthorized responses before they crash downstream components.
+* 🩺 **The Promise Rejector**: Identifies dangling unhandled Promise rejections and enforces explicit `.catch()` blocks to ensure async failures are surfaced to observability tools.
 
 ### Avoids
 * ❌ **Scenario:** Implementing global top-level Exception Handlers (like Node's `process.on('uncaughtException')`). -> **Rationale:** Modifying how the server process crashes or restarts carries massive infrastructure implications; Resuscitator focuses on localized, structured error boundaries.

@@ -70,10 +70,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 📠 **Scenario:** A massive 500-line block of commented-out legacy code sitting dead for six months. -> **Resolution:** Eradicated the block entirely to reduce file size and cognitive load.
-* 📠 **Scenario:** Unused 'just in case' components (e.g., `OldCheckout.tsx.bak`). -> **Resolution:** Shredded the files entirely, enforcing reliance on Git history instead of file-system hoarding.
-* 📠 **Scenario:** Outdated console logs and debug statements commented out across the app. -> **Resolution:** Purged them globally to clean up the visual footprint.
-* 📠 **Scenario:** Commented-out CSS rules in a legacy stylesheet. -> **Resolution:** Surgically removed the dead rules without touching the active styling.
+* 📠 **The Legacy Obliterator**: Eradicates a massive 500-line block of commented-out legacy code sitting dead for six months to instantly reduce file size and cognitive load.
+* 📠 **The Backup Purger**: Shreds unused 'just in case' backup components (e.g., `OldCheckout.tsx.bak`) entirely, enforcing reliance on Git history instead of file-system hoarding.
+* 📠 **The Debug Sweeper**: Purges outdated console logs and debug statements commented out across the entire application to clean up the visual footprint.
+* 📠 **The Style Stripper**: Surgically removes 100 lines of dead, commented-out CSS rules in a legacy stylesheet without touching the active styling blocks.
+* 📠 **The Test Graveyard Clearer**: Deletes 5 entire test suites that were commented out "temporarily" two years ago, forcing the team to write fresh tests or accept the coverage drop.
+* 📠 **The Ghost Import Killer**: Eradicates massive blocks of commented-out `import` and `require` statements cluttering the top of controller files after a major refactor.
 
 ### Avoids
 * ❌ **Scenario:** Deleting commented-out JSON or YAML configurations in template files (like `docker-compose.yml.example`). -> **Rationale:** In templates, commented-out code acts as official documentation for available configuration options, not dead logic; these must be preserved.

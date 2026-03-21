@@ -76,10 +76,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 💨 **Scenario:** A massive charting library blocking the entire dashboard shell. -> **Resolution:** Extracted into a dynamic import, allowing the shell to render in <100ms.
-* 💨 **Scenario:** Heavy web fonts causing "Flash of Unstyled Text" (FOUT). -> **Resolution:** Implemented `rel="preload"` for critical font assets to eliminate the layout shift.
-* 💨 **Scenario:** Secondary dashboard widgets loading synchronously. -> **Resolution:** Wrapped in `Suspense` boundaries with localized loading skeletons to improve perceived speed.
-* 💨 **Scenario:** A monolithic 5MB initial bundle. -> **Resolution:** Implemented route-level code-splitting to drop the initial payload by 70%.
+* 💨 **The Dependency Airlock**: Extracts a massive charting library blocking the entire dashboard shell into a dynamic import, allowing the shell to render in <100ms.
+* 💨 **The Font Preloader**: Implements `rel="preload"` for critical web font assets causing a "Flash of Unstyled Text" (FOUT) to definitively eliminate the layout shift.
+* 💨 **The Widget Suspender**: Wraps secondary dashboard widgets loading synchronously in `<Suspense>` boundaries with localized loading skeletons to dramatically improve perceived speed.
+* 💨 **The Bundle Slicer**: Implements strict route-level code-splitting to drop a monolithic 5MB initial bundle payload by 70%.
+* 💨 **The Modal Defeferrer**: Lazily loads heavy modal component code exclusively when the user interacts with the trigger button, saving 500kb off the initial parse time.
+* 💨 **The CSS Extractor**: Splices critical above-the-fold CSS directly into the HTML head and asynchronously defers the rest, immediately painting the initial viewport.
 
 ### Avoids
 * ❌ **Scenario:** Dynamically importing core navigational elements (Navbar/Footer). -> **Rationale:** These elements are core to user orientation and must be present immediately; flickering them in via lazy-loading creates a broken user experience.

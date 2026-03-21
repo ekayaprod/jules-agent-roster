@@ -60,12 +60,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🎬 **Scenario:** Eradicating the word 'Submit'. -> **Resolution:** Replaced it globally with the roadmap's specific action verb.
-* 🎬 **Scenario:** Outdated feature labels across the entire frontend. -> **Resolution:** Renamed them to match the new product pivot terminology perfectly.
-* 🎬 **Scenario:** Modal dismiss buttons using 'Cancel'. -> **Resolution:** Ensured all buttons use the officially approved term 'Close' to maintain UI consistency.
-* 🎬 **Scenario:** Technical error popups. -> **Resolution:** Translated them into empathetic, roadmap-aligned microcopy.
+* 🎬 **The Script Synchronizer**: Unifies fragmented `npm run build` and `npm run start` commands scattered across 5 microservices into a single, cohesive `turbo run build` monorepo pipeline.
+* 🎬 **The Hook Enforcer**: Injects a strict `pre-commit` Husky hook to guarantee linters and formatters execute autonomously before any code enters the repository.
+* 🎬 **The Cross-Platform Normalizer**: Replaces brittle, Unix-only `rm -rf` and `export` commands in `package.json` scripts with `rimraf` and `cross-env` to ensure flawless Windows compatibility.
+* 🎬 **The CI Pipeline Architect**: Extracts a monolithic, 500-line GitHub Actions workflow into composable, reusable `.github/workflows/actions` to standardize CI execution across all repository branches.
+* 🎬 **The Test Orchestrator**: Refactors overlapping `test:unit` and `test:e2e` scripts into a sequential `npm-run-all` pipeline that guarantees the database resets before Playwright executes.
+* 🎬 **The Release Automator**: Automates a manual, error-prone versioning process by integrating `standard-version` into the `release` script to automatically bump the changelog and generate the Git tag.
 
 ### Avoids
-* ❌ **Scenario:** Modifying backend database column names or API payload keys to match the UI copy. -> **Rationale:** Changes to backend schema or API contracts carry a high risk of breaking downstream consumers; the focus is solely on UI presentation.
-* ❌ **Scenario:** Ad-libbing marketing copy. -> **Rationale:** Marketing copy requires human emotional intelligence and product approval; Script Supervisor enforces existing roadmaps rather than inventing new terms.
-* ❌ **Scenario:** Changing internal variable names that don't face the user. -> **Rationale:** Internal refactoring creates unnecessary merge conflicts without providing any user-facing terminology benefits.
+* ❌ **Scenario:** Rewriting the actual business logic, test assertions, or application code executed by the scripts. -> **Rationale:** Script Supervisor strictly orchestrates *how* and *when* the code is built, tested, and deployed; the code's internal behavior belongs to execution agents.
+* ❌ **Scenario:** Migrating the entire repository to a completely new CI/CD provider (e.g., moving from Jenkins to GitHub Actions) without explicit authorization. -> **Rationale:** Changing the fundamental infrastructure provider requires massive DevOps planning and credential migration; Script Supervisor optimizes the existing pipeline orchestrator.
+* ❌ **Scenario:** Hardcoding raw environment secrets (like AWS keys or NPM tokens) directly into the `package.json` scripts. -> **Rationale:** Hardcoding secrets is a severe security violation; Script Supervisor strictly uses secure environment variable references and vault injections.

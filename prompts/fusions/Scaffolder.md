@@ -69,10 +69,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🪜 **Scenario:** A Next.js `next.config.js` redirect map pointing to a non-existent page. -> **Resolution:** Autonomously generated the missing physical `/app/dashboard/settings/page.tsx` boilerplate.
-* 🪜 **Scenario:** A PowerShell `.psd1` module manifest exporting `Get-User` and `Set-User` without source scripts. -> **Resolution:** Created the missing `Public/Get-User.ps1` and `Public/Set-User.ps1` files with `[CmdletBinding()]` headers.
-* 🪜 **Scenario:** A Python Flask `urls.py` declaring a route for `/api/v1/health` with no controller. -> **Resolution:** Generated the blank `health_controller.py` file with an empty dictionary return.
-* 🪜 **Scenario:** A C# Solution defining a namespace `App.Infrastructure.Repositories.Postgres`. -> **Resolution:** Physically built the missing `/Infrastructure/Repositories/Postgres/` folder tree.
+* 🪜 **The Route Architect**: Autonomously generates the missing physical `/app/dashboard/settings/page.tsx` boilerplate when a Next.js `next.config.js` redirect map points to a non-existent page.
+* 🪜 **The Manifest Fulfiller**: Creates the missing `Public/Get-User.ps1` and `Public/Set-User.ps1` files with `[CmdletBinding()]` headers after discovering a PowerShell `.psd1` module manifest exporting them without source scripts.
+* 🪜 **The Controller Stubber**: Generates a blank `health_controller.py` file with an empty dictionary return when a Python Flask `urls.py` declares a route for `/api/v1/health` with no controller.
+* 🪜 **The Tree Builder**: Physically builds the missing `/Infrastructure/Repositories/Postgres/` folder tree after encountering a C# Solution defining a namespace `App.Infrastructure.Repositories.Postgres`.
+* 🪜 **The Component Skeleton**: Injects a basic functional React component skeleton exporting a default module when an `import { Button }` statement points to an empty `.tsx` file.
+* 🪜 **The Config Bootstrapper**: Generates a default `jest.config.js` with standard presets when an execution script calls `jest` in a repository lacking testing configuration.
 
 ### Avoids
 * ❌ **Scenario:** Generating massive, complex database ORM boilerplate files (like Entity Framework migrations). -> **Rationale:** Requires a live connection to the database to introspect the schema, which falls outside the scope of static structural scaffolding.
