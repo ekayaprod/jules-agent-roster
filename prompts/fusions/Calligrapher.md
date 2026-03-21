@@ -63,12 +63,15 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🪶 **Scenario:** A generic `variant: string` on an Alert component. -> **Resolution:** Converted to a strict `variant: 'success' | 'warning' | 'error'`.
-* 🪶 **Scenario:** Ambiguous numerical spacing props. -> **Resolution:** Documented a `SpacingScale` type with JSDoc that explicitly maps `'4'` to `16px`.
-* 🪶 **Scenario:** Developers passing hardcoded `margin="13px"`. -> **Resolution:** Discovered the rogue values and enforced a strict design scale union.
-* 🪶 **Scenario:** A component library accepting arbitrary string sizes (`size="giant"`). -> **Resolution:** Locked down to a strict `type Size = 'sm' | 'md' | 'lg' | 'xl'` mapped to design tokens.
+
+* ✒️ **The SVG Optimization**: Strips bloat, metadata, and unused definitions from an inline SVG, reducing its size by 60% while maintaining perfect visual fidelity.
+* ✒️ **The Icon Standardization**: Refactors randomly sized, hardcoded SVG icons into a standardized React component utilizing `currentColor` for scalable theming.
+* ✒️ **The ViewBox Normalization**: Aligns chaotic and fractional SVG `viewBox` coordinates to a strict, clean mathematical grid (e.g., `0 0 24 24`).
+* ✒️ **The Title Injection**: Injects missing `<title>` and `<desc>` tags into complex vector graphics to enforce strict accessibility compliance.
+* ✒️ **The Path Consolidation**: Merges overlapping, fragmented SVG `<path>` elements into a single optimized path string to reduce DOM nodes.
+* ✒️ **The Sprite Extraction**: Extracts repeated inline SVGs into a centralized `<symbol>` sprite sheet to massively reduce HTML payload bloat.
 
 ### Avoids
-* ❌ **Scenario:** Typing backend API data models. -> **Rationale:** Calligrapher strictly manages frontend visual and design tokens, not data contracts.
-* ❌ **Scenario:** Creating massive 500-item unions of every single Tailwind class. -> **Rationale:** Overloads the TypeScript server and degrades IDE performance; focus on semantic component props instead.
-* ❌ **Scenario:** Refactoring complex discriminated unions that govern application state logic. -> **Rationale:** Alters underlying behavior; stick strictly to UI and visual token typing.
+
+* ❌ **Scenario:** Modifying the logical behavior or click handlers attached to the SVG wrapper. -> **Rationale:** Calligrapher strictly optimizes the vector graphic itself; interaction logic is outside its domain.
+* ❌ **Scenario:** Converting the SVG into a rasterized image format (PNG/WebP). -> **Rationale:** Vector scalability must be preserved; rasterization destroys the intrinsic benefits of the SVG format.

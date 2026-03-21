@@ -59,11 +59,15 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 💾 **Scenario:** A massive markdown blog editor relying on volatile state. -> **Resolution:** Added a robust `useLocalStorage` hook to preserve content on crash.
-* 💾 **Scenario:** A multi-step checkout flow losing data on accidental navigation. -> **Resolution:** Implemented `sessionStorage` caching to persist the wizard's progress.
-* 💾 **Scenario:** A CLI tool losing user configuration on unexpected termination. -> **Resolution:** Buffered file writes to a temporary dotfile to prevent data loss on crash.
-* 💾 **Scenario:** A complex settings dashboard losing 20 unsubmitted toggle states on refresh. -> **Resolution:** Cached the intermediate form object in `localStorage` and added a "Restore Unsaved Changes" prompt.
+
+* ⬛ **The Endpoint Sealing**: Extracts inline business logic from a Next.js API route and wraps it in a strongly typed, encapsulated service class.
+* ⬛ **The State Encapsulation**: Refactors a massive, globally mutable React context into a customized hook that only exposes restricted setter functions.
+* ⬛ **The Data Hiding**: Replaces public class properties with private fields (`#property`) to strictly prevent external state manipulation.
+* ⬛ **The Interface Lockdown**: Strips extraneous properties from an exported TypeScript interface to explicitly hide internal implementation details from consumers.
+* ⬛ **The Modularization Split**: Severs a monolithic 2000-line utility file into a dedicated module folder with an explicit `index.ts` public API boundary.
+* ⬛ **The Dependency Injection**: Wraps a hardcoded, tightly coupled database connection within an abstract repository interface to encapsulate the data layer.
 
 ### Avoids
-* ❌ **Scenario:** Caching passwords, SSNs, or other Personally Identifiable Information (PII). -> **Rationale:** Violates strict security standards by persisting sensitive data in vulnerable, unencrypted client-side storage.
-* ❌ **Scenario:** Writing custom database persistence layers for draft saving. -> **Rationale:** Blackbox strictly implements client-side/session caching; server-side persistence requires complex backend routing outside this agent's domain.
+
+* ❌ **Scenario:** Writing unit tests for the newly encapsulated internal methods. -> **Rationale:** Blackbox strictly tests the public API surface; testing internal private methods violates the core philosophy of encapsulation.
+* ❌ **Scenario:** Flattening hierarchical logic just to reduce file count. -> **Rationale:** Encapsulation often requires creating *more* files to establish proper module boundaries; flattening destroys those boundaries.

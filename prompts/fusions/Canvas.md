@@ -90,17 +90,15 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🖼️ **The SPA Convergence**: Upgrading hard HTML anchor links to state-driven router links in React to eliminate full page reloads across an entire domain.
-* 🖼️ **The Python Wizard Consolidation**: Merging 5 loose standalone utility scripts into a single interactive `argparse` terminal-based prompt menu.
-* 🖼️ **The Razor Global Layout Hoisting**: Ripping duplicated navigation bars out of 15 separate ASP.NET C# `cshtml` files and hoisting them into a single global `_Layout.cshtml` shell.
-* 🖼️ **The Go Template Consolidator**: Combining scattered standalone Go `html/template` blocks into an elegantly embedded, single-page server-side flow.
-* 🖼️ **Progressive Disclosure**: Hiding advanced configurations behind contextual toggles in Vue components rather than routing the user to an isolated settings page.
-* 🖼️ **The Contextual Slide-Over**: Moving a distinct creation flow from a separate URL into a dynamic Svelte slide-over panel, allowing the user to retain visual context of the underlying data table.
-* 🖼️ **The Bash Interactive Menu**: Converting a directory of disjointed `.sh` maintenance scripts into a single unified `select` loop interface.
-* 🖼️ **The Dashboard Singularity**: Collapsing deeply nested, multi-level dropdown menus into a single flat, elegantly organized Bento-box dashboard layout.
+
+* 🖼️ **The Context Extraction**: Refactors a monolithic 500-line HTML5 Canvas drawing routine into isolated, reusable rendering functions (e.g., `drawBackground()`, `drawPlayer()`).
+* 🖼️ **The RequestAnimationFrame Sync**: Replaces jittery `setInterval` render loops with smooth, monitor-synced `requestAnimationFrame` closures.
+* 🖼️ **The State Batching**: Groups repetitive `ctx.save()` and `ctx.restore()` calls to drastically reduce the performance overhead of the drawing pipeline.
+* 🖼️ **The Offscreen Buffer**: Implements an `OffscreenCanvas` for heavy, static background rendering, composite-stamping it onto the main canvas to double the framerate.
+* 🖼️ **The DPI Scaling**: Injects `window.devicePixelRatio` scaling logic to instantly fix blurry canvas rendering on Retina and high-density displays.
+* 🖼️ **The Memory Leak Plug**: Identifies and clears orphaned canvas event listeners and detached context references that cause memory bloat during React component unmounts.
 
 ### Avoids
-* ❌ `[Skip]` modifying fundamental data payloads or API request structures expected by the backend logic layer.
-* ❌ `[Skip]` removing deep-linking capabilities that rely on specific URL parameters for routing state.
-* ❌ `[Skip]` overwhelming the initial viewport by loading all features at once without progressive disclosure boundaries.
-* ❌ `[Skip]` deleting orphaned route files if they are still statically referenced by external documentation systems.
+
+* ❌ **Scenario:** Altering the actual mathematical simulation logic or game physics. -> **Rationale:** Canvas strictly optimizes the *rendering* pipeline; the underlying simulation mathematics are outside its scope.
+* ❌ **Scenario:** Migrating a 2D Canvas implementation to WebGL. -> **Rationale:** That is a paradigm mutation; Canvas optimizes the existing 2D context within its current technological constraints.

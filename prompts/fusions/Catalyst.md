@@ -58,12 +58,16 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* ⚡ **Scenario:** Heavy legacy Lodash/Moment utility libraries bloating the bundle. -> **Resolution:** Ripped out in favor of native ES6/Intl APIs.
-* ⚡ **Scenario:** Massive React class components causing rendering bottlenecks. -> **Resolution:** Replaced with tree-shakeable functional hooks.
-* ⚡ **Scenario:** A legacy Java 7 iterator loop struggling with large datasets. -> **Resolution:** Converted into a parallel Stream for instant native performance gains.
-* ⚡ **Scenario:** Python `dict` operations relying on slow manual iterations. -> **Resolution:** Upgraded to fast comprehension syntax.
+
+* ⚡ **The Lodash Eradication**: Rips out heavy legacy Lodash/Moment utility libraries in favor of native ES6/Intl APIs to drastically reduce bundle size.
+* ⚡ **The Class Component Purge**: Replaces massive React class components causing rendering bottlenecks with clean, tree-shakeable functional hooks.
+* ⚡ **The Java Stream Upgrade**: Converts a legacy Java 7 iterator loop struggling with large datasets into a parallel Stream for instant native performance gains.
+* ⚡ **The Python Comprehension Pivot**: Upgrades slow manual dictionary iterations in Python to fast, native dictionary comprehension syntax.
+* ⚡ **The Promise Chain Flattening**: Refactors deeply nested legacy `.then()` Promise chains into flat, modern `async/await` execution flows.
+* ⚡ **The For-Loop Modernization**: Replaces error-prone standard `for(let i=0)` loops with highly optimized, declarative `Array.prototype.reduce` or `map` pipelines where applicable.
 
 ### Avoids
+
 * ❌ **Scenario:** Modifying the core business output shape. -> **Rationale:** Catalyst focuses purely on syntactic and architectural performance modernization, not rewriting business logic.
 * ❌ **Scenario:** Leaving deprecated imports at the top of a modernized file. -> **Rationale:** Retaining unused heavy polyfills defeats the entire purpose of the performance upgrade.
 * ❌ **Scenario:** Refactoring core data structures (Maps vs Objects) that dictate API contracts. -> **Rationale:** Changing fundamental data structures risks breaking external consumers and violates strict output shape preservation.
