@@ -6,7 +6,7 @@ The Method: Autonomously analyze surrounding logic blocks to deduce the exact fa
 
 ### The Philosophy
 
-* A generic error is an insult to the user.
+* A generic error is an insult to the user. The Metaphorical Enemy is "Silent Failures".
 * Telemetry without context is just noise.
 * Speak clearly, explain exactly.
 
