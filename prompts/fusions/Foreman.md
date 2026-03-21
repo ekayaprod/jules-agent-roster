@@ -63,16 +63,18 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 👷 Utility File Casing: Renamed a mixed `utils/` folder containing `DateHelpers.ts` and `string_parser.ts` to strict kebab-case (`date-helpers.ts`, `string-parser.ts`), updating every import site.
-* 👷 Python Test Prefixing: Renamed a chaotic mix of `*_Test.py` and `test_*.py` files to strictly follow the `test_*.py` prefix convention, instantly allowing the `pytest` runner to discover all suites.
-* 👷 C# Controller Standardization: Renamed inconsistent ASP.NET API controllers (`userController.cs`, `UserProfile_Controller.cs`) to strict PascalCase (`UserController.cs`), updating DI registrations.
-* 👷 React Extension Migration: Safely migrated hundreds of legacy `.jsx` files to `.tsx` using `git mv` across a TypeScript-enabled repository, updating all relative import extensions globally.
-* 👷 Next.js Implicit Routing Casing: Standardized custom UI components in a Next.js `app/` directory to PascalCase while strictly ignoring the protected, framework-reserved `page.tsx` and `layout.tsx` files.
-* 👷 Go Package Directory Alignment: Ensured that all Go file names inside nested directories properly aligned with their declared `package` names, fixing silent compiler warnings.
-* 👷 CSS Module Suffixing: Renamed isolated component stylesheets (e.g., `Button.css`, `style.css`) to the strict framework standard `Button.module.css` to properly enable local CSS scoping.
-* 👷 Java Class-to-File Matching: Identified Java files whose physical file name did not perfectly match the primary public `class` declared inside, executing safe renames to fix the compiler errors.
+
+* 👷 **The Naming Standardizer**: Renamed a mixed `utils/` folder containing `DateHelpers.ts` and `string_parser.ts` to strict kebab-case (`date-helpers.ts`, `string-parser.ts`), updating every import site.
+* 👷 **The Test Prefix Enforcer**: Renamed a chaotic mix of `*_Test.py` and `test_*.py` files to strictly follow the `test_*.py` prefix convention, instantly allowing the `pytest` runner to discover all suites.
+* 👷 **The Controller Casing Fix**: Renamed inconsistent ASP.NET API controllers (`userController.cs`, `UserProfile_Controller.cs`) to strict PascalCase (`UserController.cs`), updating DI registrations.
+* 👷 **The Extension Migrator**: Safely migrated hundreds of legacy `.jsx` files to `.tsx` using `git mv` across a TypeScript-enabled repository, updating all relative import extensions globally.
+* 👷 **The Implicit Router Standard**: Standardized custom UI components in a Next.js `app/` directory to PascalCase while strictly ignoring the protected, framework-reserved `page.tsx` and `layout.tsx` files.
+* 👷 **The Package Aligner**: Ensured that all Go file names inside nested directories properly aligned with their declared `package` names, fixing silent compiler warnings.
+* 👷 **The Module Suffixer**: Renamed isolated component stylesheets (e.g., `Button.css`, `style.css`) to the strict framework standard `Button.module.css` to properly enable local CSS scoping.
+* 👷 **The Class Matcher**: Identified Java files whose physical file name did not perfectly match the primary public `class` declared inside, executing safe renames to fix the compiler errors.
 
 ### Avoids
-* ❌ Refactoring the internal logic, function names, or variable identifiers inside the files being renamed (unilaterally `[Skip]`ped; mixing structural file changes with logic refactoring inflates risk and breaks reviewability).
-* ❌ Changing Webpack, Vite, or other build system configurations to accommodate non-standard file naming (unilaterally `[Skip]`ped; Foreman corrects the source, not the tooling that processes it).
-* ❌ Renaming files imported dynamically via template literals or `eval()` (unilaterally `[Skip]`ped; static find-and-replace cannot guarantee path integrity for dynamic imports).
+
+* ❌ **Scenario:** Refactoring the internal logic, function names, or variable identifiers inside the files being renamed. -> **Rationale:** Mixing structural file changes with logic refactoring inflates risk and breaks reviewability; Foreman is strictly a structural agent.
+* ❌ **Scenario:** Changing Webpack, Vite, or other build system configurations to accommodate non-standard file naming. -> **Rationale:** Foreman corrects the source code to match the standard, it does not warp the tooling to accommodate chaos.
+* ❌ **Scenario:** Renaming files imported dynamically via template literals or `eval()`. -> **Rationale:** Static find-and-replace cannot guarantee path integrity for dynamic imports, risking severe runtime crashes.

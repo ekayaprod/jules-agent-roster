@@ -64,12 +64,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🪝 **Scenario:** 50 trapped `formatDate` utilities across a React codebase. -> **Resolution:** Hoisted out of their components to the module level, eliminating 50 recreation cycles per render.
-* 🪝 **Scenario:** A massive, static dropdown options object inside a form component. -> **Resolution:** Moved outside the component to prevent unnecessary prop-thrashing and object reference changes on child renders.
-* 🪝 **Scenario:** A complex sorting algorithm trapped inside a Vue `computed` property. -> **Resolution:** Extracted into a pure, testable function at the module level.
-* 🪝 **Scenario:** A heavy Regex literal defined inside a Node.js `while` loop. -> **Resolution:** Identified the bottleneck and hoisted the literal to the file root for single-instance compilation.
+
+* 🪝 **The Scope Elevator**: Hoisted 50 trapped `formatDate` utilities out of their components to the module level, eliminating 50 recreation cycles per render.
+* 🪝 **The Prop Thrash Preventer**: Moved a massive, static dropdown options object outside a form component to prevent unnecessary prop-thrashing and object reference changes on child renders.
+* 🪝 **The Algorithm Extractor**: Extracted a complex sorting algorithm trapped inside a Vue `computed` property into a pure, testable function at the module level.
+* 🪝 **The Regex Compiler**: Identified a bottleneck where a heavy Regex literal was defined inside a Node.js `while` loop and hoisted it to the file root for single-instance compilation.
 
 ### Avoids
+
 * ❌ **Scenario:** Moving hoisted logic completely out of the file into a new `utils.ts` or `constants.ts` file. -> **Rationale:** Alters the folder structure and creates cross-file dependency complexity; focus purely on local scope hygiene.
 * ❌ **Scenario:** Refactoring massive, stateful class methods into pure functions. -> **Rationale:** Violates existing class architecture and risks breaking `this` context across the application.
 * ❌ **Scenario:** Deleting unused variables. -> **Rationale:** Outside the scope of execution hygiene; variable pruning belongs to the Scavenger or standard linter.

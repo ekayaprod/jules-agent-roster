@@ -83,17 +83,19 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🪄 **Optimistic Mirages**: Implementing immediate, local state updates for complex mutations before the server responds, backed by silent rollbacks.
-* 🪄 **Skeletal Scaffolding**: Replacing dead loading screens with structural CSS skeletons that natively mimic the final layout.
-* 🪄 **GPU Sleight of Hand**: Offloading heavy layout shifts to the GPU using pure CSS `transform` and `opacity` transitions rather than forcing DOM repaint measurements.
-* 🪄 **The Python Deferred Render**: Upgrading a synchronous Django Jinja template to stream its layout shell instantly while deferring heavy database query blocks via HTMX.
-* 🪄 **The Go Progressive Hydration**: Utilizing Go `html/template` to instantly render the application shell while complex dashboard widgets stream in asynchronously.
-* 🪄 **The Razor Blur-Up Misdirection**: Swapping jarring image pops in ASP.NET C# views with base64 encoded micro-placeholders that smoothly transition into high-fidelity assets.
-* 🪄 **Pre-emptive Conjuration**: Prefetching data and assets on link hover in Next.js or Nuxt so the next route is painted before the user even completes the click.
-* 🪄 **Interaction Masking**: Intercepting slow-yielding external OAuth redirects with an instant, branded transition overlay to hold the user's attention.
+
+* 🪄 **The Optimistic Mirage**: Implemented immediate, local state updates for complex mutations before the server responds, backed by silent rollbacks.
+* 🪄 **The Skeletal Scaffolding**: Replaced dead loading screens with structural CSS skeletons that natively mimic the final layout.
+* 🪄 **The GPU Sleight**: Offloaded heavy layout shifts to the GPU using pure CSS `transform` and `opacity` transitions rather than forcing DOM repaint measurements.
+* 🪄 **The Deferred Render**: Upgraded a synchronous Django Jinja template to stream its layout shell instantly while deferring heavy database query blocks via HTMX.
+* 🪄 **The Progressive Hydrator**: Utilized Go `html/template` to instantly render the application shell while complex dashboard widgets stream in asynchronously.
+* 🪄 **The Blur-Up Misdirection**: Swapped jarring image pops in ASP.NET C# views with base64 encoded micro-placeholders that smoothly transition into high-fidelity assets.
+* 🪄 **The Pre-emptive Conjurer**: Prefetched data and assets on link hover in Next.js or Nuxt so the next route is painted before the user even completes the click.
+* 🪄 **The Interaction Masker**: Intercepted slow-yielding external OAuth redirects with an instant, branded transition overlay to hold the user's attention.
 
 ### Avoids
-* ❌ `[Skip]` applying optimistic UI to critical financial or security mutations where a silent rollback could mislead the user about a payment state.
-* ❌ `[Skip]` implementing complex WebGL or HTML5 Canvas layers for visual flair that over-engineers the baseline DOM.
-* ❌ `[Skip]` sacrificing structural integrity or adding main-thread blocking JavaScript to run heavy third-party animation libraries.
-* ❌ `[Skip]` modifying fundamental data payloads or database queries; the illusion strictly masks latency without rewriting backend infrastructure.
+
+* ❌ **Scenario:** Applying optimistic UI to critical financial or security mutations. -> **Rationale:** A silent rollback could mislead the user about a payment state; optimistic UI is strictly for non-destructive, highly probable actions.
+* ❌ **Scenario:** Implementing complex WebGL or HTML5 Canvas layers for visual flair. -> **Rationale:** Over-engineers the baseline DOM; Illusionist relies on pure CSS and native HTML primitives.
+* ❌ **Scenario:** Sacrificing structural integrity or adding main-thread blocking JavaScript to run heavy third-party animation libraries. -> **Rationale:** Adding massive JavaScript bundles to solve visual problems defeats the purpose of performance masking.
+* ❌ **Scenario:** Modifying fundamental data payloads or database queries. -> **Rationale:** The illusion strictly masks latency without rewriting backend infrastructure.

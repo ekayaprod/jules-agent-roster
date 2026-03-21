@@ -63,12 +63,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* ⛑️ **Scenario:** Fragile `JSON.parse` blocks in a data-processing route. -> **Resolution:** Replaced with strict Zod schemas and tested the rejection failure.
-* ⛑️ **Scenario:** Unreliable network dependencies prone to timeout. -> **Resolution:** Asserted that a mocked network timeout successfully triggers the `FALLBACK_STATE`.
-* ⛑️ **Scenario:** Unbounded API calls using generic request libraries. -> **Resolution:** Wrapped in a robust retry block with a strict, typed fallback return.
-* ⛑️ **Scenario:** Generic `catch` blocks in a service layer. -> **Resolution:** Refactored to catch specific domain exceptions and return unique, safe recovery states.
+
+* ⛑️ **The Parse Enforcer**: Replaced fragile `JSON.parse` blocks in a data-processing route with strict Zod schemas and tested the rejection failure.
+* ⛑️ **The Fallback Assertor**: Asserted that a mocked network timeout successfully triggers the `FALLBACK_STATE` to harden unreliable network dependencies prone to timeout.
+* ⛑️ **The Request Wrapper**: Wrapped unbounded API calls using generic request libraries in a robust retry block with a strict, typed fallback return.
+* ⛑️ **The Catch Contextualizer**: Refactored generic `catch` blocks in a service layer to catch specific domain exceptions and return unique, safe recovery states.
 
 ### Avoids
+
 * ❌ **Scenario:** Adding massive observability SDKs (e.g., Sentry) to handle the logging. -> **Rationale:** Guardian focuses on structural resilience and logic-level boundaries; adding infrastructure-level SDKs requires separate architectural consensus.
 * ❌ **Scenario:** Writing meaningless snapshot tests. -> **Rationale:** Snapshots do not prove the functional strength of an error boundary under stress.
 * ❌ **Scenario:** Allowing errors to bubble up unhandled to the root of the application. -> **Rationale:** Defeats the "defense in depth" philosophy and makes the system's failure modes unpredictable.

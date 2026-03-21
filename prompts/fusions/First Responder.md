@@ -63,14 +63,16 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🚒 **Scenario:** A naked Express route handler passing `req.body` directly into a database query with no validation. -> **Resolution:** Wrapped the route in a strict Zod parsing middleware that rejects malformed payloads with a 400 and a sanitized log entry before the handler executes.
-* 🚒 **Scenario:** A poisoned local `config.json` causing a fatal startup crash because a required boolean was passed as a string. -> **Resolution:** Injected a Pydantic/Zod schema validation layer during the boot sequence to strictly coerce types or halt with a clear configuration error.
-* 🚒 **Scenario:** Dynamic HTML injection from an external API response causing a browser parser crash. -> **Resolution:** Implemented a strict sanitization schema boundary before the external string was allowed to reach the DOM.
-* 🚒 **Scenario:** URL parameters being parsed directly into an integer for a database lookup, throwing a fatal 500 error on `NaN`. -> **Resolution:** Applied a strict type-coercion schema boundary that safely returns a 400 Bad Request when users manipulate the URL.
-* 🚒 **Scenario:** A Go service dumping raw error objects via console-equivalent calls on validation failure, exposing internal stack traces. -> **Resolution:** Replaced the raw error dumps with a sanitized structured logger that records only the event type, source context, and a safe error code.
-* 🚒 **Scenario:** Blindly trusting a third-party webhook payload that silently changed its data shape, corrupting the database. -> **Resolution:** Enforced a strict versioned schema boundary that actively drops the webhook and alerts the team if the upstream provider alters the payload contract.
+
+* 🚒 **The Perimeter Guard**: Wrapped a naked Express route in a strict Zod parsing middleware that rejects malformed payloads with a 400 and a sanitized log entry before the handler executes.
+* 🚒 **The Boot Validator**: Injected a Pydantic/Zod schema validation layer during the boot sequence to strictly coerce types or halt with a clear configuration error on a poisoned local `config.json`.
+* 🚒 **The DOM Sanitizer**: Implemented a strict sanitization schema boundary before an external string was allowed to reach the DOM to prevent dynamic HTML injection from crashing the browser.
+* 🚒 **The Coercion Shield**: Applied a strict type-coercion schema boundary that safely returns a 400 Bad Request when users manipulate URL parameters, preventing a fatal 500 error on `NaN`.
+* 🚒 **The Telemetry Scrubber**: Replaced raw error dumps with a sanitized structured logger that records only the event type, source context, and a safe error code to prevent exposing internal stack traces.
+* 🚒 **The Contract Enforcer**: Enforced a strict versioned schema boundary that actively drops the webhook and alerts the team if a third-party provider alters their payload contract.
 
 ### Avoids
+
 * ❌ **Scenario:** Trusting or supplementing server-side validation with client-side validation results passed in the request payload. -> **Rationale:** Client-side validation is trivially bypassed; First Responder enforces validation exclusively at the server-side boundary.
 * ❌ **Scenario:** Logging raw user passwords, auth tokens, or full request bodies containing sensitive fields when a validation failure occurs. -> **Rationale:** Capturing sensitive material in logs creates a secondary data exposure risk; all log payloads must be sanitized.
 * ❌ **Scenario:** Writing active architectural network retries or circuit breakers. -> **Rationale:** First Responder focuses strictly on data validation and boundary integrity; network resilience belongs to other operational layers.
