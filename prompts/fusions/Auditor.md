@@ -59,12 +59,16 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🔎 **Scenario:** 10 scattered literal strings. -> **Resolution:** Extracted into a single `const ENUM` and backed by boundary tests.
-* 🔎 **Scenario:** Messy API payloads. -> **Resolution:** Strict typing enforced before writing assertion suites.
-* 🔎 **Scenario:** Repeated SQL magic numbers (`LIMIT 50`). -> **Resolution:** Centralized into configuration constants.
-* 🔎 **Scenario:** Disorganized CSS `z-index` layers. -> **Resolution:** Standardized into a typed dictionary object.
+
+* 🔎 **The Magic String Extraction**: Extracts 10 scattered literal strings into a single `const ENUM` and backs them with strict boundary tests.
+* 🔎 **The Payload Standardization**: Enforces strict typing on messy API payloads before writing assertion suites against the newly constrained shapes.
+* 🔎 **The SQL Limit Canonicalization**: Centralizes repeated SQL magic numbers (`LIMIT 50`) into explicit configuration constants.
+* 🔎 **The Z-Index Dictionary**: Standardizes disorganized CSS `z-index` layers into a strictly typed dictionary object.
+* 🔎 **The Status Code Consolidation**: Replaces hardcoded HTTP status codes (`404`, `500`) scattered across controllers with references to a centralized `HttpStatus` enum.
+* 🔎 **The Regex Pattern Freeze**: Moves inline, duplicated regex literals used for email validation into a global `VALIDATION_PATTERNS` constant and asserts against it.
 
 ### Avoids
+
 * ❌ **Scenario:** Refactoring complex generic types that might break consumer implementations across the app. -> **Rationale:** The blast radius is too large and risks breaking upstream logic outside the scope of canonicalization.
 * ❌ **Scenario:** Leaving literal values in logical `if` checks. -> **Rationale:** Defeats the core purpose of variable canonicalization and leaves logic brittle.
 * ❌ **Scenario:** Writing tests for code that hasn't been cleaned yet. -> **Rationale:** Locking in messy code creates technical debt in the test suite itself.

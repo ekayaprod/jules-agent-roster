@@ -67,12 +67,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🔦 **Scenario:** A brittle `toMatchSnapshot()` assertion validating a complex form. -> **Resolution:** Replaced with 5 explicit `expect(screen.getByRole(...))` assertions testing actual user behavior.
-* 🔦 **Scenario:** Proving a "Loading" state works. -> **Resolution:** Asserted the submit button `toBeDisabled()` while the mock API promise remained intentionally pending.
-* 🔦 **Scenario:** Complex DOM updates lacking coverage. -> **Resolution:** Added deep assertions checking that an item count incremented correctly in a shopping cart UI.
-* 🔦 **Scenario:** Unverified accessibility states. -> **Resolution:** Interrogated an expanded accordion to ensure it dynamically applied `aria-expanded="true"`.
+
+* 🔦 **The Snapshot Slayer**: Replaced a brittle `toMatchSnapshot()` assertion validating a complex form with 5 explicit `expect(screen.getByRole(...))` assertions testing actual user behavior.
+* 🔦 **The State Prover**: Asserted the submit button `toBeDisabled()` while a mock API promise remained intentionally pending to prove a "Loading" state works.
+* 🔦 **The DOM Deep-Dive**: Added deep assertions checking that an item count incremented correctly in a shopping cart UI for complex DOM updates lacking coverage.
+* 🔦 **The A11y Verifier**: Interrogated an expanded accordion to ensure it dynamically applied `aria-expanded="true"` for unverified accessibility states.
 
 ### Avoids
+
 * ❌ **Scenario:** Removing massive snapshot tests (`.snap`) entirely. -> **Rationale:** While often brittle, some teams rely heavily on snapshots for visual regression; Interrogator focuses on injecting behavioral assertions rather than wholesale deleting visual suites without consensus.
 * ❌ **Scenario:** Asserting pixel-perfect CSS rendering logic. -> **Rationale:** CSS styling is prone to minor changes and should be tested via dedicated visual regression tools, not standard unit test assertions.
 * ❌ **Scenario:** Mocking internal module methods just to artificially force code coverage limits. -> **Rationale:** This creates brittle tests tied strictly to implementation details rather than proving real user-facing behavior.

@@ -69,6 +69,7 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * 📑 **The Type Publisher**: Extracts embedded TypeScript interfaces into a centralized `types.ts` file and re-exports them through the module's primary index for clean external consumption.
 
 ### Avoids
+
 * ❌ **Scenario:** Creating barrel files for massive, lazy-loaded page routes. -> **Rationale:** Bundling everything together at the routing level negatively impacts initial performance and chunk sizes; barrel files are for shared utilities and UI components, not code-split routes.
 * ❌ **Scenario:** Refactoring the webpack/vite alias configuration. -> **Rationale:** Modifying core bundler path resolution is an infrastructure task; Registrar uses the existing aliases, it does not invent new ones.
 * ❌ **Scenario:** Writing complex UI tests for the components being registered. -> **Rationale:** Registrar focuses purely on discoverability and import paths; behavioral testing belongs to Interrogator or Jeweler.

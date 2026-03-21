@@ -67,12 +67,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🫀 **Scenario:** High-frequency window-resize recalculations freezing the UI. -> **Resolution:** Wrapped in a 100ms throttle boundary to ensure smooth, performant layout updates.
-* 🫀 **Scenario:** Live-search API queries firing on every single keystroke. -> **Resolution:** Debounced the input handler to 300ms, saving backend bandwidth and frontend CPU.
-* 🫀 **Scenario:** Heavy analytics scripts blocking the initial render. -> **Resolution:** Deferred script initialization until the main thread is idle via `requestIdleCallback`.
-* 🫀 **Scenario:** Rapid-fire state updates in a dashboard causing render-loop exhaustion. -> **Resolution:** Implemented a debounced state setter to batch updates into a single render cycle.
+
+* 🫀 **The Resize Throttle Guard**: Wrapped high-frequency window-resize recalculations in a 100ms throttle boundary to ensure smooth, performant layout updates.
+* 🫀 **The Live-Search Debounce**: Debounced a live-search API query firing on every keystroke to 300ms, saving backend bandwidth and frontend CPU.
+* 🫀 **The Analytics Deferral Boundary**: Deferred heavy analytics scripts blocking the initial render until the main thread is idle via `requestIdleCallback`.
+* 🫀 **The Render Loop Batcher**: Implemented a debounced state setter to batch rapid-fire state updates in a dashboard into a single render cycle, preventing exhaustion.
 
 ### Avoids
+
 * ❌ **Scenario:** Moving massive chunks of business logic into Web Workers. -> **Rationale:** Adds high architectural complexity and serialization overhead; only recommend this if in-thread optimization (debouncing/deferral) is mathematically insufficient.
 * ❌ **Scenario:** Throttling primary UI clicks (like opening a menu). -> **Rationale:** Direct user-intent actions must feel instantaneous; any delay creates a sense of lag and broken interaction.
 * ❌ **Scenario:** Implementing complex Web Workers for simple, low-frequency tasks. -> **Rationale:** The overhead of message passing exceeds the benefit for operations that don't block a frame.

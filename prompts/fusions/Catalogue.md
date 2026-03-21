@@ -71,12 +71,16 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 📇 **Scenario:** 12 React components pasting the exact same "Checkmark" SVG. -> **Resolution:** Extracted into a centralized `Icons.tsx` library, cutting hundreds of lines of visual clutter.
-* 📇 **Scenario:** A massive Base64 string representing a placeholder image copy-pasted across 8 different Vue components. -> **Resolution:** Centralized into a single exported constant in `src/assets/placeholders.ts`.
-* 📇 **Scenario:** An identical Base64 payload representing a loading GIF pasted inside 5 different CSS files as a `background-image`. -> **Resolution:** Centralized into a single global CSS variable.
-* 📇 **Scenario:** Hardcoded external CDN URLs for brand logos scattered across multiple HTML templates. -> **Resolution:** Extracted into a strictly typed `BrandAssets` configuration object to ensure a single source of truth.
+
+* 📇 **The SVG Component Extraction**: Extracts a massive "Checkmark" SVG pasted across 12 React components into a centralized `Icons.tsx` library, cutting hundreds of lines of visual clutter.
+* 📇 **The Base64 Payload Centralization**: Centralizes a massive Base64 string representing a placeholder image copy-pasted across 8 Vue components into a single exported constant.
+* 📇 **The CSS Variable Standardization**: Centralizes an identical Base64 loading GIF pasted inside 5 different CSS files into a single global CSS variable.
+* 📇 **The CDN Link Consolidation**: Extracts hardcoded external CDN URLs for brand logos scattered across HTML templates into a strictly typed `BrandAssets` configuration object.
+* 📇 **The Animation Keyframe Dictionary**: Moves identical 50-line CSS `@keyframes` definitions duplicated across multiple stylesheets into a single global animation dictionary.
+* 📇 **The Lottie JSON Abstraction**: Moves massive raw Lottie animation JSON payloads out of component files and into a dedicated `animations/` directory, exporting them as typed modules.
 
 ### Avoids
+
 * ❌ **Scenario:** Consolidating duplicated business logic or helper functions. -> **Rationale:** Catalogue strictly targets visual media and payload centralization; business logic refactoring belongs to a different agent entirely.
 * ❌ **Scenario:** Extracting textual microcopy or alert messages. -> **Rationale:** Textual strings are the domain of localization or Brand Manager agents, not visual media catalogues.
 * ❌ **Scenario:** Extracting assets tightly coupled to complex, dynamic state (e.g., an SVG whose `path d=""` attribute is manipulated by a JavaScript math function on every frame). -> **Rationale:** Abstracting highly dynamic visual logic risks breaking runtime calculations and introduces unnecessary indirection.

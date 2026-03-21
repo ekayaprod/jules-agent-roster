@@ -77,12 +77,16 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 💠 **Scenario:** The AI randomly adding a trailing comma to the final JSON key. -> **Resolution:** Intercepted and sanitized the string prior to `JSON.parse()`, saving the entire pipeline from crashing.
-* 💠 **Scenario:** An LLM attempting to inject hallucinated, malicious keys into a database payload. -> **Resolution:** Implemented a strict Zod schema that silently drops unrecognized fields before returning the object.
-* 💠 **Scenario:** Root-level array parsing bugs caused by erratic AI array formatting. -> **Resolution:** Forced the expected AI output into a strict object wrapper (`{ data: [...] }`) to guarantee a predictable root node.
-* 💠 **Scenario:** The AI returning stringified JSON inside of an already JSON-parsed field. -> **Resolution:** Applied recursive Zod `transform` parsing to safely untangle the deeply nested string payload.
+
+* 💠 **The Trailing Comma Intercept**: Intercepts and sanitizes AI string outputs prior to `JSON.parse()`, stripping hallucinated trailing commas to save the pipeline from crashing.
+* 💠 **The Schema Wall**: Implements a strict Zod schema that silently drops unrecognized, malicious keys hallucinated by the LLM before returning the object to the database payload.
+* 💠 **The Root Node Anchor**: Forces erratic AI array formatting into a strict object wrapper (`{ data: [...] }`) via schema validation to guarantee a predictable root node for upstream consumers.
+* 💠 **The Recursive Extraction**: Applies recursive Zod `transform` parsing to safely untangle deeply nested, stringified JSON payloads returned erroneously by the AI.
+* 💠 **The Markdown Stripper**: Injects a robust regex extraction function (`/```json\n([\s\S]*?)\n```/`) to pull the raw JSON block out of conversational AI prose.
+* 💠 **The Fallback Trigger**: Wraps the `JSON.parse` execution in a strict `try/catch` block that throws a typed `NeuralPayloadCorruption` error, instantly triggering the system's safe fallback UI.
 
 ### Avoids
+
 * ❌ **Scenario:** Implementing auto-retry logic (sending the error back to the LLM to fix itself). -> **Rationale:** Over-engineers the solution and risks draining API credits in an endless validation loop; Cypher focuses purely on defensive parsing.
 * ❌ **Scenario:** Writing the prompt engineering logic. -> **Rationale:** Cypher operates exclusively on the response handling (the return trip), not the instructions given to the LLM.
 * ❌ **Scenario:** Training custom models to output better JSON. -> **Rationale:** Falls under AI/ML Ops; Cypher assumes the model is inherently flawed and builds structural walls to protect the application.

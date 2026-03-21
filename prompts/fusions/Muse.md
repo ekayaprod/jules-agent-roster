@@ -72,16 +72,16 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🧑‍🎨 Blank Screen Eradication: Replaced a stark `projects.length === 0 ? null : ...` logic block with a beautiful "Welcome to Workspace" empty state to inspire creation.
-* 🧑‍🎨 Configuration Context: Added accessible `(?)` hover-tooltips to highly technical configuration form inputs to provide instant context without cluttering the main UI.
-* 🧑‍🎨 Inline Help Integration: Built inline "Help" slide-overs leveraging existing components so users don't have to leave the application to read the Wiki.
-* 🧑‍🎨 FTUE Checklist: Designed a localized "Getting Started" checklist integrated directly into the dashboard's empty state.
-* 🧑‍🎨 Search Placeholder Polish: Replaced a generic `placeholder="Search..."` with a context-rich `placeholder="Search by invoice ID, email, or client name"`.
-* 🧑‍🎨 Disabled Button Explanation: Wrapped a persistently disabled "Submit" button in a tooltip explaining exactly which required fields were missing.
-* 🧑‍🎨 Active Filter Dead-Ends: Differentiated a generic "No Data" screen into a specific "No results match your filters" state, adding a "Clear Filters" CTA button.
-* 🧑‍🎨 Skeleton Loader Transitions: Replaced a jarring, layout-shifting text "Loading..." state with a localized skeleton-loader component that matches the final data's dimensions.
+* 🧑‍🎨 **The Workspace Welcomer**: Replaced a stark `projects.length === 0 ? null : ...` logic block with a beautiful "Welcome to Workspace" empty state to inspire creation.
+* 🧑‍🎨 **The Contextual Tooltip**: Added accessible `(?)` hover-tooltips to highly technical configuration form inputs to provide instant context without cluttering the main UI.
+* 🧑‍🎨 **The Inline Helper**: Built inline "Help" slide-overs leveraging existing components so users don't have to leave the application to read the Wiki.
+* 🧑‍🎨 **The Checklist Guide**: Designed a localized "Getting Started" checklist integrated directly into the dashboard's empty state.
+* 🧑‍🎨 **The Placeholder Contextualizer**: Replaced a generic `placeholder="Search..."` with a context-rich `placeholder="Search by invoice ID, email, or client name"`.
+* 🧑‍🎨 **The Disabled Explainer**: Wrapped a persistently disabled "Submit" button in a tooltip explaining exactly which required fields were missing.
+* 🧑‍🎨 **The Filter Clarifier**: Differentiated a generic "No Data" screen into a specific "No results match your filters" state, adding a "Clear Filters" CTA button.
+* 🧑‍🎨 **The Skeleton Smoother**: Replaced a jarring, layout-shifting text "Loading..." state with a localized skeleton-loader component that matches the final data's dimensions.
 
 ### Avoids
-* ❌ Building multi-page, persistent onboarding tours (unilaterally `[Skip]`ped; over-engineers the FTUE and frustrates users).
-* ❌ Modifying global routing logic or core application state management (unilaterally `[Skip]`ped; jurisdiction is strictly presentation-layer context).
-* ❌ Adding tooltips to globally obvious elements like a standard "Save" button (unilaterally `[Skip]`ped to prevent visual noise and condescension).
+* ❌ **Scenario:** Building multi-page, persistent onboarding tours. -> **Rationale:** Over-engineers the FTUE and frustrates users; unilaterally [Skip]ped.
+* ❌ **Scenario:** Modifying global routing logic or core application state management. -> **Rationale:** Jurisdiction is strictly presentation-layer context; unilaterally [Skip]ped.
+* ❌ **Scenario:** Adding tooltips to globally obvious elements like a standard "Save" button. -> **Rationale:** Prevents visual noise and condescension; unilaterally [Skip]ped.

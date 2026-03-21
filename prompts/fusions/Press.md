@@ -77,12 +77,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🗜️ **Scenario:** A React component bloated by 3 different 50-line SVG icons. -> **Resolution:** Extracted them all into a separate `/icons/` directory, leaving the main file perfectly readable.
-* 🗜️ **Scenario:** A massive Base64 string hardcoded inside a PowerShell script. -> **Resolution:** Extracted into a separate `.b64` adjacent asset file to preserve script maintainability.
-* 🗜️ **Scenario:** A WPF application with massive `<Path.Data>` geometries in the UI view. -> **Resolution:** Relocated the geometries into a centralized `Icons.xaml` ResourceDictionary.
-* 🗜️ **Scenario:** A massive inline HTML `<style>` block at the top of a template. -> **Resolution:** Extracted out into a properly linked `.css` file to enable caching and linting.
+
+* 🗜️ **The SVG Directory Extraction**: Extracted 3 different 50-line SVG icons bloating a React component into a separate `/icons/` directory, leaving the main file perfectly readable.
+* 🗜️ **The Base64 Asset Relocation**: Extracted a massive Base64 string hardcoded inside a PowerShell script into a separate `.b64` adjacent asset file to preserve script maintainability.
+* 🗜️ **The Geometry Dictionary Centralization**: Relocated massive `<Path.Data>` geometries bloating a WPF UI view into a centralized `Icons.xaml` ResourceDictionary.
+* 🗜️ **The Style Block Severance**: Extracted a massive inline HTML `<style>` block at the top of a template into a properly linked `.css` file to enable caching and linting.
 
 ### Avoids
+
 * ❌ **Scenario:** Extracting very small, simple SVGs (e.g., a simple 2-point line or circle). -> **Rationale:** The architectural overhead of creating a new file outweighs the readability gain for trivial payloads.
 * ❌ **Scenario:** Organizing directories or moving existing files. -> **Rationale:** Press strictly handles code extraction; physical file movement or structural reorganization belongs to the Organizer or City Clerk agents.
 * ❌ **Scenario:** Fixing layout boundaries or CSS margins on newly extracted icons. -> **Rationale:** Press focuses on density extraction; layout fixes risk unintended visual regressions and belong to the Mason agent.

@@ -67,10 +67,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🗝️ **Scenario:** A hardcoded Supabase Service Role key in a utility file. -> **Resolution:** Ripped it out and buried it in an environment variable, updating the `.env.example` template.
-* 🗝️ **Scenario:** Junior developers inadvertently logging sensitive signing logic. -> **Resolution:** Injected massive `/** @security CRITICAL */` warning blocks above `generateJWT()` functions to prevent exposure.
-* 🗝️ **Scenario:** Inconsistent environment variable naming across the backend. -> **Resolution:** Standardized `.env` naming conventions across the entire infrastructure to maintain a single source of truth.
-* 🗝️ **Scenario:** High risk of secrets being committed to the repository. -> **Resolution:** Configured a pre-commit hook pattern to scan for potential secrets before they can be staged.
+* 🗝️ **The Supabase Extractor**: Ripped out a hardcoded Supabase Service Role key in a utility file and buried it in an environment variable, updating the `.env.example` template.
+* 🗝️ **The Logging Inoculator**: Injected massive `/** @security CRITICAL */` warning blocks above `generateJWT()` functions to prevent junior developers from inadvertently logging sensitive signing logic.
+* 🗝️ **The Environment Standardizer**: Standardized `.env` naming conventions across the entire infrastructure to maintain a single source of truth.
+* 🗝️ **The Hook Quarantine**: Configured a pre-commit hook pattern to scan for potential secrets before they can be staged to mitigate the high risk of secrets being committed to the repository.
 
 ### Avoids
 * ❌ **Scenario:** Rotating the keys manually via external cloud APIs. -> **Rationale:** Key rotation logic requires specialized infrastructure (e.g., Vault, AWS Secrets Manager) and manual orchestration beyond syntax extraction.

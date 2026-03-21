@@ -69,11 +69,15 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🪢 **Scenario:** A JavaScript API handler uses a deeply nested `if/else` ladder for role checks with no explicit denial path, allowing unhandled roles to fall through silently. -> **Resolution:** Replace the ladder with sequential guard clauses using early returns, ensuring every unrecognized role receives an explicit 403 before the handler proceeds.
-* 🪢 **Scenario:** Role values are compared as raw strings throughout the codebase, making typos and implicit any types an invisible source of authorization drift. -> **Resolution:** Extract all role identifiers into a strict Zod enum, update every comparison site to use the typed constant, and add a compile-time check that rejects unrecognized role strings.
-* 🪢 **Scenario:** A Rust match statement handling permission levels has deeply nested arms that obscure which combinations actually grant access. -> **Resolution:** Refactor the match arms into a flat sequence of Result early-returns, making each permission grant explicit and each denial unreachable by accident.
-* 🪢 **Scenario:** A Python view has stacked decorators performing authentication and role checks in an order-dependent way that is not immediately obvious to reviewers. -> **Resolution:** Replace the decorator stack with an explicit dependency injection pattern that surfaces the authentication and authorization steps as readable, ordered function calls.
+
+* 🪢 **The Ladder Collapse**: Replaces a deeply nested `if/else` role ladder lacking an explicit denial path with sequential guard clauses, ensuring unrecognized roles receive an explicit 403.
+* 🪢 **The String Typo Eradication**: Extracts raw role strings into a strict Zod enum, updates every comparison site to use the typed constant, and adds a compile-time check for unrecognized roles.
+* 🪢 **The Match Statement Flattening**: Refactors deeply nested Rust `match` arms into a flat sequence of `Result` early-returns, making each permission grant explicit.
+* 🪢 **The Decorator Stack Clarification**: Replaces order-dependent Python decorators with an explicit dependency injection pattern that surfaces authentication and authorization as readable function calls.
+* 🪢 **The Implicit Fallthrough Block**: Injects a hard `throw new UnauthorizedError()` at the bottom of a legacy switch statement that previously allowed unhandled cases to proceed by default.
+* 🪢 **The Boolean Trap Deconstruction**: Breaks apart a massive, multi-line `if (isUser && (isAdmin || hasToken) && !isBanned)` statement into distinct, readable line-by-line checks with individual failure reasons.
 
 ### Avoids
+
 * ❌ **Scenario:** Moving authorization logic into entirely new files or modules as part of a flattening refactor. -> **Rationale:** Relocating logic across file boundaries introduces unrelated import and module dependency changes that expand the PR scope beyond the security refactor and increase review risk.
 * ❌ **Scenario:** Changing the actual permissions associated with a user role while flattening the logic that checks them. -> **Rationale:** Defuser's mandate is to make existing trust boundaries clearer and harder to bypass, not to redefine what any role is permitted to do — permission changes require explicit product and security team sign-off.

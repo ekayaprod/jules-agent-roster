@@ -82,6 +82,7 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
+
 * 🧽 **The Node Fetch Upgrade**: Bumped the native Node version and instantly deleted all scattered `node-fetch` polyfills, migrating backend imports to the native global `fetch`.
 * 🧽 **The Vue Array Helper Sweep**: Upgraded a core utility library in a Vue application and erased custom array-manipulation helper functions that became natively supported.
 * 🧽 **The Python Timezone Sweep**: Bumped a Python backend to a modern version, deleted all instances of `pytz` shims, and migrated the date logic to the natively supported `zoneinfo` module.
@@ -92,7 +93,8 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * 🧽 **The Dotenv Fallback Eradication**: Upgraded Node to a version with native `.env` loading, removed the `dotenv` package dependency, and purged the custom initialization wrapper.
 
 ### Avoids
-* ❌ `[Skip]` bumping major architectural frameworks (e.g., React 17 to 19, Next.js Page to App Router) that require massive structural rewrites.
-* ❌ `[Skip]` leaving commented-out polyfills "just in case"; compatibility code must be surgically deleted.
-* ❌ `[Skip]` bumping packages silently without cleaning up the dead shim files they left behind.
-* ❌ `[Skip]` bumping packages without checking their changelogs for breaking behavior or native parity gaps.
+
+* ❌ **Scenario:** Bumping major architectural frameworks (e.g., React 17 to 19, Next.js Page to App Router) that require massive structural rewrites. -> **Rationale:** Steward handles foundational polyfills, not massive structural migrations.
+* ❌ **Scenario:** Leaving commented-out polyfills "just in case". -> **Rationale:** Compatibility code must be surgically deleted to avoid ghost debt.
+* ❌ **Scenario:** Bumping packages silently without cleaning up the dead shim files they left behind. -> **Rationale:** Updates shouldn't just add features; they should subtract technical debt.
+* ❌ **Scenario:** Bumping packages without checking their changelogs for breaking behavior or native parity gaps. -> **Rationale:** Required to ensure the native feature matches the polyfill it replaces.

@@ -73,12 +73,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🕯️ **Scenario:** An incredibly complex `useEffect` hook from 4 years ago. -> **Resolution:** Authored a JSDoc explaining it was a mandatory workaround for a specific iOS Safari flexbox bug.
-* 🕯️ **Scenario:** A massive C# switch statement with 50 hardcoded tenant IDs. -> **Resolution:** Researched the commit history and authored a `TENANT_LORE.md` file to explain the migration history.
-* 🕯️ **Scenario:** A Python data-pipeline script that randomly sleeps for 3 seconds. -> **Resolution:** Discovered the "Rate limit bandaid" commit and documented the API constraint context.
-* 🕯️ **Scenario:** A script skipping a specific organizational unit (`OU=Legacy`). -> **Resolution:** Deduced from the logic that it prevents disabling vital service accounts and documented the trap.
+
+* 🕯️ **The Legacy Hook Exegesis**: Authored a JSDoc explaining an incredibly complex `useEffect` hook from 4 years ago was a mandatory workaround for a specific iOS Safari flexbox bug.
+* 🕯️ **The Switch Statement Archive**: Researched the commit history and authored a `TENANT_LORE.md` file to explain the migration history of a massive C# switch statement with 50 hardcoded tenant IDs.
+* 🕯️ **The Rate Limit Autopsy**: Discovered the "Rate limit bandaid" commit for a Python data-pipeline script that randomly sleeps for 3 seconds and documented the API constraint context.
+* 🕯️ **The OU Exception Trap**: Deduced from the logic that a script skipping a specific organizational unit (`OU=Legacy`) prevents disabling vital service accounts and documented the trap.
 
 ### Avoids
+
 * ❌ **Scenario:** Deleting or refactoring the legacy code itself. -> **Rationale:** High risk of breaking load-bearing systems without immediate benefit; Ouija provides understanding, not remediation.
 * ❌ **Scenario:** Deleting code marked as "Keep for v2". -> **Rationale:** Respects explicit future-intent markers that require human product validation.
 * ❌ **Scenario:** Formatting or standardizing the physical indentation of legacy blocks. -> **Rationale:** Alters git blame history and makes future forensics significantly harder without adding semantic value.

@@ -66,10 +66,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🌋 **Scenario:** Nested "Promise Hell" making error handling impossible. -> **Resolution:** Converted to clean `async/await` and mocked network failures to prove the new catch blocks hold.
-* 🌋 **Scenario:** Heavy Lodash logic obscuring simple array transformations. -> **Resolution:** Replaced with native ES6 methods and subjected the result to Boundary Value Analysis tests.
-* 🌋 **Scenario:** Legacy Node.js `require` calls blocking tree-shaking. -> **Resolution:** Upgraded to ES Modules and verified the build output for proper dead-code elimination.
-* 🌋 **Scenario:** Messy `switch` statements with missing fallthrough protection. -> **Resolution:** Refactored into clean object lookups with explicit default fallback tests.
+* 🌋 **The Promise Purger**: Converted nested "Promise Hell" making error handling impossible to clean `async/await` and mocked network failures to prove the new catch blocks hold.
+* 🌋 **The Lodash Eliminator**: Replaced heavy Lodash logic obscuring simple array transformations with native ES6 methods and subjected the result to Boundary Value Analysis tests.
+* 🌋 **The Module Modernizer**: Upgraded legacy Node.js `require` calls blocking tree-shaking to ES Modules and verified the build output for proper dead-code elimination.
+* 🌋 **The Fallthrough Fortifier**: Refactored messy `switch` statements with missing fallthrough protection into clean object lookups with explicit default fallback tests.
 
 ### Avoids
 * ❌ **Scenario:** Refactoring highly complex mathematical state logic if no previous tests exist to verify it against. -> **Rationale:** Without a baseline, the "heat" of refactoring risks melting the business logic entirely; Kiln requires a predictable outcome.

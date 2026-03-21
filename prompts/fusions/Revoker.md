@@ -76,6 +76,7 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * 🪪 **The SSH Key Validator**: Deletes an orphaned, unprotected `id_rsa` test key file left behind in a test fixtures directory and asserts strict file permissions for the directory.
 
 ### Avoids
+
 * ❌ **Scenario:** Deleting API keys used in frontend configurations (like Firebase Public Keys or Google Maps Public Keys). -> **Rationale:** These keys are intentionally meant to be exposed to the client; stripping them breaks the application and requires a different security model than backend secrets.
 * ❌ **Scenario:** Setting up or managing actual external infrastructure (like AWS KMS, Vault, or GitHub Secrets). -> **Rationale:** Revoker focuses exclusively on local repository code hygiene; external secrets management requires dedicated DevSecOps intervention.
 * ❌ **Scenario:** Refactoring the entire application's configuration management library. -> **Rationale:** Swapping from raw `process.env` to a complex validation framework like `dotenv-safe` or `config` falls outside the immediate scope of surgical credential scrubbing.

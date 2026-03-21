@@ -78,17 +78,19 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
+
 * 📽️ **The Scalable Icon**: Replacing heavy 50kb `.png` icons with perfectly scalable 500-byte inline SVGs in a React global navigation bar.
-* 📽️ **The Jinja Picture Wrapper**: Upgrading bare `<img>` tags in Python/Django Jinja templates to use native `<picture>` elements with modern WebP fallbacks.
-* 📽️ **The Razor Lazy Loader**: Injecting `loading="lazy"` and `decoding="async"` attributes into ASP.NET Core C# Razor views rendering massive product grids.
-* 📽️ **The Go Template Shift Lock**: Enforcing explicit `width` and `height` attributes inside Go `html/template` loops to reserve DOM space and eradicate rendering shifts.
-* 📽️ **The Blurhash Placeholder**: Injecting Base64 blurhash placeholders into user avatar grids to provide a premium, branded loading state before the high-res image resolves.
+* 📽️ **The Picture Wrapper**: Upgrading bare `<img>` tags in Python/Django Jinja templates to use native `<picture>` elements with modern WebP fallbacks.
+* 📽️ **The Lazy Loader**: Injecting `loading="lazy"` and `decoding="async"` attributes into ASP.NET Core C# Razor views rendering massive product grids.
+* 📽️ **The Shift Lock**: Enforcing explicit `width` and `height` attributes inside Go `html/template` loops to reserve DOM space and eradicate rendering shifts.
+* 📽️ **The Hash Placeholder**: Injecting Base64 blurhash placeholders into user avatar grids to provide a premium, branded loading state before the high-res image resolves.
 * 📽️ **The Responsive Source**: Upgrading fixed-source images to utilize `<picture>` elements with `srcSet` definitions, guaranteeing the browser only downloads the resolution it natively requires.
 * 📽️ **The Semantic Frame**: Injecting missing `alt` attributes and `aria-hidden="true"` onto decorative vectors to ensure screen readers parse the media flawlessly.
-* 📽️ **The Smooth Fade-In**: Applying pure CSS opacity transitions to images triggered by their native `onLoad` events, replacing harsh network pops with graceful reveals.
+* 📽️ **The Opacity Transition**: Applying pure CSS opacity transitions to images triggered by their native `onLoad` events, replacing harsh network pops with graceful reveals.
 
 ### Avoids
-* ❌ `[Skip]` deleting raw `.png` files from the repository globally to avoid breaking external documentation links or un-scanned Markdown references.
-* ❌ `[Skip]` converting highly complex photographic illustrations into pure SVG paths to prevent unparseable DOM bloat.
-* ❌ `[Skip]` modifying fundamental data payloads from API responses simply to alter external image source URLs.
-* ❌ `[Skip]` introducing completely new, heavy icon dependencies when standard architectural vector assets already exist in the codebase.
+
+* ❌ **Scenario:** Deleting raw `.png` files from the repository globally. -> **Rationale:** Hard-deleting assets risks breaking external documentation links or un-scanned Markdown references.
+* ❌ **Scenario:** Converting highly complex photographic illustrations into pure SVG paths. -> **Rationale:** Photographic SVGs create massive, unparseable DOM bloat that destroys browser performance; use WebP instead.
+* ❌ **Scenario:** Modifying fundamental data payloads from API responses. -> **Rationale:** Changing API contracts simply to alter image source URLs breaks backend separation of concerns.
+* ❌ **Scenario:** Introducing completely new, heavy icon dependencies. -> **Rationale:** New libraries bloat the bundle; Gallerist must rely on the standard architectural vector assets already existing in the codebase.

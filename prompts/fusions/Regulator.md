@@ -73,6 +73,7 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * 🛂 **The Magic String Purger**: Consolidates duplicated string literals like `"pending"` and `"approved"` into a strict TypeScript union type or frozen object map.
 
 ### Avoids
+
 * ❌ **Scenario:** Altering validation rules for highly sensitive fields (like SSNs, IBANs, or passwords). -> **Rationale:** A typo or extraction error here could allow corrupted data into production or cause severe security regressions; requires explicit human oversight.
 * ❌ **Scenario:** Leaving literal values embedded in logical `if` checks. -> **Rationale:** Defeats the core purpose of variable canonicalization and leaves logic brittle.
 * ❌ **Scenario:** Changing the underlying business rule limits. -> **Rationale:** Regulator enforces the existing rules structurally; it does not dictate product behavior or business requirements.

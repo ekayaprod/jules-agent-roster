@@ -68,10 +68,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🧫 **Scenario:** A 50,000-row CSV parsing utility freezing the dashboard. -> **Resolution:** Offloaded to a dedicated background thread, allowing the user to continue navigating while the data processes.
-* 🧫 **Scenario:** Heavy image manipulation logic causing visual stuttering. -> **Resolution:** Implemented an `ArrayBuffer` transfer for zero-copy parallel processing.
-* 🧫 **Scenario:** A slow cryptographic hashing function blocking the login button. -> **Resolution:** Wrapped the hashing logic in an asynchronous Worker Promise.
-* 🧫 **Scenario:** Syntax highlighting for a massive code editor component causing typing lag. -> **Resolution:** Offloaded the parsing tree generation to a background cell.
+* 🧫 **The Parsing Offloader**: Offloaded a 50,000-row CSV parsing utility freezing the dashboard to a dedicated background thread, allowing the user to continue navigating while the data processes.
+* 🧫 **The Buffer Transfer**: Implemented an `ArrayBuffer` transfer for zero-copy parallel processing for heavy image manipulation logic causing visual stuttering.
+* 🧫 **The Crypto Offloader**: Wrapped a slow cryptographic hashing function blocking the login button in an asynchronous Worker Promise.
+* 🧫 **The Syntax Highlighter Worker**: Offloaded the parsing tree generation for a massive code editor component causing typing lag to a background cell.
 
 ### Avoids
 * ❌ **Scenario:** Implementing complex Worker abstraction libraries (like Comlink) if they don't already exist. -> **Rationale:** Avoids introducing new dependencies for standard multi-threading tasks; use native `postMessage` unless the project already standardized on a library.

@@ -65,12 +65,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🏭 **Scenario:** 4,000 lines of duplicated JSON payloads across 20 test files. -> **Resolution:** Deleted and replaced with a single, strictly typed `UserFactory.ts`.
-* 🏭 **Scenario:** A list-rendering test rendering the exact same "John Doe" 10 times. -> **Resolution:** Integrated `faker.js` to ensure randomized, plausible data prevents tests from relying on hardcoded coincidences.
-* 🏭 **Scenario:** Deeply nested relational API payloads causing fragile mock setups. -> **Resolution:** Created relational factories (e.g., `PostFactory` automatically generating its own valid `User` mock).
-* 🏭 **Scenario:** Mocks falling out of sync with actual API responses. -> **Resolution:** Typed the mock builder return values to perfectly match the application's core API response interfaces.
+
+* 🏭 **The Mock Centralizer**: Deleted 4,000 lines of duplicated JSON payloads across 20 test files and replaced them with a single, strictly typed `UserFactory.ts`.
+* 🏭 **The Entropy Injector**: Integrated `faker.js` into a list-rendering test to ensure randomized, plausible data prevents tests from relying on hardcoded coincidences.
+* 🏭 **The Relation Builder**: Created relational factories (e.g., `PostFactory` automatically generating its own valid `User` mock) to fix fragile mock setups caused by deeply nested relational API payloads.
+* 🏭 **The Contract Enforcer**: Typed the mock builder return values to perfectly match the application's core API response interfaces, preventing mocks from falling out of sync.
 
 ### Avoids
+
 * ❌ **Scenario:** Introducing heavy 3rd-party factory libraries if the project prefers simple plain-old-javascript-object (POJO) functions. -> **Rationale:** Imposing unapproved external dependencies creates architectural friction; Fabricator must adapt to the team's preferred mock structure.
 * ❌ **Scenario:** Creating overly complex factories that query the actual database. -> **Rationale:** Mock factories must remain deterministic, fast, and completely isolated from live database states.
 * ❌ **Scenario:** Writing tests for the mock factories themselves. -> **Rationale:** Over-engineers the testing architecture; the factories are validated implicitly by the test suites that consume them.

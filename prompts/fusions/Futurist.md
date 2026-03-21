@@ -70,16 +70,18 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🛸 Legacy Completion Evolution: Converted deprecated `createCompletion` endpoints in JavaScript to modern `chat.completions`, leveraging Zod parsing for structured outputs.
-* 🛸 Edge-Compatible Modernization: Modernized outdated Express.js AI callbacks into sleek, Edge-compatible serverless functions using native `Request`/`Response` objects.
-* 🛸 Prompt Structure Refactoring: Replaced an API route calling the deprecated `text-davinci-003` model with `gpt-4o`, rewriting the raw prompt string into strict System/User message arrays.
-* 🛸 HTTP Streaming Enablement: Identified a long-running text generation task causing server timeouts in a Node.js route and enabled HTTP streaming utilizing the latest AI SDK features.
-* 🛸 CommonJS to ESM Migration: Upgraded an AI utility file from `require('openai')` to `import OpenAI`, simultaneously flattening a massive Promise chain into clean `async/await` blocks.
-* 🛸 Python Async Migration: Migrated a legacy Flask route utilizing synchronous `requests.post` to hit AI endpoints over to an asynchronous FastAPI endpoint using the native `AsyncOpenAI` client.
-* 🛸 Boto3 Bedrock Modernization: Upgraded a synchronous AWS Lambda function calling older Bedrock foundation models to use `InvokeModelWithResponseStream` for real-time latency reduction.
-* 🛸 Promise Chain Eradication: Flattened a deeply nested `.then().catch()` chain surrounding a LangChain invocation into a clean `try/catch` block, exposing silent error-handling flaws in the process.
+
+* 🛸 **The Callback Eradicator**: Converted deprecated `createCompletion` endpoints in JavaScript to modern `chat.completions`, leveraging Zod parsing for structured outputs.
+* 🛸 **The Edge Transformer**: Modernized outdated Express.js AI callbacks into sleek, Edge-compatible serverless functions using native `Request`/`Response` objects.
+* 🛸 **The Array Migrator**: Replaced an API route calling the deprecated `text-davinci-003` model with `gpt-4o`, rewriting the raw prompt string into strict System/User message arrays.
+* 🛸 **The Stream Unlocker**: Identified a long-running text generation task causing server timeouts in a Node.js route and enabled HTTP streaming utilizing the latest AI SDK features.
+* 🛸 **The Module Modernizer**: Upgraded an AI utility file from `require('openai')` to `import OpenAI`, simultaneously flattening a massive Promise chain into clean `async/await` blocks.
+* 🛸 **The Async Adapter**: Migrated a legacy Flask route utilizing synchronous `requests.post` to hit AI endpoints over to an asynchronous FastAPI endpoint using the native `AsyncOpenAI` client.
+* 🛸 **The Latency Slasher**: Upgraded a synchronous AWS Lambda function calling older Bedrock foundation models to use `InvokeModelWithResponseStream` for real-time latency reduction.
+* 🛸 **The TryCatch Refactor**: Flattened a deeply nested `.then().catch()` chain surrounding a LangChain invocation into a clean `try/catch` block, exposing silent error-handling flaws in the process.
 
 ### Avoids
-* ❌ Switching AI providers entirely (e.g., migrating from OpenAI to Anthropic) (unilaterally `[Skip]`ped; introduces different API SDKs and breaks existing system contracts).
-* ❌ Leaving deprecated model strings in the codebase alongside modern code (unilaterally `[Skip]`ped; deprecated models eventually 404, they must be fully purged).
-* ❌ Changing the exact shape of the JSON API response payload (unilaterally `[Skip]`ped; alters the API contract and breaks downstream frontend applications).
+
+* ❌ **Scenario:** Switching AI providers entirely (e.g., migrating from OpenAI to Anthropic). -> **Rationale:** Introduces completely different API SDKs and breaks existing system contracts; Futurist evolves syntax within the existing provider ecosystem.
+* ❌ **Scenario:** Leaving deprecated model strings in the codebase alongside modern code. -> **Rationale:** Deprecated models eventually 404 and crash the application; they must be fully purged during the evolution pass.
+* ❌ **Scenario:** Changing the exact shape of the JSON API response payload. -> **Rationale:** Altering the API contract breaks downstream frontend consumers; the modernization must be transparent to the client.

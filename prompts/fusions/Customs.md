@@ -70,11 +70,15 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🛃 **Scenario:** An /api/delete-user Express.js endpoint has no authentication middleware and can be called by any unauthenticated request. -> **Resolution:** Apply the application's existing verifyAdminToken middleware to the route, ensuring only verified administrators can invoke the deletion endpoint.
-* 🛃 **Scenario:** A React application's entire /dashboard/* route tree is accessible without a valid session. -> **Resolution:** Wrap the dashboard route group in the established session-validation guard component, redirecting unauthenticated users to /login.
-* 🛃 **Scenario:** A Python Flask backend has data-mutation routes without @login_required decorators, exposing write operations to unauthenticated callers. -> **Resolution:** Audit all POST, PUT, and DELETE routes and inject @login_required (or the equivalent role decorator) on every unprotected mutation endpoint.
-* 🛃 **Scenario:** C# ASP.NET Core controllers handling high-risk operations lack explicit [Authorize] attribute declarations, relying on global policy alone. -> **Resolution:** Add explicit [Authorize(Roles = "Administrator")] attributes to each high-risk action method to enforce defense in depth at the controller level.
+
+* 🛃 **The Endpoint Lockdown**: Applies the application's existing `verifyAdminToken` middleware to an exposed `/api/delete-user` Express.js endpoint, ensuring only verified administrators can invoke the deletion.
+* 🛃 **The Route Tree Shield**: Wraps an entire `/dashboard/*` React route tree in the established session-validation guard component, redirecting unauthenticated users to `/login`.
+* 🛃 **The Flask Mutation Guard**: Audits all POST, PUT, and DELETE routes in a Python backend and injects `@login_required` decorators on every unprotected mutation endpoint.
+* 🛃 **The Controller Attribute Enforcement**: Adds explicit `[Authorize(Roles = "Administrator")]` attributes to high-risk C# ASP.NET Core action methods to enforce defense in depth at the controller level.
+* 🛃 **The Fallback Redirect Patch**: Updates an auth guard that previously rendered a blank white screen to gracefully `router.push('/unauthorized')` when a user lacks the required role.
+* 🛃 **The Middleware Hole Plug**: Moves an unprotected `/api/settings` route block *below* the global authentication middleware declaration in an Express router file.
 
 ### Avoids
+
 * ❌ **Scenario:** Building the HTML and CSS login forms or credential-collection UI alongside implementing route guards. -> **Rationale:** Auth UI construction is a separate frontend concern; Customs exclusively secures the routing and middleware boundary layer and does not own the credential input experience.
 * ❌ **Scenario:** Managing infrastructure-level firewall rules or cloud security group configurations to supplement route guards. -> **Rationale:** Network-layer access control is an infrastructure domain outside the application's codebase; Customs operates strictly within the application routing and middleware layer.

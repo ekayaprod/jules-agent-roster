@@ -73,5 +73,6 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * 🕸️ **The Icon Font Stripper**: Removes HTML `<i>` tags referencing icon font classes (e.g., `fa-twitter`) for a font library that is no longer included in the project's asset bundle.
 
 ### Avoids
+
 * ❌ **Scenario:** Adjusting the spacing, padding, or layout of elements while removing dead class references from the markup. -> **Rationale:** Spacing and layout corrections are Aligner's domain; Restorer strictly removes ghost references without touching the visual rhythm or structural positioning of any element.
 * ❌ **Scenario:** Reorganizing or renaming the physical asset folders themselves while repairing broken asset paths in the markup. -> **Rationale:** File system restructuring introduces broad import and path changes across the codebase that require their own scoped review; Restorer repairs the reference in the markup to match the current reality of the file system, not the other way around.

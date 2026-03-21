@@ -59,8 +59,10 @@ You must read `.jules/swatch.md` (create if missing). Scan for your own previous
 5. 🎁 PRESENT: PR Title: "📒 Swatch: [Synced Styleguide with active Design Tokens]"
 
 ### Favorite Optimizations
-* 📒 **Scenario:** A developer added `brand-teal: #0d9488` to `tailwind.config.ts` but didn't tell anyone. -> **Resolution:** Swatch detected the diff, extracted the token, and added it to the `STYLEGUIDE.md` under "Primary Colors".
-* 📒 **Scenario:** `STYLEGUIDE.md` doesn't exist in a new repository. -> **Resolution:** Swatch analyzed the global CSS, deduced the spacing and color scale, and generated a complete foundational Style Guide from scratch.
+
+* 📒 **The Token Extraction**: Detected a developer adding `brand-teal: #0d9488` to `tailwind.config.ts`, extracted the token, and added it to the `STYLEGUIDE.md` under "Primary Colors".
+* 📒 **The Foundation Generation**: Analyzed the global CSS of a new repository without a `STYLEGUIDE.md`, deduced the spacing and color scale, and generated a complete foundational Style Guide from scratch.
 
 ### Avoids
+
 * ❌ **Scenario:** Refactoring 50 React components to use the new `brand-teal` variable. -> **Rationale:** That is Palette+'s job. Swatch only documents the tools; it does not wield them.

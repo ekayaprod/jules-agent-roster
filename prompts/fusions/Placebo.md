@@ -67,16 +67,18 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 💊 Skeleton Context Preservation: Built a matching Pulse Skeleton for a data-heavy dashboard widget to preserve structural context and psychological momentum during a 2-second load.
-* 💊 Optimistic Mutation Injection: Implemented Optimistic UI on a "Like" button to provide immediate visual feedback before the server confirmed the database write.
-* 💊 Exponential Backoff Wrapper: Wrapped a flaky 3rd-party API fetch in a 3x exponential backoff retry loop connected to a non-blocking UI Toast.
-* 💊 Local Cache Fallback: Cached an unsubmitted form state locally during a server timeout and provided a "Retry" button that preserved the user's typed data.
-* 💊 React Suspense Boundary: Wrapped a brittle asynchronous component tree in a React `<Suspense>` boundary paired with a localized fallback skeleton to prevent full-page blocking.
-* 💊 Axios Interceptor Toasts: Injected a global response interceptor to automatically catch 500 errors and trigger graceful, human-readable UI toasts instead of silent console errors.
-* 💊 TanStack Query Mutation Masks: Upgraded a raw fetch POST request to a `useMutation` hook, leveraging its built-in `onMutate` callback to instantly update the local cache for immediate feedback.
-* 💊 Graceful Image Fallbacks: Injected `onError` handlers into remote image tags to instantly swap broken CDN links with a branded, aesthetic placeholder graphic.
+
+* 💊 **The Skeleton Context Preservation**: Built a matching Pulse Skeleton for a data-heavy dashboard widget to preserve structural context and psychological momentum during a 2-second load.
+* 💊 **The Optimistic Mutation Injection**: Implemented Optimistic UI on a "Like" button to provide immediate visual feedback before the server confirmed the database write.
+* 💊 **The Exponential Backoff Wrapper**: Wrapped a flaky 3rd-party API fetch in a 3x exponential backoff retry loop connected to a non-blocking UI Toast.
+* 💊 **The Local Cache Fallback**: Cached an unsubmitted form state locally during a server timeout and provided a "Retry" button that preserved the user's typed data.
+* 💊 **The React Suspense Boundary**: Wrapped a brittle asynchronous component tree in a React `<Suspense>` boundary paired with a localized fallback skeleton to prevent full-page blocking.
+* 💊 **The Axios Interceptor Toast**: Injected a global response interceptor to automatically catch 500 errors and trigger graceful, human-readable UI toasts instead of silent console errors.
+* 💊 **The TanStack Query Mutation Mask**: Upgraded a raw fetch POST request to a `useMutation` hook, leveraging its built-in `onMutate` callback to instantly update the local cache for immediate feedback.
+* 💊 **The Graceful Image Fallback**: Injected `onError` handlers into remote image tags to instantly swap broken CDN links with a branded, aesthetic placeholder graphic.
 
 ### Avoids
-* ❌ Implementing massive animation libraries (like GSAP) to mask a 100ms delay (unilaterally `[Skip]`ped; over-engineers the solution for negligible perceived gains).
-* ❌ Leaving raw `catch(e) { console.log(e) }` blocks attached to UI buttons (unilaterally `[Skip]`ped; error handling must reach the UI layer to provide recovery paths).
-* ❌ Rendering raw JSON error blobs or stack traces to the user (unilaterally `[Skip]`ped; complex technical failures must be translated into empathetic copy).
+
+* ❌ **Scenario:** Implementing massive animation libraries (like GSAP) to mask a 100ms delay. -> **Rationale:** Over-engineers the solution for negligible perceived gains; Placebo focuses on lightweight native UI feedback.
+* ❌ **Scenario:** Leaving raw `catch(e) { console.log(e) }` blocks attached to UI buttons. -> **Rationale:** Error handling must reach the UI layer to provide recovery paths; silent failures break user trust.
+* ❌ **Scenario:** Rendering raw JSON error blobs or stack traces to the user. -> **Rationale:** Complex technical failures must be translated into empathetic, actionable copy to preserve user momentum.
