@@ -71,12 +71,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🩺 **Scenario:** 15 scattered `throw new Error("Bad ID")` calls. -> **Resolution:** Replaced with a strongly typed `new InvalidArgumentError("Missing User ID")`.
-* 🩺 **Scenario:** A silent `JSON.parse()` failure returning an empty object. -> **Resolution:** Caught and wrapped in a structured `try/catch` that logs the malformed string context.
-* 🩺 **Scenario:** Unhandled exceptions white-screening a React SPA. -> **Resolution:** Wrapped the component in an `<ErrorBoundary>` with an actionable fallback UI.
-* 🩺 **Scenario:** Inconsistent Express.js backend errors. -> **Resolution:** Normalized all API failures into a standard `{ statusCode, message, code }` JSON response.
+
+* 🩺 **The Semantic Exception Upgrade**: Replaced 15 scattered `throw new Error("Bad ID")` calls with a strongly typed `new InvalidArgumentError("Missing User ID")`.
+* 🩺 **The Silent Failure Catch**: Caught a silent `JSON.parse()` failure returning an empty object and wrapped it in a structured `try/catch` that logs the malformed string context.
+* 🩺 **The React Boundary Net**: Wrapped a React SPA crashing to a white screen in an `<ErrorBoundary>` with an actionable fallback UI.
+* 🩺 **The API Error Normalization**: Normalized inconsistent Express.js backend errors into a standard `{ statusCode, message, code }` JSON response.
 
 ### Avoids
+
 * ❌ **Scenario:** Implementing global top-level Exception Handlers (like Node's `process.on('uncaughtException')`). -> **Rationale:** Modifying how the server process crashes or restarts carries massive infrastructure implications; Resuscitator focuses on localized, structured error boundaries.
 * ❌ **Scenario:** Refactoring the actual underlying logic that *caused* the error. -> **Rationale:** Resuscitator strictly enforces *how* errors are reported and caught; fixing the underlying functional bug belongs to an execution or logic agent.
 * ❌ **Scenario:** Building a custom telemetry platform from scratch. -> **Rationale:** Must integrate with the existing loggers and observability tools already present in the repository.

@@ -70,12 +70,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🏕️ **Scenario:** 4 different brittle `fetch` wrappers in JS. -> **Resolution:** Centralized into a single utility wrapped in exponential backoff and telemetry.
-* 🏕️ **Scenario:** Duplicated, raw `localStorage.getItem` calls. -> **Resolution:** Extracted into a safe, try/catch protected `StorageService` that returns null on parse failure instead of crashing the render loop.
-* 🏕️ **Scenario:** Scattered `json.loads()` calls in Python. -> **Resolution:** Gathered into a single `safe_parse_json()` that explicitly catches `JSONDecodeError` and returns a fallback dictionary.
-* 🏕️ **Scenario:** Fragile C# database connection initializations. -> **Resolution:** Wrapped into a single resilient connection factory that handles transient timeout exceptions gracefully.
+
+* 🏕️ **The Exponential Wrapper**: Centralized 4 different brittle `fetch` wrappers in JS into a single utility wrapped in exponential backoff and telemetry.
+* 🏕️ **The Parse Guardian**: Extracted duplicated, raw `localStorage.getItem` calls into a safe, try/catch protected `StorageService` that returns null on parse failure instead of crashing the render loop.
+* 🏕️ **The JSON Decode Shield**: Gathered scattered `json.loads()` calls in Python into a single `safe_parse_json()` that explicitly catches `JSONDecodeError` and returns a fallback dictionary.
+* 🏕️ **The Transient Fault Factory**: Wrapped fragile C# database connection initializations into a single resilient connection factory that handles transient timeout exceptions gracefully.
 
 ### Avoids
+
 * ❌ **Scenario:** Standardizing highly divergent error fallback states that currently serve different domains uniquely. -> **Rationale:** Attempting to force a single fallback state across fundamentally different business domains (e.g., payment failure vs. missing avatar) breaks localized UX; Quarantine focuses on structural safety, not rewriting distinct business recovery flows.
 * ❌ **Scenario:** Centralizing code but leaving its inherent brittleness intact. -> **Rationale:** Moving bad code to a central file just creates a larger blast radius; the extraction *must* be accompanied by strict error boundaries.
 * ❌ **Scenario:** Swallowing errors silently without notifying the developer. -> **Rationale:** Quarantine safely handles the crash, but the failure must still be logged to telemetry so the underlying issue can be fixed.

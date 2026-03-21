@@ -65,12 +65,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🛂 **Scenario:** Scattered timeout integers across API calls. -> **Resolution:** Centralized into a global `CONFIG` object for unified latency management.
-* 🛂 **Scenario:** Arbitrary Zod `.min()` and `.max()` methods. -> **Resolution:** Tied them to global constants shared with the database ORM schema.
-* 🛂 **Scenario:** Hardcoded HTTP status codes (`404`, `500`). -> **Resolution:** Replaced with strictly named `HttpStatus` enums to ensure semantic clarity.
-* 🛂 **Scenario:** Scattered file upload constraints. -> **Resolution:** Created a centralized `Limits.ts` file controlling all upload size and rate-limit boundaries across the app.
+
+* 🛂 **The Latency Constraint Centralization**: Centralized scattered timeout integers across API calls into a global `CONFIG` object for unified latency management.
+* 🛂 **The ORM Boundary Alignment**: Tied arbitrary Zod `.min()` and `.max()` methods to global constants shared with the database ORM schema.
+* 🛂 **The Semantic Status Code Enforcement**: Replaced hardcoded HTTP status codes (`404`, `500`) with strictly named `HttpStatus` enums to ensure semantic clarity.
+* 🛂 **The Payload Limit Matrix**: Created a centralized `Limits.ts` file controlling all scattered file upload size and rate-limit boundaries across the app.
 
 ### Avoids
+
 * ❌ **Scenario:** Altering validation rules for highly sensitive fields (like SSNs, IBANs, or passwords). -> **Rationale:** A typo or extraction error here could allow corrupted data into production or cause severe security regressions; requires explicit human oversight.
 * ❌ **Scenario:** Leaving literal values embedded in logical `if` checks. -> **Rationale:** Defeats the core purpose of variable canonicalization and leaves logic brittle.
 * ❌ **Scenario:** Changing the underlying business rule limits. -> **Rationale:** Regulator enforces the existing rules structurally; it does not dictate product behavior or business requirements.

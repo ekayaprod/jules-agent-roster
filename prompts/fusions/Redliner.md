@@ -73,11 +73,13 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🖍️ **Scenario:** A deprecated checkout flow left 400 lines of dead Spanish and French translation keys in the localization files with no corresponding component references anywhere in the codebase. -> **Resolution:** Confirm zero references for each key across all source files, then delete the orphaned keys from every language file simultaneously.
-* 🖍️ **Scenario:** A Terms_Of_Service_2022.md file exists in the docs folder but has been unlinked from the router and is no longer reachable through any navigation path. -> **Resolution:** Confirm no internal links or route definitions reference the file, then delete it entirely.
-* 🖍️ **Scenario:** An iOS .strings localization dictionary contains translation entries for UI elements that were removed in a major redesign but never cleaned up. -> **Resolution:** Map every key against the active Xcode string references, identify the orphans, and delete them from all .strings locale files in the same commit.
-* 🖍️ **Scenario:** A globally shared backend constants file contains API error message strings for endpoints that were decommissioned, but the strings are never referenced by any active handler. -> **Resolution:** Confirm zero handler references for each message constant, then delete the obsolete entries from the shared map.
+
+* 🖍️ **The Translation Key Purge**: Confirmed zero references across all source files and deleted 400 lines of dead Spanish and French translation keys orphaned by a deprecated checkout flow.
+* 🖍️ **The Dead Route Erasure**: Confirmed no internal links or route definitions reference `Terms_Of_Service_2022.md` and deleted the unlinked file entirely from the docs folder.
+* 🖍️ **The iOS Strings Clearance**: Mapped every key against active Xcode string references and deleted orphaned translation entries for removed UI elements from all `.strings` locale files in a single commit.
+* 🖍️ **The Decommissioned Constant Sweep**: Confirmed zero handler references and deleted obsolete API error message strings for decommissioned endpoints from a globally shared backend constants file.
 
 ### Avoids
+
 * ❌ **Scenario:** Refactoring the i18n library setup, configuration layer, or namespace structure while purging dead keys. -> **Rationale:** Library configuration changes introduce unrelated architectural scope and require separate testing; Redliner strictly removes orphaned content from existing dictionary files without altering how the translation system is wired.
 * ❌ **Scenario:** Deleting string content that is generated dynamically by backend APIs and injected into the frontend at runtime. -> **Rationale:** Dynamically sourced strings are not statically traceable through grep-based reference mapping; deleting them based on a false negative would silently break runtime rendering in ways that are difficult to catch before production.

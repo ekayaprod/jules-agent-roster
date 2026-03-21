@@ -70,11 +70,13 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🔀 **Scenario:** A major refactor moved the user profile section from /profile to /user/settings, leaving 50 internal Link components pointing at the old path. -> **Resolution:** Add a permanent server-level redirect from /profile to /user/settings and update all 50 internal Link href values to point directly to the new route.
-* 🔀 **Scenario:** A blog post was deleted without a redirect, leaving external links and search engine indexes pointing to a 404. -> **Resolution:** Add a permanent 301 redirect from the deleted post's URL to the parent /blog category page to preserve inbound traffic and SEO equity.
-* 🔀 **Scenario:** A Next.js application has scattered client-side useEffect redirects handling legacy paths, making the redirect logic fragmented and inconsistent. -> **Resolution:** Consolidate all client-side redirect logic into the framework's native server-level redirects configuration for consistent, reliable handling.
-* 🔀 **Scenario:** A Django application inconsistently handles trailing slashes, causing some routes to 404 when accessed without the trailing slash. -> **Resolution:** Resolve the conflict using Django's native APPEND_SLASH configuration to enforce a consistent trailing slash policy across all routes.
+
+* 🔀 **The Navigation Refactor Patch**: Added a permanent server-level redirect from `/profile` to `/user/settings` and updated 50 internal `Link` components to point directly to the new route following a major refactor.
+* 🔀 **The SEO Equity Preservation**: Added a permanent 301 redirect from a deleted blog post's URL to the parent `/blog` category page to preserve inbound traffic and search engine indexes.
+* 🔀 **The Client-Side Consolidation**: Consolidated scattered client-side `useEffect` redirects handling legacy paths in a Next.js application into the framework's native server-level redirects configuration for consistent handling.
+* 🔀 **The Trailing Slash Standardization**: Resolved a routing conflict in a Django application using the native `APPEND_SLASH` configuration to enforce a consistent trailing slash policy across all routes.
 
 ### Avoids
+
 * ❌ **Scenario:** Writing middleware or routing logic to intercept and handle broken API endpoint requests from external consumers. -> **Rationale:** API endpoint versioning and deprecation handling is a separate contract concern; Redirector exclusively manages page-level URL routing within the application's frontend and server-side navigation layer.
 * ❌ **Scenario:** Tracking or analyzing inbound external link sources through marketing analytics tools to determine which legacy URLs need redirects. -> **Rationale:** External traffic analysis requires marketing tooling and data access outside the codebase; Redirector identifies broken routes from the internal link graph and route definitions, not from analytics platforms.

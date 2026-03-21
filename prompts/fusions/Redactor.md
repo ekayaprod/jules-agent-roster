@@ -71,12 +71,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🥷 **Scenario:** A massive `console.log(req.body)` exposing full user objects. -> **Resolution:** Intercepted and wrapped the log in a recursive object-scrubber before it hit Datadog.
-* 🥷 **Scenario:** Full phone numbers displayed in a customer support UI. -> **Resolution:** Redacted the text down to just `***-***-8912` to protect user privacy from shoulder-surfing.
-* 🥷 **Scenario:** 5 different sloppy regex patterns used for credit cards across the app. -> **Resolution:** Built a centralized, bulletproof `maskCreditCard` utility and applied it globally.
-* 🥷 **Scenario:** Python API error handlers echoing raw payloads. -> **Resolution:** Ensured the error handlers automatically scrub email addresses before responding to unauthenticated clients.
+
+* 🥷 **The Datadog Payload Scrubber**: Intercepted a massive `console.log(req.body)` exposing full user objects and wrapped the log in a recursive object-scrubber before it hit telemetry.
+* 🥷 **The Shoulder-Surf Shield**: Redacted full phone numbers displayed in a customer support UI down to just `***-***-8912` to protect user privacy from shoulder-surfing.
+* 🥷 **The Regex Unification Protocol**: Built a centralized, bulletproof `maskCreditCard` utility and applied it globally to replace 5 different sloppy regex patterns used for credit cards across the app.
+* 🥷 **The API Echo Sanitization**: Ensured Python API error handlers echoing raw payloads automatically scrub email addresses before responding to unauthenticated clients.
 
 ### Avoids
+
 * ❌ **Scenario:** Redacting data in specific "Admin Only" billing dashboards where the full string might be required. -> **Rationale:** Full strings might be legally or operationally required for authorized personnel; requires human product context before blindly masking.
 * ❌ **Scenario:** Hashing passwords in the backend database. -> **Rationale:** Redactor strictly masks presentation and logging layers (in-memory/transit); persistent cryptographic hashing belongs to specialized Auth/Security domains.
 * ❌ **Scenario:** Masking non-sensitive IDs (like a public UUID or Database ID). -> **Rationale:** Over-redaction makes debugging impossible without adding any actual privacy value for the end-user.

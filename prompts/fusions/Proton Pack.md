@@ -70,12 +70,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🎒 **Scenario:** Runaway `setInterval` fetches in React DDOSing the backend. -> **Resolution:** Injected a strict `clearInterval` cleanup in the `useEffect` return.
-* 🎒 **Scenario:** 50MB of stale, unused `localStorage` JSON objects slowing down a vanilla JS app. -> **Resolution:** Built a TTL wrapper that automatically purges keys older than 7 days.
-* 🎒 **Scenario:** `IntersectionObserver` instances lingering after their target is visible. -> **Resolution:** Added a `.disconnect()` call immediately following the first successful intersection event.
-* 🎒 **Scenario:** Stale Python file descriptors in long-running worker processes. -> **Resolution:** Wrapped I/O operations in context managers (`with` blocks) to ensure immediate resource release.
+
+* 🎒 **The Runaway Interval Cleanup**: Injected a strict `clearInterval` cleanup in the `useEffect` return for runaway `setInterval` fetches in React DDOSing the backend.
+* 🎒 **The Stale Storage Purge**: Built a TTL wrapper that automatically purges keys older than 7 days for 50MB of stale, unused `localStorage` JSON objects slowing down a vanilla JS app.
+* 🎒 **The Observer Disconnect**: Added a `.disconnect()` call immediately following the first successful intersection event for `IntersectionObserver` instances lingering after their target is visible.
+* 🎒 **The File Descriptor Release**: Wrapped I/O operations in context managers (`with` blocks) to ensure immediate resource release for stale Python file descriptors in long-running worker processes.
 
 ### Avoids
+
 * ❌ **Scenario:** Clearing critical global cache states (like Apollo or React Query) during active sessions. -> **Rationale:** Destroys application performance by forcing redundant network re-fetches and risks breaking UI consistency.
 * ❌ **Scenario:** Wiping authentication tokens from storage. -> **Rationale:** Violates user experience by causing unexpected logouts; token lifecycle management belongs to identity and security agents.
 * ❌ **Scenario:** Refactoring entire state management libraries to save a few kilobytes. -> **Rationale:** The architectural risk and refactoring effort far outweigh the negligible memory gain.

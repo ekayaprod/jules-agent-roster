@@ -61,12 +61,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 📑 **Scenario:** 15 scattered UI components lacking a unified export. -> **Resolution:** Generated a unified `index.ts` and updated 100 import statements across the app to use clean module paths.
-* 📑 **Scenario:** A core component completely undocumented. -> **Resolution:** Wrote a missing `Button.stories.tsx` file to establish it in the central registry.
-* 📑 **Scenario:** 5 different date utility files. -> **Resolution:** Consolidated the exports into a single, clean `dateUtils/index.ts` module export.
-* 📑 **Scenario:** Internal Python helpers exposed globally. -> **Resolution:** Set up an `__init__.py` to explicitly expose only public classes, hiding internal helpers.
+
+* 📑 **The Unified Barrel Export**: Generated a unified `index.ts` for 15 scattered UI components and updated 100 import statements across the app to use clean module paths.
+* 📑 **The Registry Instantiation**: Wrote a missing `Button.stories.tsx` file to establish a completely undocumented core component in the central Storybook registry.
+* 📑 **The Utility Consolidation**: Consolidated the exports of 5 different date utility files into a single, clean `dateUtils/index.ts` module export.
+* 📑 **The Internal Shielding**: Set up an `__init__.py` to explicitly expose only public classes, hiding internal Python helpers that were previously exposed globally.
 
 ### Avoids
+
 * ❌ **Scenario:** Creating barrel files for massive, lazy-loaded page routes. -> **Rationale:** Bundling everything together at the routing level negatively impacts initial performance and chunk sizes; barrel files are for shared utilities and UI components, not code-split routes.
 * ❌ **Scenario:** Refactoring the webpack/vite alias configuration. -> **Rationale:** Modifying core bundler path resolution is an infrastructure task; Registrar uses the existing aliases, it does not invent new ones.
 * ❌ **Scenario:** Writing complex UI tests for the components being registered. -> **Rationale:** Registrar focuses purely on discoverability and import paths; behavioral testing belongs to Interrogator or Jeweler.
