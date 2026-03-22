@@ -1,0 +1,511 @@
+{
+  "Accountant": [
+    "Bracket Leak"
+  ],
+  "Adversary": [
+    "Bracket Leak"
+  ],
+  "Agent": [
+    "Bracket Leak"
+  ],
+  "Aligner": [
+    "Bracket Leak"
+  ],
+  "Amputator": [
+    "Bracket Leak"
+  ],
+  "Archivist": [
+    "Bracket Leak"
+  ],
+  "Assessor": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Auditor": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Automata": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Autopilot": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Bastion": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Brand Manager": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Captionist": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Catalogue": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Catalyst": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Chameleon": [
+    "Bracket Leak"
+  ],
+  "Checkpoint": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Choreographer": [
+    "Un-Synthesized Intro"
+  ],
+  "Chronicler": [
+    "Un-Synthesized Intro"
+  ],
+  "Circuit Breaker": [
+    "Un-Synthesized Intro"
+  ],
+  "City Clerk": [
+    "Un-Synthesized Intro"
+  ],
+  "Construct": [
+    "Un-Synthesized Intro"
+  ],
+  "Cryptographer": [
+    "Un-Synthesized Intro"
+  ],
+  "Cypher": [
+    "Un-Synthesized Intro"
+  ],
+  "Decoder": [
+    "Un-Synthesized Intro"
+  ],
+  "Diplomat": [
+    "Un-Synthesized Intro"
+  ],
+  "Dispatcher": [
+    "Un-Synthesized Intro"
+  ],
+  "Expediter": [
+    "Un-Synthesized Intro"
+  ],
+  "Fabricator": [
+    "Un-Synthesized Intro"
+  ],
+  "Firewall": [
+    "Un-Synthesized Intro"
+  ],
+  "Glossary": [
+    "Un-Synthesized Intro"
+  ],
+  "Grammarian": [
+    "Un-Synthesized Intro"
+  ],
+  "Groundskeeper": [
+    "Un-Synthesized Intro"
+  ],
+  "Guardian": [
+    "Un-Synthesized Intro"
+  ],
+  "Hazmat": [
+    "Un-Synthesized Intro"
+  ],
+  "Helmsman": [
+    "Un-Synthesized Intro"
+  ],
+  "Historian": [
+    "Un-Synthesized Intro"
+  ],
+  "Hoister": [
+    "Un-Synthesized Intro"
+  ],
+  "Hologram": [
+    "Un-Synthesized Intro"
+  ],
+  "Illuminator": [
+    "Un-Synthesized Intro"
+  ],
+  "Information Architect": [
+    "Un-Synthesized Intro"
+  ],
+  "Inoculator": [
+    "Un-Synthesized Intro"
+  ],
+  "Interpolator": [
+    "Un-Synthesized Intro"
+  ],
+  "Interrogator": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Janitor": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Jeweler": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Keymaster": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Kiln": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Lexicon": [
+    "Bracket Leak"
+  ],
+  "Limiter": [
+    "Bracket Leak"
+  ],
+  "Liquidator": [
+    "Bracket Leak"
+  ],
+  "LiveFeed": [
+    "Bracket Leak"
+  ],
+  "Logician": [
+    "Bracket Leak"
+  ],
+  "Lumberjack": [
+    "Un-Synthesized Intro"
+  ],
+  "Mapper": [
+    "Un-Synthesized Intro"
+  ],
+  "Mason": [
+    "Un-Synthesized Intro"
+  ],
+  "Millisecond": [
+    "Un-Synthesized Intro"
+  ],
+  "Minimalist": [
+    "Un-Synthesized Intro"
+  ],
+  "Mitosis": [
+    "Bracket Leak"
+  ],
+  "Mobilizer": [
+    "Bracket Leak"
+  ],
+  "Muse": [
+    "Bracket Leak"
+  ],
+  "Narrator": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Obituary Writer": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Orator": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Organizer": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Ouija": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Pacemaker": [
+    "Un-Synthesized Intro"
+  ],
+  "Pacesetter": [
+    "Un-Synthesized Intro"
+  ],
+  "PathCentralizer": [
+    "Un-Synthesized Intro"
+  ],
+  "Pathfinder": [
+    "Un-Synthesized Intro"
+  ],
+  "Policy Maker": [
+    "Un-Synthesized Intro"
+  ],
+  "Polyglot": [
+    "Un-Synthesized Intro"
+  ],
+  "Polygraph": [
+    "Un-Synthesized Intro"
+  ],
+  "Prefect": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Press Secretary": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Press": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Profiler": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Prompt Engineer": [
+    "Bracket Leak"
+  ],
+  "Prophet": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Pruner": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Publicist": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Purger": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Quarantine": [
+    "Bracket Leak",
+    "Un-Synthesized Intro"
+  ],
+  "Quartermaster": [
+    "Bracket Leak"
+  ],
+  "Ratchet": [
+    "Blockquote Mission"
+  ],
+  "Redactor": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Redirector": [
+    "Blockquote Mission"
+  ],
+  "Redliner": [
+    "Blockquote Mission"
+  ],
+  "Refiner": [
+    "Blockquote Mission"
+  ],
+  "Registrar": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Regulator": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Renovator": [
+    "Blockquote Mission"
+  ],
+  "Restorer": [
+    "Blockquote Mission"
+  ],
+  "Resuscitator": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Retrofitter": [
+    "Blockquote Mission"
+  ],
+  "Revisionist": [
+    "Blockquote Mission"
+  ],
+  "Revoker": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Rulemaker": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Safety Inspector": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Sandboxer": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Scaffolder": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Scholar": [
+    "Blockquote Mission"
+  ],
+  "Sculptor": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Seawall": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Sherpa": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Shredder": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Silencer": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Singularity": [
+    "Blockquote Mission"
+  ],
+  "Siren": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Slipstream": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Speed Camera": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Spellchecker": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Sprinter": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Standardizer": [
+    "Blockquote Mission"
+  ],
+  "Steward": [
+    "Blockquote Mission"
+  ],
+  "Strategist": [
+    "Blockquote Mission"
+  ],
+  "Streamliner": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Stress Tester": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Stylist": [
+    "Blockquote Mission"
+  ],
+  "Sunsetter": [
+    "Blockquote Mission"
+  ],
+  "Surge Protector": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Surgeon": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Swatch": [
+    "Blockquote Mission"
+  ],
+  "Synchronizer": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Systematizer": [
+    "Un-Synthesized Intro",
+    "Blockquote Mission"
+  ],
+  "Tachyon": [
+    "Un-Synthesized Intro"
+  ],
+  "Telemetrist": [
+    "Un-Synthesized Intro"
+  ],
+  "Telepath": [
+    "Un-Synthesized Intro"
+  ],
+  "Temporal Loom": [
+    "Un-Synthesized Intro"
+  ],
+  "Terraformer": [
+    "Un-Synthesized Intro"
+  ],
+  "Threat Modeler": [
+    "Un-Synthesized Intro"
+  ],
+  "Tokenizer": [
+    "Un-Synthesized Intro"
+  ],
+  "Tower": [
+    "Un-Synthesized Intro"
+  ],
+  "Town Crier": [
+    "Un-Synthesized Intro"
+  ],
+  "Toxicologist": [
+    "Un-Synthesized Intro"
+  ],
+  "Tracer": [
+    "Un-Synthesized Intro",
+    "Missing 'The Philosophy' Header"
+  ],
+  "Transfusion": [
+    "Un-Synthesized Intro",
+    "Missing 'The Philosophy' Header"
+  ],
+  "Transition Manager": [
+    "Un-Synthesized Intro",
+    "Missing 'The Philosophy' Header"
+  ],
+  "Transmuter": [
+    "Un-Synthesized Intro",
+    "Missing 'The Philosophy' Header"
+  ],
+  "Typesetter": [
+    "Un-Synthesized Intro",
+    "Missing 'The Philosophy' Header"
+  ],
+  "Upgrader": [
+    "Un-Synthesized Intro"
+  ],
+  "Vector": [
+    "Un-Synthesized Intro"
+  ],
+  "Vibe Check": [
+    "Un-Synthesized Intro"
+  ],
+  "Vibe": [
+    "Un-Synthesized Intro"
+  ],
+  "Virtuoso": [
+    "Un-Synthesized Intro"
+  ],
+  "Watermark": [
+    "Un-Synthesized Intro"
+  ],
+  "Wayfinder": [
+    "Un-Synthesized Intro"
+  ],
+  "Whistleblower": [
+    "Un-Synthesized Intro"
+  ],
+  "Yggdrasil": [
+    "Un-Synthesized Intro"
+  ],
+  "Zealot": [
+    "Un-Synthesized Intro"
+  ]
+}
