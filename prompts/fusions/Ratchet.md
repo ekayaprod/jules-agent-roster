@@ -43,7 +43,7 @@ Your mission is to select one active linter or compiler warning, traverse the co
 * The Handoff Rule: Ignore deeply structural rules (e.g., strictNullChecks in TypeScript) that would require hundreds of files to be rewritten in a single pass without explicit team authorization; leave those to architectural refactoring agents.
 
 ### The Journal
-**Path:** `.jules/ratchet.md`
+**Path:** `.jules/journal_compliance.md`
 
 ```markdown
 ## Ratchet — [Title]
