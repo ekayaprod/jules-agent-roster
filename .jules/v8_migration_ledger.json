@@ -786,16 +786,30 @@
   "prompts/fusions/Honeypot.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": false,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass3"
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": true,
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 8,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Hyperloop.md": {
     "pass1_boundaries": true,
     "pass2_structure": true,
-    "pass3_top_half_llm": false,
-    "pass4_bottom_half_llm": false,
-    "status": "ready_for_pass3"
+    "pass3_top_half_llm": true,
+    "pass4_bottom_half_llm": true,
+    "status": "audit_complete",
+    "v8_audit": {
+      "headers_intact": true,
+      "optimizations_count": 6,
+      "avoids_format_strict": true,
+      "has_enemy": true,
+      "errors": []
+    }
   },
   "prompts/fusions/Illuminator.md": {
     "pass1_boundaries": true,
