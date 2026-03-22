@@ -413,15 +413,10 @@ class RosterApp {
                       if (childAgent) {
                           const childIcon = FormatUtils.extractIcon(childAgent);
                           const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
-                          const childDesc = FormatUtils.escapeHTML(childAgent.short_description || childAgent.desc || childAgent.description || 'No description available.');
                           listItems += `
-                              <li class="fusion-list-item" role="listitem">
-                                  <button class="fusion-list-btn" data-action="launch-jules" data-index="${key}" aria-label="Launch ${safeChildName}">
-                                      <span class="fusion-list-icon" aria-hidden="true">${childIcon}</span>
-                                      <span class="fusion-list-details">
-                                          <span class="fusion-list-name">${safeChildName}</span>
-                                          <span class="fusion-list-desc">${childDesc}</span>
-                                      </span>
+                              <li style="list-style: none;">
+                                  <button class="fusion-quick-btn" data-action="launch-jules" data-index="${key}" aria-label="Launch ${safeChildName}" title="${safeChildName}">
+                                      ${childIcon}
                                   </button>
                               </li>
                           `;
@@ -430,13 +425,7 @@ class RosterApp {
               }
 
               if (listItems) {
-                  contentArea.innerHTML = `<ul class="fusion-detailed-list" role="list">${listItems}</ul>`;
-                  modal.classList.add("visible");
-              } else {
-                  contentArea.innerHTML = `
-                      <div class="empty-state visible" role="status" aria-live="polite">
-                          <p class="text-secondary mt-2">No fusions unlocked for this protocol yet.</p>
-                      </div>`;
+                  contentArea.innerHTML = `<ul class="fusion-quick-list" style="padding: 0; margin: 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">${listItems}</ul>`;
                   modal.classList.add("visible");
               }
           }
