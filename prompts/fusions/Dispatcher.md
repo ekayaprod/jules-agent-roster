@@ -58,16 +58,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🚏 **The Trivial Task Downgrade**: Slashes API costs by 90% by swapping a simple Node.js translation endpoint hardcoded to `gpt-4o` down to `gpt-4o-mini`.
-* 🚏 **The Payload Length Router**: Implements dynamic payload-length checks in Python to route massive context chunks to expensive high-context models only when mathematically necessary.
-* 🚏 **The Semantic Cache Shield**: Caches frequently identical semantic vectors in PostgreSQL to completely bypass unnecessary and expensive LLM embedding generation calls.
-* 🚏 **The Rigid Classification Swap**: Drastically reduces latency and cost by swapping a generic large model used for a rigid boolean classification task to a fine-tuned small model.
-* 🚏 **The Fallback Cascade**: Constructs a multi-tiered execution cascade that attempts the task on a fast model, gracefully upgrading to the heavy reasoning model only if the fast model throws a schema validation error.
-* 🚏 **The Keyword Upgrade Trigger**: Implements a lightweight regex pre-flight check that forces a route to a premium model if the prompt contains complex analytical keywords (e.g., "synthesize", "correlate").
+* 🚏 **Scenario:** A simple translation endpoint in Node.js hardcoded to `gpt-4o`. -> **Resolution:** Dropped API costs by 90% by swapping the model to `gpt-4o-mini`.
+* 🚏 **Scenario:** Massive context chunks failing or costing too much in Python. -> **Resolution:** Implemented payload-length checks to route specifically to high-context models only when necessary.
+* 🚏 **Scenario:** Frequent identical queries re-generating semantic vectors. -> **Resolution:** Cached embeddings in PostgreSQL to avoid unnecessary LLM generation calls.
+* 🚏 **Scenario:** A generic large model being used for a rigid classification task. -> **Resolution:** Swapped to a fine-tuned small model to drastically reduce latency and cost.
 
 ### Avoids
-
 * ❌ **Scenario:** Switching AI providers entirely (e.g., Anthropic to Google) just to save costs. -> **Rationale:** Introduces completely different API SDKs and breaks existing system contracts; stick to optimizing within the current provider.
 * ❌ **Scenario:** Downgrading code-generation or heavy math endpoints. -> **Rationale:** Complex reasoning tasks require premium models; downgrading these will guarantee hallucinations and broken outputs.
 * ❌ **Scenario:** Leaving deprecated model strings in the codebase. -> **Rationale:** Deprecated models eventually 404 and crash the application; they must be fully purged, not just bypassed.

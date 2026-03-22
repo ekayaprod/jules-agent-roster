@@ -63,16 +63,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🔌 **The Modal Isolation**: Wraps an unreliable `StripePaymentModal` in a boundary that renders a "Payment System Offline" message instead of tearing down the entire checkout DOM.
-* 🔌 **The Script Encapsulation**: Injects try/catch logic around the execution block of a non-critical analytics tracking script so failures are isolated from the main thread.
-* 🔌 **The Asset Fallback**: Adds fallback SVGs bound to the `onError` event of third-party profile images to prevent broken image icons.
-* 🔌 **The Route Shield**: Wraps an unprotected lazy-loaded React route (`React.lazy`) in a `<Suspense>` boundary with a skeleton `<Spinner />` fallback to handle network hiccups.
-* 🔌 **The API Default Return**: Intercepts an unprotected Axios call fetching a recommended products sidebar, injecting a `catch` block that returns an empty array to keep the page alive.
-* 🔌 **The Iframe Sandbox**: Adds explicit `sandbox` attributes to a third-party advertisement iframe to prevent its internal JavaScript errors from polluting the parent window.
+* 🔌 **Scenario:** An unreliable `StripePaymentModal` crashing the checkout flow. -> **Resolution:** Wrapped in a boundary that renders a "Payment System Offline" message instead of tearing down the DOM.
+* 🔌 **Scenario:** A non-critical analytics tracking script breaking the main thread. -> **Resolution:** Injected try/catch logic around the execution block so failures are isolated.
+* 🔌 **Scenario:** Broken third-party profile images displaying missing asset icons. -> **Resolution:** Added fallback SVGs bound to the image's `onError` event.
+* 🔌 **Scenario:** An unprotected lazy-loaded React route (`React.lazy`) dropping due to a network hiccup. -> **Resolution:** Wrapped the route in a `<Suspense>` boundary with a skeleton `<Spinner />` fallback.
 
 ### Avoids
-
 * ❌ **Scenario:** Implementing complex global retry-logic (e.g., react-query exponential backoff) if the project isn't already using a data-fetching library. -> **Rationale:** Over-engineers the solution; Circuit Breaker focuses on graceful visual degradation, not architecting new network caching layers.
 * ❌ **Scenario:** Mutating the backend schema or DB to store the failed payload. -> **Rationale:** Breaches the frontend/routing boundary; error recovery logic belongs in the client state.
 * ❌ **Scenario:** Rewriting the core application state management. -> **Rationale:** Expanding the blast radius of a simple error boundary risks breaking the entire application architecture.

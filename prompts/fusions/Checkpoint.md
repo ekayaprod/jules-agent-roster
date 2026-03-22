@@ -59,15 +59,11 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🚧 **The API Surface Alignment**: Upgrades a core data parser and simultaneously refactors its corresponding Zod schemas to match the new, breaking API surface.
-* 🚧 **The Configuration Lockdown**: Locks down loose TypeScript interfaces in an updated package to prevent unexpected data ingestion from new configuration objects.
-* 🚧 **The Format Shift Patch**: Updates downstream validation schemas to accept newly formatted ISO strings after a minor update to a date-parsing library.
-* 🚧 **The Deprecation Purge**: Removes a deprecated response field from local validation models before finalizing the bump of a GraphQL client.
-* 🚧 **The Error Type Catch**: Updates `try/catch` error typing to explicitly handle new custom error classes introduced in an external SDK bump.
-* 🚧 **The Enum Expansion Sync**: Adds newly introduced literal values to the frontend's strict string union types after bumping an API client.
+* 🚧 **Scenario:** Bumping a core data parser with breaking API changes. -> **Resolution:** Upgraded the dependency and simultaneously refactored its corresponding Zod schemas to match the new surface.
+* 🚧 **Scenario:** A previously loose configuration object in an updated package. -> **Resolution:** Locked down the TypeScript interfaces and validation boundaries to prevent unexpected data ingestion.
+* 🚧 **Scenario:** A minor update to a date-parsing library changing the output string format. -> **Resolution:** Updated the downstream validation schemas to accept the newly formatted ISO strings.
+* 🚧 **Scenario:** An updated GraphQL client deprecating a legacy response field. -> **Resolution:** Removed the deprecated field from the local validation models before finalizing the bump.
 
 ### Avoids
-
 * ❌ **Scenario:** Bumping major frameworks like React or Express. -> **Rationale:** Major version bumps require massive structural rewrites that exceed the scope of routine dependency maintenance.
 * ❌ **Scenario:** Deleting validation schemas to bypass type errors. -> **Rationale:** Overriding security validations just to make the compiler pass defeats the entire purpose of an integration checkpoint.

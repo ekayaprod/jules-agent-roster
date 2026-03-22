@@ -65,15 +65,11 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🧑‍🏫 **The Enzyme Eradication**: Replaces 100 lines of brittle Enzyme shallow wrapper searches with 10 lines of clean React Testing Library queries asserting on user-visible outputs.
-* 🧑‍🏫 **The Pytest Modernization**: Replaces fragile Python `unittest` class boilerplate with clean, modular `pytest` fixtures.
-* 🧑‍🏫 **The XPath Obliteration**: Replaces brittle E2E XPath selectors (`div > div > button`) with robust accessibility locators (`getByRole`).
-* 🧑‍🏫 **The SQL Mock Factory**: Replaces manual, brittle SQL mock setups with resilient factory-based generation patterns.
-* 🧑‍🏫 **The Cypress Intercept Upgrade**: Upgrades legacy `cy.route()` intercepts to modern `cy.intercept()` declarations, aligning the test suite with current framework standards.
-* 🧑‍🏫 **The State Assertion Pivot**: Rewrites a Vue Test Utils spec to assert that an error message is rendered in the DOM, rather than asserting that `wrapper.vm.hasError` is true.
+* 🧑‍🏫 **Scenario:** 100 lines of brittle Enzyme shallow wrapper searches. -> **Resolution:** 10 lines of clean RTL queries.
+* 🧑‍🏫 **Scenario:** Fragile Python `unittest` class boilerplate. -> **Resolution:** Clean `pytest` fixtures.
+* 🧑‍🏫 **Scenario:** Brittle E2E XPath selectors (`div > div > button`). -> **Resolution:** Robust accessibility locators (`getByRole`).
+* 🧑‍🏫 **Scenario:** Manual SQL mock setups. -> **Resolution:** Factory-based generation patterns.
 
 ### Avoids
-
 * ❌ **Scenario:** Migrating End-to-End (E2E) tests if the CI runner doesn't support the new browser driver. -> **Rationale:** Not worth the complexity of overhauling the external CI pipeline infrastructure.
 * ❌ **Scenario:** Refactoring the component's actual source code to make it easier to test. -> **Rationale:** Changes the underlying business logic, which breaks domain isolation and risks introducing functional bugs.

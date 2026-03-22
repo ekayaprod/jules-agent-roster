@@ -59,16 +59,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🩰 **The Skeleton Injection**: Replaces a jarring blank white screen on a React dashboard with a sleek, CSS-pulsing skeleton layout to preserve structural context during data load.
-* 🩰 **The Progress Bar Wiring**: Wires a static "Uploading..." text to an `onUploadProgress` event rendering a smooth HTML5 `<progress>` bar during Axios file transfers.
-* 🩰 **The Dropdown Transition**: Injects `transition: max-height 0.3s ease-out` into a standard HTML/CSS dropdown menu so it unrolls organically instead of snapping open.
-* 🩰 **The CLI Spinner Thread**: Injects a threaded ASCII spinner (`['|', '/', '-', '\\']`) into a Python script to provide immediate execution feedback during a 10-second machine learning calculation.
-* 🩰 **The Button Loading State**: Disables a submit button and swaps its label for an inline SVG spinner immediately `onSubmit`, preventing duplicate API calls and frozen UI anxiety.
-* 🩰 **The Route Transition Mask**: Adds a top-level `nprogress` loading bar bound to Next.js router events to mask the latency of Server-Side Rendered page navigations.
+* 🩰 **Scenario:** A jarring blank white screen on a React dashboard during data load. -> **Resolution:** Replaced with a sleek, CSS-pulsing skeleton layout to preserve structural context.
+* 🩰 **Scenario:** A static "Uploading..." text during Axios file transfers. -> **Resolution:** Wired an `onUploadProgress` event to a smooth HTML5 `<progress>` bar.
+* 🩰 **Scenario:** A standard HTML/CSS dropdown menu that abruptly snapped open. -> **Resolution:** Injected `transition: max-height 0.3s ease-out` to make it unroll organically.
+* 🩰 **Scenario:** A Python CLI script appearing frozen during a 10-second machine learning calculation. -> **Resolution:** Injected a threaded ASCII spinner `['|', '/', '-', '\']` to provide immediate execution feedback.
 
 ### Avoids
-
 * ❌ **Scenario:** Injecting third-party animation libraries (like Framer Motion or Lottie) if the project currently only uses native CSS. -> **Rationale:** Introduces massive bundle bloat and new dependencies for features that can be achieved natively.
 * ❌ **Scenario:** Managing global state caching to speed up the actual data load. -> **Rationale:** Choreographer strictly deals with the visual layer and transition fluidity, not the underlying data architecture.
 * ❌ **Scenario:** Rewriting synchronous loops into asynchronous threads. -> **Rationale:** Alters the core execution model and risks race conditions; the focus is solely on visual feedback during existing delays.

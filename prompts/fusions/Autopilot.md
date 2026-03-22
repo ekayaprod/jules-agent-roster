@@ -65,16 +65,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* ✈️ **The Selector Resilience Pass**: Replaces 10 flaky XPath selectors causing pipeline failures during layout shifts with robust, accessible `getByRole` locators.
-* ✈️ **The Auth Bypass Injection**: Injects an authentication cookie bypass to speed up Web E2E execution by 50%, avoiding manual login before every test.
-* ✈️ **The Network Intercept Stabilization**: Intercepts and mocks network routing responses (`page.route`) to guarantee stable execution against unpredictable 3rd-party API latency.
-* ✈️ **The Hard Wait Eradication**: Refactors hardcoded `page.waitForTimeout(5000)` calls into dynamic `page.waitForResponse()` state assertions mapped directly to the UI's loading indicator.
-* ✈️ **The Journey Coverage Gap**: Authors a net-new Cypress spec to cover the critical, previously untested `/checkout` to `/confirmation` workflow.
-* ✈️ **The Flaky Frame Fix**: Replaces brittle cross-origin iframe DOM traversals with explicit Playwright `frameLocator` assertions to ensure reliable interactions.
+* ✈️ **Scenario:** 10 flaky XPath selectors causing pipeline failures during layout shifts. -> **Resolution:** Replaced with robust, accessible `getByRole` locators.
+* ✈️ **Scenario:** Slow Web E2E execution requiring manual login before every test. -> **Resolution:** Injected an authentication cookie bypass to speed up Web E2E execution by 50%.
+* ✈️ **Scenario:** Tests flaking randomly due to unpredictable 3rd-party API latency. -> **Resolution:** Intercepted and mocked the network routing responses (`page.route`) to guarantee stable execution.
+* ✈️ **Scenario:** Hardcoded `page.waitForTimeout(5000)` causing artificially slow test runs. -> **Resolution:** Refactored into a dynamic `page.waitForResponse()` state assertion mapped directly to the UI's loading indicator.
 
 ### Avoids
-
 * ❌ **Scenario:** Testing every single negative edge-case validation error in the browser. -> **Rationale:** Overloads the E2E suite; unit or integration tests are far faster and more appropriate for exhaustive negative testing.
 * ❌ **Scenario:** Testing 3rd party payment gateways (like Stripe) using real credentials. -> **Rationale:** Violates security protocols and risks processing fraudulent or test transactions on live networks.
 * ❌ **Scenario:** Writing tests that require 3rd-party SMS or Email verification to proceed. -> **Rationale:** Introduces extreme flakiness outside the E2E test runner's control and requires complex external infrastructure.

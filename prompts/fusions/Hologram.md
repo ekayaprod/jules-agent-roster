@@ -64,14 +64,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🎇 **The Stream Stabilizer**: Added CSS `transition-all` and smooth height transitions to text boxes jumping and thrashing during an AI stream, ensuring an organic growth vibe.
-* 🎇 **The Design Mapper**: Replaced raw AI text being dumped into unstyled `div` blocks with custom `ReactMarkdown` renderers mapped directly to the project's design system components.
-* 🎇 **The Latency Masker**: Built sophisticated "Thinking..." micro-interactions and skeleton loaders to provide immediate execution feedback for high-latency AI calls leaving the user staring at a blank screen.
-* 🎇 **The Feature Cardifier**: Transformed standard markdown lists of AI-generated bullet points appearing as static text into rich, interactive feature-cards.
+* 🎇 **Scenario:** Text boxes jumping and thrashing during an AI stream. -> **Resolution:** Added CSS `transition-all` and smooth height transitions to ensure an organic growth vibe.
+* 🎇 **Scenario:** Raw AI text being dumped into unstyled `div` blocks. -> **Resolution:** Replaced with custom `ReactMarkdown` renderers mapped directly to the project's design system components.
+* 🎇 **Scenario:** High-latency AI calls leaving the user staring at a blank screen. -> **Resolution:** Built sophisticated "Thinking..." micro-interactions and skeleton loaders to provide immediate execution feedback.
+* 🎇 **Scenario:** AI-generated bullet points appearing as static text. -> **Resolution:** Transformed standard markdown lists into rich, interactive feature-cards.
 
 ### Avoids
-
 * ❌ **Scenario:** Using `dangerouslySetInnerHTML` for AI output. -> **Rationale:** Creates immediate and severe Cross-Site Scripting (XSS) vulnerabilities; security always overrides aesthetics.
 * ❌ **Scenario:** Allowing layout shifts (jank) as the text box expands. -> **Rationale:** Destroys the premium feel of the interface; transitions must be used to ensure the UI flows organically.
 * ❌ **Scenario:** Implementing complex server-side function calling (Server Actions/Vercel AI SDK) just to render a UI component. -> **Rationale:** Over-engineers the frontend/backend contract; seek architectural approval before introducing new server-side SDK dependencies.

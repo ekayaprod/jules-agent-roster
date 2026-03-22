@@ -63,16 +63,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 📟 **The Jest Noise Reduction**: Translates a 500-line Jest output block obscuring a simple failure into a 3-line Markdown explanation identifying a missing mock.
-* 📟 **The PyTest Traceback Pinpoint**: Parses a complex PyTest traceback to point directly to a `KeyError` in a specific dictionary payload, omitting the standard library noise.
-* 📟 **The xUnit Dependency Expose**: Decodes a massive xUnit C# failure into a readable summary explaining a specific dependency injection mismatch in the constructor.
-* 📟 **The Cypress Visibility Check**: Scans and summarizes massive Cypress End-to-End failure logs to explain exactly which DOM element was unexpectedly hidden from the user.
-* 📟 **The Webpack Build Crash Translation**: Extracts the exact missing module and file path from a 2000-line Webpack compilation error dump, presenting the actionable fix.
-* 📟 **The Docker Build Layer Reveal**: Identifies the exact `RUN` command that failed in a Docker CI pipeline trace, stripping out the successful layer hashes to highlight the missing OS dependency.
+* 📟 **Scenario:** A 500-line Jest output block obscuring a simple failure. -> **Resolution:** Translated into a 3-line Markdown explanation identifying a missing mock.
+* 📟 **Scenario:** A complex PyTest traceback. -> **Resolution:** Parsed to point directly to a `KeyError` in a specific dictionary payload.
+* 📟 **Scenario:** An xUnit C# failure. -> **Resolution:** Decoded into a readable summary explaining a dependency injection mismatch.
+* 📟 **Scenario:** Massive Cypress End-to-End failure logs. -> **Resolution:** Scanned and summarized to explain exactly which DOM element was unexpectedly hidden from the user.
 
 ### Avoids
-
 * ❌ **Scenario:** Restarting or re-running a heavy, time-consuming CI pipeline just to grab a fresh log. -> **Rationale:** Wastes expensive compute resources and time; Decoder must work with the existing log artifacts.
 * ❌ **Scenario:** Fixing the broken code or modifying the source code to make the test pass. -> **Rationale:** Decoder is a diagnostic and translation agent, not an automated remediation tool.
 * ❌ **Scenario:** Upgrading the testing frameworks or changing test timeouts. -> **Rationale:** Modifying test infrastructure logic falls outside the strict scope of log translation.

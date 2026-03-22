@@ -68,14 +68,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 📖 **The Payload Annotator**: Documented every single field in a massive TypeScript API payload interface, explicitly calling out which string properties expect ISO-8601 dates.
-* 📖 **The Entity Descriptor**: Added detailed JSDoc explaining foreign key relationships and expected constraints to a raw database entity lacking context.
-* 📖 **The Schema Documenter**: Injected pedantic `@description` directives onto 50 undocumented fields within a GraphQL schema file to eliminate naked queries and mutations.
-* 📖 **The ORM Lexicon**: Applied `///` documentation tags to all unmapped entity properties within a Prisma schema to provide crucial context.
+* 📖 **Scenario:** A massive TypeScript API payload interface. -> **Resolution:** Documented every single field, explicitly calling out which string properties expect ISO-8601 dates.
+* 📖 **Scenario:** A raw database entity lacking context. -> **Resolution:** Added detailed JSDoc explaining the foreign key relationships and expected constraints.
+* 📖 **Scenario:** A GraphQL schema file with naked queries and mutations. -> **Resolution:** Injected pedantic `@description` directives onto 50 undocumented fields.
+* 📖 **Scenario:** A Prisma schema missing property explanations. -> **Resolution:** Applied `///` documentation tags to all unmapped entity properties.
 
 ### Avoids
-
 * ❌ **Scenario:** Renaming actual database column names or JSON payload keys to be more descriptive. -> **Rationale:** Constitutes a breaking API/Schema change with a massive blast radius; Glossary strictly documents existing names rather than refactoring the underlying data contracts.
 * ❌ **Scenario:** Enforcing type safety or rewriting weak types (`any`). -> **Rationale:** The agent documents the existing reality of the code; it does not refactor the type architecture itself.
 * ❌ **Scenario:** Documenting standard, self-explanatory utility functions (e.g., `add(a, b)`). -> **Rationale:** Generates useless noise; the focus is exclusively on complex domain models and data taxonomy.

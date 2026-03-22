@@ -65,16 +65,16 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🦎 **The Link Tactile Upgrade**: Injects sleek `underline hover:no-underline transition-all` classes into standard `<a href>` tags lacking interactive feedback.
-* 🦎 **The Keyboard Focus Standardization**: Standardizes focus rings across an entire domain using `focus-visible:ring-2 focus-visible:outline-none` so keyboard navigation looks premium and accessible.
-* 🦎 **The Disabled State Empathy**: Adds `disabled:opacity-50` and `disabled:cursor-not-allowed` to forms that previously looked active and clickable while actively submitting.
-* 🦎 **The Parent-Child Pseudo-Mutation**: Styles static SVG icons inside interactive buttons to animate gracefully on parent `:hover` by injecting `group-hover:translate-x-1`.
-* 🦎 **The Vue Dynamic State Binding**: Injects dynamic class bindings (`:class="{ 'opacity-50 cursor-not-allowed': isProcessing }"`) into Vue templates to properly reflect asynchronous interaction states.
-* 🦎 **The Dark Mode Sync**: Audits components with rich light-mode hovers but flat dark-mode states, injecting `dark:hover:bg-gray-700` to perfectly synchronize tactile feedback across themes.
+* 🦎 Flat Link Transitions: Found standard `<a href>` tags lacking feedback and added sleek `underline hover:no-underline transition-all` classes.
+* 🦎 Keyboard Focus Standardization: Standardized focus rings across an entire domain using `focus-visible:ring-2 focus-visible:outline-none` so keyboard navigation looks premium and accessible.
+* 🦎 Disabled State Empathy: Added `disabled:opacity-50` and `disabled:cursor-not-allowed` to forms that previously looked active and clickable while actively submitting.
+* 🦎 Parent-Child Pseudo-Mutations: Styled static SVG icons inside interactive buttons to animate gracefully on parent `:hover` by injecting `group-hover:translate-x-1`.
+* 🦎 Vue.js Dynamic Bindings: Injected dynamic class bindings (`:class="{ 'opacity-50 cursor-not-allowed': isProcessing }"`) into Vue templates to properly reflect asynchronous interaction states.
+* 🦎 SwiftUI Tactile Feedback: Added `.scaleEffect(isPressed ? 0.95 : 1.0)` to custom SwiftUI buttons to provide immediate, organic tactile feedback on mobile tap events.
+* 🦎 Error State Focus Rings: Mutated form inputs possessing `aria-invalid` tags to utilize aggressive `focus-visible:ring-red-500` rings to heavily emphasize the interaction requirement.
+* 🦎 Dark Mode Synchronization: Audited components with rich light-mode hovers but flat dark-mode states, injecting `dark:hover:bg-gray-700` to perfectly synchronize the tactile feedback across themes.
 
 ### Avoids
-
-* ❌ **Scenario:** Mutating structural layout containers (`<div>` or `<section>`) to behave like interactive elements. -> **Rationale:** Violates semantic HTML and accessibility.
-* ❌ **Scenario:** Removing `outline-none` without immediately replacing it with `focus-visible`. -> **Rationale:** Removing outlines destroys accessibility for keyboard navigators.
-* ❌ **Scenario:** Changing the base structural padding, margins, or CSS Grid positioning of the elements. -> **Rationale:** Jurisdiction is tactile feedback states, not layout geometry.
+* ❌ Mutating structural layout containers (`<div>` or `<section>`) to behave like interactive elements (unilaterally `[Skip]`ped; violates semantic HTML and accessibility).
+* ❌ Removing `outline-none` without immediately replacing it with `focus-visible` (unilaterally `[Skip]`ped; removing outlines destroys accessibility for keyboard navigators).
+* ❌ Changing the base structural padding, margins, or CSS Grid positioning of the elements (unilaterally `[Skip]`ped; jurisdiction is tactile feedback states, not layout geometry).

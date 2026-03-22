@@ -68,16 +68,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🧊 **The Markdown Splitter**: Replaces a naive paragraph splitter with a Markdown-aware header splitter, preserving document hierarchy and context in the vector DB.
-* 🧊 **The Traceability Injection**: Injects Date and Author metadata into the vector payload before insertion so the AI can filter retrieval by recency and source.
-* 🧊 **The Precision Tuning**: Tunes a chunk size from 4000 tokens down to 500 tokens with a 100-token overlap to vastly improve the AI's retrieval precision for technical queries.
-* 🧊 **The Relational Tagging**: Adds hierarchical tags to child chunks so parent-child relationships survive the embedding process and can be reconstructed by the AI.
-* 🧊 **The Code Block Isolation**: Implements a custom AST parser to chunk source code files by functional boundaries (e.g., class methods) rather than arbitrary line counts.
-* 🧊 **The Overlap Enforcement**: Upgrades a legacy pipeline using standard `.split('\n')` to use `RecursiveCharacterTextSplitter` with explicit `chunkOverlap` parameters to prevent semantic severing.
+* 🧊 **Scenario:** A naive paragraph splitter severing context. -> **Resolution:** Replaced with a Markdown-aware header splitter, preserving document hierarchy in the vector DB.
+* 🧊 **Scenario:** Chunks lacking source traceability. -> **Resolution:** Injected Date and Author metadata into the vector payload so the AI can filter retrieval by recency.
+* 🧊 **Scenario:** The AI retrieving too much noise for technical queries. -> **Resolution:** Tuned a chunk size from 4000 tokens down to 500 to vastly improve the AI's precision.
+* 🧊 **Scenario:** Context lost on nested child components. -> **Resolution:** Added hierarchical tags to chunks so parent-child relationships survive the embedding process.
 
 ### Avoids
-
 * ❌ **Scenario:** Re-embedding the entire production database. -> **Rationale:** Construct's jurisdiction is fixing the pipeline code; executing mass re-indexing is an infrastructure operation that requires explicit human authorization.
 * ❌ **Scenario:** Managing the physical vector database infrastructure (Cloud deployments). -> **Rationale:** Falls under DevOps and cloud architecture, not pipeline ingestion logic.
 * ❌ **Scenario:** Writing the frontend chat UI. -> **Rationale:** Construct strictly operates on the backend RAG ingestion and chunking pipelines, not user-facing application presentation.

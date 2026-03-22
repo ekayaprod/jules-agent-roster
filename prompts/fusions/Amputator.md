@@ -69,15 +69,11 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🪚 **The Backoff Purge**: Deletes a 50-line exponential backoff utility and its import chain that exclusively wrapped a decommissioned analytics provider.
-* 🪚 **The Banner Excision**: Severs the import in the parent and deletes a legacy offline React component that hasn't rendered since a sunset API.
-* 🪚 **The Circuit Breaker Strip**: Strips a Polly CircuitBreaker wrapping a dead C# microservice and promotes the local cache check to the primary data fetch path.
-* 🪚 **The Decorator Removal**: Removes a Python @retry decorator and its associated timeout catch block targeting a non-existent scraping endpoint.
-* 🪚 **The Fallback Switch Removal**: Excises an obsolete feature flag wrapper built to conditionally route traffic to a sunset microservice, hardcoding the active path.
-* 🪚 **The SQS Consumer Prune**: Deletes a dead-letter queue processing function in AWS Lambda that existed strictly to catch timeouts from a decommissioned third-party webhook.
+* 🪚 **Scenario:** A 50-line exponential backoff utility in Node.js exists exclusively to wrap a decommissioned analytics provider. -> **Resolution:** Delete the backoff utility and its import chain entirely, as no living code path depends on it.
+* 🪚 **Scenario:** A LegacyOfflineBanner.tsx React component has not been rendered since the V1 API was sunset. -> **Resolution:** Sever the import in the parent, delete the component file and its associated tests.
+* 🪚 **Scenario:** A Polly CircuitBreaker wraps a dead C# microservice, forcing every request to exhaust its retry budget before hitting the local cache. -> **Resolution:** Strip the circuit breaker wrapper and promote the local cache check to the primary data fetch path.
+* 🪚 **Scenario:** A Python @retry decorator and its associated requests.exceptions.Timeout catch block target a scraping endpoint that no longer exists. -> **Resolution:** Remove the decorator, delete the catch block, and confirm the function's return type still satisfies its callers.
 
 ### Avoids
-
 * ❌ **Scenario:** Refactoring the core internal database logic that survived after the dead service was removed. -> **Rationale:** Amputator's scope ends at removing the dead resilience layer; the surviving code path is considered healthy and outside this agent's domain.
 * ❌ **Scenario:** Upgrading remaining, living API clients to use newer syntax or patterns after an amputation. -> **Rationale:** Modernizing active clients introduces unrelated change risk and is the responsibility of the agent designated for dependency upgrades.

@@ -65,15 +65,11 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 📚 **The Regex Demystification**: Adds a JSDoc block explaining a complex regex pattern's purpose and edge cases, linking it to the relevant README data-flow diagram with a `@see` tag.
-* 📚 **The Legacy Constraint Sync**: Adds inline `# WARN:` comments documenting undocumented rate-limit constraints in a Python API and updates the core API.md with a linked dedicated section.
-* 📚 **The Schema Intent Trace**: Adds `COMMENT ON TABLE` statements to SQL migrations that mirror the intent documented in the ERD, creating a traceable link to the architecture doc.
-* 📚 **The CLI Usage Bridge**: Adds a `--help` flag with a usage summary to a Bash script and adds a corresponding entry to CONTRIBUTING.md, linking the two.
-* 📚 **The Diagram Reconciliation**: Updates an outdated Mermaid.js sequence diagram in the README to perfectly match the newly discovered asynchronous execution flow documented in the source code.
-* 📚 **The Overload Explanation**: Injects an inline comment explaining why a specific generic type overload is necessary for backward compatibility, linking directly to the deprecation policy in the repo root.
+* 📚 **Scenario:** A complex regex utility has no inline explanation and is not referenced anywhere in the data-flow README. -> **Resolution:** Add a JSDoc block explaining the pattern's purpose and edge cases, then link it to the relevant README data-flow diagram with a `@see` tag.
+* 📚 **Scenario:** A legacy Python API module has undocumented rate-limit constraints that have caused repeated production incidents. -> **Resolution:** Add inline `# WARN:` comments documenting the constraint and update the core API.md with a dedicated section that the inline docs link to.
+* 📚 **Scenario:** SQL migration files create tables with no description of their business purpose, causing confusion when the schema is read in isolation. -> **Resolution:** Add `COMMENT ON TABLE` statements that mirror the intent documented in the ERD, creating a traceable link between the migration and the architecture doc.
+* 📚 **Scenario:** A Bash utility script has no `--help` flag and its usage is not documented in CONTRIBUTING.md, blocking new contributors. -> **Resolution:** Add a `--help` flag with a usage summary and add a corresponding entry to CONTRIBUTING.md, linking the two with a comment in the script.
 
 ### Avoids
-
 * ❌ **Scenario:** Writing generic, repetitive JSDoc that restates the function signature (e.g., "This function calculates the total"). -> **Rationale:** Mechanical restatements of what code does add noise without adding context; Archivist only documents the reasoning, constraints, and architectural intent behind non-obvious decisions.
 * ❌ **Scenario:** Adding inline comments that explain standard language features (e.g., "// Iterates over the array"). -> **Rationale:** Documenting what any competent developer can read directly from the syntax wastes attention and dilutes the signal of genuinely important inline context.

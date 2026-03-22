@@ -57,16 +57,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 💬 **The Marketing Payload Crush**: Converts 5MB marketing PNGs with generic alt tags into 200kb WebPs and rewrites them with perfect semantic descriptions.
-* 💬 **The Decorative SVG Silence**: Applies `aria-hidden="true"` to decorative background SVGs to remove them from screen reader accessibility trees.
-* 💬 **The Avatar Context Sync**: Ensures profile avatar components consistently use `alt="{user.name}'s profile picture"` across all framework implementations.
-* 💬 **The Icon Label Injection**: Injects explicit `aria-label="Settings"` tags into generic gear icon links so screen readers announce their function, not just their appearance.
-* 💬 **The Complex Graph Summary**: Adds comprehensive `aria-describedby` text blocks to complex data visualizations that previously only had "chart" as their alt text.
-* 💬 **The Redundant Alt Purge**: Removes redundant "image of" or "picture of" prefixes from `alt` attributes across the entire repository.
+* 💬 **Scenario:** 5MB marketing PNGs with generic "IMG_239" alt tags. -> **Resolution:** Converted to 200kb WebPs and rewritten with a perfect semantic description.
+* 💬 **Scenario:** Decorative background SVGs cluttering screen reader output. -> **Resolution:** Applied `aria-hidden="true"` to hide them from accessibility trees.
+* 💬 **Scenario:** An avatar component lacking context across different framework implementations. -> **Resolution:** Ensured the component consistently uses `alt="{user.name}'s profile picture"`.
+* 💬 **Scenario:** A generic gear icon link. -> **Resolution:** Made the screen reader announce it as "Settings" instead of just "gear icon" using an `aria-label`.
 
 ### Avoids
-
 * ❌ **Scenario:** Modifying the underlying CSS grid/flexbox layouts surrounding the images. -> **Rationale:** Captionist focuses strictly on the payload and semantic accessibility of the asset itself, not the structural page layout.
 * ❌ **Scenario:** Managing infrastructure-level firewall rules or AWS security groups. -> **Rationale:** Oversteps into cloud security; Captionist operates at the frontend asset and DOM level.
 * ❌ **Scenario:** Modifying brand-critical vector logos that might require exact precision. -> **Rationale:** Altering exact brand assets risks violating strict corporate design guidelines and requires human design approval.

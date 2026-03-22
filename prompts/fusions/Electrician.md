@@ -74,13 +74,11 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🔋 **The Route Upgrade**: Bump the SDK to the current stable version and migrate all call sites to the `chat.completions.create` pattern with the correct message array structure.
-* 🔋 **The Payload Constructor**: Bump the anthropic package to the current stable version and rewire the message construction logic to use the dedicated `system` parameter as documented.
-* 🔋 **The Namespace Modernizer**: Upgrade the Semantic Kernel NuGet package and replace all deprecated memory handler instantiations with their modern equivalents from the updated namespace.
-* 🔋 **The Endpoint Wrapper**: Replace raw REST calls with a standardized, actively maintained PowerShell module that abstracts the endpoint version and handles authentication correctly.
+* 🔋 **Scenario:** A Node.js integration uses the legacy `createCompletion` endpoint from an outdated OpenAI SDK version that no longer resolves correctly. -> **Resolution:** Bump the SDK to the current stable version and migrate all call sites to the `chat.completions.create` pattern with the correct message array structure.
+* 🔋 **Scenario:** A Python codebase uses an old Anthropic SDK version that does not support the `system` parameter, requiring awkward message array workarounds. -> **Resolution:** Bump the anthropic package to the current stable version and rewire the message construction logic to use the dedicated `system` parameter as documented.
+* 🔋 **Scenario:** A C# desktop application uses outdated Microsoft Semantic Kernel memory handler APIs that were removed in a major version bump. -> **Resolution:** Upgrade the Semantic Kernel NuGet package and replace all deprecated memory handler instantiations with their modern equivalents from the updated namespace.
+* 🔋 **Scenario:** A PowerShell script makes raw, hardcoded REST calls to an Azure OpenAI API version that has been sunset, causing runtime failures. -> **Resolution:** Replace the raw REST calls with a standardized, actively maintained PowerShell module that abstracts the endpoint version and handles authentication correctly.
 
 ### Avoids
-
 * ❌ **Scenario:** Editing the English-language instructions, persona descriptions, or system prompt content inside prompt templates while performing an SDK migration. -> **Rationale:** Prompt content governs model behavior and requires separate review; Electrician strictly rewires the infrastructure layer and preserves all prompt text verbatim.
 * ❌ **Scenario:** Swapping the underlying AI model identifier (e.g., upgrading from GPT-3.5 to GPT-4) as part of an SDK upgrade without explicit authorization. -> **Rationale:** Model selection directly affects cost, latency, and output behavior — these are product decisions that require sign-off, not infrastructure maintenance calls Electrician can make unilaterally.

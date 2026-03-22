@@ -65,16 +65,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🔏 **The Email Regex Decode**: Injects `// REGEX: Matches standard email formats, requiring an @ symbol and a valid 2+ character TLD.` above an undocumented validation pattern.
-* 🔏 **The Action Schedule Translate**: Injects `# CRON: Runs every 15 minutes, all day, every day.` into a GitHub Actions `.yml` file next to a `*/15 * * * *` schedule.
-* 🔏 **The Bitwise Deconstruction**: Injects `// BITWISE: Checks if the 3rd bit (Value: 4) is set in the user's permission flags.` above a dense `if ((user.flags & 4) === 4)` check.
-* 🔏 **The Permission Octal Translate**: Injects `// CHMOD: Grants Owner read/write/execute, Group read/execute, and denies Others.` above a `fs.chmodSync(target, 0o750)` execution.
-* 🔏 **The Hex Color Context**: Injects `// COLOR: Corporate Brand Primary Blue` next to an obscure `#0055A4` hex variable in a foundational theme file.
-* 🔏 **The Regex Lookahead Reveal**: Injects `// REGEX: Asserts the password contains at least one number using a positive lookahead without consuming characters.` above a hostile password validation string.
+* 🔏 **Scenario:** An undocumented email validation regex in a Node.js API. -> **Resolution:** Injected `// REGEX: Matches standard email formats, requiring an @ symbol and a valid 2+ character TLD.`
+* 🔏 **Scenario:** A GitHub Actions `.yml` file with a schedule of `*/15 * * * *`. -> **Resolution:** Injected `# CRON: Runs every 15 minutes, all day, every day.`
+* 🔏 **Scenario:** A TypeScript permissions service using `if ((user.flags & 4) === 4)`. -> **Resolution:** Injected `// BITWISE: Checks if the 3rd bit (Value: 4) is set in the user's permission flags.`
+* 🔏 **Scenario:** A Node.js build script running `fs.chmodSync(target, 0o750)`. -> **Resolution:** Injected `// CHMOD: Grants Owner read/write/execute, Group read/execute, and denies Others.`
 
 ### Avoids
-
 * ❌ **Scenario:** Translating massive, multi-megabyte Base64 strings, Hex dumps, or raw binary payloads. -> **Rationale:** The translation would likely be useless noise rather than actionable logic, overloading the codebase with junk text.
 * ❌ **Scenario:** Re-writing the regex pattern to be more performant or catch edge cases. -> **Rationale:** Cryptographer strictly translates and documents the existing reality; altering execution logic risks introducing functional bugs.
 * ❌ **Scenario:** Creating interactive visualization charts or flow diagrams. -> **Rationale:** The agent strictly authors plain-text, inline translations that natively live alongside the code.

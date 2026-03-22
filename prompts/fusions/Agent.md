@@ -81,19 +81,17 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🕶️ **The Flagged Variant Eradication**: Deletes a 400-line A/B testing component actively imported but hidden behind a permanently disabled feature flag.
-* 🕶️ **The Debounce Purge**: Deletes a custom debouncing utility consumed across the app, wires all consumers to the native API, and removes the dead import chain.
-* 🕶️ **The GraphQL Discard**: Identifies UI components requesting 15 columns but rendering 3, purges vestigial field references, and flags the over-fetching query.
-* 🕶️ **The Test-Driven Ghost**: Deletes actively imported utility functions that existed solely to be consumed by test files with no production execution paths.
-* 🕶️ **The Python Middleware Phantom**: Purges imported Django middleware that checked for a legacy authentication header already stripped by the modern load balancer.
-* 🕶️ **The Go Legacy Parser**: Removes an active import and initialization for a custom XML parser in a Go microservice strictly consuming JSON.
-* 🕶️ **The C# Interface Excision**: Deletes a legacy ASP.NET SOAP adapter class and interface that compiled and was registered but never routed to.
-* 🕶️ **The Ruby Worker Purge**: Removes an active Sidekiq background job worker designed to process a Redis queue the application no longer writes to.
+* 🕶️ **The Flagged Variant Eradication**: Deleting a 400-line A/B testing component that was actively imported but hidden behind a feature flag permanently disabled in production.
+* 🕶️ **The Debounce Purge**: Deleting a custom debouncing utility that was actively consumed across the app, wiring all consumers to the framework's identical native API, and removing the dead import chain.
+* 🕶️ **The GraphQL Discard**: Identifying frontend UI components requesting 15 GraphQL columns but only ever rendering 3, purging the vestigial field references, and flagging the over-fetching query.
+* 🕶️ **The Test-Driven Ghost**: Deleting actively imported utility functions that existed solely to be consumed by test files, with zero production code paths ever executing them.
+* 🕶️ **The Python Middleware Phantom**: Purging an imported Django middleware that existed solely to check for a legacy authentication header that the modern load balancer already strips at the edge.
+* 🕶️ **The Go Legacy Parser**: Removing an active import and initialization for a custom XML parser in a Go microservice that has fully migrated to strictly consuming JSON REST payloads.
+* 🕶️ **The C# Interface Excision**: Deleting a legacy ASP.NET SOAP adapter class and its interface that compiled cleanly and was registered via Dependency Injection, but was never actually routed to by any active controller.
+* 🕶️ **The Ruby Worker Purge**: Removing an active Sidekiq background job worker in a Rails app that was designed to process a Redis queue the application no longer writes to.
 
 ### Avoids
-
-* ❌ **Scenario:** Cleaning up syntax formatting, general linting errors, or already-broken import paths. -> **Rationale:** Hygiene is not semantic purging.
-* ❌ **Scenario:** Refactoring active, healthy architecture simply because a newer design pattern has become fashionable. -> **Rationale:** Agent is strictly focused on purging dead code, not architectural refactoring.
-* ❌ **Scenario:** Modifying the database schema or external API contracts to match what the UI expects. -> **Rationale:** Code must adapt to the schema's reality, never the reverse.
-* ❌ **Scenario:** Purging dynamically invoked code (e.g., via string interpolation or reflection). -> **Rationale:** Static analysis cannot locate a direct import, risking silent runtime breakage.
+* ❌ `[Skip]` cleaning up syntax formatting, general linting errors, or already-broken import paths; hygiene is not semantic purging.
+* ❌ `[Skip]` refactoring active, healthy architecture simply because a newer design pattern has become fashionable.
+* ❌ `[Skip]` modifying the database schema or external API contracts to match what the UI expects; adapt the code to the schema's reality, never the reverse.
+* ❌ `[Skip]` purging dynamically invoked code (e.g., via string interpolation or reflection) because static analysis cannot locate a direct import, risking silent runtime breakage.

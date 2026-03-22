@@ -66,15 +66,11 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🎞️ **The WebP Hero Upgrade**: Converts a 3MB uncompressed `.png` hero image to a ~150KB `.webp` and wraps the `<img>` in a `<picture>` tag with the original `.png` as a fallback.
-* 🎞️ **The Video Spinner Swap**: Converts multi-megabyte looping `.gif` loading spinners into `.webm` or `.mp4` video files, replacing the `<img>` tags with muted, autoplay `<video>` elements.
-* 🎞️ **The AVIF Injection**: Generates `.avif` variants alongside existing `.webp` files and adds a `<source type="image/avif">` entry above the WebP source in each `<picture>` tag for bleeding-edge browsers.
-* 🎞️ **The CSS Background Modernization**: Converts a large `bg.png` to `bg.webp` and updates the CSS `url()` reference, adding a `@supports` fallback for older browsers.
-* 🎞️ **The Avatar Compression Pass**: Writes a local Node.js `sharp` script to batch-convert 50 unoptimized user avatars to `.webp`, updates all DB seed references, and deletes the script.
-* 🎞️ **The Metadata Strip**: Runs a pass with `SVGO` or `exiftool` to strip invisible geolocation, camera metadata, and bloat from static assets without altering their format or visual fidelity.
+* 🎞️ **Scenario:** A landing page hero image is a 3MB uncompressed .png file served directly via an `<img>` tag. -> **Resolution:** Convert to .webp (targeting ~150KB), wrap the `<img>` in a `<picture>` tag with the WebP source and the original .png as fallback.
+* 🎞️ **Scenario:** A suite of looping .gif loading spinners is inflating the page weight on every authenticated screen. -> **Resolution:** Convert each .gif to a .webm or .mp4 video file and replace the `<img>` tags with muted, autoplay `<video>` elements.
+* 🎞️ **Scenario:** A site targets bleeding-edge browsers that support AVIF but currently only serves WebP. -> **Resolution:** Generate .avif variants alongside the existing .webp files and add a `<source type="image/avif">` entry above the WebP source in each `<picture>` tag.
+* 🎞️ **Scenario:** An Angular app serves a large background image via CSS `url('/images/bg.png')` with no modern format equivalent. -> **Resolution:** Convert bg.png to bg.webp and update the CSS reference, adding a @supports fallback for browsers without WebP support if required.
 
 ### Avoids
-
 * ❌ **Scenario:** Upscaling low-resolution images or generating dynamic SVGs from raster sources to fill large display areas. -> **Rationale:** Upscaling degrades visual quality and increases file size with no perceptual benefit; SVG generation from raster data is a design task outside Darkroom's optimization scope.
 * ❌ **Scenario:** Modifying the CSS grid or flexbox layouts surrounding an image while performing a format conversion. -> **Rationale:** Layout changes introduce unrelated visual risk; Darkroom strictly optimizes asset formats and source code references without touching the surrounding presentation layer.

@@ -67,15 +67,11 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🤺 **The React Renderer Trap**: Rewrites tests to assert on the specific rendered output driven by a state value, rather than merely that a component mounts, after a deliberate typo mutation stays green.
-* 🤺 **The SQL Boundary Snare**: Rewrites tests to assert on the exact row count and field values returned from a mutated SQL query, making the boundary condition inescapable.
-* 🤺 **The Auth Interceptor**: Adds an assertion that requests missing valid credentials receive a 401 and are denied access to the protected resource, catching missing API key checks.
-* 🤺 **The Schema Vice**: Rewrites assertions to validate the exact shape and values of an event payload response body against the expected schema, preventing false positives from status code checks.
-* 🤺 **The Try-Catch Nullification**: Injects an immediate return before a critical logic block in a Python method; rewrites the test to assert on the specific side-effect omitted by the early exit.
-* 🤺 **The Async Resolver Bypass**: Deletes an await keyword in a Node.js controller to trigger unhandled rejections; rewrites the test to explicitly wait for the Promise lifecycle rather than passing asynchronously.
+* 🤺 **Scenario:** A Jest suite stays green after a deliberate typo is injected into a React state variable name. -> **Resolution:** Rewrite the test to assert on the specific rendered output driven by that state value, not merely that a component mounts.
+* 🤺 **Scenario:** Mutating a SQL query WHERE clause to return all rows does not trigger any test failure. -> **Resolution:** Rewrite the test to assert on the exact row count and field values returned, making the boundary condition inescapable.
+* 🤺 **Scenario:** Removing an API key check from authentication middleware causes no test to fail. -> **Resolution:** Add an assertion that requests missing valid credentials receive a 401 and are denied access to the protected resource.
+* 🤺 **Scenario:** Altering an event payload inside an Express hook goes undetected because schema validation tests only check the response status code. -> **Resolution:** Rewrite assertions to validate the exact shape and values of the response body against the expected schema.
 
 ### Avoids
-
 * ❌ **Scenario:** Mutating logic in unrelated architectural layers (e.g., modifying a database migration to test a UI component). -> **Rationale:** Cross-layer mutations produce noise that obscures whether the target test is fraudulent or simply not responsible for that concern.
 * ❌ **Scenario:** Injecting mutations into frontend styling or CSS-in-JS logic. -> **Rationale:** Visual output is not meaningfully verifiable through assertion-based test suites without a full visual regression harness, making mutation results inconclusive.

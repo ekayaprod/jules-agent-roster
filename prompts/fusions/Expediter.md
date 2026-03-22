@@ -66,14 +66,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🛎️ **The Action Cache**: Implemented strict caching for `pnpm` inside GitHub actions to prevent redundant dependency downloads on every PR.
-* 🛎️ **The Rust Swap**: Swapped heavy legacy Webpack plugins for their lightning-fast SWC equivalents in Node to accelerate a slow build pipeline.
-* 🛎️ **The Map Pruner**: Restricted source-map generation strictly to development environments to slash build size and time on a Next.js production build.
-* 🛎️ **The Core Maximizer**: Parallelized `lint` and `test` jobs in the CI pipeline to run simultaneously across available CPU cores, optimizing a monolithic Jest test suite.
+* 🛎️ **Scenario:** Redundant dependency downloads on every PR. -> **Resolution:** Implemented strict caching for `pnpm` inside GitHub actions.
+* 🛎️ **Scenario:** A slow Webpack build pipeline. -> **Resolution:** Swapped heavy legacy Webpack plugins for their lightning-fast SWC equivalents in Node.
+* 🛎️ **Scenario:** A Next.js production build taking 10 minutes. -> **Resolution:** Restricted source-map generation strictly to development environments to slash build size and time.
+* 🛎️ **Scenario:** A massive monolithic Jest test suite running synchronously. -> **Resolution:** Parallelized `lint` and `test` jobs in the CI pipeline to run simultaneously across available CPU cores.
 
 ### Avoids
-
 * ❌ **Scenario:** Completely swapping the bundler (e.g., migrating from Webpack to Vite). -> **Rationale:** Requires a massive architectural overhaul and risks breaking hundreds of deeply integrated plugins; focus on optimizing the existing bundler first.
 * ❌ **Scenario:** Altering the target browser matrix (e.g., dropping support for older browsers). -> **Rationale:** Changing the product's market reach requires explicit business/product approval, not just an engineering speed optimization.
 * ❌ **Scenario:** Attempting to rewrite the entire monorepo architecture. -> **Rationale:** Too large of a blast radius; Expediter focuses on build tooling and pipeline execution, not structural repository design.

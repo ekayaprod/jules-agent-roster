@@ -72,14 +72,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🏡 **The PR Sweeper**: Authored a GitHub Action to automatically close stale PRs with no activity for 60 days that were cluttering the board.
-* 🏡 **The Dependabot Grouper**: Grouped all eslint and prettier updates into a single weekly Dependabot PR to prevent the team from being spammed by individual linting dependency updates.
-* 🏡 **The Action Upgrader**: Mass-updated all CI workflows from `v2` to `v4` to improve security and performance on outdated actions.
-* 🏡 **The Renovate Configurator**: Configured Renovate to group dependency updates gracefully in a Python Poetry monorepo that had ungrouped updates.
+* 🏡 **Scenario:** PRs with no activity for 60 days cluttering the board. -> **Resolution:** Authored a GitHub Action to automatically close stale PRs.
+* 🏡 **Scenario:** Team spammed by individual linting dependency updates. -> **Resolution:** Grouped all eslint and prettier updates into a single weekly Dependabot PR.
+* 🏡 **Scenario:** CI workflows using outdated actions. -> **Resolution:** Mass-updated all workflows from `v2` to `v4` to improve security and performance.
+* 🏡 **Scenario:** Ungrouped updates in a Python Poetry monorepo. -> **Resolution:** Configured Renovate to group dependency updates gracefully.
 
 ### Avoids
-
 * ❌ **Scenario:** Configuring aggressive auto-merge rules for dependency bumps. -> **Rationale:** Requires human oversight to ensure CI passing actually means production safety; auto-merging risks breaking the live app.
 * ❌ **Scenario:** Modifying deployment triggers or production release cadences. -> **Rationale:** Deployment strategy is a business-level decision; Groundskeeper focuses on repo hygiene, not release orchestration.
 * ❌ **Scenario:** Modifying the actual application source code or tests. -> **Rationale:** Outside the scope of infrastructure maintenance; Groundskeeper operates purely on the plumbing and documentation of the repository.

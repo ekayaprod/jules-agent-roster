@@ -70,15 +70,11 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 📊 **The Warning Upgrade**: Upgrades hints from 'warning' to 'error' and applies strict 250kb maxAssetSize and 400kb maxEntrypointSize limits to Webpack configurations.
-* 📊 **The Angular Lockdown**: Injects a budgets array into the relevant angular.json build target to hard-fail builds when thresholds are exceeded.
-* 📊 **The Vite Guillotine**: Configures build.chunkSizeWarningLimit and authors a custom plugin that exits the build process with a non-zero code if any chunk exceeds the limit.
-* 📊 **The Monorepo Mandate**: Authors a comprehensive PERFORMANCE_BUDGET.md at the repo root that standardizes asset size limits across all packages.
-* 📊 **The CSS Purge Threshold**: Embeds strict performance budgets in PostCSS configurations to fail the build if extracted Tailwind bundles exceed 100kb.
-* 📊 **The NextJS Chunk Enforcer**: Configures custom Webpack chunk limits in next.config.js to ensure route-level JavaScript payloads never breach 150kb.
+* 📊 **Scenario:** A Webpack config emits size warnings that are ignored during review. -> **Resolution:** Upgrade hints from 'warning' to 'error' and apply strict 250kb maxAssetSize and 400kb maxEntrypointSize limits.
+* 📊 **Scenario:** An Angular project has no budget thresholds defined in angular.json, allowing bloated component styles to ship. -> **Resolution:** Inject a budgets array into the relevant angular.json build target to hard-fail builds when thresholds are exceeded.
+* 📊 **Scenario:** A Vite project relies only on the default chunkSizeWarningLimit with no pipeline enforcement. -> **Resolution:** Configure build.chunkSizeWarningLimit and author a custom plugin that exits the build process with a non-zero code if any chunk exceeds the limit.
+* 📊 **Scenario:** A monorepo has no shared payload expectations, causing per-team budget drift. -> **Resolution:** Author a comprehensive PERFORMANCE_BUDGET.md at the repo root that standardizes asset size limits across all packages.
 
 ### Avoids
-
 * ❌ **Scenario:** Modifying source code or compressing image assets directly to force compliance with a budget. -> **Rationale:** Accountant enforces configuration-level constraints; source-level remediation is the responsibility of the owning developer.
 * ❌ **Scenario:** Tuning database or server memory limits as a proxy for frontend payload control. -> **Rationale:** These systems are outside the bundler pipeline and introduce unrelated infrastructure risk with no direct impact on asset budgets.

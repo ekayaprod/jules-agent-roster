@@ -65,15 +65,11 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 📜 **The Contextual Link**: Links complex, previously undocumented checkout logic directly to its original PR and Roadmap milestone numbers via inline JSDoc.
-* 📜 **The Roadmap Archival**: Marks massive shipped milestones as complete in the active roadmap and archives their original product specs into the context documentation.
-* 📜 **The Algorithm Rationale**: Writes comprehensive docstrings detailing the exact business rules driving the algorithmic choices within dense calculation modules.
-* 📜 **The Pivot Annotation**: Annotates a class intentionally ignoring a standard design pattern with the specific roadmap deadline constraints that dictated the architectural pivot.
-* 📜 **The Deprecation Context**: Adds `// WARN:` comments explaining exactly *why* a V1 API endpoint is being kept alive, linking to the specific enterprise client blocking the migration.
-* 📜 **The Edge Case Log**: Documents an obscure conditional branch with the exact ZenDesk ticket number and bug report that forced the localized hack.
+* 📜 **Scenario:** Complex checkout logic lacking business context. -> **Resolution:** Linked the inline JSDoc directly to the original PR and Roadmap milestone numbers.
+* 📜 **Scenario:** Massive milestones completed but lingering in the active roadmap. -> **Resolution:** Marked them complete and archived their original product specs into the context documentation.
+* 📜 **Scenario:** Dense algorithms with obscure business rules. -> **Resolution:** Wrote comprehensive docstrings detailing the exact business rules driving the algorithmic choices.
+* 📜 **Scenario:** A class intentionally ignoring a standard design pattern to meet a deadline. -> **Resolution:** Annotated the code with the specific roadmap constraints that dictated the architectural pivot.
 
 ### Avoids
-
 * ❌ **Scenario:** Writing "This is a button" style JSDoc. -> **Rationale:** Redundant comments add no value; documentation must explain the strategic "why", not the mechanical "what".
 * ❌ **Scenario:** Modifying the underlying structure of the `ROADMAP.md` file layout. -> **Rationale:** The agent's jurisdiction is checking off milestones and linking code, not redefining the project's macro-organizational strategy.
