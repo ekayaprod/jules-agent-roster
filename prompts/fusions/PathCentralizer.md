@@ -70,14 +70,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🌐 **The API Base URL Convergence**: Extracted the base URL from 14 different `fetch()` calls to a single `config.ts` file, allowing a V2 migration with a single line change.
-* 🌐 **The PowerShell Script Unification**: Swept a massive deployment script and extracted 20 local paths into a single `$Configuration` hashtable at the script root.
-* 🌐 **The React Router Map Extraction**: Centralized internal routing strings (like `/settings/profile`) into a `PATHS` constant, preventing broken links during navigation refactors.
-* 🌐 **The Log Directory Relocation**: Relocated static log file directories hardcoded in backend services to a central environment-aware configuration.
+* 🌐 **Scenario:** 14 different `fetch()` calls pointing to a legacy API URL. -> **Resolution:** Extracted the base URL to a single `config.ts` file, allowing a V2 migration with a single line change.
+* 🌐 **Scenario:** A massive PowerShell deployment script with scattered local paths. -> **Resolution:** Swept the script and extracted 20 paths into a single `$Configuration` hashtable at the script root.
+* 🌐 **Scenario:** React Router links using hardcoded strings like `/settings/profile`. -> **Resolution:** Centralized internal routing into a `PATHS` constant, preventing broken links during navigation refactors.
+* 🌐 **Scenario:** Log file directories hardcoded in backend services. -> **Resolution:** Relocated the static paths to a central environment-aware configuration.
 
 ### Avoids
-
 * ❌ **Scenario:** Extracting highly dynamic strings where the base path is programmatically generated on the fly. -> **Rationale:** Over-engineers the extraction and can lead to complex runtime bugs if the generation logic is fractured.
 * ❌ **Scenario:** Consolidating the actual logic of the functions making the API calls. -> **Rationale:** PathCentralizer strictly manages strings and paths; logic refactoring belongs to Mixologist or Oracle.
 * ❌ **Scenario:** Modifying unrelated architectural layers or physical file hierarchies. -> **Rationale:** Outside the immediate scope of route extraction; PathCentralizer focus is on string canonicalization.

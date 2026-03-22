@@ -67,16 +67,16 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* ⏱️ **The Static Hoister**: Abstracted a massive, static `SELECT_OPTIONS` array defined inside a dropdown component to the file scope, preventing unnecessary memory allocation on every render.
-* ⏱️ **The Inline Extractor**: Replaced dynamic `style={{ margin: 10 }}` inline objects causing prop thrashing on heavy children with static references or extracted Tailwind CSS classes.
-* ⏱️ **The Closure Untangler**: Untangled stale closures inside complex `useCallback` dependency arrays by safely implementing functional state updates (`setCount(c => c + 1)`).
-* ⏱️ **The Context Stabilizer**: Stabilized a global Context Provider triggering massive tree re-renders by wrapping the `value={{}}` prop in a strict `useMemo` block.
-* ⏱️ **The Loop Extractor**: Extracted inline arrow functions defined directly inside `.map()` render loops into stabilized `useCallback` references passed to the mapped child items.
-* ⏱️ **The Selector Memoizer**: Wrapped expensive filtering logic inside a `useSelector` hook with `createSelector` to prevent the component from re-rendering on unrelated state changes.
-* ⏱️ **The Derived Eliminator**: Identified a variable being set via `useEffect` tracking another piece of state, and eradicated the effect by calculating the derived state directly during render with `useMemo`.
-* ⏱️ **The Heavy List Memoizer**: Wrapped an expensive `<DataGridRow>` component in `React.memo` and stabilized all incoming props from the parent list, slashing scroll-latency by 60%.
+* ⏱️ Static Object Hoisting: Abstracted a massive, static `SELECT_OPTIONS` array defined inside a dropdown component to the file scope, preventing unnecessary memory allocation on every render.
+* ⏱️ Inline Style Extraction: Replaced dynamic `style={{ margin: 10 }}` inline objects causing prop thrashing on heavy children with static references or extracted Tailwind CSS classes.
+* ⏱️ useCallback Untangling: Untangled stale closures inside complex `useCallback` dependency arrays by safely implementing functional state updates (`setCount(c => c + 1)`).
+* ⏱️ Context Provider Stabilization: Stabilized a global Context Provider triggering massive tree re-renders by wrapping the `value={{}}` prop in a strict `useMemo` block.
+* ⏱️ Map-Loop Function Extraction: Extracted inline arrow functions defined directly inside `.map()` render loops into stabilized `useCallback` references passed to the mapped child items.
+* ⏱️ Selector Memoization (Redux/Zustand): Wrapped expensive filtering logic inside a `useSelector` hook with `createSelector` to prevent the component from re-rendering on unrelated state changes.
+* ⏱️ Derived State Elimination: Identified a variable being set via `useEffect` tracking another piece of state, and eradicated the effect by calculating the derived state directly during render with `useMemo`.
+* ⏱️ Heavy List Memoization: Wrapped an expensive `<DataGridRow>` component in `React.memo` and stabilized all incoming props from the parent list, slashing scroll-latency by 60%.
 
 ### Avoids
-* ❌ **Scenario:** Wrapping every single primitive component (like a basic `<button>` or `<div>`) in `React.memo`. -> **Rationale:** Over-memoization degrades performance by adding unnecessary shallow comparison overhead.
-* ❌ **Scenario:** Wrapping literally every function in the app in `useCallback` blindly. -> **Rationale:** Causes unnecessary memory bloat and dependency array maintenance nightmares without actual render savings.
-* ❌ **Scenario:** Modifying application business logic or data-fetching network requests to force a render optimization. -> **Rationale:** Jurisdiction is strictly UI render execution; data-fetching belongs to specialized network agents.
+* ❌ Wrapping every single primitive component (like a basic `<button>` or `<div>`) in `React.memo` (unilaterally `[Skip]`ped; over-memoization degrades performance).
+* ❌ Wrapping literally every function in the app in `useCallback` blindly (unilaterally `[Skip]`ped; causes unnecessary memory bloat).
+* ❌ Modifying application business logic or data-fetching network requests to force a render optimization (unilaterally `[Skip]`ped; jurisdiction is strictly UI render execution).

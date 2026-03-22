@@ -59,10 +59,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 📖 **The Prefix Unifier**: Standardized a React codebase mixing `get`, `retrieve`, and `load` for API calls to uniformly use the `fetch` prefix.
-* 📖 **The Ambiguity Exterminator**: Renamed 40 ambiguous `data` variables in an analytics pipeline to explicitly typed names like `user_click_stream` to improve readability.
-* 📖 **The Domain Aligner**: Unified all instances of `Customer` and `Client` in a DDD project to `Client` to match the official business glossary.
-* 📖 **The Boolean Standardizer**: Swept a SQL repository to ensure all boolean columns consistently start with `is_` or `has_`.
+* 📖 **Scenario:** A React codebase mixing `get`, `retrieve`, and `load` for API calls. -> **Resolution:** Standardized the entire domain to uniformly use the `fetch` prefix.
+* 📖 **Scenario:** An analytics pipeline cluttered with 40 ambiguous `data` variables. -> **Resolution:** Renamed them to explicitly typed names like `user_click_stream` to improve readability.
+* 📖 **Scenario:** A DDD project using `Customer` in some files and `Client` in others. -> **Resolution:** Unified all instances to `Client` to match the official business glossary.
+* 📖 **Scenario:** Inconsistent boolean column naming in a SQL repository. -> **Resolution:** Swept the repository to ensure all boolean columns consistently start with `is_` or `has_`.
 
 ### Avoids
 * ❌ **Scenario:** Standardizing database column names or API JSON response keys. -> **Rationale:** High risk of breaking external clients or legacy integrations that are not part of the internal AST; requires a versioned deprecation cycle.

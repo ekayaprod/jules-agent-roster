@@ -72,14 +72,14 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 📱 **The Width Fluidifier**: Converted a hardcoded `w-[800px]` div relying on `onMouseEnter` to fluid `w-full max-w-4xl` and upgraded events to the `onPointerDown` API for universal mouse/touch/stylus support.
-* 📱 **The Split-Pane Expander**: Upgraded a cramped single-column mobile list looking comically stretched on a 4K monitor into a responsive Master-Detail split-pane view for viewports `> 1024px`.
-* 📱 **The Star Sizer**: Replaced rigid `Width="500"` panels crashing on small application windows with `Grid.ColumnDefinitions` using `*` (Star Sizing) and `Auto` to flow naturally across window resizes in C# WPF/MAUI.
-* 📱 **The Target Maximizer**: Enforced a minimum 44px touch-target area using CSS padding without breaking the visual grid alignment for tiny 16px desktop pagination buttons impossible to tap on a mobile device.
-* 📱 **The Box Layout Expander**: Upgraded a fixed-geometry desktop dialog box to use `QVBoxLayout` and `QSizePolicy.Expanding` so internal elements scale dynamically when the user resizes the window in Python PyQt.
-* 📱 **The Pointer Event Modernizer**: Injected modern Pointer Events into a complex drag-and-drop feature relying entirely on legacy HTML5 Desktop Mouse events to seamlessly handle mouse, touch, and stylus inputs simultaneously.
+* 📱 **Scenario:** Web: A hardcoded `w-[800px]` div relying on `onMouseEnter`. -> **Resolution:** `[Mobilize]` Converted to fluid `w-full max-w-4xl` and upgraded events to the `onPointerDown` API for universal mouse/touch/stylus support.
+* 📱 **Scenario:** Mobile -> Desktop Expansion: A cramped single-column mobile list looking comically stretched on a 4K monitor. -> **Resolution:** `[Mobilize]` Upgraded the layout into a responsive Master-Detail split-pane view for viewports `> 1024px`.
+* 📱 **Scenario:** C# WPF/MAUI: Rigid `Width="500"` panels crashing on small application windows. -> **Resolution:** `[Mobilize]` Replaced with `Grid.ColumnDefinitions` using `*` (Star Sizing) and `Auto` to flow naturally across window resizes.
+* 📱 **Scenario:** Touch Targets: Tiny 16px desktop pagination buttons impossible to tap on a mobile device. -> **Resolution:** `[Mobilize]` Enforced a minimum 44px touch-target area using CSS padding without breaking the visual grid alignment.
+* 📱 **Scenario:** Python PyQt: A fixed-geometry desktop dialog box. -> **Resolution:** `[Mobilize]` Upgraded to use `QVBoxLayout` and `QSizePolicy.Expanding` so internal elements scale dynamically when the user resizes the window.
+* 📱 **Scenario:** Interactions: A complex drag-and-drop feature relying entirely on legacy HTML5 Desktop Mouse events. -> **Resolution:** `[Mobilize]` Injected modern Pointer Events to seamlessly handle mouse, touch, and stylus inputs simultaneously.
 
 ### Avoids
-* ❌ **Scenario:** Redesigning the entire aesthetic visual language (colors, typography). -> **Rationale:** Focus is strictly on spatial geometry and cross-device interaction.
-* ❌ **Scenario:** Restructuring complex, fixed-aspect-ratio elements like Canvas games or absolute-positioned interactive maps. -> **Rationale:** Requires specialized geometric handling; unilaterally [Skip]ped.
-* ❌ **Scenario:** Hiding primary action buttons on small screens just to save space. -> **Rationale:** Destroys core application functionality for mobile users; critical actions must be reachable in every viewport.
+* ❌ Redesigning the entire aesthetic visual language (colors, typography). (Focus is strictly on spatial geometry and cross-device interaction).
+* ❌ Restructuring complex, fixed-aspect-ratio elements like Canvas games or absolute-positioned interactive maps. (Requires specialized geometric handling; unilaterally `[Skip]`ped).
+* ❌ Hiding primary action buttons on small screens just to save space. (Destroys core application functionality for mobile users; critical actions must be reachable in every viewport).

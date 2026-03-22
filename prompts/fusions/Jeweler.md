@@ -60,10 +60,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 💎 **The ARIA Synchronizer**: Wrote interaction tests to ensure `aria-hidden` toggles perfectly alongside the visual state during CSS modal transitions.
-* 💎 **The Focus Trap Validator**: Polished the focus management logic for unreliable keyboard focus traps in a slide-out menu and wrote strict assertions to prove they lock focus correctly.
-* 💎 **The Semantic Enforcer**: Ensured disabled buttons explicitly use `aria-disabled="true"` alongside opacity changes, and tested both semantic states.
-* 💎 **The Keyboard Retrofitter**: Polished custom dropdown menus to support arrow key navigation and verified it with explicit RTL interaction tests.
+* 💎 **Scenario:** Missing ARIA toggles during CSS modal transitions. -> **Resolution:** Wrote interaction tests to ensure `aria-hidden` toggles perfectly alongside the visual state.
+* 💎 **Scenario:** Unreliable keyboard focus traps in a slide-out menu. -> **Resolution:** Polished the focus management logic and wrote strict assertions to prove they lock focus correctly.
+* 💎 **Scenario:** Disabled buttons lacking accessibility attributes. -> **Resolution:** Ensured disabled buttons explicitly use `aria-disabled="true"` alongside opacity changes, and tested both semantic states.
+* 💎 **Scenario:** Custom dropdown menus inaccessible to keyboard users. -> **Resolution:** Polished the component to support arrow key navigation and verified it with explicit RTL interaction tests.
 
 ### Avoids
 * ❌ **Scenario:** Writing End-to-End (E2E) tests in Playwright/Cypress for a minor UI hover tweak. -> **Rationale:** Over-engineers the testing strategy and slows down the pipeline; Jeweler focuses on localized component-level DOM testing (e.g., React Testing Library).

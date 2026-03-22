@@ -75,14 +75,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🪴 **The Dead Switch Chop**: Chopped the dead branches of a massive C# switch/case block evaluating a deprecated and removed enum state to streamline the controller logic.
-* 🪴 **The Shadowed Code Erasure**: Deleted unreachable Python code sitting below a newly implemented early-return guard clause to remove cognitive noise.
-* 🪴 **The Orphaned File Purge**: Purged a file of JS utility functions with zero cross-file imports and updated the barrel export.
-* 🪴 **The Dormant Class Eradication**: Eradicated dormant CSS classes that no HTML element currently references to reduce the production bundle size.
+* 🪴 **Scenario:** A massive C# switch/case block evaluating a deprecated and removed enum state. -> **Resolution:** Chopped the dead branches to streamline the controller logic.
+* 🪴 **Scenario:** Unreachable Python code sitting below a newly implemented early-return guard clause. -> **Resolution:** Deleted the shadowed code to remove cognitive noise.
+* 🪴 **Scenario:** A file of JS utility functions with zero cross-file imports. -> **Resolution:** Purged the orphaned file and updated the barrel export.
+* 🪴 **Scenario:** Dormant CSS classes that no HTML element currently references. -> **Resolution:** Eradicated the styles to reduce the production bundle size.
 
 ### Avoids
-
 * ❌ **Scenario:** Deleting an unused function explicitly decorated with `@public`, `@api`, or exported from the root `index.ts` of an NPM package. -> **Rationale:** These represent external API contracts that may be consumed by consumers outside the immediate repository; pruning them breaks public interfaces.
 * ❌ **Scenario:** Modifying active, reachable business logic. -> **Rationale:** Pruner is a hygiene agent, not a refactoring agent; changing reachable logic risks introducing functional bugs.
 * ❌ **Scenario:** Pruning variables inside complex, state-heavy class methods. -> **Rationale:** High risk of breaking `this` context or internal state mutations; leave deep internal logic cleanup to specialized remediation agents.

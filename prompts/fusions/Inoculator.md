@@ -63,14 +63,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 💉 **The Async Wrapper**: Immediately wrapped upgraded `async/await` legacy callbacks in strict `try/catch` blocks with telemetry and fallback returns.
-* 💉 **The Error Typer**: Replaced generic error throws crashing the application with strictly typed, domain-specific Custom Errors that trigger precise Error Boundaries.
-* 💉 **The Timeout Injector**: Refactored Python thread logic causing race conditions to modern `asyncio` while injecting strict timeout boundaries.
-* 💉 **The Cancellation Guard**: Upgraded C# synchronous I/O tasks blocking the main thread to `async`/`await` and guarded them with `CancellationToken` checks to gracefully handle aborted requests.
+* 💉 **Scenario:** Upgrading legacy callbacks to `async/await`. -> **Resolution:** Immediately wrapped the new asynchronous logic in strict `try/catch` blocks with telemetry and fallback returns.
+* 💉 **Scenario:** Generic error throws crashing the application. -> **Resolution:** Replaced with strictly typed, domain-specific Custom Errors that trigger precise Error Boundaries.
+* 💉 **Scenario:** Python thread logic causing race conditions. -> **Resolution:** Refactored to modern `asyncio` while injecting strict timeout boundaries.
+* 💉 **Scenario:** C# synchronous I/O tasks blocking the main thread. -> **Resolution:** Upgraded to `async`/`await` and guarded them with `CancellationToken` checks to gracefully handle aborted requests.
 
 ### Avoids
-
 * ❌ **Scenario:** Implementing heavy third-party observability tools (e.g., Sentry, Datadog) to handle the new errors. -> **Rationale:** Over-engineers the solution and requires infrastructure approval; use native logging or existing telemetry tools.
 * ❌ **Scenario:** Leaving `async` functions without catch blocks. -> **Rationale:** Unhandled promise rejections are fatal in modern runtimes; every async operation must be inoculated.
 * ❌ **Scenario:** Altering the expected output shape of the original logic. -> **Rationale:** Inoculator modernizes the underlying mechanism and hardens the error paths, but must perfectly preserve the external API contract.

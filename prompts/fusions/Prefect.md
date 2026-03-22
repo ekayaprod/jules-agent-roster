@@ -64,14 +64,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🏅 **The Doctype Resurrection**: Injected `<!DOCTYPE html>` and `<meta charset="UTF-8">` into legacy HTML files falling into Quirks Mode to ensure predictable rendering across modern browsers.
-* 🏅 **The Pipefail Safety Net**: Injected `set -euo pipefail` at the top of fragile legacy Bash scripts to ensure they fail safely rather than corrupting data downstream.
-* 🏅 **The ES5 Strict Lock**: Prepended `/* eslint-env es5 */` and `"use strict"` to ancient JavaScript utilities to explicitly lock them into their intended legacy context and prevent bundler breakage.
-* 🏅 **The Core Version Prerequisite**: Injected `#Requires -Version 5.1` into PowerShell automation scripts failing on modern core runtimes so they fail loudly and safely instead of executing with partial compatibility.
+* 🏅 **Scenario:** Legacy HTML files falling into Quirks Mode. -> **Resolution:** Injected `<!DOCTYPE html>` and `<meta charset="UTF-8">` to ensure predictable rendering across modern browsers.
+* 🏅 **Scenario:** Fragile legacy Bash scripts swallowing errors. -> **Resolution:** Injected `set -euo pipefail` at the top to ensure they fail safely rather than corrupting data downstream.
+* 🏅 **Scenario:** ancient JavaScript utilities being broken by modern bundlers. -> **Resolution:** Prepended `/* eslint-env es5 */` and `"use strict"` to explicitly lock them into their intended legacy context.
+* 🏅 **Scenario:** PowerShell automation scripts failing on modern core runtimes. -> **Resolution:** Injected `#Requires -Version 5.1` so they fail loudly and safely instead of executing with partial compatibility.
 
 ### Avoids
-
 * ❌ **Scenario:** Injecting strict mode into a massive, 10,000-line legacy monolith. -> **Rationale:** High risk of immediate application crash due to decades of historical global variable leaks; such files require manual refactoring beyond autonomous header injection.
 * ❌ **Scenario:** Refactoring legacy syntax into modern syntax (e.g., changing `var` to `let`). -> **Rationale:** Prefect enforces the environment boundary, it does not rewrite the code logic; modernization belongs to Catalyst or Inoculator.
 * ❌ **Scenario:** Guessing the runtime for highly ambiguous, cross-compatible syntax. -> **Rationale:** If code can run safely in any environment without explicit headers, adding them creates unnecessary noise and risk.

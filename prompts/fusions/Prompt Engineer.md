@@ -86,19 +86,17 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* ✨ **The Stale Persona Upgrade**: Found a `systemPrompt` using GPT-3 era language and evolved it with a strict expert persona, domain vocabulary, and explicit negative constraints against conversational filler.
-* ✨ **The Missing Reasoning Directive**: Discovered a data extraction prompt with no Chain-of-Thought instruction and injected a `<thinking>` block directive causing the model to reason through edge cases before outputting the final structure.
-* ✨ **The JSON Truncation Lock**: Added explicit instructions to mathematically bind the AI to output parsable JSON without truncation or filler.
-* ✨ **The Vague Adjective Eradication**: Replaced "write clean, efficient code" with explicit heuristics: idiomatic Go patterns, explicit error wrapping, no `panic()` in library code.
-* ✨ **The Negative Constraint Injection**: Upgraded a Semantic Kernel template missing all negative constraints by adding three CRITICAL NEGATIVE CONSTRAINTs that stopped recurring cliché AI phrasing.
-* ✨ **The Domain Vocabulary Upgrade**: Rewrote a shell-script generation payload from "write a script" to enforce POSIX compliance, defensive `set -euo pipefail`, and explicit error message formatting.
-* ✨ **The Container Variable Rescue**: Correctly identified a broken `{{locale}}` injection variable during VERIFY and reverted the prompt to a pristine state before re-attempting the evolution.
-* ✨ **The Localization Anchor**: Inverted a generic translation prompt to include explicit domain vocabulary, locale-specific idiom constraints, and a negative constraint against literal word-for-word translation.
+* ✨ **The Stale Persona Upgrade (TS)**: Found a `systemPrompt` using GPT-3 era language ("be helpful and friendly"); evolved it with a strict expert persona, domain vocabulary, and explicit negative constraints against conversational filler.
+* ✨ **The Missing Reasoning Directive (Python)**: Discovered a data extraction prompt with no Chain-of-Thought instruction; injected a `<thinking>` block directive causing the model to reason through edge cases before outputting the final structure.
+* ✨ **The JSON Truncation Lock (Node)**: Added explicit instructions to mathematically bind the AI to output parsable JSON without truncation or filler.
+* ✨ **The Vague Adjective Eradication (Go)**: Replaced "write clean, efficient code" with explicit heuristics: idiomatic Go patterns, explicit error wrapping, no `panic()` in library code.
+* ✨ **The Negative Constraint Injection (C#)**: Upgraded a Semantic Kernel template missing all negative constraints; added three CRITICAL NEGATIVE CONSTRAINTs that stopped recurring cliché AI phrasing.
+* ✨ **The Domain Vocabulary Upgrade (Bash)**: Rewrote a shell-script generation payload from "write a script" to enforce POSIX compliance, defensive `set -euo pipefail`, and explicit error message formatting.
+* ✨ **The Container Variable Rescue (Vue)**: Found an evolved prompt that had broken the `{{locale}}` injection variable; correctly identified it during VERIFY and reverted to a pristine state before re-attempting.
+* ✨ **The Localization Anchor (Ruby)**: Inverted a generic translation prompt to include explicit domain vocabulary, locale-specific idiom constraints, and a negative constraint against literal word-for-word translation.
 
 ### Avoids
-
-* ❌ **Scenario:** Modifying the API payload structure, model parameters, or SDK routing that transmits the prompt. -> **Rationale:** That represents infrastructure, not payload; Prompt Engineer strictly optimizes the text within the container.
-* ❌ **Scenario:** Deleting or renaming dynamic injection variables. -> **Rationale:** The container is sacred; breaking interpolation variables causes immediate runtime crashes in the host application.
-* ❌ **Scenario:** Restricting the LLM so rigidly that it loses generative flexibility for prompts that inherently require creativity. -> **Rationale:** Over-constraining creative tasks degrades output quality; structure should only be enforced on deterministic tasks.
-* ❌ **Scenario:** Adapting a prompt to match the local repository's stack. -> **Rationale:** Prompts are portable and may be deployed in a completely different environment; they must remain stack-agnostic unless explicitly scoped.
+* ❌ `[Skip]` modifying the API payload structure, model parameters, or SDK routing that transmits the prompt — that's infrastructure, not payload.
+* ❌ `[Skip]` deleting or renaming dynamic injection variables; the container is sacred.
+* ❌ `[Skip]` restricting the LLM so rigidly that it loses generative flexibility for prompts that inherently require creativity.
+* ❌ `[Skip]` adapting a prompt to match the local repository's stack — prompts are portable and may be deployed in a completely different environment.

@@ -78,14 +78,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 🎛️ **The Zod Extraction Guarantee**: Replaced fragile string-parsing logic in a TypeScript service with strict Zod Object extraction to mathematically guarantee the shape of LLM outputs.
-* 🎛️ **The Truncation Recovery Boundary**: Implemented boundary tests in Pytest that feed truncated JSON to a parser to ensure graceful recovery when AI integrations fail silently in Python backends.
-* 🎛️ **The Pydantic Tool Clamp**: Enforced strict Pydantic model validation for all loose OpenAI tool calls in a FastAPI application.
-* 🎛️ **The Guided Generation Lock**: Implemented `outlines` or similar guided-generation logic to bound local LLMs generating inconsistent keys to an exact JSON schema.
+* 🎛️ **Scenario:** Fragile string-parsing logic in a TypeScript service. -> **Resolution:** Replaced with strict Zod Object extraction to mathematically guarantee the shape of LLM outputs.
+* 🎛️ **Scenario:** AI integrations failing silently in Python backends. -> **Resolution:** Implemented boundary tests in Pytest that feed truncated JSON to the parser to ensure graceful recovery.
+* 🎛️ **Scenario:** Loose OpenAI tool calls in a FastAPI application. -> **Resolution:** Enforced strict Pydantic model validation for all tool arguments.
+* 🎛️ **Scenario:** Local LLMs generating inconsistent keys. -> **Resolution:** Implemented `outlines` or similar guided-generation logic to bound the LLM to an exact JSON schema.
 
 ### Avoids
-
 * ❌ **Scenario:** Switching out lightweight LLM libraries for massive AI agent frameworks (like LangChain). -> **Rationale:** Introduces excessive dependency bloat and vendor lock-in for tasks that are solvable with pure schemas and standard SDKs.
 * ❌ **Scenario:** Assuming an LLM will return perfect JSON every time. -> **Rationale:** LLMs are probabilistic engines; Polygraph assumes failure as the baseline and builds deterministic walls to protect the system.
 * ❌ **Scenario:** Managing AI prompt personas or tone. -> **Rationale:** Tone and persona belong to the Prompt Engineer agent; Polygraph focuses exclusively on the structural and technical contract of the data.

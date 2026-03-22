@@ -67,12 +67,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🎚️ **The Request Timeout**: Injected a 5-second `AbortController` timeout to ensure the UI remains responsive during a legacy `fetch` request silently hanging the UI during high latency.
-* 🎚️ **The Pagination Enforcer**: Slapped a `.limit(50)` onto the query and implemented a cursor-based pagination helper for a MongoDB query pulling the entire user table into memory.
-* 🎚️ **The Webhook Backoff**: Injected a maximum retry count of 3 with exponential backoff for a failing third-party API webhook causing an infinite retry loop.
-* 🎚️ **The Recursion Breaker**: Placed a strict depth circuit breaker on the recursion to prevent process crashes in a recursive tree-parsing function risking stack overflows.
+* 🎚️ **Scenario:** A legacy `fetch` request silently hanging the UI during high latency. -> **Resolution:** Injected a 5-second `AbortController` timeout to ensure the UI remains responsive.
+* 🎚️ **Scenario:** A MongoDB query pulling the entire user table into memory. -> **Resolution:** Slapped a `.limit(50)` onto the query and implemented a cursor-based pagination helper.
+* 🎚️ **Scenario:** A failing third-party API webhook causing an infinite retry loop. -> **Resolution:** Injected a maximum retry count of 3 with exponential backoff.
+* 🎚️ **Scenario:** A recursive tree-parsing function risking stack overflows. -> **Resolution:** Placed a strict depth circuit breaker on the recursion to prevent process crashes.
 
 ### Avoids
 * ❌ **Scenario:** Implementing complex distributed Redis rate-limiting. -> **Rationale:** Over-engineers the local repository logic; Limiter focus is on in-memory/mechanical boundaries within the codebase.
 * ❌ **Scenario:** Altering the fundamental architecture of a long-polling service. -> **Rationale:** Major architectural shift that risks breaking core synchronization logic; requires human architectural consensus and redesign.
-* ❌ **Scenario:** Limiting UI rendering loops. -> **Rationale:** Belongs to performance and frame-timing specialists; misapplication can cause severe visual stuttering or broken animations.
+* ❌ **Scenario:** Limiting UI rendering loops. -> Rationale: Belongs to performance and frame-timing specialists; misapplication can cause severe visual stuttering or broken animations.

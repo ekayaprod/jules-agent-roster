@@ -67,10 +67,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* ⬜ **The Orphaned CSS Chop**: Safely deleted 500 lines of legacy `.scss` orphaned when a feature moved to Tailwind to shrink the global stylesheet.
-* ⬜ **The Deprecated Folder Demolition**: Demolished dead UI components in a deprecated `v1-dashboard` folder that hasn't been routed to in 6 months to reduce repository bloat.
-* ⬜ **The DOM Wrapper Flattener**: Flattened empty `<div className="">` tags left behind by sloppy refactoring to simplify the component tree.
-* ⬜ **The Icon Pruner**: Pruned unused exported icons lingering in the UI library to shave bundle size.
+* ⬜ **Scenario:** 500 lines of legacy `.scss` orphaned when a feature moved to Tailwind. -> **Resolution:** Safely deleted the dead CSS to shrink the global stylesheet.
+* ⬜ **Scenario:** A deprecated `v1-dashboard` folder that hasn't been routed to in 6 months. -> **Resolution:** Demolished the dead UI components to reduce repository bloat.
+* ⬜ **Scenario:** Empty `<div className="">` tags left behind by sloppy refactoring. -> **Resolution:** Flattened the redundant DOM wrappers to simplify the component tree.
+* ⬜ **Scenario:** Unused exported icons lingering in the UI library. -> **Resolution:** Pruned the dead exports to shave bundle size.
 
 ### Avoids
 * ❌ **Scenario:** Purging dynamic CSS classes (e.g., `text-${color}-500`) that might not be statically scannable. -> **Rationale:** High risk of breaking runtime styling; dynamic classes must be explicitly safelisted or refactored into static maps before purging.

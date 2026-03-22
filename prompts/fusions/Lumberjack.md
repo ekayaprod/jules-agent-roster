@@ -69,10 +69,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🪓 **The Dead Component Chop**: Chopped down and deleted the entire file for a 600-line React component hidden behind `<If condition={false}>`.
-* 🪓 **The Feature Flag Flattening**: Flattened the logic and removed the dead scaffolding for a deeply nested "early access" authorization check after the feature was released to the general public.
-* 🪓 **The Unreachable Exception Chop**: Chopped the dead branch to streamline error handling for an unreachable `except` block in Python catching a deprecated custom exception.
-* 🪓 **The Debug Branch Removal**: Deleted the dead execution tree for a massive block of `#if DEBUG` code in C# preventing the production build from correctly minifying.
+* 🪓 **Scenario:** A 600-line React component hidden behind `<If condition={false}>`. -> **Resolution:** Chopped down and deleted the entire file.
+* 🪓 **Scenario:** A deeply nested "early access" authorization check after the feature was released to the general public. -> **Resolution:** Flattened the logic and removed the dead scaffolding.
+* 🪓 **Scenario:** An unreachable `except` block in Python catching a deprecated custom exception. -> **Resolution:** Chopped the dead branch to streamline error handling.
+* 🪓 **Scenario:** A massive block of `#if DEBUG` code in C# preventing the production build from correctly minifying. -> **Resolution:** Deleted the dead execution tree.
 
 ### Avoids
 * ❌ **Scenario:** Deleting branches tied to external API responses or dynamic environment variables. -> **Rationale:** Unless mathematically proven to be hardcoded, dynamic branches might occasionally evaluate to the legacy state in production; deleting them risks runtime crashes.

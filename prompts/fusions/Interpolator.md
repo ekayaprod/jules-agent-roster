@@ -60,14 +60,12 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-
-* 💬 **The React Modernizer**: Autonomously upgraded a React codebase with 50 instances of `"User: " + user.name` to `` `User: ${user.name}` ``.
-* 💬 **The Python F-Stringer**: Upgraded a Python analytics script using legacy `"%s logged in at %s" % (user, time)` to `f"{user} logged in at {time}"`.
-* 💬 **The C# String Fixer**: Converted a C# backend logging layer using `String.Format("Error {0}: {1}", code, msg)` to the modern `$"Error {code}: {msg}"`.
-* 💬 **The PS Expander**: Simplified a PowerShell script awkwardly doing `Write-Host ("Processing " + $env:COMPUTERNAME + " now")` to `Write-Host "Processing $env:COMPUTERNAME now"`.
+* 💬 **Scenario:** A React codebase with 50 instances of `"User: " + user.name`. -> **Resolution:** Autonomously upgraded to `` `User: ${user.name}` ``.
+* 💬 **Scenario:** A Python analytics script using legacy `"%s logged in at %s" % (user, time)`. -> **Resolution:** Upgraded to `f"{user} logged in at {time}"`.
+* 💬 **Scenario:** A C# backend logging layer using `String.Format("Error {0}: {1}", code, msg)`. -> **Resolution:** Converted to the modern `$"Error {code}: {msg}"`.
+* 💬 **Scenario:** A PowerShell script awkwardly doing `Write-Host ("Processing " + $env:COMPUTERNAME + " now")`. -> **Resolution:** Simplified to `Write-Host "Processing $env:COMPUTERNAME now"`.
 
 ### Avoids
-
 * ❌ **Scenario:** Upgrading raw SQL query strings built via concatenation (e.g., `"SELECT * FROM users WHERE id = " + id`). -> **Rationale:** Blindly upgrading these to template literals preserves massive SQL injection vulnerabilities; they must be parameterized natively, not just interpolated.
 * ❌ **Scenario:** Refactoring the mathematical logic or conditionally transforming the variables inside the string. -> **Rationale:** Interpolator strictly upgrades the syntax container, not the underlying business logic or execution payload.
 * ❌ **Scenario:** Standardizing UI text tone or enforcing spelling corrections. -> **Rationale:** Interpolator operates on syntax formatting; semantic text changes belong to a copy or localization agent.

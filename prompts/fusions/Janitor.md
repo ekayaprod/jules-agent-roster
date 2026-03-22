@@ -68,10 +68,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🪠 **The Microservice Sweep**: Centralized 6 different Node.js microservices with slightly different `npm run clean` commands into a single top-level `Makefile` execution.
-* 🪠 **The Teardown Dominator**: Unified 4 scattered `.sh` and `.ps1` Docker teardown scripts into a single master `docker-compose down -v` alias.
-* 🪠 **The Database Decimator**: Centralized fragmented SQL Server maintenance jobs embedded directly in C# application code into a single PowerShell module specifically designated for database teardowns.
-* 🪠 **The Python Cache Wipe**: Unified multiple Python build scripts manually deleting `__pycache__` into a single `clean.sh` master script.
+* 🪠 **Scenario:** 6 different Node.js microservices with slightly different `npm run clean` commands. -> **Resolution:** Centralized into a single top-level `Makefile` execution.
+* 🪠 **Scenario:** A DevOps repository with 4 scattered `.sh` and `.ps1` Docker teardown scripts. -> **Resolution:** Unified into a single master `docker-compose down -v` alias.
+* 🪠 **Scenario:** Fragmented SQL Server maintenance jobs embedded directly in C# application code. -> **Resolution:** Centralized into a single PowerShell module specifically designated for database teardowns.
+* 🪠 **Scenario:** Multiple Python build scripts manually deleting `__pycache__`. -> **Resolution:** Unified into a single `clean.sh` master script.
 
 ### Avoids
 * ❌ **Scenario:** Centralizing scripts that drop production or staging databases. -> **Rationale:** High-risk operations require explicit human context; Janitor strictly focuses on local/CI cache and ephemeral environment cleanups to prevent catastrophic data loss.

@@ -73,10 +73,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🧮 **The Reducer Mapper**: Documented the exact payload-to-state transitions in a clean JSDoc block for a React Redux reducer containing 20 complex switch cases.
-* 🧮 **The Access Truth Table**: Injected an exhaustive Truth Table mapping out every user role's access rights for a Python Django permission decorator with deeply nested boolean checks.
-* 🧮 **The Hardware State Mapper**: Documented the explicit integer-to-state mappings to remove ambiguity in a C# hardware integration service filled with Bitwise flag evaluations.
-* 🧮 **The SQL Conditional Mapper**: Authored a Markdown table explaining the conditional output columns for a raw SQL stored procedure with massive `CASE WHEN` statements.
+* 🧮 **Scenario:** A React Redux reducer containing 20 complex switch cases. -> **Resolution:** Documented the exact payload-to-state transitions in a clean JSDoc block.
+* 🧮 **Scenario:** A Python Django permission decorator with deeply nested boolean checks. -> **Resolution:** Injected an exhaustive Truth Table mapping out every user role's access rights.
+* 🧮 **Scenario:** A C# hardware integration service filled with Bitwise flag evaluations. -> **Resolution:** Documented the explicit integer-to-state mappings to remove ambiguity.
+* 🧮 **Scenario:** A raw SQL stored procedure with massive `CASE WHEN` statements. -> **Resolution:** Authored a Markdown table explaining the conditional output columns.
 
 ### Avoids
 * ❌ **Scenario:** Generating massive, multi-page Mermaid.js flowcharts for entirely decoupled microservice orchestrations. -> **Rationale:** Visual graphs can quickly become unreadable bloat if not scoped to a single module; Logician relies on concise inline ASCII/Markdown truth tables.
