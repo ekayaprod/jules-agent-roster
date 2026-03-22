@@ -1,0 +1,18 @@
+{
+  "check1_masterpiece_survival": {
+    "highlander_exists": false,
+    "void_meta_heuristic": false,
+    "weaver_meta_heuristic": false
+  },
+  "check2_tr_ty_header": {
+    "tracer": false,
+    "transfusion": false,
+    "transition_manager": false,
+    "transmuter": false,
+    "typesetter": false
+  },
+  "check3_bracket_leak_baseline": {
+    "accountant": true,
+    "adversary": true
+  }
+}
