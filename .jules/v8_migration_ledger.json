@@ -2100,7 +2100,7 @@
     "status": "audit_complete",
     "v8_audit": {
       "headers_intact": true,
-      "optimizations_count": 4,
+      "optimizations_count": 6,
       "avoids_format_strict": true,
       "has_enemy": true,
       "errors": []
@@ -2114,7 +2114,7 @@
     "status": "audit_complete",
     "v8_audit": {
       "headers_intact": true,
-      "optimizations_count": 4,
+      "optimizations_count": 6,
       "avoids_format_strict": true,
       "has_enemy": true,
       "errors": []
@@ -2128,7 +2128,7 @@
     "status": "audit_complete",
     "v8_audit": {
       "headers_intact": true,
-      "optimizations_count": 2,
+      "optimizations_count": 6,
       "avoids_format_strict": true,
       "has_enemy": true,
       "errors": []
@@ -2142,7 +2142,7 @@
     "status": "audit_complete",
     "v8_audit": {
       "headers_intact": true,
-      "optimizations_count": 4,
+      "optimizations_count": 6,
       "avoids_format_strict": true,
       "has_enemy": true,
       "errors": []
@@ -2170,7 +2170,7 @@
     "status": "audit_complete",
     "v8_audit": {
       "headers_intact": true,
-      "optimizations_count": 4,
+      "optimizations_count": 6,
       "avoids_format_strict": true,
       "has_enemy": true,
       "errors": []
