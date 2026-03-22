@@ -1999,7 +1999,7 @@
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "audit_complete",
+    "status": "migration_complete",
     "v8_audit": {
       "headers_intact": true,
       "optimizations_count": 8,
@@ -2013,7 +2013,7 @@
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "audit_complete",
+    "status": "migration_complete",
     "v8_audit": {
       "headers_intact": true,
       "optimizations_count": 4,
@@ -2027,7 +2027,7 @@
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "audit_complete",
+    "status": "migration_complete",
     "v8_audit": {
       "headers_intact": true,
       "optimizations_count": 4,
@@ -2041,7 +2041,7 @@
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "audit_complete",
+    "status": "migration_complete",
     "v8_audit": {
       "headers_intact": true,
       "optimizations_count": 4,
@@ -2055,7 +2055,7 @@
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "audit_complete",
+    "status": "migration_complete",
     "v8_audit": {
       "headers_intact": true,
       "optimizations_count": 8,
@@ -2069,7 +2069,7 @@
     "pass2_structure": true,
     "pass3_top_half_llm": true,
     "pass4_bottom_half_llm": true,
-    "status": "audit_complete",
+    "status": "migration_complete",
     "v8_audit": {
       "headers_intact": true,
       "optimizations_count": 4,
