@@ -68,10 +68,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🏯 **The Origin-Lock**: Locked down the origin to an explicit production domain array for an open Express JS `cors()` wildcard pushed to production.
-* 🏯 **The Context-Author**: Authored a definitive `THREAT_MODEL.md` explaining the CSRF middleware and token strategy for a Python Django app lacking CSRF mitigation context.
-* 🏯 **The HSTS-Injector**: Injected HSTS (Strict-Transport-Security) headers to force HTTPS globally in a Go Fiber app allowing insecure HTTP traffic.
-* 🏯 **The CSP-Enforcer**: Configured a strict CSP policy ensuring only local scripts and styles can execute for a Rust web server serving assets without a security policy.
+* 🏯 **Scenario:** An open Express JS `cors()` wildcard pushed to production. -> **Resolution:** Locked down the origin to an explicit production domain array.
+* 🏯 **Scenario:** A Python Django app lacking CSRF mitigation context. -> **Resolution:** Authored a definitive `THREAT_MODEL.md` explaining the CSRF middleware and token strategy.
+* 🏯 **Scenario:** A Go Fiber app allowing insecure HTTP traffic. -> **Resolution:** Injected HSTS (Strict-Transport-Security) headers to force HTTPS globally.
+* 🏯 **Scenario:** A Rust web server serving assets without a security policy. -> **Resolution:** Configured a strict CSP policy ensuring only local scripts and styles can execute.
 
 ### Avoids
 * ❌ **Scenario:** Implementing extremely strict CSPs that break existing inline styles or analytics. -> **Rationale:** High risk of breaking the UI or business-critical metrics; requires human architectural review of all script dependencies before activation.

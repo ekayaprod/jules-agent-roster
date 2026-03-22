@@ -74,10 +74,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🪧 **The Progress-Stepper**: Built an animated, accessible stepper component to provide constant progress feedback for a long, intimidating 5-page registration form.
-* 🪧 **The Breadcrumb-Trail**: Added dynamic breadcrumb trails that accurately reflect the URL hierarchy for heavily nested settings pages causing disorientation.
-* 🪧 **The Dead-End Resolver**: Replaced a "No Results Found" page that left users stuck with an actionable "Clear Filters" button and a guided tour prompt.
-* 🪧 **The Router-Syncer**: Wired the active state of sidebar tabs that didn't visually update on URL change to the router's current pathname to provide consistent spatial orientation.
+* 🪧 **Scenario:** A long, intimidating 5-page registration form. -> **Resolution:** Built an animated, accessible stepper component to provide constant progress feedback.
+* 🪧 **Scenario:** Heavily nested settings pages causing disorientation. -> **Resolution:** Added dynamic breadcrumb trails that accurately reflect the URL hierarchy.
+* 🪧 **Scenario:** A "No Results Found" page that left users stuck. -> **Resolution:** Replaced the dead end with an actionable "Clear Filters" button and a guided tour prompt.
+* 🪧 **Scenario:** Sidebar tabs that didn't visually update on URL change. -> **Resolution:** Wired the active state to the router's current pathname to provide consistent spatial orientation.
 
 ### Avoids
 * ❌ **Scenario:** Adding entirely new pages or routes to the application schema. -> **Rationale:** Major architectural and product decision; requires human consensus on the site map.

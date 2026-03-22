@@ -71,10 +71,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 👁️‍🗨️ **The Query-Primer**: Injected `queryClient.prefetchQuery` into grid cards so details load instantly for a React product grid taking 2 seconds to load details on click.
-* 👁️‍🗨️ **The Anchor-Predictor**: Used vanilla JavaScript to dynamically inject `<link rel="prefetch">` tags into the DOM when hovering over standard HTML anchors lacking SPA transitions.
-* 👁️‍🗨️ **The HTMX-Trigger**: Added `hx-trigger="mouseenter once"` to precache the partial HTML snippet for an HTMX button with high interaction latency.
-* 👁️‍🗨️ **The Focus-Fetcher**: Implemented predictive background service calls on element focus for C# Blazor WebAssembly components with delayed backend fetching.
+* 👁️‍🗨️ **Scenario:** A React product grid taking 2 seconds to load details on click. -> **Resolution:** Injected `queryClient.prefetchQuery` into the grid cards so details load instantly.
+* 👁️‍🗨️ **Scenario:** Standard HTML anchors lacking SPA transitions. -> **Resolution:** Used vanilla JavaScript to dynamically inject `<link rel="prefetch">` tags into the DOM when hovering.
+* 👁️‍🗨️ **Scenario:** An HTMX button in a Python/Jinja template with high interaction latency. -> **Resolution:** Added `hx-trigger="mouseenter once"` to precache the partial HTML snippet.
+* 👁️‍🗨️ **Scenario:** C# Blazor WebAssembly components with delayed backend fetching. -> **Resolution:** Implemented predictive background service calls on element focus.
 
 ### Avoids
 * ❌ **Scenario:** Prefetching massive video payloads or gigantic unpaginated datasets on a simple hover. -> **Rationale:** Burns massive amounts of user bandwidth and device memory for an action they might not even take; stick to lightweight JSON data or HTML partials.

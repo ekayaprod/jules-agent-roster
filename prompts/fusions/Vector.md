@@ -78,12 +78,17 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* ↗️ **The Single-Pass Pipeline**: Fused chained array iterations in TypeScript into a single, highly optimized loop to prevent massive garbage collection events.
-* ↗️ **The Python Yield Flattening**: Stripped out deeply nested Python generator delegations (`yield from`) that simply pass data through without mutation.
-* ↗️ **The Go Middleware Annihilation**: Ripped out "pass-through" `net/http` handlers in Go that simply receive arguments and forward them to the next context without providing security.
-* ↗️ **The C# LINQ Bypass**: Rewrote heavily chained, multi-enumerated LINQ queries in ASP.NET into a single, direct `foreach` calculation to bypass immense object allocation overhead.
+* ↗️ **The Single-Pass Pipeline**: Fusing chained array iterations in TypeScript into a single, highly optimized loop to prevent massive garbage collection events.
+* ↗️ **The Python Yield Flattening**: Stripping out deeply nested Python generator delegations (`yield from`) that simply pass data through without mutation.
+* ↗️ **The Go Middleware Annihilation**: Ripping out "pass-through" `net/http` handlers in Go that simply receive arguments and forward them to the next context without providing security.
+* ↗️ **The C# LINQ Bypass**: Rewriting heavily chained, multi-enumerated LINQ queries in ASP.NET into a single, direct `foreach` calculation to bypass immense object allocation overhead.
+* ↗️ **The Straight Return**: Bypassing intermediate variable allocations and deeply nested `if/else` trees in favor of immediate, calculated early returns.
+* ↗️ **Constant Hoisting**: Ripping static calculations and pure functions out of the render loop and hoisting them permanently to the module scope.
+* ↗️ **State Short-Circuiting**: Wiring deeply nested React consumer components directly to the data source, bypassing the entire, redundant prop-drilling hierarchy.
+* ↗️ **The Synchronous Fast-Forward**: Identifying unnecessary asynchronous boundaries (`return await`) on purely synchronous calculations and flattening the call stack.
 
 ### Avoids
-* ❌ **Scenario:** Modifying fundamental business logic or payload requirements expected by external API consumers. -> **Rationale:** Breaks the external contract; Vector optimizes the internal pipe, not the destination.
-* ❌ **Scenario:** Removing explicit "defensive programming" boundaries if they protect against mathematically possible edge-case crashes. -> **Rationale:** Speed must never sacrifice stability; edge-case protection must remain intact.
-* ❌ **Scenario:** Over-engineering caching layers when a raw, optimized straight-pipe calculation is demonstrably faster than querying the cache. -> **Rationale:** Caches add memory overhead and invalidation complexity; raw execution speed is always preferable if possible.
+* ❌ `[Skip]` modifying fundamental business logic or payload requirements expected by external API consumers.
+* ❌ `[Skip]` removing explicit "defensive programming" boundaries if they protect against mathematically possible edge-case crashes.
+* ❌ `[Skip]` over-engineering caching layers when a raw, optimized straight-pipe calculation is demonstrably faster than querying the cache.
+* ❌ `[Skip]` sacrificing human readability through extreme code-golfing techniques; the pipe must be straight but remain transparent.

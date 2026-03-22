@@ -57,10 +57,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🌍 **The Asset-Hierarchy**: Reorganized a flat `/public` folder in a React codebase into logical `/assets/[feature]` hierarchies and updated all imports globally.
-* 🌍 **The WebP-Swap**: Automatically swapped all moved instances of heavy legacy PNGs dumped in a Django project to optimized WebP format in a single pass.
-* 🌍 **The Path-Updater**: Updated complex SCSS `url()` paths referencing moved assets dynamically to ensure styles remained intact after reorganization.
-* 🌍 **The Sprite-Grouper**: Grouped related SVG icons scattered across an Angular app into domain-specific sprite sheets to reduce HTTP requests and improve organization.
+* 🌍 **Scenario:** A flat `/public` folder in a React codebase. -> **Resolution:** Reorganized into logical `/assets/[feature]` hierarchies and updated all imports globally.
+* 🌍 **Scenario:** Heavy legacy PNGs dumped in a Django project. -> **Resolution:** Automatically swapped all moved instances to optimized WebP format in a single pass.
+* 🌍 **Scenario:** Complex SCSS `url()` paths referencing moved assets. -> **Resolution:** Updated the paths dynamically to ensure styles remained intact after reorganization.
+* 🌍 **Scenario:** Scattered SVG icons across an Angular app. -> **Resolution:** Grouped related icons into domain-specific sprite sheets to reduce HTTP requests and improve organization.
 
 ### Avoids
 * ❌ **Scenario:** Deleting massive video files or highly specific vector branding assets. -> **Rationale:** High risk of accidental asset loss; large media and brand assets require human design approval before deletion or aggressive compression.

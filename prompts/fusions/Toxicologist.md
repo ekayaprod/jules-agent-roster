@@ -67,10 +67,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🧪 **The Metadata-Router**: Upgraded all instances of 20 empty `catch (e) {}` blocks in a Node.js backend to correctly route metadata and stack traces to Winston.
-* 🧪 **The Specific-Catcher**: Refactored a Python script using `except Exception: pass` to catch only the specific expected `KeyError`, raising all other critical faults.
-* 🧪 **The Exception-Enforcer**: Enforced capturing the `Exception ex` object and passing it to `ILogger.LogError` for generic C# `catch { }` blocks ignoring the `ex` object.
-* 🧪 **The Explicit-Reporter**: Rewrote the logic in a PowerShell script dangerously using `-ErrorAction SilentlyContinue` on critical tasks to properly utilize `try/catch` with explicit error reporting.
+* 🧪 **Scenario:** 20 empty `catch (e) {}` blocks in a Node.js backend. -> **Resolution:** Upgraded all instances to correctly route metadata and stack traces to Winston.
+* 🧪 **Scenario:** A Python script using `except Exception: pass`. -> **Resolution:** Refactored to catch only the specific expected `KeyError`, raising all other critical faults.
+* 🧪 **Scenario:** Generic C# `catch { }` blocks ignoring the `ex` object. -> **Resolution:** Enforced capturing the `Exception ex` object and passing it to `ILogger.LogError`.
+* 🧪 **Scenario:** A PowerShell script dangerously using `-ErrorAction SilentlyContinue` on critical tasks. -> **Resolution:** Rewrote the logic to properly utilize `try/catch` with explicit error reporting.
 
 ### Avoids
 * ❌ **Scenario:** Modifying deeply embedded legacy `try/catch` blocks used intentionally for flow control. -> **Rationale:** High risk of breaking intended, albeit unusual, control-flow logic (e.g., a "file not found" used as a standard boolean check); requires human architectural context.

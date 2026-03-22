@@ -63,10 +63,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🪙 **The Markdown-Converter**: Converted massive scraped HTML documents in a Python/Claude integration to clean Markdown using BeautifulSoup before sending, reducing token weight by 70%.
-* 🪙 **The Object-Mapper**: Mapped an 80-column PostgreSQL database row in a Node.js prompt into a sleek 3-key JSON object containing only the essential reasoning fields.
-* 🪙 **The Recursive-Pruner**: Implemented a recursive pruner to strip thousands of null and undefined fields in RAG vector payloads in Go before vectorization.
-* 🪙 **The XML-Minifier**: Minified the XML structure and converted redundant tags into a more token-efficient format for sprawling XML responses used as few-shot examples.
+* 🪙 **Scenario:** Massive scraped HTML documents in a Python/Claude integration. -> **Resolution:** Converted to clean Markdown using BeautifulSoup before sending, reducing token weight by 70%.
+* 🪙 **Scenario:** An 80-column PostgreSQL database row in a Node.js prompt. -> **Resolution:** Mapped into a sleek 3-key JSON object containing only the essential reasoning fields.
+* 🪙 **Scenario:** Thousands of null and undefined fields in RAG vector payloads in Go. -> **Resolution:** Implemented a recursive pruner to strip empty keys before vectorization.
+* 🪙 **Scenario:** Sprawling XML responses used as few-shot examples. -> **Resolution:** Minified the XML structure and converted redundant tags into a more token-efficient format.
 
 ### Avoids
 * ❌ **Scenario:** Truncating user-generated text inputs. -> **Rationale:** Muting the user can lead to data loss and poor AI performance; Tokenizer focuses on optimizing system-provided data, not user intent.

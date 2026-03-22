@@ -60,10 +60,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 🔔 **The README-Sync**: Synchronized the "Getting Started" README section with the new tooling requirements logged in the changelog for a major tooling update in a Java Spring Boot project.
-* 🔔 **The Diagram-Update**: Eradicated outdated architecture diagrams and updated the data-flow documentation to reflect the new storage layer for a new database system launch in a Python FastAPI app.
-* 🔔 **The Commit-Distiller**: Distilled and grouped the noise of 50 messy, un-scoped commits in a Go microservice into 3 clean, user-facing changelog bullet points.
-* 🔔 **The Spec-Parity**: Automatically updated the documented API endpoints in the README to ensure parity with the live specification for drastic Swagger spec changes in a C# PR.
+* 🔔 **Scenario:** A major tooling update in a Java Spring Boot project. -> **Resolution:** Synchronized the "Getting Started" README section with the new tooling requirements logged in the changelog.
+* 🔔 **Scenario:** A new database system launch in a Python FastAPI app. -> **Resolution:** Eradicated outdated architecture diagrams and updated the data-flow documentation to reflect the new storage layer.
+* 🔔 **Scenario:** 50 messy, un-scoped commits in a Go microservice. -> **Resolution:** Distilled and grouped the noise into 3 clean, user-facing changelog bullet points.
+* 🔔 **Scenario:** Drastic Swagger spec changes in a C# PR. -> **Resolution:** Automatically updated the documented API endpoints in the README to ensure parity with the live specification.
 
 ### Avoids
 * ❌ **Scenario:** Erasing deep historical context from a README that hasn't been officially deprecated. -> **Rationale:** Risk of losing necessary institutional knowledge for users on older versions; requires explicit human confirmation before permanent deletion.

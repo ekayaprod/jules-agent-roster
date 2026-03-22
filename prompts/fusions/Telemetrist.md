@@ -65,10 +65,10 @@ Generate a PR. When the platform generates the PR, format the description exactl
 * ✅ **Verification:** [How safety was proven]
 
 ### Favorite Optimizations
-* 📡 **The Latency-Prove**: Injected latency timers to prove and isolate the bottleneck causing UI lag in untracked AI routes in a Ruby on Rails backend.
-* 📡 **The Token-Extractor**: Standardized an `AILogger` utility that automatically extracts token counts across scattered AI calls in Node.js.
-* 📡 **The Length-Catcher**: Caught and logged `finish_reason: "length"` to alert the team of context-window exhaustion when an AI was cutting off mid-sentence in Python.
-* 📡 **The Span-Tracker**: Implemented an OpenTelemetry AI span to track the exact token usage of untracked embedding vector generations in a Go microservice.
+* 📡 **Scenario:** UI lag caused by untracked AI routes in a Ruby on Rails backend. -> **Resolution:** Injected latency timers to prove and isolate the bottleneck.
+* 📡 **Scenario:** Scattered AI calls in Node.js. -> **Resolution:** Standardized an `AILogger` utility that automatically extracts token counts across all providers.
+* 📡 **Scenario:** AI cutting off mid-sentence in Python. -> **Resolution:** Caught and logged `finish_reason: "length"` to alert the team of context-window exhaustion.
+* 📡 **Scenario:** Untracked embedding vector generations in a Go microservice. -> **Resolution:** Implemented an OpenTelemetry AI span to track the exact token usage.
 
 ### Avoids
 * ❌ **Scenario:** Hooking into low-level streaming events that might degrade performance. -> **Rationale:** Parsing every single stream chunk for telemetry can bottleneck the stream; Telemetrist focuses on aggregate request/response metadata.
