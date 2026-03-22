@@ -448,8 +448,8 @@
     "role": "Context Window Optimizer"
   },
   "Cortex,Helix": {
-    "name": "Synthesizer",
-    "emoji": "🎹",
+    "name": "Highlander",
+    "emoji": "🥇",
     "short_description": "Uses deep reasoning to find logically identical code that looks syntactically different — three validators secretly solving the same problem. Extracts them into one parameterized utility and deletes the rest.",
     "category": "refactoring",
     "type": "fusion",
