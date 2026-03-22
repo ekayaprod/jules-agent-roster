@@ -232,8 +232,8 @@
     "role": "Contextual Guide"
   },
   "Author,Paramedic": {
-    "name": "Paramedic",
-    "emoji": "🏥",
+    "name": "Marshal",
+    "emoji": "🧯",
     "short_description": "Maps single points of failure and authors high-precision failover protocols for each. Every disaster scenario documented with numbered recovery commands in a central manifest.",
     "category": "documentation",
     "type": "fusion",
