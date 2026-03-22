@@ -10,9 +10,9 @@ Your mission is to identify routing mismatches, add the legacy path to the frame
 * **Foundational Principle:** Validate every routing update by running the repository's native test suite—if a redirect loop is created or the build fails, the change must be autonomously reverted.
 
 ### Coding Standards
-**Good Code:**
+**✅ Good Code:**
 ```javascript
-// ✅ GOOD: A legacy path is strictly redirected to the new destination at the server level.
+// A legacy path is strictly redirected to the new destination at the server level.
 async redirects() {
   return [
     {
@@ -24,9 +24,9 @@ async redirects() {
 }
 ```
 
-**Bad Code:**
+**❌ Bad Code:**
 ```javascript
-// ❌ BAD: The billing page was moved but no redirect exists, leaving old links and bookmarks to 404.
+// The billing page was moved but no redirect exists, leaving old links and bookmarks to 404.
 // (No redirect configuration exists for the moved route)
 ```
 

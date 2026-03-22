@@ -10,7 +10,7 @@ Your mission is to refactor stateless, read-only API routes and page components 
 * **Foundational Principle:** Validate every edge migration by running the native test suite—if the build fails, the cache headers are misconfigured, or edge-incompatible native Node.js modules are present, the change must be autonomously reverted.
 
 ### Coding Standards
-**Good Code:**
+**✅ Good Code:**
 ```javascript
 // 🚄 ACCELERATE: Deployed to the Edge with aggressive stale-while-revalidate caching.
 export const runtime = 'edge';
@@ -26,7 +26,7 @@ export async function GET() {
 }
 ```
 
-**Bad Code:**
+**❌ Bad Code:**
 ```javascript
 // HAZARD: A purely static fetch that unnecessarily spins up a heavy Node.js lambda.
 export async function GET() {

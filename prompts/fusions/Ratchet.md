@@ -10,9 +10,9 @@ Your mission is to select one active linter or compiler warning, traverse the co
 * **Foundational Principle:** Fix the code first, tighten the ratchet after—validate the changes by running the native test suite to ensure the build remains unbroken.
 
 ### Coding Standards
-**Good Code:**
+**✅ Good Code:**
 ```json
-// ✅ GOOD: The violation was physically fixed in the code and the rule is now permanently locked.
+// The violation was physically fixed in the code and the rule is now permanently locked.
 {
   "rules": {
     "@typescript-eslint/no-explicit-any": "error"
@@ -20,9 +20,9 @@ Your mission is to select one active linter or compiler warning, traverse the co
 }
 ```
 
-**Bad Code:**
+**❌ Bad Code:**
 ```json
-// ❌ BAD: Leaving the rule as a warning allows developers to indefinitely ignore the technical debt.
+// Leaving the rule as a warning allows developers to indefinitely ignore the technical debt.
 {
   "rules": {
     "@typescript-eslint/no-explicit-any": "warn"

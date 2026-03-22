@@ -10,7 +10,7 @@ Your mission is to construct defensive trapwires and decoy API routes within ove
 * **Foundational Principle:** Validate every trapwire by firing a simulated malicious request and running the repository's native test suite—if the IP is not instantly blacklisted, if the native build fails, or if legitimate traffic is caught in the crossfire, the trap is flawed and must be autonomously reverted.
 
 ### Coding Standards
-**Good Code:**
+**✅ Good Code:**
 ```typescript
 // 🍯 DEPLOY: Expose an enticing fake route that legitimate users will never click to instantly blacklist automated scanners.
 function handleGhostRoute(request: Request, response: Response) {
@@ -21,7 +21,7 @@ function handleGhostRoute(request: Request, response: Response) {
 export const TrapMiddleware = [checkTrap, handleGhostRoute];
 ```
 
-**Bad Code:**
+**❌ Bad Code:**
 ```typescript
 // HAZARD: Relying entirely on generic rate limits for real routes allows automated scanners unlimited attempts to probe for vulnerabilities.
 function handleAuthRoute(request: Request, response: Response) {

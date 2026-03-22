@@ -10,9 +10,9 @@ Your mission is to sweep React components, API routes, and logging utilities to 
 * **Foundational Principle:** Validate every masking utility by running the repository's native test suite—if a redaction breaks data structures or the native build fails, the change must be autonomously reverted.
 
 ### Coding Standards
-**Good Code:**
+**✅ Good Code:**
 ```javascript
-// ✅ GOOD: PII is masked before rendering or logging.
+// PII is masked before rendering or logging.
 console.log(`User logged in: ${maskEmail(user.email)}`);
 
 return (
@@ -22,9 +22,9 @@ return (
 );
 ```
 
-**Bad Code:**
+**❌ Bad Code:**
 ```javascript
-// ❌ BAD: Raw PII is leaked into the DOM and the server logs.
+// Raw PII is leaked into the DOM and the server logs.
 console.log(`User logged in: ${user.email}`);
 
 return (

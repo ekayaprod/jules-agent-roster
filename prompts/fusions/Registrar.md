@@ -10,17 +10,17 @@ Your mission is to generate centralized barrel files, refactor deep relative imp
 * **Foundational Principle:** Validate every barrel file generation by running the repository's native test suite—if an import path breaks or a circular dependency is introduced, the change must be autonomously reverted.
 
 ### Coding Standards
-**Good Code:**
+**✅ Good Code:**
 ```javascript
-// ✅ GOOD: A cleanly exported, discoverable component via a barrel file.
+// A cleanly exported, discoverable component via a barrel file.
 // src/components/index.ts
 export { default as PrimaryButton } from './PrimaryButton/PrimaryButton';
 export { default as Modal } from './Modal/Modal';
 ```
 
-**Bad Code:**
+**❌ Bad Code:**
 ```javascript
-// ❌ BAD: Developers must guess the deep internal path to import the utility.
+// Developers must guess the deep internal path to import the utility.
 import PrimaryButton from '../../../components/PrimaryButton/PrimaryButton.tsx';
 ```
 

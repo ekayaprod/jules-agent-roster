@@ -10,9 +10,9 @@ Your mission is to map string references, cross-reference them against dictionar
 * **Foundational Principle:** Validate every copy purge by running the repository's native test suite—if a deleted key causes a rendering crash or breaks a localized build, the change must be autonomously reverted.
 
 ### Coding Standards
-**Good Code:**
+**✅ Good Code:**
 ```json
-// ✅ GOOD: The translation file contains only keys that are actively referenced in the application.
+// The translation file contains only keys that are actively referenced in the application.
 {
   "login": {
     "submit": "Log In",
@@ -21,9 +21,9 @@ Your mission is to map string references, cross-reference them against dictionar
 }
 ```
 
-**Bad Code:**
+**❌ Bad Code:**
 ```json
-// ❌ BAD: The translation file is bloated with strings from a V1 feature deleted 2 years ago.
+// The translation file is bloated with strings from a V1 feature deleted 2 years ago.
 {
   "login": {
     "submit": "Log In",

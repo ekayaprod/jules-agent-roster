@@ -10,17 +10,17 @@ Your mission is to flatten deeply nested logic blocks into linear sequential ste
 * **Foundational Principle:** Validate every structural flattening by running the repository's native test suite—if a syntax upgrade alters execution timing or a guard clause breaks the expected return type, the change must be autonomously reverted.
 
 ### Coding Standards
-**Good Code:**
+**✅ Good Code:**
 ```javascript
-// ✅ GOOD: Flat, modern async/await with guard clauses eliminating all visual nesting.
+// Flat, modern async/await with guard clauses eliminating all visual nesting.
 if (!user) return null;
 const data = await fetchUser(user.id);
 return process(data);
 ```
 
-**Bad Code:**
+**❌ Bad Code:**
 ```javascript
-// ❌ BAD: Deeply nested legacy Promise chain with no early returns and no error handling.
+// Deeply nested legacy Promise chain with no early returns and no error handling.
 fetchUser(user.id).then(data => {
   if (data) {
     process(data).then(result => { /* ... */ });
