@@ -487,6 +487,288 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', 'error');
         });
 
+        it('should handle interaction modal gracefully if inputField is missing during close', () => {
+             manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+             manager.elements['interactionModalInput'] = null;
+             const inEl = document.getElementById('interactionModalInput');
+             if(inEl) inEl.remove();
+
+             const cancelBtn = document.getElementById('cancelInteractionBtn');
+             cancelBtn.click();
+
+             expect(manager.activeModalSessionId).toBeNull();
+        });
+
+        it('should handle interaction modal gracefully if errorSpan is missing during close', () => {
+             manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+             manager.elements['interactionModalError'] = null;
+             const errSpan = document.getElementById('interactionModalError');
+             if(errSpan) errSpan.remove();
+
+             const cancelBtn = document.getElementById('cancelInteractionBtn');
+             cancelBtn.click();
+
+             expect(manager.activeModalSessionId).toBeNull();
+        });
+
+        it('should abort history modal submission if activeModalSessionId is null', async () => {
+             document.body.innerHTML += `
+                <div id="julesHistoryModal"></div>
+                <button id="cancelHistoryBtn"></button>
+                <button id="submitHistoryBtn"></button>
+                <input id="historyModalInput" />
+                <span id="historyModalError"></span>
+            `;
+            manager._initInteractionModal();
+
+            // Set state explicitly
+            manager.activeModalSessionId = null;
+
+            const submitHistoryBtn = manager.getEl('submitHistoryBtn');
+            window.julesService.replyToSession = jest.fn();
+
+            await submitHistoryBtn.click();
+            expect(window.julesService.replyToSession).not.toHaveBeenCalled();
+        });
+
+        it('should fallback to default emoji if agent and name mismatch', () => {
+            manager.renderedSessionIds = new Set(['s2']);
+            const terminal = document.createElement('div');
+
+            const session = {
+                id: 's2',
+                title: 'Unknown Random Title'
+            };
+
+            // Remove it from set so _processSession continues
+            manager.renderedSessionIds.clear();
+
+            manager._processSession(session, terminal, 'owner/repo');
+
+            // Verify emoji fallback
+            const item = terminal.querySelector('#session-s2');
+            expect(item).not.toBeNull();
+            expect(item.innerHTML).toContain('🤖'); // Fallback emoji
+        });
+
+        it('should use customAgent emoji from app config', () => {
+            const terminal = document.createElement('div');
+
+            const session = {
+                id: 'custom1',
+                title: 'CustomAgent'
+            };
+
+            manager._processSession(session, terminal, 'owner/repo');
+
+            const item = terminal.querySelector('#session-custom1');
+            expect(item).not.toBeNull();
+            expect(item.innerHTML).toContain('🔥'); // Emoji from mockApp.customAgents
+        });
+
+        it('should gracefully handle _processActivity with missing user_input act.message', async () => {
+            const item = document.createElement('div');
+            item.innerHTML = '<span id="status-123">Initializing...</span>';
+            document.body.appendChild(item);
+
+            manager.startTerminalPolling('123', item, 'Bot', '🤖');
+
+            window.julesService.getActivities.mockResolvedValueOnce({
+                activities: [ { type: 'USER_INPUT', title: 'Input Needed' } ] // missing message but matching INPUT trigger
+            });
+
+            await jest.advanceTimersByTimeAsync(3000);
+            const badge = item.querySelector('#status-123');
+            // In the file, logic says:
+            // if (act.type && act.type.includes('USER_INPUT') && act.message) { fullHistoryMarkdown += ... }
+            // but later: if (act.type && act.type.includes('USER_INPUT')) { state.latestLog = "User input transmitted."; }
+            // BUT since act.title exists and act.type includes INPUT, isWaitingForInput gets set to true, showing the warning modal.
+            // That means 'User input transmitted.' gets overwritten in the UI by the NeedsInput state visually,
+            // so we assert the correct UI state here.
+            expect(badge.textContent).toBe('⚠️ Response Needed (Click to view)');
+        });
+
+        it('should format history modal correctly for various activity types', async () => {
+             document.body.innerHTML += `
+                <div id="julesHistoryModal"></div>
+                <button id="cancelHistoryBtn"></button>
+                <button id="submitHistoryBtn"></button>
+                <input id="historyModalInput" />
+                <span id="historyModalError"></span>
+                <span id="historyModalEmoji"></span>
+                <span id="historyModalAgent"></span>
+                <div id="historyModalContent"></div>
+                <div id="status-s123"></div>
+            `;
+            manager._initInteractionModal();
+
+             const item = document.createElement('div');
+             item.innerHTML = '<span id="status-123">Initializing...</span>';
+             document.body.appendChild(item);
+
+             manager._showHistoryModal('123', '🤖', 'TestAgent');
+             manager.startTerminalPolling('123', item, 'Bot', '🤖');
+
+             window.julesService.getActivities.mockResolvedValueOnce({
+                 activities: [
+                     { title: 'Test Title', description: 'Test Desc', type: 'USER_INPUT', message: 'Hello', error: { message: 'Some err' } }
+                 ]
+             });
+
+             await jest.advanceTimersByTimeAsync(3000);
+
+             const contentEl = manager.getEl('historyModalContent');
+             expect(contentEl.innerHTML).toContain('Test Title');
+             expect(contentEl.innerHTML).toContain('Test Desc');
+             expect(contentEl.innerHTML).toContain('*You:* Hello');
+             expect(contentEl.innerHTML).toContain('**Error:** Some err');
+        });
+
+        it('should handle interaction modal gracefully if history fields are missing', async () => {
+            manager._showHistoryModal('s123', '🤖', 'TestAgent');
+
+            // Remove modal inputs
+            const historyModalInput = document.getElementById('historyModalInput');
+            if (historyModalInput) historyModalInput.remove();
+            manager.elements['historyModalInput'] = null;
+
+            const cancelHistoryBtn = document.getElementById('cancelHistoryBtn');
+            if (cancelHistoryBtn) cancelHistoryBtn.click();
+
+            const submitHistoryBtn = document.getElementById('submitHistoryBtn');
+            if (submitHistoryBtn) await submitHistoryBtn.click();
+
+            expect(mockToast.show).not.toHaveBeenCalledWith('Transmitting reply...', 'info');
+        });
+
+        it('should send reply via history modal and update UI optimistically', async () => {
+             document.body.innerHTML += `
+                <div id="julesHistoryModal"></div>
+                <button id="cancelHistoryBtn"></button>
+                <button id="submitHistoryBtn"></button>
+                <input id="historyModalInput" />
+                <span id="historyModalError"></span>
+                <span id="historyModalEmoji"></span>
+                <span id="historyModalAgent"></span>
+                <div id="historyModalContent"></div>
+                <div id="status-s123"></div>
+            `;
+            manager._initInteractionModal();
+            manager._showHistoryModal('s123', '🤖', 'TestAgent');
+
+            const historyModalInput = manager.getEl('historyModalInput');
+            historyModalInput.value = 'History reply';
+
+            window.julesService.replyToSession = jest.fn().mockResolvedValueOnce({});
+
+            const submitHistoryBtn = manager.getEl('submitHistoryBtn');
+            await submitHistoryBtn.click();
+
+            expect(window.julesService.replyToSession).toHaveBeenCalledWith('s123', 'History reply');
+            expect(mockToast.show).toHaveBeenCalledWith('Reply transmitted.', 'success');
+        });
+
+        it('should handle history modal submission with empty input', async () => {
+             document.body.innerHTML += `
+                <div id="julesHistoryModal"></div>
+                <button id="cancelHistoryBtn"></button>
+                <button id="submitHistoryBtn"></button>
+                <input id="historyModalInput" />
+                <span id="historyModalError"></span>
+            `;
+            manager._initInteractionModal();
+            manager._showHistoryModal('s123', '🤖', 'TestAgent');
+
+            const submitHistoryBtn = manager.getEl('submitHistoryBtn');
+            await submitHistoryBtn.click();
+
+            expect(manager.getEl('historyModalError').textContent).toBe('Please enter a response.');
+        });
+
+        it('should submit interaction on Enter keydown in history modal', async () => {
+             document.body.innerHTML += `
+                <div id="julesHistoryModal"></div>
+                <button id="cancelHistoryBtn"></button>
+                <button id="submitHistoryBtn"></button>
+                <input id="historyModalInput" />
+                <span id="historyModalError"></span>
+                <div id="status-s123"></div>
+            `;
+            manager._initInteractionModal();
+            manager._showHistoryModal('s123', '🤖', 'TestAgent');
+
+            const historyModalInput = manager.getEl('historyModalInput');
+            historyModalInput.value = 'Enter reply';
+
+            window.julesService.replyToSession = jest.fn().mockResolvedValueOnce({});
+
+            const event = new KeyboardEvent('keydown', { key: 'Enter' });
+            await historyModalInput.dispatchEvent(event);
+
+            expect(window.julesService.replyToSession).toHaveBeenCalledWith('s123', 'Enter reply');
+        });
+
+        it('should clear error on input event in history modal', () => {
+             document.body.innerHTML += `
+                <div id="julesHistoryModal"></div>
+                <button id="cancelHistoryBtn"></button>
+                <button id="submitHistoryBtn"></button>
+                <input id="historyModalInput" />
+                <span id="historyModalError">Error here</span>
+            `;
+            manager._initInteractionModal();
+            manager._showHistoryModal('s123', '🤖', 'TestAgent');
+
+            const historyModalInput = manager.getEl('historyModalInput');
+            historyModalInput.dispatchEvent(new Event('input'));
+
+            expect(manager.getEl('historyModalError').textContent).toBe('');
+            expect(manager.getEl('historyModalError').classList.contains('hidden')).toBe(true);
+        });
+
+        it('should handle API failure during history modal submission', async () => {
+             document.body.innerHTML += `
+                <div id="julesHistoryModal"></div>
+                <button id="cancelHistoryBtn"></button>
+                <button id="submitHistoryBtn"></button>
+                <input id="historyModalInput" />
+                <span id="historyModalError"></span>
+                <div id="status-s123"></div>
+            `;
+            manager._initInteractionModal();
+            manager._showHistoryModal('s123', '🤖', 'TestAgent');
+
+            const historyModalInput = manager.getEl('historyModalInput');
+            historyModalInput.value = 'Failing reply';
+
+            window.julesService.replyToSession = jest.fn().mockRejectedValueOnce(new Error('API fail'));
+
+            const submitHistoryBtn = manager.getEl('submitHistoryBtn');
+            await submitHistoryBtn.click();
+
+            expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', 'error');
+        });
+
+        it('should close history modal gracefully when activeModalSessionId is null', async () => {
+             document.body.innerHTML += `
+                <div id="julesHistoryModal" class="visible"></div>
+                <button id="cancelHistoryBtn"></button>
+                <button id="submitHistoryBtn"></button>
+                <input id="historyModalInput" />
+                <span id="historyModalError"></span>
+            `;
+            manager._initInteractionModal();
+            manager.activeModalSessionId = null;
+
+            const submitHistoryBtn = manager.getEl('submitHistoryBtn');
+            await submitHistoryBtn.click(); // Should do nothing
+
+            const cancelHistoryBtn = manager.getEl('cancelHistoryBtn');
+            cancelHistoryBtn.click(); // Should close and not throw
+
+            expect(manager.getEl('julesHistoryModal').classList.contains('visible')).toBe(false);
+        });
+
         it('should handle interaction modal gracefully if inputField is missing but errorSpan is present during submission with empty text', async () => {
             manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             manager.elements['interactionModalInput'] = null;
