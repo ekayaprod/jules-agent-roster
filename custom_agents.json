@@ -280,8 +280,8 @@
     "role": "Automation Maintainer"
   },
   "Author,Untangler": {
-    "name": "Tracer",
-    "emoji": "📌",
+    "name": "Scout",
+    "emoji": "🐾",
     "short_description": "Maps complex cross-file execution jumps and undocumented async chains into readable DATA_FLOW.md files or Mermaid sequence diagrams. Makes invisible data flows visible.",
     "category": "documentation",
     "type": "fusion",
