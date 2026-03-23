@@ -46,7 +46,13 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 - [x] [Performance] Idea: Implement debounce pattern for search input to prevent layout thrashing on every keystroke. (Source: lodash) (Shipped: [Commit 73228b7](https://github.com/google/jules/commit/73228b7))
 - [ ] [DX] Idea: Standardize clipboard logic with `clipboard-polyfill` to replace deprecated execCommand. (Source: github.com/lgarron/clipboard-polyfill)
 - [ ] [Performance] Idea: Adopt `UnoCSS` via CDN to eliminate >600 lines of inline CSS in index.html while maintaining the zero-build-step requirement. (Source: unocss.dev)
-- [ ] [DX] Idea: Adopt `lit-html` via CDN to replace brittle manual string concatenation (innerHTML) in AgentCard.js and FusionLab.js, standardizing templating safely without a build step. (Source: lit.dev)
+
+### Standardize UI Templating
+
+**The Problem:** The application relies on brittle manual string concatenation (`innerHTML`) in UI components like `AgentCard.js` and `FusionLab.js`, causing DX friction and XSS risks.
+**The Solution:** Adopt a lightweight, vetted templating engine (e.g., `lit-html`) via CDN.
+**The Benefit:** Standardizes templating safely, preventing XSS, and eliminates multi-line string errors without requiring a build step.
+
 - [x] [DX] Idea: Introduce a standard `package.json` to define npm scripts for verification and task running, replacing scattered manual python scripts and unifying DX. (Shipped: [Commit 861d7fd](https://github.com/google/jules/commit/861d7fd57cbf9aa816fe84fefb62ce9b89a3896d))
 - [x] [Performance] Idea: Implement virtualized lists via `Clusterize.js` (via CDN) to render large agent rosters without layout thrashing, resolving the 'Missing pagination' audit finding while maintaining the zero-build-step constraint. (Source: clusterize.js.org) (Shipped: [Commit b1e678d](https://github.com/google/jules/commit/b1e678d225e476d060b19451f3fc25871fc1e27f))
 - [x] [UX] Idea: Adopt `focus-trap` via CDN to standardize keyboard navigation and modal accessibility in FusionLab, replacing brittle custom roving tabindex logic (`handleGridKeydown`). (Source: github.com/focus-trap/focus-trap)
