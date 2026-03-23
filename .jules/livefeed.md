@@ -1,3 +1,0 @@
-## 2024-05-24 - 📺 LiveFeed - [Jules Session Launch Broadcasted]
-**Learning:** The existing `ToastNotification.show()` method signature is `show(message, type = 'success', duration)`. Previous implementations erroneously passed `true` as the type argument for errors (e.g. `this.toast.show(msg, true)`), which resolved to truthy and defaulted to displaying a success icon because of `icons[true] || icons.success`.
-**Action:** When invoking the toast system for errors, strictly pass the explicit string `"error"` as the second argument. Updated the `launchJulesSession` method in `js/RosterApp.js` to broadcast its loading state directly to the triggering UI button and fire proper success/error notifications using the corrected string argument.
