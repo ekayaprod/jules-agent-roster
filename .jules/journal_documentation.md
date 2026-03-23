@@ -8,3 +8,10 @@
 ## Scholar — UI Controller Alignment
 **Learning:** Missing JSDoc tags on tightly coupled UI animation components can cause developers to misinterpret where logic is managed. Ensuring that these visual orchestrators cross-reference the macro documentation explicitly enforces UI boundaries and provides context on feature colocation.
 **Action:** When documenting UI-driven controllers like `FusionAnimation.js`, cross-reference the macro `docs/` guides directly within the inline `@see` annotations, to connect granular interaction handling back to the broader structural blueprint.
+
+## 2024-05-24 - 📚 Archivist - [Missing Security Context in AgentRepository.js]
+**Learning:** The core `AgentRepository.js` module contained critical defense-in-depth logic (XSS regex) and parsing safety (`safeJsonParse`) that was undocumented inline and disconnected from the high-level `ARCHITECTURE.md`.
+**Action:** Injected explanatory JSDoc with specific `@see` links and appended matching macro architectural sections (`Data Integrity & Parsing`, `Security Model`) to `ARCHITECTURE.md` to permanently link the micro-context to the macro-vision.
+
+## 2026-02-18
+- **Dependency Conflict**: Removed stale reference to `agents.js` in `index.html`. File does not exist.
