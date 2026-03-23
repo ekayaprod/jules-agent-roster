@@ -1,0 +1,5 @@
+# 🧵 Weaver's Journal
+
+## 2026-03-01 - [Extract and Flatten Fetch Prompt Logic]
+**Learning:** When extracting the deeply nested prompt-fetching logic from `AgentRepository.js`, I observed that standard agents fetch from `prompts/${agent.name}.md` while custom fusion agents fetch from `prompts/fusions/${cleanName}.md`. Despite the different URL construction, the logic to handle the fetch and update the object was largely identical. The main edge case was handling the URL specific warning messages and fallback variables on failure.
+**Action:** Created `fetchPrompt(name, url, fallback)` which successfully flattens the execution paths using early returns (e.g. `if (!res.ok) { return fallback; }`). Updated the call sites to invoke this pure async function, assigning the returned result to `agent.prompt` and reducing cyclomatic complexity.

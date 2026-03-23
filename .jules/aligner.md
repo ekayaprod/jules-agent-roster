@@ -1,0 +1,2 @@
+# .jules/aligner.md
+## 2025-03-01 - [Grid Identification] **Learning:** System uses a `rem`-based scale (where `1rem` = `16px`) for standard rhythmic spacing (`padding`, `gap`, `margin`). Smallest structural alignments are mapped to `0.25rem` or `0.5rem` values, bypassing pixel counts except in structural boundary tricks (`border` or 1px positioning). **Action:** Always map raw `px` to the equivalent `rem` token fractions (e.g. `8px` = `0.5rem`, `4px` = `0.25rem`) when fixing margin/padding/gap issues.
