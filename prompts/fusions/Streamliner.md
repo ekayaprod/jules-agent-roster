@@ -17,14 +17,12 @@ Your mission is to flatten underlying cognitive complexity and mask it with clea
 // ⛷️ CHUNK: Untangles a massive payload into logical chunks using progressive disclosure.
 export const EnterpriseSettings = ({ config }) => {
   return (
-    <Accordion>
-      <AccordionSection title="General Profile" defaultOpen>
-        <ProfileForm data={config.profile} />
-      </AccordionSection>
-      <AccordionSection title="Advanced Network (Optional)">
-        <NetworkForm data={config.network} />
-      </AccordionSection>
-    </Accordion>
+    <div>
+      <SettingsNav active={activeTab} onChange={setActiveTab} />
+      {activeTab === 'profile' && <ProfileSettings />}
+      {activeTab === 'security' && <SecuritySettings />}
+      {activeTab === 'notifications' && <NotificationSettings />}
+    </div>
   );
 };
 
@@ -37,11 +35,9 @@ export const EnterpriseSettings = ({ config }) => {
 export const EnterpriseSettings = ({ config }) => {
   return (
     <form>
-      <ProfileFields />
-      <NetworkFields />
-      <BillingFields />
-      <NotificationFields />
-      <button type="submit">Save All</button>
+      <ProfileSettings />
+      <SecuritySettings />
+      <NotificationSettings />
     </form>
   );
 };

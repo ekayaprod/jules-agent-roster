@@ -25,6 +25,9 @@ const handleSearch = useDebounce((query) => {
 const handleSearch = (query) => {
   api.fetchResults(query);
 };
+
+window.addEventListener('scroll', handleScroll);
+
 ```
 
 ### Boundaries

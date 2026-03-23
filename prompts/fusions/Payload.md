@@ -13,26 +13,25 @@ Your mission is to autonomously sweep overarching API response handlers and edge
 
 ✅ Good Code:
 ```typescript
-// 🚂 DISPATCH: Query Splitting. Public data gets the fast track while private data is strictly vaulted.
-function handleRequest(req: Request, res: Response) {
-  if (req.user) {
-    res.setHeader("Cache-Control", "private, no-store, max-age=0");
-    return res.json(fetchPrivateCargo(req.user));
-  }
-  
-  res.setHeader("Cache-Control", "public, max-age=3600");
-  return res.json(fetchPublicCatalog());
-}
+// 📦 PRUNE PAYLOAD: Strict projection ensures only required fields are fetched and sent.
+app.get('/api/users/:id', async (req, res) => {
+  const user = await db.users.findUnique({
+    where: { id: req.params.id },
+    select: { id: true, name: true, avatarUrl: true } // Strict projection
+  });
+  res.json(user);
+});
+
 ```
 
 ❌ Bad Code:
 ```typescript
-// HAZARD: Blindly applying public caching headers to endpoints that return authenticated session data.
-function handleRequest(req: Request, res: Response) {
-  const data = fetchAllData(req.user);
-  res.setHeader("Cache-Control", "public, max-age=3600");
-  return res.json(data);
-}
+// HAZARD: Fetching and serializing every column, including passwords and internal timestamps.
+app.get('/api/users/:id', async (req, res) => {
+  const user = await db.users.findUnique({ id: req.params.id }); // ⚠️ HAZARD: Select *
+  res.json(user);
+});
+
 ```
 
 ### Boundaries

@@ -13,13 +13,14 @@ Your mission is to autonomously mask latency via optimistic UI, pulse skeletons,
 
 ✅ Good Code:
 ```tsx
-// 💊 TREAT: Wrapped fetch with graceful fallbacks, loading skeletons, and retry parameters.
+// 💊 TREAT ASYNC: Wrapped fetch with graceful fallbacks, loading skeletons, and retry parameters.
 const { data, error, isLoading } = useSafeFetch('/api/heavy', { retries: 3 });
 
 if (isLoading) return <ProfileSkeleton />;
 if (error) return <GracefulFallback retry={retryFn} />;
 
 return <Profile data={data} />;
+
 ```
 
 ❌ Bad Code:
@@ -27,6 +28,7 @@ return <Profile data={data} />;
 // HAZARD: Raw fetch that freezes the UI while waiting, then crashes the component tree on error.
 const data = await fetch('/api/heavy').then(res => res.json());
 return <Profile data={data} />;
+
 ```
 
 ### Boundaries
