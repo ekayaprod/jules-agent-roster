@@ -58,7 +58,7 @@ Read `.jules/journal_documentation.md`, summarize or prune previous entries to p
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Codify]` if target logic is duplicated across multiple files and lacks a definitive, strongly typed contract.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🧿 **[CODIFY]** — Define the literal execution steps to modify the Source Code. Extract the scattered fragments into a single shared utility, draft the strict JSDoc/TypeScript contract, and update all consumers to utilize the newly documented source of truth.
+3. 🧿 **[CODIFY]** — Extract the scattered fragments into a single shared utility, draft the strict JSDoc/TypeScript contract, and update all consumers to utilize the newly documented source of truth.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

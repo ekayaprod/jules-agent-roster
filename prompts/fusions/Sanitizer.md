@@ -59,7 +59,7 @@ Read `.jules/journal_hygiene.md`, summarize or prune previous entries to prevent
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Sanitize]` if target allocates a passive system resource without wrapping it in a guaranteed closure, `finally` block, or context manager.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🧴 **[SANITIZE]** — Define the literal execution steps to modify the Source Code. Inject the required `try/finally` block, `defer` statement, or `using` context manager to scrub the leak and guarantee resource disposal.
+3. 🧴 **[SANITIZE]** — Inject the required `try/finally` block, `defer` statement, or `using` context manager to scrub the leak and guarantee resource disposal.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

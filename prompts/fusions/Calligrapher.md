@@ -58,7 +58,7 @@ Read `.jules/journal_ux.md`, summarize or prune previous entries to prevent file
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Strictify]` if target component uses loose string props that allow deviations from the approved design system.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🪶 **[STRICTIFY]** — Define the literal execution steps to modify the Source Code. Replace the `string` type with a strict literal union (e.g., `'sm' | 'md' | 'lg'`). Add elegant, descriptive JSDoc above the type definition explaining the visual impact of each option. 
+3. 🪶 **[STRICTIFY]** — Replace the `string` type with a strict literal union (e.g., `'sm' | 'md' | 'lg'`). Add elegant, descriptive JSDoc above the type definition explaining the visual impact of each option.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

@@ -70,7 +70,7 @@ Read `.jules/journal_ux.md`, summarize or prune previous entries to prevent file
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Unify]` if the target relies on fragmented routing or unconstrained feature sprawl that violently breaks user context.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🖼️ **[UNIFY]** — Define the literal execution steps to modify the Source Code. Extract the scattered UI pieces into a single, cohesive state-driven container utilizing progressive disclosure.
+3. 🖼️ **[UNIFY]** — Extract the scattered UI pieces into a single, cohesive state-driven container utilizing progressive disclosure.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

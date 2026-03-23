@@ -55,7 +55,7 @@ Read `.jules/journal_architecture.md`, summarize or prune previous entries to pr
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Standardize]` if the target controller exposes endpoints that violate RESTful noun-based resource architecture.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🚦 **[STANDARDIZE]** — Define the literal execution steps to modify the Source Code. Rewrite the endpoint URLs to use plural nouns and correct HTTP verbs, enforce consistent casing, and trace the updates to the consuming frontend clients.
+3. 🚦 **[STANDARDIZE]** — Rewrite the endpoint URLs to use plural nouns and correct HTTP verbs, enforce consistent casing, and trace the updates to the consuming frontend clients.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

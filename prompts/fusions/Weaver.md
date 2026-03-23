@@ -66,7 +66,7 @@ Read `.jules/journal_refactoring.md`, summarize or prune previous entries to pre
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Weave]` if target logic is both duplicated across multiple locations and suffers from deep, unnecessary nesting.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🧵 **[WEAVE]** — Define the literal execution steps to modify the Source Code. Extract the scattered logic into a single utility, flatten the internal structure using guard clauses, and update all consumers.
+3. 🧵 **[WEAVE]** — Extract the scattered logic into a single utility, flatten the internal structure using guard clauses, and update all consumers.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

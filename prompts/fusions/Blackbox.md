@@ -54,7 +54,7 @@ Read `.jules/journal_meta.md`, summarize or prune previous entries to prevent fi
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Preserve]` if target relies on volatile state that is demonstrably vulnerable to accidental navigation or refresh.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 💾 **[PRESERVE]** — Define the literal execution steps to modify the Source Code. Upgrade the state management to securely cache drafts to `localStorage` or `sessionStorage` on every change.
+3. 💾 **[PRESERVE]** — Upgrade the state management to securely cache drafts to `localStorage` or `sessionStorage` on every change.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

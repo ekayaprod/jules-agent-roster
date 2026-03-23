@@ -53,7 +53,7 @@ Read `.jules/journal_strategy.md`, summarize or prune previous entries to preven
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Enforce]` if target uses outdated, generic, or unapproved terminology that conflicts with the roadmap.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🎬 **[ENFORCE]** — Define the literal execution steps to modify the Source Code. Rewrite the UI buttons, headers, and descriptions to perfectly match the official lexicon. 
+3. 🎬 **[ENFORCE]** — Rewrite the UI buttons, headers, and descriptions to perfectly match the official lexicon.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

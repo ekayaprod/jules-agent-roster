@@ -66,7 +66,7 @@ Read `.jules/journal_hygiene.md`, summarize or prune previous entries to prevent
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Trap]` if the target instantiates a continuous, active process that is capable of executing after its parent context is destroyed.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🎒 **[TRAP]** — Define the literal execution steps to modify the Source Code. Inject the required `clearInterval`, `removeEventListener`, or `.disconnect()` into the component's unmount lifecycle to neutralize the ghost.
+3. 🎒 **[TRAP]** — Inject the required `clearInterval`, `removeEventListener`, or `.disconnect()` into the component's unmount lifecycle to neutralize the ghost.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.
