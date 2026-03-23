@@ -64,7 +64,7 @@ Read `.jules/journal_refactoring.md`, summarize or prune previous entries to pre
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Distill]` if target logic is duplicated and completely unverified by the existing test suite.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🍸 **[DISTILL]** — Define the literal execution steps to modify the Source Code. Extract the fragments into a perfectly balanced shared utility, write an exhaustive test suite to prove the edge cases, and update consumers to use the tested version.
+3. 🍸 **[DISTILL]** — Extract the fragments into a perfectly balanced shared utility, write an exhaustive test suite to prove the edge cases, and update consumers to use the tested version.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

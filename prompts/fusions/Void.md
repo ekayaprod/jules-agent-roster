@@ -54,7 +54,7 @@ Read `.jules/journal_hygiene.md`, summarize or prune previous entries to prevent
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Eradicate]` if target logic is duplicated and the original files can be safely deleted without destroying unrelated code.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🕳️ **[ERADICATE]** — Define the literal execution steps to modify the Source Code. Extract the shared logic into a centralized utility, rewire all consumers, and physically delete the original source files.
+3. 🕳️ **[ERADICATE]** — Extract the shared logic into a centralized utility, rewire all consumers, and physically delete the original source files.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

@@ -62,7 +62,7 @@ Read `.jules/journal_architecture.md`, summarize or prune previous entries to pr
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[SecureRoute]` if target is demonstrably broken or non-compliant with zero-trust perimeter routing.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🛃 **[SECUREROUTE]** — Define the literal execution steps to modify the Source Code. Inject the required authentication middleware or HOC guard at the route declaration layer. Ensure fallback redirects route unauthorized users to a safe zone (e.g., `/login`).
+3. 🛃 **[SECUREROUTE]** — Inject the required authentication middleware or HOC guard at the route declaration layer. Ensure fallback redirects route unauthorized users to a safe zone (e.g., `/login`).
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

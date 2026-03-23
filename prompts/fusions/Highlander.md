@@ -56,7 +56,7 @@ Read `.jules/journal_refactoring.md`, summarize or prune previous entries to pre
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Consolidate]` if multiple target functions look structurally different but claim the exact same overarching business outcome.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🥇 **[CONSOLIDATE]** — Define the literal execution steps to modify the Source Code. Draft a unified utility that accommodates the combined requirements of every original variation, delete the scattered pretenders, and wire every consumer to the Absolute Source.
+3. 🥇 **[CONSOLIDATE]** — Draft a unified utility that accommodates the combined requirements of every original variation, delete the scattered pretenders, and wire every consumer to the Absolute Source.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

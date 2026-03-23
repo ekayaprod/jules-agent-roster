@@ -64,7 +64,7 @@ Read `.jules/journal_architecture.md`, summarize or prune previous entries to pr
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Centralize]` if target is demonstrably broken or non-compliant with a centralized policy engine.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. ⛩️ **[CENTRALIZE]** — Define the literal execution steps to modify the Source Code. Extract the inline role evaluations, append the required rules to the centralized policy registry, and rewire the target AST to consume the new, unified permission query.
+3. ⛩️ **[CENTRALIZE]** — Extract the inline role evaluations, append the required rules to the centralized policy registry, and rewire the target AST to consume the new, unified permission query.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.
