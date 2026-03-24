@@ -1,6 +1,10 @@
 # Journal Meta
 
+## Singularity — The Meta-Architect (Summarized)
+
+**Learning & Action:** Architected the Echo protocol to autonomously sync stray emojis deep within markdown bodies, permanently eliminating the final layer of manual emoji toil left by Iconographer and Registrar.
+
 ## Singularity — The Meta-Architect
 
-**Learning:** Identified that while Iconographer correctly syncs emojis in markdown headers and Registrar propagates them to JSON registries, humans were still manually fixing stale legacy emojis left stranded deep within the body of the markdown files (e.g., in bullet points and code block examples).
-**Action:** Architected the Echo protocol to autonomously scan the bodies of markdown files and mechanically execute search-and-replace updates to ensure the canonical header emoji is fully propagated throughout the document content, permanently eliminating the final layer of manual emoji synchronization toil.
+**Learning:** Discovered recurring developer toil related to manually checking and rewriting markdown agent prompts to enforce strict formatting rules (the V8 Standard, e.g., 3-line headers, exact Avoids formatting, dual-jurisdiction constraints). This mechanical structural checking was leaking into human workflows.
+**Action:** Architected the `V8 Restorer` micro-agent to autonomously sweep the `prompts/` and `prompts/fusions/` directories, identify files drifting from the V8 Standard, and mechanically execute LLM-driven rewrites to strictly enforce the repository's 8-part V8 structural skeleton without modifying the underlying agent mechanics.
