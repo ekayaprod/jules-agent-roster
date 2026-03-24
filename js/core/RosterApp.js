@@ -133,12 +133,15 @@ class RosterApp {
    * @see ../../docs/architecture/core/README.md#rosterapp-architecture
    */
   cacheElements() {
-    Object.keys(CONFIG.selectors).forEach((key) => {
-      const selector = CONFIG.selectors[key];
-      this.elements[key] = selector.startsWith("#")
-        ? document.getElementById(selector.substring(1))
-        : document.querySelectorAll(selector);
-    });
+    const selectors = CONFIG.selectors;
+    for (const key in selectors) {
+      if (Object.prototype.hasOwnProperty.call(selectors, key)) {
+        const selector = selectors[key];
+        this.elements[key] = selector.startsWith("#")
+          ? document.getElementById(selector.substring(1))
+          : document.querySelectorAll(selector);
+      }
+    }
 
     // ⚡ Bolt+: Extracted redundant DOM queries outside of loops and cached the references on initialization.
     this.categoryElements = {};
