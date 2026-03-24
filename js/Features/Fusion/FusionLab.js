@@ -1,6 +1,7 @@
 class FusionLab {
   constructor() {
     this.agents = [];
+    this.agentMap = new Map();
     this.compiler = null;
     this.lastFusionResult = null;
     this.picker = null;
@@ -20,6 +21,7 @@ class FusionLab {
    */
   init(agents, customAgents) {
     this.agents = agents;
+    this.agentMap = new Map((agents || []).map((a) => [a.name, a]));
     this.compiler = new FusionCompiler(agents, customAgents);
 
     // Initialize Fusion Index (Collectible Shelf)
@@ -298,8 +300,8 @@ class FusionLab {
     const names = key.split(",");
     if (names.length !== 2) return;
 
-    const agentA = this.agents.find((a) => a.name === names[0].trim());
-    const agentB = this.agents.find((a) => a.name === names[1].trim());
+    const agentA = this.agentMap.get(names[0].trim());
+    const agentB = this.agentMap.get(names[1].trim());
 
     if (!agentA || !agentB) {
       console.warn("FusionLab: Could not find agents for key", key);
