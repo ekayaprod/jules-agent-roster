@@ -52,9 +52,9 @@
 **Learning:** "Please write more tests." is a vague, unactionable human wish. It lacks domain context and prioritization.
 **Action:** Replaced with explicit instructions mapping the specific type of test to the highest risk domain while ignoring deprecated code.
 
-## 2026-02-28 - [Persona Upgrade: Singularity]
-**Learning:** "Please write storybook files... Try your best." is a weak, generic prompt resulting in hallucinations and out-of-scope files.
-**Action:** Replaced with strict negative constraints ("CRITICAL: Do not write stories for internal utils/"), explicit goal definition ("Generate a Storybook file matching the exact prop interface"), and strong persona injection.
+## Prompt Engineer — The Prompt Evolutionist
+**Learning:** The `Singularity.md` prompt contained a hazard section illustrating a functional but vague prompt ("You are a React helper. Please write good components using Redux conventions.") but the primary prompt itself lacked structural reasoning tools like a `<thinking>` block and explicit negative constraints against modifying actual application architecture. This risks the LLM outputting code rather than the intended meta-protocol prompt.
+**Action:** Injected a `<thinking>` block directive explicitly forcing the agent to analyze the discovered toil before drafting the prompt, and formalized strict execution boundaries via `CRITICAL NEGATIVE CONSTRAINT` to mathematically bind the AI from modifying the architecture directly.
 
 ## 2026-03-03 - [Persona Upgrade: Wordsmith]
 **Learning:** "Empathetic guidance" and "speak to the user like a human" are vague, subjective human wishes that invite LLM hallucinations and inconsistent tonal shifts. They lack strict technical writing heuristics.
