@@ -9,30 +9,22 @@ Welcome to the structural blueprints! This document maps out the high-level syst
 High-level view of the application and its interactions with the user, external data sources, and backend intelligence.
 
 ```mermaid
-graph TD;
-    User((User)) -->|Interacts with| Browser[Browser Application];
+%% 🗺️ MAP: Clear boundaries, explicit relationships, and macroscopic context.
+C4Context
+  title System Context diagram for Jules Master Agent Roster
+  Person(user, "User", "Interacts with the Roster application.")
 
-    subgraph Browser Application
-        App[Jules Roster App];
-        Store[Local Storage / Memory];
-    end
+  System_Boundary(browser_app, "Browser Application") {
+    System(roster_app, "Jules Roster App", "The core vanilla JS application handling logic and UI.")
+    SystemDb(local_store, "Local Storage / Memory", "Client-side state and caching.")
+  }
 
-    subgraph Data Source
-        FileSystem[Static File System];
-        AgentsJSON[agents.json];
-        CustomAgentsJSON[custom_agents.json];
-        Prompts[Prompt Files .md];
-    end
+  System_Ext(file_system, "Static File System", "Provides static data files (JSON/MD).")
+  System_Ext(jules_api, "Jules Execution API", "Backend services for intelligent agent execution.")
 
-    subgraph Backend Services
-        JulesAPI[Jules Execution API];
-    end
-
-    App -->|Fetches Data| FileSystem;
-    FileSystem -->|Provides Configuration| AgentsJSON;
-    FileSystem -->|Provides Fusions| CustomAgentsJSON;
-    FileSystem -->|Provides Content| Prompts;
-    App <-->|Dispatches & Polls Sessions| JulesAPI;
+  Rel(user, browser_app, "Interacts with")
+  Rel(roster_app, file_system, "Fetches Data (Configuration & Prompts)")
+  Rel(roster_app, jules_api, "Dispatches & Polls Sessions")
 ```
 
 ## 2. 🧩 Component Architecture
