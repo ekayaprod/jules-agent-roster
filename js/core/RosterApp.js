@@ -95,16 +95,19 @@ class RosterApp {
               ? "Check your configuration file formatting and try again."
               : "Check your internet connection and refresh the page.";
 
-            this.elements.main.innerHTML = `
-              <div class="empty-state visible">
-                <svg class="empty-icon" aria-hidden="true" width="64" height="64" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                </svg>
-                <p class="empty-title">${errorTitle}</p>
-                <p class="empty-desc">${errorDesc}</p>
-                <button onclick="window.location.reload()" class="mt-6" aria-label="Refresh Page to Retry Loading">Refresh Page</button>
-              </div>
-            `;
+            const emptyState = EmptyState.create({
+                title: errorTitle,
+                description: errorDesc,
+                icon: EmptyState.ICONS.ERROR,
+                action: {
+                    text: "Refresh Page",
+                    onClick: "window.location.reload()",
+                    ariaLabel: "Refresh Page to Retry Loading"
+                }
+            });
+
+            this.elements.main.innerHTML = "";
+            this.elements.main.appendChild(emptyState);
         }
     }
 
