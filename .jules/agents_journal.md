@@ -108,3 +108,44 @@
 
 **Learning:** Unbounded fetch calls missing a generic `catch` block (even when wrapped in a `try...finally`) can leak unhandled exceptions like `AbortError` directly to the caller during a network timeout, crashing the parent process or silently breaking UI state without providing a predictable fallback.
 **Action:** Always verify that network requests have an explicit `catch` block preceding `finally`. In `JulesService.getPullRequests`, catching `AbortError` and returning a safe empty array `[]` ensures the application correctly handles latency and missing GitHub tokens without crashing.
+
+2026-03-11
+**Title**: ⏱️ Millisecond - [Search Render Optimized: Static Mapper and Regex Hoisting]
+**Learning**: During high-frequency virtual scrolling render updates, using inline arrow functions in `.map()` and inline regex literals within `.replace()` operations inside massive arrays causes significant CPU thrashing and continuous garbage collection, dragging down search response times.
+**Action**: Extracted the search item mapping arrow function and the animation-delay CSS regex into file-scoped constants, stabilizing references and slashing the performance cost of rendering massive result sets.
+
+## 2025-03-01 - [Grid Identification] **Learning:** System uses a `rem`-based scale (where `1rem` = `16px`) for standard rhythmic spacing (`padding`, `gap`, `margin`). Smallest structural alignments are mapped to `0.25rem` or `0.5rem` values, bypassing pixel counts except in structural boundary tricks (`border` or 1px positioning). **Action:** Always map raw `px` to the equivalent `rem` token fractions (e.g. `8px` = `0.5rem`, `4px` = `0.25rem`) when fixing margin/padding/gap issues.
+
+## 2026-03-01 - Hybrid Tailwind & Standard CSS
+**Learning:** `index.html` relies on a hybrid of utility classes and direct global CSS selectors (e.g., standard `button`, `input` tags styled directly in the `<style>` block). Standard Tailwind interaction utility classes (like `hover:bg-blue-600`) are not explicitly mapped; instead, pseudo-classes (`:hover`, `:focus-visible`, `:active`, `:disabled`) must be appended directly into the global style block or component-specific blocks.
+**Action:** When mutating interactive states in `index.html`, avoid injecting standard Tailwind pseudo-classes into class attributes, and instead write targeted standard CSS pseudo-class selectors directly into the embedded `<style>` block. Ensure mouse-accessibility by prioritizing `:focus-visible` over `:focus`.
+
+## Gallerist Journal
+
+## 2024-05-24 - 📺 LiveFeed - [Jules Session Launch Broadcasted]
+**Learning:** The existing `ToastNotification.show()` method signature is `show(message, type = 'success', duration)`. Previous implementations erroneously passed `true` as the type argument for errors (e.g. `this.toast.show(msg, true)`), which resolved to truthy and defaulted to displaying a success icon because of `icons[true] || icons.success`.
+**Action:** When invoking the toast system for errors, strictly pass the explicit string `"error"` as the second argument. Updated the `launchJulesSession` method in `js/RosterApp.js` to broadcast its loading state directly to the triggering UI button and fire proper success/error notifications using the corrected string argument.
+
+## 2024-05-24 - [Initialization] **Learning:** Initialized Journal. **Action:** No action needed.
+
+## 2026-02-28 - Tooltip Challenges
+**Learning:** Pure CSS tooltips using `::after` on relative containers are preferable inside Modals to avoid JavaScript positioning libraries that often conflict with Modal z-indexes.
+**Action:** Use CSS pseudo-elements for tooltips to keep the implementation robust and declarative.
+
+## 2026-02-28 - Domain Jargon
+**Learning:** Users frequently struggle with terms like "Overseer Protocol", "Core Maintenance", and "The Fusion Lab" without immediate context.
+**Action:** Inject contextual helper tooltips next to these headings.
+
+## 2024-03-24 - [Stylist Guidelines] **Learning:** Focus on removing chaotic inline styles and messy BEM classes. **Action:** Apply this to all modernized components, starting with `index.html`.
+
+## 2024-03-01 - [CSS Global Dictionary Discovery] **Learning:** Found a custom CSS root map in `index.html`. It looks like it does not yet contain a typography scale. **Action:** Next, add a typography scale to `:root` to map chaotic rem/em/px values.
+## 2026-03-04 - 🖋️ Typesmith - [Typographic Hierarchy Enforced: index.html & fusion.css]
+**Learning:** Hardcoded pixel and  sizes across HTML, CSS, and JS components create severe visual debt and prevent systematic scaling. When auditing a codebase, it's critical to identify the central typography token map (e.g., `--text-*` and `--leading-*` variables) and map raw integers directly to those semantic variables.
+**Action:** Replaced arbitrary values like `font-size: 3.5rem; line-height: 1;` with `font-size: var(--text-6xl); line-height: var(--leading-none);`. Additionally, injected new missing top-level scale variables (`--text-5xl` to `--text-7xl`, and a full `--leading-*` scale) into the root `:root` dictionary to support the changes. Verified visually via Playwright headless screenshot.
+## 2026-03-03 - 🖋️ Typesmith - [Typographic Hierarchy Enforced: index.html & fusion.css]
+**Learning:** Hardcoded pixel and `rem` sizes across HTML, CSS, and JS components create severe visual debt and prevent systematic scaling. When auditing a codebase, it's critical to identify the central typography token map (e.g., `--text-*` and `--leading-*` variables) and map raw integers directly to those semantic variables.
+**Action:** Replaced arbitrary values like `font-size: 3.5rem; line-height: 1;` with `font-size: var(--text-6xl); line-height: var(--leading-none);`. Additionally, injected new missing top-level scale variables (`--text-5xl` to `--text-7xl`, and a full `--leading-*` scale) into the root `:root` dictionary to support the changes. Verified visually via Playwright headless screenshot.
+
+## YYYY-MM-DD - [Hero Banner Removal]
+**Learning:** NA
+**Action:** NA
