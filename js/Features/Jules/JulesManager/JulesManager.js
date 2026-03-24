@@ -602,7 +602,7 @@ class JulesManager {
         this.renderedSessionIds.add(session.id);
         
         const agentName = session.title || "Agent Task";
-        let safeAgentName = agentName.replace(/"/g, '');
+        let safeAgentName = FormatUtils.escapeHTML(agentName);
         let agentEmoji = "🤖";
         
         let matchedAgent = this.app.agents.find(a => safeAgentName.includes(a.name));
@@ -676,7 +676,7 @@ class JulesManager {
         const optimisticBlock = document.createElement("div");
         optimisticBlock.className = `term-session-line state-active skeleton-pulse`;
         let agentEmoji = agent.emoji || "🤖";
-        let safeAgentName = agent.name ? agent.name.replace(/"/g, '') : "Agent Task";
+        let safeAgentName = agent.name ? FormatUtils.escapeHTML(agent.name) : "Agent Task";
 
         optimisticBlock.style.cursor = "pointer";
 
