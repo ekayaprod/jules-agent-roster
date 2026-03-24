@@ -521,6 +521,27 @@
         </div>
     </div>
 
+
+    <!-- PR Modal -->
+    <div id="julesPRModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="prModalTitle">
+        <div class="modal-content" style="max-width: 48rem;">
+            <h3 id="prModalTitle" style="font-size: var(--text-base); display:flex; align-items:center; gap:0.5rem; justify-content: space-between;">
+                <span style="display:flex; align-items:center; gap:0.5rem;">
+                    <span id="prModalEmoji">🐙</span>
+                    <span id="prModalTitleText">Pull Request Details</span>
+                </span>
+                <a id="prModalExternalLink" href="#" target="_blank" rel="noopener noreferrer" style="font-size: var(--text-xs); color: var(--accent); text-decoration: none;">View on GitHub →</a>
+            </h3>
+            <div id="prModalContent" style="background: var(--term-bg); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--term-border); font-family: monospace; font-size: var(--text-xs); color: var(--text-primary); max-height: 25rem; overflow-y: auto; white-space: pre-wrap; margin-bottom: 0.5rem;"></div>
+            <span id="prModalError" role="alert" class="text-xs hidden" style="color: #ef4444; margin-top: 0.25rem;"></span>
+            <div class="flex" style="gap: 1rem; margin-top: 0.5rem;">
+                <button id="cancelPRBtn" class="secondary" style="flex:1;" aria-label="Close PR Details">Close</button>
+                <button id="closePRBtn" class="secondary" style="flex:1; border-color: var(--term-error); color: var(--term-error);" aria-label="Close PR">Close PR</button>
+                <button id="mergePRBtn" style="flex:1; background-color: var(--term-success); color: #000; border: none;" aria-label="Merge PR">Merge PR</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Jules Interaction Modal -->
     <div id="julesInteractionModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="interactionModalTitle">
         <div class="modal-content" style="max-width: 32rem;">
