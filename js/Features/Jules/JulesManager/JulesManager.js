@@ -876,7 +876,9 @@ class JulesManager {
 
     _clearPollingAndCache() {
         if (this.julesPollingIntervals) {
-            Object.values(this.julesPollingIntervals).forEach(clearInterval);
+            for (const key in this.julesPollingIntervals) {
+                clearInterval(this.julesPollingIntervals[key]);
+            }
             this.julesPollingIntervals = {};
         }
         if (this.renderedSessionIds) this.renderedSessionIds.clear();
