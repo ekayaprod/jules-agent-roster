@@ -605,7 +605,23 @@ class JulesManager {
         let safeAgentName = agentName.replace(/"/g, '');
         let agentEmoji = "🤖";
         
-        let matchedAgent = this.app.agents.find(a => safeAgentName.includes(a.name));
+        // ⚡ ACCELERATE: Cache the agents list into a Map to eliminate redundant O(N) traversals inside the session loop.
+        if (!this._agentMapCache) {
+            this._agentMapCache = new Map();
+            if (this.app.agents) {
+                for (let i = 0; i < this.app.agents.length; i++) {
+                    const a = this.app.agents[i];
+                    this._agentMapCache.set(a.name, a);
+                }
+            }
+        }
+
+        // Fast O(1) direct lookup, with a fallback for loose matches
+        let matchedAgent = this._agentMapCache.get(safeAgentName);
+        if (!matchedAgent && this.app.agents) {
+            matchedAgent = this.app.agents.find(a => safeAgentName.includes(a.name));
+        }
+
         if (!matchedAgent && this.app.customAgents) {
             // ⚡ ACCELERATE: Cache the flattened custom agents to eliminate redundant O(N) Object.values traversals inside the session loop.
             if (!this._flatCustomsCache) {
@@ -865,6 +881,7 @@ class JulesManager {
         }
         if (this.renderedSessionIds) this.renderedSessionIds.clear();
         this._flatCustomsCache = null;
+        this._agentMapCache = null;
     }
 }
 
