@@ -12,3 +12,5 @@
 **Title**: API Resilience: getPullRequests Timeout Injection
 **Learning**: Raw `fetch` calls in `JulesAPI.js#getPullRequests` lacked explicit timeouts, risking infinite application hangs if the GitHub API stalled or throttled connections.
 **Action**: Hardened the synapse by injecting a strict 15-second `AbortController` timeout and ensuring exceptions are cleanly caught and degraded to safe fallback states (`[]`).
+**Learning:** Added `julesPRModal` UI element, wired up `getPullRequest`, `mergePullRequest` and `closePullRequest` using proper network resilience.
+**Action:** Always clean up temporary python and node scripts before requesting a code review.

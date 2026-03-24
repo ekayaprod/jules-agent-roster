@@ -203,6 +203,164 @@ ${userTask}`;
      * @throws {Error} If the request fails, times out, or returns a non-404 error status.
      * @see ../../docs/architecture/Features/JulesManager.md#6-pull-request-rendering for the UI synchronization flow.
      */
+
+    /**
+     * Retrieves details for a specific pull request via the GitHub API.
+     * @param {string} sourceName - The target repository source name.
+     * @param {number} prNumber - The PR number.
+     * @returns {Promise<Object>} The pull request details.
+     */
+    async getPullRequest(sourceName, prNumber) {
+        if (!sourceName.startsWith('sources/github/')) {
+            throw new Error('Unsupported source format');
+        }
+
+        const repoPath = sourceName.replace('sources/github/', '');
+        const url = `https://api.github.com/repos/${repoPath}/pulls/${prNumber}`;
+
+        const options = {};
+        if (this.githubToken) {
+            options.headers = {
+                'Authorization': `token ${this.githubToken}`
+            };
+        }
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+        try {
+            const response = await fetch(url, {
+                ...options,
+                signal: controller.signal
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                let errorMsg = `GitHub API returned ${response.status}`;
+                try {
+                    const errJson = JSON.parse(errorText);
+                    if (errJson.message) errorMsg = errJson.message;
+                } catch(e) {}
+                throw new Error(errorMsg);
+            }
+            return await response.json();
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                throw new Error('Request timed out');
+            }
+            throw error;
+        } finally {
+            clearTimeout(timeoutId);
+        }
+    }
+
+    /**
+     * Merges a pull request via the GitHub API.
+     * @param {string} sourceName - The target repository source name.
+     * @param {number} prNumber - The PR number.
+     * @returns {Promise<Object>} The merge result.
+     */
+    async mergePullRequest(sourceName, prNumber) {
+        if (!sourceName.startsWith('sources/github/')) {
+            throw new Error('Unsupported source format');
+        }
+
+        const repoPath = sourceName.replace('sources/github/', '');
+        const url = `https://api.github.com/repos/${repoPath}/pulls/${prNumber}/merge`;
+
+        const options = {
+            method: 'PUT'
+        };
+        if (this.githubToken) {
+            options.headers = {
+                'Authorization': `token ${this.githubToken}`,
+                'Content-Type': 'application/json'
+            };
+        }
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+        try {
+            const response = await fetch(url, {
+                ...options,
+                signal: controller.signal
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                let errorMsg = `GitHub API returned ${response.status}`;
+                try {
+                    const errJson = JSON.parse(errorText);
+                    if (errJson.message) errorMsg = errJson.message;
+                } catch(e) {}
+                throw new Error(errorMsg);
+            }
+            return await response.json();
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                throw new Error('Request timed out');
+            }
+            throw error;
+        } finally {
+            clearTimeout(timeoutId);
+        }
+    }
+
+    /**
+     * Closes a pull request via the GitHub API.
+     * @param {string} sourceName - The target repository source name.
+     * @param {number} prNumber - The PR number.
+     * @returns {Promise<Object>} The updated PR details.
+     */
+    async closePullRequest(sourceName, prNumber) {
+        if (!sourceName.startsWith('sources/github/')) {
+            throw new Error('Unsupported source format');
+        }
+
+        const repoPath = sourceName.replace('sources/github/', '');
+        const url = `https://api.github.com/repos/${repoPath}/pulls/${prNumber}`;
+
+        const options = {
+            method: 'PATCH',
+            body: JSON.stringify({ state: 'closed' })
+        };
+        if (this.githubToken) {
+            options.headers = {
+                'Authorization': `token ${this.githubToken}`,
+                'Content-Type': 'application/json'
+            };
+        }
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+        try {
+            const response = await fetch(url, {
+                ...options,
+                signal: controller.signal
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                let errorMsg = `GitHub API returned ${response.status}`;
+                try {
+                    const errJson = JSON.parse(errorText);
+                    if (errJson.message) errorMsg = errJson.message;
+                } catch(e) {}
+                throw new Error(errorMsg);
+            }
+            return await response.json();
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                throw new Error('Request timed out');
+            }
+            throw error;
+        } finally {
+            clearTimeout(timeoutId);
+        }
+    }
+
     async getPullRequests(sourceName) {
         if (!sourceName.startsWith('sources/github/')) {
             throw new Error('Unsupported source format for pull requests');

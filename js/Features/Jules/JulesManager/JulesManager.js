@@ -119,12 +119,25 @@ class JulesManager {
         });
 
         this._initInteractionModal();
+        this._initPRModal();
 
         if (apiKey && window.julesService) {
             window.julesService.configure(apiKey, githubToken);
             await this.loadSources();
         } else {
             toggleModal(true);
+        }
+    }
+
+
+    _initPRModal() {
+        const prModal = this.getEl("julesPRModal");
+        const closePRModalBtn = this.getEl("cancelPRBtn");
+
+        if (prModal && closePRModalBtn) {
+            closePRModalBtn.addEventListener("click", () => {
+                prModal.classList.remove("visible");
+            });
         }
     }
 
@@ -429,10 +442,90 @@ class JulesManager {
             item.className = "term-pr-item";
             item.innerHTML = `
                 <span style="color: var(--term-success); font-weight: 600; flex-shrink: 0;">[PR OPEN]</span> 
-                <a href="${pr.html_url}" target="_blank" rel="noopener noreferrer" class="term-pr-title term-link">#${pr.number} ${FormatUtils.escapeHTML(pr.title)}</a>
+                <a href="#" class="term-pr-title term-link pr-modal-trigger" data-pr-number="${pr.number}">#${pr.number} ${FormatUtils.escapeHTML(pr.title)}</a>
             `;
+            const link = item.querySelector('.pr-modal-trigger');
+            if (link) {
+                link.onclick = (e) => {
+                    e.preventDefault();
+                    this._showPRModal(pr, this.currentRepo);
+                };
+            }
             terminal.insertBefore(item, terminal.firstChild);
         });
+    }
+
+
+    _showPRModal(pr, sourceName) {
+        const modal = this.getEl("julesPRModal");
+        if (!modal) return;
+
+        const titleEl = this.getEl("prModalTitleText");
+        const linkEl = this.getEl("prModalExternalLink");
+        const contentEl = this.getEl("prModalContent");
+        const errorEl = this.getEl("prModalError");
+        const mergeBtn = this.getEl("mergePRBtn");
+        const closePRBtn = this.getEl("closePRBtn");
+
+        if (titleEl) titleEl.textContent = `#${pr.number} ${pr.title}`;
+        if (linkEl) linkEl.href = pr.html_url;
+
+        if (contentEl) {
+            contentEl.innerHTML = '';
+            const pre = document.createElement("pre");
+            pre.className = "markdown-raw details-content";
+            pre.style.whiteSpace = "pre-wrap";
+            pre.style.wordBreak = "break-word";
+            pre.textContent = pr.body || "No description provided.";
+            contentEl.appendChild(pre);
+        }
+
+        if (errorEl) {
+            errorEl.textContent = '';
+            errorEl.classList.add('hidden');
+        }
+
+        if (mergeBtn) {
+            DOMUtils.setButtonState(mergeBtn, "ready", "Merge PR");
+            mergeBtn.onclick = async () => {
+                DOMUtils.setButtonState(mergeBtn, "loading", "Merging...");
+                if (errorEl) errorEl.classList.add('hidden');
+                try {
+                    await window.julesService.mergePullRequest(sourceName, pr.number);
+                    this.app.toast.show(`Successfully merged PR #${pr.number}`, "success");
+                    modal.classList.remove("visible");
+                    this.loadPullRequestsForRepo(sourceName);
+                } catch (err) {
+                    DOMUtils.setButtonState(mergeBtn, "ready", "Merge PR");
+                    if (errorEl) {
+                        errorEl.textContent = "Failed to merge PR: " + err.message;
+                        errorEl.classList.remove('hidden');
+                    }
+                }
+            };
+        }
+
+        if (closePRBtn) {
+            DOMUtils.setButtonState(closePRBtn, "ready", "Close PR");
+            closePRBtn.onclick = async () => {
+                DOMUtils.setButtonState(closePRBtn, "loading", "Closing...");
+                if (errorEl) errorEl.classList.add('hidden');
+                try {
+                    await window.julesService.closePullRequest(sourceName, pr.number);
+                    this.app.toast.show(`Successfully closed PR #${pr.number}`, "success");
+                    modal.classList.remove("visible");
+                    this.loadPullRequestsForRepo(sourceName);
+                } catch (err) {
+                    DOMUtils.setButtonState(closePRBtn, "ready", "Close PR");
+                    if (errorEl) {
+                        errorEl.textContent = "Failed to close PR: " + err.message;
+                        errorEl.classList.remove('hidden');
+                    }
+                }
+            };
+        }
+
+        modal.classList.add("visible");
     }
 
     async _fetchAndRenderSessions(sourceName, terminal) {
