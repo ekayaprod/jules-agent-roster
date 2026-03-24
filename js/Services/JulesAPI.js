@@ -72,7 +72,9 @@ class JulesService {
                 try {
                     const errJson = JSON.parse(errorText);
                     if (errJson.error?.message) errorMsg = errJson.error.message;
-                } catch(e) {}
+                } catch(e) {
+                    console.warn("Failed to parse error JSON:", e);
+                }
                 throw new Error(errorMsg);
             }
 
@@ -394,7 +396,9 @@ ${userTask}`;
                 try {
                     const errJson = JSON.parse(errorText);
                     if (errJson.message) errorMsg = errJson.message;
-                } catch(e) {}
+                } catch(e) {
+                    console.warn("Failed to parse error JSON:", e);
+                }
                 throw new Error(errorMsg);
             }
             return await response.json();
