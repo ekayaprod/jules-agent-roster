@@ -182,7 +182,7 @@ class JulesManager {
             // 🪄 CONJURE: Optimistic UI with silent rollback for interaction modal
             const sessionId = this.activeModalSessionId;
             const statusSpan = document.getElementById(`status-${sessionId}`);
-            const previousStatusHtml = statusSpan ? statusSpan.innerHTML : "";
+            const previousStatusText = statusSpan ? statusSpan.textContent : "";
             const previousStatusClass = statusSpan ? statusSpan.className : "";
             const previousStatusOnclick = statusSpan ? statusSpan.onclick : null;
 
@@ -203,7 +203,7 @@ class JulesManager {
                 // Silent rollback on error
                 if (statusSpan) {
                     statusSpan.className = previousStatusClass || "term-status status-waiting";
-                    statusSpan.innerHTML = previousStatusHtml || `⚠️ Response Needed (Click to view)`;
+                    statusSpan.textContent = previousStatusText || `⚠️ Response Needed (Click to view)`;
                     statusSpan.onclick = previousStatusOnclick;
                 }
             }
