@@ -105,8 +105,8 @@ class FusionLab {
             card.classList.add("filled");
             card.setAttribute("aria-label", `Selected: ${agent.name}. Click to change.`);
             content.innerHTML = `
-                <span class="slot-icon-placeholder">${agent.emoji}</span>
-                <span class="slot-label">${agent.name}</span>
+                <span class="slot-icon-placeholder">${FormatUtils.escapeHTML(agent.emoji)}</span>
+                <span class="slot-label">${FormatUtils.escapeHTML(agent.name)}</span>
             `;
         } else {
             card.classList.add("empty");
@@ -165,8 +165,8 @@ class FusionLab {
         return `
             <div class="preview-badge">Already Discovered</div>
             <div class="preview-content">
-                <span class="preview-icon">${iconHtml}</span>
-                <span class="preview-name">${nameHtml}</span>
+                <span class="preview-icon">${FormatUtils.escapeHTML(iconHtml)}</span>
+                <span class="preview-name">${FormatUtils.escapeHTML(nameHtml)}</span>
             </div>
         `;
     }
