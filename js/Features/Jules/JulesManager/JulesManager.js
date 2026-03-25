@@ -56,6 +56,7 @@ class JulesManager {
      * @see ../../../docs/architecture/Features/JulesManager.md#1-initialization-and-authentication
      */
     async init() {
+        this.initialized = true;
         const apiKey = StorageUtils.getItem("jules_api_key");
         const githubToken = StorageUtils.getItem("github_api_key");
         const settingsModal = this.getEl("settingsModal");

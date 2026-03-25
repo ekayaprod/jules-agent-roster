@@ -880,11 +880,6 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
                 if (key === 'github_api_key') return 'test-github-token';
                 return null;
             });
-            const toggle = document.createElement('input');
-            toggle.id = 'julesActivateToggle';
-            toggle.type = 'checkbox';
-            toggle.checked = true;
-            document.body.appendChild(toggle);
 
             const loadSourcesSpy = jest.spyOn(manager, 'loadSources').mockResolvedValue();
 
@@ -902,12 +897,6 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             document.body.appendChild(toggle);
 
             StorageUtils.getItem.mockReturnValue(null);
-
-            const toggle = document.createElement('input');
-            toggle.id = 'julesActivateToggle';
-            toggle.type = 'checkbox';
-            toggle.checked = true; // explicitly activate to trigger toggleModal(true)
-            document.body.appendChild(toggle);
 
             await manager.init();
 

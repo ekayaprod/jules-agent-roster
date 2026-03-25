@@ -163,17 +163,17 @@
       .jules-runner-panel { 
         position: fixed;
         left: 0;
-        top: 20%;
+        top: 0;
+        height: 100vh;
         width: 32rem;
         max-width: 90vw;
         background: var(--term-bg); 
-        border: 1px solid var(--term-border); 
-        border-radius: 0 0.5rem 0.5rem 0;
+        border-right: 1px solid var(--term-border);
         display: flex; 
         flex-direction: column; 
-        overflow: hidden;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        z-index: 100;
+        overflow: visible;
+        box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+        z-index: 9999;
         transform: translateX(-100%);
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -183,7 +183,7 @@
       .jules-pull-tab {
         position: absolute;
         right: -2.5rem;
-        top: 0;
+        top: 20vh;
         width: 2.5rem;
         height: 3rem;
         background: var(--term-bg);
@@ -317,8 +317,7 @@
       .ide-viewport {
         background: var(--term-panel-bg);
         padding: 0.5rem 1rem;
-        min-height: 5rem;
-        max-height: 14rem;
+        flex-grow: 1;
         overflow-y: auto;
         display: flex;
         flex-direction: column;

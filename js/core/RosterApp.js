@@ -60,6 +60,9 @@ class RosterApp {
             this.agentRepo.fetchAgents().catch(err => {
                 console.warn("AgentRepository API failed to initialize, providing safe fallback.", err);
                 return { agents: [], customAgents: {} };
+            }),
+            this.julesManager.init().catch(err => {
+                console.warn("JulesManager API failed to initialize.", err);
             })
         ];
 
@@ -594,16 +597,12 @@ class RosterApp {
             if (e.target.checked) {
                 if (runnerInputs) runnerInputs.classList.add("active");
                 if (julesTerminal) julesTerminal.style.display = "";
-                // Initialize APIs only when activated
-                if (this.julesManager && !this.julesManager.initialized) {
-                    this.julesManager.initialized = true;
+                // Load sources if not loaded already but initialized
+                if (this.julesManager && this.julesManager.initialized) {
                     try {
-                        await this.julesManager.init();
+                        await this.julesManager.loadSources();
                     } catch (err) {
-                        console.warn("JulesManager API failed to initialize after activation.", err);
-                        e.target.checked = false;
-                        if (runnerInputs) runnerInputs.classList.remove("active");
-                        if (julesTerminal) julesTerminal.style.display = "none";
+                        console.warn("JulesManager API failed to load sources after activation.", err);
                     }
                 }
             } else {
