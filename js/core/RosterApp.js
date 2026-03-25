@@ -57,12 +57,14 @@ class RosterApp {
     try {
         // Run concurrent initialization tasks
         const initTasks = [
-            this.agentRepo.fetchAgents(),
-            this.julesManager.init()
+            this.agentRepo.fetchAgents().catch(err => {
+                console.warn("AgentRepository API failed to initialize, providing safe fallback.", err);
+                return { agents: [], customAgents: {} };
+            })
         ];
 
         const [agentData] = await Promise.all(initTasks);
-        const { agents, customAgents } = agentData;
+        const { agents, customAgents } = agentData || { agents: [], customAgents: {} };
         this.agents = agents;
         this.customAgents = customAgents;
 
@@ -101,7 +103,7 @@ class RosterApp {
                 icon: EmptyState.ICONS.ERROR,
                 action: {
                     text: "Refresh Page",
-                    onClick: "window.location.reload()",
+                    onClick: "typeof window !== 'undefined' && window.location.reload()",
                     ariaLabel: "Refresh Page to Retry Loading"
                 }
             });
@@ -573,6 +575,43 @@ class RosterApp {
             }
         }
     });
+
+    // Jules Terminal Pull Tab & Toggle Bindings
+    const pullTab = document.getElementById("julesPullTab");
+    const runnerPanel = document.getElementById("julesRunnerPanel");
+    if (pullTab && runnerPanel) {
+        pullTab.addEventListener("click", () => {
+            runnerPanel.classList.toggle("open");
+        });
+    }
+
+    const activateToggle = document.getElementById("julesActivateToggle");
+    const runnerInputs = document.getElementById("runnerInputsContainer");
+    const julesTerminal = document.getElementById("julesTerminal");
+
+    if (activateToggle) {
+        activateToggle.addEventListener("change", async (e) => {
+            if (e.target.checked) {
+                if (runnerInputs) runnerInputs.classList.add("active");
+                if (julesTerminal) julesTerminal.style.display = "";
+                // Initialize APIs only when activated
+                if (this.julesManager && !this.julesManager.initialized) {
+                    this.julesManager.initialized = true;
+                    try {
+                        await this.julesManager.init();
+                    } catch (err) {
+                        console.warn("JulesManager API failed to initialize after activation.", err);
+                        e.target.checked = false;
+                        if (runnerInputs) runnerInputs.classList.remove("active");
+                        if (julesTerminal) julesTerminal.style.display = "none";
+                    }
+                }
+            } else {
+                if (runnerInputs) runnerInputs.classList.remove("active");
+                if (julesTerminal) julesTerminal.style.display = "none";
+            }
+        });
+    }
 
     // Master Export bindings
     this.elements.masterCopyBtn?.addEventListener("click", (e) => this.copyAll(e.currentTarget));

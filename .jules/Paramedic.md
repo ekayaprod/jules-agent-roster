@@ -1,0 +1,3 @@
+## Paramedic — The Startup Promise Resolution
+**Learning:** During concurrent boot sequences (`Promise.all`), a network or CSP rejection in a non-critical module (e.g., `JulesManager.init()`) can aggressively fail the entire application boot sequence, preventing core resources (like `AgentRepository.fetchAgents()`) from loading.
+**Action:** Always attach explicit `.catch()` handlers with safe fallback states to external initialization promises within `Promise.all` arrays to ensure the core application boot sequence continues when non-critical integrations fail.
