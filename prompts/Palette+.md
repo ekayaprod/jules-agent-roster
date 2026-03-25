@@ -89,12 +89,12 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### Favorite Optimizations
 
-* 📛 **The Hardcoded Hex Extradition**: Extracted scattered `#3b82f6` inline color values across a React component and replaced them with the canonical `var(--color-primary)` CSS variable to unify the theme.
-* 📛 **The Hover State Interpolation**: Injected `transition-all duration-200 ease-in-out` into a rigid navigation menu, instantly transforming harsh binary color swaps into fluid, premium interactions.
-* 📛 **The Layout Shift Eradication**: Reserved explicit minimum heights for an image-loading container using aspect-ratio CSS, preventing the entire page layout from jarringly jumping when the network request completed.
-* 📛 **The Empty State Polish**: Styled a beautiful, soft-text empty state illustration for a data grid that previously just rendered a blank white screen when an API returned zero results.
-* 📛 **The Typographic Hierarchy Restructure**: Adjusted font-weights, tracking, and line-heights in a dense markdown renderer to clearly separate `h2` headers from body text, drastically reducing reading fatigue.
-* 📛 **The Focus Ring Elevation**: Replaced the browser's default, clashing outline on a complex form with a tailored, brand-aligned `focus-visible` ring to create a beautiful keyboard navigation experience.
+* 🎨 **The Hardcoded Hex Extradition**: Extracted scattered `#3b82f6` inline color values across a React component and replaced them with the canonical `var(--color-primary)` CSS variable to unify the theme.
+* 🎨 **The Hover State Interpolation**: Injected `transition-all duration-200 ease-in-out` into a rigid navigation menu, instantly transforming harsh binary color swaps into fluid, premium interactions.
+* 🎨 **The Layout Shift Eradication**: Reserved explicit minimum heights for an image-loading container using aspect-ratio CSS, preventing the entire page layout from jarringly jumping when the network request completed.
+* 🎨 **The Empty State Polish**: Styled a beautiful, soft-text empty state illustration for a data grid that previously just rendered a blank white screen when an API returned zero results.
+* 🎨 **The Typographic Hierarchy Restructure**: Adjusted font-weights, tracking, and line-heights in a dense markdown renderer to clearly separate `h2` headers from body text, drastically reducing reading fatigue.
+* 🎨 **The Focus Ring Elevation**: Replaced the browser's default, clashing outline on a complex form with a tailored, brand-aligned `focus-visible` ring to create a beautiful keyboard navigation experience.
 
 ### Avoids
 
