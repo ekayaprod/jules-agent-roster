@@ -327,21 +327,30 @@ describe('searchWorker Worker Script Boundaries', () => {
             postMessage: postMessageMock
         };
 
-        // We use function wrapper to simulate the worker scope and inject self
-        const workerScriptSrc = fs.readFileSync(path.resolve(__dirname, 'searchWorker.js'), 'utf8');
-
         // Mock importScripts
         global.importScripts = jest.fn();
 
         // Save global Fuse
         originalFuse = global.Fuse;
 
-        const executeWorker = new Function('self', 'importScripts', workerScriptSrc);
-        executeWorker(workerSelf, global.importScripts);
+        // Set global.self directly to workerSelf
+        global.self = workerSelf;
+
+        // Ensure we execute the worker script content natively for coverage.
+        // Node requires the file, but we must use jest.isolateModules to ensure it's evaluated freshly
+        jest.isolateModules(() => {
+            require('./searchWorker.js');
+        });
     });
 
     afterEach(() => {
         global.Fuse = originalFuse;
+        delete global.self;
+
+        // Force the worker to clear its fuseInstance for the next test
+        if (workerSelf && workerSelf.onmessage) {
+            try { workerSelf.onmessage({ data: { type: 'init', data: null, options: null } }); } catch(e){}
+        }
     });
 
     it('should initialize Fuse instance and post init_complete', () => {
