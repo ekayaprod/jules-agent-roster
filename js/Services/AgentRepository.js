@@ -32,18 +32,18 @@ class AgentRepository {
             if (typeof RarityEngine !== 'undefined') {
                 // ⚡ Bolt+: Algorithmic Flattening - Replace O(n) array traversal with O(1) Map lookup
                 const agentMap = new Map();
-                this.agents.forEach(a => agentMap.set(a.name, a));
-                for (const key in this.customAgents) {
-                    if (Object.prototype.hasOwnProperty.call(this.customAgents, key)) {
-                        const agent = this.customAgents[key];
-                        const [name1, name2] = key.split(",");
-                        const a1 = agentMap.get(name1);
-                        const a2 = agentMap.get(name2);
-                        if (a1 && a2) {
-                            agent.tier = RarityEngine.calculateRarity(a1, a2);
-                        } else {
-                            agent.tier = "Common";
-                        }
+                for (const a of this.agents) {
+                    agentMap.set(a.name, a);
+                }
+                for (const key of Object.keys(this.customAgents)) {
+                    const agent = this.customAgents[key];
+                    const [name1, name2] = key.split(",");
+                    const a1 = agentMap.get(name1);
+                    const a2 = agentMap.get(name2);
+                    if (a1 && a2) {
+                        agent.tier = RarityEngine.calculateRarity(a1, a2);
+                    } else {
+                        agent.tier = "Common";
                     }
                 }
             }
