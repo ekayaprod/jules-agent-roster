@@ -30,12 +30,21 @@ The core of this system is the **Overseer** agent. This agent runs monthly to pe
 
 4. **Execution:** These agents read the audit file, pick a task, fix it, and **check it off the list**.
 
-## 🚀 Getting Started
+## 🚀 Quick Start
+
+Welcome aboard! This roster is a self-contained HTML file, but you can also boot up the local development environment:
+
+```bash
+npm install
+npm test
+```
+
+*Note: `npm test` runs the performance benchmarks. If you're working on the UI, just open `index.html` in your browser! To run the unit tests via JSDOM, execute `npm run test:unit`.*
+
+### Usage Instructions
 
 1. **Deploy:** This roster is a self-contained HTML file. You can deploy it to GitHub Pages or open it locally.
-
 2. **Copy:** Click "Copy Prompt" for the agent you need.
-
 3. **Paste:** Paste the prompt into your Jules chat window.
 
 ## 📦 The Agents
