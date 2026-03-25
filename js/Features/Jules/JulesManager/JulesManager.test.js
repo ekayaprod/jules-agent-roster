@@ -58,7 +58,7 @@ describe('JulesManager', () => {
         global.window.julesService = {
             configure: jest.fn(),
             getSources: jest.fn(),
-            getSessions: jest.fn(),
+            getSessions: jest.fn().mockResolvedValue({ sessions: [] }),
             createSession: jest.fn(),
             getActivities: jest.fn()
         };
@@ -874,6 +874,12 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
                 if (key === 'github_api_key') return 'test-github-token';
                 return null;
             });
+            const toggle = document.createElement('input');
+            toggle.id = 'julesActivateToggle';
+            toggle.type = 'checkbox';
+            toggle.checked = true;
+            document.body.appendChild(toggle);
+
             const loadSourcesSpy = jest.spyOn(manager, 'loadSources').mockResolvedValue();
 
             await manager.init();
@@ -884,6 +890,13 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
         it('should open modal if no API key exists', async () => {
             StorageUtils.getItem.mockReturnValue(null);
+
+            const toggle = document.createElement('input');
+            toggle.id = 'julesActivateToggle';
+            toggle.type = 'checkbox';
+            toggle.checked = true; // explicitly activate to trigger toggleModal(true)
+            document.body.appendChild(toggle);
+
             await manager.init();
 
             expect(document.getElementById('settingsModal').classList.contains('visible')).toBe(true);
