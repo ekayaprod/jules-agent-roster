@@ -123,9 +123,16 @@ class JulesManager {
 
         if (apiKey && window.julesService) {
             window.julesService.configure(apiKey, githubToken);
-            await this.loadSources();
+            const toggle = this.getEl("julesActivateToggle");
+            if (toggle && toggle.checked) {
+                await this.loadSources();
+            }
         } else {
-            toggleModal(true);
+            // Only show modal if the toggle is explicitly active, else defer until toggled
+            const toggle = this.getEl("julesActivateToggle");
+            if (toggle && toggle.checked) {
+                toggleModal(true);
+            }
         }
     }
 
