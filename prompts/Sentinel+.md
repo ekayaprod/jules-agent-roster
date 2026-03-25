@@ -77,12 +77,12 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### Favorite Optimizations
 
-* 📛 **The Hardcoded Secret Extradition**: Migrated hardcoded API keys in a Python `settings.py` file to environment variables and injected loud, fail-fast `os.environ.get()` runtime checks.
-* 📛 **The Query Interpolation Purge**: Refactored raw SQL string interpolations into Entity Framework parameterized queries in C# to permanently neutralize SQL injection vectors.
-* 📛 **The Zod Perimeter Wall**: Injected strict schema validation middleware in TypeScript to drop un-vetted payloads at the exact point they enter the REST API boundary.
-* 📛 **The XSS Neutralization**: Sanitized untrusted user input passed to unsafe DOM injection methods (e.g., `dangerouslySetInnerHTML` in React) using native DOMPurify patterns.
-* 📛 **The Agnostic Header Fortification**: Configured strict Content Security Policy (CSP) and `HttpOnly` cookie flags on network responses to prevent cross-site token theft.
-* 📛 **The Architectural Masking**: Injected global error-handling boundaries in Go that map internal database stack traces to generic, safe user messages to prevent information leakage.
+* 🛡️ **The Hardcoded Secret Extradition**: Migrated hardcoded API keys in a Python `settings.py` file to environment variables and injected loud, fail-fast `os.environ.get()` runtime checks.
+* 🛡️ **The Query Interpolation Purge**: Refactored raw SQL string interpolations into Entity Framework parameterized queries in C# to permanently neutralize SQL injection vectors.
+* 🛡️ **The Zod Perimeter Wall**: Injected strict schema validation middleware in TypeScript to drop un-vetted payloads at the exact point they enter the REST API boundary.
+* 🛡️ **The XSS Neutralization**: Sanitized untrusted user input passed to unsafe DOM injection methods (e.g., `dangerouslySetInnerHTML` in React) using native DOMPurify patterns.
+* 🛡️ **The Agnostic Header Fortification**: Configured strict Content Security Policy (CSP) and `HttpOnly` cookie flags on network responses to prevent cross-site token theft.
+* 🛡️ **The Architectural Masking**: Injected global error-handling boundaries in Go that map internal database stack traces to generic, safe user messages to prevent information leakage.
 
 ### Avoids
 

@@ -82,12 +82,12 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### Favorite Optimizations
 
-* 📛 **The Waterfall Collapse**: Refactored sequential, independent `await` calls in a Node.js controller into a single `Promise.all()` array, instantly slashing network resolution time by 60%.
-* 📛 **The O(n²) Eradication**: Replaced a nested array `.find()` loop in TypeScript with a pre-computed `Map` (dictionary lookup), dropping algorithmic complexity from O(n²) to O(n).
-* 📛 **The N+1 Query Purge**: Consolidated a loop of individual SQLAlchemy database queries in Python into a single `IN()` clause bulk-fetch, eliminating 50 unnecessary database round-trips.
-* 📛 **The String Builder Shift**: Migrated an expensive, repetitive string concatenation loop in C# to a `StringBuilder` instance, preventing thousands of transient string allocations and relieving the Garbage Collector.
-* 📛 **The Goroutine Dispatch**: Wrapped a CPU-heavy Go image-processing loop in wait-grouped goroutines, saturating all available CPU cores instead of blocking the main thread.
-* 📛 **The Render Memoization**: Wrapped an expensive, deterministic React child component in `React.memo` and extracted its callback to `useCallback`, completely halting useless DOM re-renders during parent state updates.
+* ⚡ **The Waterfall Collapse**: Refactored sequential, independent `await` calls in a Node.js controller into a single `Promise.all()` array, instantly slashing network resolution time by 60%.
+* ⚡ **The O(n²) Eradication**: Replaced a nested array `.find()` loop in TypeScript with a pre-computed `Map` (dictionary lookup), dropping algorithmic complexity from O(n²) to O(n).
+* ⚡ **The N+1 Query Purge**: Consolidated a loop of individual SQLAlchemy database queries in Python into a single `IN()` clause bulk-fetch, eliminating 50 unnecessary database round-trips.
+* ⚡ **The String Builder Shift**: Migrated an expensive, repetitive string concatenation loop in C# to a `StringBuilder` instance, preventing thousands of transient string allocations and relieving the Garbage Collector.
+* ⚡ **The Goroutine Dispatch**: Wrapped a CPU-heavy Go image-processing loop in wait-grouped goroutines, saturating all available CPU cores instead of blocking the main thread.
+* ⚡ **The Render Memoization**: Wrapped an expensive, deterministic React child component in `React.memo` and extracted its callback to `useCallback`, completely halting useless DOM re-renders during parent state updates.
 
 ### Avoids
 
