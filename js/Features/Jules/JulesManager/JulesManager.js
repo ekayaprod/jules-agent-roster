@@ -542,28 +542,32 @@ class JulesManager {
                 return;
             }
 
-            let repoSessions = sessionsResponse.sessions.filter(s => {
-                if (!s.sourceContext || s.sourceContext.source !== sourceName) return false;
-                if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) return false;
+            // ↗️ VECTORIZE: The Single-Pass Pipeline. Bypassing filter().reverse().slice(0, 3) for a direct backward loop to eliminate multi-pass overhead.
+            let repoSessions = [];
+            const sessions = sessionsResponse.sessions;
+            for (let i = sessions.length - 1; i >= 0; i--) {
+                if (repoSessions.length >= 3) break;
+                const s = sessions[i];
+
+                if (!s.sourceContext || s.sourceContext.source !== sourceName) continue;
+                if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) continue;
                 
                 const timeStr = s.updateTime || s.createTime || s.startTime;
                 if (timeStr) {
                     const ageHours = (Date.now() - new Date(timeStr).getTime()) / (1000 * 60 * 60);
-                    if (ageHours > 2) return false; 
+                    if (ageHours > 2) continue;
                 } else if (!this.renderedSessionIds.has(s.id)) {
-                    return false;
+                    continue;
                 }
 
                 // If a ticket reached a terminal state (done, failed, drafted PR), it is NO LONGER 
                 // shown in the active Jules feed. We completely rely on the GitHub PR fetch to show completions.
                 const isEnded = s.state === 'COMPLETED' || s.state === 'FAILED' || s.state === 'ERROR' || s.state === 'CANCELLED' || (s.outputs && s.outputs.some(hasPullRequest));
                 
-                if (isEnded) return false; 
+                if (isEnded) continue;
                 
-                return true;
-            });
-
-            repoSessions = [...repoSessions].reverse().slice(0, 3);
+                repoSessions.push(s);
+            }
             const repoPath = sourceName.replace('sources/github/', '');
 
             const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
@@ -571,7 +575,6 @@ class JulesManager {
 
             if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
 
-            // ↗️ VECTORIZE: The Single-Pass Pipeline. Bypassing map() and directly constructing the Set prevents intermediate array allocation.
             const currentSessionIds = new Set();
             for (let i = 0; i < repoSessions.length; i++) {
                 currentSessionIds.add(repoSessions[i].id);
