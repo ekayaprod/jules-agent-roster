@@ -734,10 +734,13 @@ class RosterApp {
     if (this.elements.navPills) {
         for (let i = 0; i < this.elements.navPills.length; i++) {
             const pill = this.elements.navPills[i];
-            cachedPills.push({
-                el: pill,
-                targetHref: pill.getAttribute("href").substring(1)
-            });
+            const href = pill.getAttribute("href");
+            if (href) {
+                cachedPills.push({
+                    el: pill,
+                    targetHref: href.substring(1)
+                });
+            }
         }
     }
 

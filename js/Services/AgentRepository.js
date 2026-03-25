@@ -120,6 +120,14 @@ class AgentRepository {
 
     async #processCustomAgent(key, custom) {
         try {
+            // Map the name property from the key if it's missing or empty
+            if (!custom.name || custom.name.trim() === "") {
+                const parts = key.split(",");
+                if (parts.length === 2 && parts[0].trim() !== "") {
+                    custom.name = parts[0].trim();
+                }
+            }
+
             const validation = this.validateCustomAgent(key, custom);
 
             if (!validation.valid) {
