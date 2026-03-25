@@ -165,6 +165,23 @@ describe('StorageUtils', () => {
             expect(result).toBe('default_value');
         });
 
+        it('returns defaultValue when accessing global.localStorage throws a SecurityError', () => {
+            const originalLocalStorage = Object.getOwnPropertyDescriptor(global, 'localStorage');
+
+            try {
+                Object.defineProperty(global, 'localStorage', {
+                    get: () => { throw new Error('SecurityError: Access to this API has been disallowed'); },
+                    configurable: true
+                });
+
+                const result = StorageUtils.getItem('test_key', 'default_value');
+
+                expect(result).toBe('default_value');
+            } finally {
+                Object.defineProperty(global, 'localStorage', originalLocalStorage);
+            }
+        });
+
         it('returns empty string when no defaultValue is provided and item is missing', () => {
             mockLocalStorage.getItem.mockReturnValue(null);
 
