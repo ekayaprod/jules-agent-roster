@@ -72,7 +72,7 @@ class FusionIndex {
 
     // Header
     const header = document.createElement("h3");
-    header.innerText = "Fusion Index";
+    header.textContent = "Fusion Index";
     header.className = "fusion-index-header";
     container.appendChild(header);
 
@@ -129,7 +129,7 @@ class FusionIndex {
         total = Object.keys(this.customAgents).length;
     }
     const current = this.unlockedKeys.size;
-    element.innerText = `${current} / ${total} Protocols Discovered`;
+    element.textContent = `${current} / ${total} Protocols Discovered`;
   }
 
   /**
@@ -178,7 +178,8 @@ class FusionIndex {
    * @param {string} key - The fusion key.
    */
   updateSlot(key) {
-    const safeKey = key.replace(/["\\]/g, '\\$&');
+    // 🛡️ Bastion: Use safe selector escaping to prevent querySelector injection attacks
+    const safeKey = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(key) : key.replace(/(["\\])/g, '\\$1');
     const slot = this.elements.container?.querySelector(`.fusion-slot[data-key="${safeKey}"]`) || document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
     if (slot) {
       const agentData = this.getCustomAgent(key);
