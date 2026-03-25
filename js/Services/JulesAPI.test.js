@@ -231,6 +231,294 @@ describe('createSession', () => {
 });
 
 
+
+    describe('sendUserInput / replyToSession', () => {
+        it('should call _fetch with the correct payload for sendUserInput', async () => {
+            const fetchSpy = jest.spyOn(service, '_fetch').mockResolvedValue({ id: 'reply-1' });
+
+            const response = await service.sendUserInput('session-123', 'proceed');
+
+            expect(fetchSpy).toHaveBeenCalledWith('sessions/session-123/activities', {
+                method: 'POST',
+                body: JSON.stringify({
+                    type: "USER_INPUT",
+                    message: 'proceed'
+                })
+            });
+            expect(response).toEqual({ id: 'reply-1' });
+        });
+
+        it('should call _fetch with the correct payload for replyToSession', async () => {
+            const fetchSpy = jest.spyOn(service, '_fetch').mockResolvedValue({ id: 'reply-2' });
+
+            const response = await service.replyToSession('session-123', 'yes');
+
+            expect(fetchSpy).toHaveBeenCalledWith('sessions/session-123/activities', {
+                method: 'POST',
+                body: JSON.stringify({
+                    type: "USER_INPUT",
+                    message: 'yes'
+                })
+            });
+            expect(response).toEqual({ id: 'reply-2' });
+        });
+    });
+
+    describe('getPullRequest', () => {
+        it('should throw an error for unsupported source formats', async () => {
+            await expect(service.getPullRequest('invalid-source', 1)).rejects.toThrow('Unsupported source format');
+        });
+
+        it('should apply githubToken to headers if configured', async () => {
+            service.configure('api-key', 'test-token');
+            global.fetch.mockResolvedValue({
+                ok: true,
+                json: async () => ({ id: 1 })
+            });
+
+            await service.getPullRequest('sources/github/owner/repo', 1);
+
+            expect(global.fetch).toHaveBeenCalledWith(
+                'https://api.github.com/repos/owner/repo/pulls/1',
+                expect.objectContaining({
+                    headers: { 'Authorization': 'token test-token' }
+                })
+            );
+        });
+
+        it('should extract message from GitHub API error response', async () => {
+            global.fetch.mockResolvedValue({
+                ok: false,
+                status: 403,
+                text: async () => JSON.stringify({ message: "API rate limit exceeded" })
+            });
+
+            await expect(service.getPullRequest('sources/github/owner/repo', 1)).rejects.toThrow("API rate limit exceeded");
+        });
+
+        it('should fallback to default error message if parsing fails', async () => {
+            global.fetch.mockResolvedValue({
+                ok: false,
+                status: 500,
+                text: async () => "Internal Server Error"
+            });
+
+            await expect(service.getPullRequest('sources/github/owner/repo', 1)).rejects.toThrow("GitHub API returned 500");
+        });
+
+        it('should throw timeout error', async () => {
+            jest.useFakeTimers();
+            global.fetch.mockImplementation((url, options) => {
+                return new Promise((resolve, reject) => {
+                    options.signal.addEventListener('abort', () => {
+                        const err = new Error('AbortError');
+                        err.name = 'AbortError';
+                        reject(err);
+                    });
+                });
+            });
+
+            try {
+                const promise = service.getPullRequest('sources/github/owner/repo', 1);
+                jest.advanceTimersByTime(15000);
+                await expect(promise).rejects.toThrow('Request timed out');
+            } finally {
+                jest.useRealTimers();
+            }
+        });
+
+        it('should rethrow standard network error', async () => {
+            global.fetch.mockRejectedValue(new Error("Network Error"));
+
+            await expect(service.getPullRequest('sources/github/owner/repo', 1)).rejects.toThrow("Network Error");
+        });
+    });
+
+    describe('mergePullRequest', () => {
+        it('should throw an error for unsupported source formats', async () => {
+            await expect(service.mergePullRequest('invalid-source', 1)).rejects.toThrow('Unsupported source format');
+        });
+
+        it('should format and make PUT request correctly', async () => {
+            service.configure('api-key', 'test-token');
+            global.fetch.mockResolvedValue({
+                ok: true,
+                json: async () => ({ merged: true })
+            });
+
+            const response = await service.mergePullRequest('sources/github/owner/repo', 1);
+
+            expect(global.fetch).toHaveBeenCalledWith(
+                'https://api.github.com/repos/owner/repo/pulls/1/merge',
+                expect.objectContaining({
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': 'token test-token',
+                        'Content-Type': 'application/json'
+                    }
+                })
+            );
+            expect(response).toEqual({ merged: true });
+        });
+
+        it('should format correctly without token', async () => {
+            global.fetch.mockResolvedValue({
+                ok: true,
+                json: async () => ({ merged: true })
+            });
+
+            await service.mergePullRequest('sources/github/owner/repo', 1);
+
+            expect(global.fetch).toHaveBeenCalledWith(
+                'https://api.github.com/repos/owner/repo/pulls/1/merge',
+                expect.objectContaining({
+                    method: 'PUT'
+                })
+            );
+        });
+
+        it('should extract message from GitHub API error response', async () => {
+            global.fetch.mockResolvedValue({
+                ok: false,
+                status: 409,
+                text: async () => JSON.stringify({ message: "Merge conflict" })
+            });
+
+            await expect(service.mergePullRequest('sources/github/owner/repo', 1)).rejects.toThrow("Merge conflict");
+        });
+
+        it('should fallback to default error message if parsing fails', async () => {
+            global.fetch.mockResolvedValue({
+                ok: false,
+                status: 500,
+                text: async () => "Internal Server Error"
+            });
+
+            await expect(service.mergePullRequest('sources/github/owner/repo', 1)).rejects.toThrow("GitHub API returned 500");
+        });
+
+        it('should throw timeout error', async () => {
+            jest.useFakeTimers();
+            global.fetch.mockImplementation((url, options) => {
+                return new Promise((resolve, reject) => {
+                    options.signal.addEventListener('abort', () => {
+                        const err = new Error('AbortError');
+                        err.name = 'AbortError';
+                        reject(err);
+                    });
+                });
+            });
+
+            try {
+                const promise = service.mergePullRequest('sources/github/owner/repo', 1);
+                jest.advanceTimersByTime(15000);
+                await expect(promise).rejects.toThrow('Request timed out');
+            } finally {
+                jest.useRealTimers();
+            }
+        });
+
+        it('should rethrow standard network error', async () => {
+            global.fetch.mockRejectedValue(new Error("Network Error"));
+
+            await expect(service.mergePullRequest('sources/github/owner/repo', 1)).rejects.toThrow("Network Error");
+        });
+    });
+
+    describe('closePullRequest', () => {
+        it('should throw an error for unsupported source formats', async () => {
+            await expect(service.closePullRequest('invalid-source', 1)).rejects.toThrow('Unsupported source format');
+        });
+
+        it('should format and make PATCH request correctly', async () => {
+            service.configure('api-key', 'test-token');
+            global.fetch.mockResolvedValue({
+                ok: true,
+                json: async () => ({ state: 'closed' })
+            });
+
+            const response = await service.closePullRequest('sources/github/owner/repo', 1);
+
+            expect(global.fetch).toHaveBeenCalledWith(
+                'https://api.github.com/repos/owner/repo/pulls/1',
+                expect.objectContaining({
+                    method: 'PATCH',
+                    headers: {
+                        'Authorization': 'token test-token',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ state: 'closed' })
+                })
+            );
+            expect(response).toEqual({ state: 'closed' });
+        });
+
+        it('should format correctly without token', async () => {
+            global.fetch.mockResolvedValue({
+                ok: true,
+                json: async () => ({ state: 'closed' })
+            });
+
+            await service.closePullRequest('sources/github/owner/repo', 1);
+
+            expect(global.fetch).toHaveBeenCalledWith(
+                'https://api.github.com/repos/owner/repo/pulls/1',
+                expect.objectContaining({
+                    method: 'PATCH',
+                    body: JSON.stringify({ state: 'closed' })
+                })
+            );
+        });
+
+        it('should extract message from GitHub API error response', async () => {
+            global.fetch.mockResolvedValue({
+                ok: false,
+                status: 403,
+                text: async () => JSON.stringify({ message: "Forbidden" })
+            });
+
+            await expect(service.closePullRequest('sources/github/owner/repo', 1)).rejects.toThrow("Forbidden");
+        });
+
+        it('should fallback to default error message if parsing fails', async () => {
+            global.fetch.mockResolvedValue({
+                ok: false,
+                status: 500,
+                text: async () => "Internal Server Error"
+            });
+
+            await expect(service.closePullRequest('sources/github/owner/repo', 1)).rejects.toThrow("GitHub API returned 500");
+        });
+
+        it('should throw timeout error', async () => {
+            jest.useFakeTimers();
+            global.fetch.mockImplementation((url, options) => {
+                return new Promise((resolve, reject) => {
+                    options.signal.addEventListener('abort', () => {
+                        const err = new Error('AbortError');
+                        err.name = 'AbortError';
+                        reject(err);
+                    });
+                });
+            });
+
+            try {
+                const promise = service.closePullRequest('sources/github/owner/repo', 1);
+                jest.advanceTimersByTime(15000);
+                await expect(promise).rejects.toThrow('Request timed out');
+            } finally {
+                jest.useRealTimers();
+            }
+        });
+
+        it('should rethrow standard network error', async () => {
+            global.fetch.mockRejectedValue(new Error("Network Error"));
+
+            await expect(service.closePullRequest('sources/github/owner/repo', 1)).rejects.toThrow("Network Error");
+        });
+    });
+
+
     describe('getPullRequests', () => {
         it('should throw an error for unsupported source formats', async () => {
             await expect(service.getPullRequests('invalid-source')).rejects.toThrow('Unsupported source format for pull requests');
@@ -304,6 +592,20 @@ describe('createSession', () => {
             });
 
             await expect(service.getPullRequests('sources/github/owner/repo')).rejects.toThrow("API rate limit exceeded");
+        });
+
+
+        it('should log warning and rethrow if error JSON parsing fails', async () => {
+            const consoleSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+            global.fetch.mockResolvedValue({
+                ok: false,
+                status: 403,
+                text: async () => "Forbidden" // Invalid JSON to trigger the try-catch block
+            });
+
+            await expect(service.getPullRequests('sources/github/owner/repo')).rejects.toThrow("GitHub API returned 403");
+            expect(consoleSpy).toHaveBeenCalledWith("Failed to parse error JSON:", expect.any(Error));
+            consoleSpy.mockRestore();
         });
 
         it('should throw error on invalid format (JSON parsing error)', async () => {

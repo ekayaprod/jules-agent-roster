@@ -1,3 +1,3 @@
 ## Inspector — Boundary Interrogator
-**Learning:** Initializing log, updated JulesManager tests to cover missing interaction modal bounds and polling state mutations.
-**Action:** Verify the global test suite and compile application limits.
+**Learning:** Simulated network timeouts and `AbortController` interruptions in Jest for `fetch` API wrappers (like `JulesAPI`) by mocking `global.fetch` to manually add an event listener to `options.signal` that rejects with an `AbortError` when triggered. Using `jest.useFakeTimers()` to advance time alongside this mock securely asserts timeout resilience without blocking the test runner.
+**Action:** Always wrap `jest.useRealTimers()` in a `try/finally` block during timeout simulations to guarantee proper timer reset and prevent subsequent test failures if an assertion prematurely throws an error.
