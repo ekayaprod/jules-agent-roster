@@ -87,6 +87,24 @@ class DOMUtils {
     });
   }
 
+
+  /**
+   * Creates a preformatted block for markdown text content.
+   * Centralizes duplicated UI logic across AgentCard and JulesManager.
+   *
+   * @param {string} text - The raw text content to display.
+   * @returns {HTMLElement} The pre element.
+   * @see ../../docs/architecture/Utils/README.md#domutils-architecture
+   */
+  static createMarkdownPreBlock(text) {
+    const pre = document.createElement("pre");
+    pre.className = "markdown-raw details-content";
+    pre.style.whiteSpace = "pre-wrap";
+    pre.style.wordBreak = "break-word";
+    pre.textContent = text;
+    return pre;
+  }
+
 }
 
 if (typeof module !== 'undefined' && module.exports) {
