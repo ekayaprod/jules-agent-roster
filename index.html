@@ -175,7 +175,7 @@
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         z-index: 100;
         transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
       .jules-runner-panel.open {
         transform: translateX(0);
@@ -196,6 +196,16 @@
         cursor: pointer;
         z-index: 101;
         box-shadow: 4px 0 10px rgba(0,0,0,0.3);
+        color: var(--term-text);
+        transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+      }
+      .jules-pull-tab:hover {
+        background: var(--term-panel-bg);
+        color: var(--accent);
+      }
+      .jules-pull-tab:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: -2px;
       }
       .runner-header { 
         display: flex; 
