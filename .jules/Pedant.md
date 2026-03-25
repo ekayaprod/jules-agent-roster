@@ -1,0 +1,3 @@
+## Pedant — Extracting Magic Numbers
+**Learning:** Hardcoded literal values like network timeouts (`10000`), backoff delays (`300`), and retry limits (`3`) were scattered directly in method arguments and body implementations. This creates stylistic entropy and prevents external modules (like test suites) from referencing the single source of truth.
+**Action:** Always extract such literal boundaries into properly typed and scoped global constants (e.g., `REQUEST_TIMEOUT_MS`, `DEFAULT_BACKOFF_MS`, `MAX_RETRIES`) and export them if needed in testing to maintain absolute structural predictability.

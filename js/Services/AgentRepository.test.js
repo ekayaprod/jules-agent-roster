@@ -1,4 +1,5 @@
 const AgentRepository = require('./AgentRepository');
+const REQUEST_TIMEOUT_MS = AgentRepository.REQUEST_TIMEOUT_MS || 10000;
 
 global.CONFIG = { categories: { 'architect': 'Architect', 'developer': 'Developer' } };
 
@@ -65,8 +66,8 @@ describe('AgentRepository', () => {
 
             const fetchPromise = repo.fetchWithRetry('http://example.com', {}, 0); // 0 retries to prevent recursive looping for this test
 
-            // Advance timers by exactly 10s to trigger the abort controller
-            jest.advanceTimersByTime(10000);
+            // Advance timers to trigger the abort controller
+            jest.advanceTimersByTime(REQUEST_TIMEOUT_MS);
 
             await expect(fetchPromise).rejects.toThrow("AbortError");
 
