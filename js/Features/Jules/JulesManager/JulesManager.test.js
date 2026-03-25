@@ -869,6 +869,12 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should auto-connect if API key exists in storage', async () => {
+            const toggle = document.createElement('input');
+            toggle.id = 'julesActivateToggle';
+            toggle.type = 'checkbox';
+            toggle.checked = true;
+            document.body.appendChild(toggle);
+
             StorageUtils.getItem.mockImplementation(key => {
                 if (key === 'jules_api_key') return 'test-key';
                 if (key === 'github_api_key') return 'test-github-token';
@@ -883,6 +889,15 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should open modal if no API key exists', async () => {
+            let toggle = document.getElementById('julesActivateToggle');
+            if (!toggle) {
+                toggle = document.createElement('input');
+                toggle.id = 'julesActivateToggle';
+                toggle.type = 'checkbox';
+                document.body.appendChild(toggle);
+            }
+            toggle.checked = true;
+
             StorageUtils.getItem.mockReturnValue(null);
             await manager.init();
 

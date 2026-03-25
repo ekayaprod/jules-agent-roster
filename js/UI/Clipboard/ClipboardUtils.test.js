@@ -63,6 +63,24 @@ describe('ClipboardUtils', () => {
              const result = await ClipboardUtils.copyText('test');
              expect(result).toBe(false);
         });
+
+        it('should log an error if document.execCommand throws an exception', async () => {
+             // Mock navigator.clipboard.writeText to simulate fallback path
+             navigator.clipboard.writeText.mockRejectedValue(new Error('Failed'));
+
+             const mockError = new Error('Exec failed');
+             document.execCommand.mockImplementation(() => {
+                 throw mockError;
+             });
+
+             jest.spyOn(console, 'warn').mockImplementation(() => {});
+             const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+             const result = await ClipboardUtils.copyText('test');
+
+             expect(errorSpy).toHaveBeenCalledWith('Fallback copy failed', mockError);
+             expect(result).toBe(false);
+        });
     });
 
     describe('animateButtonSuccess', () => {
