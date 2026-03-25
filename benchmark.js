@@ -66,7 +66,17 @@ const createMockElement = (id = '') => {
             classes.clear();
             if (v) v.split(' ').forEach(c => classes.add(c));
         },
-        innerHTML: '',
+        _innerHTML: '',
+        get innerHTML() { return this._innerHTML; },
+        set innerHTML(v) {
+            this._innerHTML = v;
+            if (v === '') {
+                while (children.length > 0) {
+                    const child = children.pop();
+                    child.parentNode = null;
+                }
+            }
+        },
         innerText: '',
         textContent: '',
         appendChild: (child) => {
@@ -91,18 +101,25 @@ const createMockElement = (id = '') => {
         showModal: () => {},
         querySelectorAll: (sel) => {
             const results = [];
-            const cleanSel = sel.replace(/\[.*?\]/g, ''); // Basic attribute selector removal
+            const attrMatch = sel.match(/\[(.*?)="(.*?)"\]/);
+            const cleanSel = sel.replace(/\[.*?\]/g, '');
             const selParts = cleanSel.split(/(?=[.#])/).filter(p => p !== '');
+
             const matches = (node) => {
-                return selParts.every(part => {
+                const partsMatch = selParts.every(part => {
                     if (part.startsWith('.')) return node.classList.contains(part.substring(1));
                     if (part.startsWith('#')) return node.id === part.substring(1);
                     return node.tagName === part.toUpperCase();
                 });
+                if (!partsMatch) return false;
+                if (attrMatch) {
+                    return node.getAttribute(attrMatch[1]) === attrMatch[2];
+                }
+                return true;
             };
             const traverse = (node) => {
                 if (matches(node)) results.push(node);
-                node.children.forEach(traverse);
+                (node.children || []).forEach(traverse);
             };
             children.forEach(traverse);
             return results;
@@ -112,9 +129,11 @@ const createMockElement = (id = '') => {
             if (sel.startsWith('#')) {
                 const id = sel.substring(1);
                 if (el.id === id) return el;
-                return getMockElement(id);
+                const found = getMockElement(id);
+                if (found) return found;
             }
-            return el.querySelectorAll(sel)[0] || null;
+            const results = el.querySelectorAll(sel);
+            return results.length > 0 ? results[0] : null;
         },
         value: '',
         contains: (other) => {
@@ -227,11 +246,25 @@ const runBenchmark = async () => {
 
     // Fix: Properly mock elements so appending results works and index gets tested
     const slotACard = getMockElement('slotACard');
-    slotACard.appendChild(createMockElement().classList.add('slot-content') || createMockElement()); // Need to ensure it has .slot-content
+    const slotAContent = createMockElement();
+    slotAContent.classList.add('slot-content');
+    slotACard.appendChild(slotAContent);
+
     const slotBCard = getMockElement('slotBCard');
-    slotBCard.appendChild(createMockElement().classList.add('slot-content') || createMockElement());
+    const slotBContent = createMockElement();
+    slotBContent.classList.add('slot-content');
+    slotBCard.appendChild(slotBContent);
 
     roster.elements = {
+        fuseBtn: getMockElement('fuseBtn'),
+        copyFusionBtn: getMockElement('copyFusionBtn'),
+        slotACard: slotACard,
+        slotBCard: slotBCard,
+        fusionError: getMockElement('fusionError'),
+        fusionErrorText: getMockElement('fusionErrorText'),
+        fusionResultContainer: getMockElement('fusionResultContainer'),
+        resetLabBtn: getMockElement('resetLabBtn'),
+        fusionLabContent: getMockElement('fusionLabContent'),
         clearBtn: getMockElement('clearBtn'),
         searchInput: getMockElement('searchInput'),
         emptyState: getMockElement('emptyState'),
@@ -240,8 +273,12 @@ const runBenchmark = async () => {
         searchResultsGrid: getMockElement('searchResultsGrid'),
         'category-nav': getMockElement('category-nav'),
         grid: '.grid',
-        sectionHeader: '.section-header'
+        sectionHeader: '.section-header',
+        julesRepoPicker: getMockElement('julesRepoPicker')
     };
+
+    // AgentCard expects window.rosterApp for pinning and fusions logic
+    global.window.rosterApp = roster;
 
     // Override some specific behaviors for benchmark consistency
     getMockElement('pickerGrid').querySelectorAll = () => {
@@ -293,6 +330,21 @@ const runBenchmark = async () => {
         process.exit(1);
     }
     console.log(`FusionIndex verified: ${unlockedSlots.length} unlocked slot(s) found.`);
+
+    // 2. Fusion Execution Benchmark
+    console.log("Testing Fusion Execution...");
+    roster.fusionLab.state.slotA = mockAgents[0];
+    roster.fusionLab.state.slotB = mockAgents[1];
+
+    await roster.fusionLab.handleFusion();
+
+    const resultContainer = getMockElement('fusionResultContainer');
+    const resultCard = resultContainer.querySelector('.card');
+    if (!resultCard) {
+        console.error("FusionError: Fusion result card not found in container.");
+        process.exit(1);
+    }
+    console.log("Fusion result verification: Card successfully appended to container.");
 
     console.log("✅ All benchmarks passed within structural limits.");
 };
