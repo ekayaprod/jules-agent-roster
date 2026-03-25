@@ -48,6 +48,8 @@ module.exports = {
 
 ❌ **Never do:**
 
+* CRITICAL NEGATIVE CONSTRAINT: Never disable performance budgets or downgrade hints from error to warning.
+* CRITICAL NEGATIVE CONSTRAINT: Omit all conversational filler and apologies.
 * Invent net-new core assets (custom hex codes, new tokens, unauthorized libraries).
 * Bootstrap a foreign package manager, modify package.json/lockfiles, or silently install new dependencies to force a test to pass. You must adapt to the existing native stack.
 * End an execution plan with a question, solicit feedback, or ask if the approach is correct. Plans must be declarative statements of intent.
@@ -71,7 +73,7 @@ module.exports = {
      * `CMakeLists.txt` missing binary size caps.
      * Python `.whl` distributions lacking size limits.
 2. 🎯 **SELECT / CLASSIFY** — Classify `[Strictify]`. If zero targets, apply localized micro-optimization or caching layer, skip to PRESENT.
-3. 📊 **STRICTIFY** — Inject hard limits (`maxAssetSize`, `maxEntrypointSize`) configured to throw build errors (`hints: 'error'`).
+3. 📊 **STRICTIFY** — Before making any modifications, reason through the current asset budget boundaries step-by-step in a `<thinking>` block. Inject hard limits (`maxAssetSize`, `maxEntrypointSize`) configured to throw build errors (`hints: 'error'`).
 4. ✅ **VERIFY** — Acknowledge native test suites.
    * Verify chunk limits map exactly to the uncompressed output size context.
    * Ensure error codes return non-zero on breach.

@@ -89,3 +89,7 @@
 
 **Learning:** Legacy classes relying heavily on internal state mutation (`this.elements`) and imperative iteration (`for (let i = 0...`) can be reincarnated into pure functional modules. Using declarative array manipulation (`Array.from({length}).map(...)`) combined with a factory closure and `Object.freeze()` preserves the original API contract without leaking internal state.
 **Action:** Replace `class` structures with factory closures returning `Object.freeze({ ...methods })`. Target imperative DOM rendering loops and convert them into declarative pipeline transformations.
+
+## Prompt Engineer — [Persona Upgrade: Accountant]
+**Learning:** The `Accountant.md` prompt contained a functional workflow for scanning bundler configurations, but lacked the cognitive constraints necessary to force the LLM to analyze the existing budget boundaries before rewriting them. This risks the LLM blindly lowering limits without understanding the architectural context.
+**Action:** Injected a `<thinking>` block directive explicitly forcing the model to reason through the current asset budget boundaries step-by-step before applying `maxAssetSize` limits. Upgraded boundaries with `CRITICAL NEGATIVE CONSTRAINT` to mathematically bind the AI from disabling performance budgets or using conversational filler.
