@@ -1,12 +1,12 @@
-const REQUEST_TIMEOUT_MS = 10000;
-const DEFAULT_BACKOFF_MS = 300;
-const MAX_RETRIES = 3;
-
 /**
  * Service class for fetching and validating agent data.
  * Handles the communication with the backend (file system) and ensures data integrity.
  */
 class AgentRepository {
+    static REQUEST_TIMEOUT_MS = 10000;
+    static DEFAULT_BACKOFF_MS = 300;
+    static MAX_RETRIES = 3;
+
     constructor() {
         this.agents = [];
         this.customAgents = {};
@@ -188,14 +188,14 @@ class AgentRepository {
      * Fetches a resource with exponential backoff retry logic.
      * @param {string} url - The URL to fetch.
      * @param {RequestInit} [options={}] - Fetch options.
-     * @param {number} [retries=MAX_RETRIES] - Number of retries.
-     * @param {number} [backoff=DEFAULT_BACKOFF_MS] - Initial backoff delay in ms.
+     * @param {number} [retries=AgentRepository.MAX_RETRIES] - Number of retries.
+     * @param {number} [backoff=AgentRepository.DEFAULT_BACKOFF_MS] - Initial backoff delay in ms.
      * @returns {Promise<Response>} The fetch response.
      * @throws {Error} If all retries fail.
      */
-    async fetchWithRetry(url, options = {}, retries = MAX_RETRIES, backoff = DEFAULT_BACKOFF_MS) {
+    async fetchWithRetry(url, options = {}, retries = AgentRepository.MAX_RETRIES, backoff = AgentRepository.DEFAULT_BACKOFF_MS) {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+        const timeoutId = setTimeout(() => controller.abort(), AgentRepository.REQUEST_TIMEOUT_MS);
 
         try {
             const response = await fetch(url, {
@@ -376,7 +376,7 @@ class AgentRepository {
 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = AgentRepository;
-    module.exports.REQUEST_TIMEOUT_MS = REQUEST_TIMEOUT_MS;
-    module.exports.DEFAULT_BACKOFF_MS = DEFAULT_BACKOFF_MS;
-    module.exports.MAX_RETRIES = MAX_RETRIES;
+    module.exports.REQUEST_TIMEOUT_MS = AgentRepository.REQUEST_TIMEOUT_MS;
+    module.exports.DEFAULT_BACKOFF_MS = AgentRepository.DEFAULT_BACKOFF_MS;
+    module.exports.MAX_RETRIES = AgentRepository.MAX_RETRIES;
 }
