@@ -472,11 +472,7 @@ class JulesManager {
 
         if (contentEl) {
             contentEl.innerHTML = '';
-            const pre = document.createElement("pre");
-            pre.className = "markdown-raw details-content";
-            pre.style.whiteSpace = "pre-wrap";
-            pre.style.wordBreak = "break-word";
-            pre.textContent = pr.body || "No description provided.";
+            const pre = DOMUtils.createMarkdownPreBlock(pr.body || "No description provided.");
             contentEl.appendChild(pre);
         }
 
@@ -807,11 +803,7 @@ class JulesManager {
                     const contentEl = this.getEl("historyModalContent");
                     if (contentEl) {
                         contentEl.innerHTML = "";
-                        const pre = document.createElement("pre");
-                        pre.className = "markdown-raw details-content";
-                        pre.style.whiteSpace = "pre-wrap";
-                        pre.style.wordBreak = "break-word";
-                        pre.textContent = fullHistoryMarkdown || "No history available.";
+                        const pre = DOMUtils.createMarkdownPreBlock(fullHistoryMarkdown || "No history available.");
                         contentEl.appendChild(pre);
                         contentEl.scrollTop = contentEl.scrollHeight;
                     }

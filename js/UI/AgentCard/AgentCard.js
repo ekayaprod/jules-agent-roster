@@ -11,12 +11,7 @@ class AgentCard {
      * @see ../../../docs/architecture/UI/AgentCard.md#agentcard-architecture for DOM structure and generation details.
      */
     static getPromptNode(agent) {
-        const pre = document.createElement("pre");
-        pre.className = "markdown-raw details-content";
-        pre.style.whiteSpace = "pre-wrap";
-        pre.style.wordBreak = "break-word";
-        pre.textContent = agent.prompt || "No protocol data available.";
-        return pre;
+        return DOMUtils.createMarkdownPreBlock(agent.prompt || "No protocol data available.");
     }
 
     /**

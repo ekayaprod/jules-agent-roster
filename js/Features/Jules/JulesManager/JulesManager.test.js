@@ -11,7 +11,12 @@ global.StorageUtils = {
 };
 
 global.DOMUtils = {
-    setButtonState: jest.fn()
+    setButtonState: jest.fn(),
+    createMarkdownPreBlock: jest.fn().mockImplementation((text) => {
+        const pre = document.createElement('pre');
+        pre.textContent = text;
+        return pre;
+    })
 };
 
 global.FormatUtils = {
@@ -86,7 +91,7 @@ describe('JulesManager', () => {
         it('_fetchAndRenderSessions: missing fetchingIndicator check', async () => {
             const terminal = document.createElement('div');
             window.julesService.apiKey = 'fake-key';
-            window.julesService.getSessions.mockResolvedValueOnce({});
+            window.julesService.getSessions.mockResolvedValueOnce({ sessions: [] }).mockResolvedValueOnce({ sessions: [] });
             // should not throw when fetchingIndicator is missing
             await manager._fetchAndRenderSessions('sources/github/owner/repo', terminal);
             // The actual implementation removes awaiting msg if empty: return; and might not set it if child nodes > 0 or whatever. Wait, line 224: if (!sessionsResponse.sessions) { if (terminal.querySelector('#fetchingIndicator')) { terminal.innerHTML = ...; } return; }
@@ -1367,6 +1372,11 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             btn = document.createElement('button');
             agent = { name: 'Test', emoji: '🌟', prompt: 'hello' };
             document.getElementById('julesRunnerPanel').scrollIntoView = jest.fn();
+            global.DOMUtils.createMarkdownPreBlock = jest.fn().mockImplementation((text) => {
+                const pre = document.createElement('pre');
+                pre.textContent = text;
+                return pre;
+            });
         });
 
         it('should bail if repo picker is empty', async () => {

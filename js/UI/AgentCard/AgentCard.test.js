@@ -11,6 +11,17 @@ describe('AgentCard', () => {
         // Set up global mocks that AgentCard might need
         global.FormatUtils = FormatUtils;
 
+        global.DOMUtils = {
+            createMarkdownPreBlock: jest.fn().mockImplementation((text) => {
+                const pre = document.createElement("pre");
+                pre.className = "markdown-raw details-content";
+                pre.style.whiteSpace = "pre-wrap";
+                pre.style.wordBreak = "break-word";
+                pre.textContent = text;
+                return pre;
+            })
+        };
+
         // Mock DOM elements that AgentCard queries
         const repoPicker = document.createElement('input');
         repoPicker.id = 'julesRepoPicker';
