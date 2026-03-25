@@ -15,11 +15,13 @@ const FormatUtils = loadClass('js/Utils/format-utils.js');
 const StorageUtils = loadClass('js/Utils/storage-utils.js');
 const PerformanceUtils = loadClass('js/Utils/performance-utils.js');
 const DOMUtils = loadClass('js/Utils/dom-utils.js');
+const AgentUtils = loadClass('js/Utils/agent-utils.js');
 
 global.FormatUtils = FormatUtils;
 global.StorageUtils = StorageUtils;
 global.PerformanceUtils = PerformanceUtils;
 global.DOMUtils = DOMUtils;
+global.AgentUtils = AgentUtils;
 
 // Mock Fuse.js (Minimal naive search algorithm to simulate CPU time)
 global.Fuse = class Fuse {

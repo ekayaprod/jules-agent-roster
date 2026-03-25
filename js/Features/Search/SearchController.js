@@ -102,7 +102,7 @@ class SearchController {
         const allAgents = this.app.agents.map(MAP_AGENT_TO_SEARCH_ITEM);
         if (this.app.fusionLab && this.app.fusionLab.fusionIndex) {
             for (const key of this.app.fusionLab.fusionIndex.unlockedKeys) {
-                let agent = this.app.getCustomAgent(key) || this.app.fusionLab.compiler.customAgentsMap[key];
+                let agent = AgentUtils.getCustomAgent(this.app.customAgents, key) || this.app.fusionLab.compiler.customAgentsMap[key];
                 if (agent) {
                     allAgents.push({ agent, keyOrIndex: key });
                 }

@@ -1,0 +1,3 @@
+## The Highlander — The Custom Agent Resolution Equilibrium
+**Learning:** Found multiple scattered implementations of `getCustomAgent` across `RosterApp.js` and `FusionIndex.js`, causing redundant lookups and fracturing the repository's single-source-of-truth.
+**Action:** Eradicated the scattered pretenders and rewired all consumers (including `SearchController.js` and test suites) to explicitly use the absolute source: `AgentUtils.getCustomAgent(customAgents, key)`. When adding new utilities or dependencies that are required during runtime tests, always remember to instantiate them in `benchmark.js` using the custom `loadClass` pattern.

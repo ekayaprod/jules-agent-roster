@@ -24,6 +24,8 @@ global.DOMUtils = {
     setElementsDisplay: jest.fn()
 };
 
+global.AgentUtils = require('../../Utils/agent-utils');
+
 global.AgentCard = {
     create: jest.fn((agent, keyOrIndex, delay) => {
         const div = document.createElement('div');
@@ -122,7 +124,7 @@ describe('SearchController', () => {
                     }
                 }
             },
-            getCustomAgent: jest.fn(),
+            customAgents: {},
             _cardHtmlCache: new Map(),
             _searchCache: null
         };

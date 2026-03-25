@@ -123,16 +123,6 @@ class RosterApp {
 
 
   /**
-   * Helper to retrieve a custom agent from the flat dictionary by its combination key.
-   * @param {string} key - The fusion combination key (e.g. "Architect,Author")
-   * @returns {Object|undefined} The agent object or undefined if not found.
-   */
-  getCustomAgent(key) {
-      if (!this.customAgents) return undefined;
-      return this.customAgents[key];
-  }
-
-  /**
    * Caches critical DOM elements locally via `document.querySelector`.
    * Executed strictly once during boot to prevent continuous N-time DOM traversal penalties.
    * @see ../../docs/architecture/core/README.md#rosterapp-architecture
@@ -225,7 +215,7 @@ class RosterApp {
         pinnedKeys.forEach(key => {
              if (!isNaN(key)) return;
 
-             let agent = this.getCustomAgent(key) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
+             let agent = AgentUtils.getCustomAgent(this.customAgents, key) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
              if (!agent) return;
 
              const category = agent.category || "strategy";
@@ -408,7 +398,7 @@ class RosterApp {
           e.preventDefault();
 
           const index = fusionsTarget.dataset.index;
-          let agent = this.agents[index] || this.getCustomAgent(index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
           if (!agent) return;
 
           const modal = document.getElementById("fusionsModal");
@@ -420,7 +410,7 @@ class RosterApp {
 
               for (const key of unlockedKeys) {
                   if (key.includes(agent.name)) {
-                      const childAgent = this.getCustomAgent(key) || this.fusionLab.compiler.customAgentsMap[key];
+                      const childAgent = AgentUtils.getCustomAgent(this.customAgents, key) || this.fusionLab.compiler.customAgentsMap[key];
                       if (childAgent) {
                           const childIcon = FormatUtils.extractIcon(childAgent);
                           const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
@@ -489,7 +479,7 @@ class RosterApp {
           const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
 
           if (promptArea && !promptArea.innerHTML.trim()) {
-              let agent = this.agents[index] || this.getCustomAgent(index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+              let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
               if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
               if (agent) {
                   promptArea.innerHTML = '';
@@ -543,7 +533,7 @@ class RosterApp {
           e.preventDefault();
           e.stopPropagation();
           const index = actionBtn.dataset.index;
-          let agent = this.agents[index] || this.getCustomAgent(index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
           if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
           if (!agent) return;
 
