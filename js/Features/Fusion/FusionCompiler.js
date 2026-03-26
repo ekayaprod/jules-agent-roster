@@ -10,31 +10,6 @@
  */
 
 const FusionCompiler = function (agents, customAgents) {
-  // WARN: This is a strict Directed Acyclic Graph (DAG).
-  // The order determines which agent runs as Phase 1 (Upstream) vs Phase 2 (Downstream).
-  // Example: Architect (Design) always comes before Builder (Implementation).
-  const EXECUTION_PIPELINE = [
-    "Janitor",    // Cleanup first
-    "Scavenger",  // Dead code removal next
-    "Architect",  // Design high-level structure
-    "Helix",      // Core logic implementation
-    "Untangler",  // Refactoring
-    "Modernizer", // Tech stack updates
-    "Cortex",     // AI Model updates
-    "Bolt+",      // Performance tuning
-    "Sentinel+",  // Security hardening
-    "Palette+",   // UI/UX Polish
-    "Wordsmith",  // Documentation/Copy
-    "Pedant",     // Strict verification
-    "Paramedic",  // Bug fixing
-    "Inspector",  // Testing
-    "Curator",    // Data management
-    "Scribe",     // Inline documentation
-    "Author",     // Macro documentation
-    "Navigator",  // Roadmap planning
-    "Herald",     // Release announcements
-  ];
-
   // Only allow base agents to be fused. Monthly/Power agents are excluded to prevent complexity explosion.
   const baseAgents = (agents || []).filter(
     (a) => a.category !== "monthly" && a.category !== "power" && !["Spark", "Overseer", "Cartographer"].includes(a.name)
@@ -103,7 +78,6 @@ const FusionCompiler = function (agents, customAgents) {
 
   // Return a frozen public API interface, eliminating 'this' context bindings and enforcing immutability
   return Object.freeze({
-    EXECUTION_PIPELINE,
     baseAgents,
     customAgentsMap,
     fuse,
