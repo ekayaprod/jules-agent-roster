@@ -53,14 +53,6 @@ class FusionIndex {
   }
 
   /**
-   * Helper to retrieve a custom agent from the nested or flat dictionary.
-   */
-  getCustomAgent(key) {
-      if (!this.customAgents) return undefined;
-      return this.customAgents[key];
-  }
-
-  /**
    * Renders the Fusion Index shelf.
    */
   render() {
@@ -163,7 +155,7 @@ class FusionIndex {
    * @param {string} key - The fusion key.
    */
   unlock(key) {
-    if (!this.getCustomAgent(key)) return;
+    if (!AgentUtils.getCustomAgent(this.customAgents, key)) return;
 
     if (!this.unlockedKeys.has(key)) {
       this.unlockedKeys.add(key);
@@ -182,7 +174,7 @@ class FusionIndex {
     const safeKey = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(key) : key.replace(/(["\\])/g, '\\$1');
     const slot = this.elements.container?.querySelector(`.fusion-slot[data-key="${safeKey}"]`) || document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
     if (slot) {
-      const agentData = this.getCustomAgent(key);
+      const agentData = AgentUtils.getCustomAgent(this.customAgents, key);
       if (!agentData) return;
       slot.classList.remove("locked");
       slot.classList.add("unlocked", "just-unlocked");

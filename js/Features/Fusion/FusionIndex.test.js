@@ -21,6 +21,7 @@ describe('FusionIndex', () => {
             extractIcon: jest.fn().mockReturnValue('❓')
         };
         global.FormatUtils = mockFormatUtils;
+        global.AgentUtils = require('../../Utils/agent-utils');
 
         // Setup DOM
         document.body.innerHTML = '<div id="fusion-container"></div>';
@@ -191,7 +192,6 @@ describe('FusionIndex', () => {
         fusionIndex = new FusionIndex('fusion-container', null, jest.fn());
         fusionIndex.unlockedKeys = new Set(['A,B']);
         expect(() => fusionIndex.render()).not.toThrow();
-        expect(fusionIndex.getCustomAgent('A,B')).toBeUndefined();
 
         const container = document.getElementById('fusion-container');
         expect(container.querySelector('.fusion-progress').textContent).toBe('1 / 0 Protocols Discovered');
