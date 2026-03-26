@@ -278,7 +278,7 @@ class JulesManager {
             }
 
             try {
-                await window.julesService.replyToSession(sessionId, text);
+                await window.julesService.sendUserInput(sessionId, text);
                 this.app.toast.show("Reply transmitted.", "success");
             } catch (err) {
                 console.error("Failed to send reply:", err);

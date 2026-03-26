@@ -232,7 +232,7 @@ describe('createSession', () => {
 
 
 
-    describe('sendUserInput / replyToSession', () => {
+    describe('sendUserInput', () => {
         it('should call _fetch with the correct payload for sendUserInput', async () => {
             const fetchSpy = jest.spyOn(service, '_fetch').mockResolvedValue({ id: 'reply-1' });
 
@@ -246,21 +246,6 @@ describe('createSession', () => {
                 })
             });
             expect(response).toEqual({ id: 'reply-1' });
-        });
-
-        it('should call _fetch with the correct payload for replyToSession', async () => {
-            const fetchSpy = jest.spyOn(service, '_fetch').mockResolvedValue({ id: 'reply-2' });
-
-            const response = await service.replyToSession('session-123', 'yes');
-
-            expect(fetchSpy).toHaveBeenCalledWith('sessions/session-123/activities', {
-                method: 'POST',
-                body: JSON.stringify({
-                    type: "USER_INPUT",
-                    message: 'yes'
-                })
-            });
-            expect(response).toEqual({ id: 'reply-2' });
         });
     });
 

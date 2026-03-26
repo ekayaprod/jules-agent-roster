@@ -172,22 +172,6 @@ ${userTask}`;
     }
 
     /**
-     * Submits user input to resume a paused session that is waiting for a decision. Alias for sendUserInput.
-     * @param {string} sessionId - The active session ID.
-     * @param {string} text - The input response.
-     * @returns {Promise<Object>} The JSON response containing the updated session state.
-     */
-    async replyToSession(sessionId, text) {
-        return this._fetch(`sessions/${sessionId}/activities`, {
-            method: 'POST',
-            body: JSON.stringify({
-                type: "USER_INPUT",
-                message: text
-            })
-        });
-    }
-
-    /**
      * Polls the activities of a specific session to provide a live feed.
      * @param {string} sessionId - The ID of the active session.
      * @returns {Promise<Object>} The JSON response containing the session activities.
