@@ -6,6 +6,7 @@ require('@testing-library/jest-dom');
 
 const fs = require('fs');
 const path = require('path');
+global.AgentUtils = require('../../Utils/agent-utils');
 
 // Load the source code for SearchController
 const searchControllerSrc = fs.readFileSync(path.resolve(__dirname, 'SearchController.js'), 'utf8');
@@ -122,7 +123,6 @@ describe('SearchController', () => {
                     }
                 }
             },
-            getCustomAgent: jest.fn(),
             _cardHtmlCache: new Map(),
             _searchCache: null
         };
@@ -283,7 +283,9 @@ describe('SearchController', () => {
         });
 
         it('should drop stale search results if searchId increments before resolution', async () => {
-            searchController.worker.postMessage.mockImplementation(() => {});
+            if (searchController.worker && searchController.worker.postMessage) {
+                searchController.worker.postMessage.mockImplementation(() => {});
+            }
 
             const p1 = searchController.filterAgents("slow");
             const p2 = searchController.filterAgents("fast");

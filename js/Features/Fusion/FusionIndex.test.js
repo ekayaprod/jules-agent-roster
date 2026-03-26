@@ -3,6 +3,7 @@
  */
 
 const FusionIndex = require('./FusionIndex');
+global.AgentUtils = require('../../Utils/agent-utils');
 
 describe('FusionIndex', () => {
     let fusionIndex;
@@ -191,7 +192,7 @@ describe('FusionIndex', () => {
         fusionIndex = new FusionIndex('fusion-container', null, jest.fn());
         fusionIndex.unlockedKeys = new Set(['A,B']);
         expect(() => fusionIndex.render()).not.toThrow();
-        expect(fusionIndex.getCustomAgent('A,B')).toBeUndefined();
+        expect(AgentUtils.getCustomAgent(fusionIndex.customAgents, 'A,B')).toBeUndefined();
 
         const container = document.getElementById('fusion-container');
         expect(container.querySelector('.fusion-progress').textContent).toBe('1 / 0 Protocols Discovered');

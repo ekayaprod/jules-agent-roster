@@ -3,6 +3,7 @@
  */
 const AgentCard = require('./AgentCard');
 const FormatUtils = require('../../Utils/format-utils');
+global.AgentUtils = require('../../Utils/agent-utils');
 
 describe('AgentCard', () => {
     let mockAgent;
@@ -96,7 +97,7 @@ describe('AgentCard', () => {
                 }
             };
             // Mock getCustomAgent to return null
-            window.rosterApp.getCustomAgent = jest.fn().mockReturnValue(null);
+            AgentUtils.getCustomAgent = jest.fn().mockReturnValue(null);
 
             const card = AgentCard.create(mockAgent, 1, 0);
 
@@ -121,7 +122,7 @@ describe('AgentCard', () => {
                     }
                 }
             };
-            window.rosterApp.getCustomAgent = jest.fn().mockImplementation((key) => {
+            AgentUtils.getCustomAgent = jest.fn().mockImplementation((customAgents, key) => {
                 if (key === 'Test Agent+Another') {
                     return {
                         name: 'Test Agent+Another',
