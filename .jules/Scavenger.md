@@ -1,3 +1,3 @@
-## Scavenger — The Unused Export Purge
-**Learning:** Found an `AgentUtils` class in `js/Utils/agent-utils.js` that was completely unused across the entire repository. The class contained a single `getCustomAgent` method, which was actually implemented and used directly on the `app` instance (`this.app.getCustomAgent` and similar forms) instead of importing the static util.
-**Action:** When searching for dead code, look for utility classes that provide methods identical in name and signature to methods already implemented directly on domain classes or application instances.
+## Scavenger — The Dead Feature Pruning
+**Learning:** Found an unused array `EXECUTION_PIPELINE` inside the `FusionCompiler` class. This array was never utilized internally within the class's functional pipeline, and its exported reference was completely unreferenced across the codebase (including test files). Always verify both internal usages and external consumers of exported module variables before safely executing a deletion.
+**Action:** When auditing files for dead code, if a data structure is exported but not utilized anywhere internally, perform a project-wide search to confirm zero external dependents before surgically removing both the declaration and the export reference.
