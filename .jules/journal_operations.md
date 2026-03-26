@@ -93,3 +93,7 @@
 ## Prompt Engineer — [Persona Upgrade: Accountant]
 **Learning:** The `Accountant.md` prompt contained a functional workflow for scanning bundler configurations, but lacked the cognitive constraints necessary to force the LLM to analyze the existing budget boundaries before rewriting them. This risks the LLM blindly lowering limits without understanding the architectural context.
 **Action:** Injected a `<thinking>` block directive explicitly forcing the model to reason through the current asset budget boundaries step-by-step before applying `maxAssetSize` limits. Upgraded boundaries with `CRITICAL NEGATIVE CONSTRAINT` to mathematically bind the AI from disabling performance budgets or using conversational filler.
+
+## Prompt Engineer — [Persona Upgrade: Spark]
+**Learning:** The `Spark.md` prompt correctly identified friction points but lacked strict cognitive boundaries to prevent LLM hallucinations or code execution beyond ideation. The instructions "do not write actual application source code" and "Draft an actionable proposal" were functional but lacked structural formatting.
+**Action:** Evolved the prompt by explicitly enforcing `<thinking>` directives to require methodical reasoning before drafting proposals. Upgraded the "Never do" section with `CRITICAL NEGATIVE CONSTRAINT`s to mathematically bind the AI from outputting actual source code or ending plans with questions, maximizing downstream LLM determinism.
