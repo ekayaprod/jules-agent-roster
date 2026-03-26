@@ -3,6 +3,9 @@
  * @see ../../../docs/architecture/UI/AgentCard.md#agentcard-architecture for DOM structure and event delegation details.
  */
 class AgentCard {
+    static ANIMATION_DELAY_STEP_MS = 30;
+    static ANIMATION_DELAY_MAX_MS = 600;
+
     /**
      * Lazily generates the DOM nodes for the back of the card (the prompt preview).
      * Renders the raw agent prompt as a preformatted block.
@@ -27,7 +30,7 @@ class AgentCard {
     static create(agent, index, globalIndex) {
         const card = document.createElement("div");
         card.className = "card flip-card pop-in";
-        card.style.animationDelay = `${Math.min(globalIndex * 30, 600)}ms`;
+        card.style.animationDelay = `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`;
 
         if (agent.type === "plus") card.classList.add("plus-agent");
         if (agent.type === "monthly") card.classList.add("monthly-agent");
