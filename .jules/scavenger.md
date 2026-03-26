@@ -90,7 +90,7 @@ Your mission is to systematically eradicate codebase bloat by identifying and sa
 
 ## 2025-05-24 - Scavenger - [Vanilla JS Static Analysis Limitations]
 
-**Learning:** Static analysis tools and grep searches for unused variables can generate false positives in vanilla JS architectures where dependencies are injected via sequence-dependent `<script>` tags or dynamic Web Workers (e.g., `searchWorker.js`). Even if a top-level class like `PerformanceUtils` appears "unimported" across files, it is loaded globally.
+**Learning:** Static analysis tools and grep searches for unused variables can generate false positives in vanilla JS architectures where dependencies are injected via sequence-dependent `<script>` tags or dynamic Web Workers (e.g., `SearchWorker.js`). Even if a top-level class like `PerformanceUtils` appears "unimported" across files, it is loaded globally.
 **Action:** Always manually trace global method invocations and dynamic instantiations (`new Worker()`) before concluding a class or file is mathematically dead in a non-bundled environment.
 
 ## Historical Learnings & Actions Summary

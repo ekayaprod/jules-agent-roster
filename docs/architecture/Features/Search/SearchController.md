@@ -14,7 +14,7 @@ It utilizes `Fuse.js` for fast, lightweight fuzzy matching against standard and 
 
 - The `FUSE_OPTIONS` strictly target the `agent.name` and `agent.short_description` fields.
 - The search index is cached in `this.app._searchCache`. The controller only rebuilds the index when a state boundary changes (e.g., when a new fusion protocol unlocks or the base agent length differs), preventing constant memory reallocation.
-- **Web Worker Offloading:** To prevent the main thread from locking up during complex queries on large datasets, the actual initialization and search execution of the `Fuse.js` instance are offloaded to a dedicated Web Worker (`searchWorker.js`). The controller communicates with the worker asynchronously via `postMessage`.
+- **Web Worker Offloading:** To prevent the main thread from locking up during complex queries on large datasets, the actual initialization and search execution of the `Fuse.js` instance are offloaded to a dedicated Web Worker (`SearchWorker.js`). The controller communicates with the worker asynchronously via `postMessage`.
 
 ### <a id="virtual-scrolling"></a> 2. Virtual Scrolling (`Clusterize.js`)
 

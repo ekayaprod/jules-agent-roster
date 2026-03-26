@@ -135,7 +135,7 @@ describe('SearchController', () => {
     describe('Initialization & Web Worker Boundaries', () => {
         it('should initialize Web Worker if Worker is defined', () => {
             expect(searchController.worker).toBeDefined();
-            expect(searchController.worker.scriptURL).toBe('js/Features/Search/searchWorker.js');
+            expect(searchController.worker.scriptURL).toBe('js/Features/Search/SearchWorker.js');
         });
 
         it('should handle missing Worker globally', () => {
@@ -341,7 +341,7 @@ describe('searchWorker Worker Script Boundaries', () => {
         // Ensure we execute the worker script content natively for coverage.
         // Node requires the file, but we must use jest.isolateModules to ensure it's evaluated freshly
         jest.isolateModules(() => {
-            require('./searchWorker.js');
+            require('./SearchWorker.js');
         });
     });
 
