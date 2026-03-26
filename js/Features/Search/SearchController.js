@@ -46,7 +46,7 @@ class SearchController {
 
     // 🧫 Mitosis: Initialize Web Worker for background fuzzy searching
     if (typeof Worker !== 'undefined') {
-        this.worker = new Worker('js/Features/Search/searchWorker.js');
+        this.worker = new Worker('js/Features/Search/SearchWorker.js');
         this.worker.onmessage = (e) => {
             const { type, results, searchId, message } = e.data;
             if (this._resolveMap.has(searchId)) {

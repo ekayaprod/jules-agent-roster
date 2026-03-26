@@ -153,3 +153,8 @@
 **Title**: [Utility File Naming Standardization]
 **Learning**: [Discovered that ClipboardUtils.js was violating the strict kebab-case naming convention applied to utility files across the js/Utils and js/UI domains.]
 **Action**: [Renamed ClipboardUtils.js and ClipboardUtils.test.js to strict kebab-case (clipboard-utils.js) using git mv, and executed a global AST/text replace to update all import paths across index.html and test suites.]
+
+2026-03-26
+**Title**: 👷 Foreman - [Feature Module Naming Standardization]
+**Learning**: Discovered that `js/Features/Search/searchWorker.js` was violating the PascalCase naming convention applied to primary module files across feature directories.
+**Action**: Renamed `searchWorker.js` to `SearchWorker.js` using `git mv` and updated all string references globally.
