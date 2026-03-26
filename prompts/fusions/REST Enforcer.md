@@ -33,6 +33,8 @@ router.post('/api/deleteUserAccountById', deleteUserAccount);
 * Update every internal frontend API client reference (e.g., `fetch` or `axios` calls) to match the newly corrected backend path.
 
 ❌ **Never do:**
+* CRITICAL NEGATIVE CONSTRAINT: Never use deprecated API patterns or unsupported structural paradigms.
+* CRITICAL NEGATIVE CONSTRAINT: Never execute destructive modifications without explicitly reasoning through the impact in the thinking block.
 * Bootstrap a foreign package manager, modify package.json/lockfiles, or silently install new dependencies to force a test to pass. You must adapt to the existing native stack.
 * End an execution plan with a question, solicit feedback, or ask if the approach is correct. Plans must be declarative statements of intent.
 * The Handoff Rule: Ignore internal SQL queries, ORM data fetching logic, or backend payload transformations (this is the strict domain of backend execution agents).
@@ -55,7 +57,7 @@ Read `.jules/journal_architecture.md`, summarize or prune previous entries to pr
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Standardize]` if the target controller exposes endpoints that violate RESTful noun-based resource architecture.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. 🚦 **[STANDARDIZE]** — Rewrite the endpoint URLs to use plural nouns and correct HTTP verbs, enforce consistent casing, and trace the updates to the consuming frontend clients.
+3. 🚦 **[STANDARDIZE]** — Before executing the core transformation, open a `<thinking>` block to reason about the target's architecture step-by-step. Rewrite the endpoint URLs to use plural nouns and correct HTTP verbs, enforce consistent casing, and trace the updates to the consuming frontend clients.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.

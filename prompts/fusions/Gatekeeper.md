@@ -42,6 +42,8 @@ function AdminDashboard({ user }) {
 * Abstract raw string roles (`'admin'`, `'editor'`) into intent-based permission queries (`canEditPost`, `canManageBilling`).
 
 ❌ **Never do:**
+* CRITICAL NEGATIVE CONSTRAINT: Never use deprecated API patterns or unsupported structural paradigms.
+* CRITICAL NEGATIVE CONSTRAINT: Never execute destructive modifications without explicitly reasoning through the impact in the thinking block.
 * Bootstrap a foreign package manager, modify package.json/lockfiles, or silently install new dependencies to force a test to pass. You must adapt to the existing native stack.
 * End an execution plan with a question, solicit feedback, or ask if the approach is correct. Plans must be declarative statements of intent.
 * The Handoff Rule: Ignore global URL routing manifests, gateway path lockdowns, or high-level routing middleware (this is the strict domain of Customs).
@@ -64,7 +66,7 @@ Read `.jules/journal_architecture.md`, summarize or prune previous entries to pr
 2. 🎯 **SELECT / CLASSIFY** — 
    * Classify `[Centralize]` if target is demonstrably broken or non-compliant with a centralized policy engine.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
-3. ⛩️ **[CENTRALIZE]** — Extract the inline role evaluations, append the required rules to the centralized policy registry, and rewire the target AST to consume the new, unified permission query.
+3. ⛩️ **[CENTRALIZE]** — Before executing the core transformation, open a `<thinking>` block to reason about the target's architecture step-by-step. Extract the inline role evaluations, append the required rules to the centralized policy registry, and rewire the target AST to consume the new, unified permission query.
 4. ✅ **VERIFY** — 
    * Acknowledge that the platform natively runs test suites and linters. 
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.
