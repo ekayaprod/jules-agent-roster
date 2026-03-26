@@ -199,6 +199,68 @@ ${userTask}`;
     }
 
     /**
+     * Internal utility to handle duplicate GitHub fetch logic, timeout management, and error parsing.
+     * @param {string} sourceName - The target repository source name (e.g., 'sources/github/owner/repo').
+     * @param {string} endpoint - The GitHub API endpoint relative to the repo (e.g., 'pulls/1').
+     * @param {Object} options - Additional fetch options (method, body, headers).
+     * @param {boolean} [allow404=false] - Whether to return an empty array on a 404 status.
+     * @returns {Promise<any>} The parsed JSON response.
+     */
+    async _githubRequest(sourceName, endpoint, options = {}, allow404 = false) {
+        if (!sourceName.startsWith('sources/github/')) {
+            throw new Error(`Unsupported source format${allow404 ? ' for pull requests' : ''}`);
+        }
+
+        const repoPath = sourceName.replace('sources/github/', '');
+        const url = `https://api.github.com/repos/${repoPath}/${endpoint}`;
+
+        const fetchOptions = { ...options };
+        if (this.githubToken) {
+            fetchOptions.headers = {
+                ...fetchOptions.headers,
+                'Authorization': `token ${this.githubToken}`
+            };
+        }
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
+        try {
+            const response = await fetch(url, {
+                ...fetchOptions,
+                signal: controller.signal
+            });
+
+            if (!response.ok) {
+                if (allow404 && response.status === 404) {
+                    return [];
+                }
+                const errorText = await response.text();
+                let errorMsg = `GitHub API returned ${response.status}`;
+                try {
+                    const errJson = JSON.parse(errorText);
+                    if (errJson.message) errorMsg = errJson.message;
+                } catch(e) {
+                    if (allow404) console.warn("Failed to parse error JSON:", e);
+                }
+                throw new Error(errorMsg);
+            }
+            return await response.json();
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                if (allow404) {
+                    console.error("Failed to fetch pull requests:", error);
+                    return [];
+                }
+                throw new Error('Request timed out');
+            }
+            throw error;
+        } finally {
+            clearTimeout(timeoutId);
+        }
+    }
+
+    /**
      * Retrieves the list of open pull requests for a given repository via the GitHub API.
      * @param {string} sourceName - The target repository source name (e.g., 'sources/github/owner/repo').
      * @returns {Promise<Array>} The JSON response containing the open pull requests, or a safe fallback [] on 404.
@@ -213,47 +275,7 @@ ${userTask}`;
      * @returns {Promise<Object>} The pull request details.
      */
     async getPullRequest(sourceName, prNumber) {
-        if (!sourceName.startsWith('sources/github/')) {
-            throw new Error('Unsupported source format');
-        }
-
-        const repoPath = sourceName.replace('sources/github/', '');
-        const url = `https://api.github.com/repos/${repoPath}/pulls/${prNumber}`;
-
-        const options = {};
-        if (this.githubToken) {
-            options.headers = {
-                'Authorization': `token ${this.githubToken}`
-            };
-        }
-
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-
-        try {
-            const response = await fetch(url, {
-                ...options,
-                signal: controller.signal
-            });
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                let errorMsg = `GitHub API returned ${response.status}`;
-                try {
-                    const errJson = JSON.parse(errorText);
-                    if (errJson.message) errorMsg = errJson.message;
-                } catch(e) {}
-                throw new Error(errorMsg);
-            }
-            return await response.json();
-        } catch (error) {
-            if (error.name === 'AbortError') {
-                throw new Error('Request timed out');
-            }
-            throw error;
-        } finally {
-            clearTimeout(timeoutId);
-        }
+        return this._githubRequest(sourceName, `pulls/${prNumber}`);
     }
 
     /**
@@ -263,50 +285,10 @@ ${userTask}`;
      * @returns {Promise<Object>} The merge result.
      */
     async mergePullRequest(sourceName, prNumber) {
-        if (!sourceName.startsWith('sources/github/')) {
-            throw new Error('Unsupported source format');
-        }
-
-        const repoPath = sourceName.replace('sources/github/', '');
-        const url = `https://api.github.com/repos/${repoPath}/pulls/${prNumber}/merge`;
-
-        const options = {
-            method: 'PUT'
-        };
-        if (this.githubToken) {
-            options.headers = {
-                'Authorization': `token ${this.githubToken}`,
-                'Content-Type': 'application/json'
-            };
-        }
-
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-
-        try {
-            const response = await fetch(url, {
-                ...options,
-                signal: controller.signal
-            });
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                let errorMsg = `GitHub API returned ${response.status}`;
-                try {
-                    const errJson = JSON.parse(errorText);
-                    if (errJson.message) errorMsg = errJson.message;
-                } catch(e) {}
-                throw new Error(errorMsg);
-            }
-            return await response.json();
-        } catch (error) {
-            if (error.name === 'AbortError') {
-                throw new Error('Request timed out');
-            }
-            throw error;
-        } finally {
-            clearTimeout(timeoutId);
-        }
+        return this._githubRequest(sourceName, `pulls/${prNumber}/merge`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }
+        });
     }
 
     /**
@@ -316,101 +298,15 @@ ${userTask}`;
      * @returns {Promise<Object>} The updated PR details.
      */
     async closePullRequest(sourceName, prNumber) {
-        if (!sourceName.startsWith('sources/github/')) {
-            throw new Error('Unsupported source format');
-        }
-
-        const repoPath = sourceName.replace('sources/github/', '');
-        const url = `https://api.github.com/repos/${repoPath}/pulls/${prNumber}`;
-
-        const options = {
+        return this._githubRequest(sourceName, `pulls/${prNumber}`, {
             method: 'PATCH',
-            body: JSON.stringify({ state: 'closed' })
-        };
-        if (this.githubToken) {
-            options.headers = {
-                'Authorization': `token ${this.githubToken}`,
-                'Content-Type': 'application/json'
-            };
-        }
-
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-
-        try {
-            const response = await fetch(url, {
-                ...options,
-                signal: controller.signal
-            });
-
-            if (!response.ok) {
-                const errorText = await response.text();
-                let errorMsg = `GitHub API returned ${response.status}`;
-                try {
-                    const errJson = JSON.parse(errorText);
-                    if (errJson.message) errorMsg = errJson.message;
-                } catch(e) {}
-                throw new Error(errorMsg);
-            }
-            return await response.json();
-        } catch (error) {
-            if (error.name === 'AbortError') {
-                throw new Error('Request timed out');
-            }
-            throw error;
-        } finally {
-            clearTimeout(timeoutId);
-        }
+            body: JSON.stringify({ state: 'closed' }),
+            headers: { 'Content-Type': 'application/json' }
+        });
     }
 
     async getPullRequests(sourceName) {
-        if (!sourceName.startsWith('sources/github/')) {
-            throw new Error('Unsupported source format for pull requests');
-        }
-
-        const repoPath = sourceName.replace('sources/github/', '');
-        const url = `https://api.github.com/repos/${repoPath}/pulls?state=open`;
-
-        const options = {};
-        if (this.githubToken) {
-            options.headers = {
-                'Authorization': `token ${this.githubToken}`
-            };
-        }
-
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-
-        try {
-            const response = await fetch(url, {
-                ...options,
-                signal: controller.signal
-            });
-
-            if (!response.ok) {
-                if (response.status === 404) {
-                    return [];
-                }
-                const errorText = await response.text();
-                let errorMsg = `GitHub API returned ${response.status}`;
-                try {
-                    const errJson = JSON.parse(errorText);
-                    if (errJson.message) errorMsg = errJson.message;
-                } catch(e) {
-                    console.warn("Failed to parse error JSON:", e);
-                }
-                throw new Error(errorMsg);
-            }
-            return await response.json();
-        } catch (error) {
-            if (error.name === 'AbortError') {
-                console.error("Failed to fetch pull requests:", error);
-                return [];
-            }
-            throw error;
-        } finally {
-            clearTimeout(timeoutId);
-        }
+        return this._githubRequest(sourceName, 'pulls?state=open', {}, true);
     }
 }
 
