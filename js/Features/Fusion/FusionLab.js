@@ -183,8 +183,16 @@ class FusionLab {
 
     if (fuseBtn) {
       const isReady = this.state.slotA !== null && this.state.slotB !== null;
-      fuseBtn.disabled = !isReady;
       fuseBtn.setAttribute("aria-disabled", String(!isReady));
+
+      if (!isReady) {
+        let msg = "Select Protocols";
+        if (!this.state.slotA && this.state.slotB) msg = "Select Agent A";
+        else if (this.state.slotA && !this.state.slotB) msg = "Select Agent B";
+        DOMUtils.setButtonState(fuseBtn, "ready", msg);
+      } else {
+        DOMUtils.setButtonState(fuseBtn, "ready", "Ignite Fusion Protocol");
+      }
     }
   }
 
@@ -205,6 +213,16 @@ class FusionLab {
       errorEl.hidden = false;
       errorEl.setAttribute("aria-live", "assertive");
       if (textSpan) textSpan.innerText = message;
+
+      // Empathetic Recovery Path: Guide user back to missing input
+      let targetSlot = null;
+      if (!this.state.slotA && this.elements.slotACard) targetSlot = this.elements.slotACard;
+      else if (!this.state.slotB && this.elements.slotBCard) targetSlot = this.elements.slotBCard;
+
+      if (targetSlot) {
+        targetSlot.focus();
+        targetSlot.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
     }
   }
 
@@ -222,6 +240,8 @@ class FusionLab {
 
     if (fuseBtn) {
       fuseBtn.classList.remove("error");
+      fuseBtn.removeAttribute("aria-live");
+      fuseBtn.removeAttribute("aria-busy");
     }
   }
 
@@ -235,12 +255,17 @@ class FusionLab {
     const agentA = this.state.slotA;
     const agentB = this.state.slotB;
 
-    if (!agentA || !agentB) return;
+    if (!agentA || !agentB) {
+        this.showError("Missing Components: Please ensure both protocols are selected before initiating fusion.");
+        return;
+    }
 
     // Reset UI states
     this.clearError();
     if (fuseBtn) {
       DOMUtils.setButtonState(fuseBtn, "loading", "Igniting Protocol...");
+      fuseBtn.setAttribute("aria-live", "polite");
+      fuseBtn.setAttribute("aria-busy", "true");
     }
 
     const result = this.compiler.fuse(agentA, agentB);
