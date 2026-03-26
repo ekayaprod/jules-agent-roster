@@ -32,4 +32,28 @@ describe('AgentUtils', () => {
              expect(AgentUtils).toBeDefined();
         });
     });
+
+    describe('getValidCustomAgents', () => {
+        it('returns empty array if customAgents is falsy or empty', () => {
+            expect(AgentUtils.getValidCustomAgents(null)).toEqual([]);
+            expect(AgentUtils.getValidCustomAgents(undefined)).toEqual([]);
+            expect(AgentUtils.getValidCustomAgents({})).toEqual([]);
+        });
+
+        it('returns only agents with valid non-empty prompt property', () => {
+            const mockAgents = {
+                'AgentA': { name: 'Agent A', prompt: 'Prompt A' },
+                'AgentB': { name: 'Agent B', prompt: '' },
+                'AgentC': { name: 'Agent C' },
+                'AgentD': { name: 'Agent D', prompt: 'Prompt D' }
+            };
+
+            const result = AgentUtils.getValidCustomAgents(mockAgents);
+            expect(result).toHaveLength(2);
+            expect(result).toEqual([
+                { name: 'Agent A', prompt: 'Prompt A' },
+                { name: 'Agent D', prompt: 'Prompt D' }
+            ]);
+        });
+    });
 });

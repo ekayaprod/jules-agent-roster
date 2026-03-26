@@ -41,13 +41,7 @@ class ExportController {
     const header = FormatUtils.CUSTOM_ROSTER_HEADER;
 
     // ↗️ VECTORIZE: The Single-Pass Pipeline. We ignore the abstracted layers and execute the calculation in one direct pass.
-    const validCustomAgents = [];
-    for (const key in this.app.customAgents) {
-      if (Object.prototype.hasOwnProperty.call(this.app.customAgents, key)) {
-        const a = this.app.customAgents[key];
-        if (a.prompt && a.prompt.length > 0) validCustomAgents.push(a);
-      }
-    }
+    const validCustomAgents = AgentUtils.getValidCustomAgents(this.app.customAgents);
 
     if (validCustomAgents.length === 0) return this.app.toast.show("No custom agents available.");
     DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(validCustomAgents), "jules_custom_agents.md");
