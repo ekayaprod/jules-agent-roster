@@ -42,7 +42,7 @@ The `RosterApp` orchestrates the primary application flow, emphasizing asynchron
 
 * **`AgentCard.js`**: A functional component that generates the HTML for individual agent cards. It handles efficient DOM updates and event delegation setup.
 * **`ToastNotification.js`**: A lightweight, accessible toast notification system for user feedback (e.g., "Copied to clipboard").
-* **`ClipboardUtils.js`**: A wrapper around the Clipboard API with fallbacks for older browsers. Handles the logic for copying prompts and animating buttons.
+* **`clipboard-utils.js`**: A wrapper around the Clipboard API with fallbacks for older browsers. Handles the logic for copying prompts and animating buttons.
 
 ### Utilities (`/utils`)
 
