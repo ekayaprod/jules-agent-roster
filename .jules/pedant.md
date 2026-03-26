@@ -1,5 +1,5 @@
 ## YYYY-MM-DD - ☝️ Pedant - [Magic Numbers & Loose Types]
-**Learning:** Found loose `any` typing in `AgentRepository.js` and `StorageUtils.js` which undermines typological safety. Also found magic numbers `3000` and `2000` scattered as default duration values in UI components (`ToastNotification.js`, `ClipboardUtils.js`).
+**Learning:** Found loose `any` typing in `AgentRepository.js` and `StorageUtils.js` which undermines typological safety. Also found magic numbers `3000` and `2000` scattered as default duration values in UI components (`ToastNotification.js`, `clipboard-utils.js`).
 **Action:** Enforced code quality by replacing `any` with strict typing (`unknown` / `Promise<Object|Array>`) and extracting magic numbers into centralized, UPPER_SNAKE_CASE constants.
 
 2024-03-13

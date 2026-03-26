@@ -50,7 +50,7 @@ The `AgentCard.js` module renders individual agents as 3D interactive flip-cards
 
 ### <a id="clipboardutils-architecture"></a> ClipboardUtils Architecture
 
-The `ClipboardUtils.js` module centralizes logic for handling clipboard operations and managing momentary visual button states across the application.
+The `clipboard-utils.js` module centralizes logic for handling clipboard operations and managing momentary visual button states across the application.
 
 *   **Graceful Degradation:** The `copyText` utility attempts to use the modern `navigator.clipboard` API first. If it is unavailable or blocked, it seamlessly falls back to a hidden `textarea` element utilizing `document.execCommand('copy')` to maintain functionality on older or strictly permitted browser environments.
 *   **Visual State Management:** The `animateButtonSuccess` utility temporarily transitions button styles (swapping icons, modifying text) and automatically reverts them after a timeout. This is purely visual and completely decoupled from the data fetching or parsing layers.

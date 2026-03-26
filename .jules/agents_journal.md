@@ -149,3 +149,7 @@
 ## YYYY-MM-DD - [Hero Banner Removal]
 **Learning:** NA
 **Action:** NA
+2024-03-26
+**Title**: [Utility File Naming Standardization]
+**Learning**: [Discovered that ClipboardUtils.js was violating the strict kebab-case naming convention applied to utility files across the js/Utils and js/UI domains.]
+**Action**: [Renamed ClipboardUtils.js and ClipboardUtils.test.js to strict kebab-case (clipboard-utils.js) using git mv, and executed a global AST/text replace to update all import paths across index.html and test suites.]

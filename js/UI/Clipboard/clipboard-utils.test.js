@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const ClipboardUtils = require('./ClipboardUtils');
+const ClipboardUtils = require('./clipboard-utils');
 
 describe('ClipboardUtils', () => {
     describe('copyText', () => {
