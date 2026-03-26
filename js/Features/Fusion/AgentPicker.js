@@ -21,6 +21,15 @@ class AgentPicker {
         this.filteredResults = [];
         this.elements = {};
 
+        // ⚡ Bolt+: Pre-computed dictionary lookup for instant O(1) access instead of O(n) array `.find()` during hot-path selection events.
+        this.agentMap = new Map();
+        for (let i = 0; i < this.baseAgents.length; i++) {
+            const agent = this.baseAgents[i];
+            if (agent && agent.name) {
+                this.agentMap.set(agent.name.toLowerCase(), agent);
+            }
+        }
+
         this.cacheElements();
         this.bindEvents();
     }
@@ -66,7 +75,8 @@ class AgentPicker {
                     if (target) {
                         e.preventDefault();
                         const agentName = target.getAttribute("data-name");
-                        const agent = this.baseAgents.find(a => a.name.toLowerCase() === agentName);
+                        // ⚡ Bolt+: Eliminated O(n) linear search on selection by utilizing the O(1) Map dictionary.
+                        const agent = this.agentMap.get(agentName);
                         if (agent) this.handlePickerSelection(agent);
                     }
                 }
@@ -77,7 +87,8 @@ class AgentPicker {
                 const target = e.target.closest(".mini-agent-card");
                 if (target) {
                     const agentName = target.getAttribute("data-name");
-                    const agent = this.baseAgents.find(a => a.name.toLowerCase() === agentName);
+                    // ⚡ Bolt+: Eliminated O(n) linear search on selection by utilizing the O(1) Map dictionary.
+                    const agent = this.agentMap.get(agentName);
                     if (agent) {
                         this.handlePickerSelection(agent);
                     }
