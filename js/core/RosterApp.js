@@ -141,12 +141,16 @@ class RosterApp {
     // ⚡ Bolt+: Extracted redundant DOM queries outside of loops and cached the references on initialization.
     this.categoryElements = {};
     this.categoryLookup = {};
-    this.categoryKeys = Object.keys(CONFIG.categories);
-    this.categoryKeys.forEach((key) => {
-      const gridId = CONFIG.categories[key];
-      this.categoryElements[key] = document.getElementById(gridId);
-      this.categoryLookup[gridId] = key;
-    });
+    this.categoryKeys = [];
+    // ⚡ Bolt+: Replaced Object.keys().forEach with a direct for...in lookup to eliminate array allocations on app startup.
+    for (const key in CONFIG.categories) {
+        if (Object.prototype.hasOwnProperty.call(CONFIG.categories, key)) {
+            this.categoryKeys.push(key);
+            const gridId = CONFIG.categories[key];
+            this.categoryElements[key] = document.getElementById(gridId);
+            this.categoryLookup[gridId] = key;
+        }
+    }
 
     // Cache static elements used frequently during high-frequency events or initialization
     const staticIds = [
@@ -747,12 +751,15 @@ class RosterApp {
       OBSERVER_OPTIONS
     );
 
-    Object.keys(CONFIG.sectionMap).forEach((gridId) => {
-      // ⚡ Bolt+: Utilize cached category elements and O(1) reversed lookups to prevent repeated query execution.
-      const catKey = this.categoryLookup[gridId];
-      const el = catKey ? this.categoryElements[catKey] : document.getElementById(gridId);
-      if (el) this.observer.observe(el);
-    });
+    // ⚡ Bolt+: Replaced Object.keys().forEach with a direct for...in lookup
+    for (const gridId in CONFIG.sectionMap) {
+      if (Object.prototype.hasOwnProperty.call(CONFIG.sectionMap, gridId)) {
+        // ⚡ Bolt+: Utilize cached category elements and O(1) reversed lookups to prevent repeated query execution.
+        const catKey = this.categoryLookup[gridId];
+        const el = catKey ? this.categoryElements[catKey] : document.getElementById(gridId);
+        if (el) this.observer.observe(el);
+      }
+    }
   }
 
   /**

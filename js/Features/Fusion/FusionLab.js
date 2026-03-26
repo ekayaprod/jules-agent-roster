@@ -336,11 +336,14 @@ class FusionLab {
 
       if (typeof AgentCard !== "undefined") {
         // Find the custom agent key by finding the matching object in customAgentsMap
+        // ⚡ Bolt+: Replaced O(N) array allocation overhead from Object.entries() with a direct for...in dictionary lookup.
         let keyStr = "fusion-result";
-        for (const [key, val] of Object.entries(this.compiler.customAgentsMap)) {
-            if (val.name === result.name) {
-                keyStr = key;
-                break;
+        for (const key in this.compiler.customAgentsMap) {
+            if (Object.prototype.hasOwnProperty.call(this.compiler.customAgentsMap, key)) {
+                if (this.compiler.customAgentsMap[key].name === result.name) {
+                    keyStr = key;
+                    break;
+                }
             }
         }
 

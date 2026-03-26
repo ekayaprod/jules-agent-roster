@@ -27,15 +27,18 @@ const FusionCompiler = function (agents, customAgents) {
     if (!data) return {};
 
     const result = {};
-    for (const rawKey of Object.keys(data)) {
-      // ↗️ VECTORIZE: The Single-Pass Bypass. Direct string manipulation in a single loop avoids
-      // the massive garbage collection overhead of chained Object.entries().map().map().sort().join().
-      const parts = rawKey.split(",");
-      for (let i = 0; i < parts.length; i++) {
-        parts[i] = parts[i].trim();
+    // ⚡ Bolt+: Replaced O(N) array allocation from Object.keys() with a direct for...in traversal.
+    for (const rawKey in data) {
+      if (Object.prototype.hasOwnProperty.call(data, rawKey)) {
+        // ↗️ VECTORIZE: The Single-Pass Bypass. Direct string manipulation in a single loop avoids
+        // the massive garbage collection overhead of chained Object.entries().map().map().sort().join().
+        const parts = rawKey.split(",");
+        for (let i = 0; i < parts.length; i++) {
+          parts[i] = parts[i].trim();
+        }
+        parts.sort();
+        result[parts.join(",")] = data[rawKey];
       }
-      parts.sort();
-      result[parts.join(",")] = data[rawKey];
     }
     return result;
   };
