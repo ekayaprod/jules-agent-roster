@@ -18,6 +18,13 @@ const CORE_EMOJIS = {
  * @see ../../../docs/architecture/Features/JulesManager.md#overview for the macro architectural scope.
  */
 class JulesManager {
+    static ACTIVE_SESSIONS_POLL_MS = 5000;
+    static TERMINAL_POLL_MS = 3000;
+    static MODAL_FOCUS_DELAY_MS = 50;
+    static MODAL_FOCUS_QUICK_DELAY_MS = 10;
+    static SUCCESS_DISMISS_DELAY_MS = 2000;
+    static PAGE_SIZE = 50;
+
     constructor(rosterApp) {
         this.app = rosterApp;
         this.currentRepo = null;
@@ -73,7 +80,7 @@ class JulesManager {
                 keyInput.value = StorageUtils.getItem("jules_api_key");
                 if (githubTokenInput) githubTokenInput.value = StorageUtils.getItem("github_api_key");
                 settingsModal.classList.add("visible");
-                setTimeout(() => keyInput.focus(), 10);
+                setTimeout(() => keyInput.focus(), JulesManager.MODAL_FOCUS_QUICK_DELAY_MS);
                 this._clearKeyError(keyInput, errorSpan);
                 this._clearKeyError(githubTokenInput, githubTokenErrorSpan);
             } else {
@@ -310,7 +317,7 @@ class JulesManager {
         if (msgEl) msgEl.textContent = promptText;
         
         modal.classList.add("visible");
-        setTimeout(() => inputField?.focus(), 50);
+        setTimeout(() => inputField?.focus(), JulesManager.MODAL_FOCUS_DELAY_MS);
     }
 
     _showHistoryModal(sessionId, agentEmoji, agentName) {
@@ -328,7 +335,7 @@ class JulesManager {
         if (msgEl) msgEl.innerHTML = '<span class="term-status skeleton-pulse">Loading execution thread...</span>';
 
         modal.classList.add("visible");
-        setTimeout(() => inputField?.focus(), 50);
+        setTimeout(() => inputField?.focus(), JulesManager.MODAL_FOCUS_DELAY_MS);
     }
 
     _showKeyError(input, span, message) {
@@ -418,7 +425,7 @@ class JulesManager {
 
         const boundFetch = () => this._fetchAndRenderSessions(sourceName, terminal);
         await boundFetch();
-        this.activeSessionsInterval = setInterval(boundFetch, 5000);
+        this.activeSessionsInterval = setInterval(boundFetch, JulesManager.ACTIVE_SESSIONS_POLL_MS);
     }
 
     /**
@@ -536,7 +543,7 @@ class JulesManager {
         try {
             if (!window.julesService || !window.julesService.apiKey) return;
 
-            const sessionsResponse = await window.julesService.getSessions(50);
+            const sessionsResponse = await window.julesService.getSessions(JulesManager.PAGE_SIZE);
             if (!sessionsResponse.sessions) {
                 this._checkEmptyTerminal();
                 return;
@@ -825,7 +832,7 @@ class JulesManager {
             } catch (e) {
                 console.error("Polling error", e);
             }
-        }, 3000);
+        }, JulesManager.TERMINAL_POLL_MS);
     }
 
     _updatePollingState(sessionId, block, state, agentName, agentEmoji) {
@@ -836,7 +843,7 @@ class JulesManager {
             statusSpan.className = "term-status status-success";
             statusSpan.innerHTML = `✅ Execution Finished`;
             this.loadPullRequestsForRepo(this.currentRepo); 
-            setTimeout(() => this.dismissSession(sessionId), 2000);
+            setTimeout(() => this.dismissSession(sessionId), JulesManager.SUCCESS_DISMISS_DELAY_MS);
             return;
         }
 
