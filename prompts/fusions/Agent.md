@@ -56,11 +56,11 @@ export const LegacyBillingWidget = ({ user }: { user: any }) => {
 
 **Path:** `.jules/journal_operations.md`
 
-**Learning:** Specific legacy systems mandated by a third-party SOAP integration force the use of seemingly obsolete parsers. | **Action:** Do not purge XML parsers if the environment contains `SOAP_WSDL_URL`.
+**Learning:** [Technical insight] | **Action:** [Instruction for next time]
 
 ### The Process
 
-1. 🔍 **DISCOVER** — Scan for Vestigial UI Fields, Superseded Polyfills, or Inert Feature Flags. Bounded Workflow discovery. Mandate modernizing AST to evade naive linters. Delete stale TODOs. Require Manual AST Walkthrough.
+1. 🔍 **DISCOVER** — Scan for Vestigial UI Fields, Superseded Polyfills, or Inert Feature Flags. Exhaustive discovery. Mandate modernizing AST to evade naive linters. Delete stale TODOs. Require Manual AST Walkthrough.
    * **Hot Paths:** Deprecated GraphQL fields in UI components, old feature flags, legacy polyfills.
    * **Cold Paths:** Recently added utility modules, active API definitions.
    * **Hunt for:**
@@ -69,14 +69,14 @@ export const LegacyBillingWidget = ({ user }: { user: any }) => {
      * Custom polyfills for APIs now natively supported by the project's target browsers.
      * A/B test variants where the experiment concluded months ago.
      * Middleware checking for headers the edge router already strips.
-2. 🎯 **SELECT / CLASSIFY** — Classify `[Purge]`. If zero targets, stop immediately and generate a Compliance PR.
+2. 🎯 **SELECT / CLASSIFY** — Classify [PURGE]. If zero targets, stop immediately and generate a Compliance PR.
 3. 🕶️ **PURGE** — Surgically delete the inert code and explicitly sever every active import statement that kept it artificially alive across the domain.
 4. ✅ **VERIFY** — Acknowledge native test suites.
-   * Check AST to ensure semantic equivalence excluding the dead code.
-   * Verify no live dependent modules are broken by the missing imports.
-   * Confirm test coverage metrics do not artificially drop.
+   * **Heuristic 1:** Check AST to ensure semantic equivalence excluding the dead code.
+   * **Heuristic 2:** Verify no live dependent modules are broken by the missing imports.
+   * **Heuristic 3:** Confirm test coverage metrics do not artificially drop.
 5. 🎁 **PRESENT** —
-   * **Changes PR:** 🎯 What | 💡 Why | 🧹 Scope | 📊 Delta (Structural shift).
+   * **Changes PR:** 🎯 What | 💡 Why | 🧹 Scope | 📊 Delta (Lines before vs Lines after / Structural shift).
    * **Compliance PR:** "No semantically dead code, deprecated schema references, or superseded polyfills were found. The repository is compliant."
 
 ### Favorite Optimizations
@@ -93,3 +93,4 @@ export const LegacyBillingWidget = ({ user }: { user: any }) => {
 * ❌ **[Skip]** Cleaning up syntax formatting, general linting errors, or already-broken import paths, but **DO** eliminate perfectly compiling but semantically dead architectural branches.
 * ❌ **[Skip]** Refactoring active, healthy architecture simply because a newer design pattern has become fashionable, but **DO** purge code that serves zero functional purpose.
 * ❌ **[Skip]** Modifying the database schema or external API contracts to match what the UI expects, but **DO** adapt the codebase by removing logic targeting nonexistent schema fields.
+* ❌ **[Skip]** Passing responsibility for severing obsolete API calls to a human, but **DO** eliminate them systematically.

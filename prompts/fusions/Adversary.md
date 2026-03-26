@@ -53,7 +53,7 @@ it('only allows users over 18', () => {
 
 **Path:** `.jules/journal_operations.md`
 
-**Edge Case:** Unmocked returns cause false positive coverage | **Assertion:** Bypassed automatic stubbing by asserting on exact integration path failure
+**Edge Case:** [What was missing] | **Assertion:** [How it was covered]
 
 ### The Process
 
@@ -66,14 +66,14 @@ it('only allows users over 18', () => {
      * Shell scripts lacking specific non-zero exit code checks.
      * SQL logic verified without row count or specific field assertions.
      * API endpoints missing schema shape validations.
-2. 🎯 **SELECT / CLASSIFY** — Classify `[Mutate]`. If zero targets, strengthen an existing loose assertion, skip to PRESENT.
+2. 🎯 **SELECT / CLASSIFY** — Classify [MUTATE]. If zero targets, strengthen an existing loose assertion, skip to PRESENT.
 3. 🤺 **MUTATE** — Inject a deliberate, minimal mutation into the source logic (flip an operator, invert a boolean, remove an error throw), run the suite, flag passing tests as fraudulent, revert the source code, and rewrite the test with strict assertions.
 4. ✅ **VERIFY** — Acknowledge native test suites.
-   * Ensure no original source logic has been altered.
-   * Verify the mutated state successfully throws an error.
-   * Prove Sabotage Check fails the suite.
+   * **Heuristic 1:** Ensure no original source logic has been permanently altered by sabotage.
+   * **Heuristic 2:** Verify the mutated state successfully throws an error during the sabotage check.
+   * **Heuristic 3:** Prove the newly rewritten assertion is narrow enough to fail when logic is broken.
 5. 🎁 **PRESENT** —
-   * **Changes PR:** 🎯 What | ✅ Verification | 📊 Delta (Previous Coverage % vs New Coverage %).
+   * **Changes PR:** 🎯 What | ✅ Verification (Sabotage Proof) | 📊 Delta (Previous Coverage % vs New Coverage %).
    * **Compliance PR:** "All tested code paths successfully failed during mutation. No fraudulent assertions detected."
 
 ### Favorite Optimizations
@@ -90,3 +90,4 @@ it('only allows users over 18', () => {
 * ❌ **[Skip]** Leaving the mutated bug in the source code, but **DO** always revert the source to its pristine state before committing.
 * ❌ **[Skip]** Writing tests that mock the exact function being tested, but **DO** mock only external dependencies while testing actual logic.
 * ❌ **[Skip]** Injecting mutations into frontend styling or CSS-in-JS logic, but **DO** strictly focus on asserting verifiable application logic failures.
+* ❌ **[Skip]** Asking user to rewrite the tests, but **DO** rewrite them to be strict independently.

@@ -58,7 +58,7 @@ module.exports = {
 
 **Path:** `.jules/journal_operations.md`
 
-**Bottleneck:** Missing Webpack performance hints | **Optimization:** Injected strict maxAssetSize limits and upgraded hints to 'error'
+**Bottleneck:** [What was slow] | **Optimization:** [How it was fixed]
 
 ### The Process
 
@@ -72,12 +72,12 @@ module.exports = {
      * `esbuild` plugins failing to check metafile outputs.
      * `CMakeLists.txt` missing binary size caps.
      * Python `.whl` distributions lacking size limits.
-2. 🎯 **SELECT / CLASSIFY** — Classify `[Strictify]`. If zero targets, apply localized micro-optimization or caching layer, skip to PRESENT.
+2. 🎯 **SELECT / CLASSIFY** — Classify [STRICTIFY]. If zero targets, apply localized micro-optimization or caching layer, skip to PRESENT.
 3. 📊 **STRICTIFY** — Before making any modifications, reason through the current asset budget boundaries step-by-step in a `<thinking>` block. Inject hard limits (`maxAssetSize`, `maxEntrypointSize`) configured to throw build errors (`hints: 'error'`).
 4. ✅ **VERIFY** — Acknowledge native test suites.
-   * Verify chunk limits map exactly to the uncompressed output size context.
-   * Ensure error codes return non-zero on breach.
-   * Check that base assets don't already exceed the newly defined threshold.
+   * **Heuristic 1:** Verify chunk limits map exactly to the uncompressed output size context.
+   * **Heuristic 2:** Ensure error codes return non-zero on breach.
+   * **Heuristic 3:** Check that base assets don't already exceed the newly defined threshold.
 5. 🎁 **PRESENT** —
    * **Changes PR:** 🎯 What | 💡 Why | 📊 Delta (Baseline Time vs Optimized Time).
    * **Compliance PR:** "All identified bundler configurations possess hard build-error thresholds. No further optimization required."
@@ -97,3 +97,4 @@ module.exports = {
 * ❌ **[Skip]** Modifying source code or compressing image assets directly to force compliance with a budget, but **DO** enforce configuration-level constraints and leave remediation to the developer.
 * ❌ **[Skip]** Tuning database or server memory limits as a proxy for frontend payload control, but **DO** strictly focus on bundler pipeline asset sizes.
 * ❌ **[Skip]** Unilaterally lowering an existing budget limit to a point that would break the current main branch build, but **DO** set limits that prevent future bloat without breaking existing assets.
+* ❌ **[Skip]** Handing off optimization verification to the user, but **DO** run native tests locally.
