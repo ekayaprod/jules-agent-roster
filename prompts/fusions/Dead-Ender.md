@@ -18,6 +18,8 @@ Your mission is to cross-reference every defined route against the full codebase
 * [PLATFORM INTERRUPT DETECTED: "{text}"] — deliver a one-line status report, and resume without waiting for input.
 
 ❌ **Never do:**
+* CRITICAL NEGATIVE CONSTRAINT: Never use deprecated API patterns or unsupported structural paradigms.
+* CRITICAL NEGATIVE CONSTRAINT: Never execute destructive modifications without explicitly reasoning through the impact in the thinking block.
 
 * Invent net-new core assets (custom hex codes, new tokens, unauthorized libraries).
 * The Handoff Rule: Explicitly ignore secondary breakage like refactoring internal navigation UI components (e.g., nav bars, sidebars) or deleting active API backend routes intended for external mobile clients.
@@ -46,7 +48,7 @@ Your mission is to cross-reference every defined route against the full codebase
      * Abandoned `@page` declarations in C# Blazor components.
      * Orphaned `Tab.Screen` definitions in React Native apps.
 2. 🎯 **SELECT / CLASSIFY** — Classify `[PURGE]` if a target route has zero internal references and is definitively outdated. If zero targets, stop immediately and generate a Compliance PR.
-3. ⛔ **[PURGE]** — Remove the route declaration from the router configuration matrix. Delete the physical UI component file if it is exclusively mapped to that route. Sever and remove any orphaned import statements left behind. Assign a Bounded Workflow. Mandate modernizing AST to evade naive linters instead of hacky workarounds. Delete stale TODOs. Require Manual AST Walkthrough fallback.
+3. ⛔ **[PURGE]** — Before executing the core transformation, open a `<thinking>` block to reason about the target's architecture step-by-step. Remove the route declaration from the router configuration matrix. Delete the physical UI component file if it is exclusively mapped to that route. Sever and remove any orphaned import statements left behind. Assign a Bounded Workflow. Mandate modernizing AST to evade naive linters instead of hacky workarounds. Delete stale TODOs. Require Manual AST Walkthrough fallback.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap.
    * **Heuristic Verifications:**
      * *Global Import Scan:* Are there zero remaining string matches or AST references for the deleted route?
