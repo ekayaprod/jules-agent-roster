@@ -530,10 +530,10 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             manager.activeModalSessionId = null;
 
             const submitHistoryBtn = manager.getEl('submitHistoryBtn');
-            window.julesService.replyToSession = jest.fn();
+            window.julesService.sendUserInput = jest.fn();
 
             await submitHistoryBtn.click();
-            expect(window.julesService.replyToSession).not.toHaveBeenCalled();
+            expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
         });
 
         it('should fallback to default emoji if agent and name mismatch', () => {
@@ -664,12 +664,12 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             const historyModalInput = manager.getEl('historyModalInput');
             historyModalInput.value = 'History reply';
 
-            window.julesService.replyToSession = jest.fn().mockResolvedValueOnce({});
+            window.julesService.sendUserInput = jest.fn().mockResolvedValueOnce({});
 
             const submitHistoryBtn = manager.getEl('submitHistoryBtn');
             await submitHistoryBtn.click();
 
-            expect(window.julesService.replyToSession).toHaveBeenCalledWith('s123', 'History reply');
+            expect(window.julesService.sendUserInput).toHaveBeenCalledWith('s123', 'History reply');
             expect(mockToast.show).toHaveBeenCalledWith('Reply transmitted.', 'success');
         });
 
@@ -705,12 +705,12 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             const historyModalInput = manager.getEl('historyModalInput');
             historyModalInput.value = 'Enter reply';
 
-            window.julesService.replyToSession = jest.fn().mockResolvedValueOnce({});
+            window.julesService.sendUserInput = jest.fn().mockResolvedValueOnce({});
 
             const event = new KeyboardEvent('keydown', { key: 'Enter' });
             await historyModalInput.dispatchEvent(event);
 
-            expect(window.julesService.replyToSession).toHaveBeenCalledWith('s123', 'Enter reply');
+            expect(window.julesService.sendUserInput).toHaveBeenCalledWith('s123', 'Enter reply');
         });
 
         it('should clear error on input event in history modal', () => {
@@ -746,7 +746,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             const historyModalInput = manager.getEl('historyModalInput');
             historyModalInput.value = 'Failing reply';
 
-            window.julesService.replyToSession = jest.fn().mockRejectedValueOnce(new Error('API fail'));
+            window.julesService.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('API fail'));
 
             const submitHistoryBtn = manager.getEl('submitHistoryBtn');
             await submitHistoryBtn.click();

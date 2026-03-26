@@ -1,7 +1,3 @@
-## Helix — Spliced duplicated preformatted markdown blocks
-**Learning:** UI components sharing identical preformatted markdown rendering logic can be safely centralized into DOMUtils.
-**Action:** Always search for identical document.createElement("pre") configurations across UI features to ensure DOM logic remains DRY.
-
-## Helix — Spliced duplicated GitHub fetch boilerplate
-**Learning:** Multiple API endpoint wrappers duplicating identical fetch structure, timeouts, and error handling represent a vulnerable WET pattern that can be streamlined through parameterized helpers.
-**Action:** Consolidate redundant fetch-and-parse boilerplate into centralized internal `_request` methods within API client classes.
+## Helix — Duplicate Alias Removal
+**Learning:** `replyToSession` in `JulesAPI.js` was identified as a completely identical wrapper alias for `sendUserInput` within the same class context.
+**Action:** Deduplicate such alias wrappers immediately if structurally identical to streamline the API DNA, rewriting any internal and external callers.
