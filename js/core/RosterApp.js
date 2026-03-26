@@ -614,13 +614,7 @@ class RosterApp {
     });
     this.elements.masterCopyFusionsBtn?.addEventListener("click", async (e) => {
         // ↗️ VECTORIZE: The Single-Pass Pipeline. We ignore the abstracted layers and execute the calculation in one direct pass.
-        const validCustomAgents = [];
-        for (const key in this.customAgents) {
-            if (Object.prototype.hasOwnProperty.call(this.customAgents, key)) {
-                const a = this.customAgents[key];
-                if (a.prompt && a.prompt.length > 0) validCustomAgents.push(a);
-            }
-        }
+        const validCustomAgents = AgentUtils.getValidCustomAgents(this.customAgents);
 
         if (validCustomAgents.length === 0) return this.toast.show("No custom agents unlocked yet.");
         const header = FormatUtils.CUSTOM_ROSTER_HEADER;
