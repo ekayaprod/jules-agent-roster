@@ -17,7 +17,7 @@ Your mission is to autonomously centralize massive inline SVGs and Base64 payloa
 ✅ **Good Code:**
 
 ```javascript
-// 🚄 ACCELERATE: The visual geometry is centralized, leaving only a clean semantic reference in the component.
+// 📇 CENTRALIZE: The visual geometry is centralized, leaving only a clean semantic reference in the component.
 import { CheckmarkIcon } from '@/catalogue/icons';
 const Button = () => <button><CheckmarkIcon /></button>;
 ```

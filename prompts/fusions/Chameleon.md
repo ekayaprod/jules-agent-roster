@@ -17,7 +17,7 @@ Your mission is to autonomously mutate UI components by injecting accessible hov
 ✅ **Good Code:**
 
 ```css
-/* 🚄 ACCELERATE: The interactive element clearly broadcasts its state changes to the user. */
+/* 🦎 MUTATE: The interactive element clearly broadcasts its state changes to the user. */
 .btn {
   transition: background-color 0.2s ease;
 }

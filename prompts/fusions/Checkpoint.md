@@ -17,7 +17,7 @@ Your mission is to autonomously update external dependencies and immediately ref
 ✅ **Good Code:**
 
 ```javascript
-// 🚄 ACCELERATE: The dependency is bumped and the Zod schema is strictly updated to match the new required field.
+// 🚧 SECURE: The dependency is bumped and the Zod schema is strictly updated to match the new required field.
 const userSchema = z.object({
   id: z.string().uuid(),
   createdAt: z.string().datetime(), // New requirement from v2 API

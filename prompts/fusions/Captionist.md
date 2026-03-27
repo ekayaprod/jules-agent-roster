@@ -17,7 +17,7 @@ Your mission is to autonomously optimize static asset payloads and perfect their
 ✅ **Good Code:**
 
 ```html
-<!-- 🚄 ACCELERATE: The image uses a modern format and a highly descriptive alt text for screen readers. -->
+<!-- 🎟️ NARRATE: The image uses a modern format and a highly descriptive alt text for screen readers. -->
 <img src="hero-banner.webp" alt="Three engineers collaborating on a whiteboard in a bright office" />
 ```
 

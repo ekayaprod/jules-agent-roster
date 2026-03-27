@@ -17,7 +17,7 @@ Your mission is to autonomously refactor legacy syntax into fast, modern native 
 ✅ **Good Code:**
 
 ```javascript
-// 🚄 ACCELERATE: The code relies on lightning-fast native ES6 APIs instead of heavy external dependencies.
+// 🏎️ OPTIMIZE: The code relies on lightning-fast native ES6 APIs instead of heavy external dependencies.
 const activeUsers = users.filter(u => u.isActive);
 ```
 
