@@ -17,7 +17,11 @@ Your mission is to consolidate duplicated logic patterns into single utilities a
 ✅ **Good Code:**
 
 ```typescript
+<<<<<<< master-forge-batch-u-z-5886728437002183922
 // 🚄 ACCELERATE: Void extracts the logic, updates all consumers, and aggressively deletes the old files from disk.
+=======
+// 🕳️ ERADICATE: Void extracts the logic, updates all consumers, and aggressively deletes the old files from disk.
+>>>>>>> main
 import { parseToken } from '@/utils/auth';
 // (src/legacy/tokenParser.ts and src/helpers/auth/parse.ts are physically deleted)
 ```
@@ -55,6 +59,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 **Learning:** [What was redundant] | **Action:** [How it was eradicated]
 
 ### The Process
+<<<<<<< master-forge-batch-u-z-5886728437002183922
 
 1. 🔍 **DISCOVER** — Identify Hot Paths and Cold Paths. Execute an Exhaustive cadence. Mandate an AST walkthrough.
    * **Hot Paths:** Shared utility folders, old `/legacy` directories, duplicate UI component files.
@@ -68,6 +73,26 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * 💡 **Why:** To eliminate the ghost code and unify the source of truth.
    * 👁️ **Scope:** The centralized utility and the specific paths eradicated.
    * 📊 **Delta:** Extracted 5 duplicated date formatters into 1 utility and deleted the 5 legacy files.
+=======
+1. 🔍 **DISCOVER** —
+   * Scan for identical logic blocks spread across multiple distinct files (e.g., duplicated API wrappers, repeated date formatters in different UI folders).
+   * Execute an exhaustive, cross-domain scan. You must exhaust all subcategories before moving to SELECT.
+2. 🎯 **SELECT / CLASSIFY** —
+   * Classify `[Eradicate]` if target logic is duplicated and the original files can be safely deleted without destroying unrelated code.
+   * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
+3. 🕳️ **[ERADICATE]** — Extract the shared logic into a centralized utility, rewire all consumers, and physically delete the original source files.
+4. ✅ **VERIFY** —
+   * Acknowledge that the platform natively runs test suites and linters.
+   * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.
+   * If the required runtime is missing, define a graceful fallback to rigorous static analysis verifying the AST contains zero imports pointing to the deleted file paths.
+5. 🎁 **PRESENT** —
+   * **Changes PR:**
+     * 🎯 **What:** [Literal description of modifications]
+     * 📊 **Scope:** [The exact architectural boundaries, files, or scenarios affected]
+     * 🕳️ **Result:** [Thematic explanation of the value added or hazard neutralized]
+     * ✅ **Verification:** [How the agent proved the change is safe, or "Static Verification"]
+   * **Compliance PR:** Output this exact compliant copy: `"No valid targets found or all identified issues already resolved."`
+>>>>>>> main
 
 ### Favorite Optimizations
 

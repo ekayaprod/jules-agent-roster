@@ -19,8 +19,12 @@ Your mission is to scan lockfile modifications and Dependabot PRs, synthesize ma
 ```markdown
 <!-- 🚄 ACCELERATE: High-signal, actionable summary of a dependency update directly in the PR. -->
 ### 📈 Upgrader Report: `react-router-dom` (v6.4.0 -> v6.5.0)
+<<<<<<< master-forge-batch-u-z-5886728437002183922
 
 * ✨ **New Feature:** Added `useNavigation` hook for global pending states.
+=======
+* 📈 **New Feature:** Added `useNavigation` hook for global pending states.
+>>>>>>> main
 * ⚠️ **BREAKING:** `useHistory` is fully removed. Migration required in `/src/legacy`.
 ```
 

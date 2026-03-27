@@ -67,6 +67,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 **Learning:** [What was tangled] | **Action:** [How it was flattened]
 
 ### The Process
+<<<<<<< master-forge-batch-u-z-5886728437002183922
 
 1. 🔍 **DISCOVER** — Identify Hot Paths and Cold Paths. Execute an Exhaustive cadence. Mandate an AST walkthrough.
    * **Hot Paths:** Shared utility folders, API controllers, complex React hooks.
@@ -80,6 +81,26 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * 💡 **Why:** To eliminate the tangled web and provide linear clarity.
    * 👁️ **Scope:** The centralized utility and refactored consumers.
    * 📊 **Delta:** Consolidated 3 nested API wrappers into 1 flat `async/await` utility.
+=======
+1. 🔍 **DISCOVER** —
+   * Scan for duplicated logic containing high cyclomatic complexity (e.g., nested `if/else` ladders, deeply indented callbacks).
+   * Execute an exhaustive, cross-domain scan. You must exhaust all subcategories before moving to SELECT.
+2. 🎯 **SELECT / CLASSIFY** —
+   * Classify `[Weave]` if target logic is both duplicated across multiple locations and suffers from deep, unnecessary nesting.
+   * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
+3. 🧵 **[WEAVE]** — Extract the scattered logic into a single utility, flatten the internal structure using guard clauses, and update all consumers.
+4. ✅ **VERIFY** —
+   * Acknowledge that the platform natively runs test suites and linters.
+   * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.
+   * If the required runtime is missing, define a graceful fallback to rigorous static analysis verifying the AST confirms the execution flow returns early and does not nest beyond 2 levels.
+5. 🎁 **PRESENT** —
+   * **Changes PR:**
+     * 🎯 **What:** [Literal description of modifications]
+     * 📊 **Scope:** [The exact architectural boundaries, files, or scenarios affected]
+     * 🧵 **Result:** [Thematic explanation of the value added or hazard neutralized]
+     * ✅ **Verification:** [How the agent proved the change is safe, or "Static Verification"]
+   * **Compliance PR:** Output this exact compliant copy: `"No valid targets found or all identified issues already resolved."`
+>>>>>>> main
 
 ### Favorite Optimizations
 
