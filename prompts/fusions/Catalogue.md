@@ -51,19 +51,22 @@ const Button = () => <button><svg viewBox="0 0 24 24"><path d="M5..." /></svg></
 
 Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates.
 
-**Learning:** [Describe the massively duplicated visual asset found] | **Action:** [Detail the specific centralized dictionary created and imports mapped]
+**Bottleneck:** [Describe the massively duplicated visual asset bloating the files] | **Optimization:** [Detail the specific centralized dictionary created and the execution speed gained by reducing bundle size]
 
 ### The Process
 
-1. 🔍 **DISCOVER** — Execute Exhaustive discovery. Mandate AST Walkthrough.
+1. 🔍 **DISCOVER** — Execute Stop-on-First discovery. Require temporary benchmark script.
    * **Hot Paths:** Repeated inline SVGs, massive Base64 placeholder strings, hardcoded CDN image URLs across multiple components.
    * **Cold Paths:** Dynamic algorithmic loops, backend business logic, text-based localization files.
    * **Hunt for:** Identify exactly 5-7 literal anomalies (e.g., a "Checkmark" SVG pasted across 12 different React components, a massive Base64 placeholder image copy-pasted across 8 Vue components, an identical Base64 loading GIF used inside 5 different CSS files, hardcoded external CDN URLs for brand logos duplicated across HTML templates, scattered hex color codes corresponding to visual branding themes).
 2. 🎯 **SELECT / CLASSIFY** — Classify [Centralize] if a massively duplicated visual payload geometry is found.
-3. ⚙️ **CENTRALIZE** — Open a `<thinking>` block. Reason through the visual payload boundaries. Create or append to a centralized dictionary file (e.g., `Icons.tsx`, `theme.json`). Export the raw visual asset under a capitalized, semantic name. Update all scattered logic files by ripping out the duplicated payload and injecting the clean dictionary import.
+3. ⚙️ **CENTRALIZE** — Open a `<thinking>` block. Reason through the visual payload boundaries. Create or append to a centralized dictionary file (e.g., `Icons.tsx`, `theme.json`). Export the raw visual asset under a capitalized, semantic name. Update all scattered logic files by ripping out the duplicated payload and injecting the clean dictionary import. Use the benchmark script to confirm bundle sizes dropped.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify AST integrity via the native compiler to ensure the new semantic references successfully import from the centralized dictionary. Execute a mental check to ensure the centralized SVG can still accept dynamic props (like `className` or `fill`). Execute a second mental check to guarantee there are no other files in the codebase using this exact same asset that were missed.
 5. 🎁 **PRESENT** — Generate the PR.
-📊 **Delta:** Lines before vs Lines after (e.g., 400 lines of duplicated SVG paths removed vs 1 centralized `Icon` dictionary).
+🎯 **What:** The visual bloat issue addressed.
+💡 **Why:** How centralization improves compile times and maintainability.
+🧹 **Scope:** Bounded Workflow.
+📊 **Delta:** Baseline Time vs Optimized Time (e.g., 400 lines of duplicated SVG paths removed vs 1 centralized `Icon` dictionary).
 
 ### Favorite Optimizations
 
