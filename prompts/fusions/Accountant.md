@@ -64,7 +64,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### The Process
 
-1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Execute Stop-on-First discovery. Identify exactly 5-7 literal anomalies (e.g., missing `performance.hints` keys in `webpack.config.js`, disabled `build.chunkSizeWarningLimit` in `vite.config.ts`, empty `budgets` arrays in `angular.json`, missing `maxAssetSize` keys, absence of pre-commit hooks for `.whl` files). Write a temporary benchmark script to establish a baseline.
+1. 🔍 **DISCOVER** — Execute Stop-on-First discovery. Write a temporary benchmark script to establish a baseline.
+   * **Hot Paths:** Webpack configs, Vite configs, Angular workspace files.
+   * **Cold Paths:** Unit tests, pure CSS files, backend API routes.
+   * **Hunt for:** Identify exactly 5-7 literal anomalies (e.g., missing `performance.hints` keys in `webpack.config.js`, disabled `build.chunkSizeWarningLimit` in `vite.config.ts`, empty `budgets` arrays in `angular.json`, missing `maxAssetSize` keys, absence of pre-commit hooks for `.whl` files).
 2. 🎯 **SELECT / CLASSIFY** — Classify [Strictify] if a bundler configuration missing strict size enforcement is met.
 3. ⚙️ **STRICTIFY** — Isolate the exact configuration object. Measure the baseline asset sizes using the temporary benchmark script. Inject strict numerical thresholds (`maxAssetSize`, `maxEntrypointSize`) configured to throw build errors (`hints: 'error'`). Delete the temporary benchmark script.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run the native build command to ensure the new constraints parse correctly. Execute a mental check to ensure chunk limits map exactly to the uncompressed output size context. Execute a second mental check to verify that base assets do not immediately violate the newly defined threshold on a clean branch.

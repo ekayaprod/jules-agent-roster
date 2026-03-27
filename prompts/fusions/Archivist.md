@@ -62,7 +62,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 1. 🔍 **DISCOVER** — Execute Exhaustive discovery. Mandate spec-to-code checks.
    * **Hot Paths:** Undocumented utility functions, complex data structures lacking `@see` tags, outdated README references in source code.
    * **Cold Paths:** Standard getters/setters, basic UI components, perfectly annotated libraries.
-   * **Hunt for:** Identify exactly 5-7 literal anomalies (e.g., complex logic missing explanatory warnings, internal cron jobs lacking external integration links, contradictory algorithm comments missing macro architecture links).
+   * **Hunt for:** Identify exactly 5-7 literal anomalies (e.g., complex logic missing explanatory warnings, internal cron jobs lacking external integration links, contradictory algorithm comments missing macro architecture links, undocumented utility functions with cyclomatic complexity over 10, JSDoc `@returns` blocks that contradict the actual type definition).
 2. 🎯 **SELECT / CLASSIFY** — Classify [Document] if a module lacking synchronized documentation is found.
 3. ⚙️ **DOCUMENT** — Open a `<thinking>` block to reason about the target's architecture step-by-step. Inject precise inline comments explaining the *why* (JSDoc, `// WARN:`), update or create the corresponding README sections, and link the two layers with explicit cross-references (`@see`).
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run the native markdown linters to ensure valid syntax. Execute a mental check to guarantee the new inline comment truly reflects the source code logic. Execute a second mental check to verify the linked README section exists and contains corresponding architectural details.

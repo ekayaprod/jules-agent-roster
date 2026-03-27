@@ -60,7 +60,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### The Process
 
-1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Execute Visual/DOM discovery. Identify exactly 5-7 literal anomalies (e.g., legacy CSS files with `margin: 13px`, inline React style objects with raw integer paddings, XAML margin definitions lacking resource bindings, Android XML using raw `dp` instead of `dimens.xml`, scattered logic-only helper functions calculating raw layout offsets). Demand semantic reading.
+1. 🔍 **DISCOVER** — Execute Visual/DOM discovery. Demand semantic reading.
+   * **Hot Paths:** Legacy CSS files, inline styled components, XAML margin definitions, Android densities.
+   * **Cold Paths:** Vector graphic coordinates, logic-only helper functions.
+   * **Hunt for:** Identify exactly 5-7 literal anomalies (e.g., legacy CSS files with `margin: 13px`, inline React style objects with raw integer paddings, XAML margin definitions lacking resource bindings, Android XML using raw `dp` instead of `dimens.xml`, scattered logic-only helper functions calculating raw layout offsets).
 2. 🎯 **SELECT / CLASSIFY** — Classify [Standardize] if hardcoded structural values violating the spatial rhythm are found.
 3. ⚙️ **STANDARDIZE** — Deduce the established design scale natively available in the system. Map the arbitrary raw integers to the closest appropriate standard token (`var(--space-sm)`, `theme.spacing(2)`). Surgically replace the hardcoded values across the targeted presentation file. Verify contrast/screen-reader compatibility is unharmed.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Execute visual or structural consistency heuristics. Validate via contrast/screen-reader tools. Verify bounds checking without relying on naive linters. Run a mental check to guarantee responsive scaling logic remains unbroken on different viewports.

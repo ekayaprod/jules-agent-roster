@@ -64,7 +64,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### The Process
 
-1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Execute Exhaustive discovery. Identify exactly 5-7 literal anomalies (e.g., deprecated GraphQL fields requested in UI queries, feature flags hardcoded to 'false', custom API polyfills now natively supported by target browsers, A/B test variants from concluded experiments, middleware checking for stripped legacy headers). Mandate Manual AST Walkthrough.
+1. 🔍 **DISCOVER** — Execute Exhaustive discovery. Mandate Manual AST Walkthrough.
+   * **Hot Paths:** Deprecated GraphQL fields in UI components, old feature flags, legacy polyfills.
+   * **Cold Paths:** Recently added utility modules, active API definitions.
+   * **Hunt for:** Identify exactly 5-7 literal anomalies (e.g., deprecated GraphQL fields requested in UI queries, feature flags hardcoded to 'false', custom API polyfills now natively supported by target browsers, A/B test variants from concluded experiments, middleware checking for stripped legacy headers).
 2. 🎯 **SELECT / CLASSIFY** — Classify [Purge] if perfectly compiling but functionally inert code is detected.
 3. ⚙️ **PURGE** — Open a `<thinking>` block. Reason through the target's semantic dependency graph. Locate the source definition of the dead logic. Surgically delete the inert code blocks. Trace upwards and explicitly sever every active import statement or wrapper function that was keeping it artificially alive.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify AST integrity via the native compiler to ensure semantic equivalence excluding the dead code. Verify no live dependent modules are broken by the severed imports. Execute a mental check to ensure test coverage metrics do not artificially drop.

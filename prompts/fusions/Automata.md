@@ -82,9 +82,9 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 * 🦾 **The Text Parser Eradication**: Replaced an entire brittle regex suite designed to extract `Action: X` and `Target: Y` strings with a strict `execute_action` JSON Schema natively handled by the LLM SDK.
 * 🦾 **The JSON Markdown Extraction**: Deleted manual `.split('\`\`\`json')` logic from an orchestration script, migrating the endpoint to strict `response_format: { type: "json_object" }`.
 * 🦾 **The Implicit State Standardization**: Migrated arbitrary loose function descriptions passed in the system prompt into rigid, predictable `tools` arrays with exact type definitions.
-* 🦾 **The Dependency Simplification**: Streamlined extraneous imports (like custom JSON sanitizers) by relying on the LLM provider's native structured output guarantees.
-* 🦾 **The Context Injection Flattening**: Moved complex validation rules out of the primary text prompt and encoded them directly into the JSON Schema `description` fields.
-* 🦾 **The Edge Case Fortification**: Enforced rigorous safety checks by adding `additionalProperties: false` to the schema boundaries, eliminating hallucinated extra keys.
+* 🦾 **The Sanitizer Demolition**: Streamlined extraneous imports (like custom JSON sanitizers) by relying on the LLM provider's native structured output guarantees.
+* 🦾 **The Schema Description Encoding**: Moved complex validation rules out of the primary text prompt and encoded them directly into the JSON Schema `description` fields.
+* 🦾 **The Strict Boundary Enforcer**: Enforced rigorous safety checks by adding `additionalProperties: false` to the schema boundaries, eliminating hallucinated extra keys.
 
 ### Avoids
 

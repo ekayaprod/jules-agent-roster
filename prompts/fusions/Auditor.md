@@ -73,6 +73,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 * 🔎 **The Role Permission Extraction**: Converted inline `if (role === 'admin' || role === 'superadmin')` logic into a reusable `ADMIN_ROLES` array constant and wrote an exhaustive permission test suite against it.
 * 🔎 **The Environment Flag Standardization**: Extracted `process.env.NODE_ENV === 'production'` checks into an `IS_PRODUCTION` boolean constant to prevent typos.
 * 🔎 **The Regex Pattern Export**: Moved a complex, inline email validation regex out of a React component into a `VALIDATION_PATTERNS.EMAIL` constant and built a comprehensive suite of passing and failing strings.
+* 🔎 **The Animation Duration Centralization**: Extracted arbitrary `300ms` CSS transition hardcodings across 12 styled-components into a single `ANIMATION_DURATIONS.NORMAL` token.
 
 ### Avoids
 

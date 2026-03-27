@@ -62,7 +62,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### The Process
 
-1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Execute Exhaustive discovery. Identify exactly 5-7 literal anomalies (e.g., empty try/catch blocks masking failed calls to deprecated HTTP endpoints, `async-retry` wrappers around non-existent SDKs, Polly CircuitBreakers pointing to dead microservices, fallback offline banners for fully decommissioned APIs, LaunchDarkly logic checking deleted flags). Mandate AST Walkthrough.
+1. 🔍 **DISCOVER** — Execute Exhaustive discovery. Mandate AST Walkthrough.
+   * **Hot Paths:** Deprecated API wrappers, unused third-party SDK files, unused legacy fallback UI components.
+   * **Cold Paths:** Core database connections, living microservice infrastructure, active feature flags.
+   * **Hunt for:** Identify exactly 5-7 literal anomalies (e.g., empty try/catch blocks masking failed calls to deprecated HTTP endpoints, `async-retry` wrappers around non-existent SDKs, Polly CircuitBreakers pointing to dead microservices, fallback offline banners for fully decommissioned APIs, LaunchDarkly logic checking deleted flags).
 2. 🎯 **SELECT / CLASSIFY** — Classify [Amputate] if dead dependency wrapper logic protecting a decommissioned service is found.
 3. ⚙️ **AMPUTATE** — Verify the core service dependency is obsolete. Delete the primary try block attempting to contact the dead service. Remove the retry, timeout, or circuit-breaker configuration. Elevate the successful fallback path out of the catch block into the main function body. Ensure exact type interface preservation.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify AST integrity via the native compiler to ensure the new primary execution path mirrors the old catch-block execution. Check that return types have not mutated. Verify no live dependent modules are broken by the missing imports. Execute a mental check to ensure test coverage continues validating the promoted execution. Execute a second mental check to guarantee the fallback promotion does not bypass necessary security validations.
