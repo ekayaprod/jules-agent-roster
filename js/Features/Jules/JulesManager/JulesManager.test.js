@@ -2,7 +2,11 @@
  * @jest-environment jsdom
  */
 
-const JulesManager = require('./JulesManager');
+const JulesModals = require('./JulesModals');
+const TerminalPolling = require('./TerminalPolling');
+const JulesManager = require('./index');
+global.JulesModals = JulesModals;
+global.TerminalPolling = TerminalPolling;
 
 // Mock utilities
 global.StorageUtils = {
@@ -98,7 +102,7 @@ describe('JulesManager', () => {
 // So terminal needs to have #fetchingIndicator first
 const ind2 = document.createElement('div'); ind2.id = 'fetchingIndicator'; terminal.appendChild(ind2);
 await manager._fetchAndRenderSessions('sources/github/owner/repo', terminal);
-expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyError(null, null); }).not.toThrow();
+expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals._clearKeyError(null, null); }).not.toThrow();
         });
 
         it('_fetchAndRenderSessions: existing fetchingIndicator removal', async () => {
@@ -234,7 +238,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             const item = document.createElement('div');
             item.innerHTML = `<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>`;
 
-            manager.startTerminalPolling('123', item, 'o/r');
+            manager.polling.startTerminalPolling('123', item, 'o/r');
             jest.advanceTimersByTime(3000);
             // Internal polling happens
         });
@@ -244,7 +248,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             item.innerHTML = '<span id="status-123">Initializing...</span>';
             document.body.appendChild(item);
             window.julesService.getActivities.mockResolvedValueOnce({ activities: [ { userActionRequired: true, title: 'Waiting for Input' } ] });
-            manager.startTerminalPolling('123', item, 'Bot', '🤖');
+            manager.polling.startTerminalPolling('123', item, 'Bot', '🤖');
             await jest.advanceTimersByTimeAsync(3000);
             const badge = item.querySelector('#status-123');
             expect(badge.className).toContain('status-waiting');
@@ -256,7 +260,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
              item.innerHTML = '<span id="status-123">Initializing...</span>';
              document.body.appendChild(item);
              window.julesService.getActivities.mockResolvedValueOnce({ activities: [ { error: { message: 'Session Failed.' } } ] });
-             manager.startTerminalPolling('123', item, 'Bot', '🤖');
+             manager.polling.startTerminalPolling('123', item, 'Bot', '🤖');
              await jest.advanceTimersByTimeAsync(3000);
              const badge = item.querySelector('#status-123');
              expect(badge.className).toContain('status-error');
@@ -269,7 +273,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
              const testBlock = document.createElement('div'); testBlock.id = 'session-123';
              const stSpan = document.createElement('span'); stSpan.id = 'status-123'; testBlock.appendChild(stSpan);
-             manager._updatePollingState('123', testBlock, state, 'Agent', '🤖');
+             manager.polling._updatePollingState('123', testBlock, state, 'Agent', '🤖');
              expect(stSpan.className).toContain('status-waiting');
              expect(stSpan.textContent).toBe('⚠️ Response Needed (Click to view)');
         });
@@ -314,7 +318,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
              const spy = jest.spyOn(global, 'clearInterval');
              const item = document.createElement('div');
              item.innerHTML = '<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>';
-             manager.startTerminalPolling('123', item, 'repo');
+             manager.polling.startTerminalPolling('123', item, 'repo');
              expect(spy).toHaveBeenCalledWith(999);
         });
 
@@ -360,13 +364,13 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
              window.julesService.getActivities.mockRejectedValueOnce(new Error('polling fail'));
              const item = document.createElement('div');
              item.innerHTML = `<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>`;
-             manager.startTerminalPolling('123', item, 'o/r');
+             manager.polling.startTerminalPolling('123', item, 'o/r');
              await jest.advanceTimersByTimeAsync(3000);
              // Should log error silently
         });
 
         it('module export check', () => {
-            const managerModule = require('./JulesManager');
+            const managerModule = require('./index');
             expect(managerModule).toBeDefined();
         });
     });
@@ -393,11 +397,11 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             nameEl = document.getElementById('interactionModalAgent');
             msgEl = document.getElementById('interactionModalMessage');
 
-            manager._initInteractionModal();
+            manager.modals._initInteractionModal();
         });
 
         it('should show interaction modal with correct data', () => {
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             expect(manager.activeModalSessionId).toBe('s123');
             expect(emojiEl.textContent).toBe('🤖');
@@ -409,7 +413,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should close modal on cancel button click', () => {
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             cancelBtn.click();
 
             expect(modal.classList.contains('visible')).toBe(false);
@@ -419,7 +423,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
         it('should submit interaction on submit button click and handle success', async () => {
             window.julesService.sendUserInput = jest.fn().mockResolvedValueOnce({});
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = 'My response';
             await submitBtn.click();
@@ -435,7 +439,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
         it('should submit interaction on Enter keydown', async () => {
             window.julesService.sendUserInput = jest.fn().mockResolvedValueOnce({});
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = 'My response';
             const event = new KeyboardEvent('keydown', { key: 'Enter' });
@@ -446,7 +450,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
         it('should handle API failure during submission', async () => {
             window.julesService.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = 'My response';
             await submitBtn.click();
@@ -457,7 +461,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should handle missing inputField or errorSpan during close', () => {
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.remove();
             manager.elements['interactionModalInput'] = null;
@@ -477,14 +481,14 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             const errSpan = document.getElementById('interactionModalError');
             if (errSpan) errSpan.remove();
             manager.elements['interactionModalError'] = null;
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             await submitBtn.click();
             expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
         });
 
         it('should perform silent rollback when API fails but statusSpan is missing', async () => {
             window.julesService.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             const statusSpan = document.getElementById('status-s123');
             if (statusSpan) statusSpan.remove();
             inputField.value = 'My response';
@@ -493,7 +497,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should handle interaction modal gracefully if inputField is missing during close', () => {
-             manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+             manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
              manager.elements['interactionModalInput'] = null;
              const inEl = document.getElementById('interactionModalInput');
              if(inEl) inEl.remove();
@@ -505,7 +509,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should handle interaction modal gracefully if errorSpan is missing during close', () => {
-             manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+             manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
              manager.elements['interactionModalError'] = null;
              const errSpan = document.getElementById('interactionModalError');
              if(errSpan) errSpan.remove();
@@ -524,7 +528,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
                 <input id="historyModalInput" />
                 <span id="historyModalError"></span>
             `;
-            manager._initInteractionModal();
+            manager.modals._initInteractionModal();
 
             // Set state explicitly
             manager.activeModalSessionId = null;
@@ -576,7 +580,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             item.innerHTML = '<span id="status-123">Initializing...</span>';
             document.body.appendChild(item);
 
-            manager.startTerminalPolling('123', item, 'Bot', '🤖');
+            manager.polling.startTerminalPolling('123', item, 'Bot', '🤖');
 
             window.julesService.getActivities.mockResolvedValueOnce({
                 activities: [ { type: 'USER_INPUT', title: 'Input Needed' } ] // missing message but matching INPUT trigger
@@ -605,14 +609,14 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
                 <div id="historyModalContent"></div>
                 <div id="status-s123"></div>
             `;
-            manager._initInteractionModal();
+            manager.modals._initInteractionModal();
 
              const item = document.createElement('div');
              item.innerHTML = '<span id="status-123">Initializing...</span>';
              document.body.appendChild(item);
 
-             manager._showHistoryModal('123', '🤖', 'TestAgent');
-             manager.startTerminalPolling('123', item, 'Bot', '🤖');
+             manager.modals._showHistoryModal('123', '🤖', 'TestAgent');
+             manager.polling.startTerminalPolling('123', item, 'Bot', '🤖');
 
              window.julesService.getActivities.mockResolvedValueOnce({
                  activities: [
@@ -630,7 +634,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should handle interaction modal gracefully if history fields are missing', async () => {
-            manager._showHistoryModal('s123', '🤖', 'TestAgent');
+            manager.modals._showHistoryModal('s123', '🤖', 'TestAgent');
 
             // Remove modal inputs
             const historyModalInput = document.getElementById('historyModalInput');
@@ -658,8 +662,8 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
                 <div id="historyModalContent"></div>
                 <div id="status-s123"></div>
             `;
-            manager._initInteractionModal();
-            manager._showHistoryModal('s123', '🤖', 'TestAgent');
+            manager.modals._initInteractionModal();
+            manager.modals._showHistoryModal('s123', '🤖', 'TestAgent');
 
             const historyModalInput = manager.getEl('historyModalInput');
             historyModalInput.value = 'History reply';
@@ -681,8 +685,8 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
                 <input id="historyModalInput" />
                 <span id="historyModalError"></span>
             `;
-            manager._initInteractionModal();
-            manager._showHistoryModal('s123', '🤖', 'TestAgent');
+            manager.modals._initInteractionModal();
+            manager.modals._showHistoryModal('s123', '🤖', 'TestAgent');
 
             const submitHistoryBtn = manager.getEl('submitHistoryBtn');
             await submitHistoryBtn.click();
@@ -699,8 +703,8 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
                 <span id="historyModalError"></span>
                 <div id="status-s123"></div>
             `;
-            manager._initInteractionModal();
-            manager._showHistoryModal('s123', '🤖', 'TestAgent');
+            manager.modals._initInteractionModal();
+            manager.modals._showHistoryModal('s123', '🤖', 'TestAgent');
 
             const historyModalInput = manager.getEl('historyModalInput');
             historyModalInput.value = 'Enter reply';
@@ -721,8 +725,8 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
                 <input id="historyModalInput" />
                 <span id="historyModalError">Error here</span>
             `;
-            manager._initInteractionModal();
-            manager._showHistoryModal('s123', '🤖', 'TestAgent');
+            manager.modals._initInteractionModal();
+            manager.modals._showHistoryModal('s123', '🤖', 'TestAgent');
 
             const historyModalInput = manager.getEl('historyModalInput');
             historyModalInput.dispatchEvent(new Event('input'));
@@ -740,8 +744,8 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
                 <span id="historyModalError"></span>
                 <div id="status-s123"></div>
             `;
-            manager._initInteractionModal();
-            manager._showHistoryModal('s123', '🤖', 'TestAgent');
+            manager.modals._initInteractionModal();
+            manager.modals._showHistoryModal('s123', '🤖', 'TestAgent');
 
             const historyModalInput = manager.getEl('historyModalInput');
             historyModalInput.value = 'Failing reply';
@@ -762,7 +766,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
                 <input id="historyModalInput" />
                 <span id="historyModalError"></span>
             `;
-            manager._initInteractionModal();
+            manager.modals._initInteractionModal();
             manager.activeModalSessionId = null;
 
             const submitHistoryBtn = manager.getEl('submitHistoryBtn');
@@ -775,14 +779,14 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should handle interaction modal gracefully if inputField is missing but errorSpan is present during submission with empty text', async () => {
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             manager.elements['interactionModalInput'] = null;
             inputField.remove();
             await submitBtn.click();
         });
 
         it('should handle interaction modal gracefully if inputField is present but errorSpan is missing during submission with empty text', async () => {
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             manager.elements['interactionModalError'] = null;
             const errSpan = document.getElementById('interactionModalError');
             if (errSpan) errSpan.remove();
@@ -790,7 +794,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should handle interaction modal missing elements gracefully when submit button clicked and input empty', async () => {
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             const originalInputField = manager.getEl('interactionModalInput');
             originalInputField.value = '   ';
@@ -805,7 +809,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should handle interaction modal missing input field/error span during input event branch', async () => {
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             const originalInputField = manager.getEl('interactionModalInput');
             const originalErrorSpan = manager.getEl('interactionModalError');
@@ -825,13 +829,13 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
             if (errSpan) errSpan.remove();
             manager.elements['interactionModalError'] = null;
             inputField.value = '';
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             await submitBtn.click();
             expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
         });
 
         it('should handle interaction modal gracefully if inputField is missing during input event', async () => {
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             inputField.remove();
             manager.elements['interactionModalInput'] = null;
             const event = new Event('input');
@@ -843,7 +847,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
         it('should not submit if input is empty', async () => {
             window.julesService.sendUserInput = jest.fn();
-            manager._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = '   '; // only whitespace
             await submitBtn.click();
@@ -854,8 +858,8 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
     describe('init', () => {
         it('should show and clear errors gracefully if elements are missing', () => {
-            manager._showKeyError(null, null, 'Error');
-            manager._clearKeyError(null, null);
+            manager.modals._showKeyError(null, null, 'Error');
+            manager.modals._clearKeyError(null, null);
             expect(true).toBe(true);
         });
 
@@ -1352,7 +1356,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
         it('should create new dashboard item for unrendered session', () => {
             const session = { id: '1', title: 'TestAgent' };
-            const pollingSpy = jest.spyOn(manager, 'startTerminalPolling');
+            const pollingSpy = jest.spyOn(manager.polling, 'startTerminalPolling').mockImplementation(() => {});
 
             manager._processSession(session, terminal, 'repo');
 
@@ -1478,7 +1482,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should poll activities and update state to Needs Input', async () => {
-            manager.startTerminalPolling('123', item, 'repo');
+            manager.polling.startTerminalPolling('123', item, 'repo');
 
             // Fast forward to first interval
             window.julesService.getActivities.mockResolvedValue({
@@ -1497,7 +1501,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should handle chronological sorting using string comparison correctly', async () => {
-             manager.startTerminalPolling('123', item, 'repo');
+             manager.polling.startTerminalPolling('123', item, 'repo');
 
              // Mix order to ensure string sort fixes it
              window.julesService.getActivities.mockResolvedValue({
@@ -1517,7 +1521,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should complete session and generate PR link', async () => {
-             manager.startTerminalPolling('123', item, 'repo');
+             manager.polling.startTerminalPolling('123', item, 'repo');
 
              // Mock network PR fetch
              window.julesService.getPullRequests = jest.fn().mockResolvedValue([]);
@@ -1542,7 +1546,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
 
         it('should catch API errors gracefully during polling', async () => {
              const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-             manager.startTerminalPolling('123', item, 'repo');
+             manager.polling.startTerminalPolling('123', item, 'repo');
 
              window.julesService.getActivities.mockRejectedValue(new Error('Poll Error'));
 
@@ -1556,7 +1560,7 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should bail if activities array is missing', async () => {
-             manager.startTerminalPolling('123', item, 'repo');
+             manager.polling.startTerminalPolling('123', item, 'repo');
              window.julesService.getActivities.mockResolvedValue({});
              await jest.advanceTimersByTimeAsync(3000);
              // Should not throw, interval remains
@@ -1576,19 +1580,19 @@ expect(() => { manager._showKeyError(null, null, 'Error'); manager._clearKeyErro
         });
 
         it('should handle missing julesPollingIntervals during interval clear', () => {
-             manager.startTerminalPolling('123', item, 'repo');
+             manager.polling.startTerminalPolling('123', item, 'repo');
 
              // Simulate unexpected external state clearing the map while interval exists
              manager.julesPollingIntervals = null;
 
              // Call method again to trigger branch: `if (!this.julesPollingIntervals) this.julesPollingIntervals = {};`
-             manager.startTerminalPolling('123', item, 'repo');
+             manager.polling.startTerminalPolling('123', item, 'repo');
 
              expect(manager.julesPollingIntervals['123']).toBeDefined();
         });
 
         it('should update state appropriately when USER_INPUT activity type is received', async () => {
-            manager.startTerminalPolling('123', item, 'repo');
+            manager.polling.startTerminalPolling('123', item, 'repo');
 
             window.julesService.getActivities.mockResolvedValue({
                 activities: [
