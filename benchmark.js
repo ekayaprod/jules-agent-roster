@@ -228,10 +228,6 @@ const PinnedManager = loadClass('js/Features/Pinned/PinnedManager.js');
 global.PinnedManager = PinnedManager;
 const JulesManager = loadClass('js/Features/Jules/JulesManager/JulesManager.js');
 global.JulesManager = JulesManager;
-const JulesModals = loadClass('js/Features/Jules/JulesManager/JulesModals.js');
-global.JulesModals = JulesModals;
-const TerminalPolling = loadClass('js/Features/Jules/JulesManager/TerminalPolling.js');
-global.TerminalPolling = TerminalPolling;
 
 const SearchController = loadClass('js/Features/Search/SearchController.js');
 global.SearchController = SearchController;
