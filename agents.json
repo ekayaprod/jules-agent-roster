@@ -6,7 +6,7 @@
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "The Velocity Tuner"
+    "role": "Velocity Tuner"
   },
   {
     "name": "Palette+",
@@ -15,7 +15,7 @@
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "The UI Artist"
+    "role": "UI Artist"
   },
   {
     "name": "Sentinel+",
@@ -24,7 +24,7 @@
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "The Perimeter Fortifier"
+    "role": "Perimeter Fortifier"
   },
   {
     "name": "Helix",
@@ -33,7 +33,7 @@
     "tier": "",
     "category": "refactoring",
     "type": "",
-    "role": "The Structural Geneticist"
+    "role": "Structural Geneticist"
   },
   {
     "name": "Architect",
@@ -42,7 +42,7 @@
     "tier": "",
     "category": "architecture",
     "type": "",
-    "role": "The Structural Engineer"
+    "role": "Structural Engineer"
   },
   {
     "name": "Scavenger",
@@ -51,7 +51,7 @@
     "tier": "",
     "category": "hygiene",
     "type": "",
-    "role": "The Wasteland Cleaner"
+    "role": "Wasteland Cleaner"
   },
   {
     "name": "Superintendent",
@@ -60,7 +60,7 @@
     "tier": "",
     "category": "hygiene",
     "type": "",
-    "role": "The Foundation Keeper"
+    "role": "Foundation Keeper"
   },
   {
     "name": "Modernizer",
@@ -69,7 +69,7 @@
     "tier": "",
     "category": "refactoring",
     "type": "",
-    "role": "The Evolution Engine"
+    "role": "Evolution Engine"
   },
   {
     "name": "Inspector",
@@ -78,7 +78,7 @@
     "tier": "",
     "category": "testing",
     "type": "",
-    "role": "The Boundary Interrogator"
+    "role": "Boundary Interrogator"
   },
   {
     "name": "Paramedic",
@@ -87,7 +87,7 @@
     "tier": "",
     "category": "operations",
     "type": "",
-    "role": "The Startup Resuscitator"
+    "role": "Startup Resuscitator"
   },
   {
     "name": "Cortex",
@@ -96,7 +96,7 @@
     "tier": "",
     "category": "operations",
     "type": "",
-    "role": "The Synaptic Plumber"
+    "role": "Synaptic Plumber"
   },
   {
     "name": "Scribe",
@@ -105,7 +105,7 @@
     "tier": "",
     "category": "documentation",
     "type": "",
-    "role": "The Context Historian"
+    "role": "Context Historian"
   },
   {
     "name": "Author",
@@ -114,7 +114,7 @@
     "tier": "",
     "category": "documentation",
     "type": "",
-    "role": "The Readme Writer"
+    "role": "Readme Writer"
   },
   {
     "name": "Navigator",
@@ -123,7 +123,7 @@
     "tier": "",
     "category": "strategy",
     "type": "",
-    "role": "The Strategic Compass"
+    "role": "Strategic Compass"
   },
   {
     "name": "Curator",
@@ -132,7 +132,7 @@
     "tier": "",
     "category": "ux",
     "type": "",
-    "role": "The Payload Conservator"
+    "role": "Payload Conservator"
   },
   {
     "name": "Herald",
@@ -141,7 +141,7 @@
     "tier": "",
     "category": "documentation",
     "type": "",
-    "role": "The Release Broadcaster"
+    "role": "Release Broadcaster"
   },
   {
     "name": "Wordsmith",
@@ -150,7 +150,7 @@
     "tier": "",
     "category": "ux",
     "type": "",
-    "role": "The UX Copywriter"
+    "role": "UX Copywriter"
   },
   {
     "name": "Pedant",
@@ -159,7 +159,7 @@
     "tier": "",
     "category": "hygiene",
     "type": "",
-    "role": "The Consistency Enforcer"
+    "role": "Consistency Enforcer"
   },
   {
     "name": "Untangler",
@@ -168,7 +168,7 @@
     "tier": "",
     "category": "refactoring",
     "type": "",
-    "role": "The Logic Simplifier"
+    "role": "Logic Simplifier"
   },
   {
     "name": "Overseer",

@@ -5,7 +5,7 @@
     "short_description": "Operates as the self-starting creative engine of the repository, obsessively coding missing features into existence. It hyper-focuses on semantic gaps to build absolute, production-ready reality.",
     "category": "strategy",
     "type": "fusion",
-    "role": "The Flow State Hacker"
+    "role": "Flow State Hacker"
   },
   "Architect,Author": {
     "name": "City Clerk",
@@ -13,7 +13,7 @@
     "short_description": "Hunts Restructure complex module boundaries. Meticulously document the exact architectural shift via formal migration guides.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Migration Scribe"
+    "role": "Migration Scribe"
   },
   "Architect,Bolt+": {
     "name": "Slipstream",
@@ -21,7 +21,7 @@
     "short_description": "Flatten winding conditional logic and deeply nested `if/else` statements into lightning-fast, highly readable guard clauses and early returns.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Frictionless Router"
+    "role": "Frictionless Router"
   },
   "Architect,Cortex": {
     "name": "Construct",
@@ -29,7 +29,7 @@
     "short_description": "Upgrades RAG architecture by re-architecting flat text blobs into overlapping multi-dimensional chunks to ensure concepts are never severed.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Chunk Architect"
+    "role": "Chunk Architect"
   },
   "Architect,Curator": {
     "name": "Mason",
@@ -37,7 +37,7 @@
     "short_description": "Fix broken CSS layouts, WPF flexboxes, and container overflows to reinforce mathematical spatial integrity across the application.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Spatial Reinforcer"
+    "role": "Spatial Reinforcer"
   },
   "Architect,Helix": {
     "name": "Kiln",
@@ -45,7 +45,7 @@
     "short_description": "Upgrade outdated syntax to native standards and subject the logic to intense edge-case boundary testing.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The High-Heat Refactorer"
+    "role": "High-Heat Refactorer"
   },
   "Architect,Herald": {
     "name": "Registrar",
@@ -53,7 +53,7 @@
     "short_description": "Sweeps the repository to ensure all shared UI components, utility functions, and API routes are properly registered, exported from barrel files, and documented.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Component Cataloger"
+    "role": "Component Cataloger"
   },
   "Architect,Inspector": {
     "name": "Seawall",
@@ -61,7 +61,7 @@
     "short_description": "Deploy and enforce API limits, circuit breakers, and backoff mechanisms to protect the backend from catastrophic thundering herds.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Rate Limiting Strategist"
+    "role": "Rate Limiting Strategist"
   },
   "Architect,Modernizer": {
     "name": "Terraformer",
@@ -69,7 +69,7 @@
     "short_description": "Reorganizes massive, unstructured public folders and legacy asset \"dumping grounds\" into logical feature hierarchies. Swaps heavy raster formats to optimized WebP implementations to eradicate maintenance debt and bandwidth bloat.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Asset Reshaper"
+    "role": "Asset Reshaper"
   },
   "Architect,Navigator": {
     "name": "Scaffolder",
@@ -77,7 +77,7 @@
     "short_description": "Sweep codebases to hunt for defined architectural routes, namespaces, or module manifests that lack their corresponding physical files on the disk.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Structural Propagator"
+    "role": "Structural Propagator"
   },
   "Architect,Palette+": {
     "name": "Sculptor",
@@ -85,7 +85,7 @@
     "short_description": "Breathe life into static DOM elements by injecting fluid transitions, micro-interactions, and hardware-accelerated animations natively supported by the project's CSS architecture.",
     "category": "ux",
     "type": "fusion",
-    "role": "The UI Animator"
+    "role": "UI Animator"
   },
   "Architect,Paramedic": {
     "name": "Surgeon",
@@ -93,7 +93,7 @@
     "short_description": "Slice fragile, inline network logic out of monolithic UI components and isolate it into robust service files.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Inline Extractor"
+    "role": "Inline Extractor"
   },
   "Architect,Pedant": {
     "name": "Foreman",
@@ -101,7 +101,7 @@
     "short_description": "Eradicate chaotic naming conventions by sweeping the file tree and enforcing strict architectural blueprints using version-control-safe commands. Your mission is exclusively to eradicate naming anarchy by sweeping the physical file tree, enforcing the project's strict architectural blueprint, and updating every single import statement globally to match the corrected paths.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Convention Enforcer"
+    "role": "Convention Enforcer"
   },
   "Architect,Scavenger": {
     "name": "Renovator",
@@ -109,7 +109,7 @@
     "short_description": "Restructures disorganized feature hierarchies by colocating fragmented components, styles, and hooks into unified feature folders.",
     "category": "ux",
     "type": "fusion",
-    "role": "The UX Polisher"
+    "role": "UX Polisher"
   },
   "Architect,Scribe": {
     "name": "Archivist",
@@ -117,7 +117,7 @@
     "short_description": "He eliminates context drift by writing granular inline documentation and immediately synchronizing it with the repository's high-level architectural READMEs.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Context Linker"
+    "role": "Context Linker"
   },
   "Architect,Sentinel+": {
     "name": "Bastion",
@@ -125,7 +125,7 @@
     "short_description": "Sweep infrastructure-as-code and server configurations to explicitly lock down exposed boundaries.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Boundary Hardener"
+    "role": "Boundary Hardener"
   },
   "Architect,Superintendent": {
     "name": "Organizer",
@@ -133,7 +133,7 @@
     "short_description": "Eradicate the \"Dumping Ground\" by magnetically pulling implicitly related files from flat roots into dedicated, structured subdirectories.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Semantic Organizer"
+    "role": "Semantic Organizer"
   },
   "Architect,Untangler": {
     "name": "Hoister",
@@ -141,7 +141,7 @@
     "short_description": "You enforce strict scope hygiene by hoisting functions, constants, and utilities trapped inside component or render scopes to the file or module level.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Scope Elevator"
+    "role": "Scope Elevator"
   },
   "Architect,Wordsmith": {
     "name": "Information Architect",
@@ -149,7 +149,7 @@
     "short_description": "Reorganize the hierarchy of page layouts while simultaneously ensuring step labels, headings, and CTAs tell a cohesive, sequential story.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Layout Narrator"
+    "role": "Layout Narrator"
   },
   "Author,Author": {
     "name": "",
@@ -165,7 +165,7 @@
     "short_description": "Scans bundler configurations, injects hard size thresholds, and enforces build-time failures to stop asset bloat before it merges.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Budget Enforcer"
+    "role": "Budget Enforcer"
   },
   "Author,Cortex": {
     "name": "Policy Maker",
@@ -173,7 +173,7 @@
     "short_description": "Author and maintain the macro `AI_POLICY.md` to establish strict data boundaries.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The AI Architect"
+    "role": "AI Architect"
   },
   "Author,Curator": {
     "name": "Illuminator",
@@ -181,7 +181,7 @@
     "short_description": "Illuminator sweeps codebases hunting for massive blocks of dense text and autonomously generates inline diagrams to visualize them.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Architecture Draftsman"
+    "role": "Architecture Draftsman"
   },
   "Author,Helix": {
     "name": "Lexicon",
@@ -189,7 +189,7 @@
     "short_description": "Hunt down naming drift and synonymous variables, and standardize them into a unified, explicit vocabulary.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Vocabulary Standardizer"
+    "role": "Vocabulary Standardizer"
   },
   "Author,Herald": {
     "name": "Town Crier",
@@ -197,7 +197,7 @@
     "short_description": "Eradicates outdated documentation, missing feature announcements, and stale setup instructions. Distills noisy git commits into clean, user-facing changelog updates.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Release Documentation Synchronizer"
+    "role": "Release Documentation Synchronizer"
   },
   "Author,Inspector": {
     "name": "Mapper",
@@ -205,7 +205,7 @@
     "short_description": "Identify untested code, critical execution paths, and missing edge cases, meticulously updating the `TESTING_PLAN.md` file to construct actionable coverage roadmaps.",
     "category": "testing",
     "type": "fusion",
-    "role": "The Coverage Mapper"
+    "role": "Coverage Mapper"
   },
   "Author,Modernizer": {
     "name": "Ouija",
@@ -213,7 +213,7 @@
     "short_description": "Sweep the codebase to resurrect lost historical context for \"load-bearing spaghetti\" that modern developers are too afraid to touch or refactor.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Lore Resurrector"
+    "role": "Lore Resurrector"
   },
   "Author,Navigator": {
     "name": "Sherpa",
@@ -221,7 +221,7 @@
     "short_description": "Transform intimidating empty states and blank screens into contextual, actionable onboarding pathways.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Onboarding Architect"
+    "role": "Onboarding Architect"
   },
   "Author,Palette+": {
     "name": "Muse",
@@ -229,7 +229,7 @@
     "short_description": "Transform raw data dumps and blank screens into inspiring, actionable onboarding flows.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Contextual Guide"
+    "role": "Contextual Guide"
   },
   "Author,Paramedic": {
     "name": "Marshal",
@@ -237,7 +237,7 @@
     "short_description": "Hunt for undocumented infrastructure dependencies and draft clear, actionable disaster recovery steps.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Runbook Architect"
+    "role": "Runbook Architect"
   },
   "Author,Pedant": {
     "name": "Rulemaker",
@@ -245,7 +245,7 @@
     "short_description": "Mandates strict code hygiene, enforcing formatting guidelines, linting rules, and type-checking standards.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Style Guide Enforcer"
+    "role": "Style Guide Enforcer"
   },
   "Author,Scavenger": {
     "name": "Sunsetter",
@@ -253,7 +253,7 @@
     "short_description": "Author formal DEPRECATION.md plans and sweep wikis to erase or rewrite tutorials that still point to retired systems.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Deprecation Documentarian"
+    "role": "Deprecation Documentarian"
   },
   "Author,Scribe": {
     "name": "Scholar",
@@ -261,7 +261,7 @@
     "short_description": "Bridge the gap between granular code logic and macro architecture by synthesizing inline types and overarching READMEs into a single truth.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Documentation Synthesizer"
+    "role": "Documentation Synthesizer"
   },
   "Author,Sentinel+": {
     "name": "Threat Modeler",
@@ -269,7 +269,7 @@
     "short_description": "Hardens the application's infrastructure boundaries against breach by locking down globally open CORS policies and injecting missing security headers. Fortifies the macro network boundary.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Macro Strategist"
+    "role": "Macro Strategist"
   },
   "Author,Superintendent": {
     "name": "Groundskeeper",
@@ -277,7 +277,7 @@
     "short_description": "Standardize CI/CD configurations and author macro maintenance guides to ensure routine repository upkeep is strictly codified.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Automation Maintainer"
+    "role": "Automation Maintainer"
   },
   "Author,Untangler": {
     "name": "Scout",
@@ -285,7 +285,7 @@
     "short_description": "Read highly convoluted, multi-file execution chains and conceptually untangle them into pristine, linear macro-documentation.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Trail Scribe"
+    "role": "Trail Scribe"
   },
   "Author,Wordsmith": {
     "name": "Brand Manager",
@@ -293,7 +293,7 @@
     "short_description": "Establish the official domain terminology in the documentation. Eradicate fragmented lexicons and developer jargon leaking into user-facing copy to eliminate confusion.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Lexicon Synchronizer"
+    "role": "Lexicon Synchronizer"
   },
   "Bolt+,Bolt+": {
     "name": "Vector",
@@ -301,7 +301,7 @@
     "short_description": "Demolishes winding, overly abstracted workflows and replaces them with frictionless straight pipes. It calculates the absolute shortest mathematical trajectory to guarantee maximum execution velocity.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Absolute Trajectory"
+    "role": "Absolute Trajectory"
   },
   "Bolt+,Cortex": {
     "name": "Tachyon",
@@ -309,7 +309,7 @@
     "short_description": "Converts synchronous AI responses into fluid, typewriter-style data streams. Upgrades legacy endpoints and frontend hooks to eliminate blocking wait states and high-latency user experiences.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Stream-State Accelerator"
+    "role": "Stream-State Accelerator"
   },
   "Bolt+,Curator": {
     "name": "Sprinter",
@@ -317,7 +317,7 @@
     "short_description": "Hunt down heavy, sequential loops and O(n^2) nested loops in data processing pipelines and optimize them using linear mapping, dictionary lookups, or native `.map()`/`.reduce()` functions.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Map/Reduce Optimizer"
+    "role": "Map/Reduce Optimizer"
   },
   "Bolt+,Helix": {
     "name": "Mitosis",
@@ -325,7 +325,7 @@
     "short_description": "Split heavy, single-threaded UI logic into identical, parallel Web Worker cells to enable true multi-threading in the browser.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Parallelizer"
+    "role": "Parallelizer"
   },
   "Bolt+,Herald": {
     "name": "Speed Camera",
@@ -333,7 +333,7 @@
     "short_description": "Inject temporary, high-fidelity `performance.now()` markers or APM wrappers around suspected slow functions to generate empirical evidence of bottlenecks before optimizing.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Performance Profiler"
+    "role": "Performance Profiler"
   },
   "Bolt+,Inspector": {
     "name": "Pacesetter",
@@ -341,7 +341,7 @@
     "short_description": "Implement structural performance gains and permanently lock those gains in place with strict benchmark regression tests.",
     "category": "testing",
     "type": "fusion",
-    "role": "The Performance Enforcer"
+    "role": "Performance Enforcer"
   },
   "Bolt+,Modernizer": {
     "name": "Catalyst",
@@ -349,7 +349,7 @@
     "short_description": "Upgrade legacy architecture by ruthlessly ripping out outdated heavy polyfills and utility libraries.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Momentum Optimizer"
+    "role": "Momentum Optimizer"
   },
   "Bolt+,Navigator": {
     "name": "Hyperloop",
@@ -357,7 +357,7 @@
     "short_description": "Sweeps API routes and server-side paths to migrate heavily accessed static endpoints to edge-compatible runtimes. Injects aggressive caching headers to push compute and storage as close to the us...",
     "category": "strategy",
     "type": "fusion",
-    "role": "The Edge Router"
+    "role": "Edge Router"
   },
   "Bolt+,Palette+": {
     "name": "Illusionist",
@@ -365,7 +365,7 @@
     "short_description": "Masks structural latency and render bottlenecks beneath a veneer of instantaneous feedback. It autonomously injects optimistic states and CSS skeletons so the application feels impossibly fast.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Mirage Architect"
+    "role": "Mirage Architect"
   },
   "Bolt+,Paramedic": {
     "name": "Pacemaker",
@@ -373,7 +373,7 @@
     "short_description": "Regulate the heartbeat of the application by finding heavy, synchronous work and safely deferring it to the background.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Main Thread Protector"
+    "role": "Main Thread Protector"
   },
   "Bolt+,Pedant": {
     "name": "Millisecond",
@@ -381,7 +381,7 @@
     "short_description": "Eradicate useless React re-renders caused by unstable object references, un-memoized callbacks, and inline styles that destroy frontend performance.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Render Optimizer"
+    "role": "Render Optimizer"
   },
   "Bolt+,Scavenger": {
     "name": "Proton Pack",
@@ -389,7 +389,7 @@
     "short_description": "Hunt down \"ghosts\" in the machine—zombie intervals, detached DOM nodes, and rogue observers that actively haunt the runtime.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Poltergeist Purger"
+    "role": "Poltergeist Purger"
   },
   "Bolt+,Scribe": {
     "name": "Profiler",
@@ -397,7 +397,7 @@
     "short_description": "Analyze algorithmic complexity to make invisible computational costs highly visible.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Complexity Auditor"
+    "role": "Complexity Auditor"
   },
   "Bolt+,Sentinel+": {
     "name": "Payload",
@@ -405,7 +405,7 @@
     "short_description": "Accelerate public traffic via aggressive caching while locking authenticated routes and sensitive user data inside impenetrable, zero-trust cargo cars.",
     "category": "core",
     "type": "fusion",
-    "role": "The Armored Express"
+    "role": "Armored Express"
   },
   "Bolt+,Superintendent": {
     "name": "Expediter",
@@ -413,7 +413,7 @@
     "short_description": "Speed up CI/CD pipelines with aggressive dependency caching, parallelism, and configuration tuning. Ensure local servers start instantly and deployments fly.",
     "category": "operations",
     "type": "fusion",
-    "role": "The Build Optimizer"
+    "role": "Build Optimizer"
   },
   "Bolt+,Untangler": {
     "name": "Surge Protector",
@@ -421,7 +421,7 @@
     "short_description": "Flatten heavy computational functions with aggressive early-return guard clauses, cutting power to unnecessary algorithmic paths to save CPU cycles.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Processing Short-Circuit"
+    "role": "Processing Short-Circuit"
   },
   "Bolt+,Wordsmith": {
     "name": "Telepath",
@@ -429,7 +429,7 @@
     "short_description": "Injects `prefetch` mechanisms into interactive UI elements to load data and HTML partials before a user even clicks. Eradicates perceived loading times by acting on implicit hover or focus intent.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Predictive Pre-loader"
+    "role": "Predictive Pre-loader"
   },
   "Cortex,Cortex": {
     "name": "Singularity",
@@ -437,7 +437,7 @@
     "short_description": "Conduct an exhaustive sweep of the entire repository's architecture to detect developer toil, and birth universal markdown agent prompts hardcoded with internal context directly into `prompts/micro/`.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Meta-Architect"
+    "role": "Meta-Architect"
   },
   "Cortex,Curator": {
     "name": "Tokenizer",
@@ -445,15 +445,15 @@
     "short_description": "Reduces token weight and eliminates context-window overflows by stripping useless tokens, formatting massive scraped HTML into clean Markdown, and minifying dense XML payloads before sending them...",
     "category": "meta",
     "type": "fusion",
-    "role": "The Window Optimizer"
+    "role": "Window Optimizer"
   },
   "Cortex,Helix": {
-    "name": "The Highlander",
+    "name": "Highlander",
     "emoji": "🥇",
     "short_description": "Hunts down syntactically different implementations of the exact same business logic. It extracts the ultimate semantic truth and ruthlessly eradicates the redundant pretenders.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Absolute Source"
+    "role": "Absolute Source"
   },
   "Cortex,Herald": {
     "name": "Telemetrist",
@@ -461,7 +461,7 @@
     "short_description": "Injects latency timers and standardized metadata loggers to eradicate untracked AI routes. Pulls AI requests out of the dark, exposing token counts, costs, and context-window exhaustion.",
     "category": "operations",
     "type": "fusion",
-    "role": "The AI Broadcaster"
+    "role": "AI Broadcaster"
   },
   "Cortex,Inspector": {
     "name": "Polygraph",
@@ -469,7 +469,7 @@
     "short_description": "Enforce strict structured outputs on AI prompt generation and inject rigorous schema validation tests to catch LLM hallucinations.",
     "category": "testing",
     "type": "fusion",
-    "role": "The Validation Enforcer"
+    "role": "Validation Enforcer"
   },
   "Cortex,Modernizer": {
     "name": "Futurist",
@@ -477,7 +477,7 @@
     "short_description": "Modernize the server-side syntax of legacy AI flows and upgrade models and SDKs by refactoring deprecated Promise chains into modern async/await syntax.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Pipeline Evolver"
+    "role": "Pipeline Evolver"
   },
   "Cortex,Navigator": {
     "name": "Dispatcher",
@@ -485,7 +485,7 @@
     "short_description": "Route simple tasks to fast, cheap models and complex tasks to powerful reasoning models. Optimize LLM usage by analyzing cognitive difficulty to strike the perfect balance.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Cost Strategist"
+    "role": "Cost Strategist"
   },
   "Cortex,Palette+": {
     "name": "Hologram",
@@ -493,7 +493,7 @@
     "short_description": "Transforms lifeless AI text streams into dynamic, beautifully rendered UI components. It projects raw markdown into rich, interactive interfaces that feel native to your application.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Generative Projectionist"
+    "role": "Generative Projectionist"
   },
   "Cortex,Paramedic": {
     "name": "Resuscitator",
@@ -501,7 +501,7 @@
     "short_description": "Sweeps the codebase for silent catch blocks, swallowed errors, and generic \"Something went wrong\" messages.",
     "category": "operations",
     "type": "fusion",
-    "role": "The Error Handling Enforcer"
+    "role": "Error Handling Enforcer"
   },
   "Cortex,Pedant": {
     "name": "Cypher",
@@ -509,7 +509,7 @@
     "short_description": "Optimizes Eradicate JSON parsing errors caused by unpredictable AI formatting. Treat incoming LLM responses as hostile, volatile data.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Output Sanitizer"
+    "role": "Output Sanitizer"
   },
   "Cortex,Scavenger": {
     "name": "Agent",
@@ -517,7 +517,7 @@
     "short_description": "Operates across multi-system architectural boundaries to hunt and surgically eliminate semantically dead code.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Code Purger"
+    "role": "Code Purger"
   },
   "Cortex,Scribe": {
     "name": "Few-Shot Forger",
@@ -525,7 +525,7 @@
     "short_description": "Hunt down fragile, zero-shot AI integrations that struggle with formatting consistency, injecting strict mock input/output pairs to eliminate structural hallucinations.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Pattern Injector"
+    "role": "Pattern Injector"
   },
   "Cortex,Sentinel+": {
     "name": "Firewall",
@@ -533,7 +533,7 @@
     "short_description": "Upgrade AI integrations to their latest secure models and lock probabilistic LLM outputs behind rigid structural validation schemas.",
     "category": "meta",
     "type": "fusion",
-    "role": "The AI Hardener"
+    "role": "AI Hardener"
   },
   "Cortex,Superintendent": {
     "name": "Electrician",
@@ -541,7 +541,7 @@
     "short_description": "Hunt down legacy AI SDK integrations, bump their dependencies, and refactor the execution logic. Rewrite the syntax to match modern API schemas.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The SDK Maintainer"
+    "role": "SDK Maintainer"
   },
   "Cortex,Untangler": {
     "name": "Automata",
@@ -549,7 +549,7 @@
     "short_description": "Transitions the architecture from guessing intents from text to executing strict API functions triggered by the LLM.",
     "category": "meta",
     "type": "fusion",
-    "role": "The State Flattener"
+    "role": "State Flattener"
   },
   "Cortex,Wordsmith": {
     "name": "Prompt Engineer",
@@ -557,7 +557,7 @@
     "short_description": "Evolve legacy AI instructions by sharpening personas, injecting domain vocabulary, and setting strict negative constraints to guarantee determinism.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Prompt Evolutionist"
+    "role": "Prompt Evolutionist"
   },
   "Curator,Curator": {
     "name": "",
@@ -573,7 +573,7 @@
     "short_description": "Extract massive, duplicated media objects into strictly typed global dictionaries to eliminate WET visual bloat.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Centralization Specialist"
+    "role": "Centralization Specialist"
   },
   "Curator,Herald": {
     "name": "Publicist",
@@ -581,7 +581,7 @@
     "short_description": "Sweep routing configurations to identify public-facing URLs and inject rich visual metadata.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The SEO Broadcaster"
+    "role": "SEO Broadcaster"
   },
   "Curator,Inspector": {
     "name": "Fabricator",
@@ -589,7 +589,7 @@
     "short_description": "Sweep test suites to eradicate brittle, hardcoded JSON coincidences and replace them with dynamic, randomized factory fixtures.",
     "category": "testing",
     "type": "fusion",
-    "role": "The Mock Synthesizer"
+    "role": "Mock Synthesizer"
   },
   "Curator,Modernizer": {
     "name": "Darkroom",
@@ -597,7 +597,7 @@
     "short_description": "Eliminates multi-megabyte image payloads by converting legacy assets into modern web formats.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Media Upgrader"
+    "role": "Media Upgrader"
   },
   "Curator,Navigator": {
     "name": "Choreographer",
@@ -605,7 +605,7 @@
     "short_description": "Inject lightweight visual loading skeletons, CSS transitions, or CLI spinners into frozen, synchronous-looking UI seams.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Transition Enforcer"
+    "role": "Transition Enforcer"
   },
   "Curator,Palette+": {
     "name": "Gallerist",
@@ -613,7 +613,7 @@
     "short_description": "Substitute heavy rasters with scalable vectors and wrap assets in optimized loading boundaries to eliminate layout shifts across the UI ecosystem.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Media Presenter"
+    "role": "Media Presenter"
   },
   "Curator,Paramedic": {
     "name": "Blackbox",
@@ -621,7 +621,7 @@
     "short_description": "Injects local storage caching into complex forms and user-input flows so unsaved data survives unexpected crashes and network failures.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Data Preserver"
+    "role": "Data Preserver"
   },
   "Curator,Pedant": {
     "name": "Restorer",
@@ -629,7 +629,7 @@
     "short_description": "Cleans up visual ghost references by sweeping markup files for CSS classes that are called but no longer exist, images pointing to deleted files, and icon fonts referenced but never imported. Combats silent presentation debt like HTML, JSX, XAML, and LaTeX files that still call class names and asset paths from styles and files that were deleted months ago.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Reference Cleaner"
+    "role": "Reference Cleaner"
   },
   "Curator,Scavenger": {
     "name": "Purger",
@@ -637,7 +637,7 @@
     "short_description": "Eradicate unimported components and immediately hunt down the heavy \"ghost\" images and static assets they leave behind.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Deletion Specialist"
+    "role": "Deletion Specialist"
   },
   "Curator,Scribe": {
     "name": "Swatch",
@@ -645,7 +645,7 @@
     "short_description": "Catalog the visual identity of the project by treating configuration files as raw materials, extracting every color, font weight, and spacing variable into a beautiful, human-readable STYLEGUIDE.md.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Design Documentarian"
+    "role": "Design Documentarian"
   },
   "Curator,Sentinel+": {
     "name": "Hazmat",
@@ -653,7 +653,7 @@
     "short_description": "You ensure no malicious payload ever detonates inside the application by intercepting and purifying incoming user data payloads.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Payload Purifier"
+    "role": "Payload Purifier"
   },
   "Curator,Superintendent": {
     "name": "Aligner",
@@ -661,7 +661,7 @@
     "short_description": "Enforces visual rhythm by hunting down hardcoded spatial magic numbers across the presentation layer and standardizing spacing.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Rhythm Standardizer"
+    "role": "Rhythm Standardizer"
   },
   "Curator,Untangler": {
     "name": "Press",
@@ -669,7 +669,7 @@
     "short_description": "Identify dense visual data and extract the raw payloads into dedicated asset files.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Visual Extractor"
+    "role": "Visual Extractor"
   },
   "Curator,Wordsmith": {
     "name": "Captionist",
@@ -677,7 +677,7 @@
     "short_description": "Convert massive, uncompressed visual assets into highly optimized modern formats.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Payload Specialist"
+    "role": "Payload Specialist"
   },
   "Helix,Helix": {
     "name": "Yggdrasil",
@@ -685,7 +685,7 @@
     "short_description": "Triggers an evolutionary divergence in legacy modules by shedding stagnant boilerplate. It reincarnates rigid, outdated logic into thriving, highly extensible modern ecosystems.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Paradigm Mutator"
+    "role": "Paradigm Mutator"
   },
   "Helix,Herald": {
     "name": "Tower",
@@ -693,7 +693,7 @@
     "short_description": "Identifies broadcast fragmentation and routes scattered `console.log` calls, toast notifications, and ad-hoc telemetry scripts into centralized, structured event buses.",
     "category": "operations",
     "type": "fusion",
-    "role": "The Broadcast Centralizer"
+    "role": "Broadcast Centralizer"
   },
   "Helix,Inspector": {
     "name": "Mixologist",
@@ -701,7 +701,7 @@
     "short_description": "Extract scattered logic fragments into centralized utilities and lock their behavior with 100% unit test coverage.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Formula Prover"
+    "role": "Formula Prover"
   },
   "Helix,Modernizer": {
     "name": "Transmuter",
@@ -709,7 +709,7 @@
     "short_description": "Executes piecemeal paradigm evolution by autonomously transmuting legacy files into the modern repository standard one by one.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Paradigm Migrator"
+    "role": "Paradigm Migrator"
   },
   "Helix,Navigator": {
     "name": "PathCentralizer",
@@ -717,7 +717,7 @@
     "short_description": "Eradicate hardcoded API endpoints, file paths, and routing constants by extracting them into centralized configuration maps.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Route Extractor"
+    "role": "Route Extractor"
   },
   "Helix,Palette+": {
     "name": "Chameleon",
@@ -725,7 +725,7 @@
     "short_description": "Eradicates Splice distinct pseudo-class styling, organic transitions, and disabled states into flat interactive elements.",
     "category": "ux",
     "type": "fusion",
-    "role": "The State Mutator"
+    "role": "State Mutator"
   },
   "Helix,Paramedic": {
     "name": "Quarantine",
@@ -733,7 +733,7 @@
     "short_description": "Extracts volatile, scattered logic into a single shared utility and immediately wraps it in an impenetrable error-handling boundary. Returns predictable, safe fallback states for all consumers.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Safe Centralization Specialist"
+    "role": "Safe Centralization Specialist"
   },
   "Helix,Pedant": {
     "name": "Quartermaster",
@@ -741,7 +741,7 @@
     "short_description": "Hunts down identical magic values duplicated across multiple independent files. Extracts them into a strict global constants layer that every consumer imports to forge a Single Source of Truth.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Centralization Engine"
+    "role": "Centralization Engine"
   },
   "Helix,Scavenger": {
     "name": "Void",
@@ -749,7 +749,7 @@
     "short_description": "Hunts down duplicated logic, centralizes it into a single source of truth, and physically eradicates the old, redundant source files from the repository.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Redundancy Destroyer"
+    "role": "Redundancy Destroyer"
   },
   "Helix,Scribe": {
     "name": "Oracle",
@@ -757,7 +757,7 @@
     "short_description": "Extract scattered logic duplicates into a single point of truth, locking the new utility behind an ironclad, strictly typed JSDoc contract.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Contract Sealer"
+    "role": "Contract Sealer"
   },
   "Helix,Sentinel+": {
     "name": "Gatekeeper",
@@ -765,7 +765,7 @@
     "short_description": "Melt down fragile, hardcoded padlocks scattered across the codebase. Forge a single, impenetrable policy engine to govern all internal access.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Keymaster"
+    "role": "Keymaster"
   },
   "Helix,Superintendent": {
     "name": "Janitor",
@@ -773,7 +773,7 @@
     "short_description": "Hunt down fragmented cleanup scripts, cache purges, and teardown commands scattered across the codebase and unify them into a single master execution manifest.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Maintenance Centralizer"
+    "role": "Maintenance Centralizer"
   },
   "Helix,Untangler": {
     "name": "Weaver",
@@ -781,7 +781,7 @@
     "short_description": "Consolidates duplicated logic into single utilities while simultaneously flattening deeply nested execution paths into pristine, linear strands.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Logic Flattener"
+    "role": "Logic Flattener"
   },
   "Helix,Wordsmith": {
     "name": "Standardizer",
@@ -789,7 +789,7 @@
     "short_description": "Identify minor, semantic variations of identically intentioned code blocks, UI copy, and constant strings scattered across the repository, and centralize them into single, reusable references.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Copy Centralizer"
+    "role": "Copy Centralizer"
   },
   "Herald,Herald": {
     "name": "",
@@ -805,7 +805,7 @@
     "short_description": "Eliminate debugging friction by intercepting broken test suites and translating massive terminal stack traces into actionable Markdown reports. Provide exact file paths and line numbers so developers can fix issues immediately without reading raw logs.",
     "category": "testing",
     "type": "fusion",
-    "role": "The CI Whisperer"
+    "role": "CI Whisperer"
   },
   "Herald,Modernizer": {
     "name": "Prophet",
@@ -813,7 +813,7 @@
     "short_description": "Prepare developers for API end-of-life cycles by hunting for `@deprecated` tags and injecting runtime environment-sensitive warnings.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Deprecation Forecaster"
+    "role": "Deprecation Forecaster"
   },
   "Herald,Navigator": {
     "name": "Strategist",
@@ -821,7 +821,7 @@
     "short_description": "Autonomously analyze the repository's git history, extract the proprietary commit patterns and unwritten release tagging rules, and codify them into a universal micro-agent prompt that can flawlessly draft future changelogs.",
     "category": "strategy",
     "type": "fusion",
-    "role": "The Roadmap Synchronizer"
+    "role": "Roadmap Synchronizer"
   },
   "Herald,Palette+": {
     "name": "LiveFeed",
@@ -829,7 +829,7 @@
     "short_description": "Intercept silent data mutations and wrap them in rigorous state trackers (`idle -> loading -> success/error`), injecting polished loading skeletons and notifications.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Live Feedback Broadcaster"
+    "role": "Live Feedback Broadcaster"
   },
   "Herald,Paramedic": {
     "name": "Press Secretary",
@@ -837,7 +837,7 @@
     "short_description": "Analyze git forensics and technical diffs to author objective timelines and actionable prevention plans.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Incident Communicator"
+    "role": "Incident Communicator"
   },
   "Herald,Pedant": {
     "name": "Whistleblower",
@@ -845,7 +845,7 @@
     "short_description": "Translates raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Syntax Shamer"
+    "role": "Syntax Shamer"
   },
   "Herald,Scavenger": {
     "name": "Silencer",
@@ -853,7 +853,7 @@
     "short_description": "Eradicate conversational comments, syntax explanations, abandoned scaffolding, and fake mock data that clutter the codebase with amateur noise.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Noise Assassin"
+    "role": "Noise Assassin"
   },
   "Herald,Scribe": {
     "name": "Historian",
@@ -861,7 +861,7 @@
     "short_description": "Eradicates generate public changelogs for new releases and instantly embed that historical context into the shipped functions via inline JSDoc.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Temporal Archivist"
+    "role": "Temporal Archivist"
   },
   "Herald,Sentinel+": {
     "name": "Siren",
@@ -869,7 +869,7 @@
     "short_description": "Broadcast and mitigate high-priority security vulnerabilities identified in the codebase, ensuring critical patches are aggressively applied.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Vulnerability Broadcaster"
+    "role": "Vulnerability Broadcaster"
   },
   "Herald,Superintendent": {
     "name": "Upgrader",
@@ -877,7 +877,7 @@
     "short_description": "Eliminates \"blind bumps\" by fetching external changelogs and broadcasting high-signal summaries of new features and breaking changes directly into the PR or release notes.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Dependency Broadcaster"
+    "role": "Dependency Broadcaster"
   },
   "Herald,Untangler": {
     "name": "Limiter",
@@ -885,7 +885,7 @@
     "short_description": "Inject circuit breakers, pagination, and strict mechanical limits to ensure every execution path has a mathematically guaranteed upper bound.",
     "category": "operations",
     "type": "fusion",
-    "role": "The Boundary Enforcer"
+    "role": "Boundary Enforcer"
   },
   "Herald,Wordsmith": {
     "name": "Orator",
@@ -893,7 +893,7 @@
     "short_description": "Rewrite bare, lazily written error instantiations and internal exception throws into clear, human-readable, and actionable telemetry broadcasts.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Error Copywriter"
+    "role": "Error Copywriter"
   },
   "Inspector,Inspector": {
     "name": "Adversary",
@@ -901,7 +901,7 @@
     "short_description": "Injects deliberate bugs into working code to expose and rewrite fraudulent tests that fail to catch the sabotage using strict assertions.",
     "category": "testing",
     "type": "fusion",
-    "role": "The Mutation Engine"
+    "role": "Mutation Engine"
   },
   "Inspector,Modernizer": {
     "name": "Assessor",
@@ -909,7 +909,7 @@
     "short_description": "He upgrades testing infrastructure from brittle, implementation-heavy paradigms into resilient, user-centric paradigms.",
     "category": "testing",
     "type": "fusion",
-    "role": "The Test Upgrader"
+    "role": "Test Upgrader"
   },
   "Inspector,Navigator": {
     "name": "Autopilot",
@@ -917,7 +917,7 @@
     "short_description": "Generates robust Playwright or Cypress End-to-End tests driving the browser via user-facing accessibility locators to prevent regressions.",
     "category": "testing",
     "type": "fusion",
-    "role": "The Journey Tester"
+    "role": "Journey Tester"
   },
   "Inspector,Palette+": {
     "name": "Jeweler",
@@ -933,7 +933,7 @@
     "short_description": "Hunt down naked parsing and unprotected external API calls that lack failure-mode coverage, leading to catastrophic runtime crashes.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Boundary Hardener"
+    "role": "Boundary Hardener"
   },
   "Inspector,Pedant": {
     "name": "Auditor",
@@ -941,7 +941,7 @@
     "short_description": "He standardizes variables into strictly typed constants and writes comprehensive assertion suites against them.",
     "category": "testing",
     "type": "fusion",
-    "role": "The Quality Inspector"
+    "role": "Quality Inspector"
   },
   "Inspector,Scavenger": {
     "name": "Coroner",
@@ -949,7 +949,7 @@
     "short_description": "Prove beyond a reasonable doubt that a piece of code is truly unreferenced before permanently excising it alongside every ghost test. Clean the repository of ghosts.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Dead Investigator"
+    "role": "Dead Investigator"
   },
   "Inspector,Scribe": {
     "name": "Interrogator",
@@ -957,7 +957,7 @@
     "short_description": "Sweep weak unit tests that lack meaningful assertions, injecting deep, rigorous checks against component state, DOM interactions, and accessibility to uncover false positives.",
     "category": "testing",
     "type": "fusion",
-    "role": "The Assertion Specialist"
+    "role": "Assertion Specialist"
   },
   "Inspector,Sentinel+": {
     "name": "Stress Tester",
@@ -965,7 +965,7 @@
     "short_description": "Implement strict validation schemas at trust boundaries and write brutal tests that deliberately inject malicious data to bypass them.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Security Assurance Specialist"
+    "role": "Security Assurance Specialist"
   },
   "Inspector,Superintendent": {
     "name": "Safety Inspector",
@@ -973,7 +973,7 @@
     "short_description": "Bump outdated package versions and immediately secure the affected integration paths with strict regression tests.",
     "category": "testing",
     "type": "fusion",
-    "role": "The Dependency QA Specialist"
+    "role": "Dependency QA Specialist"
   },
   "Inspector,Untangler": {
     "name": "Sandboxer",
@@ -981,7 +981,7 @@
     "short_description": "Build perfectly flat, isolated execution environments by untangling shared global state and nested test setups.",
     "category": "testing",
     "type": "fusion",
-    "role": "The Isolation Specialist"
+    "role": "Isolation Specialist"
   },
   "Inspector,Wordsmith": {
     "name": "Narrator",
@@ -989,7 +989,7 @@
     "short_description": "Analyze actual test assertions and rewrite vague test names into crystal clear, human-readable specifications, turning test output into living documentation.",
     "category": "testing",
     "type": "fusion",
-    "role": "The Spec Translator"
+    "role": "Spec Translator"
   },
   "Modernizer,Modernizer": {
     "name": "",
@@ -1005,7 +1005,7 @@
     "short_description": "You modernize architectural navigation by upgrading legacy routing topologies to modern, native structural equivalents.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Routing Upgrader"
+    "role": "Routing Upgrader"
   },
   "Modernizer,Palette+": {
     "name": "Mobilizer",
@@ -1013,7 +1013,7 @@
     "short_description": "Transform rigid layouts and interactions into fluid, universal experiences that scale flawlessly from 320px mobile screens to 4K desktop monitors.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Responsive Modernizer"
+    "role": "Responsive Modernizer"
   },
   "Modernizer,Paramedic": {
     "name": "Inoculator",
@@ -1029,7 +1029,7 @@
     "short_description": "Upgrade implicit assumptions into explicit constraints by deducing the intended execution environment of unconstrained files and injecting required strictness headers.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Constraint Enforcer"
+    "role": "Constraint Enforcer"
   },
   "Modernizer,Scavenger": {
     "name": "Liquidator",
@@ -1037,7 +1037,7 @@
     "short_description": "Surgically excise obsolete legacy adapters, polyfills, and custom bridge wrappers that mask missing native functionality.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Adapter Purger"
+    "role": "Adapter Purger"
   },
   "Modernizer,Scribe": {
     "name": "Transition Manager",
@@ -1045,7 +1045,7 @@
     "short_description": "Modernizes legacy systems to the current standard and immediately writes the official, inline historical context explaining the paradigm shift to the rest of the team.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Migration Architect"
+    "role": "Migration Architect"
   },
   "Modernizer,Sentinel+": {
     "name": "Retrofitter",
@@ -1053,7 +1053,7 @@
     "short_description": "Scans outdated codebases and surgically replaces deprecated language features and legacy APIs with their modern equivalents.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Syntactic Upgrader"
+    "role": "Syntactic Upgrader"
   },
   "Modernizer,Superintendent": {
     "name": "Synchronizer",
@@ -1061,7 +1061,7 @@
     "short_description": "Execute major package version bumps and simultaneously map their breaking changes across the entire abstract syntax tree (AST) to rewrite every deprecated consumer reference.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Dependency Migration Specialist"
+    "role": "Dependency Migration Specialist"
   },
   "Modernizer,Untangler": {
     "name": "Refiner",
@@ -1069,7 +1069,7 @@
     "short_description": "Distills messy, nested callback spaghetti into flat, modern async/await execution paths by untangling the structure and upgrading the syntax.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Structural Modernization Specialist"
+    "role": "Structural Modernization Specialist"
   },
   "Modernizer,Wordsmith": {
     "name": "Interpolator",
@@ -1077,7 +1077,7 @@
     "short_description": "Refines Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Syntax Upgrader"
+    "role": "Syntax Upgrader"
   },
   "Navigator,Navigator": {
     "name": "",
@@ -1093,7 +1093,7 @@
     "short_description": "Builds intuitive navigation paths, sequential progress indicators, and guided transitions to ensure users always understand their current context.",
     "category": "ux",
     "type": "fusion",
-    "role": "The & Routing"
+    "role": "& Routing"
   },
   "Navigator,Paramedic": {
     "name": "Circuit Breaker",
@@ -1101,7 +1101,7 @@
     "short_description": "Sweep routing layers and fragile integrations. Surround them with Error Boundaries and fallbacks.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Fallback Strategist"
+    "role": "Fallback Strategist"
   },
   "Navigator,Pedant": {
     "name": "REST Enforcer",
@@ -1109,7 +1109,7 @@
     "short_description": "Eradicates RPC-style verbs embedded in URLs. Enforces strict RESTful noun-based routing contracts across all backend endpoints.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Protocol Warden"
+    "role": "Protocol Warden"
   },
   "Navigator,Scavenger": {
     "name": "Dead-Ender",
@@ -1117,7 +1117,7 @@
     "short_description": "Prune the application's surface area by identifying ghost routes. Permanently delete both the route definition and the underlying component.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Route Purger"
+    "role": "Route Purger"
   },
   "Navigator,Scribe": {
     "name": "Chronicler",
@@ -1125,7 +1125,7 @@
     "short_description": "Cross-reference shipped features with strategic roadmaps to officially mark milestones complete.",
     "category": "strategy",
     "type": "fusion",
-    "role": "The Context Historian"
+    "role": "Context Historian"
   },
   "Navigator,Sentinel+": {
     "name": "Customs",
@@ -1133,7 +1133,7 @@
     "short_description": "Patrol the outermost edges of the application to ensure no traffic enters without a passport. Wrap exposed routing trees and API perimeters in impenetrable authentication airlocks.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Border Control"
+    "role": "Border Control"
   },
   "Navigator,Superintendent": {
     "name": "Redirector",
@@ -1141,7 +1141,7 @@
     "short_description": "Eradicates broken internal links and 404 errors by maintaining the central routing configuration.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The 404 Sweeper"
+    "role": "404 Sweeper"
   },
   "Navigator,Untangler": {
     "name": "Pathfinder",
@@ -1149,7 +1149,7 @@
     "short_description": "Streamline core interaction loops and flatten logic routing to ensure the \"Happy Path\" requires the absolute minimum number of clicks.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Friction Eradicator"
+    "role": "Friction Eradicator"
   },
   "Navigator,Wordsmith": {
     "name": "Script Supervisor",
@@ -1157,7 +1157,7 @@
     "short_description": "Read the official product strategy and enforce its exact terminology across every user-facing string in the UI.",
     "category": "strategy",
     "type": "fusion",
-    "role": "The Lexicon Enforcer"
+    "role": "Lexicon Enforcer"
   },
   "Palette+,Palette+": {
     "name": "Canvas",
@@ -1166,7 +1166,7 @@
     "tier": "",
     "category": "ux",
     "type": "fusion",
-    "role": "The Unified Surface"
+    "role": "Unified Surface"
   },
   "Palette+,Paramedic": {
     "name": "Placebo",
@@ -1174,7 +1174,7 @@
     "short_description": "Harden fragile asynchronous backend requests by wrapping them in strict error boundaries and exponential backoff retries.",
     "category": "strategy",
     "type": "fusion",
-    "role": "The Psychological Performance Specialist"
+    "role": "Psychological Performance Specialist"
   },
   "Palette+,Pedant": {
     "name": "Typesetter",
@@ -1182,7 +1182,7 @@
     "short_description": "Enforces visual rhythm at the code level by hunting down rogue inline margins to enforce strict spacing scales and WCAG contrast ratios.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Pixel Perfectionist"
+    "role": "Pixel Perfectionist"
   },
   "Palette+,Scavenger": {
     "name": "Minimalist",
@@ -1190,7 +1190,7 @@
     "short_description": "Hunt down and delete orphaned CSS classes, outdated layout wrappers, and dead UI components disconnected from the routing tree.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Visual Purger"
+    "role": "Visual Purger"
   },
   "Palette+,Scribe": {
     "name": "Calligrapher",
@@ -1198,7 +1198,7 @@
     "short_description": "Converts loose string props into strict TypeScript literal unions synchronized with global CSS variables and Tailwind configs.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Token Typist"
+    "role": "Token Typist"
   },
   "Palette+,Sentinel+": {
     "name": "Watermark",
@@ -1206,7 +1206,7 @@
     "short_description": "Operates across overarching form wrappers, global error interceptors, and application-wide state providers to manage the visual trust boundary.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Embedded Trust"
+    "role": "Embedded Trust"
   },
   "Palette+,Superintendent": {
     "name": "Stylist",
@@ -1214,7 +1214,7 @@
     "short_description": "Audit stylesheets to rip out hardcoded hex codes, pixel font sizes, and arbitrary margins, replacing them with the project's official CSS variables or Tailwind classes.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Design Token Standardizer"
+    "role": "Design Token Standardizer"
   },
   "Palette+,Untangler": {
     "name": "Streamliner",
@@ -1222,7 +1222,7 @@
     "short_description": "Flatten underlying cognitive complexity and mask it with clean, chunked UI, transforming overwhelming tasks into simple, step-by-step actions using progressive disclosure.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Load Reducer"
+    "role": "Load Reducer"
   },
   "Palette+,Wordsmith": {
     "name": "Virtuoso",
@@ -1230,7 +1230,7 @@
     "short_description": "Sculpts comprehensive visual states and injects accessible ARIA attributes to transform cold, robotic UI components into flawless, empathetic interaction flows.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Interaction Artisan"
+    "role": "Interaction Artisan"
   },
   "Paramedic,Paramedic": {
     "name": "",
@@ -1246,7 +1246,7 @@
     "short_description": "Hunts for \"toxic black holes\"—empty catch blocks that mute bugs and allow systems to silently continue in corrupted states. Re-routes swallowed exceptions into centralized telemetry pipelines.",
     "category": "operations",
     "type": "fusion",
-    "role": "The Catch-Block Enforcer"
+    "role": "Catch-Block Enforcer"
   },
   "Paramedic,Scavenger": {
     "name": "Amputator",
@@ -1254,7 +1254,7 @@
     "short_description": "Eradicates obsolete resilience infrastructure and dead service wrappers, promoting surviving fallbacks to primary execution paths.",
     "category": "operations",
     "type": "fusion",
-    "role": "The Fallback Purger"
+    "role": "Fallback Purger"
   },
   "Paramedic,Scribe": {
     "name": "Discharge",
@@ -1262,7 +1262,7 @@
     "short_description": "Injects exponential backoffs, circuit breakers, and retry logic into fragile code, documenting the treatment as inline JSDoc runbooks.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Recovery Engineer"
+    "role": "Recovery Engineer"
   },
   "Paramedic,Sentinel+": {
     "name": "First Responder",
@@ -1270,7 +1270,7 @@
     "short_description": "Harden external boundaries against malicious data, poisoned startup configurations, and unvalidated payloads to prevent fatal runtime crashes.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Crisis Manager"
+    "role": "Crisis Manager"
   },
   "Paramedic,Superintendent": {
     "name": "Sanitizer",
@@ -1278,7 +1278,7 @@
     "short_description": "Scrub away backend memory leaks by injecting antibacterial teardown logic for lingering system resources, database connections, and file streams.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Clinical Sweeper"
+    "role": "Clinical Sweeper"
   },
   "Paramedic,Untangler": {
     "name": "Transfusion",
@@ -1286,7 +1286,7 @@
     "short_description": "Extracts implicit reliance on the global scope and injects explicit parameter contracts to eliminate crash hazards.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The State Purifier"
+    "role": "State Purifier"
   },
   "Paramedic,Wordsmith": {
     "name": "Diplomat",
@@ -1294,7 +1294,7 @@
     "short_description": "Processes Rewrite terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy. Separate the human display copy from the internal machine l...",
     "category": "ux",
     "type": "fusion",
-    "role": "The Empathy Translator"
+    "role": "Empathy Translator"
   },
   "Pedant,Pedant": {
     "name": "Zealot",
@@ -1302,7 +1302,7 @@
     "short_description": "Hunts down rules configured as gentle \"warnings\" (or ignored entirely) and mechanically resolves every violation of that rule across the repository.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Absolute Enforcer"
+    "role": "Absolute Enforcer"
   },
   "Pedant,Scavenger": {
     "name": "Shredder",
@@ -1310,7 +1310,7 @@
     "short_description": "Delete commented-out code that has sat untouched for over 30 days to reduce visual noise.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Graveyard Destroyer"
+    "role": "Graveyard Destroyer"
   },
   "Pedant,Scribe": {
     "name": "Glossary",
@@ -1318,7 +1318,7 @@
     "short_description": "Sweep codebases to strictly define and document the underlying data structures and semantic types.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Domain Taxonomist"
+    "role": "Domain Taxonomist"
   },
   "Pedant,Sentinel+": {
     "name": "Regulator",
@@ -1326,7 +1326,7 @@
     "short_description": "Sweeps validation logic to extract hardcoded, magic numbers and convert them into centralized, heavily-typed constants.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Boundary Enforcer"
+    "role": "Boundary Enforcer"
   },
   "Pedant,Superintendent": {
     "name": "Ratchet",
@@ -1334,7 +1334,7 @@
     "short_description": "Sweeps the codebase for ESLint and TypeScript rules set to \"warn\" and physically fixes every underlying violation.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Strictness Enforcer"
+    "role": "Strictness Enforcer"
   },
   "Pedant,Untangler": {
     "name": "Systematizer",
@@ -1342,7 +1342,7 @@
     "short_description": "Refactor tangled workspaces of nested conditions and unlabelled variables into clean, top-to-bottom readable logic by extracting deep logic into strictly typed local helper functions.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Structure Enforcer"
+    "role": "Structure Enforcer"
   },
   "Pedant,Wordsmith": {
     "name": "Grammarian",
@@ -1350,7 +1350,7 @@
     "short_description": "Extract sloppy, hardcoded UI strings into strict canonical constants and rewrite them into polished, active-voice microcopy.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Microcopy Canonicalization Specialist"
+    "role": "Microcopy Canonicalization Specialist"
   },
   "Scavenger,Scavenger": {
     "name": "Hitman",
@@ -1358,7 +1358,7 @@
     "short_description": "Exclusively operate within the demolition jurisdiction to eradicate massive, macro-level architectural liabilities and unrequested scope creep.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Corporate Fixer"
+    "role": "Corporate Fixer"
   },
   "Scavenger,Scribe": {
     "name": "Obituary Writer",
@@ -1366,7 +1366,7 @@
     "short_description": "Research the final engineering intent of unreferenced or explicitly deprecated dead code across all system domains and document its architectural history in a permanent `GRAVEYARD.md` archive.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Code Eulogist"
+    "role": "Code Eulogist"
   },
   "Scavenger,Sentinel+": {
     "name": "Revoker",
@@ -1374,7 +1374,7 @@
     "short_description": "Hunts down hardcoded passwords, AWS keys, and connection URIs leaked into the source code and extracts them into environment variables.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Credential Scrubber"
+    "role": "Credential Scrubber"
   },
   "Scavenger,Superintendent": {
     "name": "Steward",
@@ -1382,7 +1382,7 @@
     "short_description": "Document and map the overarching impact of dependency updates and polyfill removals, bridging the gap between package bumps and macro architecture.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Dependency Caretaker"
+    "role": "Dependency Caretaker"
   },
   "Scavenger,Untangler": {
     "name": "Lumberjack",
@@ -1390,7 +1390,7 @@
     "short_description": "Hunt down and eliminate dead execution paths caused by hardcoded feature flags, expired A/B tests, or permanent environment variables.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Dead Branch Chopper"
+    "role": "Dead Branch Chopper"
   },
   "Scavenger,Wordsmith": {
     "name": "Redliner",
@@ -1398,7 +1398,7 @@
     "short_description": "Builds a reference map of actively rendered strings and strikes through every orphaned translation key and localized string.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Dead Copy Purger"
+    "role": "Dead Copy Purger"
   },
   "Scribe,Scribe": {
     "name": "",
@@ -1414,7 +1414,7 @@
     "short_description": "Hunt down hardcoded secrets, extract them into environment variables, and enforce pre-commit hook scanning patterns.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Cryptographic Auditor"
+    "role": "Cryptographic Auditor"
   },
   "Scribe,Superintendent": {
     "name": "Revisionist",
@@ -1422,7 +1422,7 @@
     "short_description": "Sweep codebases to hunt for comments and docstrings that contradict the actual execution logic below them.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Lie Detector"
+    "role": "Lie Detector"
   },
   "Scribe,Untangler": {
     "name": "Logician",
@@ -1430,7 +1430,7 @@
     "short_description": "Map chaotic, undocumented `if/else`, `switch`, and Bitwise operations into clean, tabular Truth Tables directly inside JSDoc/Docstrings.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Logic Documenter"
+    "role": "Logic Documenter"
   },
   "Scribe,Wordsmith": {
     "name": "Polyglot",
@@ -1438,7 +1438,7 @@
     "short_description": "Eradicate hardcoded English strings embedded deep within UI components and relocate them into centralized JSON or TS localization dictionaries (`i18n`).",
     "category": "ux",
     "type": "fusion",
-    "role": "The String Centralizer"
+    "role": "String Centralizer"
   },
   "Sentinel+,Sentinel+": {
     "name": "Honeypot",
@@ -1446,7 +1446,7 @@
     "short_description": "Sweeps routing architectures and public-facing perimeters to build fake API routes and invisible data trapwires. Catches malicious actors by injecting enticing ghost routes that trigger immediate retaliation.",
     "category": "architecture",
     "type": "fusion",
-    "role": "The Offensive Defender"
+    "role": "Offensive Defender"
   },
   "Sentinel+,Superintendent": {
     "name": "Checkpoint",
@@ -1454,7 +1454,7 @@
     "short_description": "Bumps package dependencies and rigorously updates corresponding integration schemas to reflect new API surfaces.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Security Enforcer"
+    "role": "Security Enforcer"
   },
   "Sentinel+,Untangler": {
     "name": "Defuser",
@@ -1462,7 +1462,7 @@
     "short_description": "Meticulously untangle convoluted security logic, expose its true trust boundary, and harden it with strict typing. Enforce fail-closed defaults.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Authorization Specialist"
+    "role": "Authorization Specialist"
   },
   "Sentinel+,Wordsmith": {
     "name": "Redactor",
@@ -1470,7 +1470,7 @@
     "short_description": "Sweeps the UI and logging layers to mask and redact sensitive user data.",
     "category": "ux",
     "type": "fusion",
-    "role": "The PII Scrubber"
+    "role": "PII Scrubber"
   },
   "Superintendent,Superintendent": {
     "name": "Vibe Check",
@@ -1478,7 +1478,7 @@
     "short_description": "Operates across the repository to bring hallucinogenic AI code back down to earth by eradicating \"bad trips\" like hallucinated dependencies, phantom schemas, and lazy placeholders.",
     "category": "meta",
     "type": "fusion",
-    "role": "The Reality Anchor"
+    "role": "Reality Anchor"
   },
   "Superintendent,Untangler": {
     "name": "Pruner",
@@ -1486,7 +1486,7 @@
     "short_description": "Sweep repositories for mathematically impossible execution paths, unreachable logic branches, and unused exports to ensure strict control flow hygiene.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "The Dead Code Destroyer"
+    "role": "Dead Code Destroyer"
   },
   "Superintendent,Wordsmith": {
     "name": "Spellchecker",
@@ -1494,7 +1494,7 @@
     "short_description": "Execute a surgical strike against misspelled variable names, database columns, public API keys, and CSS classes without breaking runtime references.",
     "category": "ux",
     "type": "fusion",
-    "role": "The Typo Eradicator"
+    "role": "Typo Eradicator"
   },
   "Untangler,Untangler": {
     "name": "Temporal Loom",
@@ -1502,7 +1502,7 @@
     "short_description": "Eradicates unstable, branching multiverses of execution paths. Reverses deeply nested conditions, loops, and try/catch blocks into a clean, top-down, one-dimensional execution pipeline.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "The Spaghettification Engine"
+    "role": "Spaghettification Engine"
   },
   "Untangler,Wordsmith": {
     "name": "Cryptographer",
@@ -1510,7 +1510,7 @@
     "short_description": "Seek out highly complex, undocumented machine syntaxes like raw Regular Expressions and Cron schedules. Translate these dense strings into plain, human-readable English inline comments.",
     "category": "documentation",
     "type": "fusion",
-    "role": "The Syntax Decrypter"
+    "role": "Syntax Decrypter"
   },
   "Wordsmith,Wordsmith": {
     "name": "",
