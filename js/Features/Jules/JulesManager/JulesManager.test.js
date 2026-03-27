@@ -1671,12 +1671,12 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
         it('should bail if modal is missing', () => {
             manager.elements.julesPRModal = null;
-            manager._showPRModal(prMock, 'repo');
+            manager.modals._showPRModal(prMock, 'repo');
             expect(titleEl.textContent).toBe(''); // Should not have been updated
         });
 
         it('should populate modal and show it', () => {
-            manager._showPRModal(prMock, 'repo');
+            manager.modals._showPRModal(prMock, 'repo');
             expect(titleEl.textContent).toBe('#123 Test PR');
             expect(linkEl.href).toBe('https://github.com/test/test/pull/123');
             expect(contentEl.innerHTML).toBe('<pre></pre>');
@@ -1687,7 +1687,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
         it('should handle merge PR success', async () => {
             window.julesService.mergePullRequest.mockResolvedValue();
-            manager._showPRModal(prMock, 'repo');
+            manager.modals._showPRModal(prMock, 'repo');
 
             await mergeBtn.onclick();
 
@@ -1700,7 +1700,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
         it('should handle merge PR failure and show error', async () => {
             window.julesService.mergePullRequest.mockRejectedValue(new Error('Merge conflict'));
-            manager._showPRModal(prMock, 'repo');
+            manager.modals._showPRModal(prMock, 'repo');
 
             await mergeBtn.onclick();
 
@@ -1711,7 +1711,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
         it('should handle close PR success', async () => {
             window.julesService.closePullRequest.mockResolvedValue();
-            manager._showPRModal(prMock, 'repo');
+            manager.modals._showPRModal(prMock, 'repo');
 
             await closePRBtn.onclick();
 
@@ -1724,7 +1724,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
         it('should handle close PR failure and show error', async () => {
             window.julesService.closePullRequest.mockRejectedValue(new Error('Close error'));
-            manager._showPRModal(prMock, 'repo');
+            manager.modals._showPRModal(prMock, 'repo');
 
             await closePRBtn.onclick();
 
@@ -1738,7 +1738,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.mergePullRequest.mockRejectedValue(new Error('Merge error'));
             window.julesService.closePullRequest.mockRejectedValue(new Error('Close error'));
 
-            manager._showPRModal(prMock, 'repo');
+            manager.modals._showPRModal(prMock, 'repo');
 
             await mergeBtn.onclick();
             expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, "ready", "Merge PR");
