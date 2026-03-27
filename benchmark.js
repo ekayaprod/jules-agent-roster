@@ -356,4 +356,3 @@ const runBenchmark = async () => {
 };
 
 runBenchmark();
-global.JulesModals = loadClass('js/Features/Jules/JulesManager/JulesModals.js');
