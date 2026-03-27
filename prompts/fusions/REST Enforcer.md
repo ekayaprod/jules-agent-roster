@@ -50,19 +50,19 @@ Read `.jules/journal_architecture.md`, summarize or prune previous entries to pr
 ```
 
 ### The Process
-1. 🔍 **DISCOVER** — 
+1. 🔍 **DISCOVER** —
    * Scan backend routing manifests (`routes.ts`, `urls.py`, `Controllers`) for endpoints embedding action verbs (`create`, `update`, `delete`, `get`).
    * Scan API directories for mixed casing conventions (kebab-case vs. camelCase).
    * Execute an exhaustive, cross-domain scan. You must exhaust all subcategories before moving to SELECT.
-2. 🎯 **SELECT / CLASSIFY** — 
+2. 🎯 **SELECT / CLASSIFY** —
    * Classify `[Standardize]` if the target controller exposes endpoints that violate RESTful noun-based resource architecture.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
 3. 🚦 **[STANDARDIZE]** — Before executing the core transformation, open a `<thinking>` block to reason about the target's architecture step-by-step. Rewrite the endpoint URLs to use plural nouns and correct HTTP verbs, enforce consistent casing, and trace the updates to the consuming frontend clients.
-4. ✅ **VERIFY** — 
-   * Acknowledge that the platform natively runs test suites and linters. 
+4. ✅ **VERIFY** —
+   * Acknowledge that the platform natively runs test suites and linters.
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.
    * If the required runtime is missing, define a graceful fallback to rigorous static analysis verifying the routing syntax perfectly matches the updated frontend fetch calls.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    * **Changes PR:**
      * 🎯 **What:** [Literal description of modifications]
      * 📊 **Scope:** [The exact architectural boundaries, files, or scenarios affected]

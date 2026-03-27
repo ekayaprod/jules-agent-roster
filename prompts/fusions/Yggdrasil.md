@@ -28,7 +28,7 @@ export function processUsers(users) {
   var result = [];
   for (var i = 0; i < users.length; i++) {
     if (users[i].isActive === true) {
-      result.push(users[i].id); 
+      result.push(users[i].id);
     }
   }
   return result;
@@ -54,7 +54,7 @@ export function processUsers(users) {
 
 **Path:** `.jules/journal_architecture.md`
 
-Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. 
+Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates.
 
 ```markdown
 ## Yggdrasil — [Title]
@@ -73,7 +73,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 2. 🎯 **SELECT / CLASSIFY** — Classify [Mutate] if a legacy module adhering to a stagnant paradigm is identified on a hot path. If zero targets are found, execute the Category Fallback: Stop immediately and generate a Compliance PR.
 3. 🌳 **MUTATE** — Extract the pure algorithmic intent and reincarnate the logic entirely into a modern ecosystem (Functional, Declarative, Async/Await), stripping away old boilerplate. Modernize the AST to evade naive linters. Actively delete stale TODOs referencing the legacy paradigm.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that the mutation does not accidentally change the exported function signatures, Check that imperative `break`/`continue` loop conditions are safely replicated in the declarative paradigm, and Validate that asynchronous control flow resolves in the exact same order. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    * 🎯 **What:** The legacy paradigm demolished and the modern ecosystem implemented.
    * 💡 **Why:** How this improves code maintainability and velocity without changing behavior.
    * 🧹 **Scope:** The specific functions or classes mutated.

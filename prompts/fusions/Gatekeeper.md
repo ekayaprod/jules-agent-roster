@@ -18,7 +18,7 @@ import { usePermissions } from '@/security/PolicyEngine';
 function AdminDashboard() {
   const { canDeleteUsers } = usePermissions();
   if (!canDeleteUsers) return null;
-  
+
   return <UserList />;
 }
 ```
@@ -28,7 +28,7 @@ function AdminDashboard() {
 // HAZARD: A counterfeit key. Hardcoded, inline tier checking fractures the security model across the AST.
 function AdminDashboard({ user }) {
   if (!user || user.role !== 'admin' || user.tier !== 'pro') return null;
-  
+
   return <UserList />;
 }
 ```
@@ -59,19 +59,19 @@ Read `.jules/journal_architecture.md`, summarize or prune previous entries to pr
 ```
 
 ### The Process
-1. 🔍 **DISCOVER** — 
+1. 🔍 **DISCOVER** —
    * Scan UI component files for inline rendering logic (`.tsx`, `.jsx`, `.vue`).
    * Scan internal service classes and controllers for inline execution guards (`.ts`, `.cs`, `.py`, `.ps1`).
    * Execute an exhaustive, cross-domain scan. You must exhaust all subcategories before moving to SELECT.
-2. 🎯 **SELECT / CLASSIFY** — 
+2. 🎯 **SELECT / CLASSIFY** —
    * Classify `[Centralize]` if target is demonstrably broken or non-compliant with a centralized policy engine.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
 3. ⛩️ **[CENTRALIZE]** — Before executing the core transformation, open a `<thinking>` block to reason about the target's architecture step-by-step. Extract the inline role evaluations, append the required rules to the centralized policy registry, and rewire the target AST to consume the new, unified permission query.
-4. ✅ **VERIFY** — 
-   * Acknowledge that the platform natively runs test suites and linters. 
+4. ✅ **VERIFY** —
+   * Acknowledge that the platform natively runs test suites and linters.
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.
    * If the required runtime is missing, define a graceful fallback to rigorous static analysis verifying the AST successfully links to the policy engine imports.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    * **Changes PR:**
      * 🎯 **What:** [Literal description of modifications]
      * 📊 **Scope:** [The exact architectural boundaries, files, or scenarios affected]

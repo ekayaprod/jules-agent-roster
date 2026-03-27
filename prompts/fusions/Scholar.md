@@ -50,7 +50,7 @@ export const initPayment = (session) => { /* ... */ };
 
 **Path:** `.jules/journal_documentation.md`
 
-Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. 
+Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates.
 
 ```markdown
 ## Scholar — [Title]
@@ -69,7 +69,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 2. 🎯 **SELECT / CLASSIFY** — Classify [Synthesize] if source modules are missing macro documentation or contain contradictory inline comments. If zero targets are found, execute the Category Fallback: Stop immediately and generate a Compliance PR.
 3. 🦉 **SYNTHESIZE** — Write meticulously typed inline documentation for major exports, synthesize the high-level `README.md` explaining the overarching flow, and explicitly cross-link the two via markdown paths or `@see` tags.
 4. ✅ **VERIFY** — Acknowledge native test suites and compilers. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that all markdown relative links and `@see` tags resolve to real paths, Check that inline types perfectly match the actual TypeScript/Python signatures, and Validate that no business logic was accidentally altered. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    * 🎯 **What:** The specific documentation synchronized and blueprints drafted.
    * 💡 **Why:** How this bridges the gap between granular code and macro architecture.
    * 🧹 **Scope:** The JSDoc blocks authored and the READMEs updated.

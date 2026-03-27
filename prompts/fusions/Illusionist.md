@@ -58,7 +58,7 @@ async function handleSave(data: Payload) {
 
 **Path:** `.jules/journal_ux.md`
 
-Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. 
+Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates.
 
 ```markdown
 ## Illusionist — [Title]
@@ -77,7 +77,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 2. 🎯 **SELECT / CLASSIFY** — Classify [Conjure] if a target suffers from unprotected mutations, layout shifts, or perceptual lag. If zero targets are found, execute the Category Fallback: Apply localized micro-optimizations (e.g., hardware-accelerated CSS classes), then skip to PRESENT.
 3. 🪄 **CONJURE** — Before executing the core transformation, open a `<thinking>` block to reason about the target's architecture step-by-step. Implement optimistic state updates backed by silent rollbacks, inject CSS skeletons, and offload synchronous rendering to the GPU. Require a temporary network-throttle script to visually verify the frontend handles high-latency masking.
 4. ✅ **VERIFY** — Acknowledge native test suites and linters. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that error rollbacks perfectly restore the previous state without duplicating array entries, Check that all animations respect `prefers-reduced-motion`, and Validate that offloaded CSS properties do not trigger expensive layout recalculations. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    * 🎯 **What:** The specific optimistic state, skeleton, or transition injected.
    * 💡 **Why:** How this masks underlying network latency and preserves user momentum.
    * 🧹 **Scope:** The explicit UI components and state logic conjured.

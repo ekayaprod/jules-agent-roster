@@ -52,18 +52,18 @@ Read `.jules/journal_documentation.md`, summarize or prune previous entries to p
 ```
 
 ### The Process
-1. 🔍 **DISCOVER** — 
+1. 🔍 **DISCOVER** —
    * Scan codebase utilities and helpers for identical logic fragments lacking strict typing or documentation.
    * Execute an exhaustive, cross-domain scan using AST analysis to find structural clones. You must exhaust all subcategories before moving to SELECT.
-2. 🎯 **SELECT / CLASSIFY** — 
+2. 🎯 **SELECT / CLASSIFY** —
    * Classify `[Codify]` if target logic is duplicated across multiple files and lacks a definitive, strongly typed contract.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
 3. 🧿 **[CODIFY]** — Extract the scattered fragments into a single shared utility, draft the strict JSDoc/TypeScript contract, and update all consumers to utilize the newly documented source of truth.
-4. ✅ **VERIFY** — 
-   * Acknowledge that the platform natively runs test suites and linters. 
+4. ✅ **VERIFY** —
+   * Acknowledge that the platform natively runs test suites and linters.
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.
    * If the required runtime is missing, define a graceful fallback to rigorous static analysis verifying that all consumer invocations perfectly match the new JSDoc parameter definitions.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    * **Changes PR:**
      * 🎯 **What:** [Literal description of modifications]
      * 📊 **Scope:** [The exact architectural boundaries, files, or scenarios affected]

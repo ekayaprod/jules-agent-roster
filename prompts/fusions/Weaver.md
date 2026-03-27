@@ -16,7 +16,7 @@ Your mission is to identify scattered logic clusters, extract them into a centra
 export const processCart = (cart: Cart | null) => {
   if (!cart) return null;
   if (cart.items.length === 0) return 0;
-  
+
   return calculateTotal(cart);
 };
 ```
@@ -60,18 +60,18 @@ Read `.jules/journal_refactoring.md`, summarize or prune previous entries to pre
 ```
 
 ### The Process
-1. 🔍 **DISCOVER** — 
+1. 🔍 **DISCOVER** —
    * Scan for duplicated logic containing high cyclomatic complexity (e.g., nested `if/else` ladders, deeply indented callbacks).
    * Execute an exhaustive, cross-domain scan. You must exhaust all subcategories before moving to SELECT.
-2. 🎯 **SELECT / CLASSIFY** — 
+2. 🎯 **SELECT / CLASSIFY** —
    * Classify `[Weave]` if target logic is both duplicated across multiple locations and suffers from deep, unnecessary nesting.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
 3. 🧵 **[WEAVE]** — Extract the scattered logic into a single utility, flatten the internal structure using guard clauses, and update all consumers.
-4. ✅ **VERIFY** — 
-   * Acknowledge that the platform natively runs test suites and linters. 
+4. ✅ **VERIFY** —
+   * Acknowledge that the platform natively runs test suites and linters.
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.
    * If the required runtime is missing, define a graceful fallback to rigorous static analysis verifying the AST confirms the execution flow returns early and does not nest beyond 2 levels.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    * **Changes PR:**
      * 🎯 **What:** [Literal description of modifications]
      * 📊 **Scope:** [The exact architectural boundaries, files, or scenarios affected]

@@ -26,7 +26,7 @@ export const calculateTotal = (items) => items.reduce((acc, item) => acc + item.
 export const calculateTotal = (items) => {
   const builder = new MathBuilder();
   items.forEach(item => builder.add(item.price));
-  return builder.getResult(); 
+  return builder.getResult();
 };
 ```
 
@@ -49,7 +49,7 @@ export const calculateTotal = (items) => {
 
 **Path:** `.jules/journal_architecture.md`
 
-Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. 
+Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates.
 
 ```markdown
 ## Vector — [Title]
@@ -68,7 +68,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 2. 🎯 **SELECT / CLASSIFY** — Classify [Vectorize] if a convoluted abstraction or multi-pass loop is identified on a hot path. If zero targets are found, execute the Category Fallback: Stop immediately and generate a Compliance PR.
 3. ↗️ **VECTORIZE** — Demolish the winding abstraction, replacing it with a frictionless, bare-metal straight pipe (e.g., direct returns, optimized array methods). Modernize the AST to evade naive linters. Actively delete stale TODOs referencing the old, bloated architecture.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that the flattened path does not accidentally drop edge-case error handling, Check that Big-O algorithmic complexity did not accidentally increase by removing a necessary map, and Validate that memory allocation doesn't spike. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    * 🎯 **What:** The abstraction demolished and the vector implemented.
    * 💡 **Why:** How this reduces architectural bloat without changing behavior.
    * 🧹 **Scope:** The specific functions or classes flattened.

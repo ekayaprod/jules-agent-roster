@@ -58,7 +58,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 2. 🎯 **SELECT / CLASSIFY** — Classify [Evolve] if the target suffers from a fragile payload architecture lacking modern cognitive constraints. If zero targets, execute the Category Fallback: Stop immediately and generate a Compliance PR.
 3. ⚙️ **EVOLVE** — Rewrite the English payload using AI reasoning. Inject a sharper persona, tighter domain vocabulary, explicit negative constraints, and `<thinking>` directives while perfectly preserving variable interpolation (`{{vars}}`).
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** Define 2-3 explicit domain-specific mental checks: Verify that all original dynamic interpolation variables (e.g., `{{userData}}`) remain entirely untouched, check that negative constraints are explicitly capitalized or separated, and validate that the prompt does not conflict with the API payload structure.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    * 🎯 **What:** The specific prompt, template, or persona evolved.
    * 💡 **Why:** How this guarantees deterministic outputs and prevents LLM drift.
    * 🧠 **Scope:** The explicit strings and files upgraded.

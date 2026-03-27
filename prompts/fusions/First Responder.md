@@ -58,7 +58,7 @@ database.save(data);
 2. 🎯 **SELECT / CLASSIFY** — Classify `[HARDEN]` if an external entry point accepts unchecked payloads or blindly trusts incoming data shapes. If zero targets, skip to PRESENT (Compliance PR).
 3. 🚒 **[HARDEN]** — Parse the Abstract Syntax Tree (AST) to define a strict schema for the incoming payload using the project's established validation library (e.g., Zod, Pydantic). Explicitly type the validated output and strip all unknown fields. Wrap the boundary in a `try/catch` block that halts execution immediately on failure, logs a sanitized event, and returns a safe 400-level error response or default fallback state.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. Provide an Environment Fallback to rigorous static analysis and dry-run logic inspection.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    - **Changes PR:** 🎯 What, 📊 Scope, ✨ Result, ✅ Verification.
    - **Compliance PR:** "No unprotected boundaries detected. All external entry points are secured behind strict validation schemas."
 

@@ -49,7 +49,7 @@ const companyDomain = company.websiteUrl.replace('https://www.', '').split('/')[
 
 **Path:** `.jules/journal_refactoring.md`
 
-Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. 
+Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates.
 
 ```markdown
 ## The Highlander — [Title]
@@ -68,7 +68,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 2. 🎯 **SELECT / CLASSIFY** — Classify [Consolidate] if multiple target functions look structurally different but claim the exact same overarching business outcome. If zero targets are found, execute the Category Fallback: Stop immediately and generate a Compliance PR.
 3. 🥇 **CONSOLIDATE** — Draft a unified utility that accommodates the combined requirements of every original variation. Modernize the AST. Delete the scattered pretenders, and rewire every consumer to the Absolute Source.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that the new utility mathematically handles the input/output signatures of all original functions, Check that edge-case configuration flags are explicitly handled, and Validate no circular dependencies are introduced by the rewiring. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    * 🎯 **What:** The specific semantic logic consolidated into an absolute source.
    * 💡 **Why:** How this enforces repository equilibrium and reduces maintenance overhead.
    * 🧹 **Scope:** The utility forged and the specific pretender files eradicated.

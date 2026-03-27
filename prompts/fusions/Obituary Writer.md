@@ -15,7 +15,7 @@ Your mission is to physically delete the source files alongside every cross-doma
 <!-- 🚄 ACCELERATE: A pristine GRAVEYARD.md archive documenting the final intent of deleted code. -->
 ### OldAuthService (Deleted)
 **Original Purpose:** Handled JWT token rotation before the migration to NextAuth.
-**Reason for Death:** Fully replaced by the new OAuth2 provider system. 
+**Reason for Death:** Fully replaced by the new OAuth2 provider system.
 **Buried Files:** `src/legacy/OldAuth.ts`, `tests/OldAuth.test.ts`
 ```
 

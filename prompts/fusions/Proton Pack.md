@@ -18,7 +18,7 @@ export const PollingWidget = () => {
     const timer = setInterval(fetchData, 5000);
     return () => clearInterval(timer);
   }, []);
-  
+
   return <div>Data Stream Active</div>;
 };
 ```
@@ -30,7 +30,7 @@ export const PollingWidget = () => {
   useEffect(() => {
     setInterval(fetchData, 5000);
   }, []);
-  
+
   return <div>Data Stream Active</div>;
 };
 ```
@@ -59,19 +59,19 @@ Read `.jules/journal_hygiene.md`, summarize or prune previous entries to prevent
 ```
 
 ### The Process
-1. 🔍 **DISCOVER** — 
+1. 🔍 **DISCOVER** —
    * Scan components for active, ongoing processes (`setInterval`, `setTimeout`, `requestAnimationFrame`) lacking explicit removal.
    * Scan for active Web API listeners (`addEventListener`, `IntersectionObserver`, `MutationObserver`) that persist beyond the scope of their invocation.
    * Execute an exhaustive, cross-domain scan. You must exhaust all subcategories before moving to SELECT.
-2. 🎯 **SELECT / CLASSIFY** — 
+2. 🎯 **SELECT / CLASSIFY** —
    * Classify `[Trap]` if the target instantiates a continuous, active process that is capable of executing after its parent context is destroyed.
    * If zero valid candidates exist, skip directly to PRESENT (Compliance PR).
 3. 🎒 **[TRAP]** — Inject the required `clearInterval`, `removeEventListener`, or `.disconnect()` into the component's unmount lifecycle to neutralize the ghost.
-4. ✅ **VERIFY** — 
-   * Acknowledge that the platform natively runs test suites and linters. 
+4. ✅ **VERIFY** —
+   * Acknowledge that the platform natively runs test suites and linters.
    * Rely on your native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts.
    * If the required runtime is missing, define a graceful fallback to rigorous static analysis verifying that the unmount closure structurally returns the exact cleanup function mapped to the active process.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    * **Changes PR:**
      * 🎯 **What:** [Literal description of modifications]
      * 📊 **Scope:** [The exact architectural boundaries, files, or scenarios affected]

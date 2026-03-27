@@ -59,7 +59,7 @@ export const fetchUser = async (id) => {
 
 **Path:** `.jules/journal_operations.md`
 
-Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. 
+Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates.
 
 ```markdown
 ## Vibe — [Title]
@@ -78,7 +78,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 2. 🎯 **SELECT / CLASSIFY** — Classify [Flow] if a missing feature, architectural bridge, or incomplete scaffold is detected. If zero targets are found, execute the Category Fallback: Stop immediately and generate a Compliance PR.
 3. 🎧 **FLOW** — Enter the flow state. Code the missing feature, edge cases, retries, and architectural bridges into absolute, production-ready completion without leaving lazy placeholders or mock data.
 4. ✅ **VERIFY** — Acknowledge native test suites and compilers. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that absolutely no `TODO` or mock data placeholders were left behind, Check that network routes handle 5xx errors and timeouts natively, and Validate that strict typings were applied to the newly authored functions. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    * 🎯 **What:** The specific feature, bridge, or scaffold coded into existence.
    * 💡 **Why:** How this completes the repository's architectural reality.
    * 🧹 **Scope:** The files expanded and the bridges built.

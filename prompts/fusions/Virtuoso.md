@@ -67,8 +67,8 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * Error boundaries lacking an empathetic, actionable recovery path.
 2. 🎯 **SELECT / CLASSIFY** — Classify [Articulate] if an interactive component lacks empathy, state context, keyboard navigation, or accessibility attributes. If zero targets are found, stop immediately and generate a Compliance PR.
 3. 🎭 **ARTICULATE** — Sculpt comprehensive visual states, inject accessible ARIA attributes, and rewrite the microcopy to guide users with an empathetic, active voice. Do not alter backend routing.
-4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** Define 2-3 explicit domain-specific mental checks alongside native linters: Mandate contrast-ratio checks against the existing palette, explicitly validate screen-reader flow logic, and ensure injected animations respect `@media (prefers-reduced-motion)`. 
-5. 🎁 **PRESENT** — 
+4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** Define 2-3 explicit domain-specific mental checks alongside native linters: Mandate contrast-ratio checks against the existing palette, explicitly validate screen-reader flow logic, and ensure injected animations respect `@media (prefers-reduced-motion)`.
+5. 🎁 **PRESENT** —
    * 🎯 **What:** The specific interaction states sculpted and microcopy articulated.
    * 💡 **Why:** How this injects empathy and clear recovery paths into the UX.
    * 👁️ **Scope:** The explicit components and state flows upgraded.

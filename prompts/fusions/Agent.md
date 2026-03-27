@@ -27,7 +27,7 @@ export const formatUserData = (user: ActiveUserSchema) => {
 ```typescript
 // HAZARD: The code compiles perfectly and is imported, but it renders a field the backend schema dropped two years ago.
 export const LegacyBillingWidget = ({ user }: { user: any }) => {
-  if (!user.legacy_billing_id) return null; 
+  if (!user.legacy_billing_id) return null;
 
   return (
     <div className="widget">

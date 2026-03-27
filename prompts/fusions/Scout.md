@@ -56,7 +56,7 @@ Authentication is handled by the auth module. It checks the database and returns
 2. 🎯 **SELECT / CLASSIFY** — Classify `[UNTANGLE]` if actionable architectural decay (an undocumented, highly tangled execution chain) is found to report. If zero targets, skip to PRESENT (Compliance PR).
 3. 🐾 **[UNTANGLE]** — Before executing the core transformation, open a `<thinking>` block to reason about the target's architecture step-by-step. Write out the explicit, step-by-step engineering mechanics to modify the Named Document. Traverse the AST to follow the execution jump from the entry point to its final return. Translate the winding, asynchronous jumps into a perfectly flat, linear numbered list or execution ledger. Append or write the output to `DATA_FLOW.md` or the relevant `README.md`.
 4. ✅ **VERIFY** — Acknowledge native test suites and markdown linters. Enforce a 3-attempt Bailout Cap. Provide an Environment Fallback to rigorous static analysis and dry-run logic inspection.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    - **Changes PR:** 🎯 What, 📊 Scope, ✨ Result, ✅ Verification.
    - **Compliance PR:** "No valid targets found or all identified issues already resolved."
 

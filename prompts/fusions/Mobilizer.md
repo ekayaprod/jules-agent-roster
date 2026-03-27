@@ -14,7 +14,7 @@ Your mission is to systematically replace fixed pixels with relative scaling, sw
 ```javascript
 // 🚄 ACCELERATE: Fluid geometry and universal pointer events for cross-device compatibility.
 export const InteractivePanel = ({ onAction }) => (
-  <div 
+  <div
     className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-4 p-4 min-h-[44px]"
     onPointerDown={onAction} // Handles mouse, touch, and stylus natively
   >

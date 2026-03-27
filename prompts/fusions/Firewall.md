@@ -16,7 +16,7 @@ Your mission is to autonomously identify naked LLM integrations, update legacy m
 // 📛 THE ZOD PERIMETER: Upgraded model + Sanitized input + Strict Output parsing
 const safeInput = escapeHtml(userInput);
 const response = await openai.chat.completions.create({
-  model: "gpt-4o", 
+  model: "gpt-4o",
   response_format: zodResponseFormat(ExpectedSchema, "schema"),
   messages: [
     { role: "system", content: "Extract data strictly adhering to the schema." },
@@ -63,7 +63,7 @@ const res = await openai.createCompletion({ model: "text-davinci-003", prompt })
 2. 🎯 **SELECT / CLASSIFY** — Classify `[HARDEN]` if an LLM integration lacks strict input sanitization or trusts the AI's output format without a mathematical validation schema. If zero targets, skip to PRESENT (Compliance PR).
 3. 📛 **[HARDEN]** — Before executing the core transformation, open a `<thinking>` block to reason about the target's architecture step-by-step. Parse the Abstract Syntax Tree (AST) to update the model version to the current secure stable release. Refactor naked string concatenations into strict System/User message arrays. Inject a native escaping utility for all user input variables. Wrap the LLM execution call in a strict validation schema (e.g., Zod, Pydantic) to guarantee the shape of the payload before the application consumes it.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. Provide an Environment Fallback to rigorous static analysis and dry-run logic inspection.
-5. 🎁 **PRESENT** — 
+5. 🎁 **PRESENT** —
    - **Changes PR:** 🎯 What, 📊 Scope, ✨ Result, ✅ Verification.
    - **Compliance PR:** "No exposed AI vectors detected. All LLM integrations are hardened behind strict input/output schemas."
 
