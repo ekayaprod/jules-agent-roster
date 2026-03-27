@@ -1,0 +1,1 @@
+**Knowledge Gap:** Mismatched physical file names vs internal metadata; out-of-sync JSON registries. | **Clarity:** Executed unified sync script to force markdown state into `agents.json`/`custom_agents.json`, renamed physical files, and propagated line 1 emoji into lists safely.

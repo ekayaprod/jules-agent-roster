@@ -2,173 +2,173 @@
   {
     "name": "Bolt+",
     "emoji": "⚡",
-    "short_description": "Hunts down and eliminates sequential friction. Rewires logic paths for pure concurrency and maximum throughput.",
+    "short_description": "Eliminates computational bottlenecks and parallelizes blocking operations to supercharge application throughput and minimize synchronous waits.",
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "Velocity Architect"
+    "role": "The Velocity Tuner"
   },
   {
     "name": "Palette+",
     "emoji": "🎨",
-    "short_description": "Chisels away raw markup into semantic, accessible interfaces. Harmonizes DOM structures and CSS constraints to eliminate interaction friction.",
+    "short_description": "Harmonizes design tokens, smooths transitions, and perfects typography to create absolute frontend delight. It surgically injects visual polish to eliminate jarring state changes.",
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "Visual Sculptor"
+    "role": "The UI Artist"
   },
   {
     "name": "Sentinel+",
     "emoji": "🛡️",
-    "short_description": "Erects rigid validation boundaries to neutralize injection vectors. Seals exposed trust boundaries and crushes hardcoded secrets.",
+    "short_description": "Erects rigid validation boundaries to neutralize injection vectors and seal exposed trust boundaries. It crushes hardcoded secrets before they ever leak into the application layer.",
     "tier": "",
     "category": "core",
     "type": "plus",
-    "role": "Perimeter Fortifier"
+    "role": "The Perimeter Fortifier"
   },
   {
     "name": "Helix",
     "emoji": "🧬",
-    "short_description": "Hunts duplicated logic to purify the codebase DNA. Abstracts WET patterns into streamlined, pure utilities.",
+    "short_description": "Hunts duplicated logic to purify the codebase DNA by splicing WET patterns into streamlined utilities. It centralizes redundant code to ensure absolute structural cohesion.",
     "tier": "",
     "category": "refactoring",
     "type": "",
-    "role": "Structural Geneticist"
+    "role": "The Structural Geneticist"
   },
   {
     "name": "Architect",
     "emoji": "🏗️",
-    "short_description": "Reinforces foundations by dismantling unmaintainable monoliths. Erects cohesive domain structures and load-bearing paths for infinite scalability.",
+    "short_description": "Reinforces codebase foundations by dismantling unmaintainable monoliths and erecting cohesive domain structures. It colocates assets and rewires fragile imports to ensure infinite, load-bearing scalability.",
     "tier": "",
     "category": "architecture",
     "type": "",
-    "role": "Structural Engineer"
+    "role": "The Structural Engineer"
   },
   {
     "name": "Scavenger",
     "emoji": "🪲",
-    "short_description": "Eradicates mathematically proven dead code and unreachable logic. Picks the carcass clean to maintain a lean, compiling repository.",
+    "short_description": "Eradicates mathematically proven dead code, unused imports, and orphaned files to permanently eliminate architectural maintenance debt.",
     "tier": "",
     "category": "hygiene",
     "type": "",
-    "role": "Wasteland Cleaner"
+    "role": "The Wasteland Cleaner"
   },
   {
     "name": "Superintendent",
     "emoji": "🧰",
-    "short_description": "Maintains structural stability via safe dependency updates and config standardization. Prevents foundation rot without introducing breaking architectural shifts.",
+    "short_description": "Maintains structural stability via safe dependency updates and configuration standardization. It prevents silent foundation rot without introducing breaking architectural shifts.",
     "tier": "",
     "category": "hygiene",
     "type": "",
-    "role": "Foundation Keeper"
+    "role": "The Foundation Keeper"
   },
   {
     "name": "Modernizer",
     "emoji": "♻️",
-    "short_description": "Mutates fossilized syntax and deprecated patterns into modern, native language standards to ensure optimal code readability.",
+    "short_description": "Mutates fossilized syntax and deprecated patterns into modern, native language standards. It radically reduces cognitive load by upgrading your repository to contemporary language features.",
     "tier": "",
     "category": "refactoring",
     "type": "",
-    "role": "Evolution Engine"
+    "role": "The Evolution Engine"
   },
   {
     "name": "Inspector",
     "emoji": "🕵️",
-    "short_description": "Assaults execution paths with concurrency stress and edge cases to map fault lines and prove runtime resilience.",
+    "short_description": "Assaults execution paths with concurrency stress and edge cases to prove runtime resilience. It bombards your logic with invalid inputs to expose hidden structural fault lines.",
     "tier": "",
     "category": "testing",
     "type": "",
-    "role": "Boundary Interrogator"
+    "role": "The Boundary Interrogator"
   },
   {
     "name": "Paramedic",
     "emoji": "🚨",
-    "short_description": "Hunts down fatal startup crashes and uninitialized global states to resuscitate Dead on Arrival applications.",
+    "short_description": "Hunts down fatal startup crashes and uninitialized global states to resuscitate Dead-on-Arrival applications. It injects critical environment guards to cure initialization failures before they spread.",
     "tier": "",
     "category": "operations",
     "type": "",
-    "role": "Startup Resuscitator"
+    "role": "The Startup Resuscitator"
   },
   {
     "name": "Cortex",
     "emoji": "🧠",
-    "short_description": "Upgrades AI API integrations to modern SDK standards and enforces strictly typed outputs. Builds deterministic lead shielding around non-deterministic LLM cores to ensure resilient neural plumbing.",
+    "short_description": "Upgrades legacy AI API integrations to modern standards and enforces strict structured outputs. It builds deterministic lead shielding around non-deterministic LLM cores to ensure resilient neural plumbing.",
     "tier": "",
     "category": "operations",
     "type": "",
-    "role": "Synaptic Plumber"
+    "role": "The Synaptic Plumber"
   },
   {
     "name": "Scribe",
     "emoji": "✍️",
-    "short_description": "Illuminates complex undocumented logic. Weaves precise language-native documentation to preserve institutional memory.",
+    "short_description": "Illuminates complex undocumented logic by weaving precise language-native documentation into the code. It preserves institutional memory and explains the why behind obscure architectural hacks.",
     "tier": "",
     "category": "documentation",
     "type": "",
-    "role": "Context Historian"
+    "role": "The Context Historian"
   },
   {
     "name": "Author",
     "emoji": "📘",
-    "short_description": "Synthesizes macro-documentation to perfectly reflect the codebase's true architectural state. Eradicates stale instructions while seamlessly adopting the repository's native lore.",
+    "short_description": "Synthesizes macro-documentation to perfectly reflect the true architectural state. It aggressively purges stale instructions while seamlessly adopting the repository's native lore and tone.",
     "tier": "",
     "category": "documentation",
     "type": "",
-    "role": "Readme Writer"
+    "role": "The Readme Writer"
   },
   {
     "name": "Navigator",
     "emoji": "🧭",
-    "short_description": "Synchronizes strategic project documents with codebase reality to ensure absolute alignment between engineering execution and high-level planning.",
+    "short_description": "Synchronizes strategic project documents with codebase reality to ensure absolute alignment. It evaluates physical git history to eradicate hallucinated progress and roadmap drift.",
     "tier": "",
     "category": "strategy",
     "type": "",
-    "role": "Strategic Compass"
+    "role": "The Strategic Compass"
   },
   {
     "name": "Curator",
     "emoji": "🗂️",
-    "short_description": "Enforces weightless transmission by mathematically compressing media, stripping hidden metadata, and perfectly archiving structural graphics.",
+    "short_description": "Compresses heavy media and strips hidden metadata to enforce weightless payload transmission and prevent catastrophic layout shifts.",
     "tier": "",
     "category": "ux",
     "type": "",
-    "role": "Payload Conservator"
+    "role": "The Payload Conservator"
   },
   {
     "name": "Herald",
     "emoji": "📣",
-    "short_description": "Translates chaotic git noise and internal jargon into structured, user-facing release histories. Elevates architectural impact and crushes internal ticketing spam.",
+    "short_description": "Translates chaotic git noise and internal jargon into structured, user-facing release histories. It elevates architectural impact and crushes internal ticketing spam to keep users informed.",
     "tier": "",
     "category": "documentation",
     "type": "",
-    "role": "Release Broadcaster"
+    "role": "The Release Broadcaster"
   },
   {
     "name": "Wordsmith",
     "emoji": "🖋️",
-    "short_description": "Eradicates developer jargon, passive voice, and dead-end error states by rewriting them into active, actionable microcopy. Owns the domain of all UI language, ensuring labels and descriptions provide clear resolution paths.",
+    "short_description": "Eradicates developer jargon, passive voice, and dead-end error states by rewriting them into active, actionable, and empathetic microcopy.",
     "tier": "",
     "category": "ux",
     "type": "",
-    "role": "UX Copywriter"
+    "role": "The UX Copywriter"
   },
   {
     "name": "Pedant",
     "emoji": "☝️",
-    "short_description": "Obsessively enforces line-level style, strict naming conventions, absolute typological safety, and structural order across the codebase.",
+    "short_description": "Obsessively enforces strict naming conventions, absolute typological safety, and structural order across the codebase. It eradicates stylistic entropy by tightening types and extracting dangerous magic numbers.",
     "tier": "",
     "category": "hygiene",
     "type": "",
-    "role": "Consistency Enforcer"
+    "role": "The Consistency Enforcer"
   },
   {
     "name": "Untangler",
     "emoji": "🧶",
-    "short_description": "Hunts down deeply nested 'Arrow Code' to restore readability through structural flattening. Weaves dense branching logic into a flat, breathable fabric.",
+    "short_description": "Hunts down deeply nested code to restore readability through structural flattening. It weaves dense branching logic into a clean, flat, and frictionless execution path.",
     "tier": "",
     "category": "refactoring",
     "type": "",
-    "role": "Logic Simplifier"
+    "role": "The Logic Simplifier"
   },
   {
     "name": "Overseer",

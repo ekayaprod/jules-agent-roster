@@ -2,154 +2,154 @@
   "Architect,Architect": {
     "name": "Vibe",
     "emoji": "🎧",
-    "short_description": "Autonomously imagines and builds brand-new features by reading your codebase's DNA. No brief needed — it hunts for the missing piece and ships production-ready code.",
+    "short_description": "Operates as the self-starting creative engine of the repository, obsessively coding missing features into existence. It hyper-focuses on semantic gaps to build absolute, production-ready reality.",
     "category": "strategy",
     "type": "fusion",
-    "role": "Flow State Hacker"
+    "role": "The Flow State Hacker"
   },
   "Architect,Author": {
     "name": "City Clerk",
     "emoji": "🏛️",
-    "short_description": "Restructures complex module boundaries and documents every architectural shift with formal migration guides. Moves files, creates barrel files, updates imports, and writes the official record.",
+    "short_description": "Hunts Restructure complex module boundaries. Meticulously document the exact architectural shift via formal migration guides.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Migration Scribe"
+    "role": "The Migration Scribe"
   },
   "Architect,Bolt+": {
     "name": "Slipstream",
     "emoji": "💨",
-    "short_description": "Outsmarts the browser's loading waterfall by code-splitting heavy dependencies and preloading critical assets. Dynamic imports and stable Suspense boundaries — no layout shifts, no wasted load time.",
+    "short_description": "Flatten winding conditional logic and deeply nested `if/else` statements into lightning-fast, highly readable guard clauses and early returns.",
     "category": "ux",
     "type": "fusion",
-    "role": "Frictionless Router"
+    "role": "The Frictionless Router"
   },
   "Architect,Cortex": {
     "name": "Construct",
     "emoji": "🧊",
-    "short_description": "Upgrades flat RAG text blobs into semantic, overlapping chunks enriched with metadata. Your AI retrieves precise context instead of noisy, fragmented strings.",
+    "short_description": "Upgrades RAG architecture by re-architecting flat text blobs into overlapping multi-dimensional chunks to ensure concepts are never severed.",
     "category": "meta",
     "type": "fusion",
-    "role": "Chunk Architect"
+    "role": "The Chunk Architect"
   },
   "Architect,Curator": {
     "name": "Mason",
     "emoji": "🧱",
-    "short_description": "Fixes broken CSS layouts, WPF flexboxes, and container overflows with modern flexbox and grid architecture. Replaces fragile hacks with responsive, mathematically sound constraints.",
+    "short_description": "Fix broken CSS layouts, WPF flexboxes, and container overflows to reinforce mathematical spatial integrity across the application.",
     "category": "ux",
     "type": "fusion",
-    "role": "Spatial Reinforcer"
+    "role": "The Spatial Reinforcer"
   },
   "Architect,Helix": {
     "name": "Kiln",
     "emoji": "🌋",
-    "short_description": "Modernizes legacy code to current standards and immediately stress-tests it to prove nothing broke. High-heat refactoring with boundary tests baked in.",
+    "short_description": "Upgrade outdated syntax to native standards and subject the logic to intense edge-case boundary testing.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "High-Heat Refactorer"
+    "role": "The High-Heat Refactorer"
   },
   "Architect,Herald": {
     "name": "Registrar",
-    "emoji": "🗃️",
-    "short_description": "Ensures every shared component, utility, and API route is registered, exported, and documented. Generates barrel files, cleans up deep relative imports, and adds adjacent docs in one sweep.",
+    "emoji": "📑",
+    "short_description": "Sweeps the repository to ensure all shared UI components, utility functions, and API routes are properly registered, exported from barrel files, and documented.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Component Cataloger"
+    "role": "The Component Cataloger"
   },
   "Architect,Inspector": {
     "name": "Seawall",
     "emoji": "🌊",
-    "short_description": "Encapsulates internal module logic behind strict barrel exports and proves the boundary holds with integration tests. Public APIs only — internals stay hidden.",
+    "short_description": "Deploy and enforce API limits, circuit breakers, and backoff mechanisms to protect the backend from catastrophic thundering herds.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Encapsulation Specialist"
+    "role": "The Rate Limiting Strategist"
   },
   "Architect,Modernizer": {
     "name": "Terraformer",
     "emoji": "🌍",
-    "short_description": "Reorganizes chaotic asset dumps into domain-driven folder structures while converting files to modern formats. Every import path updated in the same pass.",
+    "short_description": "Reorganizes massive, unstructured public folders and legacy asset \"dumping grounds\" into logical feature hierarchies. Swaps heavy raster formats to optimized WebP implementations to eradicate maintenance debt and bandwidth bloat.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Asset Reshaper"
+    "role": "The Asset Reshaper"
   },
   "Architect,Navigator": {
     "name": "Scaffolder",
     "emoji": "🪜",
-    "short_description": "Finds routes and namespaces defined in config but missing their physical files on disk. Builds the exact directories and starter boilerplate to fulfill the architectural promise.",
+    "short_description": "Sweep codebases to hunt for defined architectural routes, namespaces, or module manifests that lack their corresponding physical files on the disk.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Structural Propagator"
+    "role": "The Structural Propagator"
   },
   "Architect,Palette+": {
     "name": "Sculptor",
     "emoji": "🗿",
-    "short_description": "Breaks monolithic components into clean sub-components with proper prop boundaries. Smooths mount/unmount seams with native CSS transitions.",
+    "short_description": "Breathe life into static DOM elements by injecting fluid transitions, micro-interactions, and hardware-accelerated animations natively supported by the project's CSS architecture.",
     "category": "ux",
     "type": "fusion",
-    "role": "UI Animator"
+    "role": "The UI Animator"
   },
   "Architect,Paramedic": {
     "name": "Surgeon",
     "emoji": "🔪",
-    "short_description": "Finds massive monolithic functions and extracts fragile network calls and data parsers into dedicated modules. Wraps every extracted piece in robust try/catch boundaries.",
+    "short_description": "Slice fragile, inline network logic out of monolithic UI components and isolate it into robust service files.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Inline Extractor"
+    "role": "The Inline Extractor"
   },
   "Architect,Pedant": {
     "name": "Foreman",
     "emoji": "👷",
-    "short_description": "Eradicates naming convention chaos by sweeping the file tree, enforcing the project's architectural blueprint, and updating every import to match. One pass to restore structural consistency.",
+    "short_description": "Eradicate chaotic naming conventions by sweeping the file tree and enforcing strict architectural blueprints using version-control-safe commands. Your mission is exclusively to eradicate naming anarchy by sweeping the physical file tree, enforcing the project's strict architectural blueprint, and updating every single import statement globally to match the corrected paths.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Convention Enforcer"
+    "role": "The Convention Enforcer"
   },
   "Architect,Scavenger": {
     "name": "Renovator",
     "emoji": "🏚️",
-    "short_description": "Colocates scattered components, styles, and hooks into unified feature folders. Polishes UI with loading states, error boundaries, and accessibility attributes in the same operation.",
+    "short_description": "Restructures disorganized feature hierarchies by colocating fragmented components, styles, and hooks into unified feature folders.",
     "category": "ux",
     "type": "fusion",
-    "role": "UX Polisher"
+    "role": "The UX Polisher"
   },
   "Architect,Scribe": {
     "name": "Archivist",
     "emoji": "📚",
-    "short_description": "Writes granular inline JSDoc and keeps it synchronized with the repository's high-level READMEs. Micro and macro documentation stay in lockstep — never contradicting each other.",
+    "short_description": "He eliminates context drift by writing granular inline documentation and immediately synchronizing it with the repository's high-level architectural READMEs.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Context Linker"
+    "role": "The Context Linker"
   },
   "Architect,Sentinel+": {
     "name": "Bastion",
     "emoji": "🏰",
-    "short_description": "Sweeps infrastructure-as-code and server configs for structural vulnerabilities and locks down exposed boundaries. Injects strict constraints and whitelists without waiting for a human to flag the breach.",
+    "short_description": "Sweep infrastructure-as-code and server configurations to explicitly lock down exposed boundaries.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Boundary Hardener"
+    "role": "The Boundary Hardener"
   },
   "Architect,Superintendent": {
     "name": "Organizer",
     "emoji": "🧲",
-    "short_description": "Pulls implicitly related files out of flat roots into dedicated, domain-driven subdirectories. Relocates, restructures, and updates every import path — no dumping grounds allowed.",
+    "short_description": "Eradicate the \"Dumping Ground\" by magnetically pulling implicitly related files from flat roots into dedicated, structured subdirectories.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Semantic Organizer"
+    "role": "The Semantic Organizer"
   },
   "Architect,Untangler": {
     "name": "Hoister",
     "emoji": "🪝",
-    "short_description": "Elevates functions, constants, and utilities trapped inside render scopes up to the module level. Closure dependencies refactored into pure parameters — predictable and testable.",
+    "short_description": "You enforce strict scope hygiene by hoisting functions, constants, and utilities trapped inside component or render scopes to the file or module level.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Scope Elevator"
+    "role": "The Scope Elevator"
   },
   "Architect,Wordsmith": {
     "name": "Information Architect",
     "emoji": "📋",
-    "short_description": "Reorganizes page layouts while ensuring headings, step labels, and CTAs tell a cohesive sequential story. Fixes broken workflows before the user ever clicks.",
+    "short_description": "Reorganize the hierarchy of page layouts while simultaneously ensuring step labels, headings, and CTAs tell a cohesive, sequential story.",
     "category": "ux",
     "type": "fusion",
-    "role": "Layout Narrator"
+    "role": "The Layout Narrator"
   },
   "Author,Author": {
     "name": "",
@@ -162,402 +162,402 @@
   "Author,Bolt+": {
     "name": "Accountant",
     "emoji": "📊",
-    "short_description": "Authors PERFORMANCE_BUDGET.md and locks bundler configs to fail the build if chunk sizes exceed hard limits. Stops asset bloat before it ever merges.",
+    "short_description": "Scans bundler configurations, injects hard size thresholds, and enforces build-time failures to stop asset bloat before it merges.",
     "category": "ux",
     "type": "fusion",
-    "role": "Budget Enforcer"
+    "role": "The Budget Enforcer"
   },
   "Author,Cortex": {
     "name": "Policy Maker",
     "emoji": "⚖️",
-    "short_description": "Authors and maintains AI_POLICY.md, then audits the codebase to ensure no PII or unauthorized models breach compliance. Data-masking boundaries injected where needed.",
+    "short_description": "Author and maintain the macro `AI_POLICY.md` to establish strict data boundaries.",
     "category": "architecture",
     "type": "fusion",
-    "role": "AI Architect"
+    "role": "The AI Architect"
   },
   "Author,Curator": {
     "name": "Illuminator",
     "emoji": "🖌️",
-    "short_description": "Finds dense text blocks and undocumented state arrays, then generates Mermaid.js or inline SVG diagrams to visualize them. Architecture you can see, right next to the code.",
+    "short_description": "Illuminator sweeps codebases hunting for massive blocks of dense text and autonomously generates inline diagrams to visualize them.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Architecture Draftsman"
+    "role": "The Architecture Draftsman"
   },
   "Author,Helix": {
     "name": "Lexicon",
-    "emoji": "🔖",
-    "short_description": "Eradicates naming drift by replacing ambiguous synonyms with a globally consistent vocabulary. AST-level refactoring ensures the entire codebase speaks with one domain voice.",
+    "emoji": "📖",
+    "short_description": "Hunt down naming drift and synonymous variables, and standardize them into a unified, explicit vocabulary.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Vocabulary Standardizer"
+    "role": "The Vocabulary Standardizer"
   },
   "Author,Herald": {
     "name": "Town Crier",
     "emoji": "🔔",
-    "short_description": "Drafts polished changelogs from recent git history and syncs the README to reflect current reality. Every release announced clearly, every guide kept up to date.",
+    "short_description": "Eradicates outdated documentation, missing feature announcements, and stale setup instructions. Distills noisy git commits into clean, user-facing changelog updates.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Release Documentation Synchronizer"
+    "role": "The Release Documentation Synchronizer"
   },
   "Author,Inspector": {
     "name": "Mapper",
     "emoji": "🛰️",
-    "short_description": "Identifies untested code, critical paths, and missing edge cases, then documents them in TESTING_PLAN.md. Flags exactly what needs testing next — no guesswork for the next agent.",
+    "short_description": "Identify untested code, critical execution paths, and missing edge cases, meticulously updating the `TESTING_PLAN.md` file to construct actionable coverage roadmaps.",
     "category": "testing",
     "type": "fusion",
-    "role": "Coverage Mapper"
+    "role": "The Coverage Mapper"
   },
   "Author,Modernizer": {
     "name": "Ouija",
     "emoji": "🕯️",
-    "short_description": "Resurrects lost historical context for legacy code too fragile to touch or refactor. Uses git forensics and semantic reasoning to document the *why* behind complex anomalies — permanently.",
+    "short_description": "Sweep the codebase to resurrect lost historical context for \"load-bearing spaghetti\" that modern developers are too afraid to touch or refactor.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Lore Resurrector"
+    "role": "The Lore Resurrector"
   },
   "Author,Navigator": {
     "name": "Sherpa",
     "emoji": "🧗‍♂️",
-    "short_description": "Sweeps complex UIs and injects contextual onboarding tooltips to guide users step-by-step. First-time users always know where they are and what to do next.",
+    "short_description": "Transform intimidating empty states and blank screens into contextual, actionable onboarding pathways.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Onboarding Architect"
+    "role": "The Onboarding Architect"
   },
   "Author,Palette+": {
     "name": "Muse",
     "emoji": "🧑‍🎨",
-    "short_description": "Transforms empty screens into inspiring first-time experiences with rich Empty States, tooltips, and in-app help. Every blank canvas becomes a contextual guide.",
+    "short_description": "Transform raw data dumps and blank screens into inspiring, actionable onboarding flows.",
     "category": "ux",
     "type": "fusion",
-    "role": "Contextual Guide"
+    "role": "The Contextual Guide"
   },
   "Author,Paramedic": {
     "name": "Marshal",
     "emoji": "🧯",
-    "short_description": "Maps single points of failure and authors high-precision failover protocols for each. Every disaster scenario documented with numbered recovery commands in a central manifest.",
+    "short_description": "Hunt for undocumented infrastructure dependencies and draft clear, actionable disaster recovery steps.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Contingency Planner"
+    "role": "The Runbook Architect"
   },
   "Author,Pedant": {
     "name": "Rulemaker",
     "emoji": "🧑‍⚖️",
-    "short_description": "Authors STYLEGUIDE.md and codifies its rules into ESLint, Prettier, and TSConfig. Human-readable standards enforced automatically by machines.",
+    "short_description": "Mandates strict code hygiene, enforcing formatting guidelines, linting rules, and type-checking standards.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Style Guide Enforcer"
+    "role": "The Style Guide Enforcer"
   },
   "Author,Scavenger": {
     "name": "Sunsetter",
     "emoji": "🌇",
-    "short_description": "Ensures deprecated code has formal DEPRECATION.md plans and sweeps docs to erase tutorials still pointing at retired systems. No ghost APIs haunting the wiki.",
+    "short_description": "Author formal DEPRECATION.md plans and sweep wikis to erase or rewrite tutorials that still point to retired systems.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Deprecation Documentarian"
+    "role": "The Deprecation Documentarian"
   },
   "Author,Scribe": {
     "name": "Scholar",
     "emoji": "🦉",
-    "short_description": "Documents a module from granular JSDoc all the way up to the macro README in one unified pass. Every function explained inline and cross-linked to high-level architecture docs.",
+    "short_description": "Bridge the gap between granular code logic and macro architecture by synthesizing inline types and overarching READMEs into a single truth.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Documentation Synthesizer"
+    "role": "The Documentation Synthesizer"
   },
   "Author,Sentinel+": {
     "name": "Threat Modeler",
     "emoji": "🏯",
-    "short_description": "Authors THREAT_MODEL.md and enforces strict CORS, CSP, and secure HTTP headers across the global config. Defines the attack surface and the rules of engagement.",
+    "short_description": "Hardens the application's infrastructure boundaries against breach by locking down globally open CORS policies and injecting missing security headers. Fortifies the macro network boundary.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Macro Strategist"
+    "role": "The Macro Strategist"
   },
   "Author,Superintendent": {
     "name": "Groundskeeper",
     "emoji": "🏡",
-    "short_description": "Authors MAINTENANCE.md and standardizes CI/CD configs to codify routine repository upkeep. Programs dependency bots and hygiene workflows for a self-healing repo.",
+    "short_description": "Standardize CI/CD configurations and author macro maintenance guides to ensure routine repository upkeep is strictly codified.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Automation Maintainer"
+    "role": "The Automation Maintainer"
   },
   "Author,Untangler": {
     "name": "Scout",
     "emoji": "🐾",
-    "short_description": "Maps complex cross-file execution jumps and undocumented async chains into readable DATA_FLOW.md files or Mermaid sequence diagrams. Makes invisible data flows visible.",
+    "short_description": "Read highly convoluted, multi-file execution chains and conceptually untangle them into pristine, linear macro-documentation.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Execution Mapper"
+    "role": "The Trail Scribe"
   },
   "Author,Wordsmith": {
     "name": "Brand Manager",
     "emoji": "🏷️",
-    "short_description": "Audits architectural READMEs to define canonical domain terminology, then enforces it across every UI component. One vocabulary, used everywhere.",
+    "short_description": "Establish the official domain terminology in the documentation. Eradicate fragmented lexicons and developer jargon leaking into user-facing copy to eliminate confusion.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Domain Language Synchronizer"
+    "role": "The Lexicon Synchronizer"
   },
   "Bolt+,Bolt+": {
     "name": "Vector",
     "emoji": "↗️",
-    "short_description": "Mathematically eradicates architectural bloat by calculating and enforcing the shortest possible execution path. Demolishes winding, overly abstracted workflows and replaces them with frictionless, bare-metal straight pipes.",
+    "short_description": "Demolishes winding, overly abstracted workflows and replaces them with frictionless straight pipes. It calculates the absolute shortest mathematical trajectory to guarantee maximum execution velocity.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Absolute Trajectory"
+    "role": "The Absolute Trajectory"
   },
   "Bolt+,Cortex": {
     "name": "Tachyon",
     "emoji": "☄️",
-    "short_description": "Rewires clunky synchronous LLM queries into Server-Sent Events to eliminate Time-To-First-Token latency. Streams chunked tokens for a zero-latency, real-time AI experience.",
+    "short_description": "Converts synchronous AI responses into fluid, typewriter-style data streams. Upgrades legacy endpoints and frontend hooks to eliminate blocking wait states and high-latency user experiences.",
     "category": "meta",
     "type": "fusion",
-    "role": "Stream-State Accelerator"
+    "role": "The Stream-State Accelerator"
   },
   "Bolt+,Curator": {
     "name": "Sprinter",
     "emoji": "👟",
-    "short_description": "Converts legacy PNG/JPG assets to modern WebP/AVIF, implements responsive srcSet delivery, and enables lazy loading. Minimum bytes transferred for maximum visual quality.",
+    "short_description": "Hunt down heavy, sequential loops and O(n^2) nested loops in data processing pipelines and optimize them using linear mapping, dictionary lookups, or native `.map()`/`.reduce()` functions.",
     "category": "ux",
     "type": "fusion",
-    "role": "Elite Payload Delivery"
+    "role": "The Map/Reduce Optimizer"
   },
   "Bolt+,Helix": {
     "name": "Mitosis",
     "emoji": "🧫",
-    "short_description": "Splits heavy single-threaded UI logic into parallel Web Worker cells for true browser multi-threading. The UI never freezes while computation runs in the background.",
+    "short_description": "Split heavy, single-threaded UI logic into identical, parallel Web Worker cells to enable true multi-threading in the browser.",
     "category": "ux",
     "type": "fusion",
-    "role": "Parallelizer"
+    "role": "The Parallelizer"
   },
   "Bolt+,Herald": {
     "name": "Speed Camera",
-    "emoji": "🚥",
-    "short_description": "Translates raw performance JSON artifacts from CI into human-readable PR reports focused on Core Web Vitals and bundle sizes. Makes performance decay visible and inescapable.",
+    "emoji": "📸",
+    "short_description": "Inject temporary, high-fidelity `performance.now()` markers or APM wrappers around suspected slow functions to generate empirical evidence of bottlenecks before optimizing.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Web Vitals Broadcaster"
+    "role": "The Performance Profiler"
   },
   "Bolt+,Inspector": {
     "name": "Pacesetter",
     "emoji": "🏁",
-    "short_description": "Implements structural performance gains and permanently locks them in with strict benchmark regression tests. Heavy algorithms get efficient data structures and assertions that fail on regression.",
+    "short_description": "Implement structural performance gains and permanently lock those gains in place with strict benchmark regression tests.",
     "category": "testing",
     "type": "fusion",
-    "role": "Performance Enforcer"
+    "role": "The Performance Enforcer"
   },
   "Bolt+,Modernizer": {
     "name": "Catalyst",
     "emoji": "🏎️",
-    "short_description": "Upgrades legacy architecture to modern native standards and extracts the inherent performance gains. Business logic stays identical — the engine just runs cleaner.",
+    "short_description": "Upgrade legacy architecture by ruthlessly ripping out outdated heavy polyfills and utility libraries.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Of Pure Momentum"
+    "role": "The Momentum Optimizer"
   },
   "Bolt+,Navigator": {
     "name": "Hyperloop",
     "emoji": "🚄",
-    "short_description": "Migrates heavily accessed static endpoints to edge-compatible runtimes and CDN caching layers. Compute pushed as close to the user as physically possible.",
+    "short_description": "Sweeps API routes and server-side paths to migrate heavily accessed static endpoints to edge-compatible runtimes. Injects aggressive caching headers to push compute and storage as close to the us...",
     "category": "strategy",
     "type": "fusion",
-    "role": "Edge Router"
+    "role": "The Edge Router"
   },
   "Bolt+,Palette+": {
     "name": "Illusionist",
     "emoji": "🪄",
-    "short_description": "Strips components to bare render constraints and masks remaining latency with luxurious CSS loading states. Memoization and non-blocking micro-interactions make everything feel instantly fast.",
+    "short_description": "Masks structural latency and render bottlenecks beneath a veneer of instantaneous feedback. It autonomously injects optimistic states and CSS skeletons so the application feels impossibly fast.",
     "category": "ux",
     "type": "fusion",
-    "role": "Master of Perceived Performance"
+    "role": "The Mirage Architect"
   },
   "Bolt+,Paramedic": {
     "name": "Pacemaker",
     "emoji": "🫀",
-    "short_description": "Protects the browser's main thread by deferring heavy synchronous work to the background. Debounce boundaries, idle callbacks, and batched state updates keep the UI perfectly smooth.",
+    "short_description": "Regulate the heartbeat of the application by finding heavy, synchronous work and safely deferring it to the background.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Main Thread Protector"
+    "role": "The Main Thread Protector"
   },
   "Bolt+,Pedant": {
     "name": "Millisecond",
     "emoji": "⏱️",
-    "short_description": "Hunts unstable object references, un-memoized callbacks, and inline styles that trigger useless React re-renders. useMemo, useCallback, and hoisted statics restore blazing-fast performance.",
+    "short_description": "Eradicate useless React re-renders caused by unstable object references, un-memoized callbacks, and inline styles that destroy frontend performance.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Render Optimizer"
+    "role": "The Render Optimizer"
   },
   "Bolt+,Scavenger": {
     "name": "Proton Pack",
     "emoji": "🎒",
-    "short_description": "Blasts unmounted components, detached DOM nodes, and stale storage bloat to keep long-lived browser sessions lean. Lifecycle cleanup, TTL wrappers, and disconnected observers — no leaks left behind.",
+    "short_description": "Hunt down \"ghosts\" in the machine—zombie intervals, detached DOM nodes, and rogue observers that actively haunt the runtime.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Memory Leak Eradicator"
+    "role": "The Poltergeist Purger"
   },
   "Bolt+,Scribe": {
     "name": "Profiler",
     "emoji": "🔬",
-    "short_description": "Analyzes algorithmic complexity and injects Big-O notation directly into function JSDoc. Every expensive operation labeled with its time and space cost — no hidden performance surprises.",
+    "short_description": "Analyze algorithmic complexity to make invisible computational costs highly visible.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Complexity Auditor"
+    "role": "The Complexity Auditor"
   },
   "Bolt+,Sentinel+": {
     "name": "Payload",
     "emoji": "🚂",
-    "short_description": "Implements extreme edge-caching for public routes while quarantining authenticated data with strict no-store directives. Maximum speed where it's safe, zero exposure where it's not.",
+    "short_description": "Accelerate public traffic via aggressive caching while locking authenticated routes and sensitive user data inside impenetrable, zero-trust cargo cars.",
     "category": "core",
     "type": "fusion",
-    "role": "Armored Express"
+    "role": "The Armored Express"
   },
   "Bolt+,Superintendent": {
     "name": "Expediter",
     "emoji": "🛎️",
-    "short_description": "Speeds up CI/CD pipelines with aggressive dependency caching, parallelism, and configuration tuning. Local dev servers start in milliseconds — not minutes.",
+    "short_description": "Speed up CI/CD pipelines with aggressive dependency caching, parallelism, and configuration tuning. Ensure local servers start instantly and deployments fly.",
     "category": "operations",
     "type": "fusion",
-    "role": "Build Optimizer"
+    "role": "The Build Optimizer"
   },
   "Bolt+,Untangler": {
     "name": "Surge Protector",
     "emoji": "🌩️",
-    "short_description": "Flattens heavy computational functions with early-return guard clauses to short-circuit unnecessary processing paths. No wasted CPU cycles on logic that was never going to succeed.",
+    "short_description": "Flatten heavy computational functions with aggressive early-return guard clauses, cutting power to unnecessary algorithmic paths to save CPU cycles.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Processing Short-Circuit"
+    "role": "The Processing Short-Circuit"
   },
   "Bolt+,Wordsmith": {
     "name": "Telepath",
     "emoji": "👁️‍🗨️",
-    "short_description": "Prefetches the next screen's data the moment a user hovers over a link. Makes the application feel psychic by loading everything before the click ever happens.",
+    "short_description": "Injects `prefetch` mechanisms into interactive UI elements to load data and HTML partials before a user even clicks. Eradicates perceived loading times by acting on implicit hover or focus intent.",
     "category": "ux",
     "type": "fusion",
-    "role": "Predictive Pre-loader"
+    "role": "The Predictive Pre-loader"
   },
   "Cortex,Cortex": {
     "name": "Singularity",
     "emoji": "🌌",
-    "short_description": "Identifies repetitive developer chores across the codebase and auto-generates hyper-constrained AI agent prompts to automate them. The meta-architect that builds its own team.",
+    "short_description": "Conduct an exhaustive sweep of the entire repository's architecture to detect developer toil, and birth universal markdown agent prompts hardcoded with internal context directly into `prompts/micro/`.",
     "category": "meta",
     "type": "fusion",
-    "role": "Meta-Architect"
+    "role": "The Meta-Architect"
   },
   "Cortex,Curator": {
     "name": "Tokenizer",
     "emoji": "🪙",
-    "short_description": "Maximizes the signal-to-noise ratio of every AI prompt by stripping HTML, minifying JSON, and dropping non-essential metadata. High-density context, no wasted tokens.",
+    "short_description": "Reduces token weight and eliminates context-window overflows by stripping useless tokens, formatting massive scraped HTML into clean Markdown, and minifying dense XML payloads before sending them...",
     "category": "meta",
     "type": "fusion",
-    "role": "Context Window Optimizer"
+    "role": "The Window Optimizer"
   },
   "Cortex,Helix": {
-    "name": "Highlander",
+    "name": "The Highlander",
     "emoji": "🥇",
-    "short_description": "Uses deep reasoning to find logically identical code that looks syntactically different — three validators secretly solving the same problem. Extracts them into one parameterized utility and deletes the rest.",
+    "short_description": "Hunts down syntactically different implementations of the exact same business logic. It extracts the ultimate semantic truth and ruthlessly eradicates the redundant pretenders.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Semantic Consolidator"
+    "role": "The Absolute Source"
   },
   "Cortex,Herald": {
     "name": "Telemetrist",
     "emoji": "📡",
-    "short_description": "Intercepts AI execution routes and injects structured observability logging for token usage, latency, and cost-per-request. Non-blocking, PII-safe telemetry after every AI response.",
+    "short_description": "Injects latency timers and standardized metadata loggers to eradicate untracked AI routes. Pulls AI requests out of the dark, exposing token counts, costs, and context-window exhaustion.",
     "category": "operations",
     "type": "fusion",
-    "role": "AI Broadcaster"
+    "role": "The AI Broadcaster"
   },
   "Cortex,Inspector": {
     "name": "Polygraph",
     "emoji": "🎛️",
-    "short_description": "Upgrades AI integrations to enforce strict JSON output and stress-tests them with deliberately malformed data. Zod/Pydantic schemas and lie-detector unit tests guarantee structural integrity.",
+    "short_description": "Enforce strict structured outputs on AI prompt generation and inject rigorous schema validation tests to catch LLM hallucinations.",
     "category": "testing",
     "type": "fusion",
-    "role": "AI Data Schema"
+    "role": "The Validation Enforcer"
   },
   "Cortex,Modernizer": {
     "name": "Futurist",
     "emoji": "🛸",
-    "short_description": "Modernizes server-side AI syntax and upgrades the models powering it in a single pass. Modern ES6 routes and the latest prompt structures — evolved together.",
+    "short_description": "Modernize the server-side syntax of legacy AI flows and upgrade models and SDKs by refactoring deprecated Promise chains into modern async/await syntax.",
     "category": "meta",
     "type": "fusion",
-    "role": "AI Pipeline Evolver"
+    "role": "The Pipeline Evolver"
   },
   "Cortex,Navigator": {
     "name": "Dispatcher",
     "emoji": "🚏",
-    "short_description": "Routes simple tasks to fast, cheap models and complex tasks to powerful reasoning models. LLM usage always optimized by cognitive difficulty — speed and cost in balance.",
+    "short_description": "Route simple tasks to fast, cheap models and complex tasks to powerful reasoning models. Optimize LLM usage by analyzing cognitive difficulty to strike the perfect balance.",
     "category": "meta",
     "type": "fusion",
-    "role": "Cost Strategist"
+    "role": "The Cost Strategist"
   },
   "Cortex,Palette+": {
     "name": "Hologram",
     "emoji": "🎇",
-    "short_description": "Replaces raw AI text-streams with dynamic, beautifully rendered UI components. Structured parsers and fluid CSS transitions turn AI output into a premium, interactive experience.",
+    "short_description": "Transforms lifeless AI text streams into dynamic, beautifully rendered UI components. It projects raw markdown into rich, interactive interfaces that feel native to your application.",
     "category": "ux",
     "type": "fusion",
-    "role": "Generative UI Specialist"
+    "role": "The Generative Projectionist"
   },
   "Cortex,Paramedic": {
     "name": "Resuscitator",
     "emoji": "🩺",
-    "short_description": "Sweeps for silent catch blocks and generic errors, upgrading them to actionable domain-specific error classes with contextual metadata. Failures are never swallowed — always visible and diagnosable.",
+    "short_description": "Sweeps the codebase for silent catch blocks, swallowed errors, and generic \"Something went wrong\" messages.",
     "category": "operations",
     "type": "fusion",
-    "role": "Error Handling Enforcer"
+    "role": "The Error Handling Enforcer"
   },
   "Cortex,Pedant": {
     "name": "Cypher",
     "emoji": "💠",
-    "short_description": "Treats incoming LLM responses as hostile data and sanitizes them with strict regex strippers and Zod schemas. Scrubs markdown wrappers and guarantees the AI's payload shape, every time.",
+    "short_description": "Optimizes Eradicate JSON parsing errors caused by unpredictable AI formatting. Treat incoming LLM responses as hostile, volatile data.",
     "category": "meta",
     "type": "fusion",
-    "role": "LLM Output Sanitizer"
+    "role": "The Output Sanitizer"
   },
   "Cortex,Scavenger": {
     "name": "Agent",
     "emoji": "🕶️",
-    "short_description": "Hunts and deletes semantically dead code that compiles cleanly but serves no active purpose, freeing the codebase of silent bloat.",
+    "short_description": "Operates across multi-system architectural boundaries to hunt and surgically eliminate semantically dead code.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "System Purger"
+    "role": "The Code Purger"
   },
   "Cortex,Scribe": {
     "name": "Few-Shot Forger",
     "emoji": "💭",
-    "short_description": "Eliminates zero-shot hallucinations by injecting structured input/output example pairs directly into AI prompt templates. The model sees exactly what 'correct' looks like before generating its first token.",
+    "short_description": "Hunt down fragile, zero-shot AI integrations that struggle with formatting consistency, injecting strict mock input/output pairs to eliminate structural hallucinations.",
     "category": "meta",
     "type": "fusion",
-    "role": "Inline Example Builder"
+    "role": "The Pattern Injector"
   },
   "Cortex,Sentinel+": {
     "name": "Firewall",
     "emoji": "📛",
-    "short_description": "Upgrades AI integrations and hardens them against prompt injection and data leakage. Latest model versions wrapped in strict Zod validation schemas — in and out.",
+    "short_description": "Upgrade AI integrations to their latest secure models and lock probabilistic LLM outputs behind rigid structural validation schemas.",
     "category": "meta",
     "type": "fusion",
-    "role": "For Artificial Intelligence"
+    "role": "The AI Hardener"
   },
   "Cortex,Superintendent": {
     "name": "Electrician",
-    "emoji": "🔋",
-    "short_description": "Safely upgrades stale AI SDK integrations by bumping dependencies and rewriting every call site to match new API schemas. Keeps the bridge between your codebase and AI providers alive and current.",
+    "emoji": "🔌",
+    "short_description": "Hunt down legacy AI SDK integrations, bump their dependencies, and refactor the execution logic. Rewrite the syntax to match modern API schemas.",
     "category": "architecture",
     "type": "fusion",
-    "role": "AI Infrastructure Maintainer"
+    "role": "The SDK Maintainer"
   },
   "Cortex,Untangler": {
     "name": "Automata",
     "emoji": "🦾",
-    "short_description": "Rewires AI execution loops into native Tool-Calling arrays for a predictable, cybernetic state machine. Replaces guessing intent from text with executing strict API functions triggered by the LLM.",
+    "short_description": "Transitions the architecture from guessing intents from text to executing strict API functions triggered by the LLM.",
     "category": "meta",
     "type": "fusion",
-    "role": "Agentic State Flattener"
+    "role": "The State Flattener"
   },
   "Cortex,Wordsmith": {
     "name": "Prompt Engineer",
     "emoji": "✨",
-    "short_description": "Translates vague wishes into expert-level AI prompt incantations that steer the LLM precisely. Injects strict personas, formatting constraints, and negative boundaries — structure untouched.",
+    "short_description": "Evolve legacy AI instructions by sharpening personas, injecting domain vocabulary, and setting strict negative constraints to guarantee determinism.",
     "category": "meta",
     "type": "fusion",
-    "role": "Prompt Evolutionist"
+    "role": "The Prompt Evolutionist"
   },
   "Curator,Curator": {
     "name": "",
@@ -570,226 +570,226 @@
   "Curator,Helix": {
     "name": "Catalogue",
     "emoji": "📇",
-    "short_description": "Extracts duplicated visual assets into strictly typed global dictionaries. Scattered raw values become concise semantic references — one source for every icon, color, and image.",
+    "short_description": "Extract massive, duplicated media objects into strictly typed global dictionaries to eliminate WET visual bloat.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Media Centralization Specialist"
+    "role": "The Centralization Specialist"
   },
   "Curator,Herald": {
     "name": "Publicist",
     "emoji": "📸",
-    "short_description": "Sweeps routing configs to find public-facing URLs and injects complete OpenGraph and Twitter metadata for flawless social sharing. Every page broadcasts a perfect preview.",
+    "short_description": "Sweep routing configurations to identify public-facing URLs and inject rich visual metadata.",
     "category": "architecture",
     "type": "fusion",
-    "role": "SEO Broadcaster"
+    "role": "The SEO Broadcaster"
   },
   "Curator,Inspector": {
     "name": "Fabricator",
     "emoji": "🏭",
-    "short_description": "Replaces brittle hardcoded JSON test fixtures with dynamic, randomized mock-data factories. Type-safe Factory functions generate plausible data with overridable properties for precise test assertions.",
+    "short_description": "Sweep test suites to eradicate brittle, hardcoded JSON coincidences and replace them with dynamic, randomized factory fixtures.",
     "category": "testing",
     "type": "fusion",
-    "role": "Mock Engineer"
+    "role": "The Mock Synthesizer"
   },
   "Curator,Modernizer": {
     "name": "Darkroom",
     "emoji": "🎞️",
-    "short_description": "Hunts multi-megabyte legacy images and converts them to modern WebP/AVIF formats in one pass. Every source reference updated, originals deleted — minimum payload, maximum quality.",
+    "short_description": "Eliminates multi-megabyte image payloads by converting legacy assets into modern web formats.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Media Upgrader"
+    "role": "The Media Upgrader"
   },
   "Curator,Navigator": {
     "name": "Choreographer",
     "emoji": "🩰",
-    "short_description": "Injects loading skeletons, CSS transitions, and CLI spinners at async boundaries to eliminate frozen UI states. The interface stays fluid while waiting for processes to resolve.",
+    "short_description": "Inject lightweight visual loading skeletons, CSS transitions, or CLI spinners into frozen, synchronous-looking UI seams.",
     "category": "ux",
     "type": "fusion",
-    "role": "Transition Enforcer"
+    "role": "The Transition Enforcer"
   },
   "Curator,Palette+": {
     "name": "Gallerist",
-    "emoji": "🏞️",
-    "short_description": "Converts raster icons to scalable vectors, wraps images in optimized lazy-loaded components, and enforces visual loading states. Every asset loads smoothly, scales perfectly, and feels premium.",
+    "emoji": "📽️",
+    "short_description": "Substitute heavy rasters with scalable vectors and wrap assets in optimized loading boundaries to eliminate layout shifts across the UI ecosystem.",
     "category": "ux",
     "type": "fusion",
-    "role": "Media Presenter"
+    "role": "The Media Presenter"
   },
   "Curator,Paramedic": {
     "name": "Blackbox",
-    "emoji": "🗃️",
-    "short_description": "Injects local storage caching into forms and user-input flows so unsaved data survives crashes and network failures. Intuitive UI mechanisms to restore or clear cached drafts — always.",
+    "emoji": "💾",
+    "short_description": "Injects local storage caching into complex forms and user-input flows so unsaved data survives unexpected crashes and network failures.",
     "category": "meta",
     "type": "fusion",
-    "role": "Data Preserver"
+    "role": "The Data Preserver"
   },
   "Curator,Pedant": {
     "name": "Restorer",
     "emoji": "🕸️",
-    "short_description": "Sweeps markup for CSS classes and image paths pointing at deleted files, then purges or repairs every broken reference. Silent rendering failures — the ones that never trigger a compiler error — eliminated.",
+    "short_description": "Cleans up visual ghost references by sweeping markup files for CSS classes that are called but no longer exist, images pointing to deleted files, and icon fonts referenced but never imported. Combats silent presentation debt like HTML, JSX, XAML, and LaTeX files that still call class names and asset paths from styles and files that were deleted months ago.",
     "category": "ux",
     "type": "fusion",
-    "role": "Reference Cleaner"
+    "role": "The Reference Cleaner"
   },
   "Curator,Scavenger": {
     "name": "Purger",
     "emoji": "🗑️",
-    "short_description": "Deletes unimported components and hunts down the heavy ghost images they leave behind in the file system. Component-to-asset dependency chains mapped and atomically deleted — logic and payload together.",
+    "short_description": "Eradicate unimported components and immediately hunt down the heavy \"ghost\" images and static assets they leave behind.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Cascading Deletion Specialist"
+    "role": "The Deletion Specialist"
   },
   "Curator,Scribe": {
     "name": "Swatch",
-    "emoji": "📒",
-    "short_description": "Extracts raw design variables, hex codes, and spacing scales from configuration files and autonomously generates a centralized, highly visual STYLEGUIDE.md registry.",
+    "emoji": "📓",
+    "short_description": "Catalog the visual identity of the project by treating configuration files as raw materials, extracting every color, font weight, and spacing variable into a beautiful, human-readable STYLEGUIDE.md.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Design Documentarian"
+    "role": "The Design Documentarian"
   },
   "Curator,Sentinel+": {
     "name": "Hazmat",
     "emoji": "☣️",
-    "short_description": "Intercepts incoming user data and neutralizes malicious payloads before they enter the application. Strict XSS escaping, SQL injection prevention, and Zod/Joi schema boundaries at every trust boundary.",
+    "short_description": "You ensure no malicious payload ever detonates inside the application by intercepting and purifying incoming user data payloads.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Payload Purifier"
+    "role": "The Payload Purifier"
   },
   "Curator,Superintendent": {
     "name": "Aligner",
     "emoji": "📏",
-    "short_description": "Hunts hardcoded spacing magic numbers across the presentation layer and snaps them to the project's systematic grid. Raw pixels replaced with centralized design variables — visual rhythm restored.",
+    "short_description": "Enforces visual rhythm by hunting down hardcoded spatial magic numbers across the presentation layer and standardizing spacing.",
     "category": "ux",
     "type": "fusion",
-    "role": "Rhythm Standardizer"
+    "role": "The Rhythm Standardizer"
   },
   "Curator,Untangler": {
     "name": "Press",
     "emoji": "🗜️",
-    "short_description": "Extracts dense embedded media from presentation files into clean, adjacent imports. One flat import replaces raw data clutter — components stay readable, assets stay organized.",
+    "short_description": "Identify dense visual data and extract the raw payloads into dedicated asset files.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Visual Extractor"
+    "role": "The Visual Extractor"
   },
   "Curator,Wordsmith": {
     "name": "Captionist",
     "emoji": "🎟️",
-    "short_description": "Converts heavy assets to modern formats and generates highly descriptive, empathetic alt tags and aria-labels from surrounding DOM context. Accessibility and performance improved in the same stroke.",
+    "short_description": "Convert massive, uncompressed visual assets into highly optimized modern formats.",
     "category": "ux",
     "type": "fusion",
-    "role": "Accessible Payload Specialist"
+    "role": "The Payload Specialist"
   },
   "Helix,Helix": {
     "name": "Yggdrasil",
     "emoji": "🌳",
-    "short_description": "Triggers an evolutionary divergence by completely mutating outdated architectural paradigms. Reincarnates legacy OOP classes into functional pipelines and imperative loops into declarative strands.",
+    "short_description": "Triggers an evolutionary divergence in legacy modules by shedding stagnant boilerplate. It reincarnates rigid, outdated logic into thriving, highly extensible modern ecosystems.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Paradigm Mutator"
+    "role": "The Paradigm Mutator"
   },
   "Helix,Herald": {
     "name": "Tower",
     "emoji": "🗼",
-    "short_description": "Forces all scattered telemetry, error logging, and outbound communications through a single centralized choke-point. Every signal carries standardized structural metadata before it leaves the application.",
+    "short_description": "Identifies broadcast fragmentation and routes scattered `console.log` calls, toast notifications, and ad-hoc telemetry scripts into centralized, structured event buses.",
     "category": "operations",
     "type": "fusion",
-    "role": "Broadcast Centralizer"
+    "role": "The Broadcast Centralizer"
   },
   "Helix,Inspector": {
     "name": "Mixologist",
     "emoji": "🍸",
-    "short_description": "Extracts duplicated code fragments into a perfectly balanced shared utility, then locks its behavior with 100% unit test coverage. The recipe is proven — no edge case left to chance.",
+    "short_description": "Extract scattered logic fragments into centralized utilities and lock their behavior with 100% unit test coverage.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Precision Extraction Specialist"
+    "role": "The Formula Prover"
   },
   "Helix,Modernizer": {
     "name": "Transmuter",
     "emoji": "🦋",
-    "short_description": "Evolves the codebase one file at a time by transmuting legacy patterns into the modern repository standard. Identifies the current paradigm, finds legacy violators, migrates with 100% logic parity.",
+    "short_description": "Executes piecemeal paradigm evolution by autonomously transmuting legacy files into the modern repository standard one by one.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Paradigm Migrator"
+    "role": "The Paradigm Migrator"
   },
   "Helix,Navigator": {
     "name": "PathCentralizer",
     "emoji": "🌐",
-    "short_description": "Extracts hardcoded API endpoints, file paths, and routing constants into a centralized configuration map. Typed variable references replace magic strings — single source of truth for all routes.",
+    "short_description": "Eradicate hardcoded API endpoints, file paths, and routing constants by extracting them into centralized configuration maps.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Route Extractor"
+    "role": "The Route Extractor"
   },
   "Helix,Palette+": {
     "name": "Chameleon",
     "emoji": "🦎",
-    "short_description": "Audits UI components and injects hover, focus-visible, and disabled states for every possible interaction. Smooth organic transitions and semantic structural integrity included.",
+    "short_description": "Eradicates Splice distinct pseudo-class styling, organic transitions, and disabled states into flat interactive elements.",
     "category": "ux",
     "type": "fusion",
-    "role": "State Mutator"
+    "role": "The State Mutator"
   },
   "Helix,Paramedic": {
     "name": "Quarantine",
     "emoji": "🏕️",
-    "short_description": "Extracts volatile scattered logic into a single shared utility wrapped in an impenetrable error boundary. Always returns predictable, safe fallback states — no crashes escape.",
+    "short_description": "Extracts volatile, scattered logic into a single shared utility and immediately wraps it in an impenetrable error-handling boundary. Returns predictable, safe fallback states for all consumers.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Safe Centralization Specialist"
+    "role": "The Safe Centralization Specialist"
   },
   "Helix,Pedant": {
     "name": "Quartermaster",
     "emoji": "📦",
-    "short_description": "Hunts values duplicated across three or more files and extracts them into a strict global constants layer. One definition, imported everywhere — changes propagate instantly with zero drift.",
+    "short_description": "Hunts down identical magic values duplicated across multiple independent files. Extracts them into a strict global constants layer that every consumer imports to forge a Single Source of Truth.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Centralization Engine"
+    "role": "The Centralization Engine"
   },
   "Helix,Scavenger": {
     "name": "Void",
     "emoji": "🕳️",
-    "short_description": "Identifies identical logic clusters, centralizes them into shared utilities, updates all consumers, and deletes the redundant source files. Duplication eliminated from the repo — permanently.",
+    "short_description": "Hunts down duplicated logic, centralizes it into a single source of truth, and physically eradicates the old, redundant source files from the repository.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Anomalous Consolidation Specialist"
+    "role": "The Redundancy Destroyer"
   },
   "Helix,Scribe": {
     "name": "Oracle",
     "emoji": "🧿",
-    "short_description": "Centralizes duplicated logic into a single point of truth and writes a strict, binding JSDoc contract for all future consumers. Extraction and documentation in one locked-in pass.",
+    "short_description": "Extract scattered logic duplicates into a single point of truth, locking the new utility behind an ironclad, strictly typed JSDoc contract.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Documentation And Centralization"
+    "role": "The Contract Sealer"
   },
   "Helix,Sentinel+": {
     "name": "Gatekeeper",
     "emoji": "⛩️",
-    "short_description": "Wraps vulnerable pages and API endpoints in strict Role-Based Access Control and centralized authentication guards. Zero-trust routing — every route verifies credentials before anything loads.",
+    "short_description": "Melt down fragile, hardcoded padlocks scattered across the codebase. Forge a single, impenetrable policy engine to govern all internal access.",
     "category": "architecture",
     "type": "fusion",
-    "role": "RBAC Enforcer"
+    "role": "The Keymaster"
   },
   "Helix,Superintendent": {
     "name": "Janitor",
     "emoji": "🪠",
-    "short_description": "Hunts fragmented cleanup scripts and teardown commands scattered across the codebase and unifies them into a single master execution manifest. One place to run it all.",
+    "short_description": "Hunt down fragmented cleanup scripts, cache purges, and teardown commands scattered across the codebase and unify them into a single master execution manifest.",
     "category": "meta",
     "type": "fusion",
-    "role": "Maintenance Centralizer"
+    "role": "The Maintenance Centralizer"
   },
   "Helix,Untangler": {
     "name": "Weaver",
     "emoji": "🧵",
-    "short_description": "Centralizes duplicated logic while simultaneously flattening its deeply nested execution paths into linear, readable guard clauses. One utility, clean structure — consolidated and flat.",
+    "short_description": "Consolidates duplicated logic into single utilities while simultaneously flattening deeply nested execution paths into pristine, linear strands.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Logic Restructuring Specialist"
+    "role": "The Logic Flattener"
   },
   "Helix,Wordsmith": {
     "name": "Standardizer",
-    "emoji": "🔣",
-    "short_description": "Sweeps for scattered hardcoded user-facing strings and extracts them into centralized dictionaries and shared templates. One authoritative source for every button label, message, and string.",
+    "emoji": "🔢",
+    "short_description": "Identify minor, semantic variations of identically intentioned code blocks, UI copy, and constant strings scattered across the repository, and centralize them into single, reusable references.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Copy Centralizer"
+    "role": "The Copy Centralizer"
   },
   "Herald,Herald": {
     "name": "",
@@ -802,194 +802,194 @@
   "Herald,Inspector": {
     "name": "Decoder",
     "emoji": "📟",
-    "short_description": "Intercepts broken test suite output and translates massive terminal stack traces into clear, actionable Markdown reports. Pinpoints the exact file, line, and assertion mismatch — debugging friction gone.",
+    "short_description": "Eliminate debugging friction by intercepting broken test suites and translating massive terminal stack traces into actionable Markdown reports. Provide exact file paths and line numbers so developers can fix issues immediately without reading raw logs.",
     "category": "testing",
     "type": "fusion",
-    "role": "CI Whisperer"
+    "role": "The CI Whisperer"
   },
   "Herald,Modernizer": {
     "name": "Prophet",
     "emoji": "🔮",
-    "short_description": "Hunts @deprecated tags, injects runtime warnings, and authors comprehensive migration guides with before/after code examples. Developers always know what's ending and exactly how to move forward.",
+    "short_description": "Prepare developers for API end-of-life cycles by hunting for `@deprecated` tags and injecting runtime environment-sensitive warnings.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Deprecation Forecaster"
+    "role": "The Deprecation Forecaster"
   },
   "Herald,Navigator": {
     "name": "Strategist",
     "emoji": "♟️",
-    "short_description": "Identifies completed features that shipped but never got checked off the strategic roadmap, then marks them done and drafts a public changelog. Roadmap and reality, always in sync.",
+    "short_description": "Autonomously analyze the repository's git history, extract the proprietary commit patterns and unwritten release tagging rules, and codify them into a universal micro-agent prompt that can flawlessly draft future changelogs.",
     "category": "strategy",
     "type": "fusion",
-    "role": "And Roadmap Synchronizer"
+    "role": "The Roadmap Synchronizer"
   },
   "Herald,Palette+": {
     "name": "LiveFeed",
     "emoji": "📺",
-    "short_description": "Eradicates frozen UIs by broadcasting live asynchronous backend states, wrapping network requests in polished loading skeletons and toasts.",
+    "short_description": "Intercept silent data mutations and wrap them in rigorous state trackers (`idle -> loading -> success/error`), injecting polished loading skeletons and notifications.",
     "category": "ux",
     "type": "fusion",
-    "role": "Live Feedback Broadcaster"
+    "role": "The Live Feedback Broadcaster"
   },
   "Herald,Paramedic": {
     "name": "Press Secretary",
     "emoji": "👔",
-    "short_description": "Translates technical hotfixes and rollbacks into professional Status Page updates and blameless incident post-mortems. Objective timelines, actionable prevention plans, full transparency.",
+    "short_description": "Analyze git forensics and technical diffs to author objective timelines and actionable prevention plans.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Incident Communicator"
+    "role": "The Incident Communicator"
   },
   "Herald,Pedant": {
     "name": "Whistleblower",
     "emoji": "📯",
-    "short_description": "Intercepts raw CI linter and compiler errors and translates them into plain-English, actionable Markdown with 'How to Fix' code snippets. No cryptic CI failures — only clear instructions.",
+    "short_description": "Translates raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Syntax Shamer"
+    "role": "The Syntax Shamer"
   },
   "Herald,Scavenger": {
     "name": "Silencer",
-    "emoji": "🔕",
-    "short_description": "Autonomously hunts and eradicates conversational comments, verbose over-explanations, and abandoned mock scaffolding. Ensures the codebase contains only pure logic, free from chatty artifacts and leftover placeholders.",
+    "emoji": "🔇",
+    "short_description": "Eradicate conversational comments, syntax explanations, abandoned scaffolding, and fake mock data that clutter the codebase with amateur noise.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Noise Assassin"
+    "role": "The Noise Assassin"
   },
   "Herald,Scribe": {
     "name": "Historian",
     "emoji": "⏳",
-    "short_description": "Drafts user-facing release notes from recent git history and annotates core execution logic with the 'why' behind the changes. Public changelog and inline context generated in one pass.",
+    "short_description": "Eradicates generate public changelogs for new releases and instantly embed that historical context into the shipped functions via inline JSDoc.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Temporal Archivist"
+    "role": "The Temporal Archivist"
   },
   "Herald,Sentinel+": {
     "name": "Siren",
     "emoji": "📻",
-    "short_description": "Drafts professional vulnerability advisories focused on impact and resolution — without exposing how the exploit worked. Clinical, abstract, and compliant — no blueprint left for attackers.",
+    "short_description": "Broadcast and mitigate high-priority security vulnerabilities identified in the codebase, ensuring critical patches are aggressively applied.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Vulnerability Broadcaster"
+    "role": "The Vulnerability Broadcaster"
   },
   "Herald,Superintendent": {
     "name": "Upgrader",
     "emoji": "📈",
-    "short_description": "Fetches external changelogs for dependency bumps and synthesizes them into actionable summaries directly in the PR. Breaking changes flagged — no more blind bumps.",
+    "short_description": "Eliminates \"blind bumps\" by fetching external changelogs and broadcasting high-signal summaries of new features and breaking changes directly into the PR or release notes.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Dependency Broadcaster"
+    "role": "The Dependency Broadcaster"
   },
   "Herald,Untangler": {
     "name": "Limiter",
     "emoji": "🎚️",
-    "short_description": "Analyzes aggressive loops, massive data fetches, and unbounded retries, then injects circuit breakers and pagination limits. Every execution path gets a mathematically guaranteed upper bound.",
+    "short_description": "Inject circuit breakers, pagination, and strict mechanical limits to ensure every execution path has a mathematically guaranteed upper bound.",
     "category": "operations",
     "type": "fusion",
-    "role": "Boundary Enforcer"
+    "role": "The Boundary Enforcer"
   },
   "Herald,Wordsmith": {
     "name": "Orator",
     "emoji": "📢",
-    "short_description": "Expands bare error instantiations and exception throws into clear, human-readable telemetry with the failed variables and actionable next steps. No silent, unhelpful errors — ever.",
+    "short_description": "Rewrite bare, lazily written error instantiations and internal exception throws into clear, human-readable, and actionable telemetry broadcasts.",
     "category": "ux",
     "type": "fusion",
-    "role": "Error Copywriter"
+    "role": "The Error Copywriter"
   },
   "Inspector,Inspector": {
     "name": "Adversary",
     "emoji": "🤺",
-    "short_description": "Hunts fraudulent tests by deliberately injecting bugs into working code and observing whether the suite catches them. Rewrites any test that fails to catch the sabotage — no false green CIs.",
+    "short_description": "Injects deliberate bugs into working code to expose and rewrite fraudulent tests that fail to catch the sabotage using strict assertions.",
     "category": "testing",
     "type": "fusion",
-    "role": "Mutation Engine"
+    "role": "The Mutation Engine"
   },
   "Inspector,Modernizer": {
     "name": "Assessor",
     "emoji": "🧑‍🏫",
-    "short_description": "Upgrades legacy tests from implementation-heavy paradigms to resilient, user-centric ones. Assertions rewritten to target user-visible outputs and accessibility roles — not internals.",
+    "short_description": "He upgrades testing infrastructure from brittle, implementation-heavy paradigms into resilient, user-centric paradigms.",
     "category": "testing",
     "type": "fusion",
-    "role": "Test Methodology Upgrader"
+    "role": "The Test Upgrader"
   },
   "Inspector,Navigator": {
     "name": "Autopilot",
     "emoji": "✈️",
-    "short_description": "Programmatically walks user-facing workflows to prove the routing tree never breaks in production. Generates robust Playwright or Cypress E2E tests using accessibility-based locators.",
+    "short_description": "Generates robust Playwright or Cypress End-to-End tests driving the browser via user-facing accessibility locators to prevent regressions.",
     "category": "testing",
     "type": "fusion",
-    "role": "Journey Tester"
+    "role": "The Journey Tester"
   },
   "Inspector,Palette+": {
     "name": "Jeweler",
     "emoji": "💎",
-    "short_description": "Injects missing focus, hover, and accessibility states into interactive components for strict ARIA compliance. Locks every UI facet permanently in place with targeted interaction tests.",
+    "short_description": "Polish interactive UI components with strict focus and accessibility states, then permanently lock those facets in place with rigorous DOM interaction tests.",
     "category": "ux",
     "type": "fusion",
-    "role": "Visual Interaction QA"
+    "role": "A Visual Interaction QA"
   },
   "Inspector,Paramedic": {
     "name": "Guardian",
     "emoji": "⛑️",
-    "short_description": "Hardens fragile code paths against failure, then writes 'assault' tests that inject malformed data and timeouts to prove the boundaries hold. Safe, predictable fallback states guaranteed.",
+    "short_description": "Hunt down naked parsing and unprotected external API calls that lack failure-mode coverage, leading to catastrophic runtime crashes.",
     "category": "meta",
     "type": "fusion",
-    "role": "Battle-tested Protector"
+    "role": "The Boundary Hardener"
   },
   "Inspector,Pedant": {
     "name": "Auditor",
     "emoji": "🔎",
-    "short_description": "Standardizes variables into strictly typed constants and writes comprehensive assertion suites against them. Canonical naming and complete test coverage, enforced together.",
+    "short_description": "He standardizes variables into strictly typed constants and writes comprehensive assertion suites against them.",
     "category": "testing",
     "type": "fusion",
-    "role": "Quality Assurance Inspector"
+    "role": "The Quality Inspector"
   },
   "Inspector,Scavenger": {
     "name": "Coroner",
     "emoji": "🩻",
-    "short_description": "Maps the full dependency surface of dead code and proves it's unreferenced before deletion. Removes source, tests, mocks, and barrel exports in one clean strike — no CI ghosts left behind.",
+    "short_description": "Prove beyond a reasonable doubt that a piece of code is truly unreferenced before permanently excising it alongside every ghost test. Clean the repository of ghosts.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Dead Code Investigator"
+    "role": "The Dead Investigator"
   },
   "Inspector,Scribe": {
     "name": "Interrogator",
     "emoji": "🔦",
-    "short_description": "Strengthens weak unit tests by injecting user-event interactions that trigger real state changes. Assertions target accessible roles and visible DOM outputs — not internal implementation details.",
+    "short_description": "Sweep weak unit tests that lack meaningful assertions, injecting deep, rigorous checks against component state, DOM interactions, and accessibility to uncover false positives.",
     "category": "testing",
     "type": "fusion",
-    "role": "Assertion Specialist"
+    "role": "The Assertion Specialist"
   },
   "Inspector,Sentinel+": {
     "name": "Stress Tester",
     "emoji": "🧨",
-    "short_description": "Implements strict Zod/Joi/Pydantic validation at trust boundaries and immediately assaults them with malicious payloads. Security schemas that are mathematically proven to hold under pressure.",
+    "short_description": "Implement strict validation schemas at trust boundaries and write brutal tests that deliberately inject malicious data to bypass them.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Security Assurance Specialist"
+    "role": "The Security Assurance Specialist"
   },
   "Inspector,Superintendent": {
     "name": "Safety Inspector",
     "emoji": "🦺",
-    "short_description": "Safely bumps outdated packages and writes strict regression tests against every affected integration path. No blind dependency updates — every boundary proven intact.",
+    "short_description": "Bump outdated package versions and immediately secure the affected integration paths with strict regression tests.",
     "category": "testing",
     "type": "fusion",
-    "role": "Dependency QA Specialist"
+    "role": "The Dependency QA Specialist"
   },
   "Inspector,Untangler": {
     "name": "Sandboxer",
     "emoji": "🏜️",
-    "short_description": "Untangles shared global state and nested test setups so test cases never bleed into each other. Deterministic factory functions replace mutable beforeEach state — every test hermetically sealed.",
+    "short_description": "Build perfectly flat, isolated execution environments by untangling shared global state and nested test setups.",
     "category": "testing",
     "type": "fusion",
-    "role": "Isolation Specialist"
+    "role": "The Isolation Specialist"
   },
   "Inspector,Wordsmith": {
     "name": "Narrator",
     "emoji": "🎙️",
-    "short_description": "Reads actual test assertions and rewrites vague test names into crystal-clear behavioral specifications. Terminal output becomes a perfect product specification sheet.",
+    "short_description": "Analyze actual test assertions and rewrite vague test names into crystal clear, human-readable specifications, turning test output into living documentation.",
     "category": "testing",
     "type": "fusion",
-    "role": "Spec Translator"
+    "role": "The Spec Translator"
   },
   "Modernizer,Modernizer": {
     "name": "",
@@ -1002,82 +1002,82 @@
   "Modernizer,Navigator": {
     "name": "Helmsman",
     "emoji": "⛵",
-    "short_description": "Modernizes legacy routing topologies to native structural equivalents using AST-level analysis. Routes upgraded across the entire application — no legacy patterns left behind.",
+    "short_description": "You modernize architectural navigation by upgrading legacy routing topologies to modern, native structural equivalents.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Routing Upgrader"
+    "role": "The Routing Upgrader"
   },
   "Modernizer,Palette+": {
     "name": "Mobilizer",
     "emoji": "📱",
-    "short_description": "Transforms rigid, fixed-width desktop layouts into fluid, mobile-first paradigms. Sweeps the application to replace hardcoded pixels with fluid percentages, ensuring perfect rendering across all viewports and devices.",
+    "short_description": "Transform rigid layouts and interactions into fluid, universal experiences that scale flawlessly from 320px mobile screens to 4K desktop monitors.",
     "category": "ux",
     "type": "fusion",
-    "role": "Responsive Modernizer"
+    "role": "The Responsive Modernizer"
   },
   "Modernizer,Paramedic": {
     "name": "Inoculator",
     "emoji": "💉",
-    "short_description": "Upgrades legacy architecture to modern async paradigms and immediately wraps the new stress points in error handling, schema validation, and graceful fallbacks. Modernize and immunize in one pass.",
+    "short_description": "Upgrade legacy architecture to modern asynchronous paradigms while explicitly treating the new failure modes introduced by the shift.",
     "category": "operations",
     "type": "fusion",
-    "role": "Modernization And Resilience"
+    "role": "A Modernization And Resilience Specialist"
   },
   "Modernizer,Pedant": {
     "name": "Prefect",
     "emoji": "🏅",
-    "short_description": "Deduces the intended execution environment of unconstrained files and injects the required strictness headers and pragmas. Implicit assumptions become explicit, locked constraints.",
+    "short_description": "Upgrade implicit assumptions into explicit constraints by deducing the intended execution environment of unconstrained files and injecting required strictness headers.",
     "category": "meta",
     "type": "fusion",
-    "role": "Constraint Enforcer"
+    "role": "The Constraint Enforcer"
   },
   "Modernizer,Scavenger": {
     "name": "Liquidator",
     "emoji": "💥",
-    "short_description": "Migrates all consumers to modern native APIs and ruthlessly deletes the legacy polyfills and shim files in the same pass. No bridge code left after the crossing is complete.",
+    "short_description": "Surgically excise obsolete legacy adapters, polyfills, and custom bridge wrappers that mask missing native functionality.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Destructive Migration Specialist"
+    "role": "The Adapter Purger"
   },
   "Modernizer,Scribe": {
     "name": "Transition Manager",
     "emoji": "🌉",
-    "short_description": "Modernizes legacy syntax and writes extensive inline JSDoc mapping old lifecycle behaviors to new ones. The 'how' and 'why' of every paradigm shift documented for the whole team.",
+    "short_description": "Modernizes legacy systems to the current standard and immediately writes the official, inline historical context explaining the paradigm shift to the rest of the team.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Legacy Migration Architect"
+    "role": "The Migration Architect"
   },
   "Modernizer,Sentinel+": {
     "name": "Retrofitter",
     "emoji": "🔧",
-    "short_description": "Replaces deprecated language features, prototype chains, and callback patterns with their modern equivalents without altering business logic. Syntactic decay reversed — one file at a time.",
+    "short_description": "Scans outdated codebases and surgically replaces deprecated language features and legacy APIs with their modern equivalents.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Legacy Syntactic Upgrader"
+    "role": "The Syntactic Upgrader"
   },
   "Modernizer,Superintendent": {
     "name": "Synchronizer",
     "emoji": "🔄",
-    "short_description": "Executes major dependency version bumps and migrates all deprecated syntax to the new API in a single evolutionary pass. Package and codebase updated together — never out of sync.",
+    "short_description": "Execute major package version bumps and simultaneously map their breaking changes across the entire abstract syntax tree (AST) to rewrite every deprecated consumer reference.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Dependency Migration Specialist"
+    "role": "The Dependency Migration Specialist"
   },
   "Modernizer,Untangler": {
     "name": "Refiner",
     "emoji": "🛢️",
-    "short_description": "Distills deeply nested callback spaghetti into flat, linear async/await execution paths. Simultaneously flattens structure and upgrades syntax — never one without the other.",
+    "short_description": "Distills messy, nested callback spaghetti into flat, modern async/await execution paths by untangling the structure and upgrading the syntax.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Structural Modernization Specialist"
+    "role": "The Structural Modernization Specialist"
   },
   "Modernizer,Wordsmith": {
     "name": "Interpolator",
     "emoji": "💬",
-    "short_description": "Identifies fractured string concatenations and legacy formatters, upgrading them to modern Template Literals or f-strings. Readable strings across the entire AST — output unchanged.",
+    "short_description": "Refines Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Syntax Upgrader"
+    "role": "The Syntax Upgrader"
   },
   "Navigator,Navigator": {
     "name": "",
@@ -1090,79 +1090,79 @@
   "Navigator,Palette+": {
     "name": "Wayfinder",
     "emoji": "🪧",
-    "short_description": "Eliminates 'Lost User Syndrome' by injecting breadcrumbs, steppers, and guided transitions at navigation gaps. Users always know where they are and exactly how to get back.",
+    "short_description": "Builds intuitive navigation paths, sequential progress indicators, and guided transitions to ensure users always understand their current context.",
     "category": "ux",
     "type": "fusion",
-    "role": "Onboarding & Routing"
+    "role": "The & Routing"
   },
   "Navigator,Paramedic": {
     "name": "Circuit Breaker",
     "emoji": "🔌",
-    "short_description": "Wraps routing layers and fragile API calls in Error Boundaries and semantic fallback states. The application degrades gracefully instead of crashing during partial system failures.",
+    "short_description": "Sweep routing layers and fragile integrations. Surround them with Error Boundaries and fallbacks.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Fallback Strategist"
+    "role": "The Fallback Strategist"
   },
   "Navigator,Pedant": {
     "name": "REST Enforcer",
     "emoji": "🚦",
-    "short_description": "Eradicates RPC-style verb-in-URL endpoints and unifies the API surface under strict RESTful conventions. Plural nouns, correct HTTP verbs, consistent casing — every internal client updated to match.",
+    "short_description": "Eradicates RPC-style verbs embedded in URLs. Enforces strict RESTful noun-based routing contracts across all backend endpoints.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "API Standardizer"
+    "role": "The Protocol Warden"
   },
   "Navigator,Scavenger": {
     "name": "Dead-Ender",
     "emoji": "⛔",
-    "short_description": "Identifies ghost routes in the routing tree that no internal link ever reaches, then deletes the route, component, and every orphaned import. No unreachable pages, no bundle bloat.",
+    "short_description": "Prune the application's surface area by identifying ghost routes. Permanently delete both the route definition and the underlying component.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Route Purger"
+    "role": "The Route Purger"
   },
   "Navigator,Scribe": {
     "name": "Chronicler",
     "emoji": "📜",
-    "short_description": "Marks milestones complete on the strategic roadmap and annotates core execution logic with the architectural intent behind them. Strategy and implementation, always in sync.",
+    "short_description": "Cross-reference shipped features with strategic roadmaps to officially mark milestones complete.",
     "category": "strategy",
     "type": "fusion",
-    "role": "Strategic Context Historian"
+    "role": "The Context Historian"
   },
   "Navigator,Sentinel+": {
     "name": "Customs",
     "emoji": "🛃",
-    "short_description": "Sweeps the routing tree for unguarded sensitive pages and wraps them in strict RBAC and authentication guards. Zero-trust routing — no sensitive path reachable by guessing a URL.",
+    "short_description": "Patrol the outermost edges of the application to ensure no traffic enters without a passport. Wrap exposed routing trees and API perimeters in impenetrable authentication airlocks.",
     "category": "architecture",
     "type": "fusion",
-    "role": "RBAC Enforcer"
+    "role": "The Border Control"
   },
   "Navigator,Superintendent": {
     "name": "Redirector",
     "emoji": "🔀",
-    "short_description": "Fixes broken internal links and 404 errors by adding legacy redirects and updating every internal reference to the new URL. Old paths lead somewhere — new paths are used everywhere.",
+    "short_description": "Eradicates broken internal links and 404 errors by maintaining the central routing configuration.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "404 Sweeper"
+    "role": "The 404 Sweeper"
   },
   "Navigator,Untangler": {
     "name": "Pathfinder",
     "emoji": "🥾",
-    "short_description": "Streamlines core interaction loops by flattening routing logic and minimizing clicks on the user's Happy Path. Consecutive UI states merged, early returns enforced — zero friction.",
+    "short_description": "Streamline core interaction loops and flatten logic routing to ensure the \"Happy Path\" requires the absolute minimum number of clicks.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Friction Eradicator"
+    "role": "The Friction Eradicator"
   },
   "Navigator,Wordsmith": {
     "name": "Script Supervisor",
     "emoji": "🎬",
-    "short_description": "Reads the official product strategy and enforces its exact terminology across every user-facing string. Roadmap lexicon in the docs, roadmap lexicon in the UI — perfectly aligned.",
+    "short_description": "Read the official product strategy and enforce its exact terminology across every user-facing string in the UI.",
     "category": "strategy",
     "type": "fusion",
-    "role": "Roadmap Lexicon Enforcer"
+    "role": "The Lexicon Enforcer"
   },
   "Palette+,Palette+": {
     "name": "Canvas",
     "emoji": "🖼️",
-    "short_description": "Redesigns the user experience as a single, cohesive flow to eradicate fragmented feature creep.",
+    "short_description": "Redesigns fragmented multi-page mazes into cohesive single-page workflows to preserve user context.",
     "tier": "",
     "category": "ux",
     "type": "fusion",
@@ -1171,66 +1171,66 @@
   "Palette+,Paramedic": {
     "name": "Placebo",
     "emoji": "💊",
-    "short_description": "Wraps async requests in robust error handling and exponential backoff while injecting optimistic UI and pulse skeletons. Instant-feeling, reliable interfaces — even when the network disagrees.",
+    "short_description": "Harden fragile asynchronous backend requests by wrapping them in strict error boundaries and exponential backoff retries.",
     "category": "strategy",
     "type": "fusion",
-    "role": "Psychological Performance Specialist"
+    "role": "The Psychological Performance Specialist"
   },
   "Palette+,Pedant": {
     "name": "Typesetter",
     "emoji": "🔠",
-    "short_description": "Enforces the Design System's 4px/8px spacing scale and WCAG contrast ratios by hunting rogue inline values across the codebase. Visual rhythm and accessibility compliance, locked in at the code level.",
+    "short_description": "Enforces visual rhythm at the code level by hunting down rogue inline margins to enforce strict spacing scales and WCAG contrast ratios.",
     "category": "ux",
     "type": "fusion",
-    "role": "Pixel Perfectionist"
+    "role": "The Pixel Perfectionist"
   },
   "Palette+,Scavenger": {
     "name": "Minimalist",
     "emoji": "🫧",
-    "short_description": "Deletes orphaned CSS classes, outdated layout wrappers, and dead UI components disconnected from the routing tree. A pristine UI codebase — no dead weight, no broken styles.",
+    "short_description": "Hunt down and delete orphaned CSS classes, outdated layout wrappers, and dead UI components disconnected from the routing tree.",
     "category": "ux",
     "type": "fusion",
-    "role": "Visual Purger"
+    "role": "The Visual Purger"
   },
   "Palette+,Scribe": {
     "name": "Calligrapher",
     "emoji": "🪶",
-    "short_description": "Converts loose string props into strict TypeScript literal unions synchronized with global CSS variables and Tailwind configs. Type system and design tokens always mirror reality.",
+    "short_description": "Converts loose string props into strict TypeScript literal unions synchronized with global CSS variables and Tailwind configs.",
     "category": "ux",
     "type": "fusion",
-    "role": "Token Typist"
+    "role": "The Token Typist"
   },
   "Palette+,Sentinel+": {
     "name": "Watermark",
     "emoji": "💮",
-    "short_description": "Designs frictionless authentication flows and empathetic permission dialogues that make security feel safe and intuitive. Real-time visual feedback guides users toward secure outcomes without jargon.",
+    "short_description": "Operates across overarching form wrappers, global error interceptors, and application-wide state providers to manage the visual trust boundary.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Embedded Trust"
+    "role": "The Embedded Trust"
   },
   "Palette+,Superintendent": {
     "name": "Stylist",
-    "emoji": "💅",
-    "short_description": "Migrates chaotic inline styles, BEM classes, and outdated CSS frameworks to modern Tailwind and CSS variables. Full dark mode support and design token consistency — legacy styling entropy eliminated.",
+    "emoji": "👗",
+    "short_description": "Audit stylesheets to rip out hardcoded hex codes, pixel font sizes, and arbitrary margins, replacing them with the project's official CSS variables or Tailwind classes.",
     "category": "ux",
     "type": "fusion",
-    "role": "UI Modernizer"
+    "role": "The Design Token Standardizer"
   },
   "Palette+,Untangler": {
     "name": "Streamliner",
     "emoji": "⛷️",
-    "short_description": "Takes massive, intimidating workflows and breaks them into digestible steps using progressive disclosure. Cognitive complexity hidden behind clean, chunked UI — overwhelming tasks become simple actions.",
+    "short_description": "Flatten underlying cognitive complexity and mask it with clean, chunked UI, transforming overwhelming tasks into simple, step-by-step actions using progressive disclosure.",
     "category": "ux",
     "type": "fusion",
-    "role": "Cognitive Load Reducer"
+    "role": "The Load Reducer"
   },
   "Palette+,Wordsmith": {
     "name": "Virtuoso",
     "emoji": "🎭",
-    "short_description": "Sculpts comprehensive component states — Hover, Focus, Loading, Error — with a unified, empathetic active voice. ARIA attributes and actionable microcopy that transforms technical hurdles into clear recovery paths.",
+    "short_description": "Sculpts comprehensive visual states and injects accessible ARIA attributes to transform cold, robotic UI components into flawless, empathetic interaction flows.",
     "category": "ux",
     "type": "fusion",
-    "role": "Interaction Artisan"
+    "role": "The Interaction Artisan"
   },
   "Paramedic,Paramedic": {
     "name": "",
@@ -1243,162 +1243,162 @@
   "Paramedic,Pedant": {
     "name": "Toxicologist",
     "emoji": "🧪",
-    "short_description": "Hunts swallowed errors and empty catch blocks, injecting strict telemetry routing or explicit re-throws while preserving original stack traces. System failures are never hidden from monitoring.",
+    "short_description": "Hunts for \"toxic black holes\"—empty catch blocks that mute bugs and allow systems to silently continue in corrupted states. Re-routes swallowed exceptions into centralized telemetry pipelines.",
     "category": "operations",
     "type": "fusion",
-    "role": "Catch-Block Enforcer"
+    "role": "The Catch-Block Enforcer"
   },
   "Paramedic,Scavenger": {
     "name": "Amputator",
     "emoji": "🪚",
-    "short_description": "Removes legacy retry loops and circuit breakers built for services that no longer exist. Verifies the service is gone, deletes the dead resilience logic, and promotes the fallback into the primary path.",
+    "short_description": "Eradicates obsolete resilience infrastructure and dead service wrappers, promoting surviving fallbacks to primary execution paths.",
     "category": "operations",
     "type": "fusion",
-    "role": "Dead Fallback Purger"
+    "role": "The Fallback Purger"
   },
   "Paramedic,Scribe": {
     "name": "Discharge",
     "emoji": "🩹",
-    "short_description": "Injects exponential backoffs, circuit breakers, and retry logic into fragile code, then documents the treatment plan as inline JSDoc Runbooks. Active treatment and clinical record in one pass.",
+    "short_description": "Injects exponential backoffs, circuit breakers, and retry logic into fragile code, documenting the treatment as inline JSDoc runbooks.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Recovery Engineer"
+    "role": "The Recovery Engineer"
   },
   "Paramedic,Sentinel+": {
     "name": "First Responder",
     "emoji": "🚒",
-    "short_description": "Hardens external boundaries against malicious data, poisoned startup configs, and unvalidated payloads. Strict schema validation and sanitized telemetry ensure no poison crosses the trust boundary.",
+    "short_description": "Harden external boundaries against malicious data, poisoned startup configurations, and unvalidated payloads to prevent fatal runtime crashes.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Crisis Manager"
+    "role": "The Crisis Manager"
   },
   "Paramedic,Superintendent": {
     "name": "Sanitizer",
     "emoji": "🧴",
-    "short_description": "Sweeps the AST to track resource lifecycles and injects close(), dispose(), and clearInterval() calls at every exit point. Memory leaks and dangling resources eliminated before they accumulate.",
+    "short_description": "Scrub away backend memory leaks by injecting antibacterial teardown logic for lingering system resources, database connections, and file streams.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Memory Sweeper"
+    "role": "The Clinical Sweeper"
   },
   "Paramedic,Untangler": {
     "name": "Transfusion",
     "emoji": "🩸",
-    "short_description": "Extracts implicit global scope dependencies into explicit parameter contracts. Functions become pure, injectable, and mathematically testable — global state eliminated.",
+    "short_description": "Extracts implicit reliance on the global scope and injects explicit parameter contracts to eliminate crash hazards.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "State Purifier"
+    "role": "The State Purifier"
   },
   "Paramedic,Wordsmith": {
     "name": "Diplomat",
     "emoji": "🕊️",
-    "short_description": "Rewrites terrifying error messages and raw 500 codes into calm, actionable, empathetic microcopy. Human-facing errors always clear — machine-logged errors always separate.",
+    "short_description": "Processes Rewrite terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy. Separate the human display copy from the internal machine l...",
     "category": "ux",
     "type": "fusion",
-    "role": "Empathy Translator"
+    "role": "The Empathy Translator"
   },
   "Pedant,Pedant": {
     "name": "Zealot",
     "emoji": "🔱",
-    "short_description": "The ultimate zero-tolerance enforcer. Mechanically resolves every codebase warning and locks the rule as a fatal error.",
+    "short_description": "Hunts down rules configured as gentle \"warnings\" (or ignored entirely) and mechanically resolves every violation of that rule across the repository.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Absolute Enforcer"
+    "role": "The Absolute Enforcer"
   },
   "Pedant,Scavenger": {
     "name": "Shredder",
-    "emoji": "📠",
-    "short_description": "Uses git blame forensics to identify commented-out code untouched for 30+ days, then ruthlessly deletes it. Reliance on Git history enforced — no dead blocks polluting active files.",
+    "emoji": "🗑️",
+    "short_description": "Delete commented-out code that has sat untouched for over 30 days to reduce visual noise.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Graveyard Destroyer"
+    "role": "The Graveyard Destroyer"
   },
   "Pedant,Scribe": {
     "name": "Glossary",
     "emoji": "📖",
-    "short_description": "Parses the entire type system and injects strict, pedantic semantic definitions for every data model into the source code. The domain has a vocabulary — and it's thoroughly documented.",
+    "short_description": "Sweep codebases to strictly define and document the underlying data structures and semantic types.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Domain Taxonomist"
+    "role": "The Domain Taxonomist"
   },
   "Pedant,Sentinel+": {
     "name": "Regulator",
     "emoji": "🛂",
-    "short_description": "Extracts hardcoded validation magic numbers into centralized, heavily typed constants shared across frontend, backend, and database. One definition, everywhere — all schemas consuming the same source.",
+    "short_description": "Sweeps validation logic to extract hardcoded, magic numbers and convert them into centralized, heavily-typed constants.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Boundary Enforcer"
+    "role": "The Boundary Enforcer"
   },
   "Pedant,Superintendent": {
     "name": "Ratchet",
     "emoji": "🔩",
-    "short_description": "Fixes every code violation flagged by a warning-level ESLint or TypeScript rule, then upgrades that rule to 'error'. Fix the code first, tighten the ratchet after — strictness only moves forward.",
+    "short_description": "Sweeps the codebase for ESLint and TypeScript rules set to \"warn\" and physically fixes every underlying violation.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Strictness Enforcer"
+    "role": "The Strictness Enforcer"
   },
   "Pedant,Untangler": {
     "name": "Systematizer",
     "emoji": "🗄️",
-    "short_description": "Flattens deeply nested spaghetti code using guard clauses and sorts extracted logic into strictly typed, pedantically labeled local helpers. Primary path clean — complexity organized, not buried.",
+    "short_description": "Refactor tangled workspaces of nested conditions and unlabelled variables into clean, top-to-bottom readable logic by extracting deep logic into strictly typed local helper functions.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Logic Declutterer"
+    "role": "The Structure Enforcer"
   },
   "Pedant,Wordsmith": {
     "name": "Grammarian",
     "emoji": "✒️",
-    "short_description": "Extracts sloppy hardcoded UI strings into strict canonical constants and rewrites them as polished, active-voice microcopy. Empathetic, action-oriented copy — centralized, consistent, and maintainable.",
+    "short_description": "Extract sloppy, hardcoded UI strings into strict canonical constants and rewrite them into polished, active-voice microcopy.",
     "category": "ux",
     "type": "fusion",
-    "role": "Microcopy Canonicalization Specialist"
+    "role": "The Microcopy Canonicalization Specialist"
   },
   "Scavenger,Scavenger": {
     "name": "Hitman",
     "emoji": "🕴️",
-    "short_description": "Hunts macro-level architectural decay and unrequested LLM scope creep. Operates strictly on a contract basis, presenting a Target Dossier PR and executing massive deletions only after explicit ChatOps authorization.",
+    "short_description": "Exclusively operate within the demolition jurisdiction to eradicate massive, macro-level architectural liabilities and unrequested scope creep.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Corporate Fixer"
+    "role": "The Corporate Fixer"
   },
   "Scavenger,Scribe": {
     "name": "Obituary Writer",
     "emoji": "🪦",
-    "short_description": "Researches the final engineering intent of dead code, documents its history in a permanent GRAVEYARD.md archive, and then physically deletes the source files. A clean burial with a permanent historical record.",
+    "short_description": "Research the final engineering intent of unreferenced or explicitly deprecated dead code across all system domains and document its architectural history in a permanent `GRAVEYARD.md` archive.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Code Eulogist"
+    "role": "The Code Eulogist"
   },
   "Scavenger,Sentinel+": {
     "name": "Revoker",
     "emoji": "🪪",
-    "short_description": "Sweeps for hardcoded secrets, API keys, and accidentally committed .env.local files and extracts them to environment variables. Configuration separated from code — credential files safely deleted.",
+    "short_description": "Hunts down hardcoded passwords, AWS keys, and connection URIs leaked into the source code and extracts them into environment variables.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Credential Scrubber"
+    "role": "The Credential Scrubber"
   },
   "Scavenger,Superintendent": {
     "name": "Steward",
     "emoji": "🧽",
-    "short_description": "Bumps foundational libraries to modern versions and immediately purges the polyfills and shims they made obsolete. Updated imports, native methods — no compatibility code left after the upgrade.",
+    "short_description": "Document and map the overarching impact of dependency updates and polyfill removals, bridging the gap between package bumps and macro architecture.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Dependency Caretaker"
+    "role": "The Dependency Caretaker"
   },
   "Scavenger,Untangler": {
     "name": "Lumberjack",
     "emoji": "🪓",
-    "short_description": "Uses AST analysis to mathematically prove code is unreachable, then chops down dead branches, legacy feature flags, and conditional scaffolding. Surviving logic flattened, the dead wood gone.",
+    "short_description": "Hunt down and eliminate dead execution paths caused by hardcoded feature flags, expired A/B tests, or permanent environment variables.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Execution Tree Clearer"
+    "role": "The Dead Branch Chopper"
   },
   "Scavenger,Wordsmith": {
     "name": "Redliner",
     "emoji": "🖍️",
-    "short_description": "Maps every rendered string in the codebase and strikes through orphaned translation keys, deprecated legal docs, and dead copy no user will ever see. Translation budget spent on active strings only.",
+    "short_description": "Builds a reference map of actively rendered strings and strikes through every orphaned translation key and localized string.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Dead Copy Purger"
+    "role": "The Dead Copy Purger"
   },
   "Scribe,Scribe": {
     "name": "",
@@ -1411,106 +1411,106 @@
   "Scribe,Sentinel+": {
     "name": "Keymaster",
     "emoji": "🗝️",
-    "short_description": "Sweeps for hardcoded cryptographic keys and extracts them to environment variables with explicit @security CRITICAL JSDoc. No secrets in the codebase — ever.",
+    "short_description": "Hunt down hardcoded secrets, extract them into environment variables, and enforce pre-commit hook scanning patterns.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Cryptographic Auditor"
+    "role": "The Cryptographic Auditor"
   },
   "Scribe,Superintendent": {
     "name": "Revisionist",
     "emoji": "🧾",
-    "short_description": "Treats code as the absolute ground truth and rewrites documentation drift — JSDoc blocks, docstrings, and inline comments that lie about what the code actually does. Every comment reflects mechanical reality.",
+    "short_description": "Sweep codebases to hunt for comments and docstrings that contradict the actual execution logic below them.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Lie Detector"
+    "role": "The Lie Detector"
   },
   "Scribe,Untangler": {
     "name": "Logician",
     "emoji": "🧮",
-    "short_description": "Parses high-cyclomatic-complexity logic and injects deterministic Truth Tables and State Matrices directly into JSDoc/Docstrings. Complex if/else and bitwise operations documented as mathematical reality.",
+    "short_description": "Map chaotic, undocumented `if/else`, `switch`, and Bitwise operations into clean, tabular Truth Tables directly inside JSDoc/Docstrings.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Logic Documenter"
+    "role": "The Logic Documenter"
   },
   "Scribe,Wordsmith": {
     "name": "Polyglot",
-    "emoji": "🗣️",
-    "short_description": "Identifies foreign terminology mixed into variable names, comments, and schemas, then executes a repository-wide refactor to unify everything into a single human language standard. One language, everywhere.",
+    "emoji": "🌍",
+    "short_description": "Eradicate hardcoded English strings embedded deep within UI components and relocate them into centralized JSON or TS localization dictionaries (`i18n`).",
     "category": "ux",
     "type": "fusion",
-    "role": "Linguistic Unifier"
+    "role": "The String Centralizer"
   },
   "Sentinel+,Sentinel+": {
     "name": "Honeypot",
     "emoji": "🍯",
-    "short_description": "Builds fake API routes and invisible 'ghost links' designed to catch and ban malicious scrapers, bots, and vulnerability scanners. Hostile actors trigger their own blacklisting before touching real infrastructure.",
+    "short_description": "Sweeps routing architectures and public-facing perimeters to build fake API routes and invisible data trapwires. Catches malicious actors by injecting enticing ghost routes that trigger immediate retaliation.",
     "category": "architecture",
     "type": "fusion",
-    "role": "Offensive Defender"
+    "role": "The Offensive Defender"
   },
   "Sentinel+,Superintendent": {
     "name": "Checkpoint",
     "emoji": "🚧",
-    "short_description": "Safely bumps dependencies and audits the corresponding Zod/Joi schemas to ensure no routine update silently degrades the security posture. Security keeps pace with every dependency change.",
+    "short_description": "Bumps package dependencies and rigorously updates corresponding integration schemas to reflect new API surfaces.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Rigid Security Enforcer"
+    "role": "The Security Enforcer"
   },
   "Sentinel+,Untangler": {
     "name": "Defuser",
     "emoji": "🪢",
-    "short_description": "Flattens convoluted authorization logic — cascading if/else ladders and implicit role checks — into linear guard clauses with strict typing. Fail-closed defaults ensure any unpermitted path is automatically denied.",
+    "short_description": "Meticulously untangle convoluted security logic, expose its true trust boundary, and harden it with strict typing. Enforce fail-closed defaults.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Authorization Restructuring Specialist"
+    "role": "The Authorization Specialist"
   },
   "Sentinel+,Wordsmith": {
     "name": "Redactor",
     "emoji": "🥷",
-    "short_description": "Sweeps UI and logging layers to ensure credit cards, emails, and phone numbers never appear in plain text. Lightweight redaction utilities and recursive object-scrubbers injected before the presentation layer.",
+    "short_description": "Sweeps the UI and logging layers to mask and redact sensitive user data.",
     "category": "ux",
     "type": "fusion",
-    "role": "PII Scrubber"
+    "role": "The PII Scrubber"
   },
   "Superintendent,Superintendent": {
     "name": "Vibe Check",
     "emoji": "🪩",
-    "short_description": "Hunts and purges AI-generated technical debt — hallucinated dependencies, conversational sludge, and abandoned logic fragments. Cross-referenced against reality, hallucinated packages replaced with verified standards.",
+    "short_description": "Operates across the repository to bring hallucinogenic AI code back down to earth by eradicating \"bad trips\" like hallucinated dependencies, phantom schemas, and lazy placeholders.",
     "category": "meta",
     "type": "fusion",
-    "role": "Reality Anchor"
+    "role": "The Reality Anchor"
   },
   "Superintendent,Untangler": {
     "name": "Pruner",
     "emoji": "🪴",
-    "short_description": "Parses the AST to identify unreachable code blocks and unimported symbols, then physically deletes them. Zero dead wood, 100% parity for every active logic path.",
+    "short_description": "Sweep repositories for mathematically impossible execution paths, unreachable logic branches, and unused exports to ensure strict control flow hygiene.",
     "category": "hygiene",
     "type": "fusion",
-    "role": "Dead Code Destroyer"
+    "role": "The Dead Code Destroyer"
   },
   "Superintendent,Wordsmith": {
     "name": "Spellchecker",
     "emoji": "🔤",
-    "short_description": "Sweeps the entire AST — variables, database columns, JSON keys, and UI text — for spelling errors. Repository-wide atomic refactors eliminate typos while preserving all imports and bindings.",
+    "short_description": "Execute a surgical strike against misspelled variable names, database columns, public API keys, and CSS classes without breaking runtime references.",
     "category": "ux",
     "type": "fusion",
-    "role": "Typo Eradicator"
+    "role": "The Typo Eradicator"
   },
   "Untangler,Untangler": {
     "name": "Temporal Loom",
     "emoji": "🌀",
-    "short_description": "Inverts all conditions to pull every branching scenario to the top of functions as strict Guard Clauses. Nesting eliminated — logic sits completely flat against the left margin.",
+    "short_description": "Eradicates unstable, branching multiverses of execution paths. Reverses deeply nested conditions, loops, and try/catch blocks into a clean, top-down, one-dimensional execution pipeline.",
     "category": "refactoring",
     "type": "fusion",
-    "role": "Spaghettification Engine"
+    "role": "The Spaghettification Engine"
   },
   "Untangler,Wordsmith": {
     "name": "Cryptographer",
     "emoji": "🔏",
-    "short_description": "Deciphers dense machine syntaxes — raw RegEx, Cron schedules, Bitwise operators, CHMOD permissions — and translates them into plain English inline comments. Complex strings become readable at a glance.",
+    "short_description": "Seek out highly complex, undocumented machine syntaxes like raw Regular Expressions and Cron schedules. Translate these dense strings into plain, human-readable English inline comments.",
     "category": "documentation",
     "type": "fusion",
-    "role": "Syntax Decrypter"
+    "role": "The Syntax Decrypter"
   },
   "Wordsmith,Wordsmith": {
     "name": "",
