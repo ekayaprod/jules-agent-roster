@@ -1,7 +1,7 @@
 /**
  * @jest-environment node
  */
-const JulesService = require('./JulesAPI');
+const JulesService = require('./JulesService');
 
 describe('JulesService', () => {
     let service;

@@ -158,3 +158,8 @@
 **Title**: 👷 Foreman - [Feature Module Naming Standardization]
 **Learning**: Discovered that `js/Features/Search/searchWorker.js` was violating the PascalCase naming convention applied to primary module files across feature directories.
 **Action**: Renamed `searchWorker.js` to `SearchWorker.js` using `git mv` and updated all string references globally.
+
+2024-05-28
+**Title**: 👷 Foreman - [Service Class-to-File Matching Standardization]
+**Learning**: Discovered that `JulesAPI.js` was violating the PascalCase class-to-file matching convention, as it exports `JulesService` instead of `JulesAPI`.
+**Action**: Renamed `JulesAPI.js` and `JulesAPI.test.js` to `JulesService.js` and `JulesService.test.js` respectively using `git mv` and updated all string references globally to match the primary class declared inside.

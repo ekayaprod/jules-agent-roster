@@ -56,7 +56,7 @@ graph TD;
 
     subgraph Services
         AgentRepo[js/Services/AgentRepository.js]
-        JulesService[js/Services/JulesAPI.js]
+        JulesService[js/Services/JulesService.js]
     end
 
     subgraph UI Components

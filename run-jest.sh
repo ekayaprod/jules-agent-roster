@@ -1,2 +1,2 @@
 #!/bin/bash
-jest js/Services/JulesAPI.test.js
+jest js/Services/JulesService.test.js
