@@ -1624,6 +1624,130 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
         });
     });
 
+    describe('_showPRModal', () => {
+        let prMock, modal, titleEl, linkEl, contentEl, errorEl, mergeBtn, closePRBtn;
+
+        beforeEach(() => {
+            prMock = {
+                number: 123,
+                title: 'Test PR',
+                html_url: 'https://github.com/test/test/pull/123',
+                body: 'Test body'
+            };
+
+            modal = document.createElement('div');
+            titleEl = document.createElement('div');
+            linkEl = document.createElement('a');
+            contentEl = document.createElement('div');
+            errorEl = document.createElement('div');
+            mergeBtn = document.createElement('button');
+            closePRBtn = document.createElement('button');
+
+            manager.elements = {
+                julesPRModal: modal,
+                prModalTitleText: titleEl,
+                prModalExternalLink: linkEl,
+                prModalContent: contentEl,
+                prModalError: errorEl,
+                mergePRBtn: mergeBtn,
+                closePRBtn: closePRBtn
+            };
+
+            // Mock getEl
+            manager.getEl = jest.fn((id) => manager.elements[id]);
+            manager.app = { toast: { show: jest.fn() } };
+            manager.loadPullRequestsForRepo = jest.fn();
+
+            window.julesService = {
+                mergePullRequest: jest.fn(),
+                closePullRequest: jest.fn()
+            };
+
+            global.DOMUtils = {
+                createMarkdownPreBlock: jest.fn().mockReturnValue(document.createElement('pre')),
+                setButtonState: jest.fn()
+            };
+        });
+
+        it('should bail if modal is missing', () => {
+            manager.elements.julesPRModal = null;
+            manager._showPRModal(prMock, 'repo');
+            expect(titleEl.textContent).toBe(''); // Should not have been updated
+        });
+
+        it('should populate modal and show it', () => {
+            manager._showPRModal(prMock, 'repo');
+            expect(titleEl.textContent).toBe('#123 Test PR');
+            expect(linkEl.href).toBe('https://github.com/test/test/pull/123');
+            expect(contentEl.innerHTML).toBe('<pre></pre>');
+            expect(errorEl.textContent).toBe('');
+            expect(errorEl.classList.contains('hidden')).toBe(true);
+            expect(modal.classList.contains('visible')).toBe(true);
+        });
+
+        it('should handle merge PR success', async () => {
+            window.julesService.mergePullRequest.mockResolvedValue();
+            manager._showPRModal(prMock, 'repo');
+
+            await mergeBtn.onclick();
+
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, "loading", "Merging...");
+            expect(window.julesService.mergePullRequest).toHaveBeenCalledWith('repo', 123);
+            expect(manager.app.toast.show).toHaveBeenCalledWith('Successfully merged PR #123', 'success');
+            expect(modal.classList.contains('visible')).toBe(false);
+            expect(manager.loadPullRequestsForRepo).toHaveBeenCalledWith('repo');
+        });
+
+        it('should handle merge PR failure and show error', async () => {
+            window.julesService.mergePullRequest.mockRejectedValue(new Error('Merge conflict'));
+            manager._showPRModal(prMock, 'repo');
+
+            await mergeBtn.onclick();
+
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, "ready", "Merge PR");
+            expect(errorEl.textContent).toBe('Failed to merge PR: Merge conflict');
+            expect(errorEl.classList.contains('hidden')).toBe(false);
+        });
+
+        it('should handle close PR success', async () => {
+            window.julesService.closePullRequest.mockResolvedValue();
+            manager._showPRModal(prMock, 'repo');
+
+            await closePRBtn.onclick();
+
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, "loading", "Closing...");
+            expect(window.julesService.closePullRequest).toHaveBeenCalledWith('repo', 123);
+            expect(manager.app.toast.show).toHaveBeenCalledWith('Successfully closed PR #123', 'success');
+            expect(modal.classList.contains('visible')).toBe(false);
+            expect(manager.loadPullRequestsForRepo).toHaveBeenCalledWith('repo');
+        });
+
+        it('should handle close PR failure and show error', async () => {
+            window.julesService.closePullRequest.mockRejectedValue(new Error('Close error'));
+            manager._showPRModal(prMock, 'repo');
+
+            await closePRBtn.onclick();
+
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, "ready", "Close PR");
+            expect(errorEl.textContent).toBe('Failed to close PR: Close error');
+            expect(errorEl.classList.contains('hidden')).toBe(false);
+        });
+
+        it('should handle missing buttons and error element gracefully on merge/close errors', async () => {
+            manager.elements.prModalError = null;
+            window.julesService.mergePullRequest.mockRejectedValue(new Error('Merge error'));
+            window.julesService.closePullRequest.mockRejectedValue(new Error('Close error'));
+
+            manager._showPRModal(prMock, 'repo');
+
+            await mergeBtn.onclick();
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, "ready", "Merge PR");
+
+            await closePRBtn.onclick();
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, "ready", "Close PR");
+        });
+    });
+
     describe('Additional Coverage', () => {
         it('should handle dismissSession when julesPollingIntervals is defined and node does not exist', () => {
             manager.julesPollingIntervals = { '123': setInterval(() => {}, 1000) };
