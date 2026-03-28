@@ -1,16 +1,9 @@
-## 2026-03-06 - 🧠 Cortex - [API Resilience: Timeout Added]\n**Learning:** Raw fetch calls without timeouts are brittle and can lead to hanging requests.\n**Action:** Implemented a 15-second AbortController timeout for all JulesAPI.js requests to ensure graceful degradation and error handling.
-## 2026-03-08 - 🧠 Cortex - [API Resilience: Timeout Added]
-**Learning:** Raw fetch calls in `fetchWithRetry` without explicit timeouts can hang indefinitely if the server stalls, stalling the UI and blocking the event loop.
-**Action:** Injected a strict 10-second `AbortController` timeout into `AgentRepository.js`'s `fetchWithRetry` function, matching the resilience strategy in `JulesAPI.js`, to ensure graceful degradation and error handling.
+## Cortex — Synapse Integrity Verified
 
-2026-03-08
-**Title**: API Resilience: Retry Logic Added
-**Learning**: Transient network issues and 5xx server errors cause brittle fetches leading to UX failures.
-**Action**: Implemented an exponential backoff retry mechanism (3 retries, initial backoff 300ms) within `JulesAPI.js#_fetch` to ensure resilient connectivity.
+**Learning:** All `fetch` executions within the repository (`JulesService.js`, `AgentRepository.js`) possess rigid timeout boundaries via `AbortController` alongside strict retry policies. No vulnerable LLM raw parsing interfaces exist in the target paths.
+**Action:** The integration layer is secure; executed Category Fallback Compliance scan and found zero non-deterministic network endpoints requiring structural output validation schemas.
 
-2026-03-08
-**Title**: API Resilience: getPullRequests Timeout Injection
-**Learning**: Raw `fetch` calls in `JulesAPI.js#getPullRequests` lacked explicit timeouts, risking infinite application hangs if the GitHub API stalled or throttled connections.
-**Action**: Hardened the synapse by injecting a strict 15-second `AbortController` timeout and ensuring exceptions are cleanly caught and degraded to safe fallback states (`[]`).
-**Learning:** Added `julesPRModal` UI element, wired up `getPullRequest`, `mergePullRequest` and `closePullRequest` using proper network resilience.
-**Action:** Always clean up temporary python and node scripts before requesting a code review.
+## Cortex — Historical Integrations Hardened
+
+**Learning:** Previously, missing timeout wrappers across generic API fetch calls allowed transient server stalls to freeze the event loop.
+**Action:** Maintained strict 10-15s `AbortController` timeouts and 3-attempt exponential backoff retry policies across both `JulesAPI.js` and `AgentRepository.js`. Always verify temporary scripts are removed prior to code reviews.
