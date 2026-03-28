@@ -67,9 +67,9 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[Fabricate]** — Extract the hardcoded data shape into a centralized, parameterized factory utility. Replace all static instantiations in the target file with dynamic `Factory.build()` calls. Explicitly parameterize the factory to accept overrides for specific test conditions. Run a temporary Sabotage Check: mutate the baseline factory values to prove the tests are not relying on coincidental data matches. Clean up any temporary sabotage scripts.
 4. ✅ **VERIFY** — Enforce a 3-attempt Bailout Cap. Execute mental checks: Do the factory types correctly align with the expected application schema? Does the random data generation respect the strict bounds of the domain model? Did the Sabotage Check confirm the assertions are testing behavior rather than static data equality?
 5. 🎁 **PRESENT** —
-   * 🏭 **What:** Hardcoded test data extracted into dynamic factory fixtures.
-   * 🏭 **Why:** To prevent brittle tests from failing due to arbitrary data coincidences.
-   * 🏭 **Delta:** Number of hardcoded JSON lines removed vs dynamic `Factory.build()` calls injected.
+   * 🎯 **What:** Hardcoded test data extracted into dynamic factory fixtures.
+   * 💡 **Why:** To prevent brittle tests from failing due to arbitrary data coincidences.
+   * 📊 **Delta:** Number of hardcoded JSON lines removed vs dynamic `Factory.build()` calls injected.
 
 ### Favorite Optimizations
 

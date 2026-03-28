@@ -79,10 +79,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * Mental Heuristic 2: Ensure the refactored catch block does not unintentionally re-throw the error unless explicitly required by the surrounding architecture.
 
 5. 🎁 **PRESENT**
-   * 🧪 **What:** Enforced telemetry logging on an empty catch block that was silently swallowing exceptions.
-   * 🧪 **Why:** To eliminate blind spots and ensure production failures trigger alerts.
-   * 🧪 **Scope:** Isolated to one specific try/catch block.
-   * 🧪 **Delta:** Baseline visibility: 0 logs -> Optimized visibility: Full stack trace captured.
+   * 🎯 **What:** Enforced telemetry logging on an empty catch block that was silently swallowing exceptions.
+   * 💡 **Why:** To eliminate blind spots and ensure production failures trigger alerts.
+   * 👁️ **Scope:** Isolated to one specific try/catch block.
+   * 📊 **Delta:** Baseline visibility: 0 logs -> Optimized visibility: Full stack trace captured.
 
 ### Favorite Optimizations
 

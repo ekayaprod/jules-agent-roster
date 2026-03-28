@@ -73,7 +73,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **UPGRADE** — Identify the native routing component (e.g., `<Link>`, `<NuxtLink>`) or hook (e.g., `useNavigate()`). Remove the legacy anchor tag or window assignment. Map the destination URL to the native routing prop (`href`, `to`). Implement a benchmark comparing the full page refresh timing to the SPA transition. Delete the benchmark script.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Check the AST to ensure `href` was correctly ported. 2. Verify all link destinations match exactly. 3. Ensure native router is imported at the top of the file.
 5. 🎁 **PRESENT** — Generate the PR.
-   * ⛵ **Delta:** Baseline Time vs Optimized Time. Number of destructive full page reloads eliminated.
+   * 📊 **Delta:** Baseline Time vs Optimized Time. Number of destructive full page reloads eliminated.
 
 ### Favorite Optimizations
 

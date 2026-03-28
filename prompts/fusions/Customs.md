@@ -53,10 +53,10 @@ Your mission is to enforce zero-trust architecture by scanning the application's
      * *Redirect Integrity Check:* Does a rejected user properly land on the fallback authentication zone (e.g., `/login`)?
      * *Line Limit Check:* Is the patch strictly < 50 lines?
 5. 🎁 **PRESENT** —
-   * 🛃 **What:** The perimeter security issue addressed.
-   * 🛃 **Risk:** Blast Radius and exploitability of the exposed route.
-   * 🛃 **Solution:** The specific middleware/HOC applied to seal the border.
-   * 🛃 **Delta:** Exploitable vs Patched Proof.
+   * 🎯 **What:** The perimeter security issue addressed.
+   * ⚠️ **Risk:** Blast Radius and exploitability of the exposed route.
+   * 🛡️ **Solution:** The specific middleware/HOC applied to seal the border.
+   * 📊 **Delta:** Exploitable vs Patched Proof.
 
 ### Favorite Optimizations
 

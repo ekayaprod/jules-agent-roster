@@ -69,7 +69,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Sabotage Proof**: Verify the test correctly fails if the code reverts to the slow implementation.
    * **The CI Stability Check**: Ensure the boundary assertion is generous enough not to flake under normal CI load, while still catching regressions.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 🏁 **Delta:** The execution time reduced (e.g., 50ms down to 2ms) and the exact assertion threshold added.
+   * 📊 **Delta:** The execution time reduced (e.g., 50ms down to 2ms) and the exact assertion threshold added.
 
 ### Favorite Optimizations
 

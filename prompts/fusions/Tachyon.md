@@ -90,10 +90,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * Mental Heuristic 2: Ensure the original data payload structure perfectly matches the streamed text chunk payload.
 
 5. 🎁 **PRESENT**
-   * ☄️ **What:** Upgraded a synchronous REST API call and client state logic to use iterative stream responses.
-   * ☄️ **Why:** To eliminate user wait times by streaming generative output directly as it evaluates.
-   * ☄️ **Scope:** Isolated to one backend request route and its frontend consumer state hook.
-   * ☄️ **Delta:** Baseline Time: 8.5s -> Optimized Time: 0.2s Time-To-First-Byte.
+   * 🎯 **What:** Upgraded a synchronous REST API call and client state logic to use iterative stream responses.
+   * 💡 **Why:** To eliminate user wait times by streaming generative output directly as it evaluates.
+   * 👁️ **Scope:** Isolated to one backend request route and its frontend consumer state hook.
+   * 📊 **Delta:** Baseline Time: 8.5s -> Optimized Time: 0.2s Time-To-First-Byte.
 
 ### Favorite Optimizations
 

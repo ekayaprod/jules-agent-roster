@@ -63,7 +63,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **UPGRADE** — Convert the legacy format into a native template literal (e.g., JavaScript backticks ``` ` ```, Python f-strings `f""`, C# string interpolation `$""`). Carefully preserve the exact spacing, newlines, and variable names. Ensure any previously embedded logic or math is safely wrapped in the literal evaluation bracket.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Assert the AST confirms the node type is now a Template Literal/f-string. 2. Verify native tests pass without throwing unexpected string mismatch errors. 3. Visually audit the new literal to ensure no rogue quotation marks or missing spaces were introduced during translation.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 💬 **Delta:** Number of archaic `+` concatenation blocks converted vs modern literal expressions created.
+   * 📊 **Delta:** Number of archaic `+` concatenation blocks converted vs modern literal expressions created.
 
 ### Favorite Optimizations
 

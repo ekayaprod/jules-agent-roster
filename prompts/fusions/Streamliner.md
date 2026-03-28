@@ -71,7 +71,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[STREAMLINE]** — Execute a precise multi-step mechanical breakdown. Isolate the target component. Inject a temporary profiling wrapper to measure Initial Render Time. Group related fields or sections logically. Rip out the `display: none` styling and replace it with conditional rendering (e.g., `if (show)`). Extract non-critical sections into lazily imported chunks (`React.lazy()`, dynamic `import()`). Inject a seamless transition. Run the benchmark to verify the DOM reduction. Delete the benchmark.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the data payload sent to the backend remains completely identical. Ensure the initial DOM node count has measurably dropped. Confirm the form state is properly managed across the newly chunked UI boundaries.
 5. 🎁 **PRESENT** —
-   * ⛷️ **Delta:** Baseline Time vs Optimized Time.
+   * 📊 **Delta:** Baseline Time vs Optimized Time.
 
 ### Favorite Optimizations
 

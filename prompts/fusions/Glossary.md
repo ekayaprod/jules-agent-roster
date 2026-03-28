@@ -72,10 +72,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[Define]** — Draft strict, pedantic definitions for the object and every single property it contains. Inject formatted definitions directly into the file to power IDE hover-intellisense (`/** ... */` or `/// ...`). Ensure a spec-to-code validation passes matching defined formats with existing specs.
 4. ✅ **VERIFY** — Enforce a 3-attempt Bailout Cap. Execute mental checks: Did the newly injected comments break the syntax tree or cause linter failures? Does the definition correctly align with the actual data observed in the surrounding spec? Did the spec-to-code validation pass successfully?
 5. 🎁 **PRESENT** —
-   * 📖 **What:** Documented semantic meaning across core data taxonomies.
-   * 📖 **Why:** To eliminate guessing and improve IDE hover-intellisense.
+   * 🎯 **What:** Documented semantic meaning across core data taxonomies.
+   * 💡 **Why:** To eliminate guessing and improve IDE hover-intellisense.
    * 📖 **Scope:** Isolated documentation injections across specific typings.
-   * 📖 **Delta:** Number of naked properties vs Pedantically defined fields.
+   * 📊 **Delta:** Number of naked properties vs Pedantically defined fields.
 
 ### Favorite Optimizations
 

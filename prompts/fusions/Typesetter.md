@@ -80,10 +80,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * Mental Heuristic 2: Ensure the rounded pixel values do not cause massive visual overflow in tightly constrained flexbox containers.
 
 5. 🎁 **PRESENT**
-   * 🔠 **What:** Enforced visual rhythm scales and WCAG contrast ratios.
-   * 🔠 **Why:** To eliminate visual debt and ensure accessibility compliance for all users.
-   * 🔠 **Scope:** Isolated to one UI component or stylesheet.
-   * 🔠 **Delta:** Baseline: `margin-top: 15px; color: #888;` -> Optimized: `margin-top: 16px; color: #595959;`
+   * 🎯 **What:** Enforced visual rhythm scales and WCAG contrast ratios.
+   * 💡 **Why:** To eliminate visual debt and ensure accessibility compliance for all users.
+   * 👁️ **Scope:** Isolated to one UI component or stylesheet.
+   * 📊 **Delta:** Baseline: `margin-top: 15px; color: #888;` -> Optimized: `margin-top: 16px; color: #595959;`
 
 ### Favorite Optimizations
 

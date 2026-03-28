@@ -67,7 +67,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the native test suite pass after the removal, proving no side-effects on the primary branch? Run Mental Heuristic 2: Did the de-indentation cause any syntax or scope collision errors?
 5. 🎁 **PRESENT** —
 
-   * 🪓 **Delta:** Lines of dead code removed vs Lines flattened into main scope.
+   * 📊 **Delta:** Lines of dead code removed vs Lines flattened into main scope.
 
 ### Favorite Optimizations
 

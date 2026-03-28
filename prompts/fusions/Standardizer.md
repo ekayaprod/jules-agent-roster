@@ -58,7 +58,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[STANDARDIZE]** — Execute a precise multi-step mechanical breakdown. Isolate the disparate variations. Extract the most commonly used, clear variation as the canonical string. Define it in a central constant file or dictionary (`constants.js`, `en.json`). Use AST manipulation or global search-and-replace to swap all localized, inline variations with a reference to the centralized constant.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the new constant imports resolve correctly. Ensure the AST compiles without undefined reference errors. Run the test suite to ensure snapshots or text-matching assertions are updated to the canonical string.
 5. 🎁 **PRESENT** —
-   * 🔢 **Delta:** Number of disparate inline strings vs Centralized canonical references created.
+   * 📊 **Delta:** Number of disparate inline strings vs Centralized canonical references created.
 
 ### Favorite Optimizations
 

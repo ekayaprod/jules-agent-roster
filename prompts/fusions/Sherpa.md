@@ -67,7 +67,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[GUIDE]** — Execute a precise multi-step mechanical breakdown. Isolate the target empty state block. Draft empathetic, instructional copy explaining the value of the missing data. Re-use existing UI components (like `Card`, `Button`, or `EmptyState` primitives). Inject the primary action that resolves the empty state (e.g., "Add User" or "Clear Filters").
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the new AST compiles perfectly. Ensure the injected components conform to the project's native CSS or design system. Verify the CTA buttons are fully accessible and focusable.
 5. 🎁 **PRESENT** —
-   * 🧗‍♂️ **Delta:** Number of dead-end empty states vs Actionable onboarding paths created.
+   * 📊 **Delta:** Number of dead-end empty states vs Actionable onboarding paths created.
 
 ### Favorite Optimizations
 

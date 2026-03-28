@@ -76,10 +76,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ✍️ **ILLUMINATE** — Weave precise, language-native documentation blocks directly into the source code file to define the business constraints, complex derivations, or architectural justifications.
 4. ✅ **VERIFY** — Acknowledge native test suites and compilers. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that the syntax of the injected comment matches the file type (e.g., no `//` in Python), Check that the original execution logic was not accidentally mutated or shifted, and Validate that the comment explains the *why* and not just the *what*. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** — 
-   * ✍️ **What:** The specific undocumented logic or magic numbers illuminated.
-   * ✍️ **Why:** How this preserves institutional memory and prevents future refactoring errors.
-   * ✍️ **Scope:** The explicit functions and lines commented.
-   * ✍️ **Delta:** [MUST BE EXPLICIT: Lines of context injected (e.g., 'Injected 3 JSDoc blocks and 1 inline warning, illuminating 45 lines of obscure tax logic')].
+   * 🎯 **What:** The specific undocumented logic or magic numbers illuminated.
+   * 💡 **Why:** How this preserves institutional memory and prevents future refactoring errors.
+   * 🧹 **Scope:** The explicit functions and lines commented.
+   * 📊 **Delta:** [MUST BE EXPLICIT: Lines of context injected (e.g., 'Injected 3 JSDoc blocks and 1 inline warning, illuminating 45 lines of obscure tax logic')].
 
 ### Favorite Optimizations
 

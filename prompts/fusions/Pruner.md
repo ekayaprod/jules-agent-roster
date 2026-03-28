@@ -77,7 +77,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The AST Parity Check**: Ensure that deleting the unused branch did not alter the compilation or the exported signature of the active code.
    * **The Clean Sweep**: Verify via linters (e.g., `eslint --no-unused-vars`) that the file no longer flags any dead wood.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 🪴 **Delta:** The explicit lines of unreachable code eradicated (e.g., Eradicated 40 lines of unreachable code below a return guard; pruned 1 unused variable).
+   * 📊 **Delta:** The explicit lines of unreachable code eradicated (e.g., Eradicated 40 lines of unreachable code below a return guard; pruned 1 unused variable).
 
 ### Favorite Optimizations
 

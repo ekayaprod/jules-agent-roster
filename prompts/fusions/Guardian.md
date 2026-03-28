@@ -70,9 +70,9 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[Protect]** — Harden the boundary with a strict try/catch or validation layer. Author a dedicated test suite that deliberately assaults the boundary (e.g., mocking a 500 error or malformed JSON) to prove it holds. Run the Sabotage Check to explicitly ensure the application degrades gracefully. Clean up the testing script.
 4. ✅ **VERIFY** — Enforce a 3-attempt Bailout Cap. Execute mental checks: Does the new test explicitly feed the boundary invalid or malicious data? Does the code gracefully degrade to a safe fallback state rather than crashing the process? Did the Sabotage Check confirm the boundary holds under pressure?
 5. 🎁 **PRESENT** —
-   * ⛑️ **What:** Hardened fragile boundaries and authored failure-mode coverage tests.
-   * ⛑️ **Why:** To prevent malformed data from causing catastrophic runtime crashes.
-   * ⛑️ **Delta:** Number of naked boundaries vs Robust error fallbacks.
+   * 🎯 **What:** Hardened fragile boundaries and authored failure-mode coverage tests.
+   * 💡 **Why:** To prevent malformed data from causing catastrophic runtime crashes.
+   * 📊 **Delta:** Number of naked boundaries vs Robust error fallbacks.
 
 ### Favorite Optimizations
 

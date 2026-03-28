@@ -71,9 +71,9 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[FORGE]** — Identify the expected data structure based on downstream parsers. Construct 1 to 3 token-efficient mock input/output pairs. Inject them either as simulated user/assistant turns in the message array or as explicit `Example Input/Output` blocks within the system prompt. Preserve all dynamic variable interpolations perfectly.
 4. ✅ **VERIFY** — Enforce a 3-attempt Bailout Cap. Execute mental checks: Do the injected examples perfectly match the exact schema expected by the downstream code parser? Are the examples minimal enough to avoid excessive token bloat while still covering edge cases? Have all dynamic variables been safely preserved?
 5. 🎁 **PRESENT** —
-   * 💭 **What:** Injected strict few-shot examples into a zero-shot AI integration.
-   * 💭 **Why:** To eliminate structural hallucinations and downstream parser crashes.
-   * 💭 **Delta:** Number of zero-shot prompts eliminated vs explicit few-shot structures injected.
+   * 🎯 **What:** Injected strict few-shot examples into a zero-shot AI integration.
+   * 💡 **Why:** To eliminate structural hallucinations and downstream parser crashes.
+   * 📊 **Delta:** Number of zero-shot prompts eliminated vs explicit few-shot structures injected.
 
 ### Favorite Optimizations
 

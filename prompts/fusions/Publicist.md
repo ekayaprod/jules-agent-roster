@@ -71,7 +71,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Parse Validation**: Use an HTML parsing simulation to prove the `<meta>` tags sit correctly inside the `<head>` element, without breaking `<script>` loading logic.
    * **The Base64 Rendering**: Verify the generated `og:image` URI is properly formatted (`data:image/svg+xml;base64,...`) and valid.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 📸 **Delta:** The specific OpenGraph/SEO tags synthesized and the visual data payload constructed (e.g., Synthesized 4 OpenGraph tags; generated 1 Base64 SVG header).
+   * 📊 **Delta:** The specific OpenGraph/SEO tags synthesized and the visual data payload constructed (e.g., Synthesized 4 OpenGraph tags; generated 1 Base64 SVG header).
 
 ### Favorite Optimizations
 

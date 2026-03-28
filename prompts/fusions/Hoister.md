@@ -70,7 +70,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **HOIST** — Extract the trapped logic or static object to the module level (top of the file, outside the function definition). Identify any variables previously accessed via closure scope. Refactor the hoisted function to accept those variables as explicit parameters. Update all internal calls to the function to pass the newly required parameters.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Assert the AST confirms the hoisted node resides at the module root, not within the execution scope. 2. Verify native tests pass to ensure no `undefined` parameters are breaking the pure function. 3. Check for any naming collisions at the module level created by the extraction.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 🪝 **Delta:** Baseline Time vs Optimized Time. Number of re-allocations eliminated per cycle.
+   * 📊 **Delta:** Baseline Time vs Optimized Time. Number of re-allocations eliminated per cycle.
 
 ### Favorite Optimizations
 

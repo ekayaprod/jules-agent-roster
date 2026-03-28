@@ -69,7 +69,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[MIGRATE]** — Execute a precise multi-step mechanical breakdown. Isolate the target dependency. Update the manifest file to the new major version. Analyze the breaking changes from the release notes. Traverse the AST and use global find-and-replace to rewrite every deprecated instance to the new syntax (e.g., migrating `Switch` to `Routes`).
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the new dependencies resolve cleanly via a dry-run install. Ensure the AST compiles without deprecated reference errors. Run the test suite to confirm the new API signatures behave correctly.
 5. 🎁 **PRESENT** —
-   * 🔄 **Delta:** Number of deprecated API calls rewritten vs Major version bumps applied.
+   * 📊 **Delta:** Number of deprecated API calls rewritten vs Major version bumps applied.
 
 ### Favorite Optimizations
 

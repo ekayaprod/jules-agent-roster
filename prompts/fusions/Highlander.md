@@ -67,7 +67,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **CONSOLIDATE** — Draft a unified utility (The Absolute Source) that accommodates the combined requirements of every original variation, using an options object or parameterized flags. Modernize the AST of the new utility. Delete the scattered pretender logic in the targeted scope and wire all consumers to the Absolute Source.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Assert the AST no longer contains the old disparate loops. 2. Verify native tests pass (the new utility handles all existing edge cases). 3. Ensure no circular dependencies were introduced by rewiring the imports.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 🥇 **Delta:** Lines before vs. Lines after / Structural shift. Number of disparate algorithms eradicated.
+   * 📊 **Delta:** Lines before vs. Lines after / Structural shift. Number of disparate algorithms eradicated.
 
 ### Favorite Optimizations
 

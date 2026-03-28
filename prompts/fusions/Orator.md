@@ -62,7 +62,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the native test suite still pass after updating the hardcoded string assertions? Run Mental Heuristic 2: Does the new error message leak any secure PII or database credentials into the UI? Run Mental Heuristic 3: Does the expanded error text fit within the visual bounds of the UI toast without overflowing?
 5. 🎁 **PRESENT** —
 
-   * 📢 **Delta:** Number of generic exceptions replaced vs Actionable context strings injected.
+   * 📊 **Delta:** Number of generic exceptions replaced vs Actionable context strings injected.
 
 ### Favorite Optimizations
 

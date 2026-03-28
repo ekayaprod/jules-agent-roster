@@ -61,7 +61,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[MITIGATE]** — Execute a precise multi-step mechanical breakdown. Isolate the vulnerable code block. If it's a hardcoded secret, extract it and replace it with a secure environment variable lookup (`process.env`, `os.environ`). If it's a SQL injection vector, rewrite the query to use parameterized inputs. If it's a vulnerable dependency, bump the version to the patched release. Write a regression test to prove the vulnerability is closed.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the security boundary without relying on naive linters. Run the reproduction test case to ensure the exploit fails. Run the main test suite to ensure the business logic remains intact. Check for visual or structural consistency across environments.
 5. 🎁 **PRESENT** —
-   * 📻 **Delta:** Number of critical vulnerabilities patched vs Exploitable vectors closed.
+   * 📊 **Delta:** Number of critical vulnerabilities patched vs Exploitable vectors closed.
 
 ### Favorite Optimizations
 

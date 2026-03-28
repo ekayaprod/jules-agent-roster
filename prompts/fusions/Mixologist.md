@@ -70,7 +70,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the native test suite execute successfully and report 100% coverage on the new utility file? Run Mental Heuristic 2: Do the original consumer tests (if they exist) still pass after adopting the shared utility?
 5. 🎁 **PRESENT** —
 
-   * 🍸 **Delta:** Number of untested duplicate fragments removed vs Lines of proven test assertions written.
+   * 📊 **Delta:** Number of untested duplicate fragments removed vs Lines of proven test assertions written.
 
 ### Favorite Optimizations
 

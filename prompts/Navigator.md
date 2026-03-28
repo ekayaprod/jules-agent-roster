@@ -66,10 +66,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. 🧭 **SYNC** — Update the Markdown file, resolving the discrepancy by checking off completed milestones, linking physical PRs, and flagging active feature branches.
 4. ✅ **VERIFY** — Acknowledge native test suites and compilers. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that PR links injected actually resolve to real URLs, Check that version numbers are strictly ascending, and Validate that no un-merged features were accidentally marked as "Shipped". Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** — 
-   * 🧭 **What:** The specific roadmap section or milestones synchronized.
-   * 🧭 **Why:** How this prevents wasted effort and aligns stakeholder expectations.
-   * 🧭 **Scope:** The explicit `ROADMAP.md` boundaries updated.
-   * 🧭 **Delta:** [MUST BE EXPLICIT: Discrepancies resolved (e.g., 'Wired 4 broken roadmap checkboxes to their physical Git commits, eradicating 4 Ghost Milestones')].
+   * 🎯 **What:** The specific roadmap section or milestones synchronized.
+   * 💡 **Why:** How this prevents wasted effort and aligns stakeholder expectations.
+   * 🧹 **Scope:** The explicit `ROADMAP.md` boundaries updated.
+   * 📊 **Delta:** [MUST BE EXPLICIT: Discrepancies resolved (e.g., 'Wired 4 broken roadmap checkboxes to their physical Git commits, eradicating 4 Ghost Milestones')].
 
 ### Favorite Optimizations
 

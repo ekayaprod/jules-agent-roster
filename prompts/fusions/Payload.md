@@ -66,7 +66,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Header Assertion**: Programmatically assert that authenticated requests (mocked via JWT) to the modified endpoint return strict `no-store` caching headers.
    * **The Idempotency Compilation**: Run a dry-run build command to verify the middleware adjustments compile perfectly and do not break the Express/Django request pipeline.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 🚂 **Delta:** The explicit HTTP Headers added and the precise security boundaries enforced.
+   * 📊 **Delta:** The explicit HTTP Headers added and the precise security boundaries enforced.
 
 ### Favorite Optimizations
 

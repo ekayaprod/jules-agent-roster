@@ -68,7 +68,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **FORGE** — Refactor the legacy syntax (e.g., convert `var` to `let`/`const`, replace callbacks with `async/await`, upgrade `require` to ES Modules). Inject intense boundary tests targeting empty arrays, `null` parameters, missing objects, and explicitly thrown errors. Run the Sabotage Check by temporarily removing the `null` handling inside the new function to verify the new test properly catches the crash.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Run the native test suite to ensure the modernized function still executes the happy path correctly. 2. Verify all newly injected edge case tests pass. 3. Ensure the AST confirms all legacy syntax elements (like `var`) have been completely eradicated from the target scope.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 🌋 **Delta:** Number of legacy syntactic loops eradicated vs extreme edge-case unit tests injected.
+   * 📊 **Delta:** Number of legacy syntactic loops eradicated vs extreme edge-case unit tests injected.
 
 ### Favorite Optimizations
 

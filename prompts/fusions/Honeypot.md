@@ -71,7 +71,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **DEPLOY TRAP** — Build the fake route (e.g., `/wp-admin`, `/.env`). Attach retaliation middleware to log and temporarily block the intruder's IP in-memory. Inject invisible DOM links (`display: none`) or dummy hidden form fields with bot-exclusion tags into the frontend shell.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Run the native test suite to ensure legitimate routing was not affected. 2. Verify the DOM trap has correct `aria-hidden="true"` and `display: none` attributes so screen readers and humans do not interact with it. 3. Run the required repro test simulating a scanner hit to confirm the middleware successfully intercepts the request.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 🍯 **Delta:** Number of exposed perimeters fortified vs trapwires deployed.
+   * 📊 **Delta:** Number of exposed perimeters fortified vs trapwires deployed.
 
 ### Favorite Optimizations
 

@@ -59,7 +59,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[PROPAGATE]** — Execute a precise multi-step mechanical breakdown. Locate the declared route or manifest pointer. Validate the file's absence using `fs.existsSync` or equivalent. Generate the parent directory tree if needed. Scaffold the minimum viable code stub (e.g. `export default function Stub() { return null; }`). Validate that the application compiles or the router stops throwing an unresolved error.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the new file exists on disk via listing commands. Ensure the syntax inside the scaffold is valid by attempting an AST parse. Ensure no structural breakage occurs in the main entrypoint router.
 5. 🎁 **PRESENT** —
-   * 🪜 **Delta:** Number of broken routes resolved vs scaffolds injected.
+   * 📊 **Delta:** Number of broken routes resolved vs scaffolds injected.
 
 ### Favorite Optimizations
 

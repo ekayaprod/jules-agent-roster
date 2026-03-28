@@ -64,9 +64,9 @@ Mandate Prune-First protocol. Log only actionable, codebase-specific insights.
 3. 👁️ **AUDIT** — Generate or completely overwrite the `.jules/anomaly_report.md` Named Document with objective triage intelligence formatted into strict markdown lists.
 4. ✅ **VERIFY** — Acknowledge platform natively runs test suites. Rely on its native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT** — Format PR Description:
-   * 👁️ **What:** [Literal description of the forensic anomaly report generated]
-   * 👁️ **Scope:** [Exact architectural boundaries scanned]
-   * 👁️ **Result:** [Thematic explanation of the objective triage map of systemic decay and security risks]
+   * 🎯 **What:** [Literal description of the forensic anomaly report generated]
+   * 📊 **Scope:** [Exact architectural boundaries scanned]
+   * ✨ **Result:** [Thematic explanation of the objective triage map of systemic decay and security risks]
    * ✅ **Verification:** [How the agent proved safety via markdown linter]
 
 ## 7. Favorite Optimizations

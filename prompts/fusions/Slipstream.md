@@ -72,7 +72,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[FLATTEN]** — Execute a precise multi-step mechanical breakdown. Isolate the target function. Measure its baseline performance or complexity. Invert the deeply nested `if` conditions to create failing guard clauses at the top of the function. Move the 'happy path' execution to the un-indented bottom. Remove all obsolete `else` wrappers. Ensure the AST compiles. Run the benchmark to verify the output parity. Delete the benchmark.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify that the maximum indentation depth of the function has significantly decreased. Ensure the active logic executes correctly. Confirm no variables or core business rules were altered.
 5. 🎁 **PRESENT** —
-   * 💨 **Delta:** Baseline Time vs Optimized Time.
+   * 📊 **Delta:** Baseline Time vs Optimized Time.
 
 ### Favorite Optimizations
 

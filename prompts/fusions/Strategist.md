@@ -61,7 +61,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[ARCHITECT]** — Execute a precise multi-step mechanical breakdown. Synthesize the analyzed proprietary release logic. Draft a meticulously formatted universal markdown prompt. Define specific trigger conditions based on git tags or branch merges. Inject the hardcoded repository vocabulary, ticket prefix formats, and exact markdown structures as examples. Establish strict positive and negative execution boundaries. Write exactly one brand new file to `prompts/micro/`.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the new markdown file compiles without linter errors. Ensure the generated prompt does not hallucinate arbitrary ticket tracking URLs or branch names. Check that the negative constraints logically prevent the agent from leaking internal commit hashes into public notes.
 5. 🎁 **PRESENT** —
-   * ♟️ **Delta:** Number of manual toil patterns analyzed vs Meta-agent prompts birthed.
+   * 📊 **Delta:** Number of manual toil patterns analyzed vs Meta-agent prompts birthed.
 
 ### Favorite Optimizations
 

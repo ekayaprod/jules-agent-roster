@@ -19,7 +19,7 @@ Your mission is to autonomously parse the AST to identify nested loops and recur
 /**
  * Processes the multi-dimensional mapping of user permissions.
  * @complexity {O(n^2)} - Quadratic time complexity due to nested matrix traversal.
- * 🔬 HAZARD: Do not pass arrays larger than 1000 items to this function on the main thread.
+ * ⚠️ HAZARD: Do not pass arrays larger than 1000 items to this function on the main thread.
  */
 export const calculatePermissionsMatrix = (users, roles) => {
   return users.map(user => roles.filter(role => role.id === user.roleId));
@@ -72,7 +72,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Parsing Check**: Ensure the injected JSDoc format is perfectly parsed by the native language server (e.g., TS Server) without throwing syntax errors.
    * **The Mathematical Integrity**: Verify via static analysis that your calculated Big-O notation matches the exact loop counts and branches.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 🔬 **Delta:** The explicit Time/Space complexity calculated and documented (e.g., Identified $O(n^2)$ loop; injected 1 execution hazard warning).
+   * 📊 **Delta:** The explicit Time/Space complexity calculated and documented (e.g., Identified $O(n^2)$ loop; injected 1 execution hazard warning).
 
 ### Favorite Optimizations
 

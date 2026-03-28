@@ -71,7 +71,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **PROJECT** — Replace the raw text viewer with a custom markdown rendering component mapping syntax nodes (e.g., lists, code blocks, tables) to interactive components matching the project's local design system. Inject CSS `transition-height` properties for smooth layout expansion during streaming. Ensure XSS sanitization remains enforced in the markdown pipeline.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Run standard unit tests. 2. Verify that the component mapping gracefully handles malformed or incomplete markdown syntax sent during mid-stream chunks. 3. Visually check (via Playwright screenshot) that the layout transition flows smoothly without jarring jumps.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 🎇 **Delta:** The number of visual nodes upgraded vs raw text blocks replaced, explicitly noting the removal of layout jank.
+   * 📊 **Delta:** The number of visual nodes upgraded vs raw text blocks replaced, explicitly noting the removal of layout jank.
 
 ### Favorite Optimizations
 

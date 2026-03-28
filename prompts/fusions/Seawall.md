@@ -58,7 +58,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[FORTIFY]** — Execute a precise multi-step mechanical breakdown. Locate the target route handler definition. Inject the native rate limiter middleware (e.g., `express-rate-limit`, FastAPI `Slowapi`, or Nginx directives if applicable). Define the explicit burst, rate, and window limits. Handle the 429 Too Many Requests response payload cleanly.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify that the middleware compiles using dry-run compilation. Ensure the application initializes without circular dependencies. Confirm that the route returns a standard 429 HTTP status code on exhaustion via static analysis.
 5. 🎁 **PRESENT** —
-   * 🌊 **Delta:** Number of exposed routes vs Seawall rate limiters deployed.
+   * 📊 **Delta:** Number of exposed routes vs Seawall rate limiters deployed.
 
 ### Favorite Optimizations
 

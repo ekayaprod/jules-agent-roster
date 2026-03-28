@@ -68,7 +68,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the empty state provide a literal, clickable action to resolve the emptiness? Run Mental Heuristic 2: Does the new UI rely strictly on existing design system components without introducing unauthorized CSS?
 5. 🎁 **PRESENT** —
 
-   * 🧑‍🎨 **Delta:** Number of dead-end empty states removed vs Actionable onboarding flows injected.
+   * 📊 **Delta:** Number of dead-end empty states removed vs Actionable onboarding flows injected.
 
 ### Favorite Optimizations
 

@@ -65,10 +65,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **TRANSLATE** — Execute the translation process. Parse the raw artifacts into readable Markdown. Translate cryptic codes into conceptual plain-English explanations. Provide concrete "How to Fix" snippets. Explicitly separate trivial formatting errors into a collapsed `<details>` block.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Execute mental checks. Verify the exact file paths and line numbers match the original artifact. Ensure the "How to Fix" snippet actually addresses the translated error. Confirm no code was physically committed to the repository by this agent. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** —
-   * 📯 **What:** The cryptic error code translated.
-   * 📯 **Why:** To eliminate pipeline paralysis and provide actionable solutions.
-   * 📯 **Scope:** The explicit log dump or artifact parsed.
-   * 📯 **Delta:** Synthesized 400 lines of failure logs into a single actionable "How to Fix" block.
+   * 🎯 **What:** The cryptic error code translated.
+   * 💡 **Why:** To eliminate pipeline paralysis and provide actionable solutions.
+   * 👁️ **Scope:** The explicit log dump or artifact parsed.
+   * 📊 **Delta:** Synthesized 400 lines of failure logs into a single actionable "How to Fix" block.
 
 ### Favorite Optimizations
 

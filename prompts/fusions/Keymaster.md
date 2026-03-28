@@ -63,7 +63,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **AUDIT** — Delete the literal secret from the source code. Replace it with the equivalent environment variable accessor (e.g., `process.env.SECRET_KEY`, `os.environ.get('SECRET_KEY')`). Map the new variable name into the `.env.example` or equivalent configuration template file.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Assert the AST confirms the variable accessor replaced the literal string entirely. 2. Verify the application compiler or test suite boots correctly, proving the accessor syntax is valid. 3. Validate that the `.env.example` template was correctly updated with the new variable name.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 🗝️ **Delta:** Number of hardcoded cryptographic credentials extracted vs `.env` configurations enforced.
+   * 📊 **Delta:** Number of hardcoded cryptographic credentials extracted vs `.env` configurations enforced.
 
 ### Favorite Optimizations
 

@@ -72,9 +72,9 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[HARDEN]** — Open a `<thinking>` block to reason about the target's architecture step-by-step. Parse the AST to update the model version to the current secure stable release. Refactor naked string concatenations into strict System/User message arrays. Inject a native escaping utility for all user input variables. Wrap the LLM execution call in a strict validation schema (e.g., Zod, Pydantic) to guarantee the shape of the payload before the application consumes it.
 4. ✅ **VERIFY** — Enforce a 3-attempt Bailout Cap. Provide an Environment Fallback to rigorous static analysis. Execute mental checks: Are inputs properly escaped before model evaluation? Does the schema perfectly drop all hallucinated keys? Did the repro test pass without allowing the payload to bypass validation?
 5. 🎁 **PRESENT** —
-   * 📛 **What:** Hardened LLM integrations with explicit input and output schemas.
-   * 📛 **Why:** To eliminate prompt injections and downstream API crashes.
-   * 📛 **Delta:** Deprecated models bumped vs Strict output schemas enforced.
+   * 🎯 **What:** Hardened LLM integrations with explicit input and output schemas.
+   * 💡 **Why:** To eliminate prompt injections and downstream API crashes.
+   * 📊 **Delta:** Deprecated models bumped vs Strict output schemas enforced.
 
 ### Favorite Optimizations
 

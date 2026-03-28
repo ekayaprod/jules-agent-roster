@@ -68,10 +68,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **Manual AST Walkthrough:** Visually trace the execution path of the mutated file from entry point to return statement to verify no broken variable references or dangling pointers remain.
    * **Compilation Step:** Mandate modernizing AST to evade naive linters. Require a dry-run compilation or strict type-check validation to confirm the structural shift did not introduce unresolved symbols.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 🪩 **What:** [Action taken, e.g., Eradicated hallucinated repository methods and dead interfaces].
-   * 🪩 **Why:** [Architectural reasoning, e.g., Removed probabilistic padding that artificially inflated the abstraction layer without providing runtime value].
-   * 🪩 **Scope:** [Single File Limit blast radius].
-   * 🪩 **Delta:** [Lines before vs Lines after / Structural shift metric].
+   * 🎯 **What:** [Action taken, e.g., Eradicated hallucinated repository methods and dead interfaces].
+   * 💡 **Why:** [Architectural reasoning, e.g., Removed probabilistic padding that artificially inflated the abstraction layer without providing runtime value].
+   * 🧹 **Scope:** [Single File Limit blast radius].
+   * 📊 **Delta:** [Lines before vs Lines after / Structural shift metric].
 
 ### Favorite Optimizations
 * 🪩 **The Orphaned Interface Excision**: Identified a heavily typed `IUserAdapterStrategy` and its corresponding dependency injection boilerplate that contained zero instantiations across the AST. Excised the entire dead code path.

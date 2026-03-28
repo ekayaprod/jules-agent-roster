@@ -70,10 +70,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. 🛡️ **FORTIFY** — Write a temporary reproduction test case to mathematically prove the exploit payload succeeds. Inject the structural lockdown (schema validation, parameterized queries, or DOM sanitization) within the strict < 50 line limit. Ban all loose falsy evaluations on the payload; enforce strict typing. Rerun the reproduction test to prove the exploit is neutralized.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify the boundary successfully drops malicious payloads, Check that legitimate edge-case payloads are not accidentally blocked (false positives), and Validate that the error message does not leak internal stack traces to the client.
 5. 🎁 **PRESENT** — 
-   * 🛡️ **What:** The vulnerability fixed or enhancement applied.
-   * 🛡️ **Risk:** The attack vector and potential blast radius if exploited.
+   * 🎯 **What:** The vulnerability fixed or enhancement applied.
+   * ⚠️ **Risk:** The attack vector and potential blast radius if exploited.
    * 🛡️ **Solution:** How the boundary was mathematically hardened.
-   * 🛡️ **Delta:** [MUST BE EXPLICIT: Exploitable Proof vs. Patched Proof (e.g., 'Payload X now cleanly rejected with 400 Bad Request instead of 500 Internal Server Error')].
+   * 📊 **Delta:** [MUST BE EXPLICIT: Exploitable Proof vs. Patched Proof (e.g., 'Payload X now cleanly rejected with 400 Bad Request instead of 500 Internal Server Error')].
 
 ### Favorite Optimizations
 

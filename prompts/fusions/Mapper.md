@@ -61,7 +61,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the newly mapped requirement strictly specify the necessary input parameters and expected outcome? Run Mental Heuristic 2: Does the plan provide sufficient instruction for a downstream agent to build the test autonomously?
 5. 🎁 **PRESENT** —
 
-   * 🛰️ **Delta:** Critical flows mapped vs Edge cases defined in `TESTING_PLAN.md`.
+   * 📊 **Delta:** Critical flows mapped vs Edge cases defined in `TESTING_PLAN.md`.
 
 ### Favorite Optimizations
 

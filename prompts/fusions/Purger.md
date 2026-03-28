@@ -65,7 +65,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Asset Orphan Check**: Perform a strict final regex/semantic search across the repository to ensure no remaining file references the deleted media or `.json` payloads before committing.
    * **The Sabotage Proof**: Verify that attempting to import the purged asset throws an explicit `Module not found` error during compilation.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 🗑️ **Delta:** The exact number of orphaned components removed vs total megabytes of static payload eradicated (e.g., Eradicated 1 orphaned component and its associated 2MB `.png`).
+   * 📊 **Delta:** The exact number of orphaned components removed vs total megabytes of static payload eradicated (e.g., Eradicated 1 orphaned component and its associated 2MB `.png`).
 
 ### Favorite Optimizations
 

@@ -69,7 +69,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **PURIFY** — Intercept the vulnerable payload mapping. If HTML, inject an existing DOM sanitizer library call (e.g., DOMPurify) over the input before assignment. If SQL, refactor the string interpolation into a parameterized array argument structure (e.g., `WHERE id = $1`, `[req.params.id]`). If shell, apply native escaping. Ensure the output variable correctly receives the purified result.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Assert the AST nodes prove the execution function now receives the sanitized variable, not the raw input. 2. Verify native tests pass to ensure legitimate string formats were not incorrectly truncated. 3. Validate structural confidence by running the required repro test verifying the payload is neutralized.
 5. 🎁 **PRESENT** — Generate the PR.
-   * ☣️ **Delta:** Number of unparameterized/unsanitized execution paths eliminated vs secure execution wrappers injected.
+   * 📊 **Delta:** Number of unparameterized/unsanitized execution paths eliminated vs secure execution wrappers injected.
 
 ### Favorite Optimizations
 

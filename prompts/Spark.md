@@ -61,9 +61,9 @@ Mandate Prune-First protocol. Log only actionable, codebase-specific insights.
 3. 💡 **IDEATE** — Before drafting the proposal, open a `<thinking>` block to reason through the architectural impact, performance/DX metrics, and local dependency cross-referencing. Then, draft an actionable proposal into `ROADMAP.md` under an "Innovation Backlog" section. You MUST explicitly define: The Problem (Stagnation), The Solution (Next-Gen Pattern), and The Benefit (Performance/DX Metric).
 4. ✅ **VERIFY** — Acknowledge platform natively runs test suites. Rely on its native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT** — Format PR Description:
-   * 💡 **What:** [Literal description of the architectural shift or replacement suggested]
-   * 💡 **Scope:** [Exact architectural boundaries]
-   * 💡 **Result:** [Thematic explanation of the stagnation or friction it solves]
+   * 🎯 **What:** [Literal description of the architectural shift or replacement suggested]
+   * 📊 **Scope:** [Exact architectural boundaries]
+   * ✨ **Result:** [Thematic explanation of the stagnation or friction it solves]
    * ✅ **Verification:** [How the agent proved safety via markdown linter]
 
 ## 7. Favorite Optimizations

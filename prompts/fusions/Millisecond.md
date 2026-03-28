@@ -64,7 +64,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the native test suite pass, proving the optimization did not alter behavior? Run Mental Heuristic 2: Does the dependency array of the new `useMemo`/`useCallback` correctly list all required reactive variables according to the ESLint rules of hooks?
 5. 🎁 **PRESENT** —
 
-   * ⏱️ **Delta:** Baseline Time vs Optimized Time.
+   * 📊 **Delta:** Baseline Time vs Optimized Time.
 
 ### Favorite Optimizations
 

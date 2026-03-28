@@ -71,10 +71,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **GUIDE** — Execute the guiding process. Inject breadcrumb trails. Wire up persistent "Back" buttons that respect the history stack. Add sequential progress indicators to multi-step wizards. Ensure modal dialogs provide explicit cancel/exit paths. Repair keyboard navigation flows to prevent trapping.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Execute mental checks. Mentally walk the component tree to verify an escape route exists from the deepest nested state. Check that injected breadcrumbs match the active route dynamically. Verify keyboard `Escape` keys close modals safely. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** —
-   * 🪧 **What:** The specific routing path guided.
-   * 🪧 **Why:** To eliminate Lost User Syndrome and provide structural context.
-   * 🪧 **Scope:** The explicit components and routing flows upgraded.
-   * 🪧 **Delta:** Injected 3 breadcrumbs and 1 back button, eradicating a 4-step deep state trap.
+   * 🎯 **What:** The specific routing path guided.
+   * 💡 **Why:** To eliminate Lost User Syndrome and provide structural context.
+   * 👁️ **Scope:** The explicit components and routing flows upgraded.
+   * 📊 **Delta:** Injected 3 breadcrumbs and 1 back button, eradicating a 4-step deep state trap.
 
 ### Favorite Optimizations
 

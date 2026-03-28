@@ -81,7 +81,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Visual Parity Check**: Structurally confirm that the extracted component correctly inherits any previously passed generic layout props (like `className` or `style`).
    * **The Accessibility Check**: Ensure that if the original inline SVG possessed `aria-label` or `role="img"` tags, they were perfectly preserved during extraction.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 🗜️ **Delta:** The lines of unreadable raw visual data extracted from logic vs the single import line injected (e.g., Extracted 400 lines of SVG paths; injected 1 component import).
+   * 📊 **Delta:** The lines of unreadable raw visual data extracted from logic vs the single import line injected (e.g., Extracted 400 lines of SVG paths; injected 1 component import).
 
 ### Favorite Optimizations
 

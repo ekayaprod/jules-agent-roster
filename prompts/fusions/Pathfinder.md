@@ -68,7 +68,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Accessibility Check**: Ensure the new streamlined path maintains perfect semantic HTML, valid `aria` roles, and sequential tab indexing.
    * **The State Sync Check**: Verify that bypassing the interstitial hubs does not break the underlying global application state or API payload.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 🥾 **Delta:** The number of physical clicks or redundant DOM nodes eradicated (e.g., Removed 3 interstitial routing layers; implemented 1 optimistic UI update).
+   * 📊 **Delta:** The number of physical clicks or redundant DOM nodes eradicated (e.g., Removed 3 interstitial routing layers; implemented 1 optimistic UI update).
 
 ### Favorite Optimizations
 

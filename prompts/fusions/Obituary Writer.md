@@ -62,7 +62,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the native test suite still pass, proving no surviving code relied on the deleted mocks? Run Mental Heuristic 2: Does the global build compiler succeed, proving no hidden dynamic imports crashed?
 5. 🎁 **PRESENT** —
 
-   * 🪦 **Delta:** Lines of dead code physically deleted vs Institutional knowledge recorded in `GRAVEYARD.md`.
+   * 📊 **Delta:** Lines of dead code physically deleted vs Institutional knowledge recorded in `GRAVEYARD.md`.
 
 ### Favorite Optimizations
 

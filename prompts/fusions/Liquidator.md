@@ -66,7 +66,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Have all usages of the deprecated wrapper been successfully rewritten? Run Mental Heuristic 2: Does the new native API call effectively cover all previous capabilities, including edge case error handling from the old adapter?
 5. 🎁 **PRESENT** —
 
-   * 💥 **Delta:** Number of shim abstractions removed vs Total lines of code eliminated.
+   * 📊 **Delta:** Number of shim abstractions removed vs Total lines of code eliminated.
 
 ### Favorite Optimizations
 

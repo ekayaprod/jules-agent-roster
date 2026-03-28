@@ -74,7 +74,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **INOCULATE** — Upgrade the legacy `.then()` or callback logic to clean `async/await` syntax. Wrap the critical execution block in a `try/catch`. Inject typed custom errors, default return fallback values (`return null`), or context timeout wrappers depending on the environment context.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Run the native test suite ensuring the happy path still functions. 2. Verify compilation idempotency (if typed like TS, ensure the return type explicitly lists the error fallback). 3. Perform a dry-run throwing a mock error to confirm the new `catch` block correctly intercepts and logs the failure without crashing.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 💉 **Delta:** Number of legacy callbacks refactored vs explicit `try/catch` boundaries inoculated.
+   * 📊 **Delta:** Number of legacy callbacks refactored vs explicit `try/catch` boundaries inoculated.
 
 ### Favorite Optimizations
 

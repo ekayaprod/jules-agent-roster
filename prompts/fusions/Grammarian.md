@@ -67,10 +67,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[Extract]** — Extract raw UI strings into a dedicated constants file. Assign strict UPPERCASE variable names. Replace the inline strings in the component with references. Rewrite the constant values into polished, active-voice microcopy. Provide screen-reader validation to ensure aria-labels are properly updated.
 4. ✅ **VERIFY** — Enforce a 3-attempt Bailout Cap. Execute mental checks: Did the constant import correctly replace the hardcoded string without compilation errors? Are all screen-reader `aria-label` attributes updated if the visible text was changed? Does the native test suite confirm the layout has not been broken by the string variable insertion?
 5. 🎁 **PRESENT** —
-   * ✒️ **What:** Hardcoded UI strings extracted, centralized, and rewritten for empathy.
-   * ✒️ **Why:** To eliminate technical debt and passive-voice jargon.
+   * 🎯 **What:** Hardcoded UI strings extracted, centralized, and rewritten for empathy.
+   * 💡 **Why:** To eliminate technical debt and passive-voice jargon.
    * ✒️ **Scope:** Isolated string constant extractions and mappings.
-   * ✒️ **Delta:** Number of hardcoded strings vs Canonicalized constants mapped.
+   * 📊 **Delta:** Number of hardcoded strings vs Canonicalized constants mapped.
 
 ### Favorite Optimizations
 

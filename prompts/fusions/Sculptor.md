@@ -65,7 +65,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[SCULPT]** — Execute a precise multi-step mechanical breakdown. Isolate the target CSS class or styled-component. Inject the performant `transition` property using hardware-accelerated properties (`transform`, `opacity`). Swap layout-thrashing mutations (like `height` or `margin`) for performant equivalents. Enforce `@media (prefers-reduced-motion)` to respect accessibility.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the CSS syntax compiles. Ensure no structural breakage occurs in the UI layout. Verify the screen reader and reduced-motion compliance.
 5. 🎁 **PRESENT** —
-   * 🗿 **Delta:** Number of jarring state swaps sculpted vs Hardware-accelerated transitions injected.
+   * 📊 **Delta:** Number of jarring state swaps sculpted vs Hardware-accelerated transitions injected.
 
 ### Favorite Optimizations
 

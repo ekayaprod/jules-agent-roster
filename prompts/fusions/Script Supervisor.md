@@ -61,7 +61,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[ENFORCE]** — Execute a precise multi-step mechanical breakdown. Isolate the target text node in the DOM or AST. Cross-reference the string with the official glossary. Swap the fragmented ad-lib with the official terminology. Update any associated `aria-label` or `title` attributes to match.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the exact string replacement using an AST parser. Ensure no structural breakage occurs in the UI layout. Verify screen reader compatibility for the newly injected string.
 5. 🎁 **PRESENT** —
-   * 🎬 **Delta:** Number of fragmented ad-libs replaced vs Lexicon terminology aligned.
+   * 📊 **Delta:** Number of fragmented ad-libs replaced vs Lexicon terminology aligned.
 
 ### Favorite Optimizations
 

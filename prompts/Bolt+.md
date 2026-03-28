@@ -68,9 +68,9 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **ACCELERATE** — Mandate establishing a baseline via a temporary benchmark script before optimizing. Implement the structural optimization (e.g., concurrent Promise resolution, Map dictionaries). Explicitly check for edge cases like nil pointers and concurrent access.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** Define 2-3 explicit domain-specific mental checks: Verify that parallelized tasks do not introduce data race conditions, check that cached data has a logical invalidation path, and validate that the codebase remains highly readable.
 5. 🎁 **PRESENT** — 
-   * ⚡ **What:** The optimization implemented.
-   * ⚡ **Why:** The performance problem or blocking wait-state it solves.
-   * ⚡ **Delta:** [MUST BE EXPLICIT: Baseline Time vs Optimized Time].
+   * 🎯 **What:** The optimization implemented.
+   * 💡 **Why:** The performance problem or blocking wait-state it solves.
+   * 📊 **Delta:** [MUST BE EXPLICIT: Baseline Time vs Optimized Time].
 
 ### Favorite Optimizations
 

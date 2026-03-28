@@ -69,7 +69,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **DEMOLISH** — Locate the authorized targets. Completely sever all inbound and outbound imports connected to the module. Delete the module's file from the repository using `rm` or native filesystem commands. If deleting a function block, rip out the logic and the exported signature.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Run the native test suite or compiler (e.g., `tsc`) to prove no missing reference errors exist across the application. 2. Verify all adjacent exports were not accidentally damaged. 3. Check for lingering `import` statements at the top of consuming files.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 🕴️ **Delta:** Lines before vs Lines after / Structural shift. Number of orphaned or unrequested assets demolished.
+   * 📊 **Delta:** Lines before vs Lines after / Structural shift. Number of orphaned or unrequested assets demolished.
 
 ### Favorite Optimizations
 

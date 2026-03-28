@@ -74,7 +74,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the error catch block properly display the backend error string, or does it silently fail? Run Mental Heuristic 2: Are the disabled visual states sufficient in color contrast? Run Mental Heuristic 3: Does the `aria-live` region announce correctly?
 5. 🎁 **PRESENT** —
 
-   * 📺 **Delta:** Number of silent UI interactions transformed vs Explicit states mapped.
+   * 📊 **Delta:** Number of silent UI interactions transformed vs Explicit states mapped.
 
 ### Favorite Optimizations
 

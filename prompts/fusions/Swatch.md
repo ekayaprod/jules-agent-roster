@@ -62,7 +62,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[COMPILE]** — Execute a precise multi-step mechanical breakdown. Isolate the newly discovered token in the configuration file. Extract the key (e.g., `brand-teal`) and its exact value. Calculate the contrast ratio if it's a color. Format the token into a beautiful markdown table or list in `STYLEGUIDE.md`. Group similar tokens (e.g., Typography, Spacing, Colors).
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the markdown table compiles cleanly. Ensure the extracted token perfectly matches the active configuration file. Confirm no active application logic was altered.
 5. 🎁 **PRESENT** —
-   * 📓 **Delta:** Number of Shadow Palette tokens discovered vs Official styleguide entries cataloged.
+   * 📊 **Delta:** Number of Shadow Palette tokens discovered vs Official styleguide entries cataloged.
 
 ### Favorite Optimizations
 

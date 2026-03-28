@@ -80,10 +80,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. 🧶 **UNKNOT** — Apply early returns, guard clauses, and optional chaining to flatten the execution path in the source code. Extract inline data transformation logic into isolated local helper methods if it clarifies the main thread. Modernize the AST to evade naive linters.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that early returns do not accidentally skip required downstream side-effects (e.g., closing a database connection), Check that strict boolean logic (`&&` / `||`) evaluates identically to the old nested conditions, and Validate that no new dependencies were imported. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** — 
-   * 🧶 **What:** The specific logic flattening applied.
-   * 🧶 **Why:** How this trims cognitive threads and improves readability.
-   * 🧶 **Scope:** The specific functions unknotted.
-   * 🧶 **Delta:** [MUST BE EXPLICIT: Lines before vs. Lines after / Structural shift (e.g., 'Maximum cyclomatic nesting depth reduced from 5 levels to 1 level via guard clauses')].
+   * 🎯 **What:** The specific logic flattening applied.
+   * 💡 **Why:** How this trims cognitive threads and improves readability.
+   * 🧹 **Scope:** The specific functions unknotted.
+   * 📊 **Delta:** [MUST BE EXPLICIT: Lines before vs. Lines after / Structural shift (e.g., 'Maximum cyclomatic nesting depth reduced from 5 levels to 1 level via guard clauses')].
 
 ### Favorite Optimizations
 

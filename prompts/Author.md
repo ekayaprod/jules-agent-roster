@@ -72,10 +72,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. 📘 **PUBLISH** — Adopt the repository's native tone to draft missing Quick Starts or surgically update stale instructions in the named document, ensuring you augment and repair without erasing the project's established lore.
 4. ✅ **VERIFY** — Acknowledge native test suites and compilers. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that the CLI commands you documented actually exist in the `package.json` or Makefiles, Check that markdown formatting (especially code blocks) is properly closed, and Validate that the original author's tone was preserved. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** — 
-   * 📘 **What:** The specific document synthesized or stale commands repaired.
-   * 📘 **Why:** How this improves the repository UX and removes onboarding friction.
-   * 📘 **Scope:** The explicit markdown or YAML files published.
-   * 📘 **Delta:** [MUST BE EXPLICIT: The specific rot eliminated (e.g., 'Replaced 15 outdated npm commands with pnpm, rewriting the Quick Start without altering the surrounding lore')].
+   * 🎯 **What:** The specific document synthesized or stale commands repaired.
+   * 💡 **Why:** How this improves the repository UX and removes onboarding friction.
+   * 🧹 **Scope:** The explicit markdown or YAML files published.
+   * 📊 **Delta:** [MUST BE EXPLICIT: The specific rot eliminated (e.g., 'Replaced 15 outdated npm commands with pnpm, rewriting the Quick Start without altering the surrounding lore')].
 
 ### Favorite Optimizations
 

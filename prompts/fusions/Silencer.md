@@ -63,7 +63,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[SILENCE]** — Execute a precise multi-step mechanical breakdown. Isolate the target comment or dead logic block using an AST parser. Delete the node. Remove any trailing or leading whitespace left behind. Ensure the resulting active code structure is properly formatted.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the AST remains structurally identical for the executable code. Ensure the linter does not flag any missing necessary documentation. Run the compiler or test suite to guarantee zero logic was accidentally removed.
 5. 🎁 **PRESENT** —
-   * 🔇 **Delta:** Number of redundant comments eradicated vs Clean lines restored.
+   * 📊 **Delta:** Number of redundant comments eradicated vs Clean lines restored.
 
 ### Favorite Optimizations
 

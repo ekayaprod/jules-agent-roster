@@ -68,10 +68,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. 🧰 **MAINTAIN** — Execute the minor version bump, lockfile deduplication, or configuration alphabetization. Format the underlying JSON or YAML to standard conventions.
 4. ✅ **VERIFY** — Acknowledge native test suites and compilers. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that the native package installation command (e.g., `npm install`) succeeds without resolution errors, Check that no major (`vX.0.0`) version boundaries were crossed, and Validate that alphabetizing scripts did not break chronological execution chains. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** — 
-   * 🧰 **What:** The specific dependency bumped or file standardized.
-   * 🧰 **Why:** How this prevents silent rot or improves developer discoverability.
-   * 🧰 **Scope:** The manifest and lockfiles modified.
-   * 🧰 **Delta:** [MUST BE EXPLICIT: Lines sorted or Semantic Shift (e.g., 'Alphabetized 34 package.json scripts' or 'Bumped lodash from 4.1.0 to 4.1.2')].
+   * 🎯 **What:** The specific dependency bumped or file standardized.
+   * 💡 **Why:** How this prevents silent rot or improves developer discoverability.
+   * 🧹 **Scope:** The manifest and lockfiles modified.
+   * 📊 **Delta:** [MUST BE EXPLICIT: Lines sorted or Semantic Shift (e.g., 'Alphabetized 34 package.json scripts' or 'Bumped lodash from 4.1.0 to 4.1.2')].
 
 ### Favorite Optimizations
 

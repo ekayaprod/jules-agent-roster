@@ -69,7 +69,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Accessibility Check**: Ensure the new loading states possess proper `aria-busy` and `aria-live` attributes for screen readers.
    * **The Network Simulation**: Prove structurally that if the backend returns a `500 Internal Server Error`, the UI displays the fallback rather than crashing the virtual DOM.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 💊 **Delta:** The specific Accessibility/UX barriers removed (e.g., Eliminated 2 silent crashes; added 1 optimistic UI pulse skeleton).
+   * 📊 **Delta:** The specific Accessibility/UX barriers removed (e.g., Eliminated 2 silent crashes; added 1 optimistic UI pulse skeleton).
 
 ### Favorite Optimizations
 

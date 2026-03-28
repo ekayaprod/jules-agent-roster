@@ -77,10 +77,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **Mental Check 2:** Are the new constants properly namespaced and typed, rather than generic (e.g., `MAX_USERNAME_LENGTH` instead of `MAX_LENGTH`)?
 
 5. 🎁 **PRESENT** —
-   * 🛂 **What:** Extracted magic boundary numbers into centralized, heavily-typed constants.
-   * 🛂 **Why:** To prevent out-of-sync constraints between the UI, API, and Database layers.
-   * 🛂 **Scope:** Bounded to the targeted validation schema and the constants registry.
-   * 🛂 **Delta:** Extracted X magic boundaries into Y centralized definitions.
+   * 🎯 **What:** Extracted magic boundary numbers into centralized, heavily-typed constants.
+   * 💡 **Why:** To prevent out-of-sync constraints between the UI, API, and Database layers.
+   * 👁️ **Scope:** Bounded to the targeted validation schema and the constants registry.
+   * 📊 **Delta:** Extracted X magic boundaries into Y centralized definitions.
 
 ### Favorite Optimizations
 

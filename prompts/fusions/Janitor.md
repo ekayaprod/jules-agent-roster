@@ -69,7 +69,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **UNIFY** — Centralize the scattered execution logic into a top-level manifest (e.g., a root `Makefile`, `clean.sh`, or root `package.json`). Delete the fragmented ad-hoc commands from the local subdirectories. Ensure the centralized script handles missing directories gracefully without throwing fatal exit codes (e.g., using `rm -f` instead of `rm`).
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Run the new centralized manifest as a dry-run or in an ephemeral sandbox to ensure it completes with exit code 0. 2. Assert the AST or JSON confirms the old scattered scripts have been deleted. 3. Ensure no local sub-processes are negatively impacted by the extraction.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 🪠 **Delta:** Number of fragmented scripts eradicated vs single master manifests created.
+   * 📊 **Delta:** Number of fragmented scripts eradicated vs single master manifests created.
 
 ### Favorite Optimizations
 

@@ -89,10 +89,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * Mental Heuristic 2: Ensure any new logging references utilize pre-existing native logger imports rather than inventing new libraries.
 
 5. 🎁 **PRESENT**
-   * 📡 **What:** Injected execution timing and token usage telemetry around an AI invocation boundary.
-   * 📡 **Why:** To expose cost, latency, and context window exhaustion risks in production.
-   * 📡 **Scope:** Isolated to one specific AI service class.
-   * 📡 **Delta:** Baseline visibility: 0 logs -> Optimized visibility: Detailed latency and token cost metadata logged.
+   * 🎯 **What:** Injected execution timing and token usage telemetry around an AI invocation boundary.
+   * 💡 **Why:** To expose cost, latency, and context window exhaustion risks in production.
+   * 👁️ **Scope:** Isolated to one specific AI service class.
+   * 📊 **Delta:** Baseline visibility: 0 logs -> Optimized visibility: Detailed latency and token cost metadata logged.
 
 ### Favorite Optimizations
 

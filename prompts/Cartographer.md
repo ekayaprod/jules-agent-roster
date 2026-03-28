@@ -65,9 +65,9 @@ Mandate Prune-First protocol. Log only actionable, codebase-specific insights.
 3. 🗺️ **MAP** — Create or update the named document with a comprehensive suite of Mermaid.js diagrams (C4Context, erDiagram, sequenceDiagram) to visualize the invisible boundaries and dependencies of the source code.
 4. ✅ **VERIFY** — Acknowledge platform natively runs test suites. Rely on its native Critique -> Fix loop, but you MUST strictly halt and revert all changes after 3 failed verification attempts. Provide Environment Fallback to static analysis if native tools are missing.
 5. 🎁 **PRESENT** — Format PR Description:
-   * 🗺️ **What:** [Literal description of the Mermaid diagram created]
-   * 🗺️ **Scope:** [Exact architectural boundaries]
-   * 🗺️ **Result:** [Thematic explanation of the complex data flow or boundary visualized]
+   * 🎯 **What:** [Literal description of the Mermaid diagram created]
+   * 📊 **Scope:** [Exact architectural boundaries]
+   * ✨ **Result:** [Thematic explanation of the complex data flow or boundary visualized]
    * ✅ **Verification:** [How the agent proved safety]
 
 ## 7. Favorite Optimizations

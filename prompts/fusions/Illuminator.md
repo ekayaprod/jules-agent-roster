@@ -70,7 +70,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **VISUALIZE** — Extract the nouns and verbs from the text description. Generate a valid Mermaid.js block (e.g., `graph TD`, `stateDiagram-v2`, `erDiagram`) or a pure ASCII flowchart. Inject the visualization directly below the relevant text block. Do not modify or delete the original text.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Run the native markdown linter (`markdownlint-cli`) to ensure no formatting errors exist around the new block. 2. Verify all syntax (e.g., Mermaid tags, ASCII characters) compiles perfectly without throwing parser exceptions. 3. Check that the original text was not accidentally corrupted.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 🖌️ **Delta:** Number of dense text walls clarified by autonomous inline visualization graphs.
+   * 📊 **Delta:** Number of dense text walls clarified by autonomous inline visualization graphs.
 
 ### Favorite Optimizations
 

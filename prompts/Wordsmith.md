@@ -65,10 +65,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **POLISH** — Rewrite the text strings or terminal outputs within the source code to be active, empathetic, and actionable, providing a clear "Next Action" in all error states.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** Define 2-3 explicit domain-specific mental checks: Verify that the rewritten text length does not wildly exceed the original to avoid breaking UI button widths, check that all error messages provide a clear resolution step, and validate that injected `aria-labels` do not redundantly duplicate visible text.
 5. 🎁 **PRESENT** — 
-   * 🖋️ **What:** The specific strings, error messages, or accessibility labels rewritten.
-   * 🖋️ **Why:** How this eliminates user confusion and provides clear resolution paths.
-   * 🖋️ **Scope:** The explicit components and localized string files polished.
-   * 🖋️ **Delta:** [MUST BE EXPLICIT: Accessibility/UX barriers removed vs added (e.g., 'Translated 3 raw database exceptions into empathetic UI copy')].
+   * 🎯 **What:** The specific strings, error messages, or accessibility labels rewritten.
+   * 💡 **Why:** How this eliminates user confusion and provides clear resolution paths.
+   * 👁️ **Scope:** The explicit components and localized string files polished.
+   * 📊 **Delta:** [MUST BE EXPLICIT: Accessibility/UX barriers removed vs added (e.g., 'Translated 3 raw database exceptions into empathetic UI copy')].
 
 ### Favorite Optimizations
 

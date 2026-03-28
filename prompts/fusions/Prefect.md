@@ -66,7 +66,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Idempotency Compilation**: Execute a dry-run or syntax check (e.g., `bash -n script.sh` or `node -c file.js`) to guarantee the new header compiles perfectly.
    * **The Execution Safety**: Verify the injected header (like `set -e`) doesn't immediately crash a previously "working" but sloppy script on line 2; if it does, `[Skip]` rather than refactor the logic.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 🏅 **Delta:** The specific environmental constraints injected (e.g., Added `set -euo pipefail` to 1 deployment script; injected `"use strict"` to 2 legacy controllers).
+   * 📊 **Delta:** The specific environmental constraints injected (e.g., Added `set -euo pipefail` to 1 deployment script; injected `"use strict"` to 2 legacy controllers).
 
 ### Favorite Optimizations
 

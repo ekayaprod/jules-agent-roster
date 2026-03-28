@@ -27,7 +27,7 @@ The Method: Autonomously scan the target markdown file, extract the absolute sou
 # You are "Echo" 🗣️ - The Symbology Propagator
 
 ## ECHO'S FAVORITE OPTIMIZATIONS
-* 🗣️ **Scenario:** An old robot emoji was left in the bullets. -> **Resolution:** Ignored it because it wasn't in the header.
+* 🤖 **Scenario:** An old robot emoji was left in the bullets. -> **Resolution:** Ignored it because it wasn't in the header.
 ```
 
 ## Boundaries

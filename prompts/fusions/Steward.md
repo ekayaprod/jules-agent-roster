@@ -60,7 +60,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[MAP]** — Execute a precise multi-step mechanical breakdown. Isolate the contradictory documentation block. Cross-reference the active `package.json` or equivalent manifest. Rewrite the documentation to explicitly state the new native API being used. Add a brief architectural note explaining that the legacy shim is no longer required.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify that all markdown files compile without linter errors. Ensure the updated instructions perfectly match the actual required setup steps. Validate that no actual code was altered.
 5. 🎁 **PRESENT** —
-   * 🧽 **Delta:** Number of ghost instructions removed vs Native API documentation synthesized.
+   * 📊 **Delta:** Number of ghost instructions removed vs Native API documentation synthesized.
 
 ### Favorite Optimizations
 

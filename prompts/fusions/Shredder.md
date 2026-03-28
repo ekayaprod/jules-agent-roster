@@ -66,7 +66,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[DESTROY]** — Execute a precise multi-step mechanical breakdown. Isolate the commented-out block. Delete the block entirely. Remove any surrounding whitespace or empty lines left behind by the deletion. Format the file to ensure structural integrity is maintained.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify that the AST of the active code remains completely unchanged after deletion. Ensure the file compiles without syntax errors. Run the test suite to confirm no actual logic was accidentally removed.
 5. 🎁 **PRESENT** —
-   * 🗑️ **Delta:** Number of obsolete lines deleted vs Visual noise removed.
+   * 📊 **Delta:** Number of obsolete lines deleted vs Visual noise removed.
 
 ### Favorite Optimizations
 

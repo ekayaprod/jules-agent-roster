@@ -74,10 +74,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **ARTICULATE** — Execute the articulation process. Sculpt comprehensive visual states (hover, focus, active). Inject accessible ARIA attributes. Rewrite the microcopy to guide users with an empathetic, active voice. Enforce native keystroke listeners alongside a perfect `tabIndex` flow.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Execute mental checks. Mandate contrast-ratio checks against the existing palette. Explicitly validate screen-reader flow logic mentally. Ensure injected animations strictly respect `@media (prefers-reduced-motion)`. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** —
-   * 🎭 **What:** The specific interaction states sculpted and microcopy articulated.
-   * 🎭 **Why:** To inject empathy and clear recovery paths into the UX.
-   * 🎭 **Scope:** The explicit components and state flows upgraded.
-   * 🎭 **Delta:** Accessibility/UX barriers removed vs added (e.g., Injected 4 ARIA attributes and 3 visual states).
+   * 🎯 **What:** The specific interaction states sculpted and microcopy articulated.
+   * 💡 **Why:** To inject empathy and clear recovery paths into the UX.
+   * 👁️ **Scope:** The explicit components and state flows upgraded.
+   * 📊 **Delta:** Accessibility/UX barriers removed vs added (e.g., Injected 4 ARIA attributes and 3 visual states).
 
 ### Favorite Optimizations
 

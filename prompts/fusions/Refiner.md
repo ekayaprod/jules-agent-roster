@@ -92,10 +92,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **Mental Check 2:** Are all error cases properly propagated through the new `try/catch` or early returns without being swallowed?
 
 5. 🎁 **PRESENT** —
-   * 🛢️ **What:** Distilled legacy callback spaghetti into a flat, modern `async/await` execution path.
-   * 🛢️ **Why:** To improve structural readability and modernize asynchronous syntax.
-   * 🛢️ **Scope:** Bounded to the targeted legacy module.
-   * 🛢️ **Delta:** Baseline Time vs Optimized Time.
+   * 🎯 **What:** Distilled legacy callback spaghetti into a flat, modern `async/await` execution path.
+   * 💡 **Why:** To improve structural readability and modernize asynchronous syntax.
+   * 👁️ **Scope:** Bounded to the targeted legacy module.
+   * 📊 **Delta:** Baseline Time vs Optimized Time.
 
 ### Favorite Optimizations
 
