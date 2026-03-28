@@ -55,7 +55,7 @@ class AgentPicker {
 
         // 🪧 Wayfinder: Handle browser back button to close modal instead of leaving page
         if (typeof window !== 'undefined') {
-            window.addEventListener("popstate", (e) => {
+            window.addEventListener("popstate", () => {
                 if (this.activePickerSlot) {
                     // The user clicked "Back" while the modal was open.
                     // We close the picker but tell it NOT to call history.back() again,
@@ -118,7 +118,7 @@ class AgentPicker {
 
         if (!itemsToRender) itemsToRender = this.cachedHtmlStrings;
 
-        return itemsToRender.map((item, index) => {
+        return itemsToRender.map((item) => {
             let renderedHtml = item.html;
             const isCurrent = this.currentAgent && this.currentAgent.name.toLowerCase() === item.name;
 

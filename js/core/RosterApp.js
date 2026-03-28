@@ -334,7 +334,7 @@ class RosterApp {
       this.elements.searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
     }
     
-    this.elements.searchTriggerBtn?.addEventListener("click", (e) => {
+    this.elements.searchTriggerBtn?.addEventListener("click", () => {
       const nav = this.elements["category-nav"];
       if (nav) {
         nav.classList.add("search-active");
