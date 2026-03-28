@@ -157,7 +157,7 @@ class FusionLab {
         return null;
     }
 
-    const key = [agentA.name, agentB.name].sort().join(",");
+    const key = AgentUtils.getFusionKey(agentA.name, agentB.name);
 
     if (this.fusionIndex && this.fusionIndex.isUnlocked(key)) {
         const result = this.compiler.fuse(agentA, agentB);
@@ -294,7 +294,7 @@ class FusionLab {
     // Unlock in Index if it's a valid fusion
     if (this.fusionIndex) {
       try {
-        const key = [agentA.name, agentB.name].sort().join(",");
+        const key = AgentUtils.getFusionKey(agentA.name, agentB.name);
         // Check if it's a known custom fusion
         let isKnown = false;
         if (this.fusionIndex.customAgents && this.fusionIndex.customAgents[key]) {
@@ -322,11 +322,11 @@ class FusionLab {
    * @param {string} key - The fusion key (AgentA,AgentB).
    */
   handleShelfSelection(key) {
-    const names = key.split(",");
+    const names = AgentUtils.splitFusionKey(key);
     if (names.length !== 2) return;
 
-    const agentA = this.agentMap.get(names[0].trim());
-    const agentB = this.agentMap.get(names[1].trim());
+    const agentA = this.agentMap.get(names[0]);
+    const agentB = this.agentMap.get(names[1]);
 
     if (!agentA || !agentB) {
       console.warn("FusionLab: Could not find agents for key", key);

@@ -37,7 +37,7 @@ class AgentRepository {
                 }
                 for (const key of Object.keys(this.customAgents)) {
                     const agent = this.customAgents[key];
-                    const [name1, name2] = key.split(",");
+                    const [name1, name2] = AgentUtils.splitFusionKey(key);
                     const a1 = agentMap.get(name1);
                     const a2 = agentMap.get(name2);
                     if (a1 && a2) {
@@ -122,7 +122,7 @@ class AgentRepository {
         try {
             // Map the name property from the key if it's missing or empty
             if (!custom.name || custom.name.trim() === "") {
-                const parts = key.split(",");
+                const parts = AgentUtils.splitFusionKey(key);
                 if (parts.length === 2 && parts[0].trim() !== "") {
                     custom.name = parts[0].trim();
                 }

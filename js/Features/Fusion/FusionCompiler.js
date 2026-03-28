@@ -32,10 +32,7 @@ const FusionCompiler = function (agents, customAgents) {
       if (Object.prototype.hasOwnProperty.call(data, rawKey)) {
         // ↗️ VECTORIZE: The Single-Pass Bypass. Direct string manipulation in a single loop avoids
         // the massive garbage collection overhead of chained Object.entries().map().map().sort().join().
-        const parts = rawKey.split(",");
-        for (let i = 0; i < parts.length; i++) {
-          parts[i] = parts[i].trim();
-        }
+        const parts = typeof AgentUtils !== 'undefined' ? AgentUtils.splitFusionKey(rawKey) : rawKey.split(",").map(p => p.trim());
         parts.sort();
         result[parts.join(",")] = data[rawKey];
       }
@@ -60,7 +57,7 @@ const FusionCompiler = function (agents, customAgents) {
 
     const name1 = agent1.name ? agent1.name.trim() : "";
     const name2 = agent2.name ? agent2.name.trim() : "";
-    const key = [name1, name2].sort().join(",");
+    const key = typeof AgentUtils !== 'undefined' ? AgentUtils.getFusionKey(name1, name2) : [name1, name2].sort().join(",");
 
     const computedTier = typeof RarityEngine !== 'undefined' ? RarityEngine.calculateRarity(agent1, agent2) : "Common";
 
