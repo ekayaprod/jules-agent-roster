@@ -20,12 +20,8 @@ class FormatUtils {
      */
     static formatAgentPrompts(agents) {
         if (!Array.isArray(agents)) return "";
-        // ↗️ VECTORIZE: The Single-Pass Pipeline. We bypass the intermediate array allocations
-        // from the chained .map().join() sequence, reducing the string directly.
-        return agents.reduce((acc, a) => {
-            const block = `${a.prompt}\n\n--------------------------------------------------------------------------------`;
-            return acc ? `${acc}\n\n${block}` : block;
-        }, "");
+        // ⚡ Bolt+: The String Builder Shift. Replaced O(N²) .reduce() string concatenation with O(N) .map().join() to prevent repetitive transient memory allocations.
+        return agents.map(a => `${a.prompt}\n\n--------------------------------------------------------------------------------`).join("\n\n");
     }
 
     /**
