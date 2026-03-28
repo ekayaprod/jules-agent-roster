@@ -326,7 +326,7 @@ class JulesManager {
             }
 
             for (const session of repoSessions) {
-                this._processSession(session, terminal, repoPath);
+                this._processSession(session, terminal);
             }
             
             this._checkEmptyTerminal();
@@ -343,7 +343,7 @@ class JulesManager {
         }
     }
 
-    _processSession(session, terminal, repoPath) {
+    _processSession(session, terminal) {
         if (this.renderedSessionIds.has(session.id)) return;
         this.renderedSessionIds.add(session.id);
         

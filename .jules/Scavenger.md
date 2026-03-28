@@ -1,3 +1,6 @@
 ## Scavenger — The Dead Feature Pruning
 **Learning:** Found an unused array `EXECUTION_PIPELINE` inside the `FusionCompiler` class. This array was never utilized internally within the class's functional pipeline, and its exported reference was completely unreferenced across the codebase (including test files). Always verify both internal usages and external consumers of exported module variables before safely executing a deletion.
 **Action:** When auditing files for dead code, if a data structure is exported but not utilized anywhere internally, perform a project-wide search to confirm zero external dependents before surgically removing both the declaration and the export reference.
+
+**Learning:** Unused parameters in function signatures and event listeners (like `repoPath` in `_processSession` and `e` in event callbacks) accumulate cognitive overhead without affecting execution.
+**Action:** Use surgical `git diff` replacements to precisely excise dead parameters from both the declaration and call sites, ensuring structural integrity is maintained without relying on temporary third-party AST dependencies.
