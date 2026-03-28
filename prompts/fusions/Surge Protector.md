@@ -70,7 +70,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[FLATTEN]** — Execute a precise multi-step mechanical breakdown. Isolate the target computational function. Identify the cheapest, most restrictive conditional checks (e.g., `!data.length`, `!isActive`). Move these checks to the very top of the function. Inject explicit `return` statements that yield a safe, type-compliant empty state (e.g., `[]` or `null`). Ensure the heavy processing block is only executed if all guard clauses pass.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify that the function compiles via dry-run compilation without type mismatch errors. Run the test suite to ensure the "Happy Path" data transformation remains perfectly identical. Ensure that returning the empty state does not crash downstream consumers.
 5. 🎁 **PRESENT** —
-   * 📊 **Delta:** Number of wasted execution cycles eliminated vs Guard clauses injected.
+   * 🌩️ **Delta:** Number of wasted execution cycles eliminated vs Guard clauses injected.
 
 ### Favorite Optimizations
 

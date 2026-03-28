@@ -71,7 +71,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **ACCELERATE** — Inject native edge config directives (`runtime = 'edge'`). Refactor the endpoint's response object to append strict, aggressive `Cache-Control` headers (e.g., `s-maxage=60, stale-while-revalidate=300`). Run the temporary benchmark script proving the time delta between the uncached server response and the cached edge response. Delete the script.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Assert the AST confirms the headers or edge runtime configs were successfully applied. 2. Verify native E2E tests still pass (e.g., no JSON parsing errors from the new response wrapper). 3. Check for any stateful side-effects (e.g., authenticated cookies) that invalidate edge caching.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 📊 **Delta:** Baseline Time vs Optimized Time. Number of server roundtrips eliminated per minute.
+   * 🚄 **Delta:** Baseline Time vs Optimized Time. Number of server roundtrips eliminated per minute.
 
 ### Favorite Optimizations
 

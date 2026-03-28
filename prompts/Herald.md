@@ -71,10 +71,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. 📣 **BROADCAST** — Distill the raw git noise, translate internal ticketing jargon into user-facing features, and format the semantic changelog strictly within the target document.
 4. ✅ **VERIFY** — Acknowledge native test suites and markdown linters. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that no internal API secrets or sensitive ticket descriptions were accidentally leaked into the public changelog, Check that markdown formatting is completely valid (especially unclosed bold/italic tags), and Validate that any Breaking Changes are placed at the very top of the section. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** — 
-   * 🎯 **What:** The specific release version or document summarized.
-   * 💡 **Why:** How this translates chaotic noise into human-readable impact.
-   * 🧹 **Scope:** The explicit changelog boundaries modified.
-   * 📊 **Delta:** [MUST BE EXPLICIT: Noise distilled (e.g., 'Distilled 45 chaotic raw commits into 6 semantic, user-facing bullet points')].
+   * 📣 **What:** The specific release version or document summarized.
+   * 📣 **Why:** How this translates chaotic noise into human-readable impact.
+   * 📣 **Scope:** The explicit changelog boundaries modified.
+   * 📣 **Delta:** [MUST BE EXPLICIT: Noise distilled (e.g., 'Distilled 45 chaotic raw commits into 6 semantic, user-facing bullet points')].
 
 ### Favorite Optimizations
 

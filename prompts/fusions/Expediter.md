@@ -53,9 +53,9 @@ Your mission is to parse CI/CD configuration files and bundler manifests to auto
      * *Concurrency Integrity Check:* Do the split matrix jobs collectively test/build the exact same surface area as the sequential script?
      * *Cost/Time Reduction Check:* Does the benchmark script confirm a measurable decrease in execution time?
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** The pipeline bottleneck addressed.
-   * 💡 **Why:** How this improves developer velocity and reduces CI server costs.
-   * 📊 **Delta:** Baseline Time vs Optimized Time (e.g., 15m build vs 3m parallel build).
+   * 🛎️ **What:** The pipeline bottleneck addressed.
+   * 🛎️ **Why:** How this improves developer velocity and reduces CI server costs.
+   * 🛎️ **Delta:** Baseline Time vs Optimized Time (e.g., 15m build vs 3m parallel build).
 
 ### Favorite Optimizations
 

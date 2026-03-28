@@ -67,7 +67,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The AST Sync Check**: Verify via static analysis that the new import statements are correctly scoped and the variables map cleanly to the configuration dictionary.
    * **The Compilation Check**: Ensure the repository compiles perfectly without "variable undefined" or "import not found" errors.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 📊 **Delta:** Number of hardcoded literal strings removed vs the single centralized constant map injected (e.g., Removed 15 magic strings; injected 1 `API_ROUTES` config).
+   * 🌐 **Delta:** Number of hardcoded literal strings removed vs the single centralized constant map injected (e.g., Removed 15 magic strings; injected 1 `API_ROUTES` config).
 
 ### Favorite Optimizations
 

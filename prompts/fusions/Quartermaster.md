@@ -77,10 +77,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **Mental Check 2:** Are there any lingering occurrences of the targeted magic string remaining in the codebase?
 
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** Centralized duplicated magic values into a single configuration source.
-   * 💡 **Why:** To prevent fragmented updates and enforce a Single Source of Truth.
-   * 👁️ **Scope:** Bounded to the targeted duplicated value across its consuming files.
-   * 📊 **Delta:** X hardcoded instances removed and consolidated into 1 centralized constant.
+   * 📦 **What:** Centralized duplicated magic values into a single configuration source.
+   * 📦 **Why:** To prevent fragmented updates and enforce a Single Source of Truth.
+   * 📦 **Scope:** Bounded to the targeted duplicated value across its consuming files.
+   * 📦 **Delta:** X hardcoded instances removed and consolidated into 1 centralized constant.
 
 ### Favorite Optimizations
 

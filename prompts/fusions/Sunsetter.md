@@ -61,7 +61,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[DOCUMENT]** — Execute a precise multi-step mechanical breakdown. Isolate the target legacy pattern. Draft or update `DEPRECATION.md` with the status, timeline, and a Before/After code snippet. Sweep the markdown wikis or tutorials to erase references to the legacy logic. Rewrite the tutorial steps to explicitly use the modern alternative.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the markdown files compile without linter errors. Ensure all internal relative links between the documentation and the source code resolve correctly. Verify that no actual active application logic or `.ts`/`.py` source code was deleted during the sweep.
 5. 🎁 **PRESENT** —
-   * 📊 **Delta:** Number of stale tutorials rewritten vs Actionable migration guides authored.
+   * 🌇 **Delta:** Number of stale tutorials rewritten vs Actionable migration guides authored.
 
 ### Favorite Optimizations
 

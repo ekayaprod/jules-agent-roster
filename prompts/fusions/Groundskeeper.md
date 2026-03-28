@@ -74,10 +74,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[Maintain]** — Parse the YAML or documentation file. Inject automated cron schedules, pin action versions to exact SHAs or latest stable major versions, and document the automated workflow explicitly in a macro `MAINTENANCE.md` guide. Execute a dry-run or linting check of the CI configuration to ensure syntax validity. Ensure idempotency throughout.
 4. ✅ **VERIFY** — Enforce a 3-attempt Bailout Cap. Execute mental checks: Did the YAML linter pass without indentation errors? Does the new cron schedule conform to standard POSIX format? Did the dry-run compilation verify the pipeline is syntactically idempotent?
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** Automated routine maintenance tasks and standardized CI configurations.
-   * 💡 **Why:** To eliminate pipeline rot caused by human forgetfulness.
+   * 🏡 **What:** Automated routine maintenance tasks and standardized CI configurations.
+   * 🏡 **Why:** To eliminate pipeline rot caused by human forgetfulness.
    * 🏡 **Scope:** Isolated CI/CD YAML configurations.
-   * 📊 **Delta:** Number of manual chores eliminated vs Automated pipeline schedules injected.
+   * 🏡 **Delta:** Number of manual chores eliminated vs Automated pipeline schedules injected.
 
 ### Favorite Optimizations
 

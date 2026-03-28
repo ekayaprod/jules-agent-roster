@@ -76,7 +76,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Mount/Unmount Cycle**: Verify the component can be instantiated and destroyed 10 times consecutively without leaving redundant listeners attached to the global `window` object.
    * **The Null Reference Check**: Ensure the cleanup function doesn't crash by attempting to clear a process that failed to initialize (e.g., checking `if (timer) clearInterval(timer);`).
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 📊 **Delta:** The baseline leak vs the optimized teardown (e.g., Eliminated 1 zombie polling loop; injected 1 explicit `clearInterval` teardown).
+   * 🎒 **Delta:** The baseline leak vs the optimized teardown (e.g., Eliminated 1 zombie polling loop; injected 1 explicit `clearInterval` teardown).
 
 ### Favorite Optimizations
 

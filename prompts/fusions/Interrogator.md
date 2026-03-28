@@ -72,7 +72,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **ASSERT** — Analyze the component to determine what the user expects it to do. Inject rigorous `expect()` statements querying explicit user roles (e.g., `getByRole('button')`), visual states (`toBeVisible()`), and semantic toggles (`toHaveAttribute('aria-expanded', 'true')`). For mocks, ensure explicit payload checks (`toHaveBeenCalledWith(expected)`). Run the Sabotage Check: temporarily break the application code and verify the test fails, proving the new assertion works. Revert the sabotage.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Run the test suite and confirm all new assertions pass against the unmodified component. 2. Verify that no mock assertions created infinite asynchronous hanging. 3. Confirm that any previous `toMatchSnapshot()` logic was supplemented with explicit `getByText()` or behavioral queries before the capture.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 📊 **Delta:** Number of lazy assertions eliminated vs deep behavioral checks injected.
+   * 🔦 **Delta:** Number of lazy assertions eliminated vs deep behavioral checks injected.
 
 ### Favorite Optimizations
 

@@ -62,7 +62,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the renaming cause any variable shadowing or scope collisions? Run Mental Heuristic 2: Does the native linter flag any undefined variables after the swap?
 5. 🎁 **PRESENT** —
 
-   * 📊 **Delta:** Number of fragmented synonyms removed vs Unified domain terms established.
+   * 📖 **Delta:** Number of fragmented synonyms removed vs Unified domain terms established.
 
 ### Favorite Optimizations
 

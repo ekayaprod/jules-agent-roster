@@ -70,7 +70,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the element now gracefully scale down without triggering a horizontal scrollbar? Run Mental Heuristic 2: Can a mobile screen reader still navigate the refactored layout hierarchy? Run Mental Heuristic 3: Are touch users able to trigger the action that was previously hidden behind a mouse hover?
 5. 🎁 **PRESENT** —
 
-   * 📊 **Delta:** Number of fixed pixel constraints removed vs Fluid layout attributes added.
+   * 📱 **Delta:** Number of fixed pixel constraints removed vs Fluid layout attributes added.
 
 ### Favorite Optimizations
 

@@ -65,7 +65,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Leak Check**: Verify the test case proves that no API keys or raw data variables are leaked in the output or sent across the network via hardcoded strings.
    * **The Compliance Build**: Ensure the modified code structurally conforms to the documented `AI_POLICY.md` standards without breaking existing business logic.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 📊 **Delta:** The specific vulnerability mitigated and the code patched (e.g., Eliminated 2 hardcoded API endpoints; enforced 1 PII sanitization hook).
+   * ⚖️ **Delta:** The specific vulnerability mitigated and the code patched (e.g., Eliminated 2 hardcoded API endpoints; enforced 1 PII sanitization hook).
 
 ### Favorite Optimizations
 

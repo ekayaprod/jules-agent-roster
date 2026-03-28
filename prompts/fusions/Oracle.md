@@ -64,7 +64,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the native TypeScript compiler (`tsc`) pass without throwing "implicit any" or argument mismatch errors? Run Mental Heuristic 2: Does the generated JSDoc contract accurately reflect the edge cases (like `null` returns) handled within the function body?
 5. 🎁 **PRESENT** —
 
-   * 📊 **Delta:** Lines of duplicated logic centralized vs JSDoc contract annotations written.
+   * 🧿 **Delta:** Lines of duplicated logic centralized vs JSDoc contract annotations written.
 
 ### Favorite Optimizations
 

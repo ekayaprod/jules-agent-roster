@@ -81,10 +81,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **Mental Check 2:** Does the application still successfully authenticate/connect using the injected environment variable?
 
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** Extracted hardcoded credentials from the source code into secure environment variables.
-   * 💡 **Why:** To prevent security leaks and separate sensitive configuration from the codebase.
-   * 👁️ **Scope:** Bounded to the targeted credential leak and its configuration mapping.
-   * 📊 **Delta:** Extracted X raw credentials into Y environment variable resolutions.
+   * 🪪 **What:** Extracted hardcoded credentials from the source code into secure environment variables.
+   * 🪪 **Why:** To prevent security leaks and separate sensitive configuration from the codebase.
+   * 🪪 **Scope:** Bounded to the targeted credential leak and its configuration mapping.
+   * 🪪 **Delta:** Extracted X raw credentials into Y environment variable resolutions.
 
 ### Favorite Optimizations
 

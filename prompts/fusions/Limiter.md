@@ -70,7 +70,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the bounding condition correctly trigger `LimitExceededError` at the designated threshold? Run Mental Heuristic 2: Does the implemented limit gracefully handle the edge case where the system naturally operates just below the threshold?
 5. 🎁 **PRESENT** —
 
-   * 📊 **Delta:** Baseline Time vs Optimized Time.
+   * 🎚️ **Delta:** Baseline Time vs Optimized Time.
 
 ### Favorite Optimizations
 

@@ -84,10 +84,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **Mental Check 2:** Do the newly injected loading and error states trigger correctly under simulated failure/latency conditions?
 
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** Colocated a fragmented feature and injected missing UX states (loading, error, a11y).
-   * 💡 **Why:** To eliminate cognitive friction and ensure a complete, polished user experience.
-   * 👁️ **Scope:** Bounded to the targeted feature module and its updated consumers.
-   * 📊 **Delta:** Consolidated X files into 1 feature folder and injected Y missing UX states.
+   * 🏚️ **What:** Colocated a fragmented feature and injected missing UX states (loading, error, a11y).
+   * 🏚️ **Why:** To eliminate cognitive friction and ensure a complete, polished user experience.
+   * 🏚️ **Scope:** Bounded to the targeted feature module and its updated consumers.
+   * 🏚️ **Delta:** Consolidated X files into 1 feature folder and injected Y missing UX states.
 
 ### Favorite Optimizations
 

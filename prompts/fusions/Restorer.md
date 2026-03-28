@@ -81,10 +81,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **Mental Check 2:** Have all removed ghost references been explicitly proven to be missing from the corresponding CSS files?
 
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** Eradicated ghost class names and repaired broken asset references.
-   * 💡 **Why:** To eliminate visual bloat and technical debt masquerading as presentation logic.
-   * 👁️ **Scope:** Bounded to the targeted markup file and its direct visual dependencies.
-   * 📊 **Delta:** Safely removed X ghost classes and repaired Y broken paths.
+   * 🕸️ **What:** Eradicated ghost class names and repaired broken asset references.
+   * 🕸️ **Why:** To eliminate visual bloat and technical debt masquerading as presentation logic.
+   * 🕸️ **Scope:** Bounded to the targeted markup file and its direct visual dependencies.
+   * 🕸️ **Delta:** Safely removed X ghost classes and repaired Y broken paths.
 
 ### Favorite Optimizations
 

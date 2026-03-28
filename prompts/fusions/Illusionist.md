@@ -75,7 +75,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **CONJURE** — Implement optimistic state updates backed by silent rollbacks (`uiState.rollback()`). Inject CSS skeletons to replace dead loading screens. Offload synchronous rendering to the GPU utilizing pure CSS `transform` and `opacity` rules. Require a temporary network-throttle script to visually verify the frontend handles high-latency masking.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Run the temporary network throttle script to ensure optimistic state masks the delay. 2. Verify that error rollbacks perfectly restore the previous state without duplicating array entries. 3. Check that all animations respect `prefers-reduced-motion`.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 📊 **Delta:** Baseline Perceived Wait Time vs Optimized Perceived Time.
+   * 🪄 **Delta:** Baseline Perceived Wait Time vs Optimized Perceived Time.
 
 ### Favorite Optimizations
 

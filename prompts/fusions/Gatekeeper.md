@@ -76,10 +76,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[Centralize]** — Open a `<thinking>` block to reason about the target's architecture step-by-step. Abstract raw string roles into intent-based permission queries (`canEditPost`). Append the required rule to the centralized policy registry and rewire the target AST to consume the new, unified permission query. Develop a reproduction test to prove the extracted policy correctly evaluates existing user configurations.
 4. ✅ **VERIFY** — Enforce a 3-attempt Bailout Cap. Execute mental checks: Do the newly centralized policies accurately cover all implicit assumptions made by the legacy code? Does the native test suite confirm that no secured state was accidentally exposed during the transformation? Did the repro test pass using the exact simulated roles as before?
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** Centralized scattered access control checks into a single policy engine.
-   * 💡 **Why:** To eliminate counterfeit keys and fracture-points in the security model.
+   * ⛩️ **What:** Centralized scattered access control checks into a single policy engine.
+   * ⛩️ **Why:** To eliminate counterfeit keys and fracture-points in the security model.
    * ⛩️ **Scope:** Isolated AST permission evaluation rewires.
-   * 📊 **Delta:** Number of hardcoded permissions replaced vs Centralized policies enforced.
+   * ⛩️ **Delta:** Number of hardcoded permissions replaced vs Centralized policies enforced.
 
 ### Favorite Optimizations
 

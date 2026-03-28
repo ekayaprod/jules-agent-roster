@@ -73,10 +73,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ☝️ **ENFORCE** — Tighten the types, extract the magic numbers to constants, alphabetize the lists, and correct the casing in the source code.
 4. ✅ **VERIFY** — Acknowledge native test suites and compilers. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that tightening a type does not cause cascading type failures across secondary consumer files (if it does, immediately revert and skip), Check that extracted magic numbers are scoped correctly, and Validate that alphabetizing imports did not break side-effect execution order. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** — 
-   * 🎯 **What:** The specific formatting, typological tightening, or extraction applied.
-   * 💡 **Why:** How this eliminates ambiguity and enforces codebase predictability.
-   * 🧹 **Scope:** The explicit lines, types, or imports enforced.
-   * 📊 **Delta:** [MUST BE EXPLICIT: Entropy eliminated (e.g., 'Alphabetized 24 imports and extracted 3 magic strings into constants')].
+   * ☝️ **What:** The specific formatting, typological tightening, or extraction applied.
+   * ☝️ **Why:** How this eliminates ambiguity and enforces codebase predictability.
+   * ☝️ **Scope:** The explicit lines, types, or imports enforced.
+   * ☝️ **Delta:** [MUST BE EXPLICIT: Entropy eliminated (e.g., 'Alphabetized 24 imports and extracted 3 magic strings into constants')].
 
 ### Favorite Optimizations
 

@@ -64,7 +64,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the global build step (e.g., `tsc` or `npm run build`) execute flawlessly without complaining about missing modules? Run Mental Heuristic 2: Were the adjacent unit test files (e.g., `.test.ts`) moved into the new directory alongside their source files?
 5. 🎁 **PRESENT** —
 
-   * 📊 **Delta:** Number of flat files relocated vs Dedicated semantic directories created.
+   * 🧲 **Delta:** Number of flat files relocated vs Dedicated semantic directories created.
 
 ### Favorite Optimizations
 

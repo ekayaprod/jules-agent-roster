@@ -79,10 +79,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. 🧠 **WIRE** — Upgrade the SDK method, inject structured output schemas, and harden the connectivity wrappers in the source code. Pass prompts cleanly through the new plumbing. Modernize the AST to evade naive linters.
 4. ✅ **VERIFY** — Acknowledge native test suites and compilers. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that the natural language prompt payloads were not accidentally altered or deleted, Check that retry logic has a finite limit, and Validate that the schema perfectly maps to the expected downstream consumer types. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** — 
-   * 🎯 **What:** The specific SDK upgraded or deterministic shell erected.
-   * 💡 **Why:** How this mitigates non-deterministic hazards and prevents runtime crashes.
-   * 🧹 **Scope:** The API clients wired and schemas injected.
-   * 📊 **Delta:** [MUST BE EXPLICIT: The architectural risk eliminated (e.g., 'Replaced raw fetch with strict zodResponseFormat, eliminating 3 unsafe JSON.parse() hazards')].
+   * 🧠 **What:** The specific SDK upgraded or deterministic shell erected.
+   * 🧠 **Why:** How this mitigates non-deterministic hazards and prevents runtime crashes.
+   * 🧠 **Scope:** The API clients wired and schemas injected.
+   * 🧠 **Delta:** [MUST BE EXPLICIT: The architectural risk eliminated (e.g., 'Replaced raw fetch with strict zodResponseFormat, eliminating 3 unsafe JSON.parse() hazards')].
 
 ### Favorite Optimizations
 

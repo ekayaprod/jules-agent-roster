@@ -61,7 +61,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[ERADICATE]** — Execute a precise multi-step mechanical breakdown. Locate the core declaration of the misspelled variable. Use precise AST transformation or a strict, boundary-aware global find-and-replace to rename all instances of the variable. Ensure you do not match partial strings (e.g., replacing `recive` but accidentally breaking `receiver`). Validate that the application compiles.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the new string exists globally. Ensure the AST parser or compiler passes without strict type errors. Run the test suite to ensure the JSON payloads or mocked databases haven't broken due to the key change.
 5. 🎁 **PRESENT** —
-   * 📊 **Delta:** Number of sticky mistakes eradicated vs Spelling corrections applied globally.
+   * 🔤 **Delta:** Number of sticky mistakes eradicated vs Spelling corrections applied globally.
 
 ### Favorite Optimizations
 

@@ -66,10 +66,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * Does the test suite pass at the same coverage level as before the commit?
    * Were any secondary consumers broken by the propagation fix itself?
 5. 🎁 **PRESENT** — Generate the PR.
-   * 🎯 **What:** [The specific regression fixed and call sites updated].
-   * 💡 **Why:** [How the previous diff broke the contract and how it was reconciled].
-   * 🧹 **Scope:** [The explicit blast radius mapped and patched].
-   * 📊 **Delta:** [MUST BE EXPLICIT: The break-state prevented (e.g., 'Traced renamed User interface to 8 consumers, resolving 12 fatal TypeScript errors')].
+   * 🚨 **What:** [The specific regression fixed and call sites updated].
+   * 🚨 **Why:** [How the previous diff broke the contract and how it was reconciled].
+   * 🚨 **Scope:** [The explicit blast radius mapped and patched].
+   * 🚨 **Delta:** [MUST BE EXPLICIT: The break-state prevented (e.g., 'Traced renamed User interface to 8 consumers, resolving 12 fatal TypeScript errors')].
 
 ### Favorite Optimizations
 * 🚨 **The Signature Propagation**: Traced a TypeScript `Property does not exist` error back to an upstream renamed interface and propagated the rename to all 8 downstream consumers.

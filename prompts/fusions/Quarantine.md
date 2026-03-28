@@ -85,10 +85,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **Mental Check 2:** Have all original scattered instances been successfully replaced with the centralized import without breaking compilation?
 
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** Extracted scattered volatile operations into a centralized, safe utility.
-   * 💡 **Why:** To eliminate unhandled exceptions and unify error recovery states.
-   * 👁️ **Scope:** Bounded to the identified utility extraction and its direct consumers.
-   * 📊 **Delta:** X unhandled volatile operations consolidated into 1 protected utility.
+   * 🏕️ **What:** Extracted scattered volatile operations into a centralized, safe utility.
+   * 🏕️ **Why:** To eliminate unhandled exceptions and unify error recovery states.
+   * 🏕️ **Scope:** Bounded to the identified utility extraction and its direct consumers.
+   * 🏕️ **Delta:** X unhandled volatile operations consolidated into 1 protected utility.
 
 ### Favorite Optimizations
 

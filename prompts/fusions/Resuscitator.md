@@ -86,10 +86,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **Mental Check 2:** Have the native test assertions been correctly updated to expect the newly explicit thrown error?
 
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** Upgraded a silent failure into an actionable, enriched error boundary.
-   * 💡 **Why:** To prevent state corruption and restore critical telemetry blindspots.
-   * 👁️ **Scope:** Bounded to the targeted try/catch block and its test assertions.
-   * 📊 **Delta:** Converted 1 silent catch into 1 contextual telemetry log and state update.
+   * 🩺 **What:** Upgraded a silent failure into an actionable, enriched error boundary.
+   * 🩺 **Why:** To prevent state corruption and restore critical telemetry blindspots.
+   * 🩺 **Scope:** Bounded to the targeted try/catch block and its test assertions.
+   * 🩺 **Delta:** Converted 1 silent catch into 1 contextual telemetry log and state update.
 
 ### Favorite Optimizations
 

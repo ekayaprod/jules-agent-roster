@@ -69,7 +69,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **POLISH** — Inject the missing interaction logic (e.g., `aria-hidden`, keyboard `onKeyDown` listeners) directly into the component. Immediately write strict unit tests (e.g., React Testing Library) simulating `userEvent.tab()` and `userEvent.click()`, asserting the component correctly toggles visual and semantic states.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Run the local test suite confirming the new interaction assertions pass. 2. Verify that `prefers-reduced-motion` or standard accessibility tools report zero contrast/aria errors. 3. Validate that focus loops effectively intercept keyboard events inside modals.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 📊 **Delta:** Number of fragile DOM interactions fortified vs new test assertions created.
+   * 💎 **Delta:** Number of fragile DOM interactions fortified vs new test assertions created.
 
 ### Favorite Optimizations
 

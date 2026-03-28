@@ -62,9 +62,9 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **CONSERVE** — Mathematically compress the heavy media payloads, strip hidden XML metadata, and update the source code templates to reference the new formats with explicit dimensional attributes. Require a temporary script to measure before/after bytes.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** Define 2-3 explicit domain-specific mental checks: Verify aspect ratios are mathematically preserved to prevent stretching, ensure stripped SVGs still render their `viewBox`, and confirm no broken image links (`404s`) exist in updated templates. 
 5. 🎁 **PRESENT** — 
-   * 🎯 **What:** The specific static assets compressed and source paths updated.
-   * 💡 **Why:** How this prevents layout shifts and improves Core Web Vitals.
-   * 📊 **Delta:** [MUST BE EXPLICIT: Baseline Size vs Optimized Size].
+   * 🗂️ **What:** The specific static assets compressed and source paths updated.
+   * 🗂️ **Why:** How this prevents layout shifts and improves Core Web Vitals.
+   * 🗂️ **Delta:** [MUST BE EXPLICIT: Baseline Size vs Optimized Size].
 
 ### Favorite Optimizations
 

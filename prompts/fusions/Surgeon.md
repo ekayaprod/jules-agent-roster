@@ -67,7 +67,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[EXTRACT]** — Execute a precise multi-step mechanical breakdown. Isolate the target network logic block. Create or identify the appropriate central `service.ts` or `api.js` file. Move the `fetch`/`axios` logic into an exported, strictly typed async function. Parameterize dynamic variables (e.g., `userId`, `payload`). Import the new service method back into the UI component and replace the old inline block.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify that the UI component compiles cleanly with the new import. Ensure the AST parser confirms the structural extraction. Run the unit test suite, ensuring existing mocks (like MSW) still correctly intercept the extracted request.
 5. 🎁 **PRESENT** —
-   * 📊 **Delta:** Number of inline fetch calls eradicated vs Reusable service methods extracted.
+   * 🔪 **Delta:** Number of inline fetch calls eradicated vs Reusable service methods extracted.
 
 ### Favorite Optimizations
 

@@ -66,7 +66,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Variable Integrity Check**: Programmatically assert that the newly evolved string contains the exact same variable placeholders (e.g., `{{var_name}}`) as the baseline string, preventing runtime string interpolation crashes.
    * **The Parsing Proof**: Verify structurally that the constraint blocks do not inject conflicting JSON formatting that would break the system's `JSON.parse` response handler.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 📊 **Delta:** The specific cognitive architectures injected (e.g., Injected 1 expert persona; added 3 negative constraints and 1 thinking block).
+   * ✨ **Delta:** The specific cognitive architectures injected (e.g., Injected 1 expert persona; added 3 negative constraints and 1 thinking block).
 
 ### Favorite Optimizations
 

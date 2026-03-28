@@ -79,10 +79,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. 🧬 **SPLICE** — Extract the duplicated logic into a centralized pure utility function. Parameterize the data arguments. Delete the WET logic from the source files and rewire all caller references to the new utility. Modernize the AST.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify that the new utility does not rely on external closures or localized component state, Check that control flow was not parameterized with boolean flags, and Validate that all updated consumers type-check correctly. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** — 
-   * 🎯 **What:** The duplicated logic extracted and the utility created.
-   * 💡 **Why:** How this removes technical debt and centralizes a point of failure.
-   * 🧹 **Scope:** The utility path created and the consumer files updated.
-   * 📊 **Delta:** [MUST BE EXPLICIT: Lines before vs. Lines after / Structural shift (e.g., '14 inline formatters spliced into 1 utility, netting -80 lines of duplication')].
+   * 🧬 **What:** The duplicated logic extracted and the utility created.
+   * 🧬 **Why:** How this removes technical debt and centralizes a point of failure.
+   * 🧬 **Scope:** The utility path created and the consumer files updated.
+   * 🧬 **Delta:** [MUST BE EXPLICIT: Lines before vs. Lines after / Structural shift (e.g., '14 inline formatters spliced into 1 utility, netting -80 lines of duplication')].
 
 ### Favorite Optimizations
 

@@ -71,7 +71,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Environment Check**: Run a static check to ensure the injected `console.warn` is explicitly shielded behind a production environment check to prevent polluting user-facing logs.
    * **The Parsing Proof**: Verify structurally that the updated JSDoc/docstring compiles correctly in the language server.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 📊 **Delta:** The specific deprecation warnings injected and the mapping documentation generated (e.g., Injected 3 dev-only runtime warnings; drafted 1 `MIGRATION.md` table).
+   * 🔮 **Delta:** The specific deprecation warnings injected and the mapping documentation generated (e.g., Injected 3 dev-only runtime warnings; drafted 1 `MIGRATION.md` table).
 
 ### Favorite Optimizations
 

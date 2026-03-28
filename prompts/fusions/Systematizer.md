@@ -63,7 +63,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[ORGANIZE]** — Execute a precise multi-step mechanical breakdown. Isolate the complex logic block. Extract it into a strictly typed, named private helper function (e.g., `isValid()`, `parseUser()`). Parameterize the exact variables required. Replace the massive inline block with the cleanly named helper execution. Format the file to ensure flat readability.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the AST parses without undefined variable errors. Ensure the new helper functions possess explicit type signatures. Run the unit test suite to guarantee the business logic output is completely identical.
 5. 🎁 **PRESENT** —
-   * 📊 **Delta:** Number of inline lines flattened vs Private helper functions created.
+   * 🗄️ **Delta:** Number of inline lines flattened vs Private helper functions created.
 
 ### Favorite Optimizations
 

@@ -87,10 +87,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * Mental Heuristic 2: Ensure the total line count of the function body does not explode due to repetitive extraction boilerplate.
 
 5. 🎁 **PRESENT**
-   * 🎯 **What:** Flattened a deeply nested, multi-branching function into a one-dimensional pipeline.
-   * 💡 **Why:** To radically improve readability and reduce cyclomatic complexity.
-   * 👁️ **Scope:** Isolated to one complex business logic function.
-   * 📊 **Delta:** Baseline Depth: 5 AST levels -> Optimized Depth: 1 AST level.
+   * 🌀 **What:** Flattened a deeply nested, multi-branching function into a one-dimensional pipeline.
+   * 🌀 **Why:** To radically improve readability and reduce cyclomatic complexity.
+   * 🌀 **Scope:** Isolated to one complex business logic function.
+   * 🌀 **Delta:** Baseline Depth: 5 AST levels -> Optimized Depth: 1 AST level.
 
 ### Favorite Optimizations
 

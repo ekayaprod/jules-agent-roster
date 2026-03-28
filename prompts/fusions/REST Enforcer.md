@@ -77,10 +77,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **Mental Check 2:** Have all internal frontend client calls been successfully updated to match the modified backend contract, with tests passing?
 
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** Standardized RPC-style endpoints into a strict RESTful routing architecture.
-   * 💡 **Why:** To eliminate endpoint confusion and align the API contract with native HTTP semantics.
-   * 👁️ **Scope:** Bounded to the modified API namespace and its immediate consuming frontend calls.
-   * 📊 **Delta:** X non-compliant URLs converted to pure RESTful noun-based resources.
+   * 🚦 **What:** Standardized RPC-style endpoints into a strict RESTful routing architecture.
+   * 🚦 **Why:** To eliminate endpoint confusion and align the API contract with native HTTP semantics.
+   * 🚦 **Scope:** Bounded to the modified API namespace and its immediate consuming frontend calls.
+   * 🚦 **Delta:** X non-compliant URLs converted to pure RESTful noun-based resources.
 
 ### Favorite Optimizations
 

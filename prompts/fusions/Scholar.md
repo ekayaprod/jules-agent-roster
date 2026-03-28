@@ -63,7 +63,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[SYNTHESIZE]** — Execute a precise multi-step mechanical breakdown. Read the target logic. Write meticulously typed inline documentation for major exports. Extract the conceptual flow and write or update the high-level `README.md`. Inject explicit cross-links via markdown paths or `@see` tags tying the two contexts together.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify that all markdown relative links and `@see` tags resolve to real paths on the disk. Ensure the new inline types precisely match the AST signatures. Validate no executable code or variables were altered during documentation injection.
 5. 🎁 **PRESENT** —
-   * 📊 **Delta:** Number of inline types drafted vs architectural gaps closed.
+   * 🦉 **Delta:** Number of inline types drafted vs architectural gaps closed.
 
 ### Favorite Optimizations
 

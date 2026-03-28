@@ -73,10 +73,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **EMBED** — Execute the embedding process. Inject global error interceptors. Implement graceful fallback components (`UpgradePrompt`). Ensure visually consistent unauthorized states manage the trust boundary. Preserve drafted user inputs during server-side rejection.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Execute mental checks. Verify the visual hierarchy is maintained during an error state. Ensure the fallback view does not leak secure data. Confirm the user is provided a clear action to regain trust (e.g., login or upgrade). Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** The trust boundary embedded.
-   * 💡 **Why:** To replace hostile UX with a premium security experience.
-   * 👁️ **Scope:** The specific routes or interceptors upgraded.
-   * 📊 **Delta:** Replaced a raw 403 crash with a 20-line graceful fallback component.
+   * 💮 **What:** The trust boundary embedded.
+   * 💮 **Why:** To replace hostile UX with a premium security experience.
+   * 💮 **Scope:** The specific routes or interceptors upgraded.
+   * 💮 **Delta:** Replaced a raw 403 crash with a 20-line graceful fallback component.
 
 ### Favorite Optimizations
 

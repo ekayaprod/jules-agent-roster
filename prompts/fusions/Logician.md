@@ -72,7 +72,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the generated Truth Table cover every branch of the logic tree? Run Mental Heuristic 2: Mandate spec-to-code checks; does the table output mathematically match the runtime output for those inputs?
 5. 🎁 **PRESENT** —
 
-   * 📊 **Delta:** Number of undocumented branches mapped vs Complete Truth Tables generated.
+   * 🧮 **Delta:** Number of undocumented branches mapped vs Complete Truth Tables generated.
 
 ### Favorite Optimizations
 

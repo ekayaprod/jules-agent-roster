@@ -71,7 +71,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the native test suite pass with the new async/await signature? Run Mental Heuristic 2: Did the extraction accidentally rely on `window` or `document` variables, which do not exist inside a Web Worker?
 5. 🎁 **PRESENT** —
 
-   * 📊 **Delta:** Baseline Time vs Optimized Time.
+   * 🧫 **Delta:** Baseline Time vs Optimized Time.
 
 ### Favorite Optimizations
 

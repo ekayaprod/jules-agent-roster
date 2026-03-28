@@ -83,10 +83,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * Mental Heuristic 2: Ensure the replaced broadcast calls did not inadvertently modify synchronous execution logic required by the surrounding code.
 
 5. 🎁 **PRESENT**
-   * 🎯 **What:** Replaced scattered outbound broadcast calls with a unified centralized event bus.
-   * 💡 **Why:** To ensure all application signals contain uniform metadata and reach external tracking systems.
-   * 👁️ **Scope:** Isolated to one controller or broad utility module.
-   * 📊 **Delta:** Baseline: 12 raw `console.log` calls -> Optimized: 12 structured `logger.info()` calls.
+   * 🗼 **What:** Replaced scattered outbound broadcast calls with a unified centralized event bus.
+   * 🗼 **Why:** To ensure all application signals contain uniform metadata and reach external tracking systems.
+   * 🗼 **Scope:** Isolated to one controller or broad utility module.
+   * 🗼 **Delta:** Baseline: 12 raw `console.log` calls -> Optimized: 12 structured `logger.info()` calls.
 
 ### Favorite Optimizations
 

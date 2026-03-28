@@ -65,10 +65,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **ERADICATE** — Surgically delete the unreferenced code, imports, and associated dead files. Mandate modernizing the AST to clean up any trailing commas or empty blocks left behind.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** Define 2-3 explicit domain-specific mental checks: Verify that the code is not invoked dynamically via string-interpolation or reflection, check that framework-specific implicit routing files are not accidentally deleted despite showing zero imports, and mandate a Manual AST Walkthrough if linters are failing.
 5. 🎁 **PRESENT** — 
-   * 🎯 **What:** The specific unreferenced code, files, or fossilized comments eradicated.
-   * 💡 **Why:** How this deletion permanently reduces maintenance cost and cognitive overhead.
-   * 🧹 **Scope:** The logical root cause and the specific cascading files deleted.
-   * 📊 **Delta:** [MUST BE EXPLICIT: Lines before vs Lines after / Structural shift].
+   * 🪲 **What:** The specific unreferenced code, files, or fossilized comments eradicated.
+   * 🪲 **Why:** How this deletion permanently reduces maintenance cost and cognitive overhead.
+   * 🪲 **Scope:** The logical root cause and the specific cascading files deleted.
+   * 🪲 **Delta:** [MUST BE EXPLICIT: Lines before vs Lines after / Structural shift].
 
 ### Favorite Optimizations
 

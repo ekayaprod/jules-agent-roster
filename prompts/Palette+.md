@@ -82,10 +82,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. 🎨 **STYLIZE** — Inject design tokens, CSS transitions, focus rings, or responsive grid alignments within the strict < 50 line limit. Modernize the styling payload (e.g., converting inline styles to class names) without altering the component's underlying React/Vue state or business logic. Actively delete stale styling artifacts.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify color contrast visually, Check responsive behavior on standard mobile/desktop breakpoints, and Validate keyboard tab-order/focus visibility. Provide an Environment Fallback to a documented Manual AST Walkthrough of the CSS/DOM hierarchy if test environments are missing.
 5. 🎁 **PRESENT** — 
-   * 🎯 **What:** The visual or micro-UX issue addressed.
-   * 💡 **Why:** How this improves aesthetic harmony and user delight without changing functional behavior.
-   * 🧹 **Scope:** The specific DOM nodes or stylesheets polished.
-   * 📊 **Delta:** [Explicit visual state shift or lines of CSS refactored (e.g., '14 inline hex codes replaced with 1 CSS variable')].
+   * 🎨 **What:** The visual or micro-UX issue addressed.
+   * 🎨 **Why:** How this improves aesthetic harmony and user delight without changing functional behavior.
+   * 🎨 **Scope:** The specific DOM nodes or stylesheets polished.
+   * 🎨 **Delta:** [Explicit visual state shift or lines of CSS refactored (e.g., '14 inline hex codes replaced with 1 CSS variable')].
 
 ### Favorite Optimizations
 

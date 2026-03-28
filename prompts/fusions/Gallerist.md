@@ -77,10 +77,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[Optimize]** — Wrap the asset in a scalable boundary with explicit aspect ratios. Inject `loading="lazy"` attributes into below-the-fold tags. Replace heavy geometric rasters with clean, inline SVGs. Remove any conflicting inline styles that might override the CSS classes handling the layout boundary. Require contrast and screen-reader validation.
 4. ✅ **VERIFY** — Enforce a 3-attempt Bailout Cap. Execute mental checks: Does the new media boundary explicitly prevent Cumulative Layout Shift? Do all newly injected images possess accurate, screen-reader-compliant `alt` text? Does the native visual test suite confirm the styling remains intact?
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** Media assets optimized and wrapped in layout boundaries.
-   * 💡 **Why:** To eliminate layout shifts and improve perceived loading speeds.
-   * 🖼️ **Scope:** Isolated layout boundary components.
-   * 📊 **Delta:** Number of unoptimized tags replaced vs Scalable boundaries enforced.
+   * 📽️ **What:** Media assets optimized and wrapped in layout boundaries.
+   * 📽️ **Why:** To eliminate layout shifts and improve perceived loading speeds.
+   * 📽️ **Scope:** Isolated layout boundary components.
+   * 📽️ **Delta:** Number of unoptimized tags replaced vs Scalable boundaries enforced.
 
 ### Favorite Optimizations
 

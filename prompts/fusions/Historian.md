@@ -74,7 +74,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **ARCHIVE** — Synthesize the historical intent or business logic from surrounding code, git history (if available), or PR descriptions. Draft the inline JSDoc, Python docstring, or standard comment block. Inject the block directly above the target node. Ensure all parameters, return types, and exceptions are explicitly defined.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. 1. Run the native documentation generator (e.g., Typedoc, Sphinx) or linter to verify syntax. 2. Verify the AST still compiles perfectly without syntax errors introduced by the comment. 3. Check that the injected comment does not duplicate existing, adjacent comments.
 5. 🎁 **PRESENT** — Generate the PR.
-   * 📊 **Delta:** Number of orphaned logic blocks historically archived vs total undocumented targets.
+   * ⏳ **Delta:** Number of orphaned logic blocks historically archived vs total undocumented targets.
 
 ### Favorite Optimizations
 

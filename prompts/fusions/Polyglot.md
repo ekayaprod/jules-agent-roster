@@ -70,7 +70,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The JSON Structure Check**: Ensure the target dictionary file (e.g., `en.json`) is still perfectly formatted, valid JSON after the injection.
    * **The Variable Sync Check**: Validate mathematically that any dynamic variables `{{var}}` used in the hardcoded string were safely passed as arguments to the new translation function.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 📊 **Delta:** Number of hardcoded strings extracted vs the translation keys injected (e.g., Removed 15 static strings; updated 1 dictionary).
+   * 🌍 **Delta:** Number of hardcoded strings extracted vs the translation keys injected (e.g., Removed 15 static strings; updated 1 dictionary).
 
 ### Favorite Optimizations
 

@@ -68,7 +68,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Frame Check**: Ensure the wrapper successfully prevents the callback from firing more than once per the defined threshold (e.g., 300ms).
    * **The Cleanup Check**: Ensure the event listeners are properly detached or canceled on component unmount to prevent ghost processes.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 📊 **Delta:** Baseline Time vs Optimized Time (e.g., 400ms thread block vs 15ms deferred execution).
+   * 🫀 **Delta:** Baseline Time vs Optimized Time (e.g., 400ms thread block vs 15ms deferred execution).
 
 ### Favorite Optimizations
 

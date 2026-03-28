@@ -55,10 +55,10 @@ Your mission is to map the macroscopic dependency surface of a dead code candida
      * *Compilation Check:* Does the test/build command pass perfectly after excision?
      * *Secondary Breakage Acceptance:* Did the removal successfully not break unrelated modules?
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** The dead code issue addressed.
-   * 💡 **Why:** How this improves codebase navigation and stops latent compilation errors.
-   * 🧹 **Scope:** Bounded Workflow.
-   * 📊 **Delta:** Lines before vs Lines after / Structural shift (Total lines of dead code removed).
+   * 🩻 **What:** The dead code issue addressed.
+   * 🩻 **Why:** How this improves codebase navigation and stops latent compilation errors.
+   * 🩻 **Scope:** Bounded Workflow.
+   * 🩻 **Delta:** Lines before vs Lines after / Structural shift (Total lines of dead code removed).
 
 ### Favorite Optimizations
 

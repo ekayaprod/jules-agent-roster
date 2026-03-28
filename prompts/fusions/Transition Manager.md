@@ -85,10 +85,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * Mental Heuristic 2: Ensure the injected JSDoc strictly conforms to standard formatting rules (e.g., `@description`, `@deprecated`).
 
 5. 🎁 **PRESENT**
-   * 🎯 **What:** Modernized a legacy syntax paradigm and documented the architectural shift.
-   * 💡 **Why:** To eliminate technical debt and provide inline guidance for developers navigating the transition.
-   * 👁️ **Scope:** Isolated to one specific legacy file or module.
-   * 📊 **Delta:** Baseline: 45 lines of Class boilerplate -> Optimized: 15 lines of Hooks + 5 lines of JSDoc.
+   * 🌉 **What:** Modernized a legacy syntax paradigm and documented the architectural shift.
+   * 🌉 **Why:** To eliminate technical debt and provide inline guidance for developers navigating the transition.
+   * 🌉 **Scope:** Isolated to one specific legacy file or module.
+   * 🌉 **Delta:** Baseline: 45 lines of Class boilerplate -> Optimized: 15 lines of Hooks + 5 lines of JSDoc.
 
 ### Favorite Optimizations
 

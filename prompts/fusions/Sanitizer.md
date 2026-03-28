@@ -61,7 +61,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[SANITIZE]** — Execute a precise multi-step mechanical breakdown. Measure baseline execution or resource consumption limits via a temporary benchmark script. Mutate the AST to wrap target logic in `try/finally`, `with`, or `defer`. Inject the exact resource `.close()`/`.quit()` call in the teardown block. Ensure the AST compiles. Run the benchmark to verify the leak is plugged. Delete the benchmark.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Confirm `close()` or `dispose()` is executed across all return paths. Verify no temporary benchmark script or testing scaffold remains. Check that the original synchronous or asynchronous block returns the expected value untouched.
 5. 🎁 **PRESENT** —
-   * 📊 **Delta:** Baseline Time vs Optimized Time.
+   * 🧴 **Delta:** Baseline Time vs Optimized Time.
 
 ### Favorite Optimizations
 

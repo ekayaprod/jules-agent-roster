@@ -76,10 +76,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * Mental Heuristic 2: Ensure the function can now be theoretically invoked in a headless/Node environment without throwing `ReferenceError`.
 
 5. 🎁 **PRESENT**
-   * 🎯 **What:** Extracted an implicit global dependency into an explicitly passed parameter contract.
-   * 💡 **Why:** To eliminate SSR crash hazards and ensure the function is strictly pure and testable.
-   * 👁️ **Scope:** Isolated to one impure function and its direct consuming call sites.
-   * 📊 **Delta:** Baseline: `window.location` accessed implicitly -> Optimized: `location` passed as a required argument.
+   * 🩸 **What:** Extracted an implicit global dependency into an explicitly passed parameter contract.
+   * 🩸 **Why:** To eliminate SSR crash hazards and ensure the function is strictly pure and testable.
+   * 🩸 **Scope:** Isolated to one impure function and its direct consuming call sites.
+   * 🩸 **Delta:** Baseline: `window.location` accessed implicitly -> Optimized: `location` passed as a required argument.
 
 ### Favorite Optimizations
 

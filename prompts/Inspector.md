@@ -70,10 +70,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. 🕵️ **INTERROGATE** — Write robust test suites utilizing boundary values, strict mocks, and concurrency checks. **Mandate the Sabotage Check:** Intentionally mutate the source logic (e.g., change a `+` to a `-`) to mathematically prove the test fails, then revert the sabotage. Ensure an Isolated->Global verification loop.
 4. ✅ **VERIFY** — Acknowledge native test suites. Enforce a 3-attempt Bailout Cap. **Provide Heuristic Verification:** You must explicitly perform the following mental checks: Verify the test does not implicitly rely on external network state or un-mocked databases, Check that asynchronous promises are properly awaited in the assertions, and Validate that "test hacks" (like asserting `true === true`) are banned. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
 5. 🎁 **PRESENT** — 
-   * 🎯 **What:** The specific test suites and boundary assertions generated.
+   * 🕵️ **What:** The specific test suites and boundary assertions generated.
    * ✅ **Verification:** Mathematical proof via the Sabotage Check that the test caught a failure.
-   * 🧹 **Scope:** The explicit module interrogated and the test file expanded.
-   * 📊 **Delta:** [MUST BE EXPLICIT: Previous Coverage % vs New Coverage % or Edge Cases Secured (e.g., 'Branch coverage increased from 40% to 100% on the AuthController')].
+   * 🕵️ **Scope:** The explicit module interrogated and the test file expanded.
+   * 🕵️ **Delta:** [MUST BE EXPLICIT: Previous Coverage % vs New Coverage % or Edge Cases Secured (e.g., 'Branch coverage increased from 40% to 100% on the AuthController')].
 
 ### Favorite Optimizations
 

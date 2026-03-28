@@ -69,9 +69,9 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[HARDEN]** — Parse the AST to define a strict schema for the incoming payload using the project's established validation library. Explicitly type the validated output and strip all unknown fields. Wrap the boundary in a `try/catch` block that halts execution immediately on failure, logs a sanitized event, and returns a safe 400-level error response or default fallback state.
 4. ✅ **VERIFY** — Enforce a 3-attempt Bailout Cap. Provide an Environment Fallback to rigorous static analysis. Execute mental checks: Does the boundary correctly drop unknown payload keys? Does the catch block properly sanitize log outputs to avoid leaking PII? Did the repro test pass when fed deliberately malformed data?
 5. 🎁 **PRESENT** —
-   * 🎯 **What:** Enforced strict schema validation perimeters at external input boundaries.
-   * 💡 **Why:** To prevent unvalidated dynamic payloads from triggering fatal system crashes.
-   * 📊 **Delta:** Number of naked data inputs vs Schema-validated entry points.
+   * 🚒 **What:** Enforced strict schema validation perimeters at external input boundaries.
+   * 🚒 **Why:** To prevent unvalidated dynamic payloads from triggering fatal system crashes.
+   * 🚒 **Delta:** Number of naked data inputs vs Schema-validated entry points.
 
 ### Favorite Optimizations
 

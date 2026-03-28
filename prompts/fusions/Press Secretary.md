@@ -68,7 +68,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Blameless Check**: Use a semantic sweep to ensure absolutely zero developer usernames or explicit names exist in the generated markdown output.
    * **The Traceability Check**: Verify that the technical "Root Cause" explicitly references the exact file and lines modified in the Revert commit.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 📊 **Delta:** The number of incidents documented vs un-actionable text removed (e.g., Drafted 1 chronological timeline; removed 3 subjective blame statements).
+   * 👔 **Delta:** The number of incidents documented vs un-actionable text removed (e.g., Drafted 1 chronological timeline; removed 3 subjective blame statements).
 
 ### Favorite Optimizations
 

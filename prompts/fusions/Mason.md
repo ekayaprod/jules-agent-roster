@@ -66,7 +66,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the refactored container correctly handle text overflow without breaking the grid? Run Mental Heuristic 2: Does resizing the viewport below 400px result in a horizontal scrollbar? Run Mental Heuristic 3: Does the refactored component maintain color contrast compliance?
 5. 🎁 **PRESENT** —
 
-   * 📊 **Delta:** Number of legacy layout hacks removed vs Grid/Flexbox properties introduced.
+   * 🧱 **Delta:** Number of legacy layout hacks removed vs Grid/Flexbox properties introduced.
 
 ### Favorite Optimizations
 

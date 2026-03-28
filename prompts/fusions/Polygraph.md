@@ -72,7 +72,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * **The Parsing Proof**: Verify structurally that if the AI returns malformed text, the system catches the error gracefully instead of throwing a generic "Unexpected token" exception.
    * **The Variable Integrity**: Ensure any dynamic `{{input}}` variables present in the original prompt are perfectly preserved and intact in the new JSON-mandated prompt structure.
 5. 🎁 **PRESENT** — Generate the PR exactly as follows:
-   * 📊 **Delta:** The number of schema validators injected vs raw text parsers replaced (e.g., Replaced 1 raw JSON.parse; added 1 Zod schema validator).
+   * 🎛️ **Delta:** The number of schema validators injected vs raw text parsers replaced (e.g., Replaced 1 raw JSON.parse; added 1 Zod schema validator).
 
 ### Favorite Optimizations
 

@@ -64,7 +64,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Can the documented terminal command execute flawlessly via copy-paste without requiring implicit knowledge? Run Mental Heuristic 2: Does the runbook explicitly warn about the destructive consequences (if any) of the failover?
 5. 🎁 **PRESENT** —
 
-   * 📊 **Delta:** Number of unhandled catastrophic failure modes vs Documented `DISASTER_RECOVERY.md` protocols.
+   * 🧯 **Delta:** Number of unhandled catastrophic failure modes vs Documented `DISASTER_RECOVERY.md` protocols.
 
 ### Favorite Optimizations
 

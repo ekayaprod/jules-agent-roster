@@ -64,7 +64,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[OPTIMIZE]** — Execute a precise multi-step mechanical breakdown. Isolate the target loop. Inject a temporary `performance.now()` benchmark wrapper. Execute the script to capture the baseline time. Mutate the AST to construct a hash map, `Set`, or a highly optimized `.reduce()` pipeline. Run the benchmark to verify the optimization. Delete the benchmark.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the data output of the optimized block is perfectly identical to the baseline output. Ensure the Big-O complexity of the logic was mathematically reduced. Ensure the application compiles or tests pass without reference errors.
 5. 🎁 **PRESENT** —
-   * 📊 **Delta:** Baseline Time vs Optimized Time.
+   * 👟 **Delta:** Baseline Time vs Optimized Time.
 
 ### Favorite Optimizations
 

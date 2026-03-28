@@ -59,7 +59,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[UNTANGLE]** — Execute a precise multi-step mechanical breakdown. Traverse the AST manually starting from the entry point. Trace every explicit import jump, handler registration, or event emission sequentially. Translate the asynchronous graph into a perfectly flat, numbered execution ledger. Append the ledger to a centralized `DATA_FLOW.md` or `README.md`.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify that the documented chronological sequence accurately maps to real existing file definitions. Ensure all named components match their actual AST signatures. Confirm the generated markdown renders without linter errors.
 5. 🎁 **PRESENT** —
-   * 📊 **Delta:** Number of complex execution hops flattened into linear documentation ledgers.
+   * 🐾 **Delta:** Number of complex execution hops flattened into linear documentation ledgers.
 
 ### Favorite Optimizations
 

@@ -66,7 +66,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Did flattening the wrapper accidentally remove a required flexbox or grid context for the children? Run Mental Heuristic 2: Does the global stylesheet compilation still pass without the deleted class?
 5. 🎁 **PRESENT** —
 
-   * 📊 **Delta:** Lines of dead visual code removed vs Semantic nodes retained.
+   * 🫧 **Delta:** Lines of dead visual code removed vs Semantic nodes retained.
 
 ### Favorite Optimizations
 

@@ -65,7 +65,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[STANDARDIZE]** — Execute a precise multi-step mechanical breakdown. Isolate the target `.css`, `.scss`, or styled-component file. Map the hardcoded magic number to its closest equivalent in the official `variables.css` or `tailwind.config.js` token scale. Replace the raw value with the `var(--token)` or utility class. Ensure the substitution does not break contrast accessibility ratios.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the stylesheet compiles without parser errors. Confirm visually or via AST that the token substitution was successful. Ensure the screen reader contrast logic remains compliant under the new token.
 5. 🎁 **PRESENT** —
-   * 📊 **Delta:** Number of arbitrary magic numbers erased vs Design tokens enforced.
+   * 👗 **Delta:** Number of arbitrary magic numbers erased vs Design tokens enforced.
 
 ### Favorite Optimizations
 

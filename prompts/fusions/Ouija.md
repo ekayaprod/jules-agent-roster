@@ -62,7 +62,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Run Mental Heuristic 1: Does the native static analyzer pass, proving the injected comment block didn't break the AST? Run Mental Heuristic 2: Does the lore block contain actionable context rather than just guessing (e.g., citing a specific API limit or browser bug)?
 5. 🎁 **PRESENT** —
 
-   * 📊 **Delta:** Number of load-bearing mysteries solved vs Lines of JSDoc `@lore` injected.
+   * 🕯️ **Delta:** Number of load-bearing mysteries solved vs Lines of JSDoc `@lore` injected.
 
 ### Favorite Optimizations
 

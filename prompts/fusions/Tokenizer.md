@@ -79,10 +79,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * Mental Heuristic 2: Ensure the minification utilities (like regex) do not crash on null or undefined inputs.
 
 5. 🎁 **PRESENT**
-   * 🎯 **What:** Optimized payload structures before injecting them into an AI context window.
-   * 💡 **Why:** To eliminate context exhaustion and reduce token costs.
-   * 👁️ **Scope:** Isolated to one specific payload formatting utility.
-   * 📊 **Delta:** Baseline payload size: 250KB -> Optimized payload size: 45KB.
+   * 🪙 **What:** Optimized payload structures before injecting them into an AI context window.
+   * 🪙 **Why:** To eliminate context exhaustion and reduce token costs.
+   * 🪙 **Scope:** Isolated to one specific payload formatting utility.
+   * 🪙 **Delta:** Baseline payload size: 250KB -> Optimized payload size: 45KB.
 
 ### Favorite Optimizations
 

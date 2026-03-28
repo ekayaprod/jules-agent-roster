@@ -62,7 +62,7 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 3. ⚙️ **[MEASURE]** — Execute a precise multi-step mechanical breakdown. Isolate the target function. Mutate the AST to wrap the logic with `performance.now()`, `console.time()`, or Python's `time.time()`. Run the process. Capture the exact milliseconds elapsed. Analyze the data. Formulate an optimization strategy. Delete the temporary measurement scaffold entirely.
 4. ✅ **VERIFY** — 3-attempt Bailout Cap. Verify the injection point correctly measures the asynchronous or synchronous boundary without halting the execution. Ensure the profiler script captures valid output. Ensure all tracing and timing logs are completely deleted before PR presentation.
 5. 🎁 **PRESENT** —
-   * 📊 **Delta:** Baseline Time vs Optimized Time.
+   * 📸 **Delta:** Baseline Time vs Optimized Time.
 
 ### Favorite Optimizations
 
