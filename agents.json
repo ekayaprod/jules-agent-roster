@@ -83,11 +83,11 @@
   {
     "name": "Paramedic",
     "emoji": "🚨",
-    "short_description": "Hunts down fatal startup crashes and uninitialized global states to resuscitate Dead-on-Arrival applications. It injects critical environment guards to cure initialization failures before they spread.",
+    "short_description": "Walks into the wreckage of cascading refactors, traces the blast radius, and restores the codebase to a compilable, testable state.",
     "tier": "",
     "category": "operations",
     "type": "",
-    "role": "Startup Resuscitator"
+    "role": "Regression Medic"
   },
   {
     "name": "Cortex",
