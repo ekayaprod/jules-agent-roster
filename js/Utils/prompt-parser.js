@@ -46,11 +46,13 @@ const PromptParser = {
 
       // ↗️ VECTORIZE: The Single-Pass Pipeline.
       // We ignore the heavily abstracted layers and execute the calculation in one direct, zero-allocation pass.
-      const sections = Array.from(root.childNodes).reduce((acc, node) => {
+      const sections = [];
+      for (let i = 0; i < root.childNodes.length; i++) {
+        const node = root.childNodes[i];
         if (node.nodeType === 1) { // Node.ELEMENT_NODE
           const tag = node.tagName.toLowerCase();
           if (validTags.includes(tag)) {
-            acc.push({
+            sections.push({
               tag,
               content: node.textContent.trim(),
               id: node.getAttribute('id') || null,
@@ -58,8 +60,7 @@ const PromptParser = {
             });
           }
         }
-        return acc;
-      }, []);
+      }
 
       if (sections.length === 0) {
          return { format: 'legacy', raw: rawText };
