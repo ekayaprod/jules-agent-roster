@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This directory contains the data fetching, validation, and external integration layers for the Jules Roster application. The components here abstract the file system (`AgentRepository.js`) and network calls to external LLM services (`JulesAPI.js`) required to load agent definitions and orchestrate live protocol sessions.
+This directory contains the data fetching, validation, and external integration layers for the Jules Roster application. The components here abstract the file system (`AgentRepository.js`) and network calls to external LLM services (`JulesService.js`) required to load agent definitions and orchestrate live protocol sessions.
 
 ## Quick Start
 
@@ -26,7 +26,7 @@ async function loadData() {
 loadData();
 ```
 
-### JulesAPI Quick Start
+### JulesService Quick Start
 
 To configure the service and initiate an agent session:
 
@@ -61,7 +61,7 @@ The `AgentRepository` acts as the single source of truth for agent data.
 3. **Prompt Resolution:** After validating the JSON metadata, the repository dynamically fetches the corresponding Markdown files from the `prompts/` and `prompts/fusions/` directories, attaching the raw prompt text directly to the agent objects.
 4. **Environment Agnostic:** The service is written in standard ES6 classes and supports CommonJS exports (`module.exports`) to allow execution in Node.js test environments without transpilation.
 
-### JulesAPI Architecture
+### JulesService Architecture
 
 The `JulesService` manages the network boundary with the Jules backend.
 
