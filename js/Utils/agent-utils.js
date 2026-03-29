@@ -4,6 +4,20 @@ class AgentUtils {
         return customAgents[key];
     }
 
+    static getFusionKey(nameA, nameB) {
+        if (!nameA || !nameB) return "";
+        return [nameA.trim(), nameB.trim()].sort().join(",");
+    }
+
+    static splitFusionKey(key) {
+        if (!key) return [];
+        const parts = key.split(",");
+        for (let i = 0; i < parts.length; i++) {
+            parts[i] = parts[i].trim();
+        }
+        return parts;
+    }
+
     static getValidCustomAgents(customAgents) {
         const validCustomAgents = [];
         for (const key in customAgents) {
