@@ -59,17 +59,18 @@ const FusionAnimation = function () {
     if (particlesContainer) {
       particlesContainer.innerHTML = "";
 
-      let particleCount = 0;
-      let speedMultiplier = 1;
+      const tierConfig = {
+        "Common": { particleCount: 0, speedMultiplier: 1 },
+        "Uncommon": { particleCount: 20, speedMultiplier: 1 },
+        "Rare": { particleCount: 40, speedMultiplier: 1.2 },
+        "Epic": { particleCount: 160, speedMultiplier: 1.5 },
+        "Legendary": { particleCount: 300, speedMultiplier: 2 },
+        "Mythic": { particleCount: 500, speedMultiplier: 2.5 }
+      };
 
-      switch (tier) {
-        case "Common": particleCount = 0; speedMultiplier = 1; break;
-        case "Uncommon": particleCount = 20; speedMultiplier = 1; break;
-        case "Rare": particleCount = 40; speedMultiplier = 1.2; break;
-        case "Epic": particleCount = 160; speedMultiplier = 1.5; break;
-        case "Legendary": particleCount = 300; speedMultiplier = 2; break;
-        case "Mythic": particleCount = 500; speedMultiplier = 2.5; break;
-      }
+      const config = tierConfig[tier] || tierConfig["Common"];
+      const particleCount = config.particleCount;
+      const speedMultiplier = config.speedMultiplier;
 
       // 🌳 Yggdrasil Mutation: Mutated imperative loop to pure functional pipeline
       const particles = Array.from({ length: particleCount }).map(() => {

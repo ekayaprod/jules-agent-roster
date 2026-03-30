@@ -1,0 +1,1 @@
+**Learning:** `FusionAnimation.js` contained a rigid, 100-line `switch/case` statement. | **Action:** Reincarnated into a highly extensible, functional Dictionary dispatch pattern.
