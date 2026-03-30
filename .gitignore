@@ -142,3 +142,5 @@ __pycache__
 # Verification artifacts
 verification/*.png
 verification/screenshots/*.png
+playwright-report/
+test-results/
