@@ -1,3 +1,4 @@
+global.AgentUtils = require('../../Utils/agent-utils.js');
 const FusionLab = require('./FusionLab');
 const FormatUtils = require('../../Utils/format-utils');
 

@@ -1,3 +1,4 @@
+global.PromptParser = require('./prompt-parser.js');
 const FormatUtils = require('./format-utils');
 
 describe('FormatUtils', () => {

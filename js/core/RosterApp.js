@@ -245,6 +245,9 @@ class RosterApp {
         mappedList.sort((a, b) => {
            if (a.isPinned && !b.isPinned) return -1;
            if (!a.isPinned && b.isPinned) return 1;
+           const aTier = a.original && a.original.agent && a.original.agent.tier === "Plus" ? 1 : 0;
+           const bTier = b.original && b.original.agent && b.original.agent.tier === "Plus" ? 1 : 0;
+           if (aTier !== bTier) return bTier - aTier;
            return 0;
         });
 
@@ -548,7 +551,7 @@ class RosterApp {
               return;
           }
           if (action === "download-agent") {
-              DownloadUtils.downloadTextFile(agent.prompt, `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
+              DownloadUtils.downloadTextFile(PromptParser.stripFrontmatter(agent.prompt), `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
               closeDropdownMenu(actionBtn.closest('.dropdown-menu'), this);
               return;
           }

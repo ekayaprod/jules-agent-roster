@@ -14,10 +14,17 @@ const PromptParser = {
    * @returns {{ format: 'xml'|'legacy', sections?: Array<{tag: string, content: string, id: string|null, name: string|null}>, raw?: string }} The parsed structured result.
    * @see ../../docs/architecture/Utils/README.md#promptparser-architecture
    */
+  stripFrontmatter(rawText) {
+    if (!rawText || typeof rawText !== 'string') return rawText;
+    const yamlRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n/;
+    return rawText.replace(yamlRegex, '');
+  },
+
   parsePrompt(rawText) {
     if (!rawText || typeof rawText !== 'string') {
       return { format: 'legacy', raw: rawText || '' };
     }
+    rawText = this.stripFrontmatter(rawText);
 
     // Check for XML markers to avoid unnecessary parsing attempt
     const hasXmlMarkers = /<(system|task|step|output)\b/i.test(rawText);

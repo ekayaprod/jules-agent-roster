@@ -14,7 +14,7 @@ class AgentCard {
      * @see ../../../docs/architecture/UI/AgentCard.md#agentcard-architecture for DOM structure and generation details.
      */
     static getPromptNode(agent) {
-        return DOMUtils.createMarkdownPreBlock(agent.prompt || "No protocol data available.");
+        return DOMUtils.createMarkdownPreBlock(PromptParser.stripFrontmatter(agent.prompt || "No protocol data available."));
     }
 
     /**
