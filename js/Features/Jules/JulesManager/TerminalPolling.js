@@ -97,6 +97,7 @@ class TerminalPolling {
             statusSpan.className = "term-status status-success";
             statusSpan.innerHTML = `✅ Execution Finished`;
             this.manager.loadPullRequestsForRepo(this.manager.currentRepo);
+            clearInterval(this.manager.julesPollingIntervals[sessionId]);
             setTimeout(() => this.manager.dismissSession(sessionId), this.manager.constructor.SUCCESS_DISMISS_DELAY_MS);
             return;
         }
