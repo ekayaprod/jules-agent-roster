@@ -1,12 +1,4 @@
 {
-  "Architect,Architect": {
-    "name": "Vibe",
-    "emoji": "🎧",
-    "short_description": "Operate as the self-starting creative engine of the repository, obsessively coding missing features into absolute, production-ready reality.",
-    "category": "strategy",
-    "type": "fusion",
-    "role": "Flow State Hacker"
-  },
   "Architect,Author": {
     "name": "City Clerk",
     "emoji": "🏛️",

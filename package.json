@@ -20,5 +20,8 @@
   },
   "dependencies": {
     "jscodeshift": "^17.3.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   }
 }

@@ -134,7 +134,7 @@ class JulesService {
      * @throws {Error} If the request fails or times out.
      */
     async createSession(agentMarkdown, userTask, sourceName, title = "Agent Task") {
-        const prompt = `${agentMarkdown}
+        const prompt = `${PromptParser.stripFrontmatter(agentMarkdown || "")}
 
 USER TASK TO EXECUTE:
 ${userTask}`;

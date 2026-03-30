@@ -1,3 +1,4 @@
+global.PromptParser = require('../Utils/prompt-parser.js');
 /**
  * @jest-environment node
  */

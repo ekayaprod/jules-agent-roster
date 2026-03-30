@@ -1,3 +1,4 @@
+global.AgentUtils = require('../Utils/agent-utils.js');
 const AgentRepository = require('./AgentRepository');
 const REQUEST_TIMEOUT_MS = AgentRepository.REQUEST_TIMEOUT_MS || 10000;
 
