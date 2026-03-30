@@ -1,0 +1,1 @@
+**Instability:** The core 'Fusion Lab' workflow lacks automated validation, risking silent dead ends where users cannot fuse agents if the integrated browser journey breaks. | **Fortification:** Generated a robust Playwright E2E test suite mapping the journey from entry point to the final state assertion, guaranteeing the fusion routing tree never breaks in production.
