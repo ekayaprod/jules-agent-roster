@@ -7,6 +7,10 @@
 const REQUEST_TIMEOUT_MS = 15000;
 const DEFAULT_PAGE_SIZE = 50;
 
+if (typeof FormatUtils === 'undefined' && typeof require !== 'undefined') {
+    global.FormatUtils = require('../Utils/format-utils.js');
+}
+
 class JulesService {
     /**
      * Constructs a new JulesService instance with default configurations.
@@ -195,7 +199,7 @@ ${userTask}`;
             throw new Error(`Unsupported source format${allow404 ? ' for pull requests' : ''}`);
         }
 
-        const repoPath = sourceName.replace('sources/github/', '');
+        const repoPath = FormatUtils.extractRepoPath(sourceName);
         const url = `https://api.github.com/repos/${repoPath}/${endpoint}`;
 
         const fetchOptions = { ...options };
