@@ -351,7 +351,9 @@ describe('searchWorker Worker Script Boundaries', () => {
 
         // Force the worker to clear its fuseInstance for the next test
         if (workerSelf && workerSelf.onmessage) {
-            try { workerSelf.onmessage({ data: { type: 'init', data: null, options: null } }); } catch(e){}
+            global.self = { postMessage: postMessageMock };
+            workerSelf.onmessage({ data: { type: 'init', data: null, options: null } });
+            delete global.self;
         }
     });
 
