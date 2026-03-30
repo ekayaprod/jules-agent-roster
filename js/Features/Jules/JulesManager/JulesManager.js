@@ -17,6 +17,11 @@ const CORE_EMOJIS = {
  * Engineered for a single-line terminal output where GitHub handles completions.
  * @see ../../../docs/architecture/Features/JulesManager.md#overview for the macro architectural scope.
  */
+
+if (typeof FormatUtils === 'undefined' && typeof require !== 'undefined') {
+    global.FormatUtils = require('../../../Utils/format-utils.js');
+}
+
 class JulesManager {
     static ACTIVE_SESSIONS_POLL_MS = 5000;
     static TERMINAL_POLL_MS = 3000;
@@ -307,7 +312,7 @@ class JulesManager {
                 
                 repoSessions.push(s);
             }
-            const repoPath = sourceName.replace('sources/github/', '');
+            const repoPath = FormatUtils.extractRepoPath(sourceName);
 
             const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
             if (fetchingIndicator) fetchingIndicator.remove();

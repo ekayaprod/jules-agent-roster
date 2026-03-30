@@ -66,6 +66,16 @@ class FormatUtils {
         return agent.name.trim();
     }
 
+    /**
+     * Extracts a pure repository path from a standard source name.
+     * @param {string} sourceName - The standard source string (e.g., 'sources/github/owner/repo')
+     * @returns {string} The raw repository path (e.g., 'owner/repo').
+     */
+    static extractRepoPath(sourceName) {
+        if (!sourceName) return "";
+        return sourceName.replace('sources/github/', '');
+    }
+
 }
 
 if (typeof module !== 'undefined' && module.exports) {

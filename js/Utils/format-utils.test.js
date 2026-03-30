@@ -84,5 +84,23 @@ describe('FormatUtils', () => {
                 expect(FormatUtils.extractDisplayName(agent)).toBe('Normal Agent');
             });
         });
+
+        describe('extractRepoPath', () => {
+            it('should return an empty string if sourceName is falsy', () => {
+                expect(FormatUtils.extractRepoPath(null)).toBe('');
+                expect(FormatUtils.extractRepoPath(undefined)).toBe('');
+                expect(FormatUtils.extractRepoPath('')).toBe('');
+            });
+
+            it('should strip sources/github/ from standard sourceName inputs', () => {
+                expect(FormatUtils.extractRepoPath('sources/github/owner/repo')).toBe('owner/repo');
+                expect(FormatUtils.extractRepoPath('sources/github/jules-platform')).toBe('jules-platform');
+            });
+
+            it('should return the original string if sources/github/ is not present', () => {
+                expect(FormatUtils.extractRepoPath('owner/repo')).toBe('owner/repo');
+                expect(FormatUtils.extractRepoPath('other/source/repo')).toBe('other/source/repo');
+            });
+        });
     });
 });
