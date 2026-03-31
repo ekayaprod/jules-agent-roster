@@ -17,22 +17,22 @@ describe('RarityEngine', () => {
             expect(RarityEngine.getSuperDomain({ name: 'Sentinel+' })).toBe('Plus');
         });
 
-        it('returns "Integrity" for testing or hygiene categories', () => {
+        it('returns "Integrity" for testing, hygiene, security categories', () => {
             expect(RarityEngine.getSuperDomain({ category: 'testing' })).toBe('Integrity');
             expect(RarityEngine.getSuperDomain({ category: 'hygiene' })).toBe('Integrity');
+            expect(RarityEngine.getSuperDomain({ category: 'security' })).toBe('Integrity');
         });
 
-        it('returns "Visible" for ux, documentation, strategy categories', () => {
+        it('returns "Visible" for ux, docs, strategy categories', () => {
             expect(RarityEngine.getSuperDomain({ category: 'ux' })).toBe('Visible');
-            expect(RarityEngine.getSuperDomain({ category: 'documentation' })).toBe('Visible');
+            expect(RarityEngine.getSuperDomain({ category: 'docs' })).toBe('Visible');
             expect(RarityEngine.getSuperDomain({ category: 'strategy' })).toBe('Visible');
         });
 
-        it('returns "Invisible" for architecture, refactoring, operations, meta categories', () => {
+        it('returns "Invisible" for architecture, operations, performance categories', () => {
             expect(RarityEngine.getSuperDomain({ category: 'architecture' })).toBe('Invisible');
-            expect(RarityEngine.getSuperDomain({ category: 'refactoring' })).toBe('Invisible');
             expect(RarityEngine.getSuperDomain({ category: 'operations' })).toBe('Invisible');
-            expect(RarityEngine.getSuperDomain({ category: 'meta' })).toBe('Invisible');
+            expect(RarityEngine.getSuperDomain({ category: 'performance' })).toBe('Invisible');
         });
 
         it('returns "Unknown" for an unmapped category', () => {
@@ -73,12 +73,12 @@ describe('RarityEngine', () => {
             expect(RarityEngine.calculateRarity({ name: 'A', category: 'testing' }, { name: 'B', category: 'ux' })).toBe('Epic');
             expect(RarityEngine.calculateRarity({ name: 'C', category: 'ux' }, { name: 'D', category: 'hygiene' })).toBe('Epic');
             expect(RarityEngine.calculateRarity({ name: 'E', category: 'testing' }, { name: 'F', category: 'architecture' })).toBe('Epic');
-            expect(RarityEngine.calculateRarity({ name: 'G', category: 'refactoring' }, { name: 'H', category: 'testing' })).toBe('Epic');
+            expect(RarityEngine.calculateRarity({ name: 'G', category: 'operations' }, { name: 'H', category: 'testing' })).toBe('Epic');
         });
 
         it('returns "Rare" for Full-Stack Bridge: Visible + Invisible', () => {
             expect(RarityEngine.calculateRarity({ name: 'I', category: 'ux' }, { name: 'J', category: 'architecture' })).toBe('Rare');
-            expect(RarityEngine.calculateRarity({ name: 'K', category: 'refactoring' }, { name: 'L', category: 'documentation' })).toBe('Rare');
+            expect(RarityEngine.calculateRarity({ name: 'K', category: 'operations' }, { name: 'L', category: 'docs' })).toBe('Rare');
         });
 
         describe('Plus interactions', () => {
@@ -116,7 +116,7 @@ describe('RarityEngine', () => {
         });
 
         it('returns "Uncommon" for Frontend Synergy: Visible + Visible', () => {
-            expect(RarityEngine.calculateRarity({ name: 'A1', category: 'ux' }, { name: 'A2', category: 'documentation' })).toBe('Uncommon');
+            expect(RarityEngine.calculateRarity({ name: 'A1', category: 'ux' }, { name: 'A2', category: 'docs' })).toBe('Uncommon');
         });
 
         it('returns "Uncommon" for Integrity Synergy: Integrity + Integrity', () => {
@@ -187,7 +187,7 @@ describe('RarityEngine', () => {
         });
 
         it('returns "5. Frontend Synergy" for Visible + Visible', () => {
-            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'ux' }, { name: 'B', category: 'documentation' })).toBe('5. Frontend Synergy');
+            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'ux' }, { name: 'B', category: 'docs' })).toBe('5. Frontend Synergy');
         });
 
         it('returns "7. Integrity Synergy" for Integrity + Integrity', () => {
@@ -195,7 +195,7 @@ describe('RarityEngine', () => {
         });
 
         it('returns "6. Backend Synergy" for Invisible + Invisible', () => {
-            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'architecture' }, { name: 'B', category: 'refactoring' })).toBe('6. Backend Synergy');
+            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'architecture' }, { name: 'B', category: 'operations' })).toBe('6. Backend Synergy');
         });
 
         it('returns "Unknown Domain" for fallback mixed domains', () => {
