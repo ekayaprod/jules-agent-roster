@@ -132,7 +132,7 @@ describe('TerminalPolling', () => {
         jest.advanceTimersByTime(10);
         await Promise.resolve(); // flush promises
 
-        expect(consoleSpy).toHaveBeenCalledWith('Polling error', expect.any(Error));
+        expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_POLLING_ERROR", error: 'API fail' }));
     });
 
     it('should handle isWaitingForInput=false correctly', () => {

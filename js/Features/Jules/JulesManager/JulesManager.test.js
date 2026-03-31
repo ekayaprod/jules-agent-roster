@@ -737,6 +737,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
         });
 
         it('should handle API failure during history modal submission', async () => {
+             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
              document.body.innerHTML += `
                 <div id="julesHistoryModal"></div>
                 <button id="cancelHistoryBtn"></button>
@@ -757,6 +758,8 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             await submitHistoryBtn.click();
 
             expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', 'error');
+            expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_SEND_REPLY_FAILED", error: 'API fail' }));
+            consoleSpy.mockRestore();
         });
 
         it('should close history modal gracefully when activeModalSessionId is null', async () => {
@@ -1118,7 +1121,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
             window.julesService.getPullRequests = jest.fn().mockRejectedValueOnce(new Error('Network Fail PRs'));
             await manager.loadPullRequestsForRepo('sources/github/a/b');
-            expect(consoleSpy).toHaveBeenCalledWith('Failed to load pull requests:', expect.any(Error));
+            expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_LOAD_PRS_FAILED", error: 'Network Fail PRs' }));
             consoleSpy.mockRestore();
         });
 
@@ -1306,7 +1309,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
              jest.spyOn(manager.renderedSessionIds, 'has').mockImplementation(() => { throw new Error('Render fail'); });
              const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
              await manager._fetchAndRenderSessions('sources/github/repo', terminal);
-             expect(consoleSpy).toHaveBeenCalledWith('Failed to load active sessions:', expect.any(Error));
+             expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_LOAD_SESSIONS_FAILED", error: 'Render fail' }));
         });
 
         it('should catch API errors', async () => {
@@ -1314,7 +1317,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.getSessions.mockRejectedValue(new Error('API Err'));
 
             await manager._fetchAndRenderSessions('repo', terminal);
-            expect(consoleSpy).toHaveBeenCalled();
+            expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_LOAD_SESSIONS_FAILED", error: 'API Err' }));
             consoleSpy.mockRestore();
         });
     });

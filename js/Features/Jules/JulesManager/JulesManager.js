@@ -247,7 +247,7 @@ class JulesManager {
             const pullRequests = await window.julesService.getPullRequests(sourceName);
             this._renderPullRequests(pullRequests, this.getEl("julesTerminal"));
         } catch (error) {
-            console.error("Failed to load pull requests:", error);
+            console.error(JSON.stringify({ event: "JULES_LOAD_PRS_FAILED", error: error.message }));
         }
     }
 
@@ -339,7 +339,7 @@ class JulesManager {
             this._checkEmptyTerminal();
 
         } catch (err) {
-            console.error("Failed to load active sessions:", err);
+            console.error(JSON.stringify({ event: "JULES_LOAD_SESSIONS_FAILED", error: err.message }));
         }
     }
 
