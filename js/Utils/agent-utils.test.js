@@ -33,6 +33,40 @@ describe('AgentUtils', () => {
         });
     });
 
+    describe('getFusionKey', () => {
+        it('returns empty string if either name is missing', () => {
+            expect(AgentUtils.getFusionKey(null, 'AgentB')).toBe('');
+            expect(AgentUtils.getFusionKey('AgentA', undefined)).toBe('');
+            expect(AgentUtils.getFusionKey('', '')).toBe('');
+        });
+
+        it('returns alphabetically sorted and comma-separated string', () => {
+            expect(AgentUtils.getFusionKey('Zebra', 'Apple')).toBe('Apple,Zebra');
+            expect(AgentUtils.getFusionKey('Apple', 'Zebra')).toBe('Apple,Zebra');
+        });
+
+        it('trims whitespace before sorting and joining', () => {
+            expect(AgentUtils.getFusionKey('  Zebra  ', 'Apple')).toBe('Apple,Zebra');
+            expect(AgentUtils.getFusionKey('Apple', '  Zebra  ')).toBe('Apple,Zebra');
+        });
+    });
+
+    describe('splitFusionKey', () => {
+        it('returns empty array if key is falsy', () => {
+            expect(AgentUtils.splitFusionKey(null)).toEqual([]);
+            expect(AgentUtils.splitFusionKey(undefined)).toEqual([]);
+            expect(AgentUtils.splitFusionKey('')).toEqual([]);
+        });
+
+        it('returns an array of strings split by comma', () => {
+            expect(AgentUtils.splitFusionKey('Apple,Zebra')).toEqual(['Apple', 'Zebra']);
+        });
+
+        it('trims whitespace from split parts', () => {
+            expect(AgentUtils.splitFusionKey('  Apple  ,  Zebra  ')).toEqual(['Apple', 'Zebra']);
+        });
+    });
+
     describe('getValidCustomAgents', () => {
         it('returns empty array if customAgents is falsy or empty', () => {
             expect(AgentUtils.getValidCustomAgents(null)).toEqual([]);
