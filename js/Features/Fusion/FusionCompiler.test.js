@@ -14,13 +14,18 @@ describe('FusionCompiler', () => {
     { name: 'Spark', emoji: '✨', prompt: '' }
   ];
 
+  const mockFusionMatrix = {
+    'Architect,Helix': 'The Void',
+    'Helix, Janitor': 'Clean Code'
+  };
+
   const mockCustomAgents = {
-    'Architect,Helix': { name: 'The Void', prompt: null, short_description: 'Custom Void' },
-    'Helix, Janitor': { name: 'Clean Code', prompt: 'Custom Prompt Here', desc: 'Custom Desc' }
+    'The Void': { name: 'The Void', prompt: null, short_description: 'Custom Void' },
+    'Clean Code': { name: 'Clean Code', prompt: 'Custom Prompt Here', desc: 'Custom Desc' }
   };
 
   beforeEach(() => {
-    compiler = new FusionCompiler(mockBaseAgents, mockCustomAgents);
+    compiler = new FusionCompiler(mockBaseAgents, mockCustomAgents, mockFusionMatrix);
   });
 
   describe('constructor', () => {
@@ -36,8 +41,10 @@ describe('FusionCompiler', () => {
     });
 
     it('normalizes custom agents keys by trimming and sorting', () => {
-      expect(compiler.customAgentsMap['Architect,Helix'].name).toBe('The Void');
-      expect(compiler.customAgentsMap['Helix,Janitor'].name).toBe('Clean Code');
+      expect(compiler.fusionMatrixMap['Architect,Helix']).toBe('The Void');
+      expect(compiler.fusionMatrixMap['Helix,Janitor']).toBe('Clean Code');
+      expect(compiler.customAgentsMap['The Void'].name).toBe('The Void');
+      expect(compiler.customAgentsMap['Clean Code'].name).toBe('Clean Code');
     });
 
     it('handles null/undefined customAgents gracefully', () => {
@@ -72,7 +79,9 @@ describe('FusionCompiler', () => {
 
     it('returns a custom agent with fallback description', () => {
       const c = new FusionCompiler(mockBaseAgents, {
-         'Architect,Helix': { name: 'The Void', prompt: null, description: 'Fallback desc' }
+         'The Void': { name: 'The Void', prompt: null, description: 'Fallback desc' }
+      }, {
+         'Architect,Helix': 'The Void'
       });
       const fused = c.fuse(
         { name: 'Architect', emoji: '📐' },

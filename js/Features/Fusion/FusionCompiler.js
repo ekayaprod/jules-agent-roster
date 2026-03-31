@@ -9,7 +9,7 @@
  * // ✅ GOOD: Yggdrasil triggered an evolutionary branch. The rigid OOP class has been mutated into a pure, composable functional pipeline.
  */
 
-const FusionCompiler = function (agents, customAgents) {
+const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
   // Only allow base agents to be fused. Monthly/Power agents are excluded to prevent complexity explosion.
   const baseAgents = (agents || []).filter(
     (a) => a.category !== "monthly" && a.category !== "power" && !["Spark", "Overseer", "Cartographer"].includes(a.name)
@@ -18,20 +18,16 @@ const FusionCompiler = function (agents, customAgents) {
   /**
    * Normalizes keys to ensure they are sorted alphabetically via a pure, declarative functional pipeline.
    * This guarantees that "Bolt+Architect" and "Architect+Bolt" resolve to the same fusion.
-   * It also correctly flattens nested categories dynamically (e.g., from custom_agents.json)
-   * @param {Object} data - The raw custom agents dictionary.
-   * @returns {Object} A flattened dictionary with sorted keys.
+   * @param {Object} data - The fusion matrix dictionary.
+   * @returns {Object} A flattened dictionary with sorted keys mapping to fusion names.
    * @see ../../../docs/architecture/Features/Fusion.md#fusion-compiler
    */
   const normalizeKeys = (data) => {
     if (!data) return {};
 
     const result = {};
-    // ⚡ Bolt+: Replaced O(N) array allocation from Object.keys() with a direct for...in traversal.
     for (const rawKey in data) {
       if (Object.prototype.hasOwnProperty.call(data, rawKey)) {
-        // ↗️ VECTORIZE: The Single-Pass Bypass. Direct string manipulation in a single loop avoids
-        // the massive garbage collection overhead of chained Object.entries().map().map().sort().join().
         const parts = typeof AgentUtils !== 'undefined' ? AgentUtils.splitFusionKey(rawKey) : rawKey.split(",").map(p => p.trim());
         parts.sort();
         result[parts.join(",")] = data[rawKey];
@@ -40,7 +36,8 @@ const FusionCompiler = function (agents, customAgents) {
     return result;
   };
 
-  const customAgentsMap = normalizeKeys(customAgents);
+  const fusionMatrixMap = normalizeKeys(fusionMatrix);
+  const customAgentsMap = customAgents || {};
 
 
 
@@ -61,16 +58,19 @@ const FusionCompiler = function (agents, customAgents) {
 
     const computedTier = typeof RarityEngine !== 'undefined' ? RarityEngine.calculateRarity(agent1, agent2) : "Common";
 
-    if (customAgentsMap[key]) {
-      const custom = customAgentsMap[key];
-      return {
-        ...custom,
-        name: custom.name,
-        isCustom: true,
-        short_description: custom.short_description || custom.desc || custom.description,
-        prompt: custom.prompt,
-        tier: computedTier
-      };
+    if (fusionMatrixMap[key]) {
+      const fusionName = fusionMatrixMap[key];
+      const custom = customAgentsMap[fusionName];
+      if (custom) {
+        return {
+          ...custom,
+          name: custom.name,
+          isCustom: true,
+          short_description: custom.short_description || custom.desc || custom.description,
+          prompt: custom.prompt,
+          tier: computedTier
+        };
+      }
     }
 
     return { name: "Error", prompt: "Invalid agents selected." };
@@ -80,6 +80,7 @@ const FusionCompiler = function (agents, customAgents) {
   return Object.freeze({
     baseAgents,
     customAgentsMap,
+    fusionMatrixMap,
     fuse,
   });
 };

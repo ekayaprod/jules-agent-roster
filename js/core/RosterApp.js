@@ -67,12 +67,13 @@ class RosterApp {
         ];
 
         const [agentData] = await Promise.all(initTasks);
-        const { agents, customAgents } = agentData || { agents: [], customAgents: {} };
+        const { agents, customAgents, fusionMatrix } = agentData || { agents: [], customAgents: {}, fusionMatrix: {} };
         this.agents = agents;
         this.customAgents = customAgents;
+        this.fusionMatrix = fusionMatrix;
 
         this.fusionLab = new FusionLab();
-        this.fusionLab.init(this.agents, this.customAgents);
+        this.fusionLab.init(this.agents, this.customAgents, this.fusionMatrix);
 
         const skeleton = this.elements.fusionLabSkeleton;
         const content = this.elements.fusionLabContent;

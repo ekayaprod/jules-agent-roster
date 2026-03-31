@@ -19,18 +19,20 @@ class FusionLab {
    * @param {Array} agents - The list of agents.
    * @param {Object} customAgents - The map of custom agent fusions.
    */
-  init(agents, customAgents) {
+  init(agents, customAgents, fusionMatrix = {}) {
     this.agents = agents;
     this.agentMap = new Map((agents || []).map((a) => [a.name, a]));
-    this.compiler = new FusionCompiler(agents, customAgents);
+    this.compiler = new FusionCompiler(agents, customAgents, fusionMatrix);
 
     // Initialize Fusion Index (Collectible Shelf)
     if (typeof FusionIndex !== "undefined") {
       this.fusionIndex = new FusionIndex(
         "fusionIndexContainer",
-        this.compiler.customAgentsMap,
+        this.compiler.fusionMatrixMap,
         (key) => this.handleShelfSelection(key),
       );
+      // Give it the full custom agent map so it can look up details
+      this.fusionIndex.fullCustomAgents = this.compiler.customAgentsMap;
       this.fusionIndex.init();
     }
 
