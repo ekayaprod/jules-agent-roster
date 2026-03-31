@@ -29,9 +29,12 @@ global.Fuse = class Fuse {
         this.list = list;
     }
     search(pattern) {
-        return this.list.filter(item =>
-            JSON.stringify(item).toLowerCase().includes(pattern.toLowerCase())
-        ).map(item => ({ item }));
+        const p = pattern.toLowerCase();
+        return this.list.filter(item => {
+            const nameMatch = item.name && item.name.toLowerCase().includes(p);
+            const descMatch = item.desc && item.desc.toLowerCase().includes(p);
+            return nameMatch || descMatch;
+        }).map(item => ({ item }));
     }
 };
 
@@ -250,7 +253,7 @@ const runBenchmark = async () => {
     }
     roster.agents = mockAgents;
 
-    // Fix: Properly mock elements so appending results works and index gets tested
+    // Initialize Critical DOM Containers and attach to Body Mock
     const slotACard = getMockElement('slotACard');
     const slotAContent = createMockElement();
     slotAContent.classList.add('slot-content');
@@ -261,6 +264,18 @@ const runBenchmark = async () => {
     slotBContent.classList.add('slot-content');
     slotBCard.appendChild(slotBContent);
 
+    const fusionResultContainer = getMockElement('fusionResultContainer');
+    const fusionIndexContainer = getMockElement('fusionIndexContainer');
+    const searchModeContainer = getMockElement('searchModeContainer');
+    const searchResultsGrid = getMockElement('searchResultsGrid');
+
+    global.document.body.appendChild(slotACard);
+    global.document.body.appendChild(slotBCard);
+    global.document.body.appendChild(fusionResultContainer);
+    global.document.body.appendChild(fusionIndexContainer);
+    global.document.body.appendChild(searchModeContainer);
+    global.document.body.appendChild(searchResultsGrid);
+
     roster.elements = {
         fuseBtn: getMockElement('fuseBtn'),
         copyFusionBtn: getMockElement('copyFusionBtn'),
@@ -268,15 +283,16 @@ const runBenchmark = async () => {
         slotBCard: slotBCard,
         fusionError: getMockElement('fusionError'),
         fusionErrorText: getMockElement('fusionErrorText'),
-        fusionResultContainer: getMockElement('fusionResultContainer'),
+        fusionResultContainer: fusionResultContainer,
+        fusionIndexContainer: fusionIndexContainer,
         resetLabBtn: getMockElement('resetLabBtn'),
         fusionLabContent: getMockElement('fusionLabContent'),
         clearBtn: getMockElement('clearBtn'),
         searchInput: getMockElement('searchInput'),
         emptyState: getMockElement('emptyState'),
         announcer: getMockElement('announcer'),
-        searchModeContainer: getMockElement('searchModeContainer'),
-        searchResultsGrid: getMockElement('searchResultsGrid'),
+        searchModeContainer: searchModeContainer,
+        searchResultsGrid: searchResultsGrid,
         'category-nav': getMockElement('category-nav'),
         grid: '.grid',
         sectionHeader: '.section-header',
@@ -329,7 +345,6 @@ const runBenchmark = async () => {
     console.log(`RosterApp search with unlocked fusions: ${duration.toFixed(2)}ms`);
 
     // Verify FusionIndex rendering
-    const fusionIndexContainer = getMockElement('fusionIndexContainer');
     const unlockedSlots = fusionIndexContainer.querySelectorAll('.fusion-slot.unlocked');
     if (unlockedSlots.length === 0) {
         console.error("FusionIndexError: No unlocked slots found in FusionIndex.");
