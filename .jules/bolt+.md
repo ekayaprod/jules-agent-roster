@@ -1,2 +1,2 @@
-**Bottleneck:** O(n²) algorithmic complexity during AgentPicker selection handling resulting from `.find()` lookups on the `baseAgents` array. | **Optimization:** Replaced the linear `Array.prototype.find()` searches with a pre-computed O(1) `Map` dictionary lookup during instantiation, eliminating the sequential list parsing.
-**Bottleneck:** O(n²) transient memory allocations resulting from sequential string concatenation within `formatAgentPrompts` `.reduce()` loop. | **Optimization:** Migrated to an O(n) `.map().join()` pipeline, allocating the required string memory once and bypassing intermediate allocations.
+**Bottleneck:** Sequential blocking I/O causes unnecessary waterfall latency when parsing JSON responses in `AgentRepository.fetchAgents()`.
+**Optimization:** Wrapped sequential `safeJsonParse` calls into a concurrent `Promise.all()` to resolve independent parsing promises simultaneously, accelerating initialization speed.

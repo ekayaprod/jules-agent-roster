@@ -27,13 +27,12 @@ class AgentRepository {
                 this.fetchWithRetry("./fusion_matrix.json").catch(() => null)
             ]);
 
-            const payload = await this.safeJsonParse(rosterResponse, "./roster-payload.json");
+            const [payload, fusionMatrixData] = await Promise.all([
+                this.safeJsonParse(rosterResponse, "./roster-payload.json"),
+                (matrixResponse && matrixResponse.ok) ? this.safeJsonParse(matrixResponse, "./fusion_matrix.json") : Promise.resolve({})
+            ]);
 
-            if (matrixResponse && matrixResponse.ok) {
-                this.fusionMatrix = await this.safeJsonParse(matrixResponse, "./fusion_matrix.json");
-            } else {
-                this.fusionMatrix = {};
-            }
+            this.fusionMatrix = fusionMatrixData;
 
             const rawAgents = Array.isArray(payload) ? payload : [];
             const standardAgentsRaw = [];
