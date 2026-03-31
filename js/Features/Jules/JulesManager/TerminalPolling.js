@@ -84,7 +84,7 @@ class TerminalPolling {
                 this._updatePollingState(sessionId, block, state, agentName, agentEmoji);
 
             } catch (e) {
-                console.error("Polling error", e);
+                console.error(JSON.stringify({ event: "JULES_POLLING_ERROR", error: e.message }));
             }
         }, this.manager.constructor.TERMINAL_POLL_MS);
     }

@@ -139,7 +139,7 @@ class JulesModals {
                 await window.julesService.sendUserInput(sessionId, text);
                 this.manager.app.toast.show("Reply transmitted.", "success");
             } catch (err) {
-                console.error("Failed to send reply:", err);
+                console.error(JSON.stringify({ event: "JULES_SEND_REPLY_FAILED", error: err.message }));
                 this.manager.app.toast.show("Failed to send reply.", "error");
             }
         };
