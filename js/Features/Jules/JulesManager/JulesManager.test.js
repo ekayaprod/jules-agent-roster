@@ -315,12 +315,13 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
 
         it('startTerminalPolling: replace existing interval', () => {
-             manager.julesPollingIntervals = {'123': 999};
+             const existingInterval = setInterval(() => {}, 999);
+             manager.julesPollingIntervals = {'123': existingInterval};
              const spy = jest.spyOn(global, 'clearInterval');
              const item = document.createElement('div');
              item.innerHTML = '<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>';
              manager.polling.startTerminalPolling('123', item, 'repo');
-             expect(spy).toHaveBeenCalledWith(999);
+             expect(spy).toHaveBeenCalledWith(existingInterval);
         });
 
         it('cleanup branch: missing sets', () => {
