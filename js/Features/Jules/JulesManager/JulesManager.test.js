@@ -225,7 +225,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.createSession.mockRejectedValueOnce(new Error('fail'));
 
             await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn);
-            expect(mockToast.show).toHaveBeenCalledWith('Launch failed. Check API key and permissions.', 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', 'error');
             getElSpy.mockRestore();
         });
 
@@ -319,8 +319,15 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
              const spy = jest.spyOn(global, 'clearInterval');
              const item = document.createElement('div');
              item.innerHTML = '<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>';
+
+             // The error says "TypeError: Cannot read properties of undefined (reading 'push')", coming from fake-timers-src.
+             // fake-timers might be having trouble because we set the interval ID manually to '999'.
+             // To properly mock the interval being replaced, let's create a real fake timer ID first.
+             manager.julesPollingIntervals['123'] = setInterval(() => {}, 10000);
+             const timerId = manager.julesPollingIntervals['123'];
+
              manager.polling.startTerminalPolling('123', item, 'repo');
-             expect(spy).toHaveBeenCalledWith(999);
+             expect(spy).toHaveBeenCalledWith(timerId);
         });
 
         it('cleanup branch: missing sets', () => {
@@ -951,7 +958,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             document.getElementById('julesApiKeyInput').value = '   ';
             await document.getElementById('saveSettingsBtn').click();
 
-            expect(document.getElementById('julesApiKeyError').textContent).toBe('An API Key is required to connect.');
+            expect(document.getElementById('julesApiKeyError').textContent).toBe('Please enter your Jules API Key to connect.');
             expect(StorageUtils.setItem).not.toHaveBeenCalled();
         });
 
@@ -966,7 +973,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             // The component logic native to JulesManager doesn't set ARIA props automatically. Just UI border.
             // expect(keyInput.getAttribute('aria-invalid')).toBe('true');
             expect(keyInput.style.borderColor).toMatch(/#ef4444|rgb\(239,\s*68,\s*68\)/); // #ef4444
-            expect(errorSpan.textContent).toBe('An API Key is required to connect.');
+            expect(errorSpan.textContent).toBe('Please enter your Jules API Key to connect.');
             expect(errorSpan.style.display).toBe('block');
         });
 
@@ -1013,7 +1020,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.getSources.mockRejectedValue(new Error('Network Error'));
             await manager.loadSources();
 
-            expect(mockToast.show).toHaveBeenCalledWith('Failed to fetch Repos. Check API Key.', true);
+            expect(mockToast.show).toHaveBeenCalledWith('Unable to connect to GitHub. Please verify your API key and try again.', true);
         });
 
         it('should bail if julesRepoPicker is missing', async () => {
@@ -1435,7 +1442,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             await manager.launchSession(agent, btn);
 
-            expect(mockToast.show).toHaveBeenCalledWith('Launch failed. Check API key and permissions.', 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', 'error');
             expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, 'ready', 'Launch in Jules 🚀');
         });
 
@@ -1454,7 +1461,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             await manager.launchSession(agent, btn);
 
-            expect(mockToast.show).toHaveBeenCalledWith('Launch failed. Check API key and permissions.', 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', 'error');
             expect(terminal.querySelector('#fetchingIndicator')).toBeNull();
         });
 

@@ -4,8 +4,12 @@ class TerminalPolling {
     }
 
     startTerminalPolling(sessionId, block, agentName, agentEmoji) {
-        if (!this.manager.julesPollingIntervals) this.manager.julesPollingIntervals = {};
-        if (this.manager.julesPollingIntervals[sessionId]) clearInterval(this.manager.julesPollingIntervals[sessionId]);
+        if (!this.manager.julesPollingIntervals) {
+            this.manager.julesPollingIntervals = {};
+        }
+        if (this.manager.julesPollingIntervals[sessionId]) {
+            clearInterval(this.manager.julesPollingIntervals[sessionId]);
+        }
 
         this.manager.julesPollingIntervals[sessionId] = setInterval(async () => {
             try {

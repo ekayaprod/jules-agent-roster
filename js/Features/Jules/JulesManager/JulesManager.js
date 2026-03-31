@@ -106,7 +106,7 @@ class JulesManager {
         closeBtn?.addEventListener("click", () => toggleModal(false));
 
         keyInput?.addEventListener("blur", () => {
-            if (!keyInput.value.trim()) this.modals._showKeyError(keyInput, errorSpan, "An API Key is required to connect.");
+            if (!keyInput.value.trim()) this.modals._showKeyError(keyInput, errorSpan, "Please enter your Jules API Key to connect.");
             else this.modals._clearKeyError(keyInput, errorSpan);
         });
 
@@ -115,7 +115,7 @@ class JulesManager {
             const githubKey = githubTokenInput ? githubTokenInput.value.trim() : "";
 
             if (!key) {
-                this.modals._showKeyError(keyInput, errorSpan, "An API Key is required to connect.");
+                this.modals._showKeyError(keyInput, errorSpan, "Please enter your Jules API Key to connect.");
                 return;
             }
 
@@ -204,7 +204,7 @@ class JulesManager {
             }
         } catch (err) {
             picker.innerHTML = `<option value="">${originalText}</option>`;
-            this.app.toast.show("Failed to fetch Repos. Check API Key.", true);
+            this.app.toast.show("Unable to connect to GitHub. Please verify your API key and try again.", true);
         } finally {
             picker.disabled = false;
         }
@@ -470,7 +470,7 @@ class JulesManager {
             this.app.toast.show(`Session launched successfully.`, "success");
             await this._fetchAndRenderSessions(sourceName, terminal);
         } catch (err) {
-            this.app.toast.show(`Launch failed. Check API key and permissions.`, "error");
+            this.app.toast.show(`Could not launch the session. Please verify your API key has the correct permissions.`, "error");
             if (fetchingIndicator) fetchingIndicator.style.display = '';
         } finally {
             if (optimisticBlock.parentNode) optimisticBlock.remove();
