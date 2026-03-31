@@ -12,6 +12,8 @@ const CORE_EMOJIS = {
     "Bolt+": "⚡", "Palette+": "🎨", "Sentinel+": "🛡️"
 };
 
+const CORE_EMOJIS_ENTRIES = Object.entries(CORE_EMOJIS);
+
 /**
  * Manages the core operations for interacting with Jules APIs.
  * Engineered for a single-line terminal output where GitHub handles completions.
@@ -384,7 +386,8 @@ class JulesManager {
         if (matchedAgent && matchedAgent.emoji) {
             agentEmoji = matchedAgent.emoji;
         } else {
-            for (const [name, emoji] of Object.entries(CORE_EMOJIS)) {
+            for (let i = 0; i < CORE_EMOJIS_ENTRIES.length; i++) {
+                const [name, emoji] = CORE_EMOJIS_ENTRIES[i];
                 if (safeAgentName.includes(name)) {
                     agentEmoji = emoji;
                     break;
