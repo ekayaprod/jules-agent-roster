@@ -10,157 +10,70 @@ class AgentRepository {
     constructor() {
         this.agents = [];
         this.customAgents = {};
+        this.fusionMatrix = {};
     }
 
     /**
      * Fetches all agent data, including standard and custom agents.
      * @see ../../docs/architecture/Services/README.md#agentrepository-architecture for the high-level data flow architecture.
      * @see ../../docs/architecture/Services/README.md#agentrepository-architecture for the dependency graph.
-     * @returns {Promise<{agents: Array, customAgents: Object}>} The loaded agents.
+     * @returns {Promise<{agents: Array, customAgents: Object, fusionMatrix: Object}>} The loaded agents.
      * @throws {Error} If loading fails.
      */
     async fetchAgents() {
         try {
-            // Reverted sequential await calls because custom agents depend on base agents for rarity computation.
-            const agents = await this.#loadStandardAgents();
-            this.agents = agents;
+            const [rosterResponse, matrixResponse] = await Promise.all([
+                this.fetchWithRetry("roster-payload.json"),
+                this.fetchWithRetry("fusion_matrix.json").catch(() => null)
+            ]);
 
-            const customAgents = await this.#loadCustomAgents();
-            this.customAgents = customAgents;
+            const payload = await this.safeJsonParse(rosterResponse, "roster-payload.json");
 
-            // 🚨 Paramedic: Cured load-order race condition where this.agents was uninitialized during concurrent Promise.all execution.
-            if (typeof RarityEngine !== 'undefined') {
-                // ⚡ Bolt+: Algorithmic Flattening - Replace O(n) array traversal with O(1) Map lookup
-                const agentMap = new Map();
-                for (const a of this.agents) {
-                    agentMap.set(a.name, a);
-                }
-                for (const key of Object.keys(this.customAgents)) {
-                    const agent = this.customAgents[key];
-                    const [name1, name2] = AgentUtils.splitFusionKey(key);
-                    const a1 = agentMap.get(name1);
-                    const a2 = agentMap.get(name2);
-                    if (a1 && a2) {
-                        agent.tier = RarityEngine.calculateRarity(a1, a2);
-                    } else {
-                        agent.tier = "Common";
-                    }
-                }
-            }
-
-            return { agents: this.agents, customAgents: this.customAgents };
-        } catch (error) {
-            console.error("Failed to load agents.json", error);
-            throw error;
-        }
-    }
-
-    async #loadStandardAgents() {
-        const response = await this.fetchWithRetry("agents.json");
-        const rawData = await this.safeJsonParse(response, "agents.json");
-        const agents = this.validateAgentsData(rawData);
-
-        // Fetch Prompts for Standard Agents
-        const promptPromises = [];
-        for (let i = 0; i < agents.length; i++) {
-            const agent = agents[i];
-            promptPromises.push(
-                this.fetchPrompt(agent.name, `prompts/${agent.name}.md`, "Prompt missing.")
-                    .then(prompt => { agent.prompt = prompt; })
-            );
-        }
-        await Promise.all(promptPromises);
-
-        return agents;
-    }
-
-    async #loadCustomAgents() {
-        try {
-            const customRes = await this.fetchWithRetry("custom_agents.json");
-            if (!customRes.ok) return {};
-
-            const rawCustomData = await this.safeJsonParse(
-                customRes,
-                "custom_agents.json",
-            );
-
-            const validatedCustomData = {};
-
-            const customKeys = Object.keys(rawCustomData);
-            const processPromises = [];
-            for (let i = 0; i < customKeys.length; i++) {
-                const key = customKeys[i];
-                const custom = rawCustomData[key];
-                processPromises.push(
-                    this.#processCustomAgent(key, custom).then(agent => {
-                        if (agent) {
-                            agent.tier = "Common";
-                            validatedCustomData[key] = agent;
-                        }
-                    })
-                );
-            }
-            await Promise.all(processPromises);
-
-            return validatedCustomData;
-        } catch (e) {
-            if (e.message.includes("parse JSON")) {
-                console.error(
-                    "CRITICAL: custom_agents.json is malformed. Fusion data may be incomplete.",
-                    e,
-                );
+            if (matrixResponse && matrixResponse.ok) {
+                this.fusionMatrix = await this.safeJsonParse(matrixResponse, "fusion_matrix.json");
             } else {
-                console.warn(
-                    "custom_agents.json not loaded (missing or network error).",
-                );
+                this.fusionMatrix = {};
             }
-            return {};
-        }
-    }
 
-    async #processCustomAgent(key, custom) {
-        try {
-            // Map the name property from the key if it's missing or empty
-            if (!custom.name || custom.name.trim() === "") {
-                const parts = AgentUtils.splitFusionKey(key);
-                if (parts.length === 2 && parts[0].trim() !== "") {
-                    custom.name = parts[0].trim();
+            const rawAgents = Array.isArray(payload) ? payload : [];
+            const standardAgentsRaw = [];
+            const customAgentsRaw = [];
+
+            for (const agent of rawAgents) {
+                if (agent.isCustom) {
+                    customAgentsRaw.push(agent);
+                } else {
+                    standardAgentsRaw.push(agent);
                 }
             }
 
-            const validation = this.validateCustomAgent(key, custom);
+            this.agents = this.validateAgentsData(standardAgentsRaw);
 
-            if (!validation.valid) {
-                // TELEMETRY: Log rejection
-                console.warn(
-                    JSON.stringify({
-                        event: "INVALID_CUSTOM_AGENT",
-                        key: key,
-                        reason: validation.reason,
-                        timestamp: new Date().toISOString(),
-                    }),
-                );
-                return null;
+            this.customAgents = {};
+            for (const agent of customAgentsRaw) {
+                // We use the name as the key for customAgents
+                const key = agent.name;
+                const validation = this.validateCustomAgent(key, agent);
+                if (validation.valid) {
+                    const validAgent = validation.sanitized;
+                    validAgent.prompt = agent.prompt;
+                    this.customAgents[key] = validAgent;
+                } else {
+                    console.warn(
+                        JSON.stringify({
+                            event: "INVALID_CUSTOM_AGENT",
+                            key: key,
+                            reason: validation.reason,
+                            timestamp: new Date().toISOString(),
+                        })
+                    );
+                }
             }
 
-            const agent = validation.sanitized;
-
-            // Sanitize name for filename: Remove non-ASCII, trim.
-            const cleanName = agent.name
-                .replace(/[^\x00-\x7F]/g, "")
-                .trim();
-            const filename = `prompts/fusions/${cleanName}.md`;
-
-            agent.prompt = await this.fetchPrompt(
-                agent.name,
-                filename,
-                null,
-            );
-
-            return agent;
-        } catch (err) {
-            console.error(`Error processing custom agent '${key}':`, err);
-            return null;
+            return { agents: this.agents, customAgents: this.customAgents, fusionMatrix: this.fusionMatrix };
+        } catch (error) {
+            console.error("Failed to load agent payloads", error);
+            throw error;
         }
     }
 

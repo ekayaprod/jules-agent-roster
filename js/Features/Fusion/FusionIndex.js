@@ -96,20 +96,29 @@ class FusionIndex {
    * @private
    */
   _renderSlot(grid, key, agentData) {
+      let safeData = agentData && agentData.name ? agentData : { name: this.customAgents[key] || key };
+
+      if (!agentData || !agentData.tier) {
+          if (this.fullCustomAgents && typeof AgentUtils !== 'undefined') {
+              const fullData = AgentUtils.getCustomAgent(this.fullCustomAgents, safeData.name);
+              if (fullData) safeData = fullData;
+          }
+      }
+
       const isUnlocked = this.unlockedKeys.has(key);
-      const emoji = this.getEmoji(agentData);
+      const emoji = this.getEmoji(safeData);
 
       const slot = document.createElement("div");
       slot.className = `fusion-slot ${isUnlocked ? "unlocked" : "locked"}`;
-      if (isUnlocked && agentData?.tier) {
-          slot.classList.add(`tier-${agentData.tier.toLowerCase()}`);
+      if (isUnlocked && safeData?.tier) {
+          slot.classList.add(`tier-${safeData.tier.toLowerCase()}`);
       }
       slot.setAttribute("data-key", key);
-      slot.setAttribute("title", isUnlocked ? agentData.name : "Locked Protocol");
+      slot.setAttribute("title", isUnlocked ? safeData.name : "Locked Protocol");
       slot.innerHTML = `<span class="slot-icon">${emoji}</span>`;
 
       if (isUnlocked) {
-        this._bindSlotInteractions(slot, agentData, key);
+        this._bindSlotInteractions(slot, safeData, key);
       }
 
       grid.appendChild(slot);
@@ -158,7 +167,8 @@ class FusionIndex {
    * @param {string} key - The fusion key.
    */
   unlock(key) {
-    if (!AgentUtils.getCustomAgent(this.customAgents, key)) return;
+    const fusionName = this.customAgents[key];
+    if (!fusionName) return;
 
     if (!this.unlockedKeys.has(key)) {
       this.unlockedKeys.add(key);
@@ -177,17 +187,20 @@ class FusionIndex {
     const safeKey = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(key) : key.replace(/(["\\])/g, '\\$1');
     const slot = this.elements.container?.querySelector(`.fusion-slot[data-key="${safeKey}"]`) || document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
     if (slot) {
-      const agentData = AgentUtils.getCustomAgent(this.customAgents, key);
-      if (!agentData) return;
+      const fusionName = this.customAgents[key];
+      // lookup full agent data
+      const agentData = typeof AgentUtils !== 'undefined' && this.fullCustomAgents ? AgentUtils.getCustomAgent(this.fullCustomAgents, fusionName) : { name: fusionName };
+      const safeData = agentData && agentData.name ? agentData : { name: fusionName || "Unknown" };
+
       slot.classList.remove("locked");
       slot.classList.add("unlocked", "just-unlocked");
-      if (agentData?.tier) {
-          slot.classList.add(`tier-${agentData.tier.toLowerCase()}`);
+      if (safeData?.tier) {
+          slot.classList.add(`tier-${safeData.tier.toLowerCase()}`);
       }
-      slot.setAttribute("title", agentData.name);
+      slot.setAttribute("title", safeData.name);
 
       // Re-bind click event
-      this._bindSlotInteractions(slot, agentData, key);
+      this._bindSlotInteractions(slot, safeData, key);
 
       // Remove animation class after animation
       setTimeout(() => {

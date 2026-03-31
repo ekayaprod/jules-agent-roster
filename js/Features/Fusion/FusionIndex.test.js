@@ -26,13 +26,21 @@ describe('FusionIndex', () => {
         // Setup DOM
         document.body.innerHTML = '<div id="fusion-container"></div>';
 
-        const customAgents = {
-            'AgentA,AgentB': { name: 'SuperAgent', tier: 'Epic', emoji: '🦸' },
-            'AgentC,AgentD': { name: 'LameAgent', tier: 'Common', emoji: '🦥' },
-            'Bad"Key\\': { name: 'Hacker', tier: 'Legendary', emoji: '💀' }
+        const fusionMatrix = {
+            'AgentA,AgentB': 'SuperAgent',
+            'AgentC,AgentD': 'LameAgent',
+            'Bad"Key\\': 'Hacker'
         };
 
-        fusionIndex = new FusionIndex('fusion-container', customAgents, jest.fn());
+        const customAgentsData = {
+            'SuperAgent': { name: 'SuperAgent', tier: 'Epic', emoji: '🦸' },
+            'LameAgent': { name: 'LameAgent', tier: 'Common', emoji: '🦥' },
+            'Hacker': { name: 'Hacker', tier: 'Legendary', emoji: '💀' }
+        };
+
+        fusionIndex = new FusionIndex('fusion-container', fusionMatrix, jest.fn());
+        fusionIndex.customAgents = fusionMatrix;
+        fusionIndex.fullCustomAgents = customAgentsData;
     });
 
     afterEach(() => {

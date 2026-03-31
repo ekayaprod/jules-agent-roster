@@ -333,16 +333,19 @@ describe('AgentRepository', () => {
             delete global.document;
         });
 
-        it('fetchAgents executes concurrently and returns combined object', async () => {
+        it('fetchAgents executes and returns combined object', async () => {
             repo.fetchWithRetry = jest.fn()
                 .mockResolvedValueOnce({
                     ok: true,
-                    json: async () => [{ name: "Standard", category: "architect", promptFile: "std.md" }]
+                    json: async () => [
+                        { name: "Standard", category: "architect", isCustom: false },
+                        { name: "Custom1", category: "developer", isCustom: true }
+                    ]
                 })
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => ({
-                        "custom1": { name: "Custom", category: "developer" }
+                        "Standard,Agent": "Custom1"
                     })
                 });
 
@@ -352,9 +355,11 @@ describe('AgentRepository', () => {
             expect(results.agents[0].name).toBe("Standard");
 
             expect(Object.keys(results.customAgents)).toHaveLength(1);
-            expect(results.customAgents['custom1'].name).toBe("Custom");
+            expect(results.customAgents['Custom1'].name).toBe("Custom1");
+            expect(Object.keys(results.fusionMatrix)).toHaveLength(1);
 
-            expect(repo.fetchWithRetry).toHaveBeenCalledTimes(2);
+            expect(repo.fetchWithRetry).toHaveBeenCalledWith("roster-payload.json");
+            expect(repo.fetchWithRetry).toHaveBeenCalledWith("fusion_matrix.json");
         });
 
         // 🕵️ INTERROGATE: Mocked infrastructure boundaries, concurrency stress, and negative assertions.
@@ -362,47 +367,22 @@ describe('AgentRepository', () => {
             repo.fetchWithRetry = jest.fn()
                 .mockResolvedValueOnce({
                     ok: true,
-                    json: async () => [{ name: "Agent1", category: "architect", promptFile: "std.md" }]
+                    json: async () => [
+                        { name: "Agent1", category: "architect", isCustom: false },
+                        { name: "Fusion1", category: "developer", isCustom: true }
+                    ]
                 })
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => ({
-                        "Agent1,Agent2": { name: "Fusion1", category: "developer" }
+                        "Agent1,Agent2": "Fusion1"
                     })
                 });
 
             const results = await repo.fetchAgents();
-            expect(results.customAgents["Agent1,Agent2"]).toBeDefined();
-            expect(results.customAgents["Agent1,Agent2"].name).toBe("Fusion1");
-        });
-
-        it('computes rarity tiers for custom agents when RarityEngine is defined', async () => {
-            global.RarityEngine = { calculateRarity: jest.fn().mockReturnValue('Legendary') };
-
-            try {
-                repo.fetchWithRetry = jest.fn()
-                    .mockResolvedValueOnce({
-                        ok: true,
-                        json: async () => [
-                            { name: "Agent1", category: "architect", promptFile: "std.md" },
-                            { name: "Agent2", category: "developer", promptFile: "std.md" }
-                        ]
-                    })
-                    .mockResolvedValueOnce({
-                        ok: true,
-                        json: async () => ({
-                            "Agent1,Agent2": { name: "Fusion1", category: "developer" },
-                            "Agent1,Unknown": { name: "Fusion2", category: "developer" }
-                        })
-                    });
-
-                const results = await repo.fetchAgents();
-
-                expect(results.customAgents['Agent1,Agent2'].tier).toBe('Legendary');
-                expect(results.customAgents['Agent1,Unknown'].tier).toBe('Common');
-            } finally {
-                delete global.RarityEngine;
-            }
+            expect(results.customAgents["Fusion1"]).toBeDefined();
+            expect(results.customAgents["Fusion1"].name).toBe("Fusion1");
+            expect(results.fusionMatrix["Agent1,Agent2"]).toBe("Fusion1");
         });
 
         it('fetchAgents throws on top-level network failure', async () => {
@@ -412,119 +392,88 @@ describe('AgentRepository', () => {
 
         it('filters invalid custom agent gracefully via fetchAgents', async () => {
             repo.fetchWithRetry = jest.fn()
-                .mockResolvedValueOnce({ ok: true, json: async () => [] }) // Empty standard
                 .mockResolvedValueOnce({
                     ok: true,
-                    json: async () => ({
-                        "invalid1": { name: null }, // Invalid
-                        "valid1": { name: "Custom 🔥", category: "developer" } // Valid
-                    })
-                });
+                    json: async () => [
+                        { name: null, isCustom: true },
+                        { name: "Custom 🔥", category: "developer", isCustom: true }
+                    ]
+                })
+                .mockResolvedValueOnce({ ok: true, json: async () => ({}) });
 
             const results = await repo.fetchAgents();
             expect(Object.keys(results.customAgents)).toHaveLength(1);
-            expect(results.customAgents['valid1'].name).toBe("Custom 🔥");
+            expect(results.customAgents['Custom 🔥'].name).toBe("Custom 🔥");
         });
 
-        it('handles processCustomAgent error throwing when fetchPrompt throws internally', async () => {
+        it('handles safeJsonParse throwing errors gracefully for the roster payload', async () => {
             repo.fetchWithRetry = jest.fn()
-                .mockResolvedValueOnce({ ok: true, json: async () => [] }) // Empty std
-                .mockResolvedValueOnce({
-                    ok: true,
-                    json: async () => ({
-                        "err1": { name: "Error Agent" }
-                    })
-                });
-
-            repo.fetchPrompt.mockRejectedValue(new Error("File error"));
-
-            const results = await repo.fetchAgents();
-
-            // It swallows the error and returns null, which filters out the custom agent
-            expect(Object.keys(results.customAgents)).toHaveLength(0);
-        });
-
-        it('handles safeJsonParse throwing errors gracefully for standard agents', async () => {
-            repo.fetchWithRetry = jest.fn()
-                .mockResolvedValueOnce({ ok: true, json: async () => { throw new Error('Bad json'); } })
-                .mockResolvedValueOnce({ ok: true, json: async () => ({}) });
-
+                .mockResolvedValueOnce({ ok: true, json: async () => { throw new Error('Bad json'); } });
 
             try {
                 await repo.fetchAgents();
             } catch (e) {
-                // If it resolves, it handles failure gracefully inside fetchAgents (which actually just logs error and returns {})
+                // If it resolves, it handles failure gracefully inside fetchAgents
             }
             expect(console.error).toHaveBeenCalled();
-
         });
 
-        it('logs a critical error when custom_agents.json fails to parse due to malformed JSON', async () => {
-            // safeJsonParse wraps the error message, so we mock safeJsonParse itself
-            // or we throw an error with "parse JSON" from safeJsonParse so we trigger the exact branch
+        it('logs a critical error when roster-payload.json fails to parse due to malformed JSON', async () => {
             repo.safeJsonParse = jest.fn()
-                .mockResolvedValueOnce([]) // for agents.json
-                .mockRejectedValueOnce(new Error('Failed to parse JSON')); // for custom_agents.json
+                .mockRejectedValueOnce(new Error('Failed to parse JSON'));
 
             repo.fetchWithRetry = jest.fn().mockResolvedValue({ ok: true });
 
-            const results = await repo.fetchAgents();
-
-            expect(console.error).toHaveBeenCalledWith(
-                "CRITICAL: custom_agents.json is malformed. Fusion data may be incomplete.",
-                expect.any(Error)
-            );
-            expect(results.customAgents).toEqual({});
-        });
-
-        it('handles safeJsonParse throwing errors gracefully for custom agents', async () => {
-            repo.fetchWithRetry = jest.fn()
-                .mockResolvedValueOnce({ ok: true, json: async () => [] })
-                .mockResolvedValueOnce({ ok: true, json: async () => { throw new Error('Bad json'); } });
-
-
             try {
                 await repo.fetchAgents();
             } catch (e) {
-                // If it resolves, it handles failure gracefully inside fetchAgents (which actually just logs error and returns {})
+                // Expected to throw
             }
-            expect(console.error).toHaveBeenCalled();
 
+            expect(console.error).toHaveBeenCalledWith(
+                "Failed to load agent payloads",
+                expect.any(Error)
+            );
         });
 
-
-        it('🕵️ INTERROGATE: fails to parse flattened custom_agents.json structure without domain categories', async () => {
+        it('🕵️ INTERROGATE: fails to parse flattened structure without domain categories', async () => {
             repo.fetchWithRetry = jest.fn()
-                .mockResolvedValueOnce({ ok: true, json: async () => [] }) // Empty standard
+                .mockResolvedValueOnce({
+                    ok: true,
+                    json: async () => [
+                        { name: "Fusion Agent", short_description: "A flat agent", isCustom: true },
+                        { name: "Another Fusion", short_description: "Another flat agent", isCustom: true }
+                    ]
+                })
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => ({
-                        "Agent1,Agent2": { name: "Fusion Agent", short_description: "A flat agent" },
-                        "Agent3,Agent4": { name: "Another Fusion", short_description: "Another flat agent" }
+                        "Agent1,Agent2": "Fusion Agent",
+                        "Agent3,Agent4": "Another Fusion"
                     })
                 });
 
             const results = await repo.fetchAgents();
 
-            // The test expects fetchAgents to successfully parse the flattened JSON.
-            // Because AgentRepository.js currently assumes a nested category structure
-            // (e.g., Object.entries(categoryAgents).map...), it will fail to read properties
-            // like .name out of characters of strings if it misinterprets the data shape,
-            // or simply return an empty or malformed result.
-            expect(results.customAgents["Agent1,Agent2"]).toBeDefined();
-            expect(results.customAgents["Agent1,Agent2"].name).toBe("Fusion Agent");
-            expect(results.customAgents["Agent3,Agent4"]).toBeDefined();
-            expect(results.customAgents["Agent3,Agent4"].name).toBe("Another Fusion");
+            expect(results.customAgents["Fusion Agent"]).toBeDefined();
+            expect(results.customAgents["Fusion Agent"].name).toBe("Fusion Agent");
+            expect(results.customAgents["Another Fusion"]).toBeDefined();
+            expect(results.customAgents["Another Fusion"].name).toBe("Another Fusion");
+            expect(results.fusionMatrix["Agent1,Agent2"]).toBe("Fusion Agent");
         });
+
         it('catches missing properties in validateCustomAgent (first responder missing desc logic)', async () => {
             repo.fetchWithRetry = jest.fn()
-                .mockResolvedValueOnce({ ok: true, json: async () => [] })
-                .mockResolvedValueOnce({ ok: true, json: async () => ({
-                    "no_desc": { name: "Agent" }
-                })});
+                .mockResolvedValueOnce({
+                    ok: true,
+                    json: async () => [
+                        { name: "Agent", isCustom: true }
+                    ]
+                })
+                .mockResolvedValueOnce({ ok: true, json: async () => ({}) });
 
             const results = await repo.fetchAgents();
-            expect(results.customAgents['no_desc'].name).toBe("Agent");
+            expect(results.customAgents['Agent'].name).toBe("Agent");
         });
     });
 });
