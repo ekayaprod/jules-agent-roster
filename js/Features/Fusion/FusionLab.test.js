@@ -66,3 +66,65 @@ describe('FusionLab Security', () => {
         expect(previewHTML).toContain('&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;');
     });
 });
+
+describe('FusionLab.getPreMergePreviewHTML Edge Cases', () => {
+    let fusionLab;
+    const agentA = { name: 'AgentA', emoji: '🍎' };
+    const agentB = { name: 'AgentB', emoji: '🍌' };
+
+    beforeEach(() => {
+        fusionLab = new FusionLab();
+        fusionLab.state.slotA = agentA;
+        fusionLab.state.slotB = agentB;
+        fusionLab.compiler = {
+            fuse: jest.fn().mockReturnValue({ name: 'Result', emoji: '🧬' })
+        };
+        fusionLab.fusionIndex = {
+            isUnlocked: jest.fn().mockReturnValue(true)
+        };
+        global.FormatUtils = FormatUtils;
+    });
+
+    test('should return null if agentA is missing', () => {
+        fusionLab.state.slotA = null;
+        expect(fusionLab.getPreMergePreviewHTML(agentB)).toBeNull();
+    });
+
+    test('should return null if agentB is missing', () => {
+        fusionLab.state.slotB = null;
+        expect(fusionLab.getPreMergePreviewHTML(agentA)).toBeNull();
+    });
+
+    test('should return null if agentA and agentB have the same name', () => {
+        fusionLab.state.slotA = agentA;
+        fusionLab.state.slotB = agentB;
+        fusionLab.picker = { activePickerSlot: 'slotB' };
+        // Passing agentA when slotA is already agentA should return null
+        expect(fusionLab.getPreMergePreviewHTML(agentA)).toBeNull();
+    });
+
+    test('should return null if fusionIndex is not defined', () => {
+        fusionLab.fusionIndex = undefined;
+        expect(fusionLab.getPreMergePreviewHTML(agentB)).toBeNull();
+    });
+
+    test('should return null if fusion is not unlocked in index', () => {
+        fusionLab.fusionIndex.isUnlocked.mockReturnValue(false);
+        expect(fusionLab.getPreMergePreviewHTML(agentB)).toBeNull();
+    });
+
+    test('should return preview HTML if fusion is unlocked', () => {
+        const result = fusionLab.getPreMergePreviewHTML(agentB);
+        expect(result).toContain('Already Discovered');
+        expect(result).toContain('Result');
+        expect(result).toContain('🧬');
+    });
+
+    test('should handle picker active slot override', () => {
+        fusionLab.state.slotA = null;
+        fusionLab.picker = { activePickerSlot: 'slotA' };
+        const result = fusionLab.getPreMergePreviewHTML(agentA);
+        expect(result).not.toBeNull();
+        expect(result).toContain('Result');
+    });
+});
