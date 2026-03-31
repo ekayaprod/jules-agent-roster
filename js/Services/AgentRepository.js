@@ -194,11 +194,19 @@ class AgentRepository {
 
         for (let i = 0; i < agentPayload.length; i++) {
             const agent = agentPayload[i];
+            let normalizedCategory = "";
+            if (agent && typeof agent.category === "string") {
+                normalizedCategory = agent.category.toLowerCase();
+                if (normalizedCategory === 'docs') normalizedCategory = 'documentation';
+            }
             const isValid =
                 agent &&
                 typeof agent.name === "string" &&
-                typeof agent.category === "string" &&
-                validCategories.includes(agent.category);
+                validCategories.includes(normalizedCategory);
+
+            if (isValid) {
+                agent.category = normalizedCategory;
+            }
 
             if (!isValid) {
                 console.warn("Skipping invalid agent entry:", agent);
