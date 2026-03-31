@@ -258,7 +258,7 @@ class FusionLab {
     const agentB = this.state.slotB;
 
     if (!agentA || !agentB) {
-        this.showError("Missing Components: Please ensure both protocols are selected before initiating fusion.");
+        this.showError("Select both protocols to initiate fusion.");
         return;
     }
 
@@ -278,7 +278,7 @@ class FusionLab {
       // Virtuoso: Empathetic & Actionable Error Copy
       const ERROR_MAP = {
         "Invalid agents selected.":
-          "Missing Components: Two distinct agents are required to initiate the fusion protocol.",
+          "Select two distinct agents to initiate the fusion protocol.",
       };
 
       if (ERROR_MAP[result.prompt]) {

@@ -272,7 +272,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
         await fusionLab.handleFusion();
 
-        expect(fusionLab.showError).toHaveBeenCalledWith("Missing Components: Please ensure both protocols are selected before initiating fusion.");
+        expect(fusionLab.showError).toHaveBeenCalledWith("Select both protocols to initiate fusion.");
         expect(fusionLab.compiler.fuse).not.toHaveBeenCalled();
     });
 
@@ -284,7 +284,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
         await fusionLab.handleFusion();
 
-        expect(fusionLab.showError).toHaveBeenCalledWith("Missing Components: Two distinct agents are required to initiate the fusion protocol.");
+        expect(fusionLab.showError).toHaveBeenCalledWith("Select two distinct agents to initiate the fusion protocol.");
     });
 
     test('handleFusion successfully unlocks known custom agent and delegates animation', async () => {
