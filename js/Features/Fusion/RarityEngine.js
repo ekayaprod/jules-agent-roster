@@ -18,9 +18,9 @@ const RarityEngine = (function() {
         if (["Bolt+", "Palette+", "Sentinel+"].includes(agent.name)) return "Plus";
 
         // Exclude Scavenger which is caught above
-        if (["testing", "hygiene"].includes(agent.category)) return "Integrity";
-        if (["ux", "documentation", "strategy"].includes(agent.category)) return "Visible";
-        if (["architecture", "refactoring", "operations", "meta"].includes(agent.category)) return "Invisible";
+        if (["testing", "hygiene", "security"].includes(agent.category)) return "Integrity";
+        if (["ux", "docs", "strategy"].includes(agent.category)) return "Visible";
+        if (["architecture", "operations", "performance"].includes(agent.category)) return "Invisible";
 
         return "Unknown";
     }

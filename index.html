@@ -465,16 +465,15 @@
         .flip-card, .skeleton-card { flex-basis: 20rem !important; max-width: 24rem !important; margin-top: 2rem; }
         #main > .section-header { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
         .grid > *:first-child::before { position: absolute; top: -2rem; left: 0.5rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); font-weight: normal; white-space: nowrap; pointer-events: none; }
-        #coreGrid > *:first-child::before { content: "Core Maintenance"; }
-        #refactoringGrid > *:first-child::before { content: "Refactoring"; }
-        #archGrid > *:first-child::before { content: "Architecture"; }
+        #architectureGrid > *:first-child::before { content: "Architecture"; }
         #hygieneGrid > *:first-child::before { content: "Hygiene"; }
-        #testingGrid > *:first-child::before { content: "Testing"; }
-        #opsGrid > *:first-child::before { content: "Operations"; }
-        #documentationGrid > *:first-child::before { content: "Documentation"; }
         #strategyGrid > *:first-child::before { content: "Strategy"; }
         #uxGrid > *:first-child::before { content: "UX"; }
-        #metaGrid > *:first-child::before { content: "Meta"; }
+        #docsGrid > *:first-child::before { content: "Docs"; }
+        #testingGrid > *:first-child::before { content: "Testing"; }
+        #operationsGrid > *:first-child::before { content: "Operations"; }
+        #securityGrid > *:first-child::before { content: "Security"; }
+        #performanceGrid > *:first-child::before { content: "Performance"; }
       }
     </style>
   </head>
@@ -536,16 +535,15 @@
           <input type="text" id="searchInput" aria-label="Search agents by name" placeholder="Search protocols..."/>
           <button class="clear-search-btn" id="clearBtn" aria-label="Clear search"><svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
         </div>
-        <a href="#core-maintenance" class="nav-pill">Core</a>
-        <a href="#refactoring" class="nav-pill">Refactoring</a>
         <a href="#architecture" class="nav-pill">Architecture</a>
         <a href="#hygiene" class="nav-pill">Hygiene</a>
-        <a href="#testing" class="nav-pill">Testing</a>
-        <a href="#operations" class="nav-pill">Operations</a>
-        <a href="#documentation" class="nav-pill">Docs</a>
         <a href="#strategy" class="nav-pill">Strategy</a>
         <a href="#ux" class="nav-pill">UX</a>
-        <a href="#meta" class="nav-pill">Meta</a>
+        <a href="#docs" class="nav-pill">Docs</a>
+        <a href="#testing" class="nav-pill">Testing</a>
+        <a href="#operations" class="nav-pill">Operations</a>
+        <a href="#security" class="nav-pill">Security</a>
+        <a href="#performance" class="nav-pill">Performance</a>
       </nav>
     </div>
 
@@ -562,27 +560,25 @@
     </div>
 
     <main id="main">
-      <h2 id="core-maintenance" class="section-header">Core Maintenance</h2>
-      <div class="grid" id="coreGrid"></div>
-      <h2 id="refactoring" class="section-header">Refactoring</h2>
-      <div class="grid" id="refactoringGrid"></div>
       <h2 id="architecture" class="section-header">Architecture</h2>
-      <div class="grid" id="archGrid"></div>
+      <div class="grid" id="architectureGrid"></div>
       <h2 id="hygiene" class="section-header">Hygiene</h2>
       <div class="grid" id="hygieneGrid"></div>
-      <h2 id="testing" class="section-header">Testing</h2>
-      <div class="grid" id="testingGrid"></div>
-      <h2 id="operations" class="section-header">Operations</h2>
-      <div class="grid" id="opsGrid"></div>
-      <h2 id="documentation" class="section-header">Documentation</h2>
-      <div class="grid" id="documentationGrid"></div>
       <h2 id="strategy" class="section-header">Strategy</h2>
       <div class="grid" id="strategyGrid"></div>
       <h2 id="ux" class="section-header">UX</h2>
       <div class="grid" id="uxGrid"></div>
+      <h2 id="docs" class="section-header">Docs</h2>
+      <div class="grid" id="docsGrid"></div>
+      <h2 id="testing" class="section-header">Testing</h2>
+      <div class="grid" id="testingGrid"></div>
+      <h2 id="operations" class="section-header">Operations</h2>
+      <div class="grid" id="operationsGrid"></div>
+      <h2 id="security" class="section-header">Security</h2>
+      <div class="grid" id="securityGrid"></div>
       <div style="flex-basis: 100%; height: 0;"></div>
-      <h2 id="meta" class="section-header">Meta</h2>
-      <div class="grid" id="metaGrid"></div>
+      <h2 id="performance" class="section-header">Performance</h2>
+      <div class="grid" id="performanceGrid"></div>
     </main>
 
     <!-- Settings Modal -->
@@ -766,8 +762,8 @@
           categoryNav: "#category-nav", main: "#main", navPills: ".nav-pill",
           sectionHeader: ".section-header", grid: ".grid", card: ".card"
         },
-        categories: { core: "coreGrid", refactoring: "refactoringGrid", architecture: "archGrid", hygiene: "hygieneGrid", testing: "testingGrid", operations: "opsGrid", documentation: "documentationGrid", strategy: "strategyGrid", ux: "uxGrid", meta: "metaGrid" },
-        sectionMap: { coreGrid: "core-maintenance", refactoringGrid: "refactoring", archGrid: "architecture", hygiene: "hygiene", testing: "testing", opsGrid: "operations", documentationGrid: "documentation", strategyGrid: "strategy", uxGrid: "ux", metaGrid: "meta" }
+        categories: { architecture: "architectureGrid", hygiene: "hygieneGrid", strategy: "strategyGrid", ux: "uxGrid", docs: "docsGrid", testing: "testingGrid", operations: "operationsGrid", security: "securityGrid", performance: "performanceGrid" },
+        sectionMap: { architectureGrid: "architecture", hygieneGrid: "hygiene", strategyGrid: "strategy", uxGrid: "ux", docsGrid: "docs", testingGrid: "testing", operationsGrid: "operations", securityGrid: "security", performanceGrid: "performance" }
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/tabbable@6.2.0/dist/index.umd.js"></script>

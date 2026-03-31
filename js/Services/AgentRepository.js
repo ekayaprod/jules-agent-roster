@@ -197,7 +197,6 @@ class AgentRepository {
             let normalizedCategory = "";
             if (agent && typeof agent.category === "string") {
                 normalizedCategory = agent.category.toLowerCase();
-                if (normalizedCategory === 'docs') normalizedCategory = 'documentation';
             }
             const isValid =
                 agent &&
