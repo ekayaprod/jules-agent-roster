@@ -23,14 +23,14 @@ class AgentRepository {
     async fetchAgents() {
         try {
             const [rosterResponse, matrixResponse] = await Promise.all([
-                this.fetchWithRetry("roster-payload.json"),
-                this.fetchWithRetry("fusion_matrix.json").catch(() => null)
+                this.fetchWithRetry("./roster-payload.json"),
+                this.fetchWithRetry("./fusion_matrix.json").catch(() => null)
             ]);
 
-            const payload = await this.safeJsonParse(rosterResponse, "roster-payload.json");
+            const payload = await this.safeJsonParse(rosterResponse, "./roster-payload.json");
 
             if (matrixResponse && matrixResponse.ok) {
-                this.fusionMatrix = await this.safeJsonParse(matrixResponse, "fusion_matrix.json");
+                this.fusionMatrix = await this.safeJsonParse(matrixResponse, "./fusion_matrix.json");
             } else {
                 this.fusionMatrix = {};
             }

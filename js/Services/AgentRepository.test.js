@@ -358,8 +358,8 @@ describe('AgentRepository', () => {
             expect(results.customAgents['Custom1'].name).toBe("Custom1");
             expect(Object.keys(results.fusionMatrix)).toHaveLength(1);
 
-            expect(repo.fetchWithRetry).toHaveBeenCalledWith("roster-payload.json");
-            expect(repo.fetchWithRetry).toHaveBeenCalledWith("fusion_matrix.json");
+            expect(repo.fetchWithRetry).toHaveBeenCalledWith("./roster-payload.json");
+            expect(repo.fetchWithRetry).toHaveBeenCalledWith("./fusion_matrix.json");
         });
 
         // 🕵️ INTERROGATE: Mocked infrastructure boundaries, concurrency stress, and negative assertions.

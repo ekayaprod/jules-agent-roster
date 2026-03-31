@@ -144,5 +144,3 @@ verification/*.png
 verification/screenshots/*.png
 playwright-report/
 test-results/
-
-roster-payload.json
