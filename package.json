@@ -6,11 +6,11 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build:roster": "node scripts/build-roster.js",
     "benchmark": "node benchmark.js",
+    "build:roster": "node scripts/build-roster.js",
+    "start": "npm run build:roster && npx http-server -p 8080",
     "test": "npm run build:roster && node benchmark.js",
-    "test:unit": "npm run build:roster && jest",
-    "start": "npm run build:roster && npx http-server -p 8080"
+    "test:unit": "npm run build:roster && jest"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
