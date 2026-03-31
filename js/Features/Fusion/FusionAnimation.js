@@ -57,7 +57,7 @@ const FusionAnimation = function () {
 
     // Particle Injection (Synced to the 1.8s flashburst keyframe)
     if (particlesContainer) {
-      particlesContainer.innerHTML = "";
+      particlesContainer.textContent = "";
 
       const tierConfig = {
         "Common": { particleCount: 0, speedMultiplier: 1 },
@@ -101,16 +101,16 @@ const FusionAnimation = function () {
       particlesContainer.appendChild(fragment);
     }
 
-    iconLeft.innerHTML = agentA.emoji;
-    iconRight.innerHTML = agentB.emoji;
+    iconLeft.textContent = agentA.emoji;
+    iconRight.textContent = agentB.emoji;
 
     const icon = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
     const displayName = FormatUtils.extractDisplayName(result);
     const safeDisplayName = FormatUtils.escapeHTML(displayName);
 
-    if (animResult) animResult.innerHTML = `<span class="highlight">${safeDisplayName}</span> ${icon}`;
+    if (animResult) animResult.innerHTML = `<span class="highlight">${safeDisplayName}</span> ${FormatUtils.escapeHTML(icon)}`;
 
-    if (iconResult) iconResult.innerHTML = icon;
+    if (iconResult) iconResult.textContent = icon;
 
     DOMUtils.setButtonState(fuseBtn, "disabled", fuseBtn.innerText);
     if (controls) controls.classList.add("fusing");
