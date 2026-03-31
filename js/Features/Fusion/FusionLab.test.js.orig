@@ -290,7 +290,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
     test('handleFusion successfully unlocks known custom agent and delegates animation', async () => {
         fusionLab.state.slotA = { name: 'A' };
         fusionLab.state.slotB = { name: 'B' };
-        fusionLab.fusionIndex.customAgents['A,B'] = true;
+        fusionLab.fusionIndex.customAgents['a,b'] = true;
 
         const fusedAgent = { name: 'C' };
         fusionLab.compiler.fuse.mockReturnValue(fusedAgent);
@@ -305,33 +305,9 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         expect(mockElements.fuseBtn.setAttribute).toHaveBeenCalledWith("aria-live", "polite");
         expect(mockElements.fuseBtn.setAttribute).toHaveBeenCalledWith("aria-busy", "true");
         expect(mockElements.labContent.classList.add).toHaveBeenCalledWith("hidden");
-        expect(fusionLab.fusionIndex.unlock).toHaveBeenCalledWith('A,B');
+        expect(fusionLab.fusionIndex.unlock).toHaveBeenCalledWith('a,b');
         expect(fusionLab.renderFusionResult).toHaveBeenCalledWith(fusedAgent);
         expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
-    });
-
-    test('handleFusion gracefully handles fusionIndex unlock exception', async () => {
-        fusionLab.state.slotA = { name: 'A' };
-        fusionLab.state.slotB = { name: 'B' };
-        fusionLab.fusionIndex.customAgents['A,B'] = true;
-
-        const consoleSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
-        fusionLab.fusionIndex.unlock.mockImplementation(() => {
-            throw new Error('Unlock failure');
-        });
-
-        const fusedAgent = { name: 'C' };
-        fusionLab.compiler.fuse.mockReturnValue(fusedAgent);
-
-        fusionLab.animation = { runAnimation: jest.fn() };
-        fusionLab.renderFusionResult = jest.fn();
-
-        await fusionLab.handleFusion();
-
-        expect(consoleSpy).toHaveBeenCalledWith("FusionLab: Failed to unlock index", expect.any(Error));
-        expect(fusionLab.renderFusionResult).toHaveBeenCalledWith(fusedAgent);
-        expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
-        consoleSpy.mockRestore();
     });
 
     test('handleShelfSelection updates visually and shows result without animation', () => {

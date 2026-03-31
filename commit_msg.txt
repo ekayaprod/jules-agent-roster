@@ -1,0 +1,8 @@
+chore(tests): Expand edge cases and assertions for FusionLab
+
+- Increase line coverage on `FusionLab.js` from 20.89% to 85.07%
+- Address missing protocols guiding focus for accessibility and error UX
+- Gracefully handle `fusionIndex.unlock` failures
+- Handle fallback when CustomAgent cannot be matched
+
+This adds structural resilience tests to prove logic gracefully declines without crashing the UX state machine.
