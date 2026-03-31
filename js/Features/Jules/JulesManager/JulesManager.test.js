@@ -319,8 +319,16 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
              const spy = jest.spyOn(global, 'clearInterval');
              const item = document.createElement('div');
              item.innerHTML = '<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>';
+
+             // Mock setInterval to avoid fake timers issue
+             const setIntervalSpy = jest.spyOn(global, 'setInterval').mockImplementation((cb, ms) => 1000);
+
              manager.polling.startTerminalPolling('123', item, 'repo');
+
              expect(spy).toHaveBeenCalledWith(999);
+             expect(manager.julesPollingIntervals['123']).toBe(1000);
+
+             setIntervalSpy.mockRestore();
         });
 
         it('cleanup branch: missing sets', () => {

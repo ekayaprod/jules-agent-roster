@@ -52,6 +52,25 @@ class JulesManager {
         this.sortByCreateTime = sortByCreateTime;
     }
 
+    _createSessionBlock(id, agentEmoji, safeAgentName, statusHtml, className, onClick) {
+        const block = document.createElement("div");
+        block.className = className;
+        if (id) block.id = id;
+
+        if (onClick) {
+            block.style.cursor = "pointer";
+            block.onclick = onClick;
+        }
+
+        // 1-line Minimalist layout
+        block.innerHTML = `
+            <span class="term-agent-name">${agentEmoji} ${safeAgentName}</span>
+            <span class="term-separator">—</span>
+            ${statusHtml}
+        `;
+        return block;
+    }
+
     getEl(id) {
         if (!this.elements[id]) {
             this.elements[id] = document.getElementById(id);
@@ -395,21 +414,14 @@ class JulesManager {
             }
         }
 
-        const block = document.createElement("div");
-        block.className = `term-session-line state-active`;
-        block.id = `session-${session.id}`;
-
-        block.style.cursor = "pointer";
-        block.onclick = () => {
-            this.modals._showHistoryModal(session.id, agentEmoji, safeAgentName);
-        };
-
-        // 1-line Minimalist layout
-        block.innerHTML = `
-            <span class="term-agent-name">${agentEmoji} ${safeAgentName}</span> 
-            <span class="term-separator">—</span>
-            <span class="term-status" id="status-${session.id}">Initializing...</span>
-        `;
+        const block = this._createSessionBlock(
+            `session-${session.id}`,
+            agentEmoji,
+            safeAgentName,
+            `<span class="term-status" id="status-${session.id}">Initializing...</span>`,
+            "term-session-line state-active",
+            () => this.modals._showHistoryModal(session.id, agentEmoji, safeAgentName)
+        );
 
         const firstSession = terminal.querySelector('.term-session-line');
         if (firstSession) {
@@ -443,18 +455,18 @@ class JulesManager {
         const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
         if (fetchingIndicator) fetchingIndicator.style.display = 'none';
 
-        const optimisticBlock = document.createElement("div");
-        optimisticBlock.className = `term-session-line state-active skeleton-pulse`;
         let agentEmoji = agent.emoji || "🤖";
         let safeAgentName = agent.name ? FormatUtils.escapeHTML(agent.name) : "Agent Task";
 
+        const optimisticBlock = this._createSessionBlock(
+            null,
+            agentEmoji,
+            safeAgentName,
+            '<span class="term-status">Conjuring session...</span>',
+            "term-session-line state-active skeleton-pulse",
+            null
+        );
         optimisticBlock.style.cursor = "pointer";
-
-        optimisticBlock.innerHTML = `
-            <span class="term-agent-name">${agentEmoji} ${safeAgentName}</span>
-            <span class="term-separator">—</span>
-            <span class="term-status">Conjuring session...</span>
-        `;
 
         const firstSession = terminal.querySelector('.term-session-line:not(#fetchingIndicator)');
         if (firstSession) {
