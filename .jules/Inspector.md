@@ -6,6 +6,9 @@
 **Edge Case:** `FusionLab.js` lines 23-90 lacked test coverage for explicit DOM element assignment and the execution of initialization procedures bridging external dependencies (`FusionIndex`, `AgentPicker`).
 **Assertion:** Generated a rigorous test suite simulating the full instantiation boundary via strict classes (`MockFusionCompiler`, etc.), and forced event triggers (`fuseBtn.click()`) to definitively verify correct internal state and interactions.
 
+## Inspector — RosterApp Pin Mutation Bound
+**Edge Case:** `RosterApp.js` lacked bounded UI tests checking `togglePin` event handlers on non-existent array indexes, creating a silent state corruption failure vector.
+**Assertion:** Discovered the logic was missing out-of-bounds agent checks. Generated a new bounded test suite intercepting DOM-level click dispatches using JSDOM to explicitly prove graceful fallback when pinning ghost agents without modifying the broken application logic directly.
 ## Inspector — PinnedManager Type Coercion Bound
 **Edge Case:** `PinnedManager.js` lacked test coverage verifying the type coercion of numerical arrays loaded directly from localStorage via `StorageUtils`. This allowed arrays of integers like `[0, 1]` to populate the internal Set, causing the strict string-based `isPinned` and `togglePin` boundaries to evaluate to false and corrupt the collection.
 **Assertion:** Interrogated the initialization boundary by returning `[0, 1]` from the mocked `StorageUtils`, mathematically proving the `isPinned(0)` lookup fails natively before strict string coercion is implemented. Documented using `it.failing`.
