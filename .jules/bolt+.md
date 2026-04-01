@@ -1,2 +1,2 @@
-**Bottleneck:** Sequential blocking I/O causes unnecessary waterfall latency when parsing JSON responses in `AgentRepository.fetchAgents()`.
-**Optimization:** Wrapped sequential `safeJsonParse` calls into a concurrent `Promise.all()` to resolve independent parsing promises simultaneously, accelerating initialization speed.
+**Bottleneck:** Rendering the `pinHtml` within `AgentCard.create()` included an invalid `isNaN(index)` gate, suppressing the pin functionality entirely for master agents.
+**Optimization:** Simplified the conditional logic, directly injecting the `pinHtml` component, which both restored pinning capabilities for the master roster and removed the useless algorithmic check.
