@@ -28,6 +28,18 @@ describe('PinnedManager', () => {
             expect(manager.getPinned()).toEqual(storedKeys);
         });
 
+        // THE BOUNDARY INTERROGATION: Explicitly asserts graceful type coercion when localStorage returns numerical arrays.
+        // Fails natively because PinnedManager does not cast numerical keys to strings during initialization.
+        it.failing('should strictly coerce numerical array values from localStorage into strings to prevent toggle mismatch', () => {
+            const storedKeys = [0, 1];
+            global.StorageUtils.getJsonArrayItem.mockReturnValueOnce(storedKeys);
+            manager = new PinnedManager();
+
+            // Should cast to string internally during init, so it matches the togglePin string boundary
+            expect(manager.isPinned(0)).toBe(true);
+            expect(manager.getPinned()).toEqual(['0', '1']);
+        });
+
         it('should gracefully handle malformed JSON parses by returning an empty array if StorageUtils returns null during exception', () => {
             global.StorageUtils.getJsonArrayItem.mockReturnValueOnce(null); // StorageUtils handles the try/catch and returns null
             manager = new PinnedManager();

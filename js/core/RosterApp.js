@@ -478,7 +478,7 @@ class RosterApp {
 
       // 4. Flip Card Front (Open)
       const frontTarget = e.target.closest('[data-action="flip-card"]');
-      if (frontTarget && !e.target.closest('.fusion-quick-btn')) {
+      if (frontTarget && !e.target.closest('.fusion-quick-btn') && !e.target.closest('.pin-btn')) {
           const card = frontTarget.closest('.flip-card');
           if (!card) return;
 

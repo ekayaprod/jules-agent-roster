@@ -58,11 +58,11 @@ class AgentCard {
 
         const isPinned = window.rosterApp && window.rosterApp.pinnedManager && window.rosterApp.pinnedManager.isPinned(index);
         const pinClass = isPinned ? 'pinned' : '';
-        const pinHtml = `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" >📌</button>`;
+        const pinHtml = (index !== undefined && index !== null && index !== '') ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" >📌</button>` : '';
 
         // Splay Out Child Fusions Logic (Refactored to Modal Trigger)
         let fusionQuickListHtml = '';
-        if (!isNaN(index) && window.rosterApp && window.rosterApp.fusionLab && window.rosterApp.fusionLab.fusionIndex) {
+        if ((index !== undefined && index !== null && index !== '') && window.rosterApp && window.rosterApp.fusionLab && window.rosterApp.fusionLab.fusionIndex) {
             const unlockedKeys = window.rosterApp.fusionLab.fusionIndex.unlockedKeys;
 
             // ↗️ VECTORIZE: The Single-Pass Pipeline. We bypass Array.from().filter() wrapper allocations for a direct loop.
