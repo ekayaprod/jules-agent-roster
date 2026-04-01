@@ -6,6 +6,7 @@
  */
 // ✅ GOOD: Yggdrasil triggered an evolutionary branch. The rigid OOP class has been mutated into a pure, composable functional closure.
 const PinnedManager = function() {
+    if (new.target) { return PinnedManager(); }
     const storageKey = "jules_pinned_agents";
     let pinned = new Set();
 
