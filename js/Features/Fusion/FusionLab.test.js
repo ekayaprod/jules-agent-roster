@@ -410,3 +410,107 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         expect(mockTitle.scrollIntoView).toHaveBeenCalled();
     });
 });
+
+describe('FusionLab Initialization and Bindings', () => {
+    let fusionLab;
+    let mockElements;
+
+    // Mock classes for instantiation
+    class MockFusionCompiler { constructor() { this.fusionMatrixMap = {}; this.customAgentsMap = {}; this.baseAgents = []; } }
+    class MockFusionIndex { constructor() { this.init = jest.fn(); } }
+    class MockAgentPicker { constructor() { this.openPicker = jest.fn(); } }
+    class MockFusionAnimation { constructor() {} }
+
+    beforeEach(() => {
+        fusionLab = new FusionLab();
+
+        // Restore globals
+        global.FusionCompiler = MockFusionCompiler;
+        global.FusionIndex = MockFusionIndex;
+        global.AgentPicker = MockAgentPicker;
+        global.FusionAnimation = MockFusionAnimation;
+
+        // Mock document.getElementById
+        document.getElementById = jest.fn((id) => {
+            const el = {
+                id,
+                addEventListener: jest.fn(),
+                classList: { remove: jest.fn(), add: jest.fn() },
+                setAttribute: jest.fn(),
+                removeAttribute: jest.fn(),
+                querySelector: jest.fn().mockReturnValue({ innerHTML: '' })
+            };
+            return el;
+        });
+
+        // Mock window properties if used in bindings
+        global.window.rosterApp = { showToast: jest.fn() };
+        global.ClipboardUtils = { copyText: jest.fn().mockResolvedValue(), animateButtonSuccess: jest.fn() };
+    });
+
+    afterEach(() => {
+        delete global.FusionCompiler;
+        delete global.FusionIndex;
+        delete global.AgentPicker;
+        delete global.FusionAnimation;
+        delete global.ClipboardUtils;
+        delete global.window.rosterApp;
+        jest.clearAllMocks();
+    });
+
+    test('init sets up dependencies correctly', () => {
+        const agents = [{ name: 'Agent1' }, { name: 'Agent2' }];
+        const customAgents = { 'Agent1,Agent2': 'FusedAgent' };
+        const fusionMatrix = { 'Agent1,Agent2': 'FusedAgent' };
+
+        fusionLab.bindEvents = jest.fn();
+        fusionLab.renderSlots = jest.fn();
+
+        fusionLab.init(agents, customAgents, fusionMatrix);
+
+        expect(fusionLab.agents).toBe(agents);
+        expect(fusionLab.agentMap.get('Agent1')).toEqual({ name: 'Agent1' });
+        expect(fusionLab.compiler).toBeInstanceOf(MockFusionCompiler);
+        expect(fusionLab.fusionIndex).toBeInstanceOf(MockFusionIndex);
+        expect(fusionLab.picker).toBeInstanceOf(MockAgentPicker);
+        expect(fusionLab.fusionIndex.init).toHaveBeenCalled();
+        expect(fusionLab.bindEvents).toHaveBeenCalled();
+        expect(fusionLab.renderSlots).toHaveBeenCalled();
+    });
+
+    test('bindEvents attaches click listeners correctly', async () => {
+        fusionLab.init([], {}, {}); // Run init to populate this.elements
+
+        const mockEvent = { currentTarget: 'btn' };
+
+        // Trigger slotACard click
+        const slotAHandler = fusionLab.elements.slotACard.addEventListener.mock.calls.find(c => c[0] === 'click')[1];
+        slotAHandler();
+        expect(fusionLab.picker.openPicker).toHaveBeenCalledWith('slotA', fusionLab.state.slotA);
+
+        // Trigger slotBCard click
+        const slotBHandler = fusionLab.elements.slotBCard.addEventListener.mock.calls.find(c => c[0] === 'click')[1];
+        slotBHandler();
+        expect(fusionLab.picker.openPicker).toHaveBeenCalledWith('slotB', fusionLab.state.slotB);
+
+        // Trigger fuseBtn click
+        fusionLab.handleFusion = jest.fn();
+        const fuseBtnHandler = fusionLab.elements.fuseBtn.addEventListener.mock.calls.find(c => c[0] === 'click')[1];
+        fuseBtnHandler();
+        expect(fusionLab.handleFusion).toHaveBeenCalled();
+
+        // Trigger resetLabBtn click
+        fusionLab.resetLab = jest.fn();
+        const resetBtnHandler = fusionLab.elements.resetLabBtn.addEventListener.mock.calls.find(c => c[0] === 'click')[1];
+        resetBtnHandler();
+        expect(fusionLab.resetLab).toHaveBeenCalled();
+
+        // Trigger copyFusionBtn click
+        fusionLab.lastFusionResult = { prompt: 'Sample Prompt' };
+        const copyBtnHandler = fusionLab.elements.copyFusionBtn.addEventListener.mock.calls.find(c => c[0] === 'click')[1];
+        await copyBtnHandler(mockEvent);
+        expect(global.ClipboardUtils.copyText).toHaveBeenCalledWith('Sample Prompt');
+        expect(global.window.rosterApp.showToast).toHaveBeenCalledWith("Fusion copied to clipboard");
+        expect(global.ClipboardUtils.animateButtonSuccess).toHaveBeenCalledWith('btn', "Copied!");
+    });
+});
