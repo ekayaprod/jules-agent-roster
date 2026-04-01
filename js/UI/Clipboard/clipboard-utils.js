@@ -35,9 +35,7 @@ class ClipboardUtils {
         let success = false;
         try {
             success = document.execCommand("copy");
-        } catch (err) {
-            console.error("Fallback copy failed", err);
-        } finally {
+        } catch (err) {} finally {
             document.body.removeChild(el);
         }
 

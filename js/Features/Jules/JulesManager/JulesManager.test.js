@@ -319,8 +319,11 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
              const spy = jest.spyOn(global, 'clearInterval');
              const item = document.createElement('div');
              item.innerHTML = '<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>';
+             const originalSetInterval = global.setInterval;
+             global.setInterval = jest.fn();
              manager.polling.startTerminalPolling('123', item, 'repo');
              expect(spy).toHaveBeenCalledWith(999);
+             global.setInterval = originalSetInterval;
         });
 
         it('cleanup branch: missing sets', () => {
