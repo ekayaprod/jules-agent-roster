@@ -1,0 +1,1 @@
+**Vulnerability:** Sterile file state reported; no exposed hardcoded secrets were found to extract. | **Prevention:** Continuous monitoring of source code for high-entropy strings and internal infrastructure maps.
