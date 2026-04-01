@@ -1,0 +1,132 @@
+
+/app/js/Features/Export/ExportController.js
+  5:7  warning  'ExportController' is defined but never used  no-unused-vars
+
+/app/js/Features/Fusion/AgentPicker.js
+  198:13  warning  Unexpected console statement  no-console
+
+/app/js/Features/Fusion/AgentPicker.test.js
+   33:9   warning  'mockGetPreMergePreviewHTML' is defined but never used  no-unused-vars
+   94:43  warning  'tag' is defined but never used                         no-unused-vars
+  192:20  warning  Unexpected console statement                            no-console
+
+/app/js/Features/Fusion/FusionLab.js
+  310:9  warning  Unexpected console statement  no-console
+  334:7  warning  Unexpected console statement  no-console
+
+/app/js/Features/Fusion/FusionLab.test.js
+  416:9  warning  'mockElements' is defined but never used  no-unused-vars
+
+/app/js/Features/Jules/JulesManager/JulesManager.js
+  205:18  warning  'err' is defined but never used                no-unused-vars
+  250:13  warning  Unexpected console statement                   no-console
+  317:19  warning  'repoPath' is assigned a value but never used  no-unused-vars
+  342:13  warning  Unexpected console statement                   no-console
+  472:18  warning  'err' is defined but never used                no-unused-vars
+
+/app/js/Features/Jules/JulesManager/JulesManager.test.js
+   286:23  warning  'e' is defined but never used                           no-unused-vars
+   826:19  warning  'originalErrorSpan' is assigned a value but never used  no-unused-vars
+  1244:19  warning  'recentTime' is assigned a value but never used         no-unused-vars
+  1262:20  warning  'recentTime' is assigned a value but never used         no-unused-vars
+
+/app/js/Features/Jules/JulesManager/JulesModals.js
+   74:22  warning  'e' is defined but never used  no-unused-vars
+  142:17  warning  Unexpected console statement   no-console
+
+/app/js/Features/Jules/JulesManager/TerminalPolling.js
+  91:17  warning  Unexpected console statement  no-console
+
+/app/js/Features/Search/SearchController.js
+  35:7   warning  'SearchController' is defined but never used  no-unused-vars
+  56:21  warning  Unexpected console statement                  no-console
+
+/app/js/Features/Search/SearchController.test.js
+   30:29  warning  'keyOrIndex' is defined but never used   no-unused-vars
+   30:41  warning  'delay' is defined but never used        no-unused-vars
+   64:12  warning  'query' is defined but never used        no-unused-vars
+  291:19  warning  'p2' is assigned a value but never used  no-unused-vars
+
+/app/js/Services/AgentRepository.js
+   61:21  warning  Unexpected console statement  no-console
+   74:13  warning  Unexpected console statement  no-console
+   91:21  warning  Unexpected console statement  no-console
+   97:13  warning  Unexpected console statement  no-console
+  139:17  warning  Unexpected console statement  no-console
+  166:13  warning  Unexpected console statement  no-console
+  210:17  warning  Unexpected console statement  no-console
+  221:17  warning  Unexpected console statement  no-console
+  264:13  warning  Unexpected console statement  no-console
+
+/app/js/Services/AgentRepository.test.js
+   18:31  warning  Unexpected console statement   no-console
+   19:32  warning  Unexpected console statement   no-console
+   20:9   warning  Unexpected console statement   no-console
+   21:9   warning  Unexpected console statement   no-console
+   26:9   warning  Unexpected console statement   no-console
+   27:9   warning  Unexpected console statement   no-console
+   94:20  warning  Unexpected console statement   no-console
+  115:20  warning  Unexpected console statement   no-console
+  160:20  warning  Unexpected console statement   no-console
+  162:40  warning  Unexpected console statement   no-console
+  189:20  warning  Unexpected console statement   no-console
+  199:20  warning  Unexpected console statement   no-console
+  208:20  warning  Unexpected console statement   no-console
+  217:20  warning  Unexpected console statement   no-console
+  237:20  warning  Unexpected console statement   no-console
+  251:20  warning  Unexpected console statement   no-console
+  415:22  warning  'e' is defined but never used  no-unused-vars
+  418:20  warning  Unexpected console statement   no-console
+  429:22  warning  'e' is defined but never used  no-unused-vars
+  433:20  warning  Unexpected console statement   no-console
+
+/app/js/Services/JulesService.js
+   80:21  warning  Unexpected console statement  no-console
+   98:17  warning  Unexpected console statement  no-console
+  232:35  warning  Unexpected console statement  no-console
+  240:21  warning  Unexpected console statement  no-console
+
+/app/js/UI/Clipboard/clipboard-utils.js
+  23:17  warning  Unexpected console statement  no-console
+  39:13  warning  Unexpected console statement  no-console
+
+/app/js/UI/Clipboard/clipboard-utils.test.js
+  4:7  warning  'fs' is assigned a value but never used    no-unused-vars
+  5:7  warning  'path' is assigned a value but never used  no-unused-vars
+
+/app/js/UI/Toast/ToastNotification.test.js
+  4:7   warning  'fs' is assigned a value but never used       no-unused-vars
+  5:7   warning  'path' is assigned a value but never used     no-unused-vars
+  6:28  warning  'waitFor' is assigned a value but never used  no-unused-vars
+
+/app/js/Utils/download-utils.js
+  6:7  warning  'DownloadUtils' is defined but never used  no-unused-vars
+
+/app/js/Utils/download-utils.test.js
+  16:3  warning  Unexpected console statement  no-console
+
+/app/js/Utils/prompt-parser.js
+  79:7  warning  Unexpected console statement  no-console
+
+/app/js/Utils/prompt-parser.test.js
+  109:11  warning  'rawText' is assigned a value but never used  no-unused-vars
+
+/app/js/Utils/storage-utils.js
+  27:13  warning  Unexpected console statement       no-console
+  48:13  warning  Unexpected console statement       no-console
+  63:18  warning  'error' is defined but never used  no-unused-vars
+  79:13  warning  Unexpected console statement       no-console
+
+/app/js/Utils/test_lint.js
+  15:3  warning  Unexpected console statement  no-console
+
+/app/js/core/RosterApp.js
+   61:17  warning  Unexpected console statement  no-console
+   65:17  warning  Unexpected console statement  no-console
+  603:25  warning  Unexpected console statement  no-console
+
+/app/js/core/RosterApp.test.js
+  2:7  warning  'fs' is assigned a value but never used    no-unused-vars
+  3:7  warning  'path' is assigned a value but never used  no-unused-vars
+
+✖ 80 problems (0 errors, 80 warnings)
