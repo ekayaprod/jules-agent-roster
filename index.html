@@ -426,8 +426,10 @@
       .modal-input:focus-visible { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
 
       /* UTILS */
-      .pin-btn { position: absolute; z-index: 2; right: 0; top: 0; font-size: var(--text-lg); line-height: var(--leading-none); transition: all 0.2s; opacity: 0.6; filter: grayscale(1); min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; color: var(--text-secondary); padding: 0; cursor: pointer; }
+      .pin-btn { position: absolute; z-index: 2; right: 0; top: 0; font-size: var(--text-lg); line-height: var(--leading-none); transition: all 0.2s; opacity: 0.6; filter: grayscale(1); min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; color: var(--text-secondary); padding: 0; cursor: pointer; border-radius: 0.5rem; }
       .pin-btn.pinned { opacity: 1; filter: grayscale(0); transform: rotate(15deg); color: var(--text-primary); }
+      .pin-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; opacity: 1; }
+      .pin-btn:hover { opacity: 1; filter: grayscale(0); }
 
       .fusion-quick-container { display: flex; flex-direction: column; gap: 0.5rem; border-top: 1px dashed var(--border); padding-top: 0.75rem; margin-top: auto; }
       .fusion-quick-label { font-size: var(--text-3xs); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-family: -apple-system, sans-serif; font-weight: var(--weight-semibold); }
