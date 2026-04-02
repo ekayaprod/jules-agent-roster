@@ -202,7 +202,7 @@ class JulesManager {
             } else {
                 picker.innerHTML = `<option value="">${originalText}</option>`;
             }
-        } catch (err) {
+        } catch {
             picker.innerHTML = `<option value="">${originalText}</option>`;
             this.app.toast.show("Unable to connect to GitHub. Please verify your API key and try again.", true);
         } finally {
@@ -314,7 +314,6 @@ class JulesManager {
                 
                 repoSessions.push(s);
             }
-            const repoPath = FormatUtils.extractRepoPath(sourceName);
 
             const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
             if (fetchingIndicator) fetchingIndicator.remove();
@@ -469,7 +468,7 @@ class JulesManager {
             await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
             this.app.toast.show(`Session launched successfully.`, "success");
             await this._fetchAndRenderSessions(sourceName, terminal);
-        } catch (err) {
+        } catch {
             this.app.toast.show(`Could not launch the session. Please verify your API key has the correct permissions.`, "error");
             if (fetchingIndicator) fetchingIndicator.style.display = '';
         } finally {
