@@ -1,3 +1,4 @@
+const { BUTTON_STATES } = require("../constants/ui.js");
 /**
  * @jest-environment jsdom
  */
@@ -32,39 +33,39 @@ describe('DOMUtils', () => {
         });
 
         it('should do nothing if btn is not provided', () => {
-            expect(() => DOMUtils.setButtonState(null, 'ready', 'Test')).not.toThrow();
+            expect(() => DOMUtils.setButtonState(null, BUTTON_STATES.READY, 'Test')).not.toThrow();
         });
 
         it('should set loading state', () => {
-            DOMUtils.setButtonState(btn, 'loading', 'Loading...');
+            DOMUtils.setButtonState(btn, BUTTON_STATES.LOADING, 'Loading...');
             expect(btn.innerText).toBe('Loading...');
-            expect(btn.classList.contains('loading')).toBe(true);
+            expect(btn.classList.contains(BUTTON_STATES.LOADING)).toBe(true);
             expect(btn.disabled).toBe(true);
             expect(btn.getAttribute('aria-disabled')).toBe('true');
             expect(btn.getAttribute('aria-busy')).toBe('true');
         });
 
         it('should set error state', () => {
-            DOMUtils.setButtonState(btn, 'error', 'Error!');
+            DOMUtils.setButtonState(btn, BUTTON_STATES.ERROR, 'Error!');
             expect(btn.innerText).toBe('Error!');
-            expect(btn.classList.contains('error')).toBe(true);
+            expect(btn.classList.contains(BUTTON_STATES.ERROR)).toBe(true);
             expect(btn.disabled).toBe(false);
             expect(btn.getAttribute('aria-disabled')).toBe('false');
             expect(btn.getAttribute('aria-busy')).toBe('false');
         });
 
         it('should set ready state', () => {
-            DOMUtils.setButtonState(btn, 'ready', 'Ready');
+            DOMUtils.setButtonState(btn, BUTTON_STATES.READY, 'Ready');
             expect(btn.innerText).toBe('Ready');
-            expect(btn.classList.contains('loading')).toBe(false);
-            expect(btn.classList.contains('error')).toBe(false);
+            expect(btn.classList.contains(BUTTON_STATES.LOADING)).toBe(false);
+            expect(btn.classList.contains(BUTTON_STATES.ERROR)).toBe(false);
             expect(btn.disabled).toBe(false);
             expect(btn.getAttribute('aria-disabled')).toBe('false');
             expect(btn.getAttribute('aria-busy')).toBe('false');
         });
 
         it('should set disabled state', () => {
-            DOMUtils.setButtonState(btn, 'disabled', 'Disabled');
+            DOMUtils.setButtonState(btn, BUTTON_STATES.DISABLED, 'Disabled');
             expect(btn.innerText).toBe('Disabled');
             expect(btn.disabled).toBe(true);
             expect(btn.getAttribute('aria-disabled')).toBe('true');
