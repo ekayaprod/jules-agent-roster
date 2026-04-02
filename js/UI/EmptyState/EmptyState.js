@@ -43,7 +43,7 @@ class EmptyState {
     }
 
     const titleEl = document.createElement("p");
-    titleEl.className = "empty-title";
+    titleEl.className = "empty-title-mutated";
     titleEl.textContent = title;
     container.appendChild(titleEl);
 
