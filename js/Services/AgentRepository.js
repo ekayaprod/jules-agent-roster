@@ -197,6 +197,11 @@ class AgentRepository {
             if (agent && typeof agent.category === "string") {
                 normalizedCategory = agent.category.toLowerCase();
             }
+
+            if (agent && agent.tier === "Plus") {
+                normalizedCategory = "plus";
+            }
+
             const isValid =
                 agent &&
                 typeof agent.name === "string" &&

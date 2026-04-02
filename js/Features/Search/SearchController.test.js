@@ -344,6 +344,13 @@ describe('searchWorker Worker Script Boundaries', () => {
         jest.isolateModules(() => {
             require('./SearchWorker.js');
         });
+
+        if (!workerSelf.onmessage && global.self.onmessage) {
+            workerSelf.onmessage = global.self.onmessage;
+        }
+
+        // JSDOM overrides global.self.postMessage, breaking our mock. Restore it.
+        global.self.postMessage = postMessageMock;
     });
 
     afterEach(() => {

@@ -15,12 +15,12 @@ const RarityEngine = (function() {
     function getSuperDomain(agent) {
         if (!agent) return "Unknown";
         if (agent.name === "Scavenger") return "Destructive";
-        if (["Bolt+", "Palette+", "Sentinel+"].includes(agent.name)) return "Plus";
+        if (agent.tier === "Plus") return "Plus";
 
         // Exclude Scavenger which is caught above
         if (["testing", "hygiene", "security"].includes(agent.category)) return "Integrity";
-        if (["ux", "docs", "strategy"].includes(agent.category)) return "Visible";
-        if (["architecture", "operations", "performance"].includes(agent.category)) return "Invisible";
+        if (["ux", "documentation", "strategy"].includes(agent.category)) return "Visible";
+        if (["architecture", "operations", "performance", "refactoring", "meta", "core"].includes(agent.category)) return "Invisible";
 
         return "Unknown";
     }

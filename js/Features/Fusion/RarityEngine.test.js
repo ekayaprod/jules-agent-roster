@@ -12,9 +12,9 @@ describe('RarityEngine', () => {
         });
 
         it('returns "Plus" for Bolt+, Palette+, Sentinel+', () => {
-            expect(RarityEngine.getSuperDomain({ name: 'Bolt+' })).toBe('Plus');
-            expect(RarityEngine.getSuperDomain({ name: 'Palette+' })).toBe('Plus');
-            expect(RarityEngine.getSuperDomain({ name: 'Sentinel+' })).toBe('Plus');
+            expect(RarityEngine.getSuperDomain({ name: 'Bolt+', tier: 'Plus' })).toBe('Plus');
+            expect(RarityEngine.getSuperDomain({ name: 'Palette+', tier: 'Plus' })).toBe('Plus');
+            expect(RarityEngine.getSuperDomain({ name: 'Sentinel+', tier: 'Plus' })).toBe('Plus');
         });
 
         it('returns "Integrity" for testing, hygiene, security categories', () => {
@@ -25,7 +25,7 @@ describe('RarityEngine', () => {
 
         it('returns "Visible" for ux, docs, strategy categories', () => {
             expect(RarityEngine.getSuperDomain({ category: 'ux' })).toBe('Visible');
-            expect(RarityEngine.getSuperDomain({ category: 'docs' })).toBe('Visible');
+            expect(RarityEngine.getSuperDomain({ category: 'documentation' })).toBe('Visible');
             expect(RarityEngine.getSuperDomain({ category: 'strategy' })).toBe('Visible');
         });
 
@@ -78,12 +78,12 @@ describe('RarityEngine', () => {
 
         it('returns "Rare" for Full-Stack Bridge: Visible + Invisible', () => {
             expect(RarityEngine.calculateRarity({ name: 'I', category: 'ux' }, { name: 'J', category: 'architecture' })).toBe('Rare');
-            expect(RarityEngine.calculateRarity({ name: 'K', category: 'operations' }, { name: 'L', category: 'docs' })).toBe('Rare');
+            expect(RarityEngine.calculateRarity({ name: 'K', category: 'operations' }, { name: 'L', category: 'documentation' })).toBe('Rare');
         });
 
         describe('Plus interactions', () => {
             it('returns "Common" for Plus + Plus (Different)', () => {
-                expect(RarityEngine.calculateRarity({ name: 'Bolt+' }, { name: 'Palette+' })).toBe('Common');
+                expect(RarityEngine.calculateRarity({ name: 'Bolt+', tier: 'Plus' }, { name: 'Palette+', tier: 'Plus' })).toBe('Common');
             });
 
             it('returns "Uncommon" for Plus Agent with invalid name and unhandled Domain', () => {
@@ -99,15 +99,15 @@ describe('RarityEngine', () => {
             });
 
             it('returns "Common" for Plus Affinity: Plus + Matching Domain', () => {
-                expect(RarityEngine.calculateRarity({ name: 'Bolt+' }, { name: 'A', category: 'architecture' })).toBe('Common'); // Bolt+ matches Invisible
-                expect(RarityEngine.calculateRarity({ name: 'B', category: 'architecture' }, { name: 'Bolt+' })).toBe('Common');
-                expect(RarityEngine.calculateRarity({ name: 'Palette+' }, { name: 'C', category: 'ux' })).toBe('Common'); // Palette+ matches Visible
-                expect(RarityEngine.calculateRarity({ name: 'Sentinel+' }, { name: 'D', category: 'testing' })).toBe('Common'); // Sentinel+ matches Integrity
+                expect(RarityEngine.calculateRarity({ name: 'Bolt+', tier: 'Plus' }, { name: 'A', category: 'architecture' })).toBe('Common'); // Bolt+ matches Invisible
+                expect(RarityEngine.calculateRarity({ name: 'B', category: 'architecture' }, { name: 'Bolt+', tier: 'Plus' })).toBe('Common');
+                expect(RarityEngine.calculateRarity({ name: 'Palette+', tier: 'Plus' }, { name: 'C', category: 'ux' })).toBe('Common'); // Palette+ matches Visible
+                expect(RarityEngine.calculateRarity({ name: 'Sentinel+', tier: 'Plus' }, { name: 'D', category: 'testing' })).toBe('Common'); // Sentinel+ matches Integrity
             });
 
             it('returns "Uncommon" for Plus Bridge: Plus + Unmatched Domain', () => {
-                expect(RarityEngine.calculateRarity({ name: 'Bolt+' }, { name: 'E', category: 'ux' })).toBe('Uncommon'); // Bolt+ (Invisible) + Visible
-                expect(RarityEngine.calculateRarity({ name: 'F', category: 'testing' }, { name: 'Bolt+' })).toBe('Uncommon'); // Integrity + Bolt+ (Invisible)
+                expect(RarityEngine.calculateRarity({ name: 'Bolt+', tier: 'Plus' }, { name: 'E', category: 'ux' })).toBe('Uncommon'); // Bolt+ (Invisible) + Visible
+                expect(RarityEngine.calculateRarity({ name: 'F', category: 'testing' }, { name: 'Bolt+', tier: 'Plus' })).toBe('Uncommon'); // Integrity + Bolt+ (Invisible)
             });
         });
 
@@ -116,7 +116,7 @@ describe('RarityEngine', () => {
         });
 
         it('returns "Uncommon" for Frontend Synergy: Visible + Visible', () => {
-            expect(RarityEngine.calculateRarity({ name: 'A1', category: 'ux' }, { name: 'A2', category: 'docs' })).toBe('Uncommon');
+            expect(RarityEngine.calculateRarity({ name: 'A1', category: 'ux' }, { name: 'A2', category: 'documentation' })).toBe('Uncommon');
         });
 
         it('returns "Uncommon" for Integrity Synergy: Integrity + Integrity', () => {
@@ -140,14 +140,14 @@ describe('RarityEngine', () => {
         });
 
         it('returns "12. Plus Glitch" or "13. Core Glitch" for identically named agents', () => {
-            expect(RarityEngine.getFusionDomain({ name: 'Bolt+' }, { name: 'Bolt+' })).toBe('12. Plus Glitch');
+            expect(RarityEngine.getFusionDomain({ name: 'Bolt+', tier: 'Plus' }, { name: 'Bolt+', tier: 'Plus' })).toBe('12. Plus Glitch');
             expect(RarityEngine.getFusionDomain({ name: 'Agent1' }, { name: 'Agent1' })).toBe('13. Core Glitch');
         });
 
         it('returns "10. Plus Paradox" or "11. Core Paradox" when Scavenger is combined', () => {
             // Plus Paradox
-            expect(RarityEngine.getFusionDomain({ name: 'Scavenger' }, { name: 'Bolt+' })).toBe('10. Plus Paradox');
-            expect(RarityEngine.getFusionDomain({ name: 'Palette+' }, { name: 'Scavenger' })).toBe('10. Plus Paradox');
+            expect(RarityEngine.getFusionDomain({ name: 'Scavenger' }, { name: 'Bolt+', tier: 'Plus' })).toBe('10. Plus Paradox');
+            expect(RarityEngine.getFusionDomain({ name: 'Palette+', tier: 'Plus' }, { name: 'Scavenger' })).toBe('10. Plus Paradox');
             // Core Paradox
             expect(RarityEngine.getFusionDomain({ name: 'Scavenger' }, { name: 'Architect' })).toBe('11. Core Paradox');
             expect(RarityEngine.getFusionDomain({ name: 'Agent1' }, { name: 'Scavenger' })).toBe('11. Core Paradox');
@@ -169,16 +169,16 @@ describe('RarityEngine', () => {
 
         describe('Plus domains', () => {
             it('returns "1. Base Synthesis" for Plus + Plus', () => {
-                expect(RarityEngine.getFusionDomain({ name: 'Bolt+' }, { name: 'Palette+' })).toBe('1. Base Synthesis');
+                expect(RarityEngine.getFusionDomain({ name: 'Bolt+', tier: 'Plus' }, { name: 'Palette+', tier: 'Plus' })).toBe('1. Base Synthesis');
             });
 
             it('returns "2. Plus Affinity" for Plus + Matching Domain', () => {
-                expect(RarityEngine.getFusionDomain({ name: 'Bolt+' }, { name: 'A', category: 'architecture' })).toBe('2. Plus Affinity');
-                expect(RarityEngine.getFusionDomain({ name: 'B', category: 'ux' }, { name: 'Palette+' })).toBe('2. Plus Affinity');
+                expect(RarityEngine.getFusionDomain({ name: 'Bolt+', tier: 'Plus' }, { name: 'A', category: 'architecture' })).toBe('2. Plus Affinity');
+                expect(RarityEngine.getFusionDomain({ name: 'B', category: 'ux' }, { name: 'Palette+', tier: 'Plus' })).toBe('2. Plus Affinity');
             });
 
             it('returns "4. Plus Bridge" for Plus + Unmatched Domain', () => {
-                expect(RarityEngine.getFusionDomain({ name: 'Bolt+' }, { name: 'A', category: 'ux' })).toBe('4. Plus Bridge');
+                expect(RarityEngine.getFusionDomain({ name: 'Bolt+', tier: 'Plus' }, { name: 'A', category: 'ux' })).toBe('4. Plus Bridge');
             });
         });
 
@@ -187,7 +187,7 @@ describe('RarityEngine', () => {
         });
 
         it('returns "5. Frontend Synergy" for Visible + Visible', () => {
-            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'ux' }, { name: 'B', category: 'docs' })).toBe('5. Frontend Synergy');
+            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'ux' }, { name: 'B', category: 'documentation' })).toBe('5. Frontend Synergy');
         });
 
         it('returns "7. Integrity Synergy" for Integrity + Integrity', () => {
