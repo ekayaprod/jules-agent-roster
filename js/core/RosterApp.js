@@ -223,7 +223,7 @@ class RosterApp {
              let agent = AgentUtils.getCustomAgent(this.customAgents, key) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
              if (!agent) return;
 
-             const category = agent.category || "strategy";
+             const category = (agent.category || "strategy").toLowerCase();
              if (!categorizedAgents[category]) return;
              categorizedAgents[category].push({ agent, indexOrKey: key });
         });
@@ -463,7 +463,21 @@ class RosterApp {
 
           const isPinned = this.pinnedManager.togglePin(index);
 
-          // ⚡ Bolt+: Eliminated redundant DOM query and mutation; state is fully updated by the immediate this.renderAgents() call below.
+          const safeIndex = CSS.escape(String(index));
+          const existingPins = document.querySelectorAll(`[data-action="toggle-pin"][data-index="${safeIndex}"]`);
+          existingPins.forEach(pinBtn => {
+              if (isPinned) {
+                  pinBtn.classList.add('pinned');
+              } else {
+                  pinBtn.classList.remove('pinned');
+              }
+          });
+
+          const nav = this.elements["category-nav"];
+          if (nav && nav.classList.contains("search-active") && this.elements.searchInput) {
+              this.filterAgents(this.elements.searchInput.value);
+          }
+
           if (this._domNodeCache) this._domNodeCache.delete(String(index));
 
           this.renderAgents();
