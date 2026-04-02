@@ -475,7 +475,6 @@
         #testingGrid > *:first-child::before { content: "Testing"; }
         #operationsGrid > *:first-child::before { content: "Operations"; }
         #securityGrid > *:first-child::before { content: "Security"; }
-        #performanceGrid > *:first-child::before { content: "Performance"; }
       }
     </style>
   </head>
@@ -538,7 +537,6 @@
           <button class="clear-search-btn" id="clearBtn" aria-label="Clear search"><svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
         </div>
         <a href="#plus" class="nav-pill">Plus</a>
-        <a href="#core" class="nav-pill">Core</a>
         <a href="#architecture" class="nav-pill">Architecture</a>
         <a href="#hygiene" class="nav-pill">Hygiene</a>
         <a href="#strategy" class="nav-pill">Strategy</a>
@@ -547,9 +545,6 @@
         <a href="#testing" class="nav-pill">Testing</a>
         <a href="#operations" class="nav-pill">Operations</a>
         <a href="#security" class="nav-pill">Security</a>
-        <a href="#performance" class="nav-pill">Performance</a>
-        <a href="#refactoring" class="nav-pill">Refactoring</a>
-        <a href="#meta" class="nav-pill">Meta</a>
       </nav>
     </div>
 
@@ -568,8 +563,6 @@
     <main id="main">
       <h2 id="plus" class="section-header">Plus</h2>
       <div class="grid" id="plusGrid"></div>
-      <h2 id="core" class="section-header">Core</h2>
-      <div class="grid" id="coreGrid"></div>
       <h2 id="architecture" class="section-header">Architecture</h2>
       <div class="grid" id="architectureGrid"></div>
       <h2 id="hygiene" class="section-header">Hygiene</h2>
@@ -587,12 +580,6 @@
       <h2 id="security" class="section-header">Security</h2>
       <div class="grid" id="securityGrid"></div>
       <div style="flex-basis: 100%; height: 0;"></div>
-      <h2 id="performance" class="section-header">Performance</h2>
-      <div class="grid" id="performanceGrid"></div>
-      <h2 id="refactoring" class="section-header">Refactoring</h2>
-      <div class="grid" id="refactoringGrid"></div>
-      <h2 id="meta" class="section-header">Meta</h2>
-      <div class="grid" id="metaGrid"></div>
     </main>
 
     <!-- Settings Modal -->
@@ -776,8 +763,8 @@
           categoryNav: "#category-nav", main: "#main", navPills: ".nav-pill",
           sectionHeader: ".section-header", grid: ".grid", card: ".card"
         },
-        categories: { plus: "plusGrid", core: "coreGrid", architecture: "architectureGrid", hygiene: "hygieneGrid", strategy: "strategyGrid", ux: "uxGrid", docs: "docsGrid", testing: "testingGrid", operations: "operationsGrid", security: "securityGrid", performance: "performanceGrid", refactoring: "refactoringGrid", meta: "metaGrid" },
-        sectionMap: { plusGrid: "plus", coreGrid: "core", architectureGrid: "architecture", hygieneGrid: "hygiene", strategyGrid: "strategy", uxGrid: "ux", docsGrid: "docs", testingGrid: "testing", operationsGrid: "operations", securityGrid: "security", performanceGrid: "performance", refactoringGrid: "refactoring", metaGrid: "meta" }
+        categories: { plus: "plusGrid", architecture: "architectureGrid", hygiene: "hygieneGrid", strategy: "strategyGrid", ux: "uxGrid", docs: "docsGrid", testing: "testingGrid", operations: "operationsGrid", security: "securityGrid" },
+        sectionMap: { plusGrid: "plus", architectureGrid: "architecture", hygieneGrid: "hygiene", strategyGrid: "strategy", uxGrid: "ux", docsGrid: "docs", testingGrid: "testing", operationsGrid: "operations", securityGrid: "security" }
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/tabbable@6.2.0/dist/index.umd.js"></script>
