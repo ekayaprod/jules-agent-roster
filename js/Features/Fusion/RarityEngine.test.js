@@ -25,7 +25,7 @@ describe('RarityEngine', () => {
 
         it('returns "Visible" for ux, docs, strategy categories', () => {
             expect(RarityEngine.getSuperDomain({ category: 'ux' })).toBe('Visible');
-            expect(RarityEngine.getSuperDomain({ category: 'documentation' })).toBe('Visible');
+            expect(RarityEngine.getSuperDomain({ category: 'docs' })).toBe('Visible');
             expect(RarityEngine.getSuperDomain({ category: 'strategy' })).toBe('Visible');
         });
 
@@ -78,7 +78,7 @@ describe('RarityEngine', () => {
 
         it('returns "Rare" for Full-Stack Bridge: Visible + Invisible', () => {
             expect(RarityEngine.calculateRarity({ name: 'I', category: 'ux' }, { name: 'J', category: 'architecture' })).toBe('Rare');
-            expect(RarityEngine.calculateRarity({ name: 'K', category: 'operations' }, { name: 'L', category: 'documentation' })).toBe('Rare');
+            expect(RarityEngine.calculateRarity({ name: 'K', category: 'operations' }, { name: 'L', category: 'docs' })).toBe('Rare');
         });
 
         describe('Plus interactions', () => {
@@ -116,7 +116,7 @@ describe('RarityEngine', () => {
         });
 
         it('returns "Uncommon" for Frontend Synergy: Visible + Visible', () => {
-            expect(RarityEngine.calculateRarity({ name: 'A1', category: 'ux' }, { name: 'A2', category: 'documentation' })).toBe('Uncommon');
+            expect(RarityEngine.calculateRarity({ name: 'A1', category: 'ux' }, { name: 'A2', category: 'docs' })).toBe('Uncommon');
         });
 
         it('returns "Uncommon" for Integrity Synergy: Integrity + Integrity', () => {
@@ -187,7 +187,7 @@ describe('RarityEngine', () => {
         });
 
         it('returns "5. Frontend Synergy" for Visible + Visible', () => {
-            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'ux' }, { name: 'B', category: 'documentation' })).toBe('5. Frontend Synergy');
+            expect(RarityEngine.getFusionDomain({ name: 'A', category: 'ux' }, { name: 'B', category: 'docs' })).toBe('5. Frontend Synergy');
         });
 
         it('returns "7. Integrity Synergy" for Integrity + Integrity', () => {

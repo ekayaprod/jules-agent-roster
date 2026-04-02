@@ -19,7 +19,7 @@ const RarityEngine = (function() {
 
         // Exclude Scavenger which is caught above
         if (["testing", "hygiene", "security"].includes(agent.category)) return "Integrity";
-        if (["ux", "documentation", "strategy"].includes(agent.category)) return "Visible";
+        if (["ux", "docs", "strategy"].includes(agent.category)) return "Visible";
         if (["architecture", "operations", "performance", "refactoring", "meta", "core"].includes(agent.category)) return "Invisible";
 
         return "Unknown";

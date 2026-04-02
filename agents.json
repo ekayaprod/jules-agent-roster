@@ -103,7 +103,7 @@
     "emoji": "✍️",
     "short_description": "Illuminates complex undocumented logic by weaving precise language-native documentation into the code. It preserves institutional memory and explains the why behind obscure architectural hacks.",
     "tier": "Core",
-    "category": "documentation",
+    "category": "docs",
     "type": "",
     "role": "Context Historian"
   },
@@ -112,7 +112,7 @@
     "emoji": "📘",
     "short_description": "Synthesizes macro-documentation to perfectly reflect the true architectural state. It aggressively purges stale instructions while seamlessly adopting the repository's native lore and tone.",
     "tier": "Core",
-    "category": "documentation",
+    "category": "docs",
     "type": "",
     "role": "Readme Writer"
   },
@@ -139,7 +139,7 @@
     "emoji": "📣",
     "short_description": "Translates chaotic git noise and internal jargon into structured, user-facing release histories. It elevates architectural impact and crushes internal ticketing spam to keep users informed.",
     "tier": "Core",
-    "category": "documentation",
+    "category": "docs",
     "type": "",
     "role": "Release Broadcaster"
   },
