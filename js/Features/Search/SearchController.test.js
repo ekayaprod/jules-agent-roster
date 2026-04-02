@@ -24,7 +24,8 @@ global.DOMUtils = {
     setElementsDisplay: jest.fn()
 };
 
-global.AgentUtils = require('../../Utils/agent-utils');
+const { AgentUtils } = require('../../Utils');
+global.AgentUtils = AgentUtils;
 
 global.AgentCard = {
     create: jest.fn((agent, keyOrIndex, delay) => {

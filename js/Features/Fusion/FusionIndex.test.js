@@ -21,7 +21,8 @@ describe('FusionIndex', () => {
             extractIcon: jest.fn().mockReturnValue('❓')
         };
         global.FormatUtils = mockFormatUtils;
-        global.AgentUtils = require('../../Utils/agent-utils');
+        const { AgentUtils } = require('../../Utils');
+global.AgentUtils = AgentUtils;
 
         // Setup DOM
         document.body.innerHTML = '<div id="fusion-container"></div>';
