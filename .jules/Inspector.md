@@ -17,3 +17,7 @@
 ## Inspector — PinnedManager Type Coercion Bound
 **Edge Case:** `PinnedManager.js` lacked test coverage verifying the type coercion of numerical arrays loaded directly from localStorage via `StorageUtils`. This allowed arrays of integers like `[0, 1]` to populate the internal Set, causing the strict string-based `isPinned` and `togglePin` boundaries to evaluate to false and corrupt the collection.
 **Assertion:** Interrogated the initialization boundary by returning `[0, 1]` from the mocked `StorageUtils`, mathematically proving the `isPinned(0)` lookup fails natively before strict string coercion is implemented. Documented using `it.failing`.
+
+## Inspector — DownloadUtils Blob Bound
+**Edge Case:** The utility function `DownloadUtils.downloadTextFile` lacked bounded tests simulating environmental failures during text file export, explicitly omitting coverage for what happens if the global `Blob` constructor throws an exception.
+**Assertion:** Interrogated the boundaries by strictly mocking the `global.Blob` constructor to force an 'Out of memory' exception. Proved mathematically via Sabotage Check (mutating source code execution logic) that the native structure successfully aborts object URL initialization and bubble correctly, caught effectively by `.toThrow()`.
