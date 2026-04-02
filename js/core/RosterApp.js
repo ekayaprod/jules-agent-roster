@@ -237,7 +237,7 @@ class RosterApp {
 
              if (!agent) return;
 
-             const category = agent.category || "strategy";
+             const category = (agent.category || "strategy").toLowerCase();
              if (!categorizedAgents[category]) return;
              categorizedAgents[category].push({ agent, indexOrKey: key });
         });
@@ -483,18 +483,21 @@ class RosterApp {
 
           const isPinned = this.pinnedManager.togglePin(index);
 
-          // Explicitly synchronize all existing DOM instances across the interface
           const safeIndex = CSS.escape(String(index));
-          const instances = document.querySelectorAll(`button.pin-btn[data-index="${safeIndex}"]`);
-          instances.forEach(btn => {
+          const existingPins = document.querySelectorAll(`[data-action="toggle-pin"][data-index="${safeIndex}"]`);
+          existingPins.forEach(pinBtn => {
               if (isPinned) {
-                  btn.classList.add('pinned');
+                  pinBtn.classList.add('pinned');
               } else {
-                  btn.classList.remove('pinned');
+                  pinBtn.classList.remove('pinned');
               }
           });
 
-          // ⚡ Bolt+: Eliminated redundant DOM query and mutation; state is fully updated by the immediate this.renderAgents() call below.
+          const nav = this.elements["category-nav"];
+          if (nav && nav.classList.contains("search-active") && this.elements.searchInput) {
+              this.filterAgents(this.elements.searchInput.value);
+          }
+
           if (this._domNodeCache) this._domNodeCache.delete(String(index));
 
           this.renderAgents();
