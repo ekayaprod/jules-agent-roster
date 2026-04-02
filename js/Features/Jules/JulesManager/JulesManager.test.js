@@ -420,6 +420,38 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             jest.advanceTimersByTime(100); // coverage for setTimeout focus
         });
 
+        it('should bail early and not throw if modal is missing', () => {
+            // Remove modal to test early return branch
+            modal.remove();
+            manager.elements['julesInteractionModal'] = null;
+
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            expect(manager.activeModalSessionId).toBe('s123');
+            expect(modal.classList.contains('visible')).toBe(false); // Should not have been modified
+        });
+
+        it('should gracefully handle missing inner DOM elements', () => {
+            // Remove inner elements to test null-checks
+            emojiEl.remove();
+            nameEl.remove();
+            msgEl.remove();
+            inputField.remove();
+
+            manager.elements['interactionModalEmoji'] = null;
+            manager.elements['interactionModalAgent'] = null;
+            manager.elements['interactionModalMessage'] = null;
+            manager.elements['interactionModalInput'] = null;
+
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            expect(manager.activeModalSessionId).toBe('s123');
+            expect(modal.classList.contains('visible')).toBe(true);
+
+            // Should not throw on setTimeout focus if inputField is null
+            jest.advanceTimersByTime(100);
+        });
+
         it('should close modal on cancel button click', () => {
             manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             cancelBtn.click();
