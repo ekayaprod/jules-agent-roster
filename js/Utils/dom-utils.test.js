@@ -116,4 +116,27 @@ describe('DOMUtils', () => {
             expect(el3.style.display).toBe(''); // untouched
         });
     });
+
+    describe('createMarkdownPreBlock', () => {
+        it('should create a pre element with the given text content securely', () => {
+            const payload = '<script>alert("xss")</script>';
+            const el = DOMUtils.createMarkdownPreBlock(payload);
+
+            expect(el.tagName).toBe('PRE');
+            expect(el.className).toBe('markdown-raw details-content');
+            expect(el.style.whiteSpace).toBe('pre-wrap');
+            expect(el.style.wordBreak).toBe('break-word');
+            // Ensure exact text content is retained without executing HTML
+            expect(el.textContent).toBe(payload);
+            expect(el.innerHTML).not.toContain('<script>');
+        });
+
+        it('should handle null and undefined gracefully by converting to strings', () => {
+            const elNull = DOMUtils.createMarkdownPreBlock(null);
+            const elUndefined = DOMUtils.createMarkdownPreBlock(undefined);
+
+            expect(elNull.textContent).toBe('');
+            expect(elUndefined.textContent).toBe('');
+        });
+    });
 });
