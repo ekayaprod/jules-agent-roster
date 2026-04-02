@@ -221,6 +221,20 @@ class RosterApp {
              if (!isNaN(key)) return;
 
              let agent = AgentUtils.getCustomAgent(this.customAgents, key) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
+
+             // 🎧 FLOW: The Scaffold Realization.
+             // Rebuild the pinned fusion agent card from scratch if it is an unlocked dynamic fusion not present in the static maps.
+             if (!agent && this.fusionLab && this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked(key)) {
+                 const names = AgentUtils.splitFusionKey(key);
+                 if (names.length === 2) {
+                     const agentA = this.fusionLab.agentMap.get(names[0]);
+                     const agentB = this.fusionLab.agentMap.get(names[1]);
+                     if (agentA && agentB) {
+                         agent = this.fusionLab.compiler.fuse(agentA, agentB);
+                     }
+                 }
+             }
+
              if (!agent) return;
 
              const category = agent.category || "strategy";
