@@ -29,8 +29,7 @@ describe('PinnedManager', () => {
         });
 
         // THE BOUNDARY INTERROGATION: Explicitly asserts graceful type coercion when localStorage returns numerical arrays.
-        // Fails natively because PinnedManager does not cast numerical keys to strings during initialization.
-        it.failing('should strictly coerce numerical array values from localStorage into strings to prevent toggle mismatch', () => {
+        it('should strictly coerce numerical array values from localStorage into strings to prevent toggle mismatch', () => {
             const storedKeys = [0, 1];
             global.StorageUtils.getJsonArrayItem.mockReturnValueOnce(storedKeys);
             manager = new PinnedManager();

@@ -475,12 +475,35 @@ class RosterApp {
           const index = pinTarget.dataset.index;
           if (!index) return;
 
+          // Validate agent exists before pinning
+          let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
+          if (!agent) return;
+
           const isPinned = this.pinnedManager.togglePin(index);
+
+          // Explicitly synchronize all existing DOM instances across the interface
+          const safeIndex = CSS.escape(String(index));
+          const instances = document.querySelectorAll(`button.pin-btn[data-index="${safeIndex}"]`);
+          instances.forEach(btn => {
+              if (isPinned) {
+                  btn.classList.add('pinned');
+              } else {
+                  btn.classList.remove('pinned');
+              }
+          });
 
           // ⚡ Bolt+: Eliminated redundant DOM query and mutation; state is fully updated by the immediate this.renderAgents() call below.
           if (this._domNodeCache) this._domNodeCache.delete(String(index));
 
           this.renderAgents();
+
+          // Re-trigger search view if active
+          const searchInput = this.elements.searchInput;
+          if (searchInput && searchInput.value.trim() !== "") {
+              this.filterAgents(searchInput.value);
+          }
+
           this.showToast(isPinned ? "Pinned" : "Unpinned");
 
           if (this._cardHtmlCache) {
