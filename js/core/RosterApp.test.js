@@ -76,7 +76,7 @@ describe('RosterApp (Boundary Interrogation)', () => {
         document.body.appendChild(card);
         Object.defineProperty(evt, 'target', { value: target, writable: false });
 
-        document.dispatchEvent(evt);
+        document.dispatchEvent(new window.Event("click"));
 
         // Verify pinning logic triggered successfully
         expect(app.pinnedManager.getPinned()).toContain('0');
@@ -98,7 +98,7 @@ describe('RosterApp (Boundary Interrogation)', () => {
         document.body.appendChild(card);
         Object.defineProperty(evt, 'target', { value: target, writable: false });
 
-        document.dispatchEvent(evt);
+        document.dispatchEvent(new window.Event("click"));
 
         // Verification: togglePin should NOT be called, state shouldn't change
         expect(app.pinnedManager.getPinned()).not.toContain('999');
