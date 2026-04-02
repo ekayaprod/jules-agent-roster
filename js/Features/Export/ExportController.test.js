@@ -51,7 +51,8 @@ describe('ExportController', () => {
         btnMock = document.createElement('button');
         controller = new ExportController(appMock);
 
-        global.AgentUtils = require('../../Utils/agent-utils');
+        const { AgentUtils } = require('../../Utils');
+global.AgentUtils = AgentUtils;
 
         jest.clearAllMocks();
     });

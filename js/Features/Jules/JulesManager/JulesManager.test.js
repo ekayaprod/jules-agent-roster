@@ -420,6 +420,38 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             jest.advanceTimersByTime(100); // coverage for setTimeout focus
         });
 
+        it('should bail early and not throw if modal is missing', () => {
+            // Remove modal to test early return branch
+            modal.remove();
+            manager.elements['julesInteractionModal'] = null;
+
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            expect(manager.activeModalSessionId).toBe('s123');
+            expect(modal.classList.contains('visible')).toBe(false); // Should not have been modified
+        });
+
+        it('should gracefully handle missing inner DOM elements', () => {
+            // Remove inner elements to test null-checks
+            emojiEl.remove();
+            nameEl.remove();
+            msgEl.remove();
+            inputField.remove();
+
+            manager.elements['interactionModalEmoji'] = null;
+            manager.elements['interactionModalAgent'] = null;
+            manager.elements['interactionModalMessage'] = null;
+            manager.elements['interactionModalInput'] = null;
+
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            expect(manager.activeModalSessionId).toBe('s123');
+            expect(modal.classList.contains('visible')).toBe(true);
+
+            // Should not throw on setTimeout focus if inputField is null
+            jest.advanceTimersByTime(100);
+        });
+
         it('should close modal on cancel button click', () => {
             manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             cancelBtn.click();
@@ -1696,11 +1728,25 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             expect(modal.classList.contains('visible')).toBe(true);
         });
 
+        it('should handle missing merge PR button gracefully', () => {
+            manager.elements.mergePRBtn = null;
+            manager.modals._showPRModal(prMock, 'repo');
+            expect(titleEl.textContent).toBe('#123 Test PR');
+        });
+
+        it('should handle missing close PR button gracefully', () => {
+            manager.elements.closePRBtn = null;
+            manager.modals._showPRModal(prMock, 'repo');
+            expect(titleEl.textContent).toBe('#123 Test PR');
+        });
+
         it('should handle merge PR success', async () => {
             window.julesService.mergePullRequest.mockResolvedValue();
             manager.modals._showPRModal(prMock, 'repo');
 
-            await mergeBtn.onclick();
+            // Dispatch a true DOM click event
+            const event = new MouseEvent('click');
+            await mergeBtn.dispatchEvent(event);
 
             expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, "loading", "Merging...");
             expect(window.julesService.mergePullRequest).toHaveBeenCalledWith('repo', 123);
@@ -1713,7 +1759,8 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.mergePullRequest.mockRejectedValue(new Error('Merge conflict'));
             manager.modals._showPRModal(prMock, 'repo');
 
-            await mergeBtn.onclick();
+            const event = new MouseEvent('click');
+            await mergeBtn.dispatchEvent(event);
 
             expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, "ready", "Merge PR");
             expect(errorEl.textContent).toBe('Failed to merge PR: Merge conflict');
@@ -1724,7 +1771,8 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.closePullRequest.mockResolvedValue();
             manager.modals._showPRModal(prMock, 'repo');
 
-            await closePRBtn.onclick();
+            const event = new MouseEvent('click');
+            await closePRBtn.dispatchEvent(event);
 
             expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, "loading", "Closing...");
             expect(window.julesService.closePullRequest).toHaveBeenCalledWith('repo', 123);
@@ -1737,7 +1785,8 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.closePullRequest.mockRejectedValue(new Error('Close error'));
             manager.modals._showPRModal(prMock, 'repo');
 
-            await closePRBtn.onclick();
+            const event = new MouseEvent('click');
+            await closePRBtn.dispatchEvent(event);
 
             expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, "ready", "Close PR");
             expect(errorEl.textContent).toBe('Failed to close PR: Close error');
@@ -1751,10 +1800,12 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             manager.modals._showPRModal(prMock, 'repo');
 
-            await mergeBtn.onclick();
+            const mergeEvent = new MouseEvent('click');
+            await mergeBtn.dispatchEvent(mergeEvent);
             expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, "ready", "Merge PR");
 
-            await closePRBtn.onclick();
+            const closeEvent = new MouseEvent('click');
+            await closePRBtn.dispatchEvent(closeEvent);
             expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, "ready", "Close PR");
         });
     });

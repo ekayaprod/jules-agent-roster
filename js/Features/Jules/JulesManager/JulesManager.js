@@ -202,7 +202,7 @@ class JulesManager {
             } else {
                 picker.innerHTML = `<option value="">${originalText}</option>`;
             }
-        } catch (err) {
+        } catch {
             picker.innerHTML = `<option value="">${originalText}</option>`;
             this.app.toast.show("Unable to connect to GitHub. Please verify your API key and try again.", true);
         } finally {
@@ -314,7 +314,6 @@ class JulesManager {
                 
                 repoSessions.push(s);
             }
-            const repoPath = FormatUtils.extractRepoPath(sourceName);
 
             const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
             if (fetchingIndicator) fetchingIndicator.remove();
@@ -361,26 +360,40 @@ class JulesManager {
         // ⚡ ACCELERATE: Cache the agents list into a Map to eliminate redundant O(N) traversals inside the session loop.
         if (!this._agentMapCache) {
             this._agentMapCache = new Map();
+            const escapedNames = [];
+
             if (this.app.agents) {
                 for (let i = 0; i < this.app.agents.length; i++) {
                     const a = this.app.agents[i];
                     this._agentMapCache.set(a.name, a);
+                    if (a.name) escapedNames.push(a.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
                 }
             }
-        }
 
-        // Fast O(1) direct lookup, with a fallback for loose matches
-        let matchedAgent = this._agentMapCache.get(safeAgentName);
-        if (!matchedAgent && this.app.agents) {
-            matchedAgent = this.app.agents.find(a => safeAgentName.includes(a.name));
-        }
-
-        if (!matchedAgent && this.app.customAgents) {
-            // ⚡ ACCELERATE: Cache the flattened custom agents to eliminate redundant O(N) Object.values traversals inside the session loop.
-            if (!this._flatCustomsCache) {
-                this._flatCustomsCache = Object.values(this.app.customAgents);
+            if (this.app.customAgents) {
+                const customs = Object.values(this.app.customAgents);
+                for (let i = 0; i < customs.length; i++) {
+                    const a = customs[i];
+                    if (a.name) {
+                        this._agentMapCache.set(a.name, a);
+                        escapedNames.push(a.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+                    }
+                }
             }
-            matchedAgent = this._flatCustomsCache.find(a => a.name && safeAgentName.includes(a.name));
+
+            if (escapedNames.length > 0) {
+                escapedNames.sort((a, b) => b.length - a.length);
+                this._agentRegexCache = new RegExp(`(${escapedNames.join("|")})`);
+            }
+        }
+
+        // Fast O(1) direct lookup, with a fallback for loose regex matches
+        let matchedAgent = this._agentMapCache.get(safeAgentName);
+        if (!matchedAgent && this._agentRegexCache) {
+            const match = safeAgentName.match(this._agentRegexCache);
+            if (match) {
+                matchedAgent = this._agentMapCache.get(match[0]);
+            }
         }
 
         if (matchedAgent && matchedAgent.emoji) {
@@ -469,7 +482,7 @@ class JulesManager {
             await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
             this.app.toast.show(`Session launched successfully.`, "success");
             await this._fetchAndRenderSessions(sourceName, terminal);
-        } catch (err) {
+        } catch {
             this.app.toast.show(`Could not launch the session. Please verify your API key has the correct permissions.`, "error");
             if (fetchingIndicator) fetchingIndicator.style.display = '';
         } finally {

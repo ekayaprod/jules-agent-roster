@@ -213,26 +213,44 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         expect(fusionLab.clearError).toHaveBeenCalled();
     });
 
-    test('updateState handles all missing components', () => {
+    test('updateState sets button to Select Protocols and aria-disabled to true when both slots are empty', () => {
         fusionLab.state.slotA = null;
         fusionLab.state.slotB = null;
         fusionLab.updateState();
+        expect(mockElements.fuseBtn.setAttribute).toHaveBeenCalledWith("aria-disabled", "true");
         expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mockElements.fuseBtn, "ready", "Select Protocols");
+    });
 
+    test('updateState sets button to Select Agent A and aria-disabled to true when slotA is empty', () => {
         fusionLab.state.slotA = null;
         fusionLab.state.slotB = { name: 'B' };
         fusionLab.updateState();
+        expect(mockElements.fuseBtn.setAttribute).toHaveBeenCalledWith("aria-disabled", "true");
         expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mockElements.fuseBtn, "ready", "Select Agent A");
+    });
 
+    test('updateState sets button to Select Agent B and aria-disabled to true when slotB is empty', () => {
         fusionLab.state.slotA = { name: 'A' };
         fusionLab.state.slotB = null;
         fusionLab.updateState();
+        expect(mockElements.fuseBtn.setAttribute).toHaveBeenCalledWith("aria-disabled", "true");
         expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mockElements.fuseBtn, "ready", "Select Agent B");
+    });
 
+    test('updateState sets button to Ignite Fusion Protocol and aria-disabled to false when both slots are filled', () => {
         fusionLab.state.slotA = { name: 'A' };
         fusionLab.state.slotB = { name: 'B' };
         fusionLab.updateState();
+        expect(mockElements.fuseBtn.setAttribute).toHaveBeenCalledWith("aria-disabled", "false");
         expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mockElements.fuseBtn, "ready", "Ignite Fusion Protocol");
+    });
+
+    test('updateState handles missing fuseBtn gracefully', () => {
+        fusionLab.elements.fuseBtn = null;
+        fusionLab.state.slotA = { name: 'A' };
+        fusionLab.state.slotB = { name: 'B' };
+        // Should not throw
+        expect(() => fusionLab.updateState()).not.toThrow();
     });
 
     test('showError with missing slotA guides user to slotA', () => {

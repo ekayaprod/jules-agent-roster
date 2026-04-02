@@ -17,7 +17,7 @@ const PinnedManager = function() {
      */
     const init = () => {
         const storedKeys = StorageUtils.getJsonArrayItem(storageKey, "PINNED_LOAD_FAILED");
-        pinned = new Set(storedKeys || []);
+        pinned = new Set((storedKeys || []).map(String));
     };
 
     /**
