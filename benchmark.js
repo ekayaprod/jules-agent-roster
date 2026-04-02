@@ -330,9 +330,6 @@ const runBenchmark = async () => {
         "Agent 0,Agent 1": { name: "Fusion 1", prompt: "Fusion 1 Prompt", category: "strategy", role: "Fusion Protocol", tier: "Rare" }
     });
 
-    // Unlock a fusion to test index logic
-    roster.fusionLab.fusionIndex.unlock("Agent 0,Agent 1");
-
     // Call openPicker which now internally caches `pickerFuse` based on Pacesetter optimizations
     roster.fusionLab.picker.openPicker('slotA', null);
 
