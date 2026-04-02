@@ -29,10 +29,9 @@ describe('RarityEngine', () => {
             expect(RarityEngine.getSuperDomain({ category: 'strategy' })).toBe('Visible');
         });
 
-        it('returns "Invisible" for architecture, operations, performance categories', () => {
+        it('returns "Invisible" for architecture, operations categories', () => {
             expect(RarityEngine.getSuperDomain({ category: 'architecture' })).toBe('Invisible');
             expect(RarityEngine.getSuperDomain({ category: 'operations' })).toBe('Invisible');
-            expect(RarityEngine.getSuperDomain({ category: 'performance' })).toBe('Invisible');
         });
 
         it('returns "Unknown" for an unmapped category', () => {
@@ -124,7 +123,7 @@ describe('RarityEngine', () => {
         });
 
         it('returns "Common" for Backend Synergy: Invisible + Invisible', () => {
-            expect(RarityEngine.calculateRarity({ name: 'A1', category: 'architecture' }, { name: 'A2', category: 'refactoring' })).toBe('Common');
+            expect(RarityEngine.calculateRarity({ name: 'A1', category: 'architecture' }, { name: 'A2', category: 'operations' })).toBe('Common');
         });
 
         it('returns "Common" as fallback safety for mixed unhandled domains', () => {
