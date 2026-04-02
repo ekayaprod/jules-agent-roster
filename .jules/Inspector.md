@@ -17,3 +17,7 @@
 ## Inspector — PinnedManager Type Coercion Bound
 **Edge Case:** `PinnedManager.js` lacked test coverage verifying the type coercion of numerical arrays loaded directly from localStorage via `StorageUtils`. This allowed arrays of integers like `[0, 1]` to populate the internal Set, causing the strict string-based `isPinned` and `togglePin` boundaries to evaluate to false and corrupt the collection.
 **Assertion:** Interrogated the initialization boundary by returning `[0, 1]` from the mocked `StorageUtils`, mathematically proving the `isPinned(0)` lookup fails natively before strict string coercion is implemented. Documented using `it.failing`.
+
+## Inspector — DownloadUtils coverage
+**Edge Case:** The utility function `DownloadUtils.downloadTextFile` lacked line coverage because its test file evaluated the source code as a string instead of directly requiring the module.
+**Assertion:** Required the actual module in the test file to properly evaluate line coverage. Conducted a Sabotage Check by mutating the DOM insertion method from `appendChild` to `prepend`, mathematically proving the test catches the failure when the strict mocking expectations are violated.
