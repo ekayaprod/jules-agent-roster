@@ -27,6 +27,7 @@ describe('RosterApp (Boundary Interrogation)', () => {
 
         global.FormatUtils = FormatUtils;
         global.AgentUtils = AgentUtils;
+        global.PerformanceUtils = { debounce: (f) => f };
 
         global.CONFIG = { selectors: { toast: '#toast' }, cache: { rosterCacheTTL: 0 } };
 
@@ -43,6 +44,10 @@ describe('RosterApp (Boundary Interrogation)', () => {
         app = new RosterApp();
         app.renderAgents = jest.fn();
         app.showToast = jest.fn();
+        app.filterAgents = jest.fn();
+        app.elements = { searchInput: document.createElement('input') };
+        global.CSS = { escape: (str) => str };
+        dom.window.CSS = global.CSS;
 
         // Initialize state
         app.agents = [

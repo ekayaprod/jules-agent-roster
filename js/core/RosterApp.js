@@ -221,6 +221,20 @@ class RosterApp {
              if (!isNaN(key)) return;
 
              let agent = AgentUtils.getCustomAgent(this.customAgents, key) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
+
+             // 🎧 FLOW: The Scaffold Realization.
+             // Rebuild the pinned fusion agent card from scratch if it is an unlocked dynamic fusion not present in the static maps.
+             if (!agent && this.fusionLab && this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked(key)) {
+                 const names = AgentUtils.splitFusionKey(key);
+                 if (names.length === 2) {
+                     const agentA = this.fusionLab.agentMap.get(names[0]);
+                     const agentB = this.fusionLab.agentMap.get(names[1]);
+                     if (agentA && agentB) {
+                         agent = this.fusionLab.compiler.fuse(agentA, agentB);
+                     }
+                 }
+             }
+
              if (!agent) return;
 
              const category = (agent.category || "strategy").toLowerCase();
@@ -461,6 +475,11 @@ class RosterApp {
           const index = pinTarget.dataset.index;
           if (!index) return;
 
+          // Validate agent exists before pinning
+          let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
+          if (!agent) return;
+
           const isPinned = this.pinnedManager.togglePin(index);
 
           const safeIndex = CSS.escape(String(index));
@@ -481,6 +500,13 @@ class RosterApp {
           if (this._domNodeCache) this._domNodeCache.delete(String(index));
 
           this.renderAgents();
+
+          // Re-trigger search view if active
+          const searchInput = this.elements.searchInput;
+          if (searchInput && searchInput.value.trim() !== "") {
+              this.filterAgents(searchInput.value);
+          }
+
           this.showToast(isPinned ? "Pinned" : "Unpinned");
 
           if (this._cardHtmlCache) {
