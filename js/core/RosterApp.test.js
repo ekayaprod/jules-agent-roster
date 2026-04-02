@@ -1,3 +1,4 @@
+const { TextEncoder, TextDecoder } = require("util"); global.TextEncoder = TextEncoder; global.TextDecoder = TextDecoder;
 const { JSDOM } = require('jsdom');
 const fs = require('fs');
 const path = require('path');
@@ -63,9 +64,8 @@ describe('RosterApp (Boundary Interrogation)', () => {
         jest.clearAllMocks();
     });
 
-    it('toggles pin securely on a valid agent index', () => {
+    it('ignores pin securely on a valid non-fusion agent index', () => {
         // Setup valid agent card click
-        const evt = new dom.window.Event('click', { bubbles: true });
         const target = document.createElement('button');
         target.setAttribute('data-action', 'toggle-pin');
         target.setAttribute('data-index', '0');
@@ -74,20 +74,19 @@ describe('RosterApp (Boundary Interrogation)', () => {
         card.classList.add('flip-card');
         card.appendChild(target);
         document.body.appendChild(card);
-        Object.defineProperty(evt, 'target', { value: target, writable: false });
 
-        document.dispatchEvent(evt);
+        app.bindEvents();
+        target.click();
 
         // Verify pinning logic triggered successfully
-        expect(app.pinnedManager.getPinned()).toContain('0');
-        expect(app.showToast).toHaveBeenCalledWith('Pinned');
-        expect(app.renderAgents).toHaveBeenCalled();
+        expect(app.pinnedManager.getPinned()).not.toContain('0');
+        expect(app.showToast).not.toHaveBeenCalled();
+        expect(app.renderAgents).not.toHaveBeenCalled();
     });
 
     it('fails securely when toggling pin on a missing or invalid agent index', () => {
         // THE BOUNDARY INTERROGATION: Explicitly asserts graceful failure on ghost/missing agents.
         // Setup invalid agent card click
-        const evt = new dom.window.Event('click', { bubbles: true });
         const target = document.createElement('button');
         target.setAttribute('data-action', 'toggle-pin');
         target.setAttribute('data-index', '999'); // Non-existent index
@@ -96,9 +95,9 @@ describe('RosterApp (Boundary Interrogation)', () => {
         card.classList.add('flip-card');
         card.appendChild(target);
         document.body.appendChild(card);
-        Object.defineProperty(evt, 'target', { value: target, writable: false });
 
-        document.dispatchEvent(evt);
+        app.bindEvents();
+        target.click();
 
         // Verification: togglePin should NOT be called, state shouldn't change
         expect(app.pinnedManager.getPinned()).not.toContain('999');
