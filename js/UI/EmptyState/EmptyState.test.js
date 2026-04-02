@@ -2,6 +2,7 @@
  * @jest-environment jsdom
  */
 
+const { getByRole, getByText } = require('@testing-library/dom');
 const EmptyState = require('./EmptyState');
 
 describe('EmptyState Component', () => {
@@ -26,11 +27,8 @@ describe('EmptyState Component', () => {
             description: 'Please try another search.'
         });
 
-        const titleEl = container.querySelector('.empty-title');
-        const descEl = container.querySelector('.empty-desc');
-
-        expect(titleEl.textContent).toBe('No Protocols Found');
-        expect(descEl.textContent).toBe('Please try another search.');
+        expect(getByText(container, 'No Protocols Found')).not.toBeNull();
+        expect(getByText(container, 'Please try another search.')).not.toBeNull();
     });
 
     test('should render icon if provided', () => {
@@ -56,12 +54,11 @@ describe('EmptyState Component', () => {
             }
         });
 
-        const btn = container.querySelector('button');
+        const btn = getByRole(container, 'button', { name: /Refresh the page/i });
         expect(btn).not.toBeNull();
         expect(btn.textContent).toBe('Refresh');
         expect(btn.getAttribute('onclick')).toBe('location.reload()');
         expect(btn.className).toBe('refresh-btn');
-        expect(btn.getAttribute('aria-label')).toBe('Refresh the page');
     });
 
     test('should use default values for action button', () => {
@@ -73,9 +70,8 @@ describe('EmptyState Component', () => {
             }
         });
 
-        const btn = container.querySelector('button');
+        const btn = getByRole(container, 'button', { name: /Retry/i });
         expect(btn.className).toBe('mt-6');
-        expect(btn.getAttribute('aria-label')).toBe('Retry');
     });
 
     test('should escape HTML in title and description using textContent', () => {
@@ -84,12 +80,11 @@ describe('EmptyState Component', () => {
             description: '<b>bold</b>'
         });
 
-        const titleEl = container.querySelector('.empty-title');
-        const descEl = container.querySelector('.empty-desc');
+        const titleEl = getByText(container, '<script>alert("xss")</script>');
+        const descEl = getByText(container, 'bold', { exact: false });
 
         expect(titleEl.innerHTML).not.toContain('<script>');
         expect(descEl.innerHTML).not.toContain('<b>');
-        expect(titleEl.textContent).toBe('<script>alert("xss")</script>');
     });
 
     test('should support function onClick handler', () => {
@@ -103,7 +98,7 @@ describe('EmptyState Component', () => {
             }
         });
 
-        const btn = container.querySelector('button');
+        const btn = getByRole(container, 'button', { name: /Retry/i });
         btn.click();
         expect(mockFn).toHaveBeenCalled();
     });

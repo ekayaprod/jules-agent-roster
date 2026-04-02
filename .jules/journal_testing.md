@@ -1,0 +1,1 @@
+**Edge Case:** Upgraded brittle UI tests to semantic, user-centric accessibility locators. | **Assertion:** Replaced .querySelector with getByRole and getByText to eliminate the Glass Mirror, ensuring the test suite guards the actual user experience rather than fragile implementation details.
