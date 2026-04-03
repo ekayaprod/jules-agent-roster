@@ -1,3 +1,5 @@
+const { BUTTON_STATES } = require("../../constants/ui.js");
+global.BUTTON_STATES = BUTTON_STATES;
 global.AgentUtils = require('../../Utils/agent-utils.js');
 const FusionLab = require('./FusionLab');
 const FormatUtils = require('../../Utils/format-utils');
@@ -218,7 +220,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         fusionLab.state.slotB = null;
         fusionLab.updateState();
         expect(mockElements.fuseBtn.setAttribute).toHaveBeenCalledWith("aria-disabled", "true");
-        expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mockElements.fuseBtn, "ready", "Select Protocols");
+        expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mockElements.fuseBtn, "disabled", "Select Protocols");
     });
 
     test('updateState sets button to Select Agent A and aria-disabled to true when slotA is empty', () => {
@@ -226,7 +228,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         fusionLab.state.slotB = { name: 'B' };
         fusionLab.updateState();
         expect(mockElements.fuseBtn.setAttribute).toHaveBeenCalledWith("aria-disabled", "true");
-        expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mockElements.fuseBtn, "ready", "Select Agent A");
+        expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mockElements.fuseBtn, "disabled", "Select Agent A");
     });
 
     test('updateState sets button to Select Agent B and aria-disabled to true when slotB is empty', () => {
@@ -234,7 +236,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         fusionLab.state.slotB = null;
         fusionLab.updateState();
         expect(mockElements.fuseBtn.setAttribute).toHaveBeenCalledWith("aria-disabled", "true");
-        expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mockElements.fuseBtn, "ready", "Select Agent B");
+        expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mockElements.fuseBtn, "disabled", "Select Agent B");
     });
 
     test('updateState sets button to Ignite Fusion Protocol and aria-disabled to false when both slots are filled', () => {
