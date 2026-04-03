@@ -1,3 +1,1 @@
-## Master Forge — Autonomous Batch Run
-**Learning:** Processed the "G" batch of 5 agents (Gallerist, Gatekeeper, Glossary, Grammarian, Groundskeeper) adhering to the 8-part skeleton and track matrix requirements.
-**Action:** Generated Track E, B, H, E, and G protocols respectively.
+**Instability:** The Jest test runner dumped 35 lines of framework internals and babel transformer configuration suggestions. | **Fortification:** Extracted the failure into `ci-failure-summary.md` pointing exactly to `playwright/tests/fusion-lab.spec.ts` line 1 (`SyntaxError: Cannot use import statement outside a module`).
