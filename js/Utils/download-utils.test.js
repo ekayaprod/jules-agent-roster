@@ -129,4 +129,23 @@ describe('DownloadUtils', () => {
         expect(mockCreateObjectURL).toHaveBeenCalled();
         expect(mockAnchor.click).toHaveBeenCalled();
     });
+
+    it('fails securely when the Blob constructor throws an error (e.g. out of memory)', () => {
+        // THE BOUNDARY INTERROGATION: Explicitly asserts graceful failure when environment crashes
+        const OriginalBlob = global.Blob;
+        global.Blob = jest.fn(() => {
+            throw new Error('Out of memory');
+        });
+
+        try {
+            expect(() => {
+                DownloadUtils.downloadTextFile('some content', 'test.txt');
+            }).toThrow('Out of memory');
+        } finally {
+            // Restore global Blob securely even if assertion fails
+            global.Blob = OriginalBlob;
+        }
+
+        expect(mockCreateObjectURL).not.toHaveBeenCalled();
+    });
 });
