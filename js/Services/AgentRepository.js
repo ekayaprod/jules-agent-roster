@@ -1,3 +1,5 @@
+const NetworkUtils = typeof require !== 'undefined' ? require('../Utils/network-utils.js') : window.NetworkUtils;
+
 /**
  * Service class for fetching and validating agent data.
  * Handles the communication with the backend (file system) and ensures data integrity.
@@ -23,8 +25,8 @@ class AgentRepository {
     async fetchAgents() {
         try {
             const [rosterResponse, matrixResponse] = await Promise.all([
-                this.fetchWithRetry("./roster-payload.json"),
-                this.fetchWithRetry("./fusion_matrix.json").catch(() => null)
+                NetworkUtils.fetchWithRetry("./roster-payload.json", { throwOn404: false }),
+                NetworkUtils.fetchWithRetry("./fusion_matrix.json", { throwOn404: false }).catch(() => null)
             ]);
 
             const [payload, fusionMatrixData] = await Promise.all([
@@ -85,7 +87,7 @@ class AgentRepository {
      */
     async fetchPrompt(name, url, fallback) {
         try {
-            const res = await this.fetchWithRetry(url);
+            const res = await NetworkUtils.fetchWithRetry(url, { throwOn404: false });
             if (!res.ok) {
                 if (!url.includes("fusions")) {
                     console.warn(`Failed to load prompt for ${name}`);
@@ -101,51 +103,6 @@ class AgentRepository {
                 e
             );
             return fallback;
-        }
-    }
-
-    /**
-     * Fetches a resource with exponential backoff retry logic.
-     * @param {string} url - The URL to fetch.
-     * @param {RequestInit} [options={}] - Fetch options.
-     * @param {number} [retries=AgentRepository.MAX_RETRIES] - Number of retries.
-     * @param {number} [backoff=AgentRepository.DEFAULT_BACKOFF_MS] - Initial backoff delay in ms.
-     * @returns {Promise<Response>} The fetch response.
-     * @throws {Error} If all retries fail.
-     */
-    async fetchWithRetry(url, options = {}, retries = AgentRepository.MAX_RETRIES, backoff = AgentRepository.DEFAULT_BACKOFF_MS) {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), AgentRepository.REQUEST_TIMEOUT_MS);
-
-        try {
-            const response = await fetch(url, {
-                ...options,
-                signal: options.signal || controller.signal,
-            });
-
-            clearTimeout(timeoutId);
-
-            if (!response.ok) {
-                // Paramedic: Do not retry 404s, they are likely permanent
-                if (response.status === 404) {
-                    return response;
-                }
-                throw new Error("We couldn't reach the server. Please check your internet connection and try again.");
-            }
-            return response;
-        } catch (error) {
-            clearTimeout(timeoutId);
-            if (retries > 0) {
-                console.warn(`Retrying ${url} (${retries} left)...`);
-                await new Promise((resolve) => setTimeout(resolve, backoff));
-                return this.fetchWithRetry(
-                    url,
-                    options,
-                    retries - 1,
-                    backoff * 2,
-                );
-            }
-            throw error;
         }
     }
 

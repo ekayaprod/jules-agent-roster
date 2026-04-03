@@ -1,5 +1,7 @@
 global.AgentUtils = require('../Utils/agent-utils.js');
 const AgentRepository = require('./AgentRepository');
+const NetworkUtils = require('../Utils/network-utils.js');
+global.NetworkUtils = NetworkUtils;
 const REQUEST_TIMEOUT_MS = AgentRepository.REQUEST_TIMEOUT_MS || 10000;
 
 global.CONFIG = { categories: { 'architect': 'Architect', 'developer': 'Developer' } };
@@ -51,101 +53,6 @@ describe('AgentRepository', () => {
         });
     });
 
-    describe('fetchWithRetry', () => {
-        it('aborts and throws error if fetch takes longer than 10 seconds', async () => {
-            jest.useFakeTimers();
-
-            global.fetch.mockImplementation(async (url, options) => {
-                return new Promise((resolve, reject) => {
-                    options.signal.addEventListener('abort', () => {
-                        const err = new Error('AbortError');
-                        err.name = 'AbortError';
-                        reject(err);
-                    });
-                });
-            });
-
-            const fetchPromise = repo.fetchWithRetry('http://example.com', {}, 0); // 0 retries to prevent recursive looping for this test
-
-            // Advance timers to trigger the abort controller
-            jest.advanceTimersByTime(REQUEST_TIMEOUT_MS);
-
-            await expect(fetchPromise).rejects.toThrow("AbortError");
-
-            jest.useRealTimers();
-        });
-
-        it('returns response immediately on successful fetch', async () => {
-            const mockResponse = { ok: true, json: async () => ({}) };
-            global.fetch.mockResolvedValueOnce(mockResponse);
-
-            const result = await repo.fetchWithRetry('http://example.com');
-            expect(result).toBe(mockResponse);
-            expect(global.fetch).toHaveBeenCalledTimes(1);
-        });
-
-        it('does not retry and returns response directly on 404', async () => {
-            const mockResponse = { ok: false, status: 404 };
-            global.fetch.mockResolvedValueOnce(mockResponse);
-
-            const result = await repo.fetchWithRetry('http://example.com');
-            expect(result).toBe(mockResponse);
-            expect(global.fetch).toHaveBeenCalledTimes(1);
-            expect(console.warn).not.toHaveBeenCalled();
-        });
-
-        it('retries on non-404 failure and eventually succeeds', async () => {
-            const mockFail = { ok: false, status: 500 };
-            const mockSuccess = { ok: true };
-
-            global.fetch
-                .mockResolvedValueOnce(mockFail)
-                .mockResolvedValueOnce(mockFail)
-                .mockResolvedValueOnce(mockSuccess);
-
-            // Mock setTimeout directly since fakeTimers + await can be tricky to synchronize in tests
-            const originalSetTimeout = global.setTimeout;
-            global.setTimeout = jest.fn((cb) => cb());
-
-            const promise = repo.fetchWithRetry('http://example.com', {}, 3, 10);
-            const result = await promise;
-
-            expect(result).toBe(mockSuccess);
-            expect(global.fetch).toHaveBeenCalledTimes(3);
-            expect(console.warn).toHaveBeenCalledTimes(2);
-
-            global.setTimeout = originalSetTimeout;
-        });
-
-        it('exhausts retries and throws error', async () => {
-            global.fetch.mockRejectedValue(new Error("Network Failure"));
-
-            const originalSetTimeout = global.setTimeout;
-            global.setTimeout = jest.fn((cb) => cb());
-
-            const promise = repo.fetchWithRetry('http://example.com', {}, 2, 10);
-
-            await expect(promise).rejects.toThrow("Network Failure");
-            expect(global.fetch).toHaveBeenCalledTimes(3);
-
-            global.setTimeout = originalSetTimeout;
-        });
-
-        it('exhausts retries and throws custom server error on non-ok', async () => {
-            global.fetch.mockResolvedValue({ ok: false, status: 502 });
-
-            const originalSetTimeout = global.setTimeout;
-            global.setTimeout = jest.fn((cb) => cb());
-
-            const promise = repo.fetchWithRetry('http://example.com', {}, 1, 10);
-
-            await expect(promise).rejects.toThrow("We couldn't reach the server");
-            expect(global.fetch).toHaveBeenCalledTimes(2);
-
-            global.setTimeout = originalSetTimeout;
-        });
-    });
-
     describe('safeJsonParse', () => {
         it('parses valid json successfully', async () => {
             const mockResponse = { json: async () => ({ key: 'value' }) };
@@ -170,7 +77,7 @@ describe('AgentRepository', () => {
 
     describe('fetchPrompt', () => {
         it('returns parsed text on success', async () => {
-            repo.fetchWithRetry = jest.fn().mockResolvedValue({
+            global.NetworkUtils.fetchWithRetry = jest.fn().mockResolvedValue({
                 ok: true,
                 text: async () => 'prompt text'
             });
@@ -180,7 +87,7 @@ describe('AgentRepository', () => {
         });
 
         it('returns fallback and warns on non-ok standard prompt', async () => {
-            repo.fetchWithRetry = jest.fn().mockResolvedValue({
+            global.NetworkUtils.fetchWithRetry = jest.fn().mockResolvedValue({
                 ok: false
             });
 
@@ -190,7 +97,7 @@ describe('AgentRepository', () => {
         });
 
         it('returns fallback and avoids warn on non-ok custom prompt', async () => {
-            repo.fetchWithRetry = jest.fn().mockResolvedValue({
+            global.NetworkUtils.fetchWithRetry = jest.fn().mockResolvedValue({
                 ok: false
             });
 
@@ -201,7 +108,7 @@ describe('AgentRepository', () => {
 
         it('catches throw and returns fallback for standard prompt', async () => {
             const err = new Error('Network');
-            repo.fetchWithRetry = jest.fn().mockRejectedValue(err);
+            global.NetworkUtils.fetchWithRetry = jest.fn().mockRejectedValue(err);
 
             const res = await repo.fetchPrompt('AgentName', 'http://example.com/prompt.md', 'fallback');
             expect(res).toBe('fallback');
@@ -210,7 +117,7 @@ describe('AgentRepository', () => {
 
         it('catches throw and returns fallback for custom prompt', async () => {
             const err = new Error('Network');
-            repo.fetchWithRetry = jest.fn().mockRejectedValue(err);
+            global.NetworkUtils.fetchWithRetry = jest.fn().mockRejectedValue(err);
 
             const res = await repo.fetchPrompt('AgentName', 'http://example.com/fusions/prompt.md', 'fallback');
             expect(res).toBe('fallback');
@@ -334,7 +241,7 @@ describe('AgentRepository', () => {
         });
 
         it('fetchAgents executes and returns combined object', async () => {
-            repo.fetchWithRetry = jest.fn()
+            global.NetworkUtils.fetchWithRetry = jest.fn()
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => [
@@ -358,13 +265,13 @@ describe('AgentRepository', () => {
             expect(results.customAgents['Custom1'].name).toBe("Custom1");
             expect(Object.keys(results.fusionMatrix)).toHaveLength(1);
 
-            expect(repo.fetchWithRetry).toHaveBeenCalledWith("./roster-payload.json");
-            expect(repo.fetchWithRetry).toHaveBeenCalledWith("./fusion_matrix.json");
+            expect(global.NetworkUtils.fetchWithRetry).toHaveBeenCalledWith("./roster-payload.json", { throwOn404: false });
+            expect(global.NetworkUtils.fetchWithRetry).toHaveBeenCalledWith("./fusion_matrix.json", { throwOn404: false });
         });
 
         // 🕵️ INTERROGATE: Mocked infrastructure boundaries, concurrency stress, and negative assertions.
         it('fails securely or parses correctly when custom_agents.json lacks domain headers (flat structure)', async () => {
-            repo.fetchWithRetry = jest.fn()
+            global.NetworkUtils.fetchWithRetry = jest.fn()
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => [
@@ -386,12 +293,12 @@ describe('AgentRepository', () => {
         });
 
         it('fetchAgents throws on top-level network failure', async () => {
-            repo.fetchWithRetry = jest.fn().mockRejectedValue(new Error("Network Error"));
+            global.NetworkUtils.fetchWithRetry = jest.fn().mockRejectedValue(new Error("Network Error"));
             await expect(repo.fetchAgents()).rejects.toThrow("Network Error");
         });
 
         it('filters invalid custom agent gracefully via fetchAgents', async () => {
-            repo.fetchWithRetry = jest.fn()
+            global.NetworkUtils.fetchWithRetry = jest.fn()
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => [
@@ -437,7 +344,7 @@ describe('AgentRepository', () => {
         });
 
         it('🕵️ INTERROGATE: fails to parse flattened structure without domain categories', async () => {
-            repo.fetchWithRetry = jest.fn()
+            global.NetworkUtils.fetchWithRetry = jest.fn()
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => [
@@ -463,7 +370,7 @@ describe('AgentRepository', () => {
         });
 
         it('catches missing properties in validateCustomAgent (first responder missing desc logic)', async () => {
-            repo.fetchWithRetry = jest.fn()
+            global.NetworkUtils.fetchWithRetry = jest.fn()
                 .mockResolvedValueOnce({
                     ok: true,
                     json: async () => [
