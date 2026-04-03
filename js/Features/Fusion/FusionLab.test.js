@@ -253,6 +253,20 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         expect(() => fusionLab.updateState()).not.toThrow();
     });
 
+    test('showError sets button state and displays message correctly', () => {
+        fusionLab.showError("A test error message");
+
+        expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mockElements.fuseBtn, "error", "Ignite Fusion Protocol");
+        expect(mockElements.errorEl.hidden).toBe(false);
+        expect(mockElements.errorEl.setAttribute).toHaveBeenCalledWith("aria-live", "assertive");
+        expect(mockElements.textSpan.innerText).toBe("A test error message");
+    });
+
+    test('showError fails securely when elements are missing', () => {
+        fusionLab.elements = {}; // clear all elements
+        expect(() => fusionLab.showError("A test error message")).not.toThrow();
+    });
+
     test('showError with missing slotA guides user to slotA', () => {
         fusionLab.state.slotA = null;
         fusionLab.state.slotB = { name: 'B' };
