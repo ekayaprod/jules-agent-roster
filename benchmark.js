@@ -262,7 +262,7 @@ const runBenchmark = async () => {
     }
     roster.agents = mockAgents;
 
-    // Initialize Critical DOM Containers and attach to Body Mock
+    // Fix: Properly mock elements so appending results works and index gets tested
     const slotACard = getMockElement('slotACard');
     const slotAContent = createMockElement();
     slotAContent.classList.add('slot-content');
