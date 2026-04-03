@@ -191,7 +191,7 @@ class FusionLab {
         let msg = "Select Protocols";
         if (!this.state.slotA && this.state.slotB) msg = "Select Agent A";
         else if (this.state.slotA && !this.state.slotB) msg = "Select Agent B";
-        DOMUtils.setButtonState(fuseBtn, "ready", msg);
+        DOMUtils.setButtonState(fuseBtn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.DISABLED : "disabled", msg);
       } else {
         DOMUtils.setButtonState(fuseBtn, "ready", "Ignite Fusion Protocol");
       }
