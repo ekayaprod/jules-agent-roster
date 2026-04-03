@@ -408,6 +408,58 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             manager.modals._initInteractionModal();
         });
 
+        it('should show history modal with correct data', () => {
+            document.body.innerHTML += `
+                <div id="julesHistoryModal"></div>
+                <span id="historyModalEmoji"></span>
+                <span id="historyModalAgent"></span>
+                <span id="historyModalContent"></span>
+                <input id="historyModalInput" />
+            `;
+            const hModal = document.getElementById('julesHistoryModal');
+            const hEmojiEl = document.getElementById('historyModalEmoji');
+            const hNameEl = document.getElementById('historyModalAgent');
+            const hMsgEl = document.getElementById('historyModalContent');
+
+            // Force manager.getEl to look into DOM directly
+            manager.getEl = jest.fn((id) => document.getElementById(id));
+
+            manager.modals._showHistoryModal('s456', '👾', 'HistoryAgent');
+
+            expect(manager.activeModalSessionId).toBe('s456');
+            expect(hEmojiEl.textContent).toBe('👾');
+            expect(hNameEl.textContent).toBe('HistoryAgent');
+            expect(hMsgEl.innerHTML).toContain('Loading execution thread...');
+            expect(hModal.classList.contains('visible')).toBe(true);
+
+            jest.advanceTimersByTime(100);
+        });
+
+        it('should bail early and not throw if history modal is missing', () => {
+            manager.getEl = jest.fn((id) => null);
+            manager.modals._showHistoryModal('s456', '👾', 'HistoryAgent');
+            expect(manager.activeModalSessionId).toBe('s456');
+        });
+
+        it('should gracefully handle missing inner DOM elements for history modal', () => {
+            document.body.innerHTML += `
+                <div id="julesHistoryModal"></div>
+            `;
+            const hModal = document.getElementById('julesHistoryModal');
+
+            manager.getEl = jest.fn((id) => {
+                if (id === 'julesHistoryModal') return hModal;
+                return null;
+            });
+
+            manager.modals._showHistoryModal('s456', '👾', 'HistoryAgent');
+
+            expect(manager.activeModalSessionId).toBe('s456');
+            expect(hModal.classList.contains('visible')).toBe(true);
+
+            jest.advanceTimersByTime(100);
+        });
+
         it('should show interaction modal with correct data', () => {
             manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
