@@ -102,4 +102,79 @@ describe('FusionAnimation', () => {
         expect(overlay.classList.contains('active')).toBe(false);
         expect(callback).toHaveBeenCalled();
     });
+
+    test('runAnimation handles missing optional DOM elements', async () => {
+        document.body.innerHTML = `
+            <div id="fusionAnimationOverlay">
+                <div class="anim-icon left"></div>
+                <div class="anim-icon right"></div>
+            </div>
+            <button id="fuseBtn">Fuse</button>
+        `;
+        animation = FusionAnimation();
+
+        const callback = jest.fn();
+        const promise = animation.runAnimation({ emoji: 'A' }, { emoji: 'B' }, { tier: 'Rare' }, callback);
+        await jest.advanceTimersByTimeAsync(3500);
+        await promise;
+        expect(callback).toHaveBeenCalled();
+    });
+
+    test('runAnimation falls back to Common tier if result.tier is missing or unknown', async () => {
+        const callback = jest.fn();
+        const promise1 = animation.runAnimation({ emoji: 'A' }, { emoji: 'B' }, {}, callback);
+        await jest.advanceTimersByTimeAsync(3500);
+        await promise1;
+
+        const overlay = document.getElementById('fusionAnimationOverlay');
+        expect(overlay.classList.contains('tier-common')).toBe(true);
+
+        const callback2 = jest.fn();
+        const promise2 = animation.runAnimation({ emoji: 'A' }, { emoji: 'B' }, { tier: 'FakeTier' }, callback2);
+        await jest.advanceTimersByTimeAsync(3500);
+        await promise2;
+        expect(overlay.classList.contains('tier-faketier')).toBe(true);
+        const particlesContainer = document.querySelector('.anim-particles');
+        expect(particlesContainer.children.length).toBe(0); // Falls back to common config
+    });
+
+    test('runAnimation generates correct particle counts for different tiers', async () => {
+        const tiers = {
+            'Uncommon': 20,
+            'Rare': 40,
+            'Legendary': 300,
+            'Mythic': 500
+        };
+
+        for (const [tier, count] of Object.entries(tiers)) {
+            const promise = animation.runAnimation({ emoji: 'A' }, { emoji: 'B' }, { tier });
+            await jest.advanceTimersByTimeAsync(3500);
+            await promise;
+            const particlesContainer = document.querySelector('.anim-particles');
+            expect(particlesContainer.children.length).toBe(count);
+        }
+    });
+
+    test('runAnimation works without window.matchMedia', async () => {
+        const originalMatchMedia = window.matchMedia;
+        delete window.matchMedia;
+
+        const promise = animation.runAnimation({ emoji: 'A' }, { emoji: 'B' }, { tier: 'Common' });
+        await jest.advanceTimersByTimeAsync(3500);
+        await promise;
+
+        const overlay = document.getElementById('fusionAnimationOverlay');
+        expect(overlay.classList.contains('active')).toBe(false); // It removes active after 3500ms
+
+        window.matchMedia = originalMatchMedia;
+    });
+
+    test('runAnimation works without a callback', async () => {
+        const promise = animation.runAnimation({ emoji: 'A' }, { emoji: 'B' }, { tier: 'Common' });
+        await jest.advanceTimersByTimeAsync(3500);
+        await promise;
+
+        const overlay = document.getElementById('fusionAnimationOverlay');
+        expect(overlay.classList.contains('active')).toBe(false);
+    });
 });
