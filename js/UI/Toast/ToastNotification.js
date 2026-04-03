@@ -1,3 +1,4 @@
+const { TOAST_TYPES } = require("../../constants/ui.js");
 const DEFAULT_DURATION = 3000;
 const RESUME_DELAY = 2000;
 
@@ -50,7 +51,7 @@ class ToastNotification {
      * @returns {void}
      * @see ../../../docs/architecture/UI/Toast.md#Accessibility-Patterns
      */
-    show(message, type = 'success', duration = DEFAULT_DURATION) {
+    show(message, type = TOAST_TYPES.SUCCESS, duration = DEFAULT_DURATION) {
         if (this.timeout) {
             clearTimeout(this.timeout);
         }
@@ -86,7 +87,7 @@ class ToastNotification {
         this.element.classList.add(type);
 
         // Accessibility Management
-        if (type === 'error') {
+        if (type === TOAST_TYPES.ERROR) {
             this.element.setAttribute('role', 'alert');
             this.element.setAttribute('aria-live', 'assertive');
         } else {
