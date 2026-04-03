@@ -25,6 +25,10 @@
     "jsdom": "^24.1.3"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/playwright/"
+    ]
   }
 }
