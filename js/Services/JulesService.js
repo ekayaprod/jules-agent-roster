@@ -10,6 +10,9 @@ const DEFAULT_PAGE_SIZE = 50;
 if (typeof FormatUtils === 'undefined' && typeof require !== 'undefined') {
     global.FormatUtils = require('../Utils/format-utils.js');
 }
+if (typeof NetworkUtils === 'undefined' && typeof require !== 'undefined') {
+    global.NetworkUtils = require('../Utils/network-utils.js');
+}
 
 class JulesService {
     /**
@@ -55,55 +58,17 @@ class JulesService {
             'X-Goog-Api-Key': this.apiKey
         };
 
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-
         try {
-            const response = await fetch(url, {
+            const response = await NetworkUtils.fetchWithRetry(url, {
                 ...options,
-                headers: { ...headers, ...options.headers },
-                signal: controller.signal
-            });
+                headers: { ...headers, ...options.headers }
+            }, retries, backoff);
 
-            clearTimeout(timeoutId);
-
-            if (!response.ok) {
-                if (response.status >= 500) {
-                    throw new Error(`Server returned ${response.status}`);
-                }
-                const errorText = await response.text();
-                let errorMsg = `We encountered a server error. Please wait a moment and try again.`;
-                try {
-                    const errJson = JSON.parse(errorText);
-                    if (errJson.error?.message) errorMsg = errJson.error.message;
-                } catch(e) {
-                    console.warn("Failed to parse error JSON:", e);
-                }
-                throw new Error(errorMsg);
-            }
-
-            return response.json();
+            return await response.json();
         } catch (error) {
-            clearTimeout(timeoutId);
-
-            if (error.name === 'AbortError') {
-                throw new Error("The request timed out. Please check your connection and try again.");
+            if (error.message && error.message.startsWith('HTTP Error:')) {
+                 throw new Error(`We encountered a server error. Please wait a moment and try again.`);
             }
-
-            // Retry on network errors or 5xx server errors
-            const isServerError = error.message && error.message.startsWith('Server returned');
-            const isNetworkError = error.message === 'Network Error' || error.name === 'TypeError' || isServerError;
-
-            if (retries > 0 && isNetworkError) {
-                console.warn(`Retrying Jules API ${endpoint} (${retries} left)...`);
-                await new Promise((resolve) => setTimeout(resolve, backoff));
-                return this._fetch(endpoint, options, retries - 1, backoff * 2);
-            }
-
-            if (isServerError) {
-                throw new Error("We encountered a server error. Please wait a moment and try again.");
-            }
-
             throw error;
         }
     }

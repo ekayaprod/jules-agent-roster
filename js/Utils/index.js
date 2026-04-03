@@ -5,6 +5,7 @@ const FormatUtils = typeof require !== 'undefined' ? require('./format-utils.js'
 const PerformanceUtils = typeof require !== 'undefined' ? require('./performance-utils.js') : window.PerformanceUtils;
 const PromptParser = typeof require !== 'undefined' ? require('./prompt-parser.js') : window.PromptParser;
 const StorageUtils = typeof require !== 'undefined' ? require('./storage-utils.js') : window.StorageUtils;
+const NetworkUtils = typeof require !== 'undefined' ? require('./network-utils.js') : window.NetworkUtils;
 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
@@ -14,6 +15,7 @@ if (typeof module !== 'undefined' && module.exports) {
         FormatUtils,
         PerformanceUtils,
         PromptParser,
-        StorageUtils
+        StorageUtils,
+        NetworkUtils
     };
 }
