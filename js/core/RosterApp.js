@@ -158,7 +158,8 @@ class RosterApp {
       "searchInput", "clearBtn", "fusionLabSkeleton", "fusionLabContent", "clearSearchEmptyBtn", "julesRepoPicker",
       "julesTerminal", "masterDropdownBtn", "masterDropdownMenu", "masterCopyBtn",
       "masterDownloadCoreBtn", "masterCopyFusionsBtn", "masterDownloadFusionsBtn",
-      "searchModeContainer", "searchResultsGrid", "category-nav", "searchTriggerBtn"
+      "searchModeContainer", "searchResultsGrid", "category-nav", "searchTriggerBtn",
+      "downloadParentFusionsBtn"
     ];
     staticIds.forEach(id => {
       this.elements[id] = document.getElementById(id);
@@ -466,10 +467,28 @@ class RosterApp {
                   }
               }
 
+              const downloadBtn = document.getElementById("downloadParentFusionsBtn");
               if (listItems) {
                   contentArea.innerHTML = `<ul class="fusion-quick-list" style="padding: 0; margin: 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">${listItems}</ul>`;
+                  if (downloadBtn) {
+                      downloadBtn.style.display = "";
+                      downloadBtn.dataset.parentName = agent.name;
+                  }
                   modal.classList.add("visible");
+              } else if (downloadBtn) {
+                  downloadBtn.style.display = "none";
               }
+          }
+          return;
+      }
+
+      const downloadParentFusionsBtn = e.target.closest('#downloadParentFusionsBtn');
+      if (downloadParentFusionsBtn) {
+          e.stopPropagation();
+          e.preventDefault();
+          const parentName = downloadParentFusionsBtn.dataset.parentName;
+          if (parentName && this.exportController) {
+              this.exportController.downloadCustomAgentsByParent(parentName, downloadParentFusionsBtn);
           }
           return;
       }
