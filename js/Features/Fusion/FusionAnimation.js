@@ -101,8 +101,8 @@ const FusionAnimation = function () {
       particlesContainer.appendChild(fragment);
     }
 
-    iconLeft.textContent = agentA.emoji;
-    iconRight.textContent = agentB.emoji;
+    iconLeft.innerHTML = FormatUtils.escapeHTML(agentA.emoji);
+    iconRight.innerHTML = FormatUtils.escapeHTML(agentB.emoji);
 
     const icon = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
     const displayName = FormatUtils.extractDisplayName(result);
