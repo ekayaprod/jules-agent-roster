@@ -220,6 +220,43 @@ describe('TerminalPolling', () => {
         expect(mockManager.julesPollingIntervals['session123']).toBeDefined();
     });
 
+    it('should format empty history and pass "No history available." to createMarkdownPreBlock', async () => {
+        jest.useFakeTimers();
+
+        const activities = [];
+        window.julesService.getActivities.mockResolvedValue({ activities });
+
+        mockManager.activeModalSessionId = 'session123';
+        const mockContentEl = document.createElement('div');
+        mockManager.getEl.mockReturnValue(mockContentEl);
+
+        polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
+
+        jest.advanceTimersByTime(10);
+        await Promise.resolve(); // flush promises
+        await Promise.resolve();
+
+        expect(global.DOMUtils.createMarkdownPreBlock).toHaveBeenCalledWith('No history available.');
+    });
+
+    it('should handle error missing message with Unknown error', async () => {
+        jest.useFakeTimers();
+
+        const activities = [
+            { error: { } }
+        ];
+        window.julesService.getActivities.mockResolvedValue({ activities });
+
+        polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
+
+        jest.advanceTimersByTime(10);
+        await Promise.resolve(); // flush promises
+        await Promise.resolve();
+
+        const statusSpan = mockBlock.querySelector('#status-session123');
+        expect(statusSpan.innerHTML).toContain('Exception: Unknown error');
+    });
+
     it('should format long text and handle missing historyModalContent element', async () => {
         jest.useFakeTimers();
 
