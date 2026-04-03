@@ -37,6 +37,33 @@ class ExportController {
    * @returns {void}
    * @see ../../../docs/architecture/Features/Export/ExportController.md#download-operations for blob execution details.
    */
+  /**
+   * Compiles and triggers a file download of all valid custom user agents
+   * that contain the given parent agent's name in their fusion key.
+   * @param {string} parentName - The name of the parent agent to filter by.
+   * @param {HTMLElement} btn - The DOM element triggering the action.
+   */
+  downloadCustomAgentsByParent(parentName, btn) {
+    if (!parentName) return;
+    const header = FormatUtils.CUSTOM_ROSTER_HEADER;
+
+    const allCustomAgents = this.app.customAgents || {};
+    const validCustomAgents = [];
+
+    for (const key in allCustomAgents) {
+      if (Object.prototype.hasOwnProperty.call(allCustomAgents, key)) {
+        if (key.includes(parentName)) {
+           const a = allCustomAgents[key];
+           if (a && a.prompt && a.prompt.length > 0) validCustomAgents.push(a);
+        }
+      }
+    }
+
+    if (validCustomAgents.length === 0) return this.app.toast.show("No unlocked fusions found for this agent.");
+    DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(validCustomAgents), `jules_custom_agents_${parentName.replace(/\s+/g, '_').toLowerCase()}.md`);
+    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
+  }
+
   downloadCustomAgents(btn) {
     const header = FormatUtils.CUSTOM_ROSTER_HEADER;
 
