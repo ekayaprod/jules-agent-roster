@@ -2,19 +2,7 @@
  * @jest-environment jsdom
  */
 
-const fs = require('fs');
-const path = require('path');
-
-// Load the source code using eval to test vanilla JS
-const sourcePath = path.resolve(__dirname, 'download-utils.js');
-const sourceCode = fs.readFileSync(sourcePath, 'utf8');
-// Evaluate in global context so DownloadUtils is defined globally
-let DownloadUtils;
-try {
-  DownloadUtils = new Function(sourceCode + '\nreturn DownloadUtils;')();
-} catch (e) {
-  console.error(e);
-}
+const DownloadUtils = require('./download-utils');
 
 describe('DownloadUtils', () => {
     let mockCreateObjectURL;
