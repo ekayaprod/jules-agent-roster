@@ -2,10 +2,6 @@
 **Edge Case:** The utility function `createMarkdownPreBlock` lacked bounded UI tests checking `textContent` injection. This created a potential structural failure point for malicious payloads if a developer accidentally switched to `innerHTML` or if nulls were incorrectly passed, which would render the string "null" literally.
 **Assertion:** Interrogated the boundaries by bombarding the function with an XSS `<script>` payload and `null`/`undefined` arguments. Proved mathematically via Sabotage Check (mutating source to use `innerHTML`) that the test catches the failure and strictly enforces the `textContent` boundary without executing DOM nodes.
 
-## Inspector — agent-utils coverage
-**Edge Case:** The utility functions `getFusionKey` and `splitFusionKey` lacked test coverage, which could cause silent failures in agent fusion relational mapping if null or untrimmed strings were provided.
-**Assertion:** Interrogated the boundaries by bombarding both functions with null arguments, empty spaces, and out-of-order arguments to mathematically prove structural string splitting and joining.
-
 ## Inspector — FusionLab DOM Init Bound
 **Edge Case:** `FusionLab.js` lines 23-90 lacked test coverage for explicit DOM element assignment and the execution of initialization procedures bridging external dependencies (`FusionIndex`, `AgentPicker`).
 **Assertion:** Generated a rigorous test suite simulating the full instantiation boundary via strict classes (`MockFusionCompiler`, etc.), and forced event triggers (`fuseBtn.click()`) to definitively verify correct internal state and interactions.
@@ -21,3 +17,12 @@
 ## Inspector — DownloadUtils Blob Bound
 **Edge Case:** The utility function `DownloadUtils.downloadTextFile` lacked bounded tests simulating environmental failures during text file export, explicitly omitting coverage for what happens if the global `Blob` constructor throws an exception.
 **Assertion:** Interrogated the boundaries by strictly mocking the `global.Blob` constructor to force an 'Out of memory' exception. Proved mathematically via Sabotage Check (mutating source code execution logic) that the native structure successfully aborts object URL initialization and bubble correctly, caught effectively by `.toThrow()`.
+## Inspector — EmptyState ICONS structural boundary
+**Edge Case:** The architectural component `EmptyState.ICONS` had 0% coverage, leaving the foundational SVG and HTML strings untested and susceptible to accidental deletion or corruption.
+**Assertion:** Interrogated the structural boundary by generating a new test suite that explicitly verifies the shape and substrings of the returned UI payload, and mathematically proved its resilience via a Sabotage Check that temporarily mutated the source to remove a critical icon.
+## Inspector — DownloadUtils coverage
+**Edge Case:** The utility function `DownloadUtils.downloadTextFile` lacked line coverage because its test file evaluated the source code as a string instead of directly requiring the module.
+**Assertion:** Required the actual module in the test file to properly evaluate line coverage. Conducted a Sabotage Check by mutating the DOM insertion method from `appendChild` to `prepend`, mathematically proving the test catches the failure when the strict mocking expectations are violated.
+## Inspector — TelemetryUtils Boundary Interrogation
+**Edge Case:** The utility class `TelemetryUtils` lacked test coverage. Its `dispatchEvent` method handles structured telemetry logs via `console.error`, creating a structural vulnerability if payloads were incorrectly formatted, properties were unexpectedly dropped, or null/missing arguments caused application crashes.
+**Assertion:** Interrogated the boundaries by bombarding the function with nulls, missing arguments, and raw Error objects to verify `error.message` extraction. Proved mathematically via Sabotage Check (mutating `console.error` to `console.log`) that the tests strictly enforce the exact structured JSON payloads and execution path.

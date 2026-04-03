@@ -1,3 +1,4 @@
+const { BUTTON_STATES } = require("../constants/ui.js");
 /**
  * Utility class for common DOM operations.
  * Centralizes duplicate UI logic such as generating CSS loading skeletons.
@@ -37,27 +38,27 @@ class DOMUtils {
     if (!btn) return;
 
     btn.innerText = text;
-    btn.classList.remove("loading", "error");
+    btn.classList.remove(BUTTON_STATES.LOADING, BUTTON_STATES.ERROR);
 
     switch (state) {
-      case "loading":
-        btn.classList.add("loading");
+      case BUTTON_STATES.LOADING:
+        btn.classList.add(BUTTON_STATES.LOADING);
         btn.disabled = true;
         btn.setAttribute("aria-disabled", "true");
         btn.setAttribute("aria-busy", "true");
         break;
-      case "error":
-        btn.classList.add("error");
+      case BUTTON_STATES.ERROR:
+        btn.classList.add(BUTTON_STATES.ERROR);
         btn.disabled = false;
         btn.setAttribute("aria-disabled", "false");
         btn.setAttribute("aria-busy", "false");
         break;
-      case "ready":
+      case BUTTON_STATES.READY:
         btn.disabled = false;
         btn.setAttribute("aria-disabled", "false");
         btn.setAttribute("aria-busy", "false");
         break;
-      case "disabled":
+      case BUTTON_STATES.DISABLED:
         btn.disabled = true;
         btn.setAttribute("aria-disabled", "true");
         btn.setAttribute("aria-busy", "false");
