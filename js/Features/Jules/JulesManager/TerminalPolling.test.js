@@ -65,6 +65,7 @@ describe('TerminalPolling', () => {
 
         const statusSpan = mockBlock.querySelector('#status-session123');
         expect(statusSpan.className).toBe('term-status status-waiting');
+        expect(statusSpan.innerHTML).toContain('⚠️ Response Needed (Click to view)');
         expect(statusSpan.onclick).not.toBeNull();
 
         // Simulate click
@@ -98,18 +99,28 @@ describe('TerminalPolling', () => {
 
     it('should handle completed state', () => {
         jest.useFakeTimers();
+        const originalClearInterval = global.clearInterval;
+        global.clearInterval = jest.fn();
+        mockManager.julesPollingIntervals['session123'] = 999;
+
         const state = { isCompleted: true };
         polling._updatePollingState('session123', mockBlock, state, 'AgentName', '🤖');
 
         const statusSpan = mockBlock.querySelector('#status-session123');
         expect(statusSpan.className).toBe('term-status status-success');
+        expect(statusSpan.innerHTML).toContain('✅ Execution Finished');
+        expect(global.clearInterval).toHaveBeenCalledWith(999);
         expect(mockManager.loadPullRequestsForRepo).toHaveBeenCalledWith('test-repo');
+
+        global.clearInterval = originalClearInterval;
 
         jest.advanceTimersByTime(10);
         expect(mockManager.dismissSession).toHaveBeenCalledWith('session123');
     });
 
     it('should handle hasError state', () => {
+        const originalClearInterval = global.clearInterval;
+        global.clearInterval = jest.fn();
         const state = { hasError: true, latestLog: 'Error occurred' };
         mockManager.julesPollingIntervals['session123'] = 123; // mock interval ID
 
@@ -119,6 +130,9 @@ describe('TerminalPolling', () => {
         expect(statusSpan.className).toBe('term-status status-error');
         expect(statusSpan.innerHTML).toContain('Error occurred');
         expect(statusSpan.innerHTML).toContain('<button'); // dismiss button
+        expect(global.clearInterval).toHaveBeenCalledWith(123);
+
+        global.clearInterval = originalClearInterval;
     });
 
     it('should catch API errors', async () => {
@@ -207,11 +221,13 @@ describe('TerminalPolling', () => {
 
     it('should clear existing interval on startTerminalPolling', () => {
         mockManager.julesPollingIntervals['session123'] = 999;
-        const clearIntervalSpy = jest.spyOn(window, 'clearInterval');
+        const originalClearInterval = global.clearInterval;
+        global.clearInterval = jest.fn();
 
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
 
-        expect(clearIntervalSpy).toHaveBeenCalledWith(999);
+        expect(global.clearInterval).toHaveBeenCalledWith(999);
+        global.clearInterval = originalClearInterval;
     });
 
     it('should handle uninitialized julesPollingIntervals', () => {
