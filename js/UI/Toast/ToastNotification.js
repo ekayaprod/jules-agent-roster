@@ -1,4 +1,3 @@
-const { TOAST_TYPES } = require("../../constants/ui.js");
 const DEFAULT_DURATION = 3000;
 const RESUME_DELAY = 2000;
 

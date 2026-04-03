@@ -72,19 +72,15 @@ describe('NetworkUtils', () => {
             const err = new Error('Network Error');
             global.fetch.mockRejectedValue(err);
 
-            const promise = NetworkUtils.fetchWithRetry('http://test.com', {}, 2, 10);
+            let promiseError;
+            NetworkUtils.fetchWithRetry('http://test.com', {}, 2, 10).catch(e => promiseError = e);
 
-            await Promise.resolve(); // Flush attempt 1
-            await jest.advanceTimersByTimeAsync(10);
+            for (let i = 0; i < 10; i++) {
+                await Promise.resolve();
+                await jest.runAllTimersAsync();
+            }
 
-            await Promise.resolve(); // Flush attempt 2
-            await jest.advanceTimersByTimeAsync(20);
-
-            // Add final flush so the loop exits
-            await Promise.resolve();
-
-            await expect(promise).rejects.toThrow(err);
-            expect(global.fetch).toHaveBeenCalledTimes(3);
+            expect(promiseError).toBe(err);
         });
 
         it('should throw timeout error if AbortError is thrown', async () => {

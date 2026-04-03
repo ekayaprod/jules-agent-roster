@@ -1,4 +1,5 @@
 const { BUTTON_STATES } = require("../constants/ui.js");
+global.BUTTON_STATES = BUTTON_STATES;
 /**
  * @jest-environment jsdom
  */

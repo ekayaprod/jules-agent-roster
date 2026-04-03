@@ -1,5 +1,3 @@
-const NetworkUtils = typeof require !== 'undefined' ? require('../Utils/network-utils.js') : window.NetworkUtils;
-
 /**
  * Service class for fetching and validating agent data.
  * Handles the communication with the backend (file system) and ensures data integrity.
