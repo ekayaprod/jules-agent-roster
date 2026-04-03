@@ -33,16 +33,20 @@ function buildRoster() {
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             if (file.endsWith('.md') && file !== 'README.md') {
-                const content = fs.readFileSync(path.join(promptsDir, file), 'utf-8');
-                const parsed = parseMarkdownFrontmatter(content);
-                if (parsed.attributes.name) {
-                    const agent = {
-                        ...parsed.attributes,
-                        prompt: content,
-                        isCustom: false
-                    };
-                    if (!agent.name) agent.name = file.replace('.md', '');
-                    agents.push(agent);
+                try {
+                    const content = fs.readFileSync(path.join(promptsDir, file), 'utf-8');
+                    const parsed = parseMarkdownFrontmatter(content);
+                    if (parsed.attributes.name) {
+                        const agent = {
+                            ...parsed.attributes,
+                            prompt: content,
+                            isCustom: false
+                        };
+                        if (!agent.name) agent.name = file.replace('.md', '');
+                        agents.push(agent);
+                    }
+                } catch (error) {
+                    console.warn(`Failed to read or parse core agent file ${file}:`, error.message);
                 }
             }
         }
@@ -54,16 +58,20 @@ function buildRoster() {
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             if (file.endsWith('.md') && file !== 'README.md') {
-                const content = fs.readFileSync(path.join(fusionsDir, file), 'utf-8');
-                const parsed = parseMarkdownFrontmatter(content);
-                const name = parsed.attributes.name;
-                if (name) {
-                    const agent = {
-                        ...parsed.attributes,
-                        prompt: content,
-                        isCustom: true
-                    };
-                    agents.push(agent);
+                try {
+                    const content = fs.readFileSync(path.join(fusionsDir, file), 'utf-8');
+                    const parsed = parseMarkdownFrontmatter(content);
+                    const name = parsed.attributes.name;
+                    if (name) {
+                        const agent = {
+                            ...parsed.attributes,
+                            prompt: content,
+                            isCustom: true
+                        };
+                        agents.push(agent);
+                    }
+                } catch (error) {
+                    console.warn(`Failed to read or parse fusion agent file ${file}:`, error.message);
                 }
             }
         }

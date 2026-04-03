@@ -1,3 +1,4 @@
+const { TOAST_TYPES } = require("../../constants/ui.js");
 /**
  * @jest-environment jsdom
  */
@@ -56,7 +57,7 @@ describe('ToastNotification', () => {
         it('should render a success toast with default parameters', () => {
             toast.show('Success message');
 
-            expect(container).toHaveClass('show', 'success');
+            expect(container).toHaveClass('show', TOAST_TYPES.SUCCESS);
             const statusElement = screen.getByRole('status');
             expect(statusElement).toBeInTheDocument();
             expect(statusElement).toHaveAttribute('aria-live', 'polite');
@@ -64,9 +65,9 @@ describe('ToastNotification', () => {
         });
 
         it('should render an error toast with correct attributes', () => {
-            toast.show('Error message', 'error');
+            toast.show('Error message', TOAST_TYPES.ERROR);
 
-            expect(container).toHaveClass('error');
+            expect(container).toHaveClass(TOAST_TYPES.ERROR);
             const alertElement = screen.getByRole('alert');
             expect(alertElement).toBeInTheDocument();
             expect(alertElement).toHaveAttribute('aria-live', 'assertive');
@@ -74,9 +75,9 @@ describe('ToastNotification', () => {
         });
 
         it('should render an info toast', () => {
-            toast.show('Info message', 'info');
+            toast.show('Info message', TOAST_TYPES.INFO);
 
-            expect(container).toHaveClass('info');
+            expect(container).toHaveClass(TOAST_TYPES.INFO);
             expect(screen.getByText('Info message')).toBeInTheDocument();
         });
 
@@ -100,7 +101,7 @@ describe('ToastNotification', () => {
 
         it('should handle duration = 0 by not setting a timer', () => {
             const startTimerSpy = jest.spyOn(toast, 'startTimer');
-            toast.show('Persistent', 'info', 0);
+            toast.show('Persistent', TOAST_TYPES.INFO, 0);
 
             expect(startTimerSpy).not.toHaveBeenCalled();
             expect(toast.timeout).toBeNull();
@@ -114,7 +115,7 @@ describe('ToastNotification', () => {
              // In the implementation `icons[type] || icons.success`
              // If type is `true`, `icons[true]` is undefined, so it falls back to `icons.success`
              // But the class added is literally 'true'. We verify it doesn't accidentally become 'error'
-             expect(container).not.toHaveClass('error');
+             expect(container).not.toHaveClass(TOAST_TYPES.ERROR);
              expect(container).toHaveClass('true');
              expect(screen.getByRole('status')).toBeInTheDocument(); // Defaults to status for non-error types
         });
@@ -122,7 +123,7 @@ describe('ToastNotification', () => {
 
     describe('auto-dismiss timer logic', () => {
         it('should auto-dismiss after the duration', () => {
-            toast.show('Test', 'success', 3000);
+            toast.show('Test', TOAST_TYPES.SUCCESS, 3000);
 
             expect(container).toHaveClass('show');
 
@@ -132,7 +133,7 @@ describe('ToastNotification', () => {
         });
 
         it('should not dismiss if hovered', () => {
-            toast.show('Test', 'success', 3000);
+            toast.show('Test', TOAST_TYPES.SUCCESS, 3000);
 
             // Simulate pointer enter on the container (which toast.element is bound to)
             fireEvent.pointerEnter(container);
@@ -144,7 +145,7 @@ describe('ToastNotification', () => {
         });
 
         it('should resume dismissal with delay after mouse leave', () => {
-            toast.show('Test', 'success', 3000);
+            toast.show('Test', TOAST_TYPES.SUCCESS, 3000);
 
             fireEvent.pointerEnter(container);
             jest.advanceTimersByTime(3000); // Original time passes

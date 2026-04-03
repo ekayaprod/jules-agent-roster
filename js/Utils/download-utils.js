@@ -23,3 +23,7 @@ class DownloadUtils {
         URL.revokeObjectURL(url);
     }
 }
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = DownloadUtils;
+}

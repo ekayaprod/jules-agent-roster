@@ -2,7 +2,9 @@
  * @jest-environment jsdom
  */
 
-const { getByRole, getByText } = require('@testing-library/dom');
+const { screen, getByRole, getByText } = require('@testing-library/dom');
+require('@testing-library/jest-dom');
+const userEvent = require('@testing-library/user-event').default;
 const EmptyState = require('./EmptyState');
 
 describe('EmptyState Component', () => {
@@ -10,15 +12,15 @@ describe('EmptyState Component', () => {
         document.body.innerHTML = '';
     });
 
-    test('should create a container with "empty-state visible" class', () => {
+    test('should create a container with visible text', () => {
         const container = EmptyState.create({
             title: 'Test Title',
             description: 'Test Description'
         });
+        document.body.appendChild(container);
 
-        expect(container.tagName).toBe('DIV');
-        expect(container.classList.contains('empty-state')).toBe(true);
-        expect(container.classList.contains('visible')).toBe(true);
+        expect(screen.getByText('Test Title')).toBeVisible();
+        expect(screen.getByText('Test Description')).toBeVisible();
     });
 
     test('should render title and description', () => {
@@ -32,14 +34,15 @@ describe('EmptyState Component', () => {
     });
 
     test('should render icon if provided', () => {
-        const svgIcon = '<svg class="test-icon"></svg>';
+        const svgIcon = '<svg role="img" aria-label="test-icon"></svg>';
         const container = EmptyState.create({
             title: 'Title',
             description: 'Description',
             icon: svgIcon
         });
+        document.body.appendChild(container);
 
-        expect(container.querySelector('.test-icon')).not.toBeNull();
+        expect(screen.getByRole('img', { name: /test-icon/i })).toBeInTheDocument();
     });
 
     test('should render action button if provided', () => {
@@ -87,7 +90,7 @@ describe('EmptyState Component', () => {
         expect(descEl.innerHTML).not.toContain('<b>');
     });
 
-    test('should support function onClick handler', () => {
+    test('should support function onClick handler', async () => {
         const mockFn = jest.fn();
         const container = EmptyState.create({
             title: 'Title',
@@ -99,7 +102,7 @@ describe('EmptyState Component', () => {
         });
 
         const btn = getByRole(container, 'button', { name: /Retry/i });
-        btn.click();
+        await userEvent.click(btn);
         expect(mockFn).toHaveBeenCalled();
     });
 
