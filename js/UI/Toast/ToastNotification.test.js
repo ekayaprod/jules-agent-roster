@@ -1,4 +1,5 @@
 const { TOAST_TYPES } = require("../../constants/ui.js");
+global.TOAST_TYPES = TOAST_TYPES;
 /**
  * @jest-environment jsdom
  */

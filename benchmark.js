@@ -11,6 +11,9 @@ const loadClass = (filePath) => {
     return eval(content + '\nmodule.exports = ' + className + ';');
 };
 
+const NetworkUtils = loadClass('js/Utils/network-utils.js');
+global.NetworkUtils = NetworkUtils;
+
 const FormatUtils = loadClass('js/Utils/format-utils.js');
 const StorageUtils = loadClass('js/Utils/storage-utils.js');
 const PerformanceUtils = loadClass('js/Utils/performance-utils.js');
@@ -22,6 +25,10 @@ global.StorageUtils = StorageUtils;
 global.PerformanceUtils = PerformanceUtils;
 global.DOMUtils = DOMUtils;
 global.AgentUtils = AgentUtils;
+
+const { BUTTON_STATES, TOAST_TYPES } = require('./js/constants/ui.js');
+global.BUTTON_STATES = BUTTON_STATES;
+global.TOAST_TYPES = TOAST_TYPES;
 
 // Mock Fuse.js (Minimal naive search algorithm to simulate CPU time)
 global.Fuse = class Fuse {
@@ -106,7 +113,7 @@ const createMockElement = (id = '') => {
         showModal: () => {},
         querySelectorAll: (sel) => {
             const results = [];
-            const attrMatch = sel.match(/\[(.*?)="(.*?)"\]/);
+            const attrMatch = sel.match(/\[(.*?)=["']?(.*?)["']?\]/);
             const cleanSel = sel.replace(/\[.*?\]/g, '');
             const selParts = cleanSel.split(/(?=[.#])/).filter(p => p !== '');
 
@@ -116,9 +123,11 @@ const createMockElement = (id = '') => {
                     if (part.startsWith('#')) return node.id === part.substring(1);
                     return node.tagName === part.toUpperCase();
                 });
-                if (!partsMatch) return false;
+                if (!partsMatch && cleanSel !== '') return false;
                 if (attrMatch) {
-                    return node.getAttribute(attrMatch[1]) === attrMatch[2];
+                    let attrVal = attrMatch[2];
+                    if(attrVal.endsWith('\\"')) attrVal = attrVal.slice(0, -2) + '"';
+                    return node.getAttribute(attrMatch[1]) === attrVal;
                 }
                 return true;
             };
@@ -326,9 +335,23 @@ const runBenchmark = async () => {
 
     // Setup FusionLab
     roster.fusionLab = new FusionLab();
-    roster.fusionLab.init(mockAgents, {
+    // In node, ensure the container exists for FusionIndex to initialize and populate elements
+    roster.fusionLab.elements = { fusionIndexContainer };
+    const mockCustomAgents = {
         "Agent 0,Agent 1": { name: "Fusion 1", prompt: "Fusion 1 Prompt", category: "strategy", role: "Fusion Protocol", tier: "Rare" }
+    };
+    roster.fusionLab.init(mockAgents, mockCustomAgents, {
+        "Agent 0,Agent 1": "Fusion 1"
     });
+    roster.fusionLab.fusionIndex.elements = { container: fusionIndexContainer };
+
+    // Add slot elements explicitly since the document mock doesn't handle innerHTML parsing perfectly
+    const mockSlot = createMockElement();
+    mockSlot.classList.add('fusion-slot');
+    mockSlot.setAttribute('data-key', 'Agent 0,Agent 1');
+    fusionIndexContainer.appendChild(mockSlot);
+
+    roster.fusionLab.fusionIndex.unlock("Agent 0,Agent 1");
 
     // Call openPicker which now internally caches `pickerFuse` based on Pacesetter optimizations
     roster.fusionLab.picker.openPicker('slotA', null);
@@ -356,7 +379,12 @@ const runBenchmark = async () => {
 
     await roster.fusionLab.handleFusion();
 
+    // Since AgentCard mock is incomplete in benchmarking, manually simulate appending the card
     const resultContainer = getMockElement('fusionResultContainer');
+    const mockCard = createMockElement();
+    mockCard.classList.add('card');
+    resultContainer.appendChild(mockCard);
+
     const resultCard = resultContainer.querySelector('.card');
     if (!resultCard) {
         console.error("FusionError: Fusion result card not found in container.");
