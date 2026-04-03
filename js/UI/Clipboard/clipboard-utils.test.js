@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ClipboardUtils = require('./clipboard-utils');
+const TelemetryUtils = require('../../Utils/telemetry-utils');
 
 describe('ClipboardUtils', () => {
     describe('copyText', () => {
@@ -32,12 +33,12 @@ describe('ClipboardUtils', () => {
         it('should fallback to execCommand if Clipboard API fails', async () => {
             navigator.clipboard.writeText.mockRejectedValue(new Error('Failed'));
 
-            // Should silence the console warning in test output
-            jest.spyOn(console, 'warn').mockImplementation(() => {});
+            jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
 
             const result = await ClipboardUtils.copyText('test');
 
             expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_API_FAILED', expect.any(Error));
             expect(result).toBe(true);
         });
 
@@ -57,10 +58,10 @@ describe('ClipboardUtils', () => {
                  throw new Error('Exec failed');
              });
 
-             jest.spyOn(console, 'warn').mockImplementation(() => {});
-             jest.spyOn(console, 'error').mockImplementation(() => {});
+             jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
 
              const result = await ClipboardUtils.copyText('test');
+             expect(TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', expect.any(Error));
              expect(result).toBe(false);
         });
     });
