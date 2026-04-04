@@ -129,6 +129,31 @@ describe('FusionLab.getPreMergePreviewHTML Edge Cases', () => {
         expect(result).not.toBeNull();
         expect(result).toContain('Result');
     });
+
+    test('should not override state if picker exists but activePickerSlot is null', () => {
+        fusionLab.picker = { activePickerSlot: null };
+        const result = fusionLab.getPreMergePreviewHTML(agentA);
+        expect(result).toContain('Result');
+    });
+
+    test('should return null if picker overrides a valid slot with null', () => {
+        fusionLab.picker = { activePickerSlot: 'slotA' };
+        const result = fusionLab.getPreMergePreviewHTML(null);
+        expect(result).toBeNull();
+    });
+
+    test('should pass correct keys to fusionIndex.isUnlocked', () => {
+        const getFusionKeySpy = jest.spyOn(global.AgentUtils, 'getFusionKey');
+        fusionLab.getPreMergePreviewHTML(null);
+        expect(getFusionKeySpy).toHaveBeenCalledWith('AgentA', 'AgentB');
+        expect(fusionLab.fusionIndex.isUnlocked).toHaveBeenCalledWith(global.AgentUtils.getFusionKey('AgentA', 'AgentB'));
+        getFusionKeySpy.mockRestore();
+    });
+
+    test('should return null if selectedAgent overrides slot such that agentA and agentB have same name', () => {
+        fusionLab.picker = { activePickerSlot: 'slotA' };
+        expect(fusionLab.getPreMergePreviewHTML(agentB)).toBeNull();
+    });
 });
 
 describe('FusionLab Interaction Handlers and Edge Cases', () => {
