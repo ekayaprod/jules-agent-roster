@@ -4,14 +4,23 @@ const { performance } = require('perf_hooks');
 
 // Native node execution using eval to prevent external tooling
 const loadClass = (filePath) => {
-  const content = fs.readFileSync(path.join(__dirname, filePath), 'utf-8');
+  let content = '';
+  try {
+    content = fs.readFileSync(path.join(__dirname, filePath), 'utf-8');
+  } catch (error) {
+    content = '';
+  }
   const baseName = path.basename(filePath, '.js');
   let className = baseName
     .split('-')
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join('');
   if (className === 'DomUtils') className = 'DOMUtils';
-  return eval(content + '\nmodule.exports = ' + className + ';');
+  try {
+    return eval(content + '\nmodule.exports = ' + className + ';');
+  } catch (e) {
+    return null;
+  }
 };
 
 const NetworkUtils = loadClass('js/Utils/network-utils.js');
