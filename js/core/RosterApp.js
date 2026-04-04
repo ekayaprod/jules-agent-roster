@@ -445,39 +445,28 @@ class RosterApp {
               const unlockedKeys = this.fusionLab.fusionIndex.unlockedKeys;
               let listItems = '';
 
-              // Dynamically resolve fusions from the live map to avoid stale caches.
-              const allCustomAgents = this.fusionLab.compiler.customAgentsMap || {};
+              // Iterate over unlocked keys directly
               const potentialFusions = [];
-              const allKeys = Object.keys(allCustomAgents).concat(
-                  this.customAgents ? Object.keys(this.customAgents) : []
-              );
-
-              // Extract unique potential fusions for this agent dynamically
-              const uniqueKeys = new Set(allKeys);
-              for (const key of uniqueKeys) {
+              const keys = typeof unlockedKeys.values === 'function' ? Array.from(unlockedKeys) : unlockedKeys;
+              for (const key of keys) {
                   if (key.includes(agent.name)) {
                       potentialFusions.push(key);
                   }
               }
 
               for (const key of potentialFusions) {
-                  const isUnlocked = typeof unlockedKeys.has === 'function'
-                      ? unlockedKeys.has(key)
-                      : unlockedKeys.includes(key);
-
-                  if (isUnlocked) {
-                      const childAgent = AgentUtils.getCustomAgent(this.customAgents, key) || this.fusionLab.compiler.customAgentsMap[key];
-                      if (childAgent) {
-                          const childIcon = FormatUtils.extractIcon(childAgent);
-                          const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
-                          listItems += `
-                              <li style="list-style: none;">
-                                  <button class="fusion-quick-btn" data-action="launch-jules" data-index="${key}" aria-label="Launch ${safeChildName}" title="${safeChildName}">
-                                      ${childIcon}
-                                  </button>
-                              </li>
-                          `;
-                      }
+                  const fusionName = this.fusionLab.compiler.fusionMatrixMap[key] || (this.customAgents && this.customAgents[key] ? this.customAgents[key].name : null);
+                  const childAgent = AgentUtils.getCustomAgent(this.customAgents, key) || this.fusionLab.compiler.customAgentsMap[fusionName];
+                  if (childAgent) {
+                      const childIcon = FormatUtils.extractIcon(childAgent);
+                      const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
+                      listItems += `
+                          <li style="list-style: none;">
+                              <button class="fusion-quick-btn" data-action="launch-jules" data-index="${key}" aria-label="Launch ${safeChildName}" title="${safeChildName}">
+                                  ${childIcon}
+                              </button>
+                          </li>
+                      `;
                   }
               }
 
@@ -525,9 +514,15 @@ class RosterApp {
           e.preventDefault();
 
           const index = pinTarget.dataset.index;
-          if (!index) return;
+          if (index === undefined || index === null || index === '') return;
           // Validate agent exists before pinning
-          let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          let agent = this.agents[index] || this.agents[Number(index)] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler && this.fusionLab.compiler.customAgentsMap && this.fusionLab.compiler.customAgentsMap[index]);
+          if (!agent && this.fusionLab && this.fusionLab.fusionIndex && typeof this.fusionLab.fusionIndex.isUnlocked === 'function' && this.fusionLab.fusionIndex.isUnlocked(index)) {
+              const fusionName = this.fusionLab.compiler && this.fusionLab.compiler.fusionMatrixMap ? this.fusionLab.compiler.fusionMatrixMap[index] : null;
+              if (fusionName && this.fusionLab.compiler && this.fusionLab.compiler.customAgentsMap) {
+                  agent = this.fusionLab.compiler.customAgentsMap[fusionName];
+              }
+          }
           if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
           if (!agent) return;
 

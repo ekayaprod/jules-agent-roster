@@ -47,16 +47,30 @@ class ExportController {
     if (!parentName) return;
     const header = FormatUtils.CUSTOM_ROSTER_HEADER;
 
-    const allCustomAgents = this.app.customAgents || {};
     const validCustomAgents = [];
 
-    for (const key in allCustomAgents) {
-      if (Object.prototype.hasOwnProperty.call(allCustomAgents, key)) {
-        if (key.includes(parentName)) {
-           const a = allCustomAgents[key];
-           if (a && a.prompt && a.prompt.length > 0) validCustomAgents.push(a);
+    if (this.app.fusionLab && this.app.fusionLab.fusionIndex) {
+        const unlockedKeys = this.app.fusionLab.fusionIndex.unlockedKeys;
+        const keys = typeof unlockedKeys.values === 'function' ? Array.from(unlockedKeys) : unlockedKeys;
+        for (const key of keys) {
+            if (key.includes(parentName)) {
+                const fusionName = this.app.fusionLab.compiler.fusionMatrixMap[key] || (this.app.customAgents && this.app.customAgents[key] ? this.app.customAgents[key].name : null);
+                const a = (this.app.customAgents && this.app.customAgents[key]) || this.app.fusionLab.compiler.customAgentsMap[fusionName];
+                if (a && a.prompt && a.prompt.length > 0) {
+                    validCustomAgents.push(a);
+                }
+            }
         }
-      }
+    } else {
+        const allCustomAgents = this.app.customAgents || {};
+        for (const key in allCustomAgents) {
+          if (Object.prototype.hasOwnProperty.call(allCustomAgents, key)) {
+            if (key.includes(parentName)) {
+               const a = allCustomAgents[key];
+               if (a && a.prompt && a.prompt.length > 0) validCustomAgents.push(a);
+            }
+          }
+        }
     }
 
     if (validCustomAgents.length === 0) return this.app.toast.show("No unlocked fusions found for this agent.");
