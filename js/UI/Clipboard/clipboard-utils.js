@@ -1,4 +1,4 @@
-const TelemetryUtils = typeof require !== 'undefined' ? require('../../Utils/telemetry-utils') : window.TelemetryUtils;
+const _TelemetryUtils = typeof require !== 'undefined' ? require('../../Utils/telemetry-utils') : window.TelemetryUtils;
 
 const DEFAULT_SUCCESS_DURATION = 2000;
 
@@ -22,7 +22,7 @@ class ClipboardUtils {
                 await navigator.clipboard.writeText(text);
                 return true;
             } catch (err) {
-                TelemetryUtils.dispatchEvent("CLIPBOARD_API_FAILED", err);
+                _TelemetryUtils.dispatchEvent("CLIPBOARD_API_FAILED", err);
             }
         }
 
@@ -38,7 +38,7 @@ class ClipboardUtils {
         try {
             success = document.execCommand("copy");
         } catch (err) {
-            TelemetryUtils.dispatchEvent("CLIPBOARD_FALLBACK_FAILED", err);
+            _TelemetryUtils.dispatchEvent("CLIPBOARD_FALLBACK_FAILED", err);
         } finally {
             document.body.removeChild(el);
         }
