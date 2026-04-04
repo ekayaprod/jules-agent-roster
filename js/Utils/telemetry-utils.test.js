@@ -65,4 +65,45 @@ describe('TelemetryUtils', () => {
             error: undefined
         });
     });
+
+    it('exports to window in browser environments', () => {
+        const fs = require('fs');
+        const path = require('path');
+        const code = fs.readFileSync(path.join(__dirname, 'telemetry-utils.js'), 'utf8');
+
+        const windowMock = {};
+        // Simulate browser environment (module undefined, window present)
+        const evalFunc = new Function('window', 'module', code);
+        evalFunc(windowMock, undefined);
+
+        expect(windowMock.TelemetryUtils).toBeDefined();
+        expect(typeof windowMock.TelemetryUtils.dispatchEvent).toBe('function');
+    });
+
+    it('handles edge case when module is defined but module.exports is not truthy', () => {
+        const fs = require('fs');
+        const path = require('path');
+        const code = fs.readFileSync(path.join(__dirname, 'telemetry-utils.js'), 'utf8');
+
+        const windowMock = {};
+        const moduleMock = {}; // lacks .exports
+        const evalFunc = new Function('window', 'module', code);
+        evalFunc(windowMock, moduleMock);
+
+        expect(windowMock.TelemetryUtils).toBeDefined();
+    });
+
+    it('handles edge case when neither module nor window is defined gracefully', () => {
+        const fs = require('fs');
+        const path = require('path');
+        const code = fs.readFileSync(path.join(__dirname, 'telemetry-utils.js'), 'utf8');
+
+        // Neither module nor window exists (like a worker context without window)
+        const evalFunc = new Function('window', 'module', code);
+
+        // It should not throw
+        expect(() => {
+            evalFunc(undefined, undefined);
+        }).not.toThrow();
+    });
 });
