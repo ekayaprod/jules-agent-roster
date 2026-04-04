@@ -7,15 +7,18 @@ const JulesService = require('./JulesService');
 describe('JulesService', () => {
     let service;
     let originalFetch;
+    let consoleWarnMock;
 
     beforeEach(() => {
         service = new JulesService();
         originalFetch = global.fetch;
         global.fetch = jest.fn();
+        consoleWarnMock = jest.spyOn(console, 'warn').mockImplementation(() => {});
     });
 
     afterEach(() => {
         global.fetch = originalFetch;
+        consoleWarnMock.mockRestore();
         jest.restoreAllMocks();
         jest.clearAllTimers();
     });

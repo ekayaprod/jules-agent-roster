@@ -110,12 +110,23 @@ class SearchController {
         }
 
         if (this.worker) {
-             this.worker.postMessage({ type: 'init', data: allAgents, options: FUSE_OPTIONS });
              this.app._searchCache = {
                  agentCount: this.app.agents.length,
                  unlockedSize: currentUnlockedSize,
                  useWorker: true
              };
+             this.app._searchCache.initPromise = new Promise(resolve => {
+                 const originalOnMessage = this.worker.onmessage;
+                 this.worker.onmessage = (e) => {
+                     if (e.data.type === 'init_complete') {
+                         this.worker.onmessage = originalOnMessage;
+                         resolve();
+                     } else if (originalOnMessage) {
+                         originalOnMessage(e);
+                     }
+                 };
+             });
+             this.worker.postMessage({ type: 'init', data: allAgents, options: FUSE_OPTIONS });
         } else {
              const fuse = new Fuse(allAgents, FUSE_OPTIONS);
              this.app._searchCache = {
@@ -131,6 +142,9 @@ class SearchController {
     let results;
 
     if (this.app._searchCache.useWorker) {
+        if (this.app._searchCache.initPromise) {
+            await this.app._searchCache.initPromise;
+        }
         // 🧫 Mitosis: Async Web Worker background processing
         results = await new Promise(resolve => {
             this._resolveMap.set(currentSearchId, resolve);

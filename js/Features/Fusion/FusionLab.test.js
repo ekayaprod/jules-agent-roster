@@ -7,8 +7,10 @@ const FormatUtils = require('../../Utils/format-utils');
 describe('FusionLab Security', () => {
     let fusionLab;
     let mockElements;
+    let consoleWarnMock;
 
     beforeEach(() => {
+        consoleWarnMock = jest.spyOn(console, 'warn').mockImplementation(() => {});
         fusionLab = new FusionLab();
         mockElements = {
             slotACard: {
@@ -24,6 +26,10 @@ describe('FusionLab Security', () => {
         };
         fusionLab.elements = mockElements;
         global.FormatUtils = FormatUtils;
+    });
+
+    afterEach(() => {
+        consoleWarnMock.mockRestore();
     });
 
     test('renderSlots should escape agent name and emoji in innerHTML', () => {
@@ -424,8 +430,10 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
     });
 
     test('handleShelfSelection bails out securely if agents are not found in map', () => {
+        const localWarnMock = jest.spyOn(console, 'warn').mockImplementation(() => {});
         fusionLab.handleShelfSelection('Missing,Agents');
         expect(fusionLab.state.slotA).toBeNull();
+        localWarnMock.mockRestore();
     });
 
     test('renderFusionResult manages container state and appending custom agent card', () => {
