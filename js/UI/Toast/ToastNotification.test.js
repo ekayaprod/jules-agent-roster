@@ -5,8 +5,9 @@ global.TOAST_TYPES = TOAST_TYPES;
  */
 const fs = require('fs');
 const path = require('path');
-const { screen, fireEvent, waitFor } = require('@testing-library/dom');
+const { screen, waitFor } = require('@testing-library/dom');
 require('@testing-library/jest-dom');
+const userEvent = require('@testing-library/user-event').default;
 
 const ToastNotification = require('./ToastNotification');
 
@@ -123,6 +124,11 @@ describe('ToastNotification', () => {
     });
 
     describe('auto-dismiss timer logic', () => {
+        let user;
+        beforeEach(() => {
+            user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+        });
+
         it('should auto-dismiss after the duration', () => {
             toast.show('Test', TOAST_TYPES.SUCCESS, 3000);
 
@@ -133,11 +139,11 @@ describe('ToastNotification', () => {
             expect(container).not.toHaveClass('show');
         });
 
-        it('should not dismiss if hovered', () => {
+        it('should not dismiss if hovered', async () => {
             toast.show('Test', TOAST_TYPES.SUCCESS, 3000);
 
             // Simulate pointer enter on the container (which toast.element is bound to)
-            fireEvent.pointerEnter(container);
+            await user.hover(container);
 
             jest.advanceTimersByTime(3000);
 
@@ -145,13 +151,13 @@ describe('ToastNotification', () => {
             expect(container).toHaveClass('show');
         });
 
-        it('should resume dismissal with delay after mouse leave', () => {
+        it('should resume dismissal with delay after mouse leave', async () => {
             toast.show('Test', TOAST_TYPES.SUCCESS, 3000);
 
-            fireEvent.pointerEnter(container);
+            await user.hover(container);
             jest.advanceTimersByTime(3000); // Original time passes
 
-            fireEvent.pointerLeave(container); // Mouse leaves
+            await user.unhover(container); // Mouse leaves
 
             // Default RESUME_DELAY is 2000
             jest.advanceTimersByTime(1999);
@@ -163,22 +169,27 @@ describe('ToastNotification', () => {
     });
 
     describe('click delegation', () => {
-        it('should dismiss when the close button is clicked', () => {
+        let user;
+        beforeEach(() => {
+            user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+        });
+
+        it('should dismiss when the close button is clicked', async () => {
             toast.show('Test');
 
             const closeBtn = screen.getByRole('button', { name: /close notification/i });
 
-            fireEvent.click(closeBtn);
+            await user.click(closeBtn);
 
             expect(container).not.toHaveClass('show');
         });
 
-        it('should not dismiss when clicking elsewhere in the toast', () => {
+        it('should not dismiss when clicking elsewhere in the toast', async () => {
              toast.show('Test');
 
              const messageSpan = screen.getByText('Test');
 
-             fireEvent.click(messageSpan);
+             await user.click(messageSpan);
 
              expect(container).toHaveClass('show');
         });
