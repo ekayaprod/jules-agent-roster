@@ -369,12 +369,15 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
         });
 
         it('getActivities catch error coverage', async () => {
+             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
              window.julesService.getActivities.mockRejectedValueOnce(new Error('polling fail'));
              const item = document.createElement('div');
              item.innerHTML = `<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>`;
              manager.polling.startTerminalPolling('123', item, 'o/r');
              await jest.advanceTimersByTimeAsync(3000);
-             // Should log error silently
+
+             expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_POLLING_ERROR", error: 'polling fail' }));
+             consoleSpy.mockRestore();
         });
 
         it('module export check', () => {
@@ -1707,7 +1710,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
              await jest.advanceTimersByTimeAsync(3000);
 
-             expect(consoleSpy).toHaveBeenCalled();
+             expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_POLLING_ERROR", error: 'Poll Error' }));
              // Interval should remain active for next retry
              expect(manager.julesPollingIntervals['123']).toBeDefined();
 
