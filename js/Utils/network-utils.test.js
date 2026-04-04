@@ -116,6 +116,18 @@ describe('NetworkUtils', () => {
             expect(mockResponse.text).toHaveBeenCalled();
         });
 
+        it('should fallback to default error message if parsing malformed JSON on 4xx', async () => {
+            const mockResponse = {
+                ok: false,
+                status: 400,
+                text: jest.fn().mockResolvedValue('{"message": "Bad Request", }') // Malformed JSON
+            };
+            global.fetch.mockResolvedValueOnce(mockResponse);
+
+            await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("HTTP Error: 400");
+            expect(mockResponse.text).toHaveBeenCalled();
+        });
+
         it('should extract error message from errJson.message on 4xx', async () => {
             const mockResponse = {
                 ok: false,
