@@ -103,5 +103,55 @@ describe('NetworkUtils', () => {
              jest.advanceTimersByTime(10);
              await expect(promise).rejects.toThrow("We encountered a server error. Please wait a moment and try again.");
         });
+
+        it('should extract error message from errJson.error.message on 4xx', async () => {
+            const mockResponse = {
+                ok: false,
+                status: 400,
+                text: jest.fn().mockResolvedValue('{"error": {"message": "Bad Request from API"}}')
+            };
+            global.fetch.mockResolvedValueOnce(mockResponse);
+
+            await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("Bad Request from API");
+            expect(mockResponse.text).toHaveBeenCalled();
+        });
+
+        it('should extract error message from errJson.message on 4xx', async () => {
+            const mockResponse = {
+                ok: false,
+                status: 401,
+                text: jest.fn().mockResolvedValue('{"message": "Unauthorized from API"}')
+            };
+            global.fetch.mockResolvedValueOnce(mockResponse);
+
+            await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("Unauthorized from API");
+            expect(mockResponse.text).toHaveBeenCalled();
+        });
+
+        it('should fallback to status code if 4xx JSON parsing fails', async () => {
+            const mockResponse = {
+                ok: false,
+                status: 403,
+                text: jest.fn().mockResolvedValue('Invalid JSON')
+            };
+            global.fetch.mockResolvedValueOnce(mockResponse);
+
+            await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("HTTP Error: 403");
+            expect(mockResponse.text).toHaveBeenCalled();
+        });
+
+        it('should throw "Invalid response object" on falsy response', async () => {
+            global.fetch.mockResolvedValueOnce(null);
+
+            let promiseError;
+            NetworkUtils.fetchWithRetry('http://test.com', {}, 1, 10).catch(e => promiseError = e);
+
+            for (let i = 0; i < 10; i++) {
+                await Promise.resolve();
+                await jest.runAllTimersAsync();
+            }
+
+            expect(promiseError.message).toBe("Invalid response object");
+        });
     });
 });
