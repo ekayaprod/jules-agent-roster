@@ -4,6 +4,9 @@
 
 const JulesModals = require('./JulesModals');
 const TerminalPolling = require('./TerminalPolling');
+const { BUTTON_STATES, TOAST_TYPES } = require('../../../constants/ui');
+global.BUTTON_STATES = BUTTON_STATES;
+global.TOAST_TYPES = TOAST_TYPES;
 const JulesManager = require('./index');
 global.JulesModals = JulesModals;
 global.TerminalPolling = TerminalPolling;
@@ -225,7 +228,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.createSession.mockRejectedValueOnce(new Error('fail'));
 
             await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn);
-            expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', TOAST_TYPES.ERROR);
             getElSpy.mockRestore();
         });
 
@@ -369,7 +372,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
         });
 
         it('getActivities catch error coverage', async () => {
-             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+             const consoleSpy = jest.spyOn(console, TOAST_TYPES.ERROR).mockImplementation(() => {});
              window.julesService.getActivities.mockRejectedValueOnce(new Error('polling fail'));
              const item = document.createElement('div');
              item.innerHTML = `<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>`;
@@ -524,7 +527,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             await submitBtn.click();
 
             expect(window.julesService.sendUserInput).toHaveBeenCalledWith('s123', 'My response');
-            expect(mockToast.show).toHaveBeenCalledWith('Reply transmitted.', 'success');
+            expect(mockToast.show).toHaveBeenCalledWith('Reply transmitted.', TOAST_TYPES.SUCCESS);
             expect(modal.classList.contains('visible')).toBe(false);
             expect(inputField.disabled).toBe(false); // restored in finally
 
@@ -550,7 +553,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             inputField.value = 'My response';
             await submitBtn.click();
 
-            expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', TOAST_TYPES.ERROR);
             // Illusionist: Modal now closes immediately due to optimistic UI.
             expect(modal.classList.contains('visible')).toBe(false);
         });
@@ -674,7 +677,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             if (statusSpan) statusSpan.remove();
             inputField.value = 'My response';
             await submitBtn.click();
-            expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', TOAST_TYPES.ERROR);
         });
 
         it('should handle interaction modal gracefully if inputField is missing during close', () => {
@@ -855,7 +858,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             await submitHistoryBtn.click();
 
             expect(window.julesService.sendUserInput).toHaveBeenCalledWith('s123', 'History reply');
-            expect(mockToast.show).toHaveBeenCalledWith('Reply transmitted.', 'success');
+            expect(mockToast.show).toHaveBeenCalledWith('Reply transmitted.', TOAST_TYPES.SUCCESS);
         });
 
         it('should handle history modal submission with empty input', async () => {
@@ -917,7 +920,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
         });
 
         it('should handle API failure during history modal submission', async () => {
-             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+             const consoleSpy = jest.spyOn(console, TOAST_TYPES.ERROR).mockImplementation(() => {});
              document.body.innerHTML += `
                 <div id="julesHistoryModal"></div>
                 <button id="cancelHistoryBtn"></button>
@@ -937,7 +940,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             const submitHistoryBtn = manager.getEl('submitHistoryBtn');
             await submitHistoryBtn.click();
 
-            expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', TOAST_TYPES.ERROR);
             expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_SEND_REPLY_FAILED", error: 'API fail' }));
             consoleSpy.mockRestore();
         });
@@ -1561,7 +1564,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             await manager.launchSession(agent, btn);
 
-            expect(mockToast.show).toHaveBeenCalledWith('Select a target repository first.', 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Select a target repository first.', TOAST_TYPES.ERROR);
             expect(window.julesService.createSession).not.toHaveBeenCalled();
         });
 
@@ -1578,8 +1581,8 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             expect(window.julesService.createSession).toHaveBeenCalledWith('hello', 'Fix this', 'sources/github/a/b', 'Test');
 
-            expect(mockToast.show).toHaveBeenCalledWith('Session launched successfully.', 'success');
-            expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, 'ready', 'Launch in Jules 🚀');
+            expect(mockToast.show).toHaveBeenCalledWith('Session launched successfully.', TOAST_TYPES.SUCCESS);
+            expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, BUTTON_STATES.READY, 'Launch in Jules 🚀');
         });
 
         it('should handle API launch error', async () => {
@@ -1589,8 +1592,8 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             await manager.launchSession(agent, btn);
 
-            expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', 'error');
-            expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, 'ready', 'Launch in Jules 🚀');
+            expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', TOAST_TYPES.ERROR);
+            expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, BUTTON_STATES.READY, 'Launch in Jules 🚀');
         });
 
         it('should handle API launch error when fetchingIndicator is missing', async () => {
@@ -1608,7 +1611,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             await manager.launchSession(agent, btn);
 
-            expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', 'error');
+            expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', TOAST_TYPES.ERROR);
             expect(terminal.querySelector('#fetchingIndicator')).toBeNull();
         });
 
@@ -1703,7 +1706,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
         });
 
         it('should catch API errors gracefully during polling', async () => {
-             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+             const consoleSpy = jest.spyOn(console, TOAST_TYPES.ERROR).mockImplementation(() => {});
              manager.polling.startTerminalPolling('123', item, 'repo');
 
              window.julesService.getActivities.mockRejectedValue(new Error('Poll Error'));
@@ -1863,9 +1866,9 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             const event = new MouseEvent('click');
             await mergeBtn.dispatchEvent(event);
 
-            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, "loading", "Merging...");
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, BUTTON_STATES.LOADING, "Merging...");
             expect(window.julesService.mergePullRequest).toHaveBeenCalledWith('repo', 123);
-            expect(manager.app.toast.show).toHaveBeenCalledWith('Successfully merged PR #123', 'success');
+            expect(manager.app.toast.show).toHaveBeenCalledWith('Successfully merged PR #123', TOAST_TYPES.SUCCESS);
             expect(modal.classList.contains('visible')).toBe(false);
             expect(manager.loadPullRequestsForRepo).toHaveBeenCalledWith('repo');
         });
@@ -1877,7 +1880,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             const event = new MouseEvent('click');
             await mergeBtn.dispatchEvent(event);
 
-            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, "ready", "Merge PR");
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, BUTTON_STATES.READY, "Merge PR");
             expect(errorEl.textContent).toBe('Failed to merge PR: Merge conflict');
             expect(errorEl.classList.contains('hidden')).toBe(false);
         });
@@ -1889,9 +1892,9 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             const event = new MouseEvent('click');
             await closePRBtn.dispatchEvent(event);
 
-            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, "loading", "Closing...");
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, BUTTON_STATES.LOADING, "Closing...");
             expect(window.julesService.closePullRequest).toHaveBeenCalledWith('repo', 123);
-            expect(manager.app.toast.show).toHaveBeenCalledWith('Successfully closed PR #123', 'success');
+            expect(manager.app.toast.show).toHaveBeenCalledWith('Successfully closed PR #123', TOAST_TYPES.SUCCESS);
             expect(modal.classList.contains('visible')).toBe(false);
             expect(manager.loadPullRequestsForRepo).toHaveBeenCalledWith('repo');
         });
@@ -1903,7 +1906,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             const event = new MouseEvent('click');
             await closePRBtn.dispatchEvent(event);
 
-            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, "ready", "Close PR");
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, BUTTON_STATES.READY, "Close PR");
             expect(errorEl.textContent).toBe('Failed to close PR: Close error');
             expect(errorEl.classList.contains('hidden')).toBe(false);
         });
@@ -1917,11 +1920,11 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             const mergeEvent = new MouseEvent('click');
             await mergeBtn.dispatchEvent(mergeEvent);
-            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, "ready", "Merge PR");
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, BUTTON_STATES.READY, "Merge PR");
 
             const closeEvent = new MouseEvent('click');
             await closePRBtn.dispatchEvent(closeEvent);
-            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, "ready", "Close PR");
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, BUTTON_STATES.READY, "Close PR");
         });
     });
 
@@ -1977,7 +1980,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             const btn = document.createElement('button');
             await manager.launchSession({ emoji: 'a', name: 'b', description: 'c', getMarkdown: () => ''}, btn);
-            expect(manager.app.toast.show).toHaveBeenCalledWith('Select a target repository first.', 'error');
+            expect(manager.app.toast.show).toHaveBeenCalledWith('Select a target repository first.', TOAST_TYPES.ERROR);
         });
     });
 });
