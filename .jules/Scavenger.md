@@ -1,4 +1,3 @@
-## Scavenger — The Phantom Error Extraction
-**Learning:** `catch(e) {}` blocks found within tests handling missing dependencies often hide unhandled exceptions silently crashing the execution during teardown; explicitly mocking the missing environment objects (like `global.self`) eliminates the need for the catch block entirely. | **Action:** Instead of leaving empty catch wrappers around test teardown functions that are failing on missing scopes, explicitly mock and un-mock the missing scopes to safely allow the function to execute natively.
+## Scavenger — The Ghost Variable Extraction
 **Learning:** Modern syntax (ES2019+) permits omitting the binding parameter `(e)` entirely if the catch block does not utilize the error object, effectively reducing unused variables and eliminating false-positive lint warnings in production code.
 **Action:** Always extract unused `catch(err)` parameters across application files into parameterless `catch { ... }` blocks to cleanly eliminate localized debris.
