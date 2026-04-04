@@ -35,14 +35,18 @@ class NetworkUtils {
                 let errorMsg = `HTTP Error: ${response.status}`;
                 try {
                     const errorText = await response.text();
-                    const errJson = JSON.parse(errorText);
-                    if (errJson.error?.message) {
-                        errorMsg = errJson.error.message;
-                    } else if (errJson.message) {
-                        errorMsg = errJson.message;
+                    try {
+                        const errJson = JSON.parse(errorText);
+                        if (errJson.error?.message) {
+                            errorMsg = errJson.error.message;
+                        } else if (errJson.message) {
+                            errorMsg = errJson.message;
+                        }
+                    } catch (parseError) {
+                        // Ignore parsing errors and stick to fallback
                     }
                 } catch {
-                    // Ignore parsing errors and stick to fallback
+                    // Ignore text() errors and stick to fallback
                 }
                 throw new Error(errorMsg);
             }
