@@ -561,6 +561,8 @@
     </div>
 
     <main id="main">
+      <h2 id="pinned" class="section-header" style="display: none;">📌 Pinned Fusions</h2>
+      <div class="grid empty" id="pinnedGrid" style="display: none;"></div>
       <h2 id="plus" class="section-header">Plus</h2>
       <div class="grid" id="plusGrid"></div>
       <h2 id="architecture" class="section-header">Architecture</h2>
@@ -764,8 +766,8 @@
           categoryNav: "#category-nav", main: "#main", navPills: ".nav-pill",
           sectionHeader: ".section-header", grid: ".grid", card: ".card"
         },
-        categories: { plus: "plusGrid", architecture: "architectureGrid", hygiene: "hygieneGrid", strategy: "strategyGrid", ux: "uxGrid", docs: "docsGrid", testing: "testingGrid", operations: "operationsGrid", security: "securityGrid" },
-        sectionMap: { plusGrid: "plus", architectureGrid: "architecture", hygieneGrid: "hygiene", strategyGrid: "strategy", uxGrid: "ux", docsGrid: "docs", testingGrid: "testing", operationsGrid: "operations", securityGrid: "security" }
+        categories: { pinned: "pinnedGrid", plus: "plusGrid", architecture: "architectureGrid", hygiene: "hygieneGrid", strategy: "strategyGrid", ux: "uxGrid", docs: "docsGrid", testing: "testingGrid", operations: "operationsGrid", security: "securityGrid" },
+        sectionMap: { pinnedGrid: "pinned", plusGrid: "plus", architectureGrid: "architecture", hygieneGrid: "hygiene", strategyGrid: "strategy", uxGrid: "ux", docsGrid: "docs", testingGrid: "testing", operationsGrid: "operations", securityGrid: "security" }
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/tabbable@6.2.0/dist/index.umd.js"></script>
