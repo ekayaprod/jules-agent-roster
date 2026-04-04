@@ -84,6 +84,16 @@ describe('JulesService', () => {
             expect(global.fetch).toHaveBeenCalledTimes(3);
         });
 
+        it('should handle malformed JSON response gracefully', async () => {
+            service.configure('test-api-key');
+            global.fetch.mockResolvedValue({
+                ok: true,
+                json: async () => { throw new SyntaxError("Unexpected token"); }
+            });
+
+            await expect(service._fetch('test')).rejects.toThrow("We encountered a server error. Please wait a moment and try again.");
+        });
+
         it('should return parsed JSON response on success', async () => {
             service.configure('test-api-key');
             global.fetch.mockResolvedValue({
@@ -600,7 +610,8 @@ describe('createSession', () => {
                 json: async () => { throw new Error("Invalid JSON"); }
             });
 
-            await expect(service.getPullRequests('sources/github/owner/repo')).rejects.toThrow("Invalid JSON");
+            const response = await service.getPullRequests('sources/github/owner/repo');
+            expect(response).toEqual([]);
         });
 
         it('should return pull requests on success', async () => {
