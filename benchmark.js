@@ -378,7 +378,7 @@ const runBenchmark = async () => {
 
   // Add slot elements explicitly since the document mock doesn't handle innerHTML parsing perfectly
   const mockSlot = createMockElement();
-  mockSlot.classList.add('fusion-slot');
+  mockSlot.classList.add('fusion-item');
   mockSlot.setAttribute('data-key', 'Agent 0,Agent 1');
   fusionIndexContainer.appendChild(mockSlot);
 
@@ -396,7 +396,7 @@ const runBenchmark = async () => {
   console.log(`RosterApp search with unlocked fusions: ${duration.toFixed(2)}ms`);
 
   // Verify FusionIndex rendering
-  const unlockedSlots = fusionIndexContainer.querySelectorAll('.fusion-slot.unlocked');
+  const unlockedSlots = fusionIndexContainer.querySelectorAll('.fusion-item.unlocked');
   if (unlockedSlots.length === 0) {
     console.error('FusionIndexError: No unlocked slots found in FusionIndex.');
     process.exit(1);
