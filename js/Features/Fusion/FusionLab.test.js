@@ -571,7 +571,7 @@ describe('FusionLab Initialization and Bindings', () => {
         global.AgentPicker = originalAgentPicker;
     });
 
-    test('bindEvents attaches click listeners correctly', async () => {
+    test('bindEvents attaches click and keydown listeners correctly', async () => {
         fusionLab.init([], {}, {}); // Run init to populate this.elements
 
         const mockEvent = { currentTarget: 'btn' };
@@ -580,11 +580,36 @@ describe('FusionLab Initialization and Bindings', () => {
         const slotAHandler = fusionLab.elements.slotACard.addEventListener.mock.calls.find(c => c[0] === 'click')[1];
         slotAHandler();
         expect(fusionLab.picker.openPicker).toHaveBeenCalledWith('slotA', fusionLab.state.slotA);
+        fusionLab.picker.openPicker.mockClear();
+
+        // Trigger slotACard keydown (Enter)
+        const slotAKeydownHandler = fusionLab.elements.slotACard.addEventListener.mock.calls.find(c => c[0] === 'keydown')[1];
+        let mockKeyEvent = { key: 'Enter', preventDefault: jest.fn() };
+        slotAKeydownHandler(mockKeyEvent);
+        expect(mockKeyEvent.preventDefault).toHaveBeenCalled();
+        expect(fusionLab.picker.openPicker).toHaveBeenCalledWith('slotA', fusionLab.state.slotA);
+        fusionLab.picker.openPicker.mockClear();
+
+        // Trigger slotACard keydown (Space)
+        mockKeyEvent = { key: ' ', preventDefault: jest.fn() };
+        slotAKeydownHandler(mockKeyEvent);
+        expect(mockKeyEvent.preventDefault).toHaveBeenCalled();
+        expect(fusionLab.picker.openPicker).toHaveBeenCalledWith('slotA', fusionLab.state.slotA);
+        fusionLab.picker.openPicker.mockClear();
 
         // Trigger slotBCard click
         const slotBHandler = fusionLab.elements.slotBCard.addEventListener.mock.calls.find(c => c[0] === 'click')[1];
         slotBHandler();
         expect(fusionLab.picker.openPicker).toHaveBeenCalledWith('slotB', fusionLab.state.slotB);
+        fusionLab.picker.openPicker.mockClear();
+
+        // Trigger slotBCard keydown (Enter)
+        const slotBKeydownHandler = fusionLab.elements.slotBCard.addEventListener.mock.calls.find(c => c[0] === 'keydown')[1];
+        mockKeyEvent = { key: 'Enter', preventDefault: jest.fn() };
+        slotBKeydownHandler(mockKeyEvent);
+        expect(mockKeyEvent.preventDefault).toHaveBeenCalled();
+        expect(fusionLab.picker.openPicker).toHaveBeenCalledWith('slotB', fusionLab.state.slotB);
+        fusionLab.picker.openPicker.mockClear();
 
         // Trigger fuseBtn click
         fusionLab.handleFusion = jest.fn();
