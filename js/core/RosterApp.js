@@ -649,9 +649,24 @@ class RosterApp {
       }
     });
 
-    // Close search on Escape key
+    // Close search and active dropdowns on Escape key
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") {
+            // Priority 1: Close active dropdowns
+            if (this.activeDropdowns && this.activeDropdowns.size > 0) {
+                this.activeDropdowns.forEach(menu => {
+                    closeDropdownMenu(menu, this);
+                    const toggleId = menu.id.replace('card-dropdown-', '');
+                    const toggleBtn = document.querySelector(`[data-action="toggle-card-dropdown"][data-index="${toggleId}"]`);
+                    if (toggleBtn) {
+                        toggleBtn.focus();
+                        toggleBtn.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                return;
+            }
+
+            // Priority 2: Close search
             const nav = this.elements["category-nav"];
             if (nav && nav.classList.contains("search-active")) {
                 this.clearSearch();
