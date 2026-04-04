@@ -1,0 +1,23 @@
+<<<<<<< SEARCH
+const TerminalPolling = require('./TerminalPolling');
+
+describe('TerminalPolling', () => {
+    let polling;
+    let mockManager;
+    let mockBlock;
+
+    beforeEach(() => {
+=======
+const TerminalPolling = require('./TerminalPolling');
+const { getByText, queryByText } = require('@testing-library/dom');
+const userEvent = require('@testing-library/user-event').default;
+
+describe('TerminalPolling', () => {
+    let polling;
+    let mockManager;
+    let mockBlock;
+    let user;
+
+    beforeEach(() => {
+        user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
+>>>>>>> REPLACE

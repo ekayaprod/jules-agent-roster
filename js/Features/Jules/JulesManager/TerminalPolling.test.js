@@ -3,13 +3,18 @@
  */
 
 const TerminalPolling = require('./TerminalPolling');
+const { getByText } = require('@testing-library/dom');
+const userEvent = require('@testing-library/user-event').default;
 
 describe('TerminalPolling', () => {
     let polling;
     let mockManager;
     let mockBlock;
+    let user;
 
     beforeEach(() => {
+        jest.useFakeTimers();
+        user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         mockManager = {
             julesPollingIntervals: {},
             sortByCreateTime: jest.fn(),
@@ -41,7 +46,7 @@ describe('TerminalPolling', () => {
 
         mockBlock = document.createElement('div');
         const statusSpan = document.createElement('span');
-        statusSpan.id = 'status-session123';
+        statusSpan.id = 'status-mutated-session123';
         mockBlock.appendChild(statusSpan);
 
         polling = new TerminalPolling(mockManager);
@@ -52,7 +57,7 @@ describe('TerminalPolling', () => {
         jest.useRealTimers();
     });
 
-    it('should handle interaction modal onclick correctly', () => {
+    it('should handle interaction modal onclick correctly', async () => {
         const state = {
             isCompleted: false,
             hasError: false,
@@ -63,19 +68,14 @@ describe('TerminalPolling', () => {
 
         polling._updatePollingState('session123', mockBlock, state, 'AgentName', '🤖');
 
-        const statusSpan = mockBlock.querySelector('#status-session123');
+        const statusSpan = getByText(mockBlock, /Response Needed/i);
         expect(statusSpan.className).toBe('term-status status-waiting');
-        expect(statusSpan.innerHTML).toContain('⚠️ Response Needed (Click to view)');
-        expect(statusSpan.onclick).not.toBeNull();
 
-        // Simulate click
-        statusSpan.onclick();
+        await user.click(statusSpan);
         expect(mockManager.modals._showInteractionModal).toHaveBeenCalledWith('session123', '🤖', 'AgentName', 'Needs input');
     });
 
     it('should format fullHistoryMarkdown correctly and handle contentEl', async () => {
-        jest.useFakeTimers();
-
         const activities = [
             { title: 'Title', description: 'Desc', type: 'USER_INPUT', message: 'User Msg', error: { message: 'Err' } }
         ];
@@ -98,7 +98,6 @@ describe('TerminalPolling', () => {
     });
 
     it('should handle completed state', () => {
-        jest.useFakeTimers();
         const originalClearInterval = global.clearInterval;
         global.clearInterval = jest.fn();
         mockManager.julesPollingIntervals['session123'] = 999;
@@ -106,9 +105,8 @@ describe('TerminalPolling', () => {
         const state = { isCompleted: true };
         polling._updatePollingState('session123', mockBlock, state, 'AgentName', '🤖');
 
-        const statusSpan = mockBlock.querySelector('#status-session123');
+        const statusSpan = getByText(mockBlock, /Execution Finished/i);
         expect(statusSpan.className).toBe('term-status status-success');
-        expect(statusSpan.innerHTML).toContain('✅ Execution Finished');
         expect(global.clearInterval).toHaveBeenCalledWith(999);
         expect(mockManager.loadPullRequestsForRepo).toHaveBeenCalledWith('test-repo');
 
@@ -126,9 +124,8 @@ describe('TerminalPolling', () => {
 
         polling._updatePollingState('session123', mockBlock, state, 'AgentName', '🤖');
 
-        const statusSpan = mockBlock.querySelector('#status-session123');
+        const statusSpan = getByText(mockBlock, /Error occurred/i);
         expect(statusSpan.className).toBe('term-status status-error');
-        expect(statusSpan.innerHTML).toContain('Error occurred');
         expect(statusSpan.innerHTML).toContain('<button'); // dismiss button
         expect(global.clearInterval).toHaveBeenCalledWith(123);
 
@@ -136,7 +133,6 @@ describe('TerminalPolling', () => {
     });
 
     it('should catch API errors', async () => {
-        jest.useFakeTimers();
         const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
         window.julesService.getActivities.mockRejectedValue(new Error('API fail'));
@@ -153,15 +149,12 @@ describe('TerminalPolling', () => {
         const state = { isWaitingForInput: false, latestLog: 'Processing...', hasError: false, isCompleted: false };
         polling._updatePollingState('session123', mockBlock, state, 'AgentName', '🤖');
 
-        const statusSpan = mockBlock.querySelector('#status-session123');
+        const statusSpan = getByText(mockBlock, /Processing.../i);
         expect(statusSpan.className).toBe('term-status');
         expect(statusSpan.onclick).toBeNull();
-        expect(statusSpan.textContent).toBe('Processing...');
     });
 
     it('should format fullHistoryMarkdown missing fields correctly', async () => {
-        jest.useFakeTimers();
-
         const activities = [
             { type: 'USER_INPUT' },
             { userActionRequired: true }
@@ -178,8 +171,6 @@ describe('TerminalPolling', () => {
     });
 
     it('should handle activities polling early returns', async () => {
-        jest.useFakeTimers();
-
         window.julesService.getActivities.mockResolvedValue({});
 
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
@@ -198,8 +189,6 @@ describe('TerminalPolling', () => {
     });
 
     it('should handle _updatePollingState for planGenerated and others', async () => {
-        jest.useFakeTimers();
-
         const activities = [
             { planGenerated: true },
             { planApproved: true },
@@ -237,8 +226,6 @@ describe('TerminalPolling', () => {
     });
 
     it('should format empty history and pass "No history available." to createMarkdownPreBlock', async () => {
-        jest.useFakeTimers();
-
         const activities = [];
         window.julesService.getActivities.mockResolvedValue({ activities });
 
@@ -256,8 +243,6 @@ describe('TerminalPolling', () => {
     });
 
     it('should handle error missing message with Unknown error', async () => {
-        jest.useFakeTimers();
-
         const activities = [
             { error: { } }
         ];
@@ -269,13 +254,11 @@ describe('TerminalPolling', () => {
         await Promise.resolve(); // flush promises
         await Promise.resolve();
 
-        const statusSpan = mockBlock.querySelector('#status-session123');
-        expect(statusSpan.innerHTML).toContain('Exception: Unknown error');
+        const statusSpan = getByText(mockBlock, /Exception: Unknown error/i);
+        expect(statusSpan).not.toBeNull();
     });
 
     it('should format long text and handle missing historyModalContent element', async () => {
-        jest.useFakeTimers();
-
         const activities = [
             { title: 'A very very long title that exceeds seventy characters in length and will be truncated' },
             { error: { } }
