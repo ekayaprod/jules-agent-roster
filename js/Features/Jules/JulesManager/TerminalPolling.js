@@ -1,4 +1,5 @@
-const TelemetryUtils = typeof require !== 'undefined' ? require('../../../Utils/telemetry-utils.js') : window.TelemetryUtils;
+// 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
+const getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
 
 class TerminalPolling {
     constructor(julesManager) {
@@ -90,7 +91,8 @@ class TerminalPolling {
                 this._updatePollingState(sessionId, block, state, agentName, agentEmoji);
 
             } catch (e) {
-                TelemetryUtils.dispatchEvent("JULES_POLLING_ERROR", e);
+                const tu = getTelemetryUtils();
+                if (tu) tu.dispatchEvent("JULES_POLLING_ERROR", e);
             }
         }, this.manager.constructor.TERMINAL_POLL_MS);
     }

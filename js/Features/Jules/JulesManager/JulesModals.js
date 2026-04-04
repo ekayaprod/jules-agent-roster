@@ -1,4 +1,5 @@
-const TelemetryUtils = typeof require !== 'undefined' ? require('../../../Utils/telemetry-utils.js') : window.TelemetryUtils;
+// 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
+const getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
 
 class JulesModals {
     constructor(julesManager) {
@@ -141,7 +142,8 @@ class JulesModals {
                 await window.julesService.sendUserInput(sessionId, text);
                 this.manager.app.toast.show("Reply transmitted.", "success");
             } catch (err) {
-                TelemetryUtils.dispatchEvent("JULES_SEND_REPLY_FAILED", err);
+                const tu = getTelemetryUtils();
+                if (tu) tu.dispatchEvent("JULES_SEND_REPLY_FAILED", err);
                 this.manager.app.toast.show("Failed to send reply.", "error");
             }
         };

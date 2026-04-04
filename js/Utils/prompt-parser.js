@@ -76,10 +76,14 @@ const PromptParser = {
       return { format: 'xml', sections };
 
     } catch (e) {
-      const TelemetryUtils = typeof require !== 'undefined' ? require('./telemetry-utils.js') : window.TelemetryUtils;
-      TelemetryUtils.dispatchEvent('PROMPT_PARSE_FAILED', e, {
-          input: rawText ? rawText.substring(0, 100) : null
-      });
+      // 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
+      const getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+      const tu = getTelemetryUtils();
+      if (tu) {
+          tu.dispatchEvent('PROMPT_PARSE_FAILED', e, {
+              input: rawText ? rawText.substring(0, 100) : null
+          });
+      }
       return { format: 'legacy', raw: rawText };
     }
   }
