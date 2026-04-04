@@ -21,6 +21,7 @@ class TelemetryUtils {
 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = TelemetryUtils;
+    if (typeof global !== 'undefined') global.TelemetryUtils = TelemetryUtils;
 } else if (typeof window !== 'undefined') {
     window.TelemetryUtils = TelemetryUtils;
 }

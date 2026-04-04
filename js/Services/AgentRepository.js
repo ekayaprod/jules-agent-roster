@@ -1,4 +1,5 @@
-const TelemetryUtils = typeof require !== 'undefined' ? require('../Utils/telemetry-utils.js') : window.TelemetryUtils;
+// 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
+const getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
 
 /**
  * Service class for fetching and validating agent data.
@@ -120,7 +121,8 @@ class AgentRepository {
         try {
             return await response.json();
         } catch (error) {
-            TelemetryUtils.dispatchEvent('JSON_PARSE_FAILED', error, { resource: label });
+            const tu = getTelemetryUtils();
+            if (tu) tu.dispatchEvent('JSON_PARSE_FAILED', error, { resource: label });
             throw new Error("Check your configuration file formatting and try again.");
         }
     }

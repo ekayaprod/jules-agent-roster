@@ -1,4 +1,5 @@
-const TelemetryUtils = typeof require !== 'undefined' ? require('./telemetry-utils.js') : window.TelemetryUtils;
+// 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
+const getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
 
 /**
  * Utility class for interacting with localStorage.
@@ -26,7 +27,8 @@ class StorageUtils {
             }
             return null;
         } catch (error) {
-            TelemetryUtils.dispatchEvent(errorEventName, error, { stored: stored });
+            const tu = getTelemetryUtils();
+            if (tu) tu.dispatchEvent(errorEventName, error, { stored: stored });
             return null;
         }
     }
