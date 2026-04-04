@@ -77,7 +77,7 @@ const PromptParser = {
 
     } catch (e) {
       // 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
-      const getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+      var getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
       const tu = getTelemetryUtils();
       if (tu) {
           tu.dispatchEvent('PROMPT_PARSE_FAILED', e, {
