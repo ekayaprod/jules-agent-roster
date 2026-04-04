@@ -38,7 +38,7 @@ Our testing strategy is split into two distinct paths. Please make sure you run 
 ## 🏗️ Adding a New Agent
 
 1. **Create the Prompt:** Add your new Markdown file in the `prompts/` or `prompts/fusions/` directory. Remember to follow the strict formatting (e.g., `You are "[Agent Name]" [emoji] - [Tagline]`).
-2. **Register It:** Update `agents.json` or `custom_agents.json`. Keep the keys alphabetical for fusions (e.g., `"Paramedic,Wordsmith"`).
+2. **Register It:** Ensure the `.md` file has valid YAML frontmatter containing `name`, `emoji`, `category`, and `tier`. Run `npm run build:roster` to dynamically compile the changes into `roster-payload.json`.
 3. **Verify:** Open `index.html` locally and make sure your agent card flips perfectly!
 
 ## 📜 Code Style
