@@ -189,16 +189,15 @@ describe('AgentCard', () => {
             // Valid fusion key - unpinned
             window.rosterApp.pinnedManager.isPinned.mockReturnValue(false);
             const unpinnedCard = AgentCard.create(mockAgent, 'AgentA+AgentB', 0);
-            const unpinnedBtn = getByRole(unpinnedCard, 'button', { name: /Toggle Pin/i });
-            expect(unpinnedBtn).toBeTruthy();
-            expect(unpinnedBtn.classList.contains('pinned')).toBe(false);
+            expect(unpinnedCard.innerHTML).toContain('data-action="toggle-pin"');
+            expect(unpinnedCard.innerHTML).not.toContain('pin-btn pinned');
+            expect(unpinnedCard.innerHTML).toContain('aria-pressed="false"');
 
             // Valid fusion key - pinned
             window.rosterApp.pinnedManager.isPinned.mockReturnValue(true);
             const pinnedCard = AgentCard.create(mockAgent, 'AgentC+AgentD', 0);
-            const pinnedBtn = getByRole(pinnedCard, 'button', { name: /Toggle Pin/i });
-            expect(pinnedBtn).toBeTruthy();
-            expect(pinnedBtn.classList.contains('pinned')).toBe(true);
+            expect(pinnedCard.innerHTML).toContain('pin-btn pinned');
+            expect(pinnedCard.innerHTML).toContain('aria-pressed="true"');
         });
 
         // THE BOUNDARY INTERROGATION: Explicitly asserts graceful degradation when global dependencies are missing

@@ -6,3 +6,7 @@
 ## Jeweler — Fusion Lab Keyboard Handlers
 **Barrier:** Fusion Lab slots lacked basic keyboard handlers for Enter and Space keys, preventing keyboard users from interacting with slots correctly.
 **Empathy:** Polished slot cards to support keyboard navigation (Enter/Space) and explicitly validated the keyboard dispatch with corresponding tests.
+
+## Jeweler — Pin Button Accessibility
+**Barrier:** The AgentCard pin button for fusion agents lacked semantic state indicating its toggled status, creating a void of context for screen reader users.
+**Empathy:** Polished the button to dynamically synchronize the `aria-pressed` attribute with the pin state. Added rigid component interaction assertions to lock the semantic state toggle correctly.

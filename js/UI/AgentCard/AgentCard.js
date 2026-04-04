@@ -58,8 +58,8 @@ class AgentCard {
 
         const isPinned = window.rosterApp && window.rosterApp.pinnedManager && window.rosterApp.pinnedManager.isPinned(index);
         const pinClass = isPinned ? 'pinned' : '';
-        const isFusionAgent = typeof index === 'string' && Number.isNaN(Number(index));
-        const pinHtml = (index !== undefined && index !== null && index !== '' && isFusionAgent) ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" >📌</button>` : '';
+        const isFusionAgent = isNaN(index);
+        const pinHtml = (index !== undefined && index !== null && index !== '' && isFusionAgent) ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" aria-pressed="${String(Boolean(isPinned))}">📌</button>` : '';
 
         // Splay Out Child Fusions Logic (Refactored to Modal Trigger)
         let fusionQuickListHtml = '';
