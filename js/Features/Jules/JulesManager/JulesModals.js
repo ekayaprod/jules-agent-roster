@@ -1,3 +1,5 @@
+const { TOAST_TYPES, BUTTON_STATES } = typeof require !== 'undefined' ? require('../../../constants/ui.js') : window;
+
 class JulesModals {
     constructor(julesManager) {
         this.manager = julesManager;
@@ -60,7 +62,7 @@ class JulesModals {
             const previousStatusOnclick = statusSpan ? statusSpan.onclick : null;
 
             closeModal();
-            this.manager.app.toast.show("Transmitting reply...", "info");
+            this.manager.app.toast.show("Transmitting reply...", TOAST_TYPES.INFO);
 
             if (statusSpan) {
                 statusSpan.className = "term-status skeleton-pulse";
@@ -70,9 +72,9 @@ class JulesModals {
 
             try {
                 await window.julesService.sendUserInput(sessionId, text);
-                this.manager.app.toast.show("Reply transmitted.", "success");
+                this.manager.app.toast.show("Reply transmitted.", TOAST_TYPES.SUCCESS);
             } catch {
-                this.manager.app.toast.show("Failed to send reply.", "error");
+                this.manager.app.toast.show("Failed to send reply.", TOAST_TYPES.ERROR);
                 // Silent rollback on error
                 if (statusSpan) {
                     statusSpan.className = previousStatusClass || "term-status status-waiting";
@@ -127,7 +129,7 @@ class JulesModals {
             const statusSpan = document.getElementById(`status-${sessionId}`);
 
             closeHistoryModal();
-            this.manager.app.toast.show("Transmitting reply...", "info");
+            this.manager.app.toast.show("Transmitting reply...", TOAST_TYPES.INFO);
 
             if (statusSpan) {
                 statusSpan.className = "term-status skeleton-pulse";
@@ -137,10 +139,10 @@ class JulesModals {
 
             try {
                 await window.julesService.sendUserInput(sessionId, text);
-                this.manager.app.toast.show("Reply transmitted.", "success");
+                this.manager.app.toast.show("Reply transmitted.", TOAST_TYPES.SUCCESS);
             } catch (err) {
                 console.error(JSON.stringify({ event: "JULES_SEND_REPLY_FAILED", error: err.message }));
-                this.manager.app.toast.show("Failed to send reply.", "error");
+                this.manager.app.toast.show("Failed to send reply.", TOAST_TYPES.ERROR);
             }
         };
 
@@ -237,17 +239,17 @@ class JulesModals {
         }
 
         if (mergeBtn) {
-            DOMUtils.setButtonState(mergeBtn, "ready", "Merge PR");
+            DOMUtils.setButtonState(mergeBtn, BUTTON_STATES.READY, "Merge PR");
             mergeBtn.onclick = async () => {
-                DOMUtils.setButtonState(mergeBtn, "loading", "Merging...");
+                DOMUtils.setButtonState(mergeBtn, BUTTON_STATES.LOADING, "Merging...");
                 if (errorEl) errorEl.classList.add('hidden');
                 try {
                     await window.julesService.mergePullRequest(sourceName, pr.number);
-                    this.manager.app.toast.show(`Successfully merged PR #${pr.number}`, "success");
+                    this.manager.app.toast.show(`Successfully merged PR #${pr.number}`, TOAST_TYPES.SUCCESS);
                     modal.classList.remove("visible");
                     this.manager.loadPullRequestsForRepo(sourceName);
                 } catch (err) {
-                    DOMUtils.setButtonState(mergeBtn, "ready", "Merge PR");
+                    DOMUtils.setButtonState(mergeBtn, BUTTON_STATES.READY, "Merge PR");
                     if (errorEl) {
                         errorEl.textContent = "Failed to merge PR: " + err.message;
                         errorEl.classList.remove('hidden');
@@ -257,17 +259,17 @@ class JulesModals {
         }
 
         if (closePRBtn) {
-            DOMUtils.setButtonState(closePRBtn, "ready", "Close PR");
+            DOMUtils.setButtonState(closePRBtn, BUTTON_STATES.READY, "Close PR");
             closePRBtn.onclick = async () => {
-                DOMUtils.setButtonState(closePRBtn, "loading", "Closing...");
+                DOMUtils.setButtonState(closePRBtn, BUTTON_STATES.LOADING, "Closing...");
                 if (errorEl) errorEl.classList.add('hidden');
                 try {
                     await window.julesService.closePullRequest(sourceName, pr.number);
-                    this.manager.app.toast.show(`Successfully closed PR #${pr.number}`, "success");
+                    this.manager.app.toast.show(`Successfully closed PR #${pr.number}`, TOAST_TYPES.SUCCESS);
                     modal.classList.remove("visible");
                     this.manager.loadPullRequestsForRepo(sourceName);
                 } catch (err) {
-                    DOMUtils.setButtonState(closePRBtn, "ready", "Close PR");
+                    DOMUtils.setButtonState(closePRBtn, BUTTON_STATES.READY, "Close PR");
                     if (errorEl) {
                         errorEl.textContent = "Failed to close PR: " + err.message;
                         errorEl.classList.remove('hidden');
