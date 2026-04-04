@@ -47,13 +47,15 @@ class ExportController {
     if (!parentName) return;
     const header = FormatUtils.CUSTOM_ROSTER_HEADER;
 
-    const allCustomAgents = this.app.customAgents || {};
     const validCustomAgents = [];
+    const fusionMatrixMap = (this.app.fusionLab && this.app.fusionLab.compiler && this.app.fusionLab.compiler.fusionMatrixMap) ? this.app.fusionLab.compiler.fusionMatrixMap : {};
+    const customAgentsMap = Object.assign({}, this.app.customAgents || {}, (this.app.fusionLab && this.app.fusionLab.compiler && this.app.fusionLab.compiler.customAgentsMap) || {});
 
-    for (const key in allCustomAgents) {
-      if (Object.prototype.hasOwnProperty.call(allCustomAgents, key)) {
+    for (const key in fusionMatrixMap) {
+      if (Object.prototype.hasOwnProperty.call(fusionMatrixMap, key)) {
         if (key.includes(parentName)) {
-           const a = allCustomAgents[key];
+           const fusionName = fusionMatrixMap[key];
+           const a = customAgentsMap[fusionName];
            if (a && a.prompt && a.prompt.length > 0) validCustomAgents.push(a);
         }
       }

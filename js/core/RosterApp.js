@@ -445,15 +445,12 @@ class RosterApp {
               const unlockedKeys = this.fusionLab.fusionIndex.unlockedKeys;
               let listItems = '';
 
-              // Dynamically resolve fusions from the live map to avoid stale caches.
-              const allCustomAgents = this.fusionLab.compiler.customAgentsMap || {};
+              // Dynamically resolve fusions from the live matrix map
+              const allMatrixKeys = this.fusionLab.compiler.fusionMatrixMap ? Object.keys(this.fusionLab.compiler.fusionMatrixMap) : [];
               const potentialFusions = [];
-              const allKeys = Object.keys(allCustomAgents).concat(
-                  this.customAgents ? Object.keys(this.customAgents) : []
-              );
 
               // Extract unique potential fusions for this agent dynamically
-              const uniqueKeys = new Set(allKeys);
+              const uniqueKeys = new Set(allMatrixKeys);
               for (const key of uniqueKeys) {
                   if (key.includes(agent.name)) {
                       potentialFusions.push(key);
@@ -466,7 +463,8 @@ class RosterApp {
                       : unlockedKeys.includes(key);
 
                   if (isUnlocked) {
-                      const childAgent = AgentUtils.getCustomAgent(this.customAgents, key) || this.fusionLab.compiler.customAgentsMap[key];
+                      const fusionName = this.fusionLab.compiler.fusionMatrixMap[key];
+                      const childAgent = AgentUtils.getCustomAgent(this.customAgents, fusionName) || this.fusionLab.compiler.customAgentsMap[fusionName];
                       if (childAgent) {
                           const childIcon = FormatUtils.extractIcon(childAgent);
                           const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
