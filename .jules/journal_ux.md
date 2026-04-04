@@ -3,3 +3,6 @@
 ## Jeweler — Dropdown Keyboard Navigation
 **Barrier:** RosterApp dropdowns lacked basic keyboard handlers for Escape key, trapping keyboard users in an active visual state without semantic clarity.
 **Empathy:** Bound an explicit `Escape` listener mapping directly to dropdown toggle attributes (`aria-expanded`), immediately updating visual state and smoothly reverting focus to prevent keyboard traps.
+## Jeweler — Fusion Lab Keyboard Handlers
+**Barrier:** Fusion Lab slots lacked basic keyboard handlers for Enter and Space keys, preventing keyboard users from interacting with slots correctly.
+**Empathy:** Polished slot cards to support keyboard navigation (Enter/Space) and explicitly validated the keyboard dispatch with corresponding tests.

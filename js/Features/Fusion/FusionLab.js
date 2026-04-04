@@ -66,12 +66,28 @@ class FusionLab {
         labContent: document.getElementById("fusionLabContent"),
     };
 
-    if (this.elements.slotACard) this.elements.slotACard.addEventListener("click", () => {
-        if (this.picker) this.picker.openPicker("slotA", this.state.slotA);
-    });
-    if (this.elements.slotBCard) this.elements.slotBCard.addEventListener("click", () => {
-        if (this.picker) this.picker.openPicker("slotB", this.state.slotB);
-    });
+    if (this.elements.slotACard) {
+        this.elements.slotACard.addEventListener("click", () => {
+            if (this.picker) this.picker.openPicker("slotA", this.state.slotA);
+        });
+        this.elements.slotACard.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                if (this.picker) this.picker.openPicker("slotA", this.state.slotA);
+            }
+        });
+    }
+    if (this.elements.slotBCard) {
+        this.elements.slotBCard.addEventListener("click", () => {
+            if (this.picker) this.picker.openPicker("slotB", this.state.slotB);
+        });
+        this.elements.slotBCard.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                if (this.picker) this.picker.openPicker("slotB", this.state.slotB);
+            }
+        });
+    }
 
     if (this.elements.fuseBtn) this.elements.fuseBtn.addEventListener("click", () => this.handleFusion());
 
