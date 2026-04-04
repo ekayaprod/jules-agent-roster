@@ -241,9 +241,8 @@ class RosterApp {
 
              if (!agent) return;
 
-             const category = (agent.category || "strategy").toLowerCase();
-             if (!categorizedAgents[category]) return;
-             categorizedAgents[category].push({ agent, indexOrKey: key });
+             if (!categorizedAgents["pinned"]) categorizedAgents["pinned"] = [];
+             categorizedAgents["pinned"].push({ agent, indexOrKey: key });
         });
     }
 
@@ -325,7 +324,21 @@ class RosterApp {
             if (container) {
               container.innerHTML = "";
               const fragment = fragments[key];
+              const hasChildren = fragment && fragment.children.length > 0;
               if (fragment) container.appendChild(fragment);
+
+              if (key === "pinned") {
+                  const header = document.getElementById("pinned");
+                  if (hasChildren) {
+                      container.style.display = "";
+                      container.classList.remove("empty");
+                      if (header) header.style.display = "";
+                  } else {
+                      container.style.display = "none";
+                      container.classList.add("empty");
+                      if (header) header.style.display = "none";
+                  }
+              }
             }
           }
 
