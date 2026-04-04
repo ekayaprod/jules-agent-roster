@@ -137,12 +137,16 @@ describe('TerminalPolling', () => {
 
         window.julesService.getActivities.mockRejectedValue(new Error('API fail'));
 
+        const TelemetryUtils = require('../../../Utils/telemetry-utils.js');
+        const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
 
         jest.advanceTimersByTime(10);
         await Promise.resolve(); // flush promises
 
-        expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_POLLING_ERROR", error: 'API fail' }));
+        expect(dispatchSpy).toHaveBeenCalledWith("JULES_POLLING_ERROR", expect.any(Error));
+        dispatchSpy.mockRestore();
     });
 
     it('should handle isWaitingForInput=false correctly', () => {

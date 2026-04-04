@@ -1,3 +1,5 @@
+const TelemetryUtils = typeof require !== 'undefined' ? require('../../../Utils/telemetry-utils.js') : window.TelemetryUtils;
+
 class TerminalPolling {
     constructor(julesManager) {
         this.manager = julesManager;
@@ -88,7 +90,7 @@ class TerminalPolling {
                 this._updatePollingState(sessionId, block, state, agentName, agentEmoji);
 
             } catch (e) {
-                console.error(JSON.stringify({ event: "JULES_POLLING_ERROR", error: e.message }));
+                TelemetryUtils.dispatchEvent("JULES_POLLING_ERROR", e);
             }
         }, this.manager.constructor.TERMINAL_POLL_MS);
     }

@@ -59,15 +59,23 @@ describe('StorageUtils', () => {
         });
 
         it('returns null and logs error when parsing fails', () => {
+            const TelemetryUtils = require('./telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
             mockLocalStorage.getItem.mockReturnValue('invalid-json');
 
             const result = StorageUtils.getJsonArrayItem('test_key', 'test_event');
 
             expect(result).toBeNull();
-            expect(consoleErrorSpy).toHaveBeenCalled();
-            const logCall = consoleErrorSpy.mock.calls[0][0];
-            expect(logCall).toContain('test_event');
-            expect(logCall).toContain('invalid-json');
+            expect(dispatchSpy).toHaveBeenCalled();
+
+            expect(dispatchSpy).toHaveBeenCalledWith(
+                'test_event',
+                expect.any(Error),
+                { stored: 'invalid-json' }
+            );
+
+            dispatchSpy.mockRestore();
         });
 
         it('returns null when localStorage is undefined', () => {
@@ -83,12 +91,21 @@ describe('StorageUtils', () => {
         });
 
         it('handles exceptions when localStorage.getItem throws', () => {
+             const TelemetryUtils = require('./telemetry-utils.js');
+             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
              mockLocalStorage.getItem.mockImplementation(() => { throw new Error('getItem failed'); });
 
              const result = StorageUtils.getJsonArrayItem('test_key', 'test_event');
 
              expect(result).toBeNull();
-             expect(consoleErrorSpy).toHaveBeenCalled();
+             expect(dispatchSpy).toHaveBeenCalledWith(
+                 'test_event',
+                 expect.any(Error),
+                 { stored: null }
+             );
+
+             dispatchSpy.mockRestore();
         });
     });
 

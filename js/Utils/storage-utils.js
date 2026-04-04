@@ -1,3 +1,5 @@
+const TelemetryUtils = typeof require !== 'undefined' ? require('./telemetry-utils.js') : window.TelemetryUtils;
+
 /**
  * Utility class for interacting with localStorage.
  * Centralizes duplicate parsing, stringifying, and error handling logic.
@@ -24,11 +26,7 @@ class StorageUtils {
             }
             return null;
         } catch (error) {
-            console.error(JSON.stringify({
-                event: errorEventName,
-                stored: stored,
-                error: error.message
-            }));
+            TelemetryUtils.dispatchEvent(errorEventName, error, { stored: stored });
             return null;
         }
     }

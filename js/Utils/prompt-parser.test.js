@@ -94,14 +94,19 @@ describe('PromptParser', () => {
     expect(result.format).toBe('legacy');
     expect(result.raw).toBe(rawText);
 
-    expect(consoleErrorSpy).toHaveBeenCalledWith(
-      JSON.stringify({
-        event: 'PROMPT_PARSE_FAILED',
-        input: rawText.substring(0, 100),
-        error: 'Simulated DOMParser error 2'
-      })
+    const TelemetryUtils = require('./telemetry-utils.js');
+    const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
+
+    // Need to run it again because spy was created after
+    const result2 = PromptParser.parsePrompt(rawText);
+
+    expect(dispatchSpy).toHaveBeenCalledWith(
+      'PROMPT_PARSE_FAILED',
+      expect.any(Error),
+      { input: rawText.substring(0, 100) }
     );
 
+    dispatchSpy.mockRestore();
     global.DOMParser = originalDOMParserRef;
   });
 
@@ -130,14 +135,19 @@ describe('PromptParser', () => {
     expect(result.format).toBe('legacy');
     expect(result.raw).toBe(rawText);
 
-    expect(consoleErrorSpy).toHaveBeenCalledWith(
-      JSON.stringify({
-        event: 'PROMPT_PARSE_FAILED',
-        input: rawText,
-        error: 'Simulated DOMParser error'
-      })
+    const TelemetryUtils = require('./telemetry-utils.js');
+    const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
+
+    // Need to run it again because spy was created after
+    const result2 = PromptParser.parsePrompt(rawText);
+
+    expect(dispatchSpy).toHaveBeenCalledWith(
+      'PROMPT_PARSE_FAILED',
+      expect.any(Error),
+      { input: rawText }
     );
 
+    dispatchSpy.mockRestore();
     global.DOMParser = originalDOMParserRef;
   });
 });

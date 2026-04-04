@@ -76,13 +76,10 @@ const PromptParser = {
       return { format: 'xml', sections };
 
     } catch (e) {
-      console.error(
-        JSON.stringify({
-          event: 'PROMPT_PARSE_FAILED',
-          input: rawText ? rawText.substring(0, 100) : null,
-          error: e.message
-        })
-      );
+      const TelemetryUtils = typeof require !== 'undefined' ? require('./telemetry-utils.js') : window.TelemetryUtils;
+      TelemetryUtils.dispatchEvent('PROMPT_PARSE_FAILED', e, {
+          input: rawText ? rawText.substring(0, 100) : null
+      });
       return { format: 'legacy', raw: rawText };
     }
   }
