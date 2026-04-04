@@ -222,9 +222,7 @@ class RosterApp {
     if (this.pinnedManager) {
         const pinnedKeys = this.pinnedManager.getPinned();
         pinnedKeys.forEach(key => {
-             if (typeof key !== 'string' || !Number.isNaN(Number(key))) return;
-
-             let agent = AgentUtils.getCustomAgent(this.customAgents, key) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
+             let agent = this.agents[key] || AgentUtils.getCustomAgent(this.customAgents, key) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
 
              // 🎧 FLOW: The Scaffold Realization.
              // Rebuild the pinned fusion agent card from scratch if it is an unlocked dynamic fusion not present in the static maps.
@@ -528,8 +526,6 @@ class RosterApp {
 
           const index = pinTarget.dataset.index;
           if (!index) return;
-          if (typeof index !== 'string' || !Number.isNaN(Number(index))) return; // Restrict pinning to Fusion Agents only
-
           // Validate agent exists before pinning
           let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
           if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
