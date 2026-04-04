@@ -64,7 +64,7 @@ describe('RosterApp (Boundary Interrogation)', () => {
         jest.clearAllMocks();
     });
 
-    it('ignores pin securely on a valid non-fusion agent index', () => {
+    it('allows pinning securely on a valid base agent index', () => {
         // Setup valid agent card click
         const target = document.createElement('button');
         target.setAttribute('data-action', 'toggle-pin');
@@ -79,9 +79,9 @@ describe('RosterApp (Boundary Interrogation)', () => {
         target.click();
 
         // Verify pinning logic triggered successfully
-        expect(app.pinnedManager.getPinned()).not.toContain('0');
-        expect(app.showToast).not.toHaveBeenCalled();
-        expect(app.renderAgents).not.toHaveBeenCalled();
+        expect(app.pinnedManager.getPinned()).toContain('0');
+        expect(app.showToast).toHaveBeenCalled();
+        expect(app.renderAgents).toHaveBeenCalled();
     });
 
     it('toggles aria-pressed attribute correctly when pinning an agent', () => {
