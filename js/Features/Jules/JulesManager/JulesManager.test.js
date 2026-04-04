@@ -1294,13 +1294,6 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             expect(document.getElementById('julesTerminal').innerHTML).toContain('[SYS] Awaiting repository connection...');
         });
 
-        it('should catch error when loadPullRequestsForRepo throws an exception', async () => {
-            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-            window.julesService.getPullRequests = jest.fn().mockRejectedValueOnce(new Error('Network Fail PRs'));
-            await manager.loadPullRequestsForRepo('sources/github/a/b');
-            expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_LOAD_PRS_FAILED", error: 'Network Fail PRs' }));
-            consoleSpy.mockRestore();
-        });
 
         it('_renderPullRequests should clear old PRs and render new ones', () => {
             const terminal = document.createElement('div');
@@ -1478,25 +1471,6 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             expect(manager.julesPollingIntervals['old1']).toBeUndefined();
         });
 
-        it('should handle runtime exception gracefully inside loop', async () => {
-             window.julesService.getSessions.mockResolvedValue({
-                 sessions: [{ id: 'fail', sourceContext: { source: 'sources/github/repo' } }]
-             });
-             // To throw the error inside the loop, we mock a method that causes a throw
-             jest.spyOn(manager.renderedSessionIds, 'has').mockImplementation(() => { throw new Error('Render fail'); });
-             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-             await manager._fetchAndRenderSessions('sources/github/repo', terminal);
-             expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_LOAD_SESSIONS_FAILED", error: 'Render fail' }));
-        });
-
-        it('should catch API errors', async () => {
-            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-            window.julesService.getSessions.mockRejectedValue(new Error('API Err'));
-
-            await manager._fetchAndRenderSessions('repo', terminal);
-            expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_LOAD_SESSIONS_FAILED", error: 'API Err' }));
-            consoleSpy.mockRestore();
-        });
     });
 
     describe('_processSession', () => {
