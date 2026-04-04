@@ -109,7 +109,7 @@ class FusionIndex {
       const emoji = this.getEmoji(safeData);
 
       const slot = document.createElement("div");
-      slot.className = `fusion-slot ${isUnlocked ? "unlocked" : "locked"}`;
+      slot.className = `fusion-item ${isUnlocked ? "unlocked" : "locked"}`;
       if (isUnlocked && safeData?.tier) {
           slot.classList.add(`tier-${safeData.tier.toLowerCase()}`);
       }
@@ -185,7 +185,7 @@ class FusionIndex {
   updateSlot(key) {
     // 🛡️ Bastion: Use safe selector escaping to prevent querySelector injection attacks
     const safeKey = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(key) : key.replace(/(["\\])/g, '\\$1');
-    const slot = this.elements.container?.querySelector(`.fusion-slot[data-key="${safeKey}"]`) || document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
+    const slot = this.elements.container?.querySelector(`.fusion-item[data-key="${safeKey}"]`) || document.querySelector(`.fusion-item[data-key="${safeKey}"]`);
     if (slot) {
       const fusionName = this.customAgents[key];
       // lookup full agent data

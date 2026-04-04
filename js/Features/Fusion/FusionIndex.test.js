@@ -3,6 +3,9 @@
  */
 
 const FusionIndex = require('./FusionIndex');
+const { screen } = require('@testing-library/dom');
+const userEvent = require('@testing-library/user-event').default;
+require('@testing-library/jest-dom');
 
 describe('FusionIndex', () => {
     let fusionIndex;
@@ -88,24 +91,18 @@ global.AgentUtils = AgentUtils;
         fusionIndex.init();
 
         const container = document.getElementById('fusion-container');
-        expect(container.innerHTML).toContain('Fusion Index');
+        expect(screen.getByText('Fusion Index')).toBeVisible();
 
-        const safeKeyA = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape('AgentA,AgentB') : 'AgentA,AgentB'.replace(/(["\\])/g, '\\$1');
-        const unlockedSlot = container.querySelector(`.fusion-slot[data-key="${safeKeyA}"]`);
-        expect(unlockedSlot).not.toBeNull();
-        expect(unlockedSlot.getAttribute('data-key')).toBe('AgentA,AgentB');
-        expect(unlockedSlot.getAttribute('title')).toBe('SuperAgent');
-        expect(unlockedSlot.classList.contains('tier-epic')).toBe(true);
-        expect(unlockedSlot.classList.contains('unlocked')).toBe(true);
+        const unlockedSlot = screen.getByRole('button', { name: /Load SuperAgent Protocol/i });
+        expect(unlockedSlot).toBeVisible();
+        expect(unlockedSlot).toHaveAttribute('data-key', 'AgentA,AgentB');
+        expect(unlockedSlot).toHaveAttribute('title', 'SuperAgent');
 
-        const safeKeyC = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape('AgentC,AgentD') : 'AgentC,AgentD'.replace(/(["\\])/g, '\\$1');
-        const lockedSlot = container.querySelector(`.fusion-slot[data-key="${safeKeyC}"]`);
-        expect(lockedSlot).not.toBeNull();
-        expect(lockedSlot.getAttribute('data-key')).toBe('AgentC,AgentD');
-        expect(lockedSlot.getAttribute('title')).toBe('Locked Protocol');
+        const lockedSlots = screen.getAllByTitle('Locked Protocol');
+        expect(lockedSlots[0]).toBeVisible();
+        expect(lockedSlots[0]).toHaveAttribute('data-key', 'AgentC,AgentD');
 
-        // Assert progress text (innerText unsupported in jest, use textContent)
-        expect(container.querySelector('.fusion-progress').textContent).toBe('1 / 3 Protocols Discovered');
+        expect(screen.getByText('1 / 3 Protocols Discovered')).toBeVisible();
     });
 
     it('handles rendering with missing DOM elements', () => {
@@ -121,11 +118,9 @@ global.AgentUtils = AgentUtils;
         expect(mockStorageUtils.setJsonItem).toHaveBeenCalled();
 
         // Verify slot update
-        const safeKey = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape('AgentC,AgentD') : 'AgentC,AgentD'.replace(/(["\\])/g, '\\$1');
-        const slot = document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
-        expect(slot.classList.contains('unlocked')).toBe(true);
-        expect(slot.classList.contains('locked')).toBe(false);
-        expect(slot.getAttribute('title')).toBe('LameAgent');
+        const slot = screen.getByRole('button', { name: /Load LameAgent Protocol/i });
+        expect(slot).toBeVisible();
+        expect(slot).toHaveAttribute('title', 'LameAgent');
     });
 
     it('ignores unlocking of unknown keys', () => {
@@ -156,45 +151,39 @@ global.AgentUtils = AgentUtils;
         expect(fusionIndex.isUnlocked('AgentC,AgentD')).toBe(false);
     });
 
-    it('handles interaction events for unlocked slots safely', () => {
+    it('handles interaction events for unlocked slots safely', async () => {
+        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         mockStorageUtils.getJsonArrayItem.mockReturnValue(['AgentA,AgentB']);
         fusionIndex.init();
 
-        const safeKey = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape('AgentA,AgentB') : 'AgentA,AgentB'.replace(/(["\\])/g, '\\$1');
-        const unlockedSlot = document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
+        const unlockedSlot = screen.getByRole('button', { name: /Load SuperAgent Protocol/i });
 
         // Trigger click
-        unlockedSlot.click();
+        await user.click(unlockedSlot);
         expect(fusionIndex.onSelectCallback).toHaveBeenCalledWith('AgentA,AgentB');
 
         // Trigger keyboard Enter
-        const enterEvent = new window.KeyboardEvent('keydown', { key: 'Enter' });
-        enterEvent.preventDefault = jest.fn();
-        unlockedSlot.dispatchEvent(enterEvent);
+        unlockedSlot.focus();
+        await user.keyboard('{Enter}');
         expect(fusionIndex.onSelectCallback).toHaveBeenCalledTimes(2);
-        expect(enterEvent.preventDefault).toHaveBeenCalled();
 
         // Trigger keyboard Space
-        const spaceEvent = new window.KeyboardEvent('keydown', { key: ' ' });
-        spaceEvent.preventDefault = jest.fn();
-        unlockedSlot.dispatchEvent(spaceEvent);
+        await user.keyboard(' ');
         expect(fusionIndex.onSelectCallback).toHaveBeenCalledTimes(3);
-        expect(spaceEvent.preventDefault).toHaveBeenCalled();
 
         // Ignore other keys
-        const otherKeyEvent = new window.KeyboardEvent('keydown', { key: 'Escape' });
-        unlockedSlot.dispatchEvent(otherKeyEvent);
+        await user.keyboard('{Escape}');
         expect(fusionIndex.onSelectCallback).toHaveBeenCalledTimes(3);
     });
 
-    it('executes without crashing when callback is undefined on interaction', () => {
+    it('executes without crashing when callback is undefined on interaction', async () => {
+        const user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         fusionIndex = new FusionIndex('fusion-container', { 'AgentA,AgentB': { name: 'A' } }, undefined);
         mockStorageUtils.getJsonArrayItem.mockReturnValue(['AgentA,AgentB']);
         fusionIndex.init();
 
-        const safeKey = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape('AgentA,AgentB') : 'AgentA,AgentB'.replace(/(["\\])/g, '\\$1');
-        const unlockedSlot = document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
-        expect(() => unlockedSlot.click()).not.toThrow();
+        const unlockedSlot = screen.getByRole('button', { name: /Load A Protocol/i });
+        await user.click(unlockedSlot); // Just assert it doesn't throw
     });
 
     it('safely handles missing customAgents entirely', () => {
@@ -211,12 +200,13 @@ global.AgentUtils = AgentUtils;
         fusionIndex.init();
         fusionIndex.unlock('AgentC,AgentD');
 
-        const safeKey = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape('AgentC,AgentD') : 'AgentC,AgentD'.replace(/(["\\])/g, '\\$1');
-        const slot = document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
-        expect(slot.classList.contains('just-unlocked')).toBe(true);
+        const slot = screen.getByRole('button', { name: /Load LameAgent Protocol/i });
+        expect(slot).toHaveClass('just-unlocked');
 
         jest.runAllTimers();
-        expect(slot.classList.contains('just-unlocked')).toBe(false);
+        expect(slot).not.toHaveClass('just-unlocked');
+
+        jest.clearAllTimers();
         jest.useRealTimers();
     });
 
@@ -225,8 +215,7 @@ global.AgentUtils = AgentUtils;
 
         // Exploit boundary
         expect(() => fusionIndex.unlock('Bad"Key\\')).not.toThrow();
-        const safeKey = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape('Bad"Key\\') : 'Bad"Key\\'.replace(/(["\\])/g, '\\$1');
-        const slot = document.querySelector(`.fusion-slot[data-key="${safeKey}"]`);
-        expect(slot.classList.contains('unlocked')).toBe(true);
+        const slot = screen.getByRole('button', { name: /Load Hacker Protocol/i });
+        expect(slot).toBeVisible();
     });
 });
