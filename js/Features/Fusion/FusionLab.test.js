@@ -253,6 +253,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         fusionLab.state.slotB = { name: 'B' };
         // Should not throw
         expect(() => fusionLab.updateState()).not.toThrow();
+        expect(global.DOMUtils.setButtonState).not.toHaveBeenCalled();
     });
 
     test('showError sets button state and displays message correctly', () => {
@@ -500,16 +501,49 @@ describe('FusionLab Initialization and Bindings', () => {
         fusionLab.bindEvents = jest.fn();
         fusionLab.renderSlots = jest.fn();
 
+        fusionLab.handleShelfSelection = jest.fn();
+        fusionLab.handlePickerSelection = jest.fn();
+        fusionLab.getPreMergePreviewHTML = jest.fn();
+
+        // Wrap class instantiation to capture callbacks
+        const originalFusionIndex = global.FusionIndex;
+        let capturedShelfCallback = null;
+        global.FusionIndex = function(container, matrix, callback) {
+            capturedShelfCallback = callback;
+            this.init = jest.fn();
+        };
+
+        const originalAgentPicker = global.AgentPicker;
+        let capturedPickerSelectCallback = null;
+        let capturedPickerPreviewCallback = null;
+        global.AgentPicker = function(agents, selectCb, previewCb) {
+            capturedPickerSelectCallback = selectCb;
+            capturedPickerPreviewCallback = previewCb;
+            this.openPicker = jest.fn();
+        };
+
         fusionLab.init(agents, customAgents, fusionMatrix);
 
         expect(fusionLab.agents).toBe(agents);
         expect(fusionLab.agentMap.get('Agent1')).toEqual({ name: 'Agent1' });
         expect(fusionLab.compiler).toBeInstanceOf(MockFusionCompiler);
-        expect(fusionLab.fusionIndex).toBeInstanceOf(MockFusionIndex);
-        expect(fusionLab.picker).toBeInstanceOf(MockAgentPicker);
         expect(fusionLab.fusionIndex.init).toHaveBeenCalled();
         expect(fusionLab.bindEvents).toHaveBeenCalled();
         expect(fusionLab.renderSlots).toHaveBeenCalled();
+
+        // Trigger callbacks
+        capturedShelfCallback('A,B');
+        expect(fusionLab.handleShelfSelection).toHaveBeenCalledWith('A,B');
+
+        capturedPickerSelectCallback('slotA', { name: 'AgentA' });
+        expect(fusionLab.handlePickerSelection).toHaveBeenCalledWith('slotA', { name: 'AgentA' });
+
+        capturedPickerPreviewCallback({ name: 'AgentA' });
+        expect(fusionLab.getPreMergePreviewHTML).toHaveBeenCalledWith({ name: 'AgentA' });
+
+        // Restore
+        global.FusionIndex = originalFusionIndex;
+        global.AgentPicker = originalAgentPicker;
     });
 
     test('bindEvents attaches click listeners correctly', async () => {
