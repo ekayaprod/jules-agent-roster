@@ -1024,9 +1024,10 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             manager.elements['interactionModalInput'] = null;
             const event = new Event('input');
             if(inputField) {
-                inputField.dispatchEvent(event);
+                expect(() => inputField.dispatchEvent(event)).not.toThrow();
             }
-            expect(true).toBe(true);
+            // If inputField is null, no exception should be thrown natively, meaning the test passes safely.
+            expect(manager.elements['interactionModalInput']).toBeNull();
         });
 
         it('should not submit if input is empty', async () => {
@@ -1042,18 +1043,26 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
     describe('init', () => {
         it('should show and clear errors gracefully if elements are missing', () => {
-            manager.modals._showKeyError(null, null, 'Error');
-            manager.modals._clearKeyError(null, null);
-            expect(true).toBe(true);
+            expect(() => {
+                manager.modals._showKeyError(null, null, 'Error');
+                manager.modals._clearKeyError(null, null);
+            }).not.toThrow();
         });
 
         it('should not break save click when saveBtn and keyInput are partially null', async () => {
             const tempSaveBtn = document.getElementById('saveSettingsBtn');
             tempSaveBtn.id = 'saveSettingsBtnTemp'; // hide it
-            await manager.init(); // re-init to bind with null saveBtn
+
+            let initError = null;
+            try {
+                await manager.init();
+            } catch (err) {
+                initError = err;
+            }
+            expect(initError).toBeNull();
+
             // Put it back
             tempSaveBtn.id = 'saveSettingsBtn';
-            expect(true).toBe(true);
         });
 
         it('should auto-connect if API key exists in storage', async () => {
@@ -1443,7 +1452,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
         it('should show awaiting message if no matching sessions', async () => {
             window.julesService.getSessions.mockResolvedValue({ sessions: [] });
             await manager._fetchAndRenderSessions('repo', terminal);
-            expect(true).toBe(true);
+            expect(terminal.innerHTML).toContain('Awaiting execution commands');
         });
 
         it('should remove obsolete dashboard items', async () => {
