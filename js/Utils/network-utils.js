@@ -41,7 +41,7 @@ class NetworkUtils {
                     } else if (errJson.message) {
                         errorMsg = errJson.message;
                     }
-                } catch(e) {
+                } catch {
                     // Ignore parsing errors and stick to fallback
                 }
                 throw new Error(errorMsg);

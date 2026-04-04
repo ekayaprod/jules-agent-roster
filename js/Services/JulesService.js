@@ -66,7 +66,7 @@ class JulesService {
 
             try {
                 return await response.json();
-            } catch (parseError) {
+            } catch {
                 throw new Error("We encountered a server error. Please wait a moment and try again.");
             }
         } catch (error) {
