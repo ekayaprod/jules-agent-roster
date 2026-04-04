@@ -3,6 +3,9 @@ const OBSERVER_OPTIONS = {
     threshold: 0
 };
 
+const LOADING_OVERLAY_DISMISS_MS = 500;
+const SEARCH_DEBOUNCE_MS = 300;
+
 // Helper for closing a dropdown menu and syncing its aria-expanded state
 function closeDropdownMenu(menu, appContext) {
     if (!menu) return;
@@ -90,7 +93,7 @@ class RosterApp {
             if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 revealContent();
             } else {
-                setTimeout(revealContent, 500); 
+                setTimeout(revealContent, LOADING_OVERLAY_DISMISS_MS);
             }
         }
     } catch (error) {
@@ -297,7 +300,7 @@ class RosterApp {
         let card = this._domNodeCache.get(String(indexOrKey));
         if (card) {
             // Re-use cached node but recalculate animation delay
-            card.style.animationDelay = `${Math.min(globalIndex * 30, 600)}ms`;
+            card.style.animationDelay = `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`;
         } else {
             card = AgentCard.create(agent, indexOrKey, globalIndex);
             this._domNodeCache.set(String(indexOrKey), card);
@@ -332,7 +335,7 @@ class RosterApp {
               overlay.classList.add("hidden");
               setTimeout(() => {
                   if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-              }, 500);
+              }, LOADING_OVERLAY_DISMISS_MS);
           }
         });
       }
@@ -349,7 +352,7 @@ class RosterApp {
    */
   bindEvents() {
     if (this.elements.searchInput) {
-      const debouncedFilter = PerformanceUtils.debounce((query) => this.filterAgents(query), 300);
+      const debouncedFilter = PerformanceUtils.debounce((query) => this.filterAgents(query), SEARCH_DEBOUNCE_MS);
       this.elements.searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
     }
     
