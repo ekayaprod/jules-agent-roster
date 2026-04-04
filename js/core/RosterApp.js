@@ -222,7 +222,7 @@ class RosterApp {
     if (this.pinnedManager) {
         const pinnedKeys = this.pinnedManager.getPinned();
         pinnedKeys.forEach(key => {
-             if (!isNaN(key)) return;
+             if (typeof key !== 'string' || !Number.isNaN(Number(key))) return;
 
              let agent = AgentUtils.getCustomAgent(this.customAgents, key) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
 
@@ -528,7 +528,7 @@ class RosterApp {
 
           const index = pinTarget.dataset.index;
           if (!index) return;
-          if (!isNaN(index)) return; // Restrict pinning to Fusion Agents only
+          if (typeof index !== 'string' || !Number.isNaN(Number(index))) return; // Restrict pinning to Fusion Agents only
 
           // Validate agent exists before pinning
           let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
