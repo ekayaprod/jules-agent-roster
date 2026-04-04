@@ -243,12 +243,8 @@ class JulesManager {
      */
     async loadPullRequestsForRepo(sourceName) {
         if (!window.julesService) return;
-        try {
-            const pullRequests = await window.julesService.getPullRequests(sourceName);
-            this._renderPullRequests(pullRequests, this.getEl("julesTerminal"));
-        } catch (error) {
-            console.error(JSON.stringify({ event: "JULES_LOAD_PRS_FAILED", error: error.message }));
-        }
+        const pullRequests = await window.julesService.getPullRequests(sourceName);
+        this._renderPullRequests(pullRequests, this.getEl("julesTerminal"));
     }
 
     _renderPullRequests(prs, terminal) {
@@ -279,67 +275,62 @@ class JulesManager {
 
 
     async _fetchAndRenderSessions(sourceName, terminal) {
-        try {
-            if (!window.julesService || !window.julesService.apiKey) return;
+        if (!window.julesService || !window.julesService.apiKey) return;
 
-            const sessionsResponse = await window.julesService.getSessions(JulesManager.PAGE_SIZE);
-            if (!sessionsResponse.sessions) {
-                this._checkEmptyTerminal();
-                return;
-            }
-
-            // ↗️ VECTORIZE: The Single-Pass Pipeline. Bypassing filter().reverse().slice(0, 3) for a direct backward loop to eliminate multi-pass overhead.
-            let repoSessions = [];
-            const sessions = sessionsResponse.sessions;
-            for (let i = sessions.length - 1; i >= 0; i--) {
-                if (repoSessions.length >= 3) break;
-                const s = sessions[i];
-
-                if (!s.sourceContext || s.sourceContext.source !== sourceName) continue;
-                if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) continue;
-                
-                const timeStr = s.updateTime || s.createTime || s.startTime;
-                if (timeStr) {
-                    const ageHours = (Date.now() - new Date(timeStr).getTime()) / (1000 * 60 * 60);
-                    if (ageHours > 2) continue;
-                } else if (!this.renderedSessionIds.has(s.id)) {
-                    continue;
-                }
-
-                // If a ticket reached a terminal state (done, failed, drafted PR), it is NO LONGER 
-                // shown in the active Jules feed. We completely rely on the GitHub PR fetch to show completions.
-                const isEnded = s.state === 'COMPLETED' || s.state === 'FAILED' || s.state === 'ERROR' || s.state === 'CANCELLED' || (s.outputs && s.outputs.some(hasPullRequest));
-                
-                if (isEnded) continue;
-                
-                repoSessions.push(s);
-            }
-
-            const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
-            if (fetchingIndicator) fetchingIndicator.remove();
-
-            if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
-
-            const currentSessionIds = new Set();
-            for (let i = 0; i < repoSessions.length; i++) {
-                currentSessionIds.add(repoSessions[i].id);
-            }
-
-            for (const id of this.renderedSessionIds) {
-                if (!currentSessionIds.has(id)) {
-                    this.dismissSession(id);
-                }
-            }
-
-            for (const session of repoSessions) {
-                this._processSession(session, terminal);
-            }
-            
+        const sessionsResponse = await window.julesService.getSessions(JulesManager.PAGE_SIZE);
+        if (!sessionsResponse.sessions) {
             this._checkEmptyTerminal();
-
-        } catch (err) {
-            console.error(JSON.stringify({ event: "JULES_LOAD_SESSIONS_FAILED", error: err.message }));
+            return;
         }
+
+        // ↗️ VECTORIZE: The Single-Pass Pipeline. Bypassing filter().reverse().slice(0, 3) for a direct backward loop to eliminate multi-pass overhead.
+        let repoSessions = [];
+        const sessions = sessionsResponse.sessions;
+        for (let i = sessions.length - 1; i >= 0; i--) {
+            if (repoSessions.length >= 3) break;
+            const s = sessions[i];
+
+            if (!s.sourceContext || s.sourceContext.source !== sourceName) continue;
+            if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) continue;
+
+            const timeStr = s.updateTime || s.createTime || s.startTime;
+            if (timeStr) {
+                const ageHours = (Date.now() - new Date(timeStr).getTime()) / (1000 * 60 * 60);
+                if (ageHours > 2) continue;
+            } else if (!this.renderedSessionIds.has(s.id)) {
+                continue;
+            }
+
+            // If a ticket reached a terminal state (done, failed, drafted PR), it is NO LONGER
+            // shown in the active Jules feed. We completely rely on the GitHub PR fetch to show completions.
+            const isEnded = s.state === 'COMPLETED' || s.state === 'FAILED' || s.state === 'ERROR' || s.state === 'CANCELLED' || (s.outputs && s.outputs.some(hasPullRequest));
+
+            if (isEnded) continue;
+
+            repoSessions.push(s);
+        }
+
+        const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
+        if (fetchingIndicator) fetchingIndicator.remove();
+
+        if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
+
+        const currentSessionIds = new Set();
+        for (let i = 0; i < repoSessions.length; i++) {
+            currentSessionIds.add(repoSessions[i].id);
+        }
+
+        for (const id of this.renderedSessionIds) {
+            if (!currentSessionIds.has(id)) {
+                this.dismissSession(id);
+            }
+        }
+
+        for (const session of repoSessions) {
+            this._processSession(session, terminal);
+        }
+
+        this._checkEmptyTerminal();
     }
 
     _checkEmptyTerminal() {
