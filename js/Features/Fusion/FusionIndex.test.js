@@ -13,6 +13,7 @@ describe('FusionIndex', () => {
     let mockFormatUtils;
 
     beforeEach(() => {
+        jest.useFakeTimers();
         // Mock dependencies
         mockStorageUtils = {
             getJsonArrayItem: jest.fn(),

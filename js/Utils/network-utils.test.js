@@ -3,18 +3,22 @@ const NetworkUtils = require('./network-utils');
 describe('NetworkUtils', () => {
     let originalFetch;
 
+    let consoleWarnMock;
+
     beforeEach(() => {
         originalFetch = global.fetch;
         global.fetch = jest.fn();
         jest.useFakeTimers();
         jest.spyOn(global, 'setTimeout');
         jest.spyOn(global, 'clearTimeout');
+        consoleWarnMock = jest.spyOn(console, 'warn').mockImplementation(() => {});
     });
 
     afterEach(() => {
         global.fetch = originalFetch;
         jest.clearAllTimers();
         jest.useRealTimers();
+        consoleWarnMock.mockRestore();
         jest.restoreAllMocks();
     });
 
