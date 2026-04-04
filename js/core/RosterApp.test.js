@@ -104,4 +104,28 @@ describe('RosterApp (Boundary Interrogation)', () => {
         expect(app.showToast).not.toHaveBeenCalledWith('Pinned');
         expect(app.renderAgents).not.toHaveBeenCalled();
     });
+
+    it('locks focus and sets aria-expanded when Escape key closes dropdown menu', () => {
+        const toggleBtn = document.createElement('button');
+        toggleBtn.setAttribute('data-action', 'toggle-card-dropdown');
+        toggleBtn.setAttribute('data-index', '1');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        document.body.appendChild(toggleBtn);
+
+        const dropdown = document.createElement('div');
+        dropdown.id = 'card-dropdown-1';
+        dropdown.classList.add('dropdown-menu', 'visible');
+        document.body.appendChild(dropdown);
+
+        app.bindEvents();
+        app.activeDropdowns = new Set([dropdown]);
+
+        const escapeEvent = new window.KeyboardEvent('keydown', { key: 'Escape' });
+        document.dispatchEvent(escapeEvent);
+
+        expect(dropdown.classList.contains('visible')).toBe(false);
+        expect(app.activeDropdowns.size).toBe(0);
+        expect(toggleBtn.getAttribute('aria-expanded')).toBe('false');
+        expect(document.activeElement).toBe(toggleBtn);
+    });
 });
