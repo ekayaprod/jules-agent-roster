@@ -126,6 +126,7 @@ class AgentCard {
                         <div class="dropdown-menu" id="card-dropdown-${index}" role="menu">
                             <button class="dropdown-item" data-action="${dropdownAction}" data-index="${index}" role="menuitem" aria-label="${dropdownText.replace(/[^a-zA-Z\\s]/g, '').trim()}">${dropdownText}</button>
                             <button class="dropdown-item" data-action="download-agent" data-index="${index}" role="menuitem" aria-label="Download Protocol as Markdown">💾 Download .md</button>
+                            <button class="dropdown-item" data-action="download-parent-fusions" data-parent-name="${agent.name}" role="menuitem" aria-label="Download Unlocked Fusions">🧬 Download Fusions</button>
                         </div>
                     </div>
                 </div>
