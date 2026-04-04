@@ -634,15 +634,26 @@ class RosterApp {
 
       // 7. General Action Buttons (Copy/Download/Launch)
       const actionBtn = e.target.closest('[data-action]');
-      if (actionBtn && ["copy-agent", "download-agent", "launch-jules"].includes(actionBtn.dataset.action)) {
+      if (actionBtn && ["copy-agent", "download-agent", "launch-jules", "download-parent-fusions"].includes(actionBtn.dataset.action)) {
           e.preventDefault();
           e.stopPropagation();
+
+          const action = actionBtn.dataset.action;
+
+          if (action === "download-parent-fusions") {
+              const parentName = actionBtn.dataset.parentName;
+              if (parentName && this.exportController) {
+                  this.exportController.downloadCustomAgentsByParent(parentName, actionBtn);
+              }
+              closeDropdownMenu(actionBtn.closest('.dropdown-menu'), this);
+              return;
+          }
+
           const index = actionBtn.dataset.index;
           let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
           if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
           if (!agent) return;
 
-          const action = actionBtn.dataset.action;
           if (action === "copy-agent") {
               this.copyAgent(index, actionBtn);
               closeDropdownMenu(actionBtn.closest('.dropdown-menu'), this);
