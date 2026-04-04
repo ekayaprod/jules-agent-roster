@@ -155,7 +155,7 @@ describe('FusionAnimation', () => {
         }
     });
 
-    test('runAnimation works without window.matchMedia', async () => {
+    test('executes the animation sequence and clears the active overlay state when window.matchMedia is undefined', async () => {
         const originalMatchMedia = window.matchMedia;
         delete window.matchMedia;
 
@@ -169,7 +169,7 @@ describe('FusionAnimation', () => {
         window.matchMedia = originalMatchMedia;
     });
 
-    test('runAnimation works without a callback', async () => {
+    test('executes the animation sequence and clears the active overlay state when the completion callback is omitted', async () => {
         const promise = animation.runAnimation({ emoji: 'A' }, { emoji: 'B' }, { tier: 'Common' });
         await jest.advanceTimersByTimeAsync(3500);
         await promise;
