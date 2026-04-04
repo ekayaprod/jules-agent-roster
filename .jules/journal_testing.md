@@ -1,4 +1,5 @@
 ## Assessor — The Test Upgrader
+**Edge Case:** Glass Mirror CSS locators in pinning UI tests | **Assertion:** Upgraded brittle structural DOM checks and string matching logic to use semantic user-centric `getByRole` locators in `AgentCard.test.js`.
 **Edge Case:** Synchronous synthetic events in UI tests | **Assertion:** Upgraded `fireEvent` to asynchronous, realistic `userEvent` interactions in `ToastNotification.test.js`.
 **Edge Case:** Glass Mirror CSS locators in UI tests | **Assertion:** Upgraded `querySelector` and structural tests to semantic `getByRole` and `getByTitle` user-centric validations in `FusionIndex.test.js`.
 
