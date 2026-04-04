@@ -161,7 +161,7 @@ ${userTask}`;
      * @param {string} endpoint - The GitHub API endpoint relative to the repo (e.g., 'pulls/1').
      * @param {Object} options - Additional fetch options (method, body, headers).
      * @param {boolean} [allow404=false] - Whether to return an empty array on a 404 status.
-     * @returns {Promise<any>} The parsed JSON response.
+     * @returns {Promise<Object|Array>} The parsed JSON response.
      */
     async _githubRequest(sourceName, endpoint, options = {}, allow404 = false) {
         if (!sourceName.startsWith('sources/github/')) {
