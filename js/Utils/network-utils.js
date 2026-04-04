@@ -42,7 +42,7 @@ class NetworkUtils {
                         } else if (errJson.message) {
                             errorMsg = errJson.message;
                         }
-                    } catch (parseError) {
+                    } catch {
                         // Ignore parsing errors and stick to fallback
                     }
                 } catch {
