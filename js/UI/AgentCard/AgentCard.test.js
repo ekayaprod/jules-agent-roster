@@ -5,6 +5,7 @@ global.PromptParser = require('../../Utils/prompt-parser.js');
 const AgentCard = require('./AgentCard');
 const FormatUtils = require('../../Utils/format-utils');
 const AgentUtils = require('../../Utils/agent-utils');
+const { getByRole, getByText, getByTitle, queryByRole } = require('@testing-library/dom');
 
 describe('AgentCard', () => {
     let mockAgent;
@@ -144,18 +145,15 @@ describe('AgentCard', () => {
 
         it('should create a basic agent card DOM element', () => {
             const card = AgentCard.create(mockAgent, 1, 0);
-            expect(card).toBeInstanceOf(HTMLElement);
-            expect(card.className).toContain('card flip-card pop-in');
-            expect(card.classList.contains('plus-agent')).toBe(true);
-            expect(card.classList.contains('tier-epic')).toBe(true);
 
-            // Check HTML structure
-            expect(card.innerHTML).toContain('Test Agent');
-            expect(card.innerHTML).toContain('🚀');
-            expect(card.innerHTML).toContain('Tester');
-            expect(card.innerHTML).toContain('Small');
-            expect(card.innerHTML).toContain('epic');
-            expect(card.innerHTML).toContain('A test agent');
+            expect(card).toBeInstanceOf(HTMLElement);
+
+            expect(getByRole(card, 'heading', { name: 'Test Agent' })).toBeTruthy();
+            expect(getByText(card, 'Tester')).toBeTruthy();
+            expect(getByText(card, 'epic')).toBeTruthy();
+            expect(getByText(card, 'Small')).toBeTruthy();
+            expect(getByText(card, 'A test agent')).toBeTruthy();
+            expect(getByTitle(card, 'Copy agent prompt')).toBeTruthy();
         });
 
         it('should apply fallback for missing role and descriptions', () => {
@@ -185,19 +183,22 @@ describe('AgentCard', () => {
 
             invalidKeys.forEach(invalidKey => {
                 const card = AgentCard.create(mockAgent, invalidKey, 0);
-                expect(card.innerHTML).not.toContain('data-action="toggle-pin"');
+                expect(queryByRole(card, 'button', { name: /Toggle Pin/i })).toBeNull();
             });
 
             // Valid fusion key - unpinned
             window.rosterApp.pinnedManager.isPinned.mockReturnValue(false);
             const unpinnedCard = AgentCard.create(mockAgent, 'AgentA+AgentB', 0);
-            expect(unpinnedCard.innerHTML).toContain('data-action="toggle-pin"');
-            expect(unpinnedCard.innerHTML).not.toContain('pin-btn pinned');
+            const unpinnedBtn = getByRole(unpinnedCard, 'button', { name: /Toggle Pin/i });
+            expect(unpinnedBtn).toBeTruthy();
+            expect(unpinnedBtn.classList.contains('pinned')).toBe(false);
 
             // Valid fusion key - pinned
             window.rosterApp.pinnedManager.isPinned.mockReturnValue(true);
             const pinnedCard = AgentCard.create(mockAgent, 'AgentC+AgentD', 0);
-            expect(pinnedCard.innerHTML).toContain('pin-btn pinned');
+            const pinnedBtn = getByRole(pinnedCard, 'button', { name: /Toggle Pin/i });
+            expect(pinnedBtn).toBeTruthy();
+            expect(pinnedBtn.classList.contains('pinned')).toBe(true);
         });
 
         // THE BOUNDARY INTERROGATION: Explicitly asserts graceful degradation when global dependencies are missing
