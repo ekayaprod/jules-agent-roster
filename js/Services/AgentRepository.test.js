@@ -63,15 +63,19 @@ describe('AgentRepository', () => {
         it('catches invalid json and throws formatted error', async () => {
             const mockResponse = { json: async () => { throw new Error('Unexpected token'); } };
 
-            await expect(repo.safeJsonParse(mockResponse, 'test.json')).rejects.toThrow("Check your configuration file formatting and try again.");
-            expect(console.error).toHaveBeenCalledTimes(1);
+            const TelemetryUtils = require('../Utils/telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
-            const logArgs = JSON.parse(console.error.mock.calls[0][0]);
-            expect(logArgs).toEqual({
-                event: 'JSON_PARSE_FAILED',
-                resource: 'test.json',
-                error: 'Unexpected token'
-            });
+            await expect(repo.safeJsonParse(mockResponse, 'test.json')).rejects.toThrow("Check your configuration file formatting and try again.");
+            expect(dispatchSpy).toHaveBeenCalledTimes(1);
+
+            expect(dispatchSpy).toHaveBeenCalledWith(
+                'JSON_PARSE_FAILED',
+                expect.any(Error),
+                { resource: 'test.json' }
+            );
+
+            dispatchSpy.mockRestore();
         });
     });
 

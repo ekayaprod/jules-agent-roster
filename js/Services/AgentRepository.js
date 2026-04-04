@@ -1,3 +1,5 @@
+const TelemetryUtils = typeof require !== 'undefined' ? require('../Utils/telemetry-utils.js') : window.TelemetryUtils;
+
 /**
  * Service class for fetching and validating agent data.
  * Handles the communication with the backend (file system) and ensures data integrity.
@@ -118,11 +120,7 @@ class AgentRepository {
         try {
             return await response.json();
         } catch (error) {
-            console.error(JSON.stringify({
-                event: 'JSON_PARSE_FAILED',
-                resource: label,
-                error: error.message
-            }));
+            TelemetryUtils.dispatchEvent('JSON_PARSE_FAILED', error, { resource: label });
             throw new Error("Check your configuration file formatting and try again.");
         }
     }

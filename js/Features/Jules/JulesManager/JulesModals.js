@@ -1,3 +1,5 @@
+const TelemetryUtils = typeof require !== 'undefined' ? require('../../../Utils/telemetry-utils.js') : window.TelemetryUtils;
+
 class JulesModals {
     constructor(julesManager) {
         this.manager = julesManager;
@@ -139,7 +141,7 @@ class JulesModals {
                 await window.julesService.sendUserInput(sessionId, text);
                 this.manager.app.toast.show("Reply transmitted.", "success");
             } catch (err) {
-                console.error(JSON.stringify({ event: "JULES_SEND_REPLY_FAILED", error: err.message }));
+                TelemetryUtils.dispatchEvent("JULES_SEND_REPLY_FAILED", err);
                 this.manager.app.toast.show("Failed to send reply.", "error");
             }
         };

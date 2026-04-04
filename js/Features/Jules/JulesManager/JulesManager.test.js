@@ -376,10 +376,15 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
              window.julesService.getActivities.mockRejectedValueOnce(new Error('polling fail'));
              const item = document.createElement('div');
              item.innerHTML = `<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>`;
+
+             const TelemetryUtils = require('../../../Utils/telemetry-utils.js');
+             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
              manager.polling.startTerminalPolling('123', item, 'o/r');
              await jest.advanceTimersByTimeAsync(3000);
 
-             expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_POLLING_ERROR", error: 'polling fail' }));
+             expect(dispatchSpy).toHaveBeenCalledWith("JULES_POLLING_ERROR", expect.any(Error));
+             dispatchSpy.mockRestore();
              consoleSpy.mockRestore();
         });
 
@@ -938,10 +943,15 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('API fail'));
 
             const submitHistoryBtn = manager.getEl('submitHistoryBtn');
+
+            const TelemetryUtils = require('../../../Utils/telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
             await submitHistoryBtn.click();
 
             expect(mockToast.show).toHaveBeenCalledWith('Failed to send reply.', TOAST_TYPES.ERROR);
-            expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_SEND_REPLY_FAILED", error: 'API fail' }));
+            expect(dispatchSpy).toHaveBeenCalledWith("JULES_SEND_REPLY_FAILED", expect.any(Error));
+            dispatchSpy.mockRestore();
             consoleSpy.mockRestore();
         });
 
@@ -1711,12 +1721,16 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
              window.julesService.getActivities.mockRejectedValue(new Error('Poll Error'));
 
+             const TelemetryUtils = require('../../../Utils/telemetry-utils.js');
+             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
              await jest.advanceTimersByTimeAsync(3000);
 
-             expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_POLLING_ERROR", error: 'Poll Error' }));
+             expect(dispatchSpy).toHaveBeenCalledWith("JULES_POLLING_ERROR", expect.any(Error));
              // Interval should remain active for next retry
              expect(manager.julesPollingIntervals['123']).toBeDefined();
 
+             dispatchSpy.mockRestore();
              consoleSpy.mockRestore();
         });
 
