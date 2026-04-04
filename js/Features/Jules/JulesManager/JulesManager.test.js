@@ -4,7 +4,7 @@
 
 const JulesModals = require('./JulesModals');
 const TerminalPolling = require('./TerminalPolling');
-const JulesManager = require('./index');
+const JulesManager = require('./JulesManager');
 global.JulesModals = JulesModals;
 global.TerminalPolling = TerminalPolling;
 
@@ -381,7 +381,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
         });
 
         it('module export check', () => {
-            const managerModule = require('./index');
+            const managerModule = require('./JulesManager');
             expect(managerModule).toBeDefined();
         });
     });

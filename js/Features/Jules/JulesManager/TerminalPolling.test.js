@@ -46,7 +46,7 @@ describe('TerminalPolling', () => {
 
         mockBlock = document.createElement('div');
         const statusSpan = document.createElement('span');
-        statusSpan.id = 'status-mutated-session123';
+        statusSpan.id = 'status-session123';
         mockBlock.appendChild(statusSpan);
 
         polling = new TerminalPolling(mockManager);

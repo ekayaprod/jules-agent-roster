@@ -94,7 +94,7 @@ class TerminalPolling {
     }
 
     _updatePollingState(sessionId, block, state, agentName, agentEmoji) {
-        const statusSpan = block.querySelector(`#status-mutated-${sessionId}`);
+        const statusSpan = block.querySelector(`#status-${sessionId}`);
         if (!statusSpan) return;
 
         if (state.isCompleted) {
