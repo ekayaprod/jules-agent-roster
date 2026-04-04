@@ -136,10 +136,9 @@ describe('EmptyState Component', () => {
     describe('ICONS', () => {
         it('should return a structurally valid object containing SVG and HTML configurations', () => {
             const icons = EmptyState.ICONS;
-            expect(icons).toBeDefined();
-            expect(icons.ERROR).toContain('<svg');
-            expect(icons.ERROR).toContain('class="empty-icon"');
-            expect(icons.SEARCH).toContain('<div class="empty-icon">');
+            expect(icons.ERROR).toContain('stroke="var(--error)"');
+            expect(icons.ERROR).toContain('<path stroke-linecap="round"');
+            expect(icons.SEARCH).toContain('🔍');
         });
     });
 });
