@@ -578,6 +578,92 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
         });
 
+        it('should close PR modal on cancel button click', () => {
+            document.body.innerHTML += `
+                <div id="julesPRModal" class="visible"></div>
+                <button id="cancelPRBtn"></button>
+            `;
+            const prModal = document.getElementById('julesPRModal');
+            const cancelBtn = document.getElementById('cancelPRBtn');
+            manager.modals._initPRModal();
+            cancelBtn.click();
+            expect(prModal.classList.contains('visible')).toBe(false);
+        });
+
+        it('should properly clear styles and attributes from inputField and errorSpan on close', () => {
+            const span = document.createElement('span');
+            span.id = 'interactionModalError';
+            span.textContent = 'Some error';
+            document.body.appendChild(span);
+            // Re-init so the modal grabs the new span
+            manager.modals._initInteractionModal();
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            const inputField = document.getElementById('interactionModalInput');
+            const errorSpan = document.getElementById('interactionModalError');
+
+            inputField.style.borderColor = "#ef4444";
+            inputField.setAttribute("aria-invalid", "true");
+            inputField.setAttribute("aria-describedby", "interactionModalError");
+            errorSpan.classList.remove("hidden");
+
+            const cancelBtn = document.getElementById('cancelInteractionBtn');
+            cancelBtn.click();
+
+            expect(inputField.style.borderColor).toBe('');
+            expect(inputField.getAttribute('aria-invalid')).toBeNull();
+            expect(inputField.getAttribute('aria-describedby')).toBeNull();
+            expect(errorSpan.textContent).toBe('');
+            expect(errorSpan.classList.contains('hidden')).toBe(true);
+        });
+
+        it('should show error styles if submission is empty and inputField/errorSpan are present', async () => {
+            const span = document.createElement('span');
+            span.id = 'interactionModalError';
+            span.className = 'hidden';
+            document.body.appendChild(span);
+            manager.modals._initInteractionModal();
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            const inputField = document.getElementById('interactionModalInput');
+            const errorSpan = document.getElementById('interactionModalError');
+            const submitBtn = document.getElementById('submitInteractionBtn');
+
+            inputField.value = '  '; // empty text
+            await submitBtn.click();
+
+            expect(inputField.style.borderColor).toMatch(/#ef4444|rgb\(239,\s*68,\s*68\)/); // #ef4444
+            expect(inputField.getAttribute('aria-invalid')).toBe('true');
+            expect(inputField.getAttribute('aria-describedby')).toBe('interactionModalError');
+            expect(errorSpan.textContent).toBe('Please provide a response before transmitting.');
+            expect(errorSpan.classList.contains('hidden')).toBe(false);
+        });
+
+        it('should clear error styles on input event', () => {
+            const span = document.createElement('span');
+            span.id = 'interactionModalError';
+            span.textContent = 'Error';
+            document.body.appendChild(span);
+            manager.modals._initInteractionModal();
+            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+
+            const inputField = document.getElementById('interactionModalInput');
+            const errorSpan = document.getElementById('interactionModalError');
+
+            inputField.style.borderColor = "#ef4444";
+            inputField.setAttribute("aria-invalid", "true");
+            inputField.setAttribute("aria-describedby", "interactionModalError");
+            errorSpan.classList.remove("hidden");
+
+            inputField.dispatchEvent(new Event('input'));
+
+            expect(inputField.style.borderColor).toBe('');
+            expect(inputField.getAttribute('aria-invalid')).toBeNull();
+            expect(inputField.getAttribute('aria-describedby')).toBeNull();
+            expect(errorSpan.textContent).toBe('');
+            expect(errorSpan.classList.contains('hidden')).toBe(true);
+        });
+
         it('should perform silent rollback when API fails but statusSpan is missing', async () => {
             window.julesService.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
             manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
