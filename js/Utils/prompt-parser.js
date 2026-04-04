@@ -39,10 +39,10 @@ const PromptParser = {
       // Wrap in a root element to ensure we can parse multiple top-level siblings
       // and handle whitespace/text nodes gracefully.
       const wrappedText = `<root>${rawText}</root>`;
-      const xmlDoc = parser.parseFromString(wrappedText, "text/xml");
+      const xmlDoc = parser.parseFromString(wrappedText, 'text/xml');
 
       // Check for parsing errors
-      const parserError = xmlDoc.getElementsByTagName("parsererror");
+      const parserError = xmlDoc.getElementsByTagName('parsererror');
       if (parserError.length > 0) {
         // Fallback to legacy if XML is malformed
         return { format: 'legacy', raw: rawText };
@@ -56,36 +56,36 @@ const PromptParser = {
       const sections = [];
       for (let i = 0; i < root.childNodes.length; i++) {
         const node = root.childNodes[i];
-        if (node.nodeType === 1) { // Node.ELEMENT_NODE
+        if (node.nodeType === 1) {
+          // Node.ELEMENT_NODE
           const tag = node.tagName.toLowerCase();
           if (validTags.includes(tag)) {
             sections.push({
               tag,
               content: node.textContent.trim(),
               id: node.getAttribute('id') || null,
-              name: node.getAttribute('name') || null
+              name: node.getAttribute('name') || null,
             });
           }
         }
       }
 
       if (sections.length === 0) {
-         return { format: 'legacy', raw: rawText };
+        return { format: 'legacy', raw: rawText };
       }
 
       return { format: 'xml', sections };
-
     } catch (e) {
       console.error(
         JSON.stringify({
           event: 'PROMPT_PARSE_FAILED',
           input: rawText ? rawText.substring(0, 100) : null,
-          error: e.message
-        })
+          error: e.message,
+        }),
       );
       return { format: 'legacy', raw: rawText };
     }
-  }
+  },
 };
 
 if (typeof module !== 'undefined' && module.exports) {

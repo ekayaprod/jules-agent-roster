@@ -14,13 +14,13 @@ class DOMUtils {
    * @returns {HTMLElement} The constructed skeleton DIV element with aria-hidden set.
    * @see ../../docs/architecture/Utils/README.md#domutils-architecture
    */
-  static createSkeletonElement(className, minHeight = "") {
-    const skeleton = document.createElement("div");
+  static createSkeletonElement(className, minHeight = '') {
+    const skeleton = document.createElement('div');
     skeleton.className = className;
     if (minHeight) {
       skeleton.style.minHeight = minHeight;
     }
-    skeleton.setAttribute("aria-hidden", "true");
+    skeleton.setAttribute('aria-hidden', 'true');
     return skeleton;
   }
 
@@ -43,24 +43,24 @@ class DOMUtils {
       case BUTTON_STATES.LOADING:
         btn.classList.add(BUTTON_STATES.LOADING);
         btn.disabled = true;
-        btn.setAttribute("aria-disabled", "true");
-        btn.setAttribute("aria-busy", "true");
+        btn.setAttribute('aria-disabled', 'true');
+        btn.setAttribute('aria-busy', 'true');
         break;
       case BUTTON_STATES.ERROR:
         btn.classList.add(BUTTON_STATES.ERROR);
         btn.disabled = false;
-        btn.setAttribute("aria-disabled", "false");
-        btn.setAttribute("aria-busy", "false");
+        btn.setAttribute('aria-disabled', 'false');
+        btn.setAttribute('aria-busy', 'false');
         break;
       case BUTTON_STATES.READY:
         btn.disabled = false;
-        btn.setAttribute("aria-disabled", "false");
-        btn.setAttribute("aria-busy", "false");
+        btn.setAttribute('aria-disabled', 'false');
+        btn.setAttribute('aria-busy', 'false');
         break;
       case BUTTON_STATES.DISABLED:
         btn.disabled = true;
-        btn.setAttribute("aria-disabled", "true");
-        btn.setAttribute("aria-busy", "false");
+        btn.setAttribute('aria-disabled', 'true');
+        btn.setAttribute('aria-busy', 'false');
         break;
     }
   }
@@ -74,19 +74,21 @@ class DOMUtils {
    * @param {string} [excludeId=""] - An optional element ID to exclude from the styling.
    * @see ../../docs/architecture/Utils/README.md#domutils-architecture
    */
-  static setElementsDisplay(selectorOrElements, display, excludeId = "") {
+  static setElementsDisplay(selectorOrElements, display, excludeId = '') {
     // ⚡ Bolt+: Accepts pre-cached NodeLists/Iterables to bypass expensive document.querySelectorAll lookups
-    const elements = typeof selectorOrElements === 'string' ? document.querySelectorAll(selectorOrElements) : selectorOrElements;
+    const elements =
+      typeof selectorOrElements === 'string'
+        ? document.querySelectorAll(selectorOrElements)
+        : selectorOrElements;
 
     if (!elements) return;
 
-    elements.forEach(el => {
+    elements.forEach((el) => {
       if (!excludeId || el.id !== excludeId) {
         el.style.display = display;
       }
     });
   }
-
 
   /**
    * Creates a preformatted block for markdown text content.
@@ -97,16 +99,15 @@ class DOMUtils {
    * @see ../../docs/architecture/Utils/README.md#domutils-architecture
    */
   static createMarkdownPreBlock(text) {
-    const pre = document.createElement("pre");
-    pre.className = "markdown-raw details-content";
-    pre.style.whiteSpace = "pre-wrap";
-    pre.style.wordBreak = "break-word";
+    const pre = document.createElement('pre');
+    pre.className = 'markdown-raw details-content';
+    pre.style.whiteSpace = 'pre-wrap';
+    pre.style.wordBreak = 'break-word';
     pre.textContent = text;
     return pre;
   }
-
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = DOMUtils;
+  module.exports = DOMUtils;
 }

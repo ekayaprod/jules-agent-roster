@@ -12,7 +12,7 @@ To debounce a search input:
 const searchInput = document.getElementById('search-box');
 
 const handleSearch = PerformanceUtils.debounce((event) => {
-    console.log("Searching for:", event.target.value);
+  console.log('Searching for:', event.target.value);
 }, 300);
 
 searchInput.addEventListener('input', handleSearch);
@@ -21,7 +21,7 @@ searchInput.addEventListener('input', handleSearch);
 To parse a raw AI agent prompt payload:
 
 ```javascript
-const rawPrompt = "<system>Act as a senior engineer</system><task>Optimize the loop</task>";
+const rawPrompt = '<system>Act as a senior engineer</system><task>Optimize the loop</task>';
 const parsedResult = PromptParser.parsePrompt(rawPrompt);
 
 console.log(parsedResult.format); // "xml"
@@ -31,8 +31,8 @@ console.log(parsedResult.sections.length); // 2
 To download a generated file:
 
 ```javascript
-const blobData = new Blob(["Output Content"], { type: "text/plain" });
-DownloadUtils.downloadBlob(blobData, "output.txt");
+const blobData = new Blob(['Output Content'], { type: 'text/plain' });
+DownloadUtils.downloadBlob(blobData, 'output.txt');
 ```
 
 ## Architecture

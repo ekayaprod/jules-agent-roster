@@ -12,7 +12,10 @@
 const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
   // Only allow base agents to be fused. Monthly/Power agents are excluded to prevent complexity explosion.
   const baseAgents = (agents || []).filter(
-    (a) => a.category !== "monthly" && a.category !== "power" && !["Spark", "Overseer", "Cartographer"].includes(a.name)
+    (a) =>
+      a.category !== 'monthly' &&
+      a.category !== 'power' &&
+      !['Spark', 'Overseer', 'Cartographer'].includes(a.name),
   );
 
   /**
@@ -28,9 +31,12 @@ const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
     const result = {};
     for (const rawKey in data) {
       if (Object.prototype.hasOwnProperty.call(data, rawKey)) {
-        const parts = typeof AgentUtils !== 'undefined' ? AgentUtils.splitFusionKey(rawKey) : rawKey.split(",").map(p => p.trim());
+        const parts =
+          typeof AgentUtils !== 'undefined'
+            ? AgentUtils.splitFusionKey(rawKey)
+            : rawKey.split(',').map((p) => p.trim());
         parts.sort();
-        result[parts.join(",")] = data[rawKey];
+        result[parts.join(',')] = data[rawKey];
       }
     }
     return result;
@@ -39,9 +45,7 @@ const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
   const fusionMatrixMap = normalizeKeys(fusionMatrix);
   const customAgentsMap = customAgents || {};
 
-
-
-    /**
+  /**
    * Public API to fuse two agents.
    * Handles custom "named" fusions and returns an Error for unknown combinations.
    * @param {Object} agent1 - The first agent.
@@ -50,13 +54,17 @@ const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
    * @see ../../../docs/architecture/Features/Fusion.md#fusion-compiler
    */
   const fuse = (agent1, agent2) => {
-    if (!agent1 || !agent2) return { name: "Error", prompt: "Invalid agents selected." };
+    if (!agent1 || !agent2) return { name: 'Error', prompt: 'Invalid agents selected.' };
 
-    const name1 = agent1.name ? agent1.name.trim() : "";
-    const name2 = agent2.name ? agent2.name.trim() : "";
-    const key = typeof AgentUtils !== 'undefined' ? AgentUtils.getFusionKey(name1, name2) : [name1, name2].sort().join(",");
+    const name1 = agent1.name ? agent1.name.trim() : '';
+    const name2 = agent2.name ? agent2.name.trim() : '';
+    const key =
+      typeof AgentUtils !== 'undefined'
+        ? AgentUtils.getFusionKey(name1, name2)
+        : [name1, name2].sort().join(',');
 
-    const computedTier = typeof RarityEngine !== 'undefined' ? RarityEngine.calculateRarity(agent1, agent2) : "Common";
+    const computedTier =
+      typeof RarityEngine !== 'undefined' ? RarityEngine.calculateRarity(agent1, agent2) : 'Common';
 
     if (fusionMatrixMap[key]) {
       const fusionName = fusionMatrixMap[key];
@@ -68,12 +76,12 @@ const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
           isCustom: true,
           short_description: custom.short_description || custom.desc || custom.description,
           prompt: custom.prompt,
-          tier: computedTier
+          tier: computedTier,
         };
       }
     }
 
-    return { name: "Error", prompt: "Invalid agents selected." };
+    return { name: 'Error', prompt: 'Invalid agents selected.' };
   };
 
   // Return a frozen public API interface, eliminating 'this' context bindings and enforcing immutability
@@ -85,6 +93,6 @@ const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
   });
 };
 
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = FusionCompiler;
 }

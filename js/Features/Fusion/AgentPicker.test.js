@@ -10,315 +10,315 @@ global.FormatUtils = FormatUtils;
 
 // Mock PerformanceUtils to return the function immediately for debouncing
 global.PerformanceUtils = {
-    debounce: jest.fn((fn) => fn)
+  debounce: jest.fn((fn) => fn),
 };
 
 global.DOMUtils = {
-    createSkeletonElement: jest.fn(() => document.createElement('div'))
+  createSkeletonElement: jest.fn(() => document.createElement('div')),
 };
 
 // Mock Clusterize
 class MockClusterize {
-    constructor(options) {
-        this.options = options;
-        this.update = jest.fn();
-        this.refresh = jest.fn();
-    }
+  constructor(options) {
+    this.options = options;
+    this.update = jest.fn();
+    this.refresh = jest.fn();
+  }
 }
 global.Clusterize = MockClusterize;
 
 describe('AgentPicker', () => {
-    let agentPicker;
-    let mockOnSelect;
-    let mockGetPreMergePreviewHTML;
-    const baseAgents = [
-        { name: 'Agent A', emoji: 'A', role: 'Role A' },
-        { name: 'Agent B', emoji: 'B', role: 'Role B' },
-        { name: 'Agent C', emoji: 'C', role: 'Role C' }
-    ];
+  let agentPicker;
+  let mockOnSelect;
+  let mockGetPreMergePreviewHTML;
+  const baseAgents = [
+    { name: 'Agent A', emoji: 'A', role: 'Role A' },
+    { name: 'Agent B', emoji: 'B', role: 'Role B' },
+    { name: 'Agent C', emoji: 'C', role: 'Role C' },
+  ];
 
-    beforeEach(() => {
-        // Mock DOM elements and document methods
-        const mockModal = {
-            addEventListener: jest.fn(),
-            showModal: jest.fn(),
-            close: jest.fn(),
-            removeAttribute: jest.fn(),
-            setAttribute: jest.fn(),
-        };
+  beforeEach(() => {
+    // Mock DOM elements and document methods
+    const mockModal = {
+      addEventListener: jest.fn(),
+      showModal: jest.fn(),
+      close: jest.fn(),
+      removeAttribute: jest.fn(),
+      setAttribute: jest.fn(),
+    };
 
-        const mockGrid = {
-            innerHTML: '',
-            appendChild: jest.fn()
-        };
+    const mockGrid = {
+      innerHTML: '',
+      appendChild: jest.fn(),
+    };
 
-        const mockScrollArea = {
-            clientWidth: 800,
-            addEventListener: jest.fn()
-        };
+    const mockScrollArea = {
+      clientWidth: 800,
+      addEventListener: jest.fn(),
+    };
 
-        const mockSearchInput = {
-            addEventListener: jest.fn(),
-            value: ''
-        };
+    const mockSearchInput = {
+      addEventListener: jest.fn(),
+      value: '',
+    };
 
-        const mockCloseBtn = {
-            addEventListener: jest.fn()
-        };
+    const mockCloseBtn = {
+      addEventListener: jest.fn(),
+    };
 
-        const mockActionArea = {
-            appendChild: jest.fn()
-        };
+    const mockActionArea = {
+      appendChild: jest.fn(),
+    };
 
-        const mockPreviewEl = {
-            innerHTML: '',
-            style: { display: 'none' }
-        };
+    const mockPreviewEl = {
+      innerHTML: '',
+      style: { display: 'none' },
+    };
 
-        document.getElementById = jest.fn((id) => {
-            if (id === 'agentPickerModal') return mockModal;
-            if (id === 'pickerGrid') return mockGrid;
-            if (id === 'pickerScrollArea') return mockScrollArea;
-            if (id === 'pickerSearch') return mockSearchInput;
-            if (id === 'pickerClose') return mockCloseBtn;
-            if (id === 'preMergePreview') return mockPreviewEl;
-            if (id === 'slotACard') return { focus: jest.fn() };
-            return null;
-        });
-
-        document.querySelector = jest.fn((selector) => {
-            if (selector === '#fusionLabContent .fusion-action-area') return mockActionArea;
-            return null;
-        });
-
-        document.createElement = jest.fn((tag) => {
-            return {
-                id: '',
-                className: '',
-                innerHTML: '',
-                style: { display: 'none' }
-            };
-        });
-
-        window.addEventListener = jest.fn();
-
-        // Ensure global history object functions are mockable without breaking jsdom defaults
-        const mockHistory = {
-            pushState: jest.fn(),
-            back: jest.fn(),
-            state: { modalOpen: true }
-        };
-        Object.defineProperty(window, 'history', { value: mockHistory, writable: true });
-
-        global.focusTrap = {
-            createFocusTrap: jest.fn(() => ({
-                activate: jest.fn(),
-                deactivate: jest.fn()
-            }))
-        };
-
-        // Suppress console.error during tests
-        jest.spyOn(console, 'error').mockImplementation(() => {});
-
-        mockOnSelect = jest.fn();
-        agentPicker = new AgentPicker(baseAgents, mockOnSelect);
-
-        // Use jest's fake timers for requestAnimationFrame and setTimeout
-        jest.useFakeTimers();
-        global.requestAnimationFrame = jest.fn((cb) => setTimeout(cb, 0));
+    document.getElementById = jest.fn((id) => {
+      if (id === 'agentPickerModal') return mockModal;
+      if (id === 'pickerGrid') return mockGrid;
+      if (id === 'pickerScrollArea') return mockScrollArea;
+      if (id === 'pickerSearch') return mockSearchInput;
+      if (id === 'pickerClose') return mockCloseBtn;
+      if (id === 'preMergePreview') return mockPreviewEl;
+      if (id === 'slotACard') return { focus: jest.fn() };
+      return null;
     });
 
-    afterEach(() => {
-        jest.clearAllMocks();
-        jest.useRealTimers();
+    document.querySelector = jest.fn((selector) => {
+      if (selector === '#fusionLabContent .fusion-action-area') return mockActionArea;
+      return null;
     });
 
-    describe('Security Boundaries', () => {
-        const maliciousAgent = {
-            name: '<img src=x onerror=alert(1)>',
-            emoji: '<script>alert("XSS")</script>',
-            role: '<svg onload=alert(1)>'
-        };
-
-        test('getMemoizedHtml should escape agent name, emoji, and role', () => {
-            const picker = new AgentPicker([maliciousAgent], jest.fn());
-            const htmlResults = picker.getMemoizedHtml();
-            const result = htmlResults[0];
-
-            expect(result).not.toContain('<img src=x onerror=alert(1)>');
-            expect(result).not.toContain('<script>alert("XSS")</script>');
-            expect(result).not.toContain('<svg onload=alert(1)>');
-
-            expect(result).toContain('&lt;img src=x onerror=alert(1)&gt;');
-            expect(result).toContain('&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;');
-            expect(result).toContain('&lt;svg onload=alert(1)&gt;');
-        });
+    document.createElement = jest.fn((tag) => {
+      return {
+        id: '',
+        className: '',
+        innerHTML: '',
+        style: { display: 'none' },
+      };
     });
 
-    describe('openPicker()', () => {
-        test('initializes modal, DOM skeletons, and grid', () => {
-            const modal = document.getElementById('agentPickerModal');
-            const grid = document.getElementById('pickerGrid');
+    window.addEventListener = jest.fn();
 
-            agentPicker.openPicker('slotA', baseAgents[0]);
+    // Ensure global history object functions are mockable without breaking jsdom defaults
+    const mockHistory = {
+      pushState: jest.fn(),
+      back: jest.fn(),
+      state: { modalOpen: true },
+    };
+    Object.defineProperty(window, 'history', { value: mockHistory, writable: true });
 
-            expect(agentPicker.activePickerSlot).toBe('slotA');
-            expect(agentPicker.currentAgent).toEqual(baseAgents[0]);
+    global.focusTrap = {
+      createFocusTrap: jest.fn(() => ({
+        activate: jest.fn(),
+        deactivate: jest.fn(),
+      })),
+    };
 
-            expect(modal.showModal).toHaveBeenCalled();
-            expect(modal.setAttribute).toHaveBeenCalledWith('open', '');
-            expect(window.history.pushState).toHaveBeenCalledWith({ modalOpen: true }, '');
+    // Suppress console.error during tests
+    jest.spyOn(console, 'error').mockImplementation(() => {});
 
-            // Check skeleton pulse
-            expect(DOMUtils.createSkeletonElement).toHaveBeenCalledTimes(12);
-            expect(grid.appendChild).toHaveBeenCalledTimes(12);
+    mockOnSelect = jest.fn();
+    agentPicker = new AgentPicker(baseAgents, mockOnSelect);
 
-            expect(focusTrap.createFocusTrap).toHaveBeenCalledWith(modal, expect.any(Object));
+    // Use jest's fake timers for requestAnimationFrame and setTimeout
+    jest.useFakeTimers();
+    global.requestAnimationFrame = jest.fn((cb) => setTimeout(cb, 0));
+  });
 
-            // Fast forward timers for requestAnimationFrame -> setTimeout logic
-            jest.runAllTimers();
+  afterEach(() => {
+    jest.clearAllMocks();
+    jest.useRealTimers();
+  });
 
-            expect(agentPicker.pickerClusterize).toBeDefined();
-            expect(agentPicker.trap.activate).toHaveBeenCalled();
-        });
+  describe('Security Boundaries', () => {
+    const maliciousAgent = {
+      name: '<img src=x onerror=alert(1)>',
+      emoji: '<script>alert("XSS")</script>',
+      role: '<svg onload=alert(1)>',
+    };
 
-        test('fails securely if modal or grid is missing', () => {
-            // override the mocked elements with null to simulate missing DOM
-            agentPicker.elements.agentPickerModal = null;
-            agentPicker.elements.pickerGrid = null;
+    test('getMemoizedHtml should escape agent name, emoji, and role', () => {
+      const picker = new AgentPicker([maliciousAgent], jest.fn());
+      const htmlResults = picker.getMemoizedHtml();
+      const result = htmlResults[0];
 
-            agentPicker.openPicker('slotA', baseAgents[0]);
+      expect(result).not.toContain('<img src=x onerror=alert(1)>');
+      expect(result).not.toContain('<script>alert("XSS")</script>');
+      expect(result).not.toContain('<svg onload=alert(1)>');
 
-            expect(console.error).toHaveBeenCalledWith('Picker modal or grid not found');
-            expect(agentPicker.activePickerSlot).toBe('slotA');
-        });
+      expect(result).toContain('&lt;img src=x onerror=alert(1)&gt;');
+      expect(result).toContain('&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;');
+      expect(result).toContain('&lt;svg onload=alert(1)&gt;');
+    });
+  });
+
+  describe('openPicker()', () => {
+    test('initializes modal, DOM skeletons, and grid', () => {
+      const modal = document.getElementById('agentPickerModal');
+      const grid = document.getElementById('pickerGrid');
+
+      agentPicker.openPicker('slotA', baseAgents[0]);
+
+      expect(agentPicker.activePickerSlot).toBe('slotA');
+      expect(agentPicker.currentAgent).toEqual(baseAgents[0]);
+
+      expect(modal.showModal).toHaveBeenCalled();
+      expect(modal.setAttribute).toHaveBeenCalledWith('open', '');
+      expect(window.history.pushState).toHaveBeenCalledWith({ modalOpen: true }, '');
+
+      // Check skeleton pulse
+      expect(DOMUtils.createSkeletonElement).toHaveBeenCalledTimes(12);
+      expect(grid.appendChild).toHaveBeenCalledTimes(12);
+
+      expect(focusTrap.createFocusTrap).toHaveBeenCalledWith(modal, expect.any(Object));
+
+      // Fast forward timers for requestAnimationFrame -> setTimeout logic
+      jest.runAllTimers();
+
+      expect(agentPicker.pickerClusterize).toBeDefined();
+      expect(agentPicker.trap.activate).toHaveBeenCalled();
     });
 
-    describe('closePicker()', () => {
-        test('closes modal, triggers focus trap teardown, and restores history', () => {
-            // Setup active picker state
-            agentPicker.activePickerSlot = 'slotA';
-            agentPicker.trap = { deactivate: jest.fn() };
+    test('fails securely if modal or grid is missing', () => {
+      // override the mocked elements with null to simulate missing DOM
+      agentPicker.elements.agentPickerModal = null;
+      agentPicker.elements.pickerGrid = null;
 
-            const modal = document.getElementById('agentPickerModal');
-            const focusBtn = { focus: jest.fn() };
-            document.getElementById = jest.fn((id) => {
-                if (id === 'agentPickerModal') return modal;
-                if (id === 'slotACard') return focusBtn;
-                return null;
-            });
+      agentPicker.openPicker('slotA', baseAgents[0]);
 
-            agentPicker.closePicker(true);
+      expect(console.error).toHaveBeenCalledWith('Picker modal or grid not found');
+      expect(agentPicker.activePickerSlot).toBe('slotA');
+    });
+  });
 
-            expect(window.history.back).toHaveBeenCalled();
-            expect(modal.close).toHaveBeenCalled();
-            expect(modal.removeAttribute).toHaveBeenCalledWith('open');
+  describe('closePicker()', () => {
+    test('closes modal, triggers focus trap teardown, and restores history', () => {
+      // Setup active picker state
+      agentPicker.activePickerSlot = 'slotA';
+      agentPicker.trap = { deactivate: jest.fn() };
 
-            expect(agentPicker.activePickerSlot).toBeNull();
-            expect(agentPicker.currentAgent).toBeNull();
-            expect(agentPicker.trap).toBeNull();
+      const modal = document.getElementById('agentPickerModal');
+      const focusBtn = { focus: jest.fn() };
+      document.getElementById = jest.fn((id) => {
+        if (id === 'agentPickerModal') return modal;
+        if (id === 'slotACard') return focusBtn;
+        return null;
+      });
 
-            // Check if focus was returned (wrapped in setTimeout)
-            jest.runAllTimers();
-            expect(focusBtn.focus).toHaveBeenCalled();
-        });
+      agentPicker.closePicker(true);
 
-        test('bypasses history.back if navigateBack is false', () => {
-            agentPicker.activePickerSlot = 'slotA';
-            const modal = document.getElementById('agentPickerModal');
+      expect(window.history.back).toHaveBeenCalled();
+      expect(modal.close).toHaveBeenCalled();
+      expect(modal.removeAttribute).toHaveBeenCalledWith('open');
 
-            agentPicker.closePicker(false);
-            expect(window.history.back).not.toHaveBeenCalled();
-            expect(modal.close).toHaveBeenCalled();
-        });
+      expect(agentPicker.activePickerSlot).toBeNull();
+      expect(agentPicker.currentAgent).toBeNull();
+      expect(agentPicker.trap).toBeNull();
+
+      // Check if focus was returned (wrapped in setTimeout)
+      jest.runAllTimers();
+      expect(focusBtn.focus).toHaveBeenCalled();
     });
 
-    describe('updateGrid()', () => {
-        test('initializes Clusterize on first call', () => {
-            agentPicker.filteredResults = agentPicker.getMemoizedHtml();
-            agentPicker.updateGrid();
+    test('bypasses history.back if navigateBack is false', () => {
+      agentPicker.activePickerSlot = 'slotA';
+      const modal = document.getElementById('agentPickerModal');
 
-            expect(agentPicker.pickerClusterize).toBeDefined();
-            expect(agentPicker.pickerClusterize.options.rows.length).toBeGreaterThan(0);
-        });
+      agentPicker.closePicker(false);
+      expect(window.history.back).not.toHaveBeenCalled();
+      expect(modal.close).toHaveBeenCalled();
+    });
+  });
 
-        test('updates existing Clusterize instance', () => {
-            agentPicker.filteredResults = agentPicker.getMemoizedHtml();
-            agentPicker.updateGrid(); // First call creates instance
+  describe('updateGrid()', () => {
+    test('initializes Clusterize on first call', () => {
+      agentPicker.filteredResults = agentPicker.getMemoizedHtml();
+      agentPicker.updateGrid();
 
-            const clusterize = agentPicker.pickerClusterize;
-            agentPicker.updateGrid(); // Second call updates it
-
-            expect(clusterize.update).toHaveBeenCalled();
-            expect(clusterize.refresh).toHaveBeenCalledWith(true);
-        });
+      expect(agentPicker.pickerClusterize).toBeDefined();
+      expect(agentPicker.pickerClusterize.options.rows.length).toBeGreaterThan(0);
     });
 
-    describe('handlePickerSelection()', () => {
-        test('invokes onSelect and closePicker', () => {
-            jest.spyOn(agentPicker, 'closePicker');
-            agentPicker.activePickerSlot = 'slotA';
+    test('updates existing Clusterize instance', () => {
+      agentPicker.filteredResults = agentPicker.getMemoizedHtml();
+      agentPicker.updateGrid(); // First call creates instance
 
-            const selectedAgent = baseAgents[1];
-            agentPicker.handlePickerSelection(selectedAgent);
+      const clusterize = agentPicker.pickerClusterize;
+      agentPicker.updateGrid(); // Second call updates it
 
-            expect(mockOnSelect).toHaveBeenCalledWith('slotA', selectedAgent);
-            expect(agentPicker.closePicker).toHaveBeenCalled();
-        });
+      expect(clusterize.update).toHaveBeenCalled();
+      expect(clusterize.refresh).toHaveBeenCalledWith(true);
+    });
+  });
 
-        test('invokes renderPreMergePreview if method exists', () => {
-            agentPicker.getPreMergePreviewHTML = jest.fn(() => '<div>Preview</div>');
-            jest.spyOn(agentPicker, 'renderPreMergePreview');
-            agentPicker.activePickerSlot = 'slotA';
+  describe('handlePickerSelection()', () => {
+    test('invokes onSelect and closePicker', () => {
+      jest.spyOn(agentPicker, 'closePicker');
+      agentPicker.activePickerSlot = 'slotA';
 
-            const selectedAgent = baseAgents[2];
-            agentPicker.handlePickerSelection(selectedAgent);
+      const selectedAgent = baseAgents[1];
+      agentPicker.handlePickerSelection(selectedAgent);
 
-            expect(agentPicker.renderPreMergePreview).toHaveBeenCalledWith(selectedAgent);
-        });
-
-        test('fails securely if no active picker slot exists', () => {
-            jest.spyOn(agentPicker, 'closePicker');
-            agentPicker.activePickerSlot = null; // simulate closed state
-
-            agentPicker.handlePickerSelection(baseAgents[0]);
-
-            expect(mockOnSelect).not.toHaveBeenCalled();
-            expect(agentPicker.closePicker).toHaveBeenCalled();
-        });
+      expect(mockOnSelect).toHaveBeenCalledWith('slotA', selectedAgent);
+      expect(agentPicker.closePicker).toHaveBeenCalled();
     });
 
-    describe('renderPreMergePreview()', () => {
-        test('renders preview HTML correctly when provided', () => {
-            agentPicker.getPreMergePreviewHTML = jest.fn(() => '<p>Known Recipe</p>');
-            const mockActionArea = document.querySelector('#fusionLabContent .fusion-action-area');
+    test('invokes renderPreMergePreview if method exists', () => {
+      agentPicker.getPreMergePreviewHTML = jest.fn(() => '<div>Preview</div>');
+      jest.spyOn(agentPicker, 'renderPreMergePreview');
+      agentPicker.activePickerSlot = 'slotA';
 
-            // Mock that the element does not exist yet to test creation
-            document.getElementById = jest.fn().mockReturnValue(null);
+      const selectedAgent = baseAgents[2];
+      agentPicker.handlePickerSelection(selectedAgent);
 
-            agentPicker.renderPreMergePreview(baseAgents[0]);
-
-            expect(mockActionArea.appendChild).toHaveBeenCalled();
-            // Since we mocked document.createElement, we verify the interaction indirectly
-            expect(agentPicker.getPreMergePreviewHTML).toHaveBeenCalledWith(baseAgents[0]);
-        });
-
-        test('hides preview element if no HTML is returned', () => {
-             agentPicker.getPreMergePreviewHTML = jest.fn(() => null);
-             const mockPreviewEl = { style: { display: 'flex' } };
-             document.getElementById = jest.fn((id) => id === 'preMergePreview' ? mockPreviewEl : null);
-
-             agentPicker.renderPreMergePreview(baseAgents[0]);
-
-             expect(mockPreviewEl.style.display).toBe('none');
-        });
-
-        test('fails securely if action area does not exist', () => {
-            document.querySelector = jest.fn().mockReturnValue(null);
-            agentPicker.getPreMergePreviewHTML = jest.fn();
-
-            agentPicker.renderPreMergePreview(baseAgents[0]);
-            expect(agentPicker.getPreMergePreviewHTML).not.toHaveBeenCalled();
-        });
+      expect(agentPicker.renderPreMergePreview).toHaveBeenCalledWith(selectedAgent);
     });
+
+    test('fails securely if no active picker slot exists', () => {
+      jest.spyOn(agentPicker, 'closePicker');
+      agentPicker.activePickerSlot = null; // simulate closed state
+
+      agentPicker.handlePickerSelection(baseAgents[0]);
+
+      expect(mockOnSelect).not.toHaveBeenCalled();
+      expect(agentPicker.closePicker).toHaveBeenCalled();
+    });
+  });
+
+  describe('renderPreMergePreview()', () => {
+    test('renders preview HTML correctly when provided', () => {
+      agentPicker.getPreMergePreviewHTML = jest.fn(() => '<p>Known Recipe</p>');
+      const mockActionArea = document.querySelector('#fusionLabContent .fusion-action-area');
+
+      // Mock that the element does not exist yet to test creation
+      document.getElementById = jest.fn().mockReturnValue(null);
+
+      agentPicker.renderPreMergePreview(baseAgents[0]);
+
+      expect(mockActionArea.appendChild).toHaveBeenCalled();
+      // Since we mocked document.createElement, we verify the interaction indirectly
+      expect(agentPicker.getPreMergePreviewHTML).toHaveBeenCalledWith(baseAgents[0]);
+    });
+
+    test('hides preview element if no HTML is returned', () => {
+      agentPicker.getPreMergePreviewHTML = jest.fn(() => null);
+      const mockPreviewEl = { style: { display: 'flex' } };
+      document.getElementById = jest.fn((id) => (id === 'preMergePreview' ? mockPreviewEl : null));
+
+      agentPicker.renderPreMergePreview(baseAgents[0]);
+
+      expect(mockPreviewEl.style.display).toBe('none');
+    });
+
+    test('fails securely if action area does not exist', () => {
+      document.querySelector = jest.fn().mockReturnValue(null);
+      agentPicker.getPreMergePreviewHTML = jest.fn();
+
+      agentPicker.renderPreMergePreview(baseAgents[0]);
+      expect(agentPicker.getPreMergePreviewHTML).not.toHaveBeenCalled();
+    });
+  });
 });

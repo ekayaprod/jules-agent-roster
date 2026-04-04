@@ -14,13 +14,13 @@ To fetch all agents (standard and custom fusions) and their associated prompts:
 const repository = new AgentRepository();
 
 async function loadData() {
-    try {
-        const { agents, customAgents } = await repository.fetchAgents();
-        console.log(`Loaded ${agents.length} standard agents.`);
-        console.log(`Loaded ${Object.keys(customAgents).length} custom fusions.`);
-    } catch (error) {
-        console.error("Failed to initialize repository:", error);
-    }
+  try {
+    const { agents, customAgents } = await repository.fetchAgents();
+    console.log(`Loaded ${agents.length} standard agents.`);
+    console.log(`Loaded ${Object.keys(customAgents).length} custom fusions.`);
+  } catch (error) {
+    console.error('Failed to initialize repository:', error);
+  }
 }
 
 loadData();
@@ -32,7 +32,7 @@ To configure the service and initiate an agent session:
 
 ```javascript
 // 1. Configure the API Key
-window.julesService.configure("your_api_key_here");
+window.julesService.configure('your_api_key_here');
 
 // 2. Fetch available sources
 const sources = await window.julesService.getSources();
@@ -40,10 +40,10 @@ const targetSource = sources[0].name;
 
 // 3. Initiate a session with an agent
 const session = await window.julesService.createSession(
-    "You are Architect...",
-    "Refactor the file structure.",
-    targetSource,
-    "Refactor Session"
+  'You are Architect...',
+  'Refactor the file structure.',
+  targetSource,
+  'Refactor Session',
 );
 
 // 4. Poll for activities

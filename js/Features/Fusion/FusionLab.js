@@ -5,7 +5,7 @@ class FusionLab {
     this.compiler = null;
     this.lastFusionResult = null;
     this.picker = null;
-    this.animation = typeof FusionAnimation !== "undefined" ? new FusionAnimation() : null;
+    this.animation = typeof FusionAnimation !== 'undefined' ? new FusionAnimation() : null;
     // Internal State for Selection
     this.state = {
       slotA: null,
@@ -25,9 +25,9 @@ class FusionLab {
     this.compiler = new FusionCompiler(agents, customAgents, fusionMatrix);
 
     // Initialize Fusion Index (Collectible Shelf)
-    if (typeof FusionIndex !== "undefined") {
+    if (typeof FusionIndex !== 'undefined') {
       this.fusionIndex = new FusionIndex(
-        "fusionIndexContainer",
+        'fusionIndexContainer',
         this.compiler.fusionMatrixMap,
         (key) => this.handleShelfSelection(key),
       );
@@ -36,11 +36,11 @@ class FusionLab {
       this.fusionIndex.init();
     }
 
-    if (typeof AgentPicker !== "undefined") {
+    if (typeof AgentPicker !== 'undefined') {
       this.picker = new AgentPicker(
         this.compiler.baseAgents,
         (slotKey, agent) => this.handlePickerSelection(slotKey, agent),
-        (selectedAgent) => this.getPreMergePreviewHTML(selectedAgent)
+        (selectedAgent) => this.getPreMergePreviewHTML(selectedAgent),
       );
     }
 
@@ -54,44 +54,46 @@ class FusionLab {
   bindEvents() {
     // ⚡ Bolt+: Extracted redundant DOM queries outside of individual methods and cached them here to prevent layout thrashing and repeated execution overhead.
     this.elements = {
-        fuseBtn: document.getElementById("fuseBtn"),
-        copyFusionBtn: document.getElementById("copyFusionBtn"),
-        slotACard: document.getElementById("slotACard"),
-        slotBCard: document.getElementById("slotBCard"),
-        errorEl: document.getElementById("fusionError"),
-        textSpan: document.getElementById("fusionErrorText"),
-        fusionResultContainer: document.getElementById("fusionResultContainer"),
-        resetLabBtn: document.getElementById("resetLabBtn"),
-        // ⚡ Bolt+: Cached fusionLabContent query to prevent repeated DOM lookups during high-frequency reset/fusion interactions.
-        labContent: document.getElementById("fusionLabContent"),
+      fuseBtn: document.getElementById('fuseBtn'),
+      copyFusionBtn: document.getElementById('copyFusionBtn'),
+      slotACard: document.getElementById('slotACard'),
+      slotBCard: document.getElementById('slotBCard'),
+      errorEl: document.getElementById('fusionError'),
+      textSpan: document.getElementById('fusionErrorText'),
+      fusionResultContainer: document.getElementById('fusionResultContainer'),
+      resetLabBtn: document.getElementById('resetLabBtn'),
+      // ⚡ Bolt+: Cached fusionLabContent query to prevent repeated DOM lookups during high-frequency reset/fusion interactions.
+      labContent: document.getElementById('fusionLabContent'),
     };
 
-    if (this.elements.slotACard) this.elements.slotACard.addEventListener("click", () => {
-        if (this.picker) this.picker.openPicker("slotA", this.state.slotA);
-    });
-    if (this.elements.slotBCard) this.elements.slotBCard.addEventListener("click", () => {
-        if (this.picker) this.picker.openPicker("slotB", this.state.slotB);
-    });
+    if (this.elements.slotACard)
+      this.elements.slotACard.addEventListener('click', () => {
+        if (this.picker) this.picker.openPicker('slotA', this.state.slotA);
+      });
+    if (this.elements.slotBCard)
+      this.elements.slotBCard.addEventListener('click', () => {
+        if (this.picker) this.picker.openPicker('slotB', this.state.slotB);
+      });
 
-    if (this.elements.fuseBtn) this.elements.fuseBtn.addEventListener("click", () => this.handleFusion());
+    if (this.elements.fuseBtn)
+      this.elements.fuseBtn.addEventListener('click', () => this.handleFusion());
 
     if (this.elements.resetLabBtn) {
-        this.elements.resetLabBtn.addEventListener("click", () => this.resetLab());
+      this.elements.resetLabBtn.addEventListener('click', () => this.resetLab());
     }
 
     if (this.elements.copyFusionBtn) {
-      this.elements.copyFusionBtn.addEventListener("click", async (e) => {
+      this.elements.copyFusionBtn.addEventListener('click', async (e) => {
         const btn = e.currentTarget;
         if (this.lastFusionResult && this.lastFusionResult.prompt) {
           await ClipboardUtils.copyText(this.lastFusionResult.prompt);
           if (window.rosterApp && window.rosterApp.showToast) {
-            window.rosterApp.showToast("Fusion copied to clipboard");
+            window.rosterApp.showToast('Fusion copied to clipboard');
           }
-          ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+          ClipboardUtils.animateButtonSuccess(btn, 'Copied!');
         }
       });
     }
-
   }
 
   /**
@@ -99,36 +101,38 @@ class FusionLab {
    */
   renderSlots() {
     const updateSlotUI = (slotId, agent) => {
-        const card = this.elements[slotId + "Card"];
-        if (!card) return;
+      const card = this.elements[slotId + 'Card'];
+      if (!card) return;
 
-        const content = card.querySelector(".slot-content");
+      const content = card.querySelector('.slot-content');
 
-        if (agent) {
-            card.classList.remove("empty");
-            card.classList.add("filled");
-            card.setAttribute("aria-label", `Selected: ${agent.name}. Click to change.`);
-            content.innerHTML = `
+      if (agent) {
+        card.classList.remove('empty');
+        card.classList.add('filled');
+        card.setAttribute('aria-label', `Selected: ${agent.name}. Click to change.`);
+        content.innerHTML = `
                 <span class="slot-icon-placeholder">${FormatUtils.escapeHTML(agent.emoji)}</span>
                 <span class="slot-label">${FormatUtils.escapeHTML(agent.name)}</span>
             `;
-        } else {
-            card.classList.add("empty");
-            card.classList.remove("filled");
-            card.setAttribute("aria-label", slotId === "slotA" ? "Select Primary Protocol" : "Select Secondary Protocol");
-            content.innerHTML = `
+      } else {
+        card.classList.add('empty');
+        card.classList.remove('filled');
+        card.setAttribute(
+          'aria-label',
+          slotId === 'slotA' ? 'Select Primary Protocol' : 'Select Secondary Protocol',
+        );
+        content.innerHTML = `
                 <span class="slot-icon-placeholder">+</span>
-                <span class="slot-label">${slotId === "slotA" ? "Initiate Primary Protocol" : "Initiate Secondary Protocol"}</span>
+                <span class="slot-label">${slotId === 'slotA' ? 'Initiate Primary Protocol' : 'Initiate Secondary Protocol'}</span>
             `;
-        }
+      }
     };
 
-    updateSlotUI("slotA", this.state.slotA);
-    updateSlotUI("slotB", this.state.slotB);
+    updateSlotUI('slotA', this.state.slotA);
+    updateSlotUI('slotB', this.state.slotB);
 
     this.updateState(); // Update button state
   }
-
 
   /**
    * Handles selection from the picker.
@@ -136,9 +140,9 @@ class FusionLab {
    * @param {Object} agent - The selected agent
    */
   handlePickerSelection(slotKey, agent) {
-      this.state[slotKey] = agent;
-      this.renderSlots();
-      this.clearError();
+    this.state[slotKey] = agent;
+    this.renderSlots();
+    this.clearError();
   }
 
   /**
@@ -149,24 +153,24 @@ class FusionLab {
   getPreMergePreviewHTML(selectedAgent) {
     const tempState = { ...this.state };
     if (this.picker && this.picker.activePickerSlot) {
-        tempState[this.picker.activePickerSlot] = selectedAgent;
+      tempState[this.picker.activePickerSlot] = selectedAgent;
     }
 
     const agentA = tempState.slotA;
     const agentB = tempState.slotB;
 
     if (!agentA || !agentB || agentA.name === agentB.name) {
-        return null;
+      return null;
     }
 
     const key = AgentUtils.getFusionKey(agentA.name, agentB.name);
 
     if (this.fusionIndex && this.fusionIndex.isUnlocked(key)) {
-        const result = this.compiler.fuse(agentA, agentB);
-        const iconHtml = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
-        const nameHtml = FormatUtils.extractDisplayName(result);
+      const result = this.compiler.fuse(agentA, agentB);
+      const iconHtml = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
+      const nameHtml = FormatUtils.extractDisplayName(result);
 
-        return `
+      return `
             <div class="preview-badge">Already Discovered</div>
             <div class="preview-content">
                 <span class="preview-icon">${FormatUtils.escapeHTML(iconHtml)}</span>
@@ -185,15 +189,19 @@ class FusionLab {
 
     if (fuseBtn) {
       const isReady = this.state.slotA !== null && this.state.slotB !== null;
-      fuseBtn.setAttribute("aria-disabled", String(!isReady));
+      fuseBtn.setAttribute('aria-disabled', String(!isReady));
 
       if (!isReady) {
-        let msg = "Select Protocols";
-        if (!this.state.slotA && this.state.slotB) msg = "Select Agent A";
-        else if (this.state.slotA && !this.state.slotB) msg = "Select Agent B";
-        DOMUtils.setButtonState(fuseBtn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.DISABLED : "disabled", msg);
+        let msg = 'Select Protocols';
+        if (!this.state.slotA && this.state.slotB) msg = 'Select Agent A';
+        else if (this.state.slotA && !this.state.slotB) msg = 'Select Agent B';
+        DOMUtils.setButtonState(
+          fuseBtn,
+          typeof BUTTON_STATES !== 'undefined' ? BUTTON_STATES.DISABLED : 'disabled',
+          msg,
+        );
       } else {
-        DOMUtils.setButtonState(fuseBtn, "ready", "Ignite Fusion Protocol");
+        DOMUtils.setButtonState(fuseBtn, 'ready', 'Ignite Fusion Protocol');
       }
     }
   }
@@ -208,12 +216,12 @@ class FusionLab {
     const fuseBtn = this.elements.fuseBtn;
 
     if (fuseBtn) {
-      DOMUtils.setButtonState(fuseBtn, "error", "Ignite Fusion Protocol");
+      DOMUtils.setButtonState(fuseBtn, 'error', 'Ignite Fusion Protocol');
     }
 
     if (errorEl) {
       errorEl.hidden = false;
-      errorEl.setAttribute("aria-live", "assertive");
+      errorEl.setAttribute('aria-live', 'assertive');
       if (textSpan) textSpan.innerText = message;
 
       // Empathetic Recovery Path: Guide user back to missing input
@@ -223,7 +231,7 @@ class FusionLab {
 
       if (targetSlot) {
         targetSlot.focus();
-        targetSlot.scrollIntoView({ behavior: "smooth", block: "center" });
+        targetSlot.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
   }
@@ -237,13 +245,13 @@ class FusionLab {
 
     if (errorEl) {
       errorEl.hidden = true;
-      errorEl.removeAttribute("aria-live");
+      errorEl.removeAttribute('aria-live');
     }
 
     if (fuseBtn) {
-      fuseBtn.classList.remove("error");
-      fuseBtn.removeAttribute("aria-live");
-      fuseBtn.removeAttribute("aria-busy");
+      fuseBtn.classList.remove('error');
+      fuseBtn.removeAttribute('aria-live');
+      fuseBtn.removeAttribute('aria-busy');
     }
   }
 
@@ -258,27 +266,26 @@ class FusionLab {
     const agentB = this.state.slotB;
 
     if (!agentA || !agentB) {
-        this.showError("Select both protocols to initiate fusion.");
-        return;
+      this.showError('Select both protocols to initiate fusion.');
+      return;
     }
 
     // Reset UI states
     this.clearError();
     if (fuseBtn) {
-      DOMUtils.setButtonState(fuseBtn, "loading", "Igniting Protocol...");
-      fuseBtn.setAttribute("aria-live", "polite");
-      fuseBtn.setAttribute("aria-busy", "true");
+      DOMUtils.setButtonState(fuseBtn, 'loading', 'Igniting Protocol...');
+      fuseBtn.setAttribute('aria-live', 'polite');
+      fuseBtn.setAttribute('aria-busy', 'true');
     }
 
     const result = this.compiler.fuse(agentA, agentB);
 
     // Error Handling
-    if (result.name === "Error") {
+    if (result.name === 'Error') {
       let msg = result.prompt;
       // Virtuoso: Empathetic & Actionable Error Copy
       const ERROR_MAP = {
-        "Invalid agents selected.":
-          "Select two distinct agents to initiate the fusion protocol.",
+        'Invalid agents selected.': 'Select two distinct agents to initiate the fusion protocol.',
       };
 
       if (ERROR_MAP[result.prompt]) {
@@ -290,7 +297,7 @@ class FusionLab {
     }
 
     if (labContent) {
-        labContent.classList.add("hidden");
+      labContent.classList.add('hidden');
     }
 
     // Unlock in Index if it's a valid fusion
@@ -300,14 +307,14 @@ class FusionLab {
         // Check if it's a known custom fusion
         let isKnown = false;
         if (this.fusionIndex.customAgents && this.fusionIndex.customAgents[key]) {
-            isKnown = true;
+          isKnown = true;
         }
 
         if (isKnown) {
           this.fusionIndex.unlock(key);
         }
       } catch (e) {
-        console.warn("FusionLab: Failed to unlock index", e);
+        console.warn('FusionLab: Failed to unlock index', e);
       }
     }
 
@@ -331,7 +338,7 @@ class FusionLab {
     const agentB = this.agentMap.get(names[1]);
 
     if (!agentA || !agentB) {
-      console.warn("FusionLab: Could not find agents for key", key);
+      console.warn('FusionLab: Could not find agents for key', key);
       return;
     }
 
@@ -357,25 +364,25 @@ class FusionLab {
 
     const container = this.elements.fusionResultContainer;
     if (container) {
-      container.classList.add("hidden");
-      container.classList.remove("fusion-revealed");
-      container.innerHTML = ""; // Clear previous
+      container.classList.add('hidden');
+      container.classList.remove('fusion-revealed');
+      container.innerHTML = ''; // Clear previous
 
-      if (typeof AgentCard !== "undefined") {
+      if (typeof AgentCard !== 'undefined') {
         // Find the custom agent key by finding the matching object in customAgentsMap
         // ⚡ Bolt+: Replaced O(N) array allocation overhead from Object.entries() with a direct for...in dictionary lookup.
-        let keyStr = "fusion-result";
+        let keyStr = 'fusion-result';
         for (const key in this.compiler.customAgentsMap) {
-            if (Object.prototype.hasOwnProperty.call(this.compiler.customAgentsMap, key)) {
-                if (this.compiler.customAgentsMap[key].name === result.name) {
-                    keyStr = key;
-                    break;
-                }
+          if (Object.prototype.hasOwnProperty.call(this.compiler.customAgentsMap, key)) {
+            if (this.compiler.customAgentsMap[key].name === result.name) {
+              keyStr = key;
+              break;
             }
+          }
         }
 
         const card = AgentCard.create(result, keyStr, 0);
-        card.classList.remove("pop-in");
+        card.classList.remove('pop-in');
         container.appendChild(card);
       }
     }
@@ -393,20 +400,20 @@ class FusionLab {
     const container = this.elements.fusionResultContainer;
 
     if (container) {
-      container.classList.add("hidden");
-      container.classList.remove("fusion-revealed");
+      container.classList.add('hidden');
+      container.classList.remove('fusion-revealed');
     }
 
     if (resetBtn) {
-      resetBtn.classList.add("hidden");
+      resetBtn.classList.add('hidden');
     }
 
     if (labContent) {
-      labContent.classList.remove("hidden");
+      labContent.classList.remove('hidden');
     }
 
     if (container) {
-      container.innerHTML = "";
+      container.innerHTML = '';
     }
 
     this.renderSlots();
@@ -418,26 +425,26 @@ class FusionLab {
   showResult() {
     const fuseBtn = this.elements.fuseBtn;
     if (fuseBtn) {
-      DOMUtils.setButtonState(fuseBtn, "ready", "Ignite Fusion Protocol");
+      DOMUtils.setButtonState(fuseBtn, 'ready', 'Ignite Fusion Protocol');
     }
 
     const container = this.elements.fusionResultContainer;
     const resetBtn = this.elements.resetLabBtn;
 
     if (container) {
-      container.classList.remove("hidden");
-      container.classList.add("fusion-revealed");
+      container.classList.remove('hidden');
+      container.classList.add('fusion-revealed');
 
       if (resetBtn) {
-          resetBtn.classList.remove("hidden");
+        resetBtn.classList.remove('hidden');
       }
 
       // Ensure the card inside gets focused for accessibility
-      const cardTitle = container.querySelector(".agent-title");
+      const cardTitle = container.querySelector('.agent-title');
       if (cardTitle) {
-          cardTitle.setAttribute("tabindex", "-1");
-          cardTitle.focus();
-          cardTitle.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        cardTitle.setAttribute('tabindex', '-1');
+        cardTitle.focus();
+        cardTitle.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     }
   }

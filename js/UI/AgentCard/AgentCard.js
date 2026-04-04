@@ -3,91 +3,108 @@
  * @see ../../../docs/architecture/UI/AgentCard.md#agentcard-architecture for DOM structure and event delegation details.
  */
 class AgentCard {
-    static ANIMATION_DELAY_STEP_MS = 30;
-    static ANIMATION_DELAY_MAX_MS = 600;
+  static ANIMATION_DELAY_STEP_MS = 30;
+  static ANIMATION_DELAY_MAX_MS = 600;
 
-    /**
-     * Lazily generates the DOM nodes for the back of the card (the prompt preview).
-     * Renders the raw agent prompt as a preformatted block.
-     * @param {Object} agent - The agent data object containing the prompt string.
-     * @returns {HTMLElement} The HTML element representing the raw prompt.
-     * @see ../../../docs/architecture/UI/AgentCard.md#agentcard-architecture for DOM structure and generation details.
-     */
-    static getPromptNode(agent) {
-        return DOMUtils.createMarkdownPreBlock(PromptParser.stripFrontmatter(agent.prompt || "No protocol data available."));
+  /**
+   * Lazily generates the DOM nodes for the back of the card (the prompt preview).
+   * Renders the raw agent prompt as a preformatted block.
+   * @param {Object} agent - The agent data object containing the prompt string.
+   * @returns {HTMLElement} The HTML element representing the raw prompt.
+   * @see ../../../docs/architecture/UI/AgentCard.md#agentcard-architecture for DOM structure and generation details.
+   */
+  static getPromptNode(agent) {
+    return DOMUtils.createMarkdownPreBlock(
+      PromptParser.stripFrontmatter(agent.prompt || 'No protocol data available.'),
+    );
+  }
+
+  /**
+   * Generates the complete HTML element for a 3D flip-card.
+   * Does not attach inner loop event listeners; relies on parent container delegation.
+   * Autonomously adjusts its primary action button depending on the global repository selection state.
+   * @param {Object} agent - The complete agent data object containing core metadata (tier, scope, role, etc.).
+   * @param {string|number} index - The unique identifier or array index of the agent.
+   * @param {number} globalIndex - The global render index used to calculate cascading animation delays.
+   * @returns {HTMLElement} The fully constructed DOM element for the card, ready for virtual insertion.
+   * @see ../../../docs/architecture/UI/AgentCard.md#agentcard-architecture for DOM structure, render throttling, and event delegation patterns.
+   */
+  static create(agent, index, globalIndex) {
+    const card = document.createElement('div');
+    card.className = 'card flip-card pop-in';
+    card.style.animationDelay = `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`;
+
+    if (agent.type === 'plus') card.classList.add('plus-agent');
+    if (agent.type === 'monthly') card.classList.add('monthly-agent');
+
+    let tags = '';
+    if (agent.scope) {
+      let scopeClass = 'scope-medium';
+      if (agent.scope.includes('Small')) scopeClass = 'scope-small';
+      if (agent.scope.includes('Large')) scopeClass = 'scope-large';
+      tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
     }
 
-    /**
-     * Generates the complete HTML element for a 3D flip-card.
-     * Does not attach inner loop event listeners; relies on parent container delegation.
-     * Autonomously adjusts its primary action button depending on the global repository selection state.
-     * @param {Object} agent - The complete agent data object containing core metadata (tier, scope, role, etc.).
-     * @param {string|number} index - The unique identifier or array index of the agent.
-     * @param {number} globalIndex - The global render index used to calculate cascading animation delays.
-     * @returns {HTMLElement} The fully constructed DOM element for the card, ready for virtual insertion.
-     * @see ../../../docs/architecture/UI/AgentCard.md#agentcard-architecture for DOM structure, render throttling, and event delegation patterns.
-     */
-    static create(agent, index, globalIndex) {
-        const card = document.createElement("div");
-        card.className = "card flip-card pop-in";
-        card.style.animationDelay = `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`;
+    if (agent.tier) {
+      const lowerTier = agent.tier.toLowerCase();
+      tags += `<span class="meta-tag tier-badge tier-${lowerTier}">${agent.tier}</span>`;
+      card.classList.add(`tier-${lowerTier}`);
+    }
 
-        if (agent.type === "plus") card.classList.add("plus-agent");
-        if (agent.type === "monthly") card.classList.add("monthly-agent");
-        
-        let tags = "";
-        if (agent.scope) {
-            let scopeClass = "scope-medium";
-            if (agent.scope.includes("Small")) scopeClass = "scope-small";
-            if (agent.scope.includes("Large")) scopeClass = "scope-large";
-            tags += `<span class="meta-tag ${scopeClass}">${agent.scope}</span>`;
-        }
+    const icon = FormatUtils.extractIcon(agent);
+    const displayName = FormatUtils.extractDisplayName(agent);
 
-        if (agent.tier) {
-            const lowerTier = agent.tier.toLowerCase();
-            tags += `<span class="meta-tag tier-badge tier-${lowerTier}">${agent.tier}</span>`;
-            card.classList.add(`tier-${lowerTier}`);
-        }
+    const role = FormatUtils.escapeHTML(agent.role || 'Fusion Protocol');
+    const desc = FormatUtils.escapeHTML(
+      agent.short_description || agent.desc || agent.description || '',
+    );
+    const safeDisplayName = FormatUtils.escapeHTML(displayName);
 
-        const icon = FormatUtils.extractIcon(agent);
-        const displayName = FormatUtils.extractDisplayName(agent);
+    const isPinned =
+      window.rosterApp &&
+      window.rosterApp.pinnedManager &&
+      window.rosterApp.pinnedManager.isPinned(index);
+    const pinClass = isPinned ? 'pinned' : '';
+    const isFusionAgent = isNaN(index);
+    const pinHtml =
+      index !== undefined && index !== null && index !== '' && isFusionAgent
+        ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" >📌</button>`
+        : '';
 
-        const role = FormatUtils.escapeHTML(agent.role || 'Fusion Protocol');
-        const desc = FormatUtils.escapeHTML(agent.short_description || agent.desc || agent.description || '');
-        const safeDisplayName = FormatUtils.escapeHTML(displayName);
+    // Splay Out Child Fusions Logic (Refactored to Modal Trigger)
+    let fusionQuickListHtml = '';
+    if (
+      index !== undefined &&
+      index !== null &&
+      index !== '' &&
+      window.rosterApp &&
+      window.rosterApp.fusionLab &&
+      window.rosterApp.fusionLab.fusionIndex
+    ) {
+      const unlockedKeys = window.rosterApp.fusionLab.fusionIndex.unlockedKeys;
 
-        const isPinned = window.rosterApp && window.rosterApp.pinnedManager && window.rosterApp.pinnedManager.isPinned(index);
-        const pinClass = isPinned ? 'pinned' : '';
-        const isFusionAgent = isNaN(index);
-        const pinHtml = (index !== undefined && index !== null && index !== '' && isFusionAgent) ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" >📌</button>` : '';
+      // ↗️ VECTORIZE: The Single-Pass Pipeline. We bypass Array.from().filter() wrapper allocations for a direct loop.
+      const childKeys = [];
+      for (const key of unlockedKeys) {
+        if (key.includes(agent.name)) childKeys.push(key);
+      }
 
-        // Splay Out Child Fusions Logic (Refactored to Modal Trigger)
-        let fusionQuickListHtml = '';
-        if ((index !== undefined && index !== null && index !== '') && window.rosterApp && window.rosterApp.fusionLab && window.rosterApp.fusionLab.fusionIndex) {
-            const unlockedKeys = window.rosterApp.fusionLab.fusionIndex.unlockedKeys;
+      if (childKeys.length > 0) {
+        fusionQuickListHtml = `<div class="fusions-hint" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
+      }
+    }
 
-            // ↗️ VECTORIZE: The Single-Pass Pipeline. We bypass Array.from().filter() wrapper allocations for a direct loop.
-            const childKeys = [];
-            for (const key of unlockedKeys) {
-                if (key.includes(agent.name)) childKeys.push(key);
-            }
+    const repoPicker = document.getElementById('julesRepoPicker');
+    const isRepoSelected = repoPicker && repoPicker.value !== '';
 
-            if (childKeys.length > 0) {
-                fusionQuickListHtml = `<div class="fusions-hint" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
-            }
-        }
+    const primaryAction = isRepoSelected ? 'launch-jules' : 'copy-agent';
+    const primaryTitle = isRepoSelected ? 'Launch agent via Jules API' : 'Copy agent prompt';
+    const primaryText = isRepoSelected ? 'Launch in Jules 🚀' : '📋 Copy Prompt';
 
-        const repoPicker = document.getElementById("julesRepoPicker");
-        const isRepoSelected = repoPicker && repoPicker.value !== "";
+    const dropdownAction = isRepoSelected ? 'copy-agent' : 'launch-jules';
+    const dropdownText = isRepoSelected ? '📋 Copy Prompt' : 'Launch in Jules 🚀';
 
-        const primaryAction = isRepoSelected ? "launch-jules" : "copy-agent";
-        const primaryTitle = isRepoSelected ? "Launch agent via Jules API" : "Copy agent prompt";
-        const primaryText = isRepoSelected ? "Launch in Jules 🚀" : "📋 Copy Prompt";
-
-        const dropdownAction = isRepoSelected ? "copy-agent" : "launch-jules";
-        const dropdownText = isRepoSelected ? "📋 Copy Prompt" : "Launch in Jules 🚀";
-
-        card.innerHTML = `
+    card.innerHTML = `
             <div class="flip-card-inner">
                 <div class="flip-card-front" data-action="flip-card" data-index="${index}">
                     ${pinHtml}
@@ -132,10 +149,10 @@ class AgentCard {
             </div>
         `;
 
-        return card;
-    }
+    return card;
+  }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = AgentCard;
+  module.exports = AgentCard;
 }

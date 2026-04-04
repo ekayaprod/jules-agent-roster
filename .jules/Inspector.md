@@ -1,3 +1,4 @@
 ## Inspector — EmptyState Module Export Boundary
+
 **Edge Case:** The component `EmptyState.js` lacked test coverage verifying the conditional CommonJS module export syntax (`if (typeof module !== 'undefined' && module.exports)`). If `module` is defined but lacks `exports` it would error out, but coverage requires asserting truthy and falsy states of this export block explicitly.
 **Assertion:** Interrogated the module export logic using dynamic `Function` constructors to mock isolated environments. Checked both the successful export when `module.exports` is present, and gracefully bypassing when `module.exports` is absent or `module` is undefined.

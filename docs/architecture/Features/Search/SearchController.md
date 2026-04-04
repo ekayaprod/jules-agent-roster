@@ -43,13 +43,13 @@ this.searchController = new SearchController(this);
 // 2. Bind debounced input events
 const searchInput = document.getElementById('search-box');
 const handleSearch = PerformanceUtils.debounce((e) => {
-    this.searchController.filterAgents(e.target.value);
+  this.searchController.filterAgents(e.target.value);
 }, 300);
 
 searchInput.addEventListener('input', handleSearch);
 
 // 3. Clear search state
 document.getElementById('clear-btn').addEventListener('click', () => {
-    this.searchController.clearSearch();
+  this.searchController.clearSearch();
 });
 ```

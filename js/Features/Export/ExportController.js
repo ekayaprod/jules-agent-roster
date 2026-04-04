@@ -20,13 +20,16 @@ class ExportController {
    * @see ../../../docs/architecture/Features/Export/ExportController.md#copy-operations for clipboard fallback mechanics.
    */
   async copyAgent(index, btn) {
-    let agent = this.app.agents[index] || (this.app.customAgents && this.app.customAgents[index]) || (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
+    let agent =
+      this.app.agents[index] ||
+      (this.app.customAgents && this.app.customAgents[index]) ||
+      (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
     if (!agent) return;
 
     const success = await ClipboardUtils.copyText(agent.prompt);
     if (success) {
-      this.app.toast.show("Copied to clipboard");
-      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+      this.app.toast.show('Copied to clipboard');
+      ClipboardUtils.animateButtonSuccess(btn, 'Copied!');
     }
   }
 
@@ -53,15 +56,19 @@ class ExportController {
     for (const key in allCustomAgents) {
       if (Object.prototype.hasOwnProperty.call(allCustomAgents, key)) {
         if (key.includes(parentName)) {
-           const a = allCustomAgents[key];
-           if (a && a.prompt && a.prompt.length > 0) validCustomAgents.push(a);
+          const a = allCustomAgents[key];
+          if (a && a.prompt && a.prompt.length > 0) validCustomAgents.push(a);
         }
       }
     }
 
-    if (validCustomAgents.length === 0) return this.app.toast.show("No unlocked fusions found for this agent.");
-    DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(validCustomAgents), `jules_custom_agents_${parentName.replace(/\s+/g, '_').toLowerCase()}.md`);
-    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
+    if (validCustomAgents.length === 0)
+      return this.app.toast.show('No unlocked fusions found for this agent.');
+    DownloadUtils.downloadTextFile(
+      header + FormatUtils.formatAgentPrompts(validCustomAgents),
+      `jules_custom_agents_${parentName.replace(/\s+/g, '_').toLowerCase()}.md`,
+    );
+    ClipboardUtils.animateButtonSuccess(btn, 'Downloaded!');
   }
 
   downloadCustomAgents(btn) {
@@ -70,9 +77,12 @@ class ExportController {
     // ↗️ VECTORIZE: The Single-Pass Pipeline. We ignore the abstracted layers and execute the calculation in one direct pass.
     const validCustomAgents = AgentUtils.getValidCustomAgents(this.app.customAgents);
 
-    if (validCustomAgents.length === 0) return this.app.toast.show("No custom agents available.");
-    DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(validCustomAgents), "jules_custom_agents.md");
-    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
+    if (validCustomAgents.length === 0) return this.app.toast.show('No custom agents available.');
+    DownloadUtils.downloadTextFile(
+      header + FormatUtils.formatAgentPrompts(validCustomAgents),
+      'jules_custom_agents.md',
+    );
+    ClipboardUtils.animateButtonSuccess(btn, 'Downloaded!');
   }
 
   /**
@@ -84,8 +94,11 @@ class ExportController {
    */
   downloadAll(btn) {
     const header = FormatUtils.MASTER_ROSTER_HEADER;
-    DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(this.app.agents), "jules_roster.md");
-    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
+    DownloadUtils.downloadTextFile(
+      header + FormatUtils.formatAgentPrompts(this.app.agents),
+      'jules_roster.md',
+    );
+    ClipboardUtils.animateButtonSuccess(btn, 'Downloaded!');
   }
 
   /**
@@ -96,10 +109,12 @@ class ExportController {
    */
   async copyAll(btn) {
     const header = FormatUtils.MASTER_ROSTER_HEADER;
-    const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(this.app.agents));
+    const success = await ClipboardUtils.copyText(
+      header + FormatUtils.formatAgentPrompts(this.app.agents),
+    );
     if (success) {
-      this.app.toast.show("Copied to clipboard");
-      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+      this.app.toast.show('Copied to clipboard');
+      ClipboardUtils.animateButtonSuccess(btn, 'Copied!');
     }
   }
 }

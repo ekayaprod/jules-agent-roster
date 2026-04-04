@@ -169,7 +169,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🚀 Features
 
-- **Fusion System Expansion**: Deployed comprehensive prompt definitions for 50+ specialized U-Tier agents (including *The Catalyst*, *The Optimist*, *The Diplomat*, and *The Narrator*).
+- **Fusion System Expansion**: Deployed comprehensive prompt definitions for 50+ specialized U-Tier agents (including _The Catalyst_, _The Optimist_, _The Diplomat_, and _The Narrator_).
 
 ### ⚡ Performance
 

@@ -26,8 +26,8 @@ const compiler = new FusionCompiler(agents, customAgents);
 // Fuse Agent A and Agent B (Order is automatically resolved via DAG pipeline)
 const result = compiler.fuse(agentA, agentB);
 
-console.log("Fused Agent Name:", result.name);
-console.log("Fused Prompt Content:", result.prompt);
+console.log('Fused Agent Name:', result.name);
+console.log('Fused Prompt Content:', result.prompt);
 ```
 
 To parse the discovered fusion keys from storage:
@@ -35,7 +35,7 @@ To parse the discovered fusion keys from storage:
 ```javascript
 const index = new FusionIndex('containerId', customAgents, callback);
 index.loadState();
-console.log("Unlocked Fusions:", Array.from(index.unlockedKeys));
+console.log('Unlocked Fusions:', Array.from(index.unlockedKeys));
 ```
 
 ## Architecture
@@ -53,17 +53,17 @@ The Fusion feature adheres to a modular, vanilla JavaScript architecture without
 
 The <a href="#rarity-engine">`RarityEngine.js`</a> determines a fusion's output tier dynamically using a strictly defined interaction matrix. It assigns a "Super Domain" to constituent agents and matches them according to the following macro ruleset:
 
-* **Tier 6: Mythic** - The Glitch. Result of combining any Agent with an exact duplicate of Itself.
-* **Tier 5: Legendary** - The Paradox. A combination between a "Builder" (non-destructive) Agent and a "Destructive" Agent (`Scavenger`), or between `Architect` and `Pedant`.
-* **Tier 4: Epic** - QA Bridge. Combining an `Integrity` Agent with a `Visible` or `Invisible` Agent.
-* **Tier 3: Rare** - Full-Stack Bridge. Synergy between `Visible` and `Invisible` Agents.
-* **Tier 2: Uncommon** - Frontend Synergy (`Visible` + `Visible`), Integrity Synergy (`Integrity` + `Integrity`), or a Plus Bridge (A Plus agent unmatched with its affinity domain).
-* **Tier 1: Common** - Backend Synergy (`Invisible` + `Invisible`), identical sub-categories (e.g., Docs + Docs), Plus Affinities (a Plus agent combined with its matching domain), or multiple Plus agents.
+- **Tier 6: Mythic** - The Glitch. Result of combining any Agent with an exact duplicate of Itself.
+- **Tier 5: Legendary** - The Paradox. A combination between a "Builder" (non-destructive) Agent and a "Destructive" Agent (`Scavenger`), or between `Architect` and `Pedant`.
+- **Tier 4: Epic** - QA Bridge. Combining an `Integrity` Agent with a `Visible` or `Invisible` Agent.
+- **Tier 3: Rare** - Full-Stack Bridge. Synergy between `Visible` and `Invisible` Agents.
+- **Tier 2: Uncommon** - Frontend Synergy (`Visible` + `Visible`), Integrity Synergy (`Integrity` + `Integrity`), or a Plus Bridge (A Plus agent unmatched with its affinity domain).
+- **Tier 1: Common** - Backend Synergy (`Invisible` + `Invisible`), identical sub-categories (e.g., Docs + Docs), Plus Affinities (a Plus agent combined with its matching domain), or multiple Plus agents.
 
 **Domain Taxonomy mapping:**
 
-* `Destructive`: Scavenger
-* `Plus`: Bolt+, Palette+, Sentinel+
-* `Integrity`: testing, hygiene
-* `Visible`: ux, documentation, strategy
-* `Invisible`: architecture, refactoring, operations, meta
+- `Destructive`: Scavenger
+- `Plus`: Bolt+, Palette+, Sentinel+
+- `Integrity`: testing, hygiene
+- `Visible`: ux, documentation, strategy
+- `Invisible`: architecture, refactoring, operations, meta

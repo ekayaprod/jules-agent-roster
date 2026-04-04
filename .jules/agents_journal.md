@@ -142,7 +142,7 @@
 
 ## 🖋️ Typesmith - [Typographic Hierarchy Enforced: index.html & fusion.css]
 
-**Learning:** Hardcoded pixel and  sizes across HTML, CSS, and JS components create severe visual debt and prevent systematic scaling. When auditing a codebase, it's critical to identify the central typography token map (e.g., `--text-*` and `--leading-*` variables) and map raw integers directly to those semantic variables.
+**Learning:** Hardcoded pixel and sizes across HTML, CSS, and JS components create severe visual debt and prevent systematic scaling. When auditing a codebase, it's critical to identify the central typography token map (e.g., `--text-*` and `--leading-*` variables) and map raw integers directly to those semantic variables.
 **Action:** Replaced arbitrary values like `font-size: 3.5rem; line-height: 1;` with `font-size: var(--text-6xl); line-height: var(--leading-none);`. Additionally, injected new missing top-level scale variables (`--text-5xl` to `--text-7xl`, and a full `--leading-*` scale) into the root `:root` dictionary to support the changes. Verified visually via Playwright headless screenshot.
 
 ## 🖋️ Typesmith - [Typographic Hierarchy Enforced: index.html & fusion.css]

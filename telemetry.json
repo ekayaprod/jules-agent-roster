@@ -6233,9 +6233,7 @@
     "step_2_decision_verb": "[Propagate]",
     "step_3_exact_text": "3. 🛠️ SYNC: Execute a targeted search-and-replace exclusively within the body of the chosen markdown file, replacing the stale thematic emojis with the canonical header emoji. Ensure structural emojis (like ✅) are preserved.",
     "step_5_exact_text": "5. 🎁 PRESENT: PR Title: \"🗣️ Echo: [Symbology Propagated: {Agent Name}]\"",
-    "boundaries_always_do": [
-      "* 🚫 **Never do:**"
-    ],
+    "boundaries_always_do": ["* 🚫 **Never do:**"],
     "boundaries_never_do": [],
     "optimizations_count": 2,
     "optimizations_full_text": [
@@ -6272,9 +6270,7 @@
     "step_2_decision_verb": null,
     "step_3_exact_text": null,
     "step_5_exact_text": null,
-    "boundaries_always_do": [
-      "* 🚫 **Never do:**"
-    ],
+    "boundaries_always_do": ["* 🚫 **Never do:**"],
     "boundaries_never_do": [],
     "optimizations_count": 3,
     "optimizations_full_text": [
@@ -6296,9 +6292,7 @@
     "step_2_decision_verb": null,
     "step_3_exact_text": null,
     "step_5_exact_text": null,
-    "boundaries_always_do": [
-      "* 🚫 **Never do:**"
-    ],
+    "boundaries_always_do": ["* 🚫 **Never do:**"],
     "boundaries_never_do": [],
     "optimizations_count": 2,
     "optimizations_full_text": [
@@ -6319,9 +6313,7 @@
     "step_2_decision_verb": null,
     "step_3_exact_text": "3. 🛠️ SYNC: Update the JSON file to exactly match the markdown source of truth.",
     "step_5_exact_text": "5. 🎁 PRESENT: PR Title: \"🗃️ Registrar: [Registry Synchronized: {Agent Name}]\"",
-    "boundaries_always_do": [
-      "* 🚫 **Never do:**"
-    ],
+    "boundaries_always_do": ["* 🚫 **Never do:**"],
     "boundaries_never_do": [],
     "optimizations_count": 3,
     "optimizations_full_text": [

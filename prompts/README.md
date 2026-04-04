@@ -20,7 +20,7 @@ To add a new agent to the roster, execute the following steps:
 
 The directory structure enforces a strict two-tier flat hierarchy optimized for frontend asset fetching:
 
-* **`prompts/*.md` (Root)**: Contains the base Core Agents (e.g., `Bolt+.md`, `Architect.md`).
-* **`prompts/fusions/*.md`**: Contains specialized, high-tier Fusion Agents derived from combining two Core Agents.
+- **`prompts/*.md` (Root)**: Contains the base Core Agents (e.g., `Bolt+.md`, `Architect.md`).
+- **`prompts/fusions/*.md`**: Contains specialized, high-tier Fusion Agents derived from combining two Core Agents.
 
 The frontend retrieves these Markdown files directly as static text assets without requiring a build step or static site generator. All content must remain parseable strictly as raw Markdown.

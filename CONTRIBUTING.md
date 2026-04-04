@@ -15,21 +15,21 @@ npm install
 npm test
 ```
 
-*Note: There is no build step! We keep it strictly Vanilla JS. You can just open `index.html` in your browser to test UI changes.*
+_Note: There is no build step! We keep it strictly Vanilla JS. You can just open `index.html` in your browser to test UI changes._
 
 ## 🧪 Testing Your Changes
 
 Our testing strategy is split into two distinct paths. Please make sure you run the right one for your changes!
 
-* **Benchmarks (The Performance):** If you are checking the overall system performance or ensuring class loading works without a bundler, run the benchmark suite.
+- **Benchmarks (The Performance):** If you are checking the overall system performance or ensuring class loading works without a bundler, run the benchmark suite.
 
   ```bash
   npm test
   ```
 
-  *(Wait, what? Yes, `npm test` is intentionally aliased to run `benchmark.js` in our `package.json`!)*
+  _(Wait, what? Yes, `npm test` is intentionally aliased to run `benchmark.js` in our `package.json`!)_
 
-* **Unit Tests (The Code):** If you touch any `*.test.js` files (like our DOM utilities), you must run Jest explicitly. We use JSDOM to mock the browser environment.
+- **Unit Tests (The Code):** If you touch any `*.test.js` files (like our DOM utilities), you must run Jest explicitly. We use JSDOM to mock the browser environment.
 
   ```bash
   npm run test:unit
@@ -43,6 +43,6 @@ Our testing strategy is split into two distinct paths. Please make sure you run 
 
 ## 📜 Code Style
 
-* **Vanilla JS Only:** No React, no Vue, no bundlers.
-* **CSS:** Keep it utility-based or colocated in feature folders.
-* **Tone:** Keep it light, casual, and emoji-heavy! 🎨✨
+- **Vanilla JS Only:** No React, no Vue, no bundlers.
+- **CSS:** Keep it utility-based or colocated in feature folders.
+- **Tone:** Keep it light, casual, and emoji-heavy! 🎨✨

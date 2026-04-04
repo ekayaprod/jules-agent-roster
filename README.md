@@ -39,7 +39,7 @@ npm install
 npm test
 ```
 
-*Note: `npm test` runs the performance benchmarks. If you're working on the UI, just open `index.html` in your browser! To run the unit tests via JSDOM, execute `npm run test:unit`.*
+_Note: `npm test` runs the performance benchmarks. If you're working on the UI, just open `index.html` in your browser! To run the unit tests via JSDOM, execute `npm run test:unit`._
 
 ### Usage Instructions
 
@@ -51,51 +51,51 @@ npm test
 
 ### Core Maintenance (Plus)
 
-* **Bolt+ ⚡**: Performance Engineer. Handles virtualization, workers, and caching strategies.
+- **Bolt+ ⚡**: Performance Engineer. Handles virtualization, workers, and caching strategies.
 
-* **Palette+ 🎨**: UX & Delight. Polishes interaction flows, animations, and accessibility.
+- **Palette+ 🎨**: UX & Delight. Polishes interaction flows, animations, and accessibility.
 
-* **Sentinel+ 🛡️**: Security Engineer. Implements defense layers like validation schemas and CSP.
+- **Sentinel+ 🛡️**: Security Engineer. Implements defense layers like validation schemas and CSP.
 
 ### Engineering Specialists
 
-* **Architect 🏗️**: Structural refactoring and code organization.
+- **Architect 🏗️**: Structural refactoring and code organization.
 
-* **Scavenger 🧹**: Dead code deletion and debt removal.
+- **Scavenger 🧹**: Dead code deletion and debt removal.
 
-* **Janitor 🧼**: Dependency updates and config hygiene.
+- **Janitor 🧼**: Dependency updates and config hygiene.
 
-* **Modernizer 🆙**: Upgrades legacy patterns and AI models.
+- **Modernizer 🆙**: Upgrades legacy patterns and AI models.
 
-* **Inspector 🕵️**: Fills test coverage gaps.
+- **Inspector 🕵️**: Fills test coverage gaps.
 
-* **Paramedic 🚨**: Hardens app against crashes and brittle logic.
+- **Paramedic 🚨**: Hardens app against crashes and brittle logic.
 
-* **Helix 🧬**: Deduplication Specialist. Extracts shared logic into utilities or hooks.
+- **Helix 🧬**: Deduplication Specialist. Extracts shared logic into utilities or hooks.
 
-* **Pedant 🧐**: Code Quality Enforcer. Enforces naming conventions and style guides.
+- **Pedant 🧐**: Code Quality Enforcer. Enforces naming conventions and style guides.
 
-* **Untangler 🧶**: Logic Simplifier. Flattens nested logic and extracts helper functions.
+- **Untangler 🧶**: Logic Simplifier. Flattens nested logic and extracts helper functions.
 
 ### Context & Strategy
 
-* **Scribe ✍️**: Documentation. Updates docs and API references.
+- **Scribe ✍️**: Documentation. Updates docs and API references.
 
-* **Navigator 🧭**: Strategy. Aligns Roadmap with code reality.
+- **Navigator 🧭**: Strategy. Aligns Roadmap with code reality.
 
-* **Curator 🖼️**: Assets. Audits asset library health and accessibility.
+- **Curator 🖼️**: Assets. Audits asset library health and accessibility.
 
-* **Herald 📣**: Release Manager. Translates git history into Changelogs.
+- **Herald 📣**: Release Manager. Translates git history into Changelogs.
 
-* **Wordsmith ✏️**: UX Writer. Audits copy for brevity and clarity.
+- **Wordsmith ✏️**: UX Writer. Audits copy for brevity and clarity.
 
 ### Monthly Intelligence
 
-* **Overseer 👁️**: The Eye. Performs deep forensic audit to identify targets.
+- **Overseer 👁️**: The Eye. Performs deep forensic audit to identify targets.
 
-* **Cartographer 🗺️**: Visuals. Maps system architecture into Mermaid diagrams.
+- **Cartographer 🗺️**: Visuals. Maps system architecture into Mermaid diagrams.
 
-* **Spark 💡**: Innovation Strategist. Reviews codebase for blindspots and suggests libraries.
+- **Spark 💡**: Innovation Strategist. Reviews codebase for blindspots and suggests libraries.
 
 ### 🧬 The Fusion System
 
@@ -103,28 +103,28 @@ The Fusion Lab allows you to combine any two agents to create a specialized hybr
 
 **Featured Fusions:**
 
-* **The Guardian ⛑️** (Paramedic + Inspector): Hardens code against crashes and locks it in place with rigorous tests.
+- **The Guardian ⛑️** (Paramedic + Inspector): Hardens code against crashes and locks it in place with rigorous tests.
 
-* **The Virtuoso 🎨** (Palette+ + Wordsmith): Polishes interaction flows and microcopy in a single unified pass.
+- **The Virtuoso 🎨** (Palette+ + Wordsmith): Polishes interaction flows and microcopy in a single unified pass.
 
-* **The Steward 🧽** (Janitor + Scavenger): Bumps dependencies and surgically purges the legacy polyfills they replace.
+- **The Steward 🧽** (Janitor + Scavenger): Bumps dependencies and surgically purges the legacy polyfills they replace.
 
-* **The Catalyst ⚡** (Bolt+ + Modernizer): Upgrades legacy syntax and instantly extracts native performance gains.
+- **The Catalyst ⚡** (Bolt+ + Modernizer): Upgrades legacy syntax and instantly extracts native performance gains.
 
-* **The Historian ⏳** (Herald + Scribe): Documents a release in the Changelog and the codebase JSDoc simultaneously.
+- **The Historian ⏳** (Herald + Scribe): Documents a release in the Changelog and the codebase JSDoc simultaneously.
 
 ### 💎 The Rarity System
 
 Every fusion is automatically assigned a **Rarity Tier** by the `RarityEngine` based on the synergy of the combined domains. Higher tiers indicate more complex, powerful, or volatile combinations!
 
-* **Mythic (The Glitch):** Fusing an agent with itself. Infinite recursion, infinite power! 🤯
-* **Legendary (The Paradox):** Combining a destructive force (like the Scavenger) with a builder, or creating a Micro/Macro paradox (Architect + Pedant). 🌪️
-* **Epic (QA Bridge):** Linking an Integrity agent (Testing/Hygiene) with a Visible (UX/Docs) or Invisible (Architecture/Ops) domain. 🌉
-* **Rare (Full-Stack Bridge):** Bridging the frontend and backend (Visible + Invisible). 🤝
-* **Uncommon & Common:** Standard synergies, Plus-tier affinities, and same-domain interactions. 🛠️
+- **Mythic (The Glitch):** Fusing an agent with itself. Infinite recursion, infinite power! 🤯
+- **Legendary (The Paradox):** Combining a destructive force (like the Scavenger) with a builder, or creating a Micro/Macro paradox (Architect + Pedant). 🌪️
+- **Epic (QA Bridge):** Linking an Integrity agent (Testing/Hygiene) with a Visible (UX/Docs) or Invisible (Architecture/Ops) domain. 🌉
+- **Rare (Full-Stack Bridge):** Bridging the frontend and backend (Visible + Invisible). 🤝
+- **Uncommon & Common:** Standard synergies, Plus-tier affinities, and same-domain interactions. 🛠️
 
 ## 🤝 Contributing
 
 This roster is designed to evolve. If you find a new pattern or a better way to structure an agent's "Philosophy," feel free to open a PR!
 
-*Built for the Jules Community.*
+_Built for the Jules Community._

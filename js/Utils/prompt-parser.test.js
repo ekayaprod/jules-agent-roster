@@ -44,28 +44,28 @@ describe('PromptParser', () => {
       tag: 'system',
       content: 'System instruction here',
       id: 'sys1',
-      name: 'SystemPrompt'
+      name: 'SystemPrompt',
     });
 
     expect(result.sections[1]).toEqual({
       tag: 'task',
       content: 'Task description here',
       id: null,
-      name: null
+      name: null,
     });
 
     expect(result.sections[2]).toEqual({
       tag: 'step',
       content: 'Step 1',
       id: null,
-      name: null
+      name: null,
     });
 
     expect(result.sections[3]).toEqual({
       tag: 'output',
       content: 'Expected output',
       id: null,
-      name: null
+      name: null,
     });
   });
 
@@ -98,8 +98,8 @@ describe('PromptParser', () => {
       JSON.stringify({
         event: 'PROMPT_PARSE_FAILED',
         input: rawText.substring(0, 100),
-        error: 'Simulated DOMParser error 2'
-      })
+        error: 'Simulated DOMParser error 2',
+      }),
     );
 
     global.DOMParser = originalDOMParserRef;
@@ -134,8 +134,8 @@ describe('PromptParser', () => {
       JSON.stringify({
         event: 'PROMPT_PARSE_FAILED',
         input: rawText,
-        error: 'Simulated DOMParser error'
-      })
+        error: 'Simulated DOMParser error',
+      }),
     );
 
     global.DOMParser = originalDOMParserRef;
