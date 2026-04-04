@@ -75,7 +75,6 @@ describe('RosterApp (Boundary Interrogation)', () => {
         card.appendChild(target);
         document.body.appendChild(card);
 
-        app.bindEvents();
         target.click();
 
         // Verify pinning logic triggered successfully
