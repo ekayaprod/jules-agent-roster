@@ -120,7 +120,7 @@ class JulesManager {
             }
 
             try {
-                if (saveBtn) DOMUtils.setButtonState(saveBtn, "loading", "Connecting...");
+                if (saveBtn) DOMUtils.setButtonState(saveBtn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.LOADING : "loading", "Connecting...");
                 if (keyInput) keyInput.disabled = true;
                 if (githubTokenInput) githubTokenInput.disabled = true;
 
@@ -134,7 +134,7 @@ class JulesManager {
                     await this.loadSources();
                 }
             } finally {
-                if (saveBtn) DOMUtils.setButtonState(saveBtn, "ready", "Save & Connect");
+                if (saveBtn) DOMUtils.setButtonState(saveBtn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Save & Connect");
                 if (keyInput) keyInput.disabled = false;
                 if (githubTokenInput) githubTokenInput.disabled = false;
             }
@@ -438,7 +438,7 @@ class JulesManager {
         const userTask = this.getEl("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
 
         if (!sourceName) {
-            this.app.toast.show("Select a target repository first.", "error");
+            this.app.toast.show("Select a target repository first.", typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error");
             return;
         }
 
@@ -467,18 +467,18 @@ class JulesManager {
             terminal.appendChild(optimisticBlock);
         }
 
-        if (btn) DOMUtils.setButtonState(btn, "loading", "Launching...");
+        if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.LOADING : "loading", "Launching...");
 
         try {
             await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
-            this.app.toast.show(`Session launched successfully.`, "success");
+            this.app.toast.show(`Session launched successfully.`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.SUCCESS : "success");
             await this._fetchAndRenderSessions(sourceName, terminal);
         } catch {
-            this.app.toast.show(`Could not launch the session. Please verify your API key has the correct permissions.`, "error");
+            this.app.toast.show(`Could not launch the session. Please verify your API key has the correct permissions.`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error");
             if (fetchingIndicator) fetchingIndicator.style.display = '';
         } finally {
             if (optimisticBlock.parentNode) optimisticBlock.remove();
-            if (btn) DOMUtils.setButtonState(btn, "ready", "Launch in Jules 🚀");
+            if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Launch in Jules 🚀");
             this._checkEmptyTerminal();
         }
     }
