@@ -542,8 +542,10 @@ class RosterApp {
           existingPins.forEach(pinBtn => {
               if (isPinned) {
                   pinBtn.classList.add('pinned');
+                  pinBtn.setAttribute('aria-pressed', 'true');
               } else {
                   pinBtn.classList.remove('pinned');
+                  pinBtn.setAttribute('aria-pressed', 'false');
               }
           });
 

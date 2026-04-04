@@ -84,6 +84,37 @@ describe('RosterApp (Boundary Interrogation)', () => {
         expect(app.renderAgents).not.toHaveBeenCalled();
     });
 
+    it('toggles aria-pressed attribute correctly when pinning an agent', () => {
+        // Mock the required DOM elements and the application state
+        app.elements = { "category-nav": document.createElement('div'), searchInput: null };
+        app.agents = {};
+        app.customAgents = { 'AgentA+AgentB': { name: 'Fused Agent' } };
+        app.pinnedManager = { togglePin: jest.fn().mockReturnValue(true), getPinned: jest.fn().mockReturnValue(['AgentA+AgentB']) };
+
+        const target = document.createElement('button');
+        target.setAttribute('data-action', 'toggle-pin');
+        target.setAttribute('data-index', 'AgentA+AgentB');
+        target.setAttribute('aria-pressed', 'false');
+
+        const card = document.createElement('div');
+        card.classList.add('flip-card');
+        card.appendChild(target);
+        document.body.appendChild(card);
+
+        app.bindEvents();
+        target.click();
+
+        expect(app.pinnedManager.togglePin).toHaveBeenCalledWith('AgentA+AgentB');
+        expect(target.classList.contains('pinned')).toBe(true);
+        expect(target.getAttribute('aria-pressed')).toBe('true');
+
+        // Test untoggle
+        app.pinnedManager.togglePin.mockReturnValue(false);
+        target.click();
+        expect(target.classList.contains('pinned')).toBe(false);
+        expect(target.getAttribute('aria-pressed')).toBe('false');
+    });
+
     it('fails securely when toggling pin on a missing or invalid agent index', () => {
         // THE BOUNDARY INTERROGATION: Explicitly asserts graceful failure on ghost/missing agents.
         // Setup invalid agent card click
