@@ -371,17 +371,6 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
              expect(manager.activeSessionsInterval).toBeNull();
         });
 
-        it('getActivities catch error coverage', async () => {
-             const consoleSpy = jest.spyOn(console, TOAST_TYPES.ERROR).mockImplementation(() => {});
-             window.julesService.getActivities.mockRejectedValueOnce(new Error('polling fail'));
-             const item = document.createElement('div');
-             item.innerHTML = `<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>`;
-             manager.polling.startTerminalPolling('123', item, 'o/r');
-             await jest.advanceTimersByTimeAsync(3000);
-
-             expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_POLLING_ERROR", error: 'polling fail' }));
-             consoleSpy.mockRestore();
-        });
 
         it('module export check', () => {
             const managerModule = require('./index');
@@ -1705,20 +1694,6 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
              expect(window.julesService.getPullRequests).toHaveBeenCalled();
         });
 
-        it('should catch API errors gracefully during polling', async () => {
-             const consoleSpy = jest.spyOn(console, TOAST_TYPES.ERROR).mockImplementation(() => {});
-             manager.polling.startTerminalPolling('123', item, 'repo');
-
-             window.julesService.getActivities.mockRejectedValue(new Error('Poll Error'));
-
-             await jest.advanceTimersByTimeAsync(3000);
-
-             expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_POLLING_ERROR", error: 'Poll Error' }));
-             // Interval should remain active for next retry
-             expect(manager.julesPollingIntervals['123']).toBeDefined();
-
-             consoleSpy.mockRestore();
-        });
 
         it('should bail if activities array is missing', async () => {
              manager.polling.startTerminalPolling('123', item, 'repo');

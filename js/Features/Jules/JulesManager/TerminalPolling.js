@@ -12,7 +12,6 @@ class TerminalPolling {
         }
 
         this.manager.julesPollingIntervals[sessionId] = setInterval(async () => {
-            try {
                 const activitiesResponse = await window.julesService.getActivities(sessionId);
                 if (!activitiesResponse.activities) return;
 
@@ -87,9 +86,6 @@ class TerminalPolling {
 
                 this._updatePollingState(sessionId, block, state, agentName, agentEmoji);
 
-            } catch (e) {
-                console.error(JSON.stringify({ event: "JULES_POLLING_ERROR", error: e.message }));
-            }
         }, this.manager.constructor.TERMINAL_POLL_MS);
     }
 

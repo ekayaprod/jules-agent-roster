@@ -132,18 +132,6 @@ describe('TerminalPolling', () => {
         global.clearInterval = originalClearInterval;
     });
 
-    it('should catch API errors', async () => {
-        const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-
-        window.julesService.getActivities.mockRejectedValue(new Error('API fail'));
-
-        polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
-
-        jest.advanceTimersByTime(10);
-        await Promise.resolve(); // flush promises
-
-        expect(consoleSpy).toHaveBeenCalledWith(JSON.stringify({ event: "JULES_POLLING_ERROR", error: 'API fail' }));
-    });
 
     it('should handle isWaitingForInput=false correctly', () => {
         const state = { isWaitingForInput: false, latestLog: 'Processing...', hasError: false, isCompleted: false };
