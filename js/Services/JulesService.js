@@ -64,7 +64,11 @@ class JulesService {
                 headers: { ...headers, ...options.headers }
             }, retries, backoff);
 
-            return await response.json();
+            try {
+                return await response.json();
+            } catch (parseError) {
+                throw new Error("We encountered a server error. Please wait a moment and try again.");
+            }
         } catch (error) {
             if (error.message && error.message.startsWith('HTTP Error:')) {
                  throw new Error(`We encountered a server error. Please wait a moment and try again.`);
@@ -198,7 +202,15 @@ ${userTask}`;
                 }
                 throw new Error(errorMsg);
             }
-            return await response.json();
+            try {
+                return await response.json();
+            } catch (parseError) {
+                if (allow404) {
+                    console.warn("Failed to parse response JSON:", parseError);
+                    return [];
+                }
+                throw new Error("Invalid response format from GitHub API");
+            }
         } catch (error) {
             if (error.name === 'AbortError') {
                 if (allow404) {
