@@ -179,10 +179,44 @@ describe('AgentCard', () => {
              expect(card.innerHTML).toContain('scope-large');
         });
 
-        it('should render correct pin status', () => {
+        // THE BOUNDARY INTERROGATION: Explicitly asserts pin button rendering boundaries for invalid, numeric standard, and string fusion keys
+        it('omits pin buttons for standard agents and invalid keys, but renders them for string-based fusion agents with proper state', () => {
+            const invalidKeys = [null, undefined, '', 0, 1, '1337'];
+
+            invalidKeys.forEach(invalidKey => {
+                const card = AgentCard.create(mockAgent, invalidKey, 0);
+                expect(card.innerHTML).not.toContain('data-action="toggle-pin"');
+            });
+
+            // Valid fusion key - unpinned
+            window.rosterApp.pinnedManager.isPinned.mockReturnValue(false);
+            const unpinnedCard = AgentCard.create(mockAgent, 'AgentA+AgentB', 0);
+            expect(unpinnedCard.innerHTML).toContain('data-action="toggle-pin"');
+            expect(unpinnedCard.innerHTML).not.toContain('pin-btn pinned');
+
+            // Valid fusion key - pinned
             window.rosterApp.pinnedManager.isPinned.mockReturnValue(true);
-            const card = AgentCard.create(mockAgent, 'custom_agent_id', 0);
-            expect(card.innerHTML).toContain('pin-btn pinned');
+            const pinnedCard = AgentCard.create(mockAgent, 'AgentC+AgentD', 0);
+            expect(pinnedCard.innerHTML).toContain('pin-btn pinned');
+        });
+
+        // THE BOUNDARY INTERROGATION: Explicitly asserts graceful degradation when global dependencies are missing
+        it('safely handles missing rosterApp or pinnedManager without throwing during pin button generation', () => {
+            const originalApp = window.rosterApp;
+
+            // Missing rosterApp entirely
+            window.rosterApp = undefined;
+            const card1 = AgentCard.create(mockAgent, 'AgentA+AgentB', 0);
+            expect(card1.innerHTML).toContain('data-action="toggle-pin"');
+            expect(card1.innerHTML).not.toContain('pin-btn pinned');
+
+            // Missing pinnedManager
+            window.rosterApp = {};
+            const card2 = AgentCard.create(mockAgent, 'AgentA+AgentB', 0);
+            expect(card2.innerHTML).toContain('data-action="toggle-pin"');
+            expect(card2.innerHTML).not.toContain('pin-btn pinned');
+
+            window.rosterApp = originalApp; // Restore
         });
 
         it('should toggle omni-button actions when julesRepoPicker has a value', () => {
