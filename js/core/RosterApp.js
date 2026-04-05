@@ -469,13 +469,9 @@ class RosterApp {
                           const childIcon = FormatUtils.extractIcon(childAgent);
                           const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
                           listItems += `
-                              <li style="list-style: none; width: 100%;">
-                                  <button class="fusion-list-item" data-action="view-fusion-card" data-index="${key}" aria-label="View ${safeChildName}" title="${safeChildName}">
-                                      <span class="fusion-list-icon">${childIcon}</span>
-                                      <div class="fusion-list-details">
-                                          <span class="fusion-list-name">${safeChildName}</span>
-                                          <span class="fusion-list-role">${FormatUtils.escapeHTML(childAgent.role || 'Fusion Protocol')}</span>
-                                      </div>
+                              <li style="list-style: none;">
+                                  <button class="fusion-quick-btn" data-action="view-fusion-card" data-index="${key}" aria-label="View ${safeChildName}" title="${safeChildName}">
+                                      ${childIcon}
                                   </button>
                               </li>
                           `;
@@ -485,7 +481,14 @@ class RosterApp {
 
               const downloadBtn = document.getElementById("downloadParentFusionsBtn");
               if (listItems) {
-                  contentArea.innerHTML = `<ul class="fusion-quick-list" style="padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">${listItems}</ul>`;
+                  const listArea = document.getElementById("fusionsModalList");
+                  const cardArea = document.getElementById("fusionsModalCard");
+                  if (listArea) {
+                      listArea.innerHTML = `<ul class="fusion-quick-list" style="padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">${listItems}</ul>`;
+                  }
+                  if (cardArea) {
+                      cardArea.innerHTML = '';
+                  }
                   if (downloadBtn) {
                       downloadBtn.style.display = "";
                       downloadBtn.dataset.parentName = agent.name;
@@ -507,19 +510,13 @@ class RosterApp {
           let agent = this.getAgentForUI(index);
           if (!agent) return;
 
-          const contentArea = document.getElementById("fusionsModalContent");
-          if (contentArea) {
-              contentArea.innerHTML = '';
+          const cardArea = document.getElementById("fusionsModalCard");
+          if (cardArea) {
+              cardArea.innerHTML = '';
               const card = AgentCard.create(agent, index, 0);
               card.classList.remove("pop-in");
               card.style.margin = "0"; // Reset margin to fit perfectly
-              contentArea.appendChild(card);
-
-              // Ensure card title updates to reflect the viewed fusion
-              const titleSpan = document.getElementById("fusionsModalAgent");
-              if (titleSpan) titleSpan.textContent = agent.name;
-              const emojiSpan = document.getElementById("fusionsModalEmoji");
-              if (emojiSpan) emojiSpan.textContent = FormatUtils.extractIcon(agent);
+              cardArea.appendChild(card);
           }
           return;
       }

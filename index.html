@@ -760,7 +760,10 @@
           <span id="fusionsModalEmoji">🧬</span>
           <span id="fusionsModalAgent">Available Fusions</span>
         </h3>
-        <div id="fusionsModalContent" style="padding: 1rem 0; max-height: 15rem; overflow-y: auto;"></div>
+        <div id="fusionsModalContent" style="padding: 1rem 0; max-height: 80vh; overflow-y: auto;">
+          <div id="fusionsModalList"></div>
+          <div id="fusionsModalCard" class="mt-3 flex" style="justify-content: center;"></div>
+        </div>
         <div class="flex" style="gap: 1rem; margin-top: 0.5rem;">
           <button id="downloadParentFusionsBtn" class="secondary action-main-btn" style="flex:1; display:none;" aria-label="Download Unlocked Fusions for this Agent">Download Unlocked</button>
           <button id="closeFusionsModalBtn" class="secondary" style="flex:1;" aria-label="Close Fusions Modal">Close</button>
