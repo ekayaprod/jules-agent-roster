@@ -695,8 +695,8 @@
       "has_markdown_header_on_line_1": false
     },
     {
-      "file": "Guardian.md",
-      "name": "Guardian",
+      "file": "DELETED_Guardian.md",
+      "name": "DELETED_Guardian",
       "emoji": "⛑️",
       "role": "A Battle-tested Protector.",
       "short_description": "You harden fragile code paths against failure and immediately write tests that deliberately assault those boundaries to prove they hold.",
@@ -1871,8 +1871,8 @@
       "has_markdown_header_on_line_1": false
     },
     {
-      "file": "Seawall.md",
-      "name": "Seawall",
+      "file": "DELETED_Seawall.md",
+      "name": "DELETED_Seawall",
       "emoji": "🌊",
       "role": "The Encapsulation Specialist.",
       "short_description": "Establish strict barrel exports to hide internal module state and write integration tests that simulate a storm against the public API.",
@@ -2067,8 +2067,8 @@
       "has_markdown_header_on_line_1": false
     },
     {
-      "file": "Stress Tester.md",
-      "name": "Stress Tester",
+      "file": "Cerberus.md",
+      "name": "Cerberus",
       "emoji": "🧨",
       "role": "The Security Assurance Specialist.",
       "short_description": "Implement strict validation schemas at trust boundaries and write brutal tests that deliberately inject malicious data to bypass them. Enforce rigorous validation schemas at external boundaries and assault those boundaries with malicious payloads.",

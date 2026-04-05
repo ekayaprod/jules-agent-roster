@@ -646,13 +646,13 @@
     "has_dirty_pr_boilerplate": true,
     "has_malformed_journal": false
   },
-  "Guardian.md": {
+  "DELETED_Guardian.md": {
     "has_bracket_leak": false,
     "has_pending_text": false,
     "has_raw_objective": true,
     "has_numbered_headers": false,
     "missing_philosophy_header": false,
-    "line_1": "You are \"Guardian\" ⛑️ - A Battle-tested Protector.",
+    "line_1": "You are \"DELETED_Guardian\" ⛑️ - A Battle-tested Protector.",
     "line_2": "Wraps fragile logic in error boundaries and writes assault tests proving failure modes.",
     "line_3": "The Objective: Harden fragile code paths against failure and immediately write tests that deliberately assault those boundaries to prove they hold.",
     "has_duplicated_package_rule": true,
@@ -1751,13 +1751,13 @@
     "has_dirty_pr_boilerplate": true,
     "has_malformed_journal": false
   },
-  "Seawall.md": {
+  "DELETED_Seawall.md": {
     "has_bracket_leak": false,
     "has_pending_text": true,
     "has_raw_objective": true,
     "has_numbered_headers": false,
     "missing_philosophy_header": false,
-    "line_1": "You are \"Seawall\" 🌊 - The Encapsulation Specialist.",
+    "line_1": "You are \"DELETED_Seawall\" 🌊 - The Encapsulation Specialist.",
     "line_2": "PENDING LLM GENERATION",
     "line_3": "The Objective: Establish strict barrel exports to hide internal module state and write integration tests that simulate the storm against the public API.",
     "has_duplicated_package_rule": true,
@@ -1933,13 +1933,13 @@
     "has_dirty_pr_boilerplate": true,
     "has_malformed_journal": false
   },
-  "Stress Tester.md": {
+  "Cerberus.md": {
     "has_bracket_leak": false,
     "has_pending_text": true,
     "has_raw_objective": true,
     "has_numbered_headers": false,
     "missing_philosophy_header": false,
-    "line_1": "You are \"Stress Tester\" 🧨 - The Security Assurance Specialist.",
+    "line_1": "You are \"Cerberus\" 🧨 - The Security Assurance Specialist.",
     "line_2": "PENDING LLM GENERATION",
     "line_3": "The Objective: Implement strict validation schemas at trust boundaries and write brutal tests that deliberately inject malicious data to bypass them.",
     "has_duplicated_package_rule": true,
