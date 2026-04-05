@@ -381,12 +381,11 @@ class FusionLab {
         // Find the custom agent key by finding the matching object in customAgentsMap
         // ⚡ Bolt+: Replaced O(N) array allocation overhead from Object.entries() with a direct for...in dictionary lookup.
         let keyStr = "fusion-result";
-        for (const key in this.compiler.customAgentsMap) {
-            if (Object.prototype.hasOwnProperty.call(this.compiler.customAgentsMap, key)) {
-                if (this.compiler.customAgentsMap[key].name === result.name) {
-                    keyStr = key;
-                    break;
-                }
+        let resolvedFusionName = result.name;
+        for (const mKey in this.compiler.fusionMatrixMap) {
+            if (this.compiler.fusionMatrixMap[mKey] === resolvedFusionName) {
+                keyStr = mKey;
+                break;
             }
         }
 

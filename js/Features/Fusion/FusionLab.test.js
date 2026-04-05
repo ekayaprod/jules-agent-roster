@@ -438,8 +438,8 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
     test('renderFusionResult manages container state and appending custom agent card', () => {
         const result = { name: 'CustomResult' };
-        fusionLab.compiler.customAgentsMap = {
-            'customKey123': { name: 'CustomResult' }
+        fusionLab.compiler.fusionMatrixMap = {
+            'customKey123': 'CustomResult'
         };
 
         fusionLab.renderFusionResult(result);
