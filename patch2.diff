@@ -1,0 +1,65 @@
+--- js/core/RosterApp.js
++++ js/core/RosterApp.js
+@@ -226,16 +226,6 @@
+
+-             // 🎧 FLOW: The Scaffold Realization.
+-             // Rebuild the pinned fusion agent card from scratch if it is an unlocked dynamic fusion not present in the static maps.
+-             if (!agent && this.fusionLab && this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked(key)) {
+-                 const names = AgentUtils.splitFusionKey(key);
+-                 if (names.length === 2) {
+-                     const agentA = this.fusionLab.agentMap.get(names[0]);
+-                     const agentB = this.fusionLab.agentMap.get(names[1]);
+-                     if (agentA && agentB) {
+-                         agent = this.fusionLab.compiler.fuse(agentA, agentB);
+-                     }
+-                 }
+-             }
+-
+              if (!agent) return;
+@@ -443,2 +433,1 @@
+           if (!agent) return;
+@@ -533,12 +522,1 @@
+-          if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
+-
+-          if (!agent && typeof index === 'string' && Number.isNaN(Number(index)) && this.fusionLab && this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked(index)) {
+-              const names = AgentUtils.splitFusionKey(index);
+-              if (names.length === 2) {
+-                  const agentA = this.fusionLab.agentMap.get(names[0]);
+-                  const agentB = this.fusionLab.agentMap.get(names[1]);
+-                  if (agentA && agentB) {
+-                      agent = this.fusionLab.compiler.fuse(agentA, agentB);
+-                  }
+-              }
+-          }
+-
+           if (!agent) return;
+@@ -598,2 +576,1 @@
+-              if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
+               if (agent) {
+@@ -664,2 +641,1 @@
+-          if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
+           if (!agent) return;
+@@ -825,2 +801,23 @@
+   }
++
++  /**
++   * Helper to retrieve an agent by index or key, dynamically reconstructing
++   * unlocked fusion agents if they are not present in static maps.
++   */
++  getAgentForUI(index) {
++      let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
++      if (index === "fusion-result" && this.fusionLab) return this.fusionLab.lastFusionResult;
++
++      if (!agent && typeof index === 'string' && Number.isNaN(Number(index)) && this.fusionLab && this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked(index)) {
++          const names = AgentUtils.splitFusionKey(index);
++          if (names.length === 2) {
++              const agentA = this.fusionLab.agentMap.get(names[0]);
++              const agentB = this.fusionLab.agentMap.get(names[1]);
++              if (agentA && agentB) {
++                  agent = this.fusionLab.compiler.fuse(agentA, agentB);
++              }
++          }
++      }
++      return agent;
++  }
+ }

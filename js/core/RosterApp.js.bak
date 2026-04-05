@@ -222,7 +222,20 @@ class RosterApp {
     if (this.pinnedManager) {
         const pinnedKeys = this.pinnedManager.getPinned();
         pinnedKeys.forEach(key => {
-             let agent = this.getAgentForUI(key);
+             let agent = this.agents[key] || AgentUtils.getCustomAgent(this.customAgents, key) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[key]);
+
+             // 🎧 FLOW: The Scaffold Realization.
+             // Rebuild the pinned fusion agent card from scratch if it is an unlocked dynamic fusion not present in the static maps.
+             if (!agent && this.fusionLab && this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked(key)) {
+                 const names = AgentUtils.splitFusionKey(key);
+                 if (names.length === 2) {
+                     const agentA = this.fusionLab.agentMap.get(names[0]);
+                     const agentB = this.fusionLab.agentMap.get(names[1]);
+                     if (agentA && agentB) {
+                         agent = this.fusionLab.compiler.fuse(agentA, agentB);
+                     }
+                 }
+             }
 
              if (!agent) return;
 
@@ -357,7 +370,7 @@ class RosterApp {
       const debouncedFilter = PerformanceUtils.debounce((query) => this.filterAgents(query), SEARCH_DEBOUNCE_MS);
       this.elements.searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
     }
-    
+
     this.elements.searchTriggerBtn?.addEventListener("click", () => {
       const nav = this.elements["category-nav"];
       if (nav) {
@@ -391,7 +404,7 @@ class RosterApp {
     // Footer Master Export Controls
     const masterDropBtn = this.elements.masterDropdownBtn;
     const masterDropMenu = this.elements.masterDropdownMenu;
-    
+
     masterDropBtn?.addEventListener("click", (e) => {
         e.stopPropagation();
         masterDropMenu?.classList.toggle("visible");
@@ -426,7 +439,7 @@ class RosterApp {
           e.preventDefault();
 
           const index = fusionsTarget.dataset.index;
-          let agent = this.getAgentForUI(index);
+          let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
           if (!agent) return;
 
           const modal = document.getElementById("fusionsModal");
@@ -516,7 +529,19 @@ class RosterApp {
           const index = pinTarget.dataset.index;
           if (!index) return;
           // Validate agent exists before pinning
-          let agent = this.getAgentForUI(index);
+          let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
+
+          if (!agent && typeof index === 'string' && Number.isNaN(Number(index)) && this.fusionLab && this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked(index)) {
+              const names = AgentUtils.splitFusionKey(index);
+              if (names.length === 2) {
+                  const agentA = this.fusionLab.agentMap.get(names[0]);
+                  const agentB = this.fusionLab.agentMap.get(names[1]);
+                  if (agentA && agentB) {
+                      agent = this.fusionLab.compiler.fuse(agentA, agentB);
+                  }
+              }
+          }
 
           if (!agent) return;
 
@@ -569,7 +594,8 @@ class RosterApp {
           const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
 
           if (promptArea && !promptArea.innerHTML.trim()) {
-              let agent = this.getAgentForUI(index);
+              let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+              if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
               if (agent) {
                   promptArea.innerHTML = '';
                   promptArea.appendChild(AgentCard.getPromptNode(agent));
@@ -634,7 +660,8 @@ class RosterApp {
           }
 
           const index = actionBtn.dataset.index;
-          let agent = this.getAgentForUI(index);
+          let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+          if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
           if (!agent) return;
 
           if (action === "copy-agent") {
@@ -873,27 +900,6 @@ class RosterApp {
    */
   showToast(message) {
       this.toast.show(message);
-  }
-
-  /**
-   * Helper to retrieve an agent by index or key, dynamically reconstructing
-   * unlocked fusion agents if they are not present in static maps.
-   */
-  getAgentForUI(index) {
-      let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
-      if (index === "fusion-result" && this.fusionLab) return this.fusionLab.lastFusionResult;
-
-      if (!agent && typeof index === 'string' && Number.isNaN(Number(index)) && this.fusionLab && this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked(index)) {
-          const names = AgentUtils.splitFusionKey(index);
-          if (names.length === 2) {
-              const agentA = this.fusionLab.agentMap.get(names[0]);
-              const agentB = this.fusionLab.agentMap.get(names[1]);
-              if (agentA && agentB) {
-                  agent = this.fusionLab.compiler.fuse(agentA, agentB);
-              }
-          }
-      }
-      return agent;
   }
 }
 
