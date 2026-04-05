@@ -451,6 +451,12 @@ class RosterApp {
                   }
               }
 
+              // Reset title to base agent
+              const titleSpan = document.getElementById("fusionsModalAgent");
+              if (titleSpan) titleSpan.textContent = "Available Fusions";
+              const emojiSpan = document.getElementById("fusionsModalEmoji");
+              if (emojiSpan) emojiSpan.textContent = "🧬";
+
               for (const key of potentialFusions) {
                   const isUnlocked = typeof unlockedKeys.has === 'function'
                       ? unlockedKeys.has(key)
@@ -463,9 +469,13 @@ class RosterApp {
                           const childIcon = FormatUtils.extractIcon(childAgent);
                           const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
                           listItems += `
-                              <li style="list-style: none;">
-                                  <button class="fusion-quick-btn" data-action="launch-jules" data-index="${key}" aria-label="Launch ${safeChildName}" title="${safeChildName}">
-                                      ${childIcon}
+                              <li style="list-style: none; width: 100%;">
+                                  <button class="fusion-list-item" data-action="view-fusion-card" data-index="${key}" aria-label="View ${safeChildName}" title="${safeChildName}">
+                                      <span class="fusion-list-icon">${childIcon}</span>
+                                      <div class="fusion-list-details">
+                                          <span class="fusion-list-name">${safeChildName}</span>
+                                          <span class="fusion-list-role">${FormatUtils.escapeHTML(childAgent.role || 'Fusion Protocol')}</span>
+                                      </div>
                                   </button>
                               </li>
                           `;
@@ -475,7 +485,7 @@ class RosterApp {
 
               const downloadBtn = document.getElementById("downloadParentFusionsBtn");
               if (listItems) {
-                  contentArea.innerHTML = `<ul class="fusion-quick-list" style="padding: 0; margin: 0; display: flex; gap: 0.5rem; flex-wrap: wrap;">${listItems}</ul>`;
+                  contentArea.innerHTML = `<ul class="fusion-quick-list" style="padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">${listItems}</ul>`;
                   if (downloadBtn) {
                       downloadBtn.style.display = "";
                       downloadBtn.dataset.parentName = agent.name;
@@ -484,6 +494,32 @@ class RosterApp {
               } else if (downloadBtn) {
                   downloadBtn.style.display = "none";
               }
+          }
+          return;
+      }
+
+      // 2.6 View Fusion Card from Modal
+      const viewFusionTarget = e.target.closest('[data-action="view-fusion-card"]');
+      if (viewFusionTarget) {
+          e.stopPropagation();
+          e.preventDefault();
+          const index = viewFusionTarget.dataset.index;
+          let agent = this.getAgentForUI(index);
+          if (!agent) return;
+
+          const contentArea = document.getElementById("fusionsModalContent");
+          if (contentArea) {
+              contentArea.innerHTML = '';
+              const card = AgentCard.create(agent, index, 0);
+              card.classList.remove("pop-in");
+              card.style.margin = "0"; // Reset margin to fit perfectly
+              contentArea.appendChild(card);
+
+              // Ensure card title updates to reflect the viewed fusion
+              const titleSpan = document.getElementById("fusionsModalAgent");
+              if (titleSpan) titleSpan.textContent = agent.name;
+              const emojiSpan = document.getElementById("fusionsModalEmoji");
+              if (emojiSpan) emojiSpan.textContent = FormatUtils.extractIcon(agent);
           }
           return;
       }
