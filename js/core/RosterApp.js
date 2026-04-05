@@ -227,7 +227,7 @@ class RosterApp {
              if (!agent) return;
 
              const isFusionKey = typeof key === 'string' && Number.isNaN(Number(key));
-             const targetCategory = isFusionKey ? (agent.category || "strategy") : "pinned";
+             const targetCategory = isFusionKey ? (agent.category ? agent.category.toLowerCase() : "strategy") : "pinned";
 
              if (!categorizedAgents[targetCategory]) categorizedAgents[targetCategory] = [];
              categorizedAgents[targetCategory].push({ agent, indexOrKey: key });
