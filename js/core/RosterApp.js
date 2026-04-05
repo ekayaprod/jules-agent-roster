@@ -268,7 +268,11 @@ class RosterApp {
         });
 
         for (let j = 0; j < mappedList.length; j++) {
-            flattenedAgents.push(mappedList[j].original);
+            const originalItem = mappedList[j].original;
+            flattenedAgents.push({
+                ...originalItem,
+                gridCategory: this.categoryKeys[i]
+            });
         }
     }
 
@@ -289,8 +293,8 @@ class RosterApp {
       const end = Math.min(agentIndex + CHUNK_SIZE, flattenedAgents.length);
 
       for (let i = agentIndex; i < end; i++) {
-        const { agent, indexOrKey } = flattenedAgents[i];
-        const category = agent.category || "strategy";
+        const { agent, indexOrKey, gridCategory } = flattenedAgents[i];
+        const category = gridCategory || agent.category || "strategy";
         const container = categoryContainers[category];
         if (!container) continue;
 
