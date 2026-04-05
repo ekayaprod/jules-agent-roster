@@ -527,6 +527,18 @@ class RosterApp {
           // Validate agent exists before pinning
           let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
           if (index === "fusion-result" && this.fusionLab) agent = this.fusionLab.lastFusionResult;
+
+          if (!agent && typeof index === 'string' && Number.isNaN(Number(index)) && this.fusionLab && this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked(index)) {
+              const names = AgentUtils.splitFusionKey(index);
+              if (names.length === 2) {
+                  const agentA = this.fusionLab.agentMap.get(names[0]);
+                  const agentB = this.fusionLab.agentMap.get(names[1]);
+                  if (agentA && agentB) {
+                      agent = this.fusionLab.compiler.fuse(agentA, agentB);
+                  }
+              }
+          }
+
           if (!agent) return;
 
           const isPinned = this.pinnedManager.togglePin(index);
