@@ -125,7 +125,7 @@
   "Inspector,Paramedic": "Antibody",
   "Inspector,Pedant": "Auditor",
   "Inspector,Scavenger": "Coroner",
-  "Inspector,Scribe": "",
+  "Inspector,Scribe": "Annotator",
   "Inspector,Sentinel+": "Cerberus",
   "Inspector,Superintendent": "Safety Inspector",
   "Inspector,Untangler": "Canner",
