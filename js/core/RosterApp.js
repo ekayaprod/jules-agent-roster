@@ -226,8 +226,11 @@ class RosterApp {
 
              if (!agent) return;
 
-             if (!categorizedAgents["pinned"]) categorizedAgents["pinned"] = [];
-             categorizedAgents["pinned"].push({ agent, indexOrKey: key });
+             const isFusionKey = typeof key === 'string' && Number.isNaN(Number(key));
+             const targetCategory = isFusionKey ? (agent.category || "strategy") : "pinned";
+
+             if (!categorizedAgents[targetCategory]) categorizedAgents[targetCategory] = [];
+             categorizedAgents[targetCategory].push({ agent, indexOrKey: key });
         });
     }
 
