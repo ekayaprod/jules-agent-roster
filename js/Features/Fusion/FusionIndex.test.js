@@ -192,8 +192,8 @@ global.AgentUtils = AgentUtils;
         fusionIndex.unlockedKeys = new Set(['A,B']);
         expect(() => fusionIndex.render()).not.toThrow();
 
-        const container = document.getElementById('fusion-container');
-        expect(container.querySelector('.fusion-progress').textContent).toBe('1 / 0 Protocols Discovered');
+        const progressElement = screen.getByText('1 / 0 Protocols Discovered');
+        expect(progressElement).toBeVisible();
     });
 
     it('removes animation class after unlock via timeout boundary', () => {
