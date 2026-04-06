@@ -396,7 +396,9 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
         it('module export check', () => {
             const managerModule = require('./index');
-            expect(managerModule).toBeDefined();
+            expect(managerModule).toBeInstanceOf(Function);
+            expect(managerModule.prototype).toHaveProperty('init');
+            expect(managerModule.prototype).toHaveProperty('loadSources');
         });
     });
 
@@ -1734,7 +1736,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
              expect(dispatchSpy).toHaveBeenCalledWith("JULES_POLLING_ERROR", expect.any(Error));
              // Interval should remain active for next retry
-             expect(manager.julesPollingIntervals['123']).toBeDefined();
+             expect(manager.julesPollingIntervals).toHaveProperty('123');
 
              dispatchSpy.mockRestore();
              consoleSpy.mockRestore();
@@ -1745,7 +1747,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
              window.julesService.getActivities.mockResolvedValue({});
              await jest.advanceTimersByTimeAsync(3000);
              // Should not throw, interval remains
-             expect(manager.julesPollingIntervals['123']).toBeDefined();
+             expect(manager.julesPollingIntervals).toHaveProperty('123');
         });
 
         it('should handle clearing polling and cache when intervals object is missing', () => {
@@ -1769,7 +1771,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
              // Call method again to trigger branch: `if (!this.julesPollingIntervals) this.julesPollingIntervals = {};`
              manager.polling.startTerminalPolling('123', item, 'repo');
 
-             expect(manager.julesPollingIntervals['123']).toBeDefined();
+             expect(manager.julesPollingIntervals).toHaveProperty('123');
         });
 
         it('should update state appropriately when USER_INPUT activity type is received', async () => {
