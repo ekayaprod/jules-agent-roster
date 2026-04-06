@@ -114,6 +114,12 @@ describe('RosterApp (Boundary Interrogation)', () => {
         expect(target.getAttribute('aria-pressed')).toBe('false');
     });
 
+    /**
+     * Enforces the Phantom Agent Doctrine:
+     * A user cannot pin an agent index that does not exist in the active or custom matrix.
+     * @mock {target} - Simulates an interaction event targeting index "999" (out of bounds).
+     * @expected {false} - Triggers graceful failure paths resulting in a false state and skipped rendering without throwing application-halting exceptions.
+     */
     it('fails securely when toggling pin on a missing or invalid agent index', () => {
         // THE BOUNDARY INTERROGATION: Explicitly asserts graceful failure on ghost/missing agents.
         // Setup invalid agent card click
