@@ -192,8 +192,8 @@ global.AgentUtils = AgentUtils;
         fusionIndex.unlockedKeys = new Set(['A,B']);
         expect(() => fusionIndex.render()).not.toThrow();
 
-        const container = document.getElementById('fusion-container');
-        expect(container.querySelector('.fusion-progress').textContent).toBe('1 / 0 Protocols Discovered');
+        const progressElement = screen.getByText('1 / 0 Protocols Discovered');
+        expect(progressElement).toBeVisible();
     });
 
     it('removes animation class after unlock via timeout boundary', () => {
@@ -211,6 +211,12 @@ global.AgentUtils = AgentUtils;
         jest.useRealTimers();
     });
 
+    /**
+     * Enforces the Selector Sanitization Doctrine:
+     * Discovered fusion keys must not be able to break out of CSS attribute selectors and cause fatal syntax exceptions when unlocking state.
+     * @mock {string} 'Bad"Key\\' - Simulates an adversary injecting unescaped quotes and slashes directly into the key.
+     * @expected {void} - Expects DOM mutation procedures (CSS.escape) to neutralize the injection without throwing DOMExceptions.
+     */
     it('handles malicious string injections in updateSlot query selectors', () => {
         fusionIndex.init();
 

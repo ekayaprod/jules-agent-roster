@@ -5,6 +5,8 @@
 
 ## Guardian — The Boundary Hardener
 **Edge Case:** Malformed JSON in network error responses | **Assertion:** Hardened `JSON.parse` boundary in `NetworkUtils.fetchWithRetry` with a try/catch block to prevent catastrophic failures, verified by simulating invalid JSON payloads.
+## Examiner — The Assertion Standardizer
+**Edge Case:** [Superficial querySelector evaluating textContent] | **Assertion:** [Upgraded to semantic screen.getByText and injected toBeVisible()] | **Status:** [Resilient]
 
 ## Adversary — The Mutation Engine
 **Edge Case:** Empty exception tests in JulesManager.test.js | **Assertion:** Replaced pass-through with strict consoleSpy assertion for 'JULES_POLLING_ERROR'. | **Status:** Resilient

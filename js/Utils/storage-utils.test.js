@@ -41,9 +41,68 @@ describe('StorageUtils', () => {
             expect(result).toEqual(mockData);
         });
 
+        // 🐺 FORTIFY: Sad Path - Malicious Storage Prototype Pollution Stripping
+        it('safely strips __proto__ injections from malformed arrays without crashing', () => {
+            const maliciousPayload = '[{"id": 1, "__proto__": {"isAdmin": true}}, "string_item"]';
+            mockLocalStorage.getItem.mockReturnValue(maliciousPayload);
+
+            const result = StorageUtils.getJsonArrayItem('test_key', 'test_event');
+
+            // Prove the parser neutralized the __proto__ key from objects but kept primitives and valid keys intact
+            expect(result).toEqual([{ id: 1 }, "string_item"]);
+        });
+
+        // 🐺 FORTIFY: Sad Path - Thundering Herd Rate Limit Test
+        it('throws 429 when storage read assault exceeds rate limit', () => {
+            mockLocalStorage.getItem.mockReturnValue('[]');
+
+            // Force clear limits
+            StorageUtils._readLimits = null;
+
+            for (let i = 0; i < 500; i++) {
+                StorageUtils.getJsonArrayItem('test_key', 'test_event');
+            }
+
+            // The 501st attempt should trigger the 429 console warning block
+            const TelemetryUtils = require('./telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
+            StorageUtils.getJsonArrayItem('test_key', 'test_event');
+
+            expect(dispatchSpy).toHaveBeenCalledWith(
+                'test_event',
+                expect.objectContaining({ message: expect.stringContaining('HTTP 429') }),
+                { stored: null }
+            );
+
+            dispatchSpy.mockRestore();
+        });
+
+        // 🐺 FORTIFY: Sad Path - Oversized Buffer Rejection
+        it('safely rejects oversized data buffers before parsing', () => {
+            const massivePayload = 'A'.repeat(500001);
+            mockLocalStorage.getItem.mockReturnValue(massivePayload);
+            StorageUtils._readLimits = null; // Ensure rate limit doesn't block this test
+
+            const TelemetryUtils = require('./telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
+            const result = StorageUtils.getJsonArrayItem('test_key', 'test_event');
+
+            expect(result).toBeNull();
+            expect(dispatchSpy).toHaveBeenCalledWith(
+                'test_event',
+                expect.objectContaining({ message: expect.stringContaining('Storage buffer exceeds maximum length') }),
+                { stored: massivePayload }
+            );
+
+            dispatchSpy.mockRestore();
+        });
+
         it('returns null when localStorage has valid JSON but not an array', () => {
             const mockData = { id: 1 };
             mockLocalStorage.getItem.mockReturnValue(JSON.stringify(mockData));
+            StorageUtils._readLimits = null;
 
             const result = StorageUtils.getJsonArrayItem('test_key', 'test_event');
 
@@ -52,6 +111,7 @@ describe('StorageUtils', () => {
 
         it('returns null when localStorage item does not exist', () => {
             mockLocalStorage.getItem.mockReturnValue(null);
+            StorageUtils._readLimits = null;
 
             const result = StorageUtils.getJsonArrayItem('test_key', 'test_event');
 
@@ -63,6 +123,7 @@ describe('StorageUtils', () => {
             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
             mockLocalStorage.getItem.mockReturnValue('invalid-json');
+            StorageUtils._readLimits = null;
 
             const result = StorageUtils.getJsonArrayItem('test_key', 'test_event');
 

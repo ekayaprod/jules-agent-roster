@@ -302,6 +302,10 @@ describe('SearchController', () => {
         });
 
         it('should drop stale search results if searchId increments before resolution', async () => {
+            let resolveSlow, resolveFast;
+            const slowPromise = new Promise(r => resolveSlow = r);
+            const fastPromise = new Promise(r => resolveFast = r);
+
             searchController.worker.postMessage.mockImplementation((msg) => {
                 if (msg && msg.type === 'init') {
                     if (searchController.worker.onmessage) {
@@ -309,16 +313,30 @@ describe('SearchController', () => {
                     }
                 }
                 if (msg && msg.type === 'search') {
-                    setTimeout(() => {
-                        searchController.worker.onmessage({
-                            data: { type: 'results', results: [], searchId: msg.searchId }
+                    if (msg.query === 'slow') {
+                        slowPromise.then(() => {
+                            searchController.worker.onmessage({
+                                data: { type: 'results', results: [], searchId: msg.searchId }
+                            });
                         });
-                    }, msg.query === 'slow' ? 50 : 10);
+                    } else if (msg.query === 'fast') {
+                         fastPromise.then(() => {
+                            searchController.worker.onmessage({
+                                data: { type: 'results', results: [{ item: { agent: appMock.agents[0], keyOrIndex: 0 } }], searchId: msg.searchId }
+                            });
+                        });
+                    }
                 }
             });
 
             const p1 = searchController.filterAgents("slow");
             const p2 = searchController.filterAgents("fast");
+
+            // Resolve fast first, then slow, enforcing deterministic out-of-order execution
+            resolveFast();
+            await Promise.resolve(); // Flush microtasks for fast
+            resolveSlow();
+            await Promise.resolve(); // Flush microtasks for slow
 
             await Promise.all([p1, p2]);
 

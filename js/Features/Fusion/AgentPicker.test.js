@@ -27,18 +27,8 @@ class MockClusterize {
 }
 global.Clusterize = MockClusterize;
 
-describe('AgentPicker', () => {
-    let agentPicker;
-    let mockOnSelect;
-    let mockGetPreMergePreviewHTML;
-    const baseAgents = [
-        { name: 'Agent A', emoji: 'A', role: 'Role A' },
-        { name: 'Agent B', emoji: 'B', role: 'Role B' },
-        { name: 'Agent C', emoji: 'C', role: 'Role C' }
-    ];
-
-    beforeEach(() => {
-        // Mock DOM elements and document methods
+const Factory = {
+    buildDOMHooks: () => {
         const mockModal = {
             addEventListener: jest.fn(),
             showModal: jest.fn(),
@@ -101,8 +91,8 @@ describe('AgentPicker', () => {
         });
 
         window.addEventListener = jest.fn();
-
-        // Ensure global history object functions are mockable without breaking jsdom defaults
+    },
+    setupGlobals: () => {
         const mockHistory = {
             pushState: jest.fn(),
             back: jest.fn(),
@@ -117,21 +107,25 @@ describe('AgentPicker', () => {
             }))
         };
 
-        // Suppress console.error during tests
         jest.spyOn(console, 'error').mockImplementation(() => {});
 
-        mockOnSelect = jest.fn();
-        agentPicker = new AgentPicker(baseAgents, mockOnSelect);
-
-        // Use jest's fake timers for requestAnimationFrame and setTimeout
         jest.useFakeTimers();
         global.requestAnimationFrame = jest.fn((cb) => setTimeout(cb, 0));
-    });
+    }
+};
+
+describe('AgentPicker', () => {
 
     afterEach(() => {
         jest.clearAllMocks();
         jest.useRealTimers();
     });
+
+    const baseAgents = [
+        { name: 'Agent A', emoji: 'A', role: 'Role A' },
+        { name: 'Agent B', emoji: 'B', role: 'Role B' },
+        { name: 'Agent C', emoji: 'C', role: 'Role C' }
+    ];
 
     describe('Security Boundaries', () => {
         const maliciousAgent = {
@@ -141,6 +135,8 @@ describe('AgentPicker', () => {
         };
 
         test('getMemoizedHtml should escape agent name, emoji, and role', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
             const picker = new AgentPicker([maliciousAgent], jest.fn());
             const htmlResults = picker.getMemoizedHtml();
             const result = htmlResults[0];
@@ -157,6 +153,11 @@ describe('AgentPicker', () => {
 
     describe('openPicker()', () => {
         test('initializes modal, DOM skeletons, and grid', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
             const modal = document.getElementById('agentPickerModal');
             const grid = document.getElementById('pickerGrid');
 
@@ -183,6 +184,11 @@ describe('AgentPicker', () => {
         });
 
         test('fails securely if modal or grid is missing', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
             // override the mocked elements with null to simulate missing DOM
             agentPicker.elements.agentPickerModal = null;
             agentPicker.elements.pickerGrid = null;
@@ -196,6 +202,11 @@ describe('AgentPicker', () => {
 
     describe('closePicker()', () => {
         test('closes modal, triggers focus trap teardown, and restores history', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
             // Setup active picker state
             agentPicker.activePickerSlot = 'slotA';
             agentPicker.trap = { deactivate: jest.fn() };
@@ -224,6 +235,11 @@ describe('AgentPicker', () => {
         });
 
         test('bypasses history.back if navigateBack is false', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
             agentPicker.activePickerSlot = 'slotA';
             const modal = document.getElementById('agentPickerModal');
 
@@ -235,6 +251,11 @@ describe('AgentPicker', () => {
 
     describe('updateGrid()', () => {
         test('initializes Clusterize on first call', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
             agentPicker.filteredResults = agentPicker.getMemoizedHtml();
             agentPicker.updateGrid();
 
@@ -243,6 +264,11 @@ describe('AgentPicker', () => {
         });
 
         test('updates existing Clusterize instance', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
             agentPicker.filteredResults = agentPicker.getMemoizedHtml();
             agentPicker.updateGrid(); // First call creates instance
 
@@ -256,6 +282,11 @@ describe('AgentPicker', () => {
 
     describe('handlePickerSelection()', () => {
         test('invokes onSelect and closePicker', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
             jest.spyOn(agentPicker, 'closePicker');
             agentPicker.activePickerSlot = 'slotA';
 
@@ -267,6 +298,11 @@ describe('AgentPicker', () => {
         });
 
         test('invokes renderPreMergePreview if method exists', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
             agentPicker.getPreMergePreviewHTML = jest.fn(() => '<div>Preview</div>');
             jest.spyOn(agentPicker, 'renderPreMergePreview');
             agentPicker.activePickerSlot = 'slotA';
@@ -278,6 +314,11 @@ describe('AgentPicker', () => {
         });
 
         test('fails securely if no active picker slot exists', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
             jest.spyOn(agentPicker, 'closePicker');
             agentPicker.activePickerSlot = null; // simulate closed state
 
@@ -290,6 +331,11 @@ describe('AgentPicker', () => {
 
     describe('renderPreMergePreview()', () => {
         test('renders preview HTML correctly when provided', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
             agentPicker.getPreMergePreviewHTML = jest.fn(() => '<p>Known Recipe</p>');
             const mockActionArea = document.querySelector('#fusionLabContent .fusion-action-area');
 
@@ -304,6 +350,11 @@ describe('AgentPicker', () => {
         });
 
         test('hides preview element if no HTML is returned', () => {
+             Factory.setupGlobals();
+             Factory.buildDOMHooks();
+             const mockOnSelect = jest.fn();
+             const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
              agentPicker.getPreMergePreviewHTML = jest.fn(() => null);
              const mockPreviewEl = { style: { display: 'flex' } };
              document.getElementById = jest.fn((id) => id === 'preMergePreview' ? mockPreviewEl : null);
@@ -314,6 +365,11 @@ describe('AgentPicker', () => {
         });
 
         test('fails securely if action area does not exist', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
             document.querySelector = jest.fn().mockReturnValue(null);
             agentPicker.getPreMergePreviewHTML = jest.fn();
 
