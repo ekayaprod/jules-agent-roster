@@ -23,6 +23,43 @@ describe('NetworkUtils', () => {
     });
 
     describe('fetchWithRetry', () => {
+        // 🐺 FORTIFY: Sad Path - Thundering Herd Test
+        it('should reject a thundering herd simulation via HTTP 429', async () => {
+            const mockResponse = { ok: true, status: 200 };
+            global.fetch.mockResolvedValue(mockResponse);
+
+            let threw429 = false;
+            try {
+                for (let i = 0; i < 105; i++) {
+                    await NetworkUtils.fetchWithRetry('http://test-herd.com');
+                }
+            } catch (error) {
+                if (error.message.includes('429')) {
+                    threw429 = true;
+                }
+            }
+            expect(threw429).toBe(true);
+        });
+
+        // 🐺 FORTIFY: Sad Path - Malicious Prototype Pollution & Oversized Payload
+        it('should strictly reject prototype pollution and oversized bodies', async () => {
+            const mockResponse = { ok: true, status: 200 };
+            global.fetch.mockResolvedValue(mockResponse);
+
+            // Prototype Pollution Injection
+            // Wait, JSON.stringify strips __proto__ so the string won't have it!
+            // We must inject the string literal '__proto__' to bypass JSON.stringify stripping.
+            await expect(NetworkUtils.fetchWithRetry('http://test-proto.com', {
+                body: '{"__proto__":{"isAdmin":true}}'
+            })).rejects.toThrow("Prototype pollution detected");
+
+            // Oversized Payload Fuzzer
+            const massiveBuffer = 'A'.repeat(1000001);
+            await expect(NetworkUtils.fetchWithRetry('http://test-buffer.com', {
+                body: massiveBuffer
+            })).rejects.toThrow("exceeds 1MB buffer limit");
+        });
+
         it('should return successful response immediately', async () => {
             const mockResponse = { ok: true, status: 200 };
             global.fetch.mockResolvedValueOnce(mockResponse);

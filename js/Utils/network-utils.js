@@ -3,11 +3,52 @@ class NetworkUtils {
     static DEFAULT_BACKOFF_MS = 300;
     static MAX_RETRIES = 3;
 
+    // 🐺 FORTIFY: The Three-Headed Defense - Rate Limiter State
+    static _requestBuckets = {};
+
+    static _enforceRateLimit(url) {
+        const now = Date.now();
+        let hostname = 'unknown';
+        try { hostname = new URL(url).hostname; } catch(e) { hostname = url; }
+
+        if (!this._requestBuckets[hostname]) {
+            this._requestBuckets[hostname] = { count: 0, windowStart: now };
+        }
+
+        const bucket = this._requestBuckets[hostname];
+        if (now - bucket.windowStart > 60000) {
+            bucket.count = 0;
+            bucket.windowStart = now;
+        }
+
+        if (bucket.count >= 100) {
+            throw new Error("HTTP Error: 429 Too Many Requests");
+        }
+        bucket.count++;
+    }
+
     static async fetchWithRetry(url, options = {}, retries = NetworkUtils.MAX_RETRIES, backoff = NetworkUtils.DEFAULT_BACKOFF_MS) {
+        // 🐺 FORTIFY: Head 1 - Rate Limiting (Block thundering herds)
+        try {
+            NetworkUtils._enforceRateLimit(url);
+        } catch (error) {
+            console.warn("Assault intercepted by Cerberus at boundary", error);
+            throw error;
+        }
+
+        // 🐺 FORTIFY: Head 2 - Strict Schema Validation (Reject massive buffers & prototype pollution)
+        if (options.body && typeof options.body === 'string' && options.body.length > 1000000) {
+            throw new Error("Invalid payload: Body exceeds 1MB buffer limit.");
+        }
+        if (options.body && options.body.includes('__proto__')) {
+            throw new Error("Invalid payload: Prototype pollution detected in payload.");
+        }
+
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), NetworkUtils.REQUEST_TIMEOUT_MS);
 
         try {
+            // 🐺 FORTIFY: Head 3 - Wrap naked execution in try/catch (already robustly handled here)
             const response = await fetch(url, {
                 ...options,
                 signal: options.signal || controller.signal,
