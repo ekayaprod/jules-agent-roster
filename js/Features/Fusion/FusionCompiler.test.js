@@ -116,7 +116,11 @@ describe('FusionCompiler', () => {
     it('should successfully export the module when required', () => {
          jest.isolateModules(() => {
              const FusionCompilerClass = require('./FusionCompiler');
-             expect(typeof FusionCompilerClass).toBe('function');
+             const instance = new FusionCompilerClass([], {}, {});
+             expect(instance).toHaveProperty('fuse');
+             expect(instance).toHaveProperty('baseAgents');
+             expect(instance).toHaveProperty('customAgentsMap');
+             expect(instance).toHaveProperty('fusionMatrixMap');
          });
     });
   });

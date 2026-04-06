@@ -291,7 +291,7 @@ describe('AgentRepository', () => {
                 });
 
             const results = await repo.fetchAgents();
-            expect(results.customAgents["Fusion1"]).toBeDefined();
+            expect(results.customAgents).toHaveProperty('Fusion1');
             expect(results.customAgents["Fusion1"].name).toBe("Fusion1");
             expect(results.fusionMatrix["Agent1,Agent2"]).toBe("Fusion1");
         });
@@ -366,9 +366,9 @@ describe('AgentRepository', () => {
 
             const results = await repo.fetchAgents();
 
-            expect(results.customAgents["Fusion Agent"]).toBeDefined();
+            expect(results.customAgents).toHaveProperty('Fusion Agent');
             expect(results.customAgents["Fusion Agent"].name).toBe("Fusion Agent");
-            expect(results.customAgents["Another Fusion"]).toBeDefined();
+            expect(results.customAgents).toHaveProperty('Another Fusion');
             expect(results.customAgents["Another Fusion"].name).toBe("Another Fusion");
             expect(results.fusionMatrix["Agent1,Agent2"]).toBe("Fusion Agent");
         });

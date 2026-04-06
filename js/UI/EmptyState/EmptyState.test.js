@@ -152,7 +152,8 @@ describe('Module Export Boundaries', () => {
             return module.exports;
         `);
         const result = evalFn(mockModule);
-        expect(result).toBeDefined();
+        expect(result).toHaveProperty('create');
+        expect(result).toHaveProperty('ICONS');
         expect(result.name).toBe('EmptyState');
     });
 
@@ -164,7 +165,8 @@ describe('Module Export Boundaries', () => {
             return typeof EmptyState !== 'undefined' ? EmptyState : null;
         `);
         const result = evalFn();
-        expect(result).toBeDefined();
+        expect(result).toHaveProperty('create');
+        expect(result).toHaveProperty('ICONS');
         expect(result.name).toBe('EmptyState');
     });
 

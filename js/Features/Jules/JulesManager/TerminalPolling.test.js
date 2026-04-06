@@ -226,7 +226,7 @@ describe('TerminalPolling', () => {
     it('should handle uninitialized julesPollingIntervals', () => {
         mockManager.julesPollingIntervals = null;
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
-        expect(mockManager.julesPollingIntervals['session123']).toBeDefined();
+        expect(mockManager.julesPollingIntervals).toHaveProperty('session123');
     });
 
     it('should format empty history and pass "No history available." to createMarkdownPreBlock', async () => {

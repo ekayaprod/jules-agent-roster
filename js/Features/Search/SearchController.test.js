@@ -144,7 +144,7 @@ describe('SearchController', () => {
 
     describe('Initialization & Web Worker Boundaries', () => {
         it('should initialize Web Worker if Worker is defined', () => {
-            expect(searchController.worker).toBeDefined();
+            expect(searchController.worker).toBeInstanceOf(Worker);
             expect(searchController.worker.scriptURL).toBe('js/Features/Search/SearchWorker.js');
         });
 
@@ -245,7 +245,7 @@ describe('SearchController', () => {
             expect(appMock.elements.searchModeContainer.classList.contains("hidden")).toBe(true);
             expect(DOMUtils.setElementsDisplay).toHaveBeenCalledWith(appMock.elements.grid, "none", "searchResultsGrid");
 
-            expect(appMock._searchCache).toBeDefined();
+            expect(appMock._searchCache).toHaveProperty('useWorker');
             expect(appMock._searchCache.agentCount).toBe(2);
             expect(appMock._searchCache.useWorker).toBe(true);
 
@@ -269,7 +269,8 @@ describe('SearchController', () => {
             await fallbackController.filterAgents("test");
 
             expect(appMock._searchCache.useWorker).toBe(false);
-            expect(appMock._searchCache.fuseInstance).toBeDefined();
+            expect(appMock._searchCache).toHaveProperty('fuseInstance');
+            expect(appMock._searchCache.fuseInstance).toHaveProperty('search');
 
             global.Worker = originalWorker;
         });
@@ -291,7 +292,7 @@ describe('SearchController', () => {
 
             await searchController.filterAgents("found");
 
-            expect(searchController.clusterize).toBeDefined();
+            expect(searchController.clusterize).toHaveProperty('update');
             expect(appMock.elements.emptyState.classList.contains("visible")).toBe(false);
             expect(appMock.elements.announcer.textContent).toBe("Found 2 protocols.");
 
@@ -322,7 +323,7 @@ describe('SearchController', () => {
             await Promise.all([p1, p2]);
 
             // Clusterize shouldn't be initialized by a stale search drop
-            expect(searchController.clusterize).toBeDefined();
+            expect(searchController.clusterize).toHaveProperty('update');
         });
     });
 

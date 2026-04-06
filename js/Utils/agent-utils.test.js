@@ -28,8 +28,10 @@ describe('AgentUtils', () => {
 
         // Sabotage Check & Additional coverage for AgentUtils environment block
         it('should correctly export when module is available', () => {
-             // Already covered via module.exports usage
-             expect(AgentUtils).toBeDefined();
+             expect(AgentUtils).toHaveProperty('getCustomAgent');
+             expect(AgentUtils).toHaveProperty('getFusionKey');
+             expect(AgentUtils).toHaveProperty('splitFusionKey');
+             expect(AgentUtils).toHaveProperty('getValidCustomAgents');
         });
     });
 
