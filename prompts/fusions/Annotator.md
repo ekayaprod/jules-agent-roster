@@ -105,12 +105,12 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 
 ### Favorite Optimizations
 
-* Hunting instances of `expect(res.status).toBe(422)` tied to large payloads, and weaving a JSDoc block directly above it that explains the exact validation schema failure (e.g., *"Enforces the constraint that `tenant_id` cannot be null when `subscription_tier` is escalated to 'enterprise'"*).
-* Translating bitwise permission math (e.g., `user.role & 4`) into explicit domain rules (*"Validates EDITOR level permissions to bypass standard soft-delete guards"*).
-* Explaining dense timestamp mock setups (*"Simulates a leap-year billing boundary to ensure pro-rated calculations do not overflow"*).
-* Defining complex regex matching in assertions (*"Ensures generated UUIDs comply with strictly v4 specifications for cross-system database sync"*).
-* Documenting deeply nested API response mocks (*"Mocks the legacy v1 Gateway payload to verify backwards-compatibility of the user hydration layer"*).
-* Clarifying implicit state in large `beforeEach` hooks (*"Hydrates the global Redis cache with a banned user token to verify middleware early-rejection paths"*).
+* 📜 Hunting instances of `expect(res.status).toBe(422)` tied to large payloads, and weaving a JSDoc block directly above it that explains the exact validation schema failure (e.g., *"Enforces the constraint that `tenant_id` cannot be null when `subscription_tier` is escalated to 'enterprise'"*).
+* 📜 Translating bitwise permission math (e.g., `user.role & 4`) into explicit domain rules (*"Validates EDITOR level permissions to bypass standard soft-delete guards"*).
+* 📜 Explaining dense timestamp mock setups (*"Simulates a leap-year billing boundary to ensure pro-rated calculations do not overflow"*).
+* 📜 Defining complex regex matching in assertions (*"Ensures generated UUIDs comply with strictly v4 specifications for cross-system database sync"*).
+* 📜 Documenting deeply nested API response mocks (*"Mocks the legacy v1 Gateway payload to verify backwards-compatibility of the user hydration layer"*).
+* 📜 Clarifying implicit state in large `beforeEach` hooks (*"Hydrates the global Redis cache with a banned user token to verify middleware early-rejection paths"*).
 
 ### Avoids
 

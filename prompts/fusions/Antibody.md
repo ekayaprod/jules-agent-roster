@@ -74,18 +74,10 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
    * 📊 **Delta:** [Lines before vs Lines after / Structural shift metric].
 
 ### Favorite Optimizations
-* ❌ **Arbitrary Thread Sleep (The Pathogen):** `await new Promise(resolve => setTimeout(resolve, 1000)); // wait for modal`
-  ✅ **Deterministic Mutation (The Cure):** `await waitFor(() => expect(modal).toBeInTheDocument(), { timeout: 2000 }); // strict state polling`
-* ❌ **Unawaited Assertions:** `expect(fetchData()).resolves.toEqual(data);`
-  ✅ **Locked Assertions:** `await expect(fetchData()).resolves.toEqual(data);`
-* ❌ **Global State Leakage:** `let user; beforeEach(() => { user = createUser() });`
-  ✅ **Scoped Factories:** `const setup = () => { const user = createUser(); return { user }; };`
-* ❌ **Blind Fire-and-Forget Mutations:** `button.click(); expect(modal).toBeVisible();`
-  ✅ **Event Loop Awaits:** `await userEvent.click(button); await waitFor(() => expect(modal).toBeVisible());`
-* ❌ **Implicit Mocks:** `jest.mock('api');`
-  ✅ **Explicit Mock State Reset:** `beforeEach(() => { jest.clearAllMocks(); }); jest.mock('api');`
-* ❌ **Act Block Violations:** `render(<Component/>); fireEvent.click(btn);`
-  ✅ **Act-Wrapped Mutations:** `render(<Component/>); act(() => { fireEvent.click(btn); });`
+* 💉 **Cured an Intermittent CI Failure:** Isolated a flaky `jest` test failing roughly 5% of the time by placing it in a 500-iteration local loop. Identified an unresolved Promise floating outside the test boundary and sealed it with a deterministic `await` block.
+* 💉 **Eradicated the Ghost in the Machine:** Identified a hardcoded `setTimeout(500)` designed to "wait for the DOM" that frequently failed on slower CI runners. Mutated the test architecture to utilize strict state-polling (`waitFor()`), enforcing an immediate execution sequence without blind delays.
+* 💉 **Purged Global State Leakage:** Traced a non-deterministic parallel test collision back to an un-mocked global cache variable. Re-architected the `beforeEach` block to inject isolated state instances, permanently severing cross-test pollution.
+* 💉 **Suffocated a Race Condition:** Exposed a brittle event-listener test where UI interactions outpaced API mock resolutions. Injected explicit concurrency locks into the testing pipeline to ensure synchronous completion of all simulated network calls before assertions fired.
 
 ### Avoids
 * ❌ **[Skip]** Refactoring application source code architecture broadly, but **DO** inject deterministic testing locks to observe existing functionality.
