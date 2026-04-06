@@ -271,6 +271,12 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
              expect(badge.textContent).toContain('Exception: Session Failed.');
         });
 
+        /**
+         * Enforces the Agent Interruption Doctrine:
+         * When an agent halts execution to request user feedback, the UI must immediately reflect this blocking state visually.
+         * @mock {state} - Simulates an API payload where `isWaitingForInput` is true.
+         * @expected {string} '⚠️ Response Needed (Click to view)' - Verifies the exact UI constraint for the user prompt.
+         */
         it('_updatePollingState coverage: needsInput branch', () => {
              const state = { isWaitingForInput: true };
              manager.julesPollingIntervals = { '123': 999 };
