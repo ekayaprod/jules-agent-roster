@@ -93,7 +93,7 @@ class RosterApp {
             if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 revealContent();
             } else {
-                setTimeout(revealContent, LOADING_OVERLAY_DISMISS_MS);
+                requestAnimationFrame(revealContent);
             }
         }
     } catch (error) {
@@ -372,15 +372,17 @@ class RosterApp {
     this.elements.clearBtn?.addEventListener("click", () => this.clearSearch());
     this.elements.clearSearchEmptyBtn?.addEventListener("click", () => this.clearSearch());
 
-    this.elements.julesRepoPicker?.addEventListener('change', (e) => {
+    this.elements.julesRepoPicker?.addEventListener('change', async (e) => {
         if (this._cardHtmlCache) this._cardHtmlCache.clear();
         if (this._domNodeCache) this._domNodeCache.clear();
         this.renderAgents();
 
         const sourceName = e.target.value;
         if (sourceName) {
-            this.julesManager.loadActiveSessionsForRepo(sourceName);
-            this.julesManager.loadPullRequestsForRepo(sourceName);
+            await Promise.all([
+                this.julesManager.loadActiveSessionsForRepo(sourceName),
+                this.julesManager.loadPullRequestsForRepo(sourceName)
+            ]);
         } else {
             const terminal = this.elements.julesTerminal;
             if (terminal) {
