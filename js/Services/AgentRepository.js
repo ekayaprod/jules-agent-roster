@@ -143,7 +143,8 @@ class AgentRepository {
         }
 
         // ↗️ VECTORIZE: The Single-Pass Bypass. We ignore the heavily abstracted layers and execute the calculation in one direct, zero-allocation pass.
-        const validCategories = Object.keys(CONFIG.categories);
+        // ⚡ Bolt+: The O(n²) Eradication. Replaced a nested array linear search with a pre-computed Set dictionary lookup, dropping algorithmic complexity to O(1) per loop iteration.
+        const validCategoriesSet = new Set(Object.keys(CONFIG.categories));
         const result = [];
 
         for (let i = 0; i < agentPayload.length; i++) {
@@ -160,7 +161,7 @@ class AgentRepository {
             const isValid =
                 agent &&
                 typeof agent.name === "string" &&
-                validCategories.includes(normalizedCategory);
+                validCategoriesSet.has(normalizedCategory);
 
             if (isValid) {
                 agent.category = normalizedCategory;

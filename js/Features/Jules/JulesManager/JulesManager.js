@@ -131,7 +131,8 @@ class JulesManager {
 
                 if (window.julesService) {
                     window.julesService.configure(key, githubKey);
-                    await this.loadSources();
+                    // ⚡ Bolt+: Severed the synchronous I/O waterfall to prevent freezing the UI modal thread on configuration updates.
+                    this.loadSources().catch(err => console.error("Background repository fetch failed", err));
                 }
             } finally {
                 if (saveBtn) DOMUtils.setButtonState(saveBtn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Save & Connect");
@@ -147,7 +148,8 @@ class JulesManager {
             window.julesService.configure(apiKey, githubToken);
             const toggle = this.getEl("julesActivateToggle");
             if (toggle && toggle.checked) {
-                await this.loadSources();
+                // ⚡ Bolt+: The Waterfall Collapse. Unblocked the primary application boot thread by shifting synchronous remote API resolution into a parallel fire-and-forget execution.
+                this.loadSources().catch(err => console.error("Background repository fetch failed", err));
             }
         } else {
             // Only show modal if the toggle is explicitly active, else defer until toggled
