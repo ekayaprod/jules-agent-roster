@@ -99,11 +99,44 @@ const createMockElement = (id = '') => {
     },
     set innerHTML(v) {
       this._innerHTML = v;
-      if (v === '') {
-        while (children.length > 0) {
-          const child = children.pop();
-          child.parentNode = null;
+      // Clear children
+      while (children.length > 0) {
+        const child = children.pop();
+        child.parentNode = null;
+      }
+
+      if (v === '') return;
+
+      // Naive parser for basic structural elements found in the roster app
+      const tagRegex = /<([a-z0-9]+)([^>]*?)>(.*?)<\/\1>|<([a-z0-9]+)([^>]*?)\/>/gi;
+      let match;
+      while ((match = tagRegex.exec(v)) !== null) {
+        const tagName = match[1] || match[4];
+        const attrs = match[2] || match[5] || "";
+        const child = global.document.createElement(tagName);
+
+        const classMatch = attrs.match(/class=["'](.*?)["']/);
+        if (classMatch) child.className = classMatch[1];
+
+        const idMatch = attrs.match(/id=["'](.*?)["']/);
+        if (idMatch) child.id = idMatch[1];
+
+        const dataMatch = attrs.match(/data-([a-z-]+)=["'](.*?)["']/g);
+        if (dataMatch) {
+          dataMatch.forEach((dm) => {
+            const parts = dm.match(/data-([a-z-]+)=["'](.*?)["']/);
+            if (parts) child.setAttribute(`data-${parts[1]}`, parts[2]);
+          });
         }
+
+        const content = (match[3] || "").trim();
+        if (content && content.includes('<')) {
+          child.innerHTML = content;
+        } else if (content) {
+          child.textContent = content;
+        }
+
+        el.appendChild(child);
       }
     },
     innerText: '',
@@ -126,6 +159,7 @@ const createMockElement = (id = '') => {
       if (el.parentNode) el.parentNode.removeChild(el);
     },
     focus: () => {},
+    scrollIntoView: () => {},
     close: () => {},
     showModal: () => {},
     querySelectorAll: (sel) => {
@@ -244,6 +278,12 @@ global.CSS = { escape: (str) => str };
 global.CONFIG = { selectors: {}, categories: {}, sectionMap: {} };
 global.requestAnimationFrame = (cb) => setTimeout(cb, 0);
 
+global.FusionAnimation = class FusionAnimation {
+  runAnimation(agentA, agentB, result, callback) {
+    if (callback) callback();
+  }
+};
+
 const AgentCard = loadClass('js/UI/AgentCard/AgentCard.js');
 global.AgentCard = AgentCard;
 
@@ -287,14 +327,9 @@ const runBenchmark = async () => {
 
   // Fix: Properly mock elements so appending results works and index gets tested
   const slotACard = getMockElement('slotACard');
-  const slotAContent = createMockElement();
-  slotAContent.classList.add('slot-content');
-  slotACard.appendChild(slotAContent);
-
+  slotACard.innerHTML = '<div class="slot-content"></div>';
   const slotBCard = getMockElement('slotBCard');
-  const slotBContent = createMockElement();
-  slotBContent.classList.add('slot-content');
-  slotBCard.appendChild(slotBContent);
+  slotBCard.innerHTML = '<div class="slot-content"></div>';
 
   const fusionResultContainer = getMockElement('fusionResultContainer');
   const fusionIndexContainer = getMockElement('fusionIndexContainer');
@@ -360,10 +395,9 @@ const runBenchmark = async () => {
 
   // Setup FusionLab
   roster.fusionLab = new FusionLab();
-  // In node, ensure the container exists for FusionIndex to initialize and populate elements
-  roster.fusionLab.elements = { fusionIndexContainer };
+
   const mockCustomAgents = {
-    'Agent 0,Agent 1': {
+    'Fusion 1': {
       name: 'Fusion 1',
       prompt: 'Fusion 1 Prompt',
       category: 'strategy',
@@ -374,13 +408,6 @@ const runBenchmark = async () => {
   roster.fusionLab.init(mockAgents, mockCustomAgents, {
     'Agent 0,Agent 1': 'Fusion 1',
   });
-  roster.fusionLab.fusionIndex.elements = { container: fusionIndexContainer };
-
-  // Add slot elements explicitly since the document mock doesn't handle innerHTML parsing perfectly
-  const mockSlot = createMockElement();
-  mockSlot.classList.add('fusion-item');
-  mockSlot.setAttribute('data-key', 'Agent 0,Agent 1');
-  fusionIndexContainer.appendChild(mockSlot);
 
   roster.fusionLab.fusionIndex.unlock('Agent 0,Agent 1');
 
@@ -410,12 +437,7 @@ const runBenchmark = async () => {
 
   await roster.fusionLab.handleFusion();
 
-  // Since AgentCard mock is incomplete in benchmarking, manually simulate appending the card
   const resultContainer = getMockElement('fusionResultContainer');
-  const mockCard = createMockElement();
-  mockCard.classList.add('card');
-  resultContainer.appendChild(mockCard);
-
   const resultCard = resultContainer.querySelector('.card');
   if (!resultCard) {
     console.error('FusionError: Fusion result card not found in container.');
