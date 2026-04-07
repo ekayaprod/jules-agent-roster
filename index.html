@@ -479,13 +479,13 @@
         #main > .section-header { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
         .grid > *:first-child::before { position: absolute; top: -2rem; left: 0.5rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); font-weight: normal; white-space: nowrap; pointer-events: none; }
         #architectureGrid > *:first-child::before { content: "Architecture"; }
-        #hygieneGrid > *:first-child::before { content: "Hygiene"; }
-        #strategyGrid > *:first-child::before { content: "Strategy"; }
-        #uxGrid > *:first-child::before { content: "UX"; }
         #docsGrid > *:first-child::before { content: "Docs"; }
-        #testingGrid > *:first-child::before { content: "Testing"; }
+        #hygieneGrid > *:first-child::before { content: "Hygiene"; }
         #operationsGrid > *:first-child::before { content: "Operations"; }
         #securityGrid > *:first-child::before { content: "Security"; }
+        #testingGrid > *:first-child::before { content: "Testing"; }
+        #uxGrid > *:first-child::before { content: "UX"; }
+        #strategyGrid > *:first-child::before { content: "Strategy"; }
       }
     </style>
   </head>
@@ -549,13 +549,13 @@
         </div>
         <a href="#plus" class="nav-pill">Plus</a>
         <a href="#architecture" class="nav-pill">Architecture</a>
-        <a href="#hygiene" class="nav-pill">Hygiene</a>
-        <a href="#strategy" class="nav-pill">Strategy</a>
-        <a href="#ux" class="nav-pill">UX</a>
         <a href="#docs" class="nav-pill">Docs</a>
-        <a href="#testing" class="nav-pill">Testing</a>
+        <a href="#hygiene" class="nav-pill">Hygiene</a>
         <a href="#operations" class="nav-pill">Operations</a>
         <a href="#security" class="nav-pill">Security</a>
+        <a href="#testing" class="nav-pill">Testing</a>
+        <a href="#ux" class="nav-pill">UX</a>
+        <a href="#strategy" class="nav-pill">Strategy</a>
       </nav>
     </div>
 
@@ -578,20 +578,20 @@
       <div class="grid" id="plusGrid"></div>
       <h2 id="architecture" class="section-header">Architecture</h2>
       <div class="grid" id="architectureGrid"></div>
-      <h2 id="hygiene" class="section-header">Hygiene</h2>
-      <div class="grid" id="hygieneGrid"></div>
-      <h2 id="strategy" class="section-header">Strategy</h2>
-      <div class="grid" id="strategyGrid"></div>
-      <h2 id="ux" class="section-header">UX</h2>
-      <div class="grid" id="uxGrid"></div>
       <h2 id="docs" class="section-header">Docs</h2>
       <div class="grid" id="docsGrid"></div>
-      <h2 id="testing" class="section-header">Testing</h2>
-      <div class="grid" id="testingGrid"></div>
+      <h2 id="hygiene" class="section-header">Hygiene</h2>
+      <div class="grid" id="hygieneGrid"></div>
       <h2 id="operations" class="section-header">Operations</h2>
       <div class="grid" id="operationsGrid"></div>
       <h2 id="security" class="section-header">Security</h2>
       <div class="grid" id="securityGrid"></div>
+      <h2 id="testing" class="section-header">Testing</h2>
+      <div class="grid" id="testingGrid"></div>
+      <h2 id="ux" class="section-header">UX</h2>
+      <div class="grid" id="uxGrid"></div>
+      <h2 id="strategy" class="section-header">Strategy</h2>
+      <div class="grid" id="strategyGrid"></div>
       <div style="flex-basis: 100%; height: 0;"></div>
     </main>
 
@@ -780,8 +780,8 @@
           categoryNav: "#category-nav", main: "#main", navPills: ".nav-pill",
           sectionHeader: ".section-header", grid: ".grid", card: ".card"
         },
-        categories: { pinned: "pinnedGrid", plus: "plusGrid", architecture: "architectureGrid", hygiene: "hygieneGrid", strategy: "strategyGrid", ux: "uxGrid", docs: "docsGrid", testing: "testingGrid", operations: "operationsGrid", security: "securityGrid" },
-        sectionMap: { pinnedGrid: "pinned", plusGrid: "plus", architectureGrid: "architecture", hygieneGrid: "hygiene", strategyGrid: "strategy", uxGrid: "ux", docsGrid: "docs", testingGrid: "testing", operationsGrid: "operations", securityGrid: "security" }
+        categories: { pinned: "pinnedGrid", plus: "plusGrid", architecture: "architectureGrid", docs: "docsGrid", hygiene: "hygieneGrid", operations: "operationsGrid", security: "securityGrid", testing: "testingGrid", ux: "uxGrid", strategy: "strategyGrid" },
+        sectionMap: { pinnedGrid: "pinned", plusGrid: "plus", architectureGrid: "architecture", docsGrid: "docs", hygieneGrid: "hygiene", operationsGrid: "operations", securityGrid: "security", testingGrid: "testing", uxGrid: "ux", strategyGrid: "strategy" }
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/tabbable@6.2.0/dist/index.umd.js"></script>
