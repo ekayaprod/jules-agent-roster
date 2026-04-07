@@ -35,21 +35,11 @@ class StorageUtils {
                 // 🐺 FORTIFY: Head 2 & 3 - Wrap parser and enforce schema stripping pollution
                 if (stored.length > 500000) throw new Error("Invalid payload: Storage buffer exceeds maximum length.");
 
-                const parsed = JSON.parse(stored);
-                if (Array.isArray(parsed)) {
-                    return parsed.map(item => {
-                        if (typeof item === 'object' && item !== null) {
-                            const safeObj = {};
-                            for (const k of Object.keys(item)) {
-                                if (k !== '__proto__' && k !== 'constructor' && typeof k === 'string') {
-                                    safeObj[k] = item[k];
-                                }
-                            }
-                            return safeObj;
-                        }
-                        return item;
-                    });
-                }
+                const parsed = JSON.parse(stored, (key, value) => {
+                    if (key === '__proto__' || key === 'constructor') return undefined;
+                    return value;
+                });
+                if (Array.isArray(parsed)) return parsed;
             }
             return null;
         } catch (error) {
