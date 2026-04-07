@@ -115,9 +115,11 @@ const FusionAnimation = function () {
     DOMUtils.setButtonState(fuseBtn, "disabled", fuseBtn.innerText);
     if (controls) controls.classList.add("fusing");
 
+    const Durations = typeof require !== 'undefined' ? require('../../constants/ui.js').ANIMATION_DURATIONS : ANIMATION_DURATIONS;
+
     if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       overlay.classList.add("active");
-      await new Promise(resolve => setTimeout(resolve, 3500));
+      await new Promise(resolve => setTimeout(resolve, Durations.FUSION_BURST_MS));
     }
 
     overlay.classList.remove("active");
