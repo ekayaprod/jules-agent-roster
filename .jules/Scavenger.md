@@ -1,3 +1,3 @@
-## Scavenger — The Ghost Variable Extraction
-**Learning:** Modern syntax (ES2019+) permits omitting the binding parameter `(e)` entirely if the catch block does not utilize the error object, effectively reducing unused variables and eliminating false-positive lint warnings in production code.
-**Action:** Always extract unused `catch(err)` parameters across application files into parameterless `catch { ... }` blocks to cleanly eliminate localized debris.
+## Scavenger — The Semantic Dust Extraction
+**Learning:** Found that redundant assignments like `let hostname = 'unknown'` right before a `try...catch` block that immediately overwrites the variable in both paths is pure semantic dust. Extracting it reduces visual clutter and prevents misleading assumptions about fallback defaults.
+**Action:** Always scan for redundant variable initializations immediately prior to conditional blocks or `try...catch` blocks where they are unconditionally overwritten.
