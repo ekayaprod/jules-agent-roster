@@ -1,2 +1,3 @@
-**Bottleneck:** Rendering the `pinHtml` within `AgentCard.create()` included an invalid `isNaN(index)` gate, suppressing the pin functionality entirely for master agents.
-**Optimization:** Simplified the conditional logic, directly injecting the `pinHtml` component, which both restored pinning capabilities for the master roster and removed the useless algorithmic check.
+## Bolt+ — O(n²) Array Eradication & Waterfall Collapse
+**Bottleneck:** Nested O(n²) array search in Agent validation and sequential blocking I/O on primary application boot sequence waiting for Github.
+**Optimization:** Replaced validCategories linear `.includes()` array search with an O(1) Set dictionary lookup. Unblocked RosterApp boot thread by rewriting the blocking `await this.loadSources()` network initialization into a parallel, background fire-and-forget promise.
