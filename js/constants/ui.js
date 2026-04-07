@@ -19,6 +19,10 @@ const HTTP_STATUS = Object.freeze({
   INTERNAL_SERVER_ERROR: 500
 });
 
+var ANIMATION_DURATIONS = Object.freeze({
+  FUSION_BURST_MS: 3500
+});
+
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { TOAST_TYPES, BUTTON_STATES, HTTP_STATUS };
+    module.exports = { TOAST_TYPES, BUTTON_STATES, HTTP_STATUS, ANIMATION_DURATIONS };
 }
