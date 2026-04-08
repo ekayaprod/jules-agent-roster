@@ -13,6 +13,9 @@ if (typeof FormatUtils === 'undefined' && typeof require !== 'undefined') {
 if (typeof NetworkUtils === 'undefined' && typeof require !== 'undefined') {
     global.NetworkUtils = require('../Utils/network-utils.js');
 }
+if (typeof TelemetryUtils === 'undefined' && typeof require !== 'undefined') {
+    global.TelemetryUtils = require('../Utils/telemetry-utils.js');
+}
 
 class JulesService {
     /**
@@ -122,10 +125,23 @@ ${userTask}`;
             title: title
         };
 
-        return this._fetch('sessions', {
+        const start = performance.now();
+        const response = await this._fetch('sessions', {
             method: 'POST',
             body: JSON.stringify(body)
         });
+        const latency = performance.now() - start;
+
+        const Telemetry = typeof TelemetryUtils !== 'undefined' ? TelemetryUtils : (typeof window !== 'undefined' ? window.TelemetryUtils : global.TelemetryUtils);
+        if (Telemetry && Telemetry.dispatchEvent) {
+            Telemetry.dispatchEvent('ai_request', 'AI Session Created', {
+                latencyMs: latency,
+                tokens: response.usage?.totalTokens || 0,
+                model: response.model || 'jules-alpha'
+            });
+        }
+
+        return response;
     }
 
     /**
