@@ -120,14 +120,28 @@ describe('DOMUtils', () => {
     });
 
     describe('createMarkdownPreBlock', () => {
-        it('should create a pre element with the given text content securely', () => {
+        beforeAll(() => {
+            window.MarkdownRenderer = {
+                render: (text) => {
+                    const frag = document.createDocumentFragment();
+                    frag.textContent = text || "";
+                    return frag;
+                }
+            };
+        });
+
+        afterAll(() => {
+            delete window.MarkdownRenderer;
+        });
+
+        it('should create a div container with transition classes and securely rendered content', () => {
             const payload = '<script>alert("xss")</script>';
             const el = DOMUtils.createMarkdownPreBlock(payload);
 
-            expect(el.tagName).toBe('PRE');
-            expect(el.className).toBe('markdown-raw details-content');
-            expect(el.style.whiteSpace).toBe('pre-wrap');
-            expect(el.style.wordBreak).toBe('break-word');
+            expect(el.tagName).toBe('DIV');
+            expect(el.className).toContain('markdown-rendered');
+            expect(el.className).toContain('transition-all');
+            expect(el.style.transitionProperty).toBe('height, min-height');
             // Ensure exact text content is retained without executing HTML
             expect(el.textContent).toBe(payload);
             expect(el.innerHTML).not.toContain('<script>');

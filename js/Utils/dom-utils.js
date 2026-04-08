@@ -97,12 +97,15 @@ class DOMUtils {
    * @see ../../docs/architecture/Utils/README.md#domutils-architecture
    */
   static createMarkdownPreBlock(text) {
-    const pre = document.createElement("pre");
-    pre.className = "markdown-raw details-content";
-    pre.style.whiteSpace = "pre-wrap";
-    pre.style.wordBreak = "break-word";
-    pre.textContent = text;
-    return pre;
+    const container = document.createElement("div");
+    container.className = "markdown-rendered details-content transition-all";
+    container.style.transitionProperty = "height, min-height";
+    container.style.transitionDuration = "0.2s";
+    container.style.transitionTimingFunction = "ease-out";
+
+    const safeHtmlNode = window.MarkdownRenderer ? window.MarkdownRenderer.render(text) : document.createTextNode(text || "");
+    container.appendChild(safeHtmlNode);
+    return container;
   }
 
 }
