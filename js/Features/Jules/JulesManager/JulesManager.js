@@ -1,3 +1,6 @@
+// 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
+var getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+
 /**
  * Polling array callbacks hoisted to the file scope.
  */
@@ -475,7 +478,12 @@ class JulesManager {
             await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
             this.app.toast.show(`Session launched successfully.`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.SUCCESS : "success");
             await this._fetchAndRenderSessions(sourceName, terminal);
-        } catch {
+        } catch (error) {
+            const launchError = new Error("JulesSessionLaunchFailure: " + error.message);
+            launchError.cause = error;
+            console.error(`Failed to launch session for repository ${sourceName}`, launchError);
+            const tu = getTelemetryUtils();
+            if (tu) tu.dispatchEvent("JULES_LAUNCH_SESSION_FAILED", launchError, { sourceName });
             this.app.toast.show(`Could not launch the session. Please verify your API key has the correct permissions.`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error");
             if (fetchingIndicator) fetchingIndicator.style.display = '';
         } finally {
