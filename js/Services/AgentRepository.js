@@ -58,7 +58,6 @@ class AgentRepository {
                 const validation = this.validateCustomAgent(key, agent);
                 if (validation.valid) {
                     const validAgent = validation.sanitized;
-                    validAgent.prompt = agent.prompt;
                     this.customAgents[key] = validAgent;
                 } else {
                     console.warn(
@@ -87,24 +86,38 @@ class AgentRepository {
      * @returns {Promise<string|null>} The parsed prompt or the fallback value.
      */
     async fetchPrompt(name, url, fallback) {
-        try {
-            const res = await NetworkUtils.fetchWithRetry(url, { throwOn404: false });
-            if (!res.ok) {
-                if (!url.includes("fusions")) {
-                    console.warn(`Failed to load prompt for ${name}`);
-                }
-                return fallback;
-            }
-            return await res.text();
-        } catch (e) {
-            console.warn(
-                url.includes("fusions")
-                    ? `Error loading custom prompt for ${name}`
-                    : `Error loading prompt for ${name}`,
-                e
-            );
-            return fallback;
+        // If this exact prompt is currently being fetched, wait for the existing promise.
+        // Prevent concurrent identical fetch requests.
+        this._pendingPrompts = this._pendingPrompts || {};
+        if (this._pendingPrompts[url]) {
+            return this._pendingPrompts[url];
         }
+
+        const fetchPromise = (async () => {
+            try {
+                const res = await NetworkUtils.fetchWithRetry(url, { throwOn404: false });
+                if (!res.ok) {
+                    if (!url.includes("fusions")) {
+                        console.warn(`Failed to load prompt for ${name}`);
+                    }
+                    return fallback;
+                }
+                return await res.text();
+            } catch (e) {
+                console.warn(
+                    url.includes("fusions")
+                        ? `Error loading custom prompt for ${name}`
+                        : `Error loading prompt for ${name}`,
+                    e
+                );
+                return fallback;
+            } finally {
+                delete this._pendingPrompts[url];
+            }
+        })();
+
+        this._pendingPrompts[url] = fetchPromise;
+        return fetchPromise;
     }
 
     /**

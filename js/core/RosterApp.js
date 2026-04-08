@@ -609,8 +609,22 @@ class RosterApp {
           if (promptArea && !promptArea.innerHTML.trim()) {
               let agent = this.getAgentForUI(index);
               if (agent) {
-                  promptArea.innerHTML = '';
-                  promptArea.appendChild(AgentCard.getPromptNode(agent));
+                  if (agent.prompt === undefined) {
+                      const fallbackText = "No protocol data available.";
+                      // Temporarily render a loading spinner
+                      promptArea.innerHTML = '<div style="display:flex; justify-content:center; align-items:center; height:100%;"><div class="loading-spinner" style="width:1.5rem; height:1.5rem; margin:0;"></div></div>';
+
+                      const url = agent.promptFile || (agent.isCustom ? `./prompts/fusions/${agent.name}.md` : `./prompts/${agent.name}.md`);
+
+                      this.agentRepo.fetchPrompt(agent.name, url, fallbackText).then((fetchedPrompt) => {
+                          agent.prompt = fetchedPrompt;
+                          promptArea.innerHTML = '';
+                          promptArea.appendChild(AgentCard.getPromptNode(agent));
+                      });
+                  } else {
+                      promptArea.innerHTML = '';
+                      promptArea.appendChild(AgentCard.getPromptNode(agent));
+                  }
               }
           }
           card.classList.add('flipped');
