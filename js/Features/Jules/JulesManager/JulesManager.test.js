@@ -1608,10 +1608,20 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             document.getElementById('julesRepoPicker').value = 'sources/github/a/b';
             window.julesService.createSession.mockRejectedValue(new Error('Auth failed'));
 
+            const TelemetryUtils = require('../../../Utils/telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
             await manager.launchSession(agent, btn);
 
             expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', TOAST_TYPES.ERROR);
             expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, BUTTON_STATES.READY, 'Launch in Jules 🚀');
+            expect(dispatchSpy).toHaveBeenCalledWith("JULES_LAUNCH_SESSION_FAILED", expect.any(Error), { sourceName: 'sources/github/a/b' });
+            expect(consoleSpy).toHaveBeenCalledWith("Failed to launch session for repository sources/github/a/b", expect.any(Error));
+            expect(consoleSpy.mock.calls[0][1].message).toContain("JulesSessionLaunchFailure");
+
+            dispatchSpy.mockRestore();
+            consoleSpy.mockRestore();
         });
 
         it('should handle API launch error when fetchingIndicator is missing', async () => {
