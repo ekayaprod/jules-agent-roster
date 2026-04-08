@@ -112,6 +112,8 @@ class JulesService {
     async createSession(agentMarkdown, userTask, sourceName, title = "Agent Task") {
         const prompt = `${PromptParser.stripFrontmatter(agentMarkdown || "")}
 
+You must output valid JSON. Expected keys: action, data.
+
 USER TASK TO EXECUTE:
 ${userTask}`;
 
@@ -121,6 +123,7 @@ ${userTask}`;
                 source: sourceName,
                 githubRepoContext: { startingBranch: "main" }
             },
+            response_format: { type: "json_object" },
             automationMode: "AUTO_CREATE_PR",
             title: title
         };
