@@ -78,7 +78,7 @@ function buildRoster() {
     }
 
     const outputPath = path.join(rootDir, 'roster-payload.json');
-    fs.writeFileSync(outputPath, JSON.stringify(agents, null, 2));
+    fs.writeFileSync(outputPath, JSON.stringify(agents));
     console.log(`Successfully compiled ${agents.length} agents to roster-payload.json`);
 }
 
