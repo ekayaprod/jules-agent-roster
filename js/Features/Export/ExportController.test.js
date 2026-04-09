@@ -46,6 +46,9 @@ describe('ExportController', () => {
             },
             toast: {
                 show: jest.fn()
+            },
+            agentRepo: {
+                fetchPrompt: jest.fn().mockResolvedValue('fetched mock prompt')
             }
         };
         btnMock = document.createElement('button');
@@ -93,33 +96,34 @@ global.AgentUtils = AgentUtils;
     });
 
     describe('downloadCustomAgents', () => {
-        it('downloads valid custom agents', () => {
+        it('downloads valid custom agents', async () => {
             global.FormatUtils.formatAgentPrompts.mockReturnValueOnce('formatted agents');
-            controller.downloadCustomAgents(btnMock);
+            await controller.downloadCustomAgents(btnMock);
             expect(global.FormatUtils.formatAgentPrompts).toHaveBeenCalledWith([appMock.customAgents['custom1']]);
             expect(global.DownloadUtils.downloadTextFile).toHaveBeenCalledWith('# Custom Roster\nformatted agents', 'jules_custom_agents.md');
             expect(global.ClipboardUtils.animateButtonSuccess).toHaveBeenCalledWith(btnMock, 'Downloaded!');
         });
 
-        it('shows toast and aborts if no valid custom agents', () => {
+        it('shows toast and aborts if no valid custom agents', async () => {
+            appMock.agentRepo.fetchPrompt = jest.fn().mockResolvedValue('');
             appMock.customAgents = { 'invalid': { prompt: '' }, 'missing': {} };
-            controller.downloadCustomAgents(btnMock);
+            await controller.downloadCustomAgents(btnMock);
             expect(appMock.toast.show).toHaveBeenCalledWith('No custom agents available.');
             expect(global.DownloadUtils.downloadTextFile).not.toHaveBeenCalled();
         });
 
-        it('shows toast and aborts if customAgents is null', () => {
+        it('shows toast and aborts if customAgents is null', async () => {
             appMock.customAgents = null;
-            controller.downloadCustomAgents(btnMock);
+            await controller.downloadCustomAgents(btnMock);
             expect(appMock.toast.show).toHaveBeenCalledWith('No custom agents available.');
             expect(global.DownloadUtils.downloadTextFile).not.toHaveBeenCalled();
         });
     });
 
     describe('downloadAll', () => {
-        it('downloads all core agents', () => {
+        it('downloads all core agents', async () => {
             global.FormatUtils.formatAgentPrompts.mockReturnValueOnce('formatted core agents');
-            controller.downloadAll(btnMock);
+            await controller.downloadAll(btnMock);
             expect(global.FormatUtils.formatAgentPrompts).toHaveBeenCalledWith(appMock.agents);
             expect(global.DownloadUtils.downloadTextFile).toHaveBeenCalledWith('# Master Roster\nformatted core agents', 'jules_roster.md');
             expect(global.ClipboardUtils.animateButtonSuccess).toHaveBeenCalledWith(btnMock, 'Downloaded!');

@@ -447,6 +447,13 @@ class JulesManager {
             return;
         }
 
+        if (agent.prompt === undefined) {
+            if (btn) btn.disabled = true;
+            const url = agent.promptFile || (agent.isCustom ? `./prompts/fusions/${agent.name}.md` : `./prompts/${agent.name}.md`);
+            agent.prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
+            if (btn) btn.disabled = false;
+        }
+
         // 🪄 CONJURE: Optimistic UI for Session Launch with CSS skeletal rendering
         const terminal = this.getEl("julesTerminal");
         const fetchingIndicator = terminal.querySelector('#fetchingIndicator');

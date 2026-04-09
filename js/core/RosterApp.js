@@ -123,6 +123,18 @@ class RosterApp {
     this.renderAgents();
     this.bindEvents();
     this.initObserver();
+
+    // Start pre-fetching core agent prompts in the background after UI initialization
+    setTimeout(() => {
+      this.agents.forEach(agent => {
+        if (agent.prompt === undefined) {
+          const url = agent.promptFile || `./prompts/${agent.name}.md`;
+          this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
+              agent.prompt = fetched;
+          });
+        }
+      });
+    }, 1000);
   }
 
 
@@ -609,8 +621,22 @@ class RosterApp {
           if (promptArea && !promptArea.innerHTML.trim()) {
               let agent = this.getAgentForUI(index);
               if (agent) {
-                  promptArea.innerHTML = '';
-                  promptArea.appendChild(AgentCard.getPromptNode(agent));
+                  if (agent.prompt === undefined) {
+                      const fallbackText = "No protocol data available.";
+                      // Temporarily render a loading spinner
+                      promptArea.innerHTML = '<div style="display:flex; justify-content:center; align-items:center; height:100%;"><div class="loading-spinner" style="width:1.5rem; height:1.5rem; margin:0;"></div></div>';
+
+                      const url = agent.promptFile || (agent.isCustom ? `./prompts/fusions/${agent.name}.md` : `./prompts/${agent.name}.md`);
+
+                      this.agentRepo.fetchPrompt(agent.name, url, fallbackText).then((fetchedPrompt) => {
+                          agent.prompt = fetchedPrompt;
+                          promptArea.innerHTML = '';
+                          promptArea.appendChild(AgentCard.getPromptNode(agent));
+                      });
+                  } else {
+                      promptArea.innerHTML = '';
+                      promptArea.appendChild(AgentCard.getPromptNode(agent));
+                  }
               }
           }
           card.classList.add('flipped');
@@ -694,6 +720,26 @@ class RosterApp {
               return;
           }
       }
+    });
+
+    // Pre-fetch custom/fusion agent prompts on hover to reduce flip latency
+    document.addEventListener('mouseover', (e) => {
+        const card = e.target.closest('.flip-card');
+        if (card && !card.classList.contains('flipped')) {
+            const frontTarget = card.querySelector('[data-action="flip-card"]');
+            if (frontTarget) {
+                const index = frontTarget.dataset.index;
+                if (index) {
+                    let agent = this.getAgentForUI(index);
+                    if (agent && agent.isCustom && agent.prompt === undefined) {
+                        const url = agent.promptFile || `./prompts/fusions/${agent.name}.md`;
+                        this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
+                            agent.prompt = fetched;
+                        });
+                    }
+                }
+            }
+        }
     });
 
     // Close search and active dropdowns on Escape key

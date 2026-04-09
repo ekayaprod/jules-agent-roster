@@ -39,7 +39,7 @@ function buildRoster() {
                     if (parsed.attributes.name) {
                         const agent = {
                             ...parsed.attributes,
-                            prompt: content,
+                            promptFile: `prompts/${file}`,
                             isCustom: false
                         };
                         if (!agent.name) agent.name = file.replace('.md', '');
@@ -65,7 +65,7 @@ function buildRoster() {
                     if (name) {
                         const agent = {
                             ...parsed.attributes,
-                            prompt: content,
+                            promptFile: `prompts/fusions/${file}`,
                             isCustom: true
                         };
                         agents.push(agent);
