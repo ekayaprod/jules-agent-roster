@@ -40,7 +40,7 @@ class NetworkUtils {
         if (options.body && typeof options.body === 'string' && options.body.length > 1000000) {
             throw new Error("Invalid payload: Body exceeds 1MB buffer limit.");
         }
-        if (options.body && options.body.includes('__proto__')) {
+        if (options.body && typeof options.body === 'string' && options.body.includes('__proto__')) {
             throw new Error("Invalid payload: Prototype pollution detected in payload.");
         }
 

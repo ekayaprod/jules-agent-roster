@@ -1,3 +1,3 @@
-## Cortex — Strict Schema Migration
-**Learning:** Replaced raw text JSON prompt instructions with strict `json_schema` payloads in JulesService API to enforce deterministic downstream types.
-**Action:** Always prefer native SDK structural schema definitions over implicit text prompt instructions to mitigate non-deterministic output hazards.
+## Cortex — NetworkUtils Payload Fortification
+**Learning:** Discovered that executing `.includes()` directly on `options.body` without verifying it is a string causes fatal unhandled exceptions blocking AI requests.
+**Action:** Always enforce type checking before running string validation on API payloads. Invoked Declarative Compliance Fallback as no other safe targets were found without violating Test Immunity.
