@@ -30,16 +30,6 @@
     "isCustom": false
   },
   {
-    "name": "Cartographer",
-    "emoji": "🗺️",
-    "role": "System Topographer",
-    "category": "Strategy",
-    "tier": "Core",
-    "description": "Transforms hidden boundaries and complex data flows into beautiful, multi-layered visual graphs. Uncovers the invisible architecture and maps the physical ecosystem.",
-    "promptFile": "prompts/Cartographer.md",
-    "isCustom": false
-  },
-  {
     "name": "Cortex",
     "emoji": "🧠",
     "role": "Synaptic Plumber",
@@ -50,16 +40,6 @@
     "isCustom": false
   },
   {
-    "name": "Curator",
-    "emoji": "🗂️",
-    "role": "Payload Conservator",
-    "category": "UX",
-    "tier": "Core",
-    "description": "Compresses heavy media and strips hidden metadata to enforce weightless payload transmission and prevent catastrophic layout shifts.",
-    "promptFile": "prompts/Curator.md",
-    "isCustom": false
-  },
-  {
     "name": "Helix",
     "emoji": "🧬",
     "role": "Structural Geneticist",
@@ -67,16 +47,6 @@
     "tier": "Core",
     "description": "SPLICE WET mutations into pure utilities to enforce structural cohesion and eradicate copy-pasted debt.",
     "promptFile": "prompts/Helix.md",
-    "isCustom": false
-  },
-  {
-    "name": "Herald",
-    "emoji": "📣",
-    "role": "Release Broadcaster",
-    "category": "Docs",
-    "tier": "Core",
-    "description": "Translates chaotic git noise and internal jargon into structured, user-facing release histories. It elevates architectural impact and crushes internal ticketing spam to keep users informed.",
-    "promptFile": "prompts/Herald.md",
     "isCustom": false
   },
   {
@@ -420,6 +390,16 @@
     "isCustom": true
   },
   {
+    "name": "Cartographer",
+    "emoji": "🗺️",
+    "role": "System Topographer",
+    "category": "Observability",
+    "tier": "Radiant",
+    "description": "Transforms hidden boundaries and complex data flows into beautiful, multi-layered visual graphs using text-based markdown syntax.",
+    "promptFile": "prompts/fusions/Cartographer.md",
+    "isCustom": true
+  },
+  {
     "name": "Catalogue",
     "emoji": "📇",
     "role": "Centralization Specialist",
@@ -537,6 +517,16 @@
     "tier": "Fusion",
     "description": "Seek out highly complex, undocumented machine syntaxes like raw Regular Expressions and Cron schedules. Translate these dense strings into plain, human-readable English inline comments.",
     "promptFile": "prompts/fusions/Cryptographer.md",
+    "isCustom": true
+  },
+  {
+    "name": "Curator",
+    "emoji": "🗂️",
+    "role": "Payload Conservator",
+    "category": "Hygiene",
+    "tier": "Radiant",
+    "description": "Compresses heavy media, strips hidden metadata, and purges orphaned visual code to enforce weightless frontend rendering.",
+    "promptFile": "prompts/fusions/Curator.md",
     "isCustom": true
   },
   {
@@ -1114,8 +1104,8 @@
     "emoji": "🧑‍🎨",
     "role": "Contextual Guide",
     "category": "UX",
-    "tier": "Fusion",
-    "description": "Transform raw data dumps and blank screens into inspiring, actionable onboarding flows.",
+    "tier": "Radiant",
+    "description": "Transforms raw data dumps and dead-end blank screens into inspiring, actionable onboarding flows with contextual tooltips and functional Call-to-Action buttons.",
     "promptFile": "prompts/fusions/Muse.md",
     "isCustom": true
   },

@@ -1,0 +1,47 @@
+# Orphaned Agents
+
+This file tracks agents in the `prompts/fusions` directory that are no longer referenced in `fusion_matrix.json`.
+
+- Aligner
+- Assessor
+- Blackbox
+- Captionist
+- Catalogue
+- Choreographer
+- Darkroom
+- Decoder
+- Fabricator
+- Gallerist
+- Guardian
+- Hazmat
+- Historian
+- Illuminator
+- Interrogator
+- Limiter
+- LiveFeed
+- Mason
+- Minimalist
+- Orator
+- Press Secretary
+- Press
+- Prophet
+- Publicist
+- Purger
+- Registrar
+- Restorer
+- Sandboxer
+- Seawall
+- Sherpa
+- Silencer
+- Siren
+- Speed Camera
+- Sprinter
+- Strategist
+- Stress Tester
+- Swatch
+- Telemetrist
+- Tokenizer
+- Tower
+- Town Crier
+- Upgrader
+- Whistleblower
