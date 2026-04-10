@@ -95,7 +95,7 @@
     "role": "Triage Auditor",
     "category": "Observability",
     "tier": "Core",
-    "description": "An exhaustive meta-agent that deep-scans the repository to generate a centralized, delegated bounty board for the rest of the agent swarm.",
+    "description": "AUDIT the macroscopic health of the repository to generate a centralized, delegated bounty board for the entire agent swarm.",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
@@ -157,16 +157,6 @@
     "tier": "Plus",
     "description": "Erects rigid validation boundaries to neutralize injection vectors and seal exposed trust boundaries. It crushes hardcoded secrets before they ever leak into the application layer.",
     "promptFile": "prompts/Sentinel+.md",
-    "isCustom": false
-  },
-  {
-    "name": "Spark",
-    "emoji": "💡",
-    "role": "Innovation Catalyst",
-    "category": "Strategy",
-    "tier": "Core",
-    "description": "Systematically identifies technical obsolescence and DX friction, authoring roadmap proposals to replace stagnant patterns with industry-standard solutions.",
-    "promptFile": "prompts/Spark.md",
     "isCustom": false
   },
   {
