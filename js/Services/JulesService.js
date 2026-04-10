@@ -123,7 +123,20 @@ ${userTask}`;
                 source: sourceName,
                 githubRepoContext: { startingBranch: "main" }
             },
-            response_format: { type: "json_object" },
+            response_format: {
+                type: "json_schema",
+                json_schema: {
+                    name: "agent_response",
+                    schema: {
+                        type: "object",
+                        properties: {
+                            action: { type: "string" },
+                            data: { type: "object" }
+                        },
+                        required: ["action", "data"]
+                    }
+                }
+            },
             automationMode: "AUTO_CREATE_PR",
             title: title
         };
