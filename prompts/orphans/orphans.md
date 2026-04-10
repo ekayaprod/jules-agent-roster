@@ -1,6 +1,6 @@
 # Orphaned Agents
 
-This file tracks agents in the `prompts/fusions` directory that are no longer referenced in `fusion_matrix.json`.
+This file tracks agents in the `prompts/orphans` directory that are no longer referenced in `fusion_matrix.json`.
 
 - Aligner
 - Assessor
@@ -22,8 +22,8 @@ This file tracks agents in the `prompts/fusions` directory that are no longer re
 - Mason
 - Minimalist
 - Orator
-- Press Secretary
 - Press
+- Press Secretary
 - Prophet
 - Publicist
 - Purger
