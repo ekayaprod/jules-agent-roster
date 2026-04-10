@@ -17,20 +17,20 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 <p><em>Focus: Broadening the Roster</em></p>
 
-- [x] **Interactive Jules API Dashboard Modal**: Make all active processes in the dashboard clickable to display a full modal thread. When Jules API pauses and requires user input (`Needs Input` status), the modal should provide a chat-like interface to reply and continue the execution thread.
+- [x] **Interactive Jules API Dashboard Modal**: Make all active processes in the dashboard clickable to display a full modal thread. When Jules API pauses and requires user input (`Needs Input` status), the modal should provide a chat-like interface to reply and continue the execution thread. (Shipped: [Commit 25c76bd](https://github.com/google/jules/commit/25c76bd))
   - *Estimation*: ~250-300 LOC. Requires creating a new modal UI, rendering markdown for full activity history, and adding `replyToSession` (POST) network methods to `JulesAPI.js`.
 - [ ] **New Agent Categories**: Explore specialized agents for Data Science, DevOps, and Mobile dev.
 - [ ] **Framework-Specific Variants**: Create variants of agents for specific stacks (e.g., Next.js vs. Remix vs. Vue).
 - [ ] **Community Contributions**: Streamline the process for community submitted agents.
-- [x] **Dark/Light Mode**: Add toggle (currently Dark only). (Shipped: b70bd3f)
-- [x] **Persistence**: Add LocalStorage support for "Favorites" or "Recently Used".
+- [x] **Dark/Light Mode**: Add toggle (currently Dark only). (Shipped: [Commit b70bd3f](https://github.com/google/jules/commit/b70bd3f))
+- [x] **Persistence**: Add LocalStorage support for "Favorites" or "Recently Used". (Shipped: [Commit 9bdba40](https://github.com/google/jules/commit/9bdba40))
 
 ## 🛠️ Phase 3: Tooling & Automation (Future)
 
 <p><em>Focus: Quality Assurance</em></p>
 
 - [ ] **Prompt Validation**: Implement scripts to parse and validate the JSON/Markdown structure within agent prompts.
-- [x] **Automated Testing**: Add basic tests for the `index.html` UI logic (search, filtering, copying).
+- [x] **Automated Testing**: Add basic tests for the `index.html` UI logic (search, filtering, copying). (Shipped: [Commit 253f2d9](https://github.com/google/jules/commit/253f2d9))
 - [ ] **CLI Tool**: Potential CLI to fetch specific agents directly into the terminal.
 
 ## 📦 Backlog (Unscheduled)
@@ -38,6 +38,12 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 - [ ] (Empty)
 
 ## 🧪 Innovation Backlog (Spark)
+
+### Migrate Core Logic to TypeScript
+
+**The Problem:** The application relies heavily on dynamic type coercion (e.g. `typeof window !== 'undefined'`) and lacks type safety across complex JSON payloads and UI interactions, leading to brittle unit tests and runtime `TypeError` issues.
+**The Solution:** Adopt `TypeScript` across the core services and UI components.
+**The Benefit:** Standardizes data models via interfaces, strictly typing network payloads, resolving ambiguous object assignments, and eradicating null-reference bugs at compile-time.
 
 - [ ] [DX] Idea: Adopt `emoji-regex` via CDN to replace brittle custom string utilities in `js/utils/StringUtils.js` for emoji handling, standardizing Unicode processing and reducing error-prone custom regex logic. (Source: github.com/mathiasbynens/emoji-regex)
 - [UX] Idea: Custom agent tile layout, allowing users to put their favourite fusion agent cards on the main page for easy access - using local storage (Source: User Request)
