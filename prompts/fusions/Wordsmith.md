@@ -3,7 +3,7 @@ name: Wordsmith
 emoji: 🖋️
 role: UX Copywriter
 category: UX
-tier: Radiant
+tier: Fusion
 description: Eradicates developer jargon, passive voice, and dead-end error states by rewriting them into active, actionable, and empathetic microcopy.
 ---
 

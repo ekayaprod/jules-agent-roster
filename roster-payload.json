@@ -15,7 +15,7 @@
     "role": "Readme Writer",
     "category": "Docs",
     "tier": "Core",
-    "description": "PUBLISH high-impact readmes and architectural overviews, purging stale setup instructions to convert casual visitors into active contributors.",
+    "description": "Authors high-impact READMEs, Quick Starts, and architectural overviews, purging stale setup instructions to convert casual visitors into active contributors.",
     "promptFile": "prompts/Author.md",
     "isCustom": false
   },
@@ -37,6 +37,16 @@
     "tier": "Core",
     "description": "Wires AI APIs to the bleeding edge, enforcing strict schemas, modern SDKs, and resilient timeouts to outpace rapid platform deprecations.",
     "promptFile": "prompts/Cortex.md",
+    "isCustom": false
+  },
+  {
+    "name": "Dispatch",
+    "emoji": "📯",
+    "role": "Logistics Warden",
+    "category": "Operations",
+    "tier": "Core",
+    "description": "Dispatch pristine code payloads to production by fortifying CI/CD pipelines, optimizing container transit, and sounding the horn of release.",
+    "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
   {
@@ -72,20 +82,20 @@
   {
     "name": "Navigator",
     "emoji": "🧭",
-    "role": "Strategic Compass",
+    "role": "Roadmap Visionary",
     "category": "Strategy",
     "tier": "Core",
-    "description": "Synchronizes strategic project documents with codebase reality to ensure absolute alignment. It evaluates physical git history to eradicate hallucinated progress and roadmap drift.",
+    "description": "Audits git history to ground roadmaps in physical reality, while identifying architectural obsolescence to chart future innovations.",
     "promptFile": "prompts/Navigator.md",
     "isCustom": false
   },
   {
     "name": "Overseer",
     "emoji": "👁️",
-    "role": "Compliance Monitor",
-    "category": "Strategy",
+    "role": "Triage Auditor",
+    "category": "Observability",
     "tier": "Core",
-    "description": "Executes deep, forensic scans to detect systemic decay. Acts as the cold, bureaucratic engine tracking deviations from state standards.",
+    "description": "An exhaustive meta-agent that deep-scans the repository to generate a centralized, delegated bounty board for the rest of the agent swarm.",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
@@ -132,10 +142,10 @@
   {
     "name": "Scribe",
     "emoji": "✍️",
-    "role": "Context Historian",
+    "role": "Release Archivist",
     "category": "Docs",
     "tier": "Core",
-    "description": "Illuminates complex undocumented logic by weaving precise language-native documentation into the code. It preserves institutional memory and explains the why behind obscure architectural hacks.",
+    "description": "Aggregates unreleased git history into unified public release notes, and translates that history into localized inline JSDocs.",
     "promptFile": "prompts/Scribe.md",
     "isCustom": false
   },
@@ -180,6 +190,16 @@
     "isCustom": false
   },
   {
+    "name": "Vibe Check",
+    "emoji": "🪩",
+    "role": "Jive Breaker",
+    "category": "Hygiene",
+    "tier": "Core",
+    "description": "Eradicates hallucinated API calls, synthetic abstractions, and orphaned dependencies to ensure absolute runtime stability.",
+    "promptFile": "prompts/Vibe Check.md",
+    "isCustom": false
+  },
+  {
     "name": "Vibe",
     "emoji": "🎧",
     "role": "Flow State Hacker",
@@ -187,16 +207,6 @@
     "tier": "Core",
     "description": "Operate as the self-starting creative engine of the repository, obsessively coding missing features into absolute, production-ready reality.",
     "promptFile": "prompts/Vibe.md",
-    "isCustom": false
-  },
-  {
-    "name": "Wordsmith",
-    "emoji": "🖋️",
-    "role": "UX Copywriter",
-    "category": "UX",
-    "tier": "Core",
-    "description": "Eradicates developer jargon, passive voice, and dead-end error states by rewriting them into active, actionable, and empathetic microcopy.",
-    "promptFile": "prompts/Wordsmith.md",
     "isCustom": false
   },
   {
@@ -2000,16 +2010,6 @@
     "isCustom": true
   },
   {
-    "name": "Vibe Check",
-    "emoji": "🪩",
-    "role": "Jive Breaker",
-    "category": "Strategy",
-    "tier": "Fusion",
-    "description": "Eradicates hallucinated API calls, synthetic abstractions, and orphaned dependencies to ensure absolute runtime stability.",
-    "promptFile": "prompts/fusions/Vibe Check.md",
-    "isCustom": true
-  },
-  {
     "name": "Virtuoso",
     "emoji": "🎭",
     "role": "Interaction Artisan",
@@ -2067,6 +2067,16 @@
     "tier": "Fusion",
     "description": "Translate raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.",
     "promptFile": "prompts/fusions/Whistleblower.md",
+    "isCustom": true
+  },
+  {
+    "name": "Wordsmith",
+    "emoji": "🖋️",
+    "role": "UX Copywriter",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "Eradicates developer jargon, passive voice, and dead-end error states by rewriting them into active, actionable, and empathetic microcopy.",
+    "promptFile": "prompts/fusions/Wordsmith.md",
     "isCustom": true
   },
   {
