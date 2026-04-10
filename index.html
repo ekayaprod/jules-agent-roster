@@ -548,14 +548,18 @@
           <button class="clear-search-btn" id="clearBtn" aria-label="Clear search"><svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
         </div>
         <a href="#plus" class="nav-pill">Plus</a>
-        <a href="#architecture" class="nav-pill">Architecture</a>
-        <a href="#hygiene" class="nav-pill">Hygiene</a>
-        <a href="#strategy" class="nav-pill">Strategy</a>
+        <a href="#feature" class="nav-pill">Feature</a>
         <a href="#ux" class="nav-pill">UX</a>
+        <a href="#architecture" class="nav-pill">Architecture</a>
         <a href="#docs" class="nav-pill">Docs</a>
-        <a href="#testing" class="nav-pill">Testing</a>
-        <a href="#operations" class="nav-pill">Operations</a>
+        <a href="#hygiene" class="nav-pill">Hygiene</a>
+        <a href="#performance" class="nav-pill">Performance</a>
         <a href="#security" class="nav-pill">Security</a>
+        <a href="#operations" class="nav-pill">Operations</a>
+        <a href="#compliance" class="nav-pill">Compliance</a>
+        <a href="#testing" class="nav-pill">Testing</a>
+        <a href="#strategy" class="nav-pill">Strategy</a>
+        <a href="#observability" class="nav-pill">Observability</a>
       </nav>
     </div>
 
@@ -576,22 +580,30 @@
       <div class="grid empty" id="pinnedGrid" style="display: none;"></div>
       <h2 id="plus" class="section-header">Plus</h2>
       <div class="grid" id="plusGrid"></div>
-      <h2 id="architecture" class="section-header">Architecture</h2>
-      <div class="grid" id="architectureGrid"></div>
-      <h2 id="hygiene" class="section-header">Hygiene</h2>
-      <div class="grid" id="hygieneGrid"></div>
-      <h2 id="strategy" class="section-header">Strategy</h2>
-      <div class="grid" id="strategyGrid"></div>
+      <h2 id="feature" class="section-header">Feature</h2>
+      <div class="grid" id="featureGrid"></div>
       <h2 id="ux" class="section-header">UX</h2>
       <div class="grid" id="uxGrid"></div>
+      <h2 id="architecture" class="section-header">Architecture</h2>
+      <div class="grid" id="architectureGrid"></div>
       <h2 id="docs" class="section-header">Docs</h2>
       <div class="grid" id="docsGrid"></div>
-      <h2 id="testing" class="section-header">Testing</h2>
-      <div class="grid" id="testingGrid"></div>
-      <h2 id="operations" class="section-header">Operations</h2>
-      <div class="grid" id="operationsGrid"></div>
+      <h2 id="hygiene" class="section-header">Hygiene</h2>
+      <div class="grid" id="hygieneGrid"></div>
+      <h2 id="performance" class="section-header">Performance</h2>
+      <div class="grid" id="performanceGrid"></div>
       <h2 id="security" class="section-header">Security</h2>
       <div class="grid" id="securityGrid"></div>
+      <h2 id="operations" class="section-header">Operations</h2>
+      <div class="grid" id="operationsGrid"></div>
+      <h2 id="compliance" class="section-header">Compliance</h2>
+      <div class="grid" id="complianceGrid"></div>
+      <h2 id="testing" class="section-header">Testing</h2>
+      <div class="grid" id="testingGrid"></div>
+      <h2 id="strategy" class="section-header">Strategy</h2>
+      <div class="grid" id="strategyGrid"></div>
+      <h2 id="observability" class="section-header">Observability</h2>
+      <div class="grid" id="observabilityGrid"></div>
       <div style="flex-basis: 100%; height: 0;"></div>
     </main>
 
@@ -780,8 +792,8 @@
           categoryNav: "#category-nav", main: "#main", navPills: ".nav-pill",
           sectionHeader: ".section-header", grid: ".grid", card: ".card"
         },
-        categories: { pinned: "pinnedGrid", plus: "plusGrid", architecture: "architectureGrid", hygiene: "hygieneGrid", strategy: "strategyGrid", ux: "uxGrid", docs: "docsGrid", testing: "testingGrid", operations: "operationsGrid", security: "securityGrid" },
-        sectionMap: { pinnedGrid: "pinned", plusGrid: "plus", architectureGrid: "architecture", hygieneGrid: "hygiene", strategyGrid: "strategy", uxGrid: "ux", docsGrid: "docs", testingGrid: "testing", operationsGrid: "operations", securityGrid: "security" }
+        categories: { pinned: "pinnedGrid", plus: "plusGrid", feature: "featureGrid", ux: "uxGrid", architecture: "architectureGrid", docs: "docsGrid", hygiene: "hygieneGrid", performance: "performanceGrid", security: "securityGrid", operations: "operationsGrid", compliance: "complianceGrid", testing: "testingGrid", strategy: "strategyGrid", observability: "observabilityGrid" },
+        sectionMap: { pinnedGrid: "pinned", plusGrid: "plus", featureGrid: "feature", uxGrid: "ux", architectureGrid: "architecture", docsGrid: "docs", hygieneGrid: "hygiene", performanceGrid: "performance", securityGrid: "security", operationsGrid: "operations", complianceGrid: "compliance", testingGrid: "testing", strategyGrid: "strategy", observabilityGrid: "observability" }
       };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/tabbable@6.2.0/dist/index.umd.js"></script>
