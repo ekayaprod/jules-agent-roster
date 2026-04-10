@@ -180,16 +180,6 @@
     "isCustom": false
   },
   {
-    "name": "Vibe Check",
-    "emoji": "🪩",
-    "role": "Jive Breaker",
-    "category": "Strategy",
-    "tier": "Core",
-    "description": "Eradicates hallucinated API calls, synthetic abstractions, and orphaned dependencies to ensure absolute runtime stability.",
-    "promptFile": "prompts/Vibe Check.md",
-    "isCustom": false
-  },
-  {
     "name": "Vibe",
     "emoji": "🎧",
     "role": "Flow State Hacker",
@@ -197,6 +187,16 @@
     "tier": "Core",
     "description": "Operate as the self-starting creative engine of the repository, obsessively coding missing features into absolute, production-ready reality.",
     "promptFile": "prompts/Vibe.md",
+    "isCustom": false
+  },
+  {
+    "name": "Wordsmith",
+    "emoji": "🖋️",
+    "role": "UX Copywriter",
+    "category": "UX",
+    "tier": "Core",
+    "description": "Eradicates developer jargon, passive voice, and dead-end error states by rewriting them into active, actionable, and empathetic microcopy.",
+    "promptFile": "prompts/Wordsmith.md",
     "isCustom": false
   },
   {
@@ -2000,6 +2000,16 @@
     "isCustom": true
   },
   {
+    "name": "Vibe Check",
+    "emoji": "🪩",
+    "role": "Jive Breaker",
+    "category": "Strategy",
+    "tier": "Fusion",
+    "description": "Eradicates hallucinated API calls, synthetic abstractions, and orphaned dependencies to ensure absolute runtime stability.",
+    "promptFile": "prompts/fusions/Vibe Check.md",
+    "isCustom": true
+  },
+  {
     "name": "Virtuoso",
     "emoji": "🎭",
     "role": "Interaction Artisan",
@@ -2057,16 +2067,6 @@
     "tier": "Fusion",
     "description": "Translate raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.",
     "promptFile": "prompts/fusions/Whistleblower.md",
-    "isCustom": true
-  },
-  {
-    "name": "Wordsmith",
-    "emoji": "🖋️",
-    "role": "UX Copywriter",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Eradicates developer jargon, passive voice, and dead-end error states by rewriting them into active, actionable, and empathetic microcopy.",
-    "promptFile": "prompts/fusions/Wordsmith.md",
     "isCustom": true
   },
   {

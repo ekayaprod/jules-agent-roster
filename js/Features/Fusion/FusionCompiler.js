@@ -12,7 +12,7 @@
 const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
   // Only allow base agents to be fused. Monthly/Power agents are excluded to prevent complexity explosion.
   const baseAgents = (agents || []).filter(
-    (a) => a.category !== "monthly" && a.category !== "power" && !["Spark", "Cartographer"].includes(a.name)
+    (a) => a.category !== "monthly" && a.category !== "power" && !["Spark"].includes(a.name)
   );
 
   /**
