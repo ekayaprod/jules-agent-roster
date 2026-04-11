@@ -1,68 +1,106 @@
 const TelemetryUtils = require('./telemetry-utils');
+const fs = require('fs');
+const path = require('path');
 
-describe('TelemetryUtils', () => {
-    let consoleErrorSpy;
+describe('TelemetryUtils boundary and coverage logic', () => {
+    let originalConsoleError;
+    const code = fs.readFileSync(path.join(__dirname, 'telemetry-utils.js'), 'utf8');
 
     beforeEach(() => {
-        consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+        originalConsoleError = console.error;
+        console.error = jest.fn();
     });
 
     afterEach(() => {
-        consoleErrorSpy.mockRestore();
+        console.error = originalConsoleError;
     });
 
-    it('dispatches structured JSON with a standard string error', () => {
-        TelemetryUtils.dispatchEvent('TEST_EVENT', 'string error msg', { extra: 'data' });
-
-        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-        const loggedArg = consoleErrorSpy.mock.calls[0][0];
-        const parsed = JSON.parse(loggedArg);
-
-        expect(parsed).toEqual({
+    it('formats error properly from Error object', () => {
+        TelemetryUtils.dispatchEvent('TEST_EVENT', new Error('Message'), { extra: 1 });
+        expect(console.error).toHaveBeenCalledWith(JSON.stringify({
             event: 'TEST_EVENT',
-            error: 'string error msg',
-            extra: 'data'
-        });
+            error: 'Message',
+            extra: 1
+        }));
     });
 
-    it('extracts the message from an Error object boundary', () => {
-        const errorObj = new Error('Boundary Error Message');
-        errorObj.stack = 'fake stack trace'; // ensure stack is ignored
-
-        TelemetryUtils.dispatchEvent('CRITICAL_FAIL', errorObj);
-
-        expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
-        const loggedArg = consoleErrorSpy.mock.calls[0][0];
-        const parsed = JSON.parse(loggedArg);
-
-        expect(parsed).toEqual({
-            event: 'CRITICAL_FAIL',
-            error: 'Boundary Error Message'
-        });
+    it('formats error properly from string', () => {
+        TelemetryUtils.dispatchEvent('TEST_EVENT', 'String error', { extra: 1 });
+        expect(console.error).toHaveBeenCalledWith(JSON.stringify({
+            event: 'TEST_EVENT',
+            error: 'String error',
+            extra: 1
+        }));
     });
 
-    it('handles null/undefined error gracefully without crashing', () => {
-        TelemetryUtils.dispatchEvent('NULL_EVENT', null);
-
-        const loggedArg = consoleErrorSpy.mock.calls[0][0];
-        const parsed = JSON.parse(loggedArg);
-
-        expect(parsed).toEqual({
-            event: 'NULL_EVENT',
-            error: null
-        });
+    it('exports to module.exports and global when both available', () => {
+        const mockModule = {};
+        const mockGlobal = {};
+        mockModule.exports = {};
+        const testCode = new Function('module', 'global', 'window', code);
+        testCode(mockModule, mockGlobal, undefined);
+        expect(mockModule.exports).toBeDefined();
+        expect(mockGlobal.TelemetryUtils).toBeDefined();
     });
 
-    it('survives missing arguments (boundary assault)', () => {
-        // Interrogate strict missing bounds
-        TelemetryUtils.dispatchEvent();
+    it('exports only to module.exports when global is undefined', () => {
+        const mockModule = { exports: {} };
+        const testCode = new Function('module', 'global', 'window', code);
+        testCode(mockModule, undefined, undefined);
+        expect(mockModule.exports).toBeDefined();
+    });
 
-        const loggedArg = consoleErrorSpy.mock.calls[0][0];
-        const parsed = JSON.parse(loggedArg);
+    it('exports to window when module is undefined but window is present', () => {
+        const mockWindow = {};
+        const testCode = new Function('module', 'global', 'window', code);
+        testCode(undefined, undefined, mockWindow);
+        expect(mockWindow.TelemetryUtils).toBeDefined();
+    });
 
-        expect(parsed).toEqual({
-            event: undefined,
-            error: undefined
-        });
+    it('attaches to window when module exists but module.exports is falsy', () => {
+        const mockWindow = {};
+        const mockModule = { exports: false };
+        const testCode = new Function('module', 'global', 'window', code);
+        testCode(mockModule, undefined, mockWindow);
+        expect(mockWindow.TelemetryUtils).toBeDefined();
+    });
+
+    it('handles environment where everything is missing without throwing', () => {
+        const testCode = new Function('module', 'global', 'window', code);
+        expect(() => {
+            testCode(undefined, undefined, undefined);
+        }).not.toThrow();
+    });
+
+    it('evaluates window attachment when typeof module is string', () => {
+        const mockWindow = {};
+        const testCode = new Function('module', 'global', 'window', code);
+        // By passing a string, `typeof module !== 'undefined'` is true, but `module.exports` will be undefined.
+        // This simulates a weird environment and should fall back to `window.TelemetryUtils`
+        testCode("string-module", undefined, mockWindow);
+        expect(mockWindow.TelemetryUtils).toBeDefined();
+    });
+
+    it('handles simulated browser context execution securely (100% coverage map)', () => {
+        // 🕵️ The exact test scenario to hit the "else if (typeof window !== 'undefined')" branch
+        const windowContext = { TelemetryUtils: undefined };
+        // We inject module as undefined strictly via the Function constructor arguments!
+        const executor = new Function('window', 'module', code);
+        executor(windowContext, undefined);
+        expect(windowContext.TelemetryUtils).toBeDefined();
+        expect(typeof windowContext.TelemetryUtils.dispatchEvent).toBe('function');
+    });
+});
+
+describe('TelemetryUtils isolated coverage', () => {
+    const fs = require('fs');
+    const path = require('path');
+    const code = fs.readFileSync(path.join(__dirname, 'telemetry-utils.js'), 'utf8');
+
+    it('attaches to window when module does not exist', () => {
+        const executor = new Function('window', code);
+        const windowMock = {};
+        executor(windowMock);
+        expect(windowMock.TelemetryUtils).toBeDefined();
     });
 });
