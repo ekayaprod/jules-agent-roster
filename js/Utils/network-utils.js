@@ -37,11 +37,16 @@ class NetworkUtils {
         }
 
         // 🐺 FORTIFY: Head 2 - Strict Schema Validation (Reject massive buffers & prototype pollution)
-        if (options.body && typeof options.body === 'string' && options.body.length > 1000000) {
-            throw new Error("Invalid payload: Body exceeds 1MB buffer limit.");
-        }
-        if (options.body && typeof options.body === 'string' && options.body.includes('__proto__')) {
-            throw new Error("Invalid payload: Prototype pollution detected in payload.");
+        if (options.body) {
+            if (typeof options.body !== 'string') {
+                throw new Error("Invalid payload: Body must be a stringized buffer.");
+            }
+            if (options.body.length > 1000000) {
+                throw new Error("Invalid payload: Body exceeds 1MB buffer limit.");
+            }
+            if (options.body.includes('__proto__')) {
+                throw new Error("Invalid payload: Prototype pollution detected in payload.");
+            }
         }
 
         const controller = new AbortController();
