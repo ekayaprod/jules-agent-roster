@@ -153,6 +153,9 @@ ${userTask}`;
      * @returns {Promise<Object>} The JSON response containing the updated session state.
      */
     async sendUserInput(sessionId, text) {
+        if (typeof sessionId !== 'string' || !/^[a-zA-Z0-9-]+$/.test(sessionId)) {
+            throw new Error("Invalid payload: Malformed session identifier.");
+        }
         return this._fetch(`sessions/${sessionId}/activities`, {
             method: 'POST',
             body: JSON.stringify({
@@ -170,6 +173,9 @@ ${userTask}`;
      * @see ../../docs/architecture/Services/README.md#julesapi-architecture for asynchronous polling strategy instead of synchronous streaming.
      */
     async getActivities(sessionId) {
+        if (typeof sessionId !== 'string' || !/^[a-zA-Z0-9-]+$/.test(sessionId)) {
+            throw new Error("Invalid payload: Malformed session identifier.");
+        }
         return this._fetch(`sessions/${sessionId}/activities?pageSize=${DEFAULT_PAGE_SIZE}`);
     }
 
