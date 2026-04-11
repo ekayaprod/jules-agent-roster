@@ -32,10 +32,10 @@
   {
     "name": "Cortex",
     "emoji": "🧠",
-    "role": "Synapse Plumber",
+    "role": "Synapse Fortifier",
     "category": "Operations",
     "tier": "Core",
-    "description": "WIRE AI APIs to the bleeding edge and harden network wrappers against type-safety regressions and platform drift.",
+    "description": "WIRE legacy AI APIs to modern SDKs, enforcing strict payload schemas and resilient timeout boundaries to eliminate silent runtime crashes.",
     "promptFile": "prompts/Cortex.md",
     "isCustom": false
   },

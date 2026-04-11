@@ -206,7 +206,9 @@ describe('createSession', () => {
             const task = "Do it";
             const source = "repo";
 
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
             const response = await service.createSession(markdown, task, source, "My Title");
+            consoleSpy.mockRestore();
 
             expect(fetchSpy).toHaveBeenCalledWith('sessions', {
                 method: 'POST',
@@ -223,7 +225,9 @@ describe('createSession', () => {
             const task = "Do it";
             const source = "repo";
 
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
             const response = await service.createSession(markdown, task, source);
+            consoleSpy.mockRestore();
 
             expect(fetchSpy).toHaveBeenCalledWith('sessions', {
                 method: 'POST',

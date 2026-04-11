@@ -226,9 +226,11 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
                 return originalGetEl(id);
             });
             window.julesService.createSession.mockRejectedValueOnce(new Error('fail'));
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
             await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn);
             expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session:'), TOAST_TYPES.ERROR, 20000);
+            consoleSpy.mockRestore();
             getElSpy.mockRestore();
         });
 
@@ -1636,11 +1638,13 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             // Disable the automatic _checkEmptyTerminal generation for the scope of the catch block assertion
             manager._checkEmptyTerminal = jest.fn();
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
             await manager.launchSession(agent, btn);
 
             expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session:'), TOAST_TYPES.ERROR, 20000);
             expect(terminal.querySelector('#fetchingIndicator')).toBeNull();
+            consoleSpy.mockRestore();
         });
 
         it('should append optimisticBlock when no firstSession exists', async () => {
