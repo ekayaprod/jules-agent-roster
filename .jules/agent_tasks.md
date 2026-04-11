@@ -12,7 +12,7 @@
 
 ## 🛠️ Maker Targets (Architecture & UX)
 - [ ] 🧬 `js/core/RosterApp.js`: Over 10 duplicate code blocks detected. Needs deduplication and extraction.
-- [ ] 🧬 `js/Features/Jules/JulesManager/JulesManager.js`: Over 12 duplicate code blocks detected. Extract shared logic into utilities.
+- [x] 🧬 `js/Features/Jules/JulesManager/JulesManager.js`: Over 12 duplicate code blocks detected. Extract shared logic into utilities.
 
 ## 🛡️ Sentinel Targets (Security & Validation)
 - [x] 🧠 `js/Utils/network-utils.js`: Requires validation schema review to ensure robust boundary enforcement.
