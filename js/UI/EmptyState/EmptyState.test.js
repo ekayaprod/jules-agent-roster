@@ -182,3 +182,15 @@ describe('Module Export Boundaries', () => {
         expect(result).toBeNull();
     });
 });
+
+describe('EmptyState environment exports', () => {
+    it('exports gracefully across different environment module definitions', () => {
+        const fs = require('fs');
+        const code = fs.readFileSync('js/UI/EmptyState/EmptyState.js', 'utf8');
+
+        // Assert safe bypass when module is strictly undefined (browser-like)
+        expect(() => {
+            new Function('module', code)(undefined);
+        }).not.toThrow();
+    });
+});
