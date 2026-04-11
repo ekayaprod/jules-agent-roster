@@ -156,3 +156,29 @@ describe('DOMUtils', () => {
         });
     });
 });
+
+    it('exports gracefully across different environment module definitions', () => {
+        const fs = require('fs');
+        const code = fs.readFileSync('js/Utils/dom-utils.js', 'utf8');
+
+        // Assert exports assign successfully in Node-like environment
+        let isExported = false;
+        let moduleMock = {
+            get exports() { return {}; },
+            set exports(val) { isExported = true; }
+        };
+        expect(() => {
+            new Function('module', 'BUTTON_STATES', code)(moduleMock, BUTTON_STATES);
+        }).not.toThrow();
+        expect(isExported).toBe(true);
+
+        // Assert safe bypass when module lacks exports property
+        expect(() => {
+            new Function('module', 'BUTTON_STATES', code)({}, BUTTON_STATES);
+        }).not.toThrow();
+
+        // Assert safe bypass when module is strictly undefined (browser-like)
+        expect(() => {
+            new Function('module', 'BUTTON_STATES', code)(undefined, BUTTON_STATES);
+        }).not.toThrow();
+    });
