@@ -615,13 +615,13 @@
         <div style="display:flex; flex-direction:column; gap: 0.5rem;">
             <label for="julesApiKeyInput" style="font-size: var(--text-xs); color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">Jules API Key</label>
             <input type="password" id="julesApiKeyInput" class="modal-input" placeholder="Paste key here..." />
-            <span id="julesApiKeyError" role="alert" style="font-size: var(--text-xs); color: #ef4444; display: none; transition: all 0.2s;"></span>
+            <span id="julesApiKeyError" role="alert" style="font-size: var(--text-xs); color: var(--error); display: none; transition: all 0.2s;"></span>
             <a href="https://jules.google.com/settings#api" target="_blank" style="font-size: var(--text-xs); color: var(--accent); text-decoration: none; margin-top: 0.25rem;">How to get an API Key →</a>
         </div>
         <div style="display:flex; flex-direction:column; gap: 0.5rem; margin-top: 0.5rem;">
             <label for="githubTokenInput" style="font-size: var(--text-xs); color: var(--text-secondary); font-weight: 600; text-transform: uppercase;">GitHub Token</label>
             <input type="password" id="githubTokenInput" class="modal-input" placeholder="Paste token here..." />
-            <span id="githubTokenError" role="alert" style="font-size: var(--text-xs); color: #ef4444; display: none; transition: all 0.2s;"></span>
+            <span id="githubTokenError" role="alert" style="font-size: var(--text-xs); color: var(--error); display: none; transition: all 0.2s;"></span>
             <a href="https://github.com/settings/tokens" target="_blank" style="font-size: var(--text-xs); color: var(--accent); text-decoration: none; margin-top: 0.25rem;">How to get a GitHub Token →</a>
         </div>
         <div class="flex" style="gap: 1rem; margin-top: 1rem;">
@@ -642,7 +642,7 @@
             <div style="display:flex; flex-direction:column; gap: 0.5rem;">
                 <label for="historyModalInput" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Your reply</label>
                 <input type="text" id="historyModalInput" class="modal-input transition-all duration-200" placeholder="Type instructions or feedback..." style="font-family: monospace;" />
-                <span id="historyModalError" role="alert" class="text-xs hidden" style="color: #ef4444; margin-top: 0.25rem;"></span>
+                <span id="historyModalError" role="alert" class="text-xs hidden" style="color: var(--error); margin-top: 0.25rem;"></span>
             </div>
             <div class="flex" style="gap: 1rem; margin-top: 0.5rem;">
                 <button id="cancelHistoryBtn" class="secondary" style="flex:1;" aria-label="Close History">Close</button>
@@ -663,11 +663,11 @@
                 <a id="prModalExternalLink" href="#" target="_blank" rel="noopener noreferrer" style="font-size: var(--text-xs); color: var(--accent); text-decoration: none;">View on GitHub →</a>
             </h3>
             <div id="prModalContent" style="background: var(--term-bg); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--term-border); font-family: monospace; font-size: var(--text-xs); color: var(--text-primary); max-height: 25rem; overflow-y: auto; white-space: pre-wrap; margin-bottom: 0.5rem;"></div>
-            <span id="prModalError" role="alert" class="text-xs hidden" style="color: #ef4444; margin-top: 0.25rem;"></span>
+            <span id="prModalError" role="alert" class="text-xs hidden" style="color: var(--error); margin-top: 0.25rem;"></span>
             <div class="flex" style="gap: 1rem; margin-top: 0.5rem;">
                 <button id="cancelPRBtn" class="secondary" style="flex:1;" aria-label="Close PR Details">Close</button>
                 <button id="closePRBtn" class="secondary" style="flex:1; border-color: var(--term-error); color: var(--term-error);" aria-label="Close PR">Close PR</button>
-                <button id="mergePRBtn" style="flex:1; background-color: var(--term-success); color: #000; border: none;" aria-label="Merge PR">Merge PR</button>
+                <button id="mergePRBtn" style="flex:1; background-color: var(--term-success); color: var(--bg-color); border: none;" aria-label="Merge PR">Merge PR</button>
             </div>
         </article>
     </section>
@@ -683,7 +683,7 @@
             <div style="display:flex; flex-direction:column; gap: 0.5rem;">
                 <label for="interactionModalInput" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;">Your reply</label>
                 <input type="text" id="interactionModalInput" class="modal-input transition-all duration-200" placeholder="Type 'proceed', 'yes', or provide specific instructions..." style="font-family: monospace;" />
-                <span id="interactionModalError" role="alert" class="text-xs hidden" style="color: #ef4444; margin-top: 0.25rem;"></span>
+                <span id="interactionModalError" role="alert" class="text-xs hidden" style="color: var(--error); margin-top: 0.25rem;"></span>
             </div>
             <div class="flex" style="gap: 1rem; margin-top: 0.5rem;">
                 <button id="cancelInteractionBtn" class="secondary" style="flex:1;" aria-label="Cancel Reply">Cancel</button>
