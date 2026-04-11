@@ -19,10 +19,14 @@ const HTTP_STATUS = Object.freeze({
   INTERNAL_SERVER_ERROR: 500
 });
 
+const UI_TIMINGS = Object.freeze({
+  MODAL_FOCUS_DELAY_MS: 50
+});
+
 var ANIMATION_DURATIONS = Object.freeze({
   FUSION_BURST_MS: 3500
 });
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { TOAST_TYPES, BUTTON_STATES, HTTP_STATUS, ANIMATION_DURATIONS };
+    module.exports = { TOAST_TYPES, BUTTON_STATES, HTTP_STATUS, UI_TIMINGS, ANIMATION_DURATIONS };
 }
