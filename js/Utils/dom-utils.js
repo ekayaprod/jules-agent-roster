@@ -89,6 +89,18 @@ class DOMUtils {
 
 
   /**
+   * Centralizes duplicated terminal fetching indicator HTML strings.
+   * Parameterizes the display message while maintaining the structural UI wrapper.
+   *
+   * @param {string} message - The system message to display inside the terminal indicator.
+   * @returns {string} The standardized HTML string for the terminal indicator.
+   * @see ../../docs/architecture/Utils/README.md#domutils-architecture
+   */
+  static getTerminalIndicatorHTML(message) {
+    return `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] ${message}</div>`;
+  }
+
+  /**
    * Creates a preformatted block for markdown text content.
    * Centralizes duplicated UI logic across AgentCard and JulesManager.
    *

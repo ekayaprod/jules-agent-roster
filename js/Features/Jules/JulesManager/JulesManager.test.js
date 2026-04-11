@@ -19,6 +19,7 @@ global.StorageUtils = {
 
 global.DOMUtils = {
     setButtonState: jest.fn(),
+    getTerminalIndicatorHTML: jest.fn().mockImplementation((msg) => `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] ${msg}</div>`),
     createMarkdownPreBlock: jest.fn().mockImplementation((text) => {
         const pre = document.createElement('pre');
         pre.textContent = text;
@@ -1861,6 +1862,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             };
 
             global.DOMUtils = {
+                getTerminalIndicatorHTML: jest.fn().mockImplementation((msg) => `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] ${msg}</div>`),
                 createMarkdownPreBlock: jest.fn().mockReturnValue(document.createElement('pre')),
                 setButtonState: jest.fn()
             };

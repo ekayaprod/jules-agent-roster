@@ -199,7 +199,7 @@ class JulesManager {
                             ]);
                         } else {
                             this._clearPollingAndCache();
-                            this.getEl("julesTerminal").innerHTML = `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] Awaiting repository connection...</div>`;
+                            this.getEl("julesTerminal").innerHTML = DOMUtils.getTerminalIndicatorHTML("Awaiting repository connection...");
                         }
                     });
                     picker.dataset.listenerAttached = "true";
@@ -228,7 +228,7 @@ class JulesManager {
             this._clearPollingAndCache();
             const existingInd = terminal.querySelector('#fetchingIndicator');
             if (!existingInd) {
-                 terminal.innerHTML += `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] Checking active Jules routines...</div>`;
+                 terminal.innerHTML += DOMUtils.getTerminalIndicatorHTML("Checking active Jules routines...");
             }
             this.currentRepo = sourceName;
         }
@@ -341,7 +341,7 @@ class JulesManager {
     _checkEmptyTerminal() {
         const terminal = this.getEl("julesTerminal");
         if (terminal.children.length === 0 || (terminal.children.length === 1 && terminal.firstElementChild.id === 'fetchingIndicator')) {
-             terminal.innerHTML = `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] Ready. Awaiting execution commands...</div>`;
+             terminal.innerHTML = DOMUtils.getTerminalIndicatorHTML("Ready. Awaiting execution commands...");
         }
     }
 
