@@ -73,7 +73,7 @@ class JulesService {
                 throw new Error("We encountered a server error. Please wait a moment and try again.");
             }
         } catch (error) {
-            if (error.message && error.message.startsWith('HTTP Error:')) {
+            if (error.message && typeof error.message === 'string' && error.message.startsWith('HTTP Error:')) {
                  throw new Error(`We encountered a server error. Please wait a moment and try again.`);
             }
             throw error;
@@ -198,7 +198,7 @@ ${userTask}`;
      * @returns {Promise<Object|Array>} The parsed JSON response.
      */
     async _githubRequest(sourceName, endpoint, options = {}, allow404 = false) {
-        if (!sourceName.startsWith('sources/github/')) {
+        if (typeof sourceName !== 'string' || !sourceName.startsWith('sources/github/')) {
             throw new Error(`Unsupported source format${allow404 ? ' for pull requests' : ''}`);
         }
 
@@ -229,7 +229,7 @@ ${userTask}`;
                 const errorText = await response.text();
                 let errorMsg = `GitHub API returned ${response.status}`;
                 try {
-                    const errJson = JSON.parse(errorText);
+                    const errJson = typeof errorText === 'string' ? JSON.parse(errorText) : {};
                     if (errJson.message) errorMsg = errJson.message;
                 } catch(e) {
                     if (allow404) console.warn("Failed to parse error JSON:", e);

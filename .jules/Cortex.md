@@ -1,3 +1,3 @@
 ## Cortex — NetworkUtils Payload Fortification
-**Learning:** Discovered that executing `.includes()` directly on `options.body` without verifying it is a string causes fatal unhandled exceptions blocking AI requests.
-**Action:** Always enforce type checking before running string validation on API payloads. Invoked Declarative Compliance Fallback as no other safe targets were found without violating Test Immunity.
+**Learning:** Parsing network responses or interacting with errors requires checking that string payloads explicitly exist as strings, else unhandled exceptions like `.startsWith` mask true failures.
+**Action:** Enforce `typeof === 'string'` checking prior to `.startsWith` validations and `JSON.parse` executions for safety. Invoked Declarative Compliance Fallback as no other safe targets were found without violating Test Immunity.

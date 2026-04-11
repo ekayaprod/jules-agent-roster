@@ -77,7 +77,7 @@ class NetworkUtils {
                 try {
                     const errorText = await response.text();
                     try {
-                        const errJson = JSON.parse(errorText);
+                        const errJson = typeof errorText === 'string' ? JSON.parse(errorText) : {};
                         if (errJson.error?.message) {
                             errorMsg = errJson.error.message;
                         } else if (errJson.message) {
@@ -99,7 +99,7 @@ class NetworkUtils {
                 throw new Error("The request timed out. Please check your connection and try again.");
             }
 
-            const isServerError = error.message && error.message.startsWith('Server returned');
+            const isServerError = error.message && typeof error.message === 'string' && error.message.startsWith('Server returned');
             const isNetworkError = error.message === 'Network Error' || error.name === 'TypeError' || (typeof error.message === 'string' && error.message.includes('fetch')) || error.message === "We couldn't reach the server. Please check your internet connection and try again." || isServerError || error.message === "Invalid response object";
 
             if (retries > 0 && isNetworkError) {

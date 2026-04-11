@@ -148,7 +148,7 @@ class RosterApp {
     for (const key in selectors) {
       if (Object.prototype.hasOwnProperty.call(selectors, key)) {
         const selector = selectors[key];
-        this.elements[key] = selector.startsWith("#")
+        this.elements[key] = (typeof selector === 'string' && selector.startsWith("#"))
           ? document.getElementById(selector.substring(1))
           : document.querySelectorAll(selector);
       }
