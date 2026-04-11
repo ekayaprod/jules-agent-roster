@@ -30,7 +30,7 @@ class ExportController {
         if (btn) btn.disabled = false;
     }
 
-    const success = await ClipboardUtils.copyText(agent.prompt);
+    const success = await ClipboardUtils.copyText(PromptParser.stripFrontmatter(agent.prompt));
     if (success) {
       this.app.toast.show("Copied to clipboard");
       ClipboardUtils.animateButtonSuccess(btn, "Copied!");

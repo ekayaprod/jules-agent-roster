@@ -15,6 +15,10 @@ global.ClipboardUtils = {
     animateButtonSuccess: jest.fn()
 };
 
+global.PromptParser = {
+    stripFrontmatter: jest.fn(str => str)
+};
+
 global.FormatUtils = {
     CUSTOM_ROSTER_HEADER: '# Custom Roster\n',
     MASTER_ROSTER_HEADER: '# Master Roster\n',

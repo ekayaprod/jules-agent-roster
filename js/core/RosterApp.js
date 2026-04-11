@@ -707,7 +707,7 @@ class RosterApp {
               return;
           }
           if (action === "download-agent") {
-              DownloadUtils.downloadTextFile(PromptParser.stripFrontmatter(agent.prompt), `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
+              DownloadUtils.downloadTextFile(agent.prompt, `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
               closeDropdownMenu(actionBtn.closest('.dropdown-menu'), this);
               return;
           }
