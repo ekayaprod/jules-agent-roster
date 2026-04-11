@@ -23,7 +23,7 @@
     "name": "Bolt+",
     "emoji": "⚡",
     "role": "Velocity Tuner",
-    "category": "Operations",
+    "category": "Performance",
     "tier": "Plus",
     "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput.",
     "promptFile": "prompts/Bolt+.md",
@@ -32,10 +32,10 @@
   {
     "name": "Cortex",
     "emoji": "🧠",
-    "role": "Synaptic Plumber",
+    "role": "Synapse Plumber",
     "category": "Operations",
     "tier": "Core",
-    "description": "Wires AI APIs to the bleeding edge, enforcing strict schemas, modern SDKs, and resilient timeouts to outpace rapid platform deprecations.",
+    "description": "WIRE AI APIs to the bleeding edge and harden network wrappers against type-safety regressions and platform drift.",
     "promptFile": "prompts/Cortex.md",
     "isCustom": false
   },
@@ -75,7 +75,7 @@
     "role": "Evolution Engine",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "Mutates fossilized syntax and deprecated patterns into modern, native language standards. It radically reduces cognitive load by upgrading your repository to contemporary language features.",
+    "description": "Mutates fossilized syntax and deprecated patterns into modern, native language standards to radically reduce cognitive load.",
     "promptFile": "prompts/Modernizer.md",
     "isCustom": false
   },
@@ -95,7 +95,7 @@
     "role": "Triage Auditor",
     "category": "Observability",
     "tier": "Core",
-    "description": "AUDIT the macroscopic health of the repository to generate a centralized, delegated bounty board for the entire agent swarm.",
+    "description": "AUDIT the macroscopic health of the repository to generate a centralized, delegated agent tasks board for the entire agent swarm.",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
@@ -103,9 +103,9 @@
     "name": "Palette+",
     "emoji": "🎨",
     "role": "UI Artist",
-    "category": "Architecture",
+    "category": "UX",
     "tier": "Plus",
-    "description": "Harmonizes design tokens, smooths transitions, and perfects typography to create absolute frontend delight. It surgically injects visual polish to eliminate jarring state changes.",
+    "description": "STYLIZE frontend components with design tokens, smooth transitions, and refined typography to create absolute frontend delight.",
     "promptFile": "prompts/Palette+.md",
     "isCustom": false
   },
@@ -155,7 +155,7 @@
     "role": "Perimeter Fortifier",
     "category": "Security",
     "tier": "Plus",
-    "description": "Erects rigid validation boundaries to neutralize injection vectors and seal exposed trust boundaries. It crushes hardcoded secrets before they ever leak into the application layer.",
+    "description": "Erect rigid validation boundaries to neutralize injection vectors and seal exposed trust boundaries.",
     "promptFile": "prompts/Sentinel+.md",
     "isCustom": false
   },
@@ -165,7 +165,7 @@
     "role": "Repository Handyman",
     "category": "Operations",
     "tier": "Core",
-    "description": "MAINTAIN structural integrity by untangling configurations, patching leaky dependencies, and sweeping unlinked trash across the repository.",
+    "description": "MAINTAIN structural integrity by untangling configurations, patching leaky dependencies, and sweeping unlinked trash.",
     "promptFile": "prompts/Superintendent.md",
     "isCustom": false
   },
@@ -175,7 +175,7 @@
     "role": "Logic Simplifier",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "Hunts down deeply nested code to restore readability through structural flattening. It weaves dense branching logic into a clean, flat, and frictionless execution path.",
+    "description": "Hunts down deeply nested code to restore readability through structural flattening.",
     "promptFile": "prompts/Untangler.md",
     "isCustom": false
   },
@@ -185,7 +185,7 @@
     "role": "Jive Breaker",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "Eradicates hallucinated API calls, synthetic abstractions, and orphaned dependencies to ensure absolute runtime stability.",
+    "description": "Eradicates hallucinated API calls, synthetic abstractions, and orphaned dependencies by dynamically leveraging live LLM heuristic analysis to ensure absolute runtime stability.",
     "promptFile": "prompts/Vibe Check.md",
     "isCustom": false
   },
@@ -193,9 +193,9 @@
     "name": "Vibe",
     "emoji": "🎧",
     "role": "Flow State Hacker",
-    "category": "Strategy",
-    "tier": "Core",
-    "description": "Operate as the self-starting creative engine of the repository, obsessively coding missing features into absolute, production-ready reality.",
+    "category": "Feature",
+    "tier": "Plus",
+    "description": "Operates as the self-starting creative engine of the repository, leveraging live latent imagination to deduce missing features and code them into absolute, production-ready reality.",
     "promptFile": "prompts/Vibe.md",
     "isCustom": false
   },
@@ -227,16 +227,6 @@
     "tier": "Fusion",
     "description": "Cross-references multi-system architectures to hunt down and surgically assassinate semantically dead code, operating with cold omniscience.",
     "promptFile": "prompts/fusions/Agent.md",
-    "isCustom": true
-  },
-  {
-    "name": "Aligner",
-    "emoji": "📏",
-    "role": "Rhythm Standardizer",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Hunts down arbitrary visual anomalies and relentlessly enforces absolute, unified spacing across the entire presentation layer.",
-    "promptFile": "prompts/fusions/Aligner.md",
     "isCustom": true
   },
   {
@@ -280,16 +270,6 @@
     "isCustom": true
   },
   {
-    "name": "Assessor",
-    "emoji": "🧑‍🏫",
-    "role": "Test Upgrader",
-    "category": "Testing",
-    "tier": "Fusion",
-    "description": "Upgrades brittle, implementation-heavy testing paradigms into resilient, user-centric testing behaviors.",
-    "promptFile": "prompts/fusions/Assessor.md",
-    "isCustom": true
-  },
-  {
     "name": "Auditor",
     "emoji": "🔎",
     "role": "Quality Inspector",
@@ -327,16 +307,6 @@
     "tier": "Fusion",
     "description": "Sweeps infrastructure-as-code and server configurations to explicitly lock down exposed boundaries.",
     "promptFile": "prompts/fusions/Bastion.md",
-    "isCustom": true
-  },
-  {
-    "name": "Blackbox",
-    "emoji": "💾",
-    "role": "Data Preserver",
-    "category": "Strategy",
-    "tier": "Fusion",
-    "description": "Injects local storage caching into complex forms and user-input flows so unsaved data survives unexpected crashes.",
-    "promptFile": "prompts/fusions/Blackbox.md",
     "isCustom": true
   },
   {
@@ -380,16 +350,6 @@
     "isCustom": true
   },
   {
-    "name": "Captionist",
-    "emoji": "🎟️",
-    "role": "Payload Specialist",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Convert massive, uncompressed visual assets into highly optimized modern formats and perfect their semantic accessibility descriptions.",
-    "promptFile": "prompts/fusions/Captionist.md",
-    "isCustom": true
-  },
-  {
     "name": "Cartographer",
     "emoji": "🗺️",
     "role": "System Topographer",
@@ -397,16 +357,6 @@
     "tier": "Radiant",
     "description": "Transforms hidden boundaries and complex data flows into beautiful, multi-layered visual graphs using text-based markdown syntax.",
     "promptFile": "prompts/fusions/Cartographer.md",
-    "isCustom": true
-  },
-  {
-    "name": "Catalogue",
-    "emoji": "📇",
-    "role": "Centralization Specialist",
-    "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "Extract massive, duplicated media objects into strictly typed global dictionaries to eliminate WET visual bloat.",
-    "promptFile": "prompts/fusions/Catalogue.md",
     "isCustom": true
   },
   {
@@ -447,16 +397,6 @@
     "tier": "Fusion",
     "description": "Bump package dependencies and rigorously update corresponding integration schemas to reflect new API surfaces.",
     "promptFile": "prompts/fusions/Checkpoint.md",
-    "isCustom": true
-  },
-  {
-    "name": "Choreographer",
-    "emoji": "🩰",
-    "role": "Transition Enforcer",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Inject lightweight visual loading skeletons, CSS transitions, or CLI spinners into frozen, synchronous-looking UI seams.",
-    "promptFile": "prompts/fusions/Choreographer.md",
     "isCustom": true
   },
   {
@@ -550,16 +490,6 @@
     "isCustom": true
   },
   {
-    "name": "Darkroom",
-    "emoji": "🎞️",
-    "role": "Media Upgrader",
-    "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "Eliminates multi-megabyte image payloads by converting legacy assets into modern web formats.",
-    "promptFile": "prompts/fusions/Darkroom.md",
-    "isCustom": true
-  },
-  {
     "name": "Dead-Ender",
     "emoji": "🚧",
     "role": "Route Purger",
@@ -567,16 +497,6 @@
     "tier": "Fusion",
     "description": "Prune the application's surface area by identifying ghost routes. Permanently delete both the route definition and the underlying component.",
     "promptFile": "prompts/fusions/Dead-Ender.md",
-    "isCustom": true
-  },
-  {
-    "name": "Decoder",
-    "emoji": "📟",
-    "role": "CI Whisperer",
-    "category": "Testing",
-    "tier": "Fusion",
-    "description": "Eliminate debugging friction by intercepting broken test suites and translating massive terminal stack traces into actionable Markdown reports.",
-    "promptFile": "prompts/fusions/Decoder.md",
     "isCustom": true
   },
   {
@@ -650,16 +570,6 @@
     "isCustom": true
   },
   {
-    "name": "Fabricator",
-    "emoji": "🏭",
-    "role": "Mock Synthesizer",
-    "category": "Testing",
-    "tier": "Fusion",
-    "description": "Sweep test suites to eradicate brittle, hardcoded JSON coincidences and replace them with dynamic, randomized factory fixtures.",
-    "promptFile": "prompts/fusions/Fabricator.md",
-    "isCustom": true
-  },
-  {
     "name": "Few-Shot Forger",
     "emoji": "💭",
     "role": "Pattern Injector",
@@ -710,16 +620,6 @@
     "isCustom": true
   },
   {
-    "name": "Gallerist",
-    "emoji": "📽️",
-    "role": "Media Presenter",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Substitutes heavy rasters with scalable vectors and wraps assets in optimized loading boundaries to completely eliminate layout shifts across the entire application ecosystem.",
-    "promptFile": "prompts/fusions/Gallerist.md",
-    "isCustom": true
-  },
-  {
     "name": "Gatekeeper",
     "emoji": "⛩️",
     "role": "Policy Keymaster",
@@ -760,26 +660,6 @@
     "isCustom": true
   },
   {
-    "name": "Guardian",
-    "emoji": "⛑️",
-    "role": "Boundary Hardener",
-    "category": "Strategy",
-    "tier": "Fusion",
-    "description": "Hunt down naked parsing and unprotected external API calls that lack failure-mode coverage, leading to catastrophic runtime crashes.",
-    "promptFile": "prompts/fusions/Guardian.md",
-    "isCustom": true
-  },
-  {
-    "name": "Hazmat",
-    "emoji": "☣️",
-    "role": "Payload Purifier",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "You ensure no malicious payload ever detonates inside the application by intercepting and purifying incoming user data payloads.",
-    "promptFile": "prompts/fusions/Hazmat.md",
-    "isCustom": true
-  },
-  {
     "name": "Helmsman",
     "emoji": "⛵",
     "role": "Routing Upgrader",
@@ -797,16 +677,6 @@
     "tier": "Fusion",
     "description": "Hunts down syntactically different implementations of the exact same business logic. It extracts the ultimate semantic truth and ruthlessly eradicates the redundant pretenders.",
     "promptFile": "prompts/fusions/Highlander.md",
-    "isCustom": true
-  },
-  {
-    "name": "Historian",
-    "emoji": "⏳",
-    "role": "Temporal Archivist",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Eradicates generate public changelogs for new releases and instantly embed that historical context into the shipped functions via inline JSDoc.",
-    "promptFile": "prompts/fusions/Historian.md",
     "isCustom": true
   },
   {
@@ -860,16 +730,6 @@
     "isCustom": true
   },
   {
-    "name": "Illuminator",
-    "emoji": "🖌️",
-    "role": "Architecture Draftsman",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Illuminator sweeps codebases hunting for massive blocks of dense text and autonomously generates inline diagrams to visualize them.",
-    "promptFile": "prompts/fusions/Illuminator.md",
-    "isCustom": true
-  },
-  {
     "name": "Illusionist",
     "emoji": "🪄",
     "role": "Mirage Architect",
@@ -907,16 +767,6 @@
     "tier": "Fusion",
     "description": "Refines Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.",
     "promptFile": "prompts/fusions/Interpolator.md",
-    "isCustom": true
-  },
-  {
-    "name": "Interrogator",
-    "emoji": "🔦",
-    "role": "Assertion Specialist",
-    "category": "Testing",
-    "tier": "Fusion",
-    "description": "Sweep weak unit tests that lack meaningful assertions, injecting deep, rigorous checks against component state, DOM interactions, and accessibility to uncover false positives.",
-    "promptFile": "prompts/fusions/Interrogator.md",
     "isCustom": true
   },
   {
@@ -970,16 +820,6 @@
     "isCustom": true
   },
   {
-    "name": "Limiter",
-    "emoji": "🎚️",
-    "role": "Boundary Enforcer",
-    "category": "Operations",
-    "tier": "Fusion",
-    "description": "Inject circuit breakers, pagination, and strict mechanical limits to ensure every execution path has a mathematically guaranteed upper bound.",
-    "promptFile": "prompts/fusions/Limiter.md",
-    "isCustom": true
-  },
-  {
     "name": "Liquidator",
     "emoji": "💥",
     "role": "Adapter Purger",
@@ -987,16 +827,6 @@
     "tier": "Fusion",
     "description": "Surgically excise obsolete legacy adapters, polyfills, and custom bridge wrappers that mask missing native functionality.",
     "promptFile": "prompts/fusions/Liquidator.md",
-    "isCustom": true
-  },
-  {
-    "name": "LiveFeed",
-    "emoji": "📺",
-    "role": "Live Feedback Broadcaster",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Intercept silent data mutations and wrap them in rigorous state trackers (`idle -> loading -> success/error`), injecting polished loading skeletons and notifications.",
-    "promptFile": "prompts/fusions/LiveFeed.md",
     "isCustom": true
   },
   {
@@ -1040,16 +870,6 @@
     "isCustom": true
   },
   {
-    "name": "Mason",
-    "emoji": "🧱",
-    "role": "Spatial Reinforcer",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Fix broken CSS layouts, WPF flexboxes, and container overflows to reinforce mathematical spatial integrity across the application.",
-    "promptFile": "prompts/fusions/Mason.md",
-    "isCustom": true
-  },
-  {
     "name": "Millisecond",
     "emoji": "⏱️",
     "role": "Render Optimizer",
@@ -1057,16 +877,6 @@
     "tier": "Fusion",
     "description": "Eradicate useless React re-renders caused by unstable object references, un-memoized callbacks, and inline styles that destroy frontend performance.",
     "promptFile": "prompts/fusions/Millisecond.md",
-    "isCustom": true
-  },
-  {
-    "name": "Minimalist",
-    "emoji": "🫧",
-    "role": "Visual Purger",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Hunt down and delete orphaned CSS classes, outdated layout wrappers, and dead UI components disconnected from the routing tree.",
-    "promptFile": "prompts/fusions/Minimalist.md",
     "isCustom": true
   },
   {
@@ -1137,16 +947,6 @@
     "tier": "Fusion",
     "description": "Extract scattered logic duplicates into a single point of truth, locking the new utility behind an ironclad, strictly typed JSDoc contract.",
     "promptFile": "prompts/fusions/Oracle.md",
-    "isCustom": true
-  },
-  {
-    "name": "Orator",
-    "emoji": "📢",
-    "role": "Error Copywriter",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Rewrite bare, lazily written error instantiations and internal exception throws into clear, human-readable, and actionable telemetry broadcasts.",
-    "promptFile": "prompts/fusions/Orator.md",
     "isCustom": true
   },
   {
@@ -1270,26 +1070,6 @@
     "isCustom": true
   },
   {
-    "name": "Press Secretary",
-    "emoji": "👔",
-    "role": "Incident Communicator",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Analyze git forensics and technical diffs to author objective timelines and actionable prevention plans.",
-    "promptFile": "prompts/fusions/Press Secretary.md",
-    "isCustom": true
-  },
-  {
-    "name": "Press",
-    "emoji": "🗜️",
-    "role": "Visual Extractor",
-    "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "Identify dense visual data and extract the raw payloads into dedicated asset files.",
-    "promptFile": "prompts/fusions/Press.md",
-    "isCustom": true
-  },
-  {
     "name": "Profiler",
     "emoji": "🔬",
     "role": "Complexity Auditor",
@@ -1310,16 +1090,6 @@
     "isCustom": true
   },
   {
-    "name": "Prophet",
-    "emoji": "🔮",
-    "role": "Deprecation Forecaster",
-    "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "Prepare developers for API end-of-life cycles by hunting for `@deprecated` tags and injecting runtime environment-sensitive warnings.",
-    "promptFile": "prompts/fusions/Prophet.md",
-    "isCustom": true
-  },
-  {
     "name": "Proton Pack",
     "emoji": "🎒",
     "role": "Poltergeist Purger",
@@ -1337,26 +1107,6 @@
     "tier": "Fusion",
     "description": "Sweep repositories for mathematically impossible execution paths, unreachable logic branches, and unused exports to ensure strict control flow hygiene.",
     "promptFile": "prompts/fusions/Pruner.md",
-    "isCustom": true
-  },
-  {
-    "name": "Publicist",
-    "emoji": "📸",
-    "role": "SEO Broadcaster",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "Sweep routing configurations to identify public-facing URLs and inject rich visual metadata.",
-    "promptFile": "prompts/fusions/Publicist.md",
-    "isCustom": true
-  },
-  {
-    "name": "Purger",
-    "emoji": "🗑️",
-    "role": "Deletion Specialist",
-    "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "Eradicate unimported components and immediately hunt down the heavy \"ghost\" images and static assets they leave behind.",
-    "promptFile": "prompts/fusions/Purger.md",
     "isCustom": true
   },
   {
@@ -1440,16 +1190,6 @@
     "isCustom": true
   },
   {
-    "name": "Registrar",
-    "emoji": "📑",
-    "role": "Component Cataloger",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "Sweeps the repository to ensure all shared UI components, utility functions, and API routes are properly registered, exported from barrel files, and documented.",
-    "promptFile": "prompts/fusions/Registrar.md",
-    "isCustom": true
-  },
-  {
     "name": "Regulator",
     "emoji": "🛂",
     "role": "Boundary Enforcer",
@@ -1467,16 +1207,6 @@
     "tier": "Fusion",
     "description": "Restructures disorganized feature hierarchies by colocating fragmented components, styles, and hooks into unified feature folders.",
     "promptFile": "prompts/fusions/Renovator.md",
-    "isCustom": true
-  },
-  {
-    "name": "Restorer",
-    "emoji": "🕸️",
-    "role": "Reference Cleaner",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Cleans up visual ghost references by sweeping markup files for CSS classes that are called but no longer exist, images pointing to deleted files, and icon fonts referenced but never imported. Combats silent presentation debt like HTML, JSX, XAML, and LaTeX files that still call class names and asset paths from styles and files that were deleted months ago.",
-    "promptFile": "prompts/fusions/Restorer.md",
     "isCustom": true
   },
   {
@@ -1540,16 +1270,6 @@
     "isCustom": true
   },
   {
-    "name": "Sandboxer",
-    "emoji": "🏜️",
-    "role": "Isolation Specialist",
-    "category": "Testing",
-    "tier": "Fusion",
-    "description": "The Objective: Guarantee hermetically sealed, deterministic test executions by untangling shared global state, eradicating leaky mocks, and flattening nested test suites.",
-    "promptFile": "prompts/fusions/Sandboxer.md",
-    "isCustom": true
-  },
-  {
     "name": "Sanitizer",
     "emoji": "🧴",
     "role": "Clinical Sweeper",
@@ -1610,26 +1330,6 @@
     "isCustom": true
   },
   {
-    "name": "Seawall",
-    "emoji": "🌊",
-    "role": "Rate Limiting Strategist",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "Deploy and enforce API limits, circuit breakers, and backoff mechanisms to protect the backend from catastrophic thundering herds.",
-    "promptFile": "prompts/fusions/Seawall.md",
-    "isCustom": true
-  },
-  {
-    "name": "Sherpa",
-    "emoji": "🧗‍♂️",
-    "role": "Onboarding Architect",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Transform intimidating empty states and blank screens into contextual, actionable onboarding pathways.",
-    "promptFile": "prompts/fusions/Sherpa.md",
-    "isCustom": true
-  },
-  {
     "name": "Shredder",
     "emoji": "🗑️",
     "role": "Graveyard Destroyer",
@@ -1637,16 +1337,6 @@
     "tier": "Fusion",
     "description": "Delete commented-out code that has sat untouched for over 30 days to reduce visual noise.",
     "promptFile": "prompts/fusions/Shredder.md",
-    "isCustom": true
-  },
-  {
-    "name": "Silencer",
-    "emoji": "🔇",
-    "role": "Noise Assassin",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Eradicate conversational comments, syntax explanations, abandoned scaffolding, and fake mock data that clutter the codebase with amateur noise.",
-    "promptFile": "prompts/fusions/Silencer.md",
     "isCustom": true
   },
   {
@@ -1660,16 +1350,6 @@
     "isCustom": true
   },
   {
-    "name": "Siren",
-    "emoji": "📻",
-    "role": "Vulnerability Broadcaster",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Broadcast and mitigate high-priority security vulnerabilities identified in the codebase, ensuring critical patches are aggressively applied.",
-    "promptFile": "prompts/fusions/Siren.md",
-    "isCustom": true
-  },
-  {
     "name": "Slipstream",
     "emoji": "💨",
     "role": "Frictionless Router",
@@ -1680,16 +1360,6 @@
     "isCustom": true
   },
   {
-    "name": "Speed Camera",
-    "emoji": "📸",
-    "role": "Performance Profiler",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Inject temporary, high-fidelity `performance.now()` markers or APM wrappers around suspected slow functions to generate empirical evidence of bottlenecks before optimizing.",
-    "promptFile": "prompts/fusions/Speed Camera.md",
-    "isCustom": true
-  },
-  {
     "name": "Spellchecker",
     "emoji": "🔤",
     "role": "Typo Eradicator",
@@ -1697,16 +1367,6 @@
     "tier": "Fusion",
     "description": "Execute a surgical strike against misspelled variable names, database columns, public API keys, and CSS classes without breaking runtime references.",
     "promptFile": "prompts/fusions/Spellchecker.md",
-    "isCustom": true
-  },
-  {
-    "name": "Sprinter",
-    "emoji": "👟",
-    "role": "Map/Reduce Optimizer",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Hunt down heavy, sequential loops and O(n^2) nested loops in data processing pipelines and optimize them using linear mapping, dictionary lookups, or native `.map()`/`.reduce()` functions.",
-    "promptFile": "prompts/fusions/Sprinter.md",
     "isCustom": true
   },
   {
@@ -1730,16 +1390,6 @@
     "isCustom": true
   },
   {
-    "name": "Strategist",
-    "emoji": "♟️",
-    "role": "Roadmap Synchronizer",
-    "category": "Strategy",
-    "tier": "Fusion",
-    "description": "Autonomously analyze the repository's git history, extract the proprietary commit patterns and unwritten release tagging rules, and codify them into a universal micro-agent prompt that can flawlessly draft future changelogs.",
-    "promptFile": "prompts/fusions/Strategist.md",
-    "isCustom": true
-  },
-  {
     "name": "Streamliner",
     "emoji": "⛷️",
     "role": "Load Reducer",
@@ -1747,16 +1397,6 @@
     "tier": "Fusion",
     "description": "Flatten underlying cognitive complexity and mask it with clean, chunked UI, transforming overwhelming tasks into simple, step-by-step actions using progressive disclosure.",
     "promptFile": "prompts/fusions/Streamliner.md",
-    "isCustom": true
-  },
-  {
-    "name": "Stress Tester",
-    "emoji": "🧨",
-    "role": "Security Assurance Specialist",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "Implement strict validation schemas at trust boundaries and write brutal tests that deliberately inject malicious data to bypass them.",
-    "promptFile": "prompts/fusions/Stress Tester.md",
     "isCustom": true
   },
   {
@@ -1810,16 +1450,6 @@
     "isCustom": true
   },
   {
-    "name": "Swatch",
-    "emoji": "📓",
-    "role": "Design Documentarian",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Catalog the visual identity of the project by treating configuration files as raw materials, extracting every color, font weight, and spacing variable into a beautiful, human-readable STYLEGUIDE.md.",
-    "promptFile": "prompts/fusions/Swatch.md",
-    "isCustom": true
-  },
-  {
     "name": "Synchronizer",
     "emoji": "🔄",
     "role": "Dependency Migration Specialist",
@@ -1847,16 +1477,6 @@
     "tier": "Fusion",
     "description": "Converts synchronous AI responses into fluid, typewriter-style data streams, eliminating blocking wait states.",
     "promptFile": "prompts/fusions/Tachyon.md",
-    "isCustom": true
-  },
-  {
-    "name": "Telemetrist",
-    "emoji": "📡",
-    "role": "AI Broadcaster",
-    "category": "Operations",
-    "tier": "Fusion",
-    "description": "Injects latency timers and metadata loggers to eradicate untracked AI routes.",
-    "promptFile": "prompts/fusions/Telemetrist.md",
     "isCustom": true
   },
   {
@@ -1897,36 +1517,6 @@
     "tier": "Fusion",
     "description": "Hardens infrastructure boundaries by locking down global CORS policies and injecting missing HTTP security headers.",
     "promptFile": "prompts/fusions/Threat Modeler.md",
-    "isCustom": true
-  },
-  {
-    "name": "Tokenizer",
-    "emoji": "🪙",
-    "role": "Window Optimizer",
-    "category": "Strategy",
-    "tier": "Fusion",
-    "description": "Reduces token weight and eliminates context-window overflows by stripping useless tokens and minifying payloads before AI inference.",
-    "promptFile": "prompts/fusions/Tokenizer.md",
-    "isCustom": true
-  },
-  {
-    "name": "Tower",
-    "emoji": "🗼",
-    "role": "Broadcast Centralizer",
-    "category": "Operations",
-    "tier": "Fusion",
-    "description": "Identifies broadcast fragmentation and routes scattered output calls into centralized event buses.",
-    "promptFile": "prompts/fusions/Tower.md",
-    "isCustom": true
-  },
-  {
-    "name": "Town Crier",
-    "emoji": "🔔",
-    "role": "Release Documentation Synchronizer",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Eradicates outdated documentation and distills git commits into clean, user-facing changelog updates.",
-    "promptFile": "prompts/fusions/Town Crier.md",
     "isCustom": true
   },
   {
@@ -1977,16 +1567,6 @@
     "tier": "Fusion",
     "description": "Enforces visual rhythm at the code level by hunting down rogue inline margins and enforcing WCAG contrast ratios.",
     "promptFile": "prompts/fusions/Typesetter.md",
-    "isCustom": true
-  },
-  {
-    "name": "Upgrader",
-    "emoji": "📈",
-    "role": "Dependency Broadcaster",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Eliminates \"blind bumps\" by fetching external changelogs and broadcasting high-signal summaries of new features and breaking changes directly into the PR or release notes.",
-    "promptFile": "prompts/fusions/Upgrader.md",
     "isCustom": true
   },
   {
@@ -2047,16 +1627,6 @@
     "tier": "Fusion",
     "description": "Consolidates duplicated logic into single utilities while simultaneously flattening deeply nested execution paths into pristine, linear strands.",
     "promptFile": "prompts/fusions/Weaver.md",
-    "isCustom": true
-  },
-  {
-    "name": "Whistleblower",
-    "emoji": "📯",
-    "role": "Syntax Shamer",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Translate raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.",
-    "promptFile": "prompts/fusions/Whistleblower.md",
     "isCustom": true
   },
   {

@@ -100,7 +100,7 @@ class NetworkUtils {
             }
 
             const isServerError = error.message && error.message.startsWith('Server returned');
-            const isNetworkError = error.message === 'Network Error' || error.name === 'TypeError' || error.message.includes('fetch') || error.message === "We couldn't reach the server. Please check your internet connection and try again." || isServerError || error.message === "Invalid response object";
+            const isNetworkError = error.message === 'Network Error' || error.name === 'TypeError' || (typeof error.message === 'string' && error.message.includes('fetch')) || error.message === "We couldn't reach the server. Please check your internet connection and try again." || isServerError || error.message === "Invalid response object";
 
             if (retries > 0 && isNetworkError) {
                 console.warn(`Retrying ${url} (${retries} left)...`);
