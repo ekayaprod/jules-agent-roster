@@ -1,4 +1,4 @@
-const { UI_TIMINGS } = typeof require !== 'undefined' ? require('../../constants/ui.js') : window;
+const SafeUITimings = typeof window !== 'undefined' ? window.UI_TIMINGS : (typeof global !== 'undefined' ? global.UI_TIMINGS : null);
 const PICKER_CLUSTERIZE_OPTIONS = {
     scrollId: 'pickerScrollArea',
     contentId: 'pickerGrid',
@@ -286,7 +286,7 @@ class AgentPicker {
             // Palette+: Wrap in timeout to ensure modal teardown doesn't interfere
             setTimeout(() => {
                 if (btn) btn.focus();
-            }, UI_TIMINGS.MODAL_FOCUS_DELAY_MS);
+            }, SafeUITimings?.MODAL_FOCUS_DELAY_MS || 50);
         }
     }
 

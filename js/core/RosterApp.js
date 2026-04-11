@@ -1,4 +1,4 @@
-const { UI_TIMINGS } = typeof require !== 'undefined' ? require('../constants/ui.js') : window;
+const SafeUITimings = typeof window !== 'undefined' ? window.UI_TIMINGS : (typeof global !== 'undefined' ? global.UI_TIMINGS : null);
 const OBSERVER_OPTIONS = {
     rootMargin: "-80px 0px -60% 0px",
     threshold: 0
@@ -378,7 +378,7 @@ class RosterApp {
       const nav = this.elements["category-nav"];
       if (nav) {
         nav.classList.add("search-active");
-        setTimeout(() => this.elements.searchInput?.focus(), UI_TIMINGS.MODAL_FOCUS_DELAY_MS);
+        setTimeout(() => this.elements.searchInput?.focus(), SafeUITimings?.MODAL_FOCUS_DELAY_MS || 50);
       }
     });
 

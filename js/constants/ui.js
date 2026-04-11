@@ -1,17 +1,17 @@
-const TOAST_TYPES = Object.freeze({
+var TOAST_TYPES = Object.freeze({
   SUCCESS: 'success',
   ERROR: 'error',
   INFO: 'info'
 });
 
-const BUTTON_STATES = Object.freeze({
+var BUTTON_STATES = Object.freeze({
   READY: 'ready',
   LOADING: 'loading',
   ERROR: 'error',
   DISABLED: 'disabled'
 });
 
-const HTTP_STATUS = Object.freeze({
+var HTTP_STATUS = Object.freeze({
   OK: 200,
   NOT_FOUND: 404,
   FORBIDDEN: 403,
@@ -19,7 +19,7 @@ const HTTP_STATUS = Object.freeze({
   INTERNAL_SERVER_ERROR: 500
 });
 
-const UI_TIMINGS = Object.freeze({
+var UI_TIMINGS = Object.freeze({
   MODAL_FOCUS_DELAY_MS: 50
 });
 
