@@ -127,13 +127,15 @@ ${userTask}`;
                 type: "json_schema",
                 json_schema: {
                     name: "agent_response",
+                    strict: true,
                     schema: {
                         type: "object",
                         properties: {
                             action: { type: "string" },
                             data: { type: "object" }
                         },
-                        required: ["action", "data"]
+                        required: ["action", "data"],
+                        additionalProperties: false
                     }
                 }
             },
