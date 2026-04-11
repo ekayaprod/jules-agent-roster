@@ -228,7 +228,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.createSession.mockRejectedValueOnce(new Error('fail'));
 
             await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn);
-            expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', TOAST_TYPES.ERROR);
+            expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session:'), TOAST_TYPES.ERROR, 20000);
             getElSpy.mockRestore();
         });
 
@@ -1614,7 +1614,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             await manager.launchSession(agent, btn);
 
-            expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', TOAST_TYPES.ERROR);
+            expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session:'), TOAST_TYPES.ERROR, 20000);
             expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, BUTTON_STATES.READY, 'Launch in Jules 🚀');
             expect(dispatchSpy).toHaveBeenCalledWith("JULES_LAUNCH_SESSION_FAILED", expect.any(Error), { sourceName: 'sources/github/a/b' });
             expect(consoleSpy).toHaveBeenCalledWith("Failed to launch session for repository sources/github/a/b", expect.any(Error));
@@ -1639,7 +1639,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             await manager.launchSession(agent, btn);
 
-            expect(mockToast.show).toHaveBeenCalledWith('Could not launch the session. Please verify your API key has the correct permissions.', TOAST_TYPES.ERROR);
+            expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session:'), TOAST_TYPES.ERROR, 20000);
             expect(terminal.querySelector('#fetchingIndicator')).toBeNull();
         });
 
