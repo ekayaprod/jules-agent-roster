@@ -1,4 +1,4 @@
-const SafeUITimings = typeof window !== 'undefined' ? window.UI_TIMINGS : (typeof global !== 'undefined' ? global.UI_TIMINGS : null);
+var SafeUITimings = typeof window !== 'undefined' ? window.UI_TIMINGS : (typeof global !== 'undefined' ? global.UI_TIMINGS : null);
 const OBSERVER_OPTIONS = {
     rootMargin: "-80px 0px -60% 0px",
     threshold: 0
