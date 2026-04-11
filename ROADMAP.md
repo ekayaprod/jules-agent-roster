@@ -47,7 +47,7 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 - [ ] [DX] Idea: Adopt `emoji-regex` via CDN to replace brittle custom string utilities in `js/utils/StringUtils.js` for emoji handling, standardizing Unicode processing and reducing error-prone custom regex logic. (Source: github.com/mathiasbynens/emoji-regex)
 - [UX] Idea: Custom agent tile layout, allowing users to put their favourite fusion agent cards on the main page for easy access - using local storage (Source: User Request)
-- [x] [UX] Idea: Adopt `fuse.js` (20k stars) for fuzzy search to fix strict typo failures. (Source: fusejs.io)
+- [x] [UX] Idea: Adopt `fuse.js` (20k stars) for fuzzy search to fix strict typo failures. (Source: fusejs.io) (Shipped: [Commit a54cf1e](https://github.com/google/jules/commit/a54cf1e))
 - [ ] [Security] Idea: Integrate `DOMPurify` to sanitize Fusion Lab output and prevent XSS. (Source: github.com/cure53/DOMPurify)
 - [x] [Performance] Idea: Implement debounce pattern for search input to prevent layout thrashing on every keystroke. (Source: lodash) (Shipped: [Commit 73228b7](https://github.com/google/jules/commit/73228b7))
 - [ ] [DX] Idea: Standardize clipboard logic with `clipboard-polyfill` to replace deprecated execCommand. (Source: github.com/lgarron/clipboard-polyfill)
@@ -61,4 +61,10 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 - [x] [DX] Idea: Introduce a standard `package.json` to define npm scripts for verification and task running, replacing scattered manual python scripts and unifying DX. (Shipped: [Commit 861d7fd](https://github.com/google/jules/commit/861d7fd57cbf9aa816fe84fefb62ce9b89a3896d))
 - [x] [Performance] Idea: Implement virtualized lists via `Clusterize.js` (via CDN) to render large agent rosters without layout thrashing, resolving the 'Missing pagination' audit finding while maintaining the zero-build-step constraint. (Source: clusterize.js.org) (Shipped: [Commit b1e678d](https://github.com/google/jules/commit/b1e678d225e476d060b19451f3fc25871fc1e27f))
-- [x] [UX] Idea: Adopt `focus-trap` via CDN to standardize keyboard navigation and modal accessibility in FusionLab, replacing brittle custom roving tabindex logic (`handleGridKeydown`). (Source: github.com/focus-trap/focus-trap)
+- [x] [UX] Idea: Adopt `focus-trap` via CDN to standardize keyboard navigation and modal accessibility in FusionLab, replacing brittle custom roving tabindex logic (`handleGridKeydown`). (Source: github.com/focus-trap/focus-trap) (Shipped: [Commit 572a514](https://github.com/google/jules/commit/572a514))
+
+### Standardize Testing Assertions
+
+**The Problem:** The application currently relies on brittle, low-level structural assertions (like checking `.className` and `.innerHTML`) which test implementation details rather than user behavior, leading to brittle tests.
+**The Solution:** Adopt `@testing-library/jest-dom` to enforce semantic assertions like `toBeVisible()`, `toHaveTextContent()`, and `toHaveAttribute()`.
+**The Benefit:** Decouples tests from structural CSS/DOM implementation details, making them robust to refactoring and enforcing accessibility standards.

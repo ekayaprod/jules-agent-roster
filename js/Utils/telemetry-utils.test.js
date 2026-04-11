@@ -104,3 +104,49 @@ describe('TelemetryUtils isolated coverage', () => {
         expect(windowMock.TelemetryUtils).toBeDefined();
     });
 });
+
+    it('exports gracefully across different environment module definitions', () => {
+        const fs = require('fs');
+        const code = fs.readFileSync('js/Utils/telemetry-utils.js', 'utf8');
+
+        // Assert exports assign successfully in Node-like environment with global
+        let isExported = false;
+        let moduleMock = {
+            get exports() { return {}; },
+            set exports(val) { isExported = true; }
+        };
+        let globalMock = {};
+        expect(() => {
+            new Function('module', 'global', code)(moduleMock, globalMock);
+        }).not.toThrow();
+        expect(isExported).toBe(true);
+        expect(globalMock.TelemetryUtils).toBeDefined();
+
+        // Assert exports assign successfully in Node-like environment without global
+        isExported = false;
+        moduleMock = {
+            get exports() { return {}; },
+            set exports(val) { isExported = true; }
+        };
+        expect(() => {
+            new Function('module', 'global', code)(moduleMock, undefined);
+        }).not.toThrow();
+        expect(isExported).toBe(true);
+
+        // Assert safe bypass when module lacks exports property
+        expect(() => {
+            new Function('module', code)({});
+        }).not.toThrow();
+
+        // Assert safe bypass when module is strictly undefined and window is present (browser-like)
+        let windowMock = {};
+        expect(() => {
+            new Function('module', 'window', code)(undefined, windowMock);
+        }).not.toThrow();
+        expect(windowMock.TelemetryUtils).toBeDefined();
+
+        // Assert safe bypass when module is undefined and window is undefined
+        expect(() => {
+            new Function('module', 'window', code)(undefined, undefined);
+        }).not.toThrow();
+    });

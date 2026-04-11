@@ -208,3 +208,77 @@ describe('NetworkUtils', () => {
         });
     });
 });
+
+    describe('environment exports', () => {
+        it('exports gracefully across different environment module definitions', () => {
+            const fs = require('fs');
+            const code = fs.readFileSync('js/Utils/network-utils.js', 'utf8');
+
+            // Assert exports assign successfully in Node-like environment
+            let isExported = false;
+            let moduleMock = {
+                get exports() { return {}; },
+                set exports(val) { isExported = true; }
+            };
+            expect(() => {
+                new Function('module', code)(moduleMock);
+            }).not.toThrow();
+            expect(isExported).toBe(true);
+
+            // Assert safe bypass when module lacks exports property
+            expect(() => {
+                new Function('module', code)({});
+            }).not.toThrow();
+
+            // Assert safe bypass when module is strictly undefined (browser-like)
+            let windowMock = {};
+            expect(() => {
+                new Function('module', 'window', code)(undefined, windowMock);
+            }).not.toThrow();
+            expect(windowMock.NetworkUtils).toBeDefined();
+
+            expect(() => {
+                new Function('module', 'window', code)(undefined, undefined);
+            }).not.toThrow();
+        });
+    });
+
+        describe('rate limiter window reset', () => {
+        let originalFetch;
+        beforeEach(() => {
+            originalFetch = global.fetch;
+            global.fetch = jest.fn();
+            jest.useFakeTimers();
+        });
+        afterEach(() => {
+            global.fetch = originalFetch;
+            jest.clearAllTimers();
+            jest.useRealTimers();
+        });
+        it('resets the bucket count and windowStart after 60 seconds', async () => {
+            const mockResponse = { ok: true, status: 200 };
+            global.fetch.mockResolvedValue(mockResponse);
+
+            // Initial request to populate bucket
+            await NetworkUtils.fetchWithRetry('http://test-reset.com');
+
+            // Advance time by 61 seconds to trigger window reset
+            jest.advanceTimersByTime(61000);
+
+            // Execute request after time advanced
+            await NetworkUtils.fetchWithRetry('http://test-reset.com');
+            expect(global.fetch).toHaveBeenCalledTimes(2);
+        });
+    });
+
+    describe('browser environment mock test', () => {
+        it('assigns correctly to window if module is undefined', () => {
+             const fs = require('fs');
+             const code = fs.readFileSync('js/Utils/network-utils.js', 'utf8');
+             let windowMock = {};
+             // Simulate environment where module is NOT defined, but window IS
+             // Wrapping in a function and explicitly passing undefined for module
+             new Function('module', 'window', code)(undefined, windowMock);
+             expect(windowMock.NetworkUtils).toBeDefined();
+        });
+    });

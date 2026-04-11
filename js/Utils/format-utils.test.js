@@ -104,3 +104,31 @@ describe('FormatUtils', () => {
         });
     });
 });
+
+    describe('environment exports', () => {
+        it('exports gracefully across different environment module definitions', () => {
+            const fs = require('fs');
+            const code = fs.readFileSync('js/Utils/format-utils.js', 'utf8');
+
+            // Assert exports assign successfully in Node-like environment
+            let isExported = false;
+            let moduleMock = {
+                get exports() { return {}; },
+                set exports(val) { isExported = true; }
+            };
+            expect(() => {
+                new Function('module', code)(moduleMock);
+            }).not.toThrow();
+            expect(isExported).toBe(true);
+
+            // Assert safe bypass when module lacks exports property
+            expect(() => {
+                new Function('module', code)({});
+            }).not.toThrow();
+
+            // Assert safe bypass when module is strictly undefined (browser-like)
+            expect(() => {
+                new Function('module', code)(undefined);
+            }).not.toThrow();
+        });
+    });
