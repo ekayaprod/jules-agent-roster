@@ -37,6 +37,7 @@ class NetworkUtils {
         }
 
         // 🐺 FORTIFY: Head 2 - Strict Schema Validation (Reject massive buffers & prototype pollution)
+        // ✍️ CHRONICLE: Fortified in v0.9.0 to prevent fatal payload crashes by enforcing type safety and .startsWith validaton.
         if (options.body) {
             if (typeof options.body !== 'string') {
                 throw new Error("Invalid payload: Body must be a stringized buffer.");
