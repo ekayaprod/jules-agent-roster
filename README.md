@@ -32,14 +32,14 @@ The core of this system is the **Overseer** agent. This agent runs monthly to pe
 
 ## 🚀 Quick Start
 
-Welcome aboard! This roster is a self-contained HTML file, but you can also boot up the local development environment:
+Welcome aboard! To boot up the local development environment and serve the application:
 
 ```bash
 npm install
-npm test
+npm start
 ```
 
-*Note: `npm test` runs the performance benchmarks. If you're working on the UI, just open `index.html` in your browser! To run the unit tests via JSDOM, execute `npm run test:unit`.*
+*Note: `npm start` automatically builds the roster payload and launches a local server on port 8080! To run the unit tests via JSDOM, execute `npm run test:unit`.*
 
 ### Usage Instructions
 

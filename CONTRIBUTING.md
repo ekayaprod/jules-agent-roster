@@ -12,10 +12,10 @@ Make sure you have Node.js installed, then fire up the local environment:
 
 ```bash
 npm install
-npm test
+npm start
 ```
 
-*Note: There is no build step! We keep it strictly Vanilla JS. You can just open `index.html` in your browser to test UI changes.*
+*Note: The `npm start` command will automatically compile the agent payload before launching a local server for you to test UI changes.*
 
 ## 🧪 Testing Your Changes
 
@@ -39,7 +39,7 @@ Our testing strategy is split into two distinct paths. Please make sure you run 
 
 1. **Create the Prompt:** Add your new Markdown file in the `prompts/` or `prompts/fusions/` directory. Remember to follow the strict formatting (e.g., `You are "[Agent Name]" [emoji] - [Tagline]`).
 2. **Register It:** Ensure the `.md` file has valid YAML frontmatter containing `name`, `emoji`, `category`, and `tier`. Run `npm run build:roster` to dynamically compile the changes into `roster-payload.json`.
-3. **Verify:** Open `index.html` locally and make sure your agent card flips perfectly!
+3. **Verify:** Run `npm start` and open the local development URL to ensure your agent card flips perfectly!
 
 ## 📜 Code Style
 
