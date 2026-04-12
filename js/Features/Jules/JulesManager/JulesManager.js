@@ -449,7 +449,7 @@ class JulesManager {
 
         if (agent.prompt === undefined) {
             if (btn) btn.disabled = true;
-            const url = agent.promptFile || (agent.isCustom ? `./prompts/fusions/${agent.name}.md` : `./prompts/${agent.name}.md`);
+            const url = AgentUtils.getPromptUrl(agent);
             agent.prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
             if (btn) btn.disabled = false;
         }

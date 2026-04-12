@@ -129,7 +129,7 @@ class RosterApp {
     setTimeout(() => {
       this.agents.forEach(agent => {
         if (agent.prompt === undefined) {
-          const url = agent.promptFile || `./prompts/${agent.name}.md`;
+          const url = AgentUtils.getPromptUrl(agent);
           this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
               agent.prompt = fetched;
           });
@@ -627,7 +627,7 @@ class RosterApp {
                       // Temporarily render a loading spinner
                       promptArea.innerHTML = '<div style="display:flex; justify-content:center; align-items:center; height:100%;"><div class="loading-spinner" style="width:1.5rem; height:1.5rem; margin:0;"></div></div>';
 
-                      const url = agent.promptFile || (agent.isCustom ? `./prompts/fusions/${agent.name}.md` : `./prompts/${agent.name}.md`);
+                      const url = AgentUtils.getPromptUrl(agent);
 
                       this.agentRepo.fetchPrompt(agent.name, url, fallbackText).then((fetchedPrompt) => {
                           agent.prompt = fetchedPrompt;
@@ -733,7 +733,7 @@ class RosterApp {
                 if (index) {
                     let agent = this.getAgentForUI(index);
                     if (agent && agent.isCustom && agent.prompt === undefined) {
-                        const url = agent.promptFile || `./prompts/fusions/${agent.name}.md`;
+                        const url = AgentUtils.getPromptUrl(agent);
                         this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
                             agent.prompt = fetched;
                         });

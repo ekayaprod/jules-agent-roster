@@ -28,6 +28,16 @@ class AgentUtils {
         }
         return validCustomAgents;
     }
+
+    static getPromptUrl(agent) {
+        if (agent.promptFile) {
+            return agent.promptFile;
+        }
+        if (agent.isCustom) {
+            return `./prompts/fusions/${agent.name}.md`;
+        }
+        return `./prompts/${agent.name}.md`;
+    }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
