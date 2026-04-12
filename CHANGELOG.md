@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## 0.9.0 - 2026-04-12
+
+### 🚀 Features
+- **Agent Roster Expansion**: Promoted Vibe to base roster, updated master forge schemas for multiple agents, and added the Canvas fusion agent.
+- **UI & Workflows**: Added 'Download Fusions' and 'Download Parent Fusions' buttons to agent card dropdowns. Redesigned terminal UI to defer API calls behind a manual toggle and implemented a PR modal with merge and close actions.
+- **Architecture**: Migrated agents to V8 Single-Pass standard. Synchronized agent markdown files and registries with a new sync script. Migrated heavy search logic to a background Web Worker.
+
+### 💅 Polish
+- **Visuals**: Polished Fusion Lab interactions and transitions. Redesigned the splay indicator as a bottom card stack and allowed child fusions to splay out on core agent cards.
+- **Microcopy & Documentation**: Extracted magic numbers and enforced UI timings. Centralized terminal indicator logic and updated various agent documentation for clarity.
+
+### ⚡ Performance
+- **DOM & Execution**: Minified roster payload JSON. Offloaded fuse.js searches to background workers. Optimized StorageUtils prototype pollution stripping. Bypassed React optimizations in the Vanilla JS stack.
+- **Telemetry**: Injected execution timing and token usage telemetry around the AI invocation boundary. Swept legacy telemetry JSON data payload.
+
+### 🛡️ Security & Stability
+- **Network Boundaries**: Fortified network payload and session boundary validations. Enforced type safety on options.body to prevent fatal payload crashes.
+- **Error Handling**: Resuscitated global variable redeclaration boot failures. Enforced environment export boundary testing and interrogated error boundaries across modules.
+
 ## 0.8.0 - 2026-03-12
 
 ### 🚀 Features

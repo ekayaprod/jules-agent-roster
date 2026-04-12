@@ -19,6 +19,9 @@ var HTTP_STATUS = Object.freeze({
   INTERNAL_SERVER_ERROR: 500
 });
 
+/**
+ * Extracted in v0.9.0 to eliminate magic number UI timing entropy.
+ */
 var UI_TIMINGS = Object.freeze({
   MODAL_FOCUS_DELAY_MS: 50
 });
