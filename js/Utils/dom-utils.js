@@ -4,6 +4,16 @@
  * @see ../../docs/architecture/Utils/README.md#domutils-architecture
  */
 class DOMUtils {
+  static closeDropdownMenu(menu, appContext) {
+      if (!menu) return;
+      menu.classList.remove('visible');
+      const toggleBtn = document.querySelector(`[aria-controls="${menu.id}"]`);
+      if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+      if (appContext && appContext.activeDropdowns) {
+          appContext.activeDropdowns.delete(menu);
+      }
+  }
+
   /**
    * Creates a standardized CSS loading skeleton element.
    * Do NOT use this for actual content generation. This is strictly a placebo

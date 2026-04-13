@@ -6,7 +6,7 @@
 > 3. Do not delete this file. Sweep resolved `[x]` items on execution.
 
 ## 🧱 Structural Monoliths (Size & Architecture)
-- [ ] 🏗️ `js/core/RosterApp.js`: 987 lines. Requires domain splitting and colocation.
+- [x] 🏗️ `js/core/RosterApp.js`: 987 lines. Requires domain splitting and colocation.
 - [ ] 🏗️ `js/Features/Jules/JulesManager/JulesManager.js`: Monolithic module. Requires extraction of shared logic into utilities.
 
 ## 🕸️ Logic Tangles (Complexity & Dead Code)
