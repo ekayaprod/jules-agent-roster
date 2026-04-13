@@ -10,11 +10,10 @@ To add a new agent to the roster, execute the following steps:
 
 1. Copy an existing agent prompt file as a baseline to ensure consistent formatting.
 2. Create a new `.md` file in the root `prompts/` directory for a Core Agent, or inside `prompts/fusions/` for a Custom Fusion.
-3. Write the agent prompt using standard Markdown syntax. Exclude YAML front matter completely.
+3. Write the agent prompt using standard Markdown syntax. **Ensure the file has valid YAML frontmatter containing `name`, `emoji`, `category`, and `tier`.**
 4. Escape any template syntax (e.g., `{{ }}`) within code blocks to prevent unintended parsing by GitHub Pages.
-5. Register a Core Agent by appending an entry to `agents.json` in the repository root.
-6. Register a Fusion Agent by appending an entry to `custom_agents.json`, clearly defining the parent pair (e.g., `"Paramedic,Wordsmith"`).
-7. Reload the local application and verify the new agent appears in the main grid or is unlockable within the Fusion Lab.
+5. Run `npm run build:roster` (or simply `npm start`) to dynamically compile your new agent into `roster-payload.json`.
+6. Reload the local application and verify the new agent appears in the main grid or is unlockable within the Fusion Lab.
 
 ## Architecture
 
