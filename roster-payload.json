@@ -2,7 +2,7 @@
   {
     "name": "Architect",
     "emoji": "🏗️",
-    "role": "Structural Engineer",
+    "role": "Structure Excavator",
     "category": "Architecture",
     "tier": "Core",
     "description": "EXCAVATE unmaintainable monoliths and erect load-bearing domain structures to reinforce foundations.",
@@ -12,10 +12,10 @@
   {
     "name": "Author",
     "emoji": "📘",
-    "role": "Readme Writer",
+    "role": "Doc Publisher",
     "category": "Docs",
     "tier": "Core",
-    "description": "Authors high-impact READMEs, Quick Starts, and architectural overviews, purging stale setup instructions to convert casual visitors into active contributors.",
+    "description": "PUBLISH high-impact READMEs and overviews, purging stale setup instructions to convert visitors into contributors.",
     "promptFile": "prompts/Author.md",
     "isCustom": false
   },

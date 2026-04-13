@@ -182,7 +182,7 @@ sequenceDiagram
 
 ## 6. 🧼 Data Integrity & Parsing
 
-To ensure reliable data flow from the static file system to the UI, the system enforces a strict parsing and validation strategy. The application relies on `safeJsonParse` wrappers that capture raw response errors and decorate them with human-readable context. Rather than failing silently, invalid payloads trigger explicit warnings, ensuring broken configurations (`agents.json` or `custom_agents.json`) are easily diagnosed without requiring deep network inspection.
+To ensure reliable data flow from the static file system to the UI, the system enforces a strict parsing and validation strategy. The application relies on `safeJsonParse` wrappers that capture raw response errors and decorate them with human-readable context. Rather than failing silently, invalid payloads trigger explicit warnings, ensuring broken configurations (`roster-payload.json`) are easily diagnosed without requiring deep network inspection.
 
 ## 7. 🔒 Security Model
 
