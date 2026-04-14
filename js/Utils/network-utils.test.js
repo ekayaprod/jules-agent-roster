@@ -53,6 +53,16 @@ describe('NetworkUtils', () => {
                 body: '{"__proto__":{"isAdmin":true}}'
             })).rejects.toThrow("Prototype pollution detected");
 
+            // Valid JSON containing __proto__ in text should not be rejected
+            await expect(NetworkUtils.fetchWithRetry('http://test-proto-allow.com', {
+                body: '{"prompt":"Tell me about __proto__ syntax"}'
+            })).resolves.toBe(mockResponse);
+
+            // Invalid JSON containing __proto__ should be rejected
+            await expect(NetworkUtils.fetchWithRetry('http://test-proto-invalid.com', {
+                body: 'this is not valid JSON but contains __proto__'
+            })).rejects.toThrow("Prototype pollution detected");
+
             // Oversized Payload Fuzzer
             const massiveBuffer = 'A'.repeat(1000001);
             await expect(NetworkUtils.fetchWithRetry('http://test-buffer.com', {

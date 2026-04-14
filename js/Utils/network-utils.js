@@ -46,7 +46,21 @@ class NetworkUtils {
                 throw new Error("Invalid payload: Body exceeds 1MB buffer limit.");
             }
             if (options.body.includes('__proto__')) {
-                throw new Error("Invalid payload: Prototype pollution detected in payload.");
+                let isPolluted = false;
+                try {
+                    JSON.parse(options.body, (key, value) => {
+                        if (key === '__proto__') {
+                            isPolluted = true;
+                        }
+                        return value;
+                    });
+                } catch (e) {
+                    // If parsing fails, fall back to blocking it for safety
+                    isPolluted = true;
+                }
+                if (isPolluted) {
+                    throw new Error("Invalid payload: Prototype pollution detected in payload.");
+                }
             }
         }
 
