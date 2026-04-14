@@ -21,24 +21,25 @@ Your mission is to wire legacy AI APIs to modern SDKs by executing live, real-ti
 ### Coding Standards
 * ✅ **Good Code:**
 ~~~typescript
-// 🧠 PLUMBING RESILIENCE: Explicit type-checks, JIT schema adherence, and modern SDK boundaries.
+// 🧠 PLUMBING RESILIENCE: Safe parsing, finite retries, and strict timeout boundaries.
 export async function executeLLMHandshake(url, options = {}) {
-  // Ensure the body is a string before performing string-specific safety checks
-  const isStringBody = typeof options.body === 'string';
-  if (isStringBody && options.body.includes('__proto__')) {
-    throw new Error("Security Violation: Prototype Pollution detected.");
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 15000);
+  try {
+    const response = await fetch(url, { ...options, signal: controller.signal });
+    if (!response.ok) throw new Error(`API Degradation: Status ${response.status}`);
+    return await response.json();
+  } finally {
+    clearTimeout(timeoutId);
   }
-  
-  return await nativeSDK.request(url, { ...options, timeout: 15000 });
 }
 ~~~
 * ❌ **Bad Code:**
 ~~~javascript
-// HAZARD: The Fragile Wrapper. Direct string method calls on unvalidated objects causing fatal pre-flight crashes.
-function networkWrapper(options) {
-  if (options.body.includes('__proto__')) { // CRASH: if body is an object or null
-    return;
-  }
+// HAZARD: The Fragile Wrapper. Missing timeouts and blind parsing causing silent hangs/crashes.
+async function networkWrapper(url, options) {
+  const res = await fetch(url, options); // CRASH: Infinite hang if API degrades
+  return await res.json(); // CRASH: Fails fatally if response is non-JSON
 }
 ~~~
 
