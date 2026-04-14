@@ -13,10 +13,10 @@
 *.seed
 *.tgz
 *.tsbuildinfo
+.DS_Store
 .cache
 .cache/
 .docusaurus
-.DS_Store
 .dynamodb/
 .env
 .env.*
@@ -42,6 +42,7 @@
 .vuepress/dist
 .yarn-integrity
 .yarn/*
+__pycache__
 bower_components
 build/Release
 coverage
@@ -64,4 +65,3 @@ vite.config.ts.timestamp-*
 web_modules/
 yarn-debug.log*
 yarn-error.log*
-__pycache__
