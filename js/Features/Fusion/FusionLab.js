@@ -323,7 +323,6 @@ class FusionLab {
           this.fusionIndex.unlock(key);
         }
       } catch (e) {
-        console.warn("FusionLab: Failed to unlock index", e);
       }
     }
 
