@@ -41,6 +41,16 @@ class FormatUtils {
     }
 
     /**
+     * Escapes special regex characters in a string to be safely used inside a RegExp instance.
+     * @param {string} str - The string to escape.
+     * @returns {string} The escaped string.
+     */
+    static escapeRegex(str) {
+        if (!str || typeof str !== 'string') return "";
+        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    /**
      * Extracts an icon from an agent, handling fallbacks for fusions.
      * @param {Object} agent - The agent object.
      * @param {string} fallback - Optional fallback icon.
