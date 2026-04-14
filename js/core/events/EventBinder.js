@@ -88,16 +88,26 @@ class EventBinder {
               let listItems = '';
 
               // Dynamically resolve fusions from the live matrix map
-              const allMatrixKeys = app.fusionLab.compiler.fusionMatrixMap ? Object.keys(app.fusionLab.compiler.fusionMatrixMap) : [];
-              const potentialFusions = [];
+              const compiler = app.fusionLab.compiler;
+              const allMatrixKeys = compiler.fusionMatrixMap ? Object.keys(compiler.fusionMatrixMap) : [];
 
-              // Extract unique potential fusions for this agent dynamically
-              const uniqueKeys = new Set(allMatrixKeys);
-              for (const key of uniqueKeys) {
-                  if (key.includes(agent.name)) {
-                      potentialFusions.push(key);
-                  }
+              // Extract unique potential fusions for this agent dynamically via a memoized dictionary lookup
+              // ⚡ Bolt+: Eliminated O(N) redundant iteration by memoizing the exact string-inclusion result per agent name.
+              if (!compiler._fusionCacheByAgent || compiler._lastMatrixMapRef !== compiler.fusionMatrixMap) {
+                  compiler._fusionCacheByAgent = {};
+                  compiler._lastMatrixMapRef = compiler.fusionMatrixMap;
               }
+              if (!compiler._fusionCacheByAgent[agent.name]) {
+                  const uniqueKeys = new Set(allMatrixKeys);
+                  const fusions = [];
+                  for (const key of uniqueKeys) {
+                      if (key.includes(agent.name)) {
+                          fusions.push(key);
+                      }
+                  }
+                  compiler._fusionCacheByAgent[agent.name] = fusions;
+              }
+              const potentialFusions = compiler._fusionCacheByAgent[agent.name];
 
               // Reset title to base agent
               const titleSpan = document.getElementById("fusionsModalAgent");
