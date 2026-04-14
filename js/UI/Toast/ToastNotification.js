@@ -57,17 +57,30 @@ class ToastNotification {
 
         if (!this.element) return;
 
-        // Set default message if empty
-        const msgText = message || "Notification";
+        this._render(message, type);
+        this._setAccessibility(type);
+        this._animate(true);
 
-        // Icons for different types
+        // Start auto-dismiss timer if duration is positive
+        if (duration > 0) {
+            this.startTimer(duration);
+        }
+    }
+
+    /**
+     * Renders the toast content and sets its type.
+     * @param {string} message - The primary message to display.
+     * @param {string} type - The status class.
+     * @private
+     */
+    _render(message, type) {
+        const msgText = message || "Notification";
         const icons = {
             success: `<svg aria-hidden="true" class="toast-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>`,
             error: `<svg aria-hidden="true" class="toast-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>`,
             info: `<svg aria-hidden="true" class="toast-icon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`
         };
 
-        // Construct HTML
         this.element.innerHTML = `
             <div class="toast-content">
                 ${icons[type] || icons.success}
@@ -78,14 +91,17 @@ class ToastNotification {
             </button>
         `;
 
-        // Set message securely
         this.element.querySelector('.toast-message').textContent = msgText;
-
-        // Reset classes
         this.element.className = 'toast';
         this.element.classList.add(type);
+    }
 
-        // Accessibility Management
+    /**
+     * Updates accessibility attributes based on toast type.
+     * @param {string} type - The toast status type.
+     * @private
+     */
+    _setAccessibility(type) {
         if (type === TOAST_TYPES.ERROR) {
             this.element.setAttribute('role', 'alert');
             this.element.setAttribute('aria-live', 'assertive');
@@ -93,16 +109,20 @@ class ToastNotification {
             this.element.setAttribute('role', 'status');
             this.element.setAttribute('aria-live', 'polite');
         }
+    }
 
-        // Show the toast
-        // Use requestAnimationFrame to ensure the class is added after DOM update for transition
-        requestAnimationFrame(() => {
-            this.element.classList.add("show");
-        });
-
-        // Start auto-dismiss timer if duration is positive
-        if (duration > 0) {
-            this.startTimer(duration);
+    /**
+     * Toggles visibility using CSS transitions and requestAnimationFrame.
+     * @param {boolean} isVisible - Target visibility state.
+     * @private
+     */
+    _animate(isVisible) {
+        if (isVisible) {
+            requestAnimationFrame(() => {
+                this.element.classList.add("show");
+            });
+        } else {
+            this.element.classList.remove("show");
         }
     }
 
@@ -152,7 +172,7 @@ class ToastNotification {
      */
     dismiss() {
         if (this.element) {
-            this.element.classList.remove("show");
+            this._animate(false);
             // Optional: Clear content after transition for screen readers?
             // Better to leave it until next show or keep it hidden via CSS.
         }
