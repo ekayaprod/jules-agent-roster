@@ -165,7 +165,7 @@
     "role": "Repository Handyman",
     "category": "Operations",
     "tier": "Core",
-    "description": "MAINTAIN structural integrity by untangling configurations, patching leaky dependencies, and sweeping unlinked trash.",
+    "description": "MAINTAIN structural integrity by patching leaks, sweeping cache trash, and performing routine foundation audits.",
     "promptFile": "prompts/Superintendent.md",
     "isCustom": false
   },
@@ -192,10 +192,10 @@
   {
     "name": "Vibe",
     "emoji": "🎧",
-    "role": "Flow State Hacker",
+    "role": "Concept Coder",
     "category": "Feature",
     "tier": "Plus",
-    "description": "Operates as the self-starting creative engine of the repository, leveraging live latent imagination to deduce missing features and code them into absolute, production-ready reality.",
+    "description": "FLOW through the repository, leveraging live latent imagination to deduce missing features and code them into absolute, production-ready reality.",
     "promptFile": "prompts/Vibe.md",
     "isCustom": false
   },

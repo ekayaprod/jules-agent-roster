@@ -72,32 +72,29 @@ const FusionAnimation = function () {
       const particleCount = config.particleCount;
       const speedMultiplier = config.speedMultiplier;
 
-      // 🌳 Yggdrasil Mutation: Mutated imperative loop to pure functional pipeline
-      const particles = Array.from({ length: particleCount }).map(() => {
+      const fragment = document.createDocumentFragment();
+      for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement("div");
         particle.className = "anim-particle";
-        
+
         // Randomize burst angle and travel distance
         const angle = Math.random() * Math.PI * 2;
         const distance = 50 + Math.random() * 200;
         const tx = Math.cos(angle) * distance;
         const ty = Math.sin(angle) * distance;
 
-        particle.style.setProperty("--tx", `${tx/16}rem`);
-        particle.style.setProperty("--ty", `${ty/16}rem`);
-        
+        particle.style.setProperty("--tx", `${tx / 16}rem`);
+        particle.style.setProperty("--ty", `${ty / 16}rem`);
+
         // Sync duration to the explosion curve
         particle.style.animationDuration = `${1.0 / speedMultiplier}s`;
-        
+
         // Lock delay exactly to the 1.8s flash frame
         particle.style.animationDelay = `1.8s`;
         particle.style.animationTimingFunction = "cubic-bezier(0.1, 0.8, 0.3, 1)";
 
-        return particle;
-      });
-
-      const fragment = document.createDocumentFragment();
-      particles.forEach(p => fragment.appendChild(p));
+        fragment.appendChild(particle);
+      }
       particlesContainer.appendChild(fragment);
     }
 
