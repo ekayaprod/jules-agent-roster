@@ -7,7 +7,7 @@
 
 ## 🧱 Structural Monoliths (Size & Architecture)
 - [x] 🏗️ `js/core/RosterApp.js`: 987 lines. Requires domain splitting and colocation.
-- [ ] 🏗️ `js/Features/Jules/JulesManager/JulesManager.js`: Monolithic module. Requires extraction of shared logic into utilities.
+- [x] 🏗️ `js/Features/Jules/JulesManager/JulesManager.js`: Monolithic module. Requires extraction of shared logic into utilities.
 
 ## 🕸️ Logic Tangles (Complexity & Dead Code)
 - [ ] 🧶 `js/core/RosterApp.js`: File has massive complexity (> 160 branching points). Deep nested logic requires untangling.

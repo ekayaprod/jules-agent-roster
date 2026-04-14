@@ -362,7 +362,7 @@ class JulesManager {
                 for (let i = 0; i < this.app.agents.length; i++) {
                     const a = this.app.agents[i];
                     this._agentMapCache.set(a.name, a);
-                    if (a.name) escapedNames.push(a.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+                    if (a.name) escapedNames.push(FormatUtils.escapeRegex(a.name));
                 }
             }
 
@@ -372,7 +372,7 @@ class JulesManager {
                     const a = customs[i];
                     if (a.name) {
                         this._agentMapCache.set(a.name, a);
-                        escapedNames.push(a.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+                        escapedNames.push(FormatUtils.escapeRegex(a.name));
                     }
                 }
             }

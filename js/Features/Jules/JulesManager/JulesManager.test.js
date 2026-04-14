@@ -28,6 +28,7 @@ global.DOMUtils = {
 };
 
 global.FormatUtils = {
+    escapeRegex: jest.fn().mockImplementation((str) => str),
     escapeHTML: jest.fn().mockImplementation((str) => str),
     extractRepoPath: jest.fn().mockImplementation((sourceName) => sourceName ? sourceName.replace('sources/github/', '') : '')
 };
