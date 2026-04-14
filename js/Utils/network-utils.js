@@ -84,7 +84,9 @@ class NetworkUtils {
                     const errorText = await response.text();
                     try {
                         const errJson = typeof errorText === 'string' ? JSON.parse(errorText) : {};
-                        if (errJson.error?.message) {
+                        if (typeof errJson.error === 'string') {
+                            errorMsg = errJson.error;
+                        } else if (errJson.error?.message) {
                             errorMsg = errJson.error.message;
                         } else if (errJson.message) {
                             errorMsg = errJson.message;

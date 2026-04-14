@@ -206,6 +206,51 @@ describe('NetworkUtils', () => {
 
             expect(promiseError.message).toBe("Invalid response object");
         });
+
+        it('should throw error if body is not a string', async () => {
+            await expect(NetworkUtils.fetchWithRetry('http://test.com', {
+                body: { foo: 'bar' }
+            })).rejects.toThrow("Invalid payload: Body must be a stringized buffer.");
+        });
+
+        it('should fallback to default error message if response.text() throws', async () => {
+            const mockResponse = {
+                ok: false,
+                status: 400,
+                text: jest.fn().mockRejectedValue(new Error("text() failed"))
+            };
+            global.fetch.mockResolvedValueOnce(mockResponse);
+
+            await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("HTTP Error: 400");
+        });
+
+        it('should warn when rate limit is exceeded', async () => {
+            const mockResponse = { ok: true, status: 200 };
+            global.fetch.mockResolvedValue(mockResponse);
+
+            try {
+                for (let i = 0; i < 105; i++) {
+                    await NetworkUtils.fetchWithRetry('http://test-warn.com');
+                }
+            } catch (error) {
+                // Expected
+            }
+            expect(consoleWarnMock).toHaveBeenCalledWith(
+                expect.stringContaining("Assault intercepted by Cerberus"),
+                expect.any(Error)
+            );
+        });
+
+        it('should extract error from errJson.error if it is a string', async () => {
+            const mockResponse = {
+                ok: false,
+                status: 400,
+                text: jest.fn().mockResolvedValue('{"error": "String error from API"}')
+            };
+            global.fetch.mockResolvedValueOnce(mockResponse);
+
+            await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("String error from API");
+        });
     });
 });
 
