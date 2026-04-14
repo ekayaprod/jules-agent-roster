@@ -56,7 +56,7 @@ const activities = await window.julesService.getActivities(session.name);
 
 The `AgentRepository` acts as the single source of truth for agent data.
 
-1. **Fetching:** It fetches `agents.json` and `custom_agents.json` via the native `fetch` API, implementing an exponential backoff retry mechanism (`fetchWithRetry`) for network resilience.
+1. **Fetching:** It fetches `roster-payload.json` via the native `fetch` API, implementing an exponential backoff retry mechanism (`fetchWithRetry`) for network resilience.
 2. **Validation:** Raw JSON data is strictly validated against expected schemas. The `validateAgentsData` and `validateCustomAgent` methods sanitize optional fields and reject malformed entries to prevent downstream UI errors.
 3. **Prompt Resolution:** After validating the JSON metadata, the repository dynamically fetches the corresponding Markdown files from the `prompts/` and `prompts/fusions/` directories, attaching the raw prompt text directly to the agent objects.
 4. **Environment Agnostic:** The service is written in standard ES6 classes and supports CommonJS exports (`module.exports`) to allow execution in Node.js test environments without transpilation.

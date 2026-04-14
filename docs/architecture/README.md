@@ -1,6 +1,6 @@
 # JavaScript Architecture
 
-This directory contains the core application logic for the Jules Roster. The application is built with **Vanilla JavaScript** (ES6+) and does not require a build step.
+This directory contains the core application logic for the Jules Roster. The application is built with **Vanilla JavaScript** (ES6+) and requires a lightweight payload compilation step via `npm run build:roster`.
 
 ## 🏗️ Architecture
 
@@ -36,7 +36,7 @@ The `RosterApp` orchestrates the primary application flow, emphasizing asynchron
 
 ### Services (`/services`)
 
-* **`AgentRepository.js`**: Responsible for fetching and parsing `agents.json` and `custom_agents.json`. It normalizes data and handles error states for network requests.
+* **`AgentRepository.js`**: Responsible for fetching and parsing `roster-payload.json`. It normalizes data and handles error states for network requests.
 
 ### UI Components (`/ui`)
 
@@ -52,7 +52,7 @@ The `RosterApp` orchestrates the primary application flow, emphasizing asynchron
 
 1. **Initialization**: `index.html` loads scripts in dependency order (Core -> Utils -> UI -> App).
 2. **Bootstrap**: `RosterApp` is instantiated and calls `init()`.
-3. **Data Fetching**: `AgentRepository` fetches `agents.json` and `custom_agents.json`.
+3. **Data Fetching**: `AgentRepository` fetches `roster-payload.json`.
 4. **Rendering**:
    * `RosterApp` renders the main grid using `AgentCard`.
    * `RosterApp` initializes `FusionLab` with the fetched agent data.
@@ -63,7 +63,7 @@ The `RosterApp` orchestrates the primary application flow, emphasizing asynchron
 
 ## 🚀 Quick Start / Usage
 
-Since there is no build step, you can edit these files directly.
+The application requires compiling the payload via `npm run build:roster`, but you can edit these files directly.
 
 **To add a new Logic Module:**
 
