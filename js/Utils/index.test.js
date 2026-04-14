@@ -43,4 +43,16 @@ describe('Utils Index module exports', () => {
       new Function('module', 'require', 'window', code)(undefined, undefined, mockWindow);
     }).not.toThrow();
   });
+
+  it('correctly imports and exports expected modules', () => {
+    const Utils = require('./index.js');
+    expect(Utils.AgentUtils).toBeDefined();
+    expect(Utils.DOMUtils).toBeDefined();
+    expect(Utils.DownloadUtils).toBeDefined();
+    expect(Utils.FormatUtils).toBeDefined();
+    expect(Utils.PerformanceUtils).toBeDefined();
+    expect(Utils.PromptParser).toBeDefined();
+    expect(Utils.StorageUtils).toBeDefined();
+    expect(Utils.NetworkUtils).toBeDefined();
+  });
 });
