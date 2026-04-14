@@ -1,4 +1,6 @@
-// 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
+// Safe cross-environment getters
+const getFormatUtils = () => (typeof window !== 'undefined' && window.FormatUtils) ? window.FormatUtils : ((typeof global !== 'undefined' && global.FormatUtils) ? global.FormatUtils : (typeof require !== 'undefined' ? require('../../../Utils/format-utils.js') : null));
+// Safe cross-environment getters
 var getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
 
 /**
@@ -24,9 +26,7 @@ const CORE_EMOJIS_REGEX = new RegExp(`(${Object.keys(CORE_EMOJIS).map(k => k.rep
  * @see ../../../docs/architecture/Features/JulesManager.md#overview for the macro architectural scope.
  */
 
-if (typeof FormatUtils === 'undefined' && typeof require !== 'undefined') {
-    global.FormatUtils = require('../../../Utils/format-utils.js');
-}
+// Safe cross-environment getters
 
 class JulesManager {
     static ACTIVE_SESSIONS_POLL_MS = 5000;
@@ -270,7 +270,7 @@ class JulesManager {
             item.className = "term-pr-item";
             item.innerHTML = `
                 <span style="color: var(--term-success); font-weight: 600; flex-shrink: 0;">[PR OPEN]</span> 
-                <a href="#" class="term-pr-title term-link pr-modal-trigger" data-pr-number="${pr.number}">#${pr.number} ${FormatUtils.escapeHTML(pr.title)}</a>
+                <a href="#" class="term-pr-title term-link pr-modal-trigger" data-pr-number="${pr.number}">#${pr.number} ${getFormatUtils().escapeHTML(pr.title)}</a>
             `;
             const link = item.querySelector('.pr-modal-trigger');
             if (link) {
@@ -355,7 +355,7 @@ class JulesManager {
         this.renderedSessionIds.add(session.id);
         
         const agentName = session.title || "Agent Task";
-        let safeAgentName = FormatUtils.escapeHTML(agentName);
+        let safeAgentName = getFormatUtils().escapeHTML(agentName);
         let agentEmoji = "🤖";
         
         // ⚡ ACCELERATE: Cache the agents list into a Map to eliminate redundant O(N) traversals inside the session loop.
@@ -419,7 +419,7 @@ class JulesManager {
 
         // 1-line Minimalist layout
         block.innerHTML = `
-            <span class="term-agent-name">${FormatUtils.escapeHTML(agentEmoji)} ${safeAgentName}</span>
+            <span class="term-agent-name">${getFormatUtils().escapeHTML(agentEmoji)} ${safeAgentName}</span>
             <span class="term-separator">—</span>
             <span class="term-status" id="status-${session.id}">Initializing...</span>
         `;
@@ -466,12 +466,12 @@ class JulesManager {
         const optimisticBlock = document.createElement("div");
         optimisticBlock.className = `term-session-line state-active skeleton-pulse`;
         let agentEmoji = agent.emoji || "🤖";
-        let safeAgentName = agent.name ? FormatUtils.escapeHTML(agent.name) : "Agent Task";
+        let safeAgentName = agent.name ? getFormatUtils().escapeHTML(agent.name) : "Agent Task";
 
         optimisticBlock.style.cursor = "pointer";
 
         optimisticBlock.innerHTML = `
-            <span class="term-agent-name">${FormatUtils.escapeHTML(agentEmoji)} ${safeAgentName}</span>
+            <span class="term-agent-name">${getFormatUtils().escapeHTML(agentEmoji)} ${safeAgentName}</span>
             <span class="term-separator">—</span>
             <span class="term-status">Conjuring session...</span>
         `;

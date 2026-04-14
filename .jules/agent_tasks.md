@@ -17,3 +17,7 @@
 ## 🕵️ Boundary Interrogation (Coverage Expansion & Edge Cases)
 - [x] 🕵️ `js/Utils/telemetry-utils.js`: Error payload edge cases and unhandled circular references.
 - [x] 🕵️ `js/UI/EmptyState/EmptyState.js`: Validate state handling and boundary injection.
+
+## 🚨 Fatal Boot Sequences (Bleeding Environment)
+- [x] 🚨 `js/Services/JulesService.js`: JulesService is exiting and bleeding the node environment via a sync require.
+- [x] 🚨 `js/Features/Jules/JulesManager/JulesManager.js`: JulesManager is bleeding the node environment via a sync require.
