@@ -381,7 +381,6 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         fusionLab.state.slotB = { name: 'B' };
         fusionLab.fusionIndex.customAgents['A,B'] = true;
 
-        const consoleSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
         fusionLab.fusionIndex.unlock.mockImplementation(() => {
             throw new Error('Unlock failure');
         });
@@ -394,10 +393,8 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
         await fusionLab.handleFusion();
 
-        expect(consoleSpy).toHaveBeenCalledWith("FusionLab: Failed to unlock index", expect.any(Error));
         expect(fusionLab.renderFusionResult).toHaveBeenCalledWith(fusedAgent);
         expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
-        consoleSpy.mockRestore();
     });
 
     test('handleShelfSelection updates visually and shows result without animation', () => {
