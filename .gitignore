@@ -16,6 +16,7 @@
 .cache
 .cache/
 .docusaurus
+.DS_Store
 .dynamodb/
 .env
 .env.*
@@ -31,6 +32,7 @@
 .nyc_output
 .parcel-cache
 .pnp.*
+.pytest_cache/
 .serverless/
 .stylelintcache
 .svelte-kit/
@@ -40,7 +42,6 @@
 .vuepress/dist
 .yarn-integrity
 .yarn/*
-__pycache__
 bower_components
 build/Release
 coverage
@@ -63,3 +64,4 @@ vite.config.ts.timestamp-*
 web_modules/
 yarn-debug.log*
 yarn-error.log*
+__pycache__
