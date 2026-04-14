@@ -6,14 +6,21 @@
 > 3. Do not delete this file. Sweep resolved `[x]` items on execution.
 
 ## 🧱 Structural Monoliths (Size & Architecture)
-- [x] 🏗️ `js/core/RosterApp.js`: 987 lines. Requires domain splitting and colocation.
-- [x] 🏗️ `js/Features/Jules/JulesManager/JulesManager.js`: Monolithic module. Requires extraction of shared logic into utilities.
+
+- [ ] 🏗️ `js/Features/Jules/JulesManager/JulesManager.js`: 573 lines, 50 methods. Requires domain splitting and colocation.
+- [ ] 🏗️ `js/core/RosterApp.js`: 539 lines, 50 methods. Massive class representing a monolith.
+- [ ] 🏗️ `js/core/events/EventBinder.js`: 475 lines, 45 methods. Extremely large single responsibility violation.
 
 ## 🕸️ Logic Tangles (Complexity & Dead Code)
-- [x] 🧶 `js/core/RosterApp.js`: File has massive complexity (> 160 branching points). Deep nested logic requires untangling.
-- [x] 🧶 `js/Features/Search/SearchController.js`: High cyclomatic complexity with > 6 levels of nesting in multiple methods.
-- [x] 🕵️ `js/core/events/EventBinder.js`: Wrote comprehensive event delegation structural boundary tests
+
+- [ ] 🧶 `js/core/events/EventBinder.js`: File has massive complexity (> 90 branching points). Deep nested logic requires untangling.
+- [ ] 🧶 `js/Features/Jules/JulesManager/JulesManager.js`: High cyclomatic complexity (> 80 branching points).
+
+## 🗑️ Dead Code & Cosmetic Error Boundaries
+
+- [ ] 🗑️ `js/Features/Fusion/FusionLab.js`: Empty catch block at line 325 `catch (e) {}`. Requires Sabotage Check and removal.
 
 ## 🕵️ Boundary Interrogation (Coverage Expansion & Edge Cases)
-- [x] 🕵️ `js/Utils/telemetry-utils.js`: Error payload edge cases and unhandled circular references.
-- [x] 🕵️ `js/UI/EmptyState/EmptyState.js`: Validate state handling and boundary injection.
+
+- [ ] 🕵️ `js/Features/Fusion/FusionLab.js`: High method count (56 methods), requires testing for untested boundaries.
+- [ ] 🕵️ `js/Features/Fusion/AgentPicker.js`: Evaluate state handling and edge cases.
