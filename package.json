@@ -13,6 +13,7 @@
     "test:unit": "npm run build:roster && jest --testPathIgnorePatterns=\"playwright/\""
   },
   "devDependencies": {
+    "@playwright/test": "~1.59.1",
     "@testing-library/dom": "~10.4.1",
     "@testing-library/jest-dom": "~6.9.1",
     "@testing-library/user-event": "~14.6.1",
@@ -22,9 +23,7 @@
     "playwright": "~1.59.1"
   },
   "dependencies": {
-    "@playwright/test": "~1.59.1",
-    "jscodeshift": "~17.3.0",
-    "jsdom": "~24.1.3"
+    "jscodeshift": "~17.3.0"
   },
   "jest": {
     "testEnvironment": "jsdom",
