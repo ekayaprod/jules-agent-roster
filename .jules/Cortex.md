@@ -5,3 +5,7 @@
 ## Cortex — Jules API Standard Parameter Compliance
 **Learning:** The Jules API alpha endpoint does not support `response_format` when creating sessions. Including an unsupported parameter in the creation body causes a fatal 400 error (`Cannot find field`), preventing successful session launch.
 **Action:** Removed the `response_format` JSON schema definition block from the POST body payload in `JulesService.js` to restore payload compatibility with the API's standard standard parameters constraint.
+
+## Cortex — Jules API Parameter Type Boundary Fortification
+**Learning:** Native `fetch` APIs execute blindly, crashing silently or hanging indefinitely if payload properties default to unexpected types prior to serialization or string methods like `startsWith`.
+**Action:** Implemented strict explicit `typeof` checks before invoking format validators and parameterizing payloads across endpoints in `JulesService.js` to ensure resilient API bounds.
