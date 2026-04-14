@@ -1,9 +1,0 @@
-🎯 Feature/Shift: Deduced that the existing `PinnedManager` functionality was artificially restricted to only fusion agents and rendered an incomplete "Pinned Fusions" header, failing to fulfill the user request for a custom layout. Broadened the feature into a universal "Pinned" layout that allows users to persist and organize their favorite agents of *any* type to the top of the main page using local storage.
-🏗️ Architecture: Rather than building a net-new grid component, the latent architecture of `RosterApp`'s categorical flattening phase was mapped out and overridden. By removing the `isFusionAgent` restriction in `AgentCard.js` and statically routing pinned statuses to a unified `pinned` category target, the existing render pipelines and intersection observers absorb the new feature perfectly.
-⚙️ Implementation:
-- `js/UI/AgentCard/AgentCard.js`: Eradicated the restrictive `isFusionAgent` check for generating the `pinHtml` button.
-- `js/core/RosterApp.js`: Re-routed the `targetCategory` for pinned UI items universally to `"pinned"`.
-- `index.html`: Renamed the restrictive `📌 Pinned Fusions` header to a universal `📌 Pinned`.
-- `ROADMAP.md`: Marked the `Custom agent tile layout` task as complete.
-✅ Verification: Handled empty state checks for zero-indices gracefully, verified successful payload serialization back to `PinnedManager.test.js`, completed successful visual UI Playwright validations, and cleared native `npm test` benchmarks. Zero dummy placeholders introduced.
-📈 Impact: Filled the structural gap in the repository, delivering a completely functional and robust custom tile grid for user favorites.

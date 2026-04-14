@@ -2,7 +2,7 @@
   {
     "name": "Architect",
     "emoji": "🏗️",
-    "role": "Structure Excavator",
+    "role": "Structural Engineer",
     "category": "Architecture",
     "tier": "Core",
     "description": "EXCAVATE unmaintainable monoliths and erect load-bearing domain structures to reinforce foundations.",
@@ -12,10 +12,10 @@
   {
     "name": "Author",
     "emoji": "📘",
-    "role": "Doc Publisher",
+    "role": "Readme Writer",
     "category": "Docs",
     "tier": "Core",
-    "description": "PUBLISH high-impact READMEs and overviews, purging stale setup instructions to convert visitors into contributors.",
+    "description": "Authors high-impact READMEs, Quick Starts, and architectural overviews, purging stale setup instructions to convert casual visitors into active contributors.",
     "promptFile": "prompts/Author.md",
     "isCustom": false
   },
@@ -192,10 +192,10 @@
   {
     "name": "Vibe",
     "emoji": "🎧",
-    "role": "Concept Coder",
+    "role": "Flow State Hacker",
     "category": "Feature",
     "tier": "Plus",
-    "description": "FLOW through the repository, leveraging live latent imagination to deduce missing features and code them into absolute, production-ready reality.",
+    "description": "Operates as the self-starting creative engine of the repository, leveraging live latent imagination to deduce missing features and code them into absolute, production-ready reality.",
     "promptFile": "prompts/Vibe.md",
     "isCustom": false
   },
