@@ -46,7 +46,7 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 **The Benefit:** Standardizes data models via interfaces, strictly typing network payloads, resolving ambiguous object assignments, and eradicating null-reference bugs at compile-time.
 
 - [ ] [DX] Idea: Adopt `emoji-regex` via CDN to replace brittle custom string utilities in `js/utils/StringUtils.js` for emoji handling, standardizing Unicode processing and reducing error-prone custom regex logic. (Source: github.com/mathiasbynens/emoji-regex)
-- [UX] Idea: Custom agent tile layout, allowing users to put their favourite fusion agent cards on the main page for easy access - using local storage (Source: User Request)
+- [x] [UX] Idea: Custom agent tile layout, allowing users to put their favourite fusion agent cards on the main page for easy access - using local storage (Source: User Request) (Shipped: [Commit feeca72](https://github.com/google/jules/commit/feeca72))
 - [x] [UX] Idea: Adopt `fuse.js` (20k stars) for fuzzy search to fix strict typo failures. (Source: fusejs.io) (Shipped: [Commit a54cf1e](https://github.com/google/jules/commit/a54cf1e))
 - [ ] [Security] Idea: Integrate `DOMPurify` to sanitize Fusion Lab output and prevent XSS. (Source: github.com/cure53/DOMPurify)
 - [x] [Performance] Idea: Implement debounce pattern for search input to prevent layout thrashing on every keystroke. (Source: lodash) (Shipped: [Commit 73228b7](https://github.com/google/jules/commit/73228b7))
@@ -68,3 +68,9 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 **The Problem:** The application currently relies on brittle, low-level structural assertions (like checking `.className` and `.innerHTML`) which test implementation details rather than user behavior, leading to brittle tests.
 **The Solution:** Adopt `@testing-library/jest-dom` to enforce semantic assertions like `toBeVisible()`, `toHaveTextContent()`, and `toHaveAttribute()`.
 **The Benefit:** Decouples tests from structural CSS/DOM implementation details, making them robust to refactoring and enforcing accessibility standards.
+
+### Refactor JulesManager Monolith
+
+**The Problem:** `js/Features/Jules/JulesManager/JulesManager.js` is a monolithic module containing entangled UI logic, network calls, and state management.
+**The Solution:** Extract shared logic and distinct functional domains into standalone utility classes or specialized sub-controllers.
+**The Benefit:** Decouples responsibilities, lowering cyclomatic complexity and enabling targeted unit testing and faster iteration on individual components without risking global regression.
