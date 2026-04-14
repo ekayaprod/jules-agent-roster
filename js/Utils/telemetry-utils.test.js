@@ -150,3 +150,25 @@ describe('TelemetryUtils isolated coverage', () => {
             new Function('module', 'window', code)(undefined, undefined);
         }).not.toThrow();
     });
+
+describe('TelemetryUtils circular reference safeguard', () => {
+    let originalConsoleError;
+    beforeEach(() => {
+        originalConsoleError = console.error;
+        console.error = jest.fn();
+    });
+
+    afterEach(() => {
+        console.error = originalConsoleError;
+    });
+
+    it('safeguards against circular references in additionalContext', () => {
+        const circularObj = {};
+        circularObj.self = circularObj;
+
+        TelemetryUtils.dispatchEvent('TEST_CIRCULAR', 'error', { data: circularObj });
+
+        expect(console.error).toHaveBeenCalledWith(expect.stringContaining('TEST_CIRCULAR'));
+        expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Circular Reference]'));
+    });
+});

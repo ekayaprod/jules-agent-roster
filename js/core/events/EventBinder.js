@@ -66,7 +66,7 @@ class EventBinder {
       // 2. Close specific card dropdowns if clicked outside
       app.activeDropdowns.forEach(menu => {
           if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
-              DOMUtils.closeDropdownMenu(menu, this);
+              DOMUtils.closeDropdownMenu(menu, app);
           }
       });
 
@@ -309,7 +309,7 @@ class EventBinder {
           // Close others
           app.activeDropdowns.forEach(menu => {
               if (menu !== dropdown) {
-                  DOMUtils.closeDropdownMenu(menu, this);
+                  DOMUtils.closeDropdownMenu(menu, app);
               }
           });
 
@@ -337,7 +337,7 @@ class EventBinder {
               if (parentName && app.exportController) {
                   app.exportController.downloadCustomAgentsByParent(parentName, actionBtn);
               }
-              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), this);
+              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
               return;
           }
 
@@ -347,12 +347,12 @@ class EventBinder {
 
           if (action === "copy-agent") {
               app.copyAgent(index, actionBtn);
-              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), this);
+              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
               return;
           }
           if (action === "download-agent") {
               DownloadUtils.downloadTextFile(agent.prompt, `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
-              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), this);
+              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
               return;
           }
           if (action === "launch-jules") {
@@ -392,7 +392,7 @@ class EventBinder {
             // Priority 1: Close active dropdowns
             if (app.activeDropdowns && app.activeDropdowns.size > 0) {
                 app.activeDropdowns.forEach(menu => {
-                    DOMUtils.closeDropdownMenu(menu, this);
+                    DOMUtils.closeDropdownMenu(menu, app);
                     const toggleId = menu.id.replace('card-dropdown-', '');
                     const toggleBtn = document.querySelector(`[data-action="toggle-card-dropdown"][data-index="${toggleId}"]`);
                     if (toggleBtn) {

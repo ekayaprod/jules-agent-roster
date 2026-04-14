@@ -194,3 +194,14 @@ describe('EmptyState environment exports', () => {
         }).not.toThrow();
     });
 });
+
+describe('EmptyState boundary window attachment test', () => {
+    it('attaches to window when module does not exist', () => {
+        const fs = require('fs');
+        const code = fs.readFileSync('js/UI/EmptyState/EmptyState.js', 'utf8');
+        const executor = new Function('window', code);
+        const windowMock = {};
+        executor(windowMock);
+        expect(windowMock.EmptyState).toBeDefined();
+    });
+});

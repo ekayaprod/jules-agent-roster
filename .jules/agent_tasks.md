@@ -10,6 +10,10 @@
 - [x] 🏗️ `js/Features/Jules/JulesManager/JulesManager.js`: Monolithic module. Requires extraction of shared logic into utilities.
 
 ## 🕸️ Logic Tangles (Complexity & Dead Code)
-- [ ] 🧶 `js/core/RosterApp.js`: File has massive complexity (> 160 branching points). Deep nested logic requires untangling.
-- [ ] 🧶 `js/Features/Search/SearchController.js`: High cyclomatic complexity with > 6 levels of nesting in multiple methods.
+- [x] 🧶 `js/core/RosterApp.js`: File has massive complexity (> 160 branching points). Deep nested logic requires untangling.
+- [x] 🧶 `js/Features/Search/SearchController.js`: High cyclomatic complexity with > 6 levels of nesting in multiple methods.
 - [x] 🕵️ `js/core/events/EventBinder.js`: Wrote comprehensive event delegation structural boundary tests
+
+## 🕵️ Boundary Interrogation (Coverage Expansion & Edge Cases)
+- [x] 🕵️ `js/Utils/telemetry-utils.js`: Error payload edge cases and unhandled circular references.
+- [x] 🕵️ `js/UI/EmptyState/EmptyState.js`: Validate state handling and boundary injection.
