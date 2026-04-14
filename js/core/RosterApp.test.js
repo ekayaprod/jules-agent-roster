@@ -12,6 +12,11 @@ describe('RosterApp (Boundary Interrogation)', () => {
     let app;
     let dom;
 
+    beforeAll(() => {
+        global.DOMUtils = require('../Utils/dom-utils');
+        global.EventBinder = require('./events/EventBinder');
+    });
+
     beforeEach(() => {
         // Mock DOM Environment
         dom = new JSDOM('<!DOCTYPE html><html><body><div id="toast"></div><div id="masterDropdownMenu"></div></body></html>', { url: "http://localhost/" });
@@ -37,6 +42,7 @@ describe('RosterApp (Boundary Interrogation)', () => {
         global.SearchController = class { init() {} };
         global.ExportController = class { init() {} };
         global.AgentRepository = class { async fetchWithRetry() { return []; } async initialize() { return true; } };
+        global.SEARCH_DEBOUNCE_MS = 300;
         global.PinnedManager = PinnedManager;
 
         // Mock module export for test environment injection

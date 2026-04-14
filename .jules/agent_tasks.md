@@ -12,3 +12,4 @@
 ## 🕸️ Logic Tangles (Complexity & Dead Code)
 - [ ] 🧶 `js/core/RosterApp.js`: File has massive complexity (> 160 branching points). Deep nested logic requires untangling.
 - [ ] 🧶 `js/Features/Search/SearchController.js`: High cyclomatic complexity with > 6 levels of nesting in multiple methods.
+- [x] 🕵️ `js/core/events/EventBinder.js`: Wrote comprehensive event delegation structural boundary tests

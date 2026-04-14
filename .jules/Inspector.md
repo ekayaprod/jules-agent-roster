@@ -16,3 +16,7 @@
 ## Inspector — AgentCard Pin Rendering Boundaries
 **Edge Case:** The UI component `AgentCard.js` handles pin button rendering but lacked comprehensive boundary tests for invalid keys, numerical identifiers (which are base agents and shouldn't have pins), string identifiers (which are fusion agents and should have pins), and missing global state dependencies.
 **Assertion:** Interrogated the pin generation boundary with an array of invalid and numerical keys to verify omission, and explicitly verified rendering and CSS state toggling for fusion agents. Proved graceful degradation when `rosterApp` or `pinnedManager` are undefined via a Sabotage Check (mutating the type-check).
+
+## Inspector — Event Delegation Interrogation
+**Edge Case:** The event delegation logic in `EventBinder.js` was untested. Mouse events like `mouseover` and `click`, as well as `keydown` events (like pressing 'Escape'), were bound globally without adequate structural tests to ensure state synchronization (e.g., dropdowns closing or pin state toggling) or resilience against initial load failures.
+**Assertion:** Interrogated `EventBinder.js` by mocking DOM events and simulating complex UI interactions. Mathematically proved via a Sabotage Check (mutating the toggle pin boolean) that the tests catch invalid state manipulations. Confirmed graceful failure on unhandled promise rejections inside the activation boundary, explicitly covering global `document` event listener mapping.
