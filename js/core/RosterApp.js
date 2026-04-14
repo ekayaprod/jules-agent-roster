@@ -407,6 +407,17 @@ class RosterApp {
   }
 
   /**
+   * Triggers a browser download of a specific agent's prompt.
+   * @param {string|number} index - The unique identifier or index of the agent.
+   * @param {HTMLElement} btn - The interacting element to animate on success.
+   */
+  async downloadAgent(index, btn) {
+    if (this.exportController) {
+        return this.exportController.downloadAgent(index, btn);
+    }
+  }
+
+  /**
    * Triggers a browser download of the user's unlocked custom fusions
    * formatted as a structured JSON backup.
    * @param {HTMLElement} btn - The interacting element to animate on success.

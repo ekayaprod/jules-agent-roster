@@ -38,6 +38,28 @@ class ExportController {
   }
 
   /**
+   * Downloads a single agent's prompt as a markdown file and animates the trigger button.
+   * Aggregates agent data from core, custom, or fusion states.
+   * @param {string|number} index - The unique identifier or array index of the target agent.
+   * @param {HTMLElement} btn - The DOM element triggering the action, targeted for success animation.
+   * @returns {Promise<void>}
+   */
+  async downloadAgent(index, btn) {
+    let agent = this.app.agents[index] || (this.app.customAgents && this.app.customAgents[index]) || (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
+    if (!agent) return;
+
+    if (agent.prompt === undefined) {
+        if (btn) btn.disabled = true;
+        const url = AgentUtils.getPromptUrl(agent);
+        agent.prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
+        if (btn) btn.disabled = false;
+    }
+
+    DownloadUtils.downloadTextFile(PromptParser.stripFrontmatter(agent.prompt), `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
+    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
+  }
+
+  /**
    * Compiles and triggers a file download of all currently valid custom user agents.
    * Injects the custom roster markdown header prior to formatting.
    * @param {HTMLElement} btn - The DOM element triggering the action, targeted for success animation.

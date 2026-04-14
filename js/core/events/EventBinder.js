@@ -351,7 +351,7 @@ class EventBinder {
               return;
           }
           if (action === "download-agent") {
-              DownloadUtils.downloadTextFile(agent.prompt, `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
+              app.downloadAgent(index, actionBtn);
               DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
               return;
           }
