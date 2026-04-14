@@ -419,7 +419,7 @@ class JulesManager {
 
         // 1-line Minimalist layout
         block.innerHTML = `
-            <span class="term-agent-name">${agentEmoji} ${safeAgentName}</span> 
+            <span class="term-agent-name">${FormatUtils.escapeHTML(agentEmoji)} ${safeAgentName}</span>
             <span class="term-separator">—</span>
             <span class="term-status" id="status-${session.id}">Initializing...</span>
         `;
@@ -471,7 +471,7 @@ class JulesManager {
         optimisticBlock.style.cursor = "pointer";
 
         optimisticBlock.innerHTML = `
-            <span class="term-agent-name">${agentEmoji} ${safeAgentName}</span>
+            <span class="term-agent-name">${FormatUtils.escapeHTML(agentEmoji)} ${safeAgentName}</span>
             <span class="term-separator">—</span>
             <span class="term-status">Conjuring session...</span>
         `;
