@@ -47,6 +47,10 @@ class JulesManager {
         // Modal State
         this.activeModalSessionId = null;
 
+        // Queue State
+        this.sessionQueue = [];
+        this.isProcessingQueue = false;
+
         // Domain classes
         this.modals = new JulesModals(this);
         this.polling = new TerminalPolling(this);
@@ -340,7 +344,7 @@ class JulesManager {
 
     _checkEmptyTerminal() {
         const terminal = this.getEl("julesTerminal");
-        if (terminal.children.length === 0 || (terminal.children.length === 1 && terminal.firstElementChild.id === 'fetchingIndicator')) {
+        if (terminal && (terminal.children.length === 0 || (terminal.children.length === 1 && terminal.firstElementChild.id === 'fetchingIndicator'))) {
              terminal.innerHTML = DOMUtils.getTerminalIndicatorHTML("Ready. Awaiting execution commands...");
         }
     }
@@ -481,23 +485,47 @@ class JulesManager {
 
         if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.LOADING : "loading", "Launching...");
 
-        try {
-            await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
-            this.app.toast.show(`Session launched successfully.`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.SUCCESS : "success");
-            await this._fetchAndRenderSessions(sourceName, terminal);
-        } catch (error) {
-            const launchError = new Error("JulesSessionLaunchFailure: " + error.message);
-            launchError.cause = error;
-            console.error(`Failed to launch session for repository ${sourceName}`, launchError);
-            const tu = getTelemetryUtils();
-            if (tu) tu.dispatchEvent("JULES_LAUNCH_SESSION_FAILED", launchError, { sourceName });
-            this.app.toast.show(`Could not launch the session: ${error.message || "Unknown error"}`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error", 20000);
-            if (fetchingIndicator) fetchingIndicator.style.display = '';
-        } finally {
-            if (optimisticBlock.parentNode) optimisticBlock.remove();
-            if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Launch in Jules 🚀");
-            this._checkEmptyTerminal();
+        this.sessionQueue.push(async () => {
+            try {
+                await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
+                this.app.toast.show(`Session launched successfully.`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.SUCCESS : "success");
+                await this._fetchAndRenderSessions(sourceName, terminal);
+            } catch (error) {
+                const launchError = new Error("JulesSessionLaunchFailure: " + error.message);
+                launchError.cause = error;
+                console.error(`Failed to launch session for repository ${sourceName}`, launchError);
+                const tu = getTelemetryUtils();
+                if (tu) tu.dispatchEvent("JULES_LAUNCH_SESSION_FAILED", launchError, { sourceName });
+                this.app.toast.show(`Could not launch the session: ${error.message || "Unknown error"}`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error", 20000);
+                if (fetchingIndicator) fetchingIndicator.style.display = '';
+            } finally {
+                if (optimisticBlock.parentNode) optimisticBlock.remove();
+                if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Launch in Jules 🚀");
+                this._checkEmptyTerminal();
+            }
+        });
+
+        this._processSessionQueue();
+    }
+
+    async _processSessionQueue() {
+        if (this.isProcessingQueue) return;
+        this.isProcessingQueue = true;
+
+        while (this.sessionQueue.length > 0) {
+            const task = this.sessionQueue.shift();
+            try {
+                await task();
+            } catch (error) {
+                console.error("Queue execution error:", error);
+            }
+            // Rate limit delay (1s) to prevent overwhelming the API on mass launch
+            if (this.sessionQueue.length > 0) {
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
         }
+
+        this.isProcessingQueue = false;
     }
 
     /**
