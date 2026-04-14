@@ -52,7 +52,7 @@ class JulesService {
      * @see ../../docs/architecture/Services/README.md#julesapi-architecture for details on the AbortController timeout mechanism.
      */
     async _fetch(endpoint, options = {}, retries = 3, backoff = 300) {
-        if (!this.apiKey) throw new Error("Jules API Key is missing. Please configure it in Settings.");
+        if (typeof this.apiKey !== 'string' || !this.apiKey.trim()) throw new Error("Jules API Key is missing. Please configure it in Settings.");
 
         const url = `${this.baseUrl}/${endpoint}`;
         const headers = {
@@ -109,6 +109,11 @@ class JulesService {
      * @throws {Error} If the request fails or times out.
      */
     async createSession(agentMarkdown, userTask, sourceName, title = "Agent Task") {
+        if (typeof agentMarkdown !== 'string') agentMarkdown = "";
+        if (typeof userTask !== 'string') userTask = "";
+        if (typeof sourceName !== 'string' || (!sourceName.startsWith('sources/github/') && sourceName !== 'repo')) {
+            throw new Error("Invalid source context.");
+        }
         const prompt = `${PromptParser.stripFrontmatter(agentMarkdown || "")}
 
 You must output valid JSON. Expected keys: action, data.
@@ -123,8 +128,9 @@ ${userTask}`;
                 githubRepoContext: { startingBranch: "main" }
             },
             automationMode: "AUTO_CREATE_PR",
-            title: title
         };
+
+        if (typeof title === 'string' && title.trim()) body.title = title;
 
         const start = performance.now();
         const response = await this._fetch('sessions', {
@@ -152,7 +158,7 @@ ${userTask}`;
      * @returns {Promise<Object>} The JSON response containing the updated session state.
      */
     async sendUserInput(sessionId, text) {
-        if (typeof sessionId !== 'string' || !/^[a-zA-Z0-9-]+$/.test(sessionId)) {
+        if (typeof sessionId !== 'string' || !/^[a-zA-Z0-9-_]+$/.test(sessionId)) {
             throw new Error("Invalid payload: Malformed session identifier.");
         }
         return this._fetch(`sessions/${sessionId}/activities`, {
@@ -172,7 +178,7 @@ ${userTask}`;
      * @see ../../docs/architecture/Services/README.md#julesapi-architecture for asynchronous polling strategy instead of synchronous streaming.
      */
     async getActivities(sessionId) {
-        if (typeof sessionId !== 'string' || !/^[a-zA-Z0-9-]+$/.test(sessionId)) {
+        if (typeof sessionId !== 'string' || !/^[a-zA-Z0-9-_]+$/.test(sessionId)) {
             throw new Error("Invalid payload: Malformed session identifier.");
         }
         return this._fetch(`sessions/${sessionId}/activities?pageSize=${DEFAULT_PAGE_SIZE}`);
