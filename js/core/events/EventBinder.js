@@ -1,5 +1,5 @@
 
-const SEARCH_DEBOUNCE_MS = 300;
+
 class EventBinder {
     static bind(app) {
     if (app.elements.searchInput) {
