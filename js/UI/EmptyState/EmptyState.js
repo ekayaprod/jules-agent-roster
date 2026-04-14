@@ -73,4 +73,6 @@ class EmptyState {
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = EmptyState;
+} else if (typeof window !== 'undefined') {
+  window.EmptyState = EmptyState;
 }
