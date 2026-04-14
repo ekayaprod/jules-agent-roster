@@ -237,34 +237,37 @@ class RosterApp {
     }
 
     const flattenedAgents = [];
-    // ↗️ VECTORIZE: The Single-Pass Pipeline. We bypass the redundant O(N) intermediate array creations
-    // from the chained .map() calls. The static check for `pinnedManager` is hoisted out of the loop.
-    // We instantiate a new array with the pinned state cached to avoid mutating the source data structures.
+    const hasPinnedManager = !!this.pinnedManager;
+    // ⚡ Bolt+: Bypass redundant nested wrapper object creations and object spreading.
+    // Flatten properties directly into the target object to prevent GC churn during rendering.
     for (let i = 0; i < this.categoryKeys.length; i++) {
-        const categoryList = categorizedAgents[this.categoryKeys[i]];
-        const mappedList = new Array(categoryList.length);
+        const categoryKey = this.categoryKeys[i];
+        const categoryList = categorizedAgents[categoryKey];
+        const catLen = categoryList.length;
+        const mappedList = new Array(catLen);
 
-        for (let j = 0; j < categoryList.length; j++) {
+        for (let j = 0; j < catLen; j++) {
             const item = categoryList[j];
-            const isPinned = this.pinnedManager ? this.pinnedManager.isPinned(item.indexOrKey) : false;
-            mappedList[j] = { original: item, isPinned };
+            mappedList[j] = {
+                ...item,
+                gridCategory: categoryKey,
+                _isPinned: hasPinnedManager ? this.pinnedManager.isPinned(item.indexOrKey) : false
+            };
         }
 
         mappedList.sort((a, b) => {
-           if (a.isPinned && !b.isPinned) return -1;
-           if (!a.isPinned && b.isPinned) return 1;
-           const aTier = a.original && a.original.agent && a.original.agent.tier === "Plus" ? 1 : 0;
-           const bTier = b.original && b.original.agent && b.original.agent.tier === "Plus" ? 1 : 0;
+           if (a._isPinned && !b._isPinned) return -1;
+           if (!a._isPinned && b._isPinned) return 1;
+           const aTier = a.agent && a.agent.tier === "Plus" ? 1 : 0;
+           const bTier = b.agent && b.agent.tier === "Plus" ? 1 : 0;
            if (aTier !== bTier) return bTier - aTier;
            return 0;
         });
 
-        for (let j = 0; j < mappedList.length; j++) {
-            const originalItem = mappedList[j].original;
-            flattenedAgents.push({
-                ...originalItem,
-                gridCategory: this.categoryKeys[i]
-            });
+        for (let j = 0; j < catLen; j++) {
+            const finalItem = mappedList[j];
+            delete finalItem._isPinned;
+            flattenedAgents.push(finalItem);
         }
     }
 
