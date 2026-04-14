@@ -324,17 +324,15 @@ class RosterApp {
               const hasChildren = fragment && fragment.children.length > 0;
               if (fragment) container.appendChild(fragment);
 
-              if (key === "pinned") {
-                  const header = document.getElementById("pinned");
-                  if (hasChildren) {
-                      container.style.display = "";
-                      container.classList.remove("empty");
-                      if (header) header.style.display = "";
-                  } else {
-                      container.style.display = "none";
-                      container.classList.add("empty");
-                      if (header) header.style.display = "none";
-                  }
+              const header = document.getElementById(key);
+              if (hasChildren) {
+                  container.style.display = "";
+                  container.classList.remove("empty");
+                  if (header) header.style.display = "";
+              } else {
+                  container.style.display = "none";
+                  container.classList.add("empty");
+                  if (header) header.style.display = "none";
               }
             }
           }
