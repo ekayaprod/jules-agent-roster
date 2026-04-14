@@ -15,7 +15,8 @@ const CORE_EMOJIS = {
     "Bolt+": "⚡", "Palette+": "🎨", "Sentinel+": "🛡️"
 };
 
-const CORE_EMOJIS_ENTRIES = Object.entries(CORE_EMOJIS);
+const CORE_EMOJIS_MAP = new Map(Object.entries(CORE_EMOJIS));
+const CORE_EMOJIS_REGEX = new RegExp(`(${Object.keys(CORE_EMOJIS).map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`);
 
 /**
  * Manages the core operations for interacting with Jules APIs.
@@ -395,13 +396,12 @@ class JulesManager {
         if (matchedAgent && matchedAgent.emoji) {
             agentEmoji = matchedAgent.emoji;
         } else {
-            for (let i = 0; i < CORE_EMOJIS_ENTRIES.length; i++) {
-                const [name, emoji] = CORE_EMOJIS_ENTRIES[i];
-                if (safeAgentName.includes(name)) {
-                    agentEmoji = emoji;
-                    break;
-                }
+            let emoji = CORE_EMOJIS_MAP.get(safeAgentName);
+            if (!emoji && safeAgentName) {
+                const match = safeAgentName.match(CORE_EMOJIS_REGEX);
+                if (match) emoji = CORE_EMOJIS_MAP.get(match[0]);
             }
+            if (emoji) agentEmoji = emoji;
         }
 
         const block = document.createElement("div");
