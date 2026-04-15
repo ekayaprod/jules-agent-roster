@@ -140,7 +140,7 @@ class JulesService {
      * @returns {Promise<Object>} The JSON response containing the created session details.
      * @throws {Error} If the request fails or times out.
      */
-    async createSession(agentMarkdown, userTask, sourceName, title = "Agent Task") {
+    async createSession(agentMarkdown, userTask, sourceName, title = "Agent Task", options = {}) {
         if (typeof agentMarkdown !== 'string') agentMarkdown = "";
         if (typeof userTask !== 'string') userTask = "";
         if (typeof sourceName !== 'string' || (!sourceName.startsWith('sources/github/') && sourceName !== 'repo')) {
@@ -161,6 +161,10 @@ ${userTask}`;
             },
             automationMode: "AUTO_CREATE_PR",
         };
+
+        if (options && options.requirePlanApproval === true) {
+            body.requirePlanApproval = true;
+        }
 
         if (typeof title === 'string' && title.trim()) body.title = title;
 
@@ -221,6 +225,37 @@ ${userTask}`;
         const res = await this._fetch(`sessions/${sessionId}/activities?pageSize=${DEFAULT_PAGE_SIZE}`);
         return this._validateSchema(res, ['activities'], 'activities');
     }
+
+    /**
+     * Retrieves a single active session by ID.
+     * @param {string} sessionId - The ID of the session to retrieve.
+     * @returns {Promise<Object>} The JSON response containing the session details.
+     * @throws {Error} If the request fails or times out.
+     */
+    async getSession(sessionId) {
+        if (typeof sessionId !== 'string' || !/^[a-zA-Z0-9-_]+$/.test(sessionId)) {
+            throw new Error("Invalid payload: Malformed session identifier.");
+        }
+        const res = await this._fetch(`sessions/${sessionId}`);
+        return this._validateSchema(res, ['id']);
+    }
+
+    /**
+     * Approves a generated plan for a session.
+     * @param {string} sessionId - The ID of the active session.
+     * @returns {Promise<Object>} The JSON response from the API.
+     * @throws {Error} If the request fails or times out.
+     */
+    async approvePlan(sessionId) {
+        if (typeof sessionId !== 'string' || !/^[a-zA-Z0-9-_]+$/.test(sessionId)) {
+            throw new Error("Invalid payload: Malformed session identifier.");
+        }
+        return this._fetch(`sessions/${sessionId}:approvePlan`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        });
+    }
+
 
     /**
      * Internal utility to handle duplicate GitHub fetch logic, timeout management, and error parsing.

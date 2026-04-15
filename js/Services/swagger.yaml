@@ -149,9 +149,13 @@ paths:
                   type: string
                   enum:
                     - AUTO_CREATE_PR
+
                 title:
                   type: string
                   description: An optional human-readable title for the session.
+                requirePlanApproval:
+                  type: boolean
+                  description: If true, the session will require explicit plan approval.
       responses:
         '200':
           description: Session created successfully.
@@ -167,6 +171,65 @@ paths:
           description: Bad request (Invalid payload)
         '401':
           description: Unauthorized
+
+
+  /sessions/{sessionId}:
+    get:
+      summary: Get Agent Session
+      description: Retrieves a specific session for the authenticated user.
+      operationId: getSession
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          description: The unique identifier of the session.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Session details.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  title:
+                    type: string
+                  prompt:
+                    type: string
+        '401':
+          description: Unauthorized
+        '404':
+          description: Session not found
+
+  /sessions/{sessionId}:approvePlan:
+    post:
+      summary: Approve Session Plan
+      description: Approves a plan in a session.
+      operationId: approvePlan
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          description: The unique identifier of the session.
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Plan approved successfully.
+        '401':
+          description: Unauthorized
+        '404':
+          description: Session not found
 
   /sessions/{sessionId}/activities:
     get:
