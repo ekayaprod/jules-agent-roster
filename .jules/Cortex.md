@@ -1,11 +1,2 @@
-## Cortex — NetworkUtils Payload Fortification
-**Learning:** Parsing network responses or interacting with errors requires checking that string payloads explicitly exist as strings, else unhandled exceptions like `.startsWith` mask true failures.
-**Action:** Enforce `typeof === 'string'` checking prior to `.startsWith` validations and `JSON.parse` executions for safety. Invoked Declarative Compliance Fallback as no other safe targets were found without violating Test Immunity.
-
-## Cortex — Jules API Standard Parameter Compliance
-**Learning:** The Jules API alpha endpoint does not support `response_format` when creating sessions. Including an unsupported parameter in the creation body causes a fatal 400 error (`Cannot find field`), preventing successful session launch.
-**Action:** Removed the `response_format` JSON schema definition block from the POST body payload in `JulesService.js` to restore payload compatibility with the API's standard standard parameters constraint.
-
-## Cortex — Jules API Parameter Type Boundary Fortification
-**Learning:** Native `fetch` APIs execute blindly, crashing silently or hanging indefinitely if payload properties default to unexpected types prior to serialization or string methods like `startsWith`.
-**Action:** Implemented strict explicit `typeof` checks before invoking format validators and parameterizing payloads across endpoints in `JulesService.js` to ensure resilient API bounds.
+## Cortex — Structural Heuristics
+**API Payload Drift:** Google API Protobuf wrappers natively omit empty repeated (array) fields from JSON output rather than sending `[]`. Interfacing integrations must actively coerce missing array keys into empty arrays before downstream consumers access them.

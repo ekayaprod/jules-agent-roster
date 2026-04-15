@@ -51,6 +51,27 @@ class JulesService {
      * @throws {Error} If the API key is missing, the request times out (15s), or the API returns an error status.
      * @see ../../docs/architecture/Services/README.md#julesapi-architecture for details on the AbortController timeout mechanism.
      */
+    /**
+     * Cortex Strict Schema Validator Helper
+     */
+    _validateSchema(data, expectedKeys, arrayKey = null) {
+        if (!data || typeof data !== 'object') throw new Error("Invalid API payload: Expected JSON object.");
+
+        // 🧠 Google APIs often omit empty array fields from JSON responses.
+        // We gracefully enforce the arrayKey if it exists, and safely default it if missing.
+        if (arrayKey && !(arrayKey in data)) {
+             data[arrayKey] = [];
+        }
+
+        for (const key of expectedKeys) {
+            if (!(key in data)) throw new Error(`Invalid API payload: Missing required field '${key}'.`);
+        }
+        if (arrayKey && !Array.isArray(data[arrayKey])) {
+            throw new Error(`Invalid API payload: '${arrayKey}' must be an array.`);
+        }
+        return data;
+    }
+
     async _fetch(endpoint, options = {}, retries = 3, backoff = 300) {
         if (typeof this.apiKey !== 'string' || !this.apiKey.trim()) throw new Error("Jules API Key is missing. Please configure it in Settings.");
 
@@ -60,10 +81,14 @@ class JulesService {
             'X-Goog-Api-Key': this.apiKey
         };
 
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+
         try {
             const response = await getNetworkUtils().fetchWithRetry(url, {
                 ...options,
-                headers: { ...headers, ...options.headers }
+                headers: { ...headers, ...options.headers },
+                signal: controller.signal
             }, retries, backoff);
 
             try {
@@ -72,10 +97,15 @@ class JulesService {
                 throw new Error("We encountered a server error. Please wait a moment and try again.");
             }
         } catch (error) {
+            if (error.name === 'AbortError') {
+                throw new Error('API Degradation: Request timed out.');
+            }
             if (error.message && typeof error.message === 'string' && error.message.startsWith('HTTP Error:')) {
                  throw new Error(`We encountered a server error. Please wait a moment and try again.`);
             }
             throw error;
+        } finally {
+            clearTimeout(timeoutId);
         }
     }
 
@@ -86,7 +116,8 @@ class JulesService {
      * @throws {Error} If the request fails or times out.
      */
     async getSessions(pageSize = DEFAULT_PAGE_SIZE) {
-        return this._fetch(`sessions?pageSize=${pageSize}`);
+        const res = await this._fetch(`sessions?pageSize=${pageSize}`);
+        return this._validateSchema(res, ['sessions'], 'sessions');
     }
 
     /**
@@ -96,7 +127,8 @@ class JulesService {
      * @see ../../docs/architecture/Services/README.md#julesapi-architecture for source fetching flow.
      */
     async getSources() {
-        return this._fetch('sources');
+        const res = await this._fetch('sources');
+        return this._validateSchema(res, ['sources'], 'sources');
     }
 
     /**
@@ -137,6 +169,8 @@ ${userTask}`;
             method: 'POST',
             body: JSON.stringify(body)
         });
+        this._validateSchema(response, ['id']);
+
         const latency = performance.now() - start;
 
         const Telemetry = getTelemetryUtils();
@@ -161,11 +195,14 @@ ${userTask}`;
         if (typeof sessionId !== 'string' || !/^[a-zA-Z0-9-_]+$/.test(sessionId)) {
             throw new Error("Invalid payload: Malformed session identifier.");
         }
-        return this._fetch(`sessions/${sessionId}/activities`, {
+
+        // 🧠 Cortex: JIT Endpoint Resolution. The legacy endpoint for sending user messages
+        // to a session was /activities. The new endpoint according to the live documentation
+        // is /:sendMessage.
+        return this._fetch(`sessions/${sessionId}:sendMessage`, {
             method: 'POST',
             body: JSON.stringify({
-                type: "USER_INPUT",
-                message: text
+                prompt: text
             })
         });
     }
@@ -181,7 +218,8 @@ ${userTask}`;
         if (typeof sessionId !== 'string' || !/^[a-zA-Z0-9-_]+$/.test(sessionId)) {
             throw new Error("Invalid payload: Malformed session identifier.");
         }
-        return this._fetch(`sessions/${sessionId}/activities?pageSize=${DEFAULT_PAGE_SIZE}`);
+        const res = await this._fetch(`sessions/${sessionId}/activities?pageSize=${DEFAULT_PAGE_SIZE}`);
+        return this._validateSchema(res, ['activities'], 'activities');
     }
 
     /**

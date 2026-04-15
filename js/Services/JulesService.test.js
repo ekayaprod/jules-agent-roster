@@ -256,11 +256,10 @@ describe('createSession', () => {
 
             const response = await service.sendUserInput('session-123', 'proceed');
 
-            expect(fetchSpy).toHaveBeenCalledWith('sessions/session-123/activities', {
+            expect(fetchSpy).toHaveBeenCalledWith('sessions/session-123:sendMessage', {
                 method: 'POST',
                 body: JSON.stringify({
-                    type: "USER_INPUT",
-                    message: 'proceed'
+                    prompt: 'proceed'
                 })
             });
             expect(response).toEqual({ id: 'reply-1' });

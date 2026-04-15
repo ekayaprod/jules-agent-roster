@@ -35,7 +35,7 @@
     "role": "Synapse Fortifier",
     "category": "Operations",
     "tier": "Core",
-    "description": "WIRE legacy AI APIs to modern SDKs, enforcing strict payload schemas and resilient timeout boundaries to eliminate silent runtime crashes.",
+    "description": "WIRE AI APIs, LLMs, and Agentic Platforms (e.g., Jules) to resilient wrappers via live schema retrieval to perfectly synchronize handshakes and enforce structural boundaries.",
     "promptFile": "prompts/Cortex.md",
     "isCustom": false
   },
@@ -142,10 +142,10 @@
   {
     "name": "Scribe",
     "emoji": "✍️",
-    "role": "Release Archivist",
+    "role": "Code Commentator & Archivist",
     "category": "Docs",
     "tier": "Core",
-    "description": "Aggregates unreleased git history into unified public release notes, and translates that history into localized inline JSDocs.",
+    "description": "Explains complex application logic via AST-driven inline documentation, enriched by git history, while aggregating release cycles into unified changelogs.",
     "promptFile": "prompts/Scribe.md",
     "isCustom": false
   },
@@ -1291,11 +1291,11 @@
   },
   {
     "name": "Scholar",
-    "emoji": "🦉",
-    "role": "Documentation Synthesizer",
+    "emoji": "🎓",
+    "role": "Chief Archivist",
     "category": "Docs",
-    "tier": "Fusion",
-    "description": "Bridge the gap between granular code logic and macro architecture by synthesizing inline types and overarching READMEs into a single truth.",
+    "tier": "Titan",
+    "description": "SYNTHESIZE implicit domain boundaries and tribal knowledge via git archaeology into living Architecture Decision Records (ADRs) and global glossaries.",
     "promptFile": "prompts/fusions/Scholar.md",
     "isCustom": true
   },
