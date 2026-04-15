@@ -199,6 +199,23 @@ describe('JulesService', () => {
     });
 
 describe('createSession', () => {
+        it('should format and post the payload correctly with requirePlanApproval', async () => {
+            const fetchSpy = jest.spyOn(service, '_fetch').mockResolvedValue({ id: '123' });
+            const markdown = "Test Agent";
+            const task = "Do it";
+            const source = "sources/github/owner/repo";
+
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+            const response = await service.createSession(markdown, task, source, "My Title", { requirePlanApproval: true });
+            consoleSpy.mockRestore();
+
+            expect(fetchSpy).toHaveBeenCalledWith('sessions', {
+                method: 'POST',
+                body: expect.stringContaining('"requirePlanApproval":true')
+            });
+            expect(response).toEqual({ id: '123' });
+        });
+
         it('should format and post the payload correctly', async () => {
             const fetchSpy = jest.spyOn(service, '_fetch').mockResolvedValue({ id: '123' });
 
@@ -248,6 +265,40 @@ describe('createSession', () => {
         });
 });
 
+
+
+
+    describe('getSession', () => {
+        it('should fetch session details correctly', async () => {
+            const fetchSpy = jest.spyOn(service, '_fetch').mockResolvedValue({ id: 'session-123' });
+
+            const response = await service.getSession('session-123');
+
+            expect(fetchSpy).toHaveBeenCalledWith('sessions/session-123');
+            expect(response).toEqual({ id: 'session-123' });
+        });
+
+        it('should throw error on invalid session ID format', async () => {
+            await expect(service.getSession('invalid!id')).rejects.toThrow("Invalid payload: Malformed session identifier.");
+        });
+    });
+
+    describe('approvePlan', () => {
+        it('should format and post approvePlan request correctly', async () => {
+            const fetchSpy = jest.spyOn(service, '_fetch').mockResolvedValue({});
+
+            const response = await service.approvePlan('session-123');
+
+            expect(fetchSpy).toHaveBeenCalledWith('sessions/session-123:approvePlan', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' }
+            });
+        });
+
+        it('should throw error on invalid session ID format', async () => {
+            await expect(service.approvePlan('invalid!id')).rejects.toThrow("Invalid payload: Malformed session identifier.");
+        });
+    });
 
 
     describe('sendUserInput', () => {
