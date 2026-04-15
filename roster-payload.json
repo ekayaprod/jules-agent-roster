@@ -142,10 +142,10 @@
   {
     "name": "Scribe",
     "emoji": "✍️",
-    "role": "Code Commentator & Archivist",
+    "role": "Code Commentator",
     "category": "Docs",
     "tier": "Core",
-    "description": "Explains complex application logic via AST-driven inline documentation, enriched by git history, while aggregating release cycles into unified changelogs.",
+    "description": "CHRONICLE complex logic via AST-driven inline docs, enriched by git history, while aggregating release cycles.",
     "promptFile": "prompts/Scribe.md",
     "isCustom": false
   },
@@ -194,8 +194,8 @@
     "emoji": "🎧",
     "role": "Concept Coder",
     "category": "Feature",
-    "tier": "Plus",
-    "description": "FLOW through the repository, leveraging live latent imagination to deduce missing features and code them into absolute, production-ready reality.",
+    "tier": "Core",
+    "description": "FLOW through the repository to deduce missing features and code them into absolute, production-ready reality.",
     "promptFile": "prompts/Vibe.md",
     "isCustom": false
   },
