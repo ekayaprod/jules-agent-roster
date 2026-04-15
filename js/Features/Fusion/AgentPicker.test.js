@@ -151,6 +151,98 @@ describe('AgentPicker', () => {
         });
     });
 
+    describe('Event Delegation & Keydown Handling', () => {
+        test('handles selection on click within the picker area', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
+            agentPicker.agentMap = new Map();
+            agentPicker.agentMap.set("tester", baseAgents[0]);
+            jest.spyOn(agentPicker, 'handlePickerSelection');
+
+            const clickEvent = {
+                type: 'click',
+                target: {
+                    closest: jest.fn().mockReturnValue({
+                        getAttribute: () => "tester"
+                    })
+                }
+            };
+
+            const clickHandler = agentPicker.elements.pickerScrollArea.addEventListener.mock.calls.find(c => c[0] === 'click')[1];
+            clickHandler(clickEvent);
+
+            expect(agentPicker.handlePickerSelection).toHaveBeenCalledWith(baseAgents[0]);
+        });
+
+        test('handles selection on keydown (Enter) within the picker area', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
+            agentPicker.agentMap = new Map();
+            agentPicker.agentMap.set("tester", baseAgents[0]);
+            jest.spyOn(agentPicker, 'handlePickerSelection');
+
+            const keyEvent = {
+                key: 'Enter',
+                preventDefault: jest.fn(),
+                target: {
+                    closest: jest.fn().mockReturnValue({
+                        getAttribute: () => "tester"
+                    })
+                }
+            };
+
+            const keydownHandler = agentPicker.elements.pickerScrollArea.addEventListener.mock.calls.find(c => c[0] === 'keydown')[1];
+            keydownHandler(keyEvent);
+
+            expect(agentPicker.handlePickerSelection).toHaveBeenCalledWith(baseAgents[0]);
+            expect(keyEvent.preventDefault).toHaveBeenCalled();
+        });
+
+        test('handles close on modal backdrop click', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
+            jest.spyOn(agentPicker, 'closePicker');
+
+            const clickEvent = {
+                target: agentPicker.elements.agentPickerModal
+            };
+
+            const clickHandler = agentPicker.elements.agentPickerModal.addEventListener.mock.calls.find(c => c[0] === 'click')[1];
+            clickHandler(clickEvent);
+
+            expect(agentPicker.closePicker).toHaveBeenCalled();
+        });
+
+        test('handles popstate (browser back button)', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+
+            // Need to spy BEFORE initializing since it attaches in constructor
+            const windowSpy = jest.spyOn(window, 'addEventListener');
+
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
+            agentPicker.activePickerSlot = 'slotA';
+            jest.spyOn(agentPicker, 'closePicker');
+
+            const popstateHandler = windowSpy.mock.calls.find(c => c[0] === 'popstate')[1];
+            popstateHandler();
+
+            expect(agentPicker.closePicker).toHaveBeenCalledWith(false);
+            windowSpy.mockRestore();
+        });
+    });
+
     describe('openPicker()', () => {
         test('initializes modal, DOM skeletons, and grid', () => {
             Factory.setupGlobals();
@@ -261,6 +353,70 @@ describe('AgentPicker', () => {
 
             expect(agentPicker.pickerClusterize).toBeDefined();
             expect(agentPicker.pickerClusterize.options.rows.length).toBeGreaterThan(0);
+        });
+
+        test('handles clientWidth appropriately for grid column calculation', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
+            // Mock available width calculation (e.g. 500px width minus padding 48px = 452px)
+            // Column calculation: Math.floor((452 + 8) / 128) = Math.floor(460 / 128) = 3 columns
+            agentPicker.elements.pickerScrollArea = { clientWidth: 500 };
+
+            const htmlResults = agentPicker.getMemoizedHtml();
+            const chunked = agentPicker.getChunkedHtml(htmlResults);
+
+            expect(chunked[0]).toContain('grid-template-columns: repeat(3, 1fr)');
+        });
+
+        test('handles window resize appropriately to trigger grid update', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
+            // Need PerformanceUtils to be mocked for debounce bypass
+            const originalPerformanceUtils = global.PerformanceUtils;
+            if (!global.PerformanceUtils) {
+                 global.PerformanceUtils = {
+                      debounce: (fn) => fn
+                 };
+            }
+            // Mock window.addEventListener using spyOn
+            const resizeCallbacks = [];
+            const spy = jest.spyOn(window, 'addEventListener').mockImplementation((event, cb) => {
+                 if (event === 'resize') resizeCallbacks.push(cb);
+            });
+
+            agentPicker.filteredResults = agentPicker.getMemoizedHtml();
+            agentPicker.updateGrid();
+
+            jest.spyOn(agentPicker, 'updateGrid');
+            agentPicker.activePickerSlot = 'slotA';
+
+            // Simulate window resize
+            resizeCallbacks.forEach(cb => cb());
+
+            expect(agentPicker.updateGrid).toHaveBeenCalledTimes(1);
+
+            spy.mockRestore();
+            global.PerformanceUtils = originalPerformanceUtils;
+        });
+
+        test('gracefully falls back column calculation if scrollArea is missing', () => {
+            Factory.setupGlobals();
+            Factory.buildDOMHooks();
+            const mockOnSelect = jest.fn();
+            const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
+
+            agentPicker.elements.pickerScrollArea = null;
+
+            const htmlResults = agentPicker.getMemoizedHtml();
+            const chunked = agentPicker.getChunkedHtml(htmlResults);
+
+            expect(chunked[0]).toContain('grid-template-columns: repeat(4, 1fr)');
         });
 
         test('updates existing Clusterize instance', () => {
