@@ -21,3 +21,4 @@
 ## 🚨 Fatal Boot Sequences (Bleeding Environment)
 - [x] 🚨 `js/Services/JulesService.js`: JulesService is exiting and bleeding the node environment via a sync require.
 - [x] 🚨 `js/Features/Jules/JulesManager/JulesManager.js`: JulesManager is bleeding the node environment via a sync require.
+- [x] 🚨 `js/Features/Jules/JulesManager/JulesManager.js`: The terminal was experiencing a critical runtime error and failing to load GitHub repos due to unhandled null pointers on `picker.options` and a swallowed `catch` block.
