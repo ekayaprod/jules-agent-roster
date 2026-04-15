@@ -45,7 +45,7 @@
     "role": "Logistics Warden",
     "category": "Operations",
     "tier": "Core",
-    "description": "Dispatch pristine code payloads to production by fortifying CI/CD pipelines, optimizing container transit, and sounding the horn of release.",
+    "description": "Dispatch pristine code payloads to production by bootstrapping net-new CI/CD pipelines, optimizing container transit, and fortifying GitHub meta-infrastructure.",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
@@ -92,9 +92,9 @@
   {
     "name": "Overseer",
     "emoji": "👁️",
-    "role": "Triage Auditor",
-    "category": "Observability",
-    "tier": "Core",
+    "role": "The Triage Auditor",
+    "category": "Oracles",
+    "tier": "Titan",
     "description": "AUDIT the macroscopic health of the repository to generate a centralized, delegated agent tasks board for the entire agent swarm.",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false

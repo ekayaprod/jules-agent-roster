@@ -78,14 +78,14 @@ class SearchController {
       searchModeContainer?.classList.remove("hidden");
 
       // ⚡ Bolt+: Pass pre-cached NodeLists from this.app.elements instead of repeatedly querying the DOM
-      DOMUtils.setElementsDisplay(this.app.elements.grid || CONFIG.selectors.grid, "none", "searchResultsGrid");
-      DOMUtils.setElementsDisplay(this.app.elements.sectionHeader || CONFIG.selectors.sectionHeader, "none", "search-mode-header");
+      DOMUtils.setElementsDisplay(this.app.elements.grid ?? CONFIG.selectors.grid, "none", "searchResultsGrid");
+      DOMUtils.setElementsDisplay(this.app.elements.sectionHeader ?? CONFIG.selectors.sectionHeader, "none", "search-mode-header");
     } else {
       this.app.elements.clearBtn?.classList.remove("visible");
       searchModeContainer?.classList.add("hidden");
 
-      DOMUtils.setElementsDisplay(this.app.elements.grid || CONFIG.selectors.grid, "", "searchResultsGrid");
-      DOMUtils.setElementsDisplay(this.app.elements.sectionHeader || CONFIG.selectors.sectionHeader, "", "search-mode-header");
+      DOMUtils.setElementsDisplay(this.app.elements.grid ?? CONFIG.selectors.grid, "", "searchResultsGrid");
+      DOMUtils.setElementsDisplay(this.app.elements.sectionHeader ?? CONFIG.selectors.sectionHeader, "", "search-mode-header");
 
       this.app.elements.emptyState?.classList.remove("visible");
       if (this.app.elements.announcer) this.app.elements.announcer.textContent = "";
@@ -102,7 +102,7 @@ class SearchController {
         const allAgents = this.app.agents.map(MAP_AGENT_TO_SEARCH_ITEM);
         if (this.app.fusionLab && this.app.fusionLab.fusionIndex) {
             for (const key of this.app.fusionLab.fusionIndex.unlockedKeys) {
-                let agent = AgentUtils.getCustomAgent(this.app.customAgents, key) || this.app.fusionLab.compiler.customAgentsMap[key];
+                let agent = AgentUtils.getCustomAgent(this.app.customAgents, key) ?? this.app.fusionLab.compiler.customAgentsMap[key];
                 if (agent) {
                     allAgents.push({ agent, keyOrIndex: key });
                 }

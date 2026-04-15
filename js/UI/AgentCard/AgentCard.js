@@ -14,7 +14,7 @@ class AgentCard {
      * @see ../../../docs/architecture/UI/AgentCard.md#agentcard-architecture for DOM structure and generation details.
      */
     static getPromptNode(agent) {
-        return DOMUtils.createMarkdownPreBlock(PromptParser.stripFrontmatter(agent.prompt || "No protocol data available."));
+        return DOMUtils.createMarkdownPreBlock(PromptParser.stripFrontmatter(agent.prompt ?? "No protocol data available."));
     }
 
     /**
@@ -52,18 +52,18 @@ class AgentCard {
         const icon = FormatUtils.extractIcon(agent);
         const displayName = FormatUtils.extractDisplayName(agent);
 
-        const role = FormatUtils.escapeHTML(agent.role || 'Fusion Protocol');
-        const desc = FormatUtils.escapeHTML(agent.short_description || agent.desc || agent.description || '');
+        const role = FormatUtils.escapeHTML(agent.role ?? 'Fusion Protocol');
+        const desc = FormatUtils.escapeHTML(agent.short_description ?? agent.desc ?? agent.description ?? '');
         const safeDisplayName = FormatUtils.escapeHTML(displayName);
 
-        const isPinned = window.rosterApp && window.rosterApp.pinnedManager && window.rosterApp.pinnedManager.isPinned(index);
+        const isPinned = window.rosterApp?.pinnedManager?.isPinned(index);
         const pinClass = isPinned ? 'pinned' : '';
         const isFusionAgent = typeof index === 'string' && Number.isNaN(Number(index));
         const pinHtml = (index !== undefined && index !== null && index !== '' && isFusionAgent) ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" aria-pressed="${String(Boolean(isPinned))}">📌</button>` : '';
 
         // Splay Out Child Fusions Logic (Refactored to Modal Trigger)
         let fusionQuickListHtml = '';
-        if ((index !== undefined && index !== null && index !== '') && window.rosterApp && window.rosterApp.fusionLab && window.rosterApp.fusionLab.fusionIndex) {
+        if ((index !== undefined && index !== null && index !== '') && window.rosterApp?.fusionLab?.fusionIndex) {
             const unlockedKeys = window.rosterApp.fusionLab.fusionIndex.unlockedKeys;
 
             // ↗️ VECTORIZE: The Single-Pass Pipeline. We bypass Array.from().filter() wrapper allocations for a direct loop.

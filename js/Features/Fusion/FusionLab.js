@@ -21,7 +21,7 @@ class FusionLab {
    */
   init(agents, customAgents, fusionMatrix = {}) {
     this.agents = agents;
-    this.agentMap = new Map((agents || []).map((a) => [a.name, a]));
+    this.agentMap = new Map((agents ?? []).map((a) => [a.name, a]));
     this.compiler = new FusionCompiler(agents, customAgents, fusionMatrix);
 
     // Initialize Fusion Index (Collectible Shelf)

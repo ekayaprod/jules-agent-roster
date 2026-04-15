@@ -83,7 +83,7 @@ class EventBinder {
           const modal = document.getElementById("fusionsModal");
           const contentArea = document.getElementById("fusionsModalContent");
 
-          if (modal && contentArea && app.fusionLab && app.fusionLab.fusionIndex) {
+          if (modal && contentArea && app.fusionLab?.fusionIndex) {
               const unlockedKeys = app.fusionLab.fusionIndex.unlockedKeys;
               let listItems = '';
 

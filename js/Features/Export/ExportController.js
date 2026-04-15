@@ -20,7 +20,7 @@ class ExportController {
    * @see ../../../docs/architecture/Features/Export/ExportController.md#copy-operations for clipboard fallback mechanics.
    */
   async copyAgent(index, btn) {
-    let agent = this.app.agents[index] || (this.app.customAgents && this.app.customAgents[index]) || (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
+    let agent = this.app.agents[index] ?? this.app.customAgents?.[index] ?? this.app.fusionLab?.compiler.customAgentsMap[index];
     if (!agent) return;
 
     if (agent.prompt === undefined) {
@@ -45,7 +45,7 @@ class ExportController {
    * @returns {Promise<void>}
    */
   async downloadAgent(index, btn) {
-    let agent = this.app.agents[index] || (this.app.customAgents && this.app.customAgents[index]) || (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
+    let agent = this.app.agents[index] ?? this.app.customAgents?.[index] ?? this.app.fusionLab?.compiler.customAgentsMap[index];
     if (!agent) return;
 
     if (agent.prompt === undefined) {
@@ -93,7 +93,7 @@ class ExportController {
 
     const validCustomAgents = [];
     const fusionMatrixMap = (this.app.fusionLab && this.app.fusionLab.compiler && this.app.fusionLab.compiler.fusionMatrixMap) ? this.app.fusionLab.compiler.fusionMatrixMap : {};
-    const customAgentsMap = Object.assign({}, this.app.customAgents || {}, (this.app.fusionLab && this.app.fusionLab.compiler && this.app.fusionLab.compiler.customAgentsMap) || {});
+    const customAgentsMap = Object.assign({}, this.app.customAgents ?? {}, this.app.fusionLab?.compiler?.customAgentsMap ?? {});
 
     for (const key in fusionMatrixMap) {
       if (Object.prototype.hasOwnProperty.call(fusionMatrixMap, key)) {

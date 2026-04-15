@@ -215,7 +215,7 @@ class JulesManager {
         } catch (error) {
             picker.innerHTML = `<option value="">${originalText}</option>`;
             console.error("Failed to load sources:", error);
-            this.app.toast.show(`Unable to connect to GitHub: ${error.message || "Unknown error"}`, true);
+            this.app.toast.show(`Unable to connect to GitHub: ${error.message ?? "Unknown error"}`, true);
         } finally {
             picker.disabled = false;
         }
@@ -304,7 +304,7 @@ class JulesManager {
             if (!s.sourceContext || s.sourceContext.source !== sourceName) continue;
             if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) continue;
 
-            const timeStr = s.updateTime || s.createTime || s.startTime;
+            const timeStr = s.updateTime ?? s.createTime ?? s.startTime;
             if (timeStr) {
                 const ageHours = (Date.now() - new Date(timeStr).getTime()) / (1000 * 60 * 60);
                 if (ageHours > 2) continue;
@@ -314,7 +314,7 @@ class JulesManager {
 
             // If a ticket reached a terminal state (done, failed, drafted PR), it is NO LONGER
             // shown in the active Jules feed. We completely rely on the GitHub PR fetch to show completions.
-            const isEnded = s.state === 'COMPLETED' || s.state === 'FAILED' || s.state === 'ERROR' || s.state === 'CANCELLED' || (s.outputs && s.outputs.some(hasPullRequest));
+            const isEnded = s.state === 'COMPLETED' || s.state === 'FAILED' || s.state === 'ERROR' || s.state === 'CANCELLED' || (s.outputs?.some(hasPullRequest));
 
             if (isEnded) continue;
 
@@ -355,7 +355,7 @@ class JulesManager {
         if (this.renderedSessionIds.has(session.id)) return;
         this.renderedSessionIds.add(session.id);
         
-        const agentName = session.title || "Agent Task";
+        const agentName = session.title ?? "Agent Task";
         let safeAgentName = getFormatUtils().escapeHTML(agentName);
         let agentEmoji = "🤖";
         
@@ -398,7 +398,7 @@ class JulesManager {
             }
         }
 
-        if (matchedAgent && matchedAgent.emoji) {
+        if (matchedAgent?.emoji) {
             agentEmoji = matchedAgent.emoji;
         } else {
             let emoji = CORE_EMOJIS_MAP.get(safeAgentName);
@@ -466,7 +466,7 @@ class JulesManager {
 
         const optimisticBlock = document.createElement("div");
         optimisticBlock.className = `term-session-line state-active skeleton-pulse`;
-        let agentEmoji = agent.emoji || "🤖";
+        let agentEmoji = agent.emoji ?? "🤖";
         let safeAgentName = agent.name ? getFormatUtils().escapeHTML(agent.name) : "Agent Task";
 
         optimisticBlock.style.cursor = "pointer";
@@ -497,7 +497,7 @@ class JulesManager {
                 console.error(`Failed to launch session for repository ${sourceName}`, launchError);
                 const tu = getTelemetryUtils();
                 if (tu) tu.dispatchEvent("JULES_LAUNCH_SESSION_FAILED", launchError, { sourceName });
-                this.app.toast.show(`Could not launch the session: ${error.message || "Unknown error"}`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error", 20000);
+                this.app.toast.show(`Could not launch the session: ${error.message ?? "Unknown error"}`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error", 20000);
                 if (fetchingIndicator) fetchingIndicator.style.display = '';
             } finally {
                 if (optimisticBlock.parentNode) optimisticBlock.remove();

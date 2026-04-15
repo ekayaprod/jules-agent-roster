@@ -60,7 +60,7 @@ class RosterApp {
         ];
 
         const [agentData] = await Promise.all(initTasks);
-        const { agents, customAgents, fusionMatrix } = agentData || { agents: [], customAgents: {}, fusionMatrix: {} };
+        const { agents, customAgents, fusionMatrix } = agentData ?? { agents: [], customAgents: {}, fusionMatrix: {} };
         this.agents = agents;
         this.customAgents = customAgents;
         this.fusionMatrix = fusionMatrix;
@@ -215,7 +215,7 @@ class RosterApp {
     }
 
     this.agents.forEach((agent, i) => {
-      const category = agent.category || "strategy";
+      const category = agent.category ?? "strategy";
       if (categorizedAgents[category]) {
         categorizedAgents[category].push({ agent, indexOrKey: i });
       }
@@ -289,7 +289,7 @@ class RosterApp {
 
       for (let i = agentIndex; i < end; i++) {
         const { agent, indexOrKey, gridCategory } = flattenedAgents[i];
-        const category = gridCategory || agent.category || "strategy";
+        const category = gridCategory ?? agent.category ?? "strategy";
         const container = categoryContainers[category];
         if (!container) continue;
 
@@ -514,7 +514,7 @@ class RosterApp {
    * unlocked fusion agents if they are not present in static maps.
    */
   getAgentForUI(index) {
-      let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+      let agent = this.agents[index] ?? AgentUtils.getCustomAgent(this.customAgents, index) ?? this.fusionLab?.compiler.customAgentsMap[index];
       if (index === "fusion-result" && this.fusionLab) return this.fusionLab.lastFusionResult;
 
       if (!agent && typeof index === 'string' && Number.isNaN(Number(index)) && this.fusionLab && this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked(index)) {

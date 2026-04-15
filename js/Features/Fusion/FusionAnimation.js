@@ -49,7 +49,7 @@ const FusionAnimation = function () {
 
     if (wrapper) wrapper.classList.remove("open");
 
-    const tier = result.tier || "Common";
+    const tier = result.tier ?? "Common";
     const tierClass = `tier-${tier.toLowerCase()}`;
 
     overlay.className = "fusion-animation-overlay";
@@ -68,7 +68,7 @@ const FusionAnimation = function () {
         "Mythic": { particleCount: 500, speedMultiplier: 2.5 }
       };
 
-      const config = tierConfig[tier] || tierConfig["Common"];
+      const config = tierConfig[tier] ?? tierConfig["Common"];
       const particleCount = config.particleCount;
       const speedMultiplier = config.speedMultiplier;
 
@@ -116,7 +116,7 @@ const FusionAnimation = function () {
 
     if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       overlay.classList.add("active");
-      await new Promise(resolve => setTimeout(resolve, Durations?.FUSION_BURST_MS || 3500));
+      await new Promise(resolve => setTimeout(resolve, Durations?.FUSION_BURST_MS ?? 3500));
     }
 
     overlay.classList.remove("active");

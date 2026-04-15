@@ -69,7 +69,7 @@ class FusionIndex {
     container.appendChild(header);
 
     // Handle both categorized (nested) and flat structures
-    const customAgentsSafe = this.customAgents || {};
+    const customAgentsSafe = this.customAgents ?? {};
 
     const grid = document.createElement("div");
     grid.className = "fusion-shelf-grid";
@@ -96,7 +96,7 @@ class FusionIndex {
    * @private
    */
   _renderSlot(grid, key, agentData) {
-      let safeData = agentData && agentData.name ? agentData : { name: this.customAgents[key] || key };
+      let safeData = agentData?.name ? agentData : { name: this.customAgents[key] ?? key };
 
       if (!agentData || !agentData.tier) {
           if (this.fullCustomAgents && typeof AgentUtils !== 'undefined') {
@@ -190,7 +190,7 @@ class FusionIndex {
       const fusionName = this.customAgents[key];
       // lookup full agent data
       const agentData = typeof AgentUtils !== 'undefined' && this.fullCustomAgents ? AgentUtils.getCustomAgent(this.fullCustomAgents, fusionName) : { name: fusionName };
-      const safeData = agentData && agentData.name ? agentData : { name: fusionName || "Unknown" };
+      const safeData = agentData?.name ? agentData : { name: fusionName ?? "Unknown" };
 
       slot.classList.remove("locked");
       slot.classList.add("unlocked", "just-unlocked");
