@@ -11,11 +11,6 @@ const getTelemetryUtils = () => (typeof window !== 'undefined' && window.Telemet
 const REQUEST_TIMEOUT_MS = 15000;
 const DEFAULT_PAGE_SIZE = 50;
 
-// Safe cross-environment getters
-
-
-
-
 class JulesService {
     /**
      * Constructs a new JulesService instance with default configurations.
@@ -42,25 +37,27 @@ class JulesService {
     }
 
     /**
-     * Internal helper for Jules API fetches implementing network resilience.
-     * @param {string} endpoint - The API endpoint relative to the base URL.
-     * @param {RequestInit} [options={}] - Standard fetch options.
-     * @param {number} [retries=3] - Number of retries for transient errors.
-     * @param {number} [backoff=300] - Initial backoff delay in ms.
-     * @returns {Promise<Object|Array>} The parsed JSON response.
-     * @throws {Error} If the API key is missing, the request times out (15s), or the API returns an error status.
-     * @see ../../docs/architecture/Services/README.md#julesapi-architecture for details on the AbortController timeout mechanism.
-     */
-    /**
      * Cortex Strict Schema Validator Helper
      */
     _validateSchema(data, expectedKeys, arrayKey = null) {
         if (!data || typeof data !== 'object') throw new Error("Invalid API payload: Expected JSON object.");
 
+        // Defensive handling for APIs returning flat arrays instead of wrapped objects
+        if (Array.isArray(data) && arrayKey) {
+            return { [arrayKey]: data };
+        }
+
         // 🧠 Google APIs often omit empty array fields from JSON responses.
         // We gracefully enforce the arrayKey if it exists, and safely default it if missing.
+        // Added defensive fallbacks for schema shifts to 'items' or 'data' to prevent silent data loss.
         if (arrayKey && !(arrayKey in data)) {
-             data[arrayKey] = [];
+            if ('items' in data && Array.isArray(data.items)) {
+                data[arrayKey] = data.items;
+            } else if ('data' in data && Array.isArray(data.data)) {
+                data[arrayKey] = data.data;
+            } else {
+                data[arrayKey] = [];
+            }
         }
 
         for (const key of expectedKeys) {
@@ -72,6 +69,16 @@ class JulesService {
         return data;
     }
 
+    /**
+     * Internal helper for Jules API fetches implementing network resilience.
+     * @param {string} endpoint - The API endpoint relative to the base URL.
+     * @param {RequestInit} [options={}] - Standard fetch options.
+     * @param {number} [retries=3] - Number of retries for transient errors.
+     * @param {number} [backoff=300] - Initial backoff delay in ms.
+     * @returns {Promise<Object|Array>} The parsed JSON response.
+     * @throws {Error} If the API key is missing, the request times out (15s), or the API returns an error status.
+     * @see ../../docs/architecture/Services/README.md#julesapi-architecture for details on the AbortController timeout mechanism.
+     */
     async _fetch(endpoint, options = {}, retries = 3, backoff = 300) {
         if (typeof this.apiKey !== 'string' || !this.apiKey.trim()) throw new Error("Jules API Key is missing. Please configure it in Settings.");
 
@@ -334,6 +341,9 @@ ${userTask}`;
      * @throws {Error} If the request fails, times out, or returns a non-404 error status.
      * @see ../../docs/architecture/Features/JulesManager.md#6-pull-request-rendering for the UI synchronization flow.
      */
+    async getPullRequests(sourceName) {
+        return this._githubRequest(sourceName, 'pulls?state=open', {}, true);
+    }
 
     /**
      * Retrieves details for a specific pull request via the GitHub API.
@@ -370,10 +380,6 @@ ${userTask}`;
             body: JSON.stringify({ state: 'closed' }),
             headers: { 'Content-Type': 'application/json' }
         });
-    }
-
-    async getPullRequests(sourceName) {
-        return this._githubRequest(sourceName, 'pulls?state=open', {}, true);
     }
 }
 
