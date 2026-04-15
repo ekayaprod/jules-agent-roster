@@ -1218,7 +1218,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.getSources.mockRejectedValue(new Error('Network Error'));
             await manager.loadSources();
 
-            expect(mockToast.show).toHaveBeenCalledWith('Unable to connect to GitHub. Please verify your API key and try again.', true);
+            expect(mockToast.show).toHaveBeenCalledWith('Unable to connect to GitHub: Network Error', true);
         });
 
         it('should bail if julesRepoPicker is missing', async () => {

@@ -9,3 +9,9 @@
 
 **Instability:** The repository selection dropdown (`julesRepoPicker`) failed to populate due to an uncaught TypeError when accessing `.options.length` on a dynamically populated element, coupled with widespread empty `catch {}` blocks that swallowed errors globally, leaving the user blind.
 **Fortification:** Traced the silent failures to their root causes, injected a rigorous null guard (`picker.options && picker.options.length > 0`) before accessing the DOM properties, and completely eradicated empty `catch {}` blocks across `JulesService.js`, `network-utils.js`, `storage-utils.js`, `JulesModals.js`, and `JulesManager.js` by properly binding the error object (`catch (error)`) to surface runtime failures.
+## Paramedic — Structural Heuristics
+**Heuristic 3:** Architecture mapped. The system boots cleanly and all test suites pass. Propose optimization: Implement global unhandled rejection and uncaught exception handlers in the entry point to prevent silent process exits and provide stack trace telemetry before crashing.
+
+## Paramedic — Structural Heuristics
+**Heuristic 4:** Traced a catastrophic boot crash in the GitHub repository picker to an unhandled exception thrown when trying to access `.length` on `picker.options` before verifying if `picker.options` existed or if the element was fully attached to the DOM. Safely wrapped the check with an optional chaining null guard: `(picker.options && picker.options.length > 0)`.
+**Heuristic 5:** Correctly bound the `catch` block in `loadSources()` to actually capture and bubble the `(error)` object, ensuring catastrophic failures are not swallowed and can be logged or displayed gracefully to the user.

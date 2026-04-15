@@ -214,7 +214,8 @@ class JulesManager {
             }
         } catch (error) {
             picker.innerHTML = `<option value="">${originalText}</option>`;
-            this.app.toast.show("Unable to connect to GitHub. Please verify your API key and try again.", true);
+            console.error("Failed to load sources:", error);
+            this.app.toast.show(`Unable to connect to GitHub: ${error.message || "Unknown error"}`, true);
         } finally {
             picker.disabled = false;
         }
