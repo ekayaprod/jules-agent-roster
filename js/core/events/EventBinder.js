@@ -83,78 +83,78 @@ class EventBinder {
           const modal = document.getElementById("fusionsModal");
           const contentArea = document.getElementById("fusionsModalContent");
 
-          if (modal && contentArea && app.fusionLab && app.fusionLab.fusionIndex) {
-              const unlockedKeys = app.fusionLab.fusionIndex.unlockedKeys;
-              let listItems = '';
+          if (!modal || !contentArea || !app.fusionLab || !app.fusionLab.fusionIndex) return;
 
-              // Dynamically resolve fusions from the live matrix map
-              const compiler = app.fusionLab.compiler;
-              const allMatrixKeys = compiler.fusionMatrixMap ? Object.keys(compiler.fusionMatrixMap) : [];
+          const unlockedKeys = app.fusionLab.fusionIndex.unlockedKeys;
+          let listItems = '';
 
-              // Extract unique potential fusions for this agent dynamically via a memoized dictionary lookup
-              // ⚡ Bolt+: Eliminated O(N) redundant iteration by memoizing the exact string-inclusion result per agent name.
-              if (!compiler._fusionCacheByAgent || compiler._lastMatrixMapRef !== compiler.fusionMatrixMap) {
-                  compiler._fusionCacheByAgent = {};
-                  compiler._lastMatrixMapRef = compiler.fusionMatrixMap;
-              }
-              if (!compiler._fusionCacheByAgent[agent.name]) {
-                  const uniqueKeys = new Set(allMatrixKeys);
-                  const fusions = [];
-                  for (const key of uniqueKeys) {
-                      if (key.includes(agent.name)) {
-                          fusions.push(key);
-                      }
-                  }
-                  compiler._fusionCacheByAgent[agent.name] = fusions;
-              }
-              const potentialFusions = compiler._fusionCacheByAgent[agent.name];
+          // Dynamically resolve fusions from the live matrix map
+          const compiler = app.fusionLab.compiler;
+          const allMatrixKeys = compiler.fusionMatrixMap ? Object.keys(compiler.fusionMatrixMap) : [];
 
-              // Reset title to base agent
-              const titleSpan = document.getElementById("fusionsModalAgent");
-              if (titleSpan) titleSpan.textContent = "Available Fusions";
-              const emojiSpan = document.getElementById("fusionsModalEmoji");
-              if (emojiSpan) emojiSpan.textContent = "🧬";
-
-              for (const key of potentialFusions) {
-                  const isUnlocked = typeof unlockedKeys.has === 'function'
-                      ? unlockedKeys.has(key)
-                      : unlockedKeys.includes(key);
-
-                  if (isUnlocked) {
-                      const fusionName = app.fusionLab.compiler.fusionMatrixMap[key];
-                      const childAgent = AgentUtils.getCustomAgent(app.customAgents, fusionName) || app.fusionLab.compiler.customAgentsMap[fusionName];
-                      if (childAgent) {
-                          const childIcon = FormatUtils.extractIcon(childAgent);
-                          const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
-                          listItems += `
-                              <li style="list-style: none;">
-                                  <button class="fusion-quick-btn" data-action="view-fusion-card" data-index="${key}" aria-label="View ${safeChildName}" title="${safeChildName}">
-                                      ${childIcon}
-                                  </button>
-                              </li>
-                          `;
-                      }
+          // Extract unique potential fusions for this agent dynamically via a memoized dictionary lookup
+          // ⚡ Bolt+: Eliminated O(N) redundant iteration by memoizing the exact string-inclusion result per agent name.
+          if (!compiler._fusionCacheByAgent || compiler._lastMatrixMapRef !== compiler.fusionMatrixMap) {
+              compiler._fusionCacheByAgent = {};
+              compiler._lastMatrixMapRef = compiler.fusionMatrixMap;
+          }
+          if (!compiler._fusionCacheByAgent[agent.name]) {
+              const uniqueKeys = new Set(allMatrixKeys);
+              const fusions = [];
+              for (const key of uniqueKeys) {
+                  if (key.includes(agent.name)) {
+                      fusions.push(key);
                   }
               }
+              compiler._fusionCacheByAgent[agent.name] = fusions;
+          }
+          const potentialFusions = compiler._fusionCacheByAgent[agent.name];
 
-              const downloadBtn = document.getElementById("downloadParentFusionsBtn");
-              if (listItems) {
-                  const listArea = document.getElementById("fusionsModalList");
-                  const cardArea = document.getElementById("fusionsModalCard");
-                  if (listArea) {
-                      listArea.innerHTML = `<ul class="fusion-quick-list" style="padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">${listItems}</ul>`;
-                  }
-                  if (cardArea) {
-                      cardArea.innerHTML = '';
-                  }
-                  if (downloadBtn) {
-                      downloadBtn.style.display = "";
-                      downloadBtn.dataset.parentName = agent.name;
-                  }
-                  modal.classList.add("visible");
-              } else if (downloadBtn) {
-                  downloadBtn.style.display = "none";
+          // Reset title to base agent
+          const titleSpan = document.getElementById("fusionsModalAgent");
+          if (titleSpan) titleSpan.textContent = "Available Fusions";
+          const emojiSpan = document.getElementById("fusionsModalEmoji");
+          if (emojiSpan) emojiSpan.textContent = "🧬";
+
+          for (const key of potentialFusions) {
+              const isUnlocked = typeof unlockedKeys.has === 'function'
+                  ? unlockedKeys.has(key)
+                  : unlockedKeys.includes(key);
+
+              if (!isUnlocked) continue;
+
+              const fusionName = app.fusionLab.compiler.fusionMatrixMap[key];
+              const childAgent = AgentUtils.getCustomAgent(app.customAgents, fusionName) || app.fusionLab.compiler.customAgentsMap[fusionName];
+              if (!childAgent) continue;
+
+              const childIcon = FormatUtils.extractIcon(childAgent);
+              const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
+              listItems += `
+                  <li style="list-style: none;">
+                      <button class="fusion-quick-btn" data-action="view-fusion-card" data-index="${key}" aria-label="View ${safeChildName}" title="${safeChildName}">
+                          ${childIcon}
+                      </button>
+                  </li>
+              `;
+          }
+
+          const downloadBtn = document.getElementById("downloadParentFusionsBtn");
+          if (listItems) {
+              const listArea = document.getElementById("fusionsModalList");
+              const cardArea = document.getElementById("fusionsModalCard");
+              if (listArea) {
+                  listArea.innerHTML = `<ul class="fusion-quick-list" style="padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">${listItems}</ul>`;
               }
+              if (cardArea) {
+                  cardArea.innerHTML = '';
+              }
+              if (downloadBtn) {
+                  downloadBtn.style.display = "";
+                  downloadBtn.dataset.parentName = agent.name;
+              }
+              modal.classList.add("visible");
+          } else if (downloadBtn) {
+              downloadBtn.style.display = "none";
           }
           return;
       }
@@ -262,27 +262,34 @@ class EventBinder {
           const safeIndex = CSS.escape(String(index));
           const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
 
-          if (promptArea && !promptArea.innerHTML.trim()) {
-              let agent = app.getAgentForUI(index);
-              if (agent) {
-                  if (agent.prompt === undefined) {
-                      const fallbackText = "No protocol data available.";
-                      // Temporarily render a loading spinner
-                      promptArea.innerHTML = '<div style="display:flex; justify-content:center; align-items:center; height:100%;"><div class="loading-spinner" style="width:1.5rem; height:1.5rem; margin:0;"></div></div>';
-
-                      const url = AgentUtils.getPromptUrl(agent);
-
-                      app.agentRepo.fetchPrompt(agent.name, url, fallbackText).then((fetchedPrompt) => {
-                          agent.prompt = fetchedPrompt;
-                          promptArea.innerHTML = '';
-                          promptArea.appendChild(AgentCard.getPromptNode(agent));
-                      });
-                  } else {
-                      promptArea.innerHTML = '';
-                      promptArea.appendChild(AgentCard.getPromptNode(agent));
-                  }
-              }
+          if (!promptArea || promptArea.innerHTML.trim()) {
+              card.classList.add('flipped');
+              return;
           }
+
+          let agent = app.getAgentForUI(index);
+          if (!agent) {
+              card.classList.add('flipped');
+              return;
+          }
+
+          if (agent.prompt === undefined) {
+              const fallbackText = "No protocol data available.";
+              // Temporarily render a loading spinner
+              promptArea.innerHTML = '<div style="display:flex; justify-content:center; align-items:center; height:100%;"><div class="loading-spinner" style="width:1.5rem; height:1.5rem; margin:0;"></div></div>';
+
+              const url = AgentUtils.getPromptUrl(agent);
+
+              app.agentRepo.fetchPrompt(agent.name, url, fallbackText).then((fetchedPrompt) => {
+                  agent.prompt = fetchedPrompt;
+                  promptArea.innerHTML = '';
+                  promptArea.appendChild(AgentCard.getPromptNode(agent));
+              });
+          } else {
+              promptArea.innerHTML = '';
+              promptArea.appendChild(AgentCard.getPromptNode(agent));
+          }
+
           card.classList.add('flipped');
           return;
       }
@@ -369,45 +376,45 @@ class EventBinder {
     // Pre-fetch custom/fusion agent prompts on hover to reduce flip latency
     document.addEventListener('mouseover', (e) => {
         const card = e.target.closest('.flip-card');
-        if (card && !card.classList.contains('flipped')) {
-            const frontTarget = card.querySelector('[data-action="flip-card"]');
-            if (frontTarget) {
-                const index = frontTarget.dataset.index;
-                if (index) {
-                    let agent = app.getAgentForUI(index);
-                    if (agent && agent.isCustom && agent.prompt === undefined) {
-                        const url = AgentUtils.getPromptUrl(agent);
-                        app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
-                            agent.prompt = fetched;
-                        });
-                    }
-                }
-            }
-        }
+        if (!card || card.classList.contains('flipped')) return;
+
+        const frontTarget = card.querySelector('[data-action="flip-card"]');
+        if (!frontTarget) return;
+
+        const index = frontTarget.dataset.index;
+        if (!index) return;
+
+        let agent = app.getAgentForUI(index);
+        if (!agent || !agent.isCustom || agent.prompt !== undefined) return;
+
+        const url = AgentUtils.getPromptUrl(agent);
+        app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
+            agent.prompt = fetched;
+        });
     });
 
     // Close search and active dropdowns on Escape key
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-            // Priority 1: Close active dropdowns
-            if (app.activeDropdowns && app.activeDropdowns.size > 0) {
-                app.activeDropdowns.forEach(menu => {
-                    DOMUtils.closeDropdownMenu(menu, app);
-                    const toggleId = menu.id.replace('card-dropdown-', '');
-                    const toggleBtn = document.querySelector(`[data-action="toggle-card-dropdown"][data-index="${toggleId}"]`);
-                    if (toggleBtn) {
-                        toggleBtn.focus();
-                        toggleBtn.setAttribute('aria-expanded', 'false');
-                    }
-                });
-                return;
-            }
+        if (e.key !== "Escape") return;
 
-            // Priority 2: Close search
-            const nav = app.elements["category-nav"];
-            if (nav && nav.classList.contains("search-active")) {
-                app.clearSearch();
-            }
+        // Priority 1: Close active dropdowns
+        if (app.activeDropdowns && app.activeDropdowns.size > 0) {
+            app.activeDropdowns.forEach(menu => {
+                DOMUtils.closeDropdownMenu(menu, app);
+                const toggleId = menu.id.replace('card-dropdown-', '');
+                const toggleBtn = document.querySelector(`[data-action="toggle-card-dropdown"][data-index="${toggleId}"]`);
+                if (toggleBtn) {
+                    toggleBtn.focus();
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+            return;
+        }
+
+        // Priority 2: Close search
+        const nav = app.elements["category-nav"];
+        if (nav && nav.classList.contains("search-active")) {
+            app.clearSearch();
         }
     });
 
@@ -426,20 +433,21 @@ class EventBinder {
 
     if (activateToggle) {
         activateToggle.addEventListener("change", async (e) => {
-            if (e.target.checked) {
-                if (runnerInputs) runnerInputs.classList.add("active");
-                if (julesTerminal) julesTerminal.style.display = "";
-                // Load sources if not loaded already but initialized
-                if (app.julesManager && app.julesManager.initialized) {
-                    try {
-                        await app.julesManager.loadSources();
-                    } catch (err) {
-                        console.warn("JulesManager API failed to load sources after activation.", err);
-                    }
-                }
-            } else {
+            if (!e.target.checked) {
                 if (runnerInputs) runnerInputs.classList.remove("active");
                 if (julesTerminal) julesTerminal.style.display = "none";
+                return;
+            }
+
+            if (runnerInputs) runnerInputs.classList.add("active");
+            if (julesTerminal) julesTerminal.style.display = "";
+            // Load sources if not loaded already but initialized
+            if (!app.julesManager || !app.julesManager.initialized) return;
+
+            try {
+                await app.julesManager.loadSources();
+            } catch (err) {
+                console.warn("JulesManager API failed to load sources after activation.", err);
             }
         });
     }

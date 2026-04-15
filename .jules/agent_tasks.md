@@ -21,3 +21,5 @@
 ## 🕵️ Boundary Interrogation (Coverage Expansion & Edge Cases)
 
 ## 🚨 Fatal Boot Sequences (Bleeding Environment)
+
+- [x] 🧶 `js/core/events/EventBinder.js`: Eradicated Arrow Code from click and mouseover delegation methods.
