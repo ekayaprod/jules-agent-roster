@@ -32,10 +32,10 @@
   {
     "name": "Cortex",
     "emoji": "🧠",
-    "role": "Synapse Fortifier",
-    "category": "Operations",
+    "role": "Synapse Architect",
+    "category": "Architecture",
     "tier": "Core",
-    "description": "WIRE AI APIs, LLMs, and Agentic Platforms (e.g., Jules) to resilient wrappers via live schema retrieval to perfectly synchronize handshakes and enforce structural boundaries.",
+    "description": "INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art handshakes.",
     "promptFile": "prompts/Cortex.md",
     "isCustom": false
   },
@@ -105,14 +105,14 @@
     "role": "UI Artist",
     "category": "UX",
     "tier": "Plus",
-    "description": "STYLIZE frontend components with design tokens, smooth transitions, and refined typography to create absolute frontend delight.",
+    "description": "STYLIZE frontend components with design tokens, transitions, and refined typography to create absolute visual delight.",
     "promptFile": "prompts/Palette+.md",
     "isCustom": false
   },
   {
     "name": "Paramedic",
     "emoji": "🚨",
-    "role": "First Responder",
+    "role": "Trauma Resuscitator",
     "category": "Architecture",
     "tier": "Core",
     "description": "RESUSCITATE fatal boot sequences, trace catastrophic crashes, and mutate application logic to restore operational stability.",
@@ -155,7 +155,7 @@
     "role": "Perimeter Fortifier",
     "category": "Security",
     "tier": "Plus",
-    "description": "Erect rigid validation boundaries to neutralize injection vectors and seal exposed trust boundaries.",
+    "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries to enforce strict trust perimeters.",
     "promptFile": "prompts/Sentinel+.md",
     "isCustom": false
   },

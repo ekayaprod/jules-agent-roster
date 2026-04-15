@@ -178,7 +178,7 @@ class JulesManager {
         const picker = this.getEl("julesRepoPicker");
         if (!picker || !window.julesService) return;
 
-        const originalText = picker.options.length > 0 ? picker.options[0].textContent : "1. Select GitHub Repository...";
+        const originalText = picker.options && picker.options.length > 0 ? picker.options[0].textContent : "1. Select GitHub Repository...";
         picker.innerHTML = `<option value="">Loading repositories...</option>`;
         picker.disabled = true;
 
@@ -212,7 +212,7 @@ class JulesManager {
             } else {
                 picker.innerHTML = `<option value="">${originalText}</option>`;
             }
-        } catch {
+        } catch (error) {
             picker.innerHTML = `<option value="">${originalText}</option>`;
             this.app.toast.show("Unable to connect to GitHub. Please verify your API key and try again.", true);
         } finally {
