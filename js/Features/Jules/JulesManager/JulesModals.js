@@ -74,7 +74,7 @@ class JulesModals {
             try {
                 await window.julesService.sendUserInput(sessionId, text);
                 this.manager.app.toast.show("Reply transmitted.", "success");
-            } catch {
+            } catch (error) {
                 this.manager.app.toast.show("Failed to send reply.", "error");
                 // Silent rollback on error
                 if (statusSpan) {

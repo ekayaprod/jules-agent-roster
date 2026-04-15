@@ -77,7 +77,7 @@ class StorageUtils {
         try {
             if (typeof localStorage === 'undefined') return defaultValue;
             return localStorage.getItem(key) || defaultValue;
-        } catch {
+        } catch (error) {
             return defaultValue;
         }
     }
