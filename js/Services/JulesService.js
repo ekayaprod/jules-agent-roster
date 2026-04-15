@@ -195,11 +195,14 @@ ${userTask}`;
         if (typeof sessionId !== 'string' || !/^[a-zA-Z0-9-_]+$/.test(sessionId)) {
             throw new Error("Invalid payload: Malformed session identifier.");
         }
-        return this._fetch(`sessions/${sessionId}/activities`, {
+
+        // 🧠 Cortex: JIT Endpoint Resolution. The legacy endpoint for sending user messages
+        // to a session was /activities. The new endpoint according to the live documentation
+        // is /:sendMessage.
+        return this._fetch(`sessions/${sessionId}:sendMessage`, {
             method: 'POST',
             body: JSON.stringify({
-                type: "USER_INPUT",
-                message: text
+                prompt: text
             })
         });
     }
