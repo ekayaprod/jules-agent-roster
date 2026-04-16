@@ -125,17 +125,30 @@ class JulesService {
                 signal: controller.signal
             }, retries, backoff);
 
+            if (!response.ok) {
+                let errMsg = `HTTP Error: ${response.status} ${response.statusText}`;
+                try {
+                    const errorText = await response.text();
+                    const errJson = JSON.parse(errorText);
+                    if (errJson.error && errJson.error.message) errMsg = errJson.error.message;
+                    else if (errJson.message) errMsg = errJson.message;
+                } catch(e) {
+                    // Fail silently on text parse, fallback to default status text
+                }
+                throw new Error(errMsg);
+            }
+
             try {
                 return await response.json();
             } catch (error) {
-                throw new Error("We encountered a server error. Please wait a moment and try again.");
+                throw new Error("Invalid JSON received from server. Please wait a moment and try again.");
             }
         } catch (error) {
             if (error.name === 'AbortError') {
                 throw new Error('API Degradation: Request timed out.');
             }
             if (error.message && typeof error.message === 'string' && error.message.startsWith('HTTP Error:')) {
-                 throw new Error(`We encountered a server error. Please wait a moment and try again.`);
+                 throw error; // Re-throw the explicit HTTP error structured above
             }
             throw error;
         } finally {
