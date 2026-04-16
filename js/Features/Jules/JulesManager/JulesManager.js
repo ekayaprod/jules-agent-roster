@@ -29,14 +29,21 @@ class JulesManager {
     static PAGE_SIZE = 50;
 
     /**
-     * Safe cross-environment getters encapsulated as static methods to prevent global scope collisions.
+     * Safe cross-environment getters encapsulated as static methods.
      */
     static getFormatUtils() {
-        return (typeof window !== 'undefined' && window.FormatUtils) ? window.FormatUtils : ((typeof global !== 'undefined' && global.FormatUtils) ? global.FormatUtils : (typeof require !== 'undefined' ? require('../../../Utils/format-utils.js') : null));
+        if (typeof FormatUtils !== 'undefined') return FormatUtils;
+        if (typeof window !== 'undefined' && window.FormatUtils) return window.FormatUtils;
+        if (typeof global !== 'undefined' && global.FormatUtils) return global.FormatUtils;
+        if (typeof require !== 'undefined') return require('../../../Utils/format-utils.js');
+        return null;
     }
 
     static getTelemetryUtils() {
-        return typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+        if (typeof TelemetryUtils !== 'undefined') return TelemetryUtils;
+        if (typeof window !== 'undefined' && window.TelemetryUtils) return window.TelemetryUtils;
+        if (typeof global !== 'undefined' && global.TelemetryUtils) return global.TelemetryUtils;
+        return null;
     }
 
     constructor(rosterApp) {
@@ -192,7 +199,10 @@ class JulesManager {
                 sourcesResponse.sources.forEach(s => {
                     const opt = document.createElement("option");
                     opt.value = s.name;
-                    opt.textContent = (s.githubRepo && s.githubRepo.owner && s.githubRepo.repo) ? `${s.githubRepo.owner}/${s.githubRepo.repo}` : JulesManager.getFormatUtils().extractRepoPath(s.name);
+                    
+                    const formatUtils = JulesManager.getFormatUtils();
+                    opt.textContent = (s.githubRepo && s.githubRepo.owner && s.githubRepo.repo) ? `${s.githubRepo.owner}/${s.githubRepo.repo}` : (formatUtils ? formatUtils.extractRepoPath(s.name) : s.name);
+                    
                     picker.appendChild(opt);
                 });
                 
@@ -268,13 +278,18 @@ class JulesManager {
         const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
         if (fetchingIndicator) fetchingIndicator.remove();
 
+        const formatUtils = JulesManager.getFormatUtils();
+
         // Render at top of terminal
         prs.forEach(pr => {
             const item = document.createElement("div");
             item.className = "term-pr-item";
+            
+            const escapedTitle = formatUtils ? formatUtils.escapeHTML(pr.title) : pr.title;
+            
             item.innerHTML = `
                 <span style="color: var(--term-success); font-weight: 600; flex-shrink: 0;">[PR OPEN]</span> 
-                <a href="#" class="term-pr-title term-link pr-modal-trigger" data-pr-number="${pr.number}">#${pr.number} ${JulesManager.getFormatUtils().escapeHTML(pr.title)}</a>
+                <a href="#" class="term-pr-title term-link pr-modal-trigger" data-pr-number="${pr.number}">#${pr.number} ${escapedTitle}</a>
             `;
             const link = item.querySelector('.pr-modal-trigger');
             if (link) {
@@ -358,8 +373,9 @@ class JulesManager {
         if (this.renderedSessionIds.has(session.id)) return;
         this.renderedSessionIds.add(session.id);
         
+        const formatUtils = JulesManager.getFormatUtils();
         const agentName = session.title || "Agent Task";
-        let safeAgentName = JulesManager.getFormatUtils().escapeHTML(agentName);
+        let safeAgentName = formatUtils ? formatUtils.escapeHTML(agentName) : agentName;
         let agentEmoji = "🤖";
         
         // ⚡ ACCELERATE: Cache the agents list into a Map to eliminate redundant O(N) traversals inside the session loop.
@@ -371,7 +387,7 @@ class JulesManager {
                 for (let i = 0; i < this.app.agents.length; i++) {
                     const a = this.app.agents[i];
                     this._agentMapCache.set(a.name, a);
-                    if (a.name) escapedNames.push(FormatUtils.escapeRegex(a.name));
+                    if (a.name && formatUtils) escapedNames.push(formatUtils.escapeRegex(a.name));
                 }
             }
 
@@ -381,7 +397,7 @@ class JulesManager {
                     const a = customs[i];
                     if (a.name) {
                         this._agentMapCache.set(a.name, a);
-                        escapedNames.push(FormatUtils.escapeRegex(a.name));
+                        if (formatUtils) escapedNames.push(formatUtils.escapeRegex(a.name));
                     }
                 }
             }
@@ -421,9 +437,11 @@ class JulesManager {
             this.modals._showHistoryModal(session.id, agentEmoji, safeAgentName);
         };
 
+        const escapedEmoji = formatUtils ? formatUtils.escapeHTML(agentEmoji) : agentEmoji;
+
         // 1-line Minimalist layout
         block.innerHTML = `
-            <span class="term-agent-name">${JulesManager.getFormatUtils().escapeHTML(agentEmoji)} ${safeAgentName}</span>
+            <span class="term-agent-name">${escapedEmoji} ${safeAgentName}</span>
             <span class="term-separator">—</span>
             <span class="term-status" id="status-${session.id}">Initializing...</span>
         `;
@@ -469,13 +487,17 @@ class JulesManager {
 
         const optimisticBlock = document.createElement("div");
         optimisticBlock.className = `term-session-line state-active skeleton-pulse`;
+        
+        const formatUtils = JulesManager.getFormatUtils();
         let agentEmoji = agent.emoji || "🤖";
-        let safeAgentName = agent.name ? JulesManager.getFormatUtils().escapeHTML(agent.name) : "Agent Task";
+        let safeAgentName = agent.name ? (formatUtils ? formatUtils.escapeHTML(agent.name) : agent.name) : "Agent Task";
 
         optimisticBlock.style.cursor = "pointer";
 
+        const escapedEmoji = formatUtils ? formatUtils.escapeHTML(agentEmoji) : agentEmoji;
+
         optimisticBlock.innerHTML = `
-            <span class="term-agent-name">${JulesManager.getFormatUtils().escapeHTML(agentEmoji)} ${safeAgentName}</span>
+            <span class="term-agent-name">${escapedEmoji} ${safeAgentName}</span>
             <span class="term-separator">—</span>
             <span class="term-status">Conjuring session...</span>
         `;
