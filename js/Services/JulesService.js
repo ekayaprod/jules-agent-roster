@@ -1,7 +1,7 @@
 // Safe cross-environment getters
-const getFormatUtils = () => (typeof window !== 'undefined' && window.FormatUtils) ? window.FormatUtils : ((typeof global !== 'undefined' && global.FormatUtils) ? global.FormatUtils : (typeof require !== 'undefined' ? require('../Utils/format-utils.js') : null));
-const getNetworkUtils = () => (typeof window !== 'undefined' && window.NetworkUtils) ? window.NetworkUtils : ((typeof global !== 'undefined' && global.NetworkUtils) ? global.NetworkUtils : (typeof require !== 'undefined' ? require('../Utils/network-utils.js') : null));
-const getTelemetryUtils = () => (typeof window !== 'undefined' && window.TelemetryUtils) ? window.TelemetryUtils : ((typeof global !== 'undefined' && global.TelemetryUtils) ? global.TelemetryUtils : (typeof require !== 'undefined' ? require('../Utils/telemetry-utils.js') : null));
+var getFormatUtils = () => (typeof window !== 'undefined' && window.FormatUtils) ? window.FormatUtils : ((typeof global !== 'undefined' && global.FormatUtils) ? global.FormatUtils : (typeof require !== 'undefined' ? require('../Utils/format-utils.js') : null));
+var getNetworkUtils = () => (typeof window !== 'undefined' && window.NetworkUtils) ? window.NetworkUtils : ((typeof global !== 'undefined' && global.NetworkUtils) ? global.NetworkUtils : (typeof require !== 'undefined' ? require('../Utils/network-utils.js') : null));
+var getTelemetryUtils = () => (typeof window !== 'undefined' && window.TelemetryUtils) ? window.TelemetryUtils : ((typeof global !== 'undefined' && global.TelemetryUtils) ? global.TelemetryUtils : (typeof require !== 'undefined' ? require('../Utils/telemetry-utils.js') : null));
 /**
  * Service for interacting with the Jules API (Alpha).
  * Handles source fetching, session creation, and activity polling.
