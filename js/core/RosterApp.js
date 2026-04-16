@@ -1,9 +1,12 @@
-
-
-var SafeUITimings = typeof window !== 'undefined' ? window.UI_TIMINGS : (typeof global !== 'undefined' ? global.UI_TIMINGS : null);
+var SafeUITimings =
+  typeof window !== 'undefined'
+    ? window.UI_TIMINGS
+    : typeof global !== 'undefined'
+      ? global.UI_TIMINGS
+      : null;
 const OBSERVER_OPTIONS = {
-    rootMargin: "-80px 0px -60% 0px",
-    threshold: 0
+  rootMargin: '-80px 0px -60% 0px',
+  threshold: 0,
 };
 const LOADING_OVERLAY_DISMISS_MS = 500;
 const SEARCH_DEBOUNCE_MS = 300;
@@ -48,66 +51,72 @@ class RosterApp {
     this.renderSkeletons();
 
     try {
-        // Run concurrent initialization tasks
-        const initTasks = [
-            this.agentRepo.fetchAgents().catch(err => {
-                console.warn("AgentRepository API failed to initialize, providing safe fallback.", err);
-                return { agents: [], customAgents: {} };
-            }),
-            this.julesManager.init().catch(err => {
-                console.warn("JulesManager API failed to initialize.", err);
-            })
-        ];
+      // Run concurrent initialization tasks
+      const initTasks = [
+        this.agentRepo.fetchAgents().catch((err) => {
+          console.warn('AgentRepository API failed to initialize, providing safe fallback.', err);
+          return { agents: [], customAgents: {} };
+        }),
+        this.julesManager.init().catch((err) => {
+          console.warn('JulesManager API failed to initialize.', err);
+        }),
+      ];
 
-        const [agentData] = await Promise.all(initTasks);
-        const { agents, customAgents, fusionMatrix } = agentData || { agents: [], customAgents: {}, fusionMatrix: {} };
-        this.agents = agents;
-        this.customAgents = customAgents;
-        this.fusionMatrix = fusionMatrix;
+      const [agentData] = await Promise.all(initTasks);
+      const { agents, customAgents, fusionMatrix } = agentData || {
+        agents: [],
+        customAgents: {},
+        fusionMatrix: {},
+      };
+      this.agents = agents;
+      this.customAgents = customAgents;
+      this.fusionMatrix = fusionMatrix;
 
-        this.fusionLab = new FusionLab();
-        this.fusionLab.init(this.agents, this.customAgents, this.fusionMatrix);
+      this.fusionLab = new FusionLab();
+      this.fusionLab.init(this.agents, this.customAgents, this.fusionMatrix);
 
-        const skeleton = this.elements.fusionLabSkeleton;
-        const content = this.elements.fusionLabContent;
-        if (skeleton && content) {
-            skeleton.style.opacity = '0';
-            const revealContent = () => {
-                skeleton.classList.add("hidden");
-                content.style.opacity = '0';
-                content.classList.remove("hidden");
-                content.offsetHeight; // Force reflow
-                content.style.opacity = '1';
-            };
+      const skeleton = this.elements.fusionLabSkeleton;
+      const content = this.elements.fusionLabContent;
+      if (skeleton && content) {
+        skeleton.style.opacity = '0';
+        const revealContent = () => {
+          skeleton.classList.add('hidden');
+          content.style.opacity = '0';
+          content.classList.remove('hidden');
+          content.offsetHeight; // Force reflow
+          content.style.opacity = '1';
+        };
 
-            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                revealContent();
-            } else {
-                requestAnimationFrame(revealContent);
-            }
+        if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          revealContent();
+        } else {
+          requestAnimationFrame(revealContent);
         }
+      }
     } catch (error) {
-        if (this.elements.main) {
-            const isDataError = error.message && (error.message.includes("JSON") || error.message.includes("configuration"));
-            const errorTitle = "Unable to Load Protocols";
-            const errorDesc = isDataError
-              ? "Check your configuration file formatting and try again."
-              : "Check your internet connection and refresh the page.";
+      if (this.elements.main) {
+        const isDataError =
+          error.message &&
+          (error.message.includes('JSON') || error.message.includes('configuration'));
+        const errorTitle = 'Unable to Load Protocols';
+        const errorDesc = isDataError
+          ? 'Check your configuration file formatting and try again.'
+          : 'Check your internet connection and refresh the page.';
 
-            const emptyState = EmptyState.create({
-                title: errorTitle,
-                description: errorDesc,
-                icon: EmptyState.ICONS.ERROR,
-                action: {
-                    text: "Refresh Page",
-                    onClick: "typeof window !== 'undefined' && window.location.reload()",
-                    ariaLabel: "Refresh Page to Retry Loading"
-                }
-            });
+        const emptyState = EmptyState.create({
+          title: errorTitle,
+          description: errorDesc,
+          icon: EmptyState.ICONS.ERROR,
+          action: {
+            text: 'Refresh Page',
+            onClick: "typeof window !== 'undefined' && window.location.reload()",
+            ariaLabel: 'Refresh Page to Retry Loading',
+          },
+        });
 
-            this.elements.main.innerHTML = "";
-            this.elements.main.appendChild(emptyState);
-        }
+        this.elements.main.innerHTML = '';
+        this.elements.main.appendChild(emptyState);
+      }
     }
 
     this.renderAgents();
@@ -116,17 +125,11 @@ class RosterApp {
 
     // Start pre-fetching core agent prompts in the background after UI initialization
     setTimeout(() => {
-      this.agents.forEach(agent => {
-        if (agent.prompt === undefined) {
-          const url = AgentUtils.getPromptUrl(agent);
-          this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
-              agent.prompt = fetched;
-          });
-        }
+      this.agents.forEach((agent) => {
+        AgentUtils.ensurePromptLoaded(agent, this.agentRepo);
       });
     }, 1000);
   }
-
 
   /**
    * Caches critical DOM elements locally via `document.querySelector`.
@@ -138,9 +141,10 @@ class RosterApp {
     for (const key in selectors) {
       if (Object.prototype.hasOwnProperty.call(selectors, key)) {
         const selector = selectors[key];
-        this.elements[key] = (typeof selector === 'string' && selector.startsWith("#"))
-          ? document.getElementById(selector.substring(1))
-          : document.querySelectorAll(selector);
+        this.elements[key] =
+          typeof selector === 'string' && selector.startsWith('#')
+            ? document.getElementById(selector.substring(1))
+            : document.querySelectorAll(selector);
       }
     }
 
@@ -150,23 +154,36 @@ class RosterApp {
     this.categoryKeys = [];
     // ⚡ Bolt+: Replaced Object.keys().forEach with a direct for...in lookup to eliminate array allocations on app startup.
     for (const key in CONFIG.categories) {
-        if (Object.prototype.hasOwnProperty.call(CONFIG.categories, key)) {
-            this.categoryKeys.push(key);
-            const gridId = CONFIG.categories[key];
-            this.categoryElements[key] = document.getElementById(gridId);
-            this.categoryLookup[gridId] = key;
-        }
+      if (Object.prototype.hasOwnProperty.call(CONFIG.categories, key)) {
+        this.categoryKeys.push(key);
+        const gridId = CONFIG.categories[key];
+        this.categoryElements[key] = document.getElementById(gridId);
+        this.categoryLookup[gridId] = key;
+      }
     }
 
     // Cache static elements used frequently during high-frequency events or initialization
     const staticIds = [
-      "searchInput", "clearBtn", "fusionLabSkeleton", "fusionLabContent", "clearSearchEmptyBtn", "julesRepoPicker",
-      "julesTerminal", "masterDropdownBtn", "masterDropdownMenu", "masterCopyBtn",
-      "masterDownloadCoreBtn", "masterCopyFusionsBtn", "masterDownloadFusionsBtn",
-      "searchModeContainer", "searchResultsGrid", "category-nav", "searchTriggerBtn",
-      "downloadParentFusionsBtn"
+      'searchInput',
+      'clearBtn',
+      'fusionLabSkeleton',
+      'fusionLabContent',
+      'clearSearchEmptyBtn',
+      'julesRepoPicker',
+      'julesTerminal',
+      'masterDropdownBtn',
+      'masterDropdownMenu',
+      'masterCopyBtn',
+      'masterDownloadCoreBtn',
+      'masterCopyFusionsBtn',
+      'masterDownloadFusionsBtn',
+      'searchModeContainer',
+      'searchResultsGrid',
+      'category-nav',
+      'searchTriggerBtn',
+      'downloadParentFusionsBtn',
     ];
-    staticIds.forEach(id => {
+    staticIds.forEach((id) => {
       this.elements[id] = document.getElementById(id);
     });
 
@@ -183,9 +200,9 @@ class RosterApp {
       const key = this.categoryKeys[i];
       const container = this.categoryElements[key];
       if (container) {
-        container.innerHTML = "";
+        container.innerHTML = '';
         for (let j = 0; j < 12; j++) {
-          const skeleton = DOMUtils.createSkeletonElement("card skeleton-card skeleton-pulse");
+          const skeleton = DOMUtils.createSkeletonElement('card skeleton-card skeleton-pulse');
           container.appendChild(skeleton);
         }
       }
@@ -215,25 +232,29 @@ class RosterApp {
     }
 
     this.agents.forEach((agent, i) => {
-      const category = agent.category || "strategy";
+      const category = agent.category || 'strategy';
       if (categorizedAgents[category]) {
         categorizedAgents[category].push({ agent, indexOrKey: i });
       }
     });
 
     if (this.pinnedManager) {
-        const pinnedKeys = this.pinnedManager.getPinned();
-        pinnedKeys.forEach(key => {
-             let agent = this.getAgentForUI(key);
+      const pinnedKeys = this.pinnedManager.getPinned();
+      pinnedKeys.forEach((key) => {
+        let agent = this.getAgentForUI(key);
 
-             if (!agent) return;
+        if (!agent) return;
 
-             const isFusionKey = typeof key === 'string' && Number.isNaN(Number(key));
-             const targetCategory = isFusionKey ? (agent.category ? agent.category.toLowerCase() : "strategy") : "pinned";
+        const isFusionKey = typeof key === 'string' && Number.isNaN(Number(key));
+        const targetCategory = isFusionKey
+          ? agent.category
+            ? agent.category.toLowerCase()
+            : 'strategy'
+          : 'pinned';
 
-             if (!categorizedAgents[targetCategory]) categorizedAgents[targetCategory] = [];
-             categorizedAgents[targetCategory].push({ agent, indexOrKey: key });
-        });
+        if (!categorizedAgents[targetCategory]) categorizedAgents[targetCategory] = [];
+        categorizedAgents[targetCategory].push({ agent, indexOrKey: key });
+      });
     }
 
     const flattenedAgents = [];
@@ -241,34 +262,34 @@ class RosterApp {
     // ⚡ Bolt+: Bypass redundant nested wrapper object creations and object spreading.
     // Flatten properties directly into the target object to prevent GC churn during rendering.
     for (let i = 0; i < this.categoryKeys.length; i++) {
-        const categoryKey = this.categoryKeys[i];
-        const categoryList = categorizedAgents[categoryKey];
-        const catLen = categoryList.length;
-        const mappedList = new Array(catLen);
+      const categoryKey = this.categoryKeys[i];
+      const categoryList = categorizedAgents[categoryKey];
+      const catLen = categoryList.length;
+      const mappedList = new Array(catLen);
 
-        for (let j = 0; j < catLen; j++) {
-            const item = categoryList[j];
-            mappedList[j] = {
-                ...item,
-                gridCategory: categoryKey,
-                _isPinned: hasPinnedManager ? this.pinnedManager.isPinned(item.indexOrKey) : false
-            };
-        }
+      for (let j = 0; j < catLen; j++) {
+        const item = categoryList[j];
+        mappedList[j] = {
+          ...item,
+          gridCategory: categoryKey,
+          _isPinned: hasPinnedManager ? this.pinnedManager.isPinned(item.indexOrKey) : false,
+        };
+      }
 
-        mappedList.sort((a, b) => {
-           if (a._isPinned && !b._isPinned) return -1;
-           if (!a._isPinned && b._isPinned) return 1;
-           const aTier = a.agent && a.agent.tier === "Plus" ? 1 : 0;
-           const bTier = b.agent && b.agent.tier === "Plus" ? 1 : 0;
-           if (aTier !== bTier) return bTier - aTier;
-           return 0;
-        });
+      mappedList.sort((a, b) => {
+        if (a._isPinned && !b._isPinned) return -1;
+        if (!a._isPinned && b._isPinned) return 1;
+        const aTier = a.agent && a.agent.tier === 'Plus' ? 1 : 0;
+        const bTier = b.agent && b.agent.tier === 'Plus' ? 1 : 0;
+        if (aTier !== bTier) return bTier - aTier;
+        return 0;
+      });
 
-        for (let j = 0; j < catLen; j++) {
-            const finalItem = mappedList[j];
-            delete finalItem._isPinned;
-            flattenedAgents.push(finalItem);
-        }
+      for (let j = 0; j < catLen; j++) {
+        const finalItem = mappedList[j];
+        delete finalItem._isPinned;
+        flattenedAgents.push(finalItem);
+      }
     }
 
     const currentRenderId = Symbol();
@@ -289,17 +310,17 @@ class RosterApp {
 
       for (let i = agentIndex; i < end; i++) {
         const { agent, indexOrKey, gridCategory } = flattenedAgents[i];
-        const category = gridCategory || agent.category || "strategy";
+        const category = gridCategory || agent.category || 'strategy';
         const container = categoryContainers[category];
         if (!container) continue;
 
         let card = this._domNodeCache.get(String(indexOrKey));
         if (card) {
-            // Re-use cached node but recalculate animation delay
-            card.style.animationDelay = `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`;
+          // Re-use cached node but recalculate animation delay
+          card.style.animationDelay = `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`;
         } else {
-            card = AgentCard.create(agent, indexOrKey, globalIndex);
-            this._domNodeCache.set(String(indexOrKey), card);
+          card = AgentCard.create(agent, indexOrKey, globalIndex);
+          this._domNodeCache.set(String(indexOrKey), card);
         }
         globalIndex++;
 
@@ -319,31 +340,31 @@ class RosterApp {
             const key = this.categoryKeys[i];
             const container = categoryContainers[key];
             if (container) {
-              container.innerHTML = "";
+              container.innerHTML = '';
               const fragment = fragments[key];
               const hasChildren = fragment && fragment.children.length > 0;
               if (fragment) container.appendChild(fragment);
 
               const header = document.getElementById(key);
               if (hasChildren) {
-                  container.style.display = "";
-                  container.classList.remove("empty");
-                  if (header) header.style.display = "";
+                container.style.display = '';
+                container.classList.remove('empty');
+                if (header) header.style.display = '';
               } else {
-                  container.style.display = "none";
-                  container.classList.add("empty");
-                  if (header) header.style.display = "none";
+                container.style.display = 'none';
+                container.classList.add('empty');
+                if (header) header.style.display = 'none';
               }
             }
           }
 
           // 🪄 Illusionist: Dismiss loading overlay after DOM is generated
-          const overlay = document.getElementById("initial-loading-overlay");
-          if (overlay && !overlay.classList.contains("hidden")) {
-              overlay.classList.add("hidden");
-              setTimeout(() => {
-                  if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-              }, LOADING_OVERLAY_DISMISS_MS);
+          const overlay = document.getElementById('initial-loading-overlay');
+          if (overlay && !overlay.classList.contains('hidden')) {
+            overlay.classList.add('hidden');
+            setTimeout(() => {
+              if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+            }, LOADING_OVERLAY_DISMISS_MS);
           }
         });
       }
@@ -360,12 +381,9 @@ class RosterApp {
    */
   bindEvents() {
     if (typeof EventBinder !== 'undefined') {
-        EventBinder.bind(this);
+      EventBinder.bind(this);
     }
   }
-
-
-
 
   /**
    * Executes a fuzzy match against all loaded agents using the provided query string.
@@ -376,7 +394,7 @@ class RosterApp {
    */
   async filterAgents(query) {
     if (this.searchController) {
-        await this.searchController.filterAgents(query);
+      await this.searchController.filterAgents(query);
     }
   }
 
@@ -387,7 +405,7 @@ class RosterApp {
    */
   async clearSearch() {
     if (this.searchController) {
-        await this.searchController.clearSearch();
+      await this.searchController.clearSearch();
     }
   }
 
@@ -400,7 +418,7 @@ class RosterApp {
    */
   async copyAgent(index, btn) {
     if (this.exportController) {
-        return this.exportController.copyAgent(index, btn);
+      return this.exportController.copyAgent(index, btn);
     }
   }
 
@@ -411,7 +429,7 @@ class RosterApp {
    */
   async downloadAgent(index, btn) {
     if (this.exportController) {
-        return this.exportController.downloadAgent(index, btn);
+      return this.exportController.downloadAgent(index, btn);
     }
   }
 
@@ -422,7 +440,7 @@ class RosterApp {
    */
   downloadCustomAgents(btn) {
     if (this.exportController) {
-        this.exportController.downloadCustomAgents(btn);
+      this.exportController.downloadCustomAgents(btn);
     }
   }
 
@@ -433,7 +451,7 @@ class RosterApp {
    */
   downloadAll(btn) {
     if (this.exportController) {
-        this.exportController.downloadAll(btn);
+      this.exportController.downloadAll(btn);
     }
   }
 
@@ -445,7 +463,7 @@ class RosterApp {
    */
   async copyAll(btn) {
     if (this.exportController) {
-        return this.exportController.copyAll(btn);
+      return this.exportController.copyAll(btn);
     }
   }
 
@@ -455,7 +473,7 @@ class RosterApp {
    */
   initObserver() {
     if (this.observer) {
-        this.observer.disconnect();
+      this.observer.disconnect();
     }
 
     // ⚡ Bolt+: Extracted redundant and repetitive DOM attribute parsing (getAttribute)
@@ -463,31 +481,28 @@ class RosterApp {
     // ↗️ VECTORIZE: The Single-Pass Pipeline. We ignore the abstracted array layers and map directly.
     const cachedPills = [];
     if (this.elements.navPills) {
-        for (let i = 0; i < this.elements.navPills.length; i++) {
-            const pill = this.elements.navPills[i];
-            const href = pill.getAttribute("href");
-            if (href) {
-                cachedPills.push({
-                    el: pill,
-                    targetHref: href.substring(1)
-                });
-            }
+      for (let i = 0; i < this.elements.navPills.length; i++) {
+        const pill = this.elements.navPills[i];
+        const href = pill.getAttribute('href');
+        if (href) {
+          cachedPills.push({
+            el: pill,
+            targetHref: href.substring(1),
+          });
         }
+      }
     }
 
-    this.observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const targetId = CONFIG.sectionMap[entry.target.id];
-            cachedPills.forEach(({ el, targetHref }) => {
-                el.classList.toggle("active", targetHref === targetId);
-            });
-          }
-        });
-      },
-      OBSERVER_OPTIONS
-    );
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const targetId = CONFIG.sectionMap[entry.target.id];
+          cachedPills.forEach(({ el, targetHref }) => {
+            el.classList.toggle('active', targetHref === targetId);
+          });
+        }
+      });
+    }, OBSERVER_OPTIONS);
 
     // ⚡ Bolt+: Replaced Object.keys().forEach with a direct for...in lookup
     for (const gridId in CONFIG.sectionMap) {
@@ -506,7 +521,7 @@ class RosterApp {
    * @param {string} message - The notification payload to display.
    */
   showToast(message) {
-      this.toast.show(message);
+    this.toast.show(message);
   }
 
   /**
@@ -514,23 +529,33 @@ class RosterApp {
    * unlocked fusion agents if they are not present in static maps.
    */
   getAgentForUI(index) {
-      let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
-      if (index === "fusion-result" && this.fusionLab) return this.fusionLab.lastFusionResult;
+    let agent =
+      this.agents[index] ||
+      AgentUtils.getCustomAgent(this.customAgents, index) ||
+      (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+    if (index === 'fusion-result' && this.fusionLab) return this.fusionLab.lastFusionResult;
 
-      if (!agent && typeof index === 'string' && Number.isNaN(Number(index)) && this.fusionLab && this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked(index)) {
-          const names = AgentUtils.splitFusionKey(index);
-          if (names.length === 2) {
-              const agentA = this.fusionLab.agentMap.get(names[0]);
-              const agentB = this.fusionLab.agentMap.get(names[1]);
-              if (agentA && agentB) {
-                  agent = this.fusionLab.compiler.fuse(agentA, agentB);
-              }
-          }
+    if (
+      !agent &&
+      typeof index === 'string' &&
+      Number.isNaN(Number(index)) &&
+      this.fusionLab &&
+      this.fusionLab.fusionIndex &&
+      this.fusionLab.fusionIndex.isUnlocked(index)
+    ) {
+      const names = AgentUtils.splitFusionKey(index);
+      if (names.length === 2) {
+        const agentA = this.fusionLab.agentMap.get(names[0]);
+        const agentB = this.fusionLab.agentMap.get(names[1]);
+        if (agentA && agentB) {
+          agent = this.fusionLab.compiler.fuse(agentA, agentB);
+        }
       }
-      return agent;
+    }
+    return agent;
   }
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = RosterApp;
+  module.exports = RosterApp;
 }
