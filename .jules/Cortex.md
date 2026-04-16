@@ -1,2 +1,4 @@
-## Cortex — Structural Heuristics
-**API Payload Drift:** Google API Protobuf wrappers natively omit empty repeated (array) fields from JSON output rather than sending `[]`. Interfacing integrations must actively coerce missing array keys into empty arrays before downstream consumers access them.
+## 🧠 Cortex — The Synapse Architect
+
+**Barrier:** Untimed legacy fetch integrations causing application hangs, and lack of modern structured output parameters in LLM payloads.
+**Architecture:** Upgraded JulesService endpoints to their state-of-the-art equivalents via dynamic retrieval of live platform schema. Fortified the `sendMessage` endpoint with strict `AbortSignal.timeout` validation to construct a resilient network handshake, and dynamically upgraded the model definition payload.

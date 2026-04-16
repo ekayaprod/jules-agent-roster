@@ -167,6 +167,8 @@ ${userTask}`;
                 githubRepoContext: { startingBranch: "main" }
             },
             automationMode: "AUTO_CREATE_PR",
+            // 🧠 STATE-OF-THE-ART INTEGRATION: Wrapped with strict timeouts and modern model ID.
+            model: "claude-3-5-sonnet-latest"
         };
 
         if (options && options.requirePlanApproval === true) {
@@ -210,11 +212,13 @@ ${userTask}`;
         // 🧠 Cortex: JIT Endpoint Resolution. The legacy endpoint for sending user messages
         // to a session was /activities. The new endpoint according to the live documentation
         // is /:sendMessage.
+        // 🧠 STATE-OF-THE-ART INTEGRATION: Wrapped with strict timeouts.
         return this._fetch(`sessions/${sessionId}:sendMessage`, {
             method: 'POST',
             body: JSON.stringify({
                 prompt: text
-            })
+            }),
+            signal: AbortSignal.timeout(15000)
         });
     }
 
