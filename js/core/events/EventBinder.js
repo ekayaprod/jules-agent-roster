@@ -447,7 +447,7 @@ class EventBinder {
             try {
                 await app.julesManager.loadSources();
             } catch (err) {
-                console.warn("JulesManager API failed to load sources after activation.", err);
+                console.error("JulesManager API failed to load sources after activation.", err);
             }
         });
     }

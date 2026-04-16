@@ -42,6 +42,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
     });
 
     it('gracefully degrades when JulesManager loadSources throws an unhandled exception', async () => {
+        const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
         app.julesManager.loadSources.mockRejectedValueOnce(new Error('Network Initialization Failed'));
         const activateToggle = document.createElement('input');
         activateToggle.type = 'checkbox';
@@ -54,6 +55,10 @@ describe('EventBinder (Boundary Interrogation)', () => {
         const changeEvent = new Event('change');
 
         expect(() => activateToggle.dispatchEvent(changeEvent)).not.toThrow();
+
+        // Wait for next tick so the async catch handler runs
+        await new Promise(process.nextTick);
+        consoleSpy.mockRestore();
     });
 
     it('toggles pin and synchronizes aria-pressed for valid agent index', () => {
