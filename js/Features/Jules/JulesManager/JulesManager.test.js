@@ -303,11 +303,13 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
         });
 
         it('loadSources branch: originalText fallback', async () => {
+             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
              document.body.innerHTML = '<select id="julesRepoPicker"></select>';
              const picker = document.getElementById('julesRepoPicker');
              window.julesService.getSources.mockRejectedValueOnce(new Error('fail'));
              await manager.loadSources();
              expect(picker.innerHTML).toContain('1. Select GitHub Repository...');
+             consoleSpy.mockRestore();
         });
 
         it('_fetchAndRenderSessions loop branch: null items', async () => {
@@ -1215,10 +1217,12 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
         });
 
         it('should handle API error gracefully', async () => {
+            const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
             window.julesService.getSources.mockRejectedValue(new Error('Network Error'));
             await manager.loadSources();
 
             expect(mockToast.show).toHaveBeenCalledWith('Unable to connect to GitHub: Network Error', true);
+            consoleSpy.mockRestore();
         });
 
         it('should bail if julesRepoPicker is missing', async () => {
