@@ -1,9 +1,12 @@
 class JulesModals {
     /**
-     * Safe cross-environment getters encapsulated as static methods to prevent global scope collisions.
+     * Safe cross-environment getters encapsulated as static methods.
      */
     static getTelemetryUtils() {
-        return typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+        if (typeof TelemetryUtils !== 'undefined') return TelemetryUtils;
+        if (typeof window !== 'undefined' && window.TelemetryUtils) return window.TelemetryUtils;
+        if (typeof global !== 'undefined' && global.TelemetryUtils) return global.TelemetryUtils;
+        return null;
     }
 
     constructor(julesManager) {
