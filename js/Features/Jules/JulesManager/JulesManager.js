@@ -1,8 +1,3 @@
-// Safe cross-environment getters
-var getFormatUtils = () => (typeof window !== 'undefined' && window.FormatUtils) ? window.FormatUtils : ((typeof global !== 'undefined' && global.FormatUtils) ? global.FormatUtils : (typeof require !== 'undefined' ? require('../../../Utils/format-utils.js') : null));
-// Safe cross-environment getters
-var getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
-
 /**
  * Polling array callbacks hoisted to the file scope.
  */
@@ -25,7 +20,6 @@ const CORE_EMOJIS_REGEX = new RegExp(`(${Object.keys(CORE_EMOJIS).map(k => k.rep
  * Engineered for a single-line terminal output where GitHub handles completions.
  * @see ../../../docs/architecture/Features/JulesManager.md#overview for the macro architectural scope.
  */
-
 class JulesManager {
     static ACTIVE_SESSIONS_POLL_MS = 5000;
     static TERMINAL_POLL_MS = 3000;
@@ -33,6 +27,17 @@ class JulesManager {
     static MODAL_FOCUS_QUICK_DELAY_MS = 10;
     static SUCCESS_DISMISS_DELAY_MS = 2000;
     static PAGE_SIZE = 50;
+
+    /**
+     * Safe cross-environment getters encapsulated as static methods to prevent global scope collisions.
+     */
+    static getFormatUtils() {
+        return (typeof window !== 'undefined' && window.FormatUtils) ? window.FormatUtils : ((typeof global !== 'undefined' && global.FormatUtils) ? global.FormatUtils : (typeof require !== 'undefined' ? require('../../../Utils/format-utils.js') : null));
+    }
+
+    static getTelemetryUtils() {
+        return typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+    }
 
     constructor(rosterApp) {
         this.app = rosterApp;
@@ -187,7 +192,7 @@ class JulesManager {
                 sourcesResponse.sources.forEach(s => {
                     const opt = document.createElement("option");
                     opt.value = s.name;
-                    opt.textContent = (s.githubRepo && s.githubRepo.owner && s.githubRepo.repo) ? `${s.githubRepo.owner}/${s.githubRepo.repo}` : getFormatUtils().extractRepoPath(s.name);
+                    opt.textContent = (s.githubRepo && s.githubRepo.owner && s.githubRepo.repo) ? `${s.githubRepo.owner}/${s.githubRepo.repo}` : JulesManager.getFormatUtils().extractRepoPath(s.name);
                     picker.appendChild(opt);
                 });
                 
@@ -269,7 +274,7 @@ class JulesManager {
             item.className = "term-pr-item";
             item.innerHTML = `
                 <span style="color: var(--term-success); font-weight: 600; flex-shrink: 0;">[PR OPEN]</span> 
-                <a href="#" class="term-pr-title term-link pr-modal-trigger" data-pr-number="${pr.number}">#${pr.number} ${getFormatUtils().escapeHTML(pr.title)}</a>
+                <a href="#" class="term-pr-title term-link pr-modal-trigger" data-pr-number="${pr.number}">#${pr.number} ${JulesManager.getFormatUtils().escapeHTML(pr.title)}</a>
             `;
             const link = item.querySelector('.pr-modal-trigger');
             if (link) {
@@ -354,7 +359,7 @@ class JulesManager {
         this.renderedSessionIds.add(session.id);
         
         const agentName = session.title || "Agent Task";
-        let safeAgentName = getFormatUtils().escapeHTML(agentName);
+        let safeAgentName = JulesManager.getFormatUtils().escapeHTML(agentName);
         let agentEmoji = "🤖";
         
         // ⚡ ACCELERATE: Cache the agents list into a Map to eliminate redundant O(N) traversals inside the session loop.
@@ -418,7 +423,7 @@ class JulesManager {
 
         // 1-line Minimalist layout
         block.innerHTML = `
-            <span class="term-agent-name">${getFormatUtils().escapeHTML(agentEmoji)} ${safeAgentName}</span>
+            <span class="term-agent-name">${JulesManager.getFormatUtils().escapeHTML(agentEmoji)} ${safeAgentName}</span>
             <span class="term-separator">—</span>
             <span class="term-status" id="status-${session.id}">Initializing...</span>
         `;
@@ -465,12 +470,12 @@ class JulesManager {
         const optimisticBlock = document.createElement("div");
         optimisticBlock.className = `term-session-line state-active skeleton-pulse`;
         let agentEmoji = agent.emoji || "🤖";
-        let safeAgentName = agent.name ? getFormatUtils().escapeHTML(agent.name) : "Agent Task";
+        let safeAgentName = agent.name ? JulesManager.getFormatUtils().escapeHTML(agent.name) : "Agent Task";
 
         optimisticBlock.style.cursor = "pointer";
 
         optimisticBlock.innerHTML = `
-            <span class="term-agent-name">${getFormatUtils().escapeHTML(agentEmoji)} ${safeAgentName}</span>
+            <span class="term-agent-name">${JulesManager.getFormatUtils().escapeHTML(agentEmoji)} ${safeAgentName}</span>
             <span class="term-separator">—</span>
             <span class="term-status">Conjuring session...</span>
         `;
@@ -493,7 +498,7 @@ class JulesManager {
                 const launchError = new Error("JulesSessionLaunchFailure: " + error.message);
                 launchError.cause = error;
                 console.error(`Failed to launch session for repository ${sourceName}`, launchError);
-                const tu = getTelemetryUtils();
+                const tu = JulesManager.getTelemetryUtils();
                 if (tu) tu.dispatchEvent("JULES_LAUNCH_SESSION_FAILED", launchError, { sourceName });
                 this.app.toast.show(`Could not launch the session: ${error.message || "Unknown error"}`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error", 20000);
                 if (fetchingIndicator) fetchingIndicator.style.display = '';
