@@ -1210,6 +1210,17 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             expect(picker.options[1].textContent).toBe('a/b');
         });
 
+        it('should handle missing githubRepo payload gracefully', async () => {
+            window.julesService.getSources.mockResolvedValue({
+                sources: [{ name: 'sources/github/missing/repo' }]
+            });
+            await manager.loadSources();
+            const picker = document.getElementById('julesRepoPicker');
+            expect(picker.options.length).toBe(2);
+            expect(picker.options[1].value).toBe('sources/github/missing/repo');
+            expect(picker.options[1].textContent).toBe('missing/repo');
+        });
+
         it('should handle API missing sources payload', async () => {
             window.julesService.getSources.mockResolvedValue({});
             await manager.loadSources();
