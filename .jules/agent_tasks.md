@@ -25,6 +25,8 @@
 
 ## 🕵️ Boundary Interrogation (Coverage Expansion & Edge Cases)
 
+- [x] 🕵️ `js/Utils/agent-utils.test.js`: Expand `AgentUtils.getPromptUrl` boundary to prove null/undefined `TypeError` without mutating logic.
+
 ## 🚨 Fatal Boot Sequences (Bleeding Environment)
 
 - [x] 🧶 `js/core/events/EventBinder.js`: Eradicated Arrow Code from click and mouseover delegation methods.

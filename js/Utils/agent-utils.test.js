@@ -5,6 +5,14 @@
 const AgentUtils = require('./agent-utils');
 
 describe('AgentUtils', () => {
+    describe('getPromptUrl', () => {
+        // THE BOUNDARY INTERROGATION: Explicitly asserts a structural logic flaw (TypeError on null) without fixing the app code.
+        it('crashes with TypeError when provided a null or undefined agent', () => {
+            expect(() => AgentUtils.getPromptUrl(null)).toThrow(TypeError);
+            expect(() => AgentUtils.getPromptUrl(undefined)).toThrow(TypeError);
+        });
+    });
+
     describe('getCustomAgent', () => {
         it('returns undefined if customAgents is falsy', () => {
             expect(AgentUtils.getCustomAgent(null, 'test')).toBeUndefined();

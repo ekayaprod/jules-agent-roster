@@ -20,3 +20,5 @@
 ## Inspector — Event Delegation Interrogation
 **Edge Case:** The event delegation logic in `EventBinder.js` was untested. Mouse events like `mouseover` and `click`, as well as `keydown` events (like pressing 'Escape'), were bound globally without adequate structural tests to ensure state synchronization (e.g., dropdowns closing or pin state toggling) or resilience against initial load failures.
 **Assertion:** Interrogated `EventBinder.js` by mocking DOM events and simulating complex UI interactions. Mathematically proved via a Sabotage Check (mutating the toggle pin boolean) that the tests catch invalid state manipulations. Confirmed graceful failure on unhandled promise rejections inside the activation boundary, explicitly covering global `document` event listener mapping.
+
+**Null-Safety Boundary Vulnerabilities:** Object destructuring and dot notation across generic UI utilities must feature explicit crash-tests (e.g. `AgentUtils.getPromptUrl(null)`) asserting expected exceptions, preserving structural proof without modifying the underlying legacy module syntax (Absolute Test Immunity).
