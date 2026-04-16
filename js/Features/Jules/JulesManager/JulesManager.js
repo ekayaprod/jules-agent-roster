@@ -1,5 +1,5 @@
 // Safe cross-environment getters
-const getFormatUtils = () => (typeof window !== 'undefined' && window.FormatUtils) ? window.FormatUtils : ((typeof global !== 'undefined' && global.FormatUtils) ? global.FormatUtils : (typeof require !== 'undefined' ? require('../../../Utils/format-utils.js') : null));
+var getFormatUtils = () => (typeof window !== 'undefined' && window.FormatUtils) ? window.FormatUtils : ((typeof global !== 'undefined' && global.FormatUtils) ? global.FormatUtils : (typeof require !== 'undefined' ? require('../../../Utils/format-utils.js') : null));
 // Safe cross-environment getters
 var getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
 
@@ -25,8 +25,6 @@ const CORE_EMOJIS_REGEX = new RegExp(`(${Object.keys(CORE_EMOJIS).map(k => k.rep
  * Engineered for a single-line terminal output where GitHub handles completions.
  * @see ../../../docs/architecture/Features/JulesManager.md#overview for the macro architectural scope.
  */
-
-// Safe cross-environment getters
 
 class JulesManager {
     static ACTIVE_SESSIONS_POLL_MS = 5000;
