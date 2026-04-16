@@ -1,7 +1,3 @@
-// Safe cross-environment getters
-var getFormatUtils = () => (typeof window !== 'undefined' && window.FormatUtils) ? window.FormatUtils : ((typeof global !== 'undefined' && global.FormatUtils) ? global.FormatUtils : (typeof require !== 'undefined' ? require('../Utils/format-utils.js') : null));
-var getNetworkUtils = () => (typeof window !== 'undefined' && window.NetworkUtils) ? window.NetworkUtils : ((typeof global !== 'undefined' && global.NetworkUtils) ? global.NetworkUtils : (typeof require !== 'undefined' ? require('../Utils/network-utils.js') : null));
-var getTelemetryUtils = () => (typeof window !== 'undefined' && window.TelemetryUtils) ? window.TelemetryUtils : ((typeof global !== 'undefined' && global.TelemetryUtils) ? global.TelemetryUtils : (typeof require !== 'undefined' ? require('../Utils/telemetry-utils.js') : null));
 /**
  * Service for interacting with the Jules API (Alpha).
  * Handles source fetching, session creation, and activity polling.
@@ -23,6 +19,21 @@ class JulesService {
         this.githubToken = "";
         /** @type {string} */
         this.baseUrl = "https://jules.googleapis.com/v1alpha";
+    }
+
+    /**
+     * Safe cross-environment getters encapsulated as static methods to prevent global scope collisions.
+     */
+    static getFormatUtils() {
+        return (typeof window !== 'undefined' && window.FormatUtils) ? window.FormatUtils : ((typeof global !== 'undefined' && global.FormatUtils) ? global.FormatUtils : (typeof require !== 'undefined' ? require('../Utils/format-utils.js') : null));
+    }
+
+    static getNetworkUtils() {
+        return (typeof window !== 'undefined' && window.NetworkUtils) ? window.NetworkUtils : ((typeof global !== 'undefined' && global.NetworkUtils) ? global.NetworkUtils : (typeof require !== 'undefined' ? require('../Utils/network-utils.js') : null));
+    }
+
+    static getTelemetryUtils() {
+        return (typeof window !== 'undefined' && window.TelemetryUtils) ? window.TelemetryUtils : ((typeof global !== 'undefined' && global.TelemetryUtils) ? global.TelemetryUtils : (typeof require !== 'undefined' ? require('../Utils/telemetry-utils.js') : null));
     }
 
     /**
@@ -92,7 +103,7 @@ class JulesService {
         const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
 
         try {
-            const response = await getNetworkUtils().fetchWithRetry(url, {
+            const response = await JulesService.getNetworkUtils().fetchWithRetry(url, {
                 ...options,
                 headers: { ...headers, ...options.headers },
                 signal: controller.signal
@@ -184,7 +195,7 @@ ${userTask}`;
 
         const latency = performance.now() - start;
 
-        const Telemetry = getTelemetryUtils();
+        const Telemetry = JulesService.getTelemetryUtils();
         if (Telemetry && Telemetry.dispatchEvent) {
             Telemetry.dispatchEvent('ai_request', 'AI Session Created', {
                 latencyMs: latency,
@@ -277,7 +288,7 @@ ${userTask}`;
             throw new Error(`Unsupported source format${allow404 ? ' for pull requests' : ''}`);
         }
 
-        const repoPath = getFormatUtils().extractRepoPath(sourceName);
+        const repoPath = JulesService.getFormatUtils().extractRepoPath(sourceName);
         const url = `https://api.github.com/repos/${repoPath}/${endpoint}`;
 
         const fetchOptions = { ...options };
