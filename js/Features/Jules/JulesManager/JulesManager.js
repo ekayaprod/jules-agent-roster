@@ -49,7 +49,8 @@ class JulesManager {
     constructor(rosterApp) {
         this.app = rosterApp;
         this.currentRepo = null;
-        this.activeSessionsInterval = null;
+        this.activeSessionsTimeout = null;
+        this._pollingActive = false;
         this.julesPollingIntervals = {};
         this.renderedSessionIds = new Set();
         this.dismissedSessionIds = new Set();
@@ -236,6 +237,7 @@ class JulesManager {
 
     /**
      * Initializes a recurring active session polling loop for a specific repository.
+     * Safely executes an async loop instead of setInterval to prevent connection exhaustion.
      * @param {string} sourceName - The target source/repo identifier (e.g. sources/github/owner/repo)
      * @returns {Promise<void>}
      * @see ../../../docs/architecture/Features/JulesManager.md#4-active-sessions-polling
@@ -252,12 +254,35 @@ class JulesManager {
             this.currentRepo = sourceName;
         }
 
-        if (this.activeSessionsInterval) clearInterval(this.activeSessionsInterval);
-
-        const boundFetch = () => this._fetchAndRenderSessions(sourceName, terminal);
-        await boundFetch();
-        this.activeSessionsInterval = setInterval(boundFetch, JulesManager.ACTIVE_SESSIONS_POLL_MS);
+        this._startSessionPolling(sourceName, terminal);
     }
+
+    /**
+     * Recursively polls the API for active sessions using a delayed execution loop to
+     * eliminate compounding request saturation if the API degrades.
+     */
+    _startSessionPolling(sourceName, terminal) {
+        this._pollingActive = true;
+        if (this.activeSessionsTimeout) clearTimeout(this.activeSessionsTimeout);
+
+        const pollLoop = async () => {
+            if (!this._pollingActive || this.currentRepo !== sourceName) return;
+
+            try {
+                await this._fetchAndRenderSessions(sourceName, terminal);
+            } catch (error) {
+                // Suppress background polling errors to prevent UI crashing during transient API degradation
+                console.warn("Session polling cycle encountered an error:", error);
+            }
+
+            if (this._pollingActive && this.currentRepo === sourceName) {
+                this.activeSessionsTimeout = setTimeout(pollLoop, JulesManager.ACTIVE_SESSIONS_POLL_MS);
+            }
+        };
+
+        pollLoop();
+    }
+
 
     /**
      * Retrieves the latest active PRs for the repository to synchronize the UI with actual VCS state.
@@ -515,7 +540,6 @@ class JulesManager {
             try {
                 await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
                 this.app.toast.show(`Session launched successfully.`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.SUCCESS : "success");
-                await this._fetchAndRenderSessions(sourceName, terminal);
             } catch (error) {
                 const launchError = new Error("JulesSessionLaunchFailure: " + error.message);
                 launchError.cause = error;
@@ -524,6 +548,18 @@ class JulesManager {
                 if (tu) tu.dispatchEvent("JULES_LAUNCH_SESSION_FAILED", launchError, { sourceName });
                 this.app.toast.show(`Could not launch the session: ${error.message || "Unknown error"}`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error", 20000);
                 if (fetchingIndicator) fetchingIndicator.style.display = '';
+                
+                if (optimisticBlock.parentNode) optimisticBlock.remove();
+                if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Launch in Jules 🚀");
+                this._checkEmptyTerminal();
+                return; // Hard exit out of the queue function on launch failure
+            }
+            
+            // Reaching here means creation succeeded. We isolate the fetching to prevent polling timeouts from registering as a launch failure.
+            try {
+                await this._fetchAndRenderSessions(sourceName, terminal);
+            } catch (pollError) {
+                console.warn("Session launched successfully, but immediate terminal synchronization timed out:", pollError);
             } finally {
                 if (optimisticBlock.parentNode) optimisticBlock.remove();
                 if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Launch in Jules 🚀");
@@ -571,9 +607,10 @@ class JulesManager {
      * @see ../../../docs/architecture/Features/JulesManager.md#7-memory-management
      */
     cleanup() {
-        if (this.activeSessionsInterval) {
-            clearInterval(this.activeSessionsInterval);
-            this.activeSessionsInterval = null;
+        this._pollingActive = false;
+        if (this.activeSessionsTimeout) {
+            clearTimeout(this.activeSessionsTimeout);
+            this.activeSessionsTimeout = null;
         }
         this._clearPollingAndCache();
         if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
