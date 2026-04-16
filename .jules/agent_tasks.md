@@ -11,15 +11,21 @@
 - [ ] 🏗️ `js/Features/Jules/JulesManager/JulesManager.test.js`: Extremely large test file (2025 lines). Consider splitting into smaller test suites for better maintainability.
 - [ ] 🏗️ `js/Services/JulesService.test.js`: Large test file (693 lines). Consider splitting or restructuring.
 - [ ] 🏗️ `js/Features/Fusion/FusionLab.test.js`: Large test file (639 lines). Consider splitting or restructuring.
+- [ ] 🏗️ `js/Features/Jules/JulesManager/JulesManager.js`: Large class file (573 lines). Consider extracting some responsibilities.
+- [ ] 🏗️ `js/core/RosterApp.js`: Large core class (536 lines). Needs domain splitting and colocation.
 
 ## 🕸️ Logic Tangles (Complexity & Dead Code)
 
 - [ ] 🧶 `js/UI/AgentCard/AgentCard.test.js`: Nested logic reaches 7 levels deep, increasing cyclomatic complexity.
-- [ ] 🧶 `js/Utils/network-utils.js`: Nested logic reaches 7 levels deep, increasing cyclomatic complexity.
+- [ ] 🧶 `js/Utils/network-utils.js`: Deep nesting up to 28 spaces, high cyclomatic complexity.
 - [ ] 🧶 `js/Utils/prompt-parser.js`: Nested logic reaches 7 levels deep, increasing cyclomatic complexity.
+- [ ] 🧶 `js/UI/AgentCard/AgentCard.js`: Deep nesting up to 36 spaces.
+- [ ] 🧶 `js/Features/Fusion/RarityEngine.js`: Deep nesting up to 34 spaces.
+- [ ] 🧶 `js/Features/Jules/JulesManager/JulesManager.js`: Deep nesting up to 32 spaces.
 
 ## 🕵️ Boundary Interrogation (Coverage Expansion & Edge Cases)
 
 ## 🚨 Fatal Boot Sequences (Bleeding Environment)
 
 - [x] 🧶 `js/core/events/EventBinder.js`: Eradicated Arrow Code from click and mouseover delegation methods.
+- [ ] 🚨 `js/Utils/storage-utils.js`: Swallowed error in `getSafely` `catch` block returns `defaultValue` without logging.
