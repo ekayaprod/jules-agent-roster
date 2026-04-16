@@ -189,7 +189,7 @@ class JulesManager {
                 sourcesResponse.sources.forEach(s => {
                     const opt = document.createElement("option");
                     opt.value = s.name;
-                    opt.textContent = `${s.githubRepo.owner}/${s.githubRepo.repo}`;
+                    opt.textContent = (s.githubRepo && s.githubRepo.owner && s.githubRepo.repo) ? `${s.githubRepo.owner}/${s.githubRepo.repo}` : getFormatUtils().extractRepoPath(s.name);
                     picker.appendChild(opt);
                 });
                 
