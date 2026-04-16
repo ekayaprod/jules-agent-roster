@@ -20,20 +20,32 @@ class ExportController {
    * @see ../../../docs/architecture/Features/Export/ExportController.md#copy-operations for clipboard fallback mechanics.
    */
   async copyAgent(index, btn) {
-    let agent = this.app.agents[index] || (this.app.customAgents && this.app.customAgents[index]) || (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
+    let agent = null;
+    if (typeof this.app.getAgentForUI === 'function') {
+      agent = this.app.getAgentForUI(index);
+    } else {
+      agent =
+        this.app.agents[index] ||
+        (this.app.customAgents && this.app.customAgents[index]) ||
+        (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
+    }
     if (!agent) return;
 
     if (agent.prompt === undefined) {
-        if (btn) btn.disabled = true;
-        const url = AgentUtils.getPromptUrl(agent);
-        agent.prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
-        if (btn) btn.disabled = false;
+      if (btn) btn.disabled = true;
+      const url = AgentUtils.getPromptUrl(agent);
+      agent.prompt = await this.app.agentRepo.fetchPrompt(
+        agent.name,
+        url,
+        'No protocol data available.',
+      );
+      if (btn) btn.disabled = false;
     }
 
     const success = await ClipboardUtils.copyText(PromptParser.stripFrontmatter(agent.prompt));
     if (success) {
-      this.app.toast.show("Copied to clipboard");
-      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+      this.app.toast.show('Copied to clipboard');
+      ClipboardUtils.animateButtonSuccess(btn, 'Copied!');
     }
   }
 
@@ -45,18 +57,33 @@ class ExportController {
    * @returns {Promise<void>}
    */
   async downloadAgent(index, btn) {
-    let agent = this.app.agents[index] || (this.app.customAgents && this.app.customAgents[index]) || (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
+    let agent = null;
+    if (typeof this.app.getAgentForUI === 'function') {
+      agent = this.app.getAgentForUI(index);
+    } else {
+      agent =
+        this.app.agents[index] ||
+        (this.app.customAgents && this.app.customAgents[index]) ||
+        (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
+    }
     if (!agent) return;
 
     if (agent.prompt === undefined) {
-        if (btn) btn.disabled = true;
-        const url = AgentUtils.getPromptUrl(agent);
-        agent.prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
-        if (btn) btn.disabled = false;
+      if (btn) btn.disabled = true;
+      const url = AgentUtils.getPromptUrl(agent);
+      agent.prompt = await this.app.agentRepo.fetchPrompt(
+        agent.name,
+        url,
+        'No protocol data available.',
+      );
+      if (btn) btn.disabled = false;
     }
 
-    DownloadUtils.downloadTextFile(PromptParser.stripFrontmatter(agent.prompt), `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`);
-    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
+    DownloadUtils.downloadTextFile(
+      PromptParser.stripFrontmatter(agent.prompt),
+      `${agent.name.replace(/\s+/g, '_').toLowerCase()}_protocol.md`,
+    );
+    ClipboardUtils.animateButtonSuccess(btn, 'Downloaded!');
   }
 
   /**
@@ -75,14 +102,16 @@ class ExportController {
   async _fetchMissingPrompts(agentsList) {
     const fetchPromises = [];
     for (let i = 0; i < agentsList.length; i++) {
-        const agent = agentsList[i];
-        if (agent && agent.prompt === undefined) {
-            const url = AgentUtils.getPromptUrl(agent);
-            const p = this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
-                agent.prompt = fetched;
-            });
-            fetchPromises.push(p);
-        }
+      const agent = agentsList[i];
+      if (agent && agent.prompt === undefined) {
+        const url = AgentUtils.getPromptUrl(agent);
+        const p = this.app.agentRepo
+          .fetchPrompt(agent.name, url, 'No protocol data available.')
+          .then((fetched) => {
+            agent.prompt = fetched;
+          });
+        fetchPromises.push(p);
+      }
     }
     await Promise.all(fetchPromises);
   }
@@ -92,15 +121,27 @@ class ExportController {
     const header = FormatUtils.CUSTOM_ROSTER_HEADER;
 
     const validCustomAgents = [];
-    const fusionMatrixMap = (this.app.fusionLab && this.app.fusionLab.compiler && this.app.fusionLab.compiler.fusionMatrixMap) ? this.app.fusionLab.compiler.fusionMatrixMap : {};
-    const customAgentsMap = Object.assign({}, this.app.customAgents || {}, (this.app.fusionLab && this.app.fusionLab.compiler && this.app.fusionLab.compiler.customAgentsMap) || {});
+    const fusionMatrixMap =
+      this.app.fusionLab &&
+      this.app.fusionLab.compiler &&
+      this.app.fusionLab.compiler.fusionMatrixMap
+        ? this.app.fusionLab.compiler.fusionMatrixMap
+        : {};
+    const customAgentsMap = Object.assign(
+      {},
+      this.app.customAgents || {},
+      (this.app.fusionLab &&
+        this.app.fusionLab.compiler &&
+        this.app.fusionLab.compiler.customAgentsMap) ||
+        {},
+    );
 
     for (const key in fusionMatrixMap) {
       if (Object.prototype.hasOwnProperty.call(fusionMatrixMap, key)) {
         if (key.includes(parentName)) {
-           const fusionName = fusionMatrixMap[key];
-           const a = customAgentsMap[fusionName];
-           if (a) validCustomAgents.push(a); // collect them even if prompt is missing
+          const fusionName = fusionMatrixMap[key];
+          const a = customAgentsMap[fusionName];
+          if (a) validCustomAgents.push(a); // collect them even if prompt is missing
         }
       }
     }
@@ -110,11 +151,15 @@ class ExportController {
     if (btn) btn.disabled = false;
 
     // Filter again to make sure they have a valid prompt length after fetching
-    const exportableAgents = validCustomAgents.filter(a => a.prompt && a.prompt.length > 0);
+    const exportableAgents = validCustomAgents.filter((a) => a.prompt && a.prompt.length > 0);
 
-    if (exportableAgents.length === 0) return this.app.toast.show("No unlocked fusions found for this agent.");
-    DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(exportableAgents), `jules_custom_agents_${parentName.replace(/\s+/g, '_').toLowerCase()}.md`);
-    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
+    if (exportableAgents.length === 0)
+      return this.app.toast.show('No unlocked fusions found for this agent.');
+    DownloadUtils.downloadTextFile(
+      header + FormatUtils.formatAgentPrompts(exportableAgents),
+      `jules_custom_agents_${parentName.replace(/\s+/g, '_').toLowerCase()}.md`,
+    );
+    ClipboardUtils.animateButtonSuccess(btn, 'Downloaded!');
   }
 
   async downloadCustomAgents(btn) {
@@ -122,11 +167,11 @@ class ExportController {
 
     let agentsToCheck = [];
     if (this.app.customAgents) {
-       for (const key in this.app.customAgents) {
-           if (Object.prototype.hasOwnProperty.call(this.app.customAgents, key)) {
-               agentsToCheck.push(this.app.customAgents[key]);
-           }
-       }
+      for (const key in this.app.customAgents) {
+        if (Object.prototype.hasOwnProperty.call(this.app.customAgents, key)) {
+          agentsToCheck.push(this.app.customAgents[key]);
+        }
+      }
     }
 
     if (btn) btn.disabled = true;
@@ -136,9 +181,12 @@ class ExportController {
     // ↗️ VECTORIZE: The Single-Pass Pipeline. We ignore the abstracted layers and execute the calculation in one direct pass.
     const validCustomAgents = AgentUtils.getValidCustomAgents(this.app.customAgents);
 
-    if (validCustomAgents.length === 0) return this.app.toast.show("No custom agents available.");
-    DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(validCustomAgents), "jules_custom_agents.md");
-    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
+    if (validCustomAgents.length === 0) return this.app.toast.show('No custom agents available.');
+    DownloadUtils.downloadTextFile(
+      header + FormatUtils.formatAgentPrompts(validCustomAgents),
+      'jules_custom_agents.md',
+    );
+    ClipboardUtils.animateButtonSuccess(btn, 'Downloaded!');
   }
 
   /**
@@ -154,8 +202,11 @@ class ExportController {
     if (btn) btn.disabled = false;
 
     const header = FormatUtils.MASTER_ROSTER_HEADER;
-    DownloadUtils.downloadTextFile(header + FormatUtils.formatAgentPrompts(this.app.agents), "jules_roster.md");
-    ClipboardUtils.animateButtonSuccess(btn, "Downloaded!");
+    DownloadUtils.downloadTextFile(
+      header + FormatUtils.formatAgentPrompts(this.app.agents),
+      'jules_roster.md',
+    );
+    ClipboardUtils.animateButtonSuccess(btn, 'Downloaded!');
   }
 
   /**
@@ -170,10 +221,12 @@ class ExportController {
     if (btn) btn.disabled = false;
 
     const header = FormatUtils.MASTER_ROSTER_HEADER;
-    const success = await ClipboardUtils.copyText(header + FormatUtils.formatAgentPrompts(this.app.agents));
+    const success = await ClipboardUtils.copyText(
+      header + FormatUtils.formatAgentPrompts(this.app.agents),
+    );
     if (success) {
-      this.app.toast.show("Copied to clipboard");
-      ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+      this.app.toast.show('Copied to clipboard');
+      ClipboardUtils.animateButtonSuccess(btn, 'Copied!');
     }
   }
 }
