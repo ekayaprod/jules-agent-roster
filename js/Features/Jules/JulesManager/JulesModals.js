@@ -1,7 +1,11 @@
-// 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
-var getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
-
 class JulesModals {
+    /**
+     * Safe cross-environment getters encapsulated as static methods to prevent global scope collisions.
+     */
+    static getTelemetryUtils() {
+        return typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+    }
+
     constructor(julesManager) {
         this.manager = julesManager;
     }
@@ -142,7 +146,7 @@ class JulesModals {
                 await window.julesService.sendUserInput(sessionId, text);
                 this.manager.app.toast.show("Reply transmitted.", "success");
             } catch (err) {
-                const tu = getTelemetryUtils();
+                const tu = JulesModals.getTelemetryUtils();
                 if (tu) tu.dispatchEvent("JULES_SEND_REPLY_FAILED", err);
                 this.manager.app.toast.show("Failed to send reply.", "error");
             }
