@@ -3,9 +3,17 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { getByText, queryByText } = require('@testing-library/dom');
+require('@testing-library/jest-dom');
 
 const ClipboardUtils = require('./clipboard-utils');
 const TelemetryUtils = require('../../Utils/telemetry-utils');
+
+Object.defineProperty(HTMLElement.prototype, 'innerText', {
+    get() { return this.textContent; },
+    set(v) { this.textContent = v; },
+    configurable: true
+});
 
 describe('ClipboardUtils', () => {
     describe('copyText', () => {
@@ -130,12 +138,17 @@ describe('ClipboardUtils', () => {
              span.innerText = 'Text Only';
              btn.appendChild(span);
 
+             // Append to body for visibility testing
+             document.body.appendChild(btn);
+
              ClipboardUtils.animateButtonSuccess(btn, 'Success', 1000);
-             expect(btn.classList.contains('success-state')).toBe(true);
-             expect(btn.querySelector('span').innerText).toBe('Success');
+             expect(btn).toHaveClass('success-state');
+             expect(getByText(btn, 'Success')).toBeVisible();
 
              jest.advanceTimersByTime(1000);
-             expect(btn.querySelector('span').innerText).toBe('Text Only');
+             expect(getByText(btn, 'Text Only')).toBeVisible();
+
+             document.body.removeChild(btn);
         });
     });
 });
