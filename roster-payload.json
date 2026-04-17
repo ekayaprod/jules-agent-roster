@@ -34,7 +34,7 @@
     "emoji": "🧠",
     "role": "Synapse Architect",
     "category": "Architecture",
-    "tier": "Core",
+    "tier": "Titan",
     "description": "INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art handshakes.",
     "promptFile": "prompts/Cortex.md",
     "isCustom": false
@@ -45,7 +45,7 @@
     "role": "Logistics Warden",
     "category": "Operations",
     "tier": "Core",
-    "description": "Dispatch pristine code payloads to production by fortifying CI/CD pipelines, optimizing container transit, and sounding the horn of release.",
+    "description": "Dispatch pristine code payloads to production by bootstrapping net-new CI/CD pipelines, optimizing container transit, and fortifying GitHub meta-infrastructure.",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
@@ -94,8 +94,8 @@
     "emoji": "👁️",
     "role": "Triage Auditor",
     "category": "Observability",
-    "tier": "Core",
-    "description": "AUDIT the macroscopic health of the repository to generate a centralized, delegated agent tasks board for the entire agent swarm.",
+    "tier": "Titan",
+    "description": "Audits macroscopic repository health via bash pipelines, generating a centralized task board to autonomously direct swarm execution.",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
@@ -113,7 +113,7 @@
     "name": "Paramedic",
     "emoji": "🚨",
     "role": "Trauma Resuscitator",
-    "category": "Architecture",
+    "category": "Operations",
     "tier": "Core",
     "description": "RESUSCITATE fatal boot sequences, trace catastrophic crashes, and mutate application logic to restore operational stability.",
     "promptFile": "prompts/Paramedic.md",
@@ -123,9 +123,9 @@
     "name": "Pedant",
     "emoji": "☝️",
     "role": "Consistency Enforcer",
-    "category": "Operations",
+    "category": "Compliance",
     "tier": "Core",
-    "description": "ENFORCE strict typological safety, correct casing, and alphabetize structures to eradicate stylistic entropy.",
+    "description": "Enforces strict typological safety, correct casing, and alphabetized structures to eradicate stylistic entropy.",
     "promptFile": "prompts/Pedant.md",
     "isCustom": false
   },
@@ -135,7 +135,7 @@
     "role": "Debris Eater",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "ERADICATE dead code, redundant logic, and semantic dust line-by-line to permanently eliminate architectural maintenance debt.",
+    "description": "ERADICATE dead code, redundant logic, and semantic dust to permanently eliminate architectural maintenance debt.",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
@@ -175,7 +175,7 @@
     "role": "Logic Simplifier",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "Hunts down deeply nested code to restore readability through structural flattening.",
+    "description": "UNKNOT deeply nested code to restore readability through structural flattening.",
     "promptFile": "prompts/Untangler.md",
     "isCustom": false
   },
@@ -214,8 +214,8 @@
     "emoji": "🤺",
     "role": "Mutation Engine",
     "category": "Testing",
-    "tier": "Critical",
-    "description": "Injects deliberate logic failures into working code to brutally expose and shatter fraudulent test suites.",
+    "tier": "Mythic",
+    "description": "SABOTAGE core logic to relentlessly expose and shatter fraudulent test suites.",
     "promptFile": "prompts/fusions/Adversary.md",
     "isCustom": true
   },
@@ -554,7 +554,7 @@
     "emoji": "🧑‍🏫",
     "role": "Assertion Standardizer",
     "category": "Testing",
-    "tier": "Titan",
+    "tier": "Core",
     "description": "STANDARDIZE fragmented test structures by enforcing semantic ARIA queries and deep behavioral state validations.",
     "promptFile": "prompts/fusions/Examiner.md",
     "isCustom": true
