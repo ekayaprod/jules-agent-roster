@@ -377,10 +377,10 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
              await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, null);
         });
 
-        it('cleanup coverage: activeSessionsInterval cleared', () => {
-             manager.activeSessionsInterval = 888;
+        it('cleanup coverage: activeSessionsTimeout cleared', () => {
+             manager.activeSessionsTimeout = 888;
              manager.cleanup();
-             expect(manager.activeSessionsInterval).toBeNull();
+             expect(manager.activeSessionsTimeout).toBeNull();
         });
 
         it('getActivities catch error coverage', async () => {
@@ -2006,7 +2006,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
 
             manager.cleanup();
 
-            expect(manager.activeSessionsInterval).toBeNull();
+            expect(manager.activeSessionsTimeout).toBeNull();
             expect(Object.keys(manager.julesPollingIntervals).length).toBe(0);
             expect(manager.currentRepo).toBeNull();
         });

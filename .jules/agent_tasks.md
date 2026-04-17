@@ -18,7 +18,7 @@
 
 - [ ] 🧶 `js/UI/AgentCard/AgentCard.test.js`: Nested logic reaches 7 levels deep, increasing cyclomatic complexity.
 - [x] 🧶 `js/Utils/network-utils.js`: Deep nesting up to 28 spaces, high cyclomatic complexity.
-- [ ] 🧶 `js/Utils/prompt-parser.js`: Nested logic reaches 7 levels deep, increasing cyclomatic complexity.
+- [x] 🧶 `js/Utils/prompt-parser.js`: Nested logic reaches 7 levels deep, increasing cyclomatic complexity.
 - [ ] 🧶 `js/UI/AgentCard/AgentCard.js`: Deep nesting up to 36 spaces.
 - [ ] 🧶 `js/Features/Fusion/RarityEngine.js`: Deep nesting up to 34 spaces.
 - [ ] 🧶 `js/Features/Jules/JulesManager/JulesManager.js`: Deep nesting up to 32 spaces.

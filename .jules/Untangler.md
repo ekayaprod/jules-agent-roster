@@ -13,3 +13,8 @@
 **Target:** `js/Utils/network-utils.js`
 **Action:** Flatted `fetchWithRetry` by extracting `_validateBody` and `_extractErrorMessage` local helper functions and utilizing early returns and guard clauses for HTTP evaluation.
 **Result:** Idempotent logic preserved. Bloat reduced.
+
+### 🧶 The Inverted Validation Guard (PromptParser)
+**Target:** `js/Utils/prompt-parser.js`
+**Action:** Flatted `parsePrompt` by applying inverse continue clauses inside the `childNodes` parsing loop.
+**Result:** Idempotent logic preserved. Nesting reduced from 6 spaces inside for loop to 2 spaces.
