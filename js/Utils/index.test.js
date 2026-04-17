@@ -46,13 +46,21 @@ describe('Utils Index module exports', () => {
 
   it('correctly imports and exports expected modules', () => {
     const Utils = require('./index.js');
-    expect(Utils.AgentUtils).toBeDefined();
-    expect(Utils.DOMUtils).toBeDefined();
-    expect(Utils.DownloadUtils).toBeDefined();
-    expect(Utils.FormatUtils).toBeDefined();
-    expect(Utils.PerformanceUtils).toBeDefined();
-    expect(Utils.PromptParser).toBeDefined();
-    expect(Utils.StorageUtils).toBeDefined();
-    expect(Utils.NetworkUtils).toBeDefined();
+    expect(Utils.AgentUtils).not.toBeUndefined();
+    expect(typeof Utils.AgentUtils === 'object' || typeof Utils.AgentUtils === 'function').toBe(true);
+    expect(Utils.DOMUtils).not.toBeUndefined();
+    expect(typeof Utils.DOMUtils === 'object' || typeof Utils.DOMUtils === 'function').toBe(true);
+    expect(Utils.DownloadUtils).not.toBeUndefined();
+    expect(typeof Utils.DownloadUtils === 'object' || typeof Utils.DownloadUtils === 'function').toBe(true);
+    expect(Utils.FormatUtils).not.toBeUndefined();
+    expect(typeof Utils.FormatUtils === 'object' || typeof Utils.FormatUtils === 'function').toBe(true);
+    expect(Utils.PerformanceUtils).not.toBeUndefined();
+    expect(typeof Utils.PerformanceUtils === 'object' || typeof Utils.PerformanceUtils === 'function').toBe(true);
+    expect(Utils.PromptParser).not.toBeUndefined();
+    expect(typeof Utils.PromptParser === 'object' || typeof Utils.PromptParser === 'function').toBe(true);
+    expect(Utils.StorageUtils).not.toBeUndefined();
+    expect(typeof Utils.StorageUtils === 'object' || typeof Utils.StorageUtils === 'function').toBe(true);
+    expect(Utils.NetworkUtils).not.toBeUndefined();
+    expect(typeof Utils.NetworkUtils === 'object' || typeof Utils.NetworkUtils === 'function').toBe(true);
   });
 });

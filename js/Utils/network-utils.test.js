@@ -290,7 +290,8 @@ describe('NetworkUtils', () => {
             expect(() => {
                 new Function('module', 'window', code)(undefined, windowMock);
             }).not.toThrow();
-            expect(windowMock.NetworkUtils).toBeDefined();
+            expect(windowMock.NetworkUtils).not.toBeUndefined();
+            expect(typeof windowMock.NetworkUtils).toBe('function');
 
             expect(() => {
                 new Function('module', 'window', code)(undefined, undefined);
@@ -334,6 +335,7 @@ describe('NetworkUtils', () => {
              // Simulate environment where module is NOT defined, but window IS
              // Wrapping in a function and explicitly passing undefined for module
              new Function('module', 'window', code)(undefined, windowMock);
-             expect(windowMock.NetworkUtils).toBeDefined();
+             expect(windowMock.NetworkUtils).not.toBeUndefined();
+            expect(typeof windowMock.NetworkUtils).toBe('function');
         });
     });
