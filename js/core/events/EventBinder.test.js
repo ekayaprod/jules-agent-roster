@@ -27,11 +27,13 @@ describe('EventBinder (Boundary Interrogation)', () => {
             copyAll: jest.fn(),
             downloadAll: jest.fn(),
             downloadCustomAgents: jest.fn(),
-            julesManager: { loadSources: jest.fn(), initialized: true, launchSession: jest.fn() },
+            julesManager: { loadSources: jest.fn(), initialized: true, launchSession: jest.fn(), loadActiveSessionsForRepo: jest.fn(), loadPullRequestsForRepo: jest.fn(), cleanup: jest.fn() },
             pinnedManager: { togglePin: jest.fn().mockReturnValue(true), getPinned: jest.fn().mockReturnValue(['0']) },
             getAgentForUI: jest.fn().mockReturnValue({ name: 'Agent', prompt: 'prompt content' }),
             agentRepo: { fetchPrompt: jest.fn().mockResolvedValue('fetched prompt content') },
-            exportController: { downloadCustomAgentsByParent: jest.fn() }
+            exportController: { downloadCustomAgentsByParent: jest.fn() },
+            _cardHtmlCache: new Map(),
+            _domNodeCache: new Map()
         };
 
         EventBinder = require('./EventBinder');
@@ -120,5 +122,57 @@ describe('EventBinder (Boundary Interrogation)', () => {
 
         expect(global.DOMUtils.closeDropdownMenu).toHaveBeenCalledWith(dropdown, app);
         expect(toggleBtn.getAttribute('aria-expanded')).toBe('false');
+    });
+
+    // 🕵️ The Boundary Interrogation: Test julesRepoPicker DOM event integration
+    it('interrogates julesRepoPicker change event with valid sourceName', async () => {
+        const picker = document.createElement('select');
+        picker.innerHTML = '<option value="repo1">repo1</option>';
+        app.elements.julesRepoPicker = picker;
+
+        app._cardHtmlCache.set('key', 'html');
+        app._domNodeCache.set('key', document.createElement('div'));
+
+        app.julesManager.loadActiveSessionsForRepo.mockResolvedValue();
+        app.julesManager.loadPullRequestsForRepo.mockResolvedValue();
+
+        EventBinder.bind(app);
+
+        picker.value = 'repo1';
+        picker.dispatchEvent(new Event('change'));
+
+        // Allow async promises to resolve
+        await new Promise(process.nextTick);
+
+        expect(app._cardHtmlCache.size).toBe(0);
+        expect(app._domNodeCache.size).toBe(0);
+        expect(app.renderAgents).toHaveBeenCalled();
+        expect(app.julesManager.loadActiveSessionsForRepo).toHaveBeenCalledWith('repo1');
+        expect(app.julesManager.loadPullRequestsForRepo).toHaveBeenCalledWith('repo1');
+        expect(app.julesManager.cleanup).not.toHaveBeenCalled();
+    });
+
+    it('interrogates julesRepoPicker change event with falsy sourceName', async () => {
+        const picker = document.createElement('select');
+        picker.innerHTML = '<option value="">none</option>';
+        app.elements.julesRepoPicker = picker;
+
+        const terminal = document.createElement('div');
+        terminal.classList.add('active');
+        app.elements.julesTerminal = terminal;
+
+        EventBinder.bind(app);
+
+        picker.value = '';
+        picker.dispatchEvent(new Event('change'));
+
+        // Allow async promises to resolve
+        await new Promise(process.nextTick);
+
+        expect(app.renderAgents).toHaveBeenCalled();
+        expect(app.julesManager.loadActiveSessionsForRepo).not.toHaveBeenCalled();
+        expect(app.julesManager.cleanup).toHaveBeenCalled();
+        expect(terminal.classList.contains('active')).toBe(false);
+        expect(terminal.innerHTML).toContain('Awaiting Agent launch command');
     });
 });
