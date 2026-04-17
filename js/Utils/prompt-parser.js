@@ -56,17 +56,17 @@ const PromptParser = {
       const sections = [];
       for (let i = 0; i < root.childNodes.length; i++) {
         const node = root.childNodes[i];
-        if (node.nodeType === 1) { // Node.ELEMENT_NODE
-          const tag = node.tagName.toLowerCase();
-          if (validTags.includes(tag)) {
-            sections.push({
-              tag,
-              content: node.textContent.trim(),
-              id: node.getAttribute('id') || null,
-              name: node.getAttribute('name') || null
-            });
-          }
-        }
+        if (node.nodeType !== 1) continue; // Node.ELEMENT_NODE
+
+        const tag = node.tagName.toLowerCase();
+        if (!validTags.includes(tag)) continue;
+
+        sections.push({
+          tag,
+          content: node.textContent.trim(),
+          id: node.getAttribute('id') || null,
+          name: node.getAttribute('name') || null
+        });
       }
 
       if (sections.length === 0) {
