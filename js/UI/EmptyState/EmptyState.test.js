@@ -202,6 +202,7 @@ describe('EmptyState boundary window attachment test', () => {
         const executor = new Function('window', code);
         const windowMock = {};
         executor(windowMock);
-        expect(windowMock.EmptyState).toBeDefined();
+        expect(windowMock.EmptyState).not.toBeUndefined();
+        expect(typeof windowMock.EmptyState).toBe('function');
     });
 });

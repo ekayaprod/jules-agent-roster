@@ -271,7 +271,8 @@ describe('AgentPicker', () => {
             // Fast forward timers for requestAnimationFrame -> setTimeout logic
             jest.runAllTimers();
 
-            expect(agentPicker.pickerClusterize).toBeDefined();
+            expect(agentPicker.pickerClusterize).not.toBeNull();
+            expect(agentPicker.pickerClusterize instanceof MockClusterize).toBe(true);
             expect(agentPicker.trap.activate).toHaveBeenCalled();
         });
 
@@ -351,7 +352,8 @@ describe('AgentPicker', () => {
             agentPicker.filteredResults = agentPicker.getMemoizedHtml();
             agentPicker.updateGrid();
 
-            expect(agentPicker.pickerClusterize).toBeDefined();
+            expect(agentPicker.pickerClusterize).not.toBeNull();
+            expect(agentPicker.pickerClusterize instanceof MockClusterize).toBe(true);
             expect(agentPicker.pickerClusterize.options.rows.length).toBeGreaterThan(0);
         });
 

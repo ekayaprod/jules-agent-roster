@@ -39,22 +39,26 @@ describe('TelemetryUtils boundary and coverage logic', () => {
         mockModule.exports = {};
         const testCode = new Function('module', 'global', 'window', code);
         testCode(mockModule, mockGlobal, undefined);
-        expect(mockModule.exports).toBeDefined();
-        expect(mockGlobal.TelemetryUtils).toBeDefined();
+        expect(mockModule.exports).not.toBeUndefined();
+        expect(typeof mockModule.exports).toBe('function');
+        expect(mockGlobal.TelemetryUtils).not.toBeUndefined();
+        expect(typeof mockGlobal.TelemetryUtils).toBe('function');
     });
 
     it('exports only to module.exports when global is undefined', () => {
         const mockModule = { exports: {} };
         const testCode = new Function('module', 'global', 'window', code);
         testCode(mockModule, undefined, undefined);
-        expect(mockModule.exports).toBeDefined();
+        expect(mockModule.exports).not.toBeUndefined();
+        expect(typeof mockModule.exports).toBe('function');
     });
 
     it('exports to window when module is undefined but window is present', () => {
         const mockWindow = {};
         const testCode = new Function('module', 'global', 'window', code);
         testCode(undefined, undefined, mockWindow);
-        expect(mockWindow.TelemetryUtils).toBeDefined();
+        expect(mockWindow.TelemetryUtils).not.toBeUndefined();
+        expect(typeof mockWindow.TelemetryUtils).toBe('function');
     });
 
     it('attaches to window when module exists but module.exports is falsy', () => {
@@ -62,7 +66,8 @@ describe('TelemetryUtils boundary and coverage logic', () => {
         const mockModule = { exports: false };
         const testCode = new Function('module', 'global', 'window', code);
         testCode(mockModule, undefined, mockWindow);
-        expect(mockWindow.TelemetryUtils).toBeDefined();
+        expect(mockWindow.TelemetryUtils).not.toBeUndefined();
+        expect(typeof mockWindow.TelemetryUtils).toBe('function');
     });
 
     it('handles environment where everything is missing without throwing', () => {
@@ -78,7 +83,8 @@ describe('TelemetryUtils boundary and coverage logic', () => {
         // By passing a string, `typeof module !== 'undefined'` is true, but `module.exports` will be undefined.
         // This simulates a weird environment and should fall back to `window.TelemetryUtils`
         testCode("string-module", undefined, mockWindow);
-        expect(mockWindow.TelemetryUtils).toBeDefined();
+        expect(mockWindow.TelemetryUtils).not.toBeUndefined();
+        expect(typeof mockWindow.TelemetryUtils).toBe('function');
     });
 
     it('handles simulated browser context execution securely (100% coverage map)', () => {
@@ -87,7 +93,8 @@ describe('TelemetryUtils boundary and coverage logic', () => {
         // We inject module as undefined strictly via the Function constructor arguments!
         const executor = new Function('window', 'module', code);
         executor(windowContext, undefined);
-        expect(windowContext.TelemetryUtils).toBeDefined();
+        expect(windowContext.TelemetryUtils).not.toBeUndefined();
+        expect(typeof windowContext.TelemetryUtils).toBe('function');
         expect(typeof windowContext.TelemetryUtils.dispatchEvent).toBe('function');
     });
 });
@@ -101,7 +108,8 @@ describe('TelemetryUtils isolated coverage', () => {
         const executor = new Function('window', code);
         const windowMock = {};
         executor(windowMock);
-        expect(windowMock.TelemetryUtils).toBeDefined();
+        expect(windowMock.TelemetryUtils).not.toBeUndefined();
+        expect(typeof windowMock.TelemetryUtils).toBe('function');
     });
 });
 
@@ -120,7 +128,8 @@ describe('TelemetryUtils isolated coverage', () => {
             new Function('module', 'global', code)(moduleMock, globalMock);
         }).not.toThrow();
         expect(isExported).toBe(true);
-        expect(globalMock.TelemetryUtils).toBeDefined();
+        expect(globalMock.TelemetryUtils).not.toBeUndefined();
+        expect(typeof globalMock.TelemetryUtils).toBe('function');
 
         // Assert exports assign successfully in Node-like environment without global
         isExported = false;
@@ -143,7 +152,8 @@ describe('TelemetryUtils isolated coverage', () => {
         expect(() => {
             new Function('module', 'window', code)(undefined, windowMock);
         }).not.toThrow();
-        expect(windowMock.TelemetryUtils).toBeDefined();
+        expect(windowMock.TelemetryUtils).not.toBeUndefined();
+        expect(typeof windowMock.TelemetryUtils).toBe('function');
 
         // Assert safe bypass when module is undefined and window is undefined
         expect(() => {

@@ -685,7 +685,8 @@ describe('createSession', () => {
     if (typeof window !== 'undefined') {
         describe('Environment Initialization', () => {
             it('should attach to window object if window is defined', () => {
-                expect(window.julesService).toBeDefined();
+                expect(window.julesService).not.toBeUndefined();
+                expect(window.julesService instanceof JulesService).toBe(true);
                 expect(window.julesService instanceof JulesService).toBe(true);
             });
         });
