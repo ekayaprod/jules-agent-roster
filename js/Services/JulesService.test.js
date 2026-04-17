@@ -94,7 +94,7 @@ describe('JulesService', () => {
                 json: async () => { throw new SyntaxError("Unexpected token"); }
             });
 
-            await expect(service._fetch('test')).rejects.toThrow("We encountered a server error. Please wait a moment and try again.");
+            await expect(service._fetch('test')).rejects.toThrow("Invalid JSON received from server. Please wait a moment and try again.");
         });
 
         it('should return parsed JSON response on success', async () => {
@@ -151,7 +151,7 @@ describe('JulesService', () => {
                 text: async () => "Forbidden" // Not JSON
             });
 
-            await expect(service._fetch('test')).rejects.toThrow("We encountered a server error. Please wait a moment and try again.");
+            await expect(service._fetch('test')).rejects.toThrow("HTTP Error: 403");
             expect(global.fetch).toHaveBeenCalledTimes(1);
         });
 
@@ -163,7 +163,7 @@ describe('JulesService', () => {
                 text: async () => JSON.stringify({ someOtherField: "value" })
             });
 
-            await expect(service._fetch('test')).rejects.toThrow("We encountered a server error. Please wait a moment and try again.");
+            await expect(service._fetch('test')).rejects.toThrow("HTTP Error: 403");
         });
     });
 
