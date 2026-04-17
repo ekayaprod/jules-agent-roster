@@ -310,16 +310,6 @@
     "isCustom": true
   },
   {
-    "name": "Brand Manager",
-    "emoji": "🏷️",
-    "role": "Lexicon Synchronizer",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Establishes the official domain terminology in the documentation to eradicate fragmented lexicons leaking into the UI.",
-    "promptFile": "prompts/fusions/Brand Manager.md",
-    "isCustom": true
-  },
-  {
     "name": "Calligrapher",
     "emoji": "🪶",
     "role": "Typographic Vanguard",
@@ -450,16 +440,6 @@
     "isCustom": true
   },
   {
-    "name": "Cryptographer",
-    "emoji": "🔏",
-    "role": "Syntax Decrypter",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Seek out highly complex, undocumented machine syntaxes like raw Regular Expressions and Cron schedules. Translate these dense strings into plain, human-readable English inline comments.",
-    "promptFile": "prompts/fusions/Cryptographer.md",
-    "isCustom": true
-  },
-  {
     "name": "Curator",
     "emoji": "🗂️",
     "role": "Payload Conservator",
@@ -507,16 +487,6 @@
     "tier": "Fusion",
     "description": "Meticulously untangle convoluted security logic, expose its true trust boundary, and harden it with strict typing.",
     "promptFile": "prompts/fusions/Defuser.md",
-    "isCustom": true
-  },
-  {
-    "name": "Diplomat",
-    "emoji": "🕊️",
-    "role": "Empathy Translator",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Rewrite terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy.",
-    "promptFile": "prompts/fusions/Diplomat.md",
     "isCustom": true
   },
   {
@@ -640,16 +610,6 @@
     "isCustom": true
   },
   {
-    "name": "Grammarian",
-    "emoji": "✒️",
-    "role": "Microcopy Canonicalizer",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Extracts sloppy, hardcoded UI strings into strict canonical constants and rewrites them into polished, active-voice microcopy.",
-    "promptFile": "prompts/fusions/Grammarian.md",
-    "isCustom": true
-  },
-  {
     "name": "Groundskeeper",
     "emoji": "🏡",
     "role": "Automation Maintainer",
@@ -740,16 +700,6 @@
     "isCustom": true
   },
   {
-    "name": "Information Architect",
-    "emoji": "📋",
-    "role": "Layout Narrator",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Reorganize the hierarchy of page layouts while simultaneously ensuring step labels, headings, and CTAs tell a cohesive, sequential story.",
-    "promptFile": "prompts/fusions/Information Architect.md",
-    "isCustom": true
-  },
-  {
     "name": "Inoculator",
     "emoji": "💉",
     "role": "A Modernization And Resilience Specialist",
@@ -757,16 +707,6 @@
     "tier": "Fusion",
     "description": "Upgrade legacy architecture to modern asynchronous paradigms while explicitly treating the new failure modes introduced by the shift.",
     "promptFile": "prompts/fusions/Inoculator.md",
-    "isCustom": true
-  },
-  {
-    "name": "Interpolator",
-    "emoji": "💬",
-    "role": "Syntax Upgrader",
-    "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "Refines Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.",
-    "promptFile": "prompts/fusions/Interpolator.md",
     "isCustom": true
   },
   {
@@ -920,16 +860,6 @@
     "isCustom": true
   },
   {
-    "name": "Narrator",
-    "emoji": "🎙️",
-    "role": "Spec Translator",
-    "category": "Testing",
-    "tier": "Fusion",
-    "description": "Analyze actual test assertions and rewrite vague test names into crystal clear, human-readable specifications, turning test output into living documentation.",
-    "promptFile": "prompts/fusions/Narrator.md",
-    "isCustom": true
-  },
-  {
     "name": "Obituary Writer",
     "emoji": "🪦",
     "role": "Code Eulogist",
@@ -1040,16 +970,6 @@
     "isCustom": true
   },
   {
-    "name": "Polyglot",
-    "emoji": "🌍",
-    "role": "String Centralizer",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Eradicate hardcoded English strings embedded deep within UI components and relocate them into centralized JSON or TS localization dictionaries (`i18n`).",
-    "promptFile": "prompts/fusions/Polyglot.md",
-    "isCustom": true
-  },
-  {
     "name": "Polygraph",
     "emoji": "🎛️",
     "role": "Validation Enforcer",
@@ -1077,16 +997,6 @@
     "tier": "Fusion",
     "description": "Analyze algorithmic complexity to make invisible computational costs highly visible.",
     "promptFile": "prompts/fusions/Profiler.md",
-    "isCustom": true
-  },
-  {
-    "name": "Prompt Engineer",
-    "emoji": "✨",
-    "role": "Prompt Evolutionist",
-    "category": "Strategy",
-    "tier": "Fusion",
-    "description": "Evolve legacy AI instructions by sharpening personas, injecting domain vocabulary, and setting strict negative constraints to guarantee determinism.",
-    "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
   {
@@ -1150,16 +1060,6 @@
     "isCustom": true
   },
   {
-    "name": "Redactor",
-    "emoji": "🥷",
-    "role": "PII Scrubber",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Sweeps the UI and logging layers to mask and redact sensitive user data.",
-    "promptFile": "prompts/fusions/Redactor.md",
-    "isCustom": true
-  },
-  {
     "name": "Redirector",
     "emoji": "🔀",
     "role": "404 Sweeper",
@@ -1167,16 +1067,6 @@
     "tier": "Fusion",
     "description": "Eradicates broken internal links and 404 errors by maintaining the central routing configuration.",
     "promptFile": "prompts/fusions/Redirector.md",
-    "isCustom": true
-  },
-  {
-    "name": "Redliner",
-    "emoji": "🖍️",
-    "role": "Dead Copy Purger",
-    "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "Builds a reference map of actively rendered strings and strikes through every orphaned translation key and localized string.",
-    "promptFile": "prompts/fusions/Redliner.md",
     "isCustom": true
   },
   {
@@ -1310,16 +1200,6 @@
     "isCustom": true
   },
   {
-    "name": "Script Supervisor",
-    "emoji": "🎬",
-    "role": "Lexicon Enforcer",
-    "category": "Strategy",
-    "tier": "Fusion",
-    "description": "Read the official product strategy and enforce its exact terminology across every user-facing string in the UI.",
-    "promptFile": "prompts/fusions/Script Supervisor.md",
-    "isCustom": true
-  },
-  {
     "name": "Sculptor",
     "emoji": "🗿",
     "role": "UI Animator",
@@ -1357,26 +1237,6 @@
     "tier": "Fusion",
     "description": "Flatten winding conditional logic and deeply nested `if/else` statements into lightning-fast, highly readable guard clauses and early returns.",
     "promptFile": "prompts/fusions/Slipstream.md",
-    "isCustom": true
-  },
-  {
-    "name": "Spellchecker",
-    "emoji": "🔤",
-    "role": "Typo Eradicator",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Execute a surgical strike against misspelled variable names, database columns, public API keys, and CSS classes without breaking runtime references.",
-    "promptFile": "prompts/fusions/Spellchecker.md",
-    "isCustom": true
-  },
-  {
-    "name": "Standardizer",
-    "emoji": "🔢",
-    "role": "Copy Centralizer",
-    "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "Identify minor, semantic variations of identically intentioned code blocks, UI copy, and constant strings scattered across the repository, and centralize them into single, reusable references.",
-    "promptFile": "prompts/fusions/Standardizer.md",
     "isCustom": true
   },
   {
@@ -1480,16 +1340,6 @@
     "isCustom": true
   },
   {
-    "name": "Telepath",
-    "emoji": "👁️‍🗨️",
-    "role": "Predictive Pre-loader",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Injects prefetch mechanisms into interactive UI elements to load data and HTML partials before a user clicks.",
-    "promptFile": "prompts/fusions/Telepath.md",
-    "isCustom": true
-  },
-  {
     "name": "Temporal Loom",
     "emoji": "🌀",
     "role": "Spaghettification Engine",
@@ -1580,16 +1430,6 @@
     "isCustom": true
   },
   {
-    "name": "Virtuoso",
-    "emoji": "🎭",
-    "role": "Interaction Artisan",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Sculpt comprehensive visual states and inject accessible ARIA attributes to transform cold, robotic UI components into flawless, empathetic interaction flows.",
-    "promptFile": "prompts/fusions/Virtuoso.md",
-    "isCustom": true
-  },
-  {
     "name": "Void",
     "emoji": "🕳️",
     "role": "Redundancy Destroyer",
@@ -1627,16 +1467,6 @@
     "tier": "Fusion",
     "description": "Consolidates duplicated logic into single utilities while simultaneously flattening deeply nested execution paths into pristine, linear strands.",
     "promptFile": "prompts/fusions/Weaver.md",
-    "isCustom": true
-  },
-  {
-    "name": "Wordsmith",
-    "emoji": "🖋️",
-    "role": "UX Copywriter",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Eradicates developer jargon, passive voice, and dead-end error states by rewriting them into active, actionable, and empathetic microcopy.",
-    "promptFile": "prompts/fusions/Wordsmith.md",
     "isCustom": true
   },
   {
