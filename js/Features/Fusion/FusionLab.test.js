@@ -376,6 +376,38 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
     });
 
+    // THE BOUNDARY INTERROGATION: Explicitly asserts a structural logic flaw (silently swallowed exception) without fixing the app code.
+    test('vulnerability check: handleFusion silently swallows fusionIndex unlock exception without logging', async () => {
+        fusionLab.state.slotA = { name: 'A' };
+        fusionLab.state.slotB = { name: 'B' };
+        fusionLab.fusionIndex.customAgents['A,B'] = true;
+
+        fusionLab.fusionIndex.unlock.mockImplementation(() => {
+            throw new Error('Catastrophic unlock failure');
+        });
+
+        const fusedAgent = { name: 'C' };
+        fusionLab.compiler.fuse.mockReturnValue(fusedAgent);
+        fusionLab.animation = { runAnimation: jest.fn() };
+        fusionLab.renderFusionResult = jest.fn();
+
+        const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+        const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+
+        await fusionLab.handleFusion();
+
+        // Prove the application continued as normal
+        expect(fusionLab.renderFusionResult).toHaveBeenCalledWith(fusedAgent);
+        expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
+
+        // Prove the error was swallowed silently
+        expect(consoleErrorSpy).not.toHaveBeenCalled();
+        expect(consoleWarnSpy).not.toHaveBeenCalled();
+
+        consoleErrorSpy.mockRestore();
+        consoleWarnSpy.mockRestore();
+    });
+
     test('handleFusion gracefully handles fusionIndex unlock exception', async () => {
         fusionLab.state.slotA = { name: 'A' };
         fusionLab.state.slotB = { name: 'B' };
