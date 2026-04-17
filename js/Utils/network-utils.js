@@ -8,12 +8,7 @@ class NetworkUtils {
 
   static _enforceRateLimit(url) {
     const now = Date.now();
-    let hostname;
-    try {
-      hostname = new URL(url).hostname;
-    } catch (e) {
-      hostname = url;
-    }
+    const hostname = (() => { try { return new URL(url).hostname; } catch (e) { return url; } })();
 
     if (!this._requestBuckets[hostname]) {
       this._requestBuckets[hostname] = { count: 0, windowStart: now };

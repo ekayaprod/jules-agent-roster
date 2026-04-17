@@ -209,7 +209,7 @@ ${userTask}`;
             automationMode: "AUTO_CREATE_PR",
         };
 
-        if (options && options.requirePlanApproval === true) {
+        if (options && options.requirePlanApproval) {
             body.requirePlanApproval = true;
         }
 
