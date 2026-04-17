@@ -65,31 +65,12 @@ class JulesModals {
             // 🪄 CONJURE: Optimistic UI with silent rollback for interaction modal
             const sessionId = this.manager.activeModalSessionId;
             const statusSpan = document.getElementById(`status-${sessionId}`);
-            const previousStatusText = statusSpan ? statusSpan.textContent : "";
-            const previousStatusClass = statusSpan ? statusSpan.className : "";
-            const previousStatusOnclick = statusSpan ? statusSpan.onclick : null;
 
-            closeModal();
-            this.manager.app.toast.show("Transmitting reply...", "info");
-
-            if (statusSpan) {
-                statusSpan.className = "term-status skeleton-pulse";
-                statusSpan.textContent = "Transmitting response...";
-                statusSpan.onclick = null;
-            }
-
-            try {
-                await window.julesService.sendUserInput(sessionId, text);
-                this.manager.app.toast.show("Reply transmitted.", "success");
-            } catch (error) {
-                this.manager.app.toast.show("Failed to send reply.", "error");
-                // Silent rollback on error
-                if (statusSpan) {
-                    statusSpan.className = previousStatusClass || "term-status status-waiting";
-                    statusSpan.textContent = previousStatusText || `⚠️ Response Needed (Click to view)`;
-                    statusSpan.onclick = previousStatusOnclick;
-                }
-            }
+            await this._transmitReply(sessionId, text, closeModal, {
+                textContent: statusSpan ? statusSpan.textContent : "",
+                className: statusSpan ? statusSpan.className : "",
+                onclick: statusSpan ? statusSpan.onclick : null
+            });
         };
 
         cancelBtn?.addEventListener("click", closeModal);
@@ -134,25 +115,7 @@ class JulesModals {
             }
 
             const sessionId = this.manager.activeModalSessionId;
-            const statusSpan = document.getElementById(`status-${sessionId}`);
-
-            closeHistoryModal();
-            this.manager.app.toast.show("Transmitting reply...", "info");
-
-            if (statusSpan) {
-                statusSpan.className = "term-status skeleton-pulse";
-                statusSpan.textContent = "Transmitting response...";
-                statusSpan.onclick = null;
-            }
-
-            try {
-                await window.julesService.sendUserInput(sessionId, text);
-                this.manager.app.toast.show("Reply transmitted.", "success");
-            } catch (err) {
-                const tu = JulesModals.getTelemetryUtils();
-                if (tu) tu.dispatchEvent("JULES_SEND_REPLY_FAILED", err);
-                this.manager.app.toast.show("Failed to send reply.", "error");
-            }
+            await this._transmitReply(sessionId, text, closeHistoryModal, null);
         };
 
         cancelHistoryBtn?.addEventListener("click", closeHistoryModal);
@@ -205,6 +168,38 @@ class JulesModals {
 
         modal.classList.add("visible");
         setTimeout(() => inputField?.focus(), this.manager.constructor.MODAL_FOCUS_DELAY_MS);
+    }
+
+
+    async _transmitReply(sessionId, text, closeFn, rollbackState) {
+        const statusSpan = document.getElementById(`status-${sessionId}`);
+
+        closeFn();
+        this.manager.app.toast.show("Transmitting reply...", "info");
+
+        if (statusSpan) {
+            statusSpan.className = "term-status skeleton-pulse";
+            statusSpan.textContent = "Transmitting response...";
+            statusSpan.onclick = null;
+        }
+
+        try {
+            await window.julesService.sendUserInput(sessionId, text);
+            this.manager.app.toast.show("Reply transmitted.", "success");
+        } catch (error) {
+            if (!rollbackState) {
+                const tu = JulesModals.getTelemetryUtils();
+                if (tu) tu.dispatchEvent("JULES_SEND_REPLY_FAILED", error);
+            }
+
+            this.manager.app.toast.show("Failed to send reply.", "error");
+
+            if (rollbackState && statusSpan) {
+                statusSpan.className = rollbackState.className || "term-status status-waiting";
+                statusSpan.textContent = rollbackState.textContent || `⚠️ Response Needed (Click to view)`;
+                statusSpan.onclick = rollbackState.onclick;
+            }
+        }
     }
 
     _showKeyError(input, span, message) {
