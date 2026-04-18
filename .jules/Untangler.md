@@ -18,3 +18,8 @@
 **Target:** `js/Utils/prompt-parser.js`
 **Action:** Flatted `parsePrompt` by applying inverse continue clauses inside the `childNodes` parsing loop.
 **Result:** Idempotent logic preserved. Nesting reduced from 6 spaces inside for loop to 2 spaces.
+
+### 🧶 The Transformation Thread Extraction (JulesManager)
+**Target:** `js/Features/Jules/JulesManager/JulesManager.js`
+**Action:** Flatted `_processSession` by extracting deeply nested agent cache initialization logic (`if (!this._agentMapCache) { ... }`) into a separate `_buildAgentCache` method.
+**Result:** Idempotent logic preserved. Bloat reduced. Maximum nesting level inside `_processSession` dropped significantly.

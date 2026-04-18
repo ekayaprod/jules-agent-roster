@@ -394,6 +394,35 @@ class JulesManager {
         }
     }
 
+    _buildAgentCache(formatUtils) {
+        this._agentMapCache = new Map();
+        const escapedNames = [];
+
+        if (this.app.agents) {
+            for (let i = 0; i < this.app.agents.length; i++) {
+                const a = this.app.agents[i];
+                this._agentMapCache.set(a.name, a);
+                if (a.name && formatUtils) escapedNames.push(formatUtils.escapeRegex(a.name));
+            }
+        }
+
+        if (this.app.customAgents) {
+            const customs = Object.values(this.app.customAgents);
+            for (let i = 0; i < customs.length; i++) {
+                const a = customs[i];
+                if (!a.name) continue;
+
+                this._agentMapCache.set(a.name, a);
+                if (formatUtils) escapedNames.push(formatUtils.escapeRegex(a.name));
+            }
+        }
+
+        if (escapedNames.length > 0) {
+            escapedNames.sort((a, b) => b.length - a.length);
+            this._agentRegexCache = new RegExp(`(${escapedNames.join("|")})`);
+        }
+    }
+
     _processSession(session, terminal) {
         if (this.renderedSessionIds.has(session.id)) return;
         this.renderedSessionIds.add(session.id);
@@ -405,32 +434,7 @@ class JulesManager {
         
         // ⚡ ACCELERATE: Cache the agents list into a Map to eliminate redundant O(N) traversals inside the session loop.
         if (!this._agentMapCache) {
-            this._agentMapCache = new Map();
-            const escapedNames = [];
-
-            if (this.app.agents) {
-                for (let i = 0; i < this.app.agents.length; i++) {
-                    const a = this.app.agents[i];
-                    this._agentMapCache.set(a.name, a);
-                    if (a.name && formatUtils) escapedNames.push(formatUtils.escapeRegex(a.name));
-                }
-            }
-
-            if (this.app.customAgents) {
-                const customs = Object.values(this.app.customAgents);
-                for (let i = 0; i < customs.length; i++) {
-                    const a = customs[i];
-                    if (a.name) {
-                        this._agentMapCache.set(a.name, a);
-                        if (formatUtils) escapedNames.push(formatUtils.escapeRegex(a.name));
-                    }
-                }
-            }
-
-            if (escapedNames.length > 0) {
-                escapedNames.sort((a, b) => b.length - a.length);
-                this._agentRegexCache = new RegExp(`(${escapedNames.join("|")})`);
-            }
+            this._buildAgentCache(formatUtils);
         }
 
         // Fast O(1) direct lookup, with a fallback for loose regex matches
