@@ -377,7 +377,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
     });
 
     // THE BOUNDARY INTERROGATION: Explicitly asserts a structural logic flaw (silently swallowed exception) without fixing the app code.
-    test('vulnerability check: handleFusion silently swallows fusionIndex unlock exception without logging', async () => {
+    test('vulnerability check: handleFusion logs fusionIndex unlock exception', async () => {
         fusionLab.state.slotA = { name: 'A' };
         fusionLab.state.slotB = { name: 'B' };
         fusionLab.fusionIndex.customAgents['A,B'] = true;
@@ -400,8 +400,8 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         expect(fusionLab.renderFusionResult).toHaveBeenCalledWith(fusedAgent);
         expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
 
-        // Prove the error was swallowed silently
-        expect(consoleErrorSpy).not.toHaveBeenCalled();
+        // Prove the error was properly logged
+        expect(consoleErrorSpy).toHaveBeenCalledWith("FusionLab: Failed to unlock agent in index", expect.any(Error));
         expect(consoleWarnSpy).not.toHaveBeenCalled();
 
         consoleErrorSpy.mockRestore();
@@ -423,10 +423,14 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         fusionLab.animation = { runAnimation: jest.fn() };
         fusionLab.renderFusionResult = jest.fn();
 
+        const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
         await fusionLab.handleFusion();
 
         expect(fusionLab.renderFusionResult).toHaveBeenCalledWith(fusedAgent);
         expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
+
+        consoleErrorSpy.mockRestore();
     });
 
     test('handleShelfSelection updates visually and shows result without animation', () => {
