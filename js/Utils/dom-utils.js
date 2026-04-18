@@ -99,6 +99,26 @@ class DOMUtils {
 
 
   /**
+   * Centralizes duplicated terminal session HTML strings.
+   * Parameterizes the display data while maintaining the structural UI wrapper.
+   *
+   * @param {string} escapedEmoji - The escaped emoji for the agent.
+   * @param {string} safeAgentName - The safe HTML string for the agent name.
+   * @param {string} status - The status text to display.
+   * @param {string} [statusId=""] - The optional DOM ID for the status element.
+   * @returns {string} The standardized HTML string for the terminal session.
+   * @see ../../docs/architecture/Utils/README.md#domutils-architecture
+   */
+  static getTerminalSessionHTML(escapedEmoji, safeAgentName, status, statusId = "") {
+    const idAttr = statusId ? ` id="${statusId}"` : "";
+    return `
+            <span class="term-agent-name">${escapedEmoji} ${safeAgentName}</span>
+            <span class="term-separator">—</span>
+            <span class="term-status"${idAttr}>${status}</span>
+        `;
+  }
+
+  /**
    * Centralizes duplicated terminal fetching indicator HTML strings.
    * Parameterizes the display message while maintaining the structural UI wrapper.
    *
