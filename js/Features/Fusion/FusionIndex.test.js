@@ -187,6 +187,20 @@ global.AgentUtils = AgentUtils;
         await user.click(unlockedSlot); // Just assert it doesn't throw
     });
 
+
+    it('unlockAll unlocks all custom agents and re-renders', () => {
+        fusionIndex.init();
+        fusionIndex.render = jest.fn();
+        fusionIndex.saveState = jest.fn();
+
+        fusionIndex.unlockAll();
+
+        expect(fusionIndex.unlockedKeys.has('AgentA,AgentB')).toBe(true);
+        expect(fusionIndex.unlockedKeys.has('AgentC,AgentD')).toBe(true);
+        expect(fusionIndex.saveState).toHaveBeenCalled();
+        expect(fusionIndex.render).toHaveBeenCalled();
+    });
+
     it('safely handles missing customAgents entirely', () => {
         fusionIndex = new FusionIndex('fusion-container', null, jest.fn());
         fusionIndex.unlockedKeys = new Set(['A,B']);
