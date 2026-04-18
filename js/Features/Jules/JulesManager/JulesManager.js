@@ -465,11 +465,7 @@ class JulesManager {
         const escapedEmoji = formatUtils ? formatUtils.escapeHTML(agentEmoji) : agentEmoji;
 
         // 1-line Minimalist layout
-        block.innerHTML = `
-            <span class="term-agent-name">${escapedEmoji} ${safeAgentName}</span>
-            <span class="term-separator">—</span>
-            <span class="term-status" id="status-${session.id}">Initializing...</span>
-        `;
+        block.innerHTML = DOMUtils.getTerminalSessionHTML(escapedEmoji, safeAgentName, "Initializing...", `status-${session.id}`);
 
         const firstSession = terminal.querySelector('.term-session-line');
         if (firstSession) {
@@ -521,11 +517,7 @@ class JulesManager {
 
         const escapedEmoji = formatUtils ? formatUtils.escapeHTML(agentEmoji) : agentEmoji;
 
-        optimisticBlock.innerHTML = `
-            <span class="term-agent-name">${escapedEmoji} ${safeAgentName}</span>
-            <span class="term-separator">—</span>
-            <span class="term-status">Conjuring session...</span>
-        `;
+        optimisticBlock.innerHTML = DOMUtils.getTerminalSessionHTML(escapedEmoji, safeAgentName, "Conjuring session...");
 
         const firstSession = terminal.querySelector('.term-session-line:not(#fetchingIndicator)');
         if (firstSession) {
