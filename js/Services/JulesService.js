@@ -189,13 +189,13 @@ class JulesService {
      */
     async createSession(agentMarkdown, userTask, sourceName, title = "Agent Task", options = {}) {
         if (typeof agentMarkdown !== 'string') agentMarkdown = "";
-        if (typeof userTask !== 'string') userTask = "";
+        if (typeof userTask !== 'string' || !userTask.trim()) {
+            userTask = "Analyze and optimize the repository based on your directives.";
+        }
         if (typeof sourceName !== 'string' || (!sourceName.startsWith('sources/github/') && sourceName !== 'repo')) {
             throw new Error("Invalid source context.");
         }
         const prompt = `${PromptParser.stripFrontmatter(agentMarkdown || "")}
-
-You must output valid JSON. Expected keys: action, data.
 
 USER TASK TO EXECUTE:
 ${userTask}`;
