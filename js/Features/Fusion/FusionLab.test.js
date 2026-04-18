@@ -483,6 +483,28 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         expect(mockElements.fusionResultContainer.appendChild).toHaveBeenCalled();
     });
 
+
+    test('renderFusionResult adds adversary click listener for mythic egg', () => {
+        const result = { name: 'Adversary' };
+        fusionLab.compiler.fusionMatrixMap = {
+            'Inspector,Inspector': 'Adversary'
+        };
+        const mockCard = document.createElement('div');
+        global.AgentCard.create.mockReturnValue(mockCard);
+
+        fusionLab.unlockMatrix = jest.fn();
+
+        fusionLab.renderFusionResult(result);
+
+        // Simulate 7 rapid clicks
+        for(let i=0; i<7; i++) {
+            mockCard.dispatchEvent(new Event('click'));
+            // Default Date.now() behavior might result in 0ms difference which is < 300
+        }
+
+        expect(fusionLab.unlockMatrix).toHaveBeenCalled();
+    });
+
     test('resetLab clears state and resets UI elements', () => {
         fusionLab.state.slotA = { name: 'A' };
         fusionLab.state.slotB = { name: 'B' };
