@@ -101,7 +101,7 @@ global.AgentUtils = AgentUtils;
 
         const lockedSlots = screen.getAllByTitle('Locked Protocol');
         expect(lockedSlots[0]).toBeVisible();
-        expect(lockedSlots[0]).toHaveAttribute('data-key', 'AgentC,AgentD');
+        expect(lockedSlots[1]).toHaveAttribute('data-key', 'AgentC,AgentD');
 
         expect(screen.getByText('1 / 3 Protocols Discovered')).toBeVisible();
     });

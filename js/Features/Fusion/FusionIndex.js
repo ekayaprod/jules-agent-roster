@@ -77,7 +77,12 @@ class FusionIndex {
 
     // Render slots for all custom agents without grouping
     // ⚡ Bolt+: Eliminated unnecessary closure and array allocations from Object.entries().forEach() by using a direct for...in loop
-    for (const key in customAgentsSafe) {
+    const sortedKeys = Object.keys(customAgentsSafe).sort((a, b) => {
+        const nameA = customAgentsSafe[a] || a;
+        const nameB = customAgentsSafe[b] || b;
+        return nameA.localeCompare(nameB);
+    });
+    for (const key of sortedKeys) {
         if (Object.prototype.hasOwnProperty.call(customAgentsSafe, key)) {
             this._renderSlot(grid, key, customAgentsSafe[key]);
         }
@@ -160,6 +165,19 @@ class FusionIndex {
         handleSelect();
       }
     });
+  }
+
+  /**
+   * Unlocks all fusions.
+   */
+  unlockAll() {
+    if (this.customAgents) {
+      for (const key of Object.keys(this.customAgents)) {
+        this.unlockedKeys.add(key);
+      }
+      this.saveState();
+      this.render();
+    }
   }
 
   /**
