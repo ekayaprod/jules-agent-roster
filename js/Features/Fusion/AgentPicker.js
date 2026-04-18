@@ -14,6 +14,13 @@ class AgentPicker {
      */
     constructor(baseAgents, onSelect, getPreMergePreviewHTML = null) {
         this.baseAgents = baseAgents;
+        if (this.baseAgents && Array.isArray(this.baseAgents)) {
+            this.baseAgents.sort((a, b) => {
+                const nameA = a.name || "";
+                const nameB = b.name || "";
+                return nameA.localeCompare(nameB);
+            });
+        }
         this.onSelect = onSelect;
         this.getPreMergePreviewHTML = getPreMergePreviewHTML;
         this.activePickerSlot = null;

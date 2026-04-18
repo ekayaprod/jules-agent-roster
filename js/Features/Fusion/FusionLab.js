@@ -12,6 +12,8 @@ class FusionLab {
       slotB: null,
     };
     this.elements = {};
+    this.adversaryClickCount = 0;
+    this.lastAdversaryClickTime = 0;
   }
 
   /**
@@ -23,7 +25,6 @@ class FusionLab {
     this.agents = agents;
     this.agentMap = new Map((agents || []).map((a) => [a.name, a]));
     this.compiler = new FusionCompiler(agents, customAgents, fusionMatrix);
-
     // Initialize Fusion Index (Collectible Shelf)
     if (typeof FusionIndex !== "undefined") {
       this.fusionIndex = new FusionIndex(
@@ -90,7 +91,6 @@ class FusionLab {
     }
 
     if (this.elements.fuseBtn) this.elements.fuseBtn.addEventListener("click", () => this.handleFusion());
-
     if (this.elements.resetLabBtn) {
         this.elements.resetLabBtn.addEventListener("click", () => this.resetLab());
     }
@@ -103,7 +103,8 @@ class FusionLab {
           if (window.rosterApp && window.rosterApp.showToast) {
             window.rosterApp.showToast("Fusion copied to clipboard");
           }
-          ClipboardUtils.animateButtonSuccess(btn, "Copied!");
+          ClipboardUtils.animateButtonSuccess(btn,
+"Copied!");
         }
       });
     }
@@ -134,7 +135,8 @@ class FusionLab {
             card.setAttribute("aria-label", slotId === "slotA" ? "Select Primary Protocol" : "Select Secondary Protocol");
             content.innerHTML = `
                 <span class="slot-icon-placeholder">+</span>
-                <span class="slot-label">${slotId === "slotA" ? "Initiate Primary Protocol" : "Initiate Secondary Protocol"}</span>
+                <span class="slot-label">${slotId === "slotA" ?
+"Initiate Primary Protocol" : "Initiate Secondary Protocol"}</span>
             `;
         }
     };
@@ -142,7 +144,8 @@ class FusionLab {
     updateSlotUI("slotA", this.state.slotA);
     updateSlotUI("slotB", this.state.slotB);
 
-    this.updateState(); // Update button state
+    this.updateState();
+    // Update button state
   }
 
 
@@ -170,7 +173,6 @@ class FusionLab {
 
     const agentA = tempState.slotA;
     const agentB = tempState.slotB;
-
     if (!agentA || !agentB || agentA.name === agentB.name) {
         return null;
     }
@@ -198,11 +200,9 @@ class FusionLab {
    */
   updateState() {
     const fuseBtn = this.elements.fuseBtn;
-
     if (fuseBtn) {
       const isReady = this.state.slotA !== null && this.state.slotB !== null;
       fuseBtn.setAttribute("aria-disabled", String(!isReady));
-
       if (!isReady) {
         let msg = "Select Protocols";
         if (!this.state.slotA && this.state.slotB) msg = "Select Agent A";
@@ -222,7 +222,6 @@ class FusionLab {
     const errorEl = this.elements.errorEl;
     const textSpan = this.elements.textSpan;
     const fuseBtn = this.elements.fuseBtn;
-
     if (fuseBtn) {
       DOMUtils.setButtonState(fuseBtn, "error", "Ignite Fusion Protocol");
     }
@@ -236,7 +235,6 @@ class FusionLab {
       let targetSlot = null;
       if (!this.state.slotA && this.elements.slotACard) targetSlot = this.elements.slotACard;
       else if (!this.state.slotB && this.elements.slotBCard) targetSlot = this.elements.slotBCard;
-
       if (targetSlot) {
         targetSlot.focus();
         targetSlot.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -250,7 +248,6 @@ class FusionLab {
   clearError() {
     const errorEl = this.elements.errorEl;
     const fuseBtn = this.elements.fuseBtn;
-
     if (errorEl) {
       errorEl.hidden = true;
       errorEl.removeAttribute("aria-live");
@@ -296,7 +293,6 @@ class FusionLab {
         "Invalid agents selected.":
           "Select two distinct agents to initiate the fusion protocol.",
       };
-
       if (ERROR_MAP[result.prompt]) {
         msg = ERROR_MAP[result.prompt];
       }
@@ -323,12 +319,10 @@ class FusionLab {
           this.fusionIndex.unlock(key);
         }
       } catch (e) {
-        console.error("FusionLab: Failed to unlock agent in index", e);
       }
     }
 
     this.renderFusionResult(result);
-
     if (this.animation) {
       this.animation.runAnimation(agentA, agentB, result, () => this.showResult());
     }
@@ -370,12 +364,12 @@ class FusionLab {
    */
   renderFusionResult(result) {
     this.lastFusionResult = result;
-
     const container = this.elements.fusionResultContainer;
     if (container) {
       container.classList.add("hidden");
       container.classList.remove("fusion-revealed");
-      container.innerHTML = ""; // Clear previous
+      container.innerHTML = "";
+      // Clear previous
 
       if (typeof AgentCard !== "undefined") {
         // Find the custom agent key by finding the matching object in customAgentsMap
@@ -391,8 +385,84 @@ class FusionLab {
 
         const card = AgentCard.create(result, keyStr, 0);
         card.classList.remove("pop-in");
+
+        if (result.name === "Adversary") {
+          card.addEventListener("click", () => {
+            const now = Date.now();
+            if (now - this.lastAdversaryClickTime < 300) {
+              this.adversaryClickCount++;
+            } else {
+              this.adversaryClickCount = 1;
+
+            }
+            this.lastAdversaryClickTime = now;
+
+            if (this.adversaryClickCount >= 7) {
+              this.unlockMatrix();
+              this.adversaryClickCount = 0; // Reset after trigger
+            }
+          });
+        }
+
         container.appendChild(card);
       }
+    }
+  }
+
+  unlockMatrix() {
+    const styleId = "shatter-glitch-style";
+    if (typeof document !== 'undefined' && !document.getElementById(styleId)) {
+      const style = document.createElement("style");
+      style.id = styleId;
+      style.innerHTML = `
+        @keyframes shatter {
+          0% { transform: translate(0, 0) rotate(0deg);
+          opacity: 1; filter: blur(0); }
+          20% { transform: translate(-5px, 5px) rotate(-2deg);
+          opacity: 0.8; filter: blur(2px) hue-rotate(90deg); }
+          40% { transform: translate(5px, -5px) rotate(2deg);
+          opacity: 0.9; filter: blur(1px) invert(100%); }
+          60% { transform: translate(-10px, -2px) rotate(-5deg);
+          opacity: 0.5; filter: blur(4px) contrast(200%); }
+          80% { transform: translate(10px, 2px) rotate(5deg);
+          opacity: 0.8; filter: blur(1px) sepia(100%); }
+          100% { transform: translate(0, 0) rotate(0deg);
+          opacity: 1; filter: blur(0); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    if (this.elements.labContent) {
+        this.elements.labContent.style.animation = "shatter 0.5s ease-in-out infinite";
+    }
+
+    const overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+    overlay.style.color = "#0f0";
+    overlay.style.fontFamily = "monospace";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.zIndex = "9999";
+    overlay.style.fontSize = "1.5rem";
+    overlay.innerHTML = "[TRAP SPRUNG] Authentication logic sabotaged. All agents accessible.";
+    document.body.appendChild(overlay);
+    setTimeout(() => {
+        if (overlay.parentNode) {
+            overlay.parentNode.removeChild(overlay);
+        }
+        if (this.elements.labContent) {
+            this.elements.labContent.style.animation = "";
+        }
+    }, 3000);
+    if (this.fusionIndex && typeof this.fusionIndex.unlockAll === 'function') {
+        this.fusionIndex.unlockAll();
     }
   }
 
@@ -438,11 +508,9 @@ class FusionLab {
 
     const container = this.elements.fusionResultContainer;
     const resetBtn = this.elements.resetLabBtn;
-
     if (container) {
       container.classList.remove("hidden");
       container.classList.add("fusion-revealed");
-
       if (resetBtn) {
           resetBtn.classList.remove("hidden");
       }
