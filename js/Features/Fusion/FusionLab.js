@@ -323,6 +323,7 @@ class FusionLab {
           this.fusionIndex.unlock(key);
         }
       } catch (e) {
+        console.error("FusionLab: Failed to unlock agent in index", e);
       }
     }
 
