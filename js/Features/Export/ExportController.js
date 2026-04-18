@@ -11,15 +11,7 @@ class ExportController {
     this.app = app;
   }
 
-  /**
-   * Copies a single agent's prompt to the user's clipboard and animates the trigger button.
-   * Aggregates agent data from core, custom, or fusion states.
-   * @param {string|number} index - The unique identifier or array index of the target agent.
-   * @param {HTMLElement} btn - The DOM element triggering the action, targeted for success animation.
-   * @returns {Promise<void>}
-   * @see ../../../docs/architecture/Features/Export/ExportController.md#copy-operations for clipboard fallback mechanics.
-   */
-  async copyAgent(index, btn) {
+  async _resolveAgentPrompt(index, btn) {
     let agent = null;
     if (typeof this.app.getAgentForUI === 'function') {
       agent = this.app.getAgentForUI(index);
@@ -29,7 +21,7 @@ class ExportController {
         (this.app.customAgents && this.app.customAgents[index]) ||
         (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
     }
-    if (!agent) return;
+    if (!agent) return null;
 
     if (agent.prompt === undefined) {
       if (btn) btn.disabled = true;
@@ -41,6 +33,21 @@ class ExportController {
       );
       if (btn) btn.disabled = false;
     }
+
+    return agent;
+  }
+
+  /**
+   * Copies a single agent's prompt to the user's clipboard and animates the trigger button.
+   * Aggregates agent data from core, custom, or fusion states.
+   * @param {string|number} index - The unique identifier or array index of the target agent.
+   * @param {HTMLElement} btn - The DOM element triggering the action, targeted for success animation.
+   * @returns {Promise<void>}
+   * @see ../../../docs/architecture/Features/Export/ExportController.md#copy-operations for clipboard fallback mechanics.
+   */
+  async copyAgent(index, btn) {
+    const agent = await this._resolveAgentPrompt(index, btn);
+    if (!agent) return;
 
     const success = await ClipboardUtils.copyText(PromptParser.stripFrontmatter(agent.prompt));
     if (success) {
@@ -57,27 +64,8 @@ class ExportController {
    * @returns {Promise<void>}
    */
   async downloadAgent(index, btn) {
-    let agent = null;
-    if (typeof this.app.getAgentForUI === 'function') {
-      agent = this.app.getAgentForUI(index);
-    } else {
-      agent =
-        this.app.agents[index] ||
-        (this.app.customAgents && this.app.customAgents[index]) ||
-        (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
-    }
+    const agent = await this._resolveAgentPrompt(index, btn);
     if (!agent) return;
-
-    if (agent.prompt === undefined) {
-      if (btn) btn.disabled = true;
-      const url = AgentUtils.getPromptUrl(agent);
-      agent.prompt = await this.app.agentRepo.fetchPrompt(
-        agent.name,
-        url,
-        'No protocol data available.',
-      );
-      if (btn) btn.disabled = false;
-    }
 
     DownloadUtils.downloadTextFile(
       PromptParser.stripFrontmatter(agent.prompt),
