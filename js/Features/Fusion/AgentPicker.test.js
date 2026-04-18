@@ -127,6 +127,20 @@ describe('AgentPicker', () => {
         { name: 'Agent C', emoji: 'C', role: 'Role C' }
     ];
 
+    describe('Initialization', () => {
+        test('sorts baseAgents alphabetically', () => {
+            const unsortedAgents = [
+                { name: 'Charlie', emoji: 'C', role: 'Role C' },
+                { name: 'Alpha', emoji: 'A', role: 'Role A' },
+                { name: 'Bravo', emoji: 'B', role: 'Role B' }
+            ];
+            const picker = new AgentPicker(unsortedAgents, jest.fn());
+            expect(picker.baseAgents[0].name).toBe('Alpha');
+            expect(picker.baseAgents[1].name).toBe('Bravo');
+            expect(picker.baseAgents[2].name).toBe('Charlie');
+        });
+    });
+
     describe('Security Boundaries', () => {
         const maliciousAgent = {
             name: '<img src=x onerror=alert(1)>',

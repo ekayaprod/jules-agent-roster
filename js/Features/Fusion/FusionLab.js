@@ -12,6 +12,8 @@ class FusionLab {
       slotB: null,
     };
     this.elements = {};
+    this.adversaryClickCount = 0;
+    this.lastAdversaryClickTime = 0;
   }
 
   /**
@@ -390,8 +392,79 @@ class FusionLab {
 
         const card = AgentCard.create(result, keyStr, 0);
         card.classList.remove("pop-in");
+
+        if (result.name === "Adversary") {
+          card.addEventListener("click", () => {
+            const now = Date.now();
+            if (now - this.lastAdversaryClickTime < 300) {
+              this.adversaryClickCount++;
+            } else {
+              this.adversaryClickCount = 1;
+            }
+            this.lastAdversaryClickTime = now;
+
+            if (this.adversaryClickCount >= 7) {
+              this.unlockMatrix();
+              this.adversaryClickCount = 0; // Reset after trigger
+            }
+          });
+        }
+
         container.appendChild(card);
       }
+    }
+  }
+
+  unlockMatrix() {
+    const styleId = "shatter-glitch-style";
+    if (typeof document !== 'undefined' && !document.getElementById(styleId)) {
+      const style = document.createElement("style");
+      style.id = styleId;
+      style.innerHTML = `
+        @keyframes shatter {
+          0% { transform: translate(0, 0) rotate(0deg); opacity: 1; filter: blur(0); }
+          20% { transform: translate(-5px, 5px) rotate(-2deg); opacity: 0.8; filter: blur(2px) hue-rotate(90deg); }
+          40% { transform: translate(5px, -5px) rotate(2deg); opacity: 0.9; filter: blur(1px) invert(100%); }
+          60% { transform: translate(-10px, -2px) rotate(-5deg); opacity: 0.5; filter: blur(4px) contrast(200%); }
+          80% { transform: translate(10px, 2px) rotate(5deg); opacity: 0.8; filter: blur(1px) sepia(100%); }
+          100% { transform: translate(0, 0) rotate(0deg); opacity: 1; filter: blur(0); }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
+    if (this.elements.labContent) {
+        this.elements.labContent.style.animation = "shatter 0.5s ease-in-out infinite";
+    }
+
+    const overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
+    overlay.style.color = "#0f0";
+    overlay.style.fontFamily = "monospace";
+    overlay.style.display = "flex";
+    overlay.style.alignItems = "center";
+    overlay.style.justifyContent = "center";
+    overlay.style.zIndex = "9999";
+    overlay.style.fontSize = "1.5rem";
+    overlay.innerHTML = "[TRAP SPRUNG] Authentication logic sabotaged. All agents accessible.";
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+        if (overlay.parentNode) {
+            overlay.parentNode.removeChild(overlay);
+        }
+        if (this.elements.labContent) {
+            this.elements.labContent.style.animation = "";
+        }
+    }, 3000);
+
+    if (this.fusionIndex && typeof this.fusionIndex.unlockAll === 'function') {
+        this.fusionIndex.unlockAll();
     }
   }
 
