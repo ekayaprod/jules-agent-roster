@@ -189,15 +189,17 @@ describe('AgentCard', () => {
             // Valid fusion key - unpinned
             window.rosterApp.pinnedManager.isPinned.mockReturnValue(false);
             const unpinnedCard = AgentCard.create(mockAgent, 'AgentA+AgentB', 0);
-            expect(unpinnedCard.innerHTML).toContain('data-action="toggle-pin"');
-            expect(unpinnedCard.innerHTML).not.toContain('pin-btn pinned');
-            expect(unpinnedCard.innerHTML).toContain('aria-pressed="false"');
+            const unpinnedBtn = getByRole(unpinnedCard, 'button', { name: /Toggle Pin/i });
+            expect(unpinnedBtn.getAttribute('data-action')).toBe('toggle-pin');
+            expect(unpinnedBtn.classList.contains('pinned')).toBe(false);
+            expect(unpinnedBtn.getAttribute('aria-pressed')).toBe('false');
 
             // Valid fusion key - pinned
             window.rosterApp.pinnedManager.isPinned.mockReturnValue(true);
             const pinnedCard = AgentCard.create(mockAgent, 'AgentC+AgentD', 0);
-            expect(pinnedCard.innerHTML).toContain('pin-btn pinned');
-            expect(pinnedCard.innerHTML).toContain('aria-pressed="true"');
+            const pinnedBtn = getByRole(pinnedCard, 'button', { name: /Toggle Pin/i });
+            expect(pinnedBtn.classList.contains('pinned')).toBe(true);
+            expect(pinnedBtn.getAttribute('aria-pressed')).toBe('true');
         });
 
         // THE BOUNDARY INTERROGATION: Explicitly asserts graceful degradation when global dependencies are missing
@@ -207,14 +209,16 @@ describe('AgentCard', () => {
             // Missing rosterApp entirely
             window.rosterApp = undefined;
             const card1 = AgentCard.create(mockAgent, 'AgentA+AgentB', 0);
-            expect(card1.innerHTML).toContain('data-action="toggle-pin"');
-            expect(card1.innerHTML).not.toContain('pin-btn pinned');
+            const btn1 = getByRole(card1, 'button', { name: /Toggle Pin/i });
+            expect(btn1.getAttribute('data-action')).toBe('toggle-pin');
+            expect(btn1.classList.contains('pinned')).toBe(false);
 
             // Missing pinnedManager
             window.rosterApp = {};
             const card2 = AgentCard.create(mockAgent, 'AgentA+AgentB', 0);
-            expect(card2.innerHTML).toContain('data-action="toggle-pin"');
-            expect(card2.innerHTML).not.toContain('pin-btn pinned');
+            const btn2 = getByRole(card2, 'button', { name: /Toggle Pin/i });
+            expect(btn2.getAttribute('data-action')).toBe('toggle-pin');
+            expect(btn2.classList.contains('pinned')).toBe(false);
 
             window.rosterApp = originalApp; // Restore
         });
@@ -226,11 +230,12 @@ describe('AgentCard', () => {
              const card = AgentCard.create(mockAgent, 1, 0);
 
              // Primary action should now be launch-jules
-             expect(card.innerHTML).toContain('data-action="launch-jules"');
-             expect(card.innerHTML).toContain('Launch agent via Jules API');
+             const launchBtn = getByRole(card, 'button', { name: /Launch agent via Jules API/i });
+             expect(launchBtn.getAttribute('data-action')).toBe('launch-jules');
 
              // Dropdown action should now be copy-agent
-             expect(card.innerHTML).toContain('data-action="copy-agent"');
+             const copyBtn = getByRole(card, 'menuitem', { name: /CopyPrompt/i });
+             expect(copyBtn.getAttribute('data-action')).toBe('copy-agent');
         });
 
         it('should limit animation delay to 600ms', () => {
