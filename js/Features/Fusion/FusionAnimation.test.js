@@ -1,3 +1,5 @@
+const { screen } = require('@testing-library/dom');
+require('@testing-library/jest-dom');
 const FusionAnimation = require('./FusionAnimation');
 const { ANIMATION_DURATIONS } = require('../../constants/ui.js');
 
@@ -14,7 +16,7 @@ describe('FusionAnimation', () => {
                 <div class="anim-icon right"></div>
                 <div class="anim-icon result"></div>
                 <div class="anim-result"></div>
-                <div class="anim-particles"></div>
+                <div class="anim-particles" role="presentation" aria-label="particles"></div>
             </div>
             <button id="fuseBtn">Fuse</button>
             <div id="fusionLabContent"></div>
@@ -84,7 +86,7 @@ describe('FusionAnimation', () => {
         const overlay = document.getElementById('fusionAnimationOverlay');
         expect(overlay.classList.contains('tier-epic')).toBe(true);
 
-        const particlesContainer = document.querySelector('.anim-particles');
+        const particlesContainer = screen.getByRole('presentation', { name: 'particles' });
         expect(particlesContainer.children.length).toBe(160); // Epic tier count
 
         expect(global.DOMUtils.setButtonState).toHaveBeenCalled();
@@ -135,7 +137,7 @@ describe('FusionAnimation', () => {
         await jest.advanceTimersByTimeAsync(ANIMATION_DURATIONS.FUSION_BURST_MS);
         await promise2;
         expect(overlay.classList.contains('tier-faketier')).toBe(true);
-        const particlesContainer = document.querySelector('.anim-particles');
+        const particlesContainer = screen.getByRole('presentation', { name: 'particles' });
         expect(particlesContainer.children.length).toBe(0); // Falls back to common config
     });
 
@@ -151,7 +153,7 @@ describe('FusionAnimation', () => {
             const promise = animation.runAnimation({ emoji: 'A' }, { emoji: 'B' }, { tier });
             await jest.advanceTimersByTimeAsync(ANIMATION_DURATIONS.FUSION_BURST_MS);
             await promise;
-            const particlesContainer = document.querySelector('.anim-particles');
+            const particlesContainer = screen.getByRole('presentation', { name: 'particles' });
             expect(particlesContainer.children.length).toBe(count);
         }
     });
