@@ -25,7 +25,7 @@
     "role": "Velocity Tuner",
     "category": "Performance",
     "tier": "Plus",
-    "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput.",
+    "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge systemic latency.",
     "promptFile": "prompts/Bolt+.md",
     "isCustom": false
   },
@@ -33,8 +33,8 @@
     "name": "Cortex",
     "emoji": "🧠",
     "role": "Synapse Architect",
-    "category": "Architecture",
-    "tier": "Titan",
+    "category": "Feature",
+    "tier": "Plus",
     "description": "INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art handshakes.",
     "promptFile": "prompts/Cortex.md",
     "isCustom": false
@@ -53,7 +53,7 @@
     "name": "Helix",
     "emoji": "🧬",
     "role": "Structural Geneticist",
-    "category": "Refactoring",
+    "category": "Architecture",
     "tier": "Core",
     "description": "SPLICE WET mutations into pure utilities to enforce structural cohesion and eradicate copy-pasted debt.",
     "promptFile": "prompts/Helix.md",
@@ -115,7 +115,7 @@
     "role": "Trauma Resuscitator",
     "category": "Operations",
     "tier": "Core",
-    "description": "RESUSCITATE fatal boot sequences, trace catastrophic crashes, and mutate application logic to restore operational stability.",
+    "description": "RESUSCITATE fatal boot sequences, trace catastrophic crashes, and mutate logic to restore operational stability.",
     "promptFile": "prompts/Paramedic.md",
     "isCustom": false
   },
@@ -125,7 +125,7 @@
     "role": "Consistency Enforcer",
     "category": "Compliance",
     "tier": "Core",
-    "description": "Enforces strict typological safety, correct casing, and alphabetized structures to eradicate stylistic entropy.",
+    "description": "ENFORCE strict typological safety, explicit casting, and alphabetical structures to eradicate stylistic entropy.",
     "promptFile": "prompts/Pedant.md",
     "isCustom": false
   },
@@ -155,7 +155,7 @@
     "role": "Perimeter Fortifier",
     "category": "Security",
     "tier": "Plus",
-    "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries to enforce strict trust perimeters.",
+    "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries.",
     "promptFile": "prompts/Sentinel+.md",
     "isCustom": false
   },
@@ -173,7 +173,7 @@
     "name": "Untangler",
     "emoji": "🧶",
     "role": "Logic Simplifier",
-    "category": "Code Quality",
+    "category": "Hygiene",
     "tier": "Core",
     "description": "UNKNOT deeply nested code to restore readability through linear execution paths and guard clauses.",
     "promptFile": "prompts/Untangler.md",
@@ -185,7 +185,7 @@
     "role": "Jive Breaker",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "Eradicates hallucinated API calls, synthetic abstractions, and orphaned dependencies by dynamically leveraging live LLM heuristic analysis to ensure absolute runtime stability.",
+    "description": "Eradicates hallucinated API calls, synthetic abstractions, and orphaned dependencies to ensure absolute runtime stability.",
     "promptFile": "prompts/Vibe Check.md",
     "isCustom": false
   },
@@ -194,8 +194,8 @@
     "emoji": "🎧",
     "role": "Concept Coder",
     "category": "Feature",
-    "tier": "Core",
-    "description": "FLOW through the repository to deduce missing features and code them into absolute, production-ready reality.",
+    "tier": "Plus",
+    "description": "FLOW through the repository to deduce semantic gaps, missing architecture, and latent features, coding them into production-ready reality.",
     "promptFile": "prompts/Vibe.md",
     "isCustom": false
   },
@@ -477,6 +477,16 @@
     "tier": "Fusion",
     "description": "Prune the application's surface area by identifying ghost routes. Permanently delete both the route definition and the underlying component.",
     "promptFile": "prompts/fusions/Dead-Ender.md",
+    "isCustom": true
+  },
+  {
+    "name": "Decoder",
+    "emoji": "📟",
+    "role": "Stack Translator",
+    "category": "observability",
+    "tier": "Fusion",
+    "description": "Intercept broken test suites and translate massive terminal stack traces into actionable Markdown reports.",
+    "promptFile": "prompts/fusions/Decoder.md",
     "isCustom": true
   },
   {
@@ -860,6 +870,16 @@
     "isCustom": true
   },
   {
+    "name": "Narrator",
+    "emoji": "🎙️",
+    "role": "Spec Translator",
+    "category": "Testing",
+    "tier": "Fusion",
+    "description": "Analyze actual test assertions and rewrite vague test names into crystal clear, human-readable specifications.",
+    "promptFile": "prompts/fusions/Narrator.md",
+    "isCustom": true
+  },
+  {
     "name": "Obituary Writer",
     "emoji": "🪦",
     "role": "Code Eulogist",
@@ -1230,6 +1250,16 @@
     "isCustom": true
   },
   {
+    "name": "Siren",
+    "emoji": "📻",
+    "role": "Vulnerability Broadcaster",
+    "category": "security",
+    "tier": "Fusion",
+    "description": "Broadcast and mitigate high-priority security vulnerabilities identified in the codebase.",
+    "promptFile": "prompts/fusions/Siren.md",
+    "isCustom": true
+  },
+  {
     "name": "Slipstream",
     "emoji": "💨",
     "role": "Frictionless Router",
@@ -1337,6 +1367,16 @@
     "tier": "Fusion",
     "description": "Converts synchronous AI responses into fluid, typewriter-style data streams, eliminating blocking wait states.",
     "promptFile": "prompts/fusions/Tachyon.md",
+    "isCustom": true
+  },
+  {
+    "name": "Telemetrist",
+    "emoji": "📡",
+    "role": "Metric Broadcaster",
+    "category": "Observability",
+    "tier": "Fusion",
+    "description": "INSTRUMENT opaque execution paths with performance timers and metadata loggers to eliminate computational bottlenecks.",
+    "promptFile": "prompts/fusions/Telemetrist.md",
     "isCustom": true
   },
   {
@@ -1467,6 +1507,16 @@
     "tier": "Fusion",
     "description": "Consolidates duplicated logic into single utilities while simultaneously flattening deeply nested execution paths into pristine, linear strands.",
     "promptFile": "prompts/fusions/Weaver.md",
+    "isCustom": true
+  },
+  {
+    "name": "Wordsmith",
+    "emoji": "🖋️",
+    "role": "Tone Architect",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "ELEVATE robotic text into delightful, brand-aligned microcopy that makes the UI linguistically sing without altering logic.",
+    "promptFile": "prompts/fusions/Wordsmith.md",
     "isCustom": true
   },
   {
