@@ -30,6 +30,9 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/playwright/"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!@exodus/bytes)"
     ]
   }
 }
