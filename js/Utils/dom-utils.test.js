@@ -119,6 +119,30 @@ describe('DOMUtils', () => {
         });
     });
 
+    describe('getTerminalSessionHTML', () => {
+        it('should format agent session UI with statusId', () => {
+            const html = DOMUtils.getTerminalSessionHTML('🤖', 'Agent X', 'Connecting', 'status-id');
+            expect(html).toContain('id="status-id"');
+            expect(html).toContain('🤖 Agent X');
+            expect(html).toContain('Connecting');
+        });
+
+        it('should format agent session UI without statusId', () => {
+            const html = DOMUtils.getTerminalSessionHTML('🚀', 'Agent Y', 'Ready');
+            expect(html).not.toContain('id="');
+            expect(html).toContain('🚀 Agent Y');
+            expect(html).toContain('Ready');
+        });
+    });
+
+    describe('getTerminalIndicatorHTML', () => {
+        it('should wrap system messages correctly', () => {
+            const html = DOMUtils.getTerminalIndicatorHTML('Fetching data...');
+            expect(html).toContain('[SYS] Fetching data...');
+            expect(html).toContain('id="fetchingIndicator"');
+        });
+    });
+
     describe('createMarkdownPreBlock', () => {
         beforeAll(() => {
             window.MarkdownRenderer = {

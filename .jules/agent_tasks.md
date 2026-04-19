@@ -33,3 +33,4 @@
 
 - [x] 🧶 `js/core/events/EventBinder.js`: Eradicated Arrow Code from click and mouseover delegation methods.
 - [x] 🚨 `js/Utils/storage-utils.js`: Swallowed error in `getSafely` `catch` block returns `defaultValue` without logging.
+- [x] 🕵️ `js/Utils/dom-utils.test.js`: Added boundary tests for `getTerminalSessionHTML` and `getTerminalIndicatorHTML` to ensure structural rendering.
