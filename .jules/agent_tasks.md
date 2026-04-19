@@ -7,6 +7,7 @@
 > 3. Do not delete this file. Sweep resolved `[x]` items on execution.
 
 ## 🧱 Structural Monoliths (Size & Architecture)
+- [ ] 🏗️ `js/Features/Fusion/AgentPicker.test.js`: Large test file (538 lines). Consider splitting or restructuring.
 
 - [ ] 🏗️ `js/Features/Jules/JulesManager/JulesManager.test.js`: Extremely large test file (2025 lines). Consider splitting into smaller test suites for better maintainability.
 - [ ] 🏗️ `js/Services/JulesService.test.js`: Large test file (693 lines). Consider splitting or restructuring.
@@ -15,6 +16,10 @@
 - [ ] 🏗️ `js/core/RosterApp.js`: Large core class (536 lines). Needs domain splitting and colocation.
 
 ## 🕸️ Logic Tangles (Complexity & Dead Code)
+- [ ] 🧶 `js/Features/Search/SearchController.js`: Deep nesting up to 25 spaces.
+- [ ] 🧶 `js/Services/AgentRepository.js`: Deep nesting up to 28 spaces.
+- [ ] 🧶 `scripts/build-roster.js`: Deep nesting up to 28 spaces.
+- [ ] 🧶 `js/Features/Search/SearchController.test.js`: Deep nesting up to 32 spaces.
 
 - [ ] 🧶 `js/UI/AgentCard/AgentCard.test.js`: Nested logic reaches 7 levels deep, increasing cyclomatic complexity.
 - [x] 🧶 `js/Utils/network-utils.js`: Deep nesting up to 28 spaces, high cyclomatic complexity.
