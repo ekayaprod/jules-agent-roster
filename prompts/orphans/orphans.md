@@ -35,11 +35,6 @@
 - **Category:** Hygiene
 - **Description:** Eliminates multi-megabyte image payloads by converting legacy assets into modern web formats.
 
-## Decoder
-- **Role:** CI Whisperer
-- **Category:** Testing
-- **Description:** Eliminate debugging friction by intercepting broken test suites and translating massive terminal stack traces into actionable Markdown reports.
-
 ## Fabricator
 - **Role:** Mock Synthesizer
 - **Category:** Testing
@@ -155,11 +150,6 @@
 - **Category:** Docs
 - **Description:** Eradicate conversational comments, syntax explanations, abandoned scaffolding, and fake mock data that clutter the codebase with amateur noise.
 
-## Siren
-- **Role:** Vulnerability Broadcaster
-- **Category:** Docs
-- **Description:** Broadcast and mitigate high-priority security vulnerabilities identified in the codebase, ensuring critical patches are aggressively applied.
-
 ## Speed Camera
 - **Role:** Performance Profiler
 - **Category:** Docs
@@ -184,11 +174,6 @@
 - **Role:** Design Documentarian
 - **Category:** Docs
 - **Description:** Catalog the visual identity of the project by treating configuration files as raw materials, extracting every color, font weight, and spacing variable into a beautiful, human-readable STYLEGUIDE.md.
-
-## Telemetrist
-- **Role:** AI Broadcaster
-- **Category:** Operations
-- **Description:** Injects latency timers and metadata loggers to eradicate untracked AI routes.
 
 ## Tokenizer
 - **Role:** Window Optimizer
@@ -245,11 +230,6 @@
 - **Category:** Hygiene
 - **Description:** Refines Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.
 
-## Narrator
-- **Role:** Spec Translator
-- **Category:** Testing
-- **Description:** Analyze actual test assertions and rewrite vague test names into crystal clear, human-readable specifications, turning test output into living documentation.
-
 ## Polyglot
 - **Role:** String Centralizer
 - **Category:** UX
@@ -295,7 +275,3 @@
 - **Category:** UX
 - **Description:** Sculpt comprehensive visual states and inject accessible ARIA attributes to transform cold, robotic UI components into flawless, empathetic interaction flows.
 
-## Wordsmith
-- **Role:** UX Copywriter
-- **Category:** UX
-- **Description:** Eradicates developer jargon, passive voice, and dead-end error states by rewriting them into active, actionable, and empathetic microcopy.
