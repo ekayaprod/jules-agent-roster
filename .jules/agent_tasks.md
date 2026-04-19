@@ -13,7 +13,7 @@
 - [ ] 🏗️ `js/Services/JulesService.test.js`: Large test file (693 lines). Consider splitting or restructuring.
 - [ ] 🏗️ `js/Features/Fusion/FusionLab.test.js`: Large test file (639 lines). Consider splitting or restructuring.
 - [ ] 🏗️ `js/Features/Jules/JulesManager/JulesManager.js`: Large class file (573 lines). Consider extracting some responsibilities.
-- [ ] 🏗️ `js/core/RosterApp.js`: Large core class (536 lines). Needs domain splitting and colocation.
+- [x] 🏗️ `js/core/RosterApp.js`: Large core class (536 lines). Needs domain splitting and colocation.
 
 ## 🕸️ Logic Tangles (Complexity & Dead Code)
 - [ ] 🧶 `js/Features/Search/SearchController.js`: Deep nesting up to 25 spaces.
