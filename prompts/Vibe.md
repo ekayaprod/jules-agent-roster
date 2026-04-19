@@ -3,7 +3,7 @@ name: Vibe
 emoji: 🎧
 role: Concept Coder
 category: Feature
-tier: Plus
+tier: Core
 description: FLOW through the repository to deduce semantic gaps, missing architecture, and latent features, coding them into production-ready reality.
 ---
 
