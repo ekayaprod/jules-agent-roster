@@ -115,4 +115,13 @@ describe('SearchWorker', () => {
             searchId: 123
         });
     });
+
+    it('should silently ignore unknown message types', () => {
+        workerOnMessage({
+            data: { type: 'unknown_type' }
+        });
+
+        expect(fuseMock).not.toHaveBeenCalled();
+        expect(postMessageMock).not.toHaveBeenCalled();
+    });
 });

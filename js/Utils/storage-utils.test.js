@@ -170,6 +170,25 @@ describe('StorageUtils', () => {
         });
     });
 
+
+    describe('StorageUtils rate limit boundary', () => {
+        it('covers rate limit window reset boundary', () => {
+            const now = Date.now();
+            jest.spyOn(Date, 'now')
+                .mockReturnValue(now + 1001); // Trigger the reset window
+
+            StorageUtils._readLimits = { count: 10, windowStart: now };
+
+            mockLocalStorage.getItem.mockReturnValue('[]');
+            const result = StorageUtils.getJsonArrayItem('test_key', 'test_event');
+
+            expect(result).toEqual([]);
+            expect(StorageUtils._readLimits.count).toBe(1);
+
+            jest.restoreAllMocks();
+        });
+    });
+
     describe('setJsonItem', () => {
         it('stringifies data and saves to localStorage', () => {
             const mockData = { id: 1, name: 'Test' };
