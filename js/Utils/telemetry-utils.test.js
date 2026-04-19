@@ -182,3 +182,36 @@ describe('TelemetryUtils circular reference safeguard', () => {
         expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Circular Reference]'));
     });
 });
+
+describe('TelemetryUtils native branch coverage via isolateModules', () => {
+    it('covers the window attachment branch when module exports is falsy', () => {
+        jest.isolateModules(() => {
+            // Backup module exports
+            const origExports = module.exports;
+            module.exports = false;
+            const origWindow = global.window;
+            global.window = {};
+
+            require('./telemetry-utils.js');
+
+            expect(global.window.TelemetryUtils).not.toBeUndefined();
+
+            // Restore
+            module.exports = origExports;
+            global.window = origWindow;
+        });
+    });
+});
+describe('TelemetryUtils native branch coverage via node VM', () => {
+    it('covers window attachment using vm', () => {
+        const vm = require('vm');
+        const fs = require('fs');
+        const code = fs.readFileSync('js/Utils/telemetry-utils.js', 'utf8');
+
+        const sandbox = { window: {} };
+        vm.createContext(sandbox);
+        vm.runInContext(code, sandbox);
+
+        expect(sandbox.window.TelemetryUtils).not.toBeUndefined();
+    });
+});

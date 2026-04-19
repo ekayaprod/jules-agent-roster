@@ -484,4 +484,12 @@ describe('searchWorker Worker Script Boundaries', () => {
             searchId: 3
         });
     });
+
+    it('should silently ignore messages for unknown types', () => {
+        workerSelf.onmessage({
+            data: { type: 'unknown_type' }
+        });
+
+        expect(postMessageMock).not.toHaveBeenCalled();
+    });
 });

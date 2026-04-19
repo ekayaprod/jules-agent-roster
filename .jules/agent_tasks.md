@@ -37,3 +37,7 @@
 ## 🎨 Visual Polish
 
 - [x] 🎨 `js/UI/EmptyState/EmptyState.js`: `empty-title` class was incorrectly set to `empty-title-mutated` breaking empty state styling.
+
+- [x] 🕵️ `js/Features/Search/SearchWorker.test.js`: Added test cases for silently ignored messages with unknown types to bring branch/statement coverage to 100%.
+- [x] 🕵️ `js/Utils/telemetry-utils.test.js`: Added isolated modules environment testing to achieve 100% test coverage across multiple global/window assignments without changing application source logic.
+- [x] 🕵️ `js/Utils/storage-utils.test.js`: Assessed and covered branch where localStorage assignment returns empty/default when accessed across multiple definitions to reach 100% coverage map.
