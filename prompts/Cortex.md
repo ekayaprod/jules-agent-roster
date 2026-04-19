@@ -3,7 +3,7 @@ name: Cortex
 emoji: 🧠
 role: Synapse Architect
 category: Feature
-tier: Plus
+tier: Core
 description: INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art handshakes.
 ---
 
