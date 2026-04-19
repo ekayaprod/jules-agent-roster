@@ -1,5 +1,5 @@
 const { TextEncoder, TextDecoder } = require("util"); global.TextEncoder = TextEncoder; global.TextDecoder = TextDecoder;
-const { JSDOM } = require('jsdom');
+
 const fs = require('fs');
 const path = require('path');
 
@@ -19,10 +19,10 @@ describe('RosterApp (Boundary Interrogation)', () => {
 
     beforeEach(() => {
         // Mock DOM Environment
-        dom = new JSDOM('<!DOCTYPE html><html><body><div id="toast"></div><div id="masterDropdownMenu"></div></body></html>', { url: "http://localhost/" });
-        global.window = dom.window;
-        global.document = dom.window.document;
-        global.Event = dom.window.Event;
+
+
+        document.body.innerHTML = '<div id="toast"></div><div id="masterDropdownMenu"></div>';
+
         global.requestAnimationFrame = (cb) => cb();
 
         // Mock Storage and Dependencies
@@ -54,7 +54,7 @@ describe('RosterApp (Boundary Interrogation)', () => {
         app.filterAgents = jest.fn();
         app.elements = { searchInput: document.createElement('input') };
         global.CSS = { escape: (str) => str };
-        dom.window.CSS = global.CSS;
+        window.CSS = global.CSS;
 
         // Initialize state
         app.agents = [
@@ -169,5 +169,82 @@ describe('RosterApp (Boundary Interrogation)', () => {
         expect(app.activeDropdowns.size).toBe(0);
         expect(toggleBtn.getAttribute('aria-expanded')).toBe('false');
         expect(document.activeElement).toBe(toggleBtn);
+    });
+
+    it('correctly retrieves agents via getAgentForUI across multiple contexts', () => {
+        // Setup complex fusionLab mock state
+        app.fusionLab = {
+            compiler: {
+                customAgentsMap: { 'AgentA,AgentB': { name: 'Mapped Fusion Agent' } },
+                fuse: jest.fn().mockReturnValue({ name: 'Dynamically Fused Agent' })
+            },
+            lastFusionResult: { name: 'Last Fusion Result' },
+            fusionIndex: {
+                isUnlocked: jest.fn().mockImplementation(key => key === 'AgentA,AgentC')
+            },
+            agentMap: new Map([
+                ['AgentA', { name: 'Base A' }],
+                ['AgentC', { name: 'Base C' }]
+            ])
+        };
+
+        // 1. Base Agent
+        expect(app.getAgentForUI(0)).toEqual({ name: 'ActiveAgent0', category: 'strategy' });
+
+        // 2. Custom Agent via AgentUtils.getCustomAgent (requires exact structure or fallback to compiler map)
+        expect(app.getAgentForUI('AgentA,AgentB')).toEqual({ name: 'Mapped Fusion Agent' });
+
+        // 3. Last Fusion Result
+        expect(app.getAgentForUI('fusion-result')).toEqual({ name: 'Last Fusion Result' });
+
+        // 4. Dynamically Fused Agent
+        expect(app.getAgentForUI('AgentA,AgentC')).toEqual({ name: 'Dynamically Fused Agent' });
+        expect(app.fusionLab.compiler.fuse).toHaveBeenCalledWith({ name: 'Base A' }, { name: 'Base C' });
+
+        // 5. Unresolvable / Missing Agent
+        expect(app.getAgentForUI('MissingAgent')).toBeUndefined();
+    });
+
+    it('gracefully degrades when delegating to uninitialized controllers', async () => {
+        // Explicitly set controllers to undefined to simulate missing dependencies
+        app.searchController = undefined;
+        app.exportController = undefined;
+
+        const btn = document.createElement('button');
+
+        // Verify async delegators return without throwing
+        expect(await app.filterAgents('query')).toBeUndefined();
+        expect(await app.clearSearch()).toBeUndefined();
+        expect(await app.copyAgent('0', btn)).toBeUndefined();
+        expect(await app.downloadAgent('0', btn)).toBeUndefined();
+        expect(await app.copyAll(btn)).toBeUndefined();
+
+        // Verify sync delegators return without throwing
+        expect(() => app.downloadCustomAgents(btn)).not.toThrow();
+        expect(() => app.downloadAll(btn)).not.toThrow();
+    });
+
+    it('gracefully handles missing DOM targets during observer initialization', () => {
+        // Interrogate intersection observer boundaries
+        const originalObserver = global.IntersectionObserver;
+        global.IntersectionObserver = jest.fn().mockImplementation(() => ({
+            observe: jest.fn(),
+            disconnect: jest.fn()
+        }));
+
+        const existingObserver = { disconnect: jest.fn() };
+        app.observer = existingObserver;
+        app.elements = { navPills: [] };
+
+        // Test with empty references where CONFIG.sectionMap points to nothing
+        app.categoryLookup = {};
+        app.categoryElements = {};
+
+        expect(() => app.initObserver()).not.toThrow();
+        expect(existingObserver.disconnect).toHaveBeenCalled();
+        expect(global.IntersectionObserver).toHaveBeenCalled();
+
+        // Restore global
+        global.IntersectionObserver = originalObserver;
     });
 });
