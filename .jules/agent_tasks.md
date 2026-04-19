@@ -33,3 +33,7 @@
 
 - [x] 🧶 `js/core/events/EventBinder.js`: Eradicated Arrow Code from click and mouseover delegation methods.
 - [x] 🚨 `js/Utils/storage-utils.js`: Swallowed error in `getSafely` `catch` block returns `defaultValue` without logging.
+
+## 🎨 Visual Polish
+
+- [x] 🎨 `js/UI/EmptyState/EmptyState.js`: `empty-title` class was incorrectly set to `empty-title-mutated` breaking empty state styling.
