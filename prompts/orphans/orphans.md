@@ -45,11 +45,6 @@
 - **Category:** UX
 - **Description:** Substitutes heavy rasters with scalable vectors and wraps assets in optimized loading boundaries to completely eliminate layout shifts across the entire application ecosystem.
 
-## Guardian
-- **Role:** Boundary Hardener
-- **Category:** Strategy
-- **Description:** Hunt down naked parsing and unprotected external API calls that lack failure-mode coverage, leading to catastrophic runtime crashes.
-
 ## Hazmat
 - **Role:** Payload Purifier
 - **Category:** Architecture
@@ -74,11 +69,6 @@
 - **Role:** Boundary Enforcer
 - **Category:** Operations
 - **Description:** Inject circuit breakers, pagination, and strict mechanical limits to ensure every execution path has a mathematically guaranteed upper bound.
-
-## LiveFeed
-- **Role:** Live Feedback Broadcaster
-- **Category:** UX
-- **Description:** Intercept silent data mutations and wrap them in rigorous state trackers (`idle -> loading -> success/error`), injecting polished loading skeletons and notifications.
 
 ## Mason
 - **Role:** Spatial Reinforcer
