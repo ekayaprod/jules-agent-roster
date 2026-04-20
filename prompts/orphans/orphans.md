@@ -220,15 +220,15 @@
 - **Category:** Hygiene
 - **Description:** Refines Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.
 
+## Policy Maker
+- **Role:** AI Architect
+- **Category:** Architecture
+- **Description:** Author and maintain the macro `AI_POLICY.md` to establish strict data boundaries.
+
 ## Polyglot
 - **Role:** String Centralizer
 - **Category:** UX
 - **Description:** Eradicate hardcoded English strings embedded deep within UI components and relocate them into centralized JSON or TS localization dictionaries (`i18n`).
-
-## Prompt Engineer
-- **Role:** Prompt Evolutionist
-- **Category:** Strategy
-- **Description:** Evolve legacy AI instructions by sharpening personas, injecting domain vocabulary, and setting strict negative constraints to guarantee determinism.
 
 ## Redactor
 - **Role:** PII Scrubber
@@ -254,11 +254,6 @@
 - **Role:** Copy Centralizer
 - **Category:** Hygiene
 - **Description:** Identify minor, semantic variations of identically intentioned code blocks, UI copy, and constant strings scattered across the repository, and centralize them into single, reusable references.
-
-## Telepath
-- **Role:** Predictive Pre-loader
-- **Category:** UX
-- **Description:** Injects prefetch mechanisms into interactive UI elements to load data and HTML partials before a user clicks.
 
 ## Virtuoso
 - **Role:** Interaction Artisan
