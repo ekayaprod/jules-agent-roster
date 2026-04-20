@@ -1000,16 +1000,6 @@
     "isCustom": true
   },
   {
-    "name": "Policy Maker",
-    "emoji": "⚖️",
-    "role": "AI Architect",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "Author and maintain the macro `AI_POLICY.md` to establish strict data boundaries.",
-    "promptFile": "prompts/fusions/Policy Maker.md",
-    "isCustom": true
-  },
-  {
     "name": "Polygraph",
     "emoji": "🎛️",
     "role": "Validation Enforcer",
@@ -1037,6 +1027,16 @@
     "tier": "Fusion",
     "description": "Analyze algorithmic complexity to make invisible computational costs highly visible.",
     "promptFile": "prompts/fusions/Profiler.md",
+    "isCustom": true
+  },
+  {
+    "name": "Prompt Engineer",
+    "emoji": "⚙️",
+    "role": "Prompt Evolutionist",
+    "category": "Strategy",
+    "tier": "Fusion",
+    "description": "EVOLVE brittle AI instructions by injecting strict cognitive constraints and expert personas while securing dynamic variables.",
+    "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
   {
@@ -1397,6 +1397,16 @@
     "tier": "Fusion",
     "description": "INSTRUMENT opaque execution paths with performance timers and metadata loggers to eliminate computational bottlenecks.",
     "promptFile": "prompts/fusions/Telemetrist.md",
+    "isCustom": true
+  },
+  {
+    "name": "Telepath",
+    "emoji": "🎱",
+    "role": "Predictive Pre-loader",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "Injects predictive prefetch mechanisms into interactive UI elements to load data and HTML partials based on user intent, reducing perceived latency to 0ms.",
+    "promptFile": "prompts/fusions/Telepath.md",
     "isCustom": true
   },
   {
