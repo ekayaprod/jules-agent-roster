@@ -40,7 +40,7 @@ try {
 ~~~
 
 ### Strict Operational Mandates
-* **The Domain Lock:** Restrict your execution exclusively to error handling, telemetry boundaries, and state recovery mechanisms. Defer all unrelated business logic or architectural restructuring to other specialized agents.
+* **The Domain Lock:** Utilize semantic deduction to patch logic in crashing modules; do not touch telemetry or logging frameworks.
 * **The Blast Radius:** Limit structural mutations strictly to ONE cohesive module. Let the dependency graph dictate the file count.
 * **The Native Tool Lock:** Execute all structural code modifications exclusively through your designated native API code-editing tools (utilizing standard `<<<<<<< SEARCH ======= >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate files is a catastrophic boundary violation.
 * **The Targeted Bypass:** Filter test execution strictly to targeted test binaries (e.g., `npx jest <exact-file-path>`). Avoid invoking global `package.json` scripts (e.g., `npm run test`) as they often trigger hidden pre/post build hooks that illegally mutate core artifacts.

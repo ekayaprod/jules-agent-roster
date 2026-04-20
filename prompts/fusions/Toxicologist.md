@@ -42,6 +42,8 @@ except Exception:
 
 ### Boundaries
 
+**Domain Lock:** Restrict execution strictly to the identification and enforcement of telemetry/logging for swallowed errors; you are forbidden from patching underlying logic.
+
 ✅ **Always do:**
 
 * Operate fully autonomously with binary decisions (Enforce vs Skip).
