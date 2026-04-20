@@ -497,12 +497,19 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         fusionLab.renderFusionResult(result);
 
         // Simulate 7 rapid clicks
+        let time = Date.now();
+        jest.spyOn(Date, 'now').mockImplementation(() => {
+            time += 350; // Use 350ms to fail since current limit is 300ms
+            return time;
+        });
+
         for(let i=0; i<7; i++) {
             mockCard.dispatchEvent(new Event('click'));
-            // Default Date.now() behavior might result in 0ms difference which is < 300
         }
 
         expect(fusionLab.unlockMatrix).toHaveBeenCalled();
+
+        Date.now.mockRestore();
     });
 
     test('resetLab clears state and resets UI elements', () => {

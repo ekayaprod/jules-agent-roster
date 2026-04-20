@@ -390,7 +390,7 @@ class FusionLab {
         if (result.name === "Adversary") {
           card.addEventListener("click", () => {
             const now = Date.now();
-            if (now - this.lastAdversaryClickTime < 300) {
+            if (now - this.lastAdversaryClickTime < 400) {
               this.adversaryClickCount++;
             } else {
               this.adversaryClickCount = 1;
