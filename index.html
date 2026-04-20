@@ -33,7 +33,7 @@
       body { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background-color: var(--bg-color); color: var(--text-primary); margin: 0; padding: 1.5rem; line-height: var(--leading-normal); }
 
       /* FLIP CARD REFINEMENTS */
-      .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 100%; max-width: 100%; height: 11rem; position: relative; z-index: 1;}
+      .flip-card { background-color: transparent !important; border: none !important; perspective: 62.5rem; flex: 1 1 100%; max-width: 100%; height: 11rem; position: relative; z-index: 1; touch-action: manipulation;}
       .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; border-radius: 1rem; cursor: pointer; }
       .flip-card.flipped { z-index: 10; }
       .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
