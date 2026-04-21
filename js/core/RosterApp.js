@@ -237,7 +237,7 @@ class RosterApp {
     }
 
     const flattenedAgents = [];
-    const hasPinnedManager = !!this.pinnedManager;
+    const hasPinnedManager = Boolean(this.pinnedManager);
     // ⚡ Bolt+: Bypass redundant nested wrapper object creations and object spreading.
     // Flatten properties directly into the target object to prevent GC churn during rendering.
     for (let i = 0; i < this.categoryKeys.length; i++) {
