@@ -46,3 +46,4 @@
 - [x] 🕵️ `js/Features/Search/SearchWorker.test.js`: Added test cases for silently ignored messages with unknown types to bring branch/statement coverage to 100%.
 - [x] 🕵️ `js/Utils/telemetry-utils.test.js`: Added isolated modules environment testing to achieve 100% test coverage across multiple global/window assignments without changing application source logic.
 - [x] 🕵️ `js/Utils/storage-utils.test.js`: Assessed and covered branch where localStorage assignment returns empty/default when accessed across multiple definitions to reach 100% coverage map.
+- [x] 🕵️ `js/Features/Fusion/FusionLab.test.js`: Expand coverage for `unlockMatrix` branch to test trap animations and `unlockAll` triggers, resulting in 100% test coverage map.
