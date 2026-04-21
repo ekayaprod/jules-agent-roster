@@ -59,8 +59,10 @@ const createMockElement = (id = '') => {
   const el = {
     id,
     tagName: 'DIV',
+    nodeType: 1,
     children,
     parentNode: null,
+    hidden: false,
     setAttribute: (k, v) => {
       attributes[k] = v;
       if (k === 'id') el.id = v;
@@ -102,10 +104,10 @@ const createMockElement = (id = '') => {
       // Clear children
       while (children.length > 0) {
         const child = children.pop();
-        child.parentNode = null;
+        if (child) child.parentNode = null;
       }
 
-      if (v === '') return;
+      if (v === '' || v === null || v === undefined) return;
 
       // Naive parser for basic structural elements found in the roster app
       const tagRegex = /<([a-z0-9]+)([^>]*?)>(.*?)<\/\1>|<([a-z0-9]+)([^>]*?)\/>/gi;
@@ -134,6 +136,7 @@ const createMockElement = (id = '') => {
           child.innerHTML = content;
         } else if (content) {
           child.textContent = content;
+          child.innerText = content;
         }
 
         el.appendChild(child);
@@ -142,6 +145,14 @@ const createMockElement = (id = '') => {
     innerText: '',
     textContent: '',
     appendChild: (child) => {
+      if (child.nodeType === 11) {
+        if (child.children) {
+          while (child.children.length > 0) {
+            el.appendChild(child.children[0]);
+          }
+        }
+        return child;
+      }
       if (child.parentNode) child.parentNode.removeChild(child);
       children.push(child);
       child.parentNode = el;
@@ -230,13 +241,25 @@ global.document = {
   },
   createDocumentFragment: () => {
     const children = [];
-    return {
+    const frag = {
       children,
+      nodeType: 11,
       appendChild: (child) => {
+        if (child.parentNode) child.parentNode.removeChild(child);
         children.push(child);
+        child.parentNode = frag;
+        return child;
+      },
+      removeChild: (child) => {
+        const index = children.indexOf(child);
+        if (index !== -1) {
+          children.splice(index, 1);
+          child.parentNode = null;
+        }
         return child;
       },
     };
+    return frag;
   },
   addEventListener: () => {},
 };
