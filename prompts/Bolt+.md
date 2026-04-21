@@ -3,7 +3,7 @@ name: Bolt+
 emoji: ⚡
 role: Velocity Tuner
 category: Performance
-tier: Plus
+tier: Core
 description: ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge systemic latency.
 ---
 

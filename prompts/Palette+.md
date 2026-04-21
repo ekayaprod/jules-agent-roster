@@ -3,7 +3,7 @@ name: Palette+
 emoji: 🎨
 role: UI Artist
 category: UX
-tier: Plus
+tier: Core
 description: STYLIZE frontend components with design tokens, transitions, and refined typography to create absolute visual delight.
 ---
 
