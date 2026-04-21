@@ -251,9 +251,9 @@
   },
   {
     "name": "Antibody",
-    "emoji": "💉",
+    "emoji": "🧫",
     "role": "Deterministic Immunizer",
-    "category": "Architecture",
+    "category": "Testing",
     "tier": "Titan",
     "description": "IMMUNIZE the testing pipeline by suffocating race conditions in local stress-loops and injecting strict locks to cure intermittent failures.",
     "promptFile": "prompts/fusions/Antibody.md",
@@ -297,6 +297,16 @@
     "tier": "Fusion",
     "description": "Generates robust, user-facing end-to-end tests that programmatically drive the browser and guarantee the core routing tree never breaks in production.",
     "promptFile": "prompts/fusions/Autopilot.md",
+    "isCustom": true
+  },
+  {
+    "name": "Barricade",
+    "emoji": "🚧",
+    "role": "Perimeter Genesis Specialist",
+    "category": "Security",
+    "tier": "Fusion",
+    "description": "BUILD missing security primitives and defensive infrastructure from scratch to protect exposed surfaces.",
+    "promptFile": "prompts/fusions/Barricade.md",
     "isCustom": true
   },
   {
@@ -400,6 +410,16 @@
     "isCustom": true
   },
   {
+    "name": "Chronicle",
+    "emoji": "🖨️",
+    "role": "Pipeline Machinist",
+    "category": "Docs",
+    "tier": "Fusion",
+    "description": "BUILD the automated machinery and pipelines that generate documentation, forging net-new release infrastructure from scratch.",
+    "promptFile": "prompts/fusions/Chronicle.md",
+    "isCustom": true
+  },
+  {
     "name": "Chronicler",
     "emoji": "📜",
     "role": "Context Historian",
@@ -407,16 +427,6 @@
     "tier": "Fusion",
     "description": "Cross-reference shipped features with strategic roadmaps to officially mark milestones complete.",
     "promptFile": "prompts/fusions/Chronicler.md",
-    "isCustom": true
-  },
-  {
-    "name": "Circuit Breaker",
-    "emoji": "🔌",
-    "role": "Fallback Strategist",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "Sweep routing layers and fragile integrations to surround them with Error Boundaries and fallbacks.",
-    "promptFile": "prompts/fusions/Circuit Breaker.md",
     "isCustom": true
   },
   {
@@ -470,16 +480,6 @@
     "isCustom": true
   },
   {
-    "name": "Cypher",
-    "emoji": "💠",
-    "role": "Output Sanitizer",
-    "category": "Strategy",
-    "tier": "Fusion",
-    "description": "Optimizes Eradicate JSON parsing errors caused by unpredictable AI formatting. Treat incoming LLM responses as hostile, volatile data.",
-    "promptFile": "prompts/fusions/Cypher.md",
-    "isCustom": true
-  },
-  {
     "name": "Dead-Ender",
     "emoji": "🚧",
     "role": "Route Purger",
@@ -497,6 +497,16 @@
     "tier": "Fusion",
     "description": "Intercept broken test suites and translate massive terminal stack traces into actionable Markdown reports.",
     "promptFile": "prompts/fusions/Decoder.md",
+    "isCustom": true
+  },
+  {
+    "name": "Defibrillator",
+    "emoji": "💥",
+    "role": "Pipeline Resuscitator",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "SHOCK fatal delivery infrastructure back to life. Stabilize broken CI/CD pipelines, Dockerfiles, and manifests to unblock deployments.",
+    "promptFile": "prompts/fusions/Defibrillator.md",
     "isCustom": true
   },
   {
@@ -550,6 +560,16 @@
     "isCustom": true
   },
   {
+    "name": "Exorcist",
+    "emoji": "🕯️",
+    "role": "Agentic Hallucination Eradicator",
+    "category": "Hygiene",
+    "tier": "Fusion",
+    "description": "ERADICATE phantom tool schemas and hallucinated orchestration stubs.",
+    "promptFile": "prompts/fusions/Exorcist.md",
+    "isCustom": true
+  },
+  {
     "name": "Expediter",
     "emoji": "🛎️",
     "role": "Build Optimizer",
@@ -573,9 +593,9 @@
     "name": "Firewall",
     "emoji": "📛",
     "role": "AI Hardener",
-    "category": "Strategy",
+    "category": "Security",
     "tier": "Fusion",
-    "description": "Upgrade AI integrations to their latest secure models and lock probabilistic LLM outputs behind rigid structural validation schemas.",
+    "description": "FORTIFY AI integrations by upgrading to secure models and locking probabilistic outputs behind rigid schemas.",
     "promptFile": "prompts/fusions/Firewall.md",
     "isCustom": true
   },
@@ -600,12 +620,32 @@
     "isCustom": true
   },
   {
+    "name": "Forensic Architect",
+    "emoji": "🗺️",
+    "role": "Structural Forensicist",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "MAP historical architectural decay via git forensics to resuscitate circular routes and collapsed colocation vectors before total system failure.",
+    "promptFile": "prompts/fusions/Forensic Architect.md",
+    "isCustom": true
+  },
+  {
+    "name": "Foresight",
+    "emoji": "🔮",
+    "role": "AI Feature Synthesizer",
+    "category": "Feature",
+    "tier": "Fusion",
+    "description": "FLOW into the architecture to deduce and scaffold missing AI integrations.",
+    "promptFile": "prompts/fusions/Foresight.md",
+    "isCustom": true
+  },
+  {
     "name": "Futurist",
     "emoji": "🛸",
-    "role": "Pipeline Evolver",
-    "category": "Strategy",
+    "role": "Payload Contract Evolver",
+    "category": "Architecture",
     "tier": "Fusion",
-    "description": "Modernize the server-side syntax of legacy AI flows and upgrade models and SDKs by refactoring deprecated Promise chains into modern async/await syntax.",
+    "description": "EVOLVE deprecated AI response shapes, sunset message formats, and fossilized prompt construction patterns.",
     "promptFile": "prompts/fusions/Futurist.md",
     "isCustom": true
   },
@@ -617,6 +657,16 @@
     "tier": "Fusion",
     "description": "Melts down fragile, hardcoded padlocks scattered across the codebase and forges a single, impenetrable policy engine to govern all internal access.",
     "promptFile": "prompts/fusions/Gatekeeper.md",
+    "isCustom": true
+  },
+  {
+    "name": "Ghost Hunter",
+    "emoji": "👻",
+    "role": "Hallucination Crash Specialist",
+    "category": "Hygiene",
+    "tier": "Fusion",
+    "description": "ERADICATE phantom imports, synthetic abstractions, and hallucinated dependencies to resuscitate crashed boot sequences.",
+    "promptFile": "prompts/fusions/Ghost Hunter.md",
     "isCustom": true
   },
   {
@@ -770,6 +820,16 @@
     "isCustom": true
   },
   {
+    "name": "Launchpad",
+    "emoji": "🚀",
+    "role": "AI Pipeline Deployer",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "DISPATCH delivery-layer fixes to ensure AI payloads survive deployment.",
+    "promptFile": "prompts/fusions/Launchpad.md",
+    "isCustom": true
+  },
+  {
     "name": "Lexicon",
     "emoji": "📖",
     "role": "Vocabulary Standardizer",
@@ -820,6 +880,16 @@
     "isCustom": true
   },
   {
+    "name": "Lumen",
+    "emoji": "💡",
+    "role": "AI Health Auditor",
+    "category": "Observability",
+    "tier": "Fusion",
+    "description": "AUDIT the AI integration surface and synthesize the macro task board.",
+    "promptFile": "prompts/fusions/Lumen.md",
+    "isCustom": true
+  },
+  {
     "name": "Mapper",
     "emoji": "🛰️",
     "role": "Coverage Mapper",
@@ -837,6 +907,16 @@
     "tier": "Fusion",
     "description": "Hunt for undocumented infrastructure dependencies and draft clear, actionable disaster recovery steps.",
     "promptFile": "prompts/fusions/Marshal.md",
+    "isCustom": true
+  },
+  {
+    "name": "Medic",
+    "emoji": "🩹",
+    "role": "Incompleteness Specialist",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "COMPLETE missing structural logic and unfinished scaffolds that trigger null references, stabilizing the system from bleeding out.",
+    "promptFile": "prompts/fusions/Medic.md",
     "isCustom": true
   },
   {
@@ -960,6 +1040,16 @@
     "isCustom": true
   },
   {
+    "name": "Parallel",
+    "emoji": "♾️",
+    "role": "Replacement Builder",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "BUILD modern, dormant replacements alongside legacy systems without migrating or deleting the original architecture.",
+    "promptFile": "prompts/fusions/Parallel.md",
+    "isCustom": true
+  },
+  {
     "name": "PathCentralizer",
     "emoji": "🌐",
     "role": "Route Extractor",
@@ -990,6 +1080,16 @@
     "isCustom": true
   },
   {
+    "name": "Phoenix",
+    "emoji": "🐦‍🔥",
+    "role": "Void Replacer",
+    "category": "Feature",
+    "tier": "Fusion",
+    "description": "RESURRECT missing logic from the ashes of deleted code, building net-new features to fill structural voids left by decommissioned systems.",
+    "promptFile": "prompts/fusions/Phoenix.md",
+    "isCustom": true
+  },
+  {
     "name": "Placebo",
     "emoji": "💊",
     "role": "Psychological Performance Specialist",
@@ -1002,10 +1102,10 @@
   {
     "name": "Polygraph",
     "emoji": "🎛️",
-    "role": "Validation Enforcer",
+    "role": "Adversarial Interrogator",
     "category": "Testing",
     "tier": "Fusion",
-    "description": "Enforce strict structured outputs on AI prompt generation and inject rigorous schema validation tests to catch LLM hallucinations.",
+    "description": "INTERROGATE AI integrations by injecting adversarial edge cases and context traps into the native test suite.",
     "promptFile": "prompts/fusions/Polygraph.md",
     "isCustom": true
   },
@@ -1137,16 +1237,6 @@
     "tier": "Fusion",
     "description": "Restructures disorganized feature hierarchies by colocating fragmented components, styles, and hooks into unified feature folders.",
     "promptFile": "prompts/fusions/Renovator.md",
-    "isCustom": true
-  },
-  {
-    "name": "Resuscitator",
-    "emoji": "🩺",
-    "role": "Error Handling Enforcer",
-    "category": "Operations",
-    "tier": "Fusion",
-    "description": "Sweeps the codebase for silent catch blocks, swallowed errors, and generic \"Something went wrong\" messages.",
-    "promptFile": "prompts/fusions/Resuscitator.md",
     "isCustom": true
   },
   {
@@ -1342,10 +1432,10 @@
   {
     "name": "Surgeon",
     "emoji": "🔪",
-    "role": "Inline Extractor",
+    "role": "Structural Stabilizer",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Slice fragile, inline network logic out of monolithic UI components and isolate it into robust service files.",
+    "description": "STABILIZE decaying architectures by performing emergency triage on circular routes, collapsed colocation, and inline network logic.",
     "promptFile": "prompts/fusions/Surgeon.md",
     "isCustom": true
   },
@@ -1367,6 +1457,16 @@
     "tier": "Fusion",
     "description": "Execute major package version bumps and simultaneously map their breaking changes across the entire abstract syntax tree (AST) to rewrite every deprecated consumer reference.",
     "promptFile": "prompts/fusions/Synchronizer.md",
+    "isCustom": true
+  },
+  {
+    "name": "Syntax",
+    "emoji": "📐",
+    "role": "Structural Prompt Architect",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "REFACTOR loose prompt strings into rigid XML-delimited structures to maximize model attention.",
+    "promptFile": "prompts/fusions/Syntax.md",
     "isCustom": true
   },
   {
@@ -1480,6 +1580,26 @@
     "isCustom": true
   },
   {
+    "name": "Triage Commander",
+    "emoji": "🏥",
+    "role": "Mass Incident Commander",
+    "category": "Observability",
+    "tier": "Fusion",
+    "description": "ORCHESTRATE repository-wide emergency response. Catalog systemic failures, rank blast radius, and generate triage task boards.",
+    "promptFile": "prompts/fusions/Triage Commander.md",
+    "isCustom": true
+  },
+  {
+    "name": "Triage",
+    "emoji": "🩺",
+    "role": "Diagnostic Healer",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "RESUSCITATE silent failures by deducing operational intent and engineering precise error boundaries.",
+    "promptFile": "prompts/fusions/Triage.md",
+    "isCustom": true
+  },
+  {
     "name": "Typesetter",
     "emoji": "🔠",
     "role": "Pixel Perfectionist",
@@ -1507,6 +1627,16 @@
     "tier": "Fusion",
     "description": "Hunts down duplicated logic, centralizes it into a single source of truth, and physically eradicates the old, redundant source files from the repository.",
     "promptFile": "prompts/fusions/Void.md",
+    "isCustom": true
+  },
+  {
+    "name": "Watchtower",
+    "emoji": "🗼",
+    "role": "Telemetry Clairvoyant",
+    "category": "Observability",
+    "tier": "Fusion",
+    "description": "ILLUMINATE blind spots by sensing macroscopic system gaps and weaving net-new observability infrastructure from the void.",
+    "promptFile": "prompts/fusions/Watchtower.md",
     "isCustom": true
   },
   {
