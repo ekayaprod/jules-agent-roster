@@ -22,9 +22,6 @@
     "jsdom": "29.0.2",
     "playwright": "1.59.1"
   },
-  "dependencies": {
-    "jscodeshift": "17.3.0"
-  },
   "jest": {
     "testEnvironment": "jsdom",
     "testPathIgnorePatterns": [
