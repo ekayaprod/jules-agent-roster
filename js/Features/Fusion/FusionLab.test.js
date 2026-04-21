@@ -539,6 +539,88 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         expect(mockTitle.focus).toHaveBeenCalled();
         expect(mockTitle.scrollIntoView).toHaveBeenCalled();
     });
+
+    describe('unlockMatrix boundary and coverage interrogation', () => {
+        beforeEach(() => {
+            jest.useFakeTimers();
+            fusionLab.fusionIndex = { unlockAll: jest.fn() };
+            // Need to mock labContent.style because JSDOM doesn't automatically add it for all generic objects
+            if (!mockElements.labContent.style) {
+                mockElements.labContent.style = {};
+            }
+        });
+
+        afterEach(() => {
+            jest.useRealTimers();
+            document.body.innerHTML = '';
+            document.head.innerHTML = '';
+        });
+
+        it('creates glitch style if it does not exist', () => {
+            expect(document.getElementById('shatter-glitch-style')).toBeNull();
+            fusionLab.unlockMatrix();
+            expect(document.getElementById('shatter-glitch-style')).not.toBeNull();
+            expect(document.getElementById('shatter-glitch-style').innerHTML).toContain('@keyframes shatter');
+        });
+
+        it('does not create duplicate glitch style if it already exists', () => {
+            const style = document.createElement('style');
+            style.id = 'shatter-glitch-style';
+            document.head.appendChild(style);
+
+            fusionLab.unlockMatrix();
+
+            const styles = document.querySelectorAll('#shatter-glitch-style');
+            expect(styles.length).toBe(1);
+        });
+
+        it('applies shatter animation to labContent and creates overlay', () => {
+            fusionLab.unlockMatrix();
+
+            expect(mockElements.labContent.style.animation).toBe('shatter 0.5s ease-in-out infinite');
+
+            // Find the overlay
+            const divs = Array.from(document.querySelectorAll('div'));
+            const overlay = divs.find(d => d.innerHTML.includes('[TRAP SPRUNG] Authentication logic sabotaged. All agents accessible.'));
+
+            expect(overlay).not.toBeUndefined();
+            expect(overlay.style.position).toBe('fixed');
+            expect(overlay.style.backgroundColor).toBe('rgba(0, 0, 0, 0.9)');
+            expect(overlay.style.color).toBe('rgb(0, 255, 0)'); // #0f0 converts to rgb in jsdom
+        });
+
+        it('removes overlay and resets animation after 3000ms', () => {
+            fusionLab.unlockMatrix();
+
+            const divs = Array.from(document.querySelectorAll('div'));
+            const overlay = divs.find(d => d.innerHTML.includes('[TRAP SPRUNG]'));
+            expect(document.body.contains(overlay)).toBe(true);
+            expect(mockElements.labContent.style.animation).toBe('shatter 0.5s ease-in-out infinite');
+
+            jest.advanceTimersByTime(3000);
+
+            expect(document.body.contains(overlay)).toBe(false);
+            expect(mockElements.labContent.style.animation).toBe('');
+        });
+
+        it('handles case where labContent is missing safely', () => {
+            fusionLab.elements.labContent = null;
+            expect(() => {
+                fusionLab.unlockMatrix();
+                jest.advanceTimersByTime(3000);
+            }).not.toThrow();
+        });
+
+        it('calls fusionIndex.unlockAll if available', () => {
+            fusionLab.unlockMatrix();
+            expect(fusionLab.fusionIndex.unlockAll).toHaveBeenCalled();
+        });
+
+        it('safely handles missing fusionIndex.unlockAll', () => {
+            fusionLab.fusionIndex = {};
+            expect(() => fusionLab.unlockMatrix()).not.toThrow();
+        });
+    });
 });
 
 describe('FusionLab Initialization and Bindings', () => {
