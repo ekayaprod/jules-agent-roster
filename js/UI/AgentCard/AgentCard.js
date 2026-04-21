@@ -88,7 +88,7 @@ class AgentCard {
       // ↗️ VECTORIZE: The Single-Pass Pipeline. We bypass Array.from().filter() wrapper allocations for a direct loop.
       const childKeys = [];
       for (const key of unlockedKeys) {
-        if (key.includes(agent.name)) childKeys.push(key);
+        if (key.split(',').includes(agent.name)) childKeys.push(key);
       }
 
       if (childKeys.length > 0) {

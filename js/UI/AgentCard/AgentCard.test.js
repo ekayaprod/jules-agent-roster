@@ -93,7 +93,7 @@ describe('AgentCard', () => {
         it('should render the modal trigger even if child agents evaluate to falsy', () => {
             window.rosterApp.fusionLab = {
                 fusionIndex: {
-                    unlockedKeys: new Set(['Test Agent+Ghost']) // includes agent.name
+                    unlockedKeys: new Set(['Test Agent,Ghost']) // includes agent.name
                 },
                 compiler: {
                     customAgentsMap: {} // Missing from compiler map
@@ -113,12 +113,12 @@ describe('AgentCard', () => {
         it('should generate modal trigger for unlocked fusion children from compiler or rosterApp', () => {
             window.rosterApp.fusionLab = {
                 fusionIndex: {
-                    unlockedKeys: new Set(['Test Agent+Other', 'Test Agent+Another'])
+                    unlockedKeys: new Set(['Test Agent,Other', 'Test Agent,Another'])
                 },
                 compiler: {
                     customAgentsMap: {
-                        'Test Agent+Other': {
-                            name: 'Test Agent+Other',
+                        'Test Agent,Other': {
+                            name: 'Test Agent,Other',
                             emoji: '✨',
                             tier: 'legendary'
                         }
@@ -126,9 +126,9 @@ describe('AgentCard', () => {
                 }
             };
             AgentUtils.getCustomAgent = jest.fn().mockImplementation((customAgents, key) => {
-                if (key === 'Test Agent+Another') {
+                if (key === 'Test Agent,Another') {
                     return {
-                        name: 'Test Agent+Another',
+                        name: 'Test Agent,Another',
                         emoji: '🔥',
                         tier: 'epic'
                     };

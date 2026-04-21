@@ -102,7 +102,7 @@ class EventBinder {
               const uniqueKeys = new Set(allMatrixKeys);
               const fusions = [];
               for (const key of uniqueKeys) {
-                  if (key.includes(agent.name)) {
+                  if (key.split(',').includes(agent.name)) {
                       fusions.push(key);
                   }
               }

@@ -133,7 +133,7 @@ class ExportController {
 
     for (const key in fusionMatrixMap) {
       if (Object.prototype.hasOwnProperty.call(fusionMatrixMap, key)) {
-        if (key.includes(parentName)) {
+        if (key.split(',').includes(parentName)) {
           const fusionName = fusionMatrixMap[key];
           const a = customAgentsMap[fusionName];
           if (a) validCustomAgents.push(a); // collect them even if prompt is missing
