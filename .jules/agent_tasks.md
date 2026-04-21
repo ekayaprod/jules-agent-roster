@@ -9,7 +9,7 @@
 ## 🧱 Structural Monoliths (Size & Architecture)
 - [ ] 🏗️ `js/Features/Fusion/AgentPicker.test.js`: Large test file (538 lines). Consider splitting or restructuring.
 
-- [ ] 🏗️ `js/Features/Jules/JulesManager/JulesManager.test.js`: Extremely large test file (2025 lines). Consider splitting into smaller test suites for better maintainability.
+- [x] 🏗️ `js/Features/Jules/JulesManager/JulesManager.test.js`: Extremely large test file (2025 lines). Consider splitting into smaller test suites for better maintainability.
 - [ ] 🏗️ `js/Services/JulesService.test.js`: Large test file (693 lines). Consider splitting or restructuring.
 - [ ] 🏗️ `js/Features/Fusion/FusionLab.test.js`: Large test file (639 lines). Consider splitting or restructuring.
 - [ ] 🏗️ `js/Features/Jules/JulesManager/JulesManager.js`: Large class file (573 lines). Consider extracting some responsibilities.
