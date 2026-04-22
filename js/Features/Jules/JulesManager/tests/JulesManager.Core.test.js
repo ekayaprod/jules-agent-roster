@@ -197,7 +197,7 @@ describe('JulesManager', () => {
 
             // The component logic native to JulesManager doesn't set ARIA props automatically. Just UI border.
             // expect(keyInput.getAttribute('aria-invalid')).toBe('true');
-            expect(keyInput.style.borderColor).toMatch(/#ef4444|rgb\(239,\s*68,\s*68\)/); // #ef4444
+            expect(keyInput.style.borderColor).toBe('var(--error)');
             expect(errorSpan.textContent).toBe('Please enter your Jules API Key to connect.');
             expect(errorSpan.style.display).toBe('block');
         });

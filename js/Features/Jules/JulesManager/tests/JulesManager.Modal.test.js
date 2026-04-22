@@ -308,7 +308,7 @@ describe('JulesManager Modal Tests', () => {
             const inputField = document.getElementById('interactionModalInput');
             const errorSpan = document.getElementById('interactionModalError');
 
-            inputField.style.borderColor = "#ef4444";
+            inputField.style.borderColor = "var(--error)";
             inputField.setAttribute("aria-invalid", "true");
             inputField.setAttribute("aria-describedby", "interactionModalError");
             errorSpan.classList.remove("hidden");
@@ -338,7 +338,7 @@ describe('JulesManager Modal Tests', () => {
             inputField.value = '  '; // empty text
             await submitBtn.click();
 
-            expect(inputField.style.borderColor).toMatch(/#ef4444|rgb\(239,\s*68,\s*68\)/); // #ef4444
+            expect(inputField.style.borderColor).toBe('var(--error)');
             expect(inputField.getAttribute('aria-invalid')).toBe('true');
             expect(inputField.getAttribute('aria-describedby')).toBe('interactionModalError');
             expect(errorSpan.textContent).toBe('Please provide a response before transmitting.');
@@ -356,7 +356,7 @@ describe('JulesManager Modal Tests', () => {
             const inputField = document.getElementById('interactionModalInput');
             const errorSpan = document.getElementById('interactionModalError');
 
-            inputField.style.borderColor = "#ef4444";
+            inputField.style.borderColor = "var(--error)";
             inputField.setAttribute("aria-invalid", "true");
             inputField.setAttribute("aria-describedby", "interactionModalError");
             errorSpan.classList.remove("hidden");
