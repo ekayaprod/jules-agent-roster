@@ -453,28 +453,47 @@ class JulesManager {
             if (emoji) agentEmoji = emoji;
         }
 
+        const block = this._createAndInsertSessionBlock(
+            terminal,
+            `term-session-line state-active`,
+            `session-${session.id}`,
+            agentEmoji,
+            safeAgentName,
+            "Initializing...",
+            `status-${session.id}`,
+            () => this.modals._showHistoryModal(session.id, agentEmoji, safeAgentName)
+        );
+
+        this.polling.startTerminalPolling(session.id, block, safeAgentName, agentEmoji);
+    }
+
+    /**
+     * Helper to create and insert a terminal session block.
+     * @private
+     */
+    _createAndInsertSessionBlock(terminal, className, id, agentEmoji, safeAgentName, statusMsg, statusId, onClickCallback) {
         const block = document.createElement("div");
-        block.className = `term-session-line state-active`;
-        block.id = `session-${session.id}`;
+        block.className = className;
+        if (id) block.id = id;
 
-        block.style.cursor = "pointer";
-        block.onclick = () => {
-            this.modals._showHistoryModal(session.id, agentEmoji, safeAgentName);
-        };
+        if (onClickCallback) {
+            block.style.cursor = "pointer";
+            block.onclick = onClickCallback;
+        }
 
+        const formatUtils = JulesManager.getFormatUtils();
         const escapedEmoji = formatUtils ? formatUtils.escapeHTML(agentEmoji) : agentEmoji;
 
-        // 1-line Minimalist layout
-        block.innerHTML = DOMUtils.getTerminalSessionHTML(escapedEmoji, safeAgentName, "Initializing...", `status-${session.id}`);
+        block.innerHTML = DOMUtils.getTerminalSessionHTML(escapedEmoji, safeAgentName, statusMsg, statusId);
 
-        const firstSession = terminal.querySelector('.term-session-line');
+        const firstSession = terminal.querySelector('.term-session-line:not(#fetchingIndicator)');
         if (firstSession) {
             terminal.insertBefore(block, firstSession);
         } else {
             terminal.appendChild(block);
         }
 
-        this.polling.startTerminalPolling(session.id, block, safeAgentName, agentEmoji);
+        return block;
     }
 
     /**
@@ -506,25 +525,20 @@ class JulesManager {
         const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
         if (fetchingIndicator) fetchingIndicator.style.display = 'none';
 
-        const optimisticBlock = document.createElement("div");
-        optimisticBlock.className = `term-session-line state-active skeleton-pulse`;
-        
         const formatUtils = JulesManager.getFormatUtils();
         let agentEmoji = agent.emoji || "🤖";
         let safeAgentName = agent.name ? (formatUtils ? formatUtils.escapeHTML(agent.name) : agent.name) : "Agent Task";
 
-        optimisticBlock.style.cursor = "pointer";
-
-        const escapedEmoji = formatUtils ? formatUtils.escapeHTML(agentEmoji) : agentEmoji;
-
-        optimisticBlock.innerHTML = DOMUtils.getTerminalSessionHTML(escapedEmoji, safeAgentName, "Conjuring session...");
-
-        const firstSession = terminal.querySelector('.term-session-line:not(#fetchingIndicator)');
-        if (firstSession) {
-            terminal.insertBefore(optimisticBlock, firstSession);
-        } else {
-            terminal.appendChild(optimisticBlock);
-        }
+        const optimisticBlock = this._createAndInsertSessionBlock(
+            terminal,
+            `term-session-line state-active skeleton-pulse`,
+            "",
+            agentEmoji,
+            safeAgentName,
+            "Conjuring session...",
+            "",
+            () => {} // cursor pointer set implicitly via callback presence
+        );
 
         if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.LOADING : "loading", "Launching...");
 
