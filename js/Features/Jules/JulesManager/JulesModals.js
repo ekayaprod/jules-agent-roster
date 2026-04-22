@@ -52,7 +52,7 @@ class JulesModals {
             const text = inputField.value.trim();
             if (!text) {
                 if (inputField && errorSpan) {
-                    inputField.style.borderColor = "#ef4444";
+                    inputField.style.borderColor = "var(--error)";
                     inputField.setAttribute("aria-invalid", "true");
                     inputField.setAttribute("aria-describedby", "interactionModalError");
                     errorSpan.textContent = "Please provide a response before transmitting.";
@@ -204,7 +204,7 @@ class JulesModals {
 
     _showKeyError(input, span, message) {
         if (!input || !span) return;
-        input.style.borderColor = "#ef4444";
+        input.style.borderColor = "var(--error)";
         span.textContent = message;
         span.style.display = "block";
     }
