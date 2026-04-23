@@ -419,14 +419,14 @@ class FusionLab {
         @keyframes shatter {
           0% { transform: translate(0, 0) rotate(0deg);
           opacity: 1; filter: blur(0); }
-          20% { transform: translate(-5px, 5px) rotate(-2deg);
-          opacity: 0.8; filter: blur(2px) hue-rotate(90deg); }
-          40% { transform: translate(5px, -5px) rotate(2deg);
-          opacity: 0.9; filter: blur(1px) invert(100%); }
-          60% { transform: translate(-10px, -2px) rotate(-5deg);
-          opacity: 0.5; filter: blur(4px) contrast(200%); }
-          80% { transform: translate(10px, 2px) rotate(5deg);
-          opacity: 0.8; filter: blur(1px) sepia(100%); }
+          20% { transform: translate(-0.3125rem, 0.3125rem) rotate(-2deg);
+          opacity: 0.8; filter: blur(0.125rem) hue-rotate(90deg); }
+          40% { transform: translate(0.3125rem, -0.3125rem) rotate(2deg);
+          opacity: 0.9; filter: blur(0.0625rem) invert(100%); }
+          60% { transform: translate(-0.625rem, -0.125rem) rotate(-5deg);
+          opacity: 0.5; filter: blur(0.25rem) contrast(200%); }
+          80% { transform: translate(0.625rem, 0.125rem) rotate(5deg);
+          opacity: 0.8; filter: blur(0.0625rem) sepia(100%); }
           100% { transform: translate(0, 0) rotate(0deg);
           opacity: 1; filter: blur(0); }
         }
