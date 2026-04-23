@@ -14,10 +14,10 @@
 - [ ] 🏗️ `js/Features/Jules/JulesManager/JulesManager.js`: Large class file (573 lines). Consider extracting some responsibilities.
 
 ## 🕸️ Logic Tangles (Complexity & Dead Code)
-- [ ] 🧶 `js/Features/Search/SearchController.js`: Deep nesting up to 25 spaces.
+- [x] (Blocked / False Positive) 🧶 `js/Features/Search/SearchController.js`: Deep nesting up to 25 spaces.
 - [ ] 🧶 `js/Services/AgentRepository.js`: Deep nesting up to 28 spaces.
 - [ ] 🧶 `scripts/build-roster.js`: Deep nesting up to 28 spaces.
-- [ ] 🧶 `js/Features/Search/SearchController.test.js`: Deep nesting up to 32 spaces.
+- [x] (Blocked / False Positive) 🧶 `js/Features/Search/SearchController.test.js`: Deep nesting up to 32 spaces.
 
 - [ ] 🧶 `js/UI/AgentCard/AgentCard.test.js`: Nested logic reaches 7 levels deep, increasing cyclomatic complexity.
 - [ ] 🧶 `js/UI/AgentCard/AgentCard.js`: Deep nesting up to 36 spaces.
