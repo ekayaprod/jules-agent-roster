@@ -1,6 +1,7 @@
+---
 name: Deploy static content to Pages
 
-on:
+"on":
   push:
     branches: ["main"]
     paths-ignore:
@@ -15,6 +16,9 @@ on:
 concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+permissions:
+  contents: read
 
 jobs:
   test:
