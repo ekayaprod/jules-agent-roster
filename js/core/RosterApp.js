@@ -261,6 +261,9 @@ class RosterApp {
            const aTier = a.agent && a.agent.tier === "Plus" ? 1 : 0;
            const bTier = b.agent && b.agent.tier === "Plus" ? 1 : 0;
            if (aTier !== bTier) return bTier - aTier;
+           const aName = a.agent && a.agent.name && a.agent.name.endsWith("+") ? 1 : 0;
+           const bName = b.agent && b.agent.name && b.agent.name.endsWith("+") ? 1 : 0;
+           if (aName !== bName) return bName - aName;
            return 0;
         });
 
