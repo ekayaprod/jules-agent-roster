@@ -2,14 +2,12 @@
  * @jest-environment jsdom
  */
 
-const JulesModals = require('./JulesModals');
-const TerminalPolling = require('./TerminalPolling');
-const { BUTTON_STATES, TOAST_TYPES } = require('../../../constants/ui');
+const JulesTerminal = require('./JulesTerminal');
+const { BUTTON_STATES, TOAST_TYPES } = require('../../constants/ui');
 global.BUTTON_STATES = BUTTON_STATES;
 global.TOAST_TYPES = TOAST_TYPES;
-const JulesManager = require('./index');
-global.JulesModals = JulesModals;
-global.TerminalPolling = TerminalPolling;
+global.JulesTerminal = JulesTerminal;
+global.JulesTerminal = JulesTerminal;
 
 // Mock utilities
 global.StorageUtils = {
@@ -37,10 +35,10 @@ global.DOMUtils = {
 // If we use the REAL FormatUtils, it DOES have escapeHTML.
 // If the code DOES NOT call FormatUtils.escapeHTML(agentEmoji), it will be injected raw.
 
-const FormatUtils = require('../../../Utils/format-utils.js');
+const FormatUtils = require('../../Utils/format-utils.js');
 global.FormatUtils = FormatUtils;
 
-describe('JulesManager Security Repro', () => {
+describe('JulesTerminal Security Repro', () => {
     let manager;
     let mockApp;
 
@@ -58,12 +56,12 @@ describe('JulesManager Security Repro', () => {
             <div id="julesRunnerPanel"></div>
         `;
 
-        global.window.julesService = {
+        global.window.julesAPI = {
             getSessions: jest.fn(),
             createSession: jest.fn(),
         };
 
-        manager = new JulesManager(mockApp);
+        manager = new JulesTerminal(mockApp);
     });
 
     it('vulnerability in _processSession: agentEmoji is not escaped', () => {

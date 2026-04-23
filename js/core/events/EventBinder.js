@@ -26,8 +26,8 @@ class EventBinder {
         const sourceName = e.target.value;
         if (sourceName) {
             await Promise.all([
-                app.julesManager.loadActiveSessionsForRepo(sourceName),
-                app.julesManager.loadPullRequestsForRepo(sourceName)
+                app.julesTerminal.loadActiveSessionsForRepo(sourceName),
+                app.julesTerminal.loadPullRequestsForRepo(sourceName)
             ]);
         } else {
             const terminal = app.elements.julesTerminal;
@@ -35,7 +35,7 @@ class EventBinder {
               terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
               terminal.classList.remove('active');
             }
-            app.julesManager.cleanup();
+            app.julesTerminal.cleanup();
         }
     });
 
@@ -363,7 +363,7 @@ class EventBinder {
               return;
           }
           if (action === "launch-jules") {
-              app.julesManager.launchSession(agent, actionBtn);
+              app.julesTerminal.launchSession(agent, actionBtn);
               const modal = document.getElementById("fusionsModal");
               if (modal && modal.contains(actionBtn)) {
                   modal.classList.remove("visible");
@@ -442,12 +442,12 @@ class EventBinder {
             if (runnerInputs) runnerInputs.classList.add("active");
             if (julesTerminal) julesTerminal.style.display = "";
             // Load sources if not loaded already but initialized
-            if (!app.julesManager || !app.julesManager.initialized) return;
+            if (!app.julesTerminal || !app.julesTerminal.initialized) return;
 
             try {
-                await app.julesManager.loadSources();
+                await app.julesTerminal.loadSources();
             } catch (err) {
-                console.error("JulesManager API failed to load sources after activation.", err);
+                console.error("JulesTerminal API failed to load sources after activation.", err);
             }
         });
     }

@@ -27,7 +27,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
             copyAll: jest.fn(),
             downloadAll: jest.fn(),
             downloadCustomAgents: jest.fn(),
-            julesManager: { loadSources: jest.fn(), initialized: true, launchSession: jest.fn(), loadActiveSessionsForRepo: jest.fn(), loadPullRequestsForRepo: jest.fn(), cleanup: jest.fn() },
+            julesTerminal: { loadSources: jest.fn(), initialized: true, launchSession: jest.fn(), loadActiveSessionsForRepo: jest.fn(), loadPullRequestsForRepo: jest.fn(), cleanup: jest.fn() },
             pinnedManager: { togglePin: jest.fn().mockReturnValue(true), getPinned: jest.fn().mockReturnValue(['0']) },
             getAgentForUI: jest.fn().mockReturnValue({ name: 'Agent', prompt: 'prompt content' }),
             agentRepo: { fetchPrompt: jest.fn().mockResolvedValue('fetched prompt content') },
@@ -43,9 +43,9 @@ describe('EventBinder (Boundary Interrogation)', () => {
         jest.clearAllMocks();
     });
 
-    it('gracefully degrades when JulesManager loadSources throws an unhandled exception', async () => {
+    it('gracefully degrades when JulesTerminal loadSources throws an unhandled exception', async () => {
         const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-        app.julesManager.loadSources.mockRejectedValueOnce(new Error('Network Initialization Failed'));
+        app.julesTerminal.loadSources.mockRejectedValueOnce(new Error('Network Initialization Failed'));
         const activateToggle = document.createElement('input');
         activateToggle.type = 'checkbox';
         activateToggle.id = 'julesActivateToggle';
@@ -133,8 +133,8 @@ describe('EventBinder (Boundary Interrogation)', () => {
         app._cardHtmlCache.set('key', 'html');
         app._domNodeCache.set('key', document.createElement('div'));
 
-        app.julesManager.loadActiveSessionsForRepo.mockResolvedValue();
-        app.julesManager.loadPullRequestsForRepo.mockResolvedValue();
+        app.julesTerminal.loadActiveSessionsForRepo.mockResolvedValue();
+        app.julesTerminal.loadPullRequestsForRepo.mockResolvedValue();
 
         EventBinder.bind(app);
 
@@ -147,9 +147,9 @@ describe('EventBinder (Boundary Interrogation)', () => {
         expect(app._cardHtmlCache.size).toBe(0);
         expect(app._domNodeCache.size).toBe(0);
         expect(app.renderAgents).toHaveBeenCalled();
-        expect(app.julesManager.loadActiveSessionsForRepo).toHaveBeenCalledWith('repo1');
-        expect(app.julesManager.loadPullRequestsForRepo).toHaveBeenCalledWith('repo1');
-        expect(app.julesManager.cleanup).not.toHaveBeenCalled();
+        expect(app.julesTerminal.loadActiveSessionsForRepo).toHaveBeenCalledWith('repo1');
+        expect(app.julesTerminal.loadPullRequestsForRepo).toHaveBeenCalledWith('repo1');
+        expect(app.julesTerminal.cleanup).not.toHaveBeenCalled();
     });
 
     it('interrogates julesRepoPicker change event with falsy sourceName', async () => {
@@ -170,8 +170,8 @@ describe('EventBinder (Boundary Interrogation)', () => {
         await new Promise(process.nextTick);
 
         expect(app.renderAgents).toHaveBeenCalled();
-        expect(app.julesManager.loadActiveSessionsForRepo).not.toHaveBeenCalled();
-        expect(app.julesManager.cleanup).toHaveBeenCalled();
+        expect(app.julesTerminal.loadActiveSessionsForRepo).not.toHaveBeenCalled();
+        expect(app.julesTerminal.cleanup).toHaveBeenCalled();
         expect(terminal.classList.contains('active')).toBe(false);
         expect(terminal.innerHTML).toContain('Awaiting Agent launch command');
     });

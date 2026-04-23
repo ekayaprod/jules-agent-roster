@@ -2,11 +2,11 @@
  * @jest-environment jsdom
  */
 
-const TerminalPolling = require('./TerminalPolling');
+const JulesTerminal = require('./JulesTerminal');
 const { getByText } = require('@testing-library/dom');
 const userEvent = require('@testing-library/user-event').default;
 
-describe('TerminalPolling', () => {
+describe('JulesTerminal', () => {
     let polling;
     let mockManager;
     let mockBlock;
@@ -32,7 +32,7 @@ describe('TerminalPolling', () => {
             }
         };
 
-        window.julesService = {
+        window.julesAPI = {
             getActivities: jest.fn()
         };
 
@@ -49,7 +49,21 @@ describe('TerminalPolling', () => {
         statusSpan.id = 'status-mutated-session123';
         mockBlock.appendChild(statusSpan);
 
-        polling = new TerminalPolling(mockManager);
+
+    const mockRosterApp = {};
+    polling = new JulesTerminal(mockRosterApp);
+    // Bind the mocks to the manager instance
+    polling.julesPollingIntervals = {};
+    polling.sortByCreateTime = jest.fn();
+    polling.getEl = jest.fn();
+    polling.activeModalSessionId = null;
+    polling.loadPullRequestsForRepo = jest.fn();
+    polling.dismissSession = jest.fn();
+    polling.currentRepo = 'test-repo';
+    polling._showInteractionModal = jest.fn();
+    polling.constructor.TERMINAL_POLL_MS = 10;
+    polling.constructor.SUCCESS_DISMISS_DELAY_MS = 100;
+
     });
 
     afterEach(() => {
@@ -72,18 +86,18 @@ describe('TerminalPolling', () => {
         expect(statusSpan.className).toBe('term-status status-waiting');
 
         await user.click(statusSpan);
-        expect(mockManager.modals._showInteractionModal).toHaveBeenCalledWith('session123', '🤖', 'AgentName', 'Needs input');
+        expect(polling._showInteractionModal).toHaveBeenCalledWith('session123', '🤖', 'AgentName', 'Needs input');
     });
 
     it('should format fullHistoryMarkdown correctly and handle contentEl', async () => {
         const activities = [
             { title: 'Title', description: 'Desc', type: 'USER_INPUT', message: 'User Msg', error: { message: 'Err' } }
         ];
-        window.julesService.getActivities.mockResolvedValue({ activities });
+        window.julesAPI.getActivities.mockResolvedValue({ activities });
 
-        mockManager.activeModalSessionId = 'session123';
+        polling.activeModalSessionId = 'session123';
         const mockContentEl = document.createElement('div');
-        mockManager.getEl.mockReturnValue(mockContentEl);
+        polling.getEl.mockReturnValue(mockContentEl);
 
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
 
@@ -91,8 +105,8 @@ describe('TerminalPolling', () => {
         await Promise.resolve(); // flush promises
         await Promise.resolve();
 
-        expect(window.julesService.getActivities).toHaveBeenCalledWith('session123');
-        expect(mockManager.getEl).toHaveBeenCalledWith('historyModalContent');
+        expect(window.julesAPI.getActivities).toHaveBeenCalledWith('session123');
+        expect(polling.getEl).toHaveBeenCalledWith('historyModalContent');
         expect(mockContentEl.innerHTML).toContain('<pre>'); // Contains the pre block
         expect(global.DOMUtils.createMarkdownPreBlock).toHaveBeenCalled();
     });
@@ -100,7 +114,7 @@ describe('TerminalPolling', () => {
     it('should handle completed state', () => {
         const originalClearInterval = global.clearInterval;
         global.clearInterval = jest.fn();
-        mockManager.julesPollingIntervals['session123'] = 999;
+        polling.julesPollingIntervals['session123'] = 999;
 
         const state = { isCompleted: true };
         polling._updatePollingState('session123', mockBlock, state, 'AgentName', '🤖');
@@ -108,19 +122,21 @@ describe('TerminalPolling', () => {
         const statusSpan = getByText(mockBlock, /Execution Finished/i);
         expect(statusSpan.className).toBe('term-status status-success');
         expect(global.clearInterval).toHaveBeenCalledWith(999);
-        expect(mockManager.loadPullRequestsForRepo).toHaveBeenCalledWith('test-repo');
+        expect(polling.loadPullRequestsForRepo).toHaveBeenCalledWith('test-repo');
 
         global.clearInterval = originalClearInterval;
 
-        jest.advanceTimersByTime(10);
-        expect(mockManager.dismissSession).toHaveBeenCalledWith('session123');
+
+    jest.advanceTimersByTime(200); // SUCCESS_DISMISS_DELAY_MS is 100
+    expect(polling.dismissSession).toHaveBeenCalledWith('session123');
+
     });
 
     it('should handle hasError state', () => {
         const originalClearInterval = global.clearInterval;
         global.clearInterval = jest.fn();
         const state = { hasError: true, latestLog: 'Error occurred' };
-        mockManager.julesPollingIntervals['session123'] = 123; // mock interval ID
+        polling.julesPollingIntervals['session123'] = 123; // mock interval ID
 
         polling._updatePollingState('session123', mockBlock, state, 'AgentName', '🤖');
 
@@ -135,9 +151,9 @@ describe('TerminalPolling', () => {
     it('should catch API errors', async () => {
         const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-        window.julesService.getActivities.mockRejectedValue(new Error('API fail'));
+        window.julesAPI.getActivities.mockRejectedValue(new Error('API fail'));
 
-        const TelemetryUtils = require('../../../Utils/telemetry-utils.js');
+        const TelemetryUtils = require('../../Utils/telemetry-utils.js');
         const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
@@ -163,7 +179,7 @@ describe('TerminalPolling', () => {
             { type: 'USER_INPUT' },
             { userActionRequired: true }
         ];
-        window.julesService.getActivities.mockResolvedValue({ activities });
+        window.julesAPI.getActivities.mockResolvedValue({ activities });
 
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
 
@@ -171,18 +187,18 @@ describe('TerminalPolling', () => {
         await Promise.resolve(); // flush promises
         await Promise.resolve();
 
-        expect(window.julesService.getActivities).toHaveBeenCalledWith('session123');
+        expect(window.julesAPI.getActivities).toHaveBeenCalledWith('session123');
     });
 
     it('should handle activities polling early returns', async () => {
-        window.julesService.getActivities.mockResolvedValue({});
+        window.julesAPI.getActivities.mockResolvedValue({});
 
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
 
         jest.advanceTimersByTime(10);
         await Promise.resolve(); // flush promises
 
-        expect(window.julesService.getActivities).toHaveBeenCalledWith('session123');
+        expect(window.julesAPI.getActivities).toHaveBeenCalledWith('session123');
     });
 
     it('should handle missing statusSpan', () => {
@@ -201,7 +217,7 @@ describe('TerminalPolling', () => {
             { requiresInput: true },
             { type: 'INPUT' }
         ];
-        window.julesService.getActivities.mockResolvedValue({ activities });
+        window.julesAPI.getActivities.mockResolvedValue({ activities });
 
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
 
@@ -209,11 +225,11 @@ describe('TerminalPolling', () => {
         await Promise.resolve(); // flush promises
         await Promise.resolve();
 
-        expect(window.julesService.getActivities).toHaveBeenCalledWith('session123');
+        expect(window.julesAPI.getActivities).toHaveBeenCalledWith('session123');
     });
 
-    it('should clear existing interval on startTerminalPolling', () => {
-        mockManager.julesPollingIntervals['session123'] = 999;
+    it('should clear existing interval on startJulesTerminal', () => {
+        polling.julesPollingIntervals['session123'] = 999;
         const originalClearInterval = global.clearInterval;
         global.clearInterval = jest.fn();
 
@@ -224,18 +240,18 @@ describe('TerminalPolling', () => {
     });
 
     it('should handle uninitialized julesPollingIntervals', () => {
-        mockManager.julesPollingIntervals = null;
+        polling.julesPollingIntervals = null;
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
-        expect(mockManager.julesPollingIntervals).toHaveProperty('session123');
+        expect(polling.julesPollingIntervals).toHaveProperty('session123');
     });
 
     it('should format empty history and pass "No history available." to createMarkdownPreBlock', async () => {
         const activities = [];
-        window.julesService.getActivities.mockResolvedValue({ activities });
+        window.julesAPI.getActivities.mockResolvedValue({ activities });
 
-        mockManager.activeModalSessionId = 'session123';
+        polling.activeModalSessionId = 'session123';
         const mockContentEl = document.createElement('div');
-        mockManager.getEl.mockReturnValue(mockContentEl);
+        polling.getEl.mockReturnValue(mockContentEl);
 
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
 
@@ -250,7 +266,7 @@ describe('TerminalPolling', () => {
         const activities = [
             { error: { } }
         ];
-        window.julesService.getActivities.mockResolvedValue({ activities });
+        window.julesAPI.getActivities.mockResolvedValue({ activities });
 
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
 
@@ -267,10 +283,10 @@ describe('TerminalPolling', () => {
             { title: 'A very very long title that exceeds seventy characters in length and will be truncated' },
             { error: { } }
         ];
-        window.julesService.getActivities.mockResolvedValue({ activities });
+        window.julesAPI.getActivities.mockResolvedValue({ activities });
 
-        mockManager.activeModalSessionId = 'session123';
-        mockManager.getEl.mockReturnValue(null); // contentEl missing
+        polling.activeModalSessionId = 'session123';
+        polling.getEl.mockReturnValue(null); // contentEl missing
 
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
 
@@ -278,7 +294,7 @@ describe('TerminalPolling', () => {
         await Promise.resolve(); // flush promises
         await Promise.resolve();
 
-        expect(window.julesService.getActivities).toHaveBeenCalledWith('session123');
-        expect(mockManager.getEl).toHaveBeenCalledWith('historyModalContent');
+        expect(window.julesAPI.getActivities).toHaveBeenCalledWith('session123');
+        expect(polling.getEl).toHaveBeenCalledWith('historyModalContent');
     });
 });

@@ -24,7 +24,7 @@
     "emoji": "⚡",
     "role": "Velocity Tuner",
     "category": "Performance",
-    "tier": "Plus",
+    "tier": "Core",
     "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge systemic latency.",
     "promptFile": "prompts/Bolt+.md",
     "isCustom": false
@@ -104,7 +104,7 @@
     "emoji": "🎨",
     "role": "UI Artist",
     "category": "UX",
-    "tier": "Plus",
+    "tier": "Core",
     "description": "STYLIZE frontend components with design tokens, transitions, and refined typography to create absolute visual delight.",
     "promptFile": "prompts/Palette+.md",
     "isCustom": false
@@ -154,7 +154,7 @@
     "emoji": "🛡️",
     "role": "Perimeter Fortifier",
     "category": "Security",
-    "tier": "Plus",
+    "tier": "Core",
     "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries.",
     "promptFile": "prompts/Sentinel+.md",
     "isCustom": false

@@ -2,14 +2,10 @@
  * @jest-environment jsdom
  */
 
-const JulesModals = require('../JulesModals');
-const TerminalPolling = require('../TerminalPolling');
-const { BUTTON_STATES, TOAST_TYPES } = require('../../../../constants/ui');
+const { BUTTON_STATES, TOAST_TYPES } = require('../../constants/ui');
 global.BUTTON_STATES = BUTTON_STATES;
 global.TOAST_TYPES = TOAST_TYPES;
-const JulesManager = require('../index');
-global.JulesModals = JulesModals;
-global.TerminalPolling = TerminalPolling;
+const JulesTerminal = require('./JulesTerminal');
 
 // Mock utilities
 global.StorageUtils = {
@@ -38,8 +34,8 @@ global.FormatUtils = {
     extractRepoPath: jest.fn().mockImplementation((sourceName) => sourceName ? sourceName.replace('sources/github/', '') : '')
 };
 
-describe('JulesManager Modal Tests', () => {
-    let manager;
+describe('JulesTerminal Modal Tests', () => {
+    let julesTerminal;
     let mockApp;
     let mockToast;
 
@@ -70,7 +66,14 @@ describe('JulesManager Modal Tests', () => {
             <input id="julesTaskInput" />
         `;
 
-        global.window.julesService = {
+
+    global.window.githubAPI = {
+        getPullRequests: jest.fn().mockResolvedValue([]),
+        getPullRequest: jest.fn(),
+        mergePullRequest: jest.fn(),
+        closePullRequest: jest.fn()
+    };
+    global.window.julesAPI = {
             configure: jest.fn(),
             getSources: jest.fn(),
             getSessions: jest.fn().mockResolvedValue({ sessions: [] }),
@@ -78,15 +81,16 @@ describe('JulesManager Modal Tests', () => {
             getActivities: jest.fn()
         };
 
-        manager = new JulesManager(mockApp);
+        julesTerminal = new JulesTerminal(mockApp);
     });
 
     afterEach(() => {
-        manager.cleanup();
+        julesTerminal.cleanup();
         jest.clearAllTimers();
         jest.restoreAllMocks();
         document.body.innerHTML = '';
-        delete global.window.julesService;
+        delete global.window.julesAPI;
+        delete global.window.githubAPI;
     });
 
     describe('Interaction Modal Coverage', () => {
@@ -111,7 +115,7 @@ describe('JulesManager Modal Tests', () => {
             nameEl = document.getElementById('interactionModalAgent');
             msgEl = document.getElementById('interactionModalMessage');
 
-            manager.modals._initInteractionModal();
+            julesTerminal._initInteractionModal();
         });
 
         it('should show history modal with correct data', () => {
@@ -127,12 +131,12 @@ describe('JulesManager Modal Tests', () => {
             const hNameEl = document.getElementById('historyModalAgent');
             const hMsgEl = document.getElementById('historyModalContent');
 
-            // Force manager.getEl to look into DOM directly
-            manager.getEl = jest.fn((id) => document.getElementById(id));
+            // Force julesTerminal.getEl to look into DOM directly
+            julesTerminal.getEl = jest.fn((id) => document.getElementById(id));
 
-            manager.modals._showHistoryModal('s456', '👾', 'HistoryAgent');
+            julesTerminal._showHistoryModal('s456', '👾', 'HistoryAgent');
 
-            expect(manager.activeModalSessionId).toBe('s456');
+            expect(julesTerminal.activeModalSessionId).toBe('s456');
             expect(hEmojiEl.textContent).toBe('👾');
             expect(hNameEl.textContent).toBe('HistoryAgent');
             expect(hMsgEl.innerHTML).toContain('Loading execution thread...');
@@ -142,9 +146,9 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should bail early and not throw if history modal is missing', () => {
-            manager.getEl = jest.fn((id) => null);
-            manager.modals._showHistoryModal('s456', '👾', 'HistoryAgent');
-            expect(manager.activeModalSessionId).toBe('s456');
+            julesTerminal.getEl = jest.fn((id) => null);
+            julesTerminal._showHistoryModal('s456', '👾', 'HistoryAgent');
+            expect(julesTerminal.activeModalSessionId).toBe('s456');
         });
 
         it('should gracefully handle missing inner DOM elements for history modal', () => {
@@ -153,23 +157,23 @@ describe('JulesManager Modal Tests', () => {
             `;
             const hModal = document.getElementById('julesHistoryModal');
 
-            manager.getEl = jest.fn((id) => {
+            julesTerminal.getEl = jest.fn((id) => {
                 if (id === 'julesHistoryModal') return hModal;
                 return null;
             });
 
-            manager.modals._showHistoryModal('s456', '👾', 'HistoryAgent');
+            julesTerminal._showHistoryModal('s456', '👾', 'HistoryAgent');
 
-            expect(manager.activeModalSessionId).toBe('s456');
+            expect(julesTerminal.activeModalSessionId).toBe('s456');
             expect(hModal.classList.contains('visible')).toBe(true);
 
             jest.advanceTimersByTime(100);
         });
 
         it('should show interaction modal with correct data', () => {
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
-            expect(manager.activeModalSessionId).toBe('s123');
+            expect(julesTerminal.activeModalSessionId).toBe('s123');
             expect(emojiEl.textContent).toBe('🤖');
             expect(nameEl.textContent).toBe('TestAgent');
             expect(msgEl.textContent).toBe('Please confirm');
@@ -181,11 +185,11 @@ describe('JulesManager Modal Tests', () => {
         it('should bail early and not throw if modal is missing', () => {
             // Remove modal to test early return branch
             modal.remove();
-            manager.elements['julesInteractionModal'] = null;
+            julesTerminal.elements['julesInteractionModal'] = null;
 
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
-            expect(manager.activeModalSessionId).toBe('s123');
+            expect(julesTerminal.activeModalSessionId).toBe('s123');
             expect(modal.classList.contains('visible')).toBe(false); // Should not have been modified
         });
 
@@ -196,14 +200,14 @@ describe('JulesManager Modal Tests', () => {
             msgEl.remove();
             inputField.remove();
 
-            manager.elements['interactionModalEmoji'] = null;
-            manager.elements['interactionModalAgent'] = null;
-            manager.elements['interactionModalMessage'] = null;
-            manager.elements['interactionModalInput'] = null;
+            julesTerminal.elements['interactionModalEmoji'] = null;
+            julesTerminal.elements['interactionModalAgent'] = null;
+            julesTerminal.elements['interactionModalMessage'] = null;
+            julesTerminal.elements['interactionModalInput'] = null;
 
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
-            expect(manager.activeModalSessionId).toBe('s123');
+            expect(julesTerminal.activeModalSessionId).toBe('s123');
             expect(modal.classList.contains('visible')).toBe(true);
 
             // Should not throw on setTimeout focus if inputField is null
@@ -211,22 +215,22 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should close modal on cancel button click', () => {
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             cancelBtn.click();
 
             expect(modal.classList.contains('visible')).toBe(false);
-            expect(manager.activeModalSessionId).toBeNull();
+            expect(julesTerminal.activeModalSessionId).toBeNull();
             expect(inputField.value).toBe('');
         });
 
         it('should submit interaction on submit button click and handle success', async () => {
-            window.julesService.sendUserInput = jest.fn().mockResolvedValueOnce({});
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            window.julesAPI.sendUserInput = jest.fn().mockResolvedValueOnce({});
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = 'My response';
             await submitBtn.click();
 
-            expect(window.julesService.sendUserInput).toHaveBeenCalledWith('s123', 'My response');
+            expect(window.julesAPI.sendUserInput).toHaveBeenCalledWith('s123', 'My response');
             expect(mockToast.show).toHaveBeenCalledWith('Reply transmitted.', TOAST_TYPES.SUCCESS);
             expect(modal.classList.contains('visible')).toBe(false);
             expect(inputField.disabled).toBe(false); // restored in finally
@@ -236,19 +240,19 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should submit interaction on Enter keydown', async () => {
-            window.julesService.sendUserInput = jest.fn().mockResolvedValueOnce({});
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            window.julesAPI.sendUserInput = jest.fn().mockResolvedValueOnce({});
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = 'My response';
             const event = new KeyboardEvent('keydown', { key: 'Enter' });
             await inputField.dispatchEvent(event);
 
-            expect(window.julesService.sendUserInput).toHaveBeenCalledWith('s123', 'My response');
+            expect(window.julesAPI.sendUserInput).toHaveBeenCalledWith('s123', 'My response');
         });
 
         it('should handle API failure during submission', async () => {
-            window.julesService.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            window.julesAPI.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = 'My response';
             await submitBtn.click();
@@ -259,29 +263,29 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should handle missing inputField or errorSpan during close', () => {
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.remove();
-            manager.elements['interactionModalInput'] = null;
+            julesTerminal.elements['interactionModalInput'] = null;
 
             const errSpan = document.getElementById('interactionModalError');
             if (errSpan) errSpan.remove();
-            manager.elements['interactionModalError'] = null;
+            julesTerminal.elements['interactionModalError'] = null;
 
             cancelBtn.click();
             expect(modal.classList.contains('visible')).toBe(false);
         });
 
         it('should not submit if input is empty and inputField/errorSpan are missing', async () => {
-            window.julesService.sendUserInput = jest.fn();
+            window.julesAPI.sendUserInput = jest.fn();
             inputField.remove();
-            manager.elements['interactionModalInput'] = null;
+            julesTerminal.elements['interactionModalInput'] = null;
             const errSpan = document.getElementById('interactionModalError');
             if (errSpan) errSpan.remove();
-            manager.elements['interactionModalError'] = null;
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.elements['interactionModalError'] = null;
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             await submitBtn.click();
-            expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
+            expect(window.julesAPI.sendUserInput).not.toHaveBeenCalled();
         });
 
         it('should close PR modal on cancel button click', () => {
@@ -291,7 +295,7 @@ describe('JulesManager Modal Tests', () => {
             `;
             const prModal = document.getElementById('julesPRModal');
             const cancelBtn = document.getElementById('cancelPRBtn');
-            manager.modals._initPRModal();
+            julesTerminal._initPRModal();
             cancelBtn.click();
             expect(prModal.classList.contains('visible')).toBe(false);
         });
@@ -302,8 +306,8 @@ describe('JulesManager Modal Tests', () => {
             span.textContent = 'Some error';
             document.body.appendChild(span);
             // Re-init so the modal grabs the new span
-            manager.modals._initInteractionModal();
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal._initInteractionModal();
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             const inputField = document.getElementById('interactionModalInput');
             const errorSpan = document.getElementById('interactionModalError');
@@ -328,8 +332,8 @@ describe('JulesManager Modal Tests', () => {
             span.id = 'interactionModalError';
             span.className = 'hidden';
             document.body.appendChild(span);
-            manager.modals._initInteractionModal();
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal._initInteractionModal();
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             const inputField = document.getElementById('interactionModalInput');
             const errorSpan = document.getElementById('interactionModalError');
@@ -350,8 +354,8 @@ describe('JulesManager Modal Tests', () => {
             span.id = 'interactionModalError';
             span.textContent = 'Error';
             document.body.appendChild(span);
-            manager.modals._initInteractionModal();
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal._initInteractionModal();
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             const inputField = document.getElementById('interactionModalInput');
             const errorSpan = document.getElementById('interactionModalError');
@@ -371,8 +375,8 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should perform silent rollback when API fails but statusSpan is missing', async () => {
-            window.julesService.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            window.julesAPI.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             const statusSpan = document.getElementById('status-s123');
             if (statusSpan) statusSpan.remove();
             inputField.value = 'My response';
@@ -381,27 +385,27 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should handle interaction modal gracefully if inputField is missing during close', () => {
-             manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
-             manager.elements['interactionModalInput'] = null;
+             julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+             julesTerminal.elements['interactionModalInput'] = null;
              const inEl = document.getElementById('interactionModalInput');
              if(inEl) inEl.remove();
 
              const cancelBtn = document.getElementById('cancelInteractionBtn');
              cancelBtn.click();
 
-             expect(manager.activeModalSessionId).toBeNull();
+             expect(julesTerminal.activeModalSessionId).toBeNull();
         });
 
         it('should handle interaction modal gracefully if errorSpan is missing during close', () => {
-             manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
-             manager.elements['interactionModalError'] = null;
+             julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+             julesTerminal.elements['interactionModalError'] = null;
              const errSpan = document.getElementById('interactionModalError');
              if(errSpan) errSpan.remove();
 
              const cancelBtn = document.getElementById('cancelInteractionBtn');
              cancelBtn.click();
 
-             expect(manager.activeModalSessionId).toBeNull();
+             expect(julesTerminal.activeModalSessionId).toBeNull();
         });
 
         it('should abort history modal submission if activeModalSessionId is null', async () => {
@@ -412,20 +416,20 @@ describe('JulesManager Modal Tests', () => {
                 <input id="historyModalInput" />
                 <span id="historyModalError"></span>
             `;
-            manager.modals._initInteractionModal();
+            julesTerminal._initInteractionModal();
 
             // Set state explicitly
-            manager.activeModalSessionId = null;
+            julesTerminal.activeModalSessionId = null;
 
-            const submitHistoryBtn = manager.getEl('submitHistoryBtn');
-            window.julesService.sendUserInput = jest.fn();
+            const submitHistoryBtn = julesTerminal.getEl('submitHistoryBtn');
+            window.julesAPI.sendUserInput = jest.fn();
 
             await submitHistoryBtn.click();
-            expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
+            expect(window.julesAPI.sendUserInput).not.toHaveBeenCalled();
         });
 
         it('should fallback to default emoji if agent and name mismatch', () => {
-            manager.renderedSessionIds = new Set(['s2']);
+            julesTerminal.renderedSessionIds = new Set(['s2']);
             const terminal = document.createElement('div');
 
             const session = {
@@ -434,9 +438,9 @@ describe('JulesManager Modal Tests', () => {
             };
 
             // Remove it from set so _processSession continues
-            manager.renderedSessionIds.clear();
+            julesTerminal.renderedSessionIds.clear();
 
-            manager._processSession(session, terminal, 'owner/repo');
+            julesTerminal._processSession(session, terminal, 'owner/repo');
 
             // Verify emoji fallback
             const item = terminal.querySelector('#session-s2');
@@ -452,7 +456,7 @@ describe('JulesManager Modal Tests', () => {
                 title: 'CustomAgent'
             };
 
-            manager._processSession(session, terminal, 'owner/repo');
+            julesTerminal._processSession(session, terminal, 'owner/repo');
 
             const item = terminal.querySelector('#session-custom1');
             expect(item).not.toBeNull();
@@ -464,9 +468,9 @@ describe('JulesManager Modal Tests', () => {
             item.innerHTML = '<span id="status-123">Initializing...</span>';
             document.body.appendChild(item);
 
-            manager.polling.startTerminalPolling('123', item, 'Bot', '🤖');
+            julesTerminal.startTerminalPolling('123', item, 'Bot', '🤖');
 
-            window.julesService.getActivities.mockResolvedValueOnce({
+            window.julesAPI.getActivities.mockResolvedValueOnce({
                 activities: [ { type: 'USER_INPUT', title: 'Input Needed' } ] // missing message but matching INPUT trigger
             });
 
@@ -493,16 +497,16 @@ describe('JulesManager Modal Tests', () => {
                 <div id="historyModalContent"></div>
                 <div id="status-s123"></div>
             `;
-            manager.modals._initInteractionModal();
+            julesTerminal._initInteractionModal();
 
              const item = document.createElement('div');
              item.innerHTML = '<span id="status-123">Initializing...</span>';
              document.body.appendChild(item);
 
-             manager.modals._showHistoryModal('123', '🤖', 'TestAgent');
-             manager.polling.startTerminalPolling('123', item, 'Bot', '🤖');
+             julesTerminal._showHistoryModal('123', '🤖', 'TestAgent');
+             julesTerminal.startTerminalPolling('123', item, 'Bot', '🤖');
 
-             window.julesService.getActivities.mockResolvedValueOnce({
+             window.julesAPI.getActivities.mockResolvedValueOnce({
                  activities: [
                      { title: 'Test Title', description: 'Test Desc', type: 'USER_INPUT', message: 'Hello', error: { message: 'Some err' } }
                  ]
@@ -510,7 +514,7 @@ describe('JulesManager Modal Tests', () => {
 
              await jest.advanceTimersByTimeAsync(3000);
 
-             const contentEl = manager.getEl('historyModalContent');
+             const contentEl = julesTerminal.getEl('historyModalContent');
              expect(contentEl.innerHTML).toContain('Test Title');
              expect(contentEl.innerHTML).toContain('Test Desc');
              expect(contentEl.innerHTML).toContain('*You:* Hello');
@@ -518,12 +522,12 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should handle interaction modal gracefully if history fields are missing', async () => {
-            manager.modals._showHistoryModal('s123', '🤖', 'TestAgent');
+            julesTerminal._showHistoryModal('s123', '🤖', 'TestAgent');
 
             // Remove modal inputs
             const historyModalInput = document.getElementById('historyModalInput');
             if (historyModalInput) historyModalInput.remove();
-            manager.elements['historyModalInput'] = null;
+            julesTerminal.elements['historyModalInput'] = null;
 
             const cancelHistoryBtn = document.getElementById('cancelHistoryBtn');
             if (cancelHistoryBtn) cancelHistoryBtn.click();
@@ -546,18 +550,18 @@ describe('JulesManager Modal Tests', () => {
                 <div id="historyModalContent"></div>
                 <div id="status-s123"></div>
             `;
-            manager.modals._initInteractionModal();
-            manager.modals._showHistoryModal('s123', '🤖', 'TestAgent');
+            julesTerminal._initInteractionModal();
+            julesTerminal._showHistoryModal('s123', '🤖', 'TestAgent');
 
-            const historyModalInput = manager.getEl('historyModalInput');
+            const historyModalInput = julesTerminal.getEl('historyModalInput');
             historyModalInput.value = 'History reply';
 
-            window.julesService.sendUserInput = jest.fn().mockResolvedValueOnce({});
+            window.julesAPI.sendUserInput = jest.fn().mockResolvedValueOnce({});
 
-            const submitHistoryBtn = manager.getEl('submitHistoryBtn');
+            const submitHistoryBtn = julesTerminal.getEl('submitHistoryBtn');
             await submitHistoryBtn.click();
 
-            expect(window.julesService.sendUserInput).toHaveBeenCalledWith('s123', 'History reply');
+            expect(window.julesAPI.sendUserInput).toHaveBeenCalledWith('s123', 'History reply');
             expect(mockToast.show).toHaveBeenCalledWith('Reply transmitted.', TOAST_TYPES.SUCCESS);
         });
 
@@ -569,13 +573,13 @@ describe('JulesManager Modal Tests', () => {
                 <input id="historyModalInput" />
                 <span id="historyModalError"></span>
             `;
-            manager.modals._initInteractionModal();
-            manager.modals._showHistoryModal('s123', '🤖', 'TestAgent');
+            julesTerminal._initInteractionModal();
+            julesTerminal._showHistoryModal('s123', '🤖', 'TestAgent');
 
-            const submitHistoryBtn = manager.getEl('submitHistoryBtn');
+            const submitHistoryBtn = julesTerminal.getEl('submitHistoryBtn');
             await submitHistoryBtn.click();
 
-            expect(manager.getEl('historyModalError').textContent).toBe('Please enter a response.');
+            expect(julesTerminal.getEl('historyModalError').textContent).toBe('Please enter a response.');
         });
 
         it('should submit interaction on Enter keydown in history modal', async () => {
@@ -587,18 +591,18 @@ describe('JulesManager Modal Tests', () => {
                 <span id="historyModalError"></span>
                 <div id="status-s123"></div>
             `;
-            manager.modals._initInteractionModal();
-            manager.modals._showHistoryModal('s123', '🤖', 'TestAgent');
+            julesTerminal._initInteractionModal();
+            julesTerminal._showHistoryModal('s123', '🤖', 'TestAgent');
 
-            const historyModalInput = manager.getEl('historyModalInput');
+            const historyModalInput = julesTerminal.getEl('historyModalInput');
             historyModalInput.value = 'Enter reply';
 
-            window.julesService.sendUserInput = jest.fn().mockResolvedValueOnce({});
+            window.julesAPI.sendUserInput = jest.fn().mockResolvedValueOnce({});
 
             const event = new KeyboardEvent('keydown', { key: 'Enter' });
             await historyModalInput.dispatchEvent(event);
 
-            expect(window.julesService.sendUserInput).toHaveBeenCalledWith('s123', 'Enter reply');
+            expect(window.julesAPI.sendUserInput).toHaveBeenCalledWith('s123', 'Enter reply');
         });
 
         it('should clear error on input event in history modal', () => {
@@ -609,14 +613,14 @@ describe('JulesManager Modal Tests', () => {
                 <input id="historyModalInput" />
                 <span id="historyModalError">Error here</span>
             `;
-            manager.modals._initInteractionModal();
-            manager.modals._showHistoryModal('s123', '🤖', 'TestAgent');
+            julesTerminal._initInteractionModal();
+            julesTerminal._showHistoryModal('s123', '🤖', 'TestAgent');
 
-            const historyModalInput = manager.getEl('historyModalInput');
+            const historyModalInput = julesTerminal.getEl('historyModalInput');
             historyModalInput.dispatchEvent(new Event('input'));
 
-            expect(manager.getEl('historyModalError').textContent).toBe('');
-            expect(manager.getEl('historyModalError').classList.contains('hidden')).toBe(true);
+            expect(julesTerminal.getEl('historyModalError').textContent).toBe('');
+            expect(julesTerminal.getEl('historyModalError').classList.contains('hidden')).toBe(true);
         });
 
         it('should handle API failure during history modal submission', async () => {
@@ -629,17 +633,17 @@ describe('JulesManager Modal Tests', () => {
                 <span id="historyModalError"></span>
                 <div id="status-s123"></div>
             `;
-            manager.modals._initInteractionModal();
-            manager.modals._showHistoryModal('s123', '🤖', 'TestAgent');
+            julesTerminal._initInteractionModal();
+            julesTerminal._showHistoryModal('s123', '🤖', 'TestAgent');
 
-            const historyModalInput = manager.getEl('historyModalInput');
+            const historyModalInput = julesTerminal.getEl('historyModalInput');
             historyModalInput.value = 'Failing reply';
 
-            window.julesService.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('API fail'));
+            window.julesAPI.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('API fail'));
 
-            const submitHistoryBtn = manager.getEl('submitHistoryBtn');
+            const submitHistoryBtn = julesTerminal.getEl('submitHistoryBtn');
 
-            const TelemetryUtils = require('../../../../Utils/telemetry-utils.js');
+            const TelemetryUtils = require('../../Utils/telemetry-utils.js');
             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
             await submitHistoryBtn.click();
@@ -658,56 +662,56 @@ describe('JulesManager Modal Tests', () => {
                 <input id="historyModalInput" />
                 <span id="historyModalError"></span>
             `;
-            manager.modals._initInteractionModal();
-            manager.activeModalSessionId = null;
+            julesTerminal._initInteractionModal();
+            julesTerminal.activeModalSessionId = null;
 
-            const submitHistoryBtn = manager.getEl('submitHistoryBtn');
+            const submitHistoryBtn = julesTerminal.getEl('submitHistoryBtn');
             await submitHistoryBtn.click(); // Should do nothing
 
-            const cancelHistoryBtn = manager.getEl('cancelHistoryBtn');
+            const cancelHistoryBtn = julesTerminal.getEl('cancelHistoryBtn');
             cancelHistoryBtn.click(); // Should close and not throw
 
-            expect(manager.getEl('julesHistoryModal').classList.contains('visible')).toBe(false);
+            expect(julesTerminal.getEl('julesHistoryModal').classList.contains('visible')).toBe(false);
         });
 
         it('should handle interaction modal gracefully if inputField is missing but errorSpan is present during submission with empty text', async () => {
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
-            manager.elements['interactionModalInput'] = null;
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.elements['interactionModalInput'] = null;
             inputField.remove();
             await submitBtn.click();
         });
 
         it('should handle interaction modal gracefully if inputField is present but errorSpan is missing during submission with empty text', async () => {
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
-            manager.elements['interactionModalError'] = null;
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.elements['interactionModalError'] = null;
             const errSpan = document.getElementById('interactionModalError');
             if (errSpan) errSpan.remove();
             await submitBtn.click();
         });
 
         it('should handle interaction modal missing elements gracefully when submit button clicked and input empty', async () => {
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
-            const originalInputField = manager.getEl('interactionModalInput');
+            const originalInputField = julesTerminal.getEl('interactionModalInput');
             originalInputField.value = '   ';
 
-            manager.elements['interactionModalInput'] = null;
-            manager.elements['interactionModalError'] = null;
+            julesTerminal.elements['interactionModalInput'] = null;
+            julesTerminal.elements['interactionModalError'] = null;
 
-            window.julesService.sendUserInput = jest.fn();
+            window.julesAPI.sendUserInput = jest.fn();
             await submitBtn.click();
 
-            expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
+            expect(window.julesAPI.sendUserInput).not.toHaveBeenCalled();
         });
 
         it('should handle interaction modal missing input field/error span during input event branch', async () => {
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
-            const originalInputField = manager.getEl('interactionModalInput');
-            const originalErrorSpan = manager.getEl('interactionModalError');
+            const originalInputField = julesTerminal.getEl('interactionModalInput');
+            const originalErrorSpan = julesTerminal.getEl('interactionModalError');
 
-            manager.elements['interactionModalInput'] = null;
-            manager.elements['interactionModalError'] = null;
+            julesTerminal.elements['interactionModalInput'] = null;
+            julesTerminal.elements['interactionModalError'] = null;
 
             const event = new Event('input');
             if(originalInputField) {
@@ -716,20 +720,20 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should handle missing errorSpan when input is empty', async () => {
-            window.julesService.sendUserInput = jest.fn();
+            window.julesAPI.sendUserInput = jest.fn();
             const errSpan = document.getElementById('interactionModalError');
             if (errSpan) errSpan.remove();
-            manager.elements['interactionModalError'] = null;
+            julesTerminal.elements['interactionModalError'] = null;
             inputField.value = '';
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             await submitBtn.click();
-            expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
+            expect(window.julesAPI.sendUserInput).not.toHaveBeenCalled();
         });
 
         it('should handle interaction modal gracefully if inputField is missing during input event', async () => {
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             inputField.remove();
-            manager.elements['interactionModalInput'] = null;
+            julesTerminal.elements['interactionModalInput'] = null;
             const event = new Event('input');
             if(inputField) {
                 inputField.dispatchEvent(event);
@@ -738,13 +742,13 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should not submit if input is empty', async () => {
-            window.julesService.sendUserInput = jest.fn();
-            manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            window.julesAPI.sendUserInput = jest.fn();
+            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = '   '; // only whitespace
             await submitBtn.click();
 
-            expect(window.julesService.sendUserInput).not.toHaveBeenCalled();
+            expect(window.julesAPI.sendUserInput).not.toHaveBeenCalled();
         });
     });
 
@@ -767,7 +771,7 @@ describe('JulesManager Modal Tests', () => {
             mergeBtn = document.createElement('button');
             closePRBtn = document.createElement('button');
 
-            manager.elements = {
+            julesTerminal.elements = {
                 julesPRModal: modal,
                 prModalTitleText: titleEl,
                 prModalExternalLink: linkEl,
@@ -778,11 +782,11 @@ describe('JulesManager Modal Tests', () => {
             };
 
             // Mock getEl
-            manager.getEl = jest.fn((id) => manager.elements[id]);
-            manager.app = { toast: { show: jest.fn() } };
-            manager.loadPullRequestsForRepo = jest.fn();
+            julesTerminal.getEl = jest.fn((id) => julesTerminal.elements[id]);
+            julesTerminal.app = { toast: { show: jest.fn() } };
+            julesTerminal.loadPullRequestsForRepo = jest.fn();
 
-            window.julesService = {
+            window.julesAPI = {
                 mergePullRequest: jest.fn(),
                 closePullRequest: jest.fn()
             };
@@ -800,13 +804,13 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should bail if modal is missing', () => {
-            manager.elements.julesPRModal = null;
-            manager.modals._showPRModal(prMock, 'repo');
+            julesTerminal.elements.julesPRModal = null;
+            julesTerminal._showPRModal(prMock, 'repo');
             expect(titleEl.textContent).toBe(''); // Should not have been updated
         });
 
         it('should populate modal and show it', () => {
-            manager.modals._showPRModal(prMock, 'repo');
+            julesTerminal._showPRModal(prMock, 'repo');
             expect(titleEl.textContent).toBe('#123 Test PR');
             expect(linkEl.href).toBe('https://github.com/test/test/pull/123');
             expect(contentEl.innerHTML).toBe('<pre></pre>');
@@ -816,35 +820,35 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should handle missing merge PR button gracefully', () => {
-            manager.elements.mergePRBtn = null;
-            manager.modals._showPRModal(prMock, 'repo');
+            julesTerminal.elements.mergePRBtn = null;
+            julesTerminal._showPRModal(prMock, 'repo');
             expect(titleEl.textContent).toBe('#123 Test PR');
         });
 
         it('should handle missing close PR button gracefully', () => {
-            manager.elements.closePRBtn = null;
-            manager.modals._showPRModal(prMock, 'repo');
+            julesTerminal.elements.closePRBtn = null;
+            julesTerminal._showPRModal(prMock, 'repo');
             expect(titleEl.textContent).toBe('#123 Test PR');
         });
 
         it('should handle merge PR success', async () => {
-            window.julesService.mergePullRequest.mockResolvedValue();
-            manager.modals._showPRModal(prMock, 'repo');
+            window.githubAPI.mergePullRequest.mockResolvedValue();
+            julesTerminal._showPRModal(prMock, 'repo');
 
             // Dispatch a true DOM click event
             const event = new MouseEvent('click');
             await mergeBtn.dispatchEvent(event);
 
             expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, BUTTON_STATES.LOADING, "Merging...");
-            expect(window.julesService.mergePullRequest).toHaveBeenCalledWith('repo', 123);
-            expect(manager.app.toast.show).toHaveBeenCalledWith('Successfully merged PR #123', TOAST_TYPES.SUCCESS);
+            expect(window.githubAPI.mergePullRequest).toHaveBeenCalledWith('repo', 123);
+            expect(julesTerminal.app.toast.show).toHaveBeenCalledWith('Successfully merged PR #123', TOAST_TYPES.SUCCESS);
             expect(modal.classList.contains('visible')).toBe(false);
-            expect(manager.loadPullRequestsForRepo).toHaveBeenCalledWith('repo');
+            expect(julesTerminal.loadPullRequestsForRepo).toHaveBeenCalledWith('repo');
         });
 
         it('should handle merge PR failure and show error', async () => {
-            window.julesService.mergePullRequest.mockRejectedValue(new Error('Merge conflict'));
-            manager.modals._showPRModal(prMock, 'repo');
+            window.githubAPI.mergePullRequest.mockRejectedValue(new Error('Merge conflict'));
+            julesTerminal._showPRModal(prMock, 'repo');
 
             const event = new MouseEvent('click');
             await mergeBtn.dispatchEvent(event);
@@ -855,22 +859,22 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should handle close PR success', async () => {
-            window.julesService.closePullRequest.mockResolvedValue();
-            manager.modals._showPRModal(prMock, 'repo');
+            window.githubAPI.closePullRequest.mockResolvedValue();
+            julesTerminal._showPRModal(prMock, 'repo');
 
             const event = new MouseEvent('click');
             await closePRBtn.dispatchEvent(event);
 
             expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, BUTTON_STATES.LOADING, "Closing...");
-            expect(window.julesService.closePullRequest).toHaveBeenCalledWith('repo', 123);
-            expect(manager.app.toast.show).toHaveBeenCalledWith('Successfully closed PR #123', TOAST_TYPES.SUCCESS);
+            expect(window.githubAPI.closePullRequest).toHaveBeenCalledWith('repo', 123);
+            expect(julesTerminal.app.toast.show).toHaveBeenCalledWith('Successfully closed PR #123', TOAST_TYPES.SUCCESS);
             expect(modal.classList.contains('visible')).toBe(false);
-            expect(manager.loadPullRequestsForRepo).toHaveBeenCalledWith('repo');
+            expect(julesTerminal.loadPullRequestsForRepo).toHaveBeenCalledWith('repo');
         });
 
         it('should handle close PR failure and show error', async () => {
-            window.julesService.closePullRequest.mockRejectedValue(new Error('Close error'));
-            manager.modals._showPRModal(prMock, 'repo');
+            window.githubAPI.closePullRequest.mockRejectedValue(new Error('Close error'));
+            julesTerminal._showPRModal(prMock, 'repo');
 
             const event = new MouseEvent('click');
             await closePRBtn.dispatchEvent(event);
@@ -881,11 +885,11 @@ describe('JulesManager Modal Tests', () => {
         });
 
         it('should handle missing buttons and error element gracefully on merge/close errors', async () => {
-            manager.elements.prModalError = null;
-            window.julesService.mergePullRequest.mockRejectedValue(new Error('Merge error'));
-            window.julesService.closePullRequest.mockRejectedValue(new Error('Close error'));
+            julesTerminal.elements.prModalError = null;
+            window.githubAPI.mergePullRequest.mockRejectedValue(new Error('Merge error'));
+            window.githubAPI.closePullRequest.mockRejectedValue(new Error('Close error'));
 
-            manager.modals._showPRModal(prMock, 'repo');
+            julesTerminal._showPRModal(prMock, 'repo');
 
             const mergeEvent = new MouseEvent('click');
             await mergeBtn.dispatchEvent(mergeEvent);
