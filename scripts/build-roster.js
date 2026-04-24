@@ -20,66 +20,49 @@ function parseMarkdownFrontmatter(content) {
     return { attributes, body: content.slice(match[0].length) };
 }
 
-function buildRoster() {
+async function processDirectory(dirPath, isCustom) {
+    if (!fs.existsSync(dirPath)) return [];
+
+    const files = await fs.promises.readdir(dirPath);
+    const agentPromises = files
+        .filter(file => file.endsWith('.md') && file !== 'README.md')
+        .map(async (file) => {
+            try {
+                const content = await fs.promises.readFile(path.join(dirPath, file), 'utf-8');
+                const parsed = parseMarkdownFrontmatter(content);
+                if (parsed.attributes.name) {
+                    const agent = {
+                        ...parsed.attributes,
+                        promptFile: isCustom ? `prompts/fusions/${file}` : `prompts/${file}`,
+                        isCustom: isCustom
+                    };
+                    return agent;
+                }
+            } catch (error) {
+                console.warn(`Failed to read or parse ${isCustom ? 'fusion' : 'core'} agent file ${file}:`, error.message);
+            }
+            return null;
+        });
+
+    const results = await Promise.all(agentPromises);
+    return results.filter(Boolean);
+}
+
+async function buildRoster() {
     const rootDir = path.resolve(__dirname, '..');
     const promptsDir = path.join(rootDir, 'prompts');
     const fusionsDir = path.join(rootDir, 'prompts', 'fusions');
 
-    const agents = [];
+    const [coreAgents, fusionAgents] = await Promise.all([
+        processDirectory(promptsDir, false),
+        processDirectory(fusionsDir, true)
+    ]);
 
-    // Process core agents
-    if (fs.existsSync(promptsDir)) {
-        const files = fs.readdirSync(promptsDir);
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            if (file.endsWith('.md') && file !== 'README.md') {
-                try {
-                    const content = fs.readFileSync(path.join(promptsDir, file), 'utf-8');
-                    const parsed = parseMarkdownFrontmatter(content);
-                    if (parsed.attributes.name) {
-                        const agent = {
-                            ...parsed.attributes,
-                            promptFile: `prompts/${file}`,
-                            isCustom: false
-                        };
-                        if (!agent.name) agent.name = file.replace('.md', '');
-                        agents.push(agent);
-                    }
-                } catch (error) {
-                    console.warn(`Failed to read or parse core agent file ${file}:`, error.message);
-                }
-            }
-        }
-    }
-
-    // Process fusion agents
-    if (fs.existsSync(fusionsDir)) {
-        const files = fs.readdirSync(fusionsDir);
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            if (file.endsWith('.md') && file !== 'README.md') {
-                try {
-                    const content = fs.readFileSync(path.join(fusionsDir, file), 'utf-8');
-                    const parsed = parseMarkdownFrontmatter(content);
-                    const name = parsed.attributes.name;
-                    if (name) {
-                        const agent = {
-                            ...parsed.attributes,
-                            promptFile: `prompts/fusions/${file}`,
-                            isCustom: true
-                        };
-                        agents.push(agent);
-                    }
-                } catch (error) {
-                    console.warn(`Failed to read or parse fusion agent file ${file}:`, error.message);
-                }
-            }
-        }
-    }
+    const agents = [...coreAgents, ...fusionAgents];
 
     const outputPath = path.join(rootDir, 'roster-payload.json');
-    fs.writeFileSync(outputPath, JSON.stringify(agents, null, 2));
+    await fs.promises.writeFile(outputPath, JSON.stringify(agents, null, 2));
     console.log(`Successfully compiled ${agents.length} agents to roster-payload.json`);
 }
 
-buildRoster();
+buildRoster().catch(console.error);
