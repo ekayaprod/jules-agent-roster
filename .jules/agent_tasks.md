@@ -22,7 +22,7 @@
 - [x] (Blocked / False Positive) 🧶 `js/Features/Search/SearchController.test.js`: Deep nesting up to 32 spaces.
 
 - [ ] 🧶 `js/UI/AgentCard/AgentCard.test.js`: Nested logic reaches 7 levels deep, increasing cyclomatic complexity.
-- [ ] 🧶 `js/UI/AgentCard/AgentCard.js`: Deep nesting up to 36 spaces.
+- [x] 🧶 `js/UI/AgentCard/AgentCard.js`: Deep nesting up to 36 spaces.
 - [ ] 🧶 `js/Features/Jules/JulesManager/JulesManager.js`: Deep nesting up to 32 spaces.
 
 ## 🕵️ Boundary Interrogation (Coverage Expansion & Edge Cases)

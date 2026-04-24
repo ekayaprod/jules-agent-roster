@@ -241,7 +241,7 @@ describe('StorageUtils', () => {
         });
 
         // 🕵️ The Boundary Interrogation: Explicitly assert the vulnerability that getItem silently swallows errors
-        it('vulnerability check: silently swallows error without logging when localStorage.getItem throws', () => {
+        it('vulnerability check: error logging is caught and dispatched when localStorage.getItem throws', () => {
             mockLocalStorage.getItem.mockImplementation(() => {
                 throw new Error('getItem catastrophic failure');
             });
@@ -249,7 +249,7 @@ describe('StorageUtils', () => {
             const result = StorageUtils.getItem('test_key', 'default_value');
 
             expect(result).toBe('default_value');
-            expect(consoleErrorSpy).not.toHaveBeenCalled();
+            expect(consoleErrorSpy).toHaveBeenCalled();
             expect(consoleWarnSpy).not.toHaveBeenCalled();
         });
 

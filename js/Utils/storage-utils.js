@@ -62,6 +62,8 @@ class StorageUtils {
             if (typeof localStorage === 'undefined') return;
             localStorage.setItem(key, JSON.stringify(data));
         } catch (error) {
+            const tu = getTelemetryUtils();
+            if (tu) tu.dispatchEvent("STORAGE_ITEM_SAVE_FAILED", error, { key: key });
             console.warn(`${componentName}: Failed to save to localStorage`, error);
         }
     }
@@ -78,6 +80,8 @@ class StorageUtils {
             if (typeof localStorage === 'undefined') return defaultValue;
             return localStorage.getItem(key) || defaultValue;
         } catch (error) {
+            const tu = getTelemetryUtils();
+            if (tu) tu.dispatchEvent("STORAGE_ITEM_RETRIEVAL_FAILED", error, { key: key });
             return defaultValue;
         }
     }
@@ -93,6 +97,8 @@ class StorageUtils {
             if (typeof localStorage === 'undefined') return;
             localStorage.setItem(key, value);
         } catch (error) {
+            const tu = getTelemetryUtils();
+            if (tu) tu.dispatchEvent("STORAGE_ITEM_SAVE_FAILED", error, { key: key });
             console.warn(`Failed to save string to localStorage`, error);
         }
     }
