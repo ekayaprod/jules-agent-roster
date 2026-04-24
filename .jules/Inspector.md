@@ -21,3 +21,7 @@
 ## Inspector — UI Rendering Edge Cases
 **Edge Case:** The UI component `AgentCard.js` lacked boundary tests for invalid keys, numerical identifiers, and missing global dependencies. Similarly, `FusionLab.js` was missing structural interrogation for animated UI glitches and edge-case trap events (e.g., `unlockMatrix`).
 **Assertion:** Interrogated rendering boundaries by verifying omission on invalid inputs and explicitly verifying DOM element creation, CSS state toggling, and fast-forwarding mock timers to validate animation clearing blocks.
+
+### Axioms and Heuristics Extracted (EventBinder.js)
+* **The DOM Click Matrix Expansion**: When testing massive global `document.addEventListener("click")` blocks, systematically inject mock DOM structures for each isolated `if (target)` branch.
+* **The Missing Mock Failure Pattern**: When asserting interactions with sub-services (e.g. `FormatUtils.extractIcon()`), aggressively mock all dependencies that the function could route into; a null `app.fusionLab` must be gracefully caught.

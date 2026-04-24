@@ -37,3 +37,4 @@
 ## 🎨 Visual Polish
 
 
+- [x] 🕵️ `js/core/events/EventBinder.js`: Expanded test coverage for global click event delegation.
