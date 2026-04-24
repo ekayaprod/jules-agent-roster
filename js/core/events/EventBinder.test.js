@@ -124,6 +124,200 @@ describe('EventBinder (Boundary Interrogation)', () => {
         expect(toggleBtn.getAttribute('aria-expanded')).toBe('false');
     });
 
+    // 🕵️ The Boundary Interrogation: Master Dropdown Toggle
+    it('toggles master dropdown visibility and stops propagation', () => {
+        EventBinder.bind(app);
+
+        const btn = document.createElement('button');
+        const menu = document.createElement('div');
+        app.elements.masterDropdownBtn = btn;
+        app.elements.masterDropdownMenu = menu;
+        document.body.appendChild(btn);
+        document.body.appendChild(menu);
+
+        EventBinder.bind(app); // Re-bind with the new elements
+
+        const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
+        const stopPropagationSpy = jest.spyOn(clickEvent, 'stopPropagation');
+        btn.dispatchEvent(clickEvent);
+
+        expect(stopPropagationSpy).toHaveBeenCalled();
+        expect(menu.classList.contains('visible')).toBe(true);
+    });
+
+    // 🕵️ The Boundary Interrogation: Show Fusions Modal
+    it('shows fusions modal when fusions target is clicked', () => {
+        document.body.innerHTML = '';
+        const btn = document.createElement('button');
+        btn.setAttribute('data-action', 'open-fusions-modal');
+        btn.setAttribute('data-index', '0');
+        document.body.appendChild(btn);
+
+        const modal = document.createElement('div');
+        modal.id = 'fusionsModal';
+        document.body.appendChild(modal);
+
+        const content = document.createElement('div');
+        content.id = 'fusionsModalContent';
+        document.body.appendChild(content);
+
+        const list = document.createElement('div');
+        list.id = 'fusionsModalList';
+        document.body.appendChild(list);
+
+        const cardArea = document.createElement('div');
+        cardArea.id = 'fusionsModalCard';
+        document.body.appendChild(cardArea);
+
+        const titleSpan = document.createElement('span');
+        titleSpan.id = "fusionsModalAgent";
+        document.body.appendChild(titleSpan);
+
+        const emojiSpan = document.createElement('span');
+        emojiSpan.id = "fusionsModalEmoji";
+        document.body.appendChild(emojiSpan);
+
+        app.fusionLab = {
+            fusionIndex: { unlockedKeys: new Set(['Agent,Other']) },
+            compiler: {
+                fusionMatrixMap: { 'Agent,Other': 'FusionAgent' },
+                customAgentsMap: { 'FusionAgent': { name: 'FusionAgent', prompt: 'prompt' } }
+            }
+        };
+        app.getAgentForUI = jest.fn().mockReturnValue({ name: 'Agent' });
+        app.fusionLab._fusionCacheByAgent = null;
+        app.activeDropdowns = new Set();
+
+        const downloadBtn = document.createElement('button');
+        downloadBtn.id = 'downloadParentFusionsBtn';
+        document.body.appendChild(downloadBtn);
+
+        global.AgentUtils.getCustomAgent = jest.fn().mockReturnValue({ name: 'Fusion Agent' });
+        global.FormatUtils.extractIcon = jest.fn().mockReturnValue('icon');
+        global.FormatUtils.extractDisplayName = jest.fn().mockReturnValue('Fusion Agent');
+        global.FormatUtils.escapeHTML = jest.fn().mockReturnValue('Fusion Agent');
+
+        app.getAgentForUI.mockReturnValueOnce({ name: 'Agent' });
+
+        EventBinder.bind(app);
+
+        const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
+        btn.dispatchEvent(clickEvent);
+
+        expect(modal.classList.contains('visible')).toBe(true);
+        expect(list.innerHTML).toContain('Fusion Agent');
+    });
+
+    it('views fusion card from modal when clicked', () => {
+        const btn = document.createElement('button');
+        btn.setAttribute('data-action', 'view-fusion-card');
+        btn.setAttribute('data-index', '0');
+        document.body.appendChild(btn);
+
+        const cardArea = document.createElement('div');
+        cardArea.id = 'fusionsModalCard';
+        document.body.appendChild(cardArea);
+
+        app.getAgentForUI.mockReturnValueOnce({ name: 'Fusion Agent' });
+
+        const card = document.createElement('div');
+        card.classList.add('pop-in');
+        global.AgentCard.create = jest.fn().mockReturnValue(card);
+
+        EventBinder.bind(app);
+
+        const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
+        btn.dispatchEvent(clickEvent);
+
+        expect(cardArea.innerHTML).toContain('div');
+        expect(card.classList.contains('pop-in')).toBe(false);
+        expect(card.style.margin).toBe('0px');
+    });
+
+    it('downloads parent fusions when button is clicked', () => {
+        const btn = document.createElement('button');
+        btn.id = 'downloadParentFusionsBtn';
+        btn.setAttribute('data-parent-name', 'Parent Agent');
+        document.body.appendChild(btn);
+
+        app.exportController = { downloadCustomAgentsByParent: jest.fn() };
+
+        EventBinder.bind(app);
+
+        const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
+        btn.dispatchEvent(clickEvent);
+
+        expect(app.exportController.downloadCustomAgentsByParent).toHaveBeenCalledWith('Parent Agent', btn);
+    });
+
+    it('closes fusions modal when close button is clicked', () => {
+        document.body.innerHTML = '';
+        const btn = document.createElement('button');
+        btn.id = 'closeFusionsModalBtn';
+        document.body.appendChild(btn);
+
+        const modal = document.createElement('div');
+        modal.id = 'fusionsModal';
+        modal.classList.add('visible');
+        document.body.appendChild(modal);
+
+        EventBinder.bind(app);
+
+        const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
+        btn.dispatchEvent(clickEvent);
+
+        expect(modal.classList.contains('visible')).toBe(false);
+    });
+
+    it('gracefully fails fusions modal without app.fusionLab', () => {
+        const btn = document.createElement('button');
+        btn.setAttribute('data-action', 'open-fusions-modal');
+        btn.setAttribute('data-index', '0');
+        document.body.appendChild(btn);
+
+        const modal = document.createElement('div');
+        modal.id = 'fusionsModal';
+        document.body.appendChild(modal);
+
+        const content = document.createElement('div');
+        content.id = 'fusionsModalContent';
+        document.body.appendChild(content);
+
+        app.fusionLab = null;
+
+        app.getAgentForUI.mockReturnValueOnce({ name: 'Agent' });
+        global.AgentUtils.getCustomAgent = jest.fn().mockReturnValue(null);
+        global.FormatUtils.extractIcon = jest.fn().mockReturnValue('icon');
+        global.FormatUtils.extractDisplayName = jest.fn().mockReturnValue('Fusion Agent');
+        global.FormatUtils.escapeHTML = jest.fn().mockReturnValue('Fusion Agent');
+
+        EventBinder.bind(app);
+
+        const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
+        btn.dispatchEvent(clickEvent);
+
+        expect(modal.classList.contains('visible')).toBe(false);
+    });
+
+    // 🕵️ The Boundary Interrogation: Interrogate Global Click Delegation (Search Clear)
+    it('closes search if clicked outside and input is empty', () => {
+        EventBinder.bind(app);
+
+        const nav = document.createElement('nav');
+        nav.classList.add('search-active');
+        app.elements['category-nav'] = nav;
+
+        app.elements.searchInput = document.createElement('input');
+        app.elements.searchInput.value = '   ';
+
+        document.body.appendChild(nav);
+
+        const clickEvent = new MouseEvent('click', { bubbles: true });
+        document.body.dispatchEvent(clickEvent);
+
+        expect(app.clearSearch).toHaveBeenCalled();
+    });
+
     // 🕵️ The Boundary Interrogation: Test julesRepoPicker DOM event integration
     it('interrogates julesRepoPicker change event with valid sourceName', async () => {
         const picker = document.createElement('select');
