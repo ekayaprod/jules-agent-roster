@@ -30,6 +30,8 @@ class RosterApp {
     this.fusionLab = null;
     this._cardHtmlCache = new Map();
     this._domNodeCache = new Map();
+    window.julesAPI = new JulesAPI();
+    window.githubAPI = new GithubAPI();
     this.julesTerminal = new JulesTerminal(this);
     this.searchController = new SearchController(this);
     this.exportController = new ExportController(this);

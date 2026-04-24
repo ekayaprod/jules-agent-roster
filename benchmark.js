@@ -32,6 +32,11 @@ global.AgentUtils = AgentUtils;
 const { BUTTON_STATES, TOAST_TYPES } = require('./js/constants/ui.js');
 global.BUTTON_STATES = BUTTON_STATES;
 global.TOAST_TYPES = TOAST_TYPES;
+const JulesAPI = loadClass("js/Services/JulesAPI/JulesAPI.js");
+global.JulesAPI = JulesAPI;
+const GithubAPI = loadClass("js/Services/GithubAPI/GithubAPI.js");
+global.GithubAPI = GithubAPI;
+
 
 // Mock Fuse.js (Minimal naive search algorithm to simulate CPU time)
 global.Fuse = class Fuse {
