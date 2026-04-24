@@ -111,7 +111,7 @@ describe('SearchWorker', () => {
 
         expect(postMessageMock).toHaveBeenCalledWith({
             type: 'error',
-            message: 'Search failed',
+            message: 'SearchWorker Execution Failed',
             searchId: 123
         });
     });

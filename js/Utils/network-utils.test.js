@@ -234,7 +234,7 @@ describe('NetworkUtils', () => {
             await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("HTTP Error: 400");
         });
 
-        it('should warn when rate limit is exceeded', async () => {
+        it('vulnerability check: rate limit exceeded error logging is caught and dispatched', async () => {
             const mockResponse = { ok: true, status: 200 };
             global.fetch.mockResolvedValue(mockResponse);
 

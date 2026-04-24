@@ -401,7 +401,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
 
         // Prove the error was properly logged
-        expect(consoleErrorSpy).toHaveBeenCalledWith("FusionLab: Failed to unlock agent in index", expect.any(Error));
+        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(Error));
         expect(consoleWarnSpy).not.toHaveBeenCalled();
 
         consoleErrorSpy.mockRestore();

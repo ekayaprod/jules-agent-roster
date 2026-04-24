@@ -552,10 +552,10 @@
   {
     "name": "Examiner",
     "emoji": "🧑‍🏫",
-    "role": "The Assertion Standardizer",
+    "role": "Alignment Enforcer",
     "category": "Testing",
-    "tier": "Fusion",
-    "description": "STANDARDIZE fragmented test structures by enforcing semantic ARIA queries and deep behavioral state validations.",
+    "tier": "Core",
+    "description": "ALIGN the repository by patrolling the test suite, identifying semantic drift, and correcting outdated assertions against current source files.",
     "promptFile": "prompts/fusions/Examiner.md",
     "isCustom": true
   },
@@ -1353,9 +1353,9 @@
     "name": "Singularity",
     "emoji": "🌌",
     "role": "Meta-Architect",
-    "category": "Strategy",
-    "tier": "Fusion",
-    "description": "Conduct an exhaustive sweep of the entire repository's architecture to detect developer toil, and birth universal markdown agent prompts hardcoded with internal context directly into `prompts/micro/`.",
+    "category": "Architecture",
+    "tier": "Mythic",
+    "description": "BIRTH hyper-contextualized micro-agents. Act as the Local Master Forge, analyzing proprietary architecture to forge bespoke agents equipped with deep local knowledge and mapped to core archetypes.",
     "promptFile": "prompts/fusions/Singularity.md",
     "isCustom": true
   },

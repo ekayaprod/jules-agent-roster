@@ -34,7 +34,9 @@ self.onmessage = function(e) {
             const results = fuseInstance.search(query);
             self.postMessage({ type: 'results', results, searchId });
         } catch (error) {
-            self.postMessage({ type: 'error', message: error.message, searchId });
+            const searchError = new Error("SearchWorker Execution Failed");
+            searchError.cause = error;
+            self.postMessage({ type: 'error', message: searchError.message, searchId });
         }
     }
 };

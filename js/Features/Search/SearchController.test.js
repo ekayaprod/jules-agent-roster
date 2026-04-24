@@ -480,7 +480,7 @@ describe('searchWorker Worker Script Boundaries', () => {
 
         expect(postMessageMock).toHaveBeenCalledWith({
             type: 'error',
-            message: 'Simulated Fuse Exception',
+            message: 'SearchWorker Execution Failed',
             searchId: 3
         });
     });
