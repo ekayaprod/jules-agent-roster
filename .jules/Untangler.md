@@ -1,20 +1,6 @@
-# 🧶 Untangler - Persistent Journal
-
-**Axioms of Structural Simplification:**
-* **The Inverted Validation Guard**: Always exit early on falsy dependencies or invalid conditions to prevent wrapping happy paths in deep condition blocks.
-* **Flattened Iteration Contexts**: Do not wrap logic blocks inside `if` statements inside `for` loops. Reverse the condition and `continue` or `return` early.
-
-## Untangler — Arrow Code Eradicated in EventBinder
-**Target Lock:** `js/core/events/EventBinder.js`
-**Learning:** Dense click-delegation architectures natively invite deeply nested arrow code. Extracting conditions into inverse return/continue clauses keeps the file vertically readable.
-**Action:** Unknotted massive `fusionsTarget` (2.5 Open Fusions Modal) block, `frontTarget` (4. Flip Card Front), `mouseover` listener, `keydown` Escape handler, and `change` handler in `EventBinder.js` by reversing conditions into flat guard clauses. Reduced 14 levels of cyclomatic nesting to 3 levels in peak complexity functions.
-
-### 🧶 The Inverted Validation Guard (NetworkUtils)
-**Target:** `js/Utils/network-utils.js`
-**Action:** Flatted `fetchWithRetry` by extracting `_validateBody` and `_extractErrorMessage` local helper functions and utilizing early returns and guard clauses for HTTP evaluation.
-**Result:** Idempotent logic preserved. Bloat reduced.
-
-### 🧶 The Inverted Validation Guard (PromptParser)
-**Target:** `js/Utils/prompt-parser.js`
-**Action:** Flatted `parsePrompt` by applying inverse continue clauses inside the `childNodes` parsing loop.
-**Result:** Idempotent logic preserved. Nesting reduced from 6 spaces inside for loop to 2 spaces.
+# Untangler: The Logic Simplifier - Journal
+## Findings and Axioms
+- Extracted multiple embedded blocks in `_evaluateFusion` using independent short-circuited evaluation lines (guard clauses).
+- Ensured boolean derivations (e.g. `hasScavenger`, `hasPlusWithScavenger`) map safely to short-circuits.
+- Retained input-output mapping strictly, passing local unit tests.
+- Reverted transient package files from node execution before finalizing modifications.
