@@ -88,27 +88,33 @@ class ExportController {
    * @param {HTMLElement} btn - The DOM element triggering the action.
    */
   async _fetchMissingPrompts(agentsList) {
-    // 🚄 ACCELERATE: Enforced bounded concurrency limit (chunking) to prevent connection pool exhaustion.
+    // ⚡ Bolt+: Connection Pool. Migrated sequential batch-chunking to a sliding-window concurrency pool, eliminating batch-boundary waterfall latency.
     const CONCURRENCY_LIMIT = 5;
-    const fetchTasks = [];
+    const activeTasks = new Set();
+
     for (let i = 0; i < agentsList.length; i++) {
       const agent = agentsList[i];
       if (agent && agent.prompt === undefined) {
-        fetchTasks.push(async () => {
-          const url = AgentUtils.getPromptUrl(agent);
-          agent.prompt = await this.app.agentRepo.fetchPrompt(
-            agent.name,
-            url,
-            'No protocol data available.'
-          );
+        const url = AgentUtils.getPromptUrl(agent);
+
+        const taskPromise = this.app.agentRepo.fetchPrompt(
+          agent.name,
+          url,
+          'No protocol data available.'
+        ).then(prompt => {
+          agent.prompt = prompt;
         });
+
+        activeTasks.add(taskPromise);
+        taskPromise.finally(() => activeTasks.delete(taskPromise));
+
+        if (activeTasks.size >= CONCURRENCY_LIMIT) {
+          await Promise.race(activeTasks);
+        }
       }
     }
 
-    for (let i = 0; i < fetchTasks.length; i += CONCURRENCY_LIMIT) {
-      const chunk = fetchTasks.slice(i, i + CONCURRENCY_LIMIT);
-      await Promise.all(chunk.map(task => task()));
-    }
+    await Promise.all(activeTasks);
   }
 
   async downloadCustomAgentsByParent(parentName, btn) {
