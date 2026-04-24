@@ -41,23 +41,18 @@ const RarityEngine = (function() {
     function _evaluateFusion(agent1, agent2) {
         if (!agent1 || !agent2) return { rarity: "Common", domain: "Unknown Domain" };
 
-        if (agent1.name && agent1.name === agent2.name) {
-            if (["Bolt+", "Palette+", "Sentinel+"].includes(agent1.name)) {
-                return { rarity: "Mythic", domain: "12. Plus Glitch" };
-            }
-            return { rarity: "Mythic", domain: "13. Core Glitch" };
-        }
+        const plusNames = ["Bolt+", "Palette+", "Sentinel+"];
+
+        if (agent1.name && agent1.name === agent2.name && plusNames.includes(agent1.name)) return { rarity: "Mythic", domain: "12. Plus Glitch" };
+        if (agent1.name && agent1.name === agent2.name) return { rarity: "Mythic", domain: "13. Core Glitch" };
 
         const isScavenger1 = agent1.name === "Scavenger";
         const isScavenger2 = agent2.name === "Scavenger";
+        const hasScavenger = isScavenger1 || isScavenger2;
+        const hasPlusWithScavenger = (isScavenger1 && plusNames.includes(agent2.name)) || (isScavenger2 && plusNames.includes(agent1.name));
 
-        if (isScavenger1 || isScavenger2) {
-            if (isScavenger1 && ["Bolt+", "Palette+", "Sentinel+"].includes(agent2.name) ||
-                isScavenger2 && ["Bolt+", "Palette+", "Sentinel+"].includes(agent1.name)) {
-                return { rarity: "Legendary", domain: "10. Plus Paradox" };
-            }
-            return { rarity: "Legendary", domain: "11. Core Paradox" };
-        }
+        if (hasPlusWithScavenger) return { rarity: "Legendary", domain: "10. Plus Paradox" };
+        if (hasScavenger) return { rarity: "Legendary", domain: "11. Core Paradox" };
 
         const isArchitectPedant = (agent1.name === "Architect" && agent2.name === "Pedant") ||
                                   (agent2.name === "Architect" && agent1.name === "Pedant");
@@ -67,35 +62,22 @@ const RarityEngine = (function() {
         const sd2 = getSuperDomain(agent2);
         const domains = [sd1, sd2];
 
-        if (domains.includes("Integrity") && (domains.includes("Visible") || domains.includes("Invisible"))) {
-            return { rarity: "Epic", domain: "9. QA Bridge" };
-        }
+        if (domains.includes("Integrity") && (domains.includes("Visible") || domains.includes("Invisible"))) return { rarity: "Epic", domain: "9. QA Bridge" };
+        if (domains.includes("Visible") && domains.includes("Invisible")) return { rarity: "Rare", domain: "8. Full-Stack Bridge" };
 
-        if (domains.includes("Visible") && domains.includes("Invisible")) {
-            return { rarity: "Rare", domain: "8. Full-Stack Bridge" };
-        }
+        if (sd1 === "Plus" && sd2 === "Plus") return { rarity: "Common", domain: "1. Base Synthesis" };
 
-        if (domains.includes("Plus")) {
-            if (sd1 === "Plus" && sd2 === "Plus") return { rarity: "Common", domain: "1. Base Synthesis" };
+        const hasPlus = domains.includes("Plus");
+        const plusAgent = sd1 === "Plus" ? agent1 : agent2;
+        const otherSd = sd1 === "Plus" ? sd2 : sd1;
 
-            const plusAgent = sd1 === "Plus" ? agent1 : agent2;
-            const otherSd = sd1 === "Plus" ? sd2 : sd1;
+        if (hasPlus && getPlusMatchingDomain(plusAgent?.name) === otherSd) return { rarity: "Common", domain: "2. Plus Affinity" };
+        if (hasPlus) return { rarity: "Uncommon", domain: "4. Plus Bridge" };
 
-            if (getPlusMatchingDomain(plusAgent.name) === otherSd) {
-                return { rarity: "Common", domain: "2. Plus Affinity" };
-            }
-
-            return { rarity: "Uncommon", domain: "4. Plus Bridge" };
-        }
-
-        if (agent1.category === agent2.category) {
-            return { rarity: "Common", domain: "3. Domain Mastery" };
-        }
+        if (agent1.category === agent2.category) return { rarity: "Common", domain: "3. Domain Mastery" };
 
         if (sd1 === "Visible" && sd2 === "Visible") return { rarity: "Uncommon", domain: "5. Frontend Synergy" };
-
         if (sd1 === "Integrity" && sd2 === "Integrity") return { rarity: "Uncommon", domain: "7. Integrity Synergy" };
-
         if (sd1 === "Invisible" && sd2 === "Invisible") return { rarity: "Common", domain: "6. Backend Synergy" };
 
         return { rarity: "Common", domain: "Unknown Domain" };
