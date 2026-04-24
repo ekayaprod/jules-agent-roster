@@ -38,6 +38,8 @@ describe('RosterApp (Boundary Interrogation)', () => {
         global.CONFIG = { selectors: { toast: '#toast' }, cache: { rosterCacheTTL: 0 } };
 
         global.ToastNotification = class { show() {} };
+        global.JulesAPI = class {};
+        global.GithubAPI = class {};
         global.JulesTerminal = class { init() {} };
         global.SearchController = class { init() {} };
         global.ExportController = class { init() {} };
