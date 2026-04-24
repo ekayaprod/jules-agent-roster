@@ -134,28 +134,29 @@ class JulesAPI {
 
     /**
      * Launch a new agent session.
-     * @param {string} repo - The repository (e.g. owner/repo).
-     * @param {string} instructions - The prompt task for the session.
-     * @param {string} pullRequestTitle - Recommended title for the generated PR.
-     * @param {string} agentId - Internal agent ID to launch.
+     * @param {string} prompt - The raw markdown prompt for the agent.
+     * @param {string} userTask - The user's task.
+     * @param {string} source - Target repository source identifier.
+     * @param {string} title - An optional human-readable title for the session.
      * @returns {Promise<object>} The newly created session payload.
      */
-    async createSession(repo, instructions, pullRequestTitle, agentId) {
-         if (!repo || !instructions || !pullRequestTitle || !agentId) {
+    async createSession(prompt, userTask, source, title) {
+         if (!prompt || !userTask || !source || !title) {
              const error = new JulesConfigurationError("Missing required parameters for createSession");
              console.error("[JulesAPI] Cannot create session", error);
              throw error;
          }
 
          const payload = {
-            target: {
-                githubPullRequest: {
-                    repo: repo,
-                    title: pullRequestTitle
+            prompt: `${prompt}\n\nTask: ${userTask}`,
+            sourceContext: {
+                source: source,
+                githubRepoContext: {
+                    startingBranch: "main"
                 }
             },
-            agent: { agentId: agentId },
-            instructions: instructions
+            automationMode: "AUTO_CREATE_PR",
+            title: title
         };
 
         return this._fetch("/sessions", {

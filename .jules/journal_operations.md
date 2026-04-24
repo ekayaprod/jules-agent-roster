@@ -3,3 +3,4 @@
 **Instability:** Missing formatting configuration leading to chaotic code styles. | **Fortification:** Enforced `.prettierrc` with strict, deterministic rules and synchronized `benchmark.js`.
 **Knowledge Gap:** Vague test names "works without window.matchMedia" and "works without a callback" do not describe the expected behavior. | **Clarity:** Rewrote tests to explicitly state they execute the animation sequence and clear the active overlay state.
 **Edge Case:** Empty catch block in JulesManager.launchSession swallowed API failure | **Assertion:** Upgraded to explicit telemetry log with sourceName context
+- Refactored `JulesAPI.js` to conform to `swagger.yaml` for `createSession` payload arguments and shape, eliminating 'Invalid JSON payload received' crashes on boot sequence.
