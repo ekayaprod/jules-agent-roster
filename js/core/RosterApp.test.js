@@ -38,7 +38,7 @@ describe('RosterApp (Boundary Interrogation)', () => {
         global.CONFIG = { selectors: { toast: '#toast' }, cache: { rosterCacheTTL: 0 } };
 
         global.ToastNotification = class { show() {} };
-        global.JulesManager = class { init() {} };
+        global.JulesTerminal = class { init() {} };
         global.SearchController = class { init() {} };
         global.ExportController = class { init() {} };
         global.AgentRepository = class { async fetchWithRetry() { return []; } async initialize() { return true; } };

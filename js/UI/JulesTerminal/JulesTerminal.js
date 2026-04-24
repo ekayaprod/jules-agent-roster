@@ -18,9 +18,9 @@ const CORE_EMOJIS_REGEX = new RegExp(`(${Object.keys(CORE_EMOJIS).map(k => k.rep
 /**
  * Manages the core operations for interacting with Jules APIs.
  * Engineered for a single-line terminal output where GitHub handles completions.
- * @see ../../../docs/architecture/Features/JulesManager.md#overview for the macro architectural scope.
+ * @see ../../../docs/architecture/Features/JulesTerminal.md#overview for the macro architectural scope.
  */
-class JulesManager {
+class JulesTerminal {
     static ACTIVE_SESSIONS_POLL_MS = 5000;
     static TERMINAL_POLL_MS = 3000;
     static MODAL_FOCUS_DELAY_MS = 50;
@@ -64,8 +64,8 @@ class JulesManager {
         this.isProcessingQueue = false;
 
         // Domain classes
-        this.modals = new JulesModals(this);
-        this.polling = new TerminalPolling(this);
+
+
 
         // Utility method exported to class level for delegates
         this.sortByCreateTime = sortByCreateTime;
@@ -93,7 +93,7 @@ class JulesManager {
     /**
      * Bootstraps the manager, loads cached API keys, and initializes the modal.
      * @returns {Promise<void>}
-     * @see ../../../docs/architecture/Features/JulesManager.md#1-initialization-and-authentication
+     * @see ../../../docs/architecture/Features/JulesTerminal.md#1-initialization-and-authentication
      */
     async init() {
         this.initialized = true;
@@ -113,9 +113,9 @@ class JulesManager {
                 keyInput.value = StorageUtils.getItem("jules_api_key");
                 if (githubTokenInput) githubTokenInput.value = StorageUtils.getItem("github_api_key");
                 settingsModal.classList.add("visible");
-                setTimeout(() => keyInput.focus(), JulesManager.MODAL_FOCUS_QUICK_DELAY_MS);
-                this.modals._clearKeyError(keyInput, errorSpan);
-                this.modals._clearKeyError(githubTokenInput, githubTokenErrorSpan);
+                setTimeout(() => keyInput.focus(), JulesTerminal.MODAL_FOCUS_QUICK_DELAY_MS);
+                this._clearKeyError(keyInput, errorSpan);
+                this._clearKeyError(githubTokenInput, githubTokenErrorSpan);
             } else {
                 settingsModal.classList.remove("visible");
             }
@@ -125,8 +125,8 @@ class JulesManager {
         closeBtn?.addEventListener("click", () => toggleModal(false));
 
         keyInput?.addEventListener("blur", () => {
-            if (!keyInput.value.trim()) this.modals._showKeyError(keyInput, errorSpan, "Please enter your Jules API Key to connect.");
-            else this.modals._clearKeyError(keyInput, errorSpan);
+            if (!keyInput.value.trim()) this._showKeyError(keyInput, errorSpan, "Please enter your Jules API Key to connect.");
+            else this._clearKeyError(keyInput, errorSpan);
         });
 
         saveBtn?.addEventListener("click", async () => {
@@ -134,7 +134,7 @@ class JulesManager {
             const githubKey = githubTokenInput ? githubTokenInput.value.trim() : "";
 
             if (!key) {
-                this.modals._showKeyError(keyInput, errorSpan, "Please enter your Jules API Key to connect.");
+                this._showKeyError(keyInput, errorSpan, "Please enter your Jules API Key to connect.");
                 return;
             }
 
@@ -148,8 +148,8 @@ class JulesManager {
                 toggleModal(false);
                 this.app.toast.show("Connecting to APIs...");
 
-                if (window.julesService) {
-                    window.julesService.configure(key, githubKey);
+                if (window.julesAPI) {
+                    window.julesAPI.configure(key, githubKey);
                     // ⚡ Bolt+: Severed the synchronous I/O waterfall to prevent freezing the UI modal thread on configuration updates.
                     this.loadSources().catch(err => console.error("Background repository fetch failed", err));
                 }
@@ -160,11 +160,11 @@ class JulesManager {
             }
         });
 
-        this.modals._initInteractionModal();
-        this.modals._initPRModal();
+        this._initInteractionModal();
+        this._initPRModal();
 
-        if (apiKey && window.julesService) {
-            window.julesService.configure(apiKey, githubToken);
+        if (apiKey && window.julesAPI) {
+            window.julesAPI.configure(apiKey, githubToken);
             const toggle = this.getEl("julesActivateToggle");
             if (toggle && toggle.checked) {
                 // ⚡ Bolt+: The Waterfall Collapse. Unblocked the primary application boot thread by shifting synchronous remote API resolution into a parallel fire-and-forget execution.
@@ -183,25 +183,25 @@ class JulesManager {
     /**
      * Fetches the connected source repositories and populates the source dropdown picker.
      * @returns {Promise<void>}
-     * @see ../../../docs/architecture/Features/JulesManager.md#2-repository-source-selection
+     * @see ../../../docs/architecture/Features/JulesTerminal.md#2-repository-source-selection
      */
     async loadSources() {
         const picker = this.getEl("julesRepoPicker");
-        if (!picker || !window.julesService) return;
+        if (!picker || !window.julesAPI) return;
 
         const originalText = picker.options && picker.options.length > 0 ? picker.options[0].textContent : "1. Select GitHub Repository...";
         picker.innerHTML = `<option value="">Loading repositories...</option>`;
         picker.disabled = true;
 
         try {
-            const sourcesResponse = await window.julesService.getSources();
+            const sourcesResponse = await window.julesAPI.getSources();
             if (sourcesResponse.sources) {
                 picker.innerHTML = `<option value="">1. Select GitHub Repository...</option>`;
                 sourcesResponse.sources.forEach(s => {
                     const opt = document.createElement("option");
                     opt.value = s.name;
 
-                    const formatUtils = JulesManager.getFormatUtils();
+                    const formatUtils = JulesTerminal.getFormatUtils();
                     opt.textContent = (s.githubRepo && s.githubRepo.owner && s.githubRepo.repo) ? `${s.githubRepo.owner}/${s.githubRepo.repo}` : (formatUtils ? formatUtils.extractRepoPath(s.name) : s.name);
 
                     picker.appendChild(opt);
@@ -240,7 +240,7 @@ class JulesManager {
      * Safely executes an async loop instead of setInterval to prevent connection exhaustion.
      * @param {string} sourceName - The target source/repo identifier (e.g. sources/github/owner/repo)
      * @returns {Promise<void>}
-     * @see ../../../docs/architecture/Features/JulesManager.md#4-active-sessions-polling
+     * @see ../../../docs/architecture/Features/JulesTerminal.md#4-active-sessions-polling
      */
     async loadActiveSessionsForRepo(sourceName) {
         const terminal = this.getEl("julesTerminal");
@@ -276,7 +276,7 @@ class JulesManager {
             }
 
             if (this._pollingActive && this.currentRepo === sourceName) {
-                this.activeSessionsTimeout = setTimeout(pollLoop, JulesManager.ACTIVE_SESSIONS_POLL_MS);
+                this.activeSessionsTimeout = setTimeout(pollLoop, JulesTerminal.ACTIVE_SESSIONS_POLL_MS);
             }
         };
 
@@ -288,11 +288,11 @@ class JulesManager {
      * Retrieves the latest active PRs for the repository to synchronize the UI with actual VCS state.
      * @param {string} sourceName - The targeted repository.
      * @returns {Promise<void>}
-     * @see ../../../docs/architecture/Features/JulesManager.md#6-pull-request-rendering
+     * @see ../../../docs/architecture/Features/JulesTerminal.md#6-pull-request-rendering
      */
     async loadPullRequestsForRepo(sourceName) {
-        if (!window.julesService) return;
-        const pullRequests = await window.julesService.getPullRequests(sourceName);
+        if (!window.julesAPI) return;
+        const pullRequests = await window.githubAPI.getPullRequests(sourceName);
         this._renderPullRequests(pullRequests, this.getEl("julesTerminal"));
     }
 
@@ -303,7 +303,7 @@ class JulesManager {
         const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
         if (fetchingIndicator) fetchingIndicator.remove();
 
-        const formatUtils = JulesManager.getFormatUtils();
+        const formatUtils = JulesTerminal.getFormatUtils();
 
         // Render at top of terminal
         prs.forEach(pr => {
@@ -320,7 +320,7 @@ class JulesManager {
             if (link) {
                 link.onclick = (e) => {
                     e.preventDefault();
-                    this.modals._showPRModal(pr, this.currentRepo);
+                    this._showPRModal(pr, this.currentRepo);
                 };
             }
             terminal.insertBefore(item, terminal.firstChild);
@@ -329,9 +329,9 @@ class JulesManager {
 
 
     async _fetchAndRenderSessions(sourceName, terminal) {
-        if (!window.julesService || !window.julesService.apiKey) return;
+        if (!window.julesAPI || !window.julesAPI.apiKey) return;
 
-        const sessionsResponse = await window.julesService.getSessions(JulesManager.PAGE_SIZE);
+        const sessionsResponse = await window.julesAPI.getSessions(JulesTerminal.PAGE_SIZE);
         if (!sessionsResponse.sessions) {
             this._checkEmptyTerminal();
             return;
@@ -398,7 +398,7 @@ class JulesManager {
         if (this.renderedSessionIds.has(session.id)) return;
         this.renderedSessionIds.add(session.id);
 
-        const formatUtils = JulesManager.getFormatUtils();
+        const formatUtils = JulesTerminal.getFormatUtils();
         const agentName = session.title || "Agent Task";
         let safeAgentName = formatUtils ? formatUtils.escapeHTML(agentName) : agentName;
         let agentEmoji = "🤖";
@@ -461,10 +461,10 @@ class JulesManager {
             safeAgentName,
             "Initializing...",
             `status-${session.id}`,
-            () => this.modals._showHistoryModal(session.id, agentEmoji, safeAgentName)
+            () => this._showHistoryModal(session.id, agentEmoji, safeAgentName)
         );
 
-        this.polling.startTerminalPolling(session.id, block, safeAgentName, agentEmoji);
+        this.startTerminalPolling(session.id, block, safeAgentName, agentEmoji);
     }
 
     /**
@@ -481,7 +481,7 @@ class JulesManager {
             block.onclick = onClickCallback;
         }
 
-        const formatUtils = JulesManager.getFormatUtils();
+        const formatUtils = JulesTerminal.getFormatUtils();
         const escapedEmoji = formatUtils ? formatUtils.escapeHTML(agentEmoji) : agentEmoji;
 
         block.innerHTML = DOMUtils.getTerminalSessionHTML(escapedEmoji, safeAgentName, statusMsg, statusId);
@@ -502,7 +502,7 @@ class JulesManager {
      * @param {Object} agent - The agent data representing the logic to execute.
      * @param {HTMLElement} [btn=null] - Optional launch button reference for state manipulation.
      * @returns {Promise<void>}
-     * @see ../../../docs/architecture/Features/JulesManager.md#3-session-launching
+     * @see ../../../docs/architecture/Features/JulesTerminal.md#3-session-launching
      */
     async launchSession(agent, btn = null) {
         const sourceName = this.getEl("julesRepoPicker").value;
@@ -513,8 +513,11 @@ class JulesManager {
             return;
         }
 
-        if (agent.prompt === undefined && btn) {
-            btn.disabled = true;
+        if (agent.prompt === undefined) {
+            if (btn) btn.disabled = true;
+            const url = AgentUtils.getPromptUrl(agent);
+            agent.prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
+            if (btn) btn.disabled = false;
         }
 
         // 🪄 CONJURE: Optimistic UI for Session Launch with CSS skeletal rendering
@@ -522,7 +525,7 @@ class JulesManager {
         const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
         if (fetchingIndicator) fetchingIndicator.style.display = 'none';
 
-        const formatUtils = JulesManager.getFormatUtils();
+        const formatUtils = JulesTerminal.getFormatUtils();
         let agentEmoji = agent.emoji || "🤖";
         let safeAgentName = agent.name ? (formatUtils ? formatUtils.escapeHTML(agent.name) : agent.name) : "Agent Task";
 
@@ -541,20 +544,13 @@ class JulesManager {
 
         this.sessionQueue.push(async () => {
             try {
-                // ⚡ Bolt+: The Waterfall Collapse. Unblocked the primary application thread by shifting synchronous remote prompt resolution into the background execution queue.
-                if (agent.prompt === undefined) {
-                    const url = AgentUtils.getPromptUrl(agent);
-                    agent.prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
-                    if (btn) btn.disabled = false;
-                }
-
-                await window.julesService.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
+                await window.julesAPI.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
                 this.app.toast.show(`Session launched successfully.`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.SUCCESS : "success");
             } catch (error) {
                 const launchError = new Error("JulesSessionLaunchFailure: " + error.message);
                 launchError.cause = error;
                 console.error(`Failed to launch session for repository ${sourceName}`, launchError);
-                const tu = JulesManager.getTelemetryUtils();
+                const tu = JulesTerminal.getTelemetryUtils();
                 if (tu) tu.dispatchEvent("JULES_LAUNCH_SESSION_FAILED", launchError, { sourceName });
                 this.app.toast.show(`Could not launch the session: ${error.message || "Unknown error"}`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error", 20000);
                 if (fetchingIndicator) fetchingIndicator.style.display = '';
@@ -608,13 +604,13 @@ class JulesManager {
      * @param {string} agentName - The agent's title.
      * @param {string} agentEmoji - The UI icon representing the agent.
      * @returns {void}
-     * @see ../../../docs/architecture/Features/JulesManager.md#5-terminal-state-updates
+     * @see ../../../docs/architecture/Features/JulesTerminal.md#5-terminal-state-updates
      */
     /**
      * Flushes all active polling timers, removes zombie callbacks, and unbinds state IDs
      * to prevent memory leaks when changing contexts.
      * @returns {void}
-     * @see ../../../docs/architecture/Features/JulesManager.md#7-memory-management
+     * @see ../../../docs/architecture/Features/JulesTerminal.md#7-memory-management
      */
     cleanup() {
         this._pollingActive = false;
@@ -639,8 +635,425 @@ class JulesManager {
         this._flatCustomsCache = null;
         this._agentMapCache = null;
     }
+
+    startTerminalPolling(sessionId, block, agentName, agentEmoji) {
+        if (!this.julesPollingIntervals) {
+            this.julesPollingIntervals = {};
+        }
+        if (this.julesPollingIntervals[sessionId]) {
+            clearInterval(this.julesPollingIntervals[sessionId]);
+        }
+
+        this.julesPollingIntervals[sessionId] = setInterval(async () => {
+            try {
+                const activitiesResponse = await window.julesAPI.getActivities(sessionId);
+                if (!activitiesResponse.activities) return;
+
+                const activities = activitiesResponse.activities.sort(this.sortByCreateTime);
+
+                const state = {
+                    isCompleted: false,
+                    hasError: false,
+                    isWaitingForInput: false,
+                    latestLog: "Processing...",
+                    rawMessage: "Processing..."
+                };
+
+                let fullHistoryMarkdown = "";
+
+                activities.forEach(act => {
+                    let text = act.title || act.description || "";
+
+                    if (act.title) {
+                        fullHistoryMarkdown += `**${act.title}**\n\n`;
+                    }
+                    if (act.description) {
+                        fullHistoryMarkdown += `${act.description}\n\n`;
+                    }
+                    if (act.type && act.type.includes('USER_INPUT') && act.message) {
+                        fullHistoryMarkdown += `*You:* ${act.message}\n\n`;
+                    }
+                    if (act.error) {
+                        fullHistoryMarkdown += `**Error:** ${act.error.message}\n\n`;
+                    }
+                    fullHistoryMarkdown += `---\n\n`;
+
+                    if (text) {
+                        state.rawMessage = act.description || act.title;
+                        if (text.length > 70) text = text.substring(0, 70) + "...";
+                        state.latestLog = text;
+                    }
+
+                    if (act.type && act.type.includes('USER_INPUT')) {
+                        state.latestLog = "User input transmitted.";
+                    }
+
+                    if (act.error) {
+                        state.hasError = true;
+                        state.latestLog = "Exception: " + (act.error.message || "Unknown error");
+                        state.rawMessage = state.latestLog;
+                    }
+
+                    if (
+                        act.userActionRequired ||
+                        act.requiresInput ||
+                        (act.type && act.type.includes('INPUT')) ||
+                        act.planGenerated ||
+                        (act.title && act.title.toLowerCase().includes('waiting for'))
+                    ) {
+                        state.isWaitingForInput = true;
+                    }
+                    if (act.planApproved) state.isWaitingForInput = false;
+
+                    if (act.sessionCompleted) state.isCompleted = true;
+                });
+
+                if (this.activeModalSessionId === sessionId) {
+                    const contentEl = this.getEl("historyModalContent");
+                    if (contentEl) {
+                        contentEl.innerHTML = "";
+                        const pre = DOMUtils.createMarkdownPreBlock(fullHistoryMarkdown || "No history available.");
+                        contentEl.appendChild(pre);
+                        contentEl.scrollTop = contentEl.scrollHeight;
+                    }
+                }
+
+                this._updatePollingState(sessionId, block, state, agentName, agentEmoji);
+
+            } catch (e) {
+                const tu = JulesTerminal.getTelemetryUtils();
+                if (tu) tu.dispatchEvent("JULES_POLLING_ERROR", e);
+            }
+        }, this.constructor.TERMINAL_POLL_MS);
+    }
+
+    _updatePollingState(sessionId, block, state, agentName, agentEmoji) {
+        const statusSpan = block.querySelector(`#status-${sessionId}`) || block.querySelector(`#status-mutated-${sessionId}`);
+        if (!statusSpan) return;
+
+        if (state.isCompleted) {
+            statusSpan.className = "term-status status-success";
+            statusSpan.innerHTML = `✅ Execution Finished`;
+            this.loadPullRequestsForRepo(this.currentRepo);
+            clearInterval(this.julesPollingIntervals[sessionId]);
+            setTimeout(() => this.dismissSession(sessionId), this.constructor.SUCCESS_DISMISS_DELAY_MS);
+            return;
+        }
+
+        if (state.hasError) {
+            statusSpan.className = "term-status status-error";
+            statusSpan.innerHTML = `${FormatUtils.escapeHTML(state.latestLog)} <button class="term-action-btn" aria-label="Dismiss task error" onclick="document.getElementById('session-${sessionId}').remove()">[✕]</button>`;
+            clearInterval(this.julesPollingIntervals[sessionId]);
+            return;
+        }
+
+        if (state.isWaitingForInput) {
+            statusSpan.className = "term-status status-waiting";
+            statusSpan.innerHTML = `⚠️ Response Needed (Click to view)`;
+            statusSpan.onclick = (e) => {
+                e.stopPropagation();
+                this._showInteractionModal(sessionId, agentEmoji, agentName, state.rawMessage);
+            };
+        } else {
+            statusSpan.className = "term-status";
+            statusSpan.onclick = null;
+            statusSpan.textContent = state.latestLog;
+        }
+    }
+
+
+
+    /**
+     * Safe cross-environment getters encapsulated as static methods.
+     */
+    static getTelemetryUtils() {
+        if (typeof TelemetryUtils !== 'undefined') return TelemetryUtils;
+        if (typeof window !== 'undefined' && window.TelemetryUtils) return window.TelemetryUtils;
+        if (typeof global !== 'undefined' && global.TelemetryUtils) return global.TelemetryUtils;
+        return null;
+    }
+
+
+    _initPRModal() {
+        const prModal = this.getEl("julesPRModal");
+        const closePRModalBtn = this.getEl("cancelPRBtn");
+
+        if (prModal && closePRModalBtn) {
+            closePRModalBtn.addEventListener("click", () => {
+                prModal.classList.remove("visible");
+            });
+        }
+    }
+
+    _initInteractionModal() {
+        const modal = this.getEl("julesInteractionModal");
+        const cancelBtn = this.getEl("cancelInteractionBtn");
+        const submitBtn = this.getEl("submitInteractionBtn");
+        const inputField = this.getEl("interactionModalInput");
+        const errorSpan = this.getEl("interactionModalError");
+
+        if (!modal) return;
+
+        const closeModal = () => {
+            modal.classList.remove("visible");
+            this.activeModalSessionId = null;
+            if (inputField) {
+                inputField.value = "";
+                inputField.style.borderColor = "";
+                inputField.removeAttribute("aria-invalid");
+                inputField.removeAttribute("aria-describedby");
+            }
+            if (errorSpan) {
+                errorSpan.textContent = "";
+                errorSpan.classList.add("hidden");
+            }
+        };
+
+        const handleSubmit = async () => {
+            const text = inputField.value.trim();
+            if (!text) {
+                if (inputField && errorSpan) {
+                    inputField.style.borderColor = "var(--error)";
+                    inputField.setAttribute("aria-invalid", "true");
+                    inputField.setAttribute("aria-describedby", "interactionModalError");
+                    errorSpan.textContent = "Please provide a response before transmitting.";
+                    errorSpan.classList.remove("hidden");
+                }
+                return;
+            }
+            if (!this.activeModalSessionId) return;
+
+            // 🪄 CONJURE: Optimistic UI with silent rollback for interaction modal
+            const sessionId = this.activeModalSessionId;
+            const statusSpan = document.getElementById(`status-${sessionId}`);
+
+            await this._transmitReply(sessionId, text, closeModal, {
+                textContent: statusSpan ? statusSpan.textContent : "",
+                className: statusSpan ? statusSpan.className : "",
+                onclick: statusSpan ? statusSpan.onclick : null
+            });
+        };
+
+        cancelBtn?.addEventListener("click", closeModal);
+        submitBtn?.addEventListener("click", handleSubmit);
+        inputField?.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") handleSubmit();
+        });
+        inputField?.addEventListener("input", () => {
+            if (inputField && errorSpan) {
+                inputField.style.borderColor = "";
+                inputField.removeAttribute("aria-invalid");
+                inputField.removeAttribute("aria-describedby");
+                errorSpan.textContent = "";
+                errorSpan.classList.add("hidden");
+            }
+        });
+
+        const cancelHistoryBtn = this.getEl("cancelHistoryBtn");
+        const submitHistoryBtn = this.getEl("submitHistoryBtn");
+        const historyModalInput = this.getEl("historyModalInput");
+        const historyErrorSpan = this.getEl("historyModalError");
+        const historyModal = this.getEl("julesHistoryModal");
+
+        const closeHistoryModal = () => {
+            if (historyModal) {
+                historyModal.classList.remove("visible");
+                if (historyModalInput) historyModalInput.value = "";
+                if (historyErrorSpan) {
+                    historyErrorSpan.textContent = "";
+                    historyErrorSpan.classList.add("hidden");
+                }
+            }
+            this.activeModalSessionId = null;
+        };
+
+        const handleHistorySubmit = async () => {
+            if (!this.activeModalSessionId) return;
+            const text = historyModalInput?.value?.trim();
+            if (!text) {
+                this._showKeyError(historyModalInput, historyErrorSpan, "Please enter a response.");
+                return;
+            }
+
+            const sessionId = this.activeModalSessionId;
+            await this._transmitReply(sessionId, text, closeHistoryModal, null);
+        };
+
+        cancelHistoryBtn?.addEventListener("click", closeHistoryModal);
+        submitHistoryBtn?.addEventListener("click", handleHistorySubmit);
+        historyModalInput?.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") handleHistorySubmit();
+        });
+        historyModalInput?.addEventListener("input", () => {
+            if (historyModalInput && historyErrorSpan) {
+                historyModalInput.style.borderColor = "";
+                historyModalInput.removeAttribute("aria-invalid");
+                historyModalInput.removeAttribute("aria-describedby");
+                historyErrorSpan.textContent = "";
+                historyErrorSpan.classList.add("hidden");
+            }
+        });
+    }
+
+    _showInteractionModal(sessionId, agentEmoji, agentName, promptText) {
+        this.activeModalSessionId = sessionId;
+        const modal = this.getEl("julesInteractionModal");
+        const emojiEl = this.getEl("interactionModalEmoji");
+        const nameEl = this.getEl("interactionModalAgent");
+        const msgEl = this.getEl("interactionModalMessage");
+        const inputField = this.getEl("interactionModalInput");
+
+        if (!modal) return;
+
+        if (emojiEl) emojiEl.textContent = agentEmoji;
+        if (nameEl) nameEl.textContent = agentName;
+        if (msgEl) msgEl.textContent = promptText;
+
+        modal.classList.add("visible");
+        setTimeout(() => inputField?.focus(), this.constructor.MODAL_FOCUS_DELAY_MS);
+    }
+
+    _showHistoryModal(sessionId, agentEmoji, agentName) {
+        this.activeModalSessionId = sessionId;
+        const modal = this.getEl("julesHistoryModal");
+        const emojiEl = this.getEl("historyModalEmoji");
+        const nameEl = this.getEl("historyModalAgent");
+        const msgEl = this.getEl("historyModalContent");
+        const inputField = this.getEl("historyModalInput");
+
+        if (!modal) return;
+
+        if (emojiEl) emojiEl.textContent = agentEmoji;
+        if (nameEl) nameEl.textContent = agentName;
+        if (msgEl) msgEl.innerHTML = '<span class="term-status skeleton-pulse">Loading execution thread...</span>';
+
+        modal.classList.add("visible");
+        setTimeout(() => inputField?.focus(), this.constructor.MODAL_FOCUS_DELAY_MS);
+    }
+
+
+    async _transmitReply(sessionId, text, closeFn, rollbackState) {
+        const statusSpan = document.getElementById(`status-${sessionId}`);
+
+        closeFn();
+        this.app.toast.show("Transmitting reply...", "info");
+
+        if (statusSpan) {
+            statusSpan.className = "term-status skeleton-pulse";
+            statusSpan.textContent = "Transmitting response...";
+            statusSpan.onclick = null;
+        }
+
+        try {
+            await window.julesAPI.sendUserInput(sessionId, text);
+            this.app.toast.show("Reply transmitted.", "success");
+        } catch (error) {
+            if (!rollbackState) {
+                const tu = JulesTerminal.getTelemetryUtils();
+                if (tu) tu.dispatchEvent("JULES_SEND_REPLY_FAILED", error);
+            }
+
+            this.app.toast.show("Failed to send reply.", "error");
+
+            if (rollbackState && statusSpan) {
+                statusSpan.className = rollbackState.className || "term-status status-waiting";
+                statusSpan.textContent = rollbackState.textContent || `⚠️ Response Needed (Click to view)`;
+                statusSpan.onclick = rollbackState.onclick;
+            }
+        }
+    }
+
+    _showKeyError(input, span, message) {
+        if (!input || !span) return;
+        input.style.borderColor = "var(--error)";
+        span.textContent = message;
+        span.style.display = "block";
+    }
+
+    _clearKeyError(input, span) {
+        if (!input || !span) return;
+        input.style.borderColor = "";
+        span.textContent = "";
+        span.style.display = "none";
+    }
+
+
+    _showPRModal(pr, sourceName) {
+        const modal = this.getEl("julesPRModal");
+        if (!modal) return;
+
+        const titleEl = this.getEl("prModalTitleText");
+        const linkEl = this.getEl("prModalExternalLink");
+        const contentEl = this.getEl("prModalContent");
+        const errorEl = this.getEl("prModalError");
+        const mergeBtn = this.getEl("mergePRBtn");
+        const closePRBtn = this.getEl("closePRBtn");
+
+        if (titleEl) titleEl.textContent = `#${pr.number} ${pr.title}`;
+        if (linkEl) linkEl.href = pr.html_url;
+
+        if (contentEl) {
+            contentEl.innerHTML = '';
+            const pre = DOMUtils.createMarkdownPreBlock(pr.body || "No description provided.");
+            contentEl.appendChild(pre);
+        }
+
+        if (errorEl) {
+            errorEl.textContent = '';
+            errorEl.classList.add('hidden');
+        }
+
+        if (mergeBtn) {
+            DOMUtils.setButtonState(mergeBtn, "ready", "Merge PR");
+            mergeBtn.onclick = async () => {
+                DOMUtils.setButtonState(mergeBtn, "loading", "Merging...");
+                if (errorEl) errorEl.classList.add('hidden');
+                try {
+                    await window.githubAPI.mergePullRequest(sourceName, pr.number);
+                    this.app.toast.show(`Successfully merged PR #${pr.number}`, "success");
+                    modal.classList.remove("visible");
+                    this.loadPullRequestsForRepo(sourceName);
+                } catch (err) {
+                    DOMUtils.setButtonState(mergeBtn, "ready", "Merge PR");
+                    if (errorEl) {
+                        errorEl.textContent = "Failed to merge PR: " + err.message;
+                        errorEl.classList.remove('hidden');
+                    }
+                }
+            };
+        }
+
+        if (closePRBtn) {
+            DOMUtils.setButtonState(closePRBtn, "ready", "Close PR");
+            closePRBtn.onclick = async () => {
+                DOMUtils.setButtonState(closePRBtn, "loading", "Closing...");
+                if (errorEl) errorEl.classList.add('hidden');
+                try {
+                    await window.githubAPI.closePullRequest(sourceName, pr.number);
+                    this.app.toast.show(`Successfully closed PR #${pr.number}`, "success");
+                    modal.classList.remove("visible");
+                    this.loadPullRequestsForRepo(sourceName);
+                } catch (err) {
+                    DOMUtils.setButtonState(closePRBtn, "ready", "Close PR");
+                    if (errorEl) {
+                        errorEl.textContent = "Failed to close PR: " + err.message;
+                        errorEl.classList.remove('hidden');
+                    }
+                }
+            };
+        }
+
+        modal.classList.add("visible");
+    }
+
+
+
+}
+
+if (typeof window !== 'undefined') {
+    window.JulesTerminal = JulesTerminal;
 }
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = JulesManager;
+    module.exports = JulesTerminal;
 }

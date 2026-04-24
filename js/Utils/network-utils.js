@@ -124,7 +124,7 @@ class NetworkUtils {
         throw new Error(`Server returned ${response.status}`);
       }
 
-      // Mimic JulesService text parsing for 4xx errors
+      // Mimic JulesAPI text parsing for 4xx errors
       const errorMsg = await NetworkUtils._extractErrorMessage(response);
       throw new Error(errorMsg);
     } catch (error) {

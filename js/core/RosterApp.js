@@ -30,7 +30,7 @@ class RosterApp {
     this.fusionLab = null;
     this._cardHtmlCache = new Map();
     this._domNodeCache = new Map();
-    this.julesManager = new JulesManager(this);
+    this.julesTerminal = new JulesTerminal(this);
     this.searchController = new SearchController(this);
     this.exportController = new ExportController(this);
   }
@@ -54,8 +54,8 @@ class RosterApp {
                 console.warn("AgentRepository API failed to initialize, providing safe fallback.", err);
                 return { agents: [], customAgents: {} };
             }),
-            this.julesManager.init().catch(err => {
-                console.warn("JulesManager API failed to initialize.", err);
+            this.julesTerminal.init().catch(err => {
+                console.warn("JulesTerminal API failed to initialize.", err);
             })
         ];
 

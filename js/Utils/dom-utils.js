@@ -132,7 +132,7 @@ class DOMUtils {
 
   /**
    * Creates a preformatted block for markdown text content.
-   * Centralizes duplicated UI logic across AgentCard and JulesManager.
+   * Centralizes duplicated UI logic across AgentCard and JulesTerminal.
    *
    * @param {string} text - The raw text content to display.
    * @returns {HTMLElement} The pre element.
