@@ -30,6 +30,8 @@
 
 ## 🚨 Fatal Boot Sequences (Bleeding Environment)
 
+- [x] `js/Services/JulesAPI/JulesAPI.js`: Fix createSession "Invalid JSON payload received" mismatch against swagger.yaml.
+
 
 
 ## 🎨 Visual Polish

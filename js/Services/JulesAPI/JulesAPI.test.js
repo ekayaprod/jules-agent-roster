@@ -133,17 +133,23 @@ describe('JulesAPI', () => {
 
          it('createSession throws on missing parameters', async () => {
              jest.spyOn(console, 'error').mockImplementation(() => {});
-             await expect(api.createSession(null, 'instr', 'title', 'id')).rejects.toThrow(JulesConfigurationError);
+             await expect(api.createSession(null, 'task', 'source', 'title')).rejects.toThrow(JulesConfigurationError);
          });
 
          it('createSession calls POST with correct payload', async () => {
-              await api.createSession('repo', 'instr', 'title', 'id');
+              await api.createSession('prompt', 'task', 'source', 'title');
               expect(global.fetch).toHaveBeenCalledWith('https://jules.googleapis.com/v1alpha/sessions?key=test-key', expect.objectContaining({
                   method: 'POST',
                   body: JSON.stringify({
-                      target: { githubPullRequest: { repo: 'repo', title: 'title' } },
-                      agent: { agentId: 'id' },
-                      instructions: 'instr'
+                      prompt: 'prompt\n\nTask: task',
+                      sourceContext: {
+                          source: 'source',
+                          githubRepoContext: {
+                              startingBranch: 'main'
+                          }
+                      },
+                      automationMode: 'AUTO_CREATE_PR',
+                      title: 'title'
                   })
               }));
          });
