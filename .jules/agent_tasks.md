@@ -21,3 +21,8 @@
 ## 🚨 Fatal Boot Sequences (Bleeding Environment)
 - [x] 🚨 `js/Services/JulesService.js`: JulesService is exiting and bleeding the node environment via a sync require.
 - [x] 🚨 `js/Features/Jules/JulesManager/JulesManager.js`: JulesManager is bleeding the node environment via a sync require.
+
+## 🚨 Promise.all Concurrent API Boundaries
+- [x] 🚨 `js/core/RosterApp.js`: Ensure global application does not crash on unhandled Promise.all rejections during API initialization tasks.
+- [x] 🚨 `js/Features/Jules/JulesManager/JulesManager.js`: Interrogate the event listener concurrency model. A rejected promise from `loadPullRequestsForRepo` blocks `loadActiveSessionsForRepo` inside a `Promise.all` leading to unhandled rejections and frozen polling intervals.
+- [x] 🚨 `js/Services/AgentRepository.js`: Prevent Promise.all unhandled parsing rejections when invalid JSON fails to map during fetch, degrading the agent matrix loading boundary gracefully.

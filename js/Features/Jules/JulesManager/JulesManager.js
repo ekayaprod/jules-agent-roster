@@ -198,10 +198,14 @@ class JulesManager {
                     picker.addEventListener("change", async (e) => {
                         const sourceName = e.target.value;
                         if (sourceName) {
-                            await Promise.all([
-                                this.loadPullRequestsForRepo(sourceName),
-                                this.loadActiveSessionsForRepo(sourceName)
-                            ]);
+                            try {
+                                await Promise.all([
+                                    this.loadPullRequestsForRepo(sourceName),
+                                    this.loadActiveSessionsForRepo(sourceName)
+                                ]);
+                            } catch (err) {
+                                console.warn("Failed to load repo data:", err);
+                            }
                         } else {
                             this._clearPollingAndCache();
                             this.getEl("julesTerminal").innerHTML = DOMUtils.getTerminalIndicatorHTML("Awaiting repository connection...");

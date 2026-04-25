@@ -56,10 +56,17 @@ class RosterApp {
             }),
             this.julesManager.init().catch(err => {
                 console.warn("JulesManager API failed to initialize.", err);
+                return null;
             })
         ];
 
-        const [agentData] = await Promise.all(initTasks);
+        let agentData;
+        try {
+            [agentData] = await Promise.all(initTasks);
+        } catch (err) {
+            console.warn("Unhandled exception in Promise.all during initialization:", err);
+            agentData = { agents: [], customAgents: {} };
+        }
         const { agents, customAgents, fusionMatrix } = agentData || { agents: [], customAgents: {}, fusionMatrix: {} };
         this.agents = agents;
         this.customAgents = customAgents;

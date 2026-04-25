@@ -30,10 +30,16 @@ class AgentRepository {
                 NetworkUtils.fetchWithRetry("./fusion_matrix.json", { throwOn404: false }).catch(() => null)
             ]);
 
-            const [payload, fusionMatrixData] = await Promise.all([
-                this.safeJsonParse(rosterResponse, "./roster-payload.json"),
-                (matrixResponse && matrixResponse.ok) ? this.safeJsonParse(matrixResponse, "./fusion_matrix.json") : Promise.resolve({})
-            ]);
+            let payload = [];
+            let fusionMatrixData = {};
+            try {
+                [payload, fusionMatrixData] = await Promise.all([
+                    this.safeJsonParse(rosterResponse, "./roster-payload.json"),
+                    (matrixResponse && matrixResponse.ok) ? this.safeJsonParse(matrixResponse, "./fusion_matrix.json") : Promise.resolve({})
+                ]);
+            } catch (err) {
+                console.warn("Failed to parse agent payloads during fetch:", err);
+            }
 
             this.fusionMatrix = fusionMatrixData;
 

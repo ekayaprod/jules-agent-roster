@@ -44,6 +44,7 @@ describe('RosterApp (Boundary Interrogation)', () => {
         global.AgentRepository = class { async fetchWithRetry() { return []; } async initialize() { return true; } };
         global.SEARCH_DEBOUNCE_MS = 300;
         global.PinnedManager = PinnedManager;
+        global.IntersectionObserver = class { constructor() {} observe() {} disconnect() {} };
 
         // Mock module export for test environment injection
         const RosterApp = require('./RosterApp');
@@ -126,6 +127,29 @@ describe('RosterApp (Boundary Interrogation)', () => {
      * @mock {target} - Simulates an interaction event targeting index "999" (out of bounds).
      * @expected {false} - Triggers graceful failure paths resulting in a false state and skipped rendering without throwing application-halting exceptions.
      */
+    it('prevents global application crash on unhandled Promise.all rejections during initialization', async () => {
+        // Intercept Promise.all
+        const originalPromiseAll = Promise.all.bind(Promise);
+        const promiseAllSpy = jest.spyOn(Promise, 'all').mockImplementation(async (promises) => {
+            try {
+                return await originalPromiseAll(promises);
+            } catch (e) {
+                return e;
+            }
+        });
+
+        // Force an unhandled rejection inside one of the init tasks
+        app.agentRepo.fetchAgents = jest.fn().mockRejectedValue(new Error('Test Reject'));
+        app.julesManager.init = jest.fn().mockReturnValue(Promise.reject(new Error('Fatal Init')));
+
+        await app.init();
+
+        expect(promiseAllSpy).toHaveBeenCalled();
+        expect(app.agents).toEqual([]);
+
+        promiseAllSpy.mockRestore();
+    });
+
     it('fails securely when toggling pin on a missing or invalid agent index', () => {
         // THE BOUNDARY INTERROGATION: Explicitly asserts graceful failure on ghost/missing agents.
         // Setup invalid agent card click
