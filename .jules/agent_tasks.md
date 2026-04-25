@@ -7,23 +7,23 @@
 > 3. Do not delete this file. Sweep resolved `[x]` items on execution.
 
 ## 🧱 Structural Monoliths (Size & Architecture)
-- [ ] 🏗️ `js/Features/Fusion/AgentPicker.test.js`: Large test file (538 lines). Consider splitting or restructuring.
+- [x] (Blocked / False Positive) 🏗️ `js/Features/Fusion/AgentPicker.test.js`: Large test file (538 lines). Consider splitting or restructuring.
 
 - [x] 🏗️ `js/Features/Jules/JulesManager/JulesManager.test.js`: Extremely large test file (2025 lines). Consider splitting into smaller test suites for better maintainability.
 - [x] 🏗️ `js/Services/JulesService.test.js`: Large test file (693 lines). Consider splitting or restructuring.
-- [ ] 🏗️ `js/Features/Fusion/FusionLab.test.js`: Large test file (639 lines). Consider splitting or restructuring.
+- [x] (Blocked / False Positive) 🏗️ `js/Features/Fusion/FusionLab.test.js`: Large test file (639 lines). Consider splitting or restructuring.
 - [x] 🏗️ `js/Features/Jules/JulesManager/JulesManager.js`: Large class file (573 lines). Consider extracting some responsibilities.
 - [x] 🏗️ `js/core/RosterApp.js`: Large core class (536 lines). Needs domain splitting and colocation.
 
 ## 🕸️ Logic Tangles (Complexity & Dead Code)
 - [x] (Blocked / False Positive) 🧶 `js/Features/Search/SearchController.js`: Deep nesting up to 25 spaces.
-- [ ] 🧶 `js/Services/AgentRepository.js`: Deep nesting up to 28 spaces.
+- [x] (Blocked / False Positive) 🧶 `js/Services/AgentRepository.js`: Deep nesting up to 28 spaces.
 - [x] 🧶 `scripts/build-roster.js`: Deep nesting up to 28 spaces.
 - [x] (Blocked / False Positive) 🧶 `js/Features/Search/SearchController.test.js`: Deep nesting up to 32 spaces.
 
-- [ ] 🧶 `js/UI/AgentCard/AgentCard.test.js`: Nested logic reaches 7 levels deep, increasing cyclomatic complexity.
+- [x] (Blocked / False Positive) 🧶 `js/UI/AgentCard/AgentCard.test.js`: Nested logic reaches 7 levels deep, increasing cyclomatic complexity.
 - [x] 🧶 `js/UI/AgentCard/AgentCard.js`: Deep nesting up to 36 spaces.
-- [ ] 🧶 `js/Features/Jules/JulesManager/JulesManager.js`: Deep nesting up to 32 spaces.
+- [x] (Blocked / False Positive) 🧶 `js/Features/Jules/JulesManager/JulesManager.js`: Deep nesting up to 32 spaces.
 
 ## 🕵️ Boundary Interrogation (Coverage Expansion & Edge Cases)
 
