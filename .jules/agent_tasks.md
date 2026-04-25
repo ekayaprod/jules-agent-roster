@@ -38,3 +38,4 @@
 
 
 - [x] 🕵️ `js/core/events/EventBinder.js`: Expanded test coverage for global click event delegation.
+- [x] 🕵️ `js/Services/LLMRouter/LLMRouter.js`: Expanded test coverage for retry loops, validation errors, and module export structure.
