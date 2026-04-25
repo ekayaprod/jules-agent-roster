@@ -463,9 +463,9 @@
     "name": "Curator",
     "emoji": "🗂️",
     "role": "Payload Conservator",
-    "category": "Hygiene",
-    "tier": "Radiant",
-    "description": "Compresses heavy media, strips hidden metadata, and purges orphaned visual code to enforce weightless frontend rendering.",
+    "category": "Performance",
+    "tier": "Fusion",
+    "description": "CONSERVE network bandwidth by compressing heavy media payloads, injecting dimensional boundaries, and excising orphaned visual ghosts.",
     "promptFile": "prompts/fusions/Curator.md",
     "isCustom": true
   },
@@ -700,12 +700,12 @@
     "isCustom": true
   },
   {
-    "name": "Highlander",
+    "name": "The Highlander",
     "emoji": "🥇",
     "role": "Absolute Source",
-    "category": "Hygiene",
+    "category": "Architecture",
     "tier": "Fusion",
-    "description": "Hunts down syntactically different implementations of the exact same business logic. It extracts the ultimate semantic truth and ruthlessly eradicates the redundant pretenders.",
+    "description": "CONSOLIDATE redundant, fragmented logic blocks into a single, supreme semantic utility. There can be only one.",
     "promptFile": "prompts/fusions/Highlander.md",
     "isCustom": true
   },

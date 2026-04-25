@@ -383,6 +383,12 @@
       .fusion-modal-card-reset { margin: 0; }
       .prompt-loading-container { display: flex; justify-content: center; align-items: center; height: 100%; }
       .loading-spinner.small { width: 1.5rem; height: 1.5rem; margin: 0; }
+      .term-muted-text { color: var(--term-muted); }
+      .picker-grid-row { display: grid; gap: 0.5rem; margin-bottom: 0.5rem; }
+      .flex-1 { flex: 1; }
+      .gap-4 { gap: 1rem; }
+      .mt-4 { margin-top: 1rem; }
+      .mt-2 { margin-top: 0.5rem; }
       .status-waiting:hover { color: var(--term-warning); }
 
       .term-link { color: var(--term-system); text-decoration: none; transition: color 0.2s; flex-shrink: 0; }
@@ -538,7 +544,7 @@
         <textarea id="julesTaskInput" class="task-input" placeholder="2. Enter specific instructions (Optional)."></textarea>
       </div>
       <div id="julesTerminal" class="ide-viewport" style="display: none;">
-        <div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] Awaiting repository connection...</div>
+        <div id="fetchingIndicator" class="term-session-line skeleton-pulse term-muted-text">[SYS] Awaiting repository connection...</div>
         <!-- 1-Line Terminal Feed Injected Here -->
       </div>
       <div class="jules-pull-tab" id="julesPullTab" aria-label="Toggle Terminal Panel">
@@ -634,9 +640,9 @@
             <span id="githubTokenError" role="alert" style="font-size: var(--text-xs); color: var(--error); display: none; transition: all 0.2s;"></span>
             <a href="https://github.com/settings/tokens" target="_blank" style="font-size: var(--text-xs); color: var(--accent); text-decoration: none; margin-top: 0.25rem;">How to get a GitHub Token →</a>
         </div>
-        <div class="flex" style="gap: 1rem; margin-top: 1rem;">
-            <button id="closeSettingsBtn" class="secondary" style="flex:1;" aria-label="Cancel API Configuration">Cancel</button>
-            <button id="saveSettingsBtn" style="flex:1;" aria-label="Save API Key and Connect to Jules">Save & Connect</button>
+        <div class="flex gap-4 mt-4">
+            <button id="closeSettingsBtn" class="secondary flex-1" aria-label="Cancel API Configuration">Cancel</button>
+            <button id="saveSettingsBtn" class="flex-1" aria-label="Save API Key and Connect to Jules">Save & Connect</button>
         </div>
       </div>
     </div>
@@ -654,9 +660,9 @@
                 <input type="text" id="historyModalInput" class="modal-input transition-all duration-200" placeholder="Type instructions or feedback..." style="font-family: monospace;" />
                 <span id="historyModalError" role="alert" class="text-xs hidden" style="color: var(--error); margin-top: 0.25rem;"></span>
             </div>
-            <div class="flex" style="gap: 1rem; margin-top: 0.5rem;">
-                <button id="cancelHistoryBtn" class="secondary" style="flex:1;" aria-label="Close History">Close</button>
-                <button id="submitHistoryBtn" style="flex:1;" aria-label="Send Reply">Send Reply</button>
+            <div class="flex gap-4 mt-2">
+                <button id="cancelHistoryBtn" class="secondary flex-1" aria-label="Close History">Close</button>
+                <button id="submitHistoryBtn" class="flex-1" aria-label="Send Reply">Send Reply</button>
             </div>
         </div>
     </div>
@@ -674,10 +680,10 @@
             </h3>
             <div id="prModalContent" style="background: var(--term-bg); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--term-border); font-family: monospace; font-size: var(--text-xs); color: var(--text-primary); max-height: 25rem; overflow-y: auto; white-space: pre-wrap; margin-bottom: 0.5rem;"></div>
             <span id="prModalError" role="alert" class="text-xs hidden" style="color: var(--error); margin-top: 0.25rem;"></span>
-            <div class="flex" style="gap: 1rem; margin-top: 0.5rem;">
-                <button id="cancelPRBtn" class="secondary" style="flex:1;" aria-label="Close PR Details">Close</button>
-                <button id="closePRBtn" class="secondary" style="flex:1; border-color: var(--term-error); color: var(--term-error);" aria-label="Close PR">Close PR</button>
-                <button id="mergePRBtn" style="flex:1; background-color: var(--term-success); color: var(--bg-color); border: none;" aria-label="Merge PR">Merge PR</button>
+            <div class="flex gap-4 mt-2">
+                <button id="cancelPRBtn" class="secondary flex-1" aria-label="Close PR Details">Close</button>
+                <button id="closePRBtn" class="secondary flex-1" style="border-color: var(--term-error); color: var(--term-error);" aria-label="Close PR">Close PR</button>
+                <button id="mergePRBtn" class="flex-1" style="background-color: var(--term-success); color: var(--bg-color); border: none;" aria-label="Merge PR">Merge PR</button>
             </div>
         </article>
     </section>
@@ -695,9 +701,9 @@
                 <input type="text" id="interactionModalInput" class="modal-input transition-all duration-200" placeholder="Type 'proceed', 'yes', or provide specific instructions..." style="font-family: monospace;" />
                 <span id="interactionModalError" role="alert" class="text-xs hidden" style="color: var(--error); margin-top: 0.25rem;"></span>
             </div>
-            <div class="flex" style="gap: 1rem; margin-top: 0.5rem;">
-                <button id="cancelInteractionBtn" class="secondary" style="flex:1;" aria-label="Cancel Reply">Cancel</button>
-                <button id="submitInteractionBtn" style="flex:1;" aria-label="Transmit Reply">Transmit Reply</button>
+            <div class="flex gap-4 mt-2">
+                <button id="cancelInteractionBtn" class="secondary flex-1" aria-label="Cancel Reply">Cancel</button>
+                <button id="submitInteractionBtn" class="flex-1" aria-label="Transmit Reply">Transmit Reply</button>
             </div>
         </div>
     </div>
@@ -786,9 +792,9 @@
           <div id="fusionsModalList"></div>
           <div id="fusionsModalCard" class="mt-3 flex" style="justify-content: center;"></div>
         </div>
-        <div class="flex" style="gap: 1rem; margin-top: 0.5rem;">
-          <button id="downloadParentFusionsBtn" class="secondary action-main-btn" style="flex:1; display:none;" aria-label="Download Unlocked Fusions for this Agent">Download Unlocked</button>
-          <button id="closeFusionsModalBtn" class="secondary" style="flex:1;" aria-label="Close Fusions Modal">Close</button>
+        <div class="flex gap-4 mt-2">
+          <button id="downloadParentFusionsBtn" class="secondary action-main-btn flex-1" style="display:none;" aria-label="Download Unlocked Fusions for this Agent">Download Unlocked</button>
+          <button id="closeFusionsModalBtn" class="secondary flex-1" aria-label="Close Fusions Modal">Close</button>
         </div>
       </div>
     </div>
