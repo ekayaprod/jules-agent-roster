@@ -513,10 +513,6 @@ class JulesManager {
             return;
         }
 
-        if (agent.prompt === undefined && btn) {
-            btn.disabled = true;
-        }
-
         // 🪄 CONJURE: Optimistic UI for Session Launch with CSS skeletal rendering
         const terminal = this.getEl("julesTerminal");
         const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
@@ -543,6 +539,7 @@ class JulesManager {
             try {
                 // ⚡ Bolt+: The Waterfall Collapse. Unblocked the primary application thread by shifting synchronous remote prompt resolution into the background execution queue.
                 if (agent.prompt === undefined) {
+                    if (btn) btn.disabled = true;
                     const url = AgentUtils.getPromptUrl(agent);
                     agent.prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
                     if (btn) btn.disabled = false;

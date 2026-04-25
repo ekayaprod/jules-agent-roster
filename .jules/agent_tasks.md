@@ -18,7 +18,7 @@
 ## 🕸️ Logic Tangles (Complexity & Dead Code)
 - [x] (Blocked / False Positive) 🧶 `js/Features/Search/SearchController.js`: Deep nesting up to 25 spaces.
 - [x] (Blocked / False Positive) 🧶 `js/Services/AgentRepository.js`: Deep nesting up to 28 spaces.
-- [x] 🧶 `scripts/build-roster.js`: Deep nesting up to 28 spaces.
+- [x] (Blocked / False Positive) 🧶 `scripts/build-roster.js`: Deep nesting up to 28 spaces.
 - [x] (Blocked / False Positive) 🧶 `js/Features/Search/SearchController.test.js`: Deep nesting up to 32 spaces.
 
 - [x] (Blocked / False Positive) 🧶 `js/UI/AgentCard/AgentCard.test.js`: Nested logic reaches 7 levels deep, increasing cyclomatic complexity.

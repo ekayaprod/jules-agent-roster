@@ -513,11 +513,8 @@ class JulesTerminal {
             return;
         }
 
-        if (agent.prompt === undefined) {
-            if (btn) btn.disabled = true;
-            const url = AgentUtils.getPromptUrl(agent);
-            agent.prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
-            if (btn) btn.disabled = false;
+        if (agent.prompt === undefined && btn) {
+            btn.disabled = true;
         }
 
         // 🪄 CONJURE: Optimistic UI for Session Launch with CSS skeletal rendering
@@ -544,6 +541,13 @@ class JulesTerminal {
 
         this.sessionQueue.push(async () => {
             try {
+                // ⚡ Bolt+: The Waterfall Collapse. Unblocked the primary application thread by shifting synchronous remote prompt resolution into the background execution queue.
+                if (agent.prompt === undefined) {
+                    const url = AgentUtils.getPromptUrl(agent);
+                    agent.prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
+                    if (btn) btn.disabled = false;
+                }
+
                 await window.julesAPI.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
                 this.app.toast.show(`Session launched successfully.`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.SUCCESS : "success");
             } catch (error) {
