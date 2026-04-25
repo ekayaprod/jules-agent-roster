@@ -37,3 +37,7 @@
 ## 🎨 Visual Polish
 
 
+
+- [x] 🧪 `js/Utils/network-utils.js`: Re-routed swallowed exception black holes in `fetchWithRetry` JSON and text parsers to explicit `TelemetryUtils` dispatch.
+
+- [x] 🧪 `js/Utils/network-utils.js`: Re-routed swallowed exception black holes in `fetchWithRetry` JSON and text parsers to explicit `TelemetryUtils` dispatch.
