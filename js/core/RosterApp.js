@@ -217,7 +217,11 @@ class RosterApp {
     }
 
     this.agents.forEach((agent, i) => {
-      const category = agent.category || "strategy";
+      let category = agent.category || "strategy";
+      category = category.toLowerCase();
+      if (agent.tier === "Plus" || (agent.name && agent.name.endsWith("+"))) {
+        category = "plus";
+      }
       if (categorizedAgents[category]) {
         categorizedAgents[category].push({ agent, indexOrKey: i });
       }
@@ -294,7 +298,13 @@ class RosterApp {
 
       for (let i = agentIndex; i < end; i++) {
         const { agent, indexOrKey, gridCategory } = flattenedAgents[i];
-        const category = gridCategory || agent.category || "strategy";
+        let category = gridCategory || agent.category || "strategy";
+        if (!gridCategory) {
+          category = category.toLowerCase();
+          if (agent.tier === "Plus" || (agent.name && agent.name.endsWith("+"))) {
+            category = "plus";
+          }
+        }
         const container = categoryContainers[category];
         if (!container) continue;
 

@@ -21,3 +21,11 @@
 ## Inspector — UI Rendering Edge Cases
 **Edge Case:** The UI component `AgentCard.js` lacked boundary tests for invalid keys, numerical identifiers, and missing global dependencies. Similarly, `FusionLab.js` was missing structural interrogation for animated UI glitches and edge-case trap events (e.g., `unlockMatrix`).
 **Assertion:** Interrogated rendering boundaries by verifying omission on invalid inputs and explicitly verifying DOM element creation, CSS state toggling, and fast-forwarding mock timers to validate animation clearing blocks.
+
+### Axioms and Heuristics Extracted (EventBinder.js)
+* **The DOM Click Matrix Expansion**: When testing massive global `document.addEventListener("click")` blocks, systematically inject mock DOM structures for each isolated `if (target)` branch.
+* **The Missing Mock Failure Pattern**: When asserting interactions with sub-services (e.g. `FormatUtils.extractIcon()`), aggressively mock all dependencies that the function could route into; a null `app.fusionLab` must be gracefully caught.
+
+## Inspector — LLMRouter Resilience
+**Edge Case:** The network request abstractions handling Anthropic and OpenAI handshakes lacked test coverage for text fallback error parsing, malformed schema validation (e.g. invalid array parameters, boolean model payloads), and exponential backoff retry caps resulting in unprotected network loops.
+**Assertion:** Wrote and integrated granular structural tests utilizing `jest.advanceTimersByTime` over mock network `fetch` errors. Verified the `LLMValidationError` trap triggers, backoff max logic reliably terminates requests, and mathematically proved the isomorphic mapping dynamically handles the absence of the CommonJS `module` via dynamic function sandboxing. Completed robust Inversion Checks to prove test failure.
