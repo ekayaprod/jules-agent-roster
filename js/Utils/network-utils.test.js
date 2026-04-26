@@ -169,14 +169,20 @@ describe('NetworkUtils', () => {
 
         it('should fallback to default error message if parsing malformed JSON on 4xx', async () => {
             const mockResponse = {
+                url: 'http://test.com',
                 ok: false,
                 status: 400,
                 text: jest.fn().mockResolvedValue('{"message": "Bad Request", }') // Malformed JSON
             };
             global.fetch.mockResolvedValueOnce(mockResponse);
 
+            const TelemetryUtils = require('./telemetry-utils');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
+
             await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("HTTP Error: 400");
             expect(mockResponse.text).toHaveBeenCalled();
+            expect(dispatchSpy).toHaveBeenCalledWith("NETWORK_ERROR_PARSING_FAILED", expect.any(Error), { url: 'http://test.com', status: 400 });
+            dispatchSpy.mockRestore();
         });
 
         it('should extract error message from errJson.message on 4xx', async () => {
@@ -193,14 +199,20 @@ describe('NetworkUtils', () => {
 
         it('should fallback to status code if 4xx JSON parsing fails', async () => {
             const mockResponse = {
+                url: 'http://test.com',
                 ok: false,
                 status: 403,
                 text: jest.fn().mockResolvedValue('Invalid JSON')
             };
             global.fetch.mockResolvedValueOnce(mockResponse);
 
+            const TelemetryUtils = require('./telemetry-utils');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
+
             await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("HTTP Error: 403");
             expect(mockResponse.text).toHaveBeenCalled();
+            expect(dispatchSpy).toHaveBeenCalledWith("NETWORK_ERROR_PARSING_FAILED", expect.any(Error), { url: 'http://test.com', status: 403 });
+            dispatchSpy.mockRestore();
         });
 
         it('should throw "Invalid response object" on falsy response', async () => {
@@ -225,13 +237,19 @@ describe('NetworkUtils', () => {
 
         it('should fallback to default error message if response.text() throws', async () => {
             const mockResponse = {
+                url: 'http://test.com',
                 ok: false,
                 status: 400,
                 text: jest.fn().mockRejectedValue(new Error("text() failed"))
             };
             global.fetch.mockResolvedValueOnce(mockResponse);
 
+            const TelemetryUtils = require('./telemetry-utils');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
+
             await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("HTTP Error: 400");
+            expect(dispatchSpy).toHaveBeenCalledWith("NETWORK_ERROR_TEXT_FAILED", expect.any(Error), { url: 'http://test.com', status: 400 });
+            dispatchSpy.mockRestore();
         });
 
         it('vulnerability check: rate limit exceeded error logging is caught and dispatched', async () => {

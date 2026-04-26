@@ -37,5 +37,9 @@
 ## 🎨 Visual Polish
 
 
+
+- [x] 🧪 `js/Utils/network-utils.js`: Re-routed swallowed exception black holes in `fetchWithRetry` JSON and text parsers to explicit `TelemetryUtils` dispatch.
+
+- [x] 🧪 `js/Utils/network-utils.js`: Re-routed swallowed exception black holes in `fetchWithRetry` JSON and text parsers to explicit `TelemetryUtils` dispatch.
 - [x] 🕵️ `js/core/events/EventBinder.js`: Expanded test coverage for global click event delegation.
 - [x] 🕵️ `js/Services/LLMRouter/LLMRouter.js`: Expanded test coverage for retry loops, validation errors, and module export structure.

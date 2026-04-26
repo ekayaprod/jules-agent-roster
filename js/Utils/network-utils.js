@@ -67,10 +67,12 @@ class NetworkUtils {
           errorMsg = errJson.message;
         }
       } catch (error) {
-        // Ignore parsing errors and stick to fallback
+        const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+        if (tu) tu.dispatchEvent("NETWORK_ERROR_PARSING_FAILED", error, { url: response.url, status: response.status });
       }
     } catch (error) {
-      // Ignore text() errors and stick to fallback
+      const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+      if (tu) tu.dispatchEvent("NETWORK_ERROR_TEXT_FAILED", error, { url: response.url, status: response.status });
     }
     return errorMsg;
   }
