@@ -7,6 +7,12 @@
 > 3. Do not delete this file. Sweep resolved `[x]` items on execution.
 
 ## 🧱 Structural Monoliths (Size & Architecture)
+- [ ] 🏗️ `js/UI/JulesTerminal/JulesTerminal.js`: Large core class (1063 lines). Requires domain splitting and colocation.
+- [ ] 🏗️ `js/UI/JulesTerminal/JulesTerminal.Core.test.js`: Large test file (927 lines). Consider splitting.
+- [ ] 🏗️ `js/Features/Jules/JulesManager/tests/JulesManager.Core.test.js`: Large test file (923 lines). Consider splitting.
+- [ ] 🏗️ `js/UI/JulesTerminal/JulesTerminal.Modal.test.js`: Large test file (904 lines). Consider splitting.
+- [ ] 🏗️ `js/Features/Jules/JulesManager/tests/JulesManager.Modal.test.js`: Large test file (900 lines). Consider splitting.
+
 - [x] (Blocked / False Positive) 🏗️ `js/Features/Fusion/AgentPicker.test.js`: Large test file (538 lines). Consider splitting or restructuring.
 
 - [x] 🏗️ `js/Features/Jules/JulesManager/JulesManager.test.js`: Extremely large test file (2025 lines). Consider splitting into smaller test suites for better maintainability.
@@ -16,6 +22,9 @@
 - [x] 🏗️ `js/core/RosterApp.js`: Large core class (536 lines). Needs domain splitting and colocation.
 
 ## 🕸️ Logic Tangles (Complexity & Dead Code)
+- [ ] 🧶 `js/UI/JulesTerminal/JulesTerminal.js`: Deep nesting up to 28 spaces.
+- [ ] 🧶 `js/Services/LLMRouter/LLMRouter.js`: Deep nesting up to 28 spaces.
+
 - [x] (Blocked / False Positive) 🧶 `js/Features/Search/SearchController.js`: Deep nesting up to 25 spaces.
 - [x] (Blocked / False Positive) 🧶 `js/Services/AgentRepository.js`: Deep nesting up to 28 spaces.
 - [x] (Blocked / False Positive) 🧶 `scripts/build-roster.js`: Deep nesting up to 28 spaces.
@@ -26,6 +35,10 @@
 - [x] (Blocked / False Positive) 🧶 `js/Features/Jules/JulesManager/JulesManager.js`: Deep nesting up to 32 spaces.
 
 ## 🕵️ Boundary Interrogation (Coverage Expansion & Edge Cases)
+- [ ] 🕵️ `js/UI/JulesTerminal/JulesTerminal.js`: Missing test file.
+- [ ] 🕵️ `js/Utils/markdown-renderer.js`: Missing test file.
+- [ ] 🕵️ `js/Features/Jules/JulesManager/JulesManager.js`: Missing test file.
+
 
 
 ## 🚨 Fatal Boot Sequences (Bleeding Environment)
