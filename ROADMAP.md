@@ -18,7 +18,7 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 <p><em>Focus: Broadening the Roster</em></p>
 
 - [x] **Interactive Jules API Dashboard Modal**: Make all active processes in the dashboard clickable to display a full modal thread. When Jules API pauses and requires user input (`Needs Input` status), the modal should provide a chat-like interface to reply and continue the execution thread. (Shipped: [Commit 25c76bd](https://github.com/ekayaprod/jules-agent-roster/commit/25c76bd))
-  - *Estimation*: ~250-300 LOC. Requires creating a new modal UI, rendering markdown for full activity history, and adding `replyToSession` (POST) network methods to `JulesAPI.js`.
+  - _Estimation_: ~250-300 LOC. Requires creating a new modal UI, rendering markdown for full activity history, and adding `replyToSession` (POST) network methods to `JulesAPI.js`.
 - [ ] **New Agent Categories**: Explore specialized agents for Data Science, DevOps, and Mobile dev.
 - [ ] **Framework-Specific Variants**: Create variants of agents for specific stacks (e.g., Next.js vs. Remix vs. Vue).
 - [ ] **Community Contributions**: Streamline the process for community submitted agents.
@@ -31,6 +31,9 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 - [ ] **Prompt Validation**: Implement scripts to parse and validate the JSON/Markdown structure within agent prompts.
 - [x] **Automated Testing**: Add basic tests for the `index.html` UI logic (search, filtering, copying). (Shipped: [Commit 253f2d9](https://github.com/ekayaprod/jules-agent-roster/commit/253f2d9))
+- [x] **Standardize Testing Assertions**: Adopt `@testing-library/jest-dom` to enforce semantic assertions, decoupling tests from structural CSS/DOM implementation details. (Shipped: [Commit a07a675](https://github.com/ekayaprod/jules-agent-roster/commit/a07a675))
+- [x] **Refactor JulesManager Monolith**: Extract shared logic and distinct functional domains into standalone utility classes or specialized sub-controllers. (Shipped: [Commit 532bb64](https://github.com/ekayaprod/jules-agent-roster/commit/532bb64))
+- [x] **Decentralize Core RosterApp Monolith**: Extract distinct sub-domains into specialized delegate classes leaving `RosterApp` strictly as an event-driven orchestrator. (Shipped: [Commit 51ef57b](https://github.com/ekayaprod/jules-agent-roster/commit/51ef57b))
 - [ ] **CLI Tool**: Potential CLI to fetch specific agents directly into the terminal.
 
 ## 📦 Backlog (Unscheduled)
@@ -63,20 +66,8 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 - [x] [Performance] Idea: Implement virtualized lists via `Clusterize.js` (via CDN) to render large agent rosters without layout thrashing, resolving the 'Missing pagination' audit finding while maintaining the zero-build-step constraint. (Source: clusterize.js.org) (Shipped: [Commit b1e678d](https://github.com/ekayaprod/jules-agent-roster/commit/b1e678d))
 - [x] [UX] Idea: Adopt `focus-trap` via CDN to standardize keyboard navigation and modal accessibility in FusionLab, replacing brittle custom roving tabindex logic (`handleGridKeydown`). (Source: github.com/focus-trap/focus-trap) (Shipped: [Commit 572a514](https://github.com/ekayaprod/jules-agent-roster/commit/572a514))
 
-### Standardize Testing Assertions
+### Migrate Date Utilities to `date-fns`
 
-**The Problem:** The application currently relies on brittle, low-level structural assertions (like checking `.className` and `.innerHTML`) which test implementation details rather than user behavior, leading to brittle tests.
-**The Solution:** Adopt `@testing-library/jest-dom` to enforce semantic assertions like `toBeVisible()`, `toHaveTextContent()`, and `toHaveAttribute()`.
-**The Benefit:** Decouples tests from structural CSS/DOM implementation details, making them robust to refactoring and enforcing accessibility standards.
-
-### Refactor JulesManager Monolith
-
-**The Problem:** `js/Features/Jules/JulesManager/JulesManager.js` is a monolithic module containing entangled UI logic, network calls, and state management.
-**The Solution:** Extract shared logic and distinct functional domains into standalone utility classes or specialized sub-controllers.
-**The Benefit:** Decouples responsibilities, lowering cyclomatic complexity and enabling targeted unit testing and faster iteration on individual components without risking global regression.
-
-### Decentralize Core RosterApp Monolith
-
-**The Problem:** `js/core/RosterApp.js` is a massive core class containing over 500 lines of entangled application lifecycle, DOM manipulation, and cross-domain state management, making it brittle to modify.
-**The Solution:** Extract distinct sub-domains (e.g., initialization sequencing, layout management) into specialized delegate classes (e.g., `AppBootstrapper`, `LayoutManager`) leaving `RosterApp` strictly as an event-driven orchestrator.
-**The Benefit:** Reduces cyclomatic complexity, isolates test boundaries, and enables parallel development across core logic without triggering widespread merge conflicts.
+**The Problem:** The app manually formats dates using complex, scattered Date object math across multiple domains (e.g., polling timers, dashboard timestamps), leading to brittle tests and inconsistent display logic.
+**The Solution:** Adopt `date-fns` (or similar utility) via CDN.
+**The Benefit:** Standardizes time-based math and formatting safely, eliminating custom drift and natively supporting precise, edge-case tested timestamp manipulations.
