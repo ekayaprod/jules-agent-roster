@@ -34,7 +34,7 @@ ClipboardUtils.copyToClipboard(text, button, "Agent Name");
 ```
 
 ## Architecture
-These components follow a strict Vanilla JS philosophy without a build step or virtual DOM framework (like React).
+These components follow a strict Vanilla JS philosophy without a bundler or virtual DOM framework (like React), relying instead on a lightweight payload compilation step via `npm run build:roster`.
 
 1.  **Stateless Rendering:** Components expose static methods that generate DOM elements or pure HTML strings based on passed data objects. This avoids internal component state management.
 2.  **CSS Utilities:** The JS modules manage visibility and styling exclusively by toggling CSS utility classes (e.g., `.hidden`, `.success-state`) defined in the stylesheet, strictly avoiding inline `style` modifications.

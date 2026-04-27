@@ -12,7 +12,7 @@ The codebase is organized into modular components that separate concerns between
 
 #### <a id="rosterapp-architecture"></a>🧠 RosterApp Architecture (Core Lifecycle)
 
-The `RosterApp` orchestrates the primary application flow, emphasizing asynchronous non-blocking operations and event delegation. It is completely isolated from native build steps, prioritizing Vanilla JS performance.
+The `RosterApp` orchestrates the primary application flow, emphasizing asynchronous non-blocking operations and event delegation. It operates independently of complex virtual DOMs but relies on a lightweight payload compilation step (`npm run build:roster`) to generate the application state, prioritizing Vanilla JS performance.
 
 1. **Initialization Flow (`init()`)**:
    * Caches critical DOM elements to prevent query thrashing (`cacheElements()`).

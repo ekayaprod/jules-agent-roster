@@ -34,12 +34,21 @@ The core of this system is the **Overseer** agent. This agent runs monthly to pe
 
 Welcome aboard! To boot up the local development environment and serve the application:
 
-```bash
-npm install
-npm start
-```
+1. `cp .env.example .env` (Populate your API keys)
+2. `npm install`
+3. `npm start`
 
 *Note: `npm start` automatically builds the roster payload and launches a local server on port 8080! To run the unit tests via JSDOM, execute `npm run test:unit`.*
+
+### 🔐 Environment Variables
+
+The following environment variables are required to be set in your `.env` file to fully boot the application:
+
+| Variable | Description |
+| :--- | :--- |
+| `CI` | Used to detect Continuous Integration environments. |
+| `OPENAI_API_KEY` | Your OpenAI API key for LLM routing. |
+| `ANTHROPIC_API_KEY` | Your Anthropic API key for LLM routing. |
 
 ### Usage Instructions
 
