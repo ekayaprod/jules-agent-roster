@@ -100,6 +100,18 @@ const createMockElement = (id = '') => {
       classes.clear();
       if (v) v.split(' ').forEach((c) => classes.add(c));
     },
+    get outerHTML() {
+      const tag = this.tagName.toLowerCase();
+      const idAttr = this.id ? ` id="${this.id}"` : '';
+      const classAttr = this.className ? ` class="${this.className}"` : '';
+      let styleAttr = '';
+      const styleKeys = Object.keys(this.style);
+      if (styleKeys.length > 0) {
+        const styleString = styleKeys.map((k) => `${k}: ${this.style[k]}`).join('; ');
+        styleAttr = ` style="${styleString}"`;
+      }
+      return `<${tag}${idAttr}${classAttr}${styleAttr}>${this.innerHTML}</${tag}>`;
+    },
     _innerHTML: '',
     get innerHTML() {
       return this._innerHTML;
@@ -351,21 +363,34 @@ const runBenchmark = async () => {
 
   // Fix: Properly mock elements so appending results works and index gets tested
   const slotACard = getMockElement('slotACard');
+  slotACard.tagName = 'BUTTON';
   slotACard.innerHTML = '<div class="slot-content"></div>';
+
   const slotBCard = getMockElement('slotBCard');
+  slotBCard.tagName = 'BUTTON';
   slotBCard.innerHTML = '<div class="slot-content"></div>';
 
   const fusionResultContainer = getMockElement('fusionResultContainer');
+  fusionResultContainer.classList.add('grid');
+
   const fusionIndexContainer = getMockElement('fusionIndexContainer');
+
   const searchModeContainer = getMockElement('searchModeContainer');
   const searchResultsGrid = getMockElement('searchResultsGrid');
+  searchResultsGrid.classList.add('grid');
+
+  const searchModeHeader = getMockElement('search-mode-header');
+  searchModeHeader.tagName = 'H2';
+  searchModeHeader.classList.add('section-header');
 
   global.document.body.appendChild(slotACard);
   global.document.body.appendChild(slotBCard);
   global.document.body.appendChild(fusionResultContainer);
   global.document.body.appendChild(fusionIndexContainer);
   global.document.body.appendChild(searchModeContainer);
-  global.document.body.appendChild(searchResultsGrid);
+
+  searchModeContainer.appendChild(searchModeHeader);
+  searchModeContainer.appendChild(searchResultsGrid);
 
   roster.elements = {
     fuseBtn: getMockElement('fuseBtn'),
