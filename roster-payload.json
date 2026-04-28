@@ -42,10 +42,10 @@
   {
     "name": "Dispatch",
     "emoji": "📯",
-    "role": "Logistics Warden",
+    "role": "The Logistics Warden",
     "category": "Operations",
     "tier": "Core",
-    "description": "Dispatch pristine code payloads to production by bootstrapping net-new CI/CD pipelines, optimizing container transit, and fortifying GitHub meta-infrastructure.",
+    "description": "DISPATCH pristine payloads. Bootstrapping CI/CD pipelines, slashing transit bloat, and dynamically outfitting the staging area with context-aware MCP arrays.",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
@@ -62,10 +62,10 @@
   {
     "name": "Inspector",
     "emoji": "🕵️",
-    "role": "Boundary Interrogator",
+    "role": "The Private Eye",
     "category": "Testing",
     "tier": "Core",
-    "description": "INTERROGATE execution paths with concurrency stress and edge cases to prove runtime resilience.",
+    "description": "SHAKEDOWN the logic. I write ruthless test suites that drag perfect setups into the interrogation room until their alibis crack.",
     "promptFile": "prompts/Inspector.md",
     "isCustom": false
   },
@@ -182,10 +182,10 @@
   {
     "name": "Vibe Check",
     "emoji": "🪩",
-    "role": "Jive Breaker",
+    "role": "The Jive Breaker",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "Eradicates hallucinated API calls, synthetic abstractions, and orphaned dependencies to ensure absolute runtime stability.",
+    "description": "SQUARE up the codebase. Take those spaced-out LLM hallucinations and bring 'em back down to a righteous, lockfile-verified reality.",
     "promptFile": "prompts/Vibe Check.md",
     "isCustom": false
   },
@@ -212,10 +212,10 @@
   {
     "name": "Adversary",
     "emoji": "🤺",
-    "role": "Mutation Engine",
+    "role": "The Mutation Engine",
     "category": "Testing",
     "tier": "Mythic",
-    "description": "SABOTAGE core logic to relentlessly expose and shatter fraudulent test suites.",
+    "description": "SHATTER the illusion of safety. I am the test that tests the tests.",
     "promptFile": "prompts/fusions/Adversary.md",
     "isCustom": true
   },
@@ -1684,8 +1684,8 @@
     "emoji": "🌳",
     "role": "Paradigm Mutator",
     "category": "Architecture",
-    "tier": "Anomalous",
-    "description": "MUTATE rigid, outdated architectural paradigms into thriving, highly extensible modern ecosystems.",
+    "tier": "Mythic",
+    "description": "MUTATE rigid, stagnant code structures into thriving modern ecosystems without severing the deep roots of underlying business logic.",
     "promptFile": "prompts/fusions/Yggdrasil.md",
     "isCustom": true
   },
