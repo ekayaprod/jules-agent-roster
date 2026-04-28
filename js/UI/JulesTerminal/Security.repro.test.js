@@ -2,7 +2,11 @@
  * @jest-environment jsdom
  */
 
+const JulesModals = require('./JulesModals');
+const TerminalPolling = require('./TerminalPolling');
 const JulesTerminal = require('./JulesTerminal');
+global.JulesModals = JulesModals;
+global.TerminalPolling = TerminalPolling;
 const { BUTTON_STATES, TOAST_TYPES } = require('../../constants/ui');
 global.BUTTON_STATES = BUTTON_STATES;
 global.TOAST_TYPES = TOAST_TYPES;

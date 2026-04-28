@@ -329,6 +329,10 @@ const AgentRepository = loadClass('js/Services/AgentRepository.js');
 const ToastNotification = loadClass('js/UI/Toast/ToastNotification.js');
 const PinnedManager = loadClass('js/Features/Pinned/PinnedManager.js');
 global.PinnedManager = PinnedManager;
+const JulesModals = loadClass('js/UI/JulesTerminal/JulesModals.js');
+global.JulesModals = JulesModals;
+const TerminalPolling = loadClass('js/UI/JulesTerminal/TerminalPolling.js');
+global.TerminalPolling = TerminalPolling;
 const JulesTerminal = loadClass('js/UI/JulesTerminal/JulesTerminal.js');
 global.JulesTerminal = JulesTerminal;
 

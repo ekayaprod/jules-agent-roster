@@ -5,7 +5,11 @@
 const { BUTTON_STATES, TOAST_TYPES } = require('../../constants/ui');
 global.BUTTON_STATES = BUTTON_STATES;
 global.TOAST_TYPES = TOAST_TYPES;
+const JulesModals = require('./JulesModals');
+const TerminalPolling = require('./TerminalPolling');
 const JulesTerminal = require('./JulesTerminal');
+global.JulesModals = JulesModals;
+global.TerminalPolling = TerminalPolling;
 
 // Mock utilities
 global.StorageUtils = {
@@ -85,7 +89,7 @@ describe('JulesTerminal', () => {
     });
 
     afterEach(() => {
-        julesTerminal.cleanup();
+        julesTerminal.polling.cleanup();
         jest.clearAllTimers();
         jest.restoreAllMocks();
         document.body.innerHTML = '';
@@ -98,8 +102,8 @@ describe('JulesTerminal', () => {
 
     describe('init', () => {
         it('should show and clear errors gracefully if elements are missing', () => {
-            julesTerminal._showKeyError(null, null, 'Error');
-            julesTerminal._clearKeyError(null, null);
+            julesTerminal.modals._showKeyError(null, null, 'Error');
+            julesTerminal.modals._clearKeyError(null, null);
             expect(true).toBe(true);
         });
 
@@ -351,7 +355,7 @@ describe('JulesTerminal', () => {
             });
             await julesTerminal.loadSources();
 
-            const clearSpy = jest.spyOn(julesTerminal, '_clearPollingAndCache');
+            const clearSpy = jest.spyOn(julesTerminal.polling, '_clearPollingAndCache');
 
             const picker = document.getElementById('julesRepoPicker');
             picker.value = '';
@@ -583,7 +587,7 @@ describe('JulesTerminal', () => {
 
         it('should create new dashboard item for unrendered session', () => {
             const session = { id: '1', title: 'TestAgent' };
-            const pollingSpy = jest.spyOn(julesTerminal, 'startTerminalPolling').mockImplementation(() => {});
+            const pollingSpy = jest.spyOn(julesTerminal.polling, 'startTerminalPolling').mockImplementation(() => {});
 
             julesTerminal._processSession(session, terminal, 'repo');
 
@@ -722,7 +726,7 @@ describe('JulesTerminal', () => {
         });
 
         it('should poll activities and update state to Needs Input', async () => {
-            julesTerminal.startTerminalPolling('123', item, 'repo');
+            julesTerminal.polling.startTerminalPolling('123', item, 'repo');
 
             // Fast forward to first interval
             window.julesAPI.getActivities.mockResolvedValue({
@@ -741,7 +745,7 @@ describe('JulesTerminal', () => {
         });
 
         it('should handle chronological sorting using string comparison correctly', async () => {
-             julesTerminal.startTerminalPolling('123', item, 'repo');
+             julesTerminal.polling.startTerminalPolling('123', item, 'repo');
 
              // Mix order to ensure string sort fixes it
              window.julesAPI.getActivities.mockResolvedValue({
@@ -761,7 +765,7 @@ describe('JulesTerminal', () => {
         });
 
         it('should complete session and generate PR link', async () => {
-             julesTerminal.startTerminalPolling('123', item, 'repo');
+             julesTerminal.polling.startTerminalPolling('123', item, 'repo');
 
              // Mock network PR fetch
              window.githubAPI.getPullRequests = jest.fn().mockResolvedValue([]);
@@ -786,7 +790,7 @@ describe('JulesTerminal', () => {
 
         it('should catch API errors gracefully during polling', async () => {
              const consoleSpy = jest.spyOn(console, TOAST_TYPES.ERROR).mockImplementation(() => {});
-             julesTerminal.startTerminalPolling('123', item, 'repo');
+             julesTerminal.polling.startTerminalPolling('123', item, 'repo');
 
              window.julesAPI.getActivities.mockRejectedValue(new Error('Poll Error'));
 
@@ -804,7 +808,7 @@ describe('JulesTerminal', () => {
         });
 
         it('should bail if activities array is missing', async () => {
-             julesTerminal.startTerminalPolling('123', item, 'repo');
+             julesTerminal.polling.startTerminalPolling('123', item, 'repo');
              window.julesAPI.getActivities.mockResolvedValue({});
              await jest.advanceTimersByTimeAsync(3000);
              // Should not throw, interval remains
@@ -816,7 +820,7 @@ describe('JulesTerminal', () => {
              julesTerminal.renderedSessionIds = null;
 
              // should not throw
-             julesTerminal._clearPollingAndCache();
+             julesTerminal.polling._clearPollingAndCache();
 
              expect(julesTerminal.julesPollingIntervals).toBeNull();
              expect(julesTerminal.renderedSessionIds).toBeNull();
@@ -824,19 +828,19 @@ describe('JulesTerminal', () => {
         });
 
         it('should handle missing julesPollingIntervals during interval clear', () => {
-             julesTerminal.startTerminalPolling('123', item, 'repo');
+             julesTerminal.polling.startTerminalPolling('123', item, 'repo');
 
              // Simulate unexpected external state clearing the map while interval exists
              julesTerminal.julesPollingIntervals = null;
 
              // Call method again to trigger branch: `if (!this.julesPollingIntervals) this.julesPollingIntervals = {};`
-             julesTerminal.startTerminalPolling('123', item, 'repo');
+             julesTerminal.polling.startTerminalPolling('123', item, 'repo');
 
              expect(julesTerminal.julesPollingIntervals).toHaveProperty('123');
         });
 
         it('should update state appropriately when USER_INPUT activity type is received', async () => {
-            julesTerminal.startTerminalPolling('123', item, 'repo');
+            julesTerminal.polling.startTerminalPolling('123', item, 'repo');
 
             window.julesAPI.getActivities.mockResolvedValue({
                 activities: [
@@ -891,7 +895,7 @@ describe('JulesTerminal', () => {
             julesTerminal.dismissedSessionIds = new Set(['2']);
             julesTerminal.currentRepo = 'repo';
 
-            julesTerminal.cleanup();
+            julesTerminal.polling.cleanup();
 
             expect(julesTerminal.activeSessionsTimeout).toBeNull();
             expect(Object.keys(julesTerminal.julesPollingIntervals).length).toBe(0);

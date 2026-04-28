@@ -7,7 +7,7 @@
 > 3. Do not delete this file. Sweep resolved `[x]` items on execution.
 
 ## 🧱 Structural Monoliths (Size & Architecture)
-- [ ] 🏗️ `js/UI/JulesTerminal/JulesTerminal.js`: Large core class (1063 lines). Requires domain splitting and colocation.
+- [x] 🏗️ `js/UI/JulesTerminal/JulesTerminal.js`: Large core class (1063 lines). Requires domain splitting and colocation.
 - [ ] 🏗️ `js/UI/JulesTerminal/JulesTerminal.Core.test.js`: Large test file (927 lines). Consider splitting.
 - [ ] 🏗️ `js/Features/Jules/JulesManager/tests/JulesManager.Core.test.js`: Large test file (923 lines). Consider splitting.
 - [ ] 🏗️ `js/UI/JulesTerminal/JulesTerminal.Modal.test.js`: Large test file (904 lines). Consider splitting.

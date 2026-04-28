@@ -64,6 +64,12 @@ class JulesTerminal {
         this.isProcessingQueue = false;
 
         // Domain classes
+        this.modals = new JulesModals(this);
+        this.polling = new TerminalPolling(this);
+    }
+
+    cleanup() {
+        this.polling.cleanup();
 
 
 
@@ -114,8 +120,8 @@ class JulesTerminal {
                 if (githubTokenInput) githubTokenInput.value = StorageUtils.getItem("github_api_key");
                 settingsModal.classList.add("visible");
                 setTimeout(() => keyInput.focus(), JulesTerminal.MODAL_FOCUS_QUICK_DELAY_MS);
-                this._clearKeyError(keyInput, errorSpan);
-                this._clearKeyError(githubTokenInput, githubTokenErrorSpan);
+                this.modals._clearKeyError(keyInput, errorSpan);
+                this.modals._clearKeyError(githubTokenInput, githubTokenErrorSpan);
             } else {
                 settingsModal.classList.remove("visible");
             }
@@ -125,8 +131,8 @@ class JulesTerminal {
         closeBtn?.addEventListener("click", () => toggleModal(false));
 
         keyInput?.addEventListener("blur", () => {
-            if (!keyInput.value.trim()) this._showKeyError(keyInput, errorSpan, "Please enter your Jules API Key to connect.");
-            else this._clearKeyError(keyInput, errorSpan);
+            if (!keyInput.value.trim()) this.modals._showKeyError(keyInput, errorSpan, "Please enter your Jules API Key to connect.");
+            else this.modals._clearKeyError(keyInput, errorSpan);
         });
 
         saveBtn?.addEventListener("click", async () => {
@@ -134,7 +140,7 @@ class JulesTerminal {
             const githubKey = githubTokenInput ? githubTokenInput.value.trim() : "";
 
             if (!key) {
-                this._showKeyError(keyInput, errorSpan, "Please enter your Jules API Key to connect.");
+                this.modals._showKeyError(keyInput, errorSpan, "Please enter your Jules API Key to connect.");
                 return;
             }
 
@@ -160,8 +166,8 @@ class JulesTerminal {
             }
         });
 
-        this._initInteractionModal();
-        this._initPRModal();
+        this.modals._initInteractionModal();
+        this.modals._initPRModal();
 
         if (apiKey && window.julesAPI) {
             window.julesAPI.configure(apiKey, githubToken);
@@ -217,7 +223,7 @@ class JulesTerminal {
                                 this.loadActiveSessionsForRepo(sourceName)
                             ]);
                         } else {
-                            this._clearPollingAndCache();
+                            this.polling._clearPollingAndCache();
                             this.getEl("julesTerminal").innerHTML = DOMUtils.getTerminalIndicatorHTML("Awaiting repository connection...");
                         }
                     });
@@ -246,7 +252,7 @@ class JulesTerminal {
         const terminal = this.getEl("julesTerminal");
 
         if (this.currentRepo !== sourceName) {
-            this._clearPollingAndCache();
+            this.polling._clearPollingAndCache();
             const existingInd = terminal.querySelector('#fetchingIndicator');
             if (!existingInd) {
                  terminal.innerHTML += DOMUtils.getTerminalIndicatorHTML("Checking active Jules routines...");
@@ -254,34 +260,13 @@ class JulesTerminal {
             this.currentRepo = sourceName;
         }
 
-        this._startSessionPolling(sourceName, terminal);
+        this.polling._startSessionPolling(sourceName, terminal);
     }
 
     /**
      * Recursively polls the API for active sessions using a delayed execution loop to
      * eliminate compounding request saturation if the API degrades.
      */
-    _startSessionPolling(sourceName, terminal) {
-        this._pollingActive = true;
-        if (this.activeSessionsTimeout) clearTimeout(this.activeSessionsTimeout);
-
-        const pollLoop = async () => {
-            if (!this._pollingActive || this.currentRepo !== sourceName) return;
-
-            try {
-                await this._fetchAndRenderSessions(sourceName, terminal);
-            } catch (error) {
-                // Suppress background polling errors to prevent UI crashing during transient API degradation
-                console.warn("Session polling cycle encountered an error:", error);
-            }
-
-            if (this._pollingActive && this.currentRepo === sourceName) {
-                this.activeSessionsTimeout = setTimeout(pollLoop, JulesTerminal.ACTIVE_SESSIONS_POLL_MS);
-            }
-        };
-
-        pollLoop();
-    }
 
 
     /**
@@ -320,7 +305,7 @@ class JulesTerminal {
             if (link) {
                 link.onclick = (e) => {
                     e.preventDefault();
-                    this._showPRModal(pr, this.currentRepo);
+                    this.modals._showPRModal(pr, this.currentRepo);
                 };
             }
             terminal.insertBefore(item, terminal.firstChild);
@@ -461,10 +446,10 @@ class JulesTerminal {
             safeAgentName,
             "Initializing...",
             `status-${session.id}`,
-            () => this._showHistoryModal(session.id, agentEmoji, safeAgentName)
+            () => this.modals._showHistoryModal(session.id, agentEmoji, safeAgentName)
         );
 
-        this.startTerminalPolling(session.id, block, safeAgentName, agentEmoji);
+        this.polling.startTerminalPolling(session.id, block, safeAgentName, agentEmoji);
     }
 
     /**
@@ -616,154 +601,9 @@ class JulesTerminal {
      * @returns {void}
      * @see ../../../docs/architecture/Features/JulesTerminal.md#7-memory-management
      */
-    cleanup() {
-        this._pollingActive = false;
-        if (this.activeSessionsTimeout) {
-            clearTimeout(this.activeSessionsTimeout);
-            this.activeSessionsTimeout = null;
-        }
-        this._clearPollingAndCache();
-        if (this.dismissedSessionIds) this.dismissedSessionIds.clear();
-        this.currentRepo = null;
-        this._flatCustomsCache = null;
-    }
 
-    _clearPollingAndCache() {
-        if (this.julesPollingIntervals) {
-            for (const key in this.julesPollingIntervals) {
-                clearInterval(this.julesPollingIntervals[key]);
-            }
-            this.julesPollingIntervals = {};
-        }
-        if (this.renderedSessionIds) this.renderedSessionIds.clear();
-        this._flatCustomsCache = null;
-        this._agentMapCache = null;
-    }
 
-    startTerminalPolling(sessionId, block, agentName, agentEmoji) {
-        if (!this.julesPollingIntervals) {
-            this.julesPollingIntervals = {};
-        }
-        if (this.julesPollingIntervals[sessionId]) {
-            clearInterval(this.julesPollingIntervals[sessionId]);
-        }
 
-        this.julesPollingIntervals[sessionId] = setInterval(async () => {
-            try {
-                const activitiesResponse = await window.julesAPI.getActivities(sessionId);
-                if (!activitiesResponse.activities) return;
-
-                const activities = activitiesResponse.activities.sort(this.sortByCreateTime);
-
-                const state = {
-                    isCompleted: false,
-                    hasError: false,
-                    isWaitingForInput: false,
-                    latestLog: "Processing...",
-                    rawMessage: "Processing..."
-                };
-
-                let fullHistoryMarkdown = "";
-
-                activities.forEach(act => {
-                    let text = act.title || act.description || "";
-
-                    if (act.title) {
-                        fullHistoryMarkdown += `**${act.title}**\n\n`;
-                    }
-                    if (act.description) {
-                        fullHistoryMarkdown += `${act.description}\n\n`;
-                    }
-                    if (act.type && act.type.includes('USER_INPUT') && act.message) {
-                        fullHistoryMarkdown += `*You:* ${act.message}\n\n`;
-                    }
-                    if (act.error) {
-                        fullHistoryMarkdown += `**Error:** ${act.error.message}\n\n`;
-                    }
-                    fullHistoryMarkdown += `---\n\n`;
-
-                    if (text) {
-                        state.rawMessage = act.description || act.title;
-                        if (text.length > 70) text = text.substring(0, 70) + "...";
-                        state.latestLog = text;
-                    }
-
-                    if (act.type && act.type.includes('USER_INPUT')) {
-                        state.latestLog = "User input transmitted.";
-                    }
-
-                    if (act.error) {
-                        state.hasError = true;
-                        state.latestLog = "Exception: " + (act.error.message || "Unknown error");
-                        state.rawMessage = state.latestLog;
-                    }
-
-                    if (
-                        act.userActionRequired ||
-                        act.requiresInput ||
-                        (act.type && act.type.includes('INPUT')) ||
-                        act.planGenerated ||
-                        (act.title && act.title.toLowerCase().includes('waiting for'))
-                    ) {
-                        state.isWaitingForInput = true;
-                    }
-                    if (act.planApproved) state.isWaitingForInput = false;
-
-                    if (act.sessionCompleted) state.isCompleted = true;
-                });
-
-                if (this.activeModalSessionId === sessionId) {
-                    const contentEl = this.getEl("historyModalContent");
-                    if (contentEl) {
-                        contentEl.innerHTML = "";
-                        const pre = DOMUtils.createMarkdownPreBlock(fullHistoryMarkdown || "No history available.");
-                        contentEl.appendChild(pre);
-                        contentEl.scrollTop = contentEl.scrollHeight;
-                    }
-                }
-
-                this._updatePollingState(sessionId, block, state, agentName, agentEmoji);
-
-            } catch (e) {
-                const tu = JulesTerminal.getTelemetryUtils();
-                if (tu) tu.dispatchEvent("JULES_POLLING_ERROR", e);
-            }
-        }, this.constructor.TERMINAL_POLL_MS);
-    }
-
-    _updatePollingState(sessionId, block, state, agentName, agentEmoji) {
-        const statusSpan = block.querySelector(`#status-${sessionId}`) || block.querySelector(`#status-mutated-${sessionId}`);
-        if (!statusSpan) return;
-
-        if (state.isCompleted) {
-            statusSpan.className = "term-status status-success";
-            statusSpan.innerHTML = `✅ Execution Finished`;
-            this.loadPullRequestsForRepo(this.currentRepo);
-            clearInterval(this.julesPollingIntervals[sessionId]);
-            setTimeout(() => this.dismissSession(sessionId), this.constructor.SUCCESS_DISMISS_DELAY_MS);
-            return;
-        }
-
-        if (state.hasError) {
-            statusSpan.className = "term-status status-error";
-            statusSpan.innerHTML = `${FormatUtils.escapeHTML(state.latestLog)} <button class="term-action-btn" aria-label="Dismiss task error" onclick="document.getElementById('session-${sessionId}').remove()">[✕]</button>`;
-            clearInterval(this.julesPollingIntervals[sessionId]);
-            return;
-        }
-
-        if (state.isWaitingForInput) {
-            statusSpan.className = "term-status status-waiting";
-            statusSpan.innerHTML = `⚠️ Response Needed (Click to view)`;
-            statusSpan.onclick = (e) => {
-                e.stopPropagation();
-                this._showInteractionModal(sessionId, agentEmoji, agentName, state.rawMessage);
-            };
-        } else {
-            statusSpan.className = "term-status";
-            statusSpan.onclick = null;
-            statusSpan.textContent = state.latestLog;
-        }
-    }
 
 
 
@@ -778,277 +618,15 @@ class JulesTerminal {
     }
 
 
-    _initPRModal() {
-        const prModal = this.getEl("julesPRModal");
-        const closePRModalBtn = this.getEl("cancelPRBtn");
-
-        if (prModal && closePRModalBtn) {
-            closePRModalBtn.addEventListener("click", () => {
-                prModal.classList.remove("visible");
-            });
-        }
-    }
-
-    _initInteractionModal() {
-        const modal = this.getEl("julesInteractionModal");
-        const cancelBtn = this.getEl("cancelInteractionBtn");
-        const submitBtn = this.getEl("submitInteractionBtn");
-        const inputField = this.getEl("interactionModalInput");
-        const errorSpan = this.getEl("interactionModalError");
-
-        if (!modal) return;
-
-        const closeModal = () => {
-            modal.classList.remove("visible");
-            this.activeModalSessionId = null;
-            if (inputField) {
-                inputField.value = "";
-                inputField.style.borderColor = "";
-                inputField.removeAttribute("aria-invalid");
-                inputField.removeAttribute("aria-describedby");
-            }
-            if (errorSpan) {
-                errorSpan.textContent = "";
-                errorSpan.classList.add("hidden");
-            }
-        };
-
-        const handleSubmit = async () => {
-            const text = inputField.value.trim();
-            if (!text) {
-                if (inputField && errorSpan) {
-                    inputField.style.borderColor = "var(--error)";
-                    inputField.setAttribute("aria-invalid", "true");
-                    inputField.setAttribute("aria-describedby", "interactionModalError");
-                    errorSpan.textContent = "Please provide a response before transmitting.";
-                    errorSpan.classList.remove("hidden");
-                }
-                return;
-            }
-            if (!this.activeModalSessionId) return;
-
-            // 🪄 CONJURE: Optimistic UI with silent rollback for interaction modal
-            const sessionId = this.activeModalSessionId;
-            const statusSpan = document.getElementById(`status-${sessionId}`);
-
-            await this._transmitReply(sessionId, text, closeModal, {
-                textContent: statusSpan ? statusSpan.textContent : "",
-                className: statusSpan ? statusSpan.className : "",
-                onclick: statusSpan ? statusSpan.onclick : null
-            });
-        };
-
-        cancelBtn?.addEventListener("click", closeModal);
-        submitBtn?.addEventListener("click", handleSubmit);
-        inputField?.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") handleSubmit();
-        });
-        inputField?.addEventListener("input", () => {
-            if (inputField && errorSpan) {
-                inputField.style.borderColor = "";
-                inputField.removeAttribute("aria-invalid");
-                inputField.removeAttribute("aria-describedby");
-                errorSpan.textContent = "";
-                errorSpan.classList.add("hidden");
-            }
-        });
-
-        const cancelHistoryBtn = this.getEl("cancelHistoryBtn");
-        const submitHistoryBtn = this.getEl("submitHistoryBtn");
-        const historyModalInput = this.getEl("historyModalInput");
-        const historyErrorSpan = this.getEl("historyModalError");
-        const historyModal = this.getEl("julesHistoryModal");
-
-        const closeHistoryModal = () => {
-            if (historyModal) {
-                historyModal.classList.remove("visible");
-                if (historyModalInput) historyModalInput.value = "";
-                if (historyErrorSpan) {
-                    historyErrorSpan.textContent = "";
-                    historyErrorSpan.classList.add("hidden");
-                }
-            }
-            this.activeModalSessionId = null;
-        };
-
-        const handleHistorySubmit = async () => {
-            if (!this.activeModalSessionId) return;
-            const text = historyModalInput?.value?.trim();
-            if (!text) {
-                this._showKeyError(historyModalInput, historyErrorSpan, "Please enter a response.");
-                return;
-            }
-
-            const sessionId = this.activeModalSessionId;
-            await this._transmitReply(sessionId, text, closeHistoryModal, null);
-        };
-
-        cancelHistoryBtn?.addEventListener("click", closeHistoryModal);
-        submitHistoryBtn?.addEventListener("click", handleHistorySubmit);
-        historyModalInput?.addEventListener("keydown", (e) => {
-            if (e.key === "Enter") handleHistorySubmit();
-        });
-        historyModalInput?.addEventListener("input", () => {
-            if (historyModalInput && historyErrorSpan) {
-                historyModalInput.style.borderColor = "";
-                historyModalInput.removeAttribute("aria-invalid");
-                historyModalInput.removeAttribute("aria-describedby");
-                historyErrorSpan.textContent = "";
-                historyErrorSpan.classList.add("hidden");
-            }
-        });
-    }
-
-    _showInteractionModal(sessionId, agentEmoji, agentName, promptText) {
-        this.activeModalSessionId = sessionId;
-        const modal = this.getEl("julesInteractionModal");
-        const emojiEl = this.getEl("interactionModalEmoji");
-        const nameEl = this.getEl("interactionModalAgent");
-        const msgEl = this.getEl("interactionModalMessage");
-        const inputField = this.getEl("interactionModalInput");
-
-        if (!modal) return;
-
-        if (emojiEl) emojiEl.textContent = agentEmoji;
-        if (nameEl) nameEl.textContent = agentName;
-        if (msgEl) msgEl.textContent = promptText;
-
-        modal.classList.add("visible");
-        setTimeout(() => inputField?.focus(), this.constructor.MODAL_FOCUS_DELAY_MS);
-    }
-
-    _showHistoryModal(sessionId, agentEmoji, agentName) {
-        this.activeModalSessionId = sessionId;
-        const modal = this.getEl("julesHistoryModal");
-        const emojiEl = this.getEl("historyModalEmoji");
-        const nameEl = this.getEl("historyModalAgent");
-        const msgEl = this.getEl("historyModalContent");
-        const inputField = this.getEl("historyModalInput");
-
-        if (!modal) return;
-
-        if (emojiEl) emojiEl.textContent = agentEmoji;
-        if (nameEl) nameEl.textContent = agentName;
-        if (msgEl) msgEl.innerHTML = '<span class="term-status skeleton-pulse">Loading execution thread...</span>';
-
-        modal.classList.add("visible");
-        setTimeout(() => inputField?.focus(), this.constructor.MODAL_FOCUS_DELAY_MS);
-    }
 
 
-    async _transmitReply(sessionId, text, closeFn, rollbackState) {
-        const statusSpan = document.getElementById(`status-${sessionId}`);
-
-        closeFn();
-        this.app.toast.show("Transmitting reply...", "info");
-
-        if (statusSpan) {
-            statusSpan.className = "term-status skeleton-pulse";
-            statusSpan.textContent = "Transmitting response...";
-            statusSpan.onclick = null;
-        }
-
-        try {
-            await window.julesAPI.sendUserInput(sessionId, text);
-            this.app.toast.show("Reply transmitted.", "success");
-        } catch (error) {
-            if (!rollbackState) {
-                const tu = JulesTerminal.getTelemetryUtils();
-                if (tu) tu.dispatchEvent("JULES_SEND_REPLY_FAILED", error);
-            }
-
-            this.app.toast.show("Failed to send reply.", "error");
-
-            if (rollbackState && statusSpan) {
-                statusSpan.className = rollbackState.className || "term-status status-waiting";
-                statusSpan.textContent = rollbackState.textContent || `⚠️ Response Needed (Click to view)`;
-                statusSpan.onclick = rollbackState.onclick;
-            }
-        }
-    }
-
-    _showKeyError(input, span, message) {
-        if (!input || !span) return;
-        input.style.borderColor = "var(--error)";
-        span.textContent = message;
-        span.style.display = "block";
-    }
-
-    _clearKeyError(input, span) {
-        if (!input || !span) return;
-        input.style.borderColor = "";
-        span.textContent = "";
-        span.style.display = "none";
-    }
 
 
-    _showPRModal(pr, sourceName) {
-        const modal = this.getEl("julesPRModal");
-        if (!modal) return;
 
-        const titleEl = this.getEl("prModalTitleText");
-        const linkEl = this.getEl("prModalExternalLink");
-        const contentEl = this.getEl("prModalContent");
-        const errorEl = this.getEl("prModalError");
-        const mergeBtn = this.getEl("mergePRBtn");
-        const closePRBtn = this.getEl("closePRBtn");
 
-        if (titleEl) titleEl.textContent = `#${pr.number} ${pr.title}`;
-        if (linkEl) linkEl.href = pr.html_url;
 
-        if (contentEl) {
-            contentEl.innerHTML = '';
-            const pre = DOMUtils.createMarkdownPreBlock(pr.body || "No description provided.");
-            contentEl.appendChild(pre);
-        }
 
-        if (errorEl) {
-            errorEl.textContent = '';
-            errorEl.classList.add('hidden');
-        }
 
-        if (mergeBtn) {
-            DOMUtils.setButtonState(mergeBtn, "ready", "Merge PR");
-            mergeBtn.onclick = async () => {
-                DOMUtils.setButtonState(mergeBtn, "loading", "Merging...");
-                if (errorEl) errorEl.classList.add('hidden');
-                try {
-                    await window.githubAPI.mergePullRequest(sourceName, pr.number);
-                    this.app.toast.show(`Successfully merged PR #${pr.number}`, "success");
-                    modal.classList.remove("visible");
-                    this.loadPullRequestsForRepo(sourceName);
-                } catch (err) {
-                    DOMUtils.setButtonState(mergeBtn, "ready", "Merge PR");
-                    if (errorEl) {
-                        errorEl.textContent = "Failed to merge PR: " + err.message;
-                        errorEl.classList.remove('hidden');
-                    }
-                }
-            };
-        }
-
-        if (closePRBtn) {
-            DOMUtils.setButtonState(closePRBtn, "ready", "Close PR");
-            closePRBtn.onclick = async () => {
-                DOMUtils.setButtonState(closePRBtn, "loading", "Closing...");
-                if (errorEl) errorEl.classList.add('hidden');
-                try {
-                    await window.githubAPI.closePullRequest(sourceName, pr.number);
-                    this.app.toast.show(`Successfully closed PR #${pr.number}`, "success");
-                    modal.classList.remove("visible");
-                    this.loadPullRequestsForRepo(sourceName);
-                } catch (err) {
-                    DOMUtils.setButtonState(closePRBtn, "ready", "Close PR");
-                    if (errorEl) {
-                        errorEl.textContent = "Failed to close PR: " + err.message;
-                        errorEl.classList.remove('hidden');
-                    }
-                }
-            };
-        }
-
-        modal.classList.add("visible");
-    }
 
 
 

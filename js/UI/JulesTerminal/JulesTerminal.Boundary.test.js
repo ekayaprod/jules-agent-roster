@@ -5,7 +5,11 @@
 const { BUTTON_STATES, TOAST_TYPES } = require('../../constants/ui');
 global.BUTTON_STATES = BUTTON_STATES;
 global.TOAST_TYPES = TOAST_TYPES;
+const JulesModals = require('./JulesModals');
+const TerminalPolling = require('./TerminalPolling');
 const JulesTerminal = require('./JulesTerminal');
+global.JulesModals = JulesModals;
+global.TerminalPolling = TerminalPolling;
 
 // Mock utilities
 global.StorageUtils = {
@@ -85,7 +89,7 @@ describe('JulesTerminal Boundary Tests', () => {
     });
 
     afterEach(() => {
-        julesTerminal.cleanup();
+        julesTerminal.polling.cleanup();
         jest.clearAllTimers();
         jest.restoreAllMocks();
         document.body.innerHTML = '';
@@ -116,7 +120,7 @@ describe('JulesTerminal Boundary Tests', () => {
 // So terminal needs to have #fetchingIndicator first
 const ind2 = document.createElement('div'); ind2.id = 'fetchingIndicator'; terminal.appendChild(ind2);
 await julesTerminal._fetchAndRenderSessions('sources/github/owner/repo', terminal);
-expect(() => { julesTerminal._showKeyError(null, null, 'Error'); julesTerminal._clearKeyError(null, null); }).not.toThrow();
+expect(() => { julesTerminal.modals._showKeyError(null, null, 'Error'); julesTerminal.modals._clearKeyError(null, null); }).not.toThrow();
         });
 
         it('_fetchAndRenderSessions: existing fetchingIndicator removal', async () => {
@@ -214,7 +218,7 @@ expect(() => { julesTerminal._showKeyError(null, null, 'Error'); julesTerminal._
                 return originalGetEl(id);
             });
             window.julesAPI.createSession.mockResolvedValueOnce({ id: 'newsession' });
-            julesTerminal.startTerminalPolling = jest.fn();
+            julesTerminal.polling.startTerminalPolling = jest.fn();
 
             await julesTerminal.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn);
 
@@ -254,7 +258,7 @@ expect(() => { julesTerminal._showKeyError(null, null, 'Error'); julesTerminal._
             const item = document.createElement('div');
             item.innerHTML = `<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>`;
 
-            julesTerminal.startTerminalPolling('123', item, 'o/r');
+            julesTerminal.polling.startTerminalPolling('123', item, 'o/r');
             jest.advanceTimersByTime(3000);
             // Internal polling happens
         });
@@ -264,7 +268,7 @@ expect(() => { julesTerminal._showKeyError(null, null, 'Error'); julesTerminal._
             item.innerHTML = '<span id="status-123">Initializing...</span>';
             document.body.appendChild(item);
             window.julesAPI.getActivities.mockResolvedValueOnce({ activities: [ { userActionRequired: true, title: 'Waiting for Input' } ] });
-            julesTerminal.startTerminalPolling('123', item, 'Bot', '🤖');
+            julesTerminal.polling.startTerminalPolling('123', item, 'Bot', '🤖');
             await jest.advanceTimersByTimeAsync(3000);
             const badge = item.querySelector('#status-123');
             expect(badge.className).toContain('status-waiting');
@@ -276,7 +280,7 @@ expect(() => { julesTerminal._showKeyError(null, null, 'Error'); julesTerminal._
              item.innerHTML = '<span id="status-123">Initializing...</span>';
              document.body.appendChild(item);
              window.julesAPI.getActivities.mockResolvedValueOnce({ activities: [ { error: { message: 'Session Failed.' } } ] });
-             julesTerminal.startTerminalPolling('123', item, 'Bot', '🤖');
+             julesTerminal.polling.startTerminalPolling('123', item, 'Bot', '🤖');
              await jest.advanceTimersByTimeAsync(3000);
              const badge = item.querySelector('#status-123');
              expect(badge.className).toContain('status-error');
@@ -295,7 +299,7 @@ expect(() => { julesTerminal._showKeyError(null, null, 'Error'); julesTerminal._
 
              const testBlock = document.createElement('div'); testBlock.id = 'session-123';
              const stSpan = document.createElement('span'); stSpan.id = 'status-123'; testBlock.appendChild(stSpan);
-             julesTerminal._updatePollingState('123', testBlock, state, 'Agent', '🤖');
+             julesTerminal.polling._updatePollingState('123', testBlock, state, 'Agent', '🤖');
              expect(stSpan.className).toContain('status-waiting');
              expect(stSpan.textContent).toBe('⚠️ Response Needed (Click to view)');
         });
@@ -349,7 +353,7 @@ expect(() => { julesTerminal._showKeyError(null, null, 'Error'); julesTerminal._
              julesTerminal.julesPollingIntervals['123'] = setInterval(() => {}, 10000);
              const timerId = julesTerminal.julesPollingIntervals['123'];
 
-             julesTerminal.startTerminalPolling('123', item, 'repo');
+             julesTerminal.polling.startTerminalPolling('123', item, 'repo');
              expect(spy).toHaveBeenCalledWith(timerId);
         });
 
@@ -357,7 +361,7 @@ expect(() => { julesTerminal._showKeyError(null, null, 'Error'); julesTerminal._
              julesTerminal.dismissedSessionIds = null;
              julesTerminal.renderedSessionIds = null;
              julesTerminal.julesPollingIntervals = null;
-             julesTerminal.cleanup();
+             julesTerminal.polling.cleanup();
         });
 
         it('dismissSession branch: polling missing', () => {
@@ -380,14 +384,14 @@ expect(() => { julesTerminal._showKeyError(null, null, 'Error'); julesTerminal._
                  return [document.createElement('div'), document.createElement('div')];
              };
              window.julesAPI.createSession.mockResolvedValueOnce({id: '123'});
-             julesTerminal.startTerminalPolling = jest.fn();
+             julesTerminal.polling.startTerminalPolling = jest.fn();
 
              await julesTerminal.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, null);
         });
 
         it('cleanup coverage: activeSessionsTimeout cleared', () => {
              julesTerminal.activeSessionsTimeout = 888;
-             julesTerminal.cleanup();
+             julesTerminal.polling.cleanup();
              expect(julesTerminal.activeSessionsTimeout).toBeNull();
         });
 
@@ -400,7 +404,7 @@ expect(() => { julesTerminal._showKeyError(null, null, 'Error'); julesTerminal._
              const TelemetryUtils = require('../../Utils/telemetry-utils.js');
              const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
-             julesTerminal.startTerminalPolling('123', item, 'o/r');
+             julesTerminal.polling.startTerminalPolling('123', item, 'o/r');
              await jest.advanceTimersByTimeAsync(3000);
 
              expect(dispatchSpy).toHaveBeenCalledWith("JULES_POLLING_ERROR", expect.any(Error));

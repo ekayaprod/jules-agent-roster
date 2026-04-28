@@ -2,7 +2,11 @@
  * @jest-environment jsdom
  */
 
+const JulesModals = require('./JulesModals');
+const TerminalPolling = require('./TerminalPolling');
 const JulesTerminal = require('./JulesTerminal');
+global.JulesModals = JulesModals;
+global.TerminalPolling = TerminalPolling;
 
 describe('JulesTerminal', () => {
     let modals;
@@ -27,9 +31,14 @@ describe('JulesTerminal', () => {
 
 
     const mockRosterApp = {};
-    modals = new JulesTerminal(mockRosterApp);
-    modals.getEl = jest.fn(id => mockElements[id]);
-    modals.constructor.MODAL_FOCUS_DELAY_MS = 100;
+    mockManager = {
+            activeModalSessionId: null,
+            getEl: jest.fn(id => mockElements[id]),
+            constructor: { MODAL_FOCUS_DELAY_MS: 100 }
+        };
+        modals = new JulesModals(mockManager);
+
+
 
     });
 
@@ -41,7 +50,7 @@ describe('JulesTerminal', () => {
         it('should update all DOM elements and show modal when all exist', () => {
             modals._showInteractionModal('session-1', '🤖', 'AgentName', 'Hello prompt');
 
-            expect(modals.activeModalSessionId).toBe('session-1');
+            expect(mockManager.activeModalSessionId).toBe('session-1');
             expect(mockElements.interactionModalEmoji.textContent).toBe('🤖');
             expect(mockElements.interactionModalAgent.textContent).toBe('AgentName');
             expect(mockElements.interactionModalMessage.textContent).toBe('Hello prompt');
@@ -54,7 +63,7 @@ describe('JulesTerminal', () => {
         it('should bail early if modal element is not found', () => {
             mockElements.julesInteractionModal = null;
             modals._showInteractionModal('session-2', '🤖', 'AgentName', 'Hello prompt');
-            expect(modals.activeModalSessionId).toBe('session-2');
+            expect(mockManager.activeModalSessionId).toBe('session-2');
             expect(mockElements.interactionModalEmoji.textContent).toBeUndefined();
         });
 
