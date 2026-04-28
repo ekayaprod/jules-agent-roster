@@ -5,7 +5,11 @@
 const { BUTTON_STATES, TOAST_TYPES } = require('../../constants/ui');
 global.BUTTON_STATES = BUTTON_STATES;
 global.TOAST_TYPES = TOAST_TYPES;
+const JulesModals = require('./JulesModals');
+const TerminalPolling = require('./TerminalPolling');
 const JulesTerminal = require('./JulesTerminal');
+global.JulesModals = JulesModals;
+global.TerminalPolling = TerminalPolling;
 
 // Mock utilities
 global.StorageUtils = {
@@ -85,7 +89,7 @@ describe('JulesTerminal Modal Tests', () => {
     });
 
     afterEach(() => {
-        julesTerminal.cleanup();
+        julesTerminal.polling.cleanup();
         jest.clearAllTimers();
         jest.restoreAllMocks();
         document.body.innerHTML = '';
@@ -115,7 +119,7 @@ describe('JulesTerminal Modal Tests', () => {
             nameEl = document.getElementById('interactionModalAgent');
             msgEl = document.getElementById('interactionModalMessage');
 
-            julesTerminal._initInteractionModal();
+            julesTerminal.modals._initInteractionModal();
         });
 
         it('should show history modal with correct data', () => {
@@ -134,9 +138,9 @@ describe('JulesTerminal Modal Tests', () => {
             // Force julesTerminal.getEl to look into DOM directly
             julesTerminal.getEl = jest.fn((id) => document.getElementById(id));
 
-            julesTerminal._showHistoryModal('s456', '👾', 'HistoryAgent');
+            julesTerminal.modals._showHistoryModal('s456', '👾', 'HistoryAgent');
 
-            expect(julesTerminal.activeModalSessionId).toBe('s456');
+            expect(julesTerminal.modals.terminal.activeModalSessionId).toBe('s456');
             expect(hEmojiEl.textContent).toBe('👾');
             expect(hNameEl.textContent).toBe('HistoryAgent');
             expect(hMsgEl.innerHTML).toContain('Loading execution thread...');
@@ -147,8 +151,8 @@ describe('JulesTerminal Modal Tests', () => {
 
         it('should bail early and not throw if history modal is missing', () => {
             julesTerminal.getEl = jest.fn((id) => null);
-            julesTerminal._showHistoryModal('s456', '👾', 'HistoryAgent');
-            expect(julesTerminal.activeModalSessionId).toBe('s456');
+            julesTerminal.modals._showHistoryModal('s456', '👾', 'HistoryAgent');
+            expect(julesTerminal.modals.terminal.activeModalSessionId).toBe('s456');
         });
 
         it('should gracefully handle missing inner DOM elements for history modal', () => {
@@ -162,18 +166,18 @@ describe('JulesTerminal Modal Tests', () => {
                 return null;
             });
 
-            julesTerminal._showHistoryModal('s456', '👾', 'HistoryAgent');
+            julesTerminal.modals._showHistoryModal('s456', '👾', 'HistoryAgent');
 
-            expect(julesTerminal.activeModalSessionId).toBe('s456');
+            expect(julesTerminal.modals.terminal.activeModalSessionId).toBe('s456');
             expect(hModal.classList.contains('visible')).toBe(true);
 
             jest.advanceTimersByTime(100);
         });
 
         it('should show interaction modal with correct data', () => {
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
-            expect(julesTerminal.activeModalSessionId).toBe('s123');
+            expect(julesTerminal.modals.terminal.activeModalSessionId).toBe('s123');
             expect(emojiEl.textContent).toBe('🤖');
             expect(nameEl.textContent).toBe('TestAgent');
             expect(msgEl.textContent).toBe('Please confirm');
@@ -187,9 +191,9 @@ describe('JulesTerminal Modal Tests', () => {
             modal.remove();
             julesTerminal.elements['julesInteractionModal'] = null;
 
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
-            expect(julesTerminal.activeModalSessionId).toBe('s123');
+            expect(julesTerminal.modals.terminal.activeModalSessionId).toBe('s123');
             expect(modal.classList.contains('visible')).toBe(false); // Should not have been modified
         });
 
@@ -205,9 +209,9 @@ describe('JulesTerminal Modal Tests', () => {
             julesTerminal.elements['interactionModalMessage'] = null;
             julesTerminal.elements['interactionModalInput'] = null;
 
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
-            expect(julesTerminal.activeModalSessionId).toBe('s123');
+            expect(julesTerminal.modals.terminal.activeModalSessionId).toBe('s123');
             expect(modal.classList.contains('visible')).toBe(true);
 
             // Should not throw on setTimeout focus if inputField is null
@@ -215,17 +219,17 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should close modal on cancel button click', () => {
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             cancelBtn.click();
 
             expect(modal.classList.contains('visible')).toBe(false);
-            expect(julesTerminal.activeModalSessionId).toBeNull();
+            expect(julesTerminal.modals.terminal.activeModalSessionId).toBeNull();
             expect(inputField.value).toBe('');
         });
 
         it('should submit interaction on submit button click and handle success', async () => {
             window.julesAPI.sendUserInput = jest.fn().mockResolvedValueOnce({});
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = 'My response';
             await submitBtn.click();
@@ -241,7 +245,7 @@ describe('JulesTerminal Modal Tests', () => {
 
         it('should submit interaction on Enter keydown', async () => {
             window.julesAPI.sendUserInput = jest.fn().mockResolvedValueOnce({});
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = 'My response';
             const event = new KeyboardEvent('keydown', { key: 'Enter' });
@@ -252,7 +256,7 @@ describe('JulesTerminal Modal Tests', () => {
 
         it('should handle API failure during submission', async () => {
             window.julesAPI.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = 'My response';
             await submitBtn.click();
@@ -263,7 +267,7 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should handle missing inputField or errorSpan during close', () => {
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.remove();
             julesTerminal.elements['interactionModalInput'] = null;
@@ -283,7 +287,7 @@ describe('JulesTerminal Modal Tests', () => {
             const errSpan = document.getElementById('interactionModalError');
             if (errSpan) errSpan.remove();
             julesTerminal.elements['interactionModalError'] = null;
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             await submitBtn.click();
             expect(window.julesAPI.sendUserInput).not.toHaveBeenCalled();
         });
@@ -295,7 +299,7 @@ describe('JulesTerminal Modal Tests', () => {
             `;
             const prModal = document.getElementById('julesPRModal');
             const cancelBtn = document.getElementById('cancelPRBtn');
-            julesTerminal._initPRModal();
+            julesTerminal.modals._initPRModal();
             cancelBtn.click();
             expect(prModal.classList.contains('visible')).toBe(false);
         });
@@ -306,8 +310,8 @@ describe('JulesTerminal Modal Tests', () => {
             span.textContent = 'Some error';
             document.body.appendChild(span);
             // Re-init so the modal grabs the new span
-            julesTerminal._initInteractionModal();
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._initInteractionModal();
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             const inputField = document.getElementById('interactionModalInput');
             const errorSpan = document.getElementById('interactionModalError');
@@ -332,8 +336,8 @@ describe('JulesTerminal Modal Tests', () => {
             span.id = 'interactionModalError';
             span.className = 'hidden';
             document.body.appendChild(span);
-            julesTerminal._initInteractionModal();
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._initInteractionModal();
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             const inputField = document.getElementById('interactionModalInput');
             const errorSpan = document.getElementById('interactionModalError');
@@ -354,8 +358,8 @@ describe('JulesTerminal Modal Tests', () => {
             span.id = 'interactionModalError';
             span.textContent = 'Error';
             document.body.appendChild(span);
-            julesTerminal._initInteractionModal();
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._initInteractionModal();
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             const inputField = document.getElementById('interactionModalInput');
             const errorSpan = document.getElementById('interactionModalError');
@@ -376,7 +380,7 @@ describe('JulesTerminal Modal Tests', () => {
 
         it('should perform silent rollback when API fails but statusSpan is missing', async () => {
             window.julesAPI.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             const statusSpan = document.getElementById('status-s123');
             if (statusSpan) statusSpan.remove();
             inputField.value = 'My response';
@@ -385,7 +389,7 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should handle interaction modal gracefully if inputField is missing during close', () => {
-             julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+             julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
              julesTerminal.elements['interactionModalInput'] = null;
              const inEl = document.getElementById('interactionModalInput');
              if(inEl) inEl.remove();
@@ -393,11 +397,11 @@ describe('JulesTerminal Modal Tests', () => {
              const cancelBtn = document.getElementById('cancelInteractionBtn');
              cancelBtn.click();
 
-             expect(julesTerminal.activeModalSessionId).toBeNull();
+             expect(julesTerminal.modals.terminal.activeModalSessionId).toBeNull();
         });
 
         it('should handle interaction modal gracefully if errorSpan is missing during close', () => {
-             julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+             julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
              julesTerminal.elements['interactionModalError'] = null;
              const errSpan = document.getElementById('interactionModalError');
              if(errSpan) errSpan.remove();
@@ -405,7 +409,7 @@ describe('JulesTerminal Modal Tests', () => {
              const cancelBtn = document.getElementById('cancelInteractionBtn');
              cancelBtn.click();
 
-             expect(julesTerminal.activeModalSessionId).toBeNull();
+             expect(julesTerminal.modals.terminal.activeModalSessionId).toBeNull();
         });
 
         it('should abort history modal submission if activeModalSessionId is null', async () => {
@@ -416,10 +420,10 @@ describe('JulesTerminal Modal Tests', () => {
                 <input id="historyModalInput" />
                 <span id="historyModalError"></span>
             `;
-            julesTerminal._initInteractionModal();
+            julesTerminal.modals._initInteractionModal();
 
             // Set state explicitly
-            julesTerminal.activeModalSessionId = null;
+            julesTerminal.modals.terminal.activeModalSessionId = null;
 
             const submitHistoryBtn = julesTerminal.getEl('submitHistoryBtn');
             window.julesAPI.sendUserInput = jest.fn();
@@ -468,7 +472,7 @@ describe('JulesTerminal Modal Tests', () => {
             item.innerHTML = '<span id="status-123">Initializing...</span>';
             document.body.appendChild(item);
 
-            julesTerminal.startTerminalPolling('123', item, 'Bot', '🤖');
+            julesTerminal.polling.startTerminalPolling('123', item, 'Bot', '🤖');
 
             window.julesAPI.getActivities.mockResolvedValueOnce({
                 activities: [ { type: 'USER_INPUT', title: 'Input Needed' } ] // missing message but matching INPUT trigger
@@ -497,14 +501,14 @@ describe('JulesTerminal Modal Tests', () => {
                 <div id="historyModalContent"></div>
                 <div id="status-s123"></div>
             `;
-            julesTerminal._initInteractionModal();
+            julesTerminal.modals._initInteractionModal();
 
              const item = document.createElement('div');
              item.innerHTML = '<span id="status-123">Initializing...</span>';
              document.body.appendChild(item);
 
-             julesTerminal._showHistoryModal('123', '🤖', 'TestAgent');
-             julesTerminal.startTerminalPolling('123', item, 'Bot', '🤖');
+             julesTerminal.modals._showHistoryModal('123', '🤖', 'TestAgent');
+             julesTerminal.polling.startTerminalPolling('123', item, 'Bot', '🤖');
 
              window.julesAPI.getActivities.mockResolvedValueOnce({
                  activities: [
@@ -522,7 +526,7 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should handle interaction modal gracefully if history fields are missing', async () => {
-            julesTerminal._showHistoryModal('s123', '🤖', 'TestAgent');
+            julesTerminal.modals._showHistoryModal('s123', '🤖', 'TestAgent');
 
             // Remove modal inputs
             const historyModalInput = document.getElementById('historyModalInput');
@@ -550,8 +554,8 @@ describe('JulesTerminal Modal Tests', () => {
                 <div id="historyModalContent"></div>
                 <div id="status-s123"></div>
             `;
-            julesTerminal._initInteractionModal();
-            julesTerminal._showHistoryModal('s123', '🤖', 'TestAgent');
+            julesTerminal.modals._initInteractionModal();
+            julesTerminal.modals._showHistoryModal('s123', '🤖', 'TestAgent');
 
             const historyModalInput = julesTerminal.getEl('historyModalInput');
             historyModalInput.value = 'History reply';
@@ -573,8 +577,8 @@ describe('JulesTerminal Modal Tests', () => {
                 <input id="historyModalInput" />
                 <span id="historyModalError"></span>
             `;
-            julesTerminal._initInteractionModal();
-            julesTerminal._showHistoryModal('s123', '🤖', 'TestAgent');
+            julesTerminal.modals._initInteractionModal();
+            julesTerminal.modals._showHistoryModal('s123', '🤖', 'TestAgent');
 
             const submitHistoryBtn = julesTerminal.getEl('submitHistoryBtn');
             await submitHistoryBtn.click();
@@ -591,8 +595,8 @@ describe('JulesTerminal Modal Tests', () => {
                 <span id="historyModalError"></span>
                 <div id="status-s123"></div>
             `;
-            julesTerminal._initInteractionModal();
-            julesTerminal._showHistoryModal('s123', '🤖', 'TestAgent');
+            julesTerminal.modals._initInteractionModal();
+            julesTerminal.modals._showHistoryModal('s123', '🤖', 'TestAgent');
 
             const historyModalInput = julesTerminal.getEl('historyModalInput');
             historyModalInput.value = 'Enter reply';
@@ -613,8 +617,8 @@ describe('JulesTerminal Modal Tests', () => {
                 <input id="historyModalInput" />
                 <span id="historyModalError">Error here</span>
             `;
-            julesTerminal._initInteractionModal();
-            julesTerminal._showHistoryModal('s123', '🤖', 'TestAgent');
+            julesTerminal.modals._initInteractionModal();
+            julesTerminal.modals._showHistoryModal('s123', '🤖', 'TestAgent');
 
             const historyModalInput = julesTerminal.getEl('historyModalInput');
             historyModalInput.dispatchEvent(new Event('input'));
@@ -633,8 +637,8 @@ describe('JulesTerminal Modal Tests', () => {
                 <span id="historyModalError"></span>
                 <div id="status-s123"></div>
             `;
-            julesTerminal._initInteractionModal();
-            julesTerminal._showHistoryModal('s123', '🤖', 'TestAgent');
+            julesTerminal.modals._initInteractionModal();
+            julesTerminal.modals._showHistoryModal('s123', '🤖', 'TestAgent');
 
             const historyModalInput = julesTerminal.getEl('historyModalInput');
             historyModalInput.value = 'Failing reply';
@@ -662,8 +666,8 @@ describe('JulesTerminal Modal Tests', () => {
                 <input id="historyModalInput" />
                 <span id="historyModalError"></span>
             `;
-            julesTerminal._initInteractionModal();
-            julesTerminal.activeModalSessionId = null;
+            julesTerminal.modals._initInteractionModal();
+            julesTerminal.modals.terminal.activeModalSessionId = null;
 
             const submitHistoryBtn = julesTerminal.getEl('submitHistoryBtn');
             await submitHistoryBtn.click(); // Should do nothing
@@ -675,14 +679,14 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should handle interaction modal gracefully if inputField is missing but errorSpan is present during submission with empty text', async () => {
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             julesTerminal.elements['interactionModalInput'] = null;
             inputField.remove();
             await submitBtn.click();
         });
 
         it('should handle interaction modal gracefully if inputField is present but errorSpan is missing during submission with empty text', async () => {
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             julesTerminal.elements['interactionModalError'] = null;
             const errSpan = document.getElementById('interactionModalError');
             if (errSpan) errSpan.remove();
@@ -690,7 +694,7 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should handle interaction modal missing elements gracefully when submit button clicked and input empty', async () => {
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             const originalInputField = julesTerminal.getEl('interactionModalInput');
             originalInputField.value = '   ';
@@ -705,7 +709,7 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should handle interaction modal missing input field/error span during input event branch', async () => {
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             const originalInputField = julesTerminal.getEl('interactionModalInput');
             const originalErrorSpan = julesTerminal.getEl('interactionModalError');
@@ -725,13 +729,13 @@ describe('JulesTerminal Modal Tests', () => {
             if (errSpan) errSpan.remove();
             julesTerminal.elements['interactionModalError'] = null;
             inputField.value = '';
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             await submitBtn.click();
             expect(window.julesAPI.sendUserInput).not.toHaveBeenCalled();
         });
 
         it('should handle interaction modal gracefully if inputField is missing during input event', async () => {
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             inputField.remove();
             julesTerminal.elements['interactionModalInput'] = null;
             const event = new Event('input');
@@ -743,7 +747,7 @@ describe('JulesTerminal Modal Tests', () => {
 
         it('should not submit if input is empty', async () => {
             window.julesAPI.sendUserInput = jest.fn();
-            julesTerminal._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
+            julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = '   '; // only whitespace
             await submitBtn.click();
@@ -805,12 +809,12 @@ describe('JulesTerminal Modal Tests', () => {
 
         it('should bail if modal is missing', () => {
             julesTerminal.elements.julesPRModal = null;
-            julesTerminal._showPRModal(prMock, 'repo');
+            julesTerminal.modals._showPRModal(prMock, 'repo');
             expect(titleEl.textContent).toBe(''); // Should not have been updated
         });
 
         it('should populate modal and show it', () => {
-            julesTerminal._showPRModal(prMock, 'repo');
+            julesTerminal.modals._showPRModal(prMock, 'repo');
             expect(titleEl.textContent).toBe('#123 Test PR');
             expect(linkEl.href).toBe('https://github.com/test/test/pull/123');
             expect(contentEl.innerHTML).toBe('<pre></pre>');
@@ -821,19 +825,19 @@ describe('JulesTerminal Modal Tests', () => {
 
         it('should handle missing merge PR button gracefully', () => {
             julesTerminal.elements.mergePRBtn = null;
-            julesTerminal._showPRModal(prMock, 'repo');
+            julesTerminal.modals._showPRModal(prMock, 'repo');
             expect(titleEl.textContent).toBe('#123 Test PR');
         });
 
         it('should handle missing close PR button gracefully', () => {
             julesTerminal.elements.closePRBtn = null;
-            julesTerminal._showPRModal(prMock, 'repo');
+            julesTerminal.modals._showPRModal(prMock, 'repo');
             expect(titleEl.textContent).toBe('#123 Test PR');
         });
 
         it('should handle merge PR success', async () => {
             window.githubAPI.mergePullRequest.mockResolvedValue();
-            julesTerminal._showPRModal(prMock, 'repo');
+            julesTerminal.modals._showPRModal(prMock, 'repo');
 
             // Dispatch a true DOM click event
             const event = new MouseEvent('click');
@@ -848,7 +852,7 @@ describe('JulesTerminal Modal Tests', () => {
 
         it('should handle merge PR failure and show error', async () => {
             window.githubAPI.mergePullRequest.mockRejectedValue(new Error('Merge conflict'));
-            julesTerminal._showPRModal(prMock, 'repo');
+            julesTerminal.modals._showPRModal(prMock, 'repo');
 
             const event = new MouseEvent('click');
             await mergeBtn.dispatchEvent(event);
@@ -860,7 +864,7 @@ describe('JulesTerminal Modal Tests', () => {
 
         it('should handle close PR success', async () => {
             window.githubAPI.closePullRequest.mockResolvedValue();
-            julesTerminal._showPRModal(prMock, 'repo');
+            julesTerminal.modals._showPRModal(prMock, 'repo');
 
             const event = new MouseEvent('click');
             await closePRBtn.dispatchEvent(event);
@@ -874,7 +878,7 @@ describe('JulesTerminal Modal Tests', () => {
 
         it('should handle close PR failure and show error', async () => {
             window.githubAPI.closePullRequest.mockRejectedValue(new Error('Close error'));
-            julesTerminal._showPRModal(prMock, 'repo');
+            julesTerminal.modals._showPRModal(prMock, 'repo');
 
             const event = new MouseEvent('click');
             await closePRBtn.dispatchEvent(event);
@@ -889,7 +893,7 @@ describe('JulesTerminal Modal Tests', () => {
             window.githubAPI.mergePullRequest.mockRejectedValue(new Error('Merge error'));
             window.githubAPI.closePullRequest.mockRejectedValue(new Error('Close error'));
 
-            julesTerminal._showPRModal(prMock, 'repo');
+            julesTerminal.modals._showPRModal(prMock, 'repo');
 
             const mergeEvent = new MouseEvent('click');
             await mergeBtn.dispatchEvent(mergeEvent);
