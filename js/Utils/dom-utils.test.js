@@ -155,7 +155,28 @@ describe('DOMUtils', () => {
             expect(elUndefined.textContent).toBe('');
         });
     });
-});
+
+    describe('getTerminalSessionHTML', () => {
+        it('should return the correct HTML structure without statusId', () => {
+            const html = DOMUtils.getTerminalSessionHTML('🤖', 'Jules', 'Processing');
+            expect(html).toContain('<span class="term-agent-name">🤖 Jules</span>');
+            expect(html).toContain('<span class="term-separator">—</span>');
+            expect(html).toContain('<span class="term-status">Processing</span>');
+            expect(html).not.toContain('id=');
+        });
+
+        it('should return the correct HTML structure with statusId', () => {
+            const html = DOMUtils.getTerminalSessionHTML('🤖', 'Jules', 'Processing', 'status-123');
+            expect(html).toContain('<span class="term-status" id="status-123">Processing</span>');
+        });
+    });
+
+    describe('getTerminalIndicatorHTML', () => {
+        it('should return the correct HTML structure with the message', () => {
+            const html = DOMUtils.getTerminalIndicatorHTML('System online');
+            expect(html).toBe('<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] System online</div>');
+        });
+    });
 
     it('exports gracefully across different environment module definitions', () => {
         const fs = require('fs');
@@ -182,3 +203,4 @@ describe('DOMUtils', () => {
             new Function('module', 'BUTTON_STATES', code)(undefined, BUTTON_STATES);
         }).not.toThrow();
     });
+});
