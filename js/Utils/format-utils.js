@@ -40,14 +40,21 @@ class FormatUtils {
             .replace(/'/g, "&#039;");
     }
 
+    static _regexCache = new Map();
+
     /**
      * Escapes special regex characters in a string to be safely used inside a RegExp instance.
+     * Includes memoization to prevent redundant recompilations during high-frequency UI updates.
      * @param {string} str - The string to escape.
      * @returns {string} The escaped string.
      */
     static escapeRegex(str) {
         if (!str || typeof str !== 'string') return "";
-        return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        if (this._regexCache.has(str)) return this._regexCache.get(str);
+
+        const escaped = str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        this._regexCache.set(str, escaped);
+        return escaped;
     }
 
     /**
