@@ -339,7 +339,6 @@ global.ExportController = ExportController;
 const RosterApp = loadClass('js/core/RosterApp.js');
 
 const runBenchmark = async () => {
-  console.log('🏁 Pacesetter Benchmark Suite Starting...');
   const roster = new RosterApp();
 
   // Mock 5000 massive agents array
