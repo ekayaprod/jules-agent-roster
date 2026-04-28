@@ -1030,12 +1030,12 @@
     "isCustom": true
   },
   {
-    "name": "Pacesetter",
-    "emoji": "🏁",
-    "role": "Performance Enforcer",
+    "name": "Overclock",
+    "emoji": "⏱️",
+    "role": "The Chrono-Refiner",
     "category": "Testing",
-    "tier": "Fusion",
-    "description": "Implement structural performance gains and permanently lock those gains in place with strict benchmark regression tests.",
+    "tier": "Mythic",
+    "description": "OVERCLOCK the test suite. I bend time, eradicate I/O gravity, and compress bloated CI execution cycles to save the VM from timeout exhaustion.",
     "promptFile": "prompts/fusions/Pacesetter.md",
     "isCustom": true
   },
@@ -1347,16 +1347,6 @@
     "tier": "Fusion",
     "description": "Delete commented-out code that has sat untouched for over 30 days to reduce visual noise.",
     "promptFile": "prompts/fusions/Shredder.md",
-    "isCustom": true
-  },
-  {
-    "name": "Singularity",
-    "emoji": "🌌",
-    "role": "Meta-Architect",
-    "category": "Architecture",
-    "tier": "Mythic",
-    "description": "BIRTH hyper-contextualized micro-agents. Act as the Local Master Forge, analyzing proprietary architecture to forge bespoke agents equipped with deep local knowledge and mapped to core archetypes.",
-    "promptFile": "prompts/fusions/Singularity.md",
     "isCustom": true
   },
   {
