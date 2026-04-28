@@ -1,12 +1,10 @@
 
 
-var SafeUITimings = typeof window !== 'undefined' ? window.UI_TIMINGS : (typeof global !== 'undefined' ? global.UI_TIMINGS : null);
 const OBSERVER_OPTIONS = {
     rootMargin: "-80px 0px -60% 0px",
     threshold: 0
 };
 const LOADING_OVERLAY_DISMISS_MS = 500;
-const SEARCH_DEBOUNCE_MS = 300;
 
 // --- ROSTER APP ---
 /**

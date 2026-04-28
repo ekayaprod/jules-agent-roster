@@ -96,7 +96,7 @@ class LLMRouter {
                         try {
                             const errorText = await response.text();
                             errorMsg = errorText || errorMsg;
-                        } catch (e2) {}
+                        } catch {}
                     }
 
                     if (response.status >= 500 || response.status === 429) {
