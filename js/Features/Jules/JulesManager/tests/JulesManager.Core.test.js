@@ -472,7 +472,6 @@ describe('JulesManager', () => {
         });
 
         it('should filter dismissed and mismatching repo sessions', async () => {
-            const recentTime = new Date().toISOString();
             window.julesService.getSessions.mockResolvedValue({
                 sessions: [
                     { id: '1', state: 'RUNNING', createTime: new Date().toISOString(), sourceContext: { source: 'sources/github/repo' } },
@@ -490,7 +489,6 @@ describe('JulesManager', () => {
         });
 
         it('should filter out all sessions with drafted PRs', async () => {
-             const recentTime = new Date().toISOString();
              window.julesService.getSessions.mockResolvedValue({
                  sessions: [
                      { id: '1', state: 'COMPLETED', createTime: new Date().toISOString(), sourceContext: { source: 'sources/github/repo' }, outputs: [{ pullRequest: { state: 'MERGED' } }] },

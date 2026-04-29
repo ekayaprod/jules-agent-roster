@@ -98,7 +98,7 @@ describe('PromptParser', () => {
     const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
 
     // Need to run it again because spy was created after
-    const result2 = PromptParser.parsePrompt(rawText);
+    PromptParser.parsePrompt(rawText);
 
     expect(dispatchSpy).toHaveBeenCalledWith(
       'PROMPT_PARSE_FAILED',
@@ -139,7 +139,7 @@ describe('PromptParser', () => {
     const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
 
     // Need to run it again because spy was created after
-    const result2 = PromptParser.parsePrompt(rawText);
+    PromptParser.parsePrompt(rawText);
 
     expect(dispatchSpy).toHaveBeenCalledWith(
       'PROMPT_PARSE_FAILED',

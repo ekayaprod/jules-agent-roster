@@ -1672,10 +1672,10 @@
   {
     "name": "Wordsmith",
     "emoji": "🖋️",
-    "role": "Tone Architect",
+    "role": "Brand Voice",
     "category": "UX",
     "tier": "Fusion",
-    "description": "ELEVATE robotic text into delightful, brand-aligned microcopy that makes the UI linguistically sing without altering logic.",
+    "description": "Proofread and elevate global client-facing text. Eradicate typos, harmonize fragmented lexicons, and strictly enforce the application's established tone.",
     "promptFile": "prompts/fusions/Wordsmith.md",
     "isCustom": true
   },

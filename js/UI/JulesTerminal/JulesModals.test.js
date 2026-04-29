@@ -4,7 +4,6 @@
 
 const JulesModals = require('./JulesModals');
 const TerminalPolling = require('./TerminalPolling');
-const JulesTerminal = require('./JulesTerminal');
 global.JulesModals = JulesModals;
 global.TerminalPolling = TerminalPolling;
 
@@ -30,7 +29,6 @@ describe('JulesTerminal', () => {
         };
 
 
-    const mockRosterApp = {};
     mockManager = {
             activeModalSessionId: null,
             getEl: jest.fn(id => mockElements[id]),
