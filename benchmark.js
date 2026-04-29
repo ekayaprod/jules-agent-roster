@@ -463,7 +463,7 @@ const runBenchmark = async () => {
 
   roster.fusionLab.fusionIndex.unlock('Agent 0,Agent 1');
 
-  // Call openPicker which now internally caches `pickerFuse` based on Pacesetter optimizations
+  // Call openPicker which now internally caches `pickerFuse` based on Overclock optimizations
   roster.fusionLab.picker.openPicker('slotA', null);
 
   // Re-run filter benchmark with unlocked fusion to test cache invalidation logic

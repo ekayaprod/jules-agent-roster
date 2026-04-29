@@ -1020,6 +1020,16 @@
     "isCustom": true
   },
   {
+    "name": "Overclock",
+    "emoji": "⏱️",
+    "role": "The Chrono-Refiner",
+    "category": "Testing",
+    "tier": "Mythic",
+    "description": "OVERCLOCK the test suite. I bend time, eradicate I/O gravity, and compress bloated CI execution cycles to save the VM from timeout exhaustion.",
+    "promptFile": "prompts/fusions/Overclock.md",
+    "isCustom": true
+  },
+  {
     "name": "Pacemaker",
     "emoji": "🫀",
     "role": "Thread Protector",
@@ -1027,16 +1037,6 @@
     "tier": "Fusion",
     "description": "REGULATE the application heartbeat by deferring heavy, synchronous execution to the background to protect the primary event loop.",
     "promptFile": "prompts/fusions/Pacemaker.md",
-    "isCustom": true
-  },
-  {
-    "name": "Pacesetter",
-    "emoji": "🏁",
-    "role": "Performance Enforcer",
-    "category": "Testing",
-    "tier": "Fusion",
-    "description": "Implement structural performance gains and permanently lock those gains in place with strict benchmark regression tests.",
-    "promptFile": "prompts/fusions/Pacesetter.md",
     "isCustom": true
   },
   {
