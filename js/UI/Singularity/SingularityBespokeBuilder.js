@@ -19,7 +19,7 @@ class SingularityBespokeBuilder {
           <span style="font-size: 1.5rem;">🌌</span> Singularity Meta-Forge
         </h3>
         <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
-          Configure a bespoke micro-agent by defining its parameters below. Singularity will forge the agent.
+          Define your agent's identity and parameters below. The Forge will weave its prompt and deploy it directly into your terminal.
         </p>
 
         <div style="display: flex; flex-direction: column; gap: 1rem;">
@@ -184,7 +184,7 @@ class SingularityBespokeBuilder {
 
     if (!template) {
         if (window.rosterApp && window.rosterApp.showToast) {
-            window.rosterApp.showToast("Failed to load Singularity template");
+            window.rosterApp.showToast("The Forge encountered an anomaly while fetching the Singularity core blueprint. Please check your connection.");
         }
         return;
     }
@@ -208,7 +208,7 @@ class SingularityBespokeBuilder {
     if (this.julesTerminal) {
       this.julesTerminal.launchSession(agentPayload, this.elements.submitBtn);
     } else {
-        console.warn("Singularity Builder: julesTerminal is missing");
+        console.warn("The Forge is inactive. JulesTerminal core is offline.");
     }
   }
 }
