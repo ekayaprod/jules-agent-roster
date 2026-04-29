@@ -49,7 +49,8 @@
 
 ## 🎨 Visual Polish
 
-
+- [x] 🎨 `js/UI/EmptyState/EmptyState.js`: Added fade-in animation to empty state component to prevent jarring conditional renders.
+- [x] 🎨 `index.html`: Replaced hardcoded `white` color with `var(--text-primary)` design token in `.toast` CSS class.
 
 - [x] 🧪 `js/Utils/network-utils.js`: Re-routed swallowed exception black holes in `fetchWithRetry` JSON and text parsers to explicit `TelemetryUtils` dispatch.
 

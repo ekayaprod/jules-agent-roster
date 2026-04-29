@@ -33,6 +33,7 @@ class EmptyState {
   static create({ title, description, icon = "", action = null }) {
     const container = document.createElement("div");
     container.className = "empty-state visible";
+    container.style.animation = "fadeIn 0.3s ease-out forwards";
 
     if (icon) {
         const iconWrapper = document.createElement("div");
