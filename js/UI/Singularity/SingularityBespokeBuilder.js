@@ -98,7 +98,7 @@ class SingularityBespokeBuilder {
             <button id="singularityAdvancedToggle">
               Advanced Options <span>▼</span>
             </button>
-            <div id="singularityAdvancedOptions" class="advanced-options" style="display: none; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+            <div id="singularityAdvancedOptions" class="advanced-options" style="visibility: hidden; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 1rem; margin-top: 0;">
               <div>
                 <label for="singularityTechStack" style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;">Primary Tech Stack (Optional)</label>
                 <input type="text" id="singularityTechStack" placeholder="e.g., React, Node.js, Python" class="modal-input" style="width: 100%;" />
@@ -142,7 +142,22 @@ class SingularityBespokeBuilder {
     if (this.elements.advancedToggleBtn && this.elements.advancedOptionsDiv) {
       this.elements.advancedToggleBtn.addEventListener("click", () => {
         this.showAdvanced = !this.showAdvanced;
-        this.elements.advancedOptionsDiv.style.display = this.showAdvanced ? "flex" : "none";
+
+        // 🪄 CONJURE: GPU Sleight of Hand using pure CSS transform and opacity rather than expensive display reflows.
+        if (this.showAdvanced) {
+          this.elements.advancedOptionsDiv.style.visibility = "visible";
+          this.elements.advancedOptionsDiv.style.opacity = "1";
+          this.elements.advancedOptionsDiv.style.transform = "translateY(0)";
+          this.elements.advancedOptionsDiv.style.height = "auto";
+          this.elements.advancedOptionsDiv.style.marginTop = "1rem";
+        } else {
+          this.elements.advancedOptionsDiv.style.visibility = "hidden";
+          this.elements.advancedOptionsDiv.style.opacity = "0";
+          this.elements.advancedOptionsDiv.style.transform = "translateY(-10px)";
+          this.elements.advancedOptionsDiv.style.height = "0";
+          this.elements.advancedOptionsDiv.style.marginTop = "0";
+        }
+
         const span = this.elements.advancedToggleBtn.querySelector("span");
         if (span) span.textContent = this.showAdvanced ? "▲" : "▼";
       });
@@ -199,39 +214,69 @@ class SingularityBespokeBuilder {
     const constraintsList = Array.from(checkboxes).map(cb => cb.value);
     const constraints = constraintsList.length > 0 ? constraintsList.join(", ") : "";
 
+    // 🪄 CONJURE: Updating the UI instantly using optimistic state, masking network latency.
+    const uiState = {
+      originalBtnText: this.elements.submitBtn.innerHTML,
+      setOptimistic: () => {
+        if (typeof DOMUtils !== "undefined") {
+          DOMUtils.setButtonState(this.elements.submitBtn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.LOADING : "loading", "Forging Agent...");
+        } else {
+          this.elements.submitBtn.innerHTML = "<span class='skeleton-pulse'>Forging Agent...</span>";
+          this.elements.submitBtn.disabled = true;
+        }
+      },
+      rollback: () => {
+        if (typeof DOMUtils !== "undefined") {
+          DOMUtils.setButtonState(this.elements.submitBtn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Forge Bespoke Agent");
+        } else {
+          this.elements.submitBtn.innerHTML = uiState.originalBtnText;
+          this.elements.submitBtn.disabled = false;
+        }
+      }
+    };
+
+    uiState.setOptimistic();
+
     const fetchPromise = typeof NetworkUtils !== 'undefined' ?
       NetworkUtils.fetchWithRetry("prompts/system/Singularity.md", { throwOn404: false }).then(res => res.ok ? res.text() : null) :
       fetch("prompts/system/Singularity.md").then(res => res.ok ? res.text() : null);
 
-    let template = await fetchPromise;
+    try {
+      let template = await fetchPromise;
 
-    if (!template) {
-        if (window.rosterApp && window.rosterApp.showToast) {
-            window.rosterApp.showToast("Failed to load Singularity template");
-        }
-        return;
-    }
+      if (!template) {
+          if (window.rosterApp && window.rosterApp.showToast) {
+              window.rosterApp.showToast("Failed to load Singularity template");
+          }
+          uiState.rollback();
+          return;
+      }
 
-    const payloadPrompt = template
-      .replace(/{{UI_AGENT_NAME}}/g, name)
-      .replace(/{{UI_AGENT_EMOJI}}/g, emoji)
-      .replace(/{{UI_MISSION_STATEMENT}}/g, mission)
-      .replace(/{{UI_CHECKLIST_CONSTRAINTS}}/g, constraints)
-      .replace(/{{UI_TARGET_DIRECTORIES}}/g, targets)
-      .replace(/{{UI_TECH_STACK}}/g, techStack);
+      const payloadPrompt = template
+        .replace(/{{UI_AGENT_NAME}}/g, name)
+        .replace(/{{UI_AGENT_EMOJI}}/g, emoji)
+        .replace(/{{UI_MISSION_STATEMENT}}/g, mission)
+        .replace(/{{UI_CHECKLIST_CONSTRAINTS}}/g, constraints)
+        .replace(/{{UI_TARGET_DIRECTORIES}}/g, targets)
+        .replace(/{{UI_TECH_STACK}}/g, techStack);
 
-    const agentPayload = {
-      name: "Singularity",
-      emoji: "🌌",
-      role: "Meta-Architect",
-      prompt: payloadPrompt,
-      isCustom: true
-    };
+      const agentPayload = {
+        name: "Singularity",
+        emoji: "🌌",
+        role: "Meta-Architect",
+        prompt: payloadPrompt,
+        isCustom: true
+      };
 
-    if (this.julesTerminal) {
-      this.julesTerminal.launchSession(agentPayload, this.elements.submitBtn);
-    } else {
-        console.warn("Singularity Builder: julesTerminal is missing");
+      if (this.julesTerminal) {
+        this.julesTerminal.launchSession(agentPayload, this.elements.submitBtn);
+      } else {
+          uiState.rollback();
+          console.warn("Singularity Builder: julesTerminal is missing");
+      }
+    } catch (error) {
+      uiState.rollback();
+      console.error("Failed to forge agent:", error);
     }
   }
 }
