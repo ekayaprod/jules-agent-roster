@@ -16,7 +16,7 @@
         --text-3xs: 0.6em; --text-2xs: 0.7rem; --text-xs: 0.85rem; --text-sm: 0.95rem; --text-base: 1rem; --text-md: 1.1rem; --text-lg: 1.25rem; --text-xl: 1.5rem; --text-2xl: 1.75rem; --text-3xl: 2.2rem; --text-4xl: 2.5rem; --text-5xl: 3rem; --text-6xl: 4rem; --text-7xl: 5rem;
         --weight-normal: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700; --weight-extrabold: 800;
         --leading-none: 1; --leading-tight: 1.25; --leading-snug: 1.4; --leading-normal: 1.5; --leading-relaxed: 1.625;
-        --bg-color: #0f172a; --card-bg: #1e293b; --text-primary: #f8fafc; --text-secondary: #94a3b8; --accent: #38bdf8; --accent-hover: #0ea5e9; --success: #10b981; --warning: #f59e0b; --error: #ef4444; --border: #334155; --details-bg: #020617;
+        --bg-color: #0f172a; --card-bg: #1e293b; --text-primary: #f8fafc; --text-secondary: #94a3b8; --accent: #38bdf8; --accent-hover: #0ea5e9; --success: #10b981; --warning: #f59e0b; --error: #ef4444; --border: #334155; --details-bg: #020617; --mythic: #d946ef;
         
         /* Terminal specific colors */
         --term-bg: #0d1117;
@@ -55,7 +55,7 @@
           50% { box-shadow: 0 0 1.5rem rgba(217, 70, 239, 0.4); border-color: rgba(217, 70, 239, 0.9); }
           100% { box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); border-color: rgba(217, 70, 239, 0.6); }
       }
-      .tier-epic .flip-card-front, .tier-epic .flip-card-back { border-color: rgba(217, 70, 239, 0.6); box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); animation: epicPulse 4s infinite ease-in-out; }
+      .tier-epic, .tier-epic .flip-card-front, .tier-epic .flip-card-back { border-color: rgba(217, 70, 239, 0.6); box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); animation: epicPulse 4s infinite ease-in-out; }
 
       @keyframes legendaryPulse {
           0% { box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); border-color: rgba(251, 191, 36, 0.6); }
@@ -69,7 +69,7 @@
           50% { box-shadow: 0 0 1.5rem rgba(16, 185, 129, 0.4); border-color: rgba(16, 185, 129, 0.9); }
           100% { box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.6); }
       }
-      .tier-mythic .flip-card-front, .tier-mythic .flip-card-back { border-color: rgba(16, 185, 129, 0.6); box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); animation: mythicPulse 4s infinite ease-in-out; }
+      .tier-mythic, .tier-mythic .flip-card-front, .tier-mythic .flip-card-back { border-color: rgba(16, 185, 129, 0.6); box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); animation: mythicPulse 4s infinite ease-in-out; }
 
       .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after,
       .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after,
