@@ -318,6 +318,13 @@ class FusionLab {
         if (isKnown) {
           this.fusionIndex.unlock(key);
         }
+
+        // Notify the app state about Cortex x Cortex state change
+        if (key === "Cortex,Cortex" && window.rosterApp) {
+          if (window.rosterApp.singularityBuilderContainer) {
+            window.rosterApp.singularityBuilderContainer.classList.remove("hidden");
+          }
+        }
       } catch (e) {
         const unlockError = new Error("FusionLab: Failed to unlock agent in index");
         unlockError.cause = e;
@@ -359,6 +366,13 @@ class FusionLab {
     this.clearError();
 
     const result = this.compiler.fuse(agentA, agentB);
+
+    // Do not render Singularity as a standard card.
+    if (result.name === "Singularity") {
+      this.resetLab();
+      return;
+    }
+
     this.renderFusionResult(result);
     this.showResult();
   }
