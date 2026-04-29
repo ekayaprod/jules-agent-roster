@@ -8,8 +8,8 @@ test.describe('Fusion Lab End-to-End', () => {
     // Ensure Fusion Lab section is visible
     await expect(page.getByRole('heading', { name: /The Fusion Lab/i })).toBeVisible();
 
-    // Click on Slot A (Select Primary Protocol) to select first agent
-    const slotA = page.getByRole('button', { name: /Select Primary Protocol/i });
+    // Click on Slot A (Select Agent A) to select first agent
+    const slotA = page.locator('#slotACard');
     await expect(slotA).toBeVisible();
     await slotA.click();
 
@@ -18,8 +18,8 @@ test.describe('Fusion Lab End-to-End', () => {
     await expect(pickerModal).toBeVisible();
     await page.getByRole('option').first().click();
 
-    // Click on Slot B (Select Secondary Protocol) to select second agent
-    const slotB = page.getByRole('button', { name: /Select Secondary Protocol/i });
+    // Click on Slot B (Select Agent B) to select second agent
+    const slotB = page.locator('#slotBCard');
     await expect(slotB).toBeVisible();
     await slotB.click();
 
@@ -28,8 +28,8 @@ test.describe('Fusion Lab End-to-End', () => {
     await page.getByRole('option').nth(1).click();
 
     // Verify fuse button is active and click it
-    // The button has an aria-label "Fuse Selected Protocols"
-    const fuseBtn = page.getByRole('button', { name: /Fuse Selected Protocols/i });
+    // The button has text "Ignite Protocol" (formerly had aria-label "Fuse Selected Protocols")
+    const fuseBtn = page.getByRole('button', { name: /Ignite Fusion Protocol/i });
     await expect(fuseBtn).toHaveAttribute('aria-disabled', 'false');
     await fuseBtn.click();
 
@@ -47,6 +47,7 @@ test.describe('Fusion Lab End-to-End', () => {
     await resetBtn.click();
 
     // Verify it's reset - fuseBtn should be disabled
-    await expect(fuseBtn).toHaveAttribute('aria-disabled', 'true');
+    const fuseBtnAfterReset = page.locator('#fuseBtn');
+    await expect(fuseBtnAfterReset).toHaveAttribute('aria-disabled', 'true');
   });
 });
