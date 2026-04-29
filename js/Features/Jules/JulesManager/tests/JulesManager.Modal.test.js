@@ -704,7 +704,6 @@ describe('JulesManager Modal Tests', () => {
             manager.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             const originalInputField = manager.getEl('interactionModalInput');
-            const originalErrorSpan = manager.getEl('interactionModalError');
 
             manager.elements['interactionModalInput'] = null;
             manager.elements['interactionModalError'] = null;

@@ -1,7 +1,5 @@
 const { TextEncoder, TextDecoder } = require("util"); global.TextEncoder = TextEncoder; global.TextDecoder = TextDecoder;
 
-const fs = require('fs');
-const path = require('path');
 
 // Read the actual FormatUtils, AgentUtils, and PinnedManager
 const FormatUtils = require('../Utils/format-utils');

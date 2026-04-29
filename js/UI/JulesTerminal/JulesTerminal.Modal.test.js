@@ -712,7 +712,6 @@ describe('JulesTerminal Modal Tests', () => {
             julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             const originalInputField = julesTerminal.getEl('interactionModalInput');
-            const originalErrorSpan = julesTerminal.getEl('interactionModalError');
 
             julesTerminal.elements['interactionModalInput'] = null;
             julesTerminal.elements['interactionModalError'] = null;

@@ -1,8 +1,6 @@
 /**
  * @jest-environment jsdom
  */
-const fs = require('fs');
-const path = require('path');
 const { getByText, queryByText } = require('@testing-library/dom');
 require('@testing-library/jest-dom');
 

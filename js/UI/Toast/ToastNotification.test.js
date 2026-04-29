@@ -3,8 +3,6 @@ global.TOAST_TYPES = TOAST_TYPES;
 /**
  * @jest-environment jsdom
  */
-const fs = require('fs');
-const path = require('path');
 const { screen, waitFor } = require('@testing-library/dom');
 require('@testing-library/jest-dom');
 const userEvent = require('@testing-library/user-event').default;
