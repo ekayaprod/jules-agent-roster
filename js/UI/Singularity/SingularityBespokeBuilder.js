@@ -16,79 +16,79 @@ class SingularityBespokeBuilder {
     this.container.innerHTML = `
       <div class="singularity-builder card p-6" style="border: 2px solid var(--mythic); background: var(--card-bg); box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);">
         <h3 style="color: var(--mythic); display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">
-          <span style="font-size: 1.5rem;">🌌</span> Singularity Meta-Forge
+          <span style="font-size: var(--text-xl);">🌌</span> Singularity Meta-Forge
         </h3>
-        <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+        <p style="font-size: var(--text-sm); color: var(--text-secondary); margin-bottom: 1.5rem;">
           Configure a bespoke micro-agent by defining its parameters below. Singularity will forge the agent.
         </p>
 
         <div style="display: flex; flex-direction: column; gap: 1rem;">
           <div style="display: flex; gap: 1rem;">
             <div style="flex: 1;">
-              <label for="singularityAgentName" style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;">Agent Name</label>
+              <label for="singularityAgentName" style="display: block; font-size: var(--text-sm); font-weight: var(--weight-semibold); margin-bottom: 0.25rem;">Agent Name</label>
               <input type="text" id="singularityAgentName" placeholder="e.g., Code Sweeper" class="modal-input" style="width: 100%;" />
             </div>
             <div style="width: 4rem;">
-              <label for="singularityAgentEmoji" style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;">Emoji</label>
+              <label for="singularityAgentEmoji" style="display: block; font-size: var(--text-sm); font-weight: var(--weight-semibold); margin-bottom: 0.25rem;">Emoji</label>
               <input type="text" id="singularityAgentEmoji" placeholder="🧹" class="modal-input" style="width: 100%; text-align: center;" maxlength="2" />
             </div>
           </div>
 
           <div>
             <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <button class="quick-fill-pill" data-mission="Refactor legacy code to modern standards." data-constraints="Match Existing Styling, Do not modify tests" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer;">✨ Refactor Legacy</button>
-              <button class="quick-fill-pill" data-mission="Enforce strict typing and add validation guards." data-constraints="No UI Mutations, Match Existing Styling" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer;">🛡️ Enforce Types</button>
-              <button class="quick-fill-pill" data-mission="Prune dead code and remove unused files." data-constraints="No UI Mutations" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer;">🧹 Prune Dead Code</button>
+              <button class="quick-fill-pill" data-mission="Refactor legacy code to modern standards." data-constraints="Match Existing Styling, Do not modify tests" style="font-size: var(--text-xs); padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer;">✨ Refactor Legacy</button>
+              <button class="quick-fill-pill" data-mission="Enforce strict typing and add validation guards." data-constraints="No UI Mutations, Match Existing Styling" style="font-size: var(--text-xs); padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer;">🛡️ Enforce Types</button>
+              <button class="quick-fill-pill" data-mission="Prune dead code and remove unused files." data-constraints="No UI Mutations" style="font-size: var(--text-xs); padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer;">🧹 Prune Dead Code</button>
             </div>
-            <label for="singularityMission" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;">
+            <label for="singularityMission" style="display: flex; align-items: center; justify-content: space-between; font-size: var(--text-sm); font-weight: var(--weight-semibold); margin-bottom: 0.25rem;">
               Core Mission
-              <span id="singularityArchetypeBadge" style="font-size: 0.75rem; padding: 0.15rem 0.4rem; border-radius: 0.25rem; background: var(--surface-2); border: 1px solid var(--border-color);">🛠️ Maker</span>
+              <span id="singularityArchetypeBadge" style="font-size: var(--text-xs); padding: 0.15rem 0.4rem; border-radius: 0.25rem; background: var(--surface-2); border: 1px solid var(--border-color);">🛠️ Maker</span>
             </label>
             <textarea id="singularityMission" placeholder="Describe the specific task this agent must perform..." class="modal-input" style="width: 100%; min-height: 4rem; resize: vertical;"></textarea>
           </div>
 
           <div>
-            <label style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Safety Constraints</label>
+            <label style="display: block; font-size: var(--text-sm); font-weight: var(--weight-semibold); margin-bottom: 0.5rem;">Safety Constraints</label>
             <div style="display: flex; flex-direction: column; gap: 0.5rem;" id="singularityConstraints">
-              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--text-sm); cursor: pointer;">
                 <input type="checkbox" value="Read-only Database" /> Read-only Database
               </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--text-sm); cursor: pointer;">
                 <input type="checkbox" value="No UI Mutations" /> No UI Mutations
               </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--text-sm); cursor: pointer;">
                 <input type="checkbox" value="Do not modify tests" /> Do not modify tests
               </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--text-sm); cursor: pointer;">
                 <input type="checkbox" value="No New Dependencies" /> No New Dependencies
               </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--text-sm); cursor: pointer;">
                 <input type="checkbox" value="Match Existing Styling" /> Match Existing Styling
               </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: var(--text-sm); cursor: pointer;">
                 <input type="checkbox" value="Dry-Run Only (Generate Report)" /> Dry-Run Only (Generate Report)
               </label>
             </div>
           </div>
 
           <div>
-            <button id="singularityAdvancedToggle" style="font-size: 0.875rem; font-weight: 600; background: transparent; border: none; color: var(--mythic); cursor: pointer; padding: 0; text-decoration: underline;">
+            <button id="singularityAdvancedToggle" style="font-size: var(--text-sm); font-weight: var(--weight-semibold); background: transparent; border: none; color: var(--mythic); cursor: pointer; padding: 0; text-decoration: underline;">
               Advanced Options <span>▼</span>
             </button>
             <div id="singularityAdvancedOptions" class="advanced-options" style="display: none; flex-direction: column; gap: 1rem; margin-top: 1rem;">
               <div>
-                <label for="singularityTechStack" style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;">Primary Tech Stack (Optional)</label>
+                <label for="singularityTechStack" style="display: block; font-size: var(--text-sm); font-weight: var(--weight-semibold); margin-bottom: 0.25rem;">Primary Tech Stack (Optional)</label>
                 <input type="text" id="singularityTechStack" placeholder="e.g., React, Node.js, Python" class="modal-input" style="width: 100%;" />
               </div>
               <div>
-                <label for="singularityTargets" style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;">Target Directories (Optional)</label>
+                <label for="singularityTargets" style="display: block; font-size: var(--text-sm); font-weight: var(--weight-semibold); margin-bottom: 0.25rem;">Target Directories (Optional)</label>
                 <input type="text" id="singularityTargets" placeholder="e.g., src/components, lib/utils" class="modal-input" style="width: 100%;" />
               </div>
             </div>
           </div>
 
           <div style="margin-top: 1rem;">
-            <button id="singularitySubmitBtn" style="width: 100%; background: var(--mythic); color: #000; font-weight: bold; border: none; padding: 0.75rem; border-radius: 0.25rem; cursor: pointer;">
+            <button id="singularitySubmitBtn" style="width: 100%; background: var(--mythic); color: #000; font-weight: var(--weight-bold); border: none; padding: 0.75rem; border-radius: 0.25rem; cursor: pointer;">
               Forge Bespoke Agent
             </button>
           </div>
