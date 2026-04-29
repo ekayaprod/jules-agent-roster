@@ -6,3 +6,5 @@
 **Action:** Abstracted identically duplicated `agent.promptFile || (agent.isCustom ? ...)` logic blocks into `AgentUtils.getPromptUrl(agent)`.
 **Learning:** Abstracting structurally identical inline HTML literals (e.g. \`[SYS] Awaiting repository connection...\` and the terminal session layout) into centralized parameterized UI helpers prevents systemic style drift and UI inconsistencies across varying component states.
 **Action:** Extract identically repeated structural UI wrappers into reusable utility methods parameterizing purely for dynamic data injection to enforce DRYness and structural cohesion.
+**Learning:** Found an entire directory (`js/UI/JulesTerminal`) duplicated inside `js/Features/Jules/JulesManager/` where `JulesTerminal` was renamed to `JulesManager`.
+**Action:** Deleted the deprecated `js/UI/JulesTerminal` folder.

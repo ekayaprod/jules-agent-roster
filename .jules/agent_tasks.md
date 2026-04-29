@@ -37,7 +37,7 @@
 ## 🕵️ Boundary Interrogation (Coverage Expansion & Edge Cases)
 - [x] (Blocked / False Positive) 🕵️ `js/UI/JulesTerminal/JulesTerminal.js`: Missing test file.
 - [x] 🕵️ `js/Utils/markdown-renderer.js`: Missing test file.
-- [ ] 🕵️ `js/Features/Jules/JulesManager/JulesManager.js`: Missing test file.
+- [x] 🕵️ `js/Features/Jules/JulesManager/JulesManager.js`: Missing test file.
 
 
 
