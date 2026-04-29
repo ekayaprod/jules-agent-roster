@@ -1040,6 +1040,16 @@
     "isCustom": true
   },
   {
+    "name": "Overclock",
+    "emoji": "⏱️",
+    "role": "The Chrono-Refiner",
+    "category": "Testing",
+    "tier": "Mythic",
+    "description": "OVERCLOCK the test suite. I bend time, eradicate I/O gravity, and compress bloated CI execution cycles to save the VM from timeout exhaustion.",
+    "promptFile": "prompts/fusions/Pacesetter.md",
+    "isCustom": true
+  },
+  {
     "name": "Parallel",
     "emoji": "♾️",
     "role": "Replacement Builder",
