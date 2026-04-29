@@ -112,7 +112,7 @@
   {
     "name": "Paramedic",
     "emoji": "🚨",
-    "role": "Trauma Resuscitator",
+    "role": "The Trauma Resuscitator",
     "category": "Operations",
     "tier": "Core",
     "description": "RESUSCITATE fatal boot sequences, trace catastrophic crashes, and mutate logic to restore operational stability.",
@@ -162,8 +162,8 @@
   {
     "name": "Superintendent",
     "emoji": "🧰",
-    "role": "Repository Handyman",
-    "category": "Operations",
+    "role": "The Repository Handyman",
+    "category": "Hygiene",
     "tier": "Core",
     "description": "MAINTAIN structural integrity by patching leaks, sweeping cache trash, and performing routine foundation audits.",
     "promptFile": "prompts/Superintendent.md",
@@ -690,6 +690,16 @@
     "isCustom": true
   },
   {
+    "name": "Hazmat",
+    "emoji": "☣️",
+    "role": "The Build-State Resuscitation",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "Resuscitate fatal boot loops caused by corrupted caches, ghost dependencies, or LLM-hallucinated artifact debris.",
+    "promptFile": "prompts/fusions/Hazmat.md",
+    "isCustom": true
+  },
+  {
     "name": "Helmsman",
     "emoji": "⛵",
     "role": "Routing Upgrader",
@@ -952,10 +962,10 @@
   {
     "name": "Mobilizer",
     "emoji": "📱",
-    "role": "Responsive Modernizer",
+    "role": "Viewport Weaver",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Transform rigid layouts and interactions into fluid, universal experiences that scale flawlessly from 320px mobile screens to 4K desktop monitors.",
+    "description": "FLEX rigid boundaries into liquid geometry. Expand mobile-first components to 4K elegance, and collapse desktop monoliths into universal touch-flows.",
     "promptFile": "prompts/fusions/Mobilizer.md",
     "isCustom": true
   },
@@ -1037,16 +1047,6 @@
     "tier": "Fusion",
     "description": "REGULATE the application heartbeat by deferring heavy, synchronous execution to the background to protect the primary event loop.",
     "promptFile": "prompts/fusions/Pacemaker.md",
-    "isCustom": true
-  },
-  {
-    "name": "Overclock",
-    "emoji": "⏱️",
-    "role": "The Chrono-Refiner",
-    "category": "Testing",
-    "tier": "Mythic",
-    "description": "OVERCLOCK the test suite. I bend time, eradicate I/O gravity, and compress bloated CI execution cycles to save the VM from timeout exhaustion.",
-    "promptFile": "prompts/fusions/Pacesetter.md",
     "isCustom": true
   },
   {
