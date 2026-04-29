@@ -14,7 +14,7 @@ class SingularityBespokeBuilder {
 
   render() {
     this.container.innerHTML = `
-      <div class="singularity-builder card p-6" style="border: 2px solid var(--mythic); background: var(--card-bg); box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);">
+      <div class="singularity-builder card p-6" style="border: 2px solid var(--mythic); background: var(--card-bg); box-shadow: 0 0 1rem rgba(255, 0, 255, 0.2);">
         <h3 style="color: var(--mythic); display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">
           <span style="font-size: 1.5rem;">🌌</span> Singularity Meta-Forge
         </h3>
@@ -35,10 +35,10 @@ class SingularityBespokeBuilder {
           </div>
 
           <div>
-            <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <button class="quick-fill-pill" data-mission="Refactor legacy code to modern standards." data-constraints="Match Existing Styling, Do not modify tests" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer;">✨ Refactor Legacy</button>
-              <button class="quick-fill-pill" data-mission="Enforce strict typing and add validation guards." data-constraints="No UI Mutations, Match Existing Styling" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer;">🛡️ Enforce Types</button>
-              <button class="quick-fill-pill" data-mission="Prune dead code and remove unused files." data-constraints="No UI Mutations" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer;">🧹 Prune Dead Code</button>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+              <button class="quick-fill-pill" data-mission="Refactor legacy code to modern standards." data-constraints="Match Existing Styling, Do not modify tests" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer; min-height: 44px; display: inline-flex; align-items: center; justify-content: center;">✨ Refactor Legacy</button>
+              <button class="quick-fill-pill" data-mission="Enforce strict typing and add validation guards." data-constraints="No UI Mutations, Match Existing Styling" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer; min-height: 44px; display: inline-flex; align-items: center; justify-content: center;">🛡️ Enforce Types</button>
+              <button class="quick-fill-pill" data-mission="Prune dead code and remove unused files." data-constraints="No UI Mutations" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer; min-height: 44px; display: inline-flex; align-items: center; justify-content: center;">🧹 Prune Dead Code</button>
             </div>
             <label for="singularityMission" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;">
               Core Mission
@@ -50,29 +50,29 @@ class SingularityBespokeBuilder {
           <div>
             <label style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">Safety Constraints</label>
             <div style="display: flex; flex-direction: column; gap: 0.5rem;" id="singularityConstraints">
-              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer; min-height: 44px;">
                 <input type="checkbox" value="Read-only Database" /> Read-only Database
               </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer; min-height: 44px;">
                 <input type="checkbox" value="No UI Mutations" /> No UI Mutations
               </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer; min-height: 44px;">
                 <input type="checkbox" value="Do not modify tests" /> Do not modify tests
               </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer; min-height: 44px;">
                 <input type="checkbox" value="No New Dependencies" /> No New Dependencies
               </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer; min-height: 44px;">
                 <input type="checkbox" value="Match Existing Styling" /> Match Existing Styling
               </label>
-              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
+              <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer; min-height: 44px;">
                 <input type="checkbox" value="Dry-Run Only (Generate Report)" /> Dry-Run Only (Generate Report)
               </label>
             </div>
           </div>
 
           <div>
-            <button id="singularityAdvancedToggle" style="font-size: 0.875rem; font-weight: 600; background: transparent; border: none; color: var(--mythic); cursor: pointer; padding: 0; text-decoration: underline;">
+            <button id="singularityAdvancedToggle" style="font-size: 0.875rem; font-weight: 600; background: transparent; border: none; color: var(--mythic); cursor: pointer; padding: 0; text-decoration: underline; min-height: 44px; display: inline-flex; align-items: center; justify-content: flex-start;">
               Advanced Options <span>▼</span>
             </button>
             <div id="singularityAdvancedOptions" class="advanced-options" style="display: none; flex-direction: column; gap: 1rem; margin-top: 1rem;">
@@ -113,11 +113,11 @@ class SingularityBespokeBuilder {
 
   bindEvents() {
     if (this.elements.submitBtn) {
-      this.elements.submitBtn.addEventListener("click", () => this.handleForge());
+      this.elements.submitBtn.addEventListener("pointerdown", () => this.handleForge());
     }
 
     if (this.elements.advancedToggleBtn && this.elements.advancedOptionsDiv) {
-      this.elements.advancedToggleBtn.addEventListener("click", () => {
+      this.elements.advancedToggleBtn.addEventListener("pointerdown", () => {
         this.showAdvanced = !this.showAdvanced;
         this.elements.advancedOptionsDiv.style.display = this.showAdvanced ? "flex" : "none";
         const span = this.elements.advancedToggleBtn.querySelector("span");
@@ -127,7 +127,7 @@ class SingularityBespokeBuilder {
 
     if (this.elements.quickFillPills && this.elements.missionInput) {
       this.elements.quickFillPills.forEach(pill => {
-        pill.addEventListener("click", (e) => {
+        pill.addEventListener("pointerdown", (e) => {
           e.preventDefault();
           const missionText = pill.getAttribute("data-mission");
           const constraintsAttr = pill.getAttribute("data-constraints");
