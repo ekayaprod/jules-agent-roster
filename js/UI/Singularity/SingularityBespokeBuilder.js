@@ -14,7 +14,30 @@ class SingularityBespokeBuilder {
 
   render() {
     this.container.innerHTML = `
-      <div class="singularity-builder card p-6" style="border: 2px solid var(--mythic); background: var(--card-bg); box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);">
+      <style>
+        .singularity-builder .quick-fill-pill {
+          font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer; transition: all 0.2s ease-in-out;
+        }
+        .singularity-builder .quick-fill-pill:hover, .singularity-builder .quick-fill-pill:focus-visible {
+          background: rgba(217, 70, 239, 0.1); outline: none; transform: translateY(-1px);
+        }
+        .singularity-builder #singularitySubmitBtn {
+          width: 100%; background: var(--mythic); color: #000; font-weight: bold; border: none; padding: 0.75rem; border-radius: 0.25rem; cursor: pointer; transition: all 0.2s ease-in-out;
+        }
+        .singularity-builder #singularitySubmitBtn:hover, .singularity-builder #singularitySubmitBtn:focus-visible {
+          filter: brightness(1.1); transform: translateY(-1px); outline: 2px solid var(--mythic); outline-offset: 2px;
+        }
+        .singularity-builder #singularitySubmitBtn:active {
+          transform: scale(0.98);
+        }
+        .singularity-builder #singularityAdvancedToggle {
+          font-size: 0.875rem; font-weight: 600; background: transparent; border: none; color: var(--mythic); cursor: pointer; padding: 0.25rem; border-radius: 0.25rem; transition: all 0.2s ease-in-out; text-decoration: underline;
+        }
+        .singularity-builder #singularityAdvancedToggle:hover, .singularity-builder #singularityAdvancedToggle:focus-visible {
+          background: rgba(217, 70, 239, 0.1); outline: none; text-decoration: none;
+        }
+      </style>
+      <div class="singularity-builder card p-6 tier-epic" style="background: var(--card-bg);">
         <h3 style="color: var(--mythic); display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">
           <span style="font-size: 1.5rem;">🌌</span> Singularity Meta-Forge
         </h3>
@@ -36,9 +59,9 @@ class SingularityBespokeBuilder {
 
           <div>
             <div style="display: flex; gap: 0.5rem; margin-bottom: 0.5rem;">
-              <button class="quick-fill-pill" data-mission="Refactor legacy code to modern standards." data-constraints="Match Existing Styling, Do not modify tests" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer;">✨ Refactor Legacy</button>
-              <button class="quick-fill-pill" data-mission="Enforce strict typing and add validation guards." data-constraints="No UI Mutations, Match Existing Styling" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer;">🛡️ Enforce Types</button>
-              <button class="quick-fill-pill" data-mission="Prune dead code and remove unused files." data-constraints="No UI Mutations" style="font-size: 0.75rem; padding: 0.25rem 0.5rem; border-radius: 1rem; border: 1px solid var(--mythic); background: transparent; color: var(--mythic); cursor: pointer;">🧹 Prune Dead Code</button>
+              <button class="quick-fill-pill" data-mission="Refactor legacy code to modern standards." data-constraints="Match Existing Styling, Do not modify tests">✨ Refactor Legacy</button>
+              <button class="quick-fill-pill" data-mission="Enforce strict typing and add validation guards." data-constraints="No UI Mutations, Match Existing Styling">🛡️ Enforce Types</button>
+              <button class="quick-fill-pill" data-mission="Prune dead code and remove unused files." data-constraints="No UI Mutations">🧹 Prune Dead Code</button>
             </div>
             <label for="singularityMission" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;">
               Core Mission
@@ -72,7 +95,7 @@ class SingularityBespokeBuilder {
           </div>
 
           <div>
-            <button id="singularityAdvancedToggle" style="font-size: 0.875rem; font-weight: 600; background: transparent; border: none; color: var(--mythic); cursor: pointer; padding: 0; text-decoration: underline;">
+            <button id="singularityAdvancedToggle">
               Advanced Options <span>▼</span>
             </button>
             <div id="singularityAdvancedOptions" class="advanced-options" style="display: none; flex-direction: column; gap: 1rem; margin-top: 1rem;">
@@ -88,7 +111,7 @@ class SingularityBespokeBuilder {
           </div>
 
           <div style="margin-top: 1rem;">
-            <button id="singularitySubmitBtn" style="width: 100%; background: var(--mythic); color: #000; font-weight: bold; border: none; padding: 0.75rem; border-radius: 0.25rem; cursor: pointer;">
+            <button id="singularitySubmitBtn">
               Forge Bespoke Agent
             </button>
           </div>
