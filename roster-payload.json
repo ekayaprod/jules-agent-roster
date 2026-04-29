@@ -1350,16 +1350,6 @@
     "isCustom": true
   },
   {
-    "name": "Singularity",
-    "emoji": "🌌",
-    "role": "Meta-Architect",
-    "category": "Architecture",
-    "tier": "Mythic",
-    "description": "BIRTH hyper-contextualized micro-agents. Act as the Local Master Forge, analyzing proprietary architecture to forge bespoke agents equipped with deep local knowledge and mapped to core archetypes.",
-    "promptFile": "prompts/fusions/Singularity.md",
-    "isCustom": true
-  },
-  {
     "name": "Siren",
     "emoji": "📻",
     "role": "Vulnerability Broadcaster",

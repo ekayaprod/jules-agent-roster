@@ -70,6 +70,20 @@ class RosterApp {
         this.fusionLab = new FusionLab();
         this.fusionLab.init(this.agents, this.customAgents, this.fusionMatrix);
 
+        // Meta-Architect: Initialize Singularity Bespoke Builder
+        if (typeof SingularityBespokeBuilder !== 'undefined') {
+            this.singularityBuilderContainer = document.getElementById("singularityBuilderContainer");
+            this.singularityBuilder = new SingularityBespokeBuilder(this.julesTerminal);
+            this.singularityBuilder.init();
+
+            // Check if Cortex x Cortex is already unlocked
+            if (this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked("Cortex,Cortex")) {
+                if (this.singularityBuilderContainer) {
+                    this.singularityBuilderContainer.classList.remove("hidden");
+                }
+            }
+        }
+
         const skeleton = this.elements.fusionLabSkeleton;
         const content = this.elements.fusionLabContent;
         if (skeleton && content) {
