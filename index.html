@@ -591,7 +591,7 @@
       <div class="empty-icon">🔍</div>
       <h2 class="empty-title">No results match your filters</h2>
       <p class="empty-desc text-secondary mt-2">We couldn't find any protocols matching your search. Try using different keywords, or clear your filters to explore the matrix.</p>
-      <button id="clearSearchEmptyBtn" class="mt-3 secondary" aria-label="Clear Search Filters">Clear Filters</button>
+      <button id="clearSearchEmptyBtn" class="mt-3 secondary">Clear Filters</button>
     </div>
 
     <main id="main">
@@ -644,8 +644,8 @@
             <a href="https://github.com/settings/tokens" target="_blank" style="font-size: var(--text-xs); color: var(--accent); text-decoration: none; margin-top: 0.25rem;">How to get a GitHub Token →</a>
         </div>
         <div class="flex gap-4 mt-4">
-            <button id="closeSettingsBtn" class="secondary flex-1" aria-label="Cancel API Configuration">Cancel</button>
-            <button id="saveSettingsBtn" class="flex-1" aria-label="Save API Key and Connect to Jules">Save & Connect</button>
+            <button id="closeSettingsBtn" class="secondary flex-1">Cancel</button>
+            <button id="saveSettingsBtn" class="flex-1">Save & Connect</button>
         </div>
       </div>
     </div>
@@ -664,8 +664,8 @@
                 <span id="historyModalError" role="alert" class="text-xs hidden" style="color: var(--error); margin-top: 0.25rem;"></span>
             </div>
             <div class="flex gap-4 mt-2">
-                <button id="cancelHistoryBtn" class="secondary flex-1" aria-label="Close History">Close</button>
-                <button id="submitHistoryBtn" class="flex-1" aria-label="Send Reply">Send Reply</button>
+                <button id="cancelHistoryBtn" class="secondary flex-1">Close</button>
+                <button id="submitHistoryBtn" class="flex-1">Send Reply</button>
             </div>
         </div>
     </div>
@@ -684,9 +684,9 @@
             <div id="prModalContent" style="background: var(--term-bg); padding: 1rem; border-radius: 0.5rem; border: 1px solid var(--term-border); font-family: monospace; font-size: var(--text-xs); color: var(--text-primary); max-height: 25rem; overflow-y: auto; white-space: pre-wrap; margin-bottom: 0.5rem;"></div>
             <span id="prModalError" role="alert" class="text-xs hidden" style="color: var(--error); margin-top: 0.25rem;"></span>
             <div class="flex gap-4 mt-2">
-                <button id="cancelPRBtn" class="secondary flex-1" aria-label="Close PR Details">Close</button>
-                <button id="closePRBtn" class="secondary flex-1" style="border-color: var(--term-error); color: var(--term-error);" aria-label="Close PR">Close PR</button>
-                <button id="mergePRBtn" class="flex-1" style="background-color: var(--term-success); color: var(--bg-color); border: none;" aria-label="Merge PR">Merge PR</button>
+                <button id="cancelPRBtn" class="secondary flex-1">Close</button>
+                <button id="closePRBtn" class="secondary flex-1" style="border-color: var(--term-error); color: var(--term-error);">Close PR</button>
+                <button id="mergePRBtn" class="flex-1" style="background-color: var(--term-success); color: var(--bg-color); border: none;">Merge PR</button>
             </div>
         </article>
     </section>
@@ -705,8 +705,8 @@
                 <span id="interactionModalError" role="alert" class="text-xs hidden" style="color: var(--error); margin-top: 0.25rem;"></span>
             </div>
             <div class="flex gap-4 mt-2">
-                <button id="cancelInteractionBtn" class="secondary flex-1" aria-label="Cancel Reply">Cancel</button>
-                <button id="submitInteractionBtn" class="flex-1" aria-label="Transmit Reply">Transmit Reply</button>
+                <button id="cancelInteractionBtn" class="secondary flex-1">Cancel</button>
+                <button id="submitInteractionBtn" class="flex-1">Transmit Reply</button>
             </div>
         </div>
     </div>
@@ -721,13 +721,13 @@
         <div class="slot-card" style="border-color: var(--border); background-color: var(--card-bg);"></div>
       </div>
       <div id="fusionLabContent" class="fusion-visual-slots fade-transition hidden">
-        <button id="slotACard" class="slot-card" aria-label="Select Primary Protocol">
+        <button id="slotACard" class="slot-card">
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent A</span></div>
         </button>
         <div class="fusion-action-area">
-          <button id="fuseBtn" disabled aria-label="Fuse Selected Protocols">Ignite Protocol</button>
+          <button id="fuseBtn" disabled>Ignite Protocol</button>
         </div>
-        <button id="slotBCard" class="slot-card" aria-label="Select Secondary Protocol">
+        <button id="slotBCard" class="slot-card">
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent B</span></div>
         </button>
       </div>
@@ -756,7 +756,7 @@
       </div>
 
       <div id="fusionResultContainer" class="grid mt-6 overflow-hidden hidden"></div>
-      <button id="resetLabBtn" class="hidden mt-6 secondary" aria-label="Fuse Another Protocol">Fuse Another Protocol</button>
+      <button id="resetLabBtn" class="hidden mt-6 secondary">Fuse Another Protocol</button>
     </div>
 
     <div class="fusion-archive-container">
@@ -765,12 +765,12 @@
 
     <footer class="roster-footer">
       <div class="flex" style="position: relative;">
-        <button id="masterCopyBtn" class="secondary action-main-btn" data-action="copy-all" aria-label="Copy All Core Prompts to Clipboard">Copy All Core Prompts</button>
+        <button id="masterCopyBtn" class="secondary action-main-btn" data-action="copy-all">Copy All Core Prompts</button>
         <button id="masterDropdownBtn" class="secondary action-toggle-btn" aria-label="Open Master Export Options">▼</button>
         <div id="masterDropdownMenu" class="dropdown-menu">
-          <button id="masterDownloadCoreBtn" class="dropdown-item" aria-label="Download Core Prompts as Markdown">Download Core Prompts</button>
-          <button id="masterCopyFusionsBtn" class="dropdown-item" aria-label="Copy Unlocked Fusions to Clipboard">Copy Unlocked Fusions</button>
-          <button id="masterDownloadFusionsBtn" class="dropdown-item" aria-label="Download Unlocked Fusions as Markdown">Download Unlocked Fusions</button>
+          <button id="masterDownloadCoreBtn" class="dropdown-item">Download Core Prompts</button>
+          <button id="masterCopyFusionsBtn" class="dropdown-item">Copy Unlocked Fusions</button>
+          <button id="masterDownloadFusionsBtn" class="dropdown-item">Download Unlocked Fusions</button>
         </div>
       </div>
     </footer>
@@ -798,8 +798,8 @@
           <div id="fusionsModalCard" class="mt-3 flex" style="justify-content: center;"></div>
         </div>
         <div class="flex gap-4 mt-2">
-          <button id="downloadParentFusionsBtn" class="secondary action-main-btn flex-1" style="display:none;" aria-label="Download Unlocked Fusions for this Agent">Download Unlocked</button>
-          <button id="closeFusionsModalBtn" class="secondary flex-1" aria-label="Close Fusions Modal">Close</button>
+          <button id="downloadParentFusionsBtn" class="secondary action-main-btn flex-1" style="display:none;">Download Unlocked</button>
+          <button id="closeFusionsModalBtn" class="secondary flex-1">Close</button>
         </div>
       </div>
     </div>
