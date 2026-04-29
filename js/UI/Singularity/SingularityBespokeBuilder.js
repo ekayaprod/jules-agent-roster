@@ -14,6 +14,66 @@ class SingularityBespokeBuilder {
 
   render() {
     this.container.innerHTML = `
+
+      <style>
+        .singularity-builder .quick-fill-pill {
+          transition: all 0.2s ease !important;
+        }
+        .singularity-builder .quick-fill-pill:hover {
+          background-color: rgba(255, 255, 255, 0.1) !important;
+          transform: translateY(-1px);
+        }
+        .singularity-builder .quick-fill-pill:focus-visible {
+          outline: 2px solid var(--mythic) !important;
+          outline-offset: 2px !important;
+        }
+
+        .singularity-builder #singularityAdvancedToggle {
+          transition: color 0.2s ease, transform 0.2s ease !important;
+        }
+        .singularity-builder #singularityAdvancedToggle:hover {
+          color: var(--text-primary) !important;
+        }
+        .singularity-builder #singularityAdvancedToggle:focus-visible {
+          outline: 2px solid var(--mythic) !important;
+          outline-offset: 2px !important;
+          border-radius: 2px;
+        }
+
+        .singularity-builder #singularitySubmitBtn {
+          transition: all 0.2s ease !important;
+        }
+        .singularity-builder #singularitySubmitBtn:hover {
+          filter: brightness(1.1);
+          transform: translateY(-1px);
+        }
+        .singularity-builder #singularitySubmitBtn:active {
+          transform: scale(0.98) !important;
+        }
+        .singularity-builder #singularitySubmitBtn:focus-visible {
+          outline: 2px solid var(--mythic) !important;
+          outline-offset: 2px !important;
+        }
+        .singularity-builder #singularitySubmitBtn:disabled {
+          opacity: 0.5 !important;
+          cursor: not-allowed !important;
+          transform: none !important;
+          filter: none !important;
+        }
+
+
+        .singularity-builder .modal-input:hover {
+          border-color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .singularity-builder input[type="checkbox"] {
+          transition: all 0.2s ease;
+        }
+        .singularity-builder input[type="checkbox"]:focus-visible {
+          outline: 2px solid var(--mythic) !important;
+          outline-offset: 2px !important;
+        }
+      </style>
       <div class="singularity-builder card p-6" style="border: 2px solid var(--mythic); background: var(--card-bg); box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);">
         <h3 style="color: var(--mythic); display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">
           <span style="font-size: 1.5rem;">🌌</span> Singularity Meta-Forge
