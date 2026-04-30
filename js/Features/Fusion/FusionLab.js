@@ -462,7 +462,7 @@ class FusionLab {
     overlay.style.width = "100%";
     overlay.style.height = "100%";
     overlay.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
-    overlay.style.color = "#0f0";
+    overlay.style.color = "var(--term-success)";
     overlay.style.fontFamily = "monospace";
     overlay.style.display = "flex";
     overlay.style.alignItems = "center";
