@@ -9,3 +9,7 @@
 ## 2026-03-09 - [Empty State Visual Polish]
 **Learning:** `js/UI/EmptyState/EmptyState.js` had a broken class name `empty-title-mutated` that disrupted the visual layout and style definitions for the empty state titles.
 **Action:** Reverted the `className` back to `empty-title` to resolve broken empty state styling, maintaining consistent and accurate UI across the platform.
+
+## 2026-03-09 - [Component Layout Alignment]
+**Learning:** Reusing utility classes (like `card p-6`) doesn't always scale nicely when a specific component layout requires unique maximum-widths and centering logic to match its peer components (like `.fusion-lab-container`).
+**Action:** Replaced utility classes with explicit CSS defining `.singularity-builder` container rules inside the component's internal `<style>` block to guarantee dimensional parity without side-effects.
