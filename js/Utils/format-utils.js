@@ -21,7 +21,13 @@ class FormatUtils {
     static formatAgentPrompts(agents) {
         if (!Array.isArray(agents)) return "";
         // ⚡ Bolt+: The String Builder Shift. Replaced O(N²) .reduce() string concatenation with O(N) .map().join() to prevent repetitive transient memory allocations.
-        return agents.map(a => `${PromptParser.stripFrontmatter(a.prompt)}\n\n--------------------------------------------------------------------------------`).join("\n\n");
+        // 📐 REFACTOR: Rigid structural delimitation using XML tags and flat margins.
+        return agents.map(a => `
+<data_payload>
+${PromptParser.stripFrontmatter(a.prompt)}
+</data_payload>
+--------------------------------------------------------------------------------
+`.trim()).join("\n\n");
     }
 
     /**

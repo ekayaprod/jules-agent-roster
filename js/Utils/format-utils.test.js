@@ -27,8 +27,15 @@ describe('FormatUtils', () => {
 
     it('should format an array of agents correctly', () => {
       const agents = [{ prompt: 'Agent 1 prompt' }, { prompt: 'Agent 2 prompt' }];
-      const expected =
-        'Agent 1 prompt\n\n--------------------------------------------------------------------------------\n\nAgent 2 prompt\n\n--------------------------------------------------------------------------------';
+      const expected = `<data_payload>
+Agent 1 prompt
+</data_payload>
+--------------------------------------------------------------------------------
+
+<data_payload>
+Agent 2 prompt
+</data_payload>
+--------------------------------------------------------------------------------`;
       expect(FormatUtils.formatAgentPrompts(agents)).toBe(expected);
     });
 
