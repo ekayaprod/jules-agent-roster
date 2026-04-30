@@ -80,7 +80,7 @@ class SingularityBespokeBuilder {
                 <input type="checkbox" value="No UI Mutations" /> No UI Mutations
               </label>
               <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
-                <input type="checkbox" value="Do not modify tests" /> Do not modify tests
+                <input type="checkbox" value="Do not modify tests" /> Do Not Modify Tests
               </label>
               <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; cursor: pointer;">
                 <input type="checkbox" value="No New Dependencies" /> No New Dependencies
@@ -246,7 +246,7 @@ class SingularityBespokeBuilder {
 
       if (!template) {
           if (window.rosterApp && window.rosterApp.showToast) {
-              window.rosterApp.showToast("Failed to load Singularity template");
+              window.rosterApp.showToast("Unable to load the Singularity template. Please try again.");
           }
           uiState.rollback();
           return;
@@ -272,11 +272,11 @@ class SingularityBespokeBuilder {
         this.julesTerminal.launchSession(agentPayload, this.elements.submitBtn);
       } else {
           uiState.rollback();
-          console.warn("Singularity Builder: julesTerminal is missing");
+          console.warn("Singularity Builder: julesTerminal instance is missing.");
       }
     } catch (error) {
       uiState.rollback();
-      console.error("Failed to forge agent:", error);
+      console.error("Unable to forge bespoke agent:", error);
     }
   }
 }
