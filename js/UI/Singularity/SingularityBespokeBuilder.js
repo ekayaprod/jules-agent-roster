@@ -39,16 +39,28 @@ class SingularityBespokeBuilder {
         .singularity-builder #singularityAdvancedToggle:hover, .singularity-builder #singularityAdvancedToggle:focus-visible {
           background: rgba(217, 70, 239, 0.1); outline: none; text-decoration: none;
         }
+        .singularity-builder {
+          background-color: var(--card-bg);
+          border: 1px solid var(--border);
+          border-radius: 1rem;
+          padding: 2rem;
+          margin-top: 3rem;
+          margin-bottom: 3rem;
+          text-align: left;
+          max-width: 50rem;
+          margin-left: auto;
+          margin-right: auto;
+        }
       </style>
-      <div class="singularity-builder card p-6 tier-epic" style="background: var(--card-bg);">
-        <h3 style="color: var(--mythic); display: flex; align-items: center; gap: 0.5rem; margin-top: 0;">
+      <div class="singularity-builder tier-epic">
+        <h3 style="color: var(--mythic); display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 0; margin-bottom: 1.5rem;">
           <span style="font-size: 1.5rem;">🌌</span> Singularity Meta-Forge
         </h3>
-        <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+        <p style="font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1.5rem; text-align: center;">
           Configure a bespoke micro-agent by defining its parameters below. Singularity will forge the agent.
         </p>
 
-        <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div style="display: flex; flex-direction: column; gap: 1rem; text-align: left;">
           <div style="display: flex; gap: 1rem;">
             <div style="flex: 1;">
               <label for="singularityAgentName" style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;">Agent Name</label>
