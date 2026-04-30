@@ -24,11 +24,14 @@ class SingularityBespokeBuilder {
         .singularity-builder #singularitySubmitBtn {
           width: 100%; background: var(--mythic); color: #000; font-weight: bold; border: none; padding: 0.75rem; border-radius: 0.25rem; cursor: pointer; transition: all 0.2s ease-in-out;
         }
-        .singularity-builder #singularitySubmitBtn:hover, .singularity-builder #singularitySubmitBtn:focus-visible {
+        .singularity-builder #singularitySubmitBtn:not(:disabled):hover, .singularity-builder #singularitySubmitBtn:not(:disabled):focus-visible {
           filter: brightness(1.1); transform: translateY(-1px); outline: 2px solid var(--mythic); outline-offset: 2px;
         }
-        .singularity-builder #singularitySubmitBtn:active {
+        .singularity-builder #singularitySubmitBtn:not(:disabled):active {
           transform: scale(0.98);
+        }
+        .singularity-builder #singularitySubmitBtn:disabled {
+          opacity: 0.5; cursor: not-allowed;
         }
         .singularity-builder #singularityAdvancedToggle {
           font-size: 0.875rem; font-weight: 600; background: transparent; border: none; color: var(--mythic); cursor: pointer; padding: 0.25rem; border-radius: 0.25rem; transition: all 0.2s ease-in-out; text-decoration: underline;
@@ -65,7 +68,7 @@ class SingularityBespokeBuilder {
             </div>
             <label for="singularityMission" style="display: flex; align-items: center; justify-content: space-between; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;">
               Core Mission
-              <span id="singularityArchetypeBadge" style="font-size: 0.75rem; padding: 0.15rem 0.4rem; border-radius: 0.25rem; background: var(--surface-2); border: 1px solid var(--border-color);">🛠️ Maker</span>
+              <span id="singularityArchetypeBadge" style="font-size: 0.75rem; padding: 0.15rem 0.4rem; border-radius: 0.25rem; background: var(--details-bg); border: 1px solid var(--border);">🛠️ Maker</span>
             </label>
             <textarea id="singularityMission" placeholder="Describe the specific task this agent must perform..." class="modal-input" style="width: 100%; min-height: 4rem; resize: vertical;"></textarea>
           </div>
@@ -98,7 +101,7 @@ class SingularityBespokeBuilder {
             <button id="singularityAdvancedToggle">
               Advanced Options <span>▼</span>
             </button>
-            <div id="singularityAdvancedOptions" class="advanced-options" style="visibility: hidden; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 1rem; margin-top: 0;">
+            <div id="singularityAdvancedOptions" class="advanced-options" style="visibility: hidden; opacity: 0; transform: translateY(-10px); transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease, max-height 0.3s ease, margin-top 0.3s ease; max-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: 1rem; margin-top: 0;">
               <div>
                 <label for="singularityTechStack" style="display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;">Primary Tech Stack (Optional)</label>
                 <input type="text" id="singularityTechStack" placeholder="e.g., React, Node.js, Python" class="modal-input" style="width: 100%;" />
@@ -148,13 +151,13 @@ class SingularityBespokeBuilder {
           this.elements.advancedOptionsDiv.style.visibility = "visible";
           this.elements.advancedOptionsDiv.style.opacity = "1";
           this.elements.advancedOptionsDiv.style.transform = "translateY(0)";
-          this.elements.advancedOptionsDiv.style.height = "auto";
+          this.elements.advancedOptionsDiv.style.maxHeight = "500px";
           this.elements.advancedOptionsDiv.style.marginTop = "1rem";
         } else {
           this.elements.advancedOptionsDiv.style.visibility = "hidden";
           this.elements.advancedOptionsDiv.style.opacity = "0";
           this.elements.advancedOptionsDiv.style.transform = "translateY(-10px)";
-          this.elements.advancedOptionsDiv.style.height = "0";
+          this.elements.advancedOptionsDiv.style.maxHeight = "0";
           this.elements.advancedOptionsDiv.style.marginTop = "0";
         }
 
