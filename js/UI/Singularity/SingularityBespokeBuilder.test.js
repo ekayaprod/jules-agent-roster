@@ -46,30 +46,30 @@ describe('SingularityBespokeBuilder', () => {
   describe('render', () => {
     it('should inject UI template into container', () => {
       builder.init();
-      expect(container.querySelector('#singularityAgentName')).not.toBeNull();
-      expect(container.querySelector('#singularitySubmitBtn')).not.toBeNull();
+      expect(container.querySelector('#sgAgentName')).not.toBeNull();
+      expect(container.querySelector('#sgSubmit')).not.toBeNull();
     });
   });
 
   describe('bindEvents', () => {
     it('should toggle advanced options view on click', () => {
       builder.init();
-      const toggleBtn = container.querySelector('#singularityAdvancedToggle');
-      const advancedOpts = container.querySelector('#singularityAdvancedOptions');
+      const toggleBtn = container.querySelector('#sgAdvancedBtn');
+      const advancedOpts = container.querySelector('#sgAdvancedPanel');
 
-      expect(advancedOpts.style.visibility).toBe('hidden');
-
-      toggleBtn.click();
-      expect(advancedOpts.style.visibility).toBe('visible');
+      expect(advancedOpts.classList.contains('open')).toBe(false);
 
       toggleBtn.click();
-      expect(advancedOpts.style.visibility).toBe('hidden');
+      expect(advancedOpts.classList.contains('open')).toBe(true);
+
+      toggleBtn.click();
+      expect(advancedOpts.classList.contains('open')).toBe(false);
     });
 
     it('should handle mission input archetype badge updates', () => {
       builder.init();
-      const missionInput = container.querySelector('#singularityMission');
-      const badge = container.querySelector('#singularityArchetypeBadge');
+      const missionInput = container.querySelector('#sgMission');
+      const badge = container.querySelector('#sgPredictionBadge');
 
       missionInput.value = 'remove old files';
       missionInput.dispatchEvent(new Event('input'));
@@ -90,11 +90,11 @@ describe('SingularityBespokeBuilder', () => {
 
     it('should handle quick fill pill clicks', () => {
       builder.init();
-      const pill = container.querySelector('.quick-fill-pill[data-mission="Prune dead code and remove unused files."]');
-      const missionInput = container.querySelector('#singularityMission');
+      const pill = container.querySelector('.sg-pill[data-mission="Prune dead code and remove all unused files and exports."]');
+      const missionInput = container.querySelector('#sgMission');
 
       pill.click();
-      expect(missionInput.value).toBe('Prune dead code and remove unused files.');
+      expect(missionInput.value).toBe('Prune dead code and remove all unused files and exports.');
     });
   });
 

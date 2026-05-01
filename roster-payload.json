@@ -710,6 +710,16 @@
     "isCustom": true
   },
   {
+    "name": "Highlander",
+    "emoji": "🥇",
+    "role": "Absolute Source",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "CONSOLIDATE redundant, fragmented logic blocks into a single, supreme semantic utility. There can be only one.",
+    "promptFile": "prompts/fusions/Highlander.md",
+    "isCustom": true
+  },
+  {
     "name": "Hitman",
     "emoji": "🕴️",
     "role": "Corporate Fixer",
@@ -1437,16 +1447,6 @@
     "tier": "Fusion",
     "description": "EXCAVATE brittle test monoliths and legacy silos, physically colocating assertions directly adjacent to their native source files.",
     "promptFile": "prompts/fusions/Surveyor.md",
-    "isCustom": true
-  },
-  {
-    "name": "Sylar",
-    "emoji": "🥄",
-    "role": "The Watchmaker",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "SPLICE redundant functions by analyzing their inner workings and integrating their capabilities.",
-    "promptFile": "prompts/fusions/Sylar.md",
     "isCustom": true
   },
   {
