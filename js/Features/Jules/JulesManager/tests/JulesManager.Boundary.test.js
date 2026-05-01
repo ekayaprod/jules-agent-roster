@@ -212,7 +212,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.createSession.mockResolvedValueOnce({ id: 'newsession' });
             manager.startTerminalPolling = jest.fn();
 
-            await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn);
+            await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
 
             expect(btn.disabled).toBe(false);
             getElSpy.mockRestore();
@@ -234,7 +234,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             window.julesService.createSession.mockRejectedValueOnce(new Error('fail'));
             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-            await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn);
+            await manager.launchSession({ emoji: '🤖', name: 'Bot', prompt: 'hi' }, btn); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
             expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session:'), TOAST_TYPES.ERROR, 20000);
             consoleSpy.mockRestore();
             getElSpy.mockRestore();

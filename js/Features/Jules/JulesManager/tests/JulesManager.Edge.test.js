@@ -128,7 +128,7 @@ describe('JulesManager - Missing Coverage (Lines 275, 322-323, 441, 464, 491, 56
         const launchPromise = julesManager.launchSession(agent, null);
 
         await Promise.resolve();
-        await launchPromise;
+        await launchPromise; await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
 
         expect(consoleWarnSpy).toHaveBeenCalledWith("Session launched successfully, but immediate terminal synchronization timed out:", expect.any(Error));
     });
@@ -159,7 +159,7 @@ describe('JulesManager - Missing Coverage (Lines 275, 322-323, 441, 464, 491, 56
 
         const launchPromise = julesManager.launchSession(agent, btn);
 
-        await launchPromise;
+        await launchPromise; await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
 
         expect(app.agentRepo.fetchPrompt).toHaveBeenCalled();
         expect(agent.prompt).toBe('mock prompt content');

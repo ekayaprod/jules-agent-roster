@@ -622,7 +622,7 @@ describe('JulesManager', () => {
             document.getElementById('julesRepoPicker').value = '';
             document.getElementById('julesRepoPicker').focus = jest.fn();
 
-            await manager.launchSession(agent, btn);
+            await manager.launchSession(agent, btn); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
 
             expect(mockToast.show).toHaveBeenCalledWith('Select a target repository first.', TOAST_TYPES.ERROR);
             expect(window.julesService.createSession).not.toHaveBeenCalled();
@@ -637,7 +637,7 @@ describe('JulesManager', () => {
 
             window.julesService.createSession.mockResolvedValue({ id: 'real-123' });
 
-            await manager.launchSession(agent, btn);
+            await manager.launchSession(agent, btn); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
 
             expect(window.julesService.createSession).toHaveBeenCalledWith('hello', 'Fix this', 'sources/github/a/b', 'Test');
 
@@ -655,7 +655,7 @@ describe('JulesManager', () => {
             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-            await manager.launchSession(agent, btn);
+            await manager.launchSession(agent, btn); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
 
             expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session:'), TOAST_TYPES.ERROR, 20000);
             expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, BUTTON_STATES.READY, 'Launch in Jules 🚀');
@@ -681,7 +681,7 @@ describe('JulesManager', () => {
             manager._checkEmptyTerminal = jest.fn();
             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
-            await manager.launchSession(agent, btn);
+            await manager.launchSession(agent, btn); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
 
             expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session:'), TOAST_TYPES.ERROR, 20000);
             expect(terminal.querySelector('#fetchingIndicator')).toBeNull();
@@ -698,7 +698,7 @@ describe('JulesManager', () => {
             window.julesService.createSession.mockResolvedValue({ id: 'real-123' });
 
             manager._fetchAndRenderSessions = jest.fn().mockResolvedValue(true);
-            await manager.launchSession(agent, btn);
+            await manager.launchSession(agent, btn); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
 
             expect(window.julesService.createSession).toHaveBeenCalled();
         });

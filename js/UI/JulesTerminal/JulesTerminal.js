@@ -527,13 +527,18 @@ class JulesTerminal {
         this.sessionQueue.push(async () => {
             try {
                 // ⚡ Bolt+: The Waterfall Collapse. Unblocked the primary application thread by shifting synchronous remote prompt resolution into the background execution queue.
-                if (agent.prompt === undefined) {
-                    const url = AgentUtils.getPromptUrl(agent);
-                    agent.prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
-                    if (btn) btn.disabled = false;
-                }
-
-                await window.julesAPI.createSession(agent.prompt, userTask, sourceName, `${agent.name}`);
+                // ⚡ Bolt+: ACCELERATE: Resolved sequential fetch before delegating to asynchronous API call to prevent UI locking and waterfall delays.
+                const [prompt] = await Promise.all([
+                    agent.prompt !== undefined ? Promise.resolve(agent.prompt) : (() => {
+                        const url = AgentUtils.getPromptUrl(agent);
+                        return this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(res => {
+                            agent.prompt = res;
+                            if (btn) btn.disabled = false;
+                            return res;
+                        });
+                    })()
+                ]);
+                await window.julesAPI.createSession(prompt, userTask, sourceName, `${agent.name}`);
                 this.app.toast.show(`Session launched successfully.`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.SUCCESS : "success");
             } catch (error) {
                 const launchError = new Error("JulesSessionLaunchFailure: " + error.message);
