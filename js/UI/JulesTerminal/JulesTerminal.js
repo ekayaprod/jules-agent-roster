@@ -160,7 +160,7 @@ class JulesTerminal {
                     this.loadSources().catch(err => console.error("Background repository fetch failed", err));
                 }
             } finally {
-                if (saveBtn) DOMUtils.setButtonState(saveBtn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Save & Connect");
+                if (saveBtn) DOMUtils.setButtonState(saveBtn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Save Settings & Connect");
                 if (keyInput) keyInput.disabled = false;
                 if (githubTokenInput) githubTokenInput.disabled = false;
             }
