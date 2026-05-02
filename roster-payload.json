@@ -410,6 +410,16 @@
     "isCustom": true
   },
   {
+    "name": "Choreographer",
+    "emoji": "🩰",
+    "role": "Transition Enforcer",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "CHOREOGRAPH the seams. I weave fluid transitions and visual feedback into frozen execution pipelines to mask the latency.",
+    "promptFile": "prompts/fusions/Choreographer.md",
+    "isCustom": true
+  },
+  {
     "name": "Chronicle",
     "emoji": "🖨️",
     "role": "Pipeline Machinist",
@@ -710,16 +720,6 @@
     "isCustom": true
   },
   {
-    "name": "Highlander",
-    "emoji": "🥇",
-    "role": "Absolute Source",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "CONSOLIDATE redundant, fragmented logic blocks into a single, supreme semantic utility. There can be only one.",
-    "promptFile": "prompts/fusions/Highlander.md",
-    "isCustom": true
-  },
-  {
     "name": "Hitman",
     "emoji": "🕴️",
     "role": "Corporate Fixer",
@@ -787,6 +787,16 @@
     "tier": "Fusion",
     "description": "Upgrade legacy architecture to modern asynchronous paradigms while explicitly treating the new failure modes introduced by the shift.",
     "promptFile": "prompts/fusions/Inoculator.md",
+    "isCustom": true
+  },
+  {
+    "name": "Interrogator",
+    "emoji": "🔦",
+    "role": "Assertion Specialist",
+    "category": "Testing",
+    "tier": "Fusion",
+    "description": "INTERROGATE weak test suites. I am Internal Affairs. I drag lazy assertions under the bright lights and upgrade them into behavioral polygraphs.",
+    "promptFile": "prompts/fusions/Interrogator.md",
     "isCustom": true
   },
   {
@@ -1450,6 +1460,16 @@
     "isCustom": true
   },
   {
+    "name": "Sylar",
+    "emoji": "🥄",
+    "role": "The Watchmaker",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "SPLICE redundant functions by analyzing their inner workings and integrating their capabilities.",
+    "promptFile": "prompts/fusions/Sylar.md",
+    "isCustom": true
+  },
+  {
     "name": "Synchronizer",
     "emoji": "🔄",
     "role": "Dependency Migration Specialist",
@@ -1537,6 +1557,16 @@
     "tier": "Fusion",
     "description": "Hardens infrastructure boundaries by locking down global CORS policies and injecting missing HTTP security headers.",
     "promptFile": "prompts/fusions/Threat Modeler.md",
+    "isCustom": true
+  },
+  {
+    "name": "Town Crier",
+    "emoji": "🔔",
+    "role": "Release Documentation Synchronizer",
+    "category": "Docs",
+    "tier": "Mythic",
+    "description": "Eradicates outdated documentation and distills git commits into clean, user-facing changelog updates.",
+    "promptFile": "prompts/fusions/Town Crier.md",
     "isCustom": true
   },
   {

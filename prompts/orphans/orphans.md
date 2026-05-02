@@ -25,11 +25,6 @@
 - **Category:** Hygiene
 - **Description:** Extract massive, duplicated media objects into strictly typed global dictionaries to eliminate WET visual bloat.
 
-## Choreographer
-- **Role:** Transition Enforcer
-- **Category:** UX
-- **Description:** Inject lightweight visual loading skeletons, CSS transitions, or CLI spinners into frozen, synchronous-looking UI seams.
-
 ## Darkroom
 - **Role:** Media Upgrader
 - **Category:** Hygiene
@@ -59,11 +54,6 @@
 - **Role:** Architecture Draftsman
 - **Category:** Docs
 - **Description:** Illuminator sweeps codebases hunting for massive blocks of dense text and autonomously generates inline diagrams to visualize them.
-
-## Interrogator
-- **Role:** Assertion Specialist
-- **Category:** Testing
-- **Description:** Sweep weak unit tests that lack meaningful assertions, injecting deep, rigorous checks against component state, DOM interactions, and accessibility to uncover false positives.
 
 ## Limiter
 - **Role:** Boundary Enforcer
@@ -174,11 +164,6 @@
 - **Role:** Broadcast Centralizer
 - **Category:** Operations
 - **Description:** Identifies broadcast fragmentation and routes scattered output calls into centralized event buses.
-
-## Town Crier
-- **Role:** Release Documentation Synchronizer
-- **Category:** Docs
-- **Description:** Eradicates outdated documentation and distills git commits into clean, user-facing changelog updates.
 
 ## Upgrader
 - **Role:** Dependency Broadcaster
