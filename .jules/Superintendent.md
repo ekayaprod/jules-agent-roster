@@ -6,3 +6,6 @@
 
 **Instability:** An unused and undocumented `jscodeshift` dependency existed in the `package.json` production block, bloating the native lockfile and adding silent technical debt.
 **Fortification:** Exhaustively audited the codebase for `jscodeshift` imports and execution targets. Zero references were mathematically proven. Executed `npm uninstall jscodeshift` and safely regenerated the lockfile via `--ignore-scripts`, successfully eradicating the dependency and maintaining stable test execution limits.
+
+**Instability:** A wildcard version constraint (`^30.3.0`) for `jest-environment-jsdom` existed in `devDependencies`, silently eroding repository determinism.
+**Fortification:** Replaced the wildcard with an explicit pinned version (`30.3.0`) in `package.json` and executed `npm install` to enforce reproducible builds.
