@@ -138,4 +138,8 @@ Apply these filters when reading Jules' Mirror report before acting on it:
 
 **CI Ghost Chasing (The Red-X Panic):** If a pre-existing, unrelated CI test fails after the agent submits a PR, the agent will assume *it* caused the failure. It will violate its Mutation Scope, jump into foreign files, and blindly delete code trying to fix the test.
 
-**Confirmed Jules safety filter vocabulary:** ERADICATE, Blast Radius, catastrophic boundary violation, dermestid beetle, strip the skeleton clean, surgically detach, amputate, sever, decapitate, Zero-Reference Assassin. Safe replacements: REMOVE, Mutation Scope, critical constraint violation, precisely execute.
+### The Sterile Lexicon (Confirmed Jules Safety Triggers)
+Because T&S filters operate on vocabulary density, never aggregate the following terms.
+* **The Legacy Triggers:** ERADICATE, Blast Radius, catastrophic boundary violation, dermestid beetle, strip the skeleton clean, surgically detach, amputate, sever, decapitate, Zero-Reference Assassin.
+* **Expanded Action Verbs (DO NOT USE):** Kill, assassinate, murder, destroy, obliterate, nuke, eradicate, bleed, hemorrhage, burn, incinerate, slaughter, massacre, mutilate, dismember, poison, infect, exploit, weaponize, bomb, detonate, suicide.
+* **Mechanical Equivalents (USE THESE):** REMOVE, Mutation Scope, critical constraint violation, precisely execute, terminate, halt, stop, resolve, deprecate, delete, tear down, decommission, unprovision, sweep, purge, excise, clear, reset, decouple, split, modularize, refactor, dismantle, sanitize.
