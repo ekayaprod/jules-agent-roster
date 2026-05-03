@@ -26,6 +26,12 @@
 * **The DOM Click Matrix Expansion**: When testing massive global `document.addEventListener("click")` blocks, systematically inject mock DOM structures for each isolated `if (target)` branch.
 * **The Missing Mock Failure Pattern**: When asserting interactions with sub-services (e.g. `FormatUtils.extractIcon()`), aggressively mock all dependencies that the function could route into; a null `app.fusionLab` must be gracefully caught.
 
+## Inspector — RosterApp Initialization Boundaries
+**Edge Case:** The main application boot cycle (`RosterApp.init`) executed `Promise.all` across disparate sub-systems (e.g., repository fetches, terminal initialization) but lacked test coverage to ensure one module's rejection did not fatally collapse the entire application shell or trap the user in an infinite loading state.
+**Assertion:** Interrogated the `init` boundaries by intentionally mocking `Promise.all` to reject and isolating internal `fetchAgents` errors. Verified that errors gracefully triggered the `EmptyState` component injection or safe fallback properties without polluting the global environment. Successfully caught and remedied a global mock poisoning vulnerability during verification.
+### Axioms and Heuristics Extracted (RosterApp)
+* **The Promise.all Poison Guard**: When mocking native global prototypes like `Promise.all` to assert error boundaries, you must use `jest.spyOn()` paired with a `try/finally` block. Overwriting `Promise.all` globally without strict cleanup guarantees test runner collapse if a single assertion fails.
+
 ## Inspector — LLMRouter Resilience
 **Edge Case:** The network request abstractions handling Anthropic and OpenAI handshakes lacked test coverage for text fallback error parsing, malformed schema validation (e.g. invalid array parameters, boolean model payloads), and exponential backoff retry caps resulting in unprotected network loops.
 **Assertion:** Wrote and integrated granular structural tests utilizing `jest.advanceTimersByTime` over mock network `fetch` errors. Verified the `LLMValidationError` trap triggers, backoff max logic reliably terminates requests, and mathematically proved the isomorphic mapping dynamically handles the absence of the CommonJS `module` via dynamic function sandboxing. Completed robust Inversion Checks to prove test failure.

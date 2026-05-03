@@ -224,6 +224,128 @@ describe('RosterApp (Boundary Interrogation)', () => {
         expect(() => app.downloadAll(btn)).not.toThrow();
     });
 
+    describe('RosterApp.init (Initialization & Edge Cases)', () => {
+        beforeEach(() => {
+            app.cacheElements = jest.fn();
+            app.renderSkeletons = jest.fn();
+            app.renderAgents = jest.fn();
+            app.bindEvents = jest.fn();
+            app.initObserver = jest.fn();
+
+            // Setup global for Singularity
+            global.SingularityBespokeBuilder = class {
+                init() {}
+            };
+
+            // Setup DOM environment for Singularity
+            const singularityContainer = document.createElement('div');
+            singularityContainer.id = "singularityBuilderContainer";
+            singularityContainer.classList.add("hidden");
+            document.body.appendChild(singularityContainer);
+
+            app.elements.fusionLabSkeleton = document.createElement('div');
+            app.elements.fusionLabContent = document.createElement('div');
+        });
+
+        afterEach(() => {
+            delete global.SingularityBespokeBuilder;
+            const singularityContainer = document.getElementById("singularityBuilderContainer");
+            if (singularityContainer) singularityContainer.remove();
+        });
+
+        it('successfully initializes dependencies and triggers rendering pipeline', async () => {
+            // Mock successful initialization data
+            app.agentRepo.fetchAgents = jest.fn().mockResolvedValue({
+                agents: [{ name: 'Agent1' }],
+                customAgents: { 'Custom1': {} },
+                fusionMatrix: { 'Agent1,Agent2': 'Custom1' }
+            });
+            app.julesTerminal.init = jest.fn().mockResolvedValue();
+
+            // Mock Singularity condition logic globally
+            global.FusionLab = class {
+                init() {}
+                get fusionIndex() { return { isUnlocked: jest.fn().mockReturnValue(true) }; }
+            };
+
+            // Clear beforeEach preset agent array to verify dynamic assignment
+            app.agents = [];
+
+            await app.init();
+
+            // Verify cache and skeleton were triggered before network yield
+            expect(app.cacheElements).toHaveBeenCalled();
+            expect(app.renderSkeletons).toHaveBeenCalled();
+
+            // Verify dependencies were assigned
+            expect(app.agents.length).toBe(1);
+            expect(app.customAgents).toHaveProperty('Custom1');
+            expect(app.fusionMatrix).toHaveProperty('Agent1,Agent2');
+
+            // Verify layout rendering logic
+            expect(app.renderAgents).toHaveBeenCalled();
+            expect(app.bindEvents).toHaveBeenCalled();
+            expect(app.initObserver).toHaveBeenCalled();
+
+            const singularityContainer = document.getElementById("singularityBuilderContainer");
+            expect(singularityContainer.classList.contains("hidden")).toBe(false);
+        });
+
+        it('gracefully degrades on Promise.all failure and injects EmptyState', async () => {
+            app.elements.main = document.createElement('div');
+
+            // Mock a critical structural failure (e.g., malformed JSON payload)
+            app.agentRepo.fetchAgents = jest.fn().mockRejectedValue(new Error('Invalid JSON payload'));
+            app.julesTerminal.init = jest.fn().mockRejectedValue(new Error('Initialization failed'));
+
+            // Force global.Promise.all to reject directly to hit the outer catch block
+            const promiseAllSpy = jest.spyOn(Promise, 'all').mockRejectedValue(new Error('JSON configuration error'));
+
+            global.EmptyState = {
+                create: jest.fn().mockImplementation((config) => {
+                    const el = document.createElement('div');
+                    el.className = 'empty-state-mock';
+                    el.textContent = config.description;
+                    return el;
+                }),
+                ICONS: { ERROR: 'error-icon' }
+            };
+
+            try {
+                await app.init();
+
+                // Verify error boundary caught the fatal exception and appended the state
+                expect(app.elements.main.innerHTML).toContain('empty-state-mock');
+                expect(app.elements.main.innerHTML).toContain('Check your configuration file formatting');
+            } finally {
+                promiseAllSpy.mockRestore();
+            }
+        });
+
+        it('gracefully degrades on fetchAgents failure but survives Promise.all', async () => {
+             app.elements.main = document.createElement('div');
+
+             // In this case, fetchAgents fails, but we catch it within the array map, preventing Promise.all from blowing up
+             app.agentRepo.fetchAgents = jest.fn().mockImplementation(() => Promise.reject(new Error('Network error')));
+             app.julesTerminal.init = jest.fn().mockResolvedValue();
+
+             // Mock global FusionLab to prevent downstream errors
+             global.FusionLab = class { init() {} };
+
+             await app.init();
+
+             // Verify it fell back to empty structures
+             expect(app.agents).toEqual([]);
+             expect(app.customAgents).toEqual({});
+
+             // Verify we did not trigger the EmptyState
+             expect(app.elements.main.innerHTML).not.toContain('empty-state-mock');
+
+             // Verify the rendering cycle continued securely
+             expect(app.renderAgents).toHaveBeenCalled();
+        });
+    });
+
     it('gracefully handles missing DOM targets during observer initialization', () => {
         // Interrogate intersection observer boundaries
         const originalObserver = global.IntersectionObserver;
