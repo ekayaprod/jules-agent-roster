@@ -140,6 +140,7 @@ class SingularityBespokeBuilder {
           box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ac) 30%, transparent);
         }
         .sg-archetype-card.selected::after { opacity: 1; }
+        .sg-archetype-card:focus-visible { outline: 2px solid var(--ac); outline-offset: 2px; }
 
         .sg-archetype-icon { font-size: 1.125rem; line-height: 1; flex-shrink: 0; margin-top: 1px; }
         .sg-archetype-name {
@@ -203,6 +204,7 @@ class SingularityBespokeBuilder {
         .sg-pill[data-archetype="ASSASSIN"]:hover { border-color: var(--sg-assassin); color: var(--sg-assassin); }
         .sg-pill[data-archetype="SENTINEL"]:hover { border-color: var(--sg-sentinel); color: var(--sg-sentinel); }
         .sg-pill[data-archetype="ORACLE"]:hover   { border-color: var(--sg-oracle);   color: var(--sg-oracle);   }
+        .sg-pill:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
 
         .sg-textarea {
           width: 100%;
@@ -220,6 +222,7 @@ class SingularityBespokeBuilder {
           box-sizing: border-box;
         }
         .sg-textarea:focus { outline: none; border-color: rgba(217,70,239,0.45); }
+        .sg-textarea:focus-visible { outline: 2px solid rgba(217,70,239,0.45); outline-offset: 2px; }
         .sg-textarea::placeholder { color: rgba(255,255,255,0.2); }
         .sg-mission-hint {
           margin-top: 0.4rem;
@@ -251,6 +254,7 @@ class SingularityBespokeBuilder {
           accent-color: var(--sg-mythic);
           cursor: pointer;
         }
+        .sg-constraint input[type="checkbox"]:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
         .sg-constraint-label {
           font-size: 0.8125rem;
           font-weight: 600;
@@ -286,6 +290,7 @@ class SingularityBespokeBuilder {
           box-sizing: border-box;
         }
         .sg-input:focus { outline: none; border-color: rgba(217,70,239,0.45); }
+        .sg-input:focus-visible { outline: 2px solid rgba(217,70,239,0.45); outline-offset: 2px; }
         .sg-input::placeholder { color: rgba(255,255,255,0.2); }
         .sg-input-emoji { text-align: center; font-size: 1.25rem; }
 
@@ -306,6 +311,7 @@ class SingularityBespokeBuilder {
           transition: opacity 0.15s ease;
         }
         .sg-advanced-btn:hover { opacity: 0.7; }
+        .sg-advanced-btn:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 4px; border-radius: 0.125rem; }
         .sg-chevron {
           display: inline-block;
           font-size: 0.6rem;
@@ -372,6 +378,7 @@ class SingularityBespokeBuilder {
         }
         .sg-submit:not(:disabled):active { transform: scale(0.985); }
         .sg-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+        .sg-submit:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
       </style>
 
       <div class="sg-forge">
