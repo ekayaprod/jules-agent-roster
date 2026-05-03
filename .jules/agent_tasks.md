@@ -38,7 +38,7 @@
 - [x] (Blocked / False Positive) 🕵️ `js/UI/JulesTerminal/JulesTerminal.js`: Missing test file.
 - [x] 🕵️ `js/Utils/markdown-renderer.js`: Missing test file.
 - [x] (Blocked / False Positive) 🕵️ `js/Features/Jules/JulesManager/JulesManager.js`: Missing test file.
-
+- [x] 🕵️ `js/core/RosterApp.js`: Added missing test coverage for `init` boot boundaries and error degradation.
 
 
 ## 🚨 Fatal Boot Sequences (Bleeding Environment)
