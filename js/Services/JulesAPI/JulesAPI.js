@@ -147,6 +147,13 @@ class JulesAPI {
              throw error;
          }
 
+         // ✍️ CHRONICLE: Strips YAML frontmatter from the prompt string.
+         /**
+          * Reverts previous `<system_instructions>` XML formatting and explicitly
+          * removes YAML metadata to prevent frontmatter from bleeding into the
+          * prompt string sent to the API.
+          * * Historical Intent: Added via PR/commit 00ec12d (May 2026).
+          */
          const yamlRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n/;
          const match = prompt.match(yamlRegex);
          const cleanPrompt = match ? prompt.slice(match[0].length) : prompt;
