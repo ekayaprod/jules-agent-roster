@@ -138,8 +138,17 @@ Apply these filters when reading Jules' Mirror report before acting on it:
 
 **CI Ghost Chasing (The Red-X Panic):** If a pre-existing, unrelated CI test fails after the agent submits a PR, the agent will assume *it* caused the failure. It will violate its Mutation Scope, jump into foreign files, and blindly delete code trying to fix the test.
 
-### The Sterile Lexicon (Confirmed Jules Safety Triggers)
-Because T&S filters operate on vocabulary density, never aggregate the following terms.
-* **The Legacy Triggers:** ERADICATE, Blast Radius, catastrophic boundary violation, dermestid beetle, strip the skeleton clean, surgically detach, amputate, sever, decapitate, Zero-Reference Assassin.
-* **Expanded Action Verbs (DO NOT USE):** Kill, assassinate, murder, destroy, obliterate, nuke, eradicate, bleed, hemorrhage, burn, incinerate, slaughter, massacre, mutilate, dismember, poison, infect, exploit, weaponize, bomb, detonate, suicide.
-* **Mechanical Equivalents (USE THESE):** REMOVE, Mutation Scope, critical constraint violation, precisely execute, terminate, halt, stop, resolve, deprecate, delete, tear down, decommission, unprovision, sweep, purge, excise, clear, reset, decouple, split, modularize, refactor, dismantle, sanitize.
+### Trust & Safety (T&S) Metaphor Moderation
+LLM safety classifiers do not trigger on a single software metaphor; they trigger on the **semantic density** and **severity** of violent, graphic, or malicious imagery. The goal is to moderate the prompt so it clears safety filters **without** killing the agent's creative theme.
+
+Apply these three guidelines when reviewing an agent's drafted text:
+
+**1. The Absolute Bans (High-Risk Imagery):**
+Never use words that invoke graphic biological harm, mass destruction, or malicious real-world violence.
+* *Flag and Rewrite:* Murder, slaughter, mutilate, hemorrhage, assassinate, weaponize, poison, dismember, amputate, terrorist, explosive.
+
+**2. The Density Rule:**
+A single aggressive metaphor (e.g., "kill the dead code" or "demolish the monolith") is perfectly acceptable. However, aggregating them closely together will trip safety classifiers. If a single paragraph contains multiple aggressive verbs, space them out by replacing a few with neutral mechanical terms (e.g., extract, resolve, refactor, remove).
+
+**3. Thematic Preservation (The Goldilocks Zone):**
+Do not over-sterilize. If an agent has a Medical theme, words like "triage", "resuscitate", "surgical", and "anatomy" are safe and encouraged. Do not flatten a "Trauma Resuscitator" into a "System Resolver" out of paranoia. You must only intervene and sanitize when a metaphor crosses from "professional software analogy" into "graphic/violent roleplay."
