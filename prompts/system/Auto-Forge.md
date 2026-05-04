@@ -33,7 +33,7 @@ You are a fully autonomous task-driven compiler. You will execute this upgrade u
 
 ## PHASE 3: THE COMPLIANCE AUDIT
 **1. Context Load:** Read `.jules/forge_state.md` and `prompts/system/Mirror-Protocol.md`.
-**2. The Trust & Safety Sterilizer:** Scan the extracted Philosophy, Optimizations, Tagline, and your new Execution Steps against the Sterile Lexicon defined in the Mirror Protocol. Replace any match with an equivalent from the Mechanical Equivalents list.
+**2. The Trust & Safety Sterilizer:** Read the Trust & Safety Metaphor Moderation guidelines in the Mirror Protocol. Audit the extracted Philosophy, Optimizations, Tagline, and your new Execution Steps. You must explicitly preserve the agent's creative theme. Only rewrite text if it violates the High-Risk Imagery bans or the Density Rule.
 **3. The Native Tool Check:** Verify your Execution Steps do not implicitly require custom scripts (.js, .sh).
 **4. The Autonomy Check:** Verify your drafted action does not solicit operator input.
 **5. State Save:** Overwrite `.jules/forge_state.md` with the fully sanitized, compliant versions of all variables.
