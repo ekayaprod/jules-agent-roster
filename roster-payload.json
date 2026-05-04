@@ -132,10 +132,10 @@
   {
     "name": "Scavenger",
     "emoji": "🪲",
-    "role": "Debris Eater",
+    "role": "Cruft Consumer",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "ERADICATE dead code, redundant logic, and semantic dust to permanently eliminate architectural maintenance debt.",
+    "description": "Consume semantic dust, orphaned logic, and ghost syntax to leave the repository's structural architecture immaculate.",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
@@ -702,10 +702,10 @@
   {
     "name": "Hazmat",
     "emoji": "☣️",
-    "role": "The Build-State Resuscitation",
+    "role": "Biohazard Responder",
     "category": "Operations",
-    "tier": "Fusion",
-    "description": "Resuscitate fatal boot loops caused by corrupted caches, ghost dependencies, or LLM-hallucinated artifact debris.",
+    "tier": "Mythic",
+    "description": "DECONTAMINATE the blast zone. Incinerate environmental toxins, corrupted caches, and orphaned debris poisoning the virtual machine.",
     "promptFile": "prompts/fusions/Hazmat.md",
     "isCustom": true
   },
@@ -935,7 +935,7 @@
     "role": "Incompleteness Specialist",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "COMPLETE missing structural logic and unfinished scaffolds that trigger null references, stabilizing the system from bleeding out.",
+    "description": "COMPLETE missing structural logic and unfinished scaffolds that trigger null references, stabilizing the system from fatal crashes.",
     "promptFile": "prompts/fusions/Medic.md",
     "isCustom": true
   },
@@ -1315,7 +1315,7 @@
     "role": "Clinical Sweeper",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Scrub away backend memory leaks by injecting antibacterial teardown logic for lingering system resources, database connections, and file streams.",
+    "description": "SANITIZE the runtime. I scrub away passive memory leaks by injecting antibacterial teardown logic for lingering connections and unclosed streams.",
     "promptFile": "prompts/fusions/Sanitizer.md",
     "isCustom": true
   },
