@@ -59,3 +59,11 @@
 - [x] 🕵️ `js/Services/LLMRouter/LLMRouter.js`: Expanded test coverage for retry loops, validation errors, and module export structure.
 - [x] 🎨 `js/UI/Singularity/SingularityBespokeBuilder.js`: Aligned Singularity forge container layout width and spacing to match the main fusion lab presentation.
 - [x] 🎨 `js/UI/Singularity/SingularityBespokeBuilder.js`: Added focus rings for interactive elements
+
+## 💦 WET Code (Duplication & Bleeding Boundaries)
+- [ ] 💦 `js/UI/JulesTerminal/TerminalPolling.js` & `js/Features/Jules/JulesManager/TerminalPolling.js`: High degree of logic duplication representing a domain bleed. Consolidate logic into a shared module.
+- [ ] 💦 `js/UI/JulesTerminal/JulesModals.js` & `js/Features/Jules/JulesManager/JulesModals.js`: High degree of UI modal logic duplication. Extract common modal handling.
+
+## 🧱 Structural Monoliths (Size & Architecture)
+- [ ] 🏗️ `js/UI/Singularity/SingularityBespokeBuilder.js`: 731 lines. Requires domain splitting.
+- [ ] 🏗️ `benchmark.js`: 503 lines. Consider splitting up benchmark functions or configuration.
