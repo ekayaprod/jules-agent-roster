@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Telemetry**: Injected execution timing and token usage telemetry around the AI invocation boundary. Swept legacy telemetry JSON data payload.
 
 ### 🛡️ Security & Stability
+- **API Payloads**: Reverted prompt XML formatting and explicitly stripped YAML frontmatter to prevent metadata from bleeding into JulesAPI session payloads.
 - **Network Boundaries**: Fortified network payload and session boundary validations. Enforced type safety on options.body to prevent fatal payload crashes.
 - **Error Handling**: Resuscitated global variable redeclaration boot failures. Enforced environment export boundary testing and interrogated error boundaries across modules.
 
