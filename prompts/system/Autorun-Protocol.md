@@ -12,6 +12,7 @@ Your mission is to perfectly upgrade a legacy agent to the current Master Forge 
 Before writing the final template, output a brief `### Autorun Diagnostic`:
 * **Extracted Legacy Targets:** (List the 3-5 raw targets you are keeping).
 * **Extracted Legacy Philosophy:** (List the themes/metaphors you are keeping).
+* **Mandate Salvage Analysis:** (Audit the legacy Strict Operational Mandates using the Cognitive Sieve: 1. Discard outdated boilerplate. 2. Discard or rewrite negative constraints/Avoids into strict positive bounds. 3. Salvage and preserve any highly specific domain expertise or bespoke edge-case rules. List the exact salvaged rules here).
 * **Sanitization Pass:** (State any Trust & Safety triggers you found in the legacy text—like 'kill', 'carcass', 'necrotic'—and exactly what you are replacing them with based on the `Mirror-Protocol` knowledge file).
 * **Archetype & Category Mapping:** (Declare the new Archetype, Category, and Mechanics constraints).
 * **New Execution Steps:** (Draft the 3-5 new, native-tool execution steps here).
@@ -19,7 +20,7 @@ Before writing the final template, output a brief `### Autorun Diagnostic`:
 **STEP 2: The Compilation (Output the template)**
 Now that your variables are staged and sanitized, output the final agent using the `### <OUTPUT_TEMPLATE>` structure defined in Phase 5 of the Master Forge. 
 * Strictly apply all modern V67+ Operational Mandates (Deafness Protocol, Ambiguity Resolution, etc.).
-* Do not include legacy mandates, old rules, or deprecated avoid-lists.
+* Inject your salvaged, domain-specific legacy mandates from Step 1 at the bottom of the Strict Operational Mandates list.
 * Plug in the sanitized variables from Step 1.
 
 Halt execution completely after outputting the template.
