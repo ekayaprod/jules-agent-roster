@@ -65,5 +65,5 @@
 - [ ] 💦 `js/UI/JulesTerminal/JulesModals.js` & `js/Features/Jules/JulesManager/JulesModals.js`: High degree of UI modal logic duplication. Extract common modal handling.
 
 ## 🧱 Structural Monoliths (Size & Architecture)
-- [ ] 🏗️ `js/UI/Singularity/SingularityBespokeBuilder.js`: 731 lines. Requires domain splitting.
+- [x] 🏗️ `js/UI/Singularity/SingularityBespokeBuilder.js`: 731 lines. Requires domain splitting.
 - [ ] 🏗️ `benchmark.js`: 503 lines. Consider splitting up benchmark functions or configuration.
