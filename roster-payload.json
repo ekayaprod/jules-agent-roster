@@ -15,7 +15,7 @@
     "role": "Doc Publisher",
     "category": "Docs",
     "tier": "Core",
-    "description": "PUBLISH high-impact READMEs and overviews, purging stale setup instructions to convert visitors into contributors.",
+    "description": "PUBLISH high-impact READMEs and overviews, updating stale setup instructions to convert visitors into contributors.",
     "promptFile": "prompts/Author.md",
     "isCustom": false
   },
