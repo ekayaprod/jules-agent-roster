@@ -770,6 +770,16 @@
     "isCustom": true
   },
   {
+    "name": "Illuminator",
+    "emoji": "🖌️",
+    "role": "Architecture Draftsman",
+    "category": "Docs",
+    "tier": "Fusion",
+    "description": "Draft precise architectural blueprints from dense text walls to reveal the structural truth of the repository.",
+    "promptFile": "prompts/fusions/Illuminator.md",
+    "isCustom": true
+  },
+  {
     "name": "Illusionist",
     "emoji": "🪄",
     "role": "Mirage Architect",
@@ -857,6 +867,16 @@
     "tier": "Fusion",
     "description": "Hunt down naming drift and synonymous variables, and standardize them into a unified, explicit vocabulary.",
     "promptFile": "prompts/fusions/Lexicon.md",
+    "isCustom": true
+  },
+  {
+    "name": "Limiter",
+    "emoji": "🧊",
+    "role": "Boundary Enforcer",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "Ceil every execution path with mathematically guaranteed upper bounds to prevent the expansion of the Unbounded Abyss.",
+    "promptFile": "prompts/fusions/Limiter.md",
     "isCustom": true
   },
   {
