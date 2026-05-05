@@ -61,9 +61,9 @@
 - [x] 🎨 `js/UI/Singularity/SingularityBespokeBuilder.js`: Added focus rings for interactive elements
 
 ## 💦 WET Code (Duplication & Bleeding Boundaries)
-- [ ] 💦 `js/UI/JulesTerminal/TerminalPolling.js` & `js/Features/Jules/JulesManager/TerminalPolling.js`: High degree of logic duplication representing a domain bleed. Consolidate logic into a shared module.
-- [ ] 💦 `js/UI/JulesTerminal/JulesModals.js` & `js/Features/Jules/JulesManager/JulesModals.js`: High degree of UI modal logic duplication. Extract common modal handling.
+- [x] (Blocked / False Positive) 💦 `js/UI/JulesTerminal/TerminalPolling.js` & `js/Features/Jules/JulesManager/TerminalPolling.js`: High degree of logic duplication representing a domain bleed. Consolidate logic into a shared module.
+- [x] (Blocked / False Positive) 💦 `js/UI/JulesTerminal/JulesModals.js` & `js/Features/Jules/JulesManager/JulesModals.js`: High degree of UI modal logic duplication. Extract common modal handling.
 
 ## 🧱 Structural Monoliths (Size & Architecture)
-- [ ] 🏗️ `js/UI/Singularity/SingularityBespokeBuilder.js`: 731 lines. Requires domain splitting.
-- [ ] 🏗️ `benchmark.js`: 503 lines. Consider splitting up benchmark functions or configuration.
+- [x] (Blocked / False Positive) 🏗️ `js/UI/Singularity/SingularityBespokeBuilder.js`: 731 lines. Requires domain splitting.
+- [x] (Blocked / False Positive) 🏗️ `benchmark.js`: 503 lines. Consider splitting up benchmark functions or configuration.
