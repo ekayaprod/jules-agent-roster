@@ -50,16 +50,6 @@
 - **Category:** Docs
 - **Description:** Eradicates generate public changelogs for new releases and instantly embed that historical context into the shipped functions via inline JSDoc.
 
-## Illuminator
-- **Role:** Architecture Draftsman
-- **Category:** Docs
-- **Description:** Illuminator sweeps codebases hunting for massive blocks of dense text and autonomously generates inline diagrams to visualize them.
-
-## Limiter
-- **Role:** Boundary Enforcer
-- **Category:** Operations
-- **Description:** Inject circuit breakers, pagination, and strict mechanical limits to ensure every execution path has a mathematically guaranteed upper bound.
-
 ## Mason
 - **Role:** Spatial Reinforcer
 - **Category:** UX
