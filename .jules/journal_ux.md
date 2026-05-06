@@ -1,3 +1,14 @@
+## 🐝 Hive Axioms
+1. [RESILIENCE] All fetch calls must implement a 15s AbortController and handle transient network errors.
+2. [HYGIENE] Prohibit empty catch blocks; use native logging.
+3. [ARCHITECTURE] The physical file tree structure must directly mirror the exported PascalCase ES6 domain convention.
+4. [VALIDATION] All JSON and storage parsing must be protected by explicit try/catch error boundaries.
+5. [STABILITY] Limit integrations strictly to isolated, bounded contexts to prevent test collapse.
+6. [UI/UX] Replace static disablement and generic errors with active, context-aware microcopy and proper aria attributes.
+7. [PERFORMANCE] Flatten multi-pass array iterations into direct `for` loops for high-throughput data paths.
+
+# Historical Archive
+
 **Barrier:** The Fusion Lab UI contained statically disabled buttons lacking context, generic error boundaries, and passive, jargon-heavy error states ("Missing Components: Please ensure both protocols are selected...") that abandoned users without clear resolution paths. | **Empathy:** Replaced static disablement with context-aware microcopy, injected explicit `aria-disabled` and `aria-live` contexts, and rewrote the localized strings and HTML defaults to be active, actionable, and concise ("Select both protocols to initiate fusion.", "Select two distinct agents to initiate the fusion protocol."), eliminating user anxiety and strictly validating against the native test suite.
 **Barrier:** Dead-end generic errors blaming the user ("Failed to fetch Repos", "Check API key and permissions") | **Empathy:** Rewrote API errors to provide clear resolution paths and verify permissions gracefully.
 ## Jeweler — Dropdown Keyboard Navigation
