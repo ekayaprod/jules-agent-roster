@@ -1,26 +1,17 @@
 {
-  "name": "fusion-lab",
-  "version": "1.0.0",
   "description": "Fusion Lab Project",
-  "engines": {
-    "node": "18"
-  },
-  "scripts": {
-    "benchmark": "node benchmark.js",
-    "build:roster": "node scripts/build-roster.js",
-    "start": "npm run build:roster && npx http-server -p 8080",
-    "test": "npm run build:roster && node benchmark.js",
-    "test:unit": "npm run build:roster && jest --testPathIgnorePatterns=\"playwright/\""
-  },
   "devDependencies": {
     "@playwright/test": "1.59.1",
     "@testing-library/dom": "10.4.1",
     "@testing-library/jest-dom": "6.9.1",
     "@testing-library/user-event": "14.6.1",
     "jest": "30.3.0",
-    "jest-environment-jsdom": "^30.3.0",
+    "jest-environment-jsdom": "30.3.0",
     "jsdom": "29.1.1",
     "playwright": "1.59.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "jest": {
     "testEnvironment": "jsdom",
@@ -31,5 +22,14 @@
     "transformIgnorePatterns": [
       "node_modules/(?!@exodus/bytes)"
     ]
-  }
+  },
+  "name": "fusion-lab",
+  "scripts": {
+    "benchmark": "node benchmark.js",
+    "build:roster": "node scripts/build-roster.js",
+    "start": "npm run build:roster && npx http-server -p 8080",
+    "test": "npm run build:roster && node benchmark.js",
+    "test:unit": "npm run build:roster && jest --testPathIgnorePatterns=\"playwright/\""
+  },
+  "version": "1.0.0"
 }
