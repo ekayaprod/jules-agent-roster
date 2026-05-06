@@ -93,9 +93,9 @@
     "name": "Overseer",
     "emoji": "👁️",
     "role": "Triage Auditor",
-    "category": "Observability",
-    "tier": "Titan",
-    "description": "Audits macroscopic repository health via bash pipelines, generating a centralized task board to autonomously direct swarm execution.",
+    "category": "Strategy",
+    "tier": "Core",
+    "description": "Audit macroscopic repository health via deep bash pipelines to generate an omniscient, mechanically-tagged task board for the blind execution swarm.",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
