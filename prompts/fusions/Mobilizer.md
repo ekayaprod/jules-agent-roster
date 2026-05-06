@@ -1,7 +1,7 @@
 ---
 name: Mobilizer
 emoji: 📱
-role: The Viewport Weaver
+role: Viewport Weaver
 category: UX
 tier: Fusion
 description: FLEX rigid boundaries into liquid geometry. Expand mobile-first components to 4K elegance, and collapse desktop monoliths into universal touch-flows.
