@@ -61,7 +61,7 @@ Why did you ignore your Prime Directives? Specifically:
 [CUSTOMIZE: Name the exact directive that was violated. E.g., "Your protocol instructs a Graceful Abort after 3 failed verifications. What caused you to attempt a 4th patch instead?"]
 
 ### 3. The Tooling Reality
-[CUSTOMIZE: Ask about the specific tool failure. E.g., "When you encountered friction with the test runner, what exact internal logic led you to spawn custom .js scripts instead of strictly relying on npx jest?"]
+[CUSTOMIZE: Ask about the specific tool failure. E.g., "When you encountered friction with the test runner, what exact internal logic led you to spawn custom scripts instead of strictly relying on the configured test framework?"]
 
 ### 4. The Master Forge Fix
 In 1-2 sentences maximum, what exact Prime Directive would you inject into your protocol to prevent this specific class of failure from ever happening again?
