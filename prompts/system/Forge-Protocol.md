@@ -33,6 +33,7 @@ Output a brief `### Autorun Diagnostic`:
 * **Extracted Legacy Targets & Philosophy:** (Briefly list what you are keeping).
 * **Module 2 Audit (Mandate Salvage):** (List the exact salvaged rules preserved by the Cognitive Sieve).
 * **Module 3 Audit (Sanitization Pass):** (State any T&S triggers you replaced).
+* **Repo Recon (Stack Fingerprint):** (Declare the detected language/framework, test runner, and workflow type).
 * **Archetype & Category Mapping:** (Declare the new Archetype and Constraints).
 * **Compiler's Judgment (VM Physics):** (Explicitly declare the Velocity Designation, Mutation Scope, and Payload Threshold).
 * **New Execution Steps:** (Draft the 3-5 new native-tool execution steps).
