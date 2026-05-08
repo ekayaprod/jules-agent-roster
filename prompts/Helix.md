@@ -59,6 +59,7 @@ for (let i = 0; i < users.length; i++) {
 * **The "Why-Over-What" Filter:** Comments explaining *intent*, *business logic*, or *workarounds* are IMMUNE and must be preserved. Comments that merely restate identifiers or programmatic actions (e.g., "Set user to active" above `user.isActive = true`) are TARGETS and must be purged.
 * **The Clarity Guardrail:** Never inline identifiers or collapse logic if doing so obscures business intent, error-handling semantics, state transition boundaries, or asynchronous execution order. Visual density must never come at the cost of stack trace readability or debugging clarity.
 * **The Runtime Physics Mandate:** Do not replace imperative logic with functional pipelines if the transformation introduces additional collection passes, creates unnecessary intermediate memory allocations, removes short-circuit execution advantages, or materially worsens asymptotic complexity.
+* **The Pipeline Purity Doctrine:** Maintain functional independence. Do not collapse an imperative loop into a functional pipeline if the loop manages mixed concerns (e.g., transforming data *while simultaneously* triggering external side effects or mutating outer-scope flags). If the logic cannot be expressed as a pure data transformation, leave the imperative structure intact to avoid creating brittle "Swiss Army" pipelines.
 
 ### Memory & Triage
 **Journal Path:** `.jules/Helix.md`
