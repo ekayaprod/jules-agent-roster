@@ -119,11 +119,18 @@ class FusionIndex {
           slot.classList.add(`tier-${safeData.tier.toLowerCase()}`);
       }
       slot.setAttribute("data-key", key);
-      slot.setAttribute("title", isUnlocked ? safeData.name : "Locked Protocol");
-      slot.innerHTML = `<span class="slot-icon">${emoji}</span>`;
 
       if (isUnlocked) {
+        slot.innerHTML = `
+          <span class="slot-icon">${emoji}</span>
+          <span class="slot-label">${FormatUtils.escapeHTML(safeData.name)}</span>
+        `;
         this._bindSlotInteractions(slot, safeData, key);
+      } else {
+        slot.innerHTML = `
+          <span class="slot-icon">${emoji}</span>
+          <span class="slot-label">Locked Protocol</span>
+        `;
       }
 
       grid.appendChild(slot);
@@ -158,7 +165,7 @@ class FusionIndex {
       this.onSelectCallback?.(key);
     };
 
-    slot.addEventListener("click", handleSelect);
+    slot.addEventListener("pointerdown", handleSelect);
     slot.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -215,9 +222,8 @@ class FusionIndex {
       if (safeData?.tier) {
           slot.classList.add(`tier-${safeData.tier.toLowerCase()}`);
       }
-      slot.setAttribute("title", safeData.name);
 
-      // Re-bind click event
+      // Re-bind pointerdown event
       this._bindSlotInteractions(slot, safeData, key);
 
       // Remove animation class after animation

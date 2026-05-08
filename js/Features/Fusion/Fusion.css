@@ -29,10 +29,11 @@
 .fusion-index-header { font-size: var(--text-base); color: var(--text-secondary); margin-bottom: 1.5rem; font-family: -apple-system, sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
 
 /* Dynamic width tiles for Archive */
-.fusion-shelf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(2.5rem, 1fr)); gap: 0.25rem; justify-content: center; margin-bottom: 1.5rem; }
-@media (min-width: 640px) { .fusion-shelf-grid { grid-template-columns: repeat(auto-fill, minmax(3.125rem, 1fr)); gap: 0.5rem; } }
+.fusion-shelf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(4rem, 1fr)); gap: 0.25rem; justify-content: center; margin-bottom: 1.5rem; }
+@media (min-width: 640px) { .fusion-shelf-grid { grid-template-columns: repeat(auto-fill, minmax(4.5rem, 1fr)); gap: 0.5rem; } }
 
-.fusion-item { aspect-ratio: 1; background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: var(--text-xl); position: relative; overflow: hidden; transition: all 0.2s ease-in-out; touch-action: manipulation; }
+.fusion-item { min-height: 44px; min-width: 44px; padding: 0.5rem; flex-direction: column; gap: 0.25rem; background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: var(--text-xl); position: relative; overflow: hidden; transition: all 0.2s ease-in-out; touch-action: manipulation; }
+.fusion-item .slot-label { font-size: 0.6rem; text-align: center; line-height: 1.1; max-width: 100%; word-break: break-word; color: var(--text-secondary); pointer-events: none; }
 .fusion-item.locked { opacity: 0.6; cursor: not-allowed; }
 .fusion-item.locked .slot-icon { filter: brightness(0); }
 .fusion-item.unlocked { cursor: pointer; border-color: rgba(168, 85, 247, 0.3); }
