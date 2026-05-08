@@ -415,6 +415,21 @@ class EventBinder {
         const nav = app.elements["category-nav"];
         if (nav && nav.classList.contains("search-active")) {
             app.clearSearch();
+            return;
+        }
+
+        // Priority 3: Close active modals
+        const activeModals = document.querySelectorAll('.modal-backdrop.visible');
+        if (activeModals.length > 0) {
+            activeModals.forEach(modal => {
+                const closeBtn = modal.querySelector('#closeSettingsBtn, #cancelInteractionBtn, #cancelHistoryBtn, #cancelPRBtn, #closeFusionsModalBtn');
+                if (closeBtn) {
+                    closeBtn.click();
+                } else {
+                    modal.classList.remove('visible');
+                }
+            });
+            return;
         }
     });
 
