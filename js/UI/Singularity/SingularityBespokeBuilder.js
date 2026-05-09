@@ -17,9 +17,9 @@ class SingularityBespokeBuilder {
     this.container.innerHTML = `
 
 
-      <div class="sg-forge">
+      <div class="sg-forge" id="sgForgeContainer">
 
-        <div class="sg-header">
+        <div class="sg-header sg-forge-inner" id="sgHeaderToggle">
           <div class="sg-header-glow"></div>
           <h3 class="sg-title">🌌 Singularity Meta-Forge</h3>
           <p class="sg-subtitle">Define your agent below — Singularity will scan your repo and forge the rest.</p>
@@ -270,6 +270,14 @@ class SingularityBespokeBuilder {
     // Submit
     if (this.elements.submitBtn) {
       this.elements.submitBtn.addEventListener("click", () => this.handleForge());
+    }
+
+    const forgeContainer = document.getElementById("sgForgeContainer");
+    const headerToggle = document.getElementById("sgHeaderToggle");
+    if (headerToggle && forgeContainer) {
+      headerToggle.addEventListener("click", () => {
+         forgeContainer.classList.add("expanded");
+      });
     }
   }
 
