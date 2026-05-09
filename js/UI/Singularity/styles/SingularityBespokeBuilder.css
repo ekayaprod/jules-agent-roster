@@ -1,4 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap');
+        @font-face {
+          font-family: 'Syne-Fallback';
+          src: local('BlinkMacSystemFont'), local('Segoe UI'), local('Roboto'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+          size-adjust: 106.3%;
+          ascent-override: 86.8%;
+          descent-override: 23.5%;
+        }
 
         .sg-forge {
           --sg-mythic:   var(--mythic, #d946ef);
@@ -73,7 +79,7 @@
           pointer-events: none;
         }
         .sg-title {
-          font-family: 'Syne', system-ui, sans-serif;
+          font-family: 'Syne', 'Syne-Fallback', system-ui, sans-serif;
           font-size: 1.375rem;
           font-weight: 800;
           color: var(--sg-mythic);
@@ -391,7 +397,7 @@
           color: #000;
           font-weight: 800;
           font-size: 0.9375rem;
-          font-family: 'Syne', system-ui, sans-serif;
+          font-family: 'Syne', 'Syne-Fallback', system-ui, sans-serif;
           letter-spacing: 0.01em;
           border: none;
           border-radius: 0.5rem;
