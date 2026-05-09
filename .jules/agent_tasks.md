@@ -5,3 +5,4 @@
 > 1. **Problem Categories are agnostic.** Scan the board; if a task matches your mechanical capabilities, claim it and execute. Problem types do not belong to specific agents.
 > 2. **False Positive Protocol:** If you investigate a target and determine it is a false positive or unfixable, check it off (`- [x]`) and continue your own discovery phase. Do not abort or waste a PR.
 > 3. Do not delete this file. Sweep resolved `[x]` items on execution.
+- [x] Hide agents in fusion index that do not have an entry in fusion_matrix

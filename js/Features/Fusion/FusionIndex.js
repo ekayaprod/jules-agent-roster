@@ -83,7 +83,7 @@ class FusionIndex {
         return nameA.localeCompare(nameB);
     });
     for (const key of sortedKeys) {
-        if (Object.prototype.hasOwnProperty.call(customAgentsSafe, key)) {
+        if (Object.prototype.hasOwnProperty.call(customAgentsSafe, key) && customAgentsSafe[key] !== "") {
             this._renderSlot(grid, key, customAgentsSafe[key]);
         }
     }
@@ -142,7 +142,7 @@ class FusionIndex {
   updateProgress(element) {
     let total = 0;
     if (this.customAgents) {
-        total = Object.keys(this.customAgents).length;
+        total = Object.values(this.customAgents).filter(val => val !== "").length;
     }
     const current = this.unlockedKeys.size;
     element.textContent = `${current} / ${total} Protocols Discovered`;
