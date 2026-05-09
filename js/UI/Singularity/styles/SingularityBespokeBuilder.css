@@ -15,7 +15,7 @@
           border: 1px solid var(--sg-border);
           border-radius: 1.25rem;
           overflow: hidden;
-          max-width: 48rem;
+          width: 100%; max-width: 48rem;
           margin: 3rem auto;
           font-family: system-ui, -apple-system, sans-serif;
         }
@@ -257,7 +257,7 @@
           gap: 0.75rem;
         }
         .sg-identity-name  { flex: 1; }
-        .sg-identity-emoji { width: 5rem; flex-shrink: 0; }
+        .sg-identity-emoji { max-width: 5rem; flex-shrink: 0; }
 
         .sg-input {
           width: 100%;
