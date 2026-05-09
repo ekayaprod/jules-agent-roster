@@ -165,7 +165,7 @@ class FusionIndex {
       this.onSelectCallback?.(key);
     };
 
-    slot.addEventListener("pointerdown", handleSelect);
+    slot.addEventListener("click", handleSelect);
     slot.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
