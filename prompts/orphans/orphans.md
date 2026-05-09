@@ -269,3 +269,15 @@
 - **Role:** Interaction Artisan
 - **Category:** UX
 - **Description:** Sculpt comprehensive visual states and inject accessible ARIA attributes to transform cold, robotic UI components into flawless, empathetic interaction flows.
+
+## Propagator
+
+- **Role:** Structural Propagator
+- **Category:** Architecture
+- **Description:** PROPAGATE overgrown WET clippings into pristine, net-new utility soil to cultivate a centralized, structurally cohesive root system.
+
+## Surge Protector
+
+- **Role:** Processing Short-Circuit
+- **Category:** Hygiene
+- **Description:** Flatten heavy computational functions with aggressive early-return guard clauses, cutting power to unnecessary algorithmic paths to save CPU cycles.
