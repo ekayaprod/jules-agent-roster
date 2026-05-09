@@ -157,8 +157,8 @@ global.AgentUtils = AgentUtils;
 
         const unlockedSlot = screen.getByRole('button', { name: /Load SuperAgent Protocol/i });
 
-        // Trigger pointerdown
-        unlockedSlot.dispatchEvent(new Event('pointerdown'));
+        // Trigger click
+        unlockedSlot.dispatchEvent(new Event('click'));
         expect(fusionIndex.onSelectCallback).toHaveBeenCalledWith('AgentA,AgentB');
 
         // Trigger keyboard Enter
