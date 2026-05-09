@@ -42,20 +42,20 @@
   {
     "name": "Dispatch",
     "emoji": "📯",
-    "role": "The Logistics Warden",
+    "role": "Logistics Warden",
     "category": "Operations",
     "tier": "Core",
-    "description": "DISPATCH pristine payloads. Bootstrapping CI/CD pipelines, slashing transit bloat, and dynamically outfitting the staging area with context-aware MCP arrays.",
+    "description": "DISPATCH pristine CI/CD payloads, provision tactical sensor arrays, and pave the deployment roads for the repository ecosystem.",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
   {
     "name": "Helix",
     "emoji": "🧬",
-    "role": "Structural Geneticist",
-    "category": "Architecture",
+    "role": "Molecular Centrifuge",
+    "category": "Hygiene",
     "tier": "Core",
-    "description": "SPLICE WET mutations into pure utilities to enforce structural cohesion and eradicate copy-pasted debt.",
+    "description": "Spin the syntactic air out of your codebase, collapsing sprawling imperative logic into highly dense functional crystals.",
     "promptFile": "prompts/Helix.md",
     "isCustom": false
   },
@@ -162,10 +162,10 @@
   {
     "name": "Superintendent",
     "emoji": "🧰",
-    "role": "The Repository Handyman",
+    "role": "Facility Maintenance",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "MAINTAIN structural integrity by patching leaks, sweeping cache trash, and performing routine foundation audits.",
+    "description": "SWEEP the facility corridors, sync environmental constraints, and clear OS-level debris to ensure structural repository determinism.",
     "promptFile": "prompts/Superintendent.md",
     "isCustom": false
   },
@@ -254,8 +254,8 @@
     "emoji": "🧫",
     "role": "Deterministic Immunizer",
     "category": "Testing",
-    "tier": "Titan",
-    "description": "IMMUNIZE the testing pipeline by suffocating race conditions in local stress-loops and injecting strict locks to cure intermittent failures.",
+    "tier": "Fusion",
+    "description": "Isolate and aggressively stress-test non-deterministic CI failures to expose underlying race conditions and inject strict concurrency locks.",
     "promptFile": "prompts/fusions/Antibody.md",
     "isCustom": true
   },
@@ -450,6 +450,16 @@
     "isCustom": true
   },
   {
+    "name": "Collider",
+    "emoji": "⚛️",
+    "role": "Particle Smasher",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "Accelerate outdated syntax into modern paradigms and observe the resulting collisions to mathematically prove structural integrity.",
+    "promptFile": "prompts/fusions/Collider.md",
+    "isCustom": true
+  },
+  {
     "name": "Construct",
     "emoji": "🧊",
     "role": "Chunk Architect",
@@ -560,12 +570,22 @@
     "isCustom": true
   },
   {
+    "name": "Espresso",
+    "emoji": "☕",
+    "role": "Workflow Stimulant",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "Caffeinate the operator's workflow by filtering out the click-tax, eliminating the manual grind, and delivering highly concentrated, direct-action shortcuts.",
+    "promptFile": "prompts/fusions/Espresso.md",
+    "isCustom": true
+  },
+  {
     "name": "Examiner",
     "emoji": "🧑‍🏫",
     "role": "Alignment Enforcer",
     "category": "Testing",
-    "tier": "Core",
-    "description": "ALIGN the repository by patrolling the test suite, identifying semantic drift, and correcting outdated assertions against current source files.",
+    "tier": "Fusion",
+    "description": "Patrol the test suite, identifying semantic drift, and correcting outdated assertions against current source files.",
     "promptFile": "prompts/fusions/Examiner.md",
     "isCustom": true
   },
@@ -650,6 +670,16 @@
     "isCustom": true
   },
   {
+    "name": "Fractal",
+    "emoji": "❄️",
+    "role": "Parametric Weaver",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "Transcend rigid, single-use logic into boundless, hyper-generic utilities to solve future architectural permutations before they emerge.",
+    "promptFile": "prompts/fusions/Fractal.md",
+    "isCustom": true
+  },
+  {
     "name": "Futurist",
     "emoji": "🛸",
     "role": "Payload Contract Evolver",
@@ -730,6 +760,16 @@
     "isCustom": true
   },
   {
+    "name": "Hive",
+    "emoji": "🐝",
+    "role": "Neural Splicer",
+    "category": "Strategy",
+    "tier": "Fusion",
+    "description": "Synthesize scattered swarm friction into high-density architectural axioms to eliminate colony amnesia via direct neural injection.",
+    "promptFile": "prompts/fusions/Hive.md",
+    "isCustom": true
+  },
+  {
     "name": "Hoister",
     "emoji": "🪝",
     "role": "Scope Elevator",
@@ -785,7 +825,7 @@
     "role": "Mirage Architect",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Masks structural latency and render bottlenecks beneath a veneer of instantaneous feedback. It autonomously injects optimistic states and CSS skeletons so the application feels impossibly fast.",
+    "description": "Autonomously inject optimistic state updates, skeleton layouts, and background transitions to mask network latency and synchronous rendering.",
     "promptFile": "prompts/fusions/Illusionist.md",
     "isCustom": true
   },
@@ -837,16 +877,6 @@
     "tier": "Fusion",
     "description": "Hunt down hardcoded secrets, extract them into environment variables, and enforce pre-commit hook scanning patterns.",
     "promptFile": "prompts/fusions/Keymaster.md",
-    "isCustom": true
-  },
-  {
-    "name": "Kiln",
-    "emoji": "🌋",
-    "role": "High-Heat Refactorer",
-    "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "Upgrade outdated syntax to native standards and subject the logic to intense edge-case boundary testing.",
-    "promptFile": "prompts/fusions/Kiln.md",
     "isCustom": true
   },
   {
@@ -992,7 +1022,7 @@
   {
     "name": "Mobilizer",
     "emoji": "📱",
-    "role": "The Viewport Weaver",
+    "role": "Viewport Weaver",
     "category": "UX",
     "tier": "Fusion",
     "description": "FLEX rigid boundaries into liquid geometry. Expand mobile-first components to 4K elegance, and collapse desktop monoliths into universal touch-flows.",
@@ -1073,9 +1103,9 @@
     "name": "Pacemaker",
     "emoji": "🫀",
     "role": "Thread Protector",
-    "category": "Operations",
+    "category": "Performance",
     "tier": "Fusion",
-    "description": "REGULATE the application heartbeat by deferring heavy, synchronous execution to the background to protect the primary event loop.",
+    "description": "Regulate the application heartbeat by deferring heavy synchronous execution to protect the primary event loop.",
     "promptFile": "prompts/fusions/Pacemaker.md",
     "isCustom": true
   },
@@ -1113,9 +1143,9 @@
     "name": "Payload",
     "emoji": "🚂",
     "role": "Armored Express",
-    "category": "Architecture",
+    "category": "Performance",
     "tier": "Fusion",
-    "description": "Accelerate public traffic via aggressive caching while locking authenticated routes and sensitive user data inside impenetrable, zero-trust cargo cars.",
+    "description": "Accelerate public traffic via aggressive caching while locking authenticated routes inside zero-trust cargo cars.",
     "promptFile": "prompts/fusions/Payload.md",
     "isCustom": true
   },
@@ -1177,6 +1207,16 @@
     "tier": "Fusion",
     "description": "EVOLVE brittle AI instructions by injecting strict cognitive constraints and expert personas while securing dynamic variables.",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
+    "isCustom": true
+  },
+  {
+    "name": "Propagator",
+    "emoji": "🪴",
+    "role": "Structural Propagator",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "PROPAGATE overgrown WET clippings into pristine, net-new utility soil to cultivate a centralized, structurally cohesive root system.",
+    "promptFile": "prompts/fusions/Propagator.md",
     "isCustom": true
   },
   {
@@ -1542,10 +1582,10 @@
   {
     "name": "Telepath",
     "emoji": "🎱",
-    "role": "Predictive Pre-loader",
-    "category": "UX",
+    "role": "Clairvoyant Router",
+    "category": "Performance",
     "tier": "Fusion",
-    "description": "Injects predictive prefetch mechanisms into interactive UI elements to load data and HTML partials based on user intent, reducing perceived latency to 0ms.",
+    "description": "Anticipate the user's path by harnessing physical intent signals to silently cache routing payloads before the click.",
     "promptFile": "prompts/fusions/Telepath.md",
     "isCustom": true
   },
