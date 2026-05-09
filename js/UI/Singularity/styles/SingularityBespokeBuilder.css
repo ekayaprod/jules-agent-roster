@@ -11,13 +11,51 @@
           --sg-sentinel: #4ade80;
           --sg-oracle:   #facc15;
 
-          background: var(--sg-card);
+          background-color: var(--sg-card);
           border: 1px solid var(--sg-border);
-          border-radius: 1.25rem;
+          border-radius: 1rem;
+          box-shadow: 0 0.25rem 0.375rem -1px rgba(0, 0, 0, 0.2);
           overflow: hidden;
           width: 100%; max-width: 48rem;
-          margin: 3rem auto;
+          margin: 2rem auto;
           font-family: system-ui, -apple-system, sans-serif;
+          height: auto;
+          transition: max-width 0.3s ease, grid-column 0.3s ease, min-height 0.3s ease;
+        }
+
+        @media (min-width: 640px) {
+          .sg-forge {
+            max-width: 24rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            min-height: 11rem; /* Same height as agent card */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+          }
+          .sg-body {
+             display: none;
+          }
+          .sg-forge.expanded {
+             max-width: 48rem;
+             grid-column: 1 / -1;
+             height: auto;
+             justify-content: flex-start;
+          }
+          .sg-forge.expanded .sg-body, .sg-forge.expanded .sg-footer, .sg-forge.expanded .sg-footer-divider {
+            display: flex;
+          }
+          .sg-forge .sg-body, .sg-forge .sg-footer, .sg-forge .sg-footer-divider {
+            display: none;
+          }
+        }
+
+        .sg-forge-inner {
+            cursor: pointer;
+        }
+
+        .sg-forge.expanded .sg-forge-inner {
+            cursor: default;
         }
 
         /* ── Header ── */
@@ -319,6 +357,13 @@
         .sg-footer-divider {
           height: 1px;
           background: var(--sg-border);
+        }
+
+        .sg-body {
+           display: flex;
+           flex-direction: column;
+           gap: 1.5rem;
+           padding: 2rem;
         }
         .sg-footer {
           padding: 1.5rem 2rem;
