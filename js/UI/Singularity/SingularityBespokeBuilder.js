@@ -276,7 +276,7 @@ class SingularityBespokeBuilder {
     const headerToggle = document.getElementById("sgHeaderToggle");
     if (headerToggle && forgeContainer) {
       headerToggle.addEventListener("click", () => {
-         forgeContainer.classList.add("expanded");
+         forgeContainer.classList.toggle("expanded");
       });
     }
   }
