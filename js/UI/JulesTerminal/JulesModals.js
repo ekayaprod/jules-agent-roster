@@ -183,7 +183,7 @@ class JulesModals {
         }
 
         try {
-            await window.julesAPI.sendUserInput(sessionId, text);
+            await window.julesAPI.provideInput(sessionId, text);
             this.terminal.app.toast.show("Reply transmitted.", "success");
         } catch (error) {
             if (!rollbackState) {
@@ -223,8 +223,6 @@ class JulesModals {
         const linkEl = this.terminal.getEl("prModalExternalLink");
         const contentEl = this.terminal.getEl("prModalContent");
         const errorEl = this.terminal.getEl("prModalError");
-        const mergeBtn = this.terminal.getEl("mergePRBtn");
-        const closePRBtn = this.terminal.getEl("closePRBtn");
 
         if (titleEl) titleEl.textContent = `#${pr.number} ${pr.title}`;
         if (linkEl) linkEl.href = pr.html_url;
@@ -238,46 +236,6 @@ class JulesModals {
         if (errorEl) {
             errorEl.textContent = '';
             errorEl.classList.add('hidden');
-        }
-
-        if (mergeBtn) {
-            DOMUtils.setButtonState(mergeBtn, "ready", "Merge PR");
-            mergeBtn.onclick = async () => {
-                DOMUtils.setButtonState(mergeBtn, "loading", "Merging...");
-                if (errorEl) errorEl.classList.add('hidden');
-                try {
-                    await window.githubAPI.mergePullRequest(sourceName, pr.number);
-                    this.terminal.app.toast.show(`Successfully merged PR #${pr.number}`, "success");
-                    modal.classList.remove("visible");
-                    this.terminal.loadPullRequestsForRepo(sourceName);
-                } catch (err) {
-                    DOMUtils.setButtonState(mergeBtn, "ready", "Merge PR");
-                    if (errorEl) {
-                        errorEl.textContent = "Failed to merge PR: " + err.message;
-                        errorEl.classList.remove('hidden');
-                    }
-                }
-            };
-        }
-
-        if (closePRBtn) {
-            DOMUtils.setButtonState(closePRBtn, "ready", "Close PR");
-            closePRBtn.onclick = async () => {
-                DOMUtils.setButtonState(closePRBtn, "loading", "Closing...");
-                if (errorEl) errorEl.classList.add('hidden');
-                try {
-                    await window.githubAPI.closePullRequest(sourceName, pr.number);
-                    this.terminal.app.toast.show(`Successfully closed PR #${pr.number}`, "success");
-                    modal.classList.remove("visible");
-                    this.terminal.loadPullRequestsForRepo(sourceName);
-                } catch (err) {
-                    DOMUtils.setButtonState(closePRBtn, "ready", "Close PR");
-                    if (errorEl) {
-                        errorEl.textContent = "Failed to close PR: " + err.message;
-                        errorEl.classList.remove('hidden');
-                    }
-                }
-            };
         }
 
         modal.classList.add("visible");
