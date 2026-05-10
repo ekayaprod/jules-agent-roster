@@ -14,6 +14,13 @@
         "-y",
         "@modelcontextprotocol/server-github"
       ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp"
+      ]
     }
   }
 }
