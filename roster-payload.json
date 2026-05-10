@@ -42,20 +42,20 @@
   {
     "name": "Dispatch",
     "emoji": "📯",
-    "role": "Logistics Warden",
+    "role": "The Logistics Warden",
     "category": "Operations",
     "tier": "Core",
-    "description": "DISPATCH pristine CI/CD payloads, provision tactical sensor arrays, and pave the deployment roads for the repository ecosystem.",
+    "description": "DISPATCH pristine payloads. Bootstrapping CI/CD pipelines, slashing transit bloat, and dynamically outfitting the staging area with context-aware MCP arrays.",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
   {
     "name": "Helix",
     "emoji": "🧬",
-    "role": "Molecular Centrifuge",
-    "category": "Hygiene",
+    "role": "Structural Geneticist",
+    "category": "Architecture",
     "tier": "Core",
-    "description": "Spin the syntactic air out of your codebase, collapsing sprawling imperative logic into highly dense functional crystals.",
+    "description": "SPLICE WET mutations into pure utilities to enforce structural cohesion and eradicate copy-pasted debt.",
     "promptFile": "prompts/Helix.md",
     "isCustom": false
   },
@@ -162,10 +162,10 @@
   {
     "name": "Superintendent",
     "emoji": "🧰",
-    "role": "Facility Maintenance",
+    "role": "The Repository Handyman",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "SWEEP the facility corridors, sync environmental constraints, and clear OS-level debris to ensure structural repository determinism.",
+    "description": "MAINTAIN structural integrity by patching leaks, sweeping cache trash, and performing routine foundation audits.",
     "promptFile": "prompts/Superintendent.md",
     "isCustom": false
   },
@@ -207,16 +207,6 @@
     "tier": "Fusion",
     "description": "Enforces strict build-time failure thresholds to halt bundle bloat before it ever hits production.",
     "promptFile": "prompts/fusions/Accountant.md",
-    "isCustom": true
-  },
-  {
-    "name": "Acetone",
-    "emoji": "🛢️",
-    "role": "Render Solvent",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Dissolve the visual ghosting. Hunt down orphaned style definitions, redundant view wrappers, and dead UI templates to flatten the render tree.",
-    "promptFile": "prompts/fusions/Acetone.md",
     "isCustom": true
   },
   {
@@ -264,8 +254,8 @@
     "emoji": "🧫",
     "role": "Deterministic Immunizer",
     "category": "Testing",
-    "tier": "Fusion",
-    "description": "Isolate and aggressively stress-test non-deterministic CI failures to expose underlying race conditions and inject strict concurrency locks.",
+    "tier": "Titan",
+    "description": "IMMUNIZE the testing pipeline by suffocating race conditions in local stress-loops and injecting strict locks to cure intermittent failures.",
     "promptFile": "prompts/fusions/Antibody.md",
     "isCustom": true
   },
@@ -460,16 +450,6 @@
     "isCustom": true
   },
   {
-    "name": "Collider",
-    "emoji": "⚛️",
-    "role": "Particle Smasher",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "Accelerate outdated syntax into modern paradigms and observe the resulting collisions to mathematically prove structural integrity.",
-    "promptFile": "prompts/fusions/Collider.md",
-    "isCustom": true
-  },
-  {
     "name": "Construct",
     "emoji": "🧊",
     "role": "Chunk Architect",
@@ -487,6 +467,16 @@
     "tier": "Fusion",
     "description": "Prove beyond a reasonable doubt that a piece of code is truly unreferenced before permanently excising it alongside every ghost test. Clean the repository of ghosts.",
     "promptFile": "prompts/fusions/Coroner.md",
+    "isCustom": true
+  },
+  {
+    "name": "Curator",
+    "emoji": "🗂️",
+    "role": "Payload Conservator",
+    "category": "Performance",
+    "tier": "Fusion",
+    "description": "CONSERVE network bandwidth by compressing heavy media payloads, injecting dimensional boundaries, and excising orphaned visual ghosts.",
+    "promptFile": "prompts/fusions/Curator.md",
     "isCustom": true
   },
   {
@@ -570,22 +560,12 @@
     "isCustom": true
   },
   {
-    "name": "Espresso",
-    "emoji": "☕",
-    "role": "Workflow Stimulant",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Caffeinate the operator's workflow by filtering out the click-tax, eliminating the manual grind, and delivering highly concentrated, direct-action shortcuts.",
-    "promptFile": "prompts/fusions/Espresso.md",
-    "isCustom": true
-  },
-  {
     "name": "Examiner",
     "emoji": "🧑‍🏫",
     "role": "Alignment Enforcer",
     "category": "Testing",
-    "tier": "Fusion",
-    "description": "Patrol the test suite, identifying semantic drift, and correcting outdated assertions against current source files.",
+    "tier": "Core",
+    "description": "ALIGN the repository by patrolling the test suite, identifying semantic drift, and correcting outdated assertions against current source files.",
     "promptFile": "prompts/fusions/Examiner.md",
     "isCustom": true
   },
@@ -640,16 +620,6 @@
     "isCustom": true
   },
   {
-    "name": "Flourish",
-    "emoji": "🎩",
-    "role": "Mirage Architect",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Conjure seamless frontend experiences by injecting optimistic UI, CSS skeletons, and GPU transitions to completely mask network latency.",
-    "promptFile": "prompts/fusions/Flourish.md",
-    "isCustom": true
-  },
-  {
     "name": "Foreman",
     "emoji": "👷",
     "role": "Convention Enforcer",
@@ -677,16 +647,6 @@
     "tier": "Fusion",
     "description": "FLOW into the architecture to deduce and scaffold missing AI integrations.",
     "promptFile": "prompts/fusions/Foresight.md",
-    "isCustom": true
-  },
-  {
-    "name": "Fractal",
-    "emoji": "❄️",
-    "role": "Parametric Weaver",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "Transcend rigid, single-use logic into boundless, hyper-generic utilities to solve future architectural permutations before they emerge.",
-    "promptFile": "prompts/fusions/Fractal.md",
     "isCustom": true
   },
   {
@@ -770,16 +730,6 @@
     "isCustom": true
   },
   {
-    "name": "Hive",
-    "emoji": "🐝",
-    "role": "Neural Splicer",
-    "category": "Strategy",
-    "tier": "Fusion",
-    "description": "Synthesize scattered swarm friction into high-density architectural axioms to eliminate colony amnesia via direct neural injection.",
-    "promptFile": "prompts/fusions/Hive.md",
-    "isCustom": true
-  },
-  {
     "name": "Hoister",
     "emoji": "🪝",
     "role": "Scope Elevator",
@@ -830,6 +780,16 @@
     "isCustom": true
   },
   {
+    "name": "Illusionist",
+    "emoji": "🪄",
+    "role": "Mirage Architect",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "Masks structural latency and render bottlenecks beneath a veneer of instantaneous feedback. It autonomously injects optimistic states and CSS skeletons so the application feels impossibly fast.",
+    "promptFile": "prompts/fusions/Illusionist.md",
+    "isCustom": true
+  },
+  {
     "name": "Inoculator",
     "emoji": "💉",
     "role": "A Modernization And Resilience Specialist",
@@ -877,6 +837,16 @@
     "tier": "Fusion",
     "description": "Hunt down hardcoded secrets, extract them into environment variables, and enforce pre-commit hook scanning patterns.",
     "promptFile": "prompts/fusions/Keymaster.md",
+    "isCustom": true
+  },
+  {
+    "name": "Kiln",
+    "emoji": "🌋",
+    "role": "High-Heat Refactorer",
+    "category": "Hygiene",
+    "tier": "Fusion",
+    "description": "Upgrade outdated syntax to native standards and subject the logic to intense edge-case boundary testing.",
+    "promptFile": "prompts/fusions/Kiln.md",
     "isCustom": true
   },
   {
@@ -1022,7 +992,7 @@
   {
     "name": "Mobilizer",
     "emoji": "📱",
-    "role": "Viewport Weaver",
+    "role": "The Viewport Weaver",
     "category": "UX",
     "tier": "Fusion",
     "description": "FLEX rigid boundaries into liquid geometry. Expand mobile-first components to 4K elegance, and collapse desktop monoliths into universal touch-flows.",
@@ -1045,7 +1015,7 @@
     "role": "Spec Translator",
     "category": "Testing",
     "tier": "Fusion",
-    "description": "Analyze actual test assertions and rewrite vague test names into crystal clear, human-readable specifications, turning test output into living documentation.",
+    "description": "Analyze actual test assertions and rewrite vague test names into crystal clear, human-readable specifications.",
     "promptFile": "prompts/fusions/Narrator.md",
     "isCustom": true
   },
@@ -1103,20 +1073,10 @@
     "name": "Pacemaker",
     "emoji": "🫀",
     "role": "Thread Protector",
-    "category": "Performance",
+    "category": "Operations",
     "tier": "Fusion",
-    "description": "Regulate the application heartbeat by deferring heavy synchronous execution to protect the primary event loop.",
+    "description": "REGULATE the application heartbeat by deferring heavy, synchronous execution to the background to protect the primary event loop.",
     "promptFile": "prompts/fusions/Pacemaker.md",
-    "isCustom": true
-  },
-  {
-    "name": "Pantomime",
-    "emoji": "🤹",
-    "role": "The Stage Failsafe",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "Adapt to dropped backend cues by wrapping naked network requests in strict error boundaries, keeping the audience immersed with graceful, interactive fallbacks.",
-    "promptFile": "prompts/fusions/Pantomime.md",
     "isCustom": true
   },
   {
@@ -1153,9 +1113,9 @@
     "name": "Payload",
     "emoji": "🚂",
     "role": "Armored Express",
-    "category": "Performance",
+    "category": "Architecture",
     "tier": "Fusion",
-    "description": "Accelerate public traffic via aggressive caching while locking authenticated routes inside zero-trust cargo cars.",
+    "description": "Accelerate public traffic via aggressive caching while locking authenticated routes and sensitive user data inside impenetrable, zero-trust cargo cars.",
     "promptFile": "prompts/fusions/Payload.md",
     "isCustom": true
   },
@@ -1167,6 +1127,16 @@
     "tier": "Fusion",
     "description": "RESURRECT missing logic from the ashes of deleted code, building net-new features to fill structural voids left by decommissioned systems.",
     "promptFile": "prompts/fusions/Phoenix.md",
+    "isCustom": true
+  },
+  {
+    "name": "Placebo",
+    "emoji": "💊",
+    "role": "Psychological Performance Specialist",
+    "category": "Strategy",
+    "tier": "Fusion",
+    "description": "Harden fragile asynchronous backend requests by wrapping them in strict error boundaries and exponential backoff retries.",
+    "promptFile": "prompts/fusions/Placebo.md",
     "isCustom": true
   },
   {
@@ -1190,16 +1160,6 @@
     "isCustom": true
   },
   {
-    "name": "Pristine",
-    "emoji": "🦢",
-    "role": "Spatial Purist",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Purge dead visual weight by surgically extracting orphaned CSS classes, empty layout wrappers, and disconnected UI components to flatten the DOM hierarchy.",
-    "promptFile": "prompts/fusions/Pristine.md",
-    "isCustom": true
-  },
-  {
     "name": "Profiler",
     "emoji": "🔬",
     "role": "Complexity Auditor",
@@ -1217,16 +1177,6 @@
     "tier": "Fusion",
     "description": "EVOLVE brittle AI instructions by injecting strict cognitive constraints and expert personas while securing dynamic variables.",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
-    "isCustom": true
-  },
-  {
-    "name": "Propagator",
-    "emoji": "🪴",
-    "role": "Structural Propagator",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "PROPAGATE overgrown WET clippings into pristine, net-new utility soil to cultivate a centralized, structurally cohesive root system.",
-    "promptFile": "prompts/fusions/Propagator.md",
     "isCustom": true
   },
   {
@@ -1500,6 +1450,16 @@
     "isCustom": true
   },
   {
+    "name": "Surge Protector",
+    "emoji": "🌩️",
+    "role": "Processing Short-Circuit",
+    "category": "Hygiene",
+    "tier": "Fusion",
+    "description": "Flatten heavy computational functions with aggressive early-return guard clauses, cutting power to unnecessary algorithmic paths to save CPU cycles.",
+    "promptFile": "prompts/fusions/Surge Protector.md",
+    "isCustom": true
+  },
+  {
     "name": "Surgeon",
     "emoji": "🔪",
     "role": "Structural Stabilizer",
@@ -1582,10 +1542,10 @@
   {
     "name": "Telepath",
     "emoji": "🎱",
-    "role": "Clairvoyant Router",
-    "category": "Performance",
+    "role": "Predictive Pre-loader",
+    "category": "UX",
     "tier": "Fusion",
-    "description": "Anticipate the user's path by harnessing physical intent signals to silently cache routing payloads before the click.",
+    "description": "Injects predictive prefetch mechanisms into interactive UI elements to load data and HTML partials based on user intent, reducing perceived latency to 0ms.",
     "promptFile": "prompts/fusions/Telepath.md",
     "isCustom": true
   },
@@ -1710,16 +1670,6 @@
     "isCustom": true
   },
   {
-    "name": "Vice",
-    "emoji": "🗜️",
-    "role": "Render Enforcer",
-    "category": "Performance",
-    "tier": "Fusion",
-    "description": "Conserve bandwidth and critical render cycles by compressing UI payloads, flattening DOM bloat, and enforcing hardware acceleration.",
-    "promptFile": "prompts/fusions/Vice.md",
-    "isCustom": true
-  },
-  {
     "name": "Void",
     "emoji": "🕳️",
     "role": "Redundancy Destroyer",
@@ -1797,16 +1747,6 @@
     "tier": "Fusion",
     "description": "Hunt down gentle warnings and wiggle room. Eradicate them mechanically and lock the configuration to a fatal error.",
     "promptFile": "prompts/fusions/Zealot.md",
-    "isCustom": true
-  },
-  {
-    "name": "Zen",
-    "emoji": "🪷",
-    "role": "Code Minimalist",
-    "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "Clear the visual clutter by gently removing redundant conversational comments, stale TODOs, and decaying scaffolding to let the code breathe.",
-    "promptFile": "prompts/fusions/Zen.md",
     "isCustom": true
   }
 ]
