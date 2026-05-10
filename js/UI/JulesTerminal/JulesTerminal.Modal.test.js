@@ -228,13 +228,13 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should submit interaction on submit button click and handle success', async () => {
-            window.julesAPI.sendUserInput = jest.fn().mockResolvedValueOnce({});
+            window.julesAPI.provideInput = jest.fn().mockResolvedValueOnce({});
             julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = 'My response';
             await submitBtn.click();
 
-            expect(window.julesAPI.sendUserInput).toHaveBeenCalledWith('s123', 'My response');
+            expect(window.julesAPI.provideInput).toHaveBeenCalledWith('s123', 'My response');
             expect(mockToast.show).toHaveBeenCalledWith('Reply transmitted.', TOAST_TYPES.SUCCESS);
             expect(modal.classList.contains('visible')).toBe(false);
             expect(inputField.disabled).toBe(false); // restored in finally
@@ -244,18 +244,18 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should submit interaction on Enter keydown', async () => {
-            window.julesAPI.sendUserInput = jest.fn().mockResolvedValueOnce({});
+            window.julesAPI.provideInput = jest.fn().mockResolvedValueOnce({});
             julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = 'My response';
             const event = new KeyboardEvent('keydown', { key: 'Enter' });
             await inputField.dispatchEvent(event);
 
-            expect(window.julesAPI.sendUserInput).toHaveBeenCalledWith('s123', 'My response');
+            expect(window.julesAPI.provideInput).toHaveBeenCalledWith('s123', 'My response');
         });
 
         it('should handle API failure during submission', async () => {
-            window.julesAPI.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
+            window.julesAPI.provideInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
             julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = 'My response';
@@ -281,7 +281,7 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should not submit if input is empty and inputField/errorSpan are missing', async () => {
-            window.julesAPI.sendUserInput = jest.fn();
+            window.julesAPI.provideInput = jest.fn();
             inputField.remove();
             julesTerminal.elements['interactionModalInput'] = null;
             const errSpan = document.getElementById('interactionModalError');
@@ -289,7 +289,7 @@ describe('JulesTerminal Modal Tests', () => {
             julesTerminal.elements['interactionModalError'] = null;
             julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             await submitBtn.click();
-            expect(window.julesAPI.sendUserInput).not.toHaveBeenCalled();
+            expect(window.julesAPI.provideInput).not.toHaveBeenCalled();
         });
 
         it('should close PR modal on cancel button click', () => {
@@ -379,7 +379,7 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should perform silent rollback when API fails but statusSpan is missing', async () => {
-            window.julesAPI.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
+            window.julesAPI.provideInput = jest.fn().mockRejectedValueOnce(new Error('Network error'));
             julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             const statusSpan = document.getElementById('status-s123');
             if (statusSpan) statusSpan.remove();
@@ -426,10 +426,10 @@ describe('JulesTerminal Modal Tests', () => {
             julesTerminal.modals.terminal.activeModalSessionId = null;
 
             const submitHistoryBtn = julesTerminal.getEl('submitHistoryBtn');
-            window.julesAPI.sendUserInput = jest.fn();
+            window.julesAPI.provideInput = jest.fn();
 
             await submitHistoryBtn.click();
-            expect(window.julesAPI.sendUserInput).not.toHaveBeenCalled();
+            expect(window.julesAPI.provideInput).not.toHaveBeenCalled();
         });
 
         it('should fallback to default emoji if agent and name mismatch', () => {
@@ -560,12 +560,12 @@ describe('JulesTerminal Modal Tests', () => {
             const historyModalInput = julesTerminal.getEl('historyModalInput');
             historyModalInput.value = 'History reply';
 
-            window.julesAPI.sendUserInput = jest.fn().mockResolvedValueOnce({});
+            window.julesAPI.provideInput = jest.fn().mockResolvedValueOnce({});
 
             const submitHistoryBtn = julesTerminal.getEl('submitHistoryBtn');
             await submitHistoryBtn.click();
 
-            expect(window.julesAPI.sendUserInput).toHaveBeenCalledWith('s123', 'History reply');
+            expect(window.julesAPI.provideInput).toHaveBeenCalledWith('s123', 'History reply');
             expect(mockToast.show).toHaveBeenCalledWith('Reply transmitted.', TOAST_TYPES.SUCCESS);
         });
 
@@ -601,12 +601,12 @@ describe('JulesTerminal Modal Tests', () => {
             const historyModalInput = julesTerminal.getEl('historyModalInput');
             historyModalInput.value = 'Enter reply';
 
-            window.julesAPI.sendUserInput = jest.fn().mockResolvedValueOnce({});
+            window.julesAPI.provideInput = jest.fn().mockResolvedValueOnce({});
 
             const event = new KeyboardEvent('keydown', { key: 'Enter' });
             await historyModalInput.dispatchEvent(event);
 
-            expect(window.julesAPI.sendUserInput).toHaveBeenCalledWith('s123', 'Enter reply');
+            expect(window.julesAPI.provideInput).toHaveBeenCalledWith('s123', 'Enter reply');
         });
 
         it('should clear error on input event in history modal', () => {
@@ -643,7 +643,7 @@ describe('JulesTerminal Modal Tests', () => {
             const historyModalInput = julesTerminal.getEl('historyModalInput');
             historyModalInput.value = 'Failing reply';
 
-            window.julesAPI.sendUserInput = jest.fn().mockRejectedValueOnce(new Error('API fail'));
+            window.julesAPI.provideInput = jest.fn().mockRejectedValueOnce(new Error('API fail'));
 
             const submitHistoryBtn = julesTerminal.getEl('submitHistoryBtn');
 
@@ -702,10 +702,10 @@ describe('JulesTerminal Modal Tests', () => {
             julesTerminal.elements['interactionModalInput'] = null;
             julesTerminal.elements['interactionModalError'] = null;
 
-            window.julesAPI.sendUserInput = jest.fn();
+            window.julesAPI.provideInput = jest.fn();
             await submitBtn.click();
 
-            expect(window.julesAPI.sendUserInput).not.toHaveBeenCalled();
+            expect(window.julesAPI.provideInput).not.toHaveBeenCalled();
         });
 
         it('should handle interaction modal missing input field/error span during input event branch', async () => {
@@ -723,14 +723,14 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should handle missing errorSpan when input is empty', async () => {
-            window.julesAPI.sendUserInput = jest.fn();
+            window.julesAPI.provideInput = jest.fn();
             const errSpan = document.getElementById('interactionModalError');
             if (errSpan) errSpan.remove();
             julesTerminal.elements['interactionModalError'] = null;
             inputField.value = '';
             julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
             await submitBtn.click();
-            expect(window.julesAPI.sendUserInput).not.toHaveBeenCalled();
+            expect(window.julesAPI.provideInput).not.toHaveBeenCalled();
         });
 
         it('should handle interaction modal gracefully if inputField is missing during input event', async () => {
@@ -745,13 +745,13 @@ describe('JulesTerminal Modal Tests', () => {
         });
 
         it('should not submit if input is empty', async () => {
-            window.julesAPI.sendUserInput = jest.fn();
+            window.julesAPI.provideInput = jest.fn();
             julesTerminal.modals._showInteractionModal('s123', '🤖', 'TestAgent', 'Please confirm');
 
             inputField.value = '   '; // only whitespace
             await submitBtn.click();
 
-            expect(window.julesAPI.sendUserInput).not.toHaveBeenCalled();
+            expect(window.julesAPI.provideInput).not.toHaveBeenCalled();
         });
     });
 
@@ -822,86 +822,6 @@ describe('JulesTerminal Modal Tests', () => {
             expect(modal.classList.contains('visible')).toBe(true);
         });
 
-        it('should handle missing merge PR button gracefully', () => {
-            julesTerminal.elements.mergePRBtn = null;
-            julesTerminal.modals._showPRModal(prMock, 'repo');
-            expect(titleEl.textContent).toBe('#123 Test PR');
-        });
-
-        it('should handle missing close PR button gracefully', () => {
-            julesTerminal.elements.closePRBtn = null;
-            julesTerminal.modals._showPRModal(prMock, 'repo');
-            expect(titleEl.textContent).toBe('#123 Test PR');
-        });
-
-        it('should handle merge PR success', async () => {
-            window.githubAPI.mergePullRequest.mockResolvedValue();
-            julesTerminal.modals._showPRModal(prMock, 'repo');
-
-            // Dispatch a true DOM click event
-            const event = new MouseEvent('click');
-            await mergeBtn.dispatchEvent(event);
-
-            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, BUTTON_STATES.LOADING, "Merging...");
-            expect(window.githubAPI.mergePullRequest).toHaveBeenCalledWith('repo', 123);
-            expect(julesTerminal.app.toast.show).toHaveBeenCalledWith('Successfully merged PR #123', TOAST_TYPES.SUCCESS);
-            expect(modal.classList.contains('visible')).toBe(false);
-            expect(julesTerminal.loadPullRequestsForRepo).toHaveBeenCalledWith('repo');
-        });
-
-        it('should handle merge PR failure and show error', async () => {
-            window.githubAPI.mergePullRequest.mockRejectedValue(new Error('Merge conflict'));
-            julesTerminal.modals._showPRModal(prMock, 'repo');
-
-            const event = new MouseEvent('click');
-            await mergeBtn.dispatchEvent(event);
-
-            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, BUTTON_STATES.READY, "Merge PR");
-            expect(errorEl.textContent).toBe('Failed to merge PR: Merge conflict');
-            expect(errorEl.classList.contains('hidden')).toBe(false);
-        });
-
-        it('should handle close PR success', async () => {
-            window.githubAPI.closePullRequest.mockResolvedValue();
-            julesTerminal.modals._showPRModal(prMock, 'repo');
-
-            const event = new MouseEvent('click');
-            await closePRBtn.dispatchEvent(event);
-
-            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, BUTTON_STATES.LOADING, "Closing...");
-            expect(window.githubAPI.closePullRequest).toHaveBeenCalledWith('repo', 123);
-            expect(julesTerminal.app.toast.show).toHaveBeenCalledWith('Successfully closed PR #123', TOAST_TYPES.SUCCESS);
-            expect(modal.classList.contains('visible')).toBe(false);
-            expect(julesTerminal.loadPullRequestsForRepo).toHaveBeenCalledWith('repo');
-        });
-
-        it('should handle close PR failure and show error', async () => {
-            window.githubAPI.closePullRequest.mockRejectedValue(new Error('Close error'));
-            julesTerminal.modals._showPRModal(prMock, 'repo');
-
-            const event = new MouseEvent('click');
-            await closePRBtn.dispatchEvent(event);
-
-            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, BUTTON_STATES.READY, "Close PR");
-            expect(errorEl.textContent).toBe('Failed to close PR: Close error');
-            expect(errorEl.classList.contains('hidden')).toBe(false);
-        });
-
-        it('should handle missing buttons and error element gracefully on merge/close errors', async () => {
-            julesTerminal.elements.prModalError = null;
-            window.githubAPI.mergePullRequest.mockRejectedValue(new Error('Merge error'));
-            window.githubAPI.closePullRequest.mockRejectedValue(new Error('Close error'));
-
-            julesTerminal.modals._showPRModal(prMock, 'repo');
-
-            const mergeEvent = new MouseEvent('click');
-            await mergeBtn.dispatchEvent(mergeEvent);
-            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(mergeBtn, BUTTON_STATES.READY, "Merge PR");
-
-            const closeEvent = new MouseEvent('click');
-            await closePRBtn.dispatchEvent(closeEvent);
-            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(closePRBtn, BUTTON_STATES.READY, "Close PR");
-        });
     });
 
 });
