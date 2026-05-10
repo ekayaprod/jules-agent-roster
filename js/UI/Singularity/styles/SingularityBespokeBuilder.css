@@ -26,15 +26,16 @@
           margin: 2rem auto;
           font-family: system-ui, -apple-system, sans-serif;
           height: auto;
-          transition: max-width 0.3s ease, grid-column 0.3s ease, min-height 0.3s ease;
+          transition: all 0.3s ease;
         }
 
         @media (min-width: 640px) {
           .sg-forge {
+            flex-basis: 20rem;
             max-width: 24rem;
             margin-top: 2rem;
             margin-bottom: 2rem;
-            min-height: 11rem; /* Same height as agent card */
+            min-height: 11.5rem; /* Same height as agent card */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -43,8 +44,10 @@
              display: none;
           }
           .sg-forge.expanded {
+             flex-basis: auto;
              max-width: 48rem;
              grid-column: 1 / -1;
+             min-height: auto;
              height: auto;
              justify-content: flex-start;
           }
