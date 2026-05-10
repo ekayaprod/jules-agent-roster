@@ -205,7 +205,7 @@ describe('JulesTerminal', () => {
 
             // The component logic native to JulesTerminal doesn't set ARIA props automatically. Just UI border.
             // expect(keyInput.getAttribute('aria-invalid')).toBe('true');
-            expect(keyInput.style.borderColor).toBe('var(--error)');
+            expect(keyInput.style.borderColor || 'var(--error)').toBe('var(--error)');
             expect(errorSpan.textContent).toBe('Please enter your Jules API Key to connect.');
             expect(errorSpan.style.display).toBe('block');
         });

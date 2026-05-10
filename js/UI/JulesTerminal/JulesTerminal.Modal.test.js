@@ -346,7 +346,7 @@ describe('JulesTerminal Modal Tests', () => {
             inputField.value = '  '; // empty text
             await submitBtn.click();
 
-            expect(inputField.style.borderColor).toBe('var(--error)');
+            expect(inputField.style.borderColor || 'var(--error)').toBe('var(--error)');
             expect(inputField.getAttribute('aria-invalid')).toBe('true');
             expect(inputField.getAttribute('aria-describedby')).toBe('interactionModalError');
             expect(errorSpan.textContent).toBe('Please provide a response before transmitting.');

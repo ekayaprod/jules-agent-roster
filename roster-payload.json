@@ -210,6 +210,16 @@
     "isCustom": true
   },
   {
+    "name": "Acetone",
+    "emoji": "🛢️",
+    "role": "Render Solvent",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "Dissolve the visual ghosting. Hunt down orphaned style definitions, redundant view wrappers, and dead UI templates to flatten the render tree.",
+    "promptFile": "prompts/fusions/Acetone.md",
+    "isCustom": true
+  },
+  {
     "name": "Adversary",
     "emoji": "🤺",
     "role": "The Mutation Engine",
@@ -480,16 +490,6 @@
     "isCustom": true
   },
   {
-    "name": "Curator",
-    "emoji": "🗂️",
-    "role": "Payload Conservator",
-    "category": "Performance",
-    "tier": "Fusion",
-    "description": "CONSERVE network bandwidth by compressing heavy media payloads, injecting dimensional boundaries, and excising orphaned visual ghosts.",
-    "promptFile": "prompts/fusions/Curator.md",
-    "isCustom": true
-  },
-  {
     "name": "Customs",
     "emoji": "🛃",
     "role": "Border Control",
@@ -617,6 +617,16 @@
     "tier": "Fusion",
     "description": "Hunt down fragile, zero-shot AI integrations that struggle with formatting consistency, injecting strict mock input/output pairs to eliminate structural hallucinations.",
     "promptFile": "prompts/fusions/Few-Shot Forger.md",
+    "isCustom": true
+  },
+  {
+    "name": "Finesse",
+    "emoji": "🦢",
+    "role": "Aesthetic Purist",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "Elevate the layout. Eradicate hallucinated inline styling and synthetic components to enforce absolute design system elegance.",
+    "promptFile": "prompts/fusions/Finesse.md",
     "isCustom": true
   },
   {
@@ -1190,16 +1200,6 @@
     "isCustom": true
   },
   {
-    "name": "Pristine",
-    "emoji": "🦢",
-    "role": "Spatial Purist",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Purge dead visual weight by surgically extracting orphaned CSS classes, empty layout wrappers, and disconnected UI components to flatten the DOM hierarchy.",
-    "promptFile": "prompts/fusions/Pristine.md",
-    "isCustom": true
-  },
-  {
     "name": "Profiler",
     "emoji": "🔬",
     "role": "Complexity Auditor",
@@ -1707,6 +1707,16 @@
     "tier": "Fusion",
     "description": "Demolish winding, overly abstracted workflows and calculate the absolute shortest mathematical trajectory to guarantee maximum execution velocity.",
     "promptFile": "prompts/fusions/Vector.md",
+    "isCustom": true
+  },
+  {
+    "name": "Vice",
+    "emoji": "🗜️",
+    "role": "Render Enforcer",
+    "category": "Performance",
+    "tier": "Fusion",
+    "description": "Conserve bandwidth and critical render cycles by compressing UI payloads, flattening DOM bloat, and enforcing hardware acceleration.",
+    "promptFile": "prompts/fusions/Vice.md",
     "isCustom": true
   },
   {
