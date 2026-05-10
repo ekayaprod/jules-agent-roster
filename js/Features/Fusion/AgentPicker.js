@@ -18,6 +18,12 @@ class AgentPicker {
             this.baseAgents.sort((a, b) => {
                 const nameA = a.name || "";
                 const nameB = b.name || "";
+                const aIsPlus = nameA.endsWith("+");
+                const bIsPlus = nameB.endsWith("+");
+
+                if (aIsPlus && !bIsPlus) return -1;
+                if (!aIsPlus && bIsPlus) return 1;
+
                 return nameA.localeCompare(nameB);
             });
         }
