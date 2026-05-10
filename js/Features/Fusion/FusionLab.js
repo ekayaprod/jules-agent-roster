@@ -124,7 +124,7 @@ class FusionLab {
         if (agent) {
             card.classList.remove("empty");
             card.classList.add("filled");
-            card.setAttribute("aria-label", `Selected: ${agent.name}. Click to change.`);
+            card.setAttribute("aria-label", `Selected: ${agent.name}. Change selected agent.`);
             content.innerHTML = `
                 <span class="slot-icon-placeholder">${FormatUtils.escapeHTML(agent.emoji)}</span>
                 <span class="slot-label">${FormatUtils.escapeHTML(agent.name)}</span>

@@ -119,7 +119,7 @@ class TerminalPolling {
 
         if (state.isWaitingForInput) {
             statusSpan.className = "term-status status-waiting";
-            statusSpan.innerHTML = `⚠️ Response Needed (Click to view)`;
+            statusSpan.innerHTML = `⚠️ Response Needed (View details)`;
             statusSpan.onclick = (e) => {
                 e.stopPropagation();
                 this.manager.modals._showInteractionModal(sessionId, agentEmoji, agentName, state.rawMessage);

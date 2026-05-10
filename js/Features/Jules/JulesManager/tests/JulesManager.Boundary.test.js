@@ -264,7 +264,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
             await jest.advanceTimersByTimeAsync(3000);
             const badge = item.querySelector('#status-123');
             expect(badge.className).toContain('status-waiting');
-            expect(badge.textContent).toBe('⚠️ Response Needed (Click to view)');
+            expect(badge.textContent).toBe('⚠️ Response Needed (View details)');
         });
 
         it('startTerminalPolling coverage: error activity', async () => {
@@ -283,7 +283,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
          * Enforces the Agent Interruption Doctrine:
          * When an agent halts execution to request user feedback, the UI must immediately reflect this blocking state visually.
          * @mock {state} - Simulates an API payload where `isWaitingForInput` is true.
-         * @expected {string} '⚠️ Response Needed (Click to view)' - Verifies the exact UI constraint for the user prompt.
+         * @expected {string} '⚠️ Response Needed (View details)' - Verifies the exact UI constraint for the user prompt.
          */
         it('_updatePollingState coverage: needsInput branch', () => {
              const state = { isWaitingForInput: true };
@@ -293,7 +293,7 @@ expect(() => { manager.modals._showKeyError(null, null, 'Error'); manager.modals
              const stSpan = document.createElement('span'); stSpan.id = 'status-123'; testBlock.appendChild(stSpan);
              manager.polling._updatePollingState('123', testBlock, state, 'Agent', '🤖');
              expect(stSpan.className).toContain('status-waiting');
-             expect(stSpan.textContent).toBe('⚠️ Response Needed (Click to view)');
+             expect(stSpan.textContent).toBe('⚠️ Response Needed (View details)');
         });
 
         it('init branches coverage: missing elements', async () => {

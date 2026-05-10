@@ -478,7 +478,7 @@ describe('JulesManager Modal Tests', () => {
             // BUT since act.title exists and act.type includes INPUT, isWaitingForInput gets set to true, showing the warning modal.
             // That means 'User input transmitted.' gets overwritten in the UI by the NeedsInput state visually,
             // so we assert the correct UI state here.
-            expect(badge.textContent).toBe('⚠️ Response Needed (Click to view)');
+            expect(badge.textContent).toBe('⚠️ Response Needed (View details)');
         });
 
         it('should format history modal correctly for various activity types', async () => {

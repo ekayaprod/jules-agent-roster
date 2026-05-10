@@ -196,7 +196,7 @@ class JulesModals {
 
             if (rollbackState && statusSpan) {
                 statusSpan.className = rollbackState.className || "term-status status-waiting";
-                statusSpan.textContent = rollbackState.textContent || `⚠️ Response Needed (Click to view)`;
+                statusSpan.textContent = rollbackState.textContent || `⚠️ Response Needed (View details)`;
                 statusSpan.onclick = rollbackState.onclick;
             }
         }

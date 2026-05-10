@@ -730,7 +730,7 @@ describe('JulesManager', () => {
 
             const badge = item.querySelector('#status-123');
 
-            expect(badge.textContent).toBe('⚠️ Response Needed (Click to view)');
+            expect(badge.textContent).toBe('⚠️ Response Needed (View details)');
             expect(badge.className).toContain('term-status status-waiting');
         });
 
