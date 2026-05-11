@@ -35,6 +35,12 @@ Our testing strategy is split into two distinct paths. Please make sure you run 
   npm run test:unit
   ```
 
+* **End-to-End Tests (The User Journey):** If you are changing the UI flow or core interactions, make sure the Playwright suite still passes.
+
+  ```bash
+  npx playwright test
+  ```
+
 ## 🏗️ Adding a New Agent
 
 1. **Create the Prompt:** Add your new Markdown file in the `prompts/` or `prompts/fusions/` directory. Remember to follow the strict formatting (e.g., `You are "[Agent Name]" [emoji] - [Tagline]`).
