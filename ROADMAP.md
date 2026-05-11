@@ -10,7 +10,7 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 - [x] **Single-File Portability**: Ensure the entire roster remains a single `index.html` for easy deployment/usage.
 - [x] **Accessibility First**: Maintain high A11y standards (ARIA labels, keyboard navigation, reduced motion support).
-- [x] **Agent Verification**: Manually verify that all agent prompts adhere to the "Plus" philosophy. (Verified in v0.1.1)
+- [x] **Agent Verification**: Manually verify that all agent prompts adhere to the "Plus" philosophy. (Verified in v1.0.0)
 - [x] **Documentation**: Ensure `README.md` accurately reflects the latest agent capabilities.
 
 ## 🚀 Phase 2: Expansion & Specialization (Q3)
@@ -48,13 +48,33 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 **The Solution:** Adopt `TypeScript` across the core services and UI components.
 **The Benefit:** Standardizes data models via interfaces, strictly typing network payloads, resolving ambiguous object assignments, and eradicating null-reference bugs at compile-time.
 
-- [ ] [DX] Idea: Adopt `emoji-regex` via CDN to replace brittle custom string utilities in `js/utils/StringUtils.js` for emoji handling, standardizing Unicode processing and reducing error-prone custom regex logic. (Source: github.com/mathiasbynens/emoji-regex)
 - [x] [UX] Idea: Custom agent tile layout, allowing users to put their favourite fusion agent cards on the main page for easy access - using local storage (Source: User Request) (Shipped: [Commit feeca72](https://github.com/ekayaprod/jules-agent-roster/commit/feeca72))
 - [x] [UX] Idea: Adopt `fuse.js` (20k stars) for fuzzy search to fix strict typo failures. (Source: fusejs.io) (Shipped: [Commit a54cf1e](https://github.com/ekayaprod/jules-agent-roster/commit/a54cf1e))
-- [ ] [Security] Idea: Integrate `DOMPurify` to sanitize Fusion Lab output and prevent XSS. (Source: github.com/cure53/DOMPurify)
 - [x] [Performance] Idea: Implement debounce pattern for search input to prevent layout thrashing on every keystroke. (Source: lodash) (Shipped: [Commit 73228b7](https://github.com/ekayaprod/jules-agent-roster/commit/73228b7))
-- [ ] [DX] Idea: Standardize clipboard logic with `clipboard-polyfill` to replace deprecated execCommand. (Source: github.com/lgarron/clipboard-polyfill)
-- [ ] [Performance] Idea: Adopt `UnoCSS` via CDN to eliminate >600 lines of inline CSS in index.html while maintaining the zero-build-step requirement. (Source: unocss.dev)
+
+### Standardize Unicode Processing with `emoji-regex`
+
+**The Problem:** The project relies on custom, error-prone Regex logic for emoji handling, causing DX friction and failing on Unicode edge cases.
+**The Solution:** Adopt `emoji-regex` via CDN.
+**The Benefit:** Standardizes Unicode processing safely and eliminates brittle custom logic.
+
+### Integrate `DOMPurify` for XSS Prevention
+
+**The Problem:** The application lacks a robust, standardized way to sanitize dynamically rendered outputs in Fusion Lab, leaving potential XSS vulnerabilities.
+**The Solution:** Integrate `DOMPurify` via CDN.
+**The Benefit:** Standardizes sanitization with a vetted, security-focused library without requiring a build step.
+
+### Standardize Clipboard Logic with `clipboard-polyfill`
+
+**The Problem:** The application relies on the deprecated `document.execCommand('copy')` as a fallback, which causes silent failures in modern browsers.
+**The Solution:** Adopt `clipboard-polyfill` via CDN.
+**The Benefit:** Provides a robust, standard-compliant fallback for clipboard operations.
+
+### Adopt `UnoCSS` for Utility Styling
+
+**The Problem:** The `index.html` file contains excessive inline CSS, making maintenance difficult and causing style duplication across components.
+**The Solution:** Adopt `UnoCSS` via CDN.
+**The Benefit:** Eliminates inline CSS bloat through on-demand utility classes while maintaining the strict zero-build-step requirement.
 
 ### Standardize UI Templating
 
