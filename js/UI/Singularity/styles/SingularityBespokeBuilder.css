@@ -1,6 +1,7 @@
         @font-face {
           font-family: 'Syne-Fallback';
           src: local('BlinkMacSystemFont'), local('Segoe UI'), local('Roboto'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+          font-display: swap;
           size-adjust: 106.3%;
           ascent-override: 86.8%;
           descent-override: 23.5%;
