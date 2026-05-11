@@ -38,7 +38,7 @@ Welcome aboard! To boot up the local development environment and serve the appli
 2. `npm install`
 3. `npm start`
 
-*Note: `npm start` automatically builds the roster payload and launches a local server on port 8080! To run the unit tests via JSDOM, execute `npm run test:unit`.*
+*Note: `npm start` automatically builds the roster payload and launches a local server on port 8080! To run the unit tests via JSDOM, execute `npm run test:unit`, or run the end-to-end tests via Playwright with `npx playwright test`.*
 
 ### 🔐 Environment Variables
 
