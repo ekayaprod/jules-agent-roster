@@ -175,7 +175,7 @@
         .sg-archetype-name {
           font-size: 0.8125rem;
           font-weight: 700;
-          color: rgba(255,255,255,0.9);
+          color: var(--text-primary);
           display: block;
           margin-bottom: 0.125rem;
         }
@@ -228,7 +228,7 @@
           white-space: nowrap;
           line-height: 1.6;
         }
-        .sg-pill:hover { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.2); }
+        .sg-pill:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); border-color: rgba(255,255,255,0.2); }
         .sg-pill[data-archetype="MAKER"]:hover    { border-color: var(--sg-maker);    color: var(--sg-maker);    }
         .sg-pill[data-archetype="ASSASSIN"]:hover { border-color: var(--sg-assassin); color: var(--sg-assassin); }
         .sg-pill[data-archetype="SENTINEL"]:hover { border-color: var(--sg-sentinel); color: var(--sg-sentinel); }
@@ -244,19 +244,19 @@
           border-radius: 0.5rem;
           padding: 0.75rem;
           font-size: 0.875rem;
-          color: rgba(255,255,255,0.9);
+          color: var(--text-primary);
           font-family: inherit;
           line-height: 1.6;
-          transition: border-color 0.15s ease;
+          transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
           box-sizing: border-box;
         }
-        .sg-textarea:focus { outline: none; border-color: rgba(217,70,239,0.45); }
-        .sg-textarea:focus-visible { outline: 2px solid rgba(217,70,239,0.45); outline-offset: 2px; }
-        .sg-textarea::placeholder { color: rgba(255,255,255,0.2); }
+        .sg-textarea:focus { outline: none; border-color: var(--sg-mythic); box-shadow: 0 0 0 1px var(--sg-mythic); }
+        .sg-textarea:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
+        .sg-textarea::placeholder { color: var(--sg-muted); }
         .sg-mission-hint {
           margin-top: 0.4rem;
           font-size: 0.6875rem;
-          color: rgba(255,255,255,0.3);
+          color: var(--sg-muted);
           font-style: italic;
           line-height: 1.5;
         }
@@ -274,8 +274,9 @@
           padding: 0.5rem 0.625rem;
           border-radius: 0.375rem;
           cursor: pointer;
-          transition: background 0.12s ease;
+          transition: background 0.12s ease, transform 0.1s ease;
         }
+        .sg-constraint:active { transform: scale(0.98); }
         .sg-constraint:hover { background: rgba(255,255,255,0.03); }
         .sg-constraint input[type="checkbox"] {
           margin-top: 2px;
@@ -287,7 +288,7 @@
         .sg-constraint-label {
           font-size: 0.8125rem;
           font-weight: 600;
-          color: rgba(255,255,255,0.8);
+          color: var(--text-primary);
           display: block;
         }
         .sg-constraint-sub {
@@ -313,14 +314,14 @@
           border-radius: 0.5rem;
           padding: 0.625rem 0.75rem;
           font-size: 0.875rem;
-          color: rgba(255,255,255,0.9);
+          color: var(--text-primary);
           font-family: inherit;
-          transition: border-color 0.15s ease;
+          transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
           box-sizing: border-box;
         }
-        .sg-input:focus { outline: none; border-color: rgba(217,70,239,0.45); }
-        .sg-input:focus-visible { outline: 2px solid rgba(217,70,239,0.45); outline-offset: 2px; }
-        .sg-input::placeholder { color: rgba(255,255,255,0.2); }
+        .sg-input:focus { outline: none; border-color: var(--sg-mythic); box-shadow: 0 0 0 1px var(--sg-mythic); }
+        .sg-input:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
+        .sg-input::placeholder { color: var(--sg-muted); }
         .sg-input-emoji { text-align: center; font-size: 1.25rem; }
 
         /* ── Advanced ── */
@@ -382,7 +383,7 @@
         }
         .sg-outcome-note {
           font-size: 0.7rem;
-          color: rgba(255,255,255,0.3);
+          color: var(--sg-muted);
           text-align: center;
           line-height: 1.6;
         }
@@ -397,7 +398,7 @@
           width: 100%;
           padding: 0.875rem;
           background: var(--sg-mythic);
-          color: #000;
+          color: var(--bg-color, #0f172a);
           font-weight: 800;
           font-size: 0.9375rem;
           font-family: 'Syne', 'Syne-Fallback', system-ui, sans-serif;
