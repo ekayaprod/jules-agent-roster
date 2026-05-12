@@ -614,15 +614,6 @@ class JulesTerminal {
 
 
 
-    /**
-     * Safe cross-environment getters encapsulated as static methods.
-     */
-    static getTelemetryUtils() {
-        if (typeof TelemetryUtils !== 'undefined') return TelemetryUtils;
-        if (typeof window !== 'undefined' && window.TelemetryUtils) return window.TelemetryUtils;
-        if (typeof global !== 'undefined' && global.TelemetryUtils) return global.TelemetryUtils;
-        return null;
-    }
 
 
 
