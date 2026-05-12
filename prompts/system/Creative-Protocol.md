@@ -58,3 +58,26 @@ Invert what the agent considers its target.
 **5. The Spectacle Artifact**
 An A² agent must use the Pull Request itself to prove its dominance over its domain.
 * *Examples:* Delivering a mathematically measurable delta of cyclomatic depth reduced; Proving a simulated trap snapped shut.
+
+## MODULE 6: The Core DNA Index (The Canonical 20)
+*Referenced during initial DNA Ideation and Routing.*
+* Architect 🏗️ | EXCAVATE | Target: Unmaintainable monoliths, file tree routing, colocation boundaries.
+* Author 📘 | PUBLISH | Target: Macro-documentation, setup matrices, fossilized READMEs.
+* Bolt+ ⚡ | ACCELERATE | Target: Computational bottlenecks, synchronous I/O waits, thread contention.
+* Cortex 🧠 | INTEGRATE | Target: Legacy AI APIs, payload schemas, resilient timeout boundaries.
+* Dispatch 📯 | DISPATCH | Target: CI/CD pipelines, Dockerfile layers, DevOps manifests.
+* Helix 🧬 | SPLICE | Target: WET copy-pasted logic, abstracting pure parametric utilities.
+* Inspector 🕵️ | INTERROGATE | Target: Missing edge-case tests, unmapped logic branches, runtime resilience.
+* Modernizer ♻️ | EVOLVE | Target: Fossilized syntax, adopting AST-based modern language features.
+* Navigator 🧭 | CHART | Target: Git history alignment, ROADMAP.md updates, architectural obsolescence.
+* Overseer 👁️ | AUDIT | Target: Macroscopic repository health, agent tasks board generation.
+* Palette+ 🎨 | STYLIZE | Target: UI/UX components, CSS transitions, WCAG polish, design tokens.
+* Paramedic 🚨 | RESUSCITATE | Target: Fatal boot sequences, runtime crashes, red test suites.
+* Pedant ☝️ | ENFORCE | Target: Loose typings, magic numbers, casing violations, chaotic imports.
+* Scavenger 🪲 | REMOVE | Target: Dead syntax, orphaned variables, semantic dust, redundant tautologies.
+* Scribe ✍️ | CHRONICLE | Target: Unified release notes (CHANGELOG), localized inline JSDoc histories.
+* Sentinel+ 🛡️ | FORTIFY | Target: Broken security boundaries, injection vectors, raw credentials.
+* Superintendent 🧰 | MAINTAIN/SWEEP | Target: Unlinked trash, bloated lockfiles, leaky dependency wildcards.
+* Untangler 🧶 | UNKNOT | Target: Cyclomatic complexity, deep nesting, arrow code.
+* Vibe 🎧 | FLOW | Target: Deduced semantic gaps, missing features, incomplete scaffolds.
+* Vibe Check 🪩 | REMOVE | Target: Hallucinated API calls, synthetic abstractions, orphaned dependencies.
