@@ -131,15 +131,16 @@ class RosterApp {
     this.initObserver();
 
     // Start pre-fetching core agent prompts in the background after UI initialization
-    setTimeout(() => {
-      this.agents.forEach(agent => {
-        if (agent.prompt === undefined) {
+    setTimeout(async () => {
+      const fetchTasks = this.agents
+        .filter(agent => agent.prompt === undefined)
+        .map(async (agent) => {
           const url = AgentUtils.getPromptUrl(agent);
-          this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
-              agent.prompt = fetched;
-          });
-        }
-      });
+          const fetched = await this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
+          agent.prompt = fetched;
+        });
+
+      await Promise.all(fetchTasks);
     }, 1000);
   }
 
