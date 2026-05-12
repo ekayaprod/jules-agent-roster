@@ -96,7 +96,10 @@ class LLMRouter {
                         try {
                             const errorText = await response.text();
                             errorMsg = errorText || errorMsg;
-                        } catch (e2) {}
+                        } catch (e2) {
+                            console.warn(`[LLMRouter] Failed to parse error response from ${provider}:`, e2);
+                            errorMsg = `${errorMsg} (Unparseable response body: ${e2.message})`;
+                        }
                     }
 
                     if (response.status >= 500 || response.status === 429) {

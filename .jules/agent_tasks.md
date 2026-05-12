@@ -11,7 +11,7 @@
 - [ ] 🏗️ `js/Features/Fusion/FusionLab.js`: 549 lines. Requires domain splitting and colocation.
 
 ## 🛡️ Resilience Boundaries (Target: [Sentinel] / FORTIFY)
-- [ ] ⚠️ `js/Services/LLMRouter/LLMRouter.js`: Line 99. Empty catch block is swallowing errors silently. Needs mapped error handling.
+- [x] ⚠️ `js/Services/LLMRouter/LLMRouter.js`: Line 99. Empty catch block is swallowing errors silently. Needs mapped error handling.
 
 ## 🎨 Rigid Presentation States (Target: [UI] / STYLIZE)
 - [x] 🎨 `js/Features/Fusion/Fusion.css`: Contains hardcoded hex colors instead of CSS variables (e.g., `#a855f7`, `#ec4899`, `#fff`). Needs WCAG scaffolding.
