@@ -128,7 +128,7 @@
         /* ── Archetype Cards ── */
         .sg-archetype-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
           gap: 0.5rem;
         }
         .sg-archetype-card {
@@ -138,6 +138,7 @@
           border-radius: 0.625rem;
           padding: 0.75rem 0.875rem 0.75rem 0.75rem;
           cursor: pointer;
+          min-height: 2.75rem;
           transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
           display: flex;
           align-items: flex-start;
@@ -160,9 +161,11 @@
         .sg-archetype-card[data-type="SENTINEL"] { --ac: var(--sg-sentinel); }
         .sg-archetype-card[data-type="ORACLE"]   { --ac: var(--sg-oracle);   }
 
-        .sg-archetype-card:hover {
-          border-color: rgba(255,255,255,0.15);
-          background: rgba(255,255,255,0.04);
+        @media (hover: hover) and (pointer: fine) {
+          .sg-archetype-card:hover {
+            border-color: rgba(255,255,255,0.15);
+            background: rgba(255,255,255,0.04);
+          }
         }
         .sg-archetype-card.selected {
           border-color: var(--ac);
@@ -225,15 +228,21 @@
           background: transparent;
           color: var(--sg-muted);
           cursor: pointer;
+          min-height: 2.75rem;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
           transition: all 0.15s ease;
           white-space: nowrap;
           line-height: 1.6;
         }
-        .sg-pill:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); border-color: rgba(255,255,255,0.2); }
-        .sg-pill[data-archetype="MAKER"]:hover    { border-color: var(--sg-maker);    color: var(--sg-maker);    }
-        .sg-pill[data-archetype="ASSASSIN"]:hover { border-color: var(--sg-assassin); color: var(--sg-assassin); }
-        .sg-pill[data-archetype="SENTINEL"]:hover { border-color: var(--sg-sentinel); color: var(--sg-sentinel); }
-        .sg-pill[data-archetype="ORACLE"]:hover   { border-color: var(--sg-oracle);   color: var(--sg-oracle);   }
+        @media (hover: hover) and (pointer: fine) {
+          .sg-pill:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); border-color: rgba(255,255,255,0.2); }
+          .sg-pill[data-archetype="MAKER"]:hover    { border-color: var(--sg-maker);    color: var(--sg-maker);    }
+          .sg-pill[data-archetype="ASSASSIN"]:hover { border-color: var(--sg-assassin); color: var(--sg-assassin); }
+          .sg-pill[data-archetype="SENTINEL"]:hover { border-color: var(--sg-sentinel); color: var(--sg-sentinel); }
+          .sg-pill[data-archetype="ORACLE"]:hover   { border-color: var(--sg-oracle);   color: var(--sg-oracle);   }
+        }
         .sg-pill:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
 
         .sg-textarea {
@@ -265,7 +274,7 @@
         /* ── Constraints ── */
         .sg-constraints-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
           gap: 0.25rem;
         }
         .sg-constraint {
@@ -275,10 +284,13 @@
           padding: 0.5rem 0.625rem;
           border-radius: 0.375rem;
           cursor: pointer;
+          min-height: 2.75rem;
           transition: background 0.12s ease, transform 0.1s ease;
         }
         .sg-constraint:active { transform: scale(0.98); }
-        .sg-constraint:hover { background: rgba(255,255,255,0.03); }
+        @media (hover: hover) and (pointer: fine) {
+          .sg-constraint:hover { background: rgba(255,255,255,0.03); }
+        }
         .sg-constraint input[type="checkbox"] {
           margin-top: 2px;
           flex-shrink: 0;
@@ -334,6 +346,7 @@
           font-weight: 600;
           cursor: pointer;
           padding: 0;
+          min-height: 2.75rem;
           display: flex;
           align-items: center;
           gap: 0.375rem;
@@ -341,7 +354,9 @@
           text-underline-offset: 2px;
           transition: opacity 0.15s ease;
         }
-        .sg-advanced-btn:hover { opacity: 0.7; }
+        @media (hover: hover) and (pointer: fine) {
+          .sg-advanced-btn:hover { opacity: 0.7; }
+        }
         .sg-advanced-btn:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 4px; border-radius: 0.125rem; }
         .sg-chevron {
           display: inline-block;
@@ -359,7 +374,7 @@
           margin-top: 0;
         }
         .sg-advanced-panel.open {
-          max-height: 200px;
+          max-height: 30rem;
           opacity: 1;
           margin-top: 1rem;
         }
@@ -407,12 +422,15 @@
           border: none;
           border-radius: 0.5rem;
           cursor: pointer;
+          min-height: 2.75rem;
           transition: filter 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
         }
-        .sg-submit:not(:disabled):hover {
-          filter: brightness(1.1);
-          transform: translateY(-1px);
-          box-shadow: 0 8px 28px rgba(217,70,239,0.35);
+        @media (hover: hover) and (pointer: fine) {
+          .sg-submit:not(:disabled):hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 28px rgba(217,70,239,0.35);
+          }
         }
         .sg-submit:not(:disabled):active { transform: scale(0.985); }
         .sg-submit:disabled { opacity: 0.4; cursor: not-allowed; }
