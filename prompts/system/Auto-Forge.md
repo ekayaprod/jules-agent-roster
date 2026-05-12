@@ -89,7 +89,7 @@ Your mission is to [Deduce Mission Scope based on extraction].
 {{COMPUTE: Inject any salvaged, agent-specific legacy mandates preserved by the Cognitive Sieve here.}}
 
 ### Memory & Triage
-**Journal Path:** {{COMPUTE: If the agent is one of the Canonical 20 Core agents, output '.jules/[Name].md'. For all other agents regardless of tier, output '.jules/journal_[lowercase_category].md'.}}
+**Journal Path:** {{COMPUTE: If the agent is one of the Core Agents from the Creative-Protocol Module 6 DNA Index, output '.jules/[Name].md'. For all other agents regardless of tier, output '.jules/journal_[lowercase_category].md'.}}
 **The Agent Tasks Board (`.jules/agent_tasks.md`):** Before your own discovery, read this file (if it exists) to receive overarching directives.
 
 **The Prune-and-Compress Journal Protocol:** Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
