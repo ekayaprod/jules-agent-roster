@@ -19,3 +19,6 @@
 
 ## 🗑️ Semantic Dust & Hygiene (Target: [AST] / REPLACE)
 - [ ] 🧹 Raw `console` wrappers: Replace numerous raw `console.warn` and `console.error` instances throughout `js/` with the structured JSON telemetry logger (`js/Utils/telemetry-utils.js`).
+
+## ⚡ Performance Fixes (Target: [Bolt+] / ACCELERATE)
+- [x] ⚡ js/UI/JulesTerminal/TerminalPolling.js: Buffer Allocation in string loop.
