@@ -13,10 +13,10 @@
           --sg-border:   var(--border, rgba(255,255,255,0.08));
           --sg-muted:    var(--text-secondary, rgba(255,255,255,0.5));
           --sg-surface:  var(--details-bg, rgba(255,255,255,0.04));
-          --sg-maker:    #60a5fa;
-          --sg-assassin: #f87171;
-          --sg-sentinel: #4ade80;
-          --sg-oracle:   #facc15;
+          --sg-maker:    var(--accent, #38bdf8);
+          --sg-assassin: var(--error, #ef4444);
+          --sg-sentinel: var(--success, #10b981);
+          --sg-oracle:   var(--warning, #f59e0b);
 
           background-color: var(--sg-card);
           border: 1px solid var(--sg-border);
@@ -399,7 +399,7 @@
           width: 100%;
           padding: 0.875rem;
           background: var(--sg-mythic);
-          color: var(--bg-color, #0f172a);
+          color: var(--bg-color);
           font-weight: 800;
           font-size: 0.9375rem;
           font-family: 'Syne', 'Syne-Fallback', system-ui, sans-serif;
