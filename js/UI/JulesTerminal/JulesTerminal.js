@@ -291,6 +291,7 @@ class JulesTerminal {
         const formatUtils = JulesTerminal.getFormatUtils();
 
         // Render at top of terminal
+        const fragment = document.createDocumentFragment();
         prs.forEach(pr => {
             const item = document.createElement("div");
             item.className = "term-pr-item";
@@ -308,8 +309,9 @@ class JulesTerminal {
                     this.modals._showPRModal(pr, this.currentRepo);
                 };
             }
-            terminal.insertBefore(item, terminal.firstChild);
+            fragment.insertBefore(item, fragment.firstChild);
         });
+        terminal.insertBefore(fragment, terminal.firstChild);
     }
 
 
