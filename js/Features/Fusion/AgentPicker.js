@@ -1,4 +1,4 @@
-var SafeUITimings = typeof window !== 'undefined' ? window.UI_TIMINGS : (typeof global !== 'undefined' ? global.UI_TIMINGS : null);
+const SafeUITimings = typeof window !== 'undefined' ? window.UI_TIMINGS : (typeof global !== 'undefined' ? global.UI_TIMINGS : null);
 const PICKER_CLUSTERIZE_OPTIONS = {
     scrollId: 'pickerScrollArea',
     contentId: 'pickerGrid',
