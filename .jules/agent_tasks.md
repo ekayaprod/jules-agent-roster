@@ -14,8 +14,8 @@
 - [ ] ⚠️ `js/Services/LLMRouter/LLMRouter.js`: Line 99. Empty catch block is swallowing errors silently. Needs mapped error handling.
 
 ## 🎨 Rigid Presentation States (Target: [UI] / STYLIZE)
-- [ ] 🎨 `js/Features/Fusion/Fusion.css`: Contains hardcoded hex colors instead of CSS variables (e.g., `#a855f7`, `#ec4899`, `#fff`). Needs WCAG scaffolding.
-- [ ] 🎨 `js/UI/Singularity/styles/SingularityBespokeBuilder.css`: Contains hardcoded hex colors instead of CSS variables (e.g., `#60a5fa`, `#f87171`). Needs WCAG scaffolding.
+- [x] 🎨 `js/Features/Fusion/Fusion.css`: Contains hardcoded hex colors instead of CSS variables (e.g., `#a855f7`, `#ec4899`, `#fff`). Needs WCAG scaffolding.
+- [x] 🎨 `js/UI/Singularity/styles/SingularityBespokeBuilder.css`: Contains hardcoded hex colors instead of CSS variables (e.g., `#60a5fa`, `#f87171`). Needs WCAG scaffolding.
 
 ## 🗑️ Semantic Dust & Hygiene (Target: [AST] / REPLACE)
 - [ ] 🧹 Raw `console` wrappers: Replace numerous raw `console.warn` and `console.error` instances throughout `js/` with the structured JSON telemetry logger (`js/Utils/telemetry-utils.js`).

@@ -1,6 +1,6 @@
 /* FUSION LAB & ARCHIVE (Restored structural CSS) */
 .fusion-lab-container { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; margin-top: 3rem; margin-bottom: 3rem; text-align: center; max-width: 50rem; margin-left: auto; margin-right: auto; min-height: 25rem; overflow: hidden; position: relative; }
-.fusion-lab-container h2 { margin-top: 0; margin-bottom: 1.5rem; background: linear-gradient(to right, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: -apple-system, sans-serif; font-weight: var(--weight-extrabold); }
+.fusion-lab-container h2 { margin-top: 0; margin-bottom: 1.5rem; background: linear-gradient(to right, var(--mythic), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: -apple-system, sans-serif; font-weight: var(--weight-extrabold); }
 .fusion-visual-slots { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
 .slot-card { background-color: rgba(15, 23, 42, 0.3); border: 2px dashed var(--border); border-radius: 1rem; flex: 1 1 100%; max-width: 100%; min-height: 7.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; padding: 1rem; text-align: center; transition: all 0.2s ease-in-out; touch-action: manipulation; }
 .slot-card:hover { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.05); }
@@ -14,9 +14,9 @@
 
 .slot-card.filled { border-style: solid; border-color: var(--accent); background: radial-gradient(circle at center, rgba(56, 189, 248, 0.2) 0%, rgba(15, 23, 42, 0.8) 100%); }
 .slot-card.filled .slot-icon-placeholder { opacity: 1; font-size: var(--text-4xl); filter: drop-shadow(0 2px 10px rgba(0,0,0,0.8)); }
-.slot-card.filled .slot-label { color: #ffffff !important; font-weight: 700; font-size: var(--text-sm); text-shadow: 0px 2px 4px rgba(0,0,0,0.9); }
+.slot-card.filled .slot-label { color: var(--text-primary) !important; font-weight: 700; font-size: var(--text-sm); text-shadow: 0px 2px 4px rgba(0,0,0,0.9); }
 
-#fuseBtn { background: linear-gradient(to right, #a855f7, #ec4899); color: white; padding: 0.75rem 2rem; transition: all 0.2s ease-in-out; border: none; border-radius: 0.5rem; font-weight: var(--weight-bold); cursor: pointer; }
+#fuseBtn { background: linear-gradient(to right, var(--mythic), var(--accent)); color: white; padding: 0.75rem 2rem; transition: all 0.2s ease-in-out; border: none; border-radius: 0.5rem; font-weight: var(--weight-bold); cursor: pointer; }
 #fuseBtn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4); }
 #fuseBtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 #fuseBtn:active:not(:disabled) { transform: scale(0.98); }
@@ -125,7 +125,7 @@
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%) scale(0);
   width: 15rem; aspect-ratio: 1;
-  background: radial-gradient(circle, #ffffff 20%, transparent 70%);
+  background: radial-gradient(circle, var(--text-primary) 20%, transparent 70%);
   border-radius: 50%; opacity: 0; pointer-events: none;
 }
 .fusion-animation-overlay.active .anim-flash {
@@ -133,8 +133,8 @@
 }
 
 @keyframes evolveFlash {
-  0% { opacity: 0; transform: translate(-50%, -50%) scale(0); background: radial-gradient(circle, #fff 20%, transparent 70%); }
-  20% { opacity: 1; transform: translate(-50%, -50%) scale(2); background: radial-gradient(circle, #fff 40%, rgba(255,255,255,0.8) 60%, transparent 80%); }
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0); background: radial-gradient(circle, var(--text-primary) 20%, transparent 70%); }
+  20% { opacity: 1; transform: translate(-50%, -50%) scale(2); background: radial-gradient(circle, var(--text-primary) 40%, rgba(255,255,255,0.8) 60%, transparent 80%); }
   100% { opacity: 0; transform: translate(-50%, -50%) scale(3); }
 }
 
@@ -158,8 +158,8 @@
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%) scale(0);
   width: 7.5rem; aspect-ratio: 1;
-  border: 0.25rem solid #fff; border-radius: 50%; opacity: 0;
-  box-shadow: 0 0 1.25rem #fff, inset 0 0 1.25rem #fff; pointer-events: none;
+  border: 0.25rem solid var(--text-primary); border-radius: 50%; opacity: 0;
+  box-shadow: 0 0 1.25rem var(--text-primary), inset 0 0 1.25rem var(--text-primary); pointer-events: none;
 }
 .fusion-animation-overlay.active .anim-shockwave {
   animation: shockwave 0.6s ease-out 1.8s forwards;
@@ -174,8 +174,8 @@
 }
 .anim-particle {
   position: absolute; width: 0.375rem; height: 0.375rem;
-  background-color: var(--particle-color, #fff); border-radius: 50%; opacity: 0;
-  box-shadow: 0 0 0.625rem var(--particle-color, #fff);
+  background-color: var(--particle-color, var(--text-primary)); border-radius: 50%; opacity: 0;
+  box-shadow: 0 0 0.625rem var(--particle-color, var(--text-primary));
 }
 .fusion-animation-overlay.active .anim-particle {
   animation: particleExplode forwards ease-out;
@@ -190,7 +190,7 @@
   opacity: 0; transform: scale(0.8); margin-top: 2rem; text-align: center; padding: 0 1rem;
 }
 .anim-result .highlight {
-  background: linear-gradient(to right, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background: linear-gradient(to right, var(--mythic), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 .fusion-animation-overlay.active .anim-result {
   animation: reveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s forwards;
@@ -207,29 +207,29 @@
 
 /* POKEDEX GLOW EFFECTS */
 .tier-common .flip-card-inner, .fusion-item.tier-common { border-color: var(--border); }
-.tier-uncommon .flip-card-inner, .fusion-item.tier-uncommon { border-color: rgba(20, 184, 166, 0.6); }
-.tier-rare .flip-card-inner, .fusion-item.tier-rare { border-color: rgba(59, 130, 246, 0.6); }
+.tier-uncommon .flip-card-inner, .fusion-item.tier-uncommon { border-color: var(--success); }
+.tier-rare .flip-card-inner, .fusion-item.tier-rare { border-color: var(--accent); }
 
-.tier-epic .flip-card-inner, .fusion-item.tier-epic { border-color: rgba(217, 70, 239, 0.6); box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); animation: epicPulse 4s infinite ease-in-out; }
+.tier-epic .flip-card-inner, .fusion-item.tier-epic { border-color: var(--mythic); box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); animation: epicPulse 4s infinite ease-in-out; }
 @keyframes mythicPulse {
-  0% { box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.6); }
-  50% { box-shadow: 0 0 1.5rem rgba(16, 185, 129, 0.4); border-color: rgba(16, 185, 129, 0.9); }
-  100% { box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.6); }
+  0% { box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); border-color: var(--success); }
+  50% { box-shadow: 0 0 1.5rem rgba(16, 185, 129, 0.4); border-color: var(--success); }
+  100% { box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); border-color: var(--success); }
 }
 
-.tier-legendary .flip-card-inner, .fusion-item.tier-legendary { border-color: rgba(245, 158, 11, 1); box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); animation: legendaryPulse 4s infinite ease-in-out; }
-.tier-mythic .flip-card-inner, .fusion-item.tier-mythic { border-color: rgba(16, 185, 129, 0.6); box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); animation: mythicPulse 4s infinite ease-in-out; }
+.tier-legendary .flip-card-inner, .fusion-item.tier-legendary { border-color: var(--warning); box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); animation: legendaryPulse 4s infinite ease-in-out; }
+.tier-mythic .flip-card-inner, .fusion-item.tier-mythic { border-color: var(--success); box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); animation: mythicPulse 4s infinite ease-in-out; }
 
 /* Rarity Animation Particles Sync */
-.tier-common .anim-particle { --particle-color: #9ca3af; }
-.tier-uncommon .anim-particle { --particle-color: #14b8a6; }
-.tier-rare .anim-particle { --particle-color: #3b82f6; }
-.tier-epic .anim-particle { --particle-color: #d946ef; }
-.tier-legendary .anim-particle { --particle-color: #fbbf24; }
+.tier-common .anim-particle { --particle-color: var(--text-secondary); }
+.tier-uncommon .anim-particle { --particle-color: var(--success); }
+.tier-rare .anim-particle { --particle-color: var(--accent); }
+.tier-epic .anim-particle { --particle-color: var(--mythic); }
+.tier-legendary .anim-particle { --particle-color: var(--warning); }
 
 /* Mythic Effects Sync */
 .tier-mythic .anim-particle {
-  --particle-color: #10b981;
+  --particle-color: var(--success);
 }
 
 .fade-transition { transition: opacity 0.5s ease-in-out; }
