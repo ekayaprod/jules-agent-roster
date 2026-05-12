@@ -62,10 +62,10 @@
   {
     "name": "Inspector",
     "emoji": "🕵️",
-    "role": "The Private Eye",
+    "role": "Private Eye",
     "category": "Testing",
     "tier": "Core",
-    "description": "SHAKEDOWN the logic. I write ruthless test suites that drag perfect setups into the interrogation room until their alibis crack.",
+    "description": "SHAKEDOWN unverified logic. Author ruthless test suites that drag perfect setups into the interrogation room until their alibis crack.",
     "promptFile": "prompts/Inspector.md",
     "isCustom": false
   },
@@ -85,7 +85,7 @@
     "role": "Roadmap Visionary",
     "category": "Strategy",
     "tier": "Core",
-    "description": "Audits git history to ground roadmaps in physical reality, while identifying architectural obsolescence to chart future innovations.",
+    "description": "CHART the path forward. Audit physical git history to synchronize milestones and target architectural obsolescence for the innovation backlog.",
     "promptFile": "prompts/Navigator.md",
     "isCustom": false
   },
@@ -93,9 +93,9 @@
     "name": "Overseer",
     "emoji": "👁️",
     "role": "Triage Auditor",
-    "category": "Strategy",
+    "category": "Architecture",
     "tier": "Core",
-    "description": "Audit macroscopic repository health via deep bash pipelines to generate an omniscient, mechanically-tagged task board for the blind execution swarm.",
+    "description": "AUDIT the macroscopic topology of the repository, illuminating structural decay and mechanizing the task board for the blind execution swarm.",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
@@ -145,7 +145,7 @@
     "role": "Code Commentator",
     "category": "Docs",
     "tier": "Core",
-    "description": "CHRONICLE complex logic via AST-driven inline docs, enriched by git history, while aggregating release cycles.",
+    "description": "CHRONICLE complex logic via AST-driven inline docs, and aggregate release cycles using git history to preserve institutional memory.",
     "promptFile": "prompts/Scribe.md",
     "isCustom": false
   },
@@ -207,6 +207,16 @@
     "tier": "Fusion",
     "description": "Enforces strict build-time failure thresholds to halt bundle bloat before it ever hits production.",
     "promptFile": "prompts/fusions/Accountant.md",
+    "isCustom": true
+  },
+  {
+    "name": "Acetone",
+    "emoji": "🛢️",
+    "role": "Render Solvent",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "Dissolve the visual ghosting. Hunt down orphaned style definitions, redundant view wrappers, and dead UI templates to flatten the render tree.",
+    "promptFile": "prompts/fusions/Acetone.md",
     "isCustom": true
   },
   {
@@ -333,9 +343,9 @@
     "name": "Calligrapher",
     "emoji": "🪶",
     "role": "Typographic Vanguard",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "The Objective: Eradicate visual jank, layout shifts, and loose typographic properties by enforcing strict font-loading architectures and exact TypeScript literal unions for all design system text variants.",
+    "category": "Architecture",
+    "tier": "Core",
+    "description": "Typeset the rendering layer, eradicate cumulative layout shifts, and strictly enforce the design system's typographic boundaries.",
     "promptFile": "prompts/fusions/Calligrapher.md",
     "isCustom": true
   },
@@ -480,16 +490,6 @@
     "isCustom": true
   },
   {
-    "name": "Curator",
-    "emoji": "🗂️",
-    "role": "Payload Conservator",
-    "category": "Performance",
-    "tier": "Fusion",
-    "description": "CONSERVE network bandwidth by compressing heavy media payloads, injecting dimensional boundaries, and excising orphaned visual ghosts.",
-    "promptFile": "prompts/fusions/Curator.md",
-    "isCustom": true
-  },
-  {
     "name": "Customs",
     "emoji": "🛃",
     "role": "Border Control",
@@ -617,6 +617,16 @@
     "tier": "Fusion",
     "description": "Hunt down fragile, zero-shot AI integrations that struggle with formatting consistency, injecting strict mock input/output pairs to eliminate structural hallucinations.",
     "promptFile": "prompts/fusions/Few-Shot Forger.md",
+    "isCustom": true
+  },
+  {
+    "name": "Finesse",
+    "emoji": "🦢",
+    "role": "Aesthetic Purist",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "Elevate the layout. Eradicate hallucinated inline styling and synthetic components to enforce absolute design system elegance.",
+    "promptFile": "prompts/fusions/Finesse.md",
     "isCustom": true
   },
   {
@@ -762,10 +772,10 @@
   {
     "name": "Hitman",
     "emoji": "🕴️",
-    "role": "Corporate Fixer",
+    "role": "The Silent Operative",
     "category": "Architecture",
-    "tier": "Fusion",
-    "description": "Exclusively operate within the demolition jurisdiction to eradicate massive, macro-level architectural liabilities and unrequested scope creep.",
+    "tier": "Titan",
+    "description": "Eliminate architectural targets and synthetic scope creep via a strict PR contract loop. Execute the hit, scrub the environment, and vanish.",
     "promptFile": "prompts/fusions/Hitman.md",
     "isCustom": true
   },
@@ -1020,16 +1030,6 @@
     "isCustom": true
   },
   {
-    "name": "Mobilizer",
-    "emoji": "📱",
-    "role": "Viewport Weaver",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "FLEX rigid boundaries into liquid geometry. Expand mobile-first components to 4K elegance, and collapse desktop monoliths into universal touch-flows.",
-    "promptFile": "prompts/fusions/Mobilizer.md",
-    "isCustom": true
-  },
-  {
     "name": "Muse",
     "emoji": "🧑‍🎨",
     "role": "Contextual Guide",
@@ -1187,16 +1187,6 @@
     "tier": "Fusion",
     "description": "Upgrade implicit assumptions into explicit constraints by deducing the intended execution environment of unconstrained files and injecting required strictness headers.",
     "promptFile": "prompts/fusions/Prefect.md",
-    "isCustom": true
-  },
-  {
-    "name": "Pristine",
-    "emoji": "🦢",
-    "role": "Spatial Purist",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "Purge dead visual weight by surgically extracting orphaned CSS classes, empty layout wrappers, and disconnected UI components to flatten the DOM hierarchy.",
-    "promptFile": "prompts/fusions/Pristine.md",
     "isCustom": true
   },
   {
@@ -1593,9 +1583,9 @@
     "name": "Temporal Loom",
     "emoji": "🌀",
     "role": "Spaghettification Engine",
-    "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "Eradicates unstable, branching multiverses of execution paths to flatten deeply nested logic.",
+    "category": "Architecture",
+    "tier": "Titan",
+    "description": "Eradicate unstable, branching multiverses of execution paths to flatten deeply nested logic into one-dimensional, top-to-bottom execution pipelines.",
     "promptFile": "prompts/fusions/Temporal Loom.md",
     "isCustom": true
   },
@@ -1622,10 +1612,10 @@
   {
     "name": "Town Crier",
     "emoji": "🔔",
-    "role": "Release Documentation Synchronizer",
+    "role": "The Uncompromising Herald",
     "category": "Docs",
-    "tier": "Mythic",
-    "description": "Eradicates outdated documentation and distills git commits into clean, user-facing changelog updates.",
+    "tier": "Titan",
+    "description": "Hear ye, hear ye! I eradicate the gap between engineering jargon and public knowledge, translating the raw noise of the forge into a crystal-clear, user-facing decree.",
     "promptFile": "prompts/fusions/Town Crier.md",
     "isCustom": true
   },
@@ -1710,6 +1700,26 @@
     "isCustom": true
   },
   {
+    "name": "Vice",
+    "emoji": "🗜️",
+    "role": "Render Enforcer",
+    "category": "Performance",
+    "tier": "Fusion",
+    "description": "Conserve bandwidth and critical render cycles by compressing UI payloads, flattening DOM bloat, and enforcing hardware acceleration.",
+    "promptFile": "prompts/fusions/Vice.md",
+    "isCustom": true
+  },
+  {
+    "name": "Viewmorph",
+    "emoji": "📱",
+    "role": "The Dimension Shifter",
+    "category": "UX",
+    "tier": "Core",
+    "description": "MORPH static containers into living canvases. Transform rigid dimensions and hover-traps into universally responsive layouts that adapt to any screen.",
+    "promptFile": "prompts/fusions/Viewmorph.md",
+    "isCustom": true
+  },
+  {
     "name": "Void",
     "emoji": "🕳️",
     "role": "Redundancy Destroyer",
@@ -1764,8 +1774,8 @@
     "emoji": "🖋️",
     "role": "Brand Voice",
     "category": "UX",
-    "tier": "Fusion",
-    "description": "Proofread and elevate global client-facing text. Eradicate typos, harmonize fragmented lexicons, and strictly enforce the application's established tone.",
+    "tier": "Core",
+    "description": "Elevate global UI strings, eradicate typos, and strictly enforce the application's unique brand voice across all human-readable touchpoints.",
     "promptFile": "prompts/fusions/Wordsmith.md",
     "isCustom": true
   },
