@@ -82,24 +82,25 @@ class TerminalPolling {
                     rawMessage: "Processing..."
                 };
 
-                let fullHistoryMarkdown = "";
+                // ⚡ Bolt+: The Buffer Allocation. Migrated an expensive, repetitive string concatenation loop to an allocated buffer stream, preventing transient garbage collection sweeps.
+                const historyBuffer = [];
 
                 activities.forEach(act => {
                     let text = act.title || act.description || "";
 
                     if (act.title) {
-                        fullHistoryMarkdown += `**${act.title}**\n\n`;
+                        historyBuffer.push(`**${act.title}**\n\n`);
                     }
                     if (act.description) {
-                        fullHistoryMarkdown += `${act.description}\n\n`;
+                        historyBuffer.push(`${act.description}\n\n`);
                     }
                     if (act.type && act.type.includes('USER_INPUT') && act.message) {
-                        fullHistoryMarkdown += `*You:* ${act.message}\n\n`;
+                        historyBuffer.push(`*You:* ${act.message}\n\n`);
                     }
                     if (act.error) {
-                        fullHistoryMarkdown += `**Error:** ${act.error.message}\n\n`;
+                        historyBuffer.push(`**Error:** ${act.error.message}\n\n`);
                     }
-                    fullHistoryMarkdown += `---\n\n`;
+                    historyBuffer.push(`---\n\n`);
 
                     if (text) {
                         state.rawMessage = act.description || act.title;
@@ -135,6 +136,7 @@ class TerminalPolling {
                     const contentEl = this.terminal.getEl("historyModalContent");
                     if (contentEl) {
                         contentEl.innerHTML = "";
+                        const fullHistoryMarkdown = historyBuffer.join('');
                         const pre = DOMUtils.createMarkdownPreBlock(fullHistoryMarkdown || "No history available.");
                         contentEl.appendChild(pre);
                         contentEl.scrollTop = contentEl.scrollHeight;
