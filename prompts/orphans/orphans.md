@@ -438,12 +438,6 @@
 
 #
 
-## README
-
-- **Role:** UNKNOWN
-- **Category:** UNKNOWN
-- **Description:** UNKNOWN
-
 ## Redactor
 
 - **Role:** PII Scrubber
