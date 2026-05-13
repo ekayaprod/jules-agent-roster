@@ -377,7 +377,13 @@ class SingularityBespokeBuilder {
       }
     } catch (error) {
       uiState.rollback();
-      console.error("Unable to forge bespoke agent:", error);
+      // 🩺 RESUSCITATE: Intent deduced. The error is caught, enriched with context, and explicitly passed to the boundary.
+      const forgeError = new Error(`Singularity Forge Error: ${error.message}`);
+      forgeError.cause = error;
+      console.error("Unable to forge bespoke agent:", forgeError);
+      if (window.rosterApp?.showToast) {
+        window.rosterApp.showToast(`Unable to forge bespoke agent: ${error.message || "Unknown error"}`);
+      }
     }
   }
 }

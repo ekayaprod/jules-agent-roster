@@ -136,6 +136,7 @@ describe('SingularityBespokeBuilder', () => {
       await builder.handleForge();
 
       expect(consoleSpy).toHaveBeenCalledWith('Unable to forge bespoke agent:', expect.any(Error));
+      expect(global.window.rosterApp.showToast).toHaveBeenCalledWith(expect.stringContaining('Unable to forge bespoke agent:'));
       expect(mockTerminal.launchSession).not.toHaveBeenCalled();
     });
 
