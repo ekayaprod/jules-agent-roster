@@ -563,3 +563,6 @@ class RosterApp {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = RosterApp;
 }
+if (typeof window !== 'undefined') {
+    window.RosterApp = RosterApp;
+}
