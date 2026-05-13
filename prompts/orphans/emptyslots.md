@@ -11,8 +11,8 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Architect,Architect`
 - `Architect,Dispatch`
 - `Architect,Overseer`
-- `Architect,Vibe`
 - `Architect,Vibe Check`
+- `Architect,Vibe`
 - `Author,Author`
 - `Author,Dispatch`
 - `Author,Overseer`
@@ -29,8 +29,8 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Dispatch,Untangler`
 - `Dispatch,Vibe Check`
 - `Helix,Vibe Check`
-- `Inspector,Vibe`
 - `Inspector,Vibe Check`
+- `Inspector,Vibe`
 - `Modernizer,Modernizer`
 - `Modernizer,Overseer`
 - `Modernizer,Vibe Check`
@@ -45,15 +45,15 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Overseer,Superintendent`
 - `Overseer,Untangler`
 - `Overseer,Vibe Check`
-- `Pedant,Vibe`
 - `Pedant,Vibe Check`
+- `Pedant,Vibe`
 - `Scribe,Vibe Check`
 - `Sentinel+,Vibe Check`
 - `Superintendent,Superintendent`
-- `Superintendent,Vibe`
 - `Superintendent,Vibe Check`
-- `Untangler,Vibe`
+- `Superintendent,Vibe`
 - `Untangler,Vibe Check`
-- `Vibe,Vibe`
-- `Vibe,Vibe Check`
+- `Untangler,Vibe`
 - `Vibe Check,Vibe Check`
+- `Vibe,Vibe Check`
+- `Vibe,Vibe`
