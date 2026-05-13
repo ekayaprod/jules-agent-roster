@@ -17,7 +17,7 @@
 .slot-card.filled .slot-label { color: var(--text-primary) !important; font-weight: 700; font-size: var(--text-sm); text-shadow: 0px 2px 4px rgba(0,0,0,0.9); }
 
 #fuseBtn { background: linear-gradient(to right, var(--mythic), var(--accent)); color: white; padding: 0.75rem 2rem; transition: all 0.2s ease-in-out; border: none; border-radius: 0.5rem; font-weight: var(--weight-bold); cursor: pointer; }
-#fuseBtn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4); }
+#fuseBtn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 12px color-mix(in srgb, var(--mythic) calc(0.4 * 100%), transparent); }
 #fuseBtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 #fuseBtn:active:not(:disabled) { transform: scale(0.98); }
 #fuseBtn:disabled { background: var(--card-bg); border: 1px solid var(--border); color: var(--text-secondary); opacity: 0.5; }
@@ -36,9 +36,9 @@
 .fusion-item .slot-label { font-size: 0.6rem; text-align: center; line-height: 1.1; max-width: 100%; word-break: break-word; color: var(--text-secondary); pointer-events: none; }
 .fusion-item.locked { opacity: 0.6; cursor: not-allowed; }
 .fusion-item.locked .slot-icon { filter: brightness(0); }
-.fusion-item.unlocked { cursor: pointer; border-color: rgba(168, 85, 247, 0.3); }
-.fusion-item.unlocked:hover { border-color: rgba(168, 85, 247, 0.6); background-color: rgba(168, 85, 247, 0.05); transform: translateY(-2px); }
-.fusion-item.unlocked:focus-visible { outline: 2px solid rgba(168, 85, 247, 1); outline-offset: 2px; }
+.fusion-item.unlocked { cursor: pointer; border-color: color-mix(in srgb, var(--mythic) calc(0.3 * 100%), transparent); }
+.fusion-item.unlocked:hover { border-color: color-mix(in srgb, var(--mythic) calc(0.6 * 100%), transparent); background-color: color-mix(in srgb, var(--mythic) calc(0.05 * 100%), transparent); transform: translateY(-2px); }
+.fusion-item.unlocked:focus-visible { outline: 2px solid color-mix(in srgb, var(--mythic) calc(1 * 100%), transparent); outline-offset: 2px; }
 
 .picker-modal { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); border: none; width: 100%; height: 100%; position: fixed; z-index: 100; display: none; align-items: center; justify-content: center; top: 0; left: 0; font-family: -apple-system, sans-serif; padding: 0; color: inherit; }
 .picker-modal::backdrop { background: transparent; }
@@ -141,7 +141,7 @@
 /* Phase 4: Emergence */
 .anim-icon.result {
   font-size: var(--text-7xl); opacity: 0;
-  transform: scale(0.5); z-index: 10; text-shadow: 0 0 1.25rem rgba(168, 85, 247, 0.8);
+  transform: scale(0.5); z-index: 10; text-shadow: 0 0 1.25rem color-mix(in srgb, var(--mythic) calc(0.8 * 100%), transparent);
 }
 .fusion-animation-overlay.active .anim-icon.result {
   animation: evolveEmerge 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.9s both;
@@ -194,7 +194,7 @@
 }
 .fusion-animation-overlay.active .anim-result {
   animation: reveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 2.2s forwards;
-  text-shadow: 0 0.625rem 1.875rem rgba(168, 85, 247, 0.5);
+  text-shadow: 0 0.625rem 1.875rem color-mix(in srgb, var(--mythic) calc(0.5 * 100%), transparent);
 }
 @keyframes reveal {
   0% { opacity: 0; transform: scale(0.8); }

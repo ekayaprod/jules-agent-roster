@@ -11,14 +11,10 @@
 - [ ] 🏗️ `js/Features/Fusion/FusionLab.js`: 549 lines. Requires domain splitting and colocation.
 
 ## 🛡️ Resilience Boundaries (Target: [Sentinel] / FORTIFY)
-- [x] ⚠️ `js/Services/LLMRouter/LLMRouter.js`: Line 99. Empty catch block is swallowing errors silently. Needs mapped error handling.
 
 ## 🎨 Rigid Presentation States (Target: [UI] / STYLIZE)
-- [x] 🎨 `js/Features/Fusion/Fusion.css`: Contains hardcoded hex colors instead of CSS variables (e.g., `#a855f7`, `#ec4899`, `#fff`). Needs WCAG scaffolding.
-- [x] 🎨 `js/UI/Singularity/styles/SingularityBespokeBuilder.css`: Contains hardcoded hex colors instead of CSS variables (e.g., `#60a5fa`, `#f87171`). Needs WCAG scaffolding.
 
 ## 🗑️ Semantic Dust & Hygiene (Target: [AST] / REPLACE)
 - [ ] 🧹 Raw `console` wrappers: Replace numerous raw `console.warn` and `console.error` instances throughout `js/` with the structured JSON telemetry logger (`js/Utils/telemetry-utils.js`).
 
 ## ⚡ Performance Fixes (Target: [Bolt+] / ACCELERATE)
-- [x] ⚡ js/UI/JulesTerminal/TerminalPolling.js: Buffer Allocation in string loop.
