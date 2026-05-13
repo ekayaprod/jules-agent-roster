@@ -5,6 +5,8 @@ test.describe('Fusion Lab End-to-End', () => {
     // Navigate to the app
     await page.goto('/');
 
+    await page.waitForSelector('#initial-loading-overlay', { state: 'hidden' });
+
     // Ensure Fusion Lab section is visible
     await expect(page.getByRole('heading', { name: /The Fusion Lab/i })).toBeVisible();
 

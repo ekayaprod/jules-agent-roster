@@ -4,7 +4,7 @@ test.describe('Settings Modal', () => {
   test('User can open and close settings modal', async ({ page }) => {
     await page.goto('/');
 
-    await page.waitForSelector('#initial-loading-overlay.hidden', { state: 'attached' });
+    await page.waitForSelector('#initial-loading-overlay', { state: 'hidden' });
 
     const settingsBtn = page.getByRole('button', { name: /Settings/i });
     await expect(settingsBtn).toBeVisible();
