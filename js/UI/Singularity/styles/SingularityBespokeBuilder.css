@@ -8,15 +8,15 @@
         }
 
         .sg-forge {
-          --sg-mythic:   var(--mythic, #d946ef);
-          --sg-card:     var(--card-bg, #0f0f14);
+          --sg-mythic:   var(--mythic);
+          --sg-card:     var(--card-bg);
           --sg-border:   var(--border, rgba(255,255,255,0.08));
           --sg-muted:    var(--text-secondary, rgba(255,255,255,0.5));
           --sg-surface:  var(--details-bg, rgba(255,255,255,0.04));
-          --sg-maker:    var(--accent, #38bdf8);
-          --sg-assassin: var(--error, #ef4444);
-          --sg-sentinel: var(--success, #10b981);
-          --sg-oracle:   var(--warning, #f59e0b);
+          --sg-maker:    var(--accent);
+          --sg-assassin: var(--error);
+          --sg-sentinel: var(--success);
+          --sg-oracle:   var(--warning);
 
           background-color: var(--sg-card);
           border: 1px solid var(--sg-border);
@@ -110,7 +110,7 @@
         .sg-forge-inner:hover .emoji-hero { transform: scale(1.05) translateY(-0.125rem); }
 
         .title-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1rem; text-align: left; }
-        .agent-title { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text-primary, #fff); font-family: -apple-system, sans-serif; }
+        .agent-title { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text-primary); font-family: -apple-system, sans-serif; }
         .role-tag { font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 999px; background-color: rgba(56, 189, 248, 0.1); color: var(--sg-maker); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; font-family: -apple-system, sans-serif; }
 
         .description { color: var(--sg-muted); font-size: 0.8125rem; line-height: 1.5; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; margin-top: 0.75rem; font-family: -apple-system, sans-serif; }
