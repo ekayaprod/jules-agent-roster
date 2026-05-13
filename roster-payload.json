@@ -420,16 +420,6 @@
     "isCustom": true
   },
   {
-    "name": "Choreographer",
-    "emoji": "🩰",
-    "role": "Transition Enforcer",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "CHOREOGRAPH the seams. I weave fluid transitions and visual feedback into frozen execution pipelines to mask the latency.",
-    "promptFile": "prompts/fusions/Choreographer.md",
-    "isCustom": true
-  },
-  {
     "name": "Chronicle",
     "emoji": "🖨️",
     "role": "Pipeline Machinist",
