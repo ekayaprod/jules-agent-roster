@@ -20,9 +20,21 @@ class SingularityBespokeBuilder {
       <div class="sg-forge" id="sgForgeContainer">
 
         <div class="sg-header sg-forge-inner" id="sgHeaderToggle">
-          <div class="sg-header-glow"></div>
-          <h3 class="sg-title">🌌 Singularity Meta-Forge</h3>
-          <p class="sg-subtitle">Define your agent below — Singularity will scan your repo and forge the rest.</p>
+          <div class="front-content-wrapper">
+            <div class="card-top">
+              <div class="card-top-left">
+                <div class="emoji-hero">🌌</div>
+              </div>
+              <div class="card-top-right">
+                <div class="title-group">
+                  <h3 class="agent-title">Singularity Meta-Forge</h3>
+                  <span class="role-tag">Meta-Architect</span>
+                </div>
+              </div>
+            </div>
+            <div class="description mt-3">Define your agent below — Singularity will scan your repo and forge the rest.</div>
+          </div>
+          <div class="flip-hint sg-expand-hint" aria-label="Tap to view forge" >↓</div>
         </div>
 
         <div class="sg-body">
