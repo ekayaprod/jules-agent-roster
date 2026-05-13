@@ -22,3 +22,5 @@
 
 ## ⚡ Performance Fixes (Target: [Bolt+] / ACCELERATE)
 - [x] ⚡ js/UI/JulesTerminal/TerminalPolling.js: Buffer Allocation in string loop.
+## 🚀 CI Secrets Injection (Target: [Launchpad] / DISPATCH)
+- [x] 🚀 `.github/workflows/deploy.yml`: Missing AI environment bindings injected.
