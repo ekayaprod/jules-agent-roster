@@ -207,3 +207,7 @@ class SearchController {
     if (nav) nav.classList.remove("search-active");
   }
 }
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = SearchController;
+}
