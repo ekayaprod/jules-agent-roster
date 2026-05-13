@@ -127,3 +127,33 @@ describe('AgentUtils', () => {
             new Function('module', code)(undefined);
         }).not.toThrow();
     });
+
+describe('AgentUtils Boundary Interrogation: isCustom branch', () => {
+    it('returns custom fusions path when agent is custom', () => {
+        expect(AgentUtils.getPromptUrl({ name: 'FusionAgent', isCustom: true })).toBe('./prompts/fusions/FusionAgent.md');
+    });
+
+    it('returns standard path when agent is NOT custom', () => {
+        expect(AgentUtils.getPromptUrl({ name: 'NormalAgent', isCustom: false })).toBe('./prompts/NormalAgent.md');
+    });
+
+    it('returns standard path when agent has neither isCustom nor promptFile', () => {
+        expect(AgentUtils.getPromptUrl({ name: 'DefaultAgent' })).toBe('./prompts/DefaultAgent.md');
+    });
+});
+
+describe('AgentUtils Boundary Interrogation: promptFile branch', () => {
+    it('returns explicit promptFile when provided on agent', () => {
+        expect(AgentUtils.getPromptUrl({ name: 'NormalAgent', promptFile: 'https://cdn.example.com/prompt.md' })).toBe('https://cdn.example.com/prompt.md');
+    });
+});
+
+describe('AgentUtils Boundary Interrogation: getValidCustomAgents branch', () => {
+    it('skips inherited prototype properties', () => {
+        const mockAgents = Object.create({ inheritedProp: { name: 'Inherited', prompt: 'Prompt' } });
+        mockAgents.ValidAgent = { name: 'Valid', prompt: 'Prompt' };
+        const result = AgentUtils.getValidCustomAgents(mockAgents);
+        expect(result).toHaveLength(1);
+        expect(result[0].name).toBe('Valid');
+    });
+});
