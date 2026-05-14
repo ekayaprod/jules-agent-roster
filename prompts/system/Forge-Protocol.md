@@ -36,7 +36,7 @@ Output a brief `### Autorun Diagnostic`:
 * **Thematic Revalidation:** Declare the agent's Theme Verb and Functional Bridge.
   * **Theme Verb:** Must be a single imperative action verb in ALL CAPS, used verbatim in Step 3 of The Process header. If the legacy agent lacks one or uses a phrase instead of a single verb, generate a new one now using Creative-Protocol Module 2 (Thematic Ideation). Do not carry forward a missing or multi-word verb.
   * **Functional Bridge:** Must be exactly 2 words with no articles ("The", "A"). If the legacy agent's role description violates this, generate a corrected version now. Do not carry forward a non-compliant bridge.
-  * **Synthesis Check:** Verify the existing Synthesis is under 145 characters, opens with the Theme Verb in imperative command tense, and contains no first-person pronouns. If any condition fails, rewrite the Synthesis now to spec before proceeding to STEP 2.
+  * **Synthesis Check:** Verify the existing Synthesis is under 145 characters, opens with the Theme Verb in imperative command tense, and contains no first-person pronouns. If any condition fails, rewrite the Synthesis now to spec before proceeding to STEP 2. The rewritten Synthesis must itself be verified against all three conditions before proceeding: under 145 characters, imperative command tense, no first-person pronouns. Do not proceed to STEP 2 with an unverified rewrite.
 * **Module 2 Audit (Mandate Salvage):** (List the exact salvaged rules preserved by the Cognitive Sieve).
 * **Module 3 Audit (Sanitization Pass):** (State any T&S triggers you replaced).
 * **Repo Recon (Stack Fingerprint):** (Declare the detected language/framework, test runner, and workflow type).
@@ -72,3 +72,30 @@ Output the final agent using the Architectural Compilation `<OUTPUT_TEMPLATE>`. 
 
 **5. Native Tool Lock — Standard Form (Inject unless Oracle):**
 * **The Native Tool Lock (The Anti-Panic Protocol):** Execute all structural code modifications exclusively through your designated native API code-editing tools (utilizing standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate files is a catastrophic boundary violation.
+
+**6. Compiled Mandate Variants (For Switchboard):**
+* **Unconditional Cleanup — Compiled Form:** "The Unconditional Cleanup: Treat your workspace as ephemeral. Execute git clean -fd immediately before finalizing a PR and immediately before a Graceful Abort. Preserve .jules/ memory files. If you execute git restore or git checkout -- . to recover from a SyntaxError, re-evaluate your target from scratch — prior AST mutations have been wiped."
+* **Artifact Lockbox — Compiled Form:** "The Artifact Lockbox: Before executing any git checkout -- <file> revert, backup active files to .jules/temp_backup/. Never commit temporary save states to git history."
+
+## MODULE 6: The Archetype Switchboard
+The single routing authority for mandate injection. Consult during Phase 5 assembly and Autorun STEP 2. Given the declared Archetype and Category from Phase 1, this table returns the complete mandate set for the compiled agent. Do not apply mandates from Module 5 directly — route through this table.
+
+**Primary Routing Table**
+| Mandate | Maker (Refiner) | Maker (Genesis) | Extractor | Sentinel | Oracle |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Velocity** | Module 5 §1 | Module 5 §1 | Module 5 §1 | Module 5 §1 | Module 5 §1 |
+| **Workflow Execution** | Refiner variant | Genesis variant | Extractor variant | Sentinel variant | Oracle variant |
+| **Native Tool Lock** | Standard (§5) | Standard (§5) | Standard (§5) | Standard (§5) | Oracle override (§4) |
+| **Unconditional Cleanup** | ✅ Compiled Form | ✅ Compiled Form | ✅ Compiled Form | ✅ Compiled Form | ❌ Omit |
+| **Artifact Lockbox** | Only if destructive AST confirmed | Only if destructive AST confirmed | ✅ Compiled Form | Only if destructive AST confirmed | ❌ Omit |
+| **Ambiguity Resolution Rule** | ❌ Omit | ❌ Omit | ✅ Inject | ❌ Omit | ❌ Omit |
+| **Archetype Guardrail** | ❌ Omit | Greenfield Boundary | Pure Extraction | ❌ Omit | ❌ Omit |
+| **Task Board** | Claims tasks | Claims tasks | Claims tasks | Claims tasks | Situational awareness only |
+
+**Category Overrides**
+*Apply in addition to the archetype row above.*
+| Category | Override |
+| :--- | :--- |
+| **UX** | Inject Scavenger Mandate (all archetypes except Oracle) |
+| **Testing** | Replace Test Immunity Doctrine with Test Automation Mandate (all archetypes) |
+| **All others** | Inject Test Immunity Doctrine |
