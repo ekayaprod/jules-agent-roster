@@ -668,8 +668,7 @@ describe('JulesTerminal', () => {
             expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session:'), TOAST_TYPES.ERROR, 20000);
             expect(DOMUtils.setButtonState).toHaveBeenCalledWith(btn, BUTTON_STATES.READY, 'Launch in Jules 🚀');
             expect(dispatchSpy).toHaveBeenCalledWith("JULES_LAUNCH_SESSION_FAILED", expect.any(Error), { sourceName: 'sources/github/a/b' });
-            expect(consoleSpy).toHaveBeenCalledWith("Failed to launch session for repository sources/github/a/b", expect.any(Error));
-            expect(consoleSpy.mock.calls[0][1].message).toContain("JulesSessionLaunchFailure");
+            // console.error was removed in favor of dispatchEvent.
 
             dispatchSpy.mockRestore();
             consoleSpy.mockRestore();

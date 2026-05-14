@@ -400,8 +400,9 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         expect(fusionLab.renderFusionResult).toHaveBeenCalledWith(fusedAgent);
         expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
 
-        // Prove the error was properly logged
-        expect(consoleErrorSpy).toHaveBeenCalledWith(expect.any(Error));
+        // Prove the error was logged via telemetry
+        // The original logic expected a console.error, but it was replaced by telemetry event FUSION_LAB_INDEX_UNLOCK_FAILED.
+        // We already have expect(dispatchSpy).toHaveBeenCalledWith... but let's just make sure warn wasn't called.
         expect(consoleWarnSpy).not.toHaveBeenCalled();
 
         consoleErrorSpy.mockRestore();

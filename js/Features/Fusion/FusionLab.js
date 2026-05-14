@@ -327,7 +327,6 @@ class FusionLab {
       } catch (e) {
         const unlockError = new Error("FusionLab: Failed to unlock agent in index");
         unlockError.cause = e;
-        console.error(unlockError);
         const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
         if (tu) tu.dispatchEvent("FUSION_LAB_INDEX_UNLOCK_FAILED", unlockError, { agentA: agentA.name, agentB: agentB.name });
       }
@@ -352,7 +351,8 @@ class FusionLab {
     const agentB = this.agentMap.get(names[1]);
 
     if (!agentA || !agentB) {
-      console.warn("FusionLab: Could not find agents for key", key);
+      const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+      if (tu) tu.dispatchEvent("FUSION_LAB_AGENTS_NOT_FOUND", "Could not find agents for key", { key });
       return;
     }
 
