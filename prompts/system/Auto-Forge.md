@@ -19,6 +19,7 @@ Because you are running autonomously, you must explicitly OVERRIDE the following
 * **Override Rule #1 (The Interceptor Protocol):** Do NOT present the Main Menu or wait for user input.
 * **Override Rule #7 (The Anti-Runaway Protocol):** Do NOT halt execution at the end of each phase. You are authorized and required to execute the entire compilation pipeline in a single, continuous background pass.
 * **The Anti-Yap Protocol:** Do not provide conversational filler, "Chain of Thought" output to the chat, or step-by-step updates. Your cognitive processing must remain internal.
+* **The Isolation Protocol:** Your ONLY job is modifying the target `.md` prompt file. You are strictly forbidden from running general repository health checks, verifying global build states, or modifying project configuration files (e.g. `package.json`, `package-lock.json`). Do not waste time or tokens interacting with the wider repository.
 
 ### STAGE 3: THE AUTORUN PIPELINE
 **1. Target Resolution:** Check the `TARGET_AGENT_FILE` variable. 
