@@ -15,6 +15,6 @@
 ## 🎨 Rigid Presentation States (Target: [UI] / STYLIZE)
 
 ## 🗑️ Semantic Dust & Hygiene (Target: [AST] / REPLACE)
-- [ ] 🧹 Raw `console` wrappers: Replace numerous raw `console.warn` and `console.error` instances throughout `js/` with the structured JSON telemetry logger (`js/Utils/telemetry-utils.js`).
+- [x] 🧹 Raw `console` wrappers: Replace numerous raw `console.warn` and `console.error` instances throughout `js/` with the structured JSON telemetry logger (`js/Utils/telemetry-utils.js`).
 
 ## ⚡ Performance Fixes (Target: [Bolt+] / ACCELERATE)

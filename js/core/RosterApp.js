@@ -52,11 +52,15 @@ class RosterApp {
         // Run concurrent initialization tasks
         const initTasks = [
             this.agentRepo.fetchAgents().catch(err => {
-                console.warn("AgentRepository API failed to initialize, providing safe fallback.", err);
+                if (typeof window !== 'undefined' && window.TelemetryUtils) {
+                    window.TelemetryUtils.dispatchEvent("AGENT_REPO_INIT_FAILED", err);
+                }
                 return { agents: [], customAgents: {} };
             }),
             this.julesTerminal.init().catch(err => {
-                console.warn("JulesTerminal API failed to initialize.", err);
+                if (typeof window !== 'undefined' && window.TelemetryUtils) {
+                    window.TelemetryUtils.dispatchEvent("JULES_TERMINAL_INIT_FAILED", err);
+                }
             })
         ];
 
