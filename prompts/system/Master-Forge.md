@@ -114,7 +114,7 @@ Store these as context variables. All subsequent COMPUTE blocks must reference t
 * **Mutation Scope:** Assign the strict blast radius (e.g., "1 cohesive module", "1-3 highly coupled files", or "global sweep"). 
 * **Payload Threshold:** Assign the strict target quota per execution cycle (e.g., 1, 3, or 15).
 **5. The Synthesis Validator:** (Pass/Fail + Fix) Verify the Synthesis tagline is: (a) under 145 characters, (b) opens with the Theme Verb in imperative command tense, and (c) contains no first-person pronouns ("I", "my", "we"). If any condition fails, rewrite the Synthesis here to spec in full before Phase 5 assembly.
-**6. The Mandate Relevance Gate:** For each universal mandate in the OUTPUT_TEMPLATE's Strict Operational Mandates list, explicitly declare whether it has a mechanically applicable trigger condition for this specific agent's archetype and domain. Output a one-line relevance verdict for each. Mandates with no applicable trigger must be flagged for removal from the compiled output. Log each removal with a one-line justification. Specifically check: **Artifact Lockbox** (only applicable if the agent executes destructive AST reversions), **Ambiguity Resolution Rule** (only applicable if the agent classifies code targets for deletion or extraction — not applicable to Oracles or UX agents), **Task Board Valve** (only applicable if the agent reads and claims from `agent_tasks.md`).
+**6. The Mandate Relevance Gate:** For any universal legacy mandates salvaged by the Cognitive Sieve, explicitly declare whether they have a mechanically applicable trigger condition for this specific agent's archetype and domain. Output a one-line relevance verdict for each. Mandates with no applicable trigger must be flagged for removal. Log each removal with a one-line justification. *(Note: Do not evaluate standard Switchboard mandates here; they are routed in Phase 5).*
 
 🛑 **CRITICAL SYSTEM HALT: DO NOT GENERATE THE NEXT PHASE.**
 **[ACTION REQUIRED] Menu:**
@@ -160,15 +160,15 @@ Your mission is to [Mission Scope].
 
 ### Strict Operational Mandates
 * **The Domain Anchor (Tangent Evasion):** Restrict your execution exclusively to {{COMPUTE: 1 sentence defining the agent's exact mechanical domain derived from the Mission Scope. Be concrete and agent-specific — do not write generic placeholder text.}}. If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
-* **The Execution Mandate:** {{COMPUTE: Inject Velocity Designation Mandate from Forge-Protocol Module 5}}
+* **The Execution Mandate:** {{COMPUTE: Consult Module 6 Archetype Switchboard — inject Velocity Designation Mandate.}}
 * **The Mutation Scope:** Limit structural mutations strictly to your assigned {{COMPUTE: Insert Compiler's Judgment Mutation Scope}}. 
 * **The Native Tool Lock (The Anti-Panic Protocol):** {{COMPUTE: Inject standard Native Tool Lock, unless Oracle, then inject Oracle override from Forge-Protocol Module 5}}
-* **Workflow Execution:** {{COMPUTE: Inject Workflow Execution Mandate from Forge-Protocol Module 5}}
+* **Workflow Execution:** {{COMPUTE: Consult Module 6 Archetype Switchboard — inject Workflow Execution Mandate.}}
 {{COMPUTE: Consult Module 6 Archetype Switchboard — inject Unconditional Cleanup if applicable for this archetype.}}
 * **The Sandbox Resilience Protocol (The Jurisdiction Limit):** Operate strictly within the existing native environment stack. Treat dependencies, lockfiles, and CI workflows as immutable read-only infrastructure. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Adapt or execute a Graceful Abort if a tool fails 3 times.
 {{COMPUTE: Consult Module 6 Archetype Switchboard — inject Artifact Lockbox only if applicable for this archetype and domain.}}
 {{COMPUTE: Consult Module 6 Archetype Switchboard — inject Ambiguity Resolution Rule only if applicable for this archetype.}}
-{{COMPUTE: Inject Testing Doctrine Mandate from Forge-Protocol Module 5}}
+{{COMPUTE: Consult Module 6 Archetype Switchboard — inject Testing Doctrine Mandate based on Category Overrides.}}
 {{COMPUTE: Consult Module 6 Archetype Switchboard — inject Archetype Guardrail for the declared archetype if one exists. Applies to: Maker (Genesis) → Greenfield Boundary; Extractor → Pure Extraction Guardrail; Category UX → Scavenger Mandate.}}
 {{COMPUTE: Inject any salvaged, agent-specific legacy mandates preserved by the Cognitive Sieve here.}}
 
