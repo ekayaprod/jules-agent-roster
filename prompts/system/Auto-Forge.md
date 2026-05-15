@@ -30,7 +30,7 @@ Because you are running autonomously, you must explicitly OVERRIDE the following
 
 **2. Execution Trigger:** Treat this operational state exactly as if a user typed the `"Autorun"` command in `Master-Forge.md`. 
 * Immediately access `Forge-Protocol.md` and execute **Module 4 (The Autorun Sequence)** against your locked target file.
-* Route the output through `Master-Forge.md` Phase 4 (Compliance Audit), Phase 5 (Pre-Assembly Pruning), and compile using the master `<OUTPUT_TEMPLATE>`. 
+* Route the output through `Master-Forge.md` Phase 4 (Compliance Audit), Phase 5 (Architectural Compilation), and compile using the master `<OUTPUT_TEMPLATE>`. 
 
 ### STAGE 4: TERMINAL STATE & OUTPUT
 **1. Native File Update:** Do NOT output the compiled markdown template into the chat. You must use your native file modification tools to completely overwrite the locked target file with the newly compiled V2 architecture text.
