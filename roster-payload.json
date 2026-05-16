@@ -505,7 +505,7 @@
     "role": "Stack Translator",
     "category": "observability",
     "tier": "Fusion",
-    "description": "Intercept broken test suites and translate massive terminal stack traces into actionable Markdown reports.",
+    "description": "DECODE broken test suites and translate massive terminal stack traces into actionable Markdown reports.",
     "promptFile": "prompts/fusions/Decoder.md",
     "isCustom": true
   },
@@ -654,8 +654,8 @@
     "emoji": "👷",
     "role": "Convention Enforcer",
     "category": "Architecture",
-    "tier": "Fusion",
-    "description": "STANDARDIZE chaotic file tree naming conventions and strictly update global import paths to eradicate architectural anarchy.",
+    "tier": "Core",
+    "description": "STANDARDIZE chaotic file trees and rigidly synchronize global import paths to eradicate architectural anarchy and ensure deterministic velocity.",
     "promptFile": "prompts/fusions/Foreman.md",
     "isCustom": true
   },

@@ -417,9 +417,9 @@
       
       .title-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1rem; text-align: left; }
       .agent-title { font-size: var(--text-base); font-weight: var(--weight-bold); margin: 0; font-family: -apple-system, sans-serif; }
-      .role-tag { font-size: var(--text-3xs); padding: 0.1rem 0.4rem; border-radius: 999px; background-color: rgba(56, 189, 248, 0.1); color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; font-family: -apple-system, sans-serif;}
+      .role-tag { font-size: var(--text-3xs); padding: 0.1rem 0.4rem; border-radius: 999px; background-color: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; font-family: -apple-system, sans-serif;}
       .tag-container { display: flex; flex-wrap: wrap; gap: 0.25rem; justify-content: flex-start; }
-      .meta-tag { font-size: var(--text-3xs); padding: 0.1rem 0.4rem; border-radius: 0.25rem; background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); }
+      .meta-tag { font-size: var(--text-3xs); padding: 0.1rem 0.4rem; border-radius: 0.25rem; background: color-mix(in srgb, var(--bg-color) 50%, transparent); border: 1px solid var(--border); }
       
       .description { color: var(--text-secondary); font-size: clamp(0.75rem, 1.5vw, 0.95rem); line-height: var(--leading-snug); font-family: -apple-system, sans-serif; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; }
 
@@ -428,7 +428,7 @@
       .category-nav.search-active .nav-pill { display: none; }
       .category-nav.search-active .search-wrapper { display: flex !important; flex: 1; }
       .nav-pill { color: var(--text-secondary); text-decoration: none; font-size: var(--text-xs); font-weight: var(--weight-semibold); padding: 0.4rem 0.8rem; border-radius: 999px; transition: all 0.2s; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: none; cursor: pointer; }
-      .nav-pill:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
+      .nav-pill:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); }
       .nav-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       .nav-pill:active { transform: scale(0.95); }
       .nav-pill.active { background: var(--accent); color: var(--bg-color); }
@@ -440,7 +440,7 @@
       .dropdown-menu { position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; z-index: 50; display: none; flex-direction: column; min-width: 12rem; box-shadow: 0 -0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.5); overflow: hidden; }
       .dropdown-menu.visible { display: flex !important; }
       .dropdown-item { width: 100%; background: transparent; color: var(--text-primary); border: none; padding: 0.75rem 1rem; text-align: left; font-size: var(--text-sm); border-radius: 0; transition: all 0.2s;}
-      .dropdown-item:hover { background: rgba(56, 189, 248, 0.1); color: var(--accent); }
+      .dropdown-item:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); }
       .dropdown-item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
       /* MODALS */
@@ -461,8 +461,8 @@
       .pin-btn:active { transform: scale(0.95); }
       .pin-btn.pinned:active { transform: rotate(15deg) scale(0.95); }
 
-      .fusion-list-item { display: flex; align-items: center; width: 100%; padding: 0.75rem; background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); border-radius: 0.5rem; cursor: pointer; transition: all 0.2s ease; gap: 0.75rem; text-align: left; }
-      .fusion-list-item:hover, .fusion-list-item:focus-visible { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.1); transform: translateY(-2px); }
+      .fusion-list-item { display: flex; align-items: center; width: 100%; padding: 0.75rem; background: color-mix(in srgb, var(--bg-color) 50%, transparent); border: 1px solid var(--border); border-radius: 0.5rem; cursor: pointer; transition: all 0.2s ease; gap: 0.75rem; text-align: left; }
+      .fusion-list-item:hover, .fusion-list-item:focus-visible { border-color: var(--accent); background-color: color-mix(in srgb, var(--accent) 10%, transparent); transform: translateY(-2px); }
       .fusion-list-item:active { transform: translateY(0); }
       .fusion-list-icon { font-size: var(--text-2xl); line-height: 1; }
       .fusion-list-details { display: flex; flex-direction: column; align-items: flex-start; }
@@ -472,8 +472,8 @@
       .fusion-quick-container { display: flex; flex-direction: column; gap: 0.5rem; border-top: 1px dashed var(--border); padding-top: 0.75rem; margin-top: auto; }
       .fusion-quick-label { font-size: var(--text-3xs); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-family: -apple-system, sans-serif; font-weight: var(--weight-semibold); }
       .fusion-quick-list { list-style: none; padding: 0; margin: 0; display: flex; gap: 0.5rem; flex-wrap: wrap; }
-      .fusion-quick-btn { background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); border-radius: 0.25rem; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: all 0.2s ease; padding: 0; }
-      .fusion-quick-btn:hover, .fusion-quick-btn:focus-visible { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.1); transform: translateY(-2px); }
+      .fusion-quick-btn { background: color-mix(in srgb, var(--bg-color) 50%, transparent); border: 1px solid var(--border); border-radius: 0.25rem; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: all 0.2s ease; padding: 0; }
+      .fusion-quick-btn:hover, .fusion-quick-btn:focus-visible { border-color: var(--accent); background-color: color-mix(in srgb, var(--accent) 10%, transparent); transform: translateY(-2px); }
       .fusion-quick-btn:active { transform: translateY(0); }
 
       .dropdown-header { padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: bold; color: var(--text-secondary); text-transform: uppercase; border-bottom: 1px solid var(--border); }
@@ -523,11 +523,11 @@
       .fusion-error-title { margin: 0; font-size: 0.875rem; font-weight: 600; color: var(--error); }
       .fusion-error-desc { margin: 0; font-size: 0.875rem; color: var(--text-secondary); }
 
-      button.btn-danger { background-color: transparent; color: var(--term-error); border: 1px solid var(--term-error); }
-      button.btn-danger:hover { background-color: rgba(239, 68, 68, 0.1); }
+      button.btn-danger { background-color: transparent; color: var(--term-error); border: 1px solid var(--term-error); transition: all 0.2s ease-in-out; }
+      button.btn-danger:hover { background-color: color-mix(in srgb, var(--term-error) 10%, transparent); }
       button.btn-danger:focus-visible { outline: 2px solid var(--term-error); outline-offset: 2px; }
 
-      button.btn-success { background-color: var(--term-success); color: var(--bg-color); border: none; }
+      button.btn-success { background-color: var(--term-success); color: var(--bg-color); border: none; transition: all 0.2s ease-in-out; }
       button.btn-success:hover { filter: brightness(1.1); }
       button.btn-success:focus-visible { outline: 2px solid var(--term-success); outline-offset: 2px; }
 
