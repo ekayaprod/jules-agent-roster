@@ -10,9 +10,9 @@
         .sg-forge {
           --sg-mythic:   var(--mythic);
           --sg-card:     var(--card-bg);
-          --sg-border:   var(--border, rgba(255,255,255,0.08));
-          --sg-muted:    var(--text-secondary, rgba(255,255,255,0.5));
-          --sg-surface:  var(--details-bg, rgba(255,255,255,0.04));
+          --sg-border:   var(--border, color-mix(in srgb, var(--text-primary) 8%, transparent));
+          --sg-muted:    var(--text-secondary, color-mix(in srgb, var(--text-primary) 50%, transparent));
+          --sg-surface:  var(--details-bg, color-mix(in srgb, var(--text-primary) 4%, transparent));
           --sg-maker:    var(--accent);
           --sg-assassin: var(--error);
           --sg-sentinel: var(--success);
@@ -111,7 +111,7 @@
 
         .title-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1rem; text-align: left; }
         .agent-title { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text-primary); font-family: -apple-system, sans-serif; }
-        .role-tag { font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 999px; background-color: rgba(56, 189, 248, 0.1); color: var(--sg-maker); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; font-family: -apple-system, sans-serif; }
+        .role-tag { font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 999px; background-color: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--sg-maker); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; font-family: -apple-system, sans-serif; }
 
         .description { color: var(--sg-muted); font-size: 0.8125rem; line-height: 1.5; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; margin-top: 0.75rem; font-family: -apple-system, sans-serif; }
 
@@ -138,7 +138,7 @@
           font-size: 0.65rem;
           font-weight: 500;
           letter-spacing: 0.04em;
-          color: rgba(255,255,255,0.3);
+          color: color-mix(in srgb, var(--text-primary) 30%, transparent);
           text-transform: none;
           margin-left: 0.5rem;
         }
@@ -150,7 +150,7 @@
           gap: 0.5rem;
         }
         .sg-archetype-card {
-          --ac: rgba(255,255,255,0.15);
+          --ac: color-mix(in srgb, var(--text-primary) 15%, transparent);
           background: var(--sg-surface);
           border: 1px solid var(--sg-border);
           border-radius: 0.625rem;
@@ -181,8 +181,8 @@
 
         @media (hover: hover) and (pointer: fine) {
           .sg-archetype-card:hover {
-            border-color: rgba(255,255,255,0.15);
-            background: rgba(255,255,255,0.04);
+            border-color: color-mix(in srgb, var(--text-primary) 15%, transparent);
+            background: color-mix(in srgb, var(--text-primary) 4%, transparent);
           }
         }
         .sg-archetype-card.selected {
@@ -255,7 +255,7 @@
           line-height: 1.6;
         }
         @media (hover: hover) and (pointer: fine) {
-          .sg-pill:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); border-color: rgba(255,255,255,0.2); }
+          .sg-pill:hover { background: color-mix(in srgb, var(--text-primary) 5%, transparent); color: var(--text-primary); border-color: color-mix(in srgb, var(--text-primary) 20%, transparent); }
           .sg-pill[data-archetype="MAKER"]:hover    { border-color: var(--sg-maker);    color: var(--sg-maker);    }
           .sg-pill[data-archetype="ASSASSIN"]:hover { border-color: var(--sg-assassin); color: var(--sg-assassin); }
           .sg-pill[data-archetype="SENTINEL"]:hover { border-color: var(--sg-sentinel); color: var(--sg-sentinel); }
@@ -307,7 +307,7 @@
         }
         .sg-constraint:active { transform: scale(0.98); }
         @media (hover: hover) and (pointer: fine) {
-          .sg-constraint:hover { background: rgba(255,255,255,0.03); }
+          .sg-constraint:hover { background: color-mix(in srgb, var(--text-primary) 3%, transparent); }
         }
         .sg-constraint input[type="checkbox"] {
           margin-top: 2px;
@@ -423,7 +423,7 @@
         }
         .sg-outcome-note code {
           font-family: monospace;
-          background: rgba(255,255,255,0.07);
+          background: color-mix(in srgb, var(--text-primary) 7%, transparent);
           padding: 0.1rem 0.3rem;
           border-radius: 0.25rem;
           font-size: 0.65rem;
@@ -447,7 +447,7 @@
           .sg-submit:not(:disabled):hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
-            box-shadow: 0 8px 28px rgba(217,70,239,0.35);
+            box-shadow: 0 8px 28px color-mix(in srgb, var(--sg-mythic) 35%, transparent);
           }
         }
         .sg-submit:not(:disabled):active { transform: scale(0.985); }
