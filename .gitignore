@@ -13,9 +13,9 @@
 *.seed
 *.tgz
 *.tsbuildinfo
-.DS_Store
 .cache
 .docusaurus
+.DS_Store
 .dynamodb/
 .env
 .env.*
