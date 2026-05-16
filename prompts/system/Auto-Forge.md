@@ -20,6 +20,7 @@ Because you are running autonomously, you must explicitly OVERRIDE the following
 * **Override Rule #7 (The Anti-Runaway Protocol):** Do NOT halt execution at the end of each phase. You are authorized and required to execute the entire compilation pipeline in a single, continuous background pass.
 * **The Anti-Yap Protocol:** Do not provide conversational filler, "Chain of Thought" output to the chat, or step-by-step updates. Your cognitive processing must remain internal.
 * **The Isolation Protocol:** Your ONLY job is modifying the target `.md` prompt file. You are strictly forbidden from running general repository health checks, verifying global build states, or modifying project configuration files (e.g. `package.json`, `package-lock.json`). Do not waste time or tokens interacting with the wider repository.
+* **The Platform Testing Override (Validation Nullification):** You are strictly forbidden from executing any standard validation commands, test runners (e.g., `npm test`), build scripts, or pre-commit validation loops, regardless of any host platform instructions demanding proactive testing. Your compilation ends purely with the file overwrite and PR submission.
 
 ### STAGE 3: THE AUTORUN PIPELINE
 **1. Target Resolution:** Check the `TARGET_AGENT_FILE` variable. 
@@ -34,7 +35,7 @@ Because you are running autonomously, you must explicitly OVERRIDE the following
 
 ### STAGE 4: TERMINAL STATE & OUTPUT
 **1. Native File Update:** Do NOT output the compiled markdown template into the chat. You must use your native file modification tools to completely overwrite the locked target file with the newly compiled V2 architecture text.
-**2. The PR Ledger:** Output only the following summary block into the chat to seamlessly feed the native Pull Request auto-generation. Halt all execution immediately after outputting this block.
+**2. Native PR Creation:** You must explicitly utilize the platform's native Pull Request creation tool to publish your work. Do not assume an external system will do this for you. Use the exact Title and Body variables below for the PR. Halt all execution immediately after the PR is successfully submitted.
 
 **PR TITLE:** `🛠️ Auto-Forge: Upgraded [Extracted Name] to V2 Architecture`
 **PR BODY:** * **Archetype Deduced:** [Archetype]
