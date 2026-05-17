@@ -76,7 +76,7 @@ class SingularityBespokeBuilder {
           <div>
             <div class="sg-mission-header">
               <div class="sg-mission-title-group">
-                <label class="sg-label" style="margin:0" for="sgMission">Core Mission</label>
+                <label class="sg-label sg-mission-label" for="sgMission">Core Mission</label>
                 <span id="sgPredictionBadge" class="sg-prediction-badge">🛠️ Maker</span>
               </div>
               <div class="sg-pills">

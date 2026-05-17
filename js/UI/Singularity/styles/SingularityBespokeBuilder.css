@@ -209,6 +209,7 @@
         }
 
         /* ── Mission & Prediction Badge ── */
+        .sg-mission-label { margin: 0; }
         .sg-mission-header {
           display: flex;
           align-items: center;

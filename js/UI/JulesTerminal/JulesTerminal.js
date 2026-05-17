@@ -306,7 +306,7 @@ class JulesTerminal {
             const escapedTitle = formatUtils ? formatUtils.escapeHTML(pr.title) : pr.title;
 
             item.innerHTML = `
-                <span style="color: var(--term-success); font-weight: 600; flex-shrink: 0;">[PR OPEN]</span>
+                <span class="pr-open-status">[PR OPEN]</span>
                 <a href="#" class="term-pr-title term-link pr-modal-trigger" data-pr-number="${pr.number}">#${pr.number} ${escapedTitle}</a>
             `;
             const link = item.querySelector('.pr-modal-trigger');

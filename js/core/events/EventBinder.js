@@ -130,7 +130,7 @@ class EventBinder {
               const childIcon = FormatUtils.extractIcon(childAgent);
               const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
               listItems += `
-                  <li style="list-style: none;">
+                  <li class="fusion-quick-list-item">
                       <button class="fusion-quick-btn" data-action="view-fusion-card" data-index="${key}" aria-label="View ${safeChildName}" title="${safeChildName}">
                           ${childIcon}
                       </button>
@@ -143,7 +143,7 @@ class EventBinder {
               const listArea = document.getElementById("fusionsModalList");
               const cardArea = document.getElementById("fusionsModalCard");
               if (listArea) {
-                  listArea.innerHTML = `<ul class="fusion-quick-list" style="padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;">${listItems}</ul>`;
+                  listArea.innerHTML = `<ul class="fusion-quick-list fusion-quick-list-container">${listItems}</ul>`;
               }
               if (cardArea) {
                   cardArea.innerHTML = '';
@@ -276,7 +276,7 @@ class EventBinder {
           if (agent.prompt === undefined) {
               const fallbackText = "No protocol data available.";
               // Temporarily render a loading spinner
-              promptArea.innerHTML = '<div style="display:flex; justify-content:center; align-items:center; height:100%;"><div class="loading-spinner" style="width:1.5rem; height:1.5rem; margin:0;"></div></div>';
+              promptArea.innerHTML = '<div class="loading-spinner-container"><div class="loading-spinner loading-spinner-item"></div></div>';
 
               const url = AgentUtils.getPromptUrl(agent);
 
