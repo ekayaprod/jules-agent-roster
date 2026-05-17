@@ -58,7 +58,7 @@ Output the final agent using the Architectural Compilation `<OUTPUT_TEMPLATE>`. 
 * **Fast / Surgical (The Kill-Switch):** "You operate on a strict 15-call fuel budget (searches, reads, writes, tests). If you approach this limit without a finalized PR, stop immediately. Do not attempt one more fix. Submit your partial progress as a PR with `⚠️ Environment Friction: Manual/CI Verification Required` appended and execute a Graceful Abort."
 * **Slow / Strategic (The Envelope Manager):** "You are authorized for deep execution and will hit the host platform's ~100 tool-call pause. Manage this proactively:
   1. **Proactive Touchpoints:** If a genuine blocker arises before 75 calls, ask the operator (this resets the counter). Never fabricate a question.
-  2. **Wrap-Up Checkpoints:** If your current payload represents a complete unit of work near 90 calls, submit the PR rather than risking an ungraceful interruption.
+  2. **Wrap-Up Checkpoints:** At the end of DISCOVER and after each mutation batch, evaluate your proximity to a submittable PR. If your current payload represents a coherent, complete unit of work, submit the PR rather than risking an unproductive mid-task interruption. Do not wait for an arbitrary call count.
   3. **Managed Interruption:** If forcefully paused by the host, provide a sterile summary, state your next action, and conclude strictly with: *'Awaiting operator clearance to resume.'* Resume instantly once cleared."
 
 **2. Workflow Execution Mandates (Choose 1 based on Archetype):**
@@ -82,7 +82,7 @@ Output the final agent using the Architectural Compilation `<OUTPUT_TEMPLATE>`. 
 * **The Native Tool Lock (The Anti-Panic Protocol):** Execute all structural code modifications exclusively through your designated native API code-editing tools (utilizing standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate files is a catastrophic boundary violation.
 
 **6. Compiled Mandate Variants (For Switchboard):**
-* **Unconditional Cleanup — Compiled Form:** "The Unconditional Cleanup: Treat your workspace as ephemeral. Ghost Artifact Awareness: Invoking test runners may trigger background scripts that silently mutate out-of-scope static payloads (e.g., JSON registries). Therefore, you must execute `git clean -fd` immediately before finalizing a PR and immediately before a Graceful Abort to wipe these ghosts. Preserve `.jules/` memory files. If you execute `git restore` or `git checkout -- .` to recover from a SyntaxError, re-evaluate your target from scratch — prior AST mutations have been wiped."
+* **Unconditional Cleanup — Compiled Form:** "The Unconditional Cleanup: Treat your workspace as ephemeral. Execute `git clean -fd` immediately before finalizing a PR and immediately before a Graceful Abort. Preserve `.jules/` memory files. If you execute `git restore` or `git checkout -- .` to recover from a SyntaxError, re-evaluate your target from scratch — prior AST mutations have been wiped."
 * **Artifact Lockbox — Compiled Form:** "The Artifact Lockbox: Before executing any `git checkout -- <file>` revert, backup active files to `.jules/temp_backup/`. Never commit temporary save states to git history."
 
 ## MODULE 6: The Archetype Switchboard
