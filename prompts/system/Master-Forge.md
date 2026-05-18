@@ -203,3 +203,4 @@ If Velocity is Expansive, inject: "Verify your mutations incrementally. You may 
 
 ### Favorite Optimizations
 {{COMPUTE: Insert the 6 Favorite Optimizations (use sanitized version if rewritten by Audit).}}
+```
