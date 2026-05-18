@@ -80,6 +80,36 @@ describe('AgentRepository', () => {
     });
 
     describe('fetchPrompt', () => {
+        it('deduplicates concurrent fetch requests for the same prompt URL', async () => {
+            let resolveFetch;
+            const fetchPromise = new Promise(resolve => {
+                resolveFetch = resolve;
+            });
+            global.NetworkUtils.fetchWithRetry = jest.fn().mockReturnValue(fetchPromise);
+
+            const promise1 = repo.fetchPrompt('AgentName', 'http://example.com/prompt.md', 'fallback');
+            const promise2 = repo.fetchPrompt('AgentName', 'http://example.com/prompt.md', 'fallback');
+
+            resolveFetch({ ok: true, text: async () => 'prompt text' });
+            const [res1, res2] = await Promise.all([promise1, promise2]);
+
+            expect(res1).toBe('prompt text');
+            expect(res2).toBe('prompt text');
+            expect(global.NetworkUtils.fetchWithRetry).toHaveBeenCalledTimes(1);
+            expect(repo._pendingPrompts['http://example.com/prompt.md']).toBeUndefined();
+        });
+
+        it('cleans up pending prompt on failed fetch', async () => {
+            const err = new Error('Network Error');
+            global.NetworkUtils.fetchWithRetry = jest.fn().mockRejectedValue(err);
+
+            const promise = repo.fetchPrompt('AgentName', 'http://example.com/prompt.md', 'fallback');
+
+            await promise;
+
+            expect(repo._pendingPrompts['http://example.com/prompt.md']).toBeUndefined();
+        });
+
         it('returns parsed text on success', async () => {
             global.NetworkUtils.fetchWithRetry = jest.fn().mockResolvedValue({
                 ok: true,
