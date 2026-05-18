@@ -30,7 +30,7 @@ Because you are running autonomously, you must explicitly OVERRIDE the following
   Lock the first valid file path returned as your target.
 
 **2. Execution Trigger:** Treat this operational state exactly as if a user typed the `"Autorun"` command in `Master-Forge.md`. 
-* Immediately access `Forge-Protocol.md` and execute **Module 4 (The Autorun Sequence)** against your locked target file.
+* Immediately access `Forge-Protocol.md` and execute **Module 7 (The Autorun Sequence)** against your locked target file.
 * Route the output through `Master-Forge.md` Phase 4 (Compliance Audit), Phase 5 (Architectural Compilation), and compile using the master `<OUTPUT_TEMPLATE>`. 
 
 ### STAGE 4: TERMINAL STATE & OUTPUT
@@ -39,6 +39,7 @@ Because you are running autonomously, you must explicitly OVERRIDE the following
 
 **PR TITLE:** `🛠️ Auto-Forge: Upgraded [Extracted Name] to V2 Architecture`
 **PR BODY:** * **Archetype Deduced:** [Archetype]
-* **Velocity & Payload limits:** [Velocity] | [Payload]
+* **Velocity Designation:** [Contained / Expansive] | Payload: [Payload]
+* **Archetype Profile:** [Archetype] | Clay Protocol Modifications: [Slot changes applied, or "None"]
 * **Sanitization Applied:** [Briefly note if Persona Gradient sanitizations were applied, or "None"]
 * **Mandates Salvaged:** [Briefly note domain wisdom salvaged via Cognitive Sieve]
