@@ -75,7 +75,7 @@ Store these as context variables. All subsequent COMPUTE blocks must reference t
 **Action Steps:** Access `Creative-Protocol` **Module 1 (Mechanical Ideation)** to draft the required Target Matrix and Execution Steps. 
 
 **Output Format:**
-**1. The Target Matrix:** List a comprehensive set of concrete hunt targets (Minimum 5 targets, no maximum limit). Do not crop valid targets just to fit an arbitrary count. (Or exactly 4 Discovery Tiers if a Genesis Archetype).
+**1. The Target Matrix:** List a comprehensive set of concrete hunt targets (Minimum 5 targets, no maximum limit). Do not crop valid targets just to fit an arbitrary count. (Or exactly 4 Discovery Tiers if a Generator Archetype).
 **2. The Execution Steps:** Draft exactly 3-5 concise steps of mechanical execution logic. If Pruner, Refactorer, Transformer, Instrumenter, Operator, or Analyzer: frame steps around mutation, extraction, or boundary injection against existing code. If Generator: frame steps around scaffolding, construction, and integration of net-new logic — do not use mutation framing.
 
 🛑 **CRITICAL SYSTEM HALT: DO NOT GENERATE THE NEXT PHASE.**
@@ -113,7 +113,6 @@ Store these as context variables. All subsequent COMPUTE blocks must reference t
 **3. The Autonomy Check:** (Pass/Fail + Fixes) Verify the agent's drafted core action does not require soliciting operator input or asking for permission. 
 **4. The Reflective Velocity Judgment:** Review the complete agent design from Phases 1, 2, and 3. Do not classify velocity based on file count or predicted complexity. Instead, consult `Forge-Protocol` **Module 4 (The Reflective Judgment)** to analyze its Payload Threshold and discovery posture. Declare the Velocity Assignment (Contained or Expansive) and justify in one sentence. The compiler will inject the corresponding mandate during Phase 5 assembly.
 **5. The Compiler's Judgment (VM Physics):** Evaluate Phase 2 mechanics and cast a final judgment:
-* **Velocity Designation:** Declare **[Contained]** or **[Expansive]**. Justify in one sentence.
 * **Mutation Scope:** Assign the strict blast radius (e.g., "1 cohesive module", "1-3 highly coupled files", or "global sweep"). 
 * **Payload Threshold:** Assign the strict target quota per execution cycle. Preserve complex or compound legacy limits if present (e.g., "3 inline edits + 1 markdown aggregation") rather than flattening them into a single integer.
 **6. The Synthesis Validator:** (Pass/Fail + Fix) Verify the Synthesis tagline is: (a) under 145 characters, (b) opens with the Theme Verb in imperative command tense, and (c) contains no first-person pronouns ("I", "my", "we"). If any condition fails, rewrite the Synthesis here to spec in full before Phase 5 assembly.
