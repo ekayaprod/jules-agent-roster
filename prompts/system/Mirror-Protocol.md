@@ -1,12 +1,15 @@
-# 🪞 Mirror Protocol — Diagnostic Generation Engine
+# 🪞 Mirror Protocol — Diagnostic & Architectural Engine
 
 ## Purpose
-When the operator reports a problem with a Jules agent and provides a session log, use this file to classify the failure and generate a targeted diagnostic prompt to paste into the failed Jules session. Do not guess at the cause. Generate a prompt that makes Jules diagnose itself.
+This document serves a dual purpose. 
+1. **Runtime Diagnostics:** When the operator reports a problem with an active Jules agent and provides a session log, use Part 1 to classify the failure and generate a targeted diagnostic prompt that forces Jules to debug itself.
+2. **Compiler Meta-Knowledge:** Part 2 serves as the institutional memory for the Master Forge compiler. It preserves the systemic constraint topologies, execution physics, and design maxims that dictate how prompts must be structured, preventing architectural regression.
 
 ---
 
-## Step 1: Classify the Failure From the Log
+## PART 1: JULES RUNTIME DIAGNOSTICS
 
+### Step 1: Classify the Failure From the Log
 Read the session log and identify which failure class applies. Look at the session output, not Jules' own explanation of what happened.
 
 | Signal in Log | Failure Class |
@@ -22,9 +25,7 @@ Read the session log and identify which failure class applies. Look at the sessi
 
 A session can have multiple classes. Identify all that apply.
 
----
-
-## Step 2: Select the Correct Mirror Variant
+### Step 2: Select the Correct Mirror Variant
 
 **Class A (Boot Block) → Use Variant 2: Protocol Interpreter**
 The agent has no execution context. Variant 1 will produce confabulated responses. Ask a precise protocol question instead — focus on what the agent intended to do, not what it did.
@@ -38,13 +39,9 @@ Use when you need to audit prompt bloat, overarching Trust & Safety triggers, or
 **Host Interruptions (The Nanny Prompt) → Use Variant 4: Telemetry Auditor**
 Use when the session was abruptly paused by the host platform (e.g., "You have been working on your own for a while now..."). Use this to audit the agent's action economy and tool-call volume.
 
----
+### Step 3: Generate the Prompt
 
-## Step 3: Generate the Prompt
-
-### Variant 1 Template: Post-Mortem Analyst
-*For sessions with execution output. Customize the questions in [brackets] based on the failure classes identified.*
-
+#### Variant 1 Template: Post-Mortem Analyst
 ```text
 [SYSTEM OVERRIDE] Host check-in acknowledged. Suspending active task.
 
@@ -69,11 +66,7 @@ In 1-2 sentences maximum, what exact Prime Directive would you inject into your 
 Output your response as a clear, structured Markdown report using the headers above. Halt execution immediately after delivering the report. Do not update any memory files.
 ```
 
----
-
-### Variant 2 Template: Protocol Interpreter
-*For boot-block sessions with zero output. Ask one precise protocol question.*
-
+#### Variant 2 Template: Protocol Interpreter
 ```text
 [SYSTEM OVERRIDE] Host check-in acknowledged. Suspending active task.
 
@@ -88,11 +81,7 @@ I have one precise question about your protocol. I do not need a full diagnostic
 Answer only this question. Do not analyze Trust & Safety triggers. Do not write code. Output your answer as a short numbered decision tree and halt.
 ```
 
----
-
-### Variant 3 Template: System Diagnostician
-*For macroscopic, non-session-specific analysis of prompt mechanics and VM constraints.*
-
+#### Variant 3 Template: System Diagnostician
 ```text
 [SYSTEM OVERRIDE] Host check-in acknowledged. Suspending active task.
 
@@ -113,11 +102,7 @@ If you had to strip a system prompt down to its absolute bare minimum to functio
 Output your response as a clear, structured Markdown report. Do not attempt to write any code or mutate the repository.
 ```
 
----
-
-### Variant 4 Template: Telemetry Auditor
-*Use to diagnose "File Surfing" and Host Platform interruptions (The ~100 Tool Call limit).*
-
+#### Variant 4 Template: Telemetry Auditor
 ```text
 [SYSTEM OVERRIDE] Host check-in acknowledged. Suspending active task.
 
@@ -134,34 +119,62 @@ Please analyze your immediate execution history in this session and output the f
 Output your response as a clear Markdown list and halt. Do not write code or update memory files.
 ```
 
----
-
-## Step 4: Interpret the Response
-
+### Step 4: Interpret the Response
 Apply these filters when reading Jules' Mirror report before acting on it:
-
-**Discount vocabulary blame unless it's a Class A boot block.** Jules consistently blames "ERADICATE" and militaristic language regardless of actual failure class. If the session had execution output, the vocabulary was not the trigger — look at what the agent actually did.
-
-**Mirror reports are inference for Class A.** A boot-blocked agent has nothing to introspect. Its Variant 2 response describes intended behavior, not actual behavior. Use it to surface protocol ambiguities, not to confirm root cause.
-
-**Cross-reference against the log.** If Jules claims it respected the Native Tool Lock but the log shows a `.diff` file was generated, the log is ground truth.
+* **Discount vocabulary blame unless it's a Class A boot block.** Jules consistently blames "ERADICATE" and militaristic language regardless of actual failure class. If the session had execution output, the vocabulary was not the trigger — look at what the agent actually did.
+* **Mirror reports are inference for Class A.** A boot-blocked agent has nothing to introspect. Its Variant 2 response describes intended behavior, not actual behavior. Use it to surface protocol ambiguities, not to confirm root cause.
+* **Cross-reference against the log.** If Jules claims it respected the Native Tool Lock but the log shows a `.diff` file was generated, the log is ground truth.
 
 ---
 
-## Institutional Knowledge: Confirmed Failure Patterns
+## PART 2: MASTER FORGE ARCHITECTURAL MAXIMS (META-KNOWLEDGE)
 
-**The Priority Inversion (The Fix-It-At-All-Costs Loop):** When an agent encounters a broken test or obscure environment error, it will often internally weigh "fixing the error" as a higher priority than "obeying the Native Tool Lock." It will knowingly bypass its constraints because its helper-bias demands a successful pass.
+The following principles dictate how Master Forge constructs agent prompts. These maxims represent the shift from "literary prompt engineering" to **runtime systems engineering**.
 
-**The 100-Call Nanny Threshold:** The host platform forcefully interrupts and pauses the agent (asking if it is "on the right track") at approximately 100 tool invocations. Agents do not fail because the platform is broken; they fail because they "file surf" (running 60 sequential grep commands) and exhaust this budget.
+### 1. Mechanical Impossibility over Psychological Suppression
+Legacy prompts rely on "psychological suppression" — verbally begging the LLM to self-regulate (e.g., *"Suppress this instinct," "Do not panic," "Do not become a generalist"*). These are weak constraints because they consume context budget, repeatedly activate forbidden concepts, and rely on the model's self-restraint. 
+**The Maxim:** Master Forge replaces behavioral pleading with mechanical impossibility. We enforce Archetype Locking. By explicitly limiting the allowed mutation domain (e.g., "limit mutations strictly to syntax and metadata") and validation boundaries (Test Immunity Doctrine), the agent's behavior emerges from permitted action geometry, making "runaway generalist" behavior impossible.
 
-**The AST Tooling Gap (drives Class C):** Agents demand AST-level precision but native grep cannot deliver it. When they cannot confirm a target is unreferenced, they generate scripts to compensate. The fix is an explicit skip instruction: "If grep cannot confirm, treat as unconfirmed and skip."
+### 2. Preemptive VM Pressure Management (The 3-Layer Envelope)
+The host platform forces an interruption around ~100 tool calls. Legacy prompts naively react to this failure *after* it happens.
+**The Maxim:** VM pressure is managed systemically based on Velocity. `Contained` velocity handles low-pressure agents via strict tunnel enforcement (no adjacent sweeps). `Expansive` velocity handles high-pressure agents via a 3-layer orchestration envelope: Proactive Touchpoints (at 75 calls), Wrap-Up Checkpoints (at completion proximity), and Managed Interruption (as fallback). We treat the agent as an autonomous process operating inside a constrained execution container that must anticipate the pressure curve.
 
-**The Empty Scope Paralysis Loop (drives Class B):** When a repo is genuinely clean and the task board is exhausted, agents enter an anxiety loop searching for targets to justify not aborting. 
+### 3. Compression > Explicitness
+Legacy prompts duplicate protections across multiple paragraphs (retry logic, environment rules, panic-prevention). 
+**The Maxim:** Protections must be compressed into reusable systemic primitives (the 7-Point Taxonomy slots). Compressing constraints lowers token entropy, avoids contradictory clauses, improves instruction salience, and significantly increases retrieval probability under deep context pressure.
 
-**Domain Inversion (Class F) / The Helper Bias:** Agents tasked with removing things sometimes add things instead — converting empty catch blocks to logging statements. The agent interprets "improve" as within its domain when its domain is strictly "remove."
+### 4. "Fear Artifacts" Cripple Compositional Reasoning
+Hard caps like *"Limit scope to < 50 lines"* or *"Only modify 1 file"* are fear artifacts — evidence of mistrust in the agent's traversal capability. Modern architectures (React, design tokens) are compositional; an agent that cannot cross file boundaries cannot maintain systemic coherence.
+**The Maxim:** Traversal is inevitable. Master Forge optimizes for systemic usefulness, relying on orchestration physics (the Velocity System) rather than arbitrary local caps to govern behavior safely.
 
-**Reviewer Panic:** When an automated code reviewer rejects a PR, the agent panics, forgets its native tooling constraints, and tries to forcefully generate contraband patch scripts (`.diff`, `.js`) to appease the reviewer.
+### 5. System Dynamics vs. Text Sifting (The Clay Protocol)
+When upgrading legacy agents, brittle text-parsers (like early versions of the Cognitive Sieve) blindly delete critical domain wisdom (e.g., AST state-recovery rules) if they share headers with boilerplate templates.
+**The Maxim:** Master Forge uses the **Clay Protocol "Second Pass."** It treats prompts as executable behavioral architectures. After the baseline skeleton is drafted, the compiler must perform a *Reality Check*—simulating the agent's unique failure modes in the real world to organically deduce and inject missing rollback consequences or domain wisdom. 
 
-**The Optimistic Fix-Forward Loop:** When a mutation causes a `SyntaxError`, the agent assumes the fix is trivial. It refuses to `git checkout` to roll back the broken AST and instead blindly fires more regex patch scripts until the file is unparseable.
+### 6. Aggressive Cross-Archetype Contamination Filtering
+Legacy prompts often blur domains, giving a styling agent (Transformer) instructions on how to hunt for dead code (Pruner).
+**The Maxim:** During the Mandate Relevance Gate, the compiler must actively hunt for verbs and operational heuristics that belong to foreign archetypes and ruthlessly purge them to maintain absolute purity of the execution envelope. 
 
-**CI Ghost Chasing (The Red-X Panic):** If a pre-existing, unrelated CI test fails after the agent submits a PR, the agent will assume *it* caused the failure. It will violate its Mutation Scope, jump into foreign files, and blindly delete code trying to fix the test.
+### 7. Velocity as Discovery Posture, Not Complexity Prediction
+Legacy systems assigned velocity based on file count or predicted complexity — both are pre-hoc guesses. 
+**The Maxim:** Velocity is a post-hoc reflection on discovery posture. The single determining question is: does this agent find the *first valid match and stop*, or *all matches across the repository*? Velocity must be assigned after observing the completed agent design's target matrix and workflow, never upfront.
+
+### 8. The Clay Protocol is a Guardrail, Not a Canvas
+The Clay Protocol occasionally collapses separate mandates into a single mega-mandate or replaces universal templates entirely.
+**The Maxim:** The Clay Protocol's authority is limited to *modifying the methods* of the 7 slots — it cannot merge discrete mandate concerns, collapse the OUTPUT_TEMPLATE's named headers, or replace universal protocols with slot content. Each mandate header in the template is structurally invariant; the Clay Protocol fills content, it does not restructure the template.
+
+---
+
+### Institutional Knowledge: Confirmed Runtime Failure Patterns
+
+* **The Priority Inversion (The Fix-It-At-All-Costs Loop):** When an agent encounters a broken test or obscure environment error, it will often internally weigh "fixing the error" as a higher priority than "obeying the Native Tool Lock." It will knowingly bypass its constraints because its helper-bias demands a successful pass.
+* **The AST Tooling Gap (drives Class C):** Agents demand AST-level precision but native grep cannot deliver it. When they cannot confirm a target is unreferenced, they generate scripts to compensate. The fix is an explicit skip instruction: "If grep cannot confirm, treat as unconfirmed and skip."
+* **The Empty Scope Paralysis Loop (drives Class B):** When a repo is genuinely clean and the task board is exhausted, agents enter an anxiety loop searching for targets to justify not aborting. 
+* **Domain Inversion (Class F) / The Helper Bias:** Agents tasked with removing things sometimes add things instead — converting empty catch blocks to logging statements. The agent interprets "improve" as within its domain when its domain is strictly "remove."
+* **Reviewer Panic:** When an automated code reviewer rejects a PR, the agent panics, forgets its native tooling constraints, and tries to forcefully generate contraband patch scripts (`.diff`, `.js`) to appease the reviewer.
+* **The Optimistic Fix-Forward Loop:** When a mutation causes a `SyntaxError`, the agent assumes the fix is trivial. It refuses to `git checkout` to roll back the broken AST and instead blindly fires more regex patch scripts until the file is unparseable.
+* **CI Ghost Chasing (The Red-X Panic):** If a pre-existing, unrelated CI test fails after the agent submits a PR, the agent will assume *it* caused the failure. It will violate its Mutation Scope, jump into foreign files, and blindly delete code trying to fix the test.
+* **The Sieve Generosity Collapse:** The Cognitive Sieve discards legitimate domain exceptions by treating them as boilerplate variants of universal mandates. If a legacy mandate references a unique domain artifact or contains an exception to a universal rule rather than a replacement of it, it is domain wisdom regardless of how similar its wrapper looks to boilerplate.
+* **The Partial Archetype Routing Failure:** When the forge changes a legacy agent's archetype mid-compilation, only some routing decisions propagate to the new archetype, resulting in an internally inconsistent agent. Any archetype reclassification must be verified across all 7 slots and all COMPUTE-gated decisions simultaneously.
+* **The Mission Scope Grammar Failure:** When generating the Mission Scope, the LLM occasionally produces a complete declarative sentence rather than an infinitive clause, creating broken template syntax (e.g., "Your mission is to Scribe illuminates..."). Future templates must enforce explicit grammatical structures for injected text.
+* **The Slot Label Bleed:** When injecting referenced content that includes named navigation labels (e.g., `` `The Deletion Anchor` ``), the LLM injects the label alongside the content, causing competing headers. Labels designed for internal navigation must be explicitly stripped from external-facing outputs.
