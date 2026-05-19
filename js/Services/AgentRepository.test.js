@@ -416,5 +416,13 @@ describe('AgentRepository', () => {
             const results = await repo.fetchAgents();
             expect(results.customAgents['Agent'].name).toBe("Agent");
         });
+
+        it('fails securely when Promise.all completely rejects', async () => {
+            global.NetworkUtils.fetchWithRetry = jest.fn()
+                .mockRejectedValueOnce(new Error("Global Rejection"));
+
+            await expect(repo.fetchAgents()).rejects.toThrow("Global Rejection");
+            expect(console.error).toHaveBeenCalledWith("Failed to load agent payloads", expect.any(Error));
+        });
     });
 });
