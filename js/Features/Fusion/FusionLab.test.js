@@ -585,9 +585,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
             const overlay = divs.find(d => d.innerHTML.includes('[TRAP SPRUNG] Authentication logic sabotaged. All agents accessible.'));
 
             expect(overlay).not.toBeUndefined();
-            expect(overlay.style.position).toBe('fixed');
-            expect(overlay.style.backgroundColor).toBe('rgba(0, 0, 0, 0.9)');
-            expect(overlay.style.color).toBe('var(--term-success)'); // #0f0 converts to rgb in jsdom
+            expect(overlay.className).toBe('fusion-trap-overlay');
         });
 
         it('removes overlay and resets animation after 3000ms', () => {
