@@ -7,6 +7,10 @@ const TerminalPolling = require('./TerminalPolling');
 global.JulesModals = JulesModals;
 global.TerminalPolling = TerminalPolling;
 
+const TerminalRenderer = require('./TerminalRenderer');
+const TerminalSessionManager = require('./TerminalSessionManager');
+global.TerminalRenderer = TerminalRenderer;
+global.TerminalSessionManager = TerminalSessionManager;
 describe('JulesTerminal', () => {
     let modals;
     let mockManager;

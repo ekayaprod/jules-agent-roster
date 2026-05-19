@@ -7,6 +7,10 @@ global.BUTTON_STATES = BUTTON_STATES;
 global.TOAST_TYPES = TOAST_TYPES;
 const JulesModals = require('./JulesModals');
 const TerminalPolling = require('./TerminalPolling');
+const TerminalRenderer = require('./TerminalRenderer');
+const TerminalSessionManager = require('./TerminalSessionManager');
+global.TerminalRenderer = TerminalRenderer;
+global.TerminalSessionManager = TerminalSessionManager;
 const JulesTerminal = require('./JulesTerminal');
 global.JulesModals = JulesModals;
 global.TerminalPolling = TerminalPolling;
@@ -380,7 +384,7 @@ describe('JulesTerminal', () => {
                 { html_url: 'http://pr/2', number: 2, title: 'Second PR' }
             ];
 
-            julesTerminal._renderPullRequests(prs, terminal);
+            julesTerminal.renderer.renderPullRequests(prs, terminal);
 
             expect(terminal.querySelectorAll('.term-pr-item').length).toBe(2);
             expect(terminal.querySelector('#fetchingIndicator')).toBeNull();
@@ -398,7 +402,7 @@ describe('JulesTerminal', () => {
                 return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
             });
 
-            julesTerminal._renderPullRequests(prs, terminal);
+            julesTerminal.renderer.renderPullRequests(prs, terminal);
 
             const prItem = terminal.querySelector('.term-pr-item');
             expect(prItem.innerHTML).toContain('&lt;img src=x onerror=alert(1)&gt;');
@@ -416,7 +420,7 @@ describe('JulesTerminal', () => {
             julesTerminal.renderedSessionIds = new Set(['123']);
             julesTerminal.activeSessionsInterval = setInterval(() => {}, 1000); // coverage for clearing interval
 
-            const fetchSpy = jest.spyOn(julesTerminal, '_fetchAndRenderSessions').mockResolvedValue();
+            const fetchSpy = jest.spyOn(julesTerminal.sessionManager, 'fetchAndRenderSessions').mockResolvedValue();
 
             await julesTerminal.loadActiveSessionsForRepo('newRepo');
 
@@ -435,7 +439,7 @@ describe('JulesTerminal', () => {
             julesTerminal.currentRepo = 'sameRepo';
             terminal.innerHTML = 'Content';
 
-            jest.spyOn(julesTerminal, '_fetchAndRenderSessions').mockResolvedValue();
+            jest.spyOn(julesTerminal.sessionManager, 'fetchAndRenderSessions').mockResolvedValue();
 
             await julesTerminal.loadActiveSessionsForRepo('sameRepo');
 
@@ -453,14 +457,14 @@ describe('JulesTerminal', () => {
 
         it('should bail if apiKey is missing', async () => {
             window.julesAPI.apiKey = null;
-            await julesTerminal._fetchAndRenderSessions('sources/github/repo', terminal);
+            await julesTerminal.sessionManager.fetchAndRenderSessions('sources/github/repo', terminal);
             expect(window.julesAPI.getSessions).not.toHaveBeenCalled();
         });
 
         it('should show awaiting message if sessions array is missing', async () => {
             terminal.innerHTML = '<div id="fetchingIndicator"></div>';
             window.julesAPI.getSessions.mockResolvedValue({});
-            await julesTerminal._fetchAndRenderSessions('sources/github/repo', terminal);
+            await julesTerminal.sessionManager.fetchAndRenderSessions('sources/github/repo', terminal);
             expect(terminal.innerHTML).toContain('Ready. Awaiting execution commands');
         });
 
@@ -472,8 +476,8 @@ describe('JulesTerminal', () => {
 
              const dummy = document.createElement('div'); dummy.id = 'session-1'; terminal.appendChild(dummy);
 
-             jest.spyOn(julesTerminal, '_processSession').mockImplementation();
-             await julesTerminal._fetchAndRenderSessions('sources/github/repo', terminal);
+             jest.spyOn(julesTerminal.renderer, 'processSession').mockImplementation();
+             await julesTerminal.sessionManager.fetchAndRenderSessions('sources/github/repo', terminal);
 
              // The fetchingIndicator should be gone because there's a session
              expect(terminal.innerHTML).not.toContain('Ready. Awaiting execution commands');
@@ -489,8 +493,8 @@ describe('JulesTerminal', () => {
             });
             julesTerminal.dismissedSessionIds.add('1');
 
-            const processSpy = jest.spyOn(julesTerminal, '_processSession').mockImplementation();
-            await julesTerminal._fetchAndRenderSessions('sources/github/repo', terminal);
+            const processSpy = jest.spyOn(julesTerminal.renderer, 'processSession').mockImplementation();
+            await julesTerminal.sessionManager.fetchAndRenderSessions('sources/github/repo', terminal);
 
             expect(processSpy).toHaveBeenCalledTimes(1); // Only session 2 matches
             expect(processSpy.mock.calls[0][0].id).toBe('2');
@@ -504,8 +508,8 @@ describe('JulesTerminal', () => {
                  ]
              });
 
-             const processSpy = jest.spyOn(julesTerminal, '_processSession').mockImplementation();
-             await julesTerminal._fetchAndRenderSessions('sources/github/repo', terminal);
+             const processSpy = jest.spyOn(julesTerminal.renderer, 'processSession').mockImplementation();
+             await julesTerminal.sessionManager.fetchAndRenderSessions('sources/github/repo', terminal);
 
              expect(processSpy).toHaveBeenCalledTimes(1);
              expect(processSpy.mock.calls[0][0].id).toBe('2');
@@ -513,7 +517,7 @@ describe('JulesTerminal', () => {
 
         it('should show awaiting message if no matching sessions', async () => {
             window.julesAPI.getSessions.mockResolvedValue({ sessions: [] });
-            await julesTerminal._fetchAndRenderSessions('repo', terminal);
+            await julesTerminal.sessionManager.fetchAndRenderSessions('repo', terminal);
             expect(true).toBe(true);
         });
 
@@ -530,13 +534,13 @@ describe('JulesTerminal', () => {
             });
 
             // Mock _processSession to just append a dummy for 'new1'
-            jest.spyOn(julesTerminal, '_processSession').mockImplementation((session, term) => {
+            jest.spyOn(julesTerminal.renderer, 'processSession').mockImplementation((session, term) => {
                 const el = document.createElement('div');
                 el.id = 'session-new1';
                 term.appendChild(el);
             });
 
-            await julesTerminal._fetchAndRenderSessions('repo', terminal);
+            await julesTerminal.sessionManager.fetchAndRenderSessions('repo', terminal);
 
             // old1 should be removed, temp-123 should remain
             expect(document.getElementById('session-old1')).toBeNull();
@@ -566,7 +570,7 @@ describe('JulesTerminal', () => {
                 outputs: [{ pullRequest: { title: 'Fix bug', url: 'http://pr' } }]
             };
 
-            julesTerminal._processSession(session, terminal, 'repo');
+            julesTerminal.renderer.processSession(session, terminal, 'repo');
             // Assessor: Ensure early bailout correctly left the DOM unaltered
             expect(document.getElementById('status-1').textContent).toBe('In Progress');
         });
@@ -578,7 +582,7 @@ describe('JulesTerminal', () => {
                      <span id="status-1">Completed</span>
                  </div>
              `;
-             julesTerminal._processSession({ id: '1', outputs: [{ pullRequest: {} }] }, terminal, 'repo');
+             julesTerminal.renderer.processSession({ id: '1', outputs: [{ pullRequest: {} }] }, terminal, 'repo');
              // No further DOM manipulation
              expect(document.getElementById('session-1').innerHTML).not.toContain('pr-link-btn'); // Assuming it would add it if it didn't return early
         });
@@ -587,7 +591,7 @@ describe('JulesTerminal', () => {
             const session = { id: '1', title: 'TestAgent' };
             const pollingSpy = jest.spyOn(julesTerminal.polling, 'startTerminalPolling').mockImplementation(() => {});
 
-            julesTerminal._processSession(session, terminal, 'repo');
+            julesTerminal.renderer.processSession(session, terminal, 'repo');
 
             const item = document.getElementById('session-1');
             expect(item).not.toBeNull();
@@ -603,7 +607,7 @@ describe('JulesTerminal', () => {
                  outputs: [{ pullRequest: { title: 'My PR', url: 'http://pr' } }]
              };
 
-             julesTerminal._processSession(session, terminal, 'repo');
+             julesTerminal.renderer.processSession(session, terminal, 'repo');
 
              const item = document.getElementById('session-1');
              expect(item.querySelector('#status-1').textContent).toBe('Initializing...');
@@ -685,7 +689,7 @@ describe('JulesTerminal', () => {
             window.julesAPI.createSession.mockRejectedValue(new Error('Auth failed'));
 
             // Disable the automatic _checkEmptyTerminal generation for the scope of the catch block assertion
-            julesTerminal._checkEmptyTerminal = jest.fn();
+            julesTerminal.renderer.checkEmptyTerminal = jest.fn();
             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
             await julesTerminal.launchSession(agent, btn); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
@@ -704,7 +708,7 @@ describe('JulesTerminal', () => {
 
             window.julesAPI.createSession.mockResolvedValue({ id: 'real-123' });
 
-            julesTerminal._fetchAndRenderSessions = jest.fn().mockResolvedValue(true);
+            julesTerminal.sessionManager.fetchAndRenderSessions = jest.fn().mockResolvedValue(true);
             await julesTerminal.launchSession(agent, btn); await Promise.resolve(); await Promise.resolve(); await Promise.resolve(); await Promise.resolve();
 
             expect(window.julesAPI.createSession).toHaveBeenCalled();

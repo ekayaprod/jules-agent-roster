@@ -21,7 +21,7 @@ class TerminalPolling {
             if (!this.terminal._pollingActive || this.terminal.currentRepo !== sourceName) return;
 
             try {
-                await this.terminal._fetchAndRenderSessions(sourceName, terminal);
+                await this.terminal.sessionManager.fetchAndRenderSessions(sourceName, terminal);
             } catch (error) {
                 // Suppress background polling errors to prevent UI crashing during transient API degradation
                 console.warn("Session polling cycle encountered an error:", error);

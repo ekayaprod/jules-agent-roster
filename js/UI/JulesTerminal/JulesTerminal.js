@@ -1,19 +1,7 @@
 /**
  * Polling array callbacks hoisted to the file scope.
  */
-const hasPullRequest = o => o.pullRequest;
 const sortByCreateTime = (a, b) => a.createTime < b.createTime ? -1 : (a.createTime > b.createTime ? 1 : 0);
-
-// Hardcoded fallback for missing core metadata
-const CORE_EMOJIS = {
-    "Architect": "🏗️", "Navigator": "🧭", "Helix": "🧬", "Modernizer": "🚀", "Untangler": "🧶",
-    "Scavenger": "🗑️", "Superintendent": "🧽", "Pedant": "🧐", "Paramedic": "🚑", "Cortex": "🧠",
-    "Author": "✍️", "Scribe": "🖋️", "Herald": "📣", "Wordsmith": "🔤", "Curator": "🖼️", "Inspector": "🕵️",
-    "Bolt+": "⚡", "Palette+": "🎨", "Sentinel+": "🛡️"
-};
-
-const CORE_EMOJIS_MAP = new Map(Object.entries(CORE_EMOJIS));
-const CORE_EMOJIS_REGEX = new RegExp(`(${Object.keys(CORE_EMOJIS).map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`);
 
 /**
  * Manages the core operations for interacting with Jules APIs.
@@ -66,12 +54,14 @@ class JulesTerminal {
         // Domain classes
         this.modals = new JulesModals(this);
         this.polling = new TerminalPolling(this);
+
+        // Split monolith logic
+        this.renderer = new TerminalRenderer(this);
+        this.sessionManager = new TerminalSessionManager(this);
     }
 
     cleanup() {
         this.polling.cleanup();
-
-
 
         // Utility method exported to class level for delegates
         this.sortByCreateTime = sortByCreateTime;
@@ -93,7 +83,7 @@ class JulesTerminal {
         }
         const item = this.getEl("julesTerminal")?.querySelector(`#session-${sessionId}`);
         if (item) item.remove();
-        this._checkEmptyTerminal();
+        this.renderer.checkEmptyTerminal();
     }
 
     /**
@@ -270,11 +260,14 @@ class JulesTerminal {
         this.polling._startSessionPolling(sourceName, terminal);
     }
 
-    /**
-     * Recursively polls the API for active sessions using a delayed execution loop to
-     * eliminate compounding request saturation if the API degrades.
-     */
+    // Facade mappings to the extracted sessionManager for backwards compatibility during transition
+    async _fetchAndRenderSessions(sourceName, terminal) {
+        return this.sessionManager.fetchAndRenderSessions(sourceName, terminal);
+    }
 
+    async launchSession(agent, btn = null) {
+        return this.sessionManager.launchSession(agent, btn);
+    }
 
     /**
      * Retrieves the latest active PRs for the repository to synchronize the UI with actual VCS state.
@@ -285,357 +278,8 @@ class JulesTerminal {
     async loadPullRequestsForRepo(sourceName) {
         if (!window.julesAPI) return;
         const pullRequests = await window.githubAPI.getPullRequests(sourceName);
-        this._renderPullRequests(pullRequests, this.getEl("julesTerminal"));
+        this.renderer.renderPullRequests(pullRequests, this.getEl("julesTerminal"));
     }
-
-    _renderPullRequests(prs, terminal) {
-        terminal.querySelectorAll('.term-pr-item').forEach(el => el.remove());
-        if (!prs || prs.length === 0) return;
-
-        const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
-        if (fetchingIndicator) fetchingIndicator.remove();
-
-        const formatUtils = JulesTerminal.getFormatUtils();
-
-        // Render at top of terminal
-        const fragment = document.createDocumentFragment();
-        prs.forEach(pr => {
-            const item = document.createElement("div");
-            item.className = "term-pr-item";
-
-            const escapedTitle = formatUtils ? formatUtils.escapeHTML(pr.title) : pr.title;
-
-            item.innerHTML = `
-                <span style="color: var(--term-success); font-weight: 600; flex-shrink: 0;">[PR OPEN]</span>
-                <a href="#" class="term-pr-title term-link pr-modal-trigger" data-pr-number="${pr.number}">#${pr.number} ${escapedTitle}</a>
-            `;
-            const link = item.querySelector('.pr-modal-trigger');
-            if (link) {
-                link.onclick = (e) => {
-                    e.preventDefault();
-                    this.modals._showPRModal(pr, this.currentRepo);
-                };
-            }
-            fragment.insertBefore(item, fragment.firstChild);
-        });
-        terminal.insertBefore(fragment, terminal.firstChild);
-    }
-
-
-    async _fetchAndRenderSessions(sourceName, terminal) {
-        if (!window.julesAPI || !window.julesAPI.apiKey) return;
-
-        const sessionsResponse = await window.julesAPI.getSessions(JulesTerminal.PAGE_SIZE);
-        if (!sessionsResponse.sessions) {
-            this._checkEmptyTerminal();
-            return;
-        }
-
-        // ↗️ VECTORIZE: The Single-Pass Pipeline. Bypassing filter().reverse().slice(0, 3) for a direct backward loop to eliminate multi-pass overhead.
-        let repoSessions = [];
-        const sessions = sessionsResponse.sessions;
-        for (let i = sessions.length - 1; i >= 0; i--) {
-            if (repoSessions.length >= 3) break;
-            const s = sessions[i];
-
-            if (!s.sourceContext || s.sourceContext.source !== sourceName) continue;
-            if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) continue;
-
-            const timeStr = s.updateTime || s.createTime || s.startTime;
-            if (timeStr) {
-                const ageHours = (Date.now() - new Date(timeStr).getTime()) / (1000 * 60 * 60);
-                if (ageHours > 2) continue;
-            } else if (!this.renderedSessionIds.has(s.id)) {
-                continue;
-            }
-
-            // If a ticket reached a terminal state (done, failed, drafted PR), it is NO LONGER
-            // shown in the active Jules feed. We completely rely on the GitHub PR fetch to show completions.
-            const isEnded = s.state === 'COMPLETED' || s.state === 'FAILED' || s.state === 'ERROR' || s.state === 'CANCELLED' || (s.outputs && s.outputs.some(hasPullRequest));
-
-            if (isEnded) continue;
-
-            repoSessions.push(s);
-        }
-
-        const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
-        if (fetchingIndicator) fetchingIndicator.remove();
-
-        if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
-
-        const currentSessionIds = new Set();
-        for (let i = 0; i < repoSessions.length; i++) {
-            currentSessionIds.add(repoSessions[i].id);
-        }
-
-        for (const id of this.renderedSessionIds) {
-            if (!currentSessionIds.has(id)) {
-                this.dismissSession(id);
-            }
-        }
-
-        for (const session of repoSessions) {
-            this._processSession(session, terminal);
-        }
-
-        this._checkEmptyTerminal();
-    }
-
-    _checkEmptyTerminal() {
-        const terminal = this.getEl("julesTerminal");
-        if (terminal && (terminal.children.length === 0 || (terminal.children.length === 1 && terminal.firstElementChild.id === 'fetchingIndicator'))) {
-             terminal.innerHTML = DOMUtils.getTerminalIndicatorHTML("Ready. Awaiting execution commands...");
-        }
-    }
-
-    _processSession(session, terminal) {
-        if (this.renderedSessionIds.has(session.id)) return;
-        this.renderedSessionIds.add(session.id);
-
-        const formatUtils = JulesTerminal.getFormatUtils();
-        const agentName = session.title || "Agent Task";
-        let safeAgentName = formatUtils ? formatUtils.escapeHTML(agentName) : agentName;
-        let agentEmoji = "🤖";
-
-        // ⚡ ACCELERATE: Cache the agents list into a Map to eliminate redundant O(N) traversals inside the session loop.
-        if (!this._agentMapCache) {
-            this._agentMapCache = new Map();
-            const escapedNames = [];
-
-            if (this.app.agents) {
-                for (let i = 0; i < this.app.agents.length; i++) {
-                    const a = this.app.agents[i];
-                    this._agentMapCache.set(a.name, a);
-                    if (a.name && formatUtils) escapedNames.push(formatUtils.escapeRegex(a.name));
-                }
-            }
-
-            if (this.app.customAgents) {
-                const customs = Object.values(this.app.customAgents);
-                for (let i = 0; i < customs.length; i++) {
-                    const a = customs[i];
-                    if (a.name) {
-                        this._agentMapCache.set(a.name, a);
-                        if (formatUtils) escapedNames.push(formatUtils.escapeRegex(a.name));
-                    }
-                }
-            }
-
-            if (escapedNames.length > 0) {
-                escapedNames.sort((a, b) => b.length - a.length);
-                this._agentRegexCache = new RegExp(`(${escapedNames.join("|")})`);
-            }
-        }
-
-        // Fast O(1) direct lookup, with a fallback for loose regex matches
-        let matchedAgent = this._agentMapCache.get(safeAgentName);
-        if (!matchedAgent && this._agentRegexCache) {
-            const match = safeAgentName.match(this._agentRegexCache);
-            if (match) {
-                matchedAgent = this._agentMapCache.get(match[0]);
-            }
-        }
-
-        if (matchedAgent && matchedAgent.emoji) {
-            agentEmoji = matchedAgent.emoji;
-        } else {
-            let emoji = CORE_EMOJIS_MAP.get(safeAgentName);
-            if (!emoji && safeAgentName) {
-                const match = safeAgentName.match(CORE_EMOJIS_REGEX);
-                if (match) emoji = CORE_EMOJIS_MAP.get(match[0]);
-            }
-            if (emoji) agentEmoji = emoji;
-        }
-
-        const block = this._createAndInsertSessionBlock(
-            terminal,
-            `term-session-line state-active`,
-            `session-${session.id}`,
-            agentEmoji,
-            safeAgentName,
-            "Initializing...",
-            `status-${session.id}`,
-            () => this.modals._showHistoryModal(session.id, agentEmoji, safeAgentName)
-        );
-
-        this.polling.startTerminalPolling(session.id, block, safeAgentName, agentEmoji);
-    }
-
-    /**
-     * Helper to create and insert a terminal session block.
-     * @private
-     */
-    _createAndInsertSessionBlock(terminal, className, id, agentEmoji, safeAgentName, statusMsg, statusId, onClickCallback) {
-        const block = document.createElement("div");
-        block.className = className;
-        if (id) block.id = id;
-
-        if (onClickCallback) {
-            block.style.cursor = "pointer";
-            block.onclick = onClickCallback;
-        }
-
-        const formatUtils = JulesTerminal.getFormatUtils();
-        const escapedEmoji = formatUtils ? formatUtils.escapeHTML(agentEmoji) : agentEmoji;
-
-        block.innerHTML = DOMUtils.getTerminalSessionHTML(escapedEmoji, safeAgentName, statusMsg, statusId);
-
-        const firstSession = terminal.querySelector('.term-session-line:not(#fetchingIndicator)');
-        if (firstSession) {
-            terminal.insertBefore(block, firstSession);
-        } else {
-            terminal.appendChild(block);
-        }
-
-        return block;
-    }
-
-    /**
-     * Orchestrates the creation of a new task session execution.
-     * Implements an optimistic UI state block that handles silent rollback on API failure.
-     * @param {Object} agent - The agent data representing the logic to execute.
-     * @param {HTMLElement} [btn=null] - Optional launch button reference for state manipulation.
-     * @returns {Promise<void>}
-     * @see ../../../docs/architecture/Features/JulesTerminal.md#3-session-launching
-     */
-    async launchSession(agent, btn = null) {
-        const sourceName = this.getEl("julesRepoPicker").value;
-        const userTask = this.getEl("julesTaskInput").value.trim() || "Analyze and optimize the repository based on your directives.";
-
-        if (!sourceName) {
-            this.app.toast.show("Select a target repository first.", typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error");
-            return;
-        }
-
-        if (agent.prompt === undefined && btn) {
-            btn.disabled = true;
-        }
-
-        // 🪄 CONJURE: Optimistic UI for Session Launch with CSS skeletal rendering
-        const terminal = this.getEl("julesTerminal");
-        const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
-        if (fetchingIndicator) fetchingIndicator.style.display = 'none';
-
-        const formatUtils = JulesTerminal.getFormatUtils();
-        let agentEmoji = agent.emoji || "🤖";
-        let safeAgentName = agent.name ? (formatUtils ? formatUtils.escapeHTML(agent.name) : agent.name) : "Agent Task";
-
-        const optimisticBlock = this._createAndInsertSessionBlock(
-            terminal,
-            `term-session-line state-active skeleton-pulse`,
-            "",
-            agentEmoji,
-            safeAgentName,
-            "Conjuring session...",
-            "",
-            () => {} // cursor pointer set implicitly via callback presence
-        );
-
-        if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.LOADING : "loading", "Launching...");
-
-        this.sessionQueue.push(async () => {
-            try {
-                // ⚡ Bolt+: The Waterfall Collapse. Unblocked the primary application thread by shifting synchronous remote prompt resolution into the background execution queue.
-                // ⚡ Bolt+: ACCELERATE: Resolved sequential fetch before delegating to asynchronous API call to prevent UI locking and waterfall delays.
-                const [prompt] = await Promise.all([
-                    agent.prompt !== undefined ? Promise.resolve(agent.prompt) : (() => {
-                        const url = AgentUtils.getPromptUrl(agent);
-                        return this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(res => {
-                            agent.prompt = res;
-                            if (btn) btn.disabled = false;
-                            return res;
-                        });
-                    })()
-                ]);
-                await window.julesAPI.createSession(prompt, userTask, sourceName, `${agent.name}`);
-                this.app.toast.show(`Session launched successfully.`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.SUCCESS : "success");
-            } catch (error) {
-                const launchError = new Error("JulesSessionLaunchFailure: " + error.message);
-                launchError.cause = error;
-                const tu = JulesTerminal.getTelemetryUtils();
-                if (tu) tu.dispatchEvent("JULES_LAUNCH_SESSION_FAILED", launchError, { sourceName });
-                this.app.toast.show(`Could not launch the session: ${error.message || "Unknown error"}`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error", 20000);
-                if (fetchingIndicator) fetchingIndicator.style.display = '';
-
-                if (optimisticBlock.parentNode) optimisticBlock.remove();
-                if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Launch in Jules 🚀");
-                this._checkEmptyTerminal();
-                return; // Hard exit out of the queue function on launch failure
-            }
-
-            // Reaching here means creation succeeded. We isolate the fetching to prevent polling timeouts from registering as a launch failure.
-            try {
-                await this._fetchAndRenderSessions(sourceName, terminal);
-            } catch (pollError) {
-                const tu = JulesTerminal.getTelemetryUtils();
-                if (tu) tu.dispatchEvent("SESSION_SYNC_TIMEOUT", pollError);
-            } finally {
-                if (optimisticBlock.parentNode) optimisticBlock.remove();
-                if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Launch in Jules 🚀");
-                this._checkEmptyTerminal();
-            }
-        });
-
-        this._processSessionQueue();
-    }
-
-    async _processSessionQueue() {
-        if (this.isProcessingQueue) return;
-        this.isProcessingQueue = true;
-
-        while (this.sessionQueue.length > 0) {
-            const task = this.sessionQueue.shift();
-            try {
-                await task();
-            } catch (error) {
-                const tu = JulesTerminal.getTelemetryUtils();
-                if (tu) tu.dispatchEvent("QUEUE_EXECUTION_ERROR", error);
-            }
-            // Rate limit delay (1s) to prevent overwhelming the API on mass launch
-            if (this.sessionQueue.length > 0) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
-        }
-
-        this.isProcessingQueue = false;
-    }
-
-    /**
-     * Attaches an active heartbeat to a specific session execution.
-     * Polls the backend every 3 seconds to gather new terminal states or block on user input requests.
-     * @param {string} sessionId - The backend ID for the active execution.
-     * @param {HTMLElement} block - The terminal line DOM element for updates.
-     * @param {string} agentName - The agent's title.
-     * @param {string} agentEmoji - The UI icon representing the agent.
-     * @returns {void}
-     * @see ../../../docs/architecture/Features/JulesTerminal.md#5-terminal-state-updates
-     */
-    /**
-     * Flushes all active polling timers, removes zombie callbacks, and unbinds state IDs
-     * to prevent memory leaks when changing contexts.
-     * @returns {void}
-     * @see ../../../docs/architecture/Features/JulesTerminal.md#7-memory-management
-     */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 if (typeof window !== 'undefined') {

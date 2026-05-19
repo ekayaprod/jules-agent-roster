@@ -7,6 +7,10 @@ global.BUTTON_STATES = BUTTON_STATES;
 global.TOAST_TYPES = TOAST_TYPES;
 const JulesModals = require('./JulesModals');
 const TerminalPolling = require('./TerminalPolling');
+const TerminalRenderer = require('./TerminalRenderer');
+const TerminalSessionManager = require('./TerminalSessionManager');
+global.TerminalRenderer = TerminalRenderer;
+global.TerminalSessionManager = TerminalSessionManager;
 const JulesTerminal = require('./JulesTerminal');
 global.JulesModals = JulesModals;
 global.TerminalPolling = TerminalPolling;
@@ -444,7 +448,7 @@ describe('JulesTerminal Modal Tests', () => {
             // Remove it from set so _processSession continues
             julesTerminal.renderedSessionIds.clear();
 
-            julesTerminal._processSession(session, terminal, 'owner/repo');
+            julesTerminal.renderer.processSession(session, terminal, 'owner/repo');
 
             // Verify emoji fallback
             const item = terminal.querySelector('#session-s2');
@@ -460,7 +464,7 @@ describe('JulesTerminal Modal Tests', () => {
                 title: 'CustomAgent'
             };
 
-            julesTerminal._processSession(session, terminal, 'owner/repo');
+            julesTerminal.renderer.processSession(session, terminal, 'owner/repo');
 
             const item = terminal.querySelector('#session-custom1');
             expect(item).not.toBeNull();

@@ -7,6 +7,10 @@ const TerminalPolling = require('./TerminalPolling');
 const JulesTerminal = require('./JulesTerminal');
 global.JulesModals = JulesModals;
 global.TerminalPolling = TerminalPolling;
+const TerminalRenderer = require('./TerminalRenderer');
+const TerminalSessionManager = require('./TerminalSessionManager');
+global.TerminalRenderer = TerminalRenderer;
+global.TerminalSessionManager = TerminalSessionManager;
 const { getByText } = require('@testing-library/dom');
 const userEvent = require('@testing-library/user-event').default;
 

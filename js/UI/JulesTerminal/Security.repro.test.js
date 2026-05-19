@@ -7,6 +7,10 @@ const TerminalPolling = require('./TerminalPolling');
 const JulesTerminal = require('./JulesTerminal');
 global.JulesModals = JulesModals;
 global.TerminalPolling = TerminalPolling;
+const TerminalRenderer = require('./TerminalRenderer');
+const TerminalSessionManager = require('./TerminalSessionManager');
+global.TerminalRenderer = TerminalRenderer;
+global.TerminalSessionManager = TerminalSessionManager;
 const { BUTTON_STATES, TOAST_TYPES } = require('../../constants/ui');
 global.BUTTON_STATES = BUTTON_STATES;
 global.TOAST_TYPES = TOAST_TYPES;
@@ -81,7 +85,7 @@ describe('JulesTerminal Security Repro', () => {
             sourceContext: { source: 'repo' }
         };
 
-        manager._processSession(session, terminal);
+        manager.renderer.processSession(session, terminal);
 
         const agentNameSpan = terminal.querySelector('.term-agent-name');
         // If it's vulnerable, the innerHTML will contain the raw <img> tag

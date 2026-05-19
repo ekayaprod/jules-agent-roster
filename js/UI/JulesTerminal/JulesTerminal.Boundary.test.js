@@ -7,6 +7,10 @@ global.BUTTON_STATES = BUTTON_STATES;
 global.TOAST_TYPES = TOAST_TYPES;
 const JulesModals = require('./JulesModals');
 const TerminalPolling = require('./TerminalPolling');
+const TerminalRenderer = require('./TerminalRenderer');
+const TerminalSessionManager = require('./TerminalSessionManager');
+global.TerminalRenderer = TerminalRenderer;
+global.TerminalSessionManager = TerminalSessionManager;
 const JulesTerminal = require('./JulesTerminal');
 global.JulesModals = JulesModals;
 global.TerminalPolling = TerminalPolling;
@@ -193,7 +197,7 @@ expect(() => { julesTerminal.modals._showKeyError(null, null, 'Error'); julesTer
                 outputs: [{ pullRequest: { title: 'My PR', url: 'http://mypr' } }]
             };
 
-            julesTerminal._processSession(session, terminal, 'owner/repo');
+            julesTerminal.renderer.processSession(session, terminal, 'owner/repo');
             // Assessor: Validate visible text content instead of structural nodes
             // Original test asserted state that is now handled by loadPullRequestsForRepo.
             // _processSession simply creates the UI shell or bails.
@@ -336,7 +340,7 @@ expect(() => { julesTerminal.modals._showKeyError(null, null, 'Error'); julesTer
              });
 
              // Note: session-456 is NOT in the DOM to cover "if (item) item.remove();" falsy
-             jest.spyOn(julesTerminal, '_processSession').mockImplementation();
+             jest.spyOn(julesTerminal.renderer, 'processSession').mockImplementation();
              await julesTerminal._fetchAndRenderSessions('sources/github/repo', terminal);
         });
 
