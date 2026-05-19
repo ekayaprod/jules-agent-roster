@@ -1,26 +1,26 @@
 {
   "mcpServers": {
     "filesystem": {
-      "command": "npx",
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
         "."
-      ]
+      ],
+      "command": "npx"
     },
     "github": {
-      "command": "npx",
       "args": [
         "-y",
         "@modelcontextprotocol/server-github"
-      ]
+      ],
+      "command": "npx"
     },
     "playwright": {
-      "command": "npx",
       "args": [
         "-y",
         "@playwright/mcp"
-      ]
+      ],
+      "command": "npx"
     }
   }
 }
