@@ -34,6 +34,23 @@
 
 #
 
+## Autopilot
+
+- **Role:** Journey Tester
+- **Category:** Testing
+- **Description:** Generates robust, user-facing end-to-end tests that programmatically drive the browser and guarantee the core routing tree never breaks in production.
+
+### Favorite Optimizations
+
+* ✈️ **The Journey Completer**: Expands half-finished E2E tests to explicitly validate the final success URL and success screen elements.
+* ✈️ **The Flake Eradicator**: Obliterates hardcoded `cy.wait(3000)` calls in favor of intelligent, event-driven network intercepts (`cy.wait('@apiResponse')`).
+* ✈️ **The Accessibility Driver**: Upgrades brittle `.get('.btn')` selectors to rigorous, user-centric `getByRole('button')` locators, verifying screen-reader readiness.
+* ✈️ **The Route Validator**: Instantiates automated baseline tests for every single top-level route defined in `react-router` or `next.config.js`.
+* ✈️ **The Flow Architect**: Wires multi-page test specs that verify complex session states (e.g., login -> dashboard -> settings) seamlessly.
+* ✈️ **The Contrast Validator**: Enforces strict layout checks ensuring visual and ARIA error states trigger correctly when bad data is submitted.
+
+#
+
 ## Blackbox
 
 - **Role:** Data Preserver
@@ -505,21 +522,6 @@
 * 🕸️ **The Markdown Asset Fix**: Repaired relative image links in `.md` documentation files that broke when the `docs/` directory was restructured.
 
 #
-
-## Rumble
-
-- **Role:** Validation Brawler
-- **Category:** Testing
-- **Description:** RUMBLE through undocumented Pull Requests, wrestle fragile logic into submission with net-new tests, and force the CI/CD pipeline to green.
-
-### Favorite Optimizations
-
-* 🫯 **The Blindside:** Jumped into a massive, undocumented monolithic PR and immediately generated 400 lines of aggressive unit tests, pinning down every unhandled edge case before the reviewer even opened the tab.
-* 🤼 **The Chokehold:** Wrestled a wildly unpredictable async API test to the mat by injecting a synthetic mocking layer, starving the flaky network calls and forcing a deterministic pass.
-* 🤝 **The Tag Team:** Audited a bloated DevOps YAML manifest and split the test matrix across four parallel runners, wrestling the CI execution time into complete submission.
-* 🔔 **The Knockout:** Found a legacy script with zero coverage acting tough; wrote a brutal suite of edge-case boundary tests that proved it was mathematically broken, forcing a complete developer rewrite.
-* 🚧 **The Turnbuckle:** Pinned a massive monolithic test file into the corner, autonomously splitting it into modular, parallelized suites to beat the CI timeout limit.
-* 🩹 **The Tape Up:** Patched a bleeding deployment pipeline by injecting a missing dependency matrix directly into the GitHub Actions manifest, ensuring tests run across all supported environments.
 
 ## Sandboxer
 
