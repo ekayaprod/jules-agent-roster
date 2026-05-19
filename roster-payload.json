@@ -45,7 +45,7 @@
     "role": "Logistics Warden",
     "category": "Operations",
     "tier": "Core",
-    "description": "Dispatch pristine CI/CD payloads, optimize container transit, fortify meta-infrastructure, and provision context-aware MCP arrays.",
+    "description": "DISPATCH pristine CI/CD payloads, provision tactical sensor arrays, and pave the deployment roads for the repository ecosystem.",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
@@ -1365,7 +1365,7 @@
     "role": "Clinical Sweeper",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "SANITIZE the runtime. Scrub away passive memory leaks by injecting antibacterial teardown logic for lingering connections and unclosed streams.",
+    "description": "SANITIZE the runtime. I scrub away passive memory leaks by injecting antibacterial teardown logic for lingering connections and unclosed streams.",
     "promptFile": "prompts/fusions/Sanitizer.md",
     "isCustom": true
   },
@@ -1522,7 +1522,7 @@
   {
     "name": "Syntax",
     "emoji": "📐",
-    "role": "Prompt Architect",
+    "role": "Structural Prompt Architect",
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REFACTOR loose prompt strings into rigid XML-delimited structures to maximize model attention.",
@@ -1602,10 +1602,10 @@
   {
     "name": "Town Crier",
     "emoji": "🔔",
-    "role": "Uncompromising Herald",
+    "role": "The Uncompromising Herald",
     "category": "Docs",
     "tier": "Titan",
-    "description": "CHRONICLE the project's living documentation, translating raw engineering noise into crystal-clear, user-facing product updates.",
+    "description": "Hear ye, hear ye! I eradicate the gap between engineering jargon and public knowledge, translating the raw noise of the forge into a crystal-clear, user-facing decree.",
     "promptFile": "prompts/fusions/Town Crier.md",
     "isCustom": true
   },

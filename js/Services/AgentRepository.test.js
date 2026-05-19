@@ -419,7 +419,7 @@ describe('AgentRepository', () => {
 
         it('fails securely when Promise.all completely rejects', async () => {
             global.NetworkUtils.fetchWithRetry = jest.fn()
-                .mockRejectedValueOnce(new Error("Global Rejection"));
+                .mockImplementation((url) => { if (url === "./roster-payload.json") return Promise.reject(new Error("Global Rejection")); return Promise.resolve({ ok: true, json: async () => ({}) }); });
 
             await expect(repo.fetchAgents()).rejects.toThrow("Global Rejection");
             expect(console.error).toHaveBeenCalledWith("Failed to load agent payloads", expect.any(Error));
