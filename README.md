@@ -40,6 +40,13 @@ Welcome aboard! To boot up the local development environment and serve the appli
 
 *Note: `npm start` automatically builds the roster payload and launches a local server on port 8080! To run the unit tests via JSDOM, execute `npm run test:unit`, or run the end-to-end tests via Playwright with `npx playwright test`.*
 
+### 🐳 Docker Quick Start
+
+Prefer containers? You can boot the application via Docker using the provided multi-stage `Dockerfile`:
+
+1. `docker build -t jules-roster .`
+2. `docker run -p 8080:8080 jules-roster`
+
 ### 🔐 Environment Variables
 
 The following environment variables are required to be set in your `.env` file to fully boot the application:

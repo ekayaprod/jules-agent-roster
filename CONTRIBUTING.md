@@ -17,6 +17,15 @@ npm start
 
 *Note: The `npm start` command will automatically compile the agent payload before launching a local server for you to test UI changes.*
 
+### 🐳 Docker Quick Start
+
+Prefer containers? You can boot the application via Docker using the provided multi-stage `Dockerfile`:
+
+```bash
+docker build -t jules-roster .
+docker run -p 8080:8080 jules-roster
+```
+
 ## 🧪 Testing Your Changes
 
 Our testing strategy is split into two distinct paths. Please make sure you run the right one for your changes!
