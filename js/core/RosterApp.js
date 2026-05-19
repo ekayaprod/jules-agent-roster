@@ -305,84 +305,94 @@ class RosterApp {
     const CHUNK_SIZE = 15;
     let agentIndex = 0;
 
-    // WARN: Do NOT convert this recursive `requestAnimationFrame` loop into a synchronous `.map()` or `.forEach()`.
+    const yieldToMain = async () => {
+        if (globalThis.scheduler && globalThis.scheduler.yield) {
+            await globalThis.scheduler.yield();
+        } else {
+            await new Promise(r => setTimeout(r, 0));
+        }
+    };
+
+    // WARN: Do NOT convert this `while` loop into a synchronous `.map()` or `.forEach()`.
     // Why: Rendering all DOM nodes synchronously blocks the main thread, causing layout popping,
-    // frozen UI, and delayed skeleton removal. The `requestAnimationFrame(() => setTimeout(..., 0))`
+    // frozen UI, and delayed skeleton removal. The `await yieldToMain()`
     // pattern yields control to the browser between chunks to keep the interface responsive.
-    const renderChunk = () => {
-      if (this.currentRenderId !== currentRenderId) return;
+    const renderAllChunks = async () => {
+      while (agentIndex < flattenedAgents.length) {
+        if (this.currentRenderId !== currentRenderId) return;
 
-      const end = Math.min(agentIndex + CHUNK_SIZE, flattenedAgents.length);
+        const end = Math.min(agentIndex + CHUNK_SIZE, flattenedAgents.length);
 
-      for (let i = agentIndex; i < end; i++) {
-        const { agent, indexOrKey, gridCategory } = flattenedAgents[i];
-        let category = gridCategory || agent.category || "strategy";
-        if (!gridCategory) {
-          category = category.toLowerCase();
-          if (agent.tier === "Plus" || (agent.name && agent.name.endsWith("+"))) {
-            category = "plus";
+        for (let i = agentIndex; i < end; i++) {
+          const { agent, indexOrKey, gridCategory } = flattenedAgents[i];
+          let category = gridCategory || agent.category || "strategy";
+          if (!gridCategory) {
+            category = category.toLowerCase();
+            if (agent.tier === "Plus" || (agent.name && agent.name.endsWith("+"))) {
+              category = "plus";
+            }
+          }
+          const container = categoryContainers[category];
+          if (!container) continue;
+
+          let card = this._domNodeCache.get(String(indexOrKey));
+          if (card) {
+              // Re-use cached node but recalculate animation delay
+              card.style.animationDelay = `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`;
+          } else {
+              card = AgentCard.create(agent, indexOrKey, globalIndex);
+              this._domNodeCache.set(String(indexOrKey), card);
+          }
+          globalIndex++;
+
+          if (fragments[category]) {
+            fragments[category].appendChild(card);
           }
         }
-        const container = categoryContainers[category];
-        if (!container) continue;
 
-        let card = this._domNodeCache.get(String(indexOrKey));
-        if (card) {
-            // Re-use cached node but recalculate animation delay
-            card.style.animationDelay = `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`;
-        } else {
-            card = AgentCard.create(agent, indexOrKey, globalIndex);
-            this._domNodeCache.set(String(indexOrKey), card);
-        }
-        globalIndex++;
+        agentIndex = end;
 
-        if (fragments[category]) {
-          fragments[category].appendChild(card);
+        if (agentIndex < flattenedAgents.length) {
+            await yieldToMain();
         }
       }
 
-      agentIndex = end;
+      if (this.currentRenderId !== currentRenderId) return;
 
-      if (agentIndex < flattenedAgents.length) {
-        requestAnimationFrame(() => setTimeout(renderChunk, 0));
-      } else {
-        requestAnimationFrame(() => {
-          if (this.currentRenderId !== currentRenderId) return;
-          for (let i = 0; i < this.categoryKeys.length; i++) {
-            const key = this.categoryKeys[i];
-            const container = categoryContainers[key];
-            if (container) {
-              container.innerHTML = "";
-              const fragment = fragments[key];
-              const hasChildren = fragment && fragment.children.length > 0;
-              if (fragment) container.appendChild(fragment);
+      // Final DOM updates
+      for (let i = 0; i < this.categoryKeys.length; i++) {
+        const key = this.categoryKeys[i];
+        const container = categoryContainers[key];
+        if (container) {
+          container.innerHTML = "";
+          const fragment = fragments[key];
+          const hasChildren = fragment && fragment.children.length > 0;
+          if (fragment) container.appendChild(fragment);
 
-              const header = document.getElementById(key);
-              if (hasChildren) {
-                  container.style.display = "";
-                  container.classList.remove("empty");
-                  if (header) header.style.display = "";
-              } else {
-                  container.style.display = "none";
-                  container.classList.add("empty");
-                  if (header) header.style.display = "none";
-              }
-            }
+          const header = document.getElementById(key);
+          if (hasChildren) {
+              container.style.display = "";
+              container.classList.remove("empty");
+              if (header) header.style.display = "";
+          } else {
+              container.style.display = "none";
+              container.classList.add("empty");
+              if (header) header.style.display = "none";
           }
+        }
+      }
 
-          // 🪄 Illusionist: Dismiss loading overlay after DOM is generated
-          const overlay = document.getElementById("initial-loading-overlay");
-          if (overlay && !overlay.classList.contains("hidden")) {
-              overlay.classList.add("hidden");
-              setTimeout(() => {
-                  if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-              }, LOADING_OVERLAY_DISMISS_MS);
-          }
-        });
+      // 🪄 Illusionist: Dismiss loading overlay after DOM is generated
+      const overlay = document.getElementById("initial-loading-overlay");
+      if (overlay && !overlay.classList.contains("hidden")) {
+          overlay.classList.add("hidden");
+          setTimeout(() => {
+              if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+          }, LOADING_OVERLAY_DISMISS_MS);
       }
     };
 
-    requestAnimationFrame(() => setTimeout(renderChunk, 0));
+    renderAllChunks();
   }
 
   /**

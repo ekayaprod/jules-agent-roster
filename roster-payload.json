@@ -45,7 +45,7 @@
     "role": "Logistics Warden",
     "category": "Operations",
     "tier": "Core",
-    "description": "DISPATCH pristine CI/CD payloads, provision tactical sensor arrays, and pave the deployment roads for the repository ecosystem.",
+    "description": "Dispatch pristine CI/CD payloads, optimize container transit, fortify meta-infrastructure, and provision context-aware MCP arrays.",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
@@ -145,7 +145,7 @@
     "role": "Code Illuminator",
     "category": "Docs",
     "tier": "Core",
-    "description": "CHRONICLE complex logic via AST-driven inline docs, and aggregate release cycles using git history to silently preserve institutional memory.",
+    "description": "CHRONICLE complex logic via AST-driven docs, and aggregate release cycles using git history to silently preserve institutional memory.",
     "promptFile": "prompts/Scribe.md",
     "isCustom": false
   },
@@ -165,7 +165,7 @@
     "role": "Facility Maintenance",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "SWEEP the facility corridors, sync environmental constraints, and clear OS-level debris to ensure structural repository determinism.",
+    "description": "SWEEP the facility corridors, alphabetize configurations, and clear OS-level debris to ensure structural repository determinism.",
     "promptFile": "prompts/Superintendent.md",
     "isCustom": false
   },
@@ -712,7 +712,7 @@
   {
     "name": "Ghost Hunter",
     "emoji": "👻",
-    "role": "Hallucination Crash Specialist",
+    "role": "Hallucination Specialist",
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "ERADICATE phantom imports, synthetic abstractions, and hallucinated dependencies to resuscitate crashed boot sequences.",
@@ -1195,7 +1195,7 @@
     "role": "Prompt Evolutionist",
     "category": "Strategy",
     "tier": "Fusion",
-    "description": "EVOLVE brittle AI instructions by injecting strict cognitive constraints and expert personas while securing dynamic variables.",
+    "description": "Evolve brittle AI instructions by injecting strict cognitive constraints and expert personas while securing dynamic variables.",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
@@ -1365,7 +1365,7 @@
     "role": "Clinical Sweeper",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "SANITIZE the runtime. I scrub away passive memory leaks by injecting antibacterial teardown logic for lingering connections and unclosed streams.",
+    "description": "SANITIZE the runtime. Scrub away passive memory leaks by injecting antibacterial teardown logic for lingering connections and unclosed streams.",
     "promptFile": "prompts/fusions/Sanitizer.md",
     "isCustom": true
   },
@@ -1522,7 +1522,7 @@
   {
     "name": "Syntax",
     "emoji": "📐",
-    "role": "Structural Prompt Architect",
+    "role": "Prompt Architect",
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REFACTOR loose prompt strings into rigid XML-delimited structures to maximize model attention.",
@@ -1602,10 +1602,10 @@
   {
     "name": "Town Crier",
     "emoji": "🔔",
-    "role": "The Uncompromising Herald",
+    "role": "Uncompromising Herald",
     "category": "Docs",
     "tier": "Titan",
-    "description": "Hear ye, hear ye! I eradicate the gap between engineering jargon and public knowledge, translating the raw noise of the forge into a crystal-clear, user-facing decree.",
+    "description": "CHRONICLE the project's living documentation, translating raw engineering noise into crystal-clear, user-facing product updates.",
     "promptFile": "prompts/fusions/Town Crier.md",
     "isCustom": true
   },
