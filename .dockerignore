@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+.git
+.github
+.jules
+.env
+.mcp.json
+playwright-report
+test-results
+Dockerfile
+.dockerignore
+docs
+playwright
+scripts/update-orphans.js
