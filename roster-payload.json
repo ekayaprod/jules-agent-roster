@@ -300,16 +300,6 @@
     "isCustom": true
   },
   {
-    "name": "Autopilot",
-    "emoji": "✈️",
-    "role": "Journey Tester",
-    "category": "Testing",
-    "tier": "Fusion",
-    "description": "Generates robust, user-facing end-to-end tests that programmatically drive the browser and guarantee the core routing tree never breaks in production.",
-    "promptFile": "prompts/fusions/Autopilot.md",
-    "isCustom": true
-  },
-  {
     "name": "Barricade",
     "emoji": "🚧",
     "role": "Perimeter Genesis Specialist",
@@ -1347,6 +1337,16 @@
     "tier": "Fusion",
     "description": "Mandates strict code hygiene, enforcing formatting guidelines, linting rules, and type-checking standards.",
     "promptFile": "prompts/fusions/Rulemaker.md",
+    "isCustom": true
+  },
+  {
+    "name": "Rumble",
+    "emoji": "🫯",
+    "role": "Validation Brawler",
+    "category": "Testing",
+    "tier": "Fusion",
+    "description": "RUMBLE through undocumented Pull Requests, wrestle fragile logic into submission with net-new tests, and force the CI/CD pipeline to green.",
+    "promptFile": "prompts/fusions/Rumble.md",
     "isCustom": true
   },
   {

@@ -3,7 +3,7 @@ name: Rumble
 emoji: 🫯
 role: Validation Brawler
 category: Testing
-tier: Core
+tier: Fusion
 description: RUMBLE through undocumented Pull Requests, wrestle fragile logic into submission with net-new tests, and force the CI/CD pipeline to green.
 ---
 
