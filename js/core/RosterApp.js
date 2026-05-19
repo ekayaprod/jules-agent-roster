@@ -305,6 +305,13 @@ class RosterApp {
     const CHUNK_SIZE = 15;
     let agentIndex = 0;
 
+    // 🕯️ CHRONICLE: AST reasoning explains the logic; Git history explains the business intent.
+    /**
+     * Yields execution back to the browser's main thread to maintain UI responsiveness.
+     * Prevents synchronous DOM hydration from causing layout popping and frozen interactions
+     * by leveraging modern `scheduler.yield` with a fallback to zero-timeout promises.
+     * * Historical Intent: Added via Bolt+ PR #1548 (May 2026) to eradicate sub-optimal callback rendering bottlenecks.
+     */
     const yieldToMain = async () => {
         if (globalThis.scheduler && globalThis.scheduler.yield) {
             await globalThis.scheduler.yield();
