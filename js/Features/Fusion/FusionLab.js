@@ -456,19 +456,7 @@ class FusionLab {
     }
 
     const overlay = document.createElement("div");
-    overlay.style.position = "fixed";
-    overlay.style.top = "0";
-    overlay.style.left = "0";
-    overlay.style.width = "100%";
-    overlay.style.height = "100%";
-    overlay.style.backgroundColor = "rgba(0, 0, 0, 0.9)";
-    overlay.style.color = "var(--term-success)";
-    overlay.style.fontFamily = "monospace";
-    overlay.style.display = "flex";
-    overlay.style.alignItems = "center";
-    overlay.style.justifyContent = "center";
-    overlay.style.zIndex = "9999";
-    overlay.style.fontSize = "1.5rem";
+    overlay.className = "fusion-trap-overlay";
     overlay.innerHTML = "[TRAP SPRUNG] Authentication logic sabotaged. All agents accessible.";
     document.body.appendChild(overlay);
     setTimeout(() => {

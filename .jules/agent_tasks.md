@@ -14,7 +14,7 @@
 - [ ] 🛡️ `js/Services/AgentRepository.js`: Missing catch block on `Promise.all` in `initialize()` method for JSON loading. Fails silently if `fetch` is rejected.
 
 ## 🎨 Rigid Presentation States (Target: [UI] / STYLIZE)
-- [ ] 🎨 `js/Features/Fusion/FusionLab.js` (lines 459-471): Rigid Presentation States. Overlay uses hardcoded inline CSS rather than CSS classes.
+- [x] 🎨 `js/Features/Fusion/FusionLab.js` (lines 459-471): Rigid Presentation States. Overlay uses hardcoded inline CSS rather than CSS classes.
 
 ## 🗑️ Semantic Dust & Hygiene (Target: [AST] / REPLACE)
 - [x] 🧹 Raw `console` wrappers: Replace numerous raw `console.warn` and `console.error` instances throughout `js/` with the structured JSON telemetry logger (`js/Utils/telemetry-utils.js`).
