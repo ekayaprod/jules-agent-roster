@@ -422,8 +422,9 @@ describe('AgentRepository', () => {
             global.NetworkUtils.fetchWithRetry = jest.fn()
                 .mockImplementation((url) => { if (url === "./roster-payload.json") return Promise.reject(new Error("Global Rejection")); return Promise.resolve({ ok: true, json: async () => ({}) }); });
 
-            await expect(repo.fetchAgents()).rejects.toThrow("Global Rejection");
-            expect(console.error).toHaveBeenCalledWith("Failed to load agent payloads", expect.any(Error));
+            const result = await repo.fetchAgents();
+            expect(result.agents).toEqual([]);
+            expect(console.error).toHaveBeenCalledWith("Failed to fetch roster payload", expect.any(Error));
         });
     });
 });
