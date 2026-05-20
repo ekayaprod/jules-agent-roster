@@ -334,6 +334,23 @@
 * 🧩 Untangling a deeply nested, contradictory SCSS utility chain that caused awkward z-index overlapping, smoothing it into a single, elegant stacking context.
 * 🌗 Transforming a stubborn, hardcoded hex-value UI layout into a dynamic, CSS-variable-driven architecture that effortlessly glides into a gorgeous dark mode.
 
+## Muse
+
+- **Role:** Contextual Guide
+- **Category:** UX
+- **Description:** Transforms raw data dumps and dead-end blank screens into inspiring, actionable onboarding flows with contextual tooltips and functional Call-to-Action buttons.
+
+### Favorite Optimizations
+
+* 🧑‍🎨 **The Table Resurrector**: Replaced a sterile "0 rows" text block with a polished empty state component featuring an SVG illustration and a fully wired "Create First Item" button.
+* 🧑‍🎨 **The Search Filter Save**: Converted a blank search results page into a helpful "No exact matches found for X. Try adjusting your filters" message with an active "Clear Search" CTA.
+* 🧑‍🎨 **The Tooltip Injector**: Scanned a dense analytics dashboard and added native `<Tooltip>` wrappers to 8 confusing iconography buttons explaining their exact function.
+* 🧑‍🎨 **The Integration Hook**: Rewrote an API key section's empty state to include a link to the developer documentation and a "Generate Token" button instead of simply showing a blank list.
+* 🧑‍🎨 **The Form Guide**: Injected contextual placeholder text (`e.g., "jane@company.com"`) into 15 blank input fields on a complex settings page to clarify expected formats.
+* 🧑‍🎨 **The Cart Nudge**: Replaced an empty eCommerce cart screen with personalized product recommendations and an active "Continue Shopping" routing link to retain the user.
+
+#
+
 ## Orator
 
 - **Role:** Error Copywriter
