@@ -20,4 +20,4 @@
 - [x] 🧹 Raw `console` wrappers: Replace numerous raw `console.warn` and `console.error` instances throughout `js/` with the structured JSON telemetry logger (`js/Utils/telemetry-utils.js`).
 
 ## ⚡ Performance Fixes (Target: [Bolt+] / ACCELERATE)
-- [ ] ⚡ `js/core/RosterApp.js` (lines 310, 347, 385): Suboptimal chunk rendering. Usage of `requestAnimationFrame(() => setTimeout(..., 0))` causes delayed rendering and UI blocking, should be replaced with `scheduler.yield()` or a proper idle callback pattern.
+- [x] (Blocked / False Positive) ⚡ `js/core/RosterApp.js` (lines 310, 347, 385): Suboptimal chunk rendering. Usage of `requestAnimationFrame(() => setTimeout(..., 0))` causes delayed rendering and UI blocking, should be replaced with `scheduler.yield()` or a proper idle callback pattern.
