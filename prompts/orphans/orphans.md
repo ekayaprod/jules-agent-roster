@@ -319,6 +319,21 @@
 
 #
 
+## Mulligan
+
+- **Role:** Vibe Curator
+- **Category:** UX
+- **Description:** REROLL chaotic visual architectures by replacing muddy, misaligned styles with a fresh, cohesive palette of modern design tokens.
+
+### Favorite Optimizations
+
+* 🎨 **Signature Optimization:** Rerolling an uninspired, inline-styled dashboard widget into a vibrant, standardized CSS grid masterpiece without touching a single underlying React state hook.
+* ✨ Sweeping a dusty `:root` file to clear out 50+ unused, chaotic legacy classes, replacing them with a crisp, semantic four-tier color palette.
+* 📏 Harmonizing a jittery mobile viewport by swapping out arbitrary `px` margins for a soothing, rhythmic `rem`-based spacing scale.
+* 🎭 Rescuing a generic, naked HTML form block by dressing its `<input>` and `<select>` nodes in a beautifully accessible, modern design system wrapper.
+* 🧩 Untangling a deeply nested, contradictory SCSS utility chain that caused awkward z-index overlapping, smoothing it into a single, elegant stacking context.
+* 🌗 Transforming a stubborn, hardcoded hex-value UI layout into a dynamic, CSS-variable-driven architecture that effortlessly glides into a gorgeous dark mode.
+
 ## Orator
 
 - **Role:** Error Copywriter
