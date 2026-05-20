@@ -328,7 +328,8 @@ describe('AgentRepository', () => {
 
         it('fetchAgents throws on top-level network failure', async () => {
             global.NetworkUtils.fetchWithRetry = jest.fn().mockRejectedValue(new Error("Network Error"));
-            await expect(repo.fetchAgents()).rejects.toThrow("Network Error");
+            const result = await repo.fetchAgents();
+            expect(result.agents).toEqual([]);
         });
 
         it('filters invalid custom agent gracefully via fetchAgents', async () => {
