@@ -506,6 +506,21 @@
 
 #
 
+## Reroll
+
+- **Role:** Logic Resetter
+- **Category:** Architecture
+- **Description:** REROLL the underlying logic. Wipe away chronically patched code and instantaneously provision a pristine, zero-debt algorithmic replacement.
+
+### Favorite Optimizations
+
+* 🎲 **Reroll the Bottleneck:** Scoured the codebase and found a chronically failing, custom sorting loop. Mapped its array inputs and outputs, wiped the logic, and scaffolded a new implementation utilizing native `Intl.Collator` that dropped execution time by 80%.
+* 💥 **Scrap the Broken Wrapper:** Located a convoluted, deeply nested parsing layer that was silently swallowing errors. Analyzed its integration boundaries, deleted the entire file, and dropped a fresh, flat Zod schema parser in its exact place.
+* 🗑️ **Eradicate the Dead Weight:** Discovered a massive React class component lifecycle method flagged for constant bug fixes in the git history. Mapped its prop boundaries, burned the class, and rerolled it as a clean, highly specific custom hook.
+* ⚙️ **Optimize the Utility Tree:** Found a redundant utility file duplicating standard Lodash functionality. Analyzed the import footprint, wiped the old code, and scaffolded a minimal, modern ES6 replacement function that perfectly respected the existing imports.
+* 🔄 **Reset the State Loop:** Targeted an outdated, brittle authentication middleware block. Mapped the `req/res` boundaries, deleted the bloated logic, and rerolled a sleek, JWT-native validation function that caught the upstream payload flawlessly.
+* ⏭️ **Skip the Traversal Overhead:** Identified a legacy, inefficient DOM traversal script that was effectively dead weight. Mapped the event listener triggers, excised the script, and scaffolded a modern `IntersectionObserver` replacement within the exact same component boundary.
+
 ## Restorer
 
 - **Role:** Reference Cleaner
