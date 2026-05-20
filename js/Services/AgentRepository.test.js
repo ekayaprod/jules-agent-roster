@@ -328,7 +328,8 @@ describe('AgentRepository', () => {
 
         it('fetchAgents throws on top-level network failure', async () => {
             global.NetworkUtils.fetchWithRetry = jest.fn().mockRejectedValue(new Error("Network Error"));
-            await expect(repo.fetchAgents()).rejects.toThrow("Network Error");
+            const result = await repo.fetchAgents();
+            expect(result.agents).toEqual([]);
         });
 
         it('filters invalid custom agent gracefully via fetchAgents', async () => {
@@ -421,8 +422,9 @@ describe('AgentRepository', () => {
             global.NetworkUtils.fetchWithRetry = jest.fn()
                 .mockImplementation((url) => { if (url === "./roster-payload.json") return Promise.reject(new Error("Global Rejection")); return Promise.resolve({ ok: true, json: async () => ({}) }); });
 
-            await expect(repo.fetchAgents()).rejects.toThrow("Global Rejection");
-            expect(console.error).toHaveBeenCalledWith("Failed to load agent payloads", expect.any(Error));
+            const result = await repo.fetchAgents();
+            expect(result.agents).toEqual([]);
+            expect(console.error).toHaveBeenCalledWith("Failed to fetch roster payload", expect.any(Error));
         });
     });
 });

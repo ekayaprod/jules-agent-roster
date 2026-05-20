@@ -11,7 +11,7 @@
 - [ ] 🏗️ `js/Features/Fusion/FusionLab.js`: 549 lines. Requires domain splitting and colocation.
 
 ## 🛡️ Resilience Boundaries (Target: [Sentinel] / FORTIFY)
-- [ ] 🛡️ `js/Services/AgentRepository.js`: Missing catch block on `Promise.all` in `initialize()` method for JSON loading. Fails silently if `fetch` is rejected.
+- [x] 🛡️ `js/Services/AgentRepository.js`: Missing catch block on `Promise.all` in `initialize()` method for JSON loading. Fails silently if `fetch` is rejected.
 
 ## 🎨 Rigid Presentation States (Target: [UI] / STYLIZE)
 - [x] 🎨 `js/Features/Fusion/FusionLab.js` (lines 459-471): Rigid Presentation States. Overlay uses hardcoded inline CSS rather than CSS classes.
