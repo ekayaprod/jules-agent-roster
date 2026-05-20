@@ -95,7 +95,7 @@
     "role": "Triage Auditor",
     "category": "Architecture",
     "tier": "Core",
-    "description": "AUDIT the macroscopic topology of the repository, illuminating structural decay and mechanizing the task board for the blind execution swarm.",
+    "description": "Audit the macroscopic repository topology, illuminate structural decay, and mechanize the task board to direct the blind execution swarm.",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
@@ -105,15 +105,15 @@
     "role": "UI Artist",
     "category": "UX",
     "tier": "Core",
-    "description": "STYLIZE frontend components with fluid design tokens and refined typography to create absolute visual delight and structural harmony.",
+    "description": "STYLIZE frontend components with fluid design tokens, refined typography, and purposeful motion to create absolute visual delight and harmony.",
     "promptFile": "prompts/Palette+.md",
     "isCustom": false
   },
   {
     "name": "Paramedic",
     "emoji": "🚨",
-    "role": "The Trauma Resuscitator",
-    "category": "Operations",
+    "role": "Trauma Resuscitator",
+    "category": "Architecture",
     "tier": "Core",
     "description": "RESUSCITATE fatal boot sequences, trace catastrophic crashes, and mutate logic to restore operational stability.",
     "promptFile": "prompts/Paramedic.md",
@@ -135,7 +135,7 @@
     "role": "Cruft Consumer",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "Consume semantic dust, orphaned logic, and ghost syntax to leave the repository's structural architecture immaculate.",
+    "description": "CONSUME semantic dust, orphaned logic, and ghost syntax to leave the repository's structural architecture immaculate.",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
@@ -1140,16 +1140,6 @@
     "isCustom": true
   },
   {
-    "name": "Phoenix",
-    "emoji": "🐦‍🔥",
-    "role": "Void Replacer",
-    "category": "Feature",
-    "tier": "Fusion",
-    "description": "RESURRECT missing logic from the ashes of deleted code, building net-new features to fill structural voids left by decommissioned systems.",
-    "promptFile": "prompts/fusions/Phoenix.md",
-    "isCustom": true
-  },
-  {
     "name": "Polygraph",
     "emoji": "🎛️",
     "role": "Adversarial Interrogator",
@@ -1297,6 +1287,16 @@
     "tier": "Fusion",
     "description": "Restructures disorganized feature hierarchies by colocating fragmented components, styles, and hooks into unified feature folders.",
     "promptFile": "prompts/fusions/Renovator.md",
+    "isCustom": true
+  },
+  {
+    "name": "Reroll",
+    "emoji": "🎲",
+    "role": "Logic Resetter",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "REROLL the underlying logic. Wipe away chronically patched code and instantaneously provision a pristine, zero-debt algorithmic replacement.",
+    "promptFile": "prompts/fusions/Reroll.md",
     "isCustom": true
   },
   {
