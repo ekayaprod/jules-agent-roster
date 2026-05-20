@@ -545,10 +545,6 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         beforeEach(() => {
             jest.useFakeTimers();
             fusionLab.fusionIndex = { unlockAll: jest.fn() };
-            // Need to mock labContent.style because JSDOM doesn't automatically add it for all generic objects
-            if (!mockElements.labContent.style) {
-                mockElements.labContent.style = {};
-            }
         });
 
         afterEach(() => {
@@ -557,28 +553,10 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
             document.head.innerHTML = '';
         });
 
-        it('creates glitch style if it does not exist', () => {
-            expect(document.getElementById('shatter-glitch-style')).toBeNull();
-            fusionLab.unlockMatrix();
-            expect(document.getElementById('shatter-glitch-style')).not.toBeNull();
-            expect(document.getElementById('shatter-glitch-style').innerHTML).toContain('@keyframes shatter');
-        });
-
-        it('does not create duplicate glitch style if it already exists', () => {
-            const style = document.createElement('style');
-            style.id = 'shatter-glitch-style';
-            document.head.appendChild(style);
-
-            fusionLab.unlockMatrix();
-
-            const styles = document.querySelectorAll('#shatter-glitch-style');
-            expect(styles.length).toBe(1);
-        });
-
         it('applies shatter animation to labContent and creates overlay', () => {
             fusionLab.unlockMatrix();
 
-            expect(mockElements.labContent.style.animation).toBe('shatter 0.5s ease-in-out infinite');
+            expect(mockElements.labContent.classList.add).toHaveBeenCalledWith('shatter-animation');
 
             // Find the overlay
             const divs = Array.from(document.querySelectorAll('div'));
@@ -594,12 +572,12 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
             const divs = Array.from(document.querySelectorAll('div'));
             const overlay = divs.find(d => d.innerHTML.includes('[TRAP SPRUNG]'));
             expect(document.body.contains(overlay)).toBe(true);
-            expect(mockElements.labContent.style.animation).toBe('shatter 0.5s ease-in-out infinite');
+            expect(mockElements.labContent.classList.add).toHaveBeenCalledWith('shatter-animation');
 
             jest.advanceTimersByTime(3000);
 
             expect(document.body.contains(overlay)).toBe(false);
-            expect(mockElements.labContent.style.animation).toBe('');
+            expect(mockElements.labContent.classList.remove).toHaveBeenCalledWith('shatter-animation');
         });
 
         it('handles case where labContent is missing safely', () => {
