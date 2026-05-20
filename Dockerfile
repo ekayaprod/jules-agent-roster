@@ -8,7 +8,8 @@ COPY package*.json ./
 RUN npm ci
 
 # 2. Inject source logic and build
-COPY . .
+COPY scripts/ ./scripts/
+COPY prompts/ ./prompts/
 RUN npm run build:roster
 
 # 3. Production Serving Layer
@@ -24,9 +25,9 @@ RUN npm install -g http-server@14.1.1
 
 # Transfer only the compiled artifacts and required runtime files
 COPY --from=builder --chown=warden:dispatch /opt/payload/roster-payload.json ./
-COPY --from=builder --chown=warden:dispatch /opt/payload/index.html ./
-COPY --from=builder --chown=warden:dispatch /opt/payload/js ./js
-COPY --from=builder --chown=warden:dispatch /opt/payload/telemetry.json ./
+COPY --chown=warden:dispatch index.html ./
+COPY --chown=warden:dispatch js ./js
+COPY --chown=warden:dispatch telemetry.json ./
 
 USER warden
 EXPOSE 8080
