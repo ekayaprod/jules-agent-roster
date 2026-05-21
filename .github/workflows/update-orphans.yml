@@ -7,7 +7,6 @@ on:
       - main
     paths:
       - 'fusion_matrix.json'
-      - 'prompts/fusions/**'
 
 jobs:
   update-orphans:
