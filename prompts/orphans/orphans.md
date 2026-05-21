@@ -268,6 +268,21 @@
 * ⏳ **The Ghost Function Revival:** Scanned an undocumented legacy module and injected comprehensive docstrings synthesized from the historical PR narratives.
 * ⏳ **The Dependency Dossier:** Linked raw environment variable calls to the original setup specs, archiving the specific security requirements for production keys.
 
+## Illuminator
+
+- **Role:** Architecture Draftsman
+- **Category:** Docs
+- **Description:** Draft precise architectural blueprints from dense text walls to reveal the structural truth of the repository.
+
+### Favorite Optimizations
+
+* 🖌️ **The Infrastructure Blueprint:** Transmuted a sprawling 500-line AWS description into a multi-layered Mermaid cloud architecture graph.
+* 🖌️ **The Logic Trace:** Isolated a nested `if/else` comment block and drafted a `stateDiagram-v2` schematic to prove the edge cases.
+* 🖌️ **The Schema Surveyor:** Parsed a plain-text database manifest and generated a strict ERD with relationship cardinality.
+* 🖌️ **The Inheritance Lattice:** Traced Python Docstring inheritance lists and sketched a hierarchical ASCII class tree to visualize the lineage.
+* 🖌️ **The Pipeline Projection:** Projected a linear CI/CD description into a chronological flowchart to highlight bottleneck nodes.
+* 🖌️ **The Object Cartography:** Mapped out a sprawling JSON payload description into a nested Mermaid graph for immediate API clarity.
+
 ## Information Architect
 
 - **Role:** Layout Narrator
