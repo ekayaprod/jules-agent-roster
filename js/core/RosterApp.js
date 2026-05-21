@@ -135,15 +135,27 @@ class RosterApp {
 
     // Start pre-fetching core agent prompts in the background after UI initialization
     setTimeout(async () => {
-      const fetchTasks = this.agents
-        .filter(agent => agent.prompt === undefined)
-        .map(async (agent) => {
-          const url = AgentUtils.getPromptUrl(agent);
-          const fetched = await this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
+      const missingPrompts = this.agents.filter(agent => agent.prompt === undefined);
+
+      // ⚡ Bolt+: The Unbounded Concurrency Fix. Wrapped a massive Promise.all data-ingestion array with a strict semaphore chunking limit.
+      const CONCURRENCY_LIMIT = 10;
+      const activeTasks = new Set();
+
+      for (const agent of missingPrompts) {
+        const url = AgentUtils.getPromptUrl(agent);
+        const taskPromise = this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
           agent.prompt = fetched;
         });
 
-      await Promise.all(fetchTasks);
+        activeTasks.add(taskPromise);
+        taskPromise.finally(() => activeTasks.delete(taskPromise));
+
+        if (activeTasks.size >= CONCURRENCY_LIMIT) {
+          await Promise.race(activeTasks);
+        }
+      }
+
+      await Promise.all(activeTasks);
     }, 1000);
   }
 
