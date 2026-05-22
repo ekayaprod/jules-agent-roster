@@ -126,15 +126,15 @@ class FusionLab {
             card.classList.add("filled");
             card.setAttribute("aria-label", `Selected: ${agent.name}. Click to change.`);
             content.innerHTML = `
-                <span class="slot-icon-placeholder">${FormatUtils.escapeHTML(agent.emoji)}</span>
-                <span class="slot-label">${FormatUtils.escapeHTML(agent.name)}</span>
+                <span class="slot-icon-placeholder transition-all duration-300 ease-in-out hover:scale-105">${FormatUtils.escapeHTML(agent.emoji)}</span>
+                <span class="slot-label transition-all duration-300 ease-in-out">${FormatUtils.escapeHTML(agent.name)}</span>
             `;
         } else {
             card.classList.add("empty");
             card.classList.remove("filled");
             content.innerHTML = `
-                <span class="slot-icon-placeholder">+</span>
-                <span class="slot-label">${slotId === "slotA" ?
+                <span class="slot-icon-placeholder transition-all duration-300 ease-in-out hover:scale-105">+</span>
+                <span class="slot-label transition-all duration-300 ease-in-out">${slotId === "slotA" ?
 "Select Agent A" : "Select Agent B"}</span>
             `;
         }

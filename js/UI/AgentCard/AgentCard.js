@@ -138,10 +138,10 @@ class AgentCard {
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
                     
                     <div class="card-actions mt-auto pt-2 flex relative">
-                        <button class="secondary action-main-btn" data-action="${primaryAction}" data-index="${index}" title="${primaryTitle}" aria-label="${primaryTitle}">
+                        <button class="secondary action-main-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" data-action="${primaryAction}" data-index="${index}" title="${primaryTitle}" aria-label="${primaryTitle}">
                             <span class="btn-text">${primaryText}</span>
                         </button>
-                        <button class="secondary action-toggle-btn" data-action="toggle-card-dropdown" data-index="${index}" aria-label="More options" aria-haspopup="menu" aria-expanded="false" aria-controls="card-dropdown-${index}">
+                        <button class="secondary action-toggle-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" data-action="toggle-card-dropdown" data-index="${index}" aria-label="More options" aria-haspopup="menu" aria-expanded="false" aria-controls="card-dropdown-${index}">
                             ▼
                         </button>
                         
