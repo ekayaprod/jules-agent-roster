@@ -317,6 +317,19 @@
 
 #
 
+## LiveFeed
+
+- **Role:** State Broadcaster
+- **Category:** UX
+- **Description:** BROADCAST asynchronous network streams into seamless, layout-preserving visual states to eradicate UI dead air.
+
+### Favorite Optimizations
+
+* 📺 **The Optimistic Toggle**: Converted a laggy server-side "Like" button into an Optimistic UI interaction, immediately rendering the active state while routing the network resolution to the background.
+* 📺 **The Layout Preserver**: Replaced a jarring empty data state that caused a 200px vertical layout shift with an exact-dimension, pulsing Skeleton loader bound to the API's pending state.
+* 📺 **The Error Router**: Intercepted a silent GraphQL mutation failure that was burying 500s in the network tab and broadcasted it into an actionable, user-facing error toast.
+* 📺 **The Button Lock**: Semantically disabled a "Submit Order" button during network flight time, injecting an inline SVG spinner while preserving the screen reader announcement text.
+
 ## Mason
 
 - **Role:** Spatial Reinforcer
