@@ -174,7 +174,7 @@ describe('DOMUtils', () => {
     describe('getTerminalIndicatorHTML', () => {
         it('should return the correct HTML structure with the message', () => {
             const html = DOMUtils.getTerminalIndicatorHTML('System online');
-            expect(html).toBe('<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] System online</div>');
+            expect(html).toBe('<div id="fetchingIndicator" class="term-session-line skeleton-pulse transition-all duration-300 ease-in-out text-muted">[SYS] System online</div>');
         });
     });
 

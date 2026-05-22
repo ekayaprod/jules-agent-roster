@@ -127,7 +127,7 @@ class DOMUtils {
    * @see ../../docs/architecture/Utils/README.md#domutils-architecture
    */
   static getTerminalIndicatorHTML(message) {
-    return `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] ${message}</div>`;
+    return `<div id="fetchingIndicator" class="term-session-line skeleton-pulse transition-all duration-300 ease-in-out text-muted">[SYS] ${message}</div>`;
   }
 
   /**
