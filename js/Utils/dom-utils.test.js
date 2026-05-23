@@ -7,6 +7,69 @@ global.BUTTON_STATES = BUTTON_STATES;
 const DOMUtils = require('./dom-utils');
 
 describe('DOMUtils', () => {
+    describe('closeDropdownMenu', () => {
+        let menu;
+        let toggleBtn;
+        let appContext;
+
+        beforeEach(() => {
+            menu = document.createElement('div');
+            menu.id = 'test-menu';
+            menu.classList.add('visible');
+
+            toggleBtn = document.createElement('button');
+            toggleBtn.setAttribute('aria-controls', 'test-menu');
+            toggleBtn.setAttribute('aria-expanded', 'true');
+
+            document.body.appendChild(menu);
+            document.body.appendChild(toggleBtn);
+
+            appContext = {
+                activeDropdowns: new Set([menu])
+            };
+        });
+
+        afterEach(() => {
+            document.body.innerHTML = '';
+        });
+
+        it('should do nothing if menu is falsy', () => {
+            expect(() => DOMUtils.closeDropdownMenu(null, appContext)).not.toThrow();
+            expect(appContext.activeDropdowns.size).toBe(1);
+        });
+
+        it('should remove "visible" class from the menu', () => {
+            DOMUtils.closeDropdownMenu(menu, appContext);
+            expect(menu.classList.contains('visible')).toBe(false);
+        });
+
+        it('should update aria-expanded to "false" on the toggle button', () => {
+            DOMUtils.closeDropdownMenu(menu, appContext);
+            expect(toggleBtn.getAttribute('aria-expanded')).toBe('false');
+        });
+
+        it('should not throw if toggle button is missing', () => {
+            toggleBtn.remove();
+            expect(() => DOMUtils.closeDropdownMenu(menu, appContext)).not.toThrow();
+        });
+
+        it('should remove the menu from appContext.activeDropdowns', () => {
+            DOMUtils.closeDropdownMenu(menu, appContext);
+            expect(appContext.activeDropdowns.has(menu)).toBe(false);
+            expect(appContext.activeDropdowns.size).toBe(0);
+        });
+
+        it('should work when appContext is not provided', () => {
+            expect(() => DOMUtils.closeDropdownMenu(menu)).not.toThrow();
+            expect(menu.classList.contains('visible')).toBe(false);
+        });
+
+        it('should work when appContext does not have activeDropdowns', () => {
+            expect(() => DOMUtils.closeDropdownMenu(menu, {})).not.toThrow();
+            expect(menu.classList.contains('visible')).toBe(false);
+        });
+    });
+
     describe('createSkeletonElement', () => {
         it('should create a div element with the given className', () => {
             const el = DOMUtils.createSkeletonElement('test-class');
