@@ -142,12 +142,16 @@ class ExportController {
         {},
     );
 
+    // ⚡ Bolt+: The O(n²) Eradication. Extracted constant split operation to reduce algorithmic complexity inside inner loop from O(N) allocations to O(1) matching.
     for (const key in fusionMatrixMap) {
       if (Object.prototype.hasOwnProperty.call(fusionMatrixMap, key)) {
-        if (key.split(',').includes(parentName)) {
-          const fusionName = fusionMatrixMap[key];
-          const a = customAgentsMap[fusionName];
-          if (a) validCustomAgents.push(a); // collect them even if prompt is missing
+        if (key.includes(parentName)) {
+          const parts = key.split(',');
+          if (parts[0] === parentName || parts[1] === parentName) {
+            const fusionName = fusionMatrixMap[key];
+            const a = customAgentsMap[fusionName];
+            if (a) validCustomAgents.push(a); // collect them even if prompt is missing
+          }
         }
       }
     }

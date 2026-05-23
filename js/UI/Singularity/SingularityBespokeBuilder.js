@@ -338,11 +338,12 @@ class SingularityBespokeBuilder {
 
     uiState.setOptimistic();
 
-    const fetchPromise = typeof NetworkUtils !== "undefined"
-      ? NetworkUtils.fetchWithRetry("prompts/system/Singularity.md", { throwOn404: false }).then(r => r.ok ? r.text() : null)
-      : fetch("prompts/system/Singularity.md").then(r => r.ok ? r.text() : null);
-
     try {
+      // ⚡ Bolt+: The Waterfall Collapse. Unblocked UI thread during validation by deferring asynchronous I/O wait until strictly required for payload generation.
+      const fetchPromise = typeof NetworkUtils !== "undefined"
+        ? NetworkUtils.fetchWithRetry("prompts/system/Singularity.md", { throwOn404: false }).then(r => r.ok ? r.text() : null)
+        : fetch("prompts/system/Singularity.md").then(r => r.ok ? r.text() : null);
+
       const template = await fetchPromise;
 
       if (!template) {

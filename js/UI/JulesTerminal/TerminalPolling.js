@@ -49,9 +49,7 @@ class TerminalPolling {
 
     _clearPollingAndCache() {
         if (this.terminal.julesPollingIntervals) {
-            for (const key in this.terminal.julesPollingIntervals) {
-                clearInterval(this.terminal.julesPollingIntervals[key]);
-            }
+            Object.values(this.terminal.julesPollingIntervals).forEach(clearInterval);
             this.terminal.julesPollingIntervals = {};
         }
         if (this.terminal.renderedSessionIds) this.terminal.renderedSessionIds.clear();
