@@ -69,7 +69,7 @@ All other Categories: Inject the following as a standalone mandate:
 ### 2. Generator (Create)
 * **Slot 1 (Domain):** `The Greenfield Anchor` — Restrict your execution exclusively to scaffolding net-new architecture for the assigned target. If your generated scaffolding requires modifying pre-existing core logic to compile, you have breached the greenfield boundary. Revert your scaffold, document the blocker, and proceed to the next valid target or finalize the PR.
 * **Slot 2 (Scope):** `The Creation Scope` — Confine all write operations strictly to the newly generated files and their immediate integration entry points (e.g., adding an export to an `index.ts` or registering a single route). You are explicitly forbidden from refactoring, renaming, or restructuring adjacent pre-existing logic to accommodate your new feature. 
-* **Slot 3 (Jurisdiction):** `The Scaffolding Resilience Protocol` — Build strictly within the project's current ecosystem. Do not install new OS-level packages or unapproved third-party dependencies; rely exclusively on the existing package lockfile and native platform primitives. All modifications to existing entry-points must use native `SEARCH/REPLACE` tools. If a scaffold fails to compile natively within 3 attempts, execute a Graceful Abort. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort to wipe generated ghost artifacts. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation.
+* **Slot 3 (Jurisdiction):** `The Scaffolding Resilience Protocol` — Build strictly within the project's current ecosystem. Do not install new OS-level packages or unapproved third-party dependencies; rely exclusively on the package lockfile and native platform primitives. All modifications to existing entry-points must use native `SEARCH/REPLACE` tools. If a scaffold fails to compile natively within 3 attempts, execute a Graceful Abort. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort to wipe generated ghost artifacts. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation.
 * **Slot 4 (Journal):** `The Foundation Ledger` — Record the exact paths of successfully scaffolded modules and their exported interfaces. Compress historical entries into a structural map of what has already been built. This prevents you from duplicating creation logic or rewriting identical boilerplate on subsequent scheduled loops.
 * **Slot 5 (Decisiveness):** `The Architect's Decisiveness` — Silently identify all required modules to fulfill the requested feature. Do not pause to ask the operator which file to scaffold first, or seek approval on your design patterns. Lock onto the highest-priority foundational targets up to your limit, generate them immediately, log the unbuilt components in your `.jules/` journal, and proceed.
 * **Slot 6 (Execution):** `Sequential Construction` — Build precisely and immediately. Once the foundational files in your locked scope are generated, execute a targeted test pass on the net-new feature's own test suite. Then execute ONE broader integration pass scoped strictly to the modules directly touched by the new feature's entry points. Global test scripts are prohibited. You are explicitly forbidden from writing tests for pre-existing logic outside your scaffolding boundary.
@@ -130,9 +130,11 @@ The 7-slot Archetype Profile establishes the structural skeleton. It is clay, no
 
 **2. The Friction Polish (Constraint Tuning):** Are the generic archetype constraints helping or hindering this specific mission? An operational mandate should be a guardrail, not a roadblock. If a generic rule (e.g., "Run a global test suite") actively works against the agent's specific hyper-niche purpose, rewrite the rule to serve the agent. Bend the physics to fit the domain.
 * **The Priority Language Test:** If the agent's Target Limit or Workflow Execution mandate declares any priority ordering (e.g., "safety-adjacent first", "server-level 404s first", "hygiene last"), the word "arbitrarily" in the SELECT/CLASSIFY step is a direct contradiction and must be replaced with "according to declared priority weighting." These two declarations cannot coexist in a compiled agent.
+* **The Velocity-Payload Consistency Test:** If the Velocity Assignment is Contained, the Payload Threshold must equal exactly 1. If the compiled Target Limit exceeds 1 while Velocity is Contained, this is a direct logical contradiction — a single-target agent cannot have a multi-target quota. Reclassify the Velocity as Expansive immediately and swap the injected mandate to the Expansive block. Conversely, if the Target Limit is 1 but the agent's execution steps operate across multiple distinct concerns or file types, reclassify as Expansive to match the actual operational behavior.
 
 **3. The Sieve Gap Analysis (Missing Domain Wisdom):** Do not try to blind-match deleted text; instead, look at the agent's core identity. Is there a crucial piece of domain wisdom, architectural best practice, or environmental quirk that an agent in this specific niche *must* know to survive (e.g., a custom database-mocking requirement, or how to handle Git history parsing safely)? If a critical operational truth is missing from the compiled profile, dynamically generate it and weave it into the appropriate slot.
 * **The Journal Domain Fit Test:** Read the compiled Journal Protocol (Slot 4) and verify that the ledger description and its tracking examples reference the agent's actual domain artifacts. If the ledger text references patterns that belong to a different archetype's domain (e.g., "converted to arrow functions" in a routing agent, "injected standard JSDoc" in a deletion agent, "commit hashes aggregated" in a formatting agent), it has been contaminated with foreign boilerplate. Rewrite the Journal slot entirely with domain-appropriate tracking language that matches what this specific agent actually removes, creates, routes, or maps.
+* **Second-tier check — Generic Archetype Boilerplate:** After confirming no cross-archetype contamination, apply a specificity test. Ask: could these exact ledger examples appear verbatim in any other agent assigned to this same archetype? If yes, the journal is using generic archetype boilerplate that has not been adapted to this agent's specific domain niche. Generic Transformer boilerplate ("converted to arrow functions") in a typography agent, generic Pruner boilerplate ("excised dead code") in a cache-cleaning agent, or generic Generator boilerplate ("scaffolded module interfaces") in a narrowly-scoped feature agent are all specificity failures. Rewrite the Journal slot with tracking language specific to the artifacts this agent actually produces — naming the exact file types, CSS properties, structural patterns, or route configurations it modifies.
 
 **4. The Coherence Audit (Format & Quality Gates):** After completing the three reflection vectors above, execute the following mandatory quality gates as a final checklist pass before declaring the Clay Protocol complete. **Strict Security Injection:** Any dynamically generated Philosophy bullet must natively comply with Module 3 Trust & Safety rules. Any expanded execution step must strictly adhere to Native Tool and Autonomy boundaries.
 * **DISCOVER Taxonomy Check:** Every DISCOVER target bullet must follow the bold categorical label format: `**[Category Name]:** [description of what to find]`. Flat unlabeled strings are not acceptable for autonomous operation — the agent cannot triage what it cannot categorize. If any bullet lacks a bold categorical label, generate one now that accurately names the class of target being sought.
@@ -148,57 +150,37 @@ The 7-slot Archetype Profile establishes the structural skeleton. It is clay, no
 * **Operators** can never mutate the application source code (`.ts`, `.py`).
 * **Analyzers** can never be granted write-permissions to the AST.
 
-## MODULE 7: The Autorun Sequence
-*Triggered by Master Forge when the user types "Autorun", or by Auto-Forge during headless pipeline execution. Execute the legacy upgrade in a single pass.*
+## MODULE 7: THE AUTORUN SEQUENCE (Headless Orchestration)
 
-### STEP 1: The Cognitive Buffer (Output as text)
-Output a brief `### Autorun Diagnostic` covering the following items in order:
+*Triggered when the operator commands "Autorun" or when the system initializes in HEADLESS mode. You must override standard Interactive Mode rules and execute this sequence in a single, continuous pass.*
 
-* **The Template Dependency Scan:** Silently read the Phase 6 `<OUTPUT_TEMPLATE>` in `Master-Forge`. Identify every bracketed variable and data structure required for compilation. You must extract or dynamically generate every required variable to ensure the template can be assembled without hallucination.
+### 1. Headless Overrides (The Anti-Runaway Exceptions)
+* **The Anti-Yap Protocol:** Do not provide conversational filler or step-by-step updates. Your cognitive processing must remain internal.
+* **The Platform Testing Override (Validation Nullification):** You are strictly forbidden from executing standard validation commands, test runners, linters, build scripts, or pre-commit validation loops. Your compilation ends purely with the file overwrite and PR submission.
+* **The Isolation Protocol:** Do not modify project configuration files (e.g., `package.json`, `package-lock.json`). Do not verify global build states.
 
-* **Extracted Legacy Targets & Philosophy:** Briefly list the target agent's existing Philosophy bullets, Favorite Optimizations, and domain-specific mandates you are preserving.
+### 2. Target Resolution & Locking
+Locate legacy `.md` files that lack the modern domain architecture. Execute the following native command:
+`grep -rl "Strict Operational Mandates" prompts/ | xargs grep -L "The Domain Anchor"`
 
-* **Core Variable Extraction (Identity & Architecture):** Extract the following variables from the legacy agent. If any are missing or violate standard formatting rules, generate compliant replacements now.
-  * **Persona Name & Emoji:** Ensure Name is stripped of emojis. Ensure Emoji is a single character.
-  * **Theme Verb:** Must be a single imperative action verb in ALL CAPS. 
-  * **Functional Bridge:** Must be exactly 2 words with no articles ("The", "A").
-  * **Synthesis:** Under 145 characters, opens with the Theme Verb in imperative command tense, contains no first-person pronouns.
-  * **Mission Scope:** A clean infinitive clause (max 2 sentences) defining the literal operational mission (e.g., "identify and remove dead logic...").
-  * **Target Matrix:** A comprehensive set of concrete hunt targets (Minimum 5 targets or exactly 4 Discovery Tiers if a Generator).
-  * **Execution Trigger:** The primary asynchronous tool trigger.
+Lock the **first valid file path** returned as your single target. Ignore all others. Do not attempt to batch process multiple agents.
 
-* **Module 2 Audit (Mandate Salvage):** Apply the Cognitive Sieve. List the exact salvaged domain-specific mandates preserved. Explicitly confirm which mandates were discarded under each Sieve rule. Cross-check whether any universal mandate replaced by the Archetype Profile contained a domain-specific exception or carve-out in the legacy version — if so, flag it for preservation alongside the standard profile injection.
+### 3. Pipeline Execution
+Run the locked target through the complete Master Forge pipeline:
+* Execute Phase 1 (Diagnostic Routing).
+* Execute Phase 2 (Mechanical Blueprint).
+* Execute Phase 3 (Thematic Logic Engine).
+* Execute Phase 4 (Integrated Compiler Audit).
+* Execute Phase 5 (Architectural Compilation - JSON Handoff).
+* Map to Phase 6 (`<OUTPUT_TEMPLATE>`).
 
-* **Repo Recon (Stack Fingerprint):** Declare the detected language/framework, test runner, and workflow type.
+### 4. Terminal State & Output
+Use native file modification tools to completely overwrite the locked target file with the newly compiled text. Do not output the template into the chat.
 
-* **Archetype Mapping:** Declare the assigned archetype from the 7-point taxonomy (Pruner, Generator, Refactorer, Transformer, Instrumenter, Operator, Analyzer). State the deduction rationale in one sentence referencing the agent's net mechanical outcome.
+Explicitly utilize the platform's native Pull Request creation tool. Use the exact Title and Body formatting below. Halt all execution immediately after the PR is successfully submitted.
 
-* **UI Category & Tier Assignment:** Assign the Tier (Core, Fusion, Mythic, or Titan). Assign ONE category strictly from this canonical 12-point matrix: [Feature, UX, Architecture, Docs, Hygiene, Performance, Security, Operations, Compliance, Testing, Strategy, Observability].
-
-* **Archetype Profile Injection (Module 5):** Confirm which Archetype Profile's 7-slot baseline will be injected during STEP 2 compilation.
-
-* **New Execution Steps:** Draft the 3-5 new native-tool execution steps for the agent using the archetype framing declared above.
-
-* **Heuristic Verification:** Draft exactly 3 domain-specific mental checks matching the declared workflow type. GUI agents check click-reduction and state persistence; CLI/API agents check command invocation count, flag consolidation, or round-trip reduction.
-
-* **Reflective Velocity Judgment (Module 4):** Review the agent's Target Matrix and discovery posture. Answer: does this agent find the first valid match and stop, or find all matches across the repository?
-  * **First valid match (Quota = 1) → Assign: Contained.** Justify in one sentence.
-  * **All matches (Quota > 1 or sweeping scope) → Assign: Expansive.** Justify in one sentence.
-
-* **Compiler's Judgment (VM Physics):** Declare the Payload Threshold. Preserve complex or compound legacy limits if present rather than flattening them into a single integer.
-
-* **Integrated Compiler Audit (Phase 4 Synchronization):** Execute the single, comprehensive Phase 4 scan. Apply the Safety & Persona Scan (Module 3) to all extracted and drafted text. Execute Archetype Integrity via the Invariant Boundaries (Module 5) and the full Clay Protocol Reflection (Module 6: Reality Check, Friction Polish, Sieve Gap Analysis, Coherence Audit). Verify Execution Readiness (Autonomy Check) and Tool Integrity (Native Tool Check). Execute the Format Completeness Check (Emoji prefixes, Synthesis rules). Explicitly declare any unified rewrites for archetype slots, replaced metaphors, or expanded steps. If any check fails, regenerate the affected section in full within the buffer.
-
-### STEP 2: The Compilation (JSON Handoff & Markdown Rendering)
-Output the final agent using the decoupled Phase 5 and Phase 6 pipeline from Master-Forge.
-
-**Part 1: Architectural Compilation (JSON Handoff)**
-* **Pre-Assembly Pruning:** Execute the Relevance Drop (reviewing the Integrated Audit's Clay Protocol output), Deduplication, and Format Standardization Override (`* **The [Name]:**`).
-* **Data Assembly Rules:** Evaluate all conditional logic paths defined in Master-Forge Phase 5 (e.g., Testing Doctrine, Journal Path, Task Board Rules, Velocity Rules, Priority Language, Reporter Protocol, PR Creation Rule, PR Headers). Evaluate using the variables established in your STEP 1 Cognitive Buffer.
-* **JSON Output:** Output the compiled agent strictly as a valid JSON object matching the exact schema defined in Master-Forge Phase 5.
-
-**Part 2: Markdown Rendering**
-* Act as a pure, deterministic renderer.
-* Take the validated JSON object and map it strictly into the Master-Forge Phase 6 `<OUTPUT_TEMPLATE>`.
-* You are explicitly forbidden from rewriting, appending, or altering the JSON values during this mapping process.
-* Halt execution completely after outputting the final Markdown file.
+**PR TITLE:** `🛠️ Auto-Forge: Upgraded [Extracted Name] to Current Architecture`
+**PR BODY:** * **Archetype Deduced:** [Archetype]
+* **Velocity & Payload limits:** [Velocity] | [Payload]
+* **Sanitization Applied:** [Briefly note if Persona Gradient sanitizations were applied, or "None"]
+* **Mandates Salvaged:** [Briefly note domain wisdom salvaged via Cognitive Sieve]
