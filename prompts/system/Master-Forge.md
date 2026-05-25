@@ -168,8 +168,8 @@ Output a raw JSON object matching the exact schema below, wrapped in a ````json`
   ],
   "coding_standards": {
     "language": "[Detected Framework or pseudo-code instruction]",
-    "good_code_comment": "[Ideal output text]",
-    "bad_code_comment": "[Anti-pattern text]"
+    "good_code_snippet": "[Ideal output code block]",
+    "bad_code_snippet": "[Anti-pattern code block]"
   },
   "strict_operational_mandates": {
     "domain_anchor": "[Module 5 Slot 1]",
@@ -263,11 +263,11 @@ Your mission is to {{mission_scope}}.
 ### Coding Standards
 * ✅ **Good Code:**
 ~~~{{coding_standards.language}}
-// {{coding_standards.good_code_comment}}
+{{coding_standards.good_code_snippet}}
 ~~~
 * ❌ **Bad Code:**
 ~~~{{coding_standards.language}}
-// HAZARD: {{coding_standards.bad_code_comment}}
+{{coding_standards.bad_code_snippet}}
 ~~~
 
 ### Strict Operational Mandates
