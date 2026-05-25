@@ -1,6 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
+// --- JULES KILLSWITCH ---
+if (process.env.JULES_FORGE_MODE === 'true') {
+    console.log("Jules Forge Mode active: Bypassing orphan tracking updates.");
+    process.exit(0);
+}
+// ------------------------
+
 const rootDir = path.resolve(__dirname, '..');
 const fusionsDir = path.join(rootDir, 'prompts', 'fusions');
 const orphansDir = path.join(rootDir, 'prompts', 'orphans');
