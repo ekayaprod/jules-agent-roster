@@ -6,7 +6,7 @@ This directory contains the core application logic for the Jules Roster. The app
 
 The codebase is organized into modular components that separate concerns between data fetching, UI rendering, and complex business logic (Fusion).
 
-### Core Logic (`/`)
+### Core Logic (`js/core`)
 
 * **`RosterApp.js`**: The main entry point. Initializes the application, coordinates data fetching via `AgentRepository`, and manages the main agent grid UI.
 
@@ -29,24 +29,39 @@ The `RosterApp` orchestrates the primary application flow, emphasizing asynchron
 4. **Global Event Delegation (`bindEvents()`)**:
    * The app entirely abandons inner loop event listeners. Interactions on `AgentCard` buttons (e.g., Copy, Download) bubble up to a single document-level `click` listener in `RosterApp`, routed securely via `dataset.action`.
 
+### Features (`js/Features`)
+
 * **`FusionLab.js`**: Manages the "Fusion Lab" UI component (the bottom section), handling agent selection, animation states, and fusion execution.
 * **`FusionCompiler.js`**: The brain of the fusion system. Contains the logic for combining two agent prompts into a single, cohesive "Fusion Protocol" (XML/JSON output).
-* **`utils/prompt-parser.js`**: A utility for parsing and structuring raw Markdown prompts into machine-readable formats (e.g., XML sections).
 * **`FusionIndex.js`**: Manages the "Fusion Index" (the shelf), persisting discovered fusions to `localStorage` and unlocking them as users experiment.
+* **`SearchController.js`**: Controls the logic for the search functionality.
+* **`ExportController.js`**: Controls the logic for exporting agents or protocols.
+* **`PinnedManager.js`**: Manages pinning mechanics for agents.
 
-### Services (`/services`)
+### Services (`js/Services`)
 
 * **`AgentRepository.js`**: Responsible for fetching and parsing `roster-payload.json`. It normalizes data and handles error states for network requests.
+* **`GithubAPI.js`**: Service for communicating with GitHub APIs.
+* **`JulesAPI.js`**: Service for communicating with Jules internal APIs.
+* **`LLMRouter.js`**: Service for routing LLM requests based on API keys.
 
-### UI Components (`/ui`)
+### UI Components (`js/UI`)
 
 * **`AgentCard.js`**: A functional component that generates the HTML for individual agent cards. It handles efficient DOM updates and event delegation setup.
 * **`ToastNotification.js`**: A lightweight, accessible toast notification system for user feedback (e.g., "Copied to clipboard").
 * **`clipboard-utils.js`**: A wrapper around the Clipboard API with fallbacks for older browsers. Handles the logic for copying prompts and animating buttons.
+* **`JulesTerminal.js`**: Main interface for the Jules terminal system.
+* **`SingularityBespokeBuilder.js`**: Complex bespoke UI builder for the Singularity protocol.
 
-### Utilities (`/utils`)
+### Utilities (`js/Utils`)
 
-* **`PerformanceUtils.js`**: performance-critical helpers, such as `debounce`, used to optimize search inputs and scroll listeners.
+* **`performance-utils.js`**: performance-critical helpers, such as `debounce`, used to optimize search inputs and scroll listeners.
+* **`prompt-parser.js`**: A utility for parsing and structuring raw Markdown prompts into machine-readable formats (e.g., XML sections).
+* **`dom-utils.js`**: General purpose DOM manipulation utilities.
+
+### Constants (`js/constants`)
+
+* **`ui.js`**: Shared UI constants and configuration properties.
 
 ## 🔄 Data Flow
 
