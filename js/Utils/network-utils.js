@@ -1,3 +1,9 @@
+// 🕯️ CHRONICLE: AST reasoning explains the logic; Git history explains the business intent.
+
+/**
+ * Manages resilient network fetching with integrated rate-limiting, retry logic, and strict payload validation to prevent exploitation or fatal crashes.
+ * * Historical Intent: Added via d840cd25 (May 2026) by ekayaprod to update update-orphans.js.
+ */
 class NetworkUtils {
   static REQUEST_TIMEOUT_MS = 15000;
   static DEFAULT_BACKOFF_MS = 300;
