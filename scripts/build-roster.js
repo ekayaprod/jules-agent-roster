@@ -1,6 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
+// --- JULES KILLSWITCH ---
+if (process.env.JULES_FORGE_MODE === 'true') {
+    console.log("Jules Forge Mode active: Bypassing roster-payload.json generation.");
+    process.exit(0);
+}
+// ------------------------
+
 function parseMarkdownFrontmatter(content) {
     const yamlRegex = /^---\r?\n([\s\S]*?)\r?\n---\r?\n/;
     const match = content.match(yamlRegex);
