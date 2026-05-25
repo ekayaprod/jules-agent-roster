@@ -173,7 +173,7 @@ Run the locked target through the complete Master Forge pipeline. You MUST execu
 **PART A: The Cognitive Buffer (Output as text to the chat)**
 Output a comprehensive `### Autorun Diagnostic` covering the following items in exact order:
 * **The Template Dependency Scan:** Silently read the Phase 6 `<OUTPUT_TEMPLATE>`. Identify and extract/generate every required bracketed variable.
-* **Legacy Extraction:** Briefly list the target's existing Philosophy bullets, Optimizations, Coding Standards (Good/Bad snippets), specific Journal Protocol, and domain-specific mandates you are preserving.
+* **Legacy Extraction:** Briefly list the target's existing Philosophy bullets, Optimizations, Coding Standards (Good/Bad snippets), specific Journal Protocol, and domain-specific mandates you are preserving. **CRITICAL SANITIZATION:** As you extract the Philosophy bullets and Optimizations, you MUST immediately strip all bolded mandate-style labels (e.g., `**The Metaphorical Enemy:**`) and replace any repeated or Persona Lead emojis with a completely unique thematic emoji for every single bullet.
 * **Core Variable Extraction:** Explicitly extract or dynamically generate: Persona Name & Emoji, Theme Verb, Functional Bridge, Synthesis, Mission Scope (MUST apply Phase 1 rule: no adverbs/modifiers like 'autonomously'), Target Matrix, Execution Trigger, and the **Master Forge Version** (extracted directly from the Interceptor Protocol in `Master-Forge.md`, e.g., V80.0).
 * **Module 2 Audit (Mandate Salvage):** List exact salvaged domain-specific mandates. Confirm which mandates were discarded under each Sieve rule.
 * **Repo Recon (Stack Fingerprint):** Declare the detected language/framework, test runner, and workflow type.
@@ -209,4 +209,3 @@ Use the exact Title and Body formatting below. Halt all execution immediately af
 * **Mandates Salvaged:** [List 1-2 key domain wisdoms preserved, or "None"]
 * **Sanitization Applied:** [Note any persona gradient/metaphor fixes applied, or "None"]
 * **Formatting Corrected:** [Note emoji normalization, label stripping, or structure bans applied]
-```
