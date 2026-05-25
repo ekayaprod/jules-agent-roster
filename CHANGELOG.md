@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### 🚀 Features
+- **Agent Architecture Upgrades**: Mass migration of multiple agents (Siren, Forensic Architect, Calligrapher, Sylar, Surgeon, Town Crier, Polygraph, Hive, Pantomime, Examiner, Triage Commander, Narrator, Firewall, Temporal Loom, Barricade, Medic, Pacemaker, Bulwark) to the current V68.0 / Master Forge architecture via Auto-Forge.
 - **CI/CD Infrastructure**: Provisioned optimized container transit via multi-stage Docker build.
 - **Architectural Upgrades**: Upgraded numerous core and fusion agents to the modern Master Forge V68.0 Architecture.
 
@@ -17,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Boot Sequence Stability**: Resolved fatal application crashes caused by illegal `require()` calls and unhandled JSON Promise rejections.
 
 ### ⚡ Performance
+- **Algorithmic Complexity**: Reduced algorithmic complexity and optimized performance bounds.
 - **Asynchronous Rendering**: Unblocked the main UI thread during DOM hydration by replacing `requestAnimationFrame` with modern `scheduler.yield()` fallback patterns.
 
 ### 🔧 Chores

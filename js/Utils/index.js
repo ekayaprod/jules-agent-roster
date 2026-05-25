@@ -1,3 +1,9 @@
+// 🕯️ CHRONICLE: AST reasoning explains the logic; Git history explains the business intent.
+
+/**
+ * Acts as the centralized export registry for all utility modules, bridging CommonJS and browser environments.
+ * * Historical Intent: Added via d840cd25 (May 2026) by ekayaprod to update update-orphans.js.
+ */
 const AgentUtils = typeof require !== 'undefined' ? require('./agent-utils.js') : window.AgentUtils;
 const DOMUtils = typeof require !== 'undefined' ? require('./dom-utils.js') : window.DOMUtils;
 const DownloadUtils = typeof require !== 'undefined' ? require('./download-utils.js') : window.DownloadUtils;

@@ -1,3 +1,9 @@
+// 🕯️ CHRONICLE: AST reasoning explains the logic; Git history explains the business intent.
+
+/**
+ * Provides static utility methods for parsing, retrieving, and constructing paths for custom agents and their combined fusion variations.
+ * * Historical Intent: Added via d840cd25 (May 2026) by ekayaprod to update update-orphans.js.
+ */
 class AgentUtils {
     static getCustomAgent(customAgents, key) {
         if (!customAgents) return undefined;
