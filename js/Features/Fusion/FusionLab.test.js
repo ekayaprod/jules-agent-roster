@@ -747,10 +747,10 @@ describe('FusionLab Initialization and Bindings', () => {
         expect(fusionLab.handleFusion).toHaveBeenCalled();
 
         // Trigger resetLabBtn click
-        fusionLab.resetLab = jest.fn();
+        fusionLab.returnToLab = jest.fn();
         const resetBtnHandler = fusionLab.elements.resetLabBtn.addEventListener.mock.calls.find(c => c[0] === 'click')[1];
         resetBtnHandler();
-        expect(fusionLab.resetLab).toHaveBeenCalled();
+        expect(fusionLab.returnToLab).toHaveBeenCalled();
 
         // Trigger copyFusionBtn click
         fusionLab.lastFusionResult = { prompt: 'Sample Prompt' };

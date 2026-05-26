@@ -396,6 +396,24 @@ class EventBinder {
 
     // Close search and active dropdowns on Escape key
     document.addEventListener("keydown", (e) => {
+        // ☕ CAFFEINATED: The Double-Shot Override - Global hotkeys for direct action
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            const searchBtn = app.elements.searchTriggerBtn;
+            if (searchBtn && !app.elements["category-nav"]?.classList.contains("search-active")) {
+                searchBtn.click();
+            } else if (app.elements.searchInput) {
+                app.elements.searchInput.focus();
+            }
+            return;
+        }
+
+        if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === 'c') {
+            e.preventDefault();
+            if (app.elements.masterCopyBtn) app.elements.masterCopyBtn.click();
+            return;
+        }
+
         if (e.key !== "Escape") return;
 
         // Priority 1: Close active dropdowns
