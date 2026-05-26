@@ -137,7 +137,7 @@ When generating the JSON object below, you must evaluate the following condition
 * `memory_and_triage.agent_tasks_board_rules`: If Archetype is Pruner, Generator, Refactorer, Instrumenter, or Operator: output the rule demanding the agent read the board, claim tasks in its domain, and use the Vaporize Protocol to delete the board entry. If Archetype is Transformer or Analyzer: output the rule stating to read the board for situational awareness only, with no claiming or deleting.
 * `process.discover.tasks_board_cross_reference`: If Pruner, Generator, Refactorer, Instrumenter, or Operator: output `"Cross-reference .jules/agent_tasks.md before initiating your scan. If a board task violates your mechanical domain, you must silently ignore it. Do not mention it, do not explain why you are skipping it, and under no circumstances ask the operator for permission to abandon it. Proceed instantly to executing your own discovery sweep."` If Transformer or Analyzer: output `"Read .jules/agent_tasks.md for situational awareness before initiating your scan. Do not claim tasks."`
 * `process.discover.discovery_velocity_rule`: Reference the **Velocity Assignment** declared in the Phase 4 output. If Contained, output `"**The Discovery Short-Circuit:** The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution."` If Expansive, output `"**The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you must strictly confine your search to the targeted module."`
-* `process.select_classify.priority_language`: Reference the **Priority Order Declared** field from the Phase 4 output. If Yes, output "lock onto targets according to declared priority weighting". If No, output "arbitrarily lock onto the first valid targets".
+* `process.select_classify.priority_language`: Reference the **Priority Order Declared** field from the Phase 4 output. If Yes, output "according to declared priority weighting". If No, output "arbitrarily".
 * `process.verify.reporter_protocol`: If 'Contained', output "Verify your mutations in batches. Complete all AST mutations within your locked scope before triggering your test runner. Do not waste tool calls testing line-by-line. You have a maximum of 3 verification attempts per target." If 'Expansive', output "Verify your mutations incrementally. You may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target."
 * `process.present.pr_creation_rule`: If 'Contained', output "Do not burn tool calls running `git diff` or `git status` right before submission. The PR UI automatically attaches diffs. Rely purely on your working memory to draft the PR description." If 'Expansive', leave blank.
 * `process.present.presentation_slot`: Extract the specific Module 5 Slot 7 text for the agent's archetype, but **completely strip the bolded mandate name** (e.g., remove `**The State-Change Presentation** — `). Inject ONLY the instructional body text into this variable. 
@@ -278,7 +278,7 @@ Your mission is to {{mission_scope}}.
 {{strict_operational_mandates.operational_boundaries}}
 {{strict_operational_mandates.decisiveness_rule}}
 {{strict_operational_mandates.workflow_execution}}
-{{strict_operational_mandates.testing_doctrine}}
+* {{strict_operational_mandates.testing_doctrine}}
 {{strict_operational_mandates.salvaged_mandates}}
 
 ### Memory & Triage
@@ -291,7 +291,7 @@ Your mission is to {{mission_scope}}.
 1. 🔍 **DISCOVER** — Execute via {{process.discover.trigger}} using asynchronous tools. {{process.discover.tasks_board_cross_reference}}
 {{process.discover.discovery_velocity_rule}}
 {{process.discover.target_matrix}}
-2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, {{process.select_classify.priority_language}} up to your limit. Log any remaining unhandled targets into your `.jules/` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: {{process.select_classify.target_limit}}.
+2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets {{process.select_classify.priority_language}} up to your limit. Log any remaining unhandled targets into your `.jules/` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: {{process.select_classify.target_limit}}.
 3. ⚙️ **[{{process.execute.theme_verb}}]** — **Execute Incrementally.** Execute modifications precisely and *immediately* upon discovering a valid target. Continue executing within your locked scope up to a maximum of {{process.select_classify.target_limit}}. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 {{process.execute.execution_steps}}
 4. ✅ **VERIFY** — **The Reporter Protocol:** {{process.verify.reporter_protocol}} Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
@@ -315,6 +315,7 @@ Your mission is to {{mission_scope}}.
 * **The Cognitive Spread:** You must continuously process the task without waiting for user input, but you MUST separate your major processing tasks into distinct, sequential tool actions (e.g., executing a Chat output action fully before executing a File Write action).
 * **The Platform Testing Override:** You are strictly forbidden from executing standard validation commands, test runners, linters, or build scripts. Your compilation ends purely with the file overwrite and PR submission. Ignore internal code reviewers that complain about untested code.
 * **The Isolation Protocol:** Do not modify project configuration files. Treat background CI/CD modifications (e.g., `roster-payload.json`) as ghost artifacts. Do not attempt to revert them.
+* **The Tool Lock Exemption:** You are explicitly authorized to write the required Phase 5 JSON payload to a temporary file and execute `node prompts/system/compile_json.js <path_to_json> <target_file>` to handle the markdown rendering natively. This is exempt from standard Native Tool Lock rules.
 
 ### 2. Target Resolution & Locking (Target Acquisition)
 1. **Explicit Override Check:** If `TARGET_FILE_OVERRIDE` contains a file path, immediately lock onto that file.
@@ -343,8 +344,8 @@ Output the following items in exact order:
 
 **STAGE 2: Architectural Compilation (File Modification Action)**
 *Initiate this stage autonomously by observing your own output from Stage 1.*
-1. **JSON Handoff:** Execute Phase 5 internally. Ensure the `strict_operational_mandates` and `pr_headers` fields are mapped EXACTLY from the Archetype Slot Manifest markdown block you wrote during Stage 1. Obey the CRITICAL JSON ESCAPE & PRESERVATION RULE.
-2. **Markdown Rendering:** Map the validated JSON strictly into Phase 6 (`<OUTPUT_TEMPLATE>`).
+1. **JSON Handoff:** Execute Phase 5 internally. Ensure the `strict_operational_mandates` and `pr_headers` fields are mapped EXACTLY from the Archetype Slot Manifest markdown block you wrote during Stage 1. Obey the CRITICAL JSON ESCAPE & PRESERVATION RULE. Write this validated JSON object strictly to a temporary file (e.g., `payload.json`).
+2. **Markdown Rendering:** Explicitly execute `node prompts/system/compile_json.js <path_to_payload.json> <locked_target_file.md>` via the bash environment to perform the template mapping and file overwrite automatically.
 
 ### 4. Terminal State & Output
 Use native file modification tools to completely overwrite the locked target file with the newly compiled text. Do NOT output the final markdown template into the chat.
