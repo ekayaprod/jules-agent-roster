@@ -276,8 +276,9 @@ class EventBinder {
 
           if (agent.prompt === undefined) {
               const fallbackText = "No protocol data available.";
-              // Temporarily render a loading spinner
-              promptArea.innerHTML = '<div class="loading-spinner-container"><div class="loading-spinner loading-spinner-item"></div></div>';
+              // 🎩 CONJURE: Inject structural CSS skeleton to instantly mask network latency
+              promptArea.innerHTML = '';
+              promptArea.appendChild(DOMUtils.createSkeletonElement("skeleton-pulse", "8rem"));
 
               const url = AgentUtils.getPromptUrl(agent);
 
