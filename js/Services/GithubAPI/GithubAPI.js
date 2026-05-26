@@ -42,15 +42,20 @@ class GithubAPI {
 
         const url = new URL(`${this.baseUrl}${path}`);
 
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
+
         try {
             const response = await fetch(url.toString(), {
                 ...options,
+                signal: controller.signal,
                 headers: {
                     ...options.headers,
                     "Authorization": `Bearer ${this.apiKey}`,
                     "Accept": "application/vnd.github.v3+json"
                 }
             });
+            clearTimeout(timeoutId);
 
             if (!response.ok) {
                 const errorData = await response.json().catch(() => ({}));
@@ -60,6 +65,12 @@ class GithubAPI {
 
             return await response.json();
         } catch (error) {
+            clearTimeout(timeoutId);
+            if (error.name === 'AbortError') {
+                const timeoutErr = new GithubNetworkError(`Request to ${path} timed out after 15s.`, 408);
+                console.error(`[GithubAPI] Request timeout: `, timeoutErr);
+                throw timeoutErr;
+            }
             console.error(`[GithubAPI] Request to ${path} failed: `, error);
             throw error;
         }

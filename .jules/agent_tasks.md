@@ -45,4 +45,4 @@
 
 ## 🧱 Resilience & Security Boundaries ([Security / FORTIFY])
 
-* [ ] 🛡️ `js/UI/JulesTerminal/JulesTerminal.js`: Raw token extraction from `localStorage` for `jules_api_key` without explicit type guards or secure wrappers.
+* [x] 🛡️ `js/UI/JulesTerminal/JulesTerminal.js`: Raw token extraction from `localStorage` for `jules_api_key` without explicit type guards or secure wrappers.

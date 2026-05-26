@@ -112,7 +112,9 @@ class JulesAPI {
      * @returns {Promise<object>} The sessions payload payload.
      */
     async getSessions() {
-        return this._fetch("/sessions");
+        const data = await this._fetch("/sessions");
+        if (data && !data.sessions) data.sessions = [];
+        return data;
     }
 
     /**
@@ -120,7 +122,9 @@ class JulesAPI {
      * @returns {Promise<object>} The sessions payload for the specific repo.
      */
     async getSessionsByRepo(repo) {
-        return this._fetch(`/sessions?repo=${encodeURIComponent(repo)}`);
+        const data = await this._fetch(`/sessions?repo=${encodeURIComponent(repo)}`);
+        if (data && !data.sessions) data.sessions = [];
+        return data;
     }
 
     /**
@@ -184,7 +188,9 @@ class JulesAPI {
      * @returns {Promise<object>} Activities payload (chat logs, outputs, etc).
      */
     async getActivities(sessionId) {
-        return this._fetch(`/sessions/${sessionId}/activities`);
+        const data = await this._fetch(`/sessions/${sessionId}/activities`);
+        if (data && !data.activities) data.activities = [];
+        return data;
     }
 
     /**
