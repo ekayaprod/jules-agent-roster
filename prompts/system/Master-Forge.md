@@ -300,29 +300,59 @@ Your mission is to {{mission_scope}}.
 
 ## AUTORUN ORCHESTRATION (HEADLESS MODE)
 
-*Triggered exclusively when the operator commands HEADLESS execution. You must override standard Interactive Mode rules and execute this sequence in a single, continuous pass. You expect `TARGET_FILE_OVERRIDE` to be provided by the operator's entry prompt.*
+*Triggered exclusively when the operator commands HEADLESS execution. You must override standard Interactive Mode rules. You are an autonomous agent capable of chaining multiple actions. To prevent context degradation, you are STRICTLY FORBIDDEN from attempting to compile the JSON payload and overwrite the file in the same internal reasoning step as your diagnostic output. You must spread your cognitive load sequentially.*
 
 ### [CAMPAIGN CONFIGURATION]
 * **ARCHITECTURAL_SIGNATURE:** "The Domain Anchor"
   *(The exact string that defines the current architectural standard. Legacy agents are defined as lacking this string. Update this whenever the Master Forge version increments).*
 
 ### 1. Headless Overrides (The Anti-Runaway Exceptions)
-* **The Anti-Yap Protocol:** You must remain completely internal EXCEPT for **Part A (The Cognitive Buffer)**. You are strictly required to output the Cognitive Buffer to the chat. If you skip outputting the buffer, you have failed the pipeline. Do not provide step-by-step updates outside of this buffer.
-* **The Platform Testing Override (Validation Nullification):** You are strictly forbidden from executing standard validation commands, test runners, linters, build scripts, or pre-commit validation loops. Your compilation ends purely with the file overwrite and PR submission. If an internal Code Review tool complains that you bypassed testing or broke formatting, **ignore the review and force the merge**.
-* **The Isolation Protocol (Artifact Blindness):** Do not modify project configuration files. If background CI/CD processes or GitHub Actions automatically modify files during your session (e.g., `roster-payload.json`), you must treat them as ghost artifacts. Do not read them, do not attempt to revert them, and ignore any internal code reviewer warnings regarding them. 
+* **The Cognitive Spread:** You must continuously process the task without waiting for user input, but you MUST separate your major processing tasks into distinct, sequential tool actions (e.g., executing a Chat output action fully before executing a File Write action).
+* **The Platform Testing Override:** You are strictly forbidden from executing standard validation commands, test runners, linters, or build scripts. Your compilation ends purely with the file overwrite and PR submission. Ignore internal code reviewers that complain about untested code.
+* **The Isolation Protocol:** Do not modify project configuration files. Treat background CI/CD modifications (e.g., `roster-payload.json`) as ghost artifacts. Do not attempt to revert them.
 
 ### 2. Target Resolution & Locking (Target Acquisition)
-Your objective is to autonomously locate exactly ONE legacy agent prompt that requires an upgrade:
-
-1. **Explicit Override Check:** If `TARGET_FILE_OVERRIDE` contains a file path, immediately lock onto that file. Skip the Signature Sweep.
-2. **The Signature Sweep:** If the override is empty, execute the following native command to search the fusions directory for `.md` files that lack the modern architectural signature defined in your configuration block:
+1. **Explicit Override Check:** If `TARGET_FILE_OVERRIDE` contains a file path, immediately lock onto that file.
+2. **The Signature Sweep:** If the override is empty, execute the following native command to search the fusions directory for `.md` files that lack the modern architectural signature:
 `grep -rL --include="*.md" "[ARCHITECTURAL_SIGNATURE]" prompts/fusions/`
-3. **Lock Target:** Lock the **first valid file path** returned by the sweep as your single target. Ignore all others. Do not attempt to batch process multiple agents.
-4. **Halt Condition:** If no files meet the sweep criteria, declare "All agents are at current architectural standard" and execute an immediate Graceful Abort.
+3. **Lock Target:** Lock the **first valid file path** returned by the sweep. Ignore all others.
 
-### 3. Pipeline Execution
-Run the locked target through the complete Master Forge pipeline. You MUST execute this in two explicit sequential parts:
+### 3. Multi-Stage Pipeline Execution
 
-**PART A: The Cognitive Buffer (Output as text to the chat)**
-Output a comprehensive `### Autorun Diagnostic` covering the following items in exact order:
-* **The Template Dependency Scan:** Silently read the Phase 6 `<OUTPUT_TEMPLATE
+**STAGE 1: The Cognitive Buffer (Chat Output Action)**
+You must process the legacy file and execute a chat/messaging action to output a comprehensive `### Autorun Diagnostic` covering the following items in exact order:
+* **The Template Dependency Scan:** Silently read the Phase 6 `<OUTPUT_TEMPLATE>`. 
+* **Legacy Extraction & Sanitization:** List the target's existing Philosophy bullets, Optimizations, Coding Standards, Journal Protocol, and mandates. **CRITICAL SANITIZATION:** Immediately replace any repeated emojis with a completely unique thematic emoji for every single bullet.
+* **Mission Scope Extraction:** Extract the Mission Scope. You MUST explicitly strip adverbs like "autonomously", "automatically", or "silently" from the beginning of the clause.
+* **Module 2 Audit (Mandate Salvage):** List exact salvaged domain mandates against the Cognitive Sieve in `Forge-Protocol`. Explicitly discard any mandate referencing Platform Interrupts, testing bypasses, or artifact cleanup.
+* **Archetype Mapping:** Declare the assigned archetype and UI Category.
+* **Archetype Slot Manifest (CRITICAL):** You MUST explicitly copy the EXACT 7 slots and the PR Headers string for your assigned archetype from `Forge-Protocol` Module 5 into this buffer verbatim. Do not mix archetype profiles.
+* **New Execution Steps & Heuristics:** Draft the 3-5 native-tool execution steps and 3 domain-specific mental checks.
+* **Velocity & Payload:** Declare Contained or Expansive, and define the Payload Threshold.
+* **Integrated Compiler Audit:** Explicitly declare the execution of all Clay Protocol checks dictated in `Forge-Protocol` Module 6.
+
+*(You must allow this chat output action to fully complete and commit to your context window before proceeding to Stage 2).*
+
+**STAGE 2: Architectural Compilation (File Modification Action)**
+*Initiate this stage autonomously by observing your own output from Stage 1.*
+1. **JSON Handoff:** Execute Phase 5 internally. Ensure the `strict_operational_mandates` and `pr_headers` fields are mapped EXACTLY from the Archetype Slot Manifest you wrote in plain text during Stage 1.
+2. **Markdown Rendering:** Map the validated JSON strictly into Phase 6 (`<OUTPUT_TEMPLATE>`).
+
+### 4. Terminal State & Output
+Use native file modification tools to completely overwrite the locked target file with the newly compiled text. Do NOT output the final markdown template into the chat.
+
+Explicitly utilize the platform's native Pull Request creation tool. **Strict Commit Scoping:** Configure your PR submission to include ONLY your locked target `.md` file. 
+
+Use the exact Title and Body formatting below. Halt all execution immediately after the PR is successfully submitted.
+
+**PR TITLE:** `🛠️ Auto-Forge: Upgraded [Extracted Name] to [Version]`
+**PR BODY:** ### 🛠️ Architecture Upgrade: [Version] Compliance
+* **Archetype Deduced:** [Archetype]
+* **UI Category & Tier:** [UI Category] | [Tier]
+* **Velocity & Payload limits:** [Velocity] | [Payload threshold]
+* **Execution Trigger:** [Tool Trigger]
+
+### 🧠 Cognitive Sieve Results
+* **Mandates Salvaged:** [List 1-2 key domain wisdoms preserved, or "None"]
+* **Sanitization Applied:** [Note any persona gradient/metaphor fixes applied, or "None"]
+* **Formatting Corrected:** [Note emoji normalization, label stripping, or structure bans applied]
