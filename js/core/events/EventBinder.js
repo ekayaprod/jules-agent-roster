@@ -482,7 +482,12 @@ class EventBinder {
             try {
                 await app.julesTerminal.loadSources();
             } catch (err) {
+            const tu = window.TelemetryUtils;
+            if (tu) {
+                tu.dispatchEvent("TERMINAL_LOAD_ERROR", err);
+            } else {
                 console.error("JulesTerminal API failed to load sources after activation.", err);
+            }
             }
         });
     }
