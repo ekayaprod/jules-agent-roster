@@ -103,8 +103,13 @@ class JulesTerminal {
      */
     async init() {
         this.initialized = true;
-        const apiKey = StorageUtils.getItem("jules_api_key");
-        const githubToken = StorageUtils.getItem("github_api_key");
+
+        let rawApiKey = StorageUtils.getItem("jules_api_key");
+        const apiKey = (typeof rawApiKey === "string" && /^[A-Za-z0-9_.-]{8,}$/.test(rawApiKey)) ? rawApiKey : "";
+
+        let rawGithubToken = StorageUtils.getItem("github_api_key");
+        const githubToken = (typeof rawGithubToken === "string" && /^[A-Za-z0-9_.-]{8,}$/.test(rawGithubToken)) ? rawGithubToken : "";
+
         const settingsModal = this.getEl("settingsModal");
         const openBtn = this.getEl("openSettingsBtn");
         const closeBtn = this.getEl("closeSettingsBtn");
@@ -116,8 +121,14 @@ class JulesTerminal {
 
         const toggleModal = (show) => {
             if (show) {
-                keyInput.value = StorageUtils.getItem("jules_api_key");
-                if (githubTokenInput) githubTokenInput.value = StorageUtils.getItem("github_api_key");
+                let modalRawApiKey = StorageUtils.getItem("jules_api_key");
+                keyInput.value = (typeof modalRawApiKey === "string" && /^[A-Za-z0-9_.-]{8,}$/.test(modalRawApiKey)) ? modalRawApiKey : "";
+
+                if (githubTokenInput) {
+                    let modalRawGithub = StorageUtils.getItem("github_api_key");
+                    githubTokenInput.value = (typeof modalRawGithub === "string" && /^[A-Za-z0-9_.-]{8,}$/.test(modalRawGithub)) ? modalRawGithub : "";
+                }
+
                 settingsModal.classList.add("visible");
                 setTimeout(() => keyInput.focus(), JulesTerminal.MODAL_FOCUS_QUICK_DELAY_MS);
                 this.modals._clearKeyError(keyInput, errorSpan);
