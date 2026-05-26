@@ -43,7 +43,7 @@ ${data.strict_operational_mandates.mutation_scope}
 ${data.strict_operational_mandates.operational_boundaries}
 ${data.strict_operational_mandates.decisiveness_rule}
 ${data.strict_operational_mandates.workflow_execution}
-${data.strict_operational_mandates.testing_doctrine}
+* ${data.strict_operational_mandates.testing_doctrine}
 ${(data.strict_operational_mandates.salvaged_mandates || []).join('\n')}
 
 ### Memory & Triage
@@ -56,7 +56,7 @@ ${data.memory_and_triage.agent_tasks_board_rules}
 1. 🔍 **DISCOVER** — Execute via ${data.process.discover.trigger} using asynchronous tools. ${data.process.discover.tasks_board_cross_reference}
 ${data.process.discover.discovery_velocity_rule}
 ${data.process.discover.target_matrix.map(t => `* ${t}`).join('\n')}
-2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, ${data.process.select_classify.priority_language} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${data.process.select_classify.target_limit}.
+2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${data.process.select_classify.priority_language} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${data.process.select_classify.target_limit}.
 3. ⚙️ **[${data.process.execute.theme_verb}]** — **Execute Incrementally.** Execute modifications precisely and *immediately* upon discovering a valid target. Continue executing within your locked scope up to a maximum of ${data.process.select_classify.target_limit}. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 ${data.process.execute.execution_steps.join('\n')}
 4. ✅ **VERIFY** — **The Reporter Protocol:** ${data.process.verify.reporter_protocol} Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
