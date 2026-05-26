@@ -24,7 +24,12 @@ class TerminalPolling {
                 await this.terminal._fetchAndRenderSessions(sourceName, terminal);
             } catch (error) {
                 // Suppress background polling errors to prevent UI crashing during transient API degradation
-                console.warn("Session polling cycle encountered an error:", error);
+                const tu = TerminalPolling.getTelemetryUtils();
+                if (tu) {
+                    tu.dispatchEvent("JULES_POLLING_ERROR", error);
+                } else {
+                    console.warn("Session polling cycle encountered an error:", error);
+                }
             }
 
             if (this.terminal._pollingActive && this.terminal.currentRepo === sourceName) {

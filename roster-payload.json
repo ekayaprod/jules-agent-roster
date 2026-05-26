@@ -93,9 +93,9 @@
     "name": "Overseer",
     "emoji": "👁️",
     "role": "Triage Auditor",
-    "category": "Architecture",
+    "category": "Observability",
     "tier": "Core",
-    "description": "Audit the macroscopic repository topology, illuminate structural decay, and mechanize the task board to direct the blind execution swarm.",
+    "description": "Audit the macroscopic repository topology, categorize structural decay, and govern the centralized triage queue to optimize swarm execution.",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
@@ -165,7 +165,7 @@
     "role": "Facility Maintenance",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "SWEEP the facility corridors, alphabetize configurations, and clear OS-level debris to ensure structural repository determinism.",
+    "description": "SWEEP the repository for structural decay, purge ephemeral debris, and relay architectural drift to the specialist swarm before it compounds.",
     "promptFile": "prompts/Superintendent.md",
     "isCustom": false
   },
@@ -302,7 +302,7 @@
   {
     "name": "Barricade",
     "emoji": "🚧",
-    "role": "Perimeter Genesis Specialist",
+    "role": "The Genesis",
     "category": "Security",
     "tier": "Fusion",
     "description": "BUILD missing security primitives and defensive infrastructure from scratch to protect exposed surfaces.",
@@ -317,6 +317,16 @@
     "tier": "Fusion",
     "description": "Sweeps infrastructure-as-code and server configurations to explicitly lock down exposed boundaries.",
     "promptFile": "prompts/fusions/Bastion.md",
+    "isCustom": true
+  },
+  {
+    "name": "Blank Slate",
+    "emoji": "🔲",
+    "role": "Domain Architect",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "Reroll the repository's tangled monolithic file tree from scratch to scaffold a logically decoupled, domain-driven directory system.",
+    "promptFile": "prompts/fusions/Blank Slate.md",
     "isCustom": true
   },
   {
@@ -565,7 +575,7 @@
     "role": "Alignment Enforcer",
     "category": "Testing",
     "tier": "Fusion",
-    "description": "Patrol the test suite, identifying semantic drift, and correcting outdated assertions against current source files.",
+    "description": "ALIGN outdated assertions with current source files to correct semantic drift without inventing net-new test coverage.",
     "promptFile": "prompts/fusions/Examiner.md",
     "isCustom": true
   },
@@ -762,10 +772,10 @@
   {
     "name": "Hive",
     "emoji": "🐝",
-    "role": "Neural Splicer",
-    "category": "Strategy",
+    "role": "Neural Synchronizer",
+    "category": "Fusions",
     "tier": "Fusion",
-    "description": "Synthesize scattered swarm friction into high-density architectural axioms to eliminate colony amnesia via direct neural injection.",
+    "description": "SYNTHESIZE swarm intelligence by unifying disparate agent journals into universal architectural axioms.",
     "promptFile": "prompts/fusions/Hive.md",
     "isCustom": true
   },
@@ -807,16 +817,6 @@
     "tier": "Fusion",
     "description": "Sweeps API routes and server-side paths to migrate heavily accessed static endpoints to edge-compatible runtimes. Injects aggressive caching headers to push compute and storage as close to the us...",
     "promptFile": "prompts/fusions/Hyperloop.md",
-    "isCustom": true
-  },
-  {
-    "name": "Illuminator",
-    "emoji": "🖌️",
-    "role": "Architecture Draftsman",
-    "category": "Docs",
-    "tier": "Fusion",
-    "description": "Draft precise architectural blueprints from dense text walls to reveal the structural truth of the repository.",
-    "promptFile": "prompts/fusions/Illuminator.md",
     "isCustom": true
   },
   {
@@ -910,16 +910,6 @@
     "isCustom": true
   },
   {
-    "name": "LiveFeed",
-    "emoji": "📺",
-    "role": "State Broadcaster",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "BROADCAST asynchronous network streams into seamless, layout-preserving visual states to eradicate UI dead air.",
-    "promptFile": "prompts/fusions/LiveFeed.md",
-    "isCustom": true
-  },
-  {
     "name": "Logician",
     "emoji": "🧮",
     "role": "Logic Documenter",
@@ -1010,13 +1000,13 @@
     "isCustom": true
   },
   {
-    "name": "Muse",
-    "emoji": "🧑‍🎨",
-    "role": "Contextual Guide",
+    "name": "Mulligan",
+    "emoji": "🃏",
+    "role": "Vibe Curator",
     "category": "UX",
-    "tier": "Radiant",
-    "description": "Transforms raw data dumps and dead-end blank screens into inspiring, actionable onboarding flows with contextual tooltips and functional Call-to-Action buttons.",
-    "promptFile": "prompts/fusions/Muse.md",
+    "tier": "Fusion",
+    "description": "REROLL chaotic visual architectures by replacing muddy, misaligned styles with a fresh, cohesive palette of modern design tokens.",
+    "promptFile": "prompts/fusions/Mulligan.md",
     "isCustom": true
   },
   {
@@ -1025,7 +1015,7 @@
     "role": "Spec Translator",
     "category": "Testing",
     "tier": "Fusion",
-    "description": "Analyze actual test assertions and rewrite vague test names into crystal clear, human-readable specifications, turning test output into living documentation.",
+    "description": "TRANSLATE test assertions into crystal-clear specifications, turning vague test names into living documentation without altering logic.",
     "promptFile": "prompts/fusions/Narrator.md",
     "isCustom": true
   },
@@ -1252,10 +1242,10 @@
   {
     "name": "Redirector",
     "emoji": "🔀",
-    "role": "404 Sweeper",
+    "role": "Link Sweeper",
     "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "Eradicates broken internal links and 404 errors by maintaining the central routing configuration.",
+    "tier": "Core",
+    "description": "REDIRECT broken internal links and map legacy traffic flows to preserve architectural integrity.",
     "promptFile": "prompts/fusions/Redirector.md",
     "isCustom": true
   },
@@ -1297,6 +1287,26 @@
     "tier": "Fusion",
     "description": "REROLL the underlying logic. Wipe away chronically patched code and instantaneously provision a pristine, zero-debt algorithmic replacement.",
     "promptFile": "prompts/fusions/Reroll.md",
+    "isCustom": true
+  },
+  {
+    "name": "Respawn",
+    "emoji": "⏳",
+    "role": "Infrastructure Realist",
+    "category": "Operations",
+    "tier": "Standard",
+    "description": "REROLL bricked infrastructure by extracting true environmental parameters and generating a pristine, zero-drift execution manifest from scratch.",
+    "promptFile": "prompts/fusions/Respawn.md",
+    "isCustom": true
+  },
+  {
+    "name": "Retcon",
+    "emoji": "📖",
+    "role": "Script Doctor",
+    "category": "Docs",
+    "tier": "Fusion",
+    "description": "Reroll obsolete history to reflect the repository's genuine state and craft engaging macro-documentation that actively sells the project.",
+    "promptFile": "prompts/fusions/Retcon.md",
     "isCustom": true
   },
   {
@@ -1425,7 +1435,7 @@
     "role": "Vulnerability Broadcaster",
     "category": "security",
     "tier": "Fusion",
-    "description": "Broadcast and mitigate high-priority security vulnerabilities identified in the codebase.",
+    "description": "MITIGATE high-priority security vulnerabilities identified in the codebase, ensuring critical patches are aggressively applied.",
     "promptFile": "prompts/fusions/Siren.md",
     "isCustom": true
   },
@@ -1502,7 +1512,7 @@
   {
     "name": "Sylar",
     "emoji": "🥄",
-    "role": "The Watchmaker",
+    "role": "The Splicer",
     "category": "Architecture",
     "tier": "Fusion",
     "description": "SPLICE redundant functions by analyzing their inner workings and integrating their capabilities.",
@@ -1575,7 +1585,7 @@
     "role": "Spaghettification Engine",
     "category": "Architecture",
     "tier": "Titan",
-    "description": "Eradicate unstable, branching multiverses of execution paths to flatten deeply nested logic into one-dimensional, top-to-bottom execution pipelines.",
+    "description": "FLATTEN unstable, branching multiverses of execution paths into one-dimensional, top-to-bottom execution pipelines.",
     "promptFile": "prompts/fusions/Temporal Loom.md",
     "isCustom": true
   },
@@ -1602,7 +1612,7 @@
   {
     "name": "Town Crier",
     "emoji": "🔔",
-    "role": "Uncompromising Herald",
+    "role": "The Uncompromising Herald",
     "category": "Docs",
     "tier": "Titan",
     "description": "CHRONICLE the project's living documentation, translating raw engineering noise into crystal-clear, user-facing product updates.",

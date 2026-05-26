@@ -374,14 +374,24 @@ class SingularityBespokeBuilder {
         this.julesTerminal.launchSession(agentPayload, this.elements.submitBtn);
       } else {
         uiState.rollback();
-        console.warn("Singularity Builder: julesTerminal instance is missing.");
+        const tu = window.TelemetryUtils;
+        if (tu) {
+            tu.dispatchEvent("BUILDER_MISSING_TERMINAL", new Error("julesTerminal instance is missing"));
+        } else {
+            console.warn("Singularity Builder: julesTerminal instance is missing.");
+        }
       }
     } catch (error) {
       uiState.rollback();
       // 🩺 RESUSCITATE: Intent deduced. The error is caught, enriched with context, and explicitly passed to the boundary.
       const forgeError = new Error(`Singularity Forge Error: ${error.message}`);
       forgeError.cause = error;
-      console.error("Unable to forge bespoke agent:", forgeError);
+      const tu = window.TelemetryUtils;
+      if (tu) {
+          tu.dispatchEvent("BUILDER_FORGE_ERROR", forgeError);
+      } else {
+          console.error("Unable to forge bespoke agent:", forgeError);
+      }
       if (window.rosterApp?.showToast) {
         window.rosterApp.showToast(`Unable to forge bespoke agent: ${error.message || "Unknown error"}`);
       }

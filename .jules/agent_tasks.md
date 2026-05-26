@@ -17,15 +17,15 @@
 
 ## The [PRUNER] Queue
 
-* 🧹 `verification_fusion.png`: Unreferenced media asset detected.
-* 🧹 `verification_picker.png`: Unreferenced media asset detected.
-* 🧹 `verification_card.png`: Unreferenced media asset detected.
-* 🧹 `verification_settings.png`: Unreferenced media asset detected.
+- [x] 🧹 `verification_fusion.png`: Unreferenced media asset detected.
+- [x] 🧹 `verification_picker.png`: Unreferenced media asset detected.
+- [x] 🧹 `verification_card.png`: Unreferenced media asset detected.
+- [x] 🧹 `verification_settings.png`: Unreferenced media asset detected.
 * 🧹 `telemetry.json`: Large uncompressed binary (>500KB) detected.
-* 🧹 `js/UI/JulesTerminal/TerminalPolling.js:27`: Replace raw `console.warn` call with structured telemetry logger.
-* 🧹 `js/UI/Singularity/SingularityBespokeBuilder.js:376`: Replace raw `console.warn` call with structured telemetry logger.
-* 🧹 `js/UI/Singularity/SingularityBespokeBuilder.js:383`: Replace raw `console.error` call with structured telemetry logger.
-* 🧹 `js/core/events/EventBinder.js:465`: Replace raw `console.error` call with structured telemetry logger.
+- [x] 🧹 `js/UI/JulesTerminal/TerminalPolling.js:27`: Replace raw `console.warn` call with structured telemetry logger.
+- [x] 🧹 `js/UI/Singularity/SingularityBespokeBuilder.js:376`: Replace raw `console.warn` call with structured telemetry logger.
+- [x] 🧹 `js/UI/Singularity/SingularityBespokeBuilder.js:383`: Replace raw `console.error` call with structured telemetry logger.
+- [x] 🧹 `js/core/events/EventBinder.js:465`: Replace raw `console.error` call with structured telemetry logger.
 
 ## The [ANALYZER] Queue
 
