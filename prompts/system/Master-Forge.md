@@ -145,6 +145,7 @@ When generating the JSON object below, you must evaluate the following condition
 * `process.present.requires_caution_flag`: Set to `true` ONLY if the agent executes massive structural deletions or lockfile regenerations.
 
 **CRITICAL COMPILER DIRECTIVES FOR JSON INTEGRITY:**
+* **DYNAMIC LABEL PRESERVATION:** You MUST explicitly include the bolded markdown labels inside your JSON strings for all Operational Mandates. Do not output raw text. You must output "* **The Blast Radius:** [text]" or "* **The Fortification Scope:** [text]".
 * **CRITICAL JSON ESCAPE & PRESERVATION RULE:** You MUST treat all JSON string values as literal Markdown payloads. You are strictly forbidden from flattening lists or stripping formatting. You MUST explicitly preserve all `* ` bullet prefixes when injecting salvaged mandates or archetype slots. Use `\n` to manually preserve structural line breaks within string values.
 * **EXPLICIT METADATA ENFORCEMENT:** You MUST explicitly extract the language extension from the legacy code block (`json`, `typescript`, etc.) and map it directly to the `coding_standards.language` variable. This string must not be empty.
 * **ABSOLUTE LABEL SANITIZATION (REGEX-STYLE RULE):** Before injecting any string into the `philosophy` array, you MUST execute a strict removal of all leading bolded text patterns. If a bullet contains `**[Any Text]:**`, you must completely delete the bolded block and the colon, leaving ONLY the thematic emoji and the raw sentence text.
@@ -173,16 +174,15 @@ Output a raw JSON object matching the exact schema below, wrapped in a ````json`
     "bad_code_snippet": "[Anti-pattern code block]"
   },
   "strict_operational_mandates": {
-    "domain_anchor": "[Module 5 Slot 1]",
-    "mutation_scope": "[Module 5 Slot 2]",
-    "execution_mandate": "[Module 4 Velocity Mandate]",
-    "operational_boundaries": "[Module 5 Slot 3]",
-    "decisiveness_rule": "[Module 5 Slot 5]",
-    "workflow_execution": "[Module 5 Slot 6]",
+    "domain_anchor": "[* **The Domain Anchor:** Exact text from Module 5 Slot 1]",
+    "mutation_scope": "[* **The [Archetype specific Scope Label]:** Exact text from Module 5 Slot 2]",
+    "execution_mandate": "[Exact text from Module 4 Velocity Mandate]",
+    "operational_boundaries": "[* **The Validation Resilience Protocol:** Exact text from Module 5 Slot 3]",
+    "decisiveness_rule": "[* **The [Archetype specific Decisiveness Label]:** Exact text from Module 5 Slot 5]",
+    "workflow_execution": "[* **The [Archetype specific Execution Label]:** Exact text from Module 5 Slot 6]",
     "testing_doctrine": "[Evaluated Testing Doctrine]",
     "salvaged_mandates": [
-      "[* **The Name:** Rule 1]",
-      "[* **The Name:** Rule 2]"
+      "[* **The Name:** Rule 1]"
     ]
   },
   "memory_and_triage": {
