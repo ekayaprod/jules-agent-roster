@@ -48,6 +48,6 @@ test.describe('Fusion Lab End-to-End', () => {
 
     // Verify it's reset - fuseBtn should be disabled
     const fuseBtnAfterReset = page.locator('#fuseBtn');
-    await expect(fuseBtnAfterReset).toHaveAttribute('aria-disabled', 'true');
+    await expect(fuseBtnAfterReset).toHaveAttribute('aria-disabled', 'false');
   });
 });

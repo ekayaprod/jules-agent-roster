@@ -92,7 +92,8 @@ class FusionLab {
 
     if (this.elements.fuseBtn) this.elements.fuseBtn.addEventListener("click", () => this.handleFusion());
     if (this.elements.resetLabBtn) {
-        this.elements.resetLabBtn.addEventListener("click", () => this.resetLab());
+        // ☕ CAFFEINATED: Returns to lab with state intact, skipping the amnesiac reset loop
+        this.elements.resetLabBtn.addEventListener("click", () => this.returnToLab());
     }
 
     if (this.elements.copyFusionBtn) {
@@ -479,6 +480,13 @@ class FusionLab {
     this.state.slotA = null;
     this.state.slotB = null;
 
+    this.returnToLab();
+  }
+
+  /**
+   * ☕ CAFFEINATED: Preserves slot context so the user can modify one agent without restarting.
+   */
+  returnToLab() {
     const resetBtn = this.elements.resetLabBtn;
     const labContent = this.elements.labContent;
     const container = this.elements.fusionResultContainer;
