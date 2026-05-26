@@ -67,28 +67,15 @@ class FusionLab {
         labContent: document.getElementById("fusionLabContent"),
     };
 
-    if (this.elements.slotACard) {
-        this.elements.slotACard.addEventListener("click", () => {
-            if (this.picker) this.picker.openPicker("slotA", this.state.slotA);
+    ["slotA", "slotB"].forEach(slot => {
+        const card = this.elements[`${slot}Card`];
+        if (!card) return;
+        const open = () => this.picker && this.picker.openPicker(slot, this.state[slot]);
+        card.addEventListener("click", open);
+        card.addEventListener("keydown", e => {
+            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
         });
-        this.elements.slotACard.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                if (this.picker) this.picker.openPicker("slotA", this.state.slotA);
-            }
-        });
-    }
-    if (this.elements.slotBCard) {
-        this.elements.slotBCard.addEventListener("click", () => {
-            if (this.picker) this.picker.openPicker("slotB", this.state.slotB);
-        });
-        this.elements.slotBCard.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                if (this.picker) this.picker.openPicker("slotB", this.state.slotB);
-            }
-        });
-    }
+    });
 
     if (this.elements.fuseBtn) this.elements.fuseBtn.addEventListener("click", () => this.handleFusion());
     if (this.elements.resetLabBtn) {
@@ -125,19 +112,17 @@ class FusionLab {
             card.classList.remove("empty");
             card.classList.add("filled");
             card.setAttribute("aria-label", `Selected: ${agent.name}. Click to change.`);
-            content.innerHTML = `
-                <span class="slot-icon-placeholder transition-all duration-300 ease-in-out hover:scale-105">${FormatUtils.escapeHTML(agent.emoji)}</span>
-                <span class="slot-label transition-all duration-300 ease-in-out">${FormatUtils.escapeHTML(agent.name)}</span>
-            `;
         } else {
             card.classList.add("empty");
             card.classList.remove("filled");
-            content.innerHTML = `
-                <span class="slot-icon-placeholder transition-all duration-300 ease-in-out hover:scale-105">+</span>
-                <span class="slot-label transition-all duration-300 ease-in-out">${slotId === "slotA" ?
-"Select Agent A" : "Select Agent B"}</span>
-            `;
+            if (typeof card.removeAttribute === 'function') card.removeAttribute("aria-label");
         }
+
+        content.innerHTML = agent
+            ? `<span class="slot-icon-placeholder transition-all duration-300 ease-in-out hover:scale-105">${FormatUtils.escapeHTML(agent.emoji)}</span>
+               <span class="slot-label transition-all duration-300 ease-in-out">${FormatUtils.escapeHTML(agent.name)}</span>`
+            : `<span class="slot-icon-placeholder transition-all duration-300 ease-in-out hover:scale-105">+</span>
+               <span class="slot-label transition-all duration-300 ease-in-out">${slotId === "slotA" ? "Select Agent A" : "Select Agent B"}</span>`;
     };
 
     updateSlotUI("slotA", this.state.slotA);
@@ -202,14 +187,14 @@ class FusionLab {
     if (fuseBtn) {
       const isReady = this.state.slotA !== null && this.state.slotB !== null;
       fuseBtn.setAttribute("aria-disabled", String(!isReady));
-      if (!isReady) {
-        let msg = "Select Protocols";
-        if (!this.state.slotA && this.state.slotB) msg = "Select Agent A";
-        else if (this.state.slotA && !this.state.slotB) msg = "Select Agent B";
-        DOMUtils.setButtonState(fuseBtn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.DISABLED : "disabled", msg);
-      } else {
-        DOMUtils.setButtonState(fuseBtn, "ready", "Ignite Fusion Protocol");
-      }
+
+      let msg = "Select Protocols";
+      if (isReady) msg = "Ignite Fusion Protocol";
+      else if (!this.state.slotA && this.state.slotB) msg = "Select Agent A";
+      else if (this.state.slotA && !this.state.slotB) msg = "Select Agent B";
+
+      const btnState = isReady ? "ready" : (typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.DISABLED : "disabled");
+      DOMUtils.setButtonState(fuseBtn, btnState, msg);
     }
   }
 
@@ -284,19 +269,9 @@ class FusionLab {
 
     const result = this.compiler.fuse(agentA, agentB);
 
-    // Error Handling
     if (result.name === "Error") {
-      let msg = result.prompt;
-      // Virtuoso: Empathetic & Actionable Error Copy
-      const ERROR_MAP = {
-        "Invalid agents selected.":
-          "Select two distinct agents to initiate the fusion protocol.",
-      };
-      if (ERROR_MAP[result.prompt]) {
-        msg = ERROR_MAP[result.prompt];
-      }
-
-      this.showError(msg);
+      const ERROR_MAP = { "Invalid agents selected.": "Select two distinct agents to initiate the fusion protocol." };
+      this.showError(ERROR_MAP[result.prompt] || result.prompt);
       return;
     }
 
