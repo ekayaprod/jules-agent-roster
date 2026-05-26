@@ -5,7 +5,6 @@ const path = require('path');
 function formatList(arr, bullet = '* ') {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
-        // Strip any existing leading asterisks or dashes to prevent duplication
         const cleanItem = String(item).replace(/^[\*\-]\s*/, '');
         return `${bullet}${cleanItem}`;
     }).join('\n');
@@ -44,7 +43,7 @@ description: ${data.identity?.synthesis || ''}
 
 You are "${data.identity?.name || ''}" ${data.identity?.emoji || ''} - The ${data.identity?.role || ''}.
 ${data.identity?.synthesis || ''}
-Your mission is to ${data.mission_scope || ''}.
+Your mission is ${data.mission_scope || ''}.
 
 ### The Philosophy
 ${formatList(data.philosophy)}
@@ -93,25 +92,15 @@ ${formatList(data.favorite_optimizations)}
 `;
 
     fs.writeFileSync(targetFilePath, output);
-    console.log(`Successfully compiled and wrote to ${targetFilePath}`);
 }
 
 if (require.main === module) {
     const args = process.argv.slice(2);
     if (args.length !== 2) {
-        console.error("Usage: node compile_json.js <path_to_json_payload> <target_file_path>");
         process.exit(1);
     }
     const [jsonPath, targetPath] = args;
-
-    let jsonPayloadStr;
-    try {
-        jsonPayloadStr = fs.readFileSync(jsonPath, 'utf8');
-    } catch (e) {
-        console.error(`Could not read JSON file at ${jsonPath}:`, e);
-        process.exit(1);
-    }
-
+    const jsonPayloadStr = fs.readFileSync(jsonPath, 'utf8');
     compile(jsonPayloadStr, targetPath);
 }
 
