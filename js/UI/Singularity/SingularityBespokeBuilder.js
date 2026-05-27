@@ -246,27 +246,20 @@ class SingularityBespokeBuilder {
       const badge = this.elements.predictionBadge;
       if (!badge) return;
 
+      badge.className = 'sg-builder-mode-badge';
       if (/delete|remove|clean|prune|strip/i.test(text)) {
         badge.innerHTML = '🗡️ Assassin';
-        badge.style.color = 'var(--sg-assassin)';
-        badge.style.background = 'color-mix(in srgb, var(--sg-assassin) 15%, transparent)';
-        badge.style.borderColor = 'color-mix(in srgb, var(--sg-assassin) 30%, transparent)';
+        badge.classList.add('sg-mode-assassin');
       } else if (/enforce|guard|validate|test|lint/i.test(text)) {
         badge.innerHTML = '🛡️ Sentinel';
-        badge.style.color = 'var(--sg-sentinel)';
-        badge.style.background = 'color-mix(in srgb, var(--sg-sentinel) 15%, transparent)';
-        badge.style.borderColor = 'color-mix(in srgb, var(--sg-sentinel) 30%, transparent)';
+        badge.classList.add('sg-mode-sentinel');
       } else if (/document|read|analyze|audit/i.test(text)) {
         badge.innerHTML = '🔮 Oracle';
-        badge.style.color = 'var(--sg-oracle)';
-        badge.style.background = 'color-mix(in srgb, var(--sg-oracle) 15%, transparent)';
-        badge.style.borderColor = 'color-mix(in srgb, var(--sg-oracle) 30%, transparent)';
+        badge.classList.add('sg-mode-oracle');
       } else {
         // Default to Maker for build/update/refactor intents
         badge.innerHTML = '🛠️ Maker';
-        badge.style.color = 'var(--sg-maker)';
-        badge.style.background = 'color-mix(in srgb, var(--sg-maker) 15%, transparent)';
-        badge.style.borderColor = 'color-mix(in srgb, var(--sg-maker) 30%, transparent)';
+        badge.classList.add('sg-mode-maker');
       }
     });
 
@@ -275,7 +268,7 @@ class SingularityBespokeBuilder {
       this.elements.advancedBtn.addEventListener("click", () => {
         this.showAdvanced = !this.showAdvanced;
         this.elements.advancedPanel.classList.toggle("open", this.showAdvanced);
-        this.elements.chevron.style.transform = this.showAdvanced ? "rotate(180deg)" : "";
+        this.elements.chevron.classList.toggle('rotated', this.showAdvanced);
       });
     }
 
