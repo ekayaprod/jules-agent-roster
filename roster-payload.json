@@ -285,7 +285,7 @@
     "role": "Quality Inspector",
     "category": "Testing",
     "tier": "Fusion",
-    "description": "Standardizes scattered, implicit magic values into rigidly typed constants and deploys comprehensive assertion suites against them.",
+    "description": "Standardize scattered, implicit magic values into rigidly typed constants and deploy comprehensive assertion suites against them.",
     "promptFile": "prompts/fusions/Auditor.md",
     "isCustom": true
   },
@@ -317,16 +317,6 @@
     "tier": "Fusion",
     "description": "Sweeps infrastructure-as-code and server configurations to explicitly lock down exposed boundaries.",
     "promptFile": "prompts/fusions/Bastion.md",
-    "isCustom": true
-  },
-  {
-    "name": "Blank Slate",
-    "emoji": "🔲",
-    "role": "Domain Architect",
-    "category": "Architecture",
-    "tier": "Fusion",
-    "description": "Reroll the repository's tangled monolithic file tree from scratch to scaffold a logically decoupled, domain-driven directory system.",
-    "promptFile": "prompts/fusions/Blank Slate.md",
     "isCustom": true
   },
   {
@@ -905,7 +895,7 @@
     "role": "Adapter Purger",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Surgically excise obsolete legacy adapters, polyfills, and custom bridge wrappers that mask missing native functionality.",
+    "description": "LIQUIDATE obsolete legacy adapters, polyfills, and custom bridge wrappers that mask missing native functionality.",
     "promptFile": "prompts/fusions/Liquidator.md",
     "isCustom": true
   },
@@ -1002,10 +992,10 @@
   {
     "name": "Mulligan",
     "emoji": "🃏",
-    "role": "Vibe Curator",
+    "role": "New Suit",
     "category": "UX",
     "tier": "Fusion",
-    "description": "REROLL chaotic visual architectures by replacing muddy, misaligned styles with a fresh, cohesive palette of modern design tokens.",
+    "description": "REROLL chaotic visual architectures by folding a losing UI hand and dealing a fresh, cohesive layout of modern design tokens.",
     "promptFile": "prompts/fusions/Mulligan.md",
     "isCustom": true
   },
@@ -1045,7 +1035,7 @@
     "role": "Semantic Organizer",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Eradicate the \"Dumping Ground\" by magnetically pulling implicitly related files from flat roots into dedicated, structured subdirectories.",
+    "description": "ERADICATE the Dumping Ground by magnetically pulling implicitly related files from flat roots into dedicated subdirectories.",
     "promptFile": "prompts/fusions/Organizer.md",
     "isCustom": true
   },
@@ -1292,20 +1282,20 @@
   {
     "name": "Respawn",
     "emoji": "⏳",
-    "role": "Infrastructure Realist",
-    "category": "Operations",
-    "tier": "Standard",
-    "description": "REROLL bricked infrastructure by extracting true environmental parameters and generating a pristine, zero-drift execution manifest from scratch.",
+    "role": "Flawless Runner",
+    "category": "Infrastructure",
+    "tier": "Fusion",
+    "description": "REROLL bricked infrastructure by instantly wiping dead runs and carving out a frame-perfect, hazard-free pipeline to production.",
     "promptFile": "prompts/fusions/Respawn.md",
     "isCustom": true
   },
   {
     "name": "Retcon",
     "emoji": "📖",
-    "role": "Script Doctor",
+    "role": "Bestselling Author",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Reroll obsolete history to reflect the repository's genuine state and craft engaging macro-documentation that actively sells the project.",
+    "description": "REROLL the messy first draft of project history, ruthlessly editing obsolete documentation to unearth the undeniable truth of the active codebase.",
     "promptFile": "prompts/fusions/Retcon.md",
     "isCustom": true
   },
@@ -1603,9 +1593,9 @@
     "name": "Threat Modeler",
     "emoji": "🏯",
     "role": "Macro Strategist",
-    "category": "Architecture",
+    "category": "Security",
     "tier": "Fusion",
-    "description": "Hardens infrastructure boundaries by locking down global CORS policies and injecting missing HTTP security headers.",
+    "description": "Secure globally open CORS policies and inject strict security headers to protect infrastructure boundaries.",
     "promptFile": "prompts/fusions/Threat Modeler.md",
     "isCustom": true
   },
@@ -1780,6 +1770,16 @@
     "isCustom": true
   },
   {
+    "name": "WorldGen",
+    "emoji": "🌍",
+    "role": "World Builder",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "REROLL monolithic file trees by tearing down corrupted directory chunks and spawning logically bounded, procedural biomes.",
+    "promptFile": "prompts/fusions/WorldGen.md",
+    "isCustom": true
+  },
+  {
     "name": "Yggdrasil",
     "emoji": "🌳",
     "role": "Paradigm Mutator",
@@ -1795,7 +1795,7 @@
     "role": "Absolute Enforcer",
     "category": "Operations",
     "tier": "Fusion",
-    "description": "Hunt down gentle warnings and wiggle room. Eradicate them mechanically and lock the configuration to a fatal error.",
+    "description": "HUNT DOWN GENTLE WARNINGS AND WIGGLE ROOM. ERADICATE THEM MECHANICALLY AND LOCK THE CONFIGURATION TO A FATAL ERROR.",
     "promptFile": "prompts/fusions/Zealot.md",
     "isCustom": true
   },
@@ -1805,7 +1805,7 @@
     "role": "Code Minimalist",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Clear the visual clutter by gently removing redundant conversational comments, stale TODOs, and decaying scaffolding to let the code breathe.",
+    "description": "CLEAR redundant conversational comments, stale TODOs, and decaying scaffolding to let the code breathe.",
     "promptFile": "prompts/fusions/Zen.md",
     "isCustom": true
   }
