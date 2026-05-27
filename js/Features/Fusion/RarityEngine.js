@@ -5,6 +5,10 @@
  */
 
 const RarityEngine = (function() {
+    const INTEGRITY_DOMAINS = new Set(["testing", "hygiene", "security"]);
+    const VISIBLE_DOMAINS = new Set(["ux", "docs", "strategy"]);
+    const INVISIBLE_DOMAINS = new Set(["architecture", "operations"]);
+    const PLUS_NAMES = new Set(["Bolt+", "Palette+", "Sentinel+"]);
 
     /**
      * Determines the overarching classification category (Super Domain) of an agent.
@@ -18,9 +22,9 @@ const RarityEngine = (function() {
         if (agent.tier === "Plus") return "Plus";
 
         // Exclude Scavenger which is caught above
-        if (["testing", "hygiene", "security"].includes(agent.category)) return "Integrity";
-        if (["ux", "docs", "strategy"].includes(agent.category)) return "Visible";
-        if (["architecture", "operations"].includes(agent.category)) return "Invisible";
+        if (INTEGRITY_DOMAINS.has(agent.category)) return "Integrity";
+        if (VISIBLE_DOMAINS.has(agent.category)) return "Visible";
+        if (INVISIBLE_DOMAINS.has(agent.category)) return "Invisible";
 
         return "Unknown";
     }
@@ -41,15 +45,13 @@ const RarityEngine = (function() {
     function _evaluateFusion(agent1, agent2) {
         if (!agent1 || !agent2) return { rarity: "Common", domain: "Unknown Domain" };
 
-        const plusNames = ["Bolt+", "Palette+", "Sentinel+"];
-
-        if (agent1.name && agent1.name === agent2.name && plusNames.includes(agent1.name)) return { rarity: "Mythic", domain: "12. Plus Glitch" };
+        if (agent1.name && agent1.name === agent2.name && PLUS_NAMES.has(agent1.name)) return { rarity: "Mythic", domain: "12. Plus Glitch" };
         if (agent1.name && agent1.name === agent2.name) return { rarity: "Mythic", domain: "13. Core Glitch" };
 
         const isScavenger1 = agent1.name === "Scavenger";
         const isScavenger2 = agent2.name === "Scavenger";
         const hasScavenger = isScavenger1 || isScavenger2;
-        const hasPlusWithScavenger = (isScavenger1 && plusNames.includes(agent2.name)) || (isScavenger2 && plusNames.includes(agent1.name));
+        const hasPlusWithScavenger = (isScavenger1 && PLUS_NAMES.has(agent2.name)) || (isScavenger2 && PLUS_NAMES.has(agent1.name));
 
         if (hasPlusWithScavenger) return { rarity: "Legendary", domain: "10. Plus Paradox" };
         if (hasScavenger) return { rarity: "Legendary", domain: "11. Core Paradox" };
@@ -60,14 +62,17 @@ const RarityEngine = (function() {
 
         const sd1 = getSuperDomain(agent1);
         const sd2 = getSuperDomain(agent2);
-        const domains = [sd1, sd2];
 
-        if (domains.includes("Integrity") && (domains.includes("Visible") || domains.includes("Invisible"))) return { rarity: "Epic", domain: "9. QA Bridge" };
-        if (domains.includes("Visible") && domains.includes("Invisible")) return { rarity: "Rare", domain: "8. Full-Stack Bridge" };
+        const hasIntegrity = sd1 === "Integrity" || sd2 === "Integrity";
+        const hasVisible = sd1 === "Visible" || sd2 === "Visible";
+        const hasInvisible = sd1 === "Invisible" || sd2 === "Invisible";
+
+        if (hasIntegrity && (hasVisible || hasInvisible)) return { rarity: "Epic", domain: "9. QA Bridge" };
+        if (hasVisible && hasInvisible) return { rarity: "Rare", domain: "8. Full-Stack Bridge" };
 
         if (sd1 === "Plus" && sd2 === "Plus") return { rarity: "Common", domain: "1. Base Synthesis" };
 
-        const hasPlus = domains.includes("Plus");
+        const hasPlus = sd1 === "Plus" || sd2 === "Plus";
         const plusAgent = sd1 === "Plus" ? agent1 : agent2;
         const otherSd = sd1 === "Plus" ? sd2 : sd1;
 

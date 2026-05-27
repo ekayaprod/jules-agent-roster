@@ -232,10 +232,10 @@ class SingularityBespokeBuilder {
         }
         if (archetype)   this.setArchetype(archetype);
         if (constraints && this.elements.constraintsContainer) {
-          const toSet = constraints.split(",").map(c => c.trim());
+          const toSet = new Set(constraints.split(",").map(c => c.trim()));
           this.elements.constraintsContainer
             .querySelectorAll("input[type='checkbox']")
-            .forEach(cb => { cb.checked = toSet.includes(cb.value); });
+            .forEach(cb => { cb.checked = toSet.has(cb.value); });
         }
       });
     });
