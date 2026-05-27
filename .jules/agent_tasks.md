@@ -37,7 +37,6 @@
 
 ## 🎨 Rigid Presentation States ([UI / STYLIZE])
 
-* [ ] 🎨 `index.html`: Hardcoded inline CSS styles detected on multiple elements (e.g., lines 549, 555, 621). Extract to stylesheets.
 
 ## 🧹 Semantic Dust & Hygiene ([AST / REMOVE])
 

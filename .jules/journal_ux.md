@@ -19,3 +19,4 @@
 **Barrier:** Various hardcoded colors, pixel widths, disabled states, and keyboard traps breaking accessibility constraints and design system scales. | **Empathy:** Enforced global cohesion by swapping static disabled properties for `aria-disabled`, converting hardcoded hex/pixel values to CSS variables (e.g. `var(--text-xs)`), bounding Escape key handlers for dropdowns, validating Enter/Space dispatch on interactive slots, and enforcing strict WCAG AA/AAA scales across UI primitives.
 
 **Barrier:** Hardcoded 13px font size breaking visual rhythm and accessibility scales. | **Empathy:** Extradited arbitrary pixel measurement and replaced it with canonical relative variable `var(--text-xs)` to enforce scale and support OS-level scaling.
+- Vaporized ghost task for index.html inline styles

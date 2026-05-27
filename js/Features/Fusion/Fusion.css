@@ -277,3 +277,19 @@
   90% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+/* AgentPicker utility classes */
+.picker-card-flex {
+    display: flex;
+}
+.picker-chunk-grid {
+    display: grid;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+/* JulesTerminal utilities */
+.term-clickable {
+    cursor: pointer;
+}

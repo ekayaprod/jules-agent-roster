@@ -480,7 +480,7 @@ class JulesTerminal {
         if (id) block.id = id;
 
         if (onClickCallback) {
-            block.style.cursor = "pointer";
+            block.classList.add('term-clickable');
             block.onclick = onClickCallback;
         }
 
@@ -523,7 +523,7 @@ class JulesTerminal {
         // 🪄 CONJURE: Optimistic UI for Session Launch with CSS skeletal rendering
         const terminal = this.getEl("julesTerminal");
         const fetchingIndicator = terminal.querySelector('#fetchingIndicator');
-        if (fetchingIndicator) fetchingIndicator.style.display = 'none';
+        if (fetchingIndicator) fetchingIndicator.classList.add('hidden');
 
         const formatUtils = JulesTerminal.getFormatUtils();
         let agentEmoji = agent.emoji || "🤖";
@@ -564,7 +564,7 @@ class JulesTerminal {
                 const tu = JulesTerminal.getTelemetryUtils();
                 if (tu) tu.dispatchEvent("JULES_LAUNCH_SESSION_FAILED", launchError, { sourceName });
                 this.app.toast.show(`Could not launch the session: ${error.message || "Unknown error"}`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error", 20000);
-                if (fetchingIndicator) fetchingIndicator.style.display = '';
+                if (fetchingIndicator) fetchingIndicator.classList.remove('hidden');
 
                 if (optimisticBlock.parentNode) optimisticBlock.remove();
                 if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Launch in Jules 🚀");

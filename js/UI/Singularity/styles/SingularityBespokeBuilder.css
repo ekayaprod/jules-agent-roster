@@ -452,3 +452,33 @@
         .sg-submit:not(:disabled):active { transform: scale(0.985); }
         .sg-submit:disabled { opacity: 0.4; cursor: not-allowed; }
         .sg-submit:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
+
+/* Dynamic mode badges */
+.sg-builder-mode-badge.sg-mode-assassin {
+    color: var(--sg-assassin);
+    background: color-mix(in srgb, var(--sg-assassin) 15%, transparent);
+    border-color: color-mix(in srgb, var(--sg-assassin) 30%, transparent);
+}
+.sg-builder-mode-badge.sg-mode-sentinel {
+    color: var(--sg-sentinel);
+    background: color-mix(in srgb, var(--sg-sentinel) 15%, transparent);
+    border-color: color-mix(in srgb, var(--sg-sentinel) 30%, transparent);
+}
+.sg-builder-mode-badge.sg-mode-oracle {
+    color: var(--sg-oracle);
+    background: color-mix(in srgb, var(--sg-oracle) 15%, transparent);
+    border-color: color-mix(in srgb, var(--sg-oracle) 30%, transparent);
+}
+.sg-builder-mode-badge.sg-mode-maker {
+    color: var(--sg-maker);
+    background: color-mix(in srgb, var(--sg-maker) 15%, transparent);
+    border-color: color-mix(in srgb, var(--sg-maker) 30%, transparent);
+}
+
+/* Chevron utility */
+.sg-chevron-icon {
+    transition: transform 0.2s ease;
+}
+.sg-chevron-icon.rotated {
+    transform: rotate(180deg);
+}

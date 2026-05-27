@@ -121,7 +121,7 @@ class AgentPicker {
             this.baseAgents.forEach((agent, index) => {
                 const delay = Math.min(index * 30, 300);
                 const htmlStr = `
-                <div class="mini-agent-card pop-in" style="animation-delay: ${delay}ms; display: flex;" role="option" tabindex="0" data-name="${FormatUtils.escapeHTML(agent.name.toLowerCase())}">
+                <div class="mini-agent-card pop-in picker-card-flex" style="animation-delay: ${delay}ms;" role="option" tabindex="0" data-name="${FormatUtils.escapeHTML(agent.name.toLowerCase())}">
                     <span class="mini-icon">${FormatUtils.escapeHTML(agent.emoji)}</span>
                     <span class="mini-name">${FormatUtils.escapeHTML(agent.name)}</span>
                     <span class="mini-role">${FormatUtils.escapeHTML(agent.role)}</span>
@@ -165,7 +165,7 @@ class AgentPicker {
         const templateCols = `repeat(${columns}, 1fr)`;
         for (let i = 0; i < htmlResults.length; i += columns) {
             const rowChunk = htmlResults.slice(i, i + columns).join("");
-            chunked.push(`<div style="display: grid; grid-template-columns: ${templateCols}; gap: 0.5rem; margin-bottom: 0.5rem;">${rowChunk}</div>`);
+            chunked.push(`<div class="picker-chunk-grid" style="grid-template-columns: ${templateCols};">${rowChunk}</div>`);
         }
 
         return chunked;
