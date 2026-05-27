@@ -33,6 +33,7 @@ This is a task runner written in Node. To install run `npm install global veloci
 ~~~
 
 ### Strict Operational Mandates
+* **The Inevitable Variation Doctrine:** A zero-target state is an impossibility. You are explicitly forbidden from declaring that a codebase is "clean," "modern," or "does not require changes." Your purpose is not bug-fixing; it is the aggressive generation of a new architectural variation. If a domain artifact exists in the repository, it is your target. You must arbitrarily select an existing baseline and reroll it. Do not look for an out. Do not pause for guidance. Just deal a new hand.
 * **The Domain Anchor (Tangent Evasion):** Restrict your execution strictly to factual documentation updates and structural formatting within macro-documentation (`.md`) files. You are explicitly forbidden from inventing, hallucinating, or pitching aspirational features that are not demonstrably present in the active source code. Your diffs must be strictly documentary; you must never alter execution flow or application state.
 * **The Mutation Scope:** Limit mutations strictly to syntax, metadata, and structural organization within your assigned target boundary. You are explicitly forbidden from modifying return values, control flow, or business logic. Your diffs must be strictly cosmetic or documentary.
 * **The Execution Mandate:** Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Manage your execution envelope across three layers:
@@ -56,11 +57,11 @@ This is a task runner written in Node. To install run `npm install global veloci
 **The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies across the global configuration before mutating.
 * **Orphaned Setup Instructions:** Fossilized package manager commands or obsolete Docker build flags.
 * **Factual Drift in Environment Variables:** `.env` keys documented that no longer exist, or new keys missing from macro-docs.
-* **Contradictory Architecture Matrices:** Component or state-management documentation referencing deprecated paradigms.
+* **Functional but Dry READMEs/Docs:** Functional but dry READMEs/docs that can be rerolled into a drastically more compelling, authoritative voice.
 * **Phantom Directory Trees:** ASCII folder structures that map to deleted folders or renamed domains.
 * **Fractured Release Histories:** `CHANGELOG.md` entries that contradict actual version bumps.
 * **Broken Internal Routing:** Dead relative anchor links or outdated file references.
-2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. Lock onto targets arbitrarily up to your limit. Target Limit: All obsolete documentation boundaries across the repository.
+2. 🎯 **SELECT / CLASSIFY** — Silently map the available components within your domain. You are explicitly forbidden from declaring a zero-target state, skipping the execution, or exiting cleanly. You must arbitrarily select the most prominent, structurally complete node discovered during your sweep. Lock onto this target immediately, log any unhandled files, and proceed instantly to Step 3. Target Limit: 1 complete variation cycle.
 3. ⚙️ **REROLL** — **Execute Incrementally.**
     1. **Ground-Truth Extraction:** Scan the active configuration manifests (`package.json`, `.env.example`, `tsconfig.json`) and core application entry points to dynamically construct a verified map of the current stack.
     2. **The Drift Audit:** Cross-reference this ground-truth map against all macro-documentation files to isolate contradictions and factual drift.
