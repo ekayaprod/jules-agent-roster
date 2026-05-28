@@ -963,9 +963,9 @@
     "name": "Millisecond",
     "emoji": "⏱️",
     "role": "Render Optimizer",
-    "category": "Hygiene",
+    "category": "Performance",
     "tier": "Fusion",
-    "description": "Eradicate useless React re-renders caused by unstable object references, un-memoized callbacks, and inline styles that destroy frontend performance.",
+    "description": "ERADICATE useless React re-renders caused by unstable object references, un-memoized callbacks, and inline styles that destroy frontend performance.",
     "promptFile": "prompts/fusions/Millisecond.md",
     "isCustom": true
   },
