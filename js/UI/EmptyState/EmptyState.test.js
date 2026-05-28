@@ -86,7 +86,7 @@ describe('EmptyState Component', () => {
         });
 
         const btn = getByRole(container, 'button', { name: /Retry/i });
-        expect(btn.className).toBe('mt-6');
+        expect(btn.className).toBe('mt-6 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md');
     });
 
     test('should render action button without onClick if not string or function', () => {

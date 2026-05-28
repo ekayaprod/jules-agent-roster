@@ -12,7 +12,7 @@ class EmptyState {
       ERROR: `<svg class="empty-icon" aria-hidden="true" width="64" height="64" fill="none" stroke="var(--error)" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
               </svg>`,
-      SEARCH: `<div class="empty-icon">🔍</div>`
+      SEARCH: `<div class="empty-icon text-5xl mb-4 opacity-50">🔍</div>`
     };
   }
 
@@ -55,7 +55,7 @@ class EmptyState {
 
     if (action) {
       const btn = document.createElement("button");
-      btn.className = action.className || "mt-6";
+      btn.className = action.className || "mt-6 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md";
       btn.textContent = action.text;
       btn.setAttribute("aria-label", action.ariaLabel || action.text);
 
