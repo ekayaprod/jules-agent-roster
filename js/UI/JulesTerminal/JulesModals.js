@@ -215,7 +215,7 @@ class JulesModals {
         span.style.display = "none";
     }
 
-    _showPRModal(pr, sourceName) {
+    _showPRModal(pr) {
         const modal = this.terminal.getEl("julesPRModal");
         if (!modal) return;
 

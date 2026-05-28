@@ -808,12 +808,12 @@ describe('JulesTerminal Modal Tests', () => {
 
         it('should bail if modal is missing', () => {
             julesTerminal.elements.julesPRModal = null;
-            julesTerminal.modals._showPRModal(prMock, 'repo');
+            julesTerminal.modals._showPRModal(prMock);
             expect(titleEl.textContent).toBe(''); // Should not have been updated
         });
 
         it('should populate modal and show it', () => {
-            julesTerminal.modals._showPRModal(prMock, 'repo');
+            julesTerminal.modals._showPRModal(prMock);
             expect(titleEl.textContent).toBe('#123 Test PR');
             expect(linkEl.href).toBe('https://github.com/test/test/pull/123');
             expect(contentEl.innerHTML).toBe('<pre></pre>');

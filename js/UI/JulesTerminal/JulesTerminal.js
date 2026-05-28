@@ -324,7 +324,7 @@ class JulesTerminal {
             if (link) {
                 link.onclick = (e) => {
                     e.preventDefault();
-                    this.modals._showPRModal(pr, this.currentRepo);
+                    this.modals._showPRModal(pr);
                 };
             }
             fragment.insertBefore(item, fragment.firstChild);
