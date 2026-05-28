@@ -40,6 +40,7 @@
 
 ## 🧹 Semantic Dust & Hygiene ([AST / REMOVE])
 
+* [x] 🧹 `prompts/Superintendent.md`: Unresolved merge conflict markers (`<<<<<<< HEAD`) detected around line 37.
 
 ## 🧱 Resilience & Security Boundaries ([Security / FORTIFY])
 
