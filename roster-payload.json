@@ -365,7 +365,7 @@
     "role": "System Topographer",
     "category": "Observability",
     "tier": "Radiant",
-    "description": "Transforms hidden boundaries and complex data flows into beautiful, multi-layered visual graphs using text-based markdown syntax.",
+    "description": "MAP complex data flows and hidden trust boundaries into beautiful, multi-layered visual graphs using text-based markdown syntax.",
     "promptFile": "prompts/fusions/Cartographer.md",
     "isCustom": true
   },
