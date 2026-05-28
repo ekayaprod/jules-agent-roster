@@ -63,6 +63,29 @@ describe('EventBinder (Boundary Interrogation)', () => {
         consoleSpy.mockRestore();
     });
 
+
+    it('dispatches TERMINAL_LOAD_ERROR to TelemetryUtils when JulesTerminal loadSources throws', async () => {
+        window.TelemetryUtils = { dispatchEvent: jest.fn() };
+        app.julesTerminal.loadSources.mockRejectedValueOnce(new Error('Network Initialization Failed'));
+        const activateToggle = document.createElement('input');
+        activateToggle.type = 'checkbox';
+        activateToggle.id = 'julesActivateToggle';
+        document.body.appendChild(activateToggle);
+
+        EventBinder.bind(app);
+
+        activateToggle.checked = true;
+        const changeEvent = new Event('change');
+
+        expect(() => activateToggle.dispatchEvent(changeEvent)).not.toThrow();
+
+        // Wait for next tick so the async catch handler runs
+        await new Promise(process.nextTick);
+
+        expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("TERMINAL_LOAD_ERROR", expect.any(Error));
+        delete window.TelemetryUtils;
+    });
+
     it('toggles pin and synchronizes aria-pressed for valid agent index', () => {
         EventBinder.bind(app);
 

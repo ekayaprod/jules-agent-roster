@@ -322,6 +322,37 @@ describe('RosterApp (Boundary Interrogation)', () => {
             }
         });
 
+
+        it('dispatches AGENT_REPO_INIT_FAILED to TelemetryUtils when fetchAgents throws', async () => {
+             window.TelemetryUtils = { dispatchEvent: jest.fn() };
+             app.elements.main = document.createElement('div');
+
+             app.agentRepo.fetchAgents = jest.fn().mockImplementation(() => Promise.reject(new Error('Network error')));
+             app.julesTerminal.init = jest.fn().mockResolvedValue();
+
+             global.FusionLab = class { init() {} };
+
+             await app.init();
+
+             expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("AGENT_REPO_INIT_FAILED", expect.any(Error));
+             delete window.TelemetryUtils;
+        });
+
+        it('dispatches JULES_TERMINAL_INIT_FAILED to TelemetryUtils when JulesTerminal init throws', async () => {
+             window.TelemetryUtils = { dispatchEvent: jest.fn() };
+             app.elements.main = document.createElement('div');
+
+             app.agentRepo.fetchAgents = jest.fn().mockResolvedValue({ agents: [], customAgents: {} });
+             app.julesTerminal.init = jest.fn().mockImplementation(() => Promise.reject(new Error('Network error')));
+
+             global.FusionLab = class { init() {} };
+
+             await app.init();
+
+             expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("JULES_TERMINAL_INIT_FAILED", expect.any(Error));
+             delete window.TelemetryUtils;
+        });
+
         it('gracefully degrades on fetchAgents failure but survives Promise.all', async () => {
              app.elements.main = document.createElement('div');
 
