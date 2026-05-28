@@ -203,9 +203,9 @@
     "name": "Accountant",
     "emoji": "📊",
     "role": "Budget Enforcer",
-    "category": "UX",
+    "category": "Operations",
     "tier": "Fusion",
-    "description": "Enforces strict build-time failure thresholds to halt bundle bloat before it ever hits production.",
+    "description": "ENFORCE strict build-time failure thresholds to halt bundle bloat before it ever hits production.",
     "promptFile": "prompts/fusions/Accountant.md",
     "isCustom": true
   },
@@ -623,9 +623,9 @@
     "name": "First Responder",
     "emoji": "🚒",
     "role": "Crisis Manager",
-    "category": "Architecture",
+    "category": "Security",
     "tier": "Fusion",
-    "description": "Harden external boundaries against malicious data, poisoned startup configurations, and unvalidated payloads to prevent fatal runtime crashes.",
+    "description": "HARDEN external boundaries against malicious data, poisoned startup configurations, and unvalidated payloads to prevent fatal runtime crashes.",
     "promptFile": "prompts/fusions/First Responder.md",
     "isCustom": true
   },
