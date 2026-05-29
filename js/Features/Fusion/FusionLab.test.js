@@ -391,6 +391,11 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         fusionLab.animation = { runAnimation: jest.fn() };
         fusionLab.renderFusionResult = jest.fn();
 
+        const dispatchSpy = jest.fn();
+        global.getTelemetryUtils = () => ({
+            dispatchEvent: dispatchSpy
+        });
+
         const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
         const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
 
@@ -402,11 +407,16 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
         // Prove the error was logged via telemetry
         // The original logic expected a console.error, but it was replaced by telemetry event FUSION_LAB_INDEX_UNLOCK_FAILED.
-        // We already have expect(dispatchSpy).toHaveBeenCalledWith... but let's just make sure warn wasn't called.
+        expect(dispatchSpy).toHaveBeenCalledWith(
+            "FUSION_LAB_INDEX_UNLOCK_FAILED",
+            expect.any(Error),
+            { agentA: 'A', agentB: 'B' }
+        );
         expect(consoleWarnSpy).not.toHaveBeenCalled();
 
         consoleErrorSpy.mockRestore();
         consoleWarnSpy.mockRestore();
+        delete global.getTelemetryUtils;
     });
 
     test('handleFusion gracefully handles fusionIndex unlock exception', async () => {
