@@ -547,6 +547,65 @@ describe('JulesTerminal', () => {
 
     });
 
+    describe('_processSessionQueue', () => {
+        let originalGetTelemetryUtils;
+
+        beforeEach(() => {
+            originalGetTelemetryUtils = JulesTerminal.getTelemetryUtils;
+        });
+
+        afterEach(() => {
+            JulesTerminal.getTelemetryUtils = originalGetTelemetryUtils;
+            jest.useRealTimers();
+        });
+
+        it('should dispatch QUEUE_EXECUTION_ERROR if task throws', async () => {
+            const mockTelemetry = { dispatchEvent: jest.fn() };
+            JulesTerminal.getTelemetryUtils = () => mockTelemetry;
+
+            const testError = new Error('Test task error');
+            julesTerminal.sessionQueue = [
+                async () => { throw testError; }
+            ];
+
+            await julesTerminal._processSessionQueue();
+
+            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith('QUEUE_EXECUTION_ERROR', testError);
+            expect(julesTerminal.isProcessingQueue).toBe(false);
+            expect(julesTerminal.sessionQueue.length).toBe(0);
+        });
+
+        it('should wait 1000ms between tasks', async () => {
+            jest.useFakeTimers();
+            JulesTerminal.getTelemetryUtils = () => ({ dispatchEvent: jest.fn() });
+
+            let task1Done = false;
+            let task2Done = false;
+
+            julesTerminal.sessionQueue = [
+                async () => { task1Done = true; },
+                async () => { task2Done = true; }
+            ];
+
+            const processPromise = julesTerminal._processSessionQueue();
+
+            await Promise.resolve();
+            expect(task1Done).toBe(true);
+            expect(task2Done).toBe(false);
+
+            jest.advanceTimersByTime(500);
+            await Promise.resolve();
+            expect(task2Done).toBe(false);
+
+            jest.advanceTimersByTime(500);
+            await Promise.resolve();
+            await Promise.resolve();
+            expect(task2Done).toBe(true);
+
+            await processPromise;
+        });
+    });
+
     describe('_processSession', () => {
         let terminal;
         beforeEach(() => {
