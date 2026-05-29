@@ -17,15 +17,7 @@
 
 ## The [PRUNER] Queue
 
-- [x] 🧹 `verification_fusion.png`: Unreferenced media asset detected.
-- [x] 🧹 `verification_picker.png`: Unreferenced media asset detected.
-- [x] 🧹 `verification_card.png`: Unreferenced media asset detected.
-- [x] 🧹 `verification_settings.png`: Unreferenced media asset detected.
 * 🧹 `telemetry.json`: Large uncompressed binary (>500KB) detected.
-- [x] 🧹 `js/UI/JulesTerminal/TerminalPolling.js:27`: Replace raw `console.warn` call with structured telemetry logger.
-- [x] 🧹 `js/UI/Singularity/SingularityBespokeBuilder.js:376`: Replace raw `console.warn` call with structured telemetry logger.
-- [x] 🧹 `js/UI/Singularity/SingularityBespokeBuilder.js:383`: Replace raw `console.error` call with structured telemetry logger.
-- [x] 🧹 `js/core/events/EventBinder.js:465`: Replace raw `console.error` call with structured telemetry logger.
 
 ## The [ANALYZER] Queue
 
@@ -40,8 +32,13 @@
 
 ## 🧹 Semantic Dust & Hygiene ([AST / REMOVE])
 
-* [x] 🧹 `prompts/Superintendent.md`: Unresolved merge conflict markers (`<<<<<<< HEAD`) detected around line 37.
-
 ## 🧱 Resilience & Security Boundaries ([Security / FORTIFY])
 
-* [x] 🛡️ `js/UI/JulesTerminal/JulesTerminal.js`: Raw token extraction from `localStorage` for `jules_api_key` without explicit type guards or secure wrappers.
+## The [OPERATOR] Queue
+
+* 🔗 `prompts/fusions/Vice.md`: Broken markdown image link (`/assets/hero-bg-opt.webp`).
+* 🔗 `prompts/fusions/Vice.md`: Broken markdown image link (`/assets/hero-background-raw.png`).
+* 🔗 `prompts/fusions/Foresight.md`: Broken markdown link (`start_span`).
+* 🔗 `prompts/orphans/Captionist.md`: Broken markdown image link (`hero-banner.webp`).
+* 🔗 `prompts/orphans/Captionist.md`: Broken markdown image link (`hero-banner.png`).
+* 🔗 `prompts/orphans/Gallerist.md`: Broken markdown image link (`/heavy-art.jpg`).
