@@ -86,6 +86,36 @@ describe('EventBinder (Boundary Interrogation)', () => {
         delete window.TelemetryUtils;
     });
 
+    it('removes active class from runnerInputs and hides julesTerminal when toggle is unchecked', () => {
+        const activateToggle = document.createElement('input');
+        activateToggle.type = 'checkbox';
+        activateToggle.id = 'julesActivateToggle';
+        document.body.appendChild(activateToggle);
+
+        const runnerInputs = document.createElement('div');
+        runnerInputs.id = 'runnerInputsContainer';
+        runnerInputs.classList.add('active');
+        document.body.appendChild(runnerInputs);
+
+        const julesTerminal = document.createElement('div');
+        julesTerminal.id = 'julesTerminal';
+        julesTerminal.style.display = '';
+        document.body.appendChild(julesTerminal);
+
+        EventBinder.bind(app);
+
+        activateToggle.checked = false;
+        const changeEvent = new Event('change');
+        activateToggle.dispatchEvent(changeEvent);
+
+        expect(runnerInputs.classList.contains('active')).toBe(false);
+        expect(julesTerminal.style.display).toBe('none');
+
+        document.body.removeChild(activateToggle);
+        document.body.removeChild(runnerInputs);
+        document.body.removeChild(julesTerminal);
+    });
+
     it('toggles pin and synchronizes aria-pressed for valid agent index', () => {
         EventBinder.bind(app);
 

@@ -200,6 +200,43 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
     delete global.fetch;
   });
 
+
+  it('should dispatch BUILDER_MISSING_TERMINAL error if TelemetryUtils is available', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      ok: true,
+      text: () => Promise.resolve('Template'),
+    });
+
+    window.TelemetryUtils = { dispatchEvent: jest.fn() };
+    const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+
+    builder.julesTerminal = null;
+    builder.init();
+    await builder.handleForge();
+
+    expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_MISSING_TERMINAL", expect.any(Error));
+
+    delete window.TelemetryUtils;
+    delete global.fetch;
+    consoleWarnSpy.mockRestore();
+  });
+
+  it('should dispatch BUILDER_FORGE_ERROR error if TelemetryUtils is available and fetch fails', async () => {
+    global.fetch = jest.fn().mockRejectedValue(new Error('Network Failure'));
+
+    window.TelemetryUtils = { dispatchEvent: jest.fn() };
+    const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    builder.init();
+    await builder.handleForge();
+
+    expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_FORGE_ERROR", expect.any(Error));
+
+    delete window.TelemetryUtils;
+    delete global.fetch;
+    consoleErrorSpy.mockRestore();
+  });
+
   it('should not throw if julesTerminal is null', async () => {
     global.fetch = jest.fn().mockResolvedValue({
       ok: true,

@@ -291,6 +291,34 @@ describe('JulesTerminal', () => {
         expect(statusSpan).not.toBeNull();
     });
 
+
+
+    it('_startSessionPolling should handle polling error', async () => {
+        const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+        polling.terminal.activeSessionsTimeout = 123;
+        const originalClearTimeout = global.clearTimeout;
+        global.clearTimeout = jest.fn();
+
+        const originalFetch = polling.terminal._fetchAndRenderSessions;
+        polling.terminal._fetchAndRenderSessions = jest.fn().mockRejectedValueOnce(new Error('Fetch failed'));
+
+        const TelemetryUtils = require('../../Utils/telemetry-utils.js');
+        const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
+        polling._startSessionPolling('test-repo', polling.terminal);
+
+        expect(global.clearTimeout).toHaveBeenCalledWith(123);
+
+        await Promise.resolve(); // flush async pollLoop
+
+        expect(dispatchSpy).toHaveBeenCalledWith("JULES_POLLING_ERROR", expect.any(Error));
+
+        dispatchSpy.mockRestore();
+        consoleWarnSpy.mockRestore();
+        global.clearTimeout = originalClearTimeout;
+        polling.terminal._fetchAndRenderSessions = originalFetch;
+    });
+
     it('should format long text and handle missing historyModalContent element', async () => {
         const activities = [
             { title: 'A very very long title that exceeds seventy characters in length and will be truncated' },
