@@ -112,7 +112,7 @@ class DOMUtils {
   static getTerminalSessionHTML(escapedEmoji, safeAgentName, status, statusId = "") {
     const idAttr = statusId ? ` id="${statusId}"` : "";
     return `
-            <span class="term-agent-name">${escapedEmoji} ${safeAgentName}</span>
+            <span class="term-agent-name">${String(escapedEmoji).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;")} ${safeAgentName}</span>
             <span class="term-separator">—</span>
             <span class="term-status"${idAttr}>${status}</span>
         `;
