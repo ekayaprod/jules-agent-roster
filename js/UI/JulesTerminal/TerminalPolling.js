@@ -170,7 +170,19 @@ class TerminalPolling {
 
         if (state.hasError) {
             statusSpan.className = "term-status status-error";
-            statusSpan.innerHTML = `${FormatUtils.escapeHTML(state.latestLog)} <button class="term-action-btn" aria-label="Dismiss task error" onclick="document.getElementById('session-${sessionId}').remove()">[✕]</button>`;
+            statusSpan.textContent = state.latestLog;
+
+            const btn = document.createElement("button");
+            btn.className = "term-action-btn";
+            btn.setAttribute("aria-label", "Dismiss task error");
+            btn.textContent = "[✕]";
+            btn.onclick = () => {
+                const el = document.getElementById(`session-${sessionId}`);
+                if (el) el.remove();
+            };
+
+            statusSpan.appendChild(document.createTextNode(" "));
+            statusSpan.appendChild(btn);
             clearInterval(this.terminal.julesPollingIntervals[sessionId]);
             return;
         }
