@@ -35,13 +35,15 @@ global.AgentUtils = AgentUtils;
         const fusionMatrix = {
             'AgentA,AgentB': 'SuperAgent',
             'AgentC,AgentD': 'LameAgent',
-            'Bad"Key\\': 'Hacker'
+            'Bad"Key\\': 'Hacker',
+            'MaliciousAgent': 'XSSAgent'
         };
 
         const customAgentsData = {
             'SuperAgent': { name: 'SuperAgent', tier: 'Epic', emoji: '🦸' },
             'LameAgent': { name: 'LameAgent', tier: 'Common', emoji: '🦥' },
-            'Hacker': { name: 'Hacker', tier: 'Legendary', emoji: '💀' }
+            'Hacker': { name: 'Hacker', tier: 'Legendary', emoji: '💀' },
+            'XSSAgent': { name: 'XSSAgent', tier: 'Legendary', emoji: '<img src=x onerror=alert(1)>' }
         };
 
         fusionIndex = new FusionIndex('fusion-container', fusionMatrix, jest.fn());
@@ -102,7 +104,7 @@ global.AgentUtils = AgentUtils;
         const lockedSlots = screen.getAllByText('Locked Protocol');
         expect(lockedSlots.length).toBeGreaterThan(0);
 
-        expect(screen.getByText('1 / 3 Protocols Discovered')).toBeVisible();
+        expect(screen.getByText('1 / 4 Protocols Discovered')).toBeVisible();
     });
 
     it('handles rendering with missing DOM elements', () => {
@@ -236,6 +238,24 @@ global.AgentUtils = AgentUtils;
         expect(() => fusionIndex.unlock('Bad"Key\\')).not.toThrow();
         const slot = screen.getByRole('button', { name: /Load Hacker Protocol/i });
         expect(slot).toBeVisible();
+    });
+
+    it('escapes emoji payload to prevent DOM XSS', () => {
+        // Create an unmocked escapeHTML version for this test, since it's mocked globally in beforeEach
+        mockFormatUtils.escapeHTML = jest.requireActual('../../Utils/format-utils').escapeHTML;
+        mockFormatUtils.extractIcon = jest.fn().mockImplementation(agent => agent ? agent.emoji : '❓');
+
+        fusionIndex.unlockedKeys = new Set(['MaliciousAgent']);
+        mockStorageUtils.getJsonArrayItem.mockReturnValue(['MaliciousAgent']);
+
+        fusionIndex.init();
+
+        const slot = screen.getByRole('button', { name: /Load XSSAgent Protocol/i });
+        expect(slot).toBeVisible();
+
+        // Assert that the malicious HTML string is properly escaped in innerHTML
+        expect(slot.innerHTML).not.toContain('<img src=x onerror=alert(1)>');
+        expect(slot.innerHTML).toContain('&lt;img src=x onerror=alert(1)&gt;');
     });
 });
 
