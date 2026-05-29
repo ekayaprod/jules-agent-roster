@@ -101,9 +101,10 @@ class EventBinder {
           if (!app.fusionLab._fusionCacheByAgent[agent.name]) {
               const uniqueKeys = new Set(allMatrixKeys);
               const fusions = [];
+              const prefix = agent.name + ',';
+              const suffix = ',' + agent.name;
               for (const key of uniqueKeys) {
-                  const parts = key.split(',');
-                  if (parts[0] === agent.name || parts[1] === agent.name) {
+                  if (key.startsWith(prefix) || key.endsWith(suffix)) {
                       fusions.push(key);
                   }
               }
