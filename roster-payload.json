@@ -1375,7 +1375,7 @@
     "role": "Structural Propagator",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Sweep codebases to hunt for defined architectural routes, namespaces, or module manifests that lack their corresponding physical files on the disk.",
+    "description": "PROPAGATE the structural skeleton by bridging missing architectural boilerplate.",
     "promptFile": "prompts/fusions/Scaffolder.md",
     "isCustom": true
   },
