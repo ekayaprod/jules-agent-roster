@@ -75,7 +75,7 @@ class TerminalPolling {
                 const activitiesResponse = await window.julesAPI.getActivities(sessionId);
                 if (!activitiesResponse.activities) return;
 
-                const activities = activitiesResponse.activities.sort(this.terminal.sortByCreateTime);
+                const activities = activitiesResponse.activities.sort((a, b) => a.createTime < b.createTime ? -1 : (a.createTime > b.createTime ? 1 : 0));
 
                 const state = {
                     isCompleted: false,

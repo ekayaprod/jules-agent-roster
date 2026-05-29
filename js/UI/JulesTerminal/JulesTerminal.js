@@ -2,7 +2,6 @@
  * Polling array callbacks hoisted to the file scope.
  */
 const hasPullRequest = o => o.pullRequest;
-const sortByCreateTime = (a, b) => a.createTime < b.createTime ? -1 : (a.createTime > b.createTime ? 1 : 0);
 
 // Hardcoded fallback for missing core metadata
 const CORE_EMOJIS = {
@@ -70,11 +69,6 @@ class JulesTerminal {
 
     cleanup() {
         this.polling.cleanup();
-
-
-
-        // Utility method exported to class level for delegates
-        this.sortByCreateTime = sortByCreateTime;
     }
 
     getEl(id) {
