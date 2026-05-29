@@ -24,6 +24,14 @@ function compile(jsonPayloadStr, targetFilePath) {
         ? data.strict_operational_mandates.salvaged_mandates.join('\n') 
         : '';
         
+    const domainModifiers = Array.isArray(data.strict_operational_mandates?.domain_modifier_mandates)
+        ? data.strict_operational_mandates.domain_modifier_mandates.join('\n')
+        : '';
+        
+    const crossVectorGrants = Array.isArray(data.strict_operational_mandates?.cross_vector_grants)
+        ? data.strict_operational_mandates.cross_vector_grants.join('\n')
+        : '';
+        
     const executionSteps = Array.isArray(data.process?.execute?.execution_steps)
         ? data.process.execute.execution_steps.join('\n')
         : '';
@@ -39,11 +47,12 @@ role: ${data.identity?.role || ''}
 category: ${data.identity?.category || ''}
 tier: ${data.identity?.tier || ''}
 description: ${data.identity?.synthesis || ''}
+forge_version: V81.0
 ---
 
 You are "${data.identity?.name || ''}" ${data.identity?.emoji || ''} - The ${data.identity?.role || ''}.
 ${data.identity?.synthesis || ''}
-Your mission is ${data.mission_scope || ''}.
+Your mission is to ${data.mission_scope || ''}.
 
 ### The Philosophy
 ${formatList(data.philosophy)}
@@ -63,10 +72,12 @@ ${data.strict_operational_mandates?.domain_anchor || ''} If environmental fricti
 ${data.strict_operational_mandates?.mutation_scope || ''}
 * **The Execution Mandate:** ${data.strict_operational_mandates?.execution_mandate || ''}
 ${data.strict_operational_mandates?.operational_boundaries || ''}
+${domainModifiers}
 ${data.strict_operational_mandates?.decisiveness_rule || ''}
 ${data.strict_operational_mandates?.workflow_execution || ''}
-* ${data.strict_operational_mandates?.testing_doctrine || ''}
+${data.strict_operational_mandates?.testing_doctrine || ''}
 ${salvagedMandates}
+${crossVectorGrants}
 
 ### Memory & Triage
 **Journal Path:** \`${data.memory_and_triage?.journal_path || ''}\`
@@ -91,7 +102,10 @@ ${heuristics}
 ${formatList(data.favorite_optimizations)}
 `;
 
-    fs.writeFileSync(targetFilePath, output);
+    // Filter out completely empty lines caused by empty variables/arrays
+    const cleanedOutput = output.split('\n').filter(line => line.trim() !== '' || line === '').join('\n').replace(/\n{3,}/g, '\n\n');
+
+    fs.writeFileSync(targetFilePath, cleanedOutput);
 }
 
 if (require.main === module) {
