@@ -22,7 +22,6 @@ describe('JulesTerminal', () => {
         user = userEvent.setup({ advanceTimers: jest.advanceTimersByTime });
         mockManager = {
             julesPollingIntervals: {},
-            sortByCreateTime: jest.fn(),
             getEl: jest.fn(),
             activeModalSessionId: null,
             loadPullRequestsForRepo: jest.fn(),
@@ -60,14 +59,12 @@ describe('JulesTerminal', () => {
     manager.modals = { _showInteractionModal: jest.fn(), _showHistoryModal: jest.fn() };
     manager.loadPullRequestsForRepo = jest.fn();
     manager.julesPollingIntervals = {};
-    manager.sortByCreateTime = jest.fn();
     manager.getEl = jest.fn();
     manager.activeModalSessionId = null;
     Object.assign(manager, mockManager);
     polling = new TerminalPolling(manager);
     // Bind the mocks to the manager instance
     polling.terminal.julesPollingIntervals = {};
-    polling.sortByCreateTime = jest.fn();
     polling.terminal.getEl = jest.fn();
     polling.terminal.activeModalSessionId = null;
     manager.loadPullRequestsForRepo = jest.fn();
