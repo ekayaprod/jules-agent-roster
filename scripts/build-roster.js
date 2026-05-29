@@ -77,7 +77,7 @@ async function buildRoster() {
     const agents = [...coreAgents, ...fusionAgents, ...microAgents];
 
     const outputPath = path.join(rootDir, 'roster-payload.json');
-    await fs.promises.writeFile(outputPath, JSON.stringify(agents, null, 2));
+    await fs.promises.writeFile(outputPath, JSON.stringify(agents, null, 2) + '\n');
     console.log(`Successfully compiled ${agents.length} agents to roster-payload.json`);
 }
 
