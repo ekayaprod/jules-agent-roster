@@ -46,6 +46,23 @@ describe('Utils Index module exports', () => {
 
   it('correctly imports and exports expected modules', () => {
     const Utils = require('./index.js');
+
+    const expectedExports = [
+        'AgentUtils',
+        'DOMUtils',
+        'DownloadUtils',
+        'FormatUtils',
+        'PerformanceUtils',
+        'PromptParser',
+        'StorageUtils',
+        'NetworkUtils'
+    ];
+
+    const actualExports = Object.keys(Utils);
+
+    // Ensure all expected exports are present and exactly match
+    expect(actualExports.sort()).toEqual(expectedExports.sort());
+
     expect(Utils.AgentUtils).not.toBeUndefined();
     expect(typeof Utils.AgentUtils === 'object' || typeof Utils.AgentUtils === 'function').toBe(true);
     expect(Utils.DOMUtils).not.toBeUndefined();
