@@ -122,13 +122,13 @@ class FusionIndex {
 
       if (isUnlocked) {
         slot.innerHTML = `
-          <span class="slot-icon">${emoji}</span>
+          <span class="slot-icon">${FormatUtils.escapeHTML(emoji)}</span>
           <span class="slot-label">${FormatUtils.escapeHTML(safeData.name)}</span>
         `;
         this._bindSlotInteractions(slot, safeData, key);
       } else {
         slot.innerHTML = `
-          <span class="slot-icon">${emoji}</span>
+          <span class="slot-icon">${FormatUtils.escapeHTML(emoji)}</span>
           <span class="slot-label">Locked Protocol</span>
         `;
       }
