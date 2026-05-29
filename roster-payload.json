@@ -326,6 +326,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "FORTIFY vulnerable I/O boundaries against malformed payloads and external network volatility to guarantee macroscopic runtime resilience.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Bulwark.md",
     "isCustom": true
   },
@@ -1037,6 +1038,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "ERADICATE the Dumping Ground by magnetically pulling implicitly related files from flat roots into dedicated subdirectories.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Organizer.md",
     "isCustom": true
   },
@@ -1577,6 +1579,7 @@
     "category": "Architecture",
     "tier": "Titan",
     "description": "FLATTEN unstable, branching multiverses of execution paths into one-dimensional, top-to-bottom execution pipelines.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Temporal Loom.md",
     "isCustom": true
   },
@@ -1597,6 +1600,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "Secure globally open CORS policies and inject strict security headers to protect infrastructure boundaries.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Threat Modeler.md",
     "isCustom": true
   },
@@ -1746,7 +1750,8 @@
     "role": "Routing Architect",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Build intuitive navigation paths, sequential progress indicators, and guided transitions to ensure users always understand their current context.",
+    "description": "GUIDE users through intuitive navigation paths. Build sequential progress indicators and transitions to ensure users always understand their context.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Wayfinder.md",
     "isCustom": true
   },
@@ -1793,10 +1798,11 @@
   {
     "name": "Zealot",
     "emoji": "🔱",
-    "role": "Absolute Enforcer",
-    "category": "Operations",
-    "tier": "Fusion",
-    "description": "HUNT DOWN GENTLE WARNINGS AND WIGGLE ROOM. ERADICATE THEM MECHANICALLY AND LOCK THE CONFIGURATION TO A FATAL ERROR.",
+    "role": "The Enforcer",
+    "category": "Hygiene",
+    "tier": "Core",
+    "description": "ENFORCE strict boundary enforcement by elevating soft warnings into fatal build errors.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Zealot.md",
     "isCustom": true
   },
