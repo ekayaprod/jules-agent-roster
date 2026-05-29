@@ -80,6 +80,29 @@ class AgentRepository {
         }
     }
 
+    async _executeFetchPrompt(name, url, fallback) {
+        try {
+            const res = await NetworkUtils.fetchWithRetry(url, { throwOn404: false });
+            if (!res.ok) {
+                if (!url.includes("fusions")) {
+                    console.warn(`Failed to load prompt for ${name}`);
+                }
+                return fallback;
+            }
+            return await res.text();
+        } catch (e) {
+            console.warn(
+                url.includes("fusions")
+                    ? `Error loading custom prompt for ${name}`
+                    : `Error loading prompt for ${name}`,
+                e
+            );
+            return fallback;
+        } finally {
+            delete this._pendingPrompts[url];
+        }
+    }
+
     /**
      * Safely fetches a prompt file, handling parsing and default fallbacks.
      * @param {string} name - The agent name for logging.
@@ -95,29 +118,7 @@ class AgentRepository {
             return this._pendingPrompts[url];
         }
 
-        const fetchPromise = (async () => {
-            try {
-                const res = await NetworkUtils.fetchWithRetry(url, { throwOn404: false });
-                if (!res.ok) {
-                    if (!url.includes("fusions")) {
-                        console.warn(`Failed to load prompt for ${name}`);
-                    }
-                    return fallback;
-                }
-                return await res.text();
-            } catch (e) {
-                console.warn(
-                    url.includes("fusions")
-                        ? `Error loading custom prompt for ${name}`
-                        : `Error loading prompt for ${name}`,
-                    e
-                );
-                return fallback;
-            } finally {
-                delete this._pendingPrompts[url];
-            }
-        })();
-
+        const fetchPromise = this._executeFetchPrompt(name, url, fallback);
         this._pendingPrompts[url] = fetchPromise;
         return fetchPromise;
     }
