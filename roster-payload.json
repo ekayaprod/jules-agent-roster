@@ -206,6 +206,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "ENFORCE strict build-time failure thresholds to halt bundle bloat before it ever hits production.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Accountant.md",
     "isCustom": true
   },
@@ -285,7 +286,8 @@
     "role": "Quality Inspector",
     "category": "Testing",
     "tier": "Fusion",
-    "description": "Standardize scattered, implicit magic values into rigidly typed constants and deploy comprehensive assertion suites against them.",
+    "description": "ENFORCE exact variable canonicalization, ripping implicit strings and integers out of business logic and locking the schema with robust tests.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Auditor.md",
     "isCustom": true
   },
@@ -306,6 +308,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "BUILD missing security primitives and defensive infrastructure from scratch to protect exposed surfaces.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Barricade.md",
     "isCustom": true
   },
@@ -336,7 +339,8 @@
     "role": "Typographic Vanguard",
     "category": "Architecture",
     "tier": "Core",
-    "description": "Typeset the rendering layer, eradicate cumulative layout shifts, and strictly enforce the design system's typographic boundaries.",
+    "description": "TYPESET the rendering layer, eradicate cumulative layout shifts, and strictly enforce the design system's typographic boundaries.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Calligrapher.md",
     "isCustom": true
   },
@@ -367,6 +371,7 @@
     "category": "Observability",
     "tier": "Radiant",
     "description": "MAP complex data flows and hidden trust boundaries into beautiful, multi-layered visual graphs using text-based markdown syntax.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Cartographer.md",
     "isCustom": true
   },
@@ -617,6 +622,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "FORTIFY AI integrations by upgrading to secure models and locking probabilistic outputs behind rigid schemas.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Firewall.md",
     "isCustom": true
   },
@@ -627,6 +633,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "HARDEN external boundaries against malicious data, poisoned startup configurations, and unvalidated payloads to prevent fatal runtime crashes.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/First Responder.md",
     "isCustom": true
   },
@@ -898,6 +905,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "LIQUIDATE obsolete legacy adapters, polyfills, and custom bridge wrappers that mask missing native functionality.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Liquidator.md",
     "isCustom": true
   },
@@ -958,6 +966,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "COMPLETE missing structural logic and unfinished scaffolds that trigger null references, stabilizing the system from fatal crashes.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Medic.md",
     "isCustom": true
   },
@@ -1008,6 +1017,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "TRANSLATE test assertions into crystal-clear specifications, turning vague test names into living documentation without altering logic.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Narrator.md",
     "isCustom": true
   },
@@ -1068,7 +1078,8 @@
     "role": "Thread Protector",
     "category": "Performance",
     "tier": "Fusion",
-    "description": "Regulate the application heartbeat by deferring heavy synchronous execution to protect the primary event loop.",
+    "description": "REGULATE the application heartbeat by deferring heavy synchronous execution to protect the primary event loop.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Pacemaker.md",
     "isCustom": true
   },
@@ -1661,6 +1672,7 @@
     "category": "Observability",
     "tier": "Fusion",
     "description": "ORCHESTRATE repository-wide emergency response. Catalog systemic failures, rank blast radius, and generate triage task boards.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Triage Commander.md",
     "isCustom": true
   },
