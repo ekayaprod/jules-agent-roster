@@ -75,7 +75,7 @@
     "role": "Evolution Engine",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "Mutates fossilized syntax and deprecated patterns into modern, native language standards to radically reduce cognitive load.",
+    "description": "Evolve fossilized syntax and deprecated patterns into modern native standards to radically reduce cognitive load.",
     "promptFile": "prompts/Modernizer.md",
     "isCustom": false
   },
@@ -473,9 +473,9 @@
     "name": "Customs",
     "emoji": "🛃",
     "role": "Border Control",
-    "category": "Architecture",
+    "category": "Security",
     "tier": "Fusion",
-    "description": "Patrol the outermost edges of the application to ensure no traffic enters without a passport. Wrap exposed routing trees and API perimeters in impenetrable authentication airlocks.",
+    "description": "SECUREROUTE the application's perimeter by wrapping exposed routing trees and API layers in impenetrable authentication airlocks.",
     "promptFile": "prompts/fusions/Customs.md",
     "isCustom": true
   },
@@ -1806,6 +1806,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "CLEAR redundant conversational comments, stale TODOs, and decaying scaffolding to let the code breathe.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Zen.md",
     "isCustom": true
   }
