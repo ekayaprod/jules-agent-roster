@@ -853,6 +853,24 @@ describe('JulesTerminal', () => {
         });
     });
 
+    describe('_processSessionQueue', () => {
+        it('should catch task errors and dispatch QUEUE_EXECUTION_ERROR', async () => {
+            const TelemetryUtils = require('../../Utils/telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
+            const testError = new Error('Test Queue Error');
+            julesTerminal.sessionQueue.push(async () => {
+                throw testError;
+            });
+
+            await julesTerminal._processSessionQueue();
+
+            expect(dispatchSpy).toHaveBeenCalledWith('QUEUE_EXECUTION_ERROR', testError);
+
+            dispatchSpy.mockRestore();
+        });
+    });
+
     describe('dismissSession', () => {
         it('should remove DOM element and clear interval', () => {
             julesTerminal.renderedSessionIds.add('123');
