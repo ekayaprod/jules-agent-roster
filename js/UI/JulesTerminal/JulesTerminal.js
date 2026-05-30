@@ -267,7 +267,7 @@ class JulesTerminal {
             this.polling._clearPollingAndCache();
             const existingInd = terminal.querySelector('#fetchingIndicator');
             if (!existingInd) {
-                 terminal.innerHTML += DOMUtils.getTerminalIndicatorHTML("Checking active Jules routines...");
+                 terminal.insertAdjacentHTML("beforeend", DOMUtils.getTerminalIndicatorHTML("Checking active Jules routines..."));
             }
             this.currentRepo = sourceName;
         }
