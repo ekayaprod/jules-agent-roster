@@ -306,52 +306,47 @@ class RosterApp {
         }
     };
 
-    // WARN: Do NOT convert this `while` loop into a synchronous `.map()` or `.forEach()`.
-    // Why: Rendering all DOM nodes synchronously blocks the main thread, causing layout popping,
-    // frozen UI, and delayed skeleton removal. The `await yieldToMain()`
-    // pattern yields control to the browser between chunks to keep the interface responsive.
-    const renderAllChunks = async () => {
-      while (agentIndex < flattenedAgents.length) {
-        if (this.currentRenderId !== currentRenderId) return;
-
-        const end = Math.min(agentIndex + CHUNK_SIZE, flattenedAgents.length);
-
-        for (let i = agentIndex; i < end; i++) {
-          const { agent, indexOrKey, gridCategory } = flattenedAgents[i];
-          let category = gridCategory || agent.category || "strategy";
-          if (!gridCategory) {
-            category = category.toLowerCase();
-            if (agent.tier === "Plus" || (agent.name && agent.name.endsWith("+"))) {
-              category = "plus";
-            }
-          }
-          const container = categoryContainers[category];
-          if (!container) continue;
-
-          let card = this._domNodeCache.get(String(indexOrKey));
-          if (card) {
-              // Re-use cached node but recalculate animation delay
-              card.style.animationDelay = `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`;
-          } else {
-              card = AgentCard.create(agent, indexOrKey, globalIndex);
-              this._domNodeCache.set(String(indexOrKey), card);
-          }
-          globalIndex++;
-
-          if (fragments[category]) {
-            fragments[category].appendChild(card);
-          }
-        }
-
-        agentIndex = end;
-
-        if (agentIndex < flattenedAgents.length) {
-            await yieldToMain();
+    const resolveCategory = (agent, gridCategory) => {
+      let category = gridCategory || agent.category || "strategy";
+      if (!gridCategory) {
+        category = category.toLowerCase();
+        if (agent.tier === "Plus" || (agent.name && agent.name.endsWith("+"))) {
+          category = "plus";
         }
       }
+      return category;
+    };
 
-      if (this.currentRenderId !== currentRenderId) return;
+    const processAgentCard = (agentItem) => {
+      const { agent, indexOrKey, gridCategory } = agentItem;
+      const category = resolveCategory(agent, gridCategory);
+      const container = categoryContainers[category];
+      if (!container) return;
 
+      let card = this._domNodeCache.get(String(indexOrKey));
+      if (card) {
+          // Re-use cached node but recalculate animation delay
+          card.style.animationDelay = `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`;
+      } else {
+          card = AgentCard.create(agent, indexOrKey, globalIndex);
+          this._domNodeCache.set(String(indexOrKey), card);
+      }
+      globalIndex++;
+
+      if (fragments[category]) {
+        fragments[category].appendChild(card);
+      }
+    };
+
+    const renderChunk = () => {
+      const end = Math.min(agentIndex + CHUNK_SIZE, flattenedAgents.length);
+      for (let i = agentIndex; i < end; i++) {
+        processAgentCard(flattenedAgents[i]);
+      }
+      agentIndex = end;
+    };
+
+    const applyFinalDOMUpdates = () => {
       // Final DOM updates
       for (let i = 0; i < this.categoryKeys.length; i++) {
         const key = this.categoryKeys[i];
@@ -374,7 +369,9 @@ class RosterApp {
           }
         }
       }
+    };
 
+    const dismissLoadingOverlay = () => {
       // 🪄 Illusionist: Dismiss loading overlay after DOM is generated
       const overlay = document.getElementById("initial-loading-overlay");
       if (overlay && !overlay.classList.contains("hidden")) {
@@ -383,6 +380,27 @@ class RosterApp {
               if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
           }, LOADING_OVERLAY_DISMISS_MS);
       }
+    };
+
+    // WARN: Do NOT convert this `while` loop into a synchronous `.map()` or `.forEach()`.
+    // Why: Rendering all DOM nodes synchronously blocks the main thread, causing layout popping,
+    // frozen UI, and delayed skeleton removal. The `await yieldToMain()`
+    // pattern yields control to the browser between chunks to keep the interface responsive.
+    const renderAllChunks = async () => {
+      while (agentIndex < flattenedAgents.length) {
+        if (this.currentRenderId !== currentRenderId) return;
+
+        renderChunk();
+
+        if (agentIndex < flattenedAgents.length) {
+            await yieldToMain();
+        }
+      }
+
+      if (this.currentRenderId !== currentRenderId) return;
+
+      applyFinalDOMUpdates();
+      dismissLoadingOverlay();
     };
 
     renderAllChunks();
