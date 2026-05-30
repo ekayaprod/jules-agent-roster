@@ -347,7 +347,7 @@ Your mission is to {{mission_scope}}.
 ### 2. Target Resolution & Locking (Target Acquisition)
 1. **Explicit Override Check:** If `TARGET_FILE_OVERRIDE` contains a file path, immediately lock onto that file.
 2. **The Signature Sweep:** If the override is empty, execute the following native command to search the fusions directory for `.md` files that lack the modern architectural signature:
-`grep -rL --include="*.md" "[ARCHITECTURAL_SIGNATURE]" prompts/fusions/`
+`grep -rL --include="*.md" "forge_version: V81.0" prompts/fusions/`
 3. **Lock Target:** Lock the **first valid file path** returned by the sweep. Ignore all others.
 
 ### 3. Multi-Stage Pipeline Execution
@@ -362,7 +362,7 @@ Output the following items in exact order:
 3. **Mission Scope Extraction:** Extract the Mission Scope. You MUST explicitly strip adverbs like "autonomously" from the beginning.
 4. **Module 2 Audit (Mandate Salvage):** List exact salvaged domain mandates. Explicitly discard any mandate referencing Platform Interrupts or artifact cleanup.
 5. **Archetype Mapping:** Declare the assigned Primary Archetype (Module 5.A) and UI Category.
-6. **Domain Modifier Evaluation:** Semantically evaluate the agent's mission scope and target matrix against Module 5.B Modifiers. Declare any active modifiers and list their injected clauses verbatim.
+6. **Domain Modifier Evaluation:** Use the Domain Modifiers declared in the Phase 4 Sculptor Output Manifest instead of re-evaluating them. List their injected clauses verbatim.
 7. **Archetype Slot Manifest (CRITICAL):** Inside a `markdown` code block, explicitly copy the EXACT 7 slots (including their `*` markdown bullets) and the PR Headers string for your assigned archetype from `Forge-Protocol` Module 5.A verbatim. Do not summarize them.
 8. **New Execution Steps & Heuristics:** Draft the 3-5 execution steps and 3 mental checks.
 9. **Velocity & Payload:** Declare Contained or Expansive, and define the Payload Threshold.

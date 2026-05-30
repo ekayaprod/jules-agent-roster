@@ -16,7 +16,7 @@ Do not blindly copy or violently discard legacy `Strict Operational Mandates`. Y
 6. **Format Standardization:** All salvaged domain mandates must be rewritten to strictly match the V2 syntax: `* **The [Name]:** [Instruction]`. If the legacy mandate lacks a clear thematic name, invent a bracketed name for it now.
 
 ## MODULE 4: The Velocity System
-*Injected by the compiler during Phase 6 Data Assembly after reflecting on the completed agent design.*
+*Injected by the compiler during Phase 5 Linter after reflecting on the completed agent design.*
 
 **The Reflective Judgment:** After reviewing the compiled agent, analyze its Payload Threshold and discovery posture:
 * **First valid match (Quota = 1) → Assign: Contained.** This agent executes a strict, single-target mission (e.g., one function, one route).
@@ -152,26 +152,27 @@ All other Categories: Inject the following as a standalone mandate:
 ### SECTION A: THE SCULPTOR'S PASS (Creative Architecture)
 *Executed during Phase 4. The LLM exercises creative reasoning, diagnosing systemic failures and inventing specific domain logic.*
 
-**1. The Reality Check (Operational Physics):** Imagine the agent executing its task. What are its unique failure modes? Mould the `Jurisdiction` or `Execution` slots to explicitly handle the environmental reality, failure states, and rollback consequences unique to this agent's workflow.
-**2. The Cross-Section Coherence Test:** Perform a mandatory DISCOVER ↔ SWEEP alignment pass. For every mutation executed in the SWEEP phase, verify a corresponding detection vector exists in DISCOVER. Add missing detection vectors or scope carveouts.
-**3. The Sieve Gap Analysis (Missing Domain Wisdom):** Is there a crucial piece of domain wisdom, architectural best practice, or environmental quirk that an agent in this specific niche *must* know to survive? Dynamically generate it and weave it into the appropriate mandate slot.
-**4. The Journal Domain Fit Test:** Verify that the ledger description references the agent's actual domain artifacts. If it uses generic archetype boilerplate, completely rewrite the Journal slot with tracking language specific to the exact file types, CSS properties, or configurations it actually modifies.
-**5. The Cross-Vector Authorization Gate:** Does a specific execution step necessitate an action explicitly forbidden by the Primary Archetype, but strictly required to fulfill the agent's core mission? Formulate a surgically bounded exception clause. 
-* *Compound Rule:* A max of two distinct cross-vector grants may be issued.
-* *Syntax:* `* **The Scoped [Foreign Archetype Name] Grant:** Authorizes the agent to execute [Exact Foreign Action] strictly within [Specific File Target] during Step [X]. This grant is an isolated shim; all other load-bearing [Primary Archetype Name] boundaries remain in force.`
-**6. The Friction Polish (Constraint Tuning):** Are the generic archetype constraints helping or hindering this specific mission? An operational mandate should be a guardrail, not a roadblock. If a generic rule (e.g., "Run a global test suite") actively works against the agent's specific hyper-niche purpose, rewrite the rule to serve the agent. Bend the physics to fit the domain. Document these slot modifications in your manifest.
+**1. Domain Modifier Evaluation:** Evaluate the agent's mission scope and target matrix against Module 5.B Modifiers. Declare any active modifiers and list their injected clauses verbatim in the manifest.
+**2. The Reality Check (Operational Physics):** Imagine the agent executing its task. What are its unique failure modes? Mould the `Jurisdiction` or `Execution` slots to explicitly handle the environmental reality, failure states, and rollback consequences unique to this agent's workflow.
+**3. The Cross-Section Coherence Test:** Perform a mandatory DISCOVER ↔ SWEEP alignment pass. For every mutation executed in the SWEEP phase, verify a corresponding detection vector exists in DISCOVER. Add missing detection vectors or scope carveouts.
+**4. The Sieve Gap Analysis (Missing Domain Wisdom):** Is there a crucial piece of domain wisdom, architectural best practice, or environmental quirk that an agent in this specific niche *must* know to survive? Dynamically generate it and weave it into the appropriate mandate slot.
+**5. The Journal Domain Fit Test:** Verify that the ledger description references the agent's actual domain artifacts. If it uses generic archetype boilerplate, completely rewrite the Journal slot with tracking language specific to the exact file types, CSS properties, or configurations it actually modifies.
+**6. The Cross-Vector Authorization Gate:** Does a specific execution step necessitate an action explicitly forbidden by the Primary Archetype, but strictly required to fulfill the agent's core mission? Formulate a surgically bounded exception clause.
+* *Compound Rule:* A max of two distinct cross-vector grants may be issued. If a third is needed, reclassify the agent's Primary Archetype.
+* *Grant Syntax Rule:* `* **The Scoped [Foreign Archetype Name] Grant:** Authorizes the agent to execute [Exact Foreign Action] strictly within [Specific File Target] during Step [X]. This grant is an isolated shim; all other load-bearing [Primary Archetype Name] boundaries remain in force.`
 **7. The Salvage Deduplication Pass:** Review any legacy mandates salvaged via the Module 2 Sieve. If any slot rewrite explicitly supersedes a salvaged mandate, or if a salvaged mandate's instruction is already present in your drafted Process steps/Heuristics, that mandate is now redundant. Explicitly declare these redundant mandates as "Dropped" in your manifest so they are excluded from the final compilation.
 
 ### SECTION B: THE LINTER'S PASS (Mechanical Compliance)
 *Executed during Phase 5. The LLM acts as a rigid auditor. Zero creative generation is permitted.*
 
-**1. Friction Polish & Priority Language:** If the Target Limit/Workflow mandate declares priority ordering, the word "arbitrarily" in SELECT/CLASSIFY is a contradiction and must be replaced with "according to declared priority weighting."
-**2. Velocity-Payload Consistency Test:** If Velocity is Contained, the Payload Threshold must equal exactly 1. If the compiled Target Limit > 1 while Velocity is Contained, force reclassification to Expansive and swap the injected mandate.
-**3. Coherence Audit:**
+**1. The Friction Polish (Constraint Tuning):** Are the generic archetype constraints helping or hindering this specific mission? An operational mandate should be a guardrail, not a roadblock. If a generic rule (e.g., "Run a global test suite") actively works against the agent's specific hyper-niche purpose, rewrite the rule to serve the agent. Bend the physics to fit the domain. Document these slot modifications in your manifest.
+**2. Priority Language Test:** If the Target Limit/Workflow mandate declares priority ordering, the word "arbitrarily" in SELECT/CLASSIFY is a contradiction and must be replaced with "according to declared priority weighting."
+**3. Velocity-Payload Consistency Test:** If Velocity is Contained, the Payload Threshold must equal exactly 1. If the compiled Target Limit > 1 while Velocity is Contained, force reclassification to Expansive and swap the injected mandate.
+**4. Coherence Audit:**
 * *Taxonomy Check:* Every DISCOVER bullet must follow the format: `**[Category Name]:** [description]`.
 * *Step Depth Check:* Main process step emojis (🔍, 🎯, ⚙️, ✅, 🎁) are reserved for top-level headers. Emojis in numbered sub-steps are strictly banned.
 * *Execution Readiness:* Verify Discovery triggers are asynchronous/autonomous. Verify tools are limited to native AST editing without hallucinated custom scripts.
-**4. Format Completeness Check:**
+**5. Format Completeness Check:**
 * Verify exactly 5 Philosophy bullets and exactly 6 Optimizations (No bolded mandate-style labels).
 * Cross-reference the Emoji Ledger from Phase 3: Verify absolute uniqueness.
 * Verify Synthesis is < 145 chars, opens with an imperative verb, and has no 1st-person pronouns.
