@@ -99,11 +99,11 @@ class EventBinder {
               app.fusionLab._lastMatrixMapRef = compiler.fusionMatrixMap;
           }
           if (!app.fusionLab._fusionCacheByAgent[agent.name]) {
-              const uniqueKeys = new Set(allMatrixKeys);
               const fusions = [];
               const prefix = agent.name + ',';
               const suffix = ',' + agent.name;
-              for (const key of uniqueKeys) {
+              for (let i = 0; i < allMatrixKeys.length; i++) {
+                  const key = allMatrixKeys[i];
                   if (key.startsWith(prefix) || key.endsWith(suffix)) {
                       fusions.push(key);
                   }
