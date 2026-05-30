@@ -26,15 +26,27 @@ class AgentRepository {
         try {
             // ⚡ Bolt+: The Waterfall Collapse. Unblocked the two-stage fetching and JSON parsing cycles into a single chained execution matrix, eliminating an artificial blocking tick.
             const [payload, fusionMatrixData] = await Promise.all([
-                NetworkUtils.fetchWithRetry("./roster-payload.json", { throwOn404: false })
-                    .then(res => this.safeJsonParse(res, "./roster-payload.json"))
-                    .catch(err => {
+                (async () => {
+                    try {
+                        const res = await NetworkUtils.fetchWithRetry("./roster-payload.json", { throwOn404: false });
+                        return await this.safeJsonParse(res, "./roster-payload.json");
+                    } catch (err) {
                         console.error("Failed to fetch roster payload", err);
                         return [];
-                    }),
-                NetworkUtils.fetchWithRetry("./fusion_matrix.json", { throwOn404: false })
-                    .catch(() => null)
-                    .then(res => (res && res.ok) ? this.safeJsonParse(res, "./fusion_matrix.json") : {})
+                    }
+                })(),
+                (async () => {
+                    let res = null;
+                    try {
+                        res = await NetworkUtils.fetchWithRetry("./fusion_matrix.json", { throwOn404: false });
+                    } catch (err) {
+                        // ignore fetch error
+                    }
+                    if (res && res.ok) {
+                        return await this.safeJsonParse(res, "./fusion_matrix.json");
+                    }
+                    return {};
+                })()
             ]);
 
             this.fusionMatrix = fusionMatrixData;
