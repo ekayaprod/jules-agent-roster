@@ -173,6 +173,24 @@ describe('JulesTerminal', () => {
 
         expect(dispatchSpy).toHaveBeenCalledWith("JULES_POLLING_ERROR", expect.any(Error));
         dispatchSpy.mockRestore();
+        consoleSpy.mockRestore();
+    });
+
+    it('should fallback to console.error when catching API errors if TelemetryUtils is missing', async () => {
+        const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+        window.julesAPI.getActivities.mockRejectedValue(new Error('API fail'));
+
+        // Force JulesTerminal to return null for TelemetryUtils
+        jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValueOnce(null);
+
+        polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
+
+        jest.advanceTimersByTime(10);
+        await Promise.resolve(); // flush promises
+
+        expect(consoleSpy).toHaveBeenCalledWith("Session polling cycle encountered an error:", expect.any(Error));
+        consoleSpy.mockRestore();
     });
 
     it('should handle isWaitingForInput=false correctly', () => {

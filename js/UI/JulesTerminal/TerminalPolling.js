@@ -150,7 +150,11 @@ class TerminalPolling {
 
             } catch (e) {
                 const tu = JulesTerminal.getTelemetryUtils();
-                if (tu) tu.dispatchEvent("JULES_POLLING_ERROR", e);
+                if (tu) {
+                    tu.dispatchEvent("JULES_POLLING_ERROR", e);
+                } else {
+                    console.error("Session polling cycle encountered an error:", e);
+                }
             }
         }, this.terminal.constructor.TERMINAL_POLL_MS);
     }
