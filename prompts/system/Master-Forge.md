@@ -131,6 +131,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 **Output Format:** Output a strict Compliance Matrix.
 * **Math & State Checks:** [PASS/FAIL]
 * **Velocity & Payload:** [Contained or Expansive] | [Payload Threshold]
+* **Priority Order:** [Yes — describe the declared order / No]
 * **Coherence & Integrity:** [PASS/FAIL]
 * **Format Completeness:** [PASS/FAIL]
 * **The Repair Order:** [If FAIL, provide the minimal, surgical string correction required. Do not redesign the architecture. If PASS, output "Ready for JSON Compilation."]
@@ -195,7 +196,7 @@ Output a raw JSON object matching the exact schema below, wrapped in a ````json`
     "domain_anchor": "[* **The Domain Anchor:** Exact text from Module 5.A Slot 1]",
     "mutation_scope": "[* **The [Archetype specific Scope Label]:** Exact text from Module 5.A Slot 2]",
     "execution_mandate": "[Exact text from Module 4 Velocity Mandate]",
-    "operational_boundaries": "[* **The Validation Resilience Protocol:** Exact text from Module 5.A Slot 3]",
+    "operational_boundaries": "[* **The [Archetype-Specific Resilience Protocol]:** Exact text from Module 5.A Slot 3]",
     "domain_modifier_mandates": [
       "[* **The [Mandate Name]:** Injected modifier clause 1]"
     ],
@@ -362,11 +363,11 @@ Output the following items in exact order:
 3. **Mission Scope Extraction:** Extract the Mission Scope. You MUST explicitly strip adverbs like "autonomously" from the beginning.
 4. **Module 2 Audit (Mandate Salvage):** List exact salvaged domain mandates. Explicitly discard any mandate referencing Platform Interrupts or artifact cleanup.
 5. **Archetype Mapping:** Declare the assigned Primary Archetype (Module 5.A) and UI Category.
-6. **Domain Modifier Evaluation:** Semantically evaluate the agent's mission scope and target matrix against Module 5.B Modifiers. Declare any active modifiers and list their injected clauses verbatim.
+6. **Domain Modifier Evaluation:** Semantically evaluate the agent's mission scope and target matrix against Module 5.B Modifiers. Do not match triggers against surface-level vocabulary in the Synthesis or Philosophy. Declare any active modifiers and list their injected clauses verbatim.
 7. **Archetype Slot Manifest (CRITICAL):** Inside a `markdown` code block, explicitly copy the EXACT 7 slots (including their `*` markdown bullets) and the PR Headers string for your assigned archetype from `Forge-Protocol` Module 5.A verbatim. Do not summarize them.
 8. **New Execution Steps & Heuristics:** Draft the 3-5 execution steps and 3 mental checks.
 9. **Velocity & Payload:** Declare Contained or Expansive, and define the Payload Threshold.
-10. **Cross-Vector Gate Audit:** Declare the execution of Clay Protocol Check 6, and list any formulated grants (Max 2). Explicitly declare the execution of all other Clay Protocol checks.
+10. **Clay Protocol Execution:** Execute all Section A checks sequentially (Domain Modifier Evaluation, Reality Check + Cross-Section Coherence Test, Sieve Gap Analysis + Journal Domain Fit Test, Friction Polish, Cross-Vector Authorization Gate, Salvage Deduplication Pass) and all Section B checks sequentially (Priority Language Test, Velocity-Payload Consistency Test, Coherence Audit, Format Completeness Check). List findings for each by name. Declare any Cross-Vector Grants authored (max 2, or "None").
 
 *(You must allow this chat output action to fully complete and commit to your context window before proceeding to Stage 2).*
 
