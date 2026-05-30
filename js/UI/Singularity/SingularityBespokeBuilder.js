@@ -42,28 +42,28 @@ class SingularityBespokeBuilder {
           <div>
             <label class="sg-label">Agent Archetype</label>
             <div class="sg-archetype-grid">
-              <button class="sg-archetype-card" data-type="MAKER">
+              <button class="sg-archetype-card transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-type="MAKER">
                 <span class="sg-archetype-icon">🛠️</span>
                 <span>
                   <span class="sg-archetype-name">Maker</span>
                   <span class="sg-archetype-desc">Builds, refactors, or transforms existing code</span>
                 </span>
               </button>
-              <button class="sg-archetype-card" data-type="ASSASSIN">
+              <button class="sg-archetype-card transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-type="ASSASSIN">
                 <span class="sg-archetype-icon">🗡️</span>
                 <span>
                   <span class="sg-archetype-name">Assassin</span>
                   <span class="sg-archetype-desc">Deletes, prunes, or eliminates dead weight</span>
                 </span>
               </button>
-              <button class="sg-archetype-card" data-type="SENTINEL">
+              <button class="sg-archetype-card transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-type="SENTINEL">
                 <span class="sg-archetype-icon">🛡️</span>
                 <span>
                   <span class="sg-archetype-name">Sentinel</span>
                   <span class="sg-archetype-desc">Guards quality — tests, linting, validation</span>
                 </span>
               </button>
-              <button class="sg-archetype-card" data-type="ORACLE">
+              <button class="sg-archetype-card transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-type="ORACLE">
                 <span class="sg-archetype-icon">🔮</span>
                 <span>
                   <span class="sg-archetype-name">Oracle</span>
@@ -80,16 +80,16 @@ class SingularityBespokeBuilder {
                 <span id="sgPredictionBadge" class="sg-prediction-badge">🛠️ Maker</span>
               </div>
               <div class="sg-pills">
-                <button class="sg-pill" data-archetype="MAKER"
+                <button class="sg-pill transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-archetype="MAKER"
                   data-mission="Refactor legacy code to modern standards."
                   data-constraints="Match Existing Styling,Do not modify tests">✨ Refactor Legacy</button>
-                <button class="sg-pill" data-archetype="SENTINEL"
+                <button class="sg-pill transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-archetype="SENTINEL"
                   data-mission="Enforce strict typing and add validation guards."
                   data-constraints="No New Dependencies,Match Existing Styling">🛡️ Add Type Guards</button>
-                <button class="sg-pill" data-archetype="ASSASSIN"
+                <button class="sg-pill transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-archetype="ASSASSIN"
                   data-mission="Prune dead code and remove all unused files and exports."
                   data-constraints="No UI Mutations">🗡️ Prune Dead Code</button>
-                <button class="sg-pill" data-archetype="ORACLE"
+                <button class="sg-pill transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-archetype="ORACLE"
                   data-mission="Audit and document all public API endpoints and their return types."
                   data-constraints="No UI Mutations,Dry-Run Only (Generate Report)">📖 Document API</button>
               </div>
@@ -159,7 +159,7 @@ class SingularityBespokeBuilder {
           </div>
 
           <div>
-            <button class="sg-advanced-btn" id="sgAdvancedBtn">
+            <button class="sg-advanced-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" id="sgAdvancedBtn">
               Advanced Options <span class="sg-chevron" id="sgChevron">▼</span>
             </button>
             <div class="sg-advanced-panel" id="sgAdvancedPanel">
@@ -182,7 +182,7 @@ class SingularityBespokeBuilder {
           <p class="sg-outcome-note">
             Singularity will scan your repository and deliver a new agent file via pull request to <code>.jules/agents/</code>
           </p>
-          <button class="sg-submit" id="sgSubmit">🌌 Forge Bespoke Agent</button>
+          <button class="sg-submit transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" id="sgSubmit">🌌 Forge Bespoke Agent</button>
         </div>
 
       </div>
