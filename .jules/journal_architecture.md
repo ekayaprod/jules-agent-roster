@@ -17,13 +17,14 @@
 # Historical Archive
 
 ## Vector — The Single-Pass Pipeline Optimization
-**Learning:** Flattening multi-pass array iterations (`.filter().reverse().slice()`) into a single bare-metal backward loop with early exit mechanisms eliminates unnecessary intermediate memory allocations and loop overhead in high-throughput data processing paths.
-**Action:** Always scrutinize chained Array prototype methods on high-value data paths. Replace winding logic with a simple, direct `for` loop that implements filtering and data limitations concurrently.
+**Bottleneck:** Winding multi-pass array iterations. | **Optimization:** Direct for-loops with early exit mechanisms.
 
 ## Information Architect — The Layout Narrator
-**Learning:** Identified that generic `div` soup in the layout reduces hierarchical semantic meaning, especially in nested structural blocks like modals.
-**Action:** Replaced the generic `<div id="julesPRModal">` container and its nested `.modal-content` wrapper with semantic `<section>` and `<article>` tags respectively to improve document outline and screen reader accessibility within the isolated modal layout.
+**Bottleneck:** Generic div soup in layouts. | **Optimization:** Semantic HTML tags for better screen reader accessibility.
 
 ## Coroner — The Dead Investigator
-**Learning:** A legacy class `fusion-slot` used in older layouts was lingering in tests (`benchmark.js`) and CSS (`Fusion.css`), acting as a ghost constraint after the source changed to `fusion-item`.
-**Action:** Always unify class names between source code, tests, and style sheets during architectural refactors to prevent dead selectors from causing test or build failures.
+**Bottleneck:** Dead selectors lingering in tests/CSS. | **Optimization:** Unification of class names across domains.
+
+## The Refiner — Callback Demolition
+**Bottleneck:** The monolithic `EventBinder` class relied heavily on deeply nested `.then()` chains, notably within `mouseover` pre-fetching, `click` delegations, and repository picker logic, causing potential unhandled rejections and obscuring execution paths.
+**Optimization:** Flattened all asynchronous event delegation callbacks using `async/await` and explicit `try/catch` blocks, maintaining native sequential execution and improving error boundary propagation to `TelemetryUtils`.

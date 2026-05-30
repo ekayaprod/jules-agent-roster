@@ -18,21 +18,23 @@ class EventBinder {
     if (app.elements.clearBtn) app.elements.clearBtn.addEventListener("click", () => app.clearSearch());
     if (app.elements.clearSearchEmptyBtn) app.elements.clearSearchEmptyBtn.addEventListener("click", () => app.clearSearch());
 
-    if (app.elements.julesRepoPicker) app.elements.julesRepoPicker.addEventListener('change', (e) => {
+    if (app.elements.julesRepoPicker) app.elements.julesRepoPicker.addEventListener('change', async (e) => {
         if (app._cardHtmlCache) app._cardHtmlCache.clear();
         if (app._domNodeCache) app._domNodeCache.clear();
         app.renderAgents();
 
         const sourceName = e.target.value;
         if (sourceName) {
-            Promise.all([
-                app.julesTerminal.loadActiveSessionsForRepo(sourceName),
-                app.julesTerminal.loadPullRequestsForRepo(sourceName)
-            ]).catch(err => {
+            try {
+                await Promise.all([
+                    app.julesTerminal.loadActiveSessionsForRepo(sourceName),
+                    app.julesTerminal.loadPullRequestsForRepo(sourceName)
+                ]);
+            } catch (err) {
                 const tu = window.TelemetryUtils;
                 if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", err);
                 else console.error(err);
-            });
+            }
         } else {
             const terminal = app.elements.julesTerminal;
             if (terminal) {
@@ -53,7 +55,7 @@ class EventBinder {
     });
 
     // Global Click Delegation (Handles Dropdowns, Cards, etc.)
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", async (e) => {
       // Close search if clicked outside and input is empty
       const nav = app.elements["category-nav"];
       if (nav && nav.classList.contains("search-active")) {
@@ -287,11 +289,16 @@ class EventBinder {
 
               const url = AgentUtils.getPromptUrl(agent);
 
-              app.agentRepo.fetchPrompt(agent.name, url, fallbackText).then((fetchedPrompt) => {
+              try {
+                  const fetchedPrompt = await app.agentRepo.fetchPrompt(agent.name, url, fallbackText);
                   agent.prompt = fetchedPrompt;
                   promptArea.innerHTML = '';
                   promptArea.appendChild(AgentCard.getPromptNode(agent));
-              });
+              } catch (error) {
+                  const tu = window.TelemetryUtils;
+                  if (tu) tu.dispatchEvent("FETCH_PROMPT_ERROR", error);
+                  else console.error(error);
+              }
           } else {
               promptArea.innerHTML = '';
               promptArea.appendChild(AgentCard.getPromptNode(agent));
@@ -381,7 +388,7 @@ class EventBinder {
     });
 
     // Pre-fetch custom/fusion agent prompts on hover to reduce flip latency
-    document.addEventListener('mouseover', (e) => {
+    document.addEventListener('mouseover', async (e) => {
         const card = e.target.closest('.flip-card');
         if (!card || card.classList.contains('flipped')) return;
 
@@ -395,9 +402,14 @@ class EventBinder {
         if (!agent || !agent.isCustom || agent.prompt !== undefined) return;
 
         const url = AgentUtils.getPromptUrl(agent);
-        app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
+        try {
+            const fetched = await app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
             agent.prompt = fetched;
-        });
+        } catch (error) {
+            const tu = window.TelemetryUtils;
+            if (tu) tu.dispatchEvent("PREFETCH_PROMPT_ERROR", error);
+            else console.error(error);
+        }
     });
 
     // Close search and active dropdowns on Escape key
