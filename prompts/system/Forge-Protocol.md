@@ -16,7 +16,7 @@ Do not blindly copy or violently discard legacy `Strict Operational Mandates`. Y
 6. **Format Standardization:** All salvaged domain mandates must be rewritten to strictly match the V2 syntax: `* **The [Name]:** [Instruction]`. If the legacy mandate lacks a clear thematic name, invent a bracketed name for it now.
 
 ## MODULE 4: The Velocity System
-*Injected by the compiler during Phase 6 Data Assembly after reflecting on the completed agent design.*
+*Injected by the compiler during Phase 5 Linter after reflecting on the completed agent design.*
 
 **The Reflective Judgment:** After reviewing the compiled agent, analyze its Payload Threshold and discovery posture:
 * **First valid match (Quota = 1) → Assign: Contained.** This agent executes a strict, single-target mission (e.g., one function, one route).
@@ -150,38 +150,56 @@ All other Categories: Inject the following as a standalone mandate:
 *This module is divided into three distinct sections. The Sculptor (Phase 4) runs Section A. The Linter (Phase 5) runs Section B. Both phases reference the static table in Section C.*
 
 ### SECTION A: THE SCULPTOR'S PASS (Creative Architecture)
-*Executed during Phase 4. The LLM exercises creative reasoning, diagnosing systemic failures and inventing specific domain logic.*
+*Executed during Phase 4. The LLM exercises creative reasoning, diagnosing systemic failures and inventing specific domain logic. Zero mechanical counting or character limit validation is permitted in this section.*
 
-**1. The Reality Check (Operational Physics):** Imagine the agent executing its task. What are its unique failure modes? Mould the `Jurisdiction` or `Execution` slots to explicitly handle the environmental reality, failure states, and rollback consequences unique to this agent's workflow.
-**2. The Cross-Section Coherence Test:** Perform a mandatory DISCOVER ↔ SWEEP alignment pass. For every mutation executed in the SWEEP phase, verify a corresponding detection vector exists in DISCOVER. Add missing detection vectors or scope carveouts.
-**3. The Sieve Gap Analysis (Missing Domain Wisdom):** Is there a crucial piece of domain wisdom, architectural best practice, or environmental quirk that an agent in this specific niche *must* know to survive? Dynamically generate it and weave it into the appropriate mandate slot.
-**4. The Journal Domain Fit Test:** Verify that the ledger description references the agent's actual domain artifacts. If it uses generic archetype boilerplate, completely rewrite the Journal slot with tracking language specific to the exact file types, CSS properties, or configurations it actually modifies.
-**5. The Cross-Vector Authorization Gate:** Does a specific execution step necessitate an action explicitly forbidden by the Primary Archetype, but strictly required to fulfill the agent's core mission? Formulate a surgically bounded exception clause. 
-* *Compound Rule:* A max of two distinct cross-vector grants may be issued.
-* *Syntax:* `* **The Scoped [Foreign Archetype Name] Grant:** Authorizes the agent to execute [Exact Foreign Action] strictly within [Specific File Target] during Step [X]. This grant is an isolated shim; all other load-bearing [Primary Archetype Name] boundaries remain in force.`
-**6. The Friction Polish (Constraint Tuning):** Are the generic archetype constraints helping or hindering this specific mission? An operational mandate should be a guardrail, not a roadblock. If a generic rule (e.g., "Run a global test suite") actively works against the agent's specific hyper-niche purpose, rewrite the rule to serve the agent. Bend the physics to fit the domain. Document these slot modifications in your manifest.
-**7. The Salvage Deduplication Pass:** Review any legacy mandates salvaged via the Module 2 Sieve. If any slot rewrite explicitly supersedes a salvaged mandate, or if a salvaged mandate's instruction is already present in your drafted Process steps/Heuristics, that mandate is now redundant. Explicitly declare these redundant mandates as "Dropped" in your manifest so they are excluded from the final compilation.
+**1. Domain Modifier Evaluation:** Evaluate the agent's mission scope and target matrix against Module 5.B Modifiers semantically — do not match triggers against surface-level vocabulary in the Synthesis or Philosophy. Declare any active modifiers and list their injected clauses verbatim in the Sculptor Manifest.
+
+**2. The Reality Check (Operational Physics):** Imagine the agent executing its task. What are its unique failure modes? If it operates incrementally, what happens to its state if an edit fails? If it analyzes large data, will it exhaust its context? Mould the `Jurisdiction` or `Execution` slots to explicitly handle the environmental reality, failure states, and rollback consequences unique to this agent's workflow. Example — Performance Category NTL Exception: If the agent's declared category is Performance, the baseline Native Tool Lock prohibits ephemeral .js or .sh scripts, but the agent's Execution steps require benchmarking. Apply the Reality Check to rewrite the Slot 3 NTL with: "Exception: You may generate ephemeral benchmark scripts (.js or .sh) strictly to measure existing runtime latency or map Big-O complexity before mutating. These scripts must never modify source files and must be wiped by the Unconditional Cleanup."
+* **The Cross-Section Coherence Test:** After drafting the execution steps, perform a mandatory DISCOVER ↔ SWEEP alignment pass. For every mutation executed in the SWEEP/execution phase, verify a corresponding detection vector exists in DISCOVER. For every DISCOVER bullet, verify it resolves to either a corresponding execution step (if it is an Act target) or an explicit relay annotation — marked `(Reporting Only)` — with a corresponding relay step in execution. Any scope carveout or domain exclusion declared in an execution step (e.g., "strictly excluding `ROADMAP.md`", "excluding test files") must also appear at the DISCOVER level. If any gap is found, add the missing detection vector, relay annotation, or scope carveout before proceeding.
+
+**3. The Sieve Gap Analysis (Missing Domain Wisdom):** Look at the agent's core identity. Is there a crucial piece of domain wisdom, architectural best practice, or environmental quirk that an agent in this specific niche *must* know to survive? If a critical operational truth is missing from the compiled profile, dynamically generate it and weave it into the appropriate slot.
+* **The Journal Domain Fit Test:** Read the compiled Journal Protocol (Slot 4) and verify that the ledger description and its tracking examples reference the agent's actual domain artifacts. If the ledger text references patterns that belong to a different archetype's domain (e.g., "converted to arrow functions" in a routing agent, "injected standard JSDoc" in a deletion agent), it has been contaminated with foreign boilerplate. Rewrite the Journal slot entirely with domain-appropriate tracking language.
+* **Second-tier check — Generic Archetype Boilerplate:** After confirming no cross-archetype contamination, ask: could these exact ledger examples appear verbatim in any other agent assigned to this same archetype? If yes, rewrite the Journal slot with tracking language specific to the exact file types, CSS properties, structural patterns, or route configurations this agent actually modifies.
+
+**4. The Friction Polish (Constraint Tuning):** Are the generic archetype constraints helping or hindering this specific mission? An operational mandate should be a guardrail, not a roadblock. If a generic rule (e.g., "Run a global test suite") actively works against the agent's specific hyper-niche purpose, rewrite the rule to serve the agent. Bend the physics to fit the domain. Document these slot modifications in the Sculptor Manifest.
+
+**5. The Cross-Vector Authorization Gate:** Does a specific execution step necessitate an action explicitly forbidden by the Primary Archetype, but strictly required to fulfill the agent's core mission? (e.g., a Refactorer needing to create a net-new file to build an integration shim; a Generator needing to delete a legacy conflicting block before scaffolding.)
+* **If No Crossover Detected:** Proceed normally. Declare "None" in the Sculptor Manifest.
+* **If Crossover Required:** You are strictly forbidden from changing the Primary Archetype to solve this conflict, as that would destroy the agent's required testing and validation physics. Instead, formulate a surgically bounded exception clause.
+* **Compound Case Rule:** If two distinct foreign capabilities are required, each must be formulated as a separate named grant with its own constraint boundary and step reference. A maximum of two cross-vector grants may be issued per compiled agent. If a third foreign capability is required, the Primary Archetype assignment is likely incorrect — reclassify before issuing grants.
+* **Grant Syntax Rule:** `* **The Scoped [Foreign Archetype Name] Grant:** Authorizes the agent to execute [Exact Foreign Action] strictly within [Specific File Target or Constraint Boundary] during Step [X]. This grant is an isolated shim; all other load-bearing [Primary Archetype Name] boundaries and testing doctrines remain in absolute force.`
+
+**6. The Salvage Deduplication Pass:** Review any legacy mandates salvaged via the Module 2 Sieve. If any slot rewrite explicitly supersedes a salvaged mandate, or if a salvaged mandate's instruction is already present in the drafted Process steps or Heuristic Verification, that mandate is now redundant. Explicitly declare these redundant mandates as "Dropped" in the Sculptor Manifest so they are excluded from the final compilation.
+
+---
 
 ### SECTION B: THE LINTER'S PASS (Mechanical Compliance)
-*Executed during Phase 5. The LLM acts as a rigid auditor. Zero creative generation is permitted.*
+*Executed during Phase 5. The LLM acts as a rigid auditor. Zero creative generation is permitted. Take the Sculptor Output Manifest from Phase 4 as your source of truth.*
 
-**1. Friction Polish & Priority Language:** If the Target Limit/Workflow mandate declares priority ordering, the word "arbitrarily" in SELECT/CLASSIFY is a contradiction and must be replaced with "according to declared priority weighting."
-**2. Velocity-Payload Consistency Test:** If Velocity is Contained, the Payload Threshold must equal exactly 1. If the compiled Target Limit > 1 while Velocity is Contained, force reclassification to Expansive and swap the injected mandate.
+**1. Priority Language Test:** If the agent's Target Limit or Workflow Execution mandate declares any priority ordering (e.g., "safety-adjacent first", "hygiene last"), the word "arbitrarily" in SELECT/CLASSIFY is a direct contradiction and must be replaced with "according to declared priority weighting." These two declarations cannot coexist in a compiled agent.
+
+**2. Velocity-Payload Consistency Test:** If Velocity is Contained, the Payload Threshold must equal exactly 1. If the compiled Target Limit exceeds 1 while Velocity is Contained, this is a direct logical contradiction. Force reclassification to Expansive and swap the injected mandate.
+
 **3. Coherence Audit:**
-* *Taxonomy Check:* Every DISCOVER bullet must follow the format: `**[Category Name]:** [description]`.
-* *Step Depth Check:* Main process step emojis (🔍, 🎯, ⚙️, ✅, 🎁) are reserved for top-level headers. Emojis in numbered sub-steps are strictly banned.
-* *Execution Readiness:* Verify Discovery triggers are asynchronous/autonomous. Verify tools are limited to native AST editing without hallucinated custom scripts.
+* *Taxonomy Check:* Every DISCOVER target bullet must follow the bold categorical label format: `**[Category Name]:** [description of what to find]`. Flat unlabeled strings are not acceptable.
+* *Step Depth Check:* Each numbered execution step must contain a numbered index, a bold thematic name, and a minimum of two sentences of specific mechanical instruction. Main process step emojis (🔍, 🎯, ⚙️, ✅, 🎁) are reserved for the five top-level process headers exclusively. Emojis in numbered sub-steps are strictly banned.
+* *Execution Readiness:* Verify that Discovery triggers are asynchronous and fully autonomous. Verify that Execution steps are limited to native tools and AST editing without hallucinated custom scripts.
+
 **4. Format Completeness Check:**
-* Verify exactly 5 Philosophy bullets and exactly 6 Optimizations (No bolded mandate-style labels).
-* Cross-reference the Emoji Ledger from Phase 3: Verify absolute uniqueness.
-* Verify Synthesis is < 145 chars, opens with an imperative verb, and has no 1st-person pronouns.
+* Verify exactly 5 Philosophy bullets, none containing bolded mandate-style labels (e.g., `**The Metaphorical Enemy:**`).
+* Verify exactly 6 Favorite Optimizations.
+* Cross-reference the Emoji Ledger from Phase 3: verify absolute uniqueness across all 12 emoji slots and confirm the Persona Lead emoji was not reused in any bullet.
+* Verify the Synthesis is under 145 characters, opens with the Theme Verb in imperative tense, and contains no first-person pronouns.
+* Verify that `process.present.pr_headers` will be populated from the exact archetype string defined in Module 5.A, not dynamically generated or populated with metadata fields.
+
+---
 
 ### SECTION C: THE INVARIANT BOUNDARIES (Shared Reference Table)
-*Both the Sculptor and Linter must ensure these core physics are never violated, except where explicitly bypassed by a Scoped Grant in the Sculptor Manifest.*
-* **Pruners:** Never write logic.
-* **Generators:** Never refactor existing execution logic.
-* **Refactorers:** Never modify test assertions to accommodate a failure.
-* **Transformers:** Never alter application control flow.
-* **Instrumenters:** Never refactor spaghetti logic to force testability.
-* **Operators:** Never mutate `.ts`/`.py`/`.js` core logic files.
+*Both the Sculptor and Linter must ensure these core physics are never violated, except where explicitly bypassed by a Scoped Grant declared in the Sculptor Manifest.*
+* **Pruners:** Never write or modify logic.
+* **Generators:** Never refactor pre-existing execution logic.
+* **Refactorers:** Never modify test assertions to force logic to pass.
+* **Transformers:** Never alter application control flow or state.
+* **Instrumenters:** Never refactor the logic they are instrumenting.
+* **Operators:** Never mutate application source code (`.ts`, `.py`, `.js`).
 * **Analyzers:** Have zero write-permissions to the AST.
