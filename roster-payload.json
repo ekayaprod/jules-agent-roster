@@ -246,7 +246,8 @@
     "role": "Fallback Purger",
     "category": "Operations",
     "tier": "Fusion",
-    "description": "Erases obsolete resilience infrastructure and dead service wrappers, elevating surviving fallbacks directly into the primary execution path.",
+    "description": "AMPUTATE obsolete resilience infrastructure and dead service wrappers, elevating surviving fallbacks directly into the primary execution path.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Amputator.md",
     "isCustom": true
   },
@@ -371,6 +372,7 @@
     "category": "Observability",
     "tier": "Radiant",
     "description": "MAP complex data flows and hidden trust boundaries into beautiful, multi-layered visual graphs using text-based markdown syntax.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Cartographer.md",
     "isCustom": true
   },
@@ -400,7 +402,8 @@
     "role": "State Mutator",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Eradicate distinct pseudo-class styling, organic transitions, and disabled states into flat interactive elements.",
+    "description": "MUTATE UI components by injecting accessible hover, focus-visible, and disabled states to eradicate interfaces that provide zero feedback.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Chameleon.md",
     "isCustom": true
   },
@@ -410,7 +413,8 @@
     "role": "Security Enforcer",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Bump package dependencies and rigorously update corresponding integration schemas to reflect new API surfaces.",
+    "description": "SECURE external dependencies and immediately refactor validation schemas (Zod/Joi) to ensure airtight architectural boundaries.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Checkpoint.md",
     "isCustom": true
   },
@@ -490,7 +494,8 @@
     "role": "Route Purger",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Prune the application's surface area by identifying ghost routes. Permanently delete both the route definition and the underlying component.",
+    "description": "EXCISE ghost routes to prune the application's surface area, permanently deleting both the route definition and the underlying component.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Dead-Ender.md",
     "isCustom": true
   },
@@ -571,6 +576,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "ALIGN outdated assertions with current source files to correct semantic drift without inventing net-new test coverage.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Examiner.md",
     "isCustom": true
   },
@@ -600,7 +606,8 @@
     "role": "Pattern Injector",
     "category": "Strategy",
     "tier": "Fusion",
-    "description": "Hunt down fragile, zero-shot AI integrations that struggle with formatting consistency, injecting strict mock input/output pairs to eliminate structural hallucinations.",
+    "description": "FORGE explicit example blocks into fragile zero-shot AI integrations to eliminate formatting drift and downstream parser crashes.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Few-Shot Forger.md",
     "isCustom": true
   },
@@ -702,7 +709,8 @@
     "role": "Policy Keymaster",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Melts down fragile, hardcoded padlocks scattered across the codebase and forges a single, impenetrable policy engine to govern all internal access.",
+    "description": "CENTRALIZE fragile, hardcoded padlocks scattered across the codebase and forge a single, impenetrable policy engine to govern all internal access.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Gatekeeper.md",
     "isCustom": true
   },
@@ -843,7 +851,8 @@
     "role": "Maintenance Centralizer",
     "category": "Strategy",
     "tier": "Fusion",
-    "description": "Hunt down fragmented cleanup scripts, cache purges, and teardown commands scattered across the codebase and unify them into a single master execution manifest.",
+    "description": "UNIFY fragmented cleanup scripts, cache purges, and teardown commands scattered across the codebase into a single master execution manifest.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Janitor.md",
     "isCustom": true
   },
@@ -954,7 +963,8 @@
     "role": "Runbook Architect",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Hunt for undocumented infrastructure dependencies and draft clear, actionable disaster recovery steps.",
+    "description": "MAP catastrophic outage scenarios and explicitly draft actionable, command-level disaster recovery steps into a formalized runbook.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Marshal.md",
     "isCustom": true
   },
@@ -1218,7 +1228,8 @@
     "role": "Centralization Engine",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Hunts down identical magic values duplicated across multiple independent files. Extracts them into a strict global constants layer that every consumer imports to forge a Single Source of Truth.",
+    "description": "CENTRALIZE identical magic values duplicated across multiple independent files into a strict global constants layer.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Quartermaster.md",
     "isCustom": true
   },
@@ -1548,7 +1559,8 @@
     "role": "Structure Enforcer",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Refactor tangled workspaces of nested conditions and unlabelled variables into clean, top-to-bottom readable logic by extracting deep logic into strictly typed local helper functions.",
+    "description": "ORGANIZE tangled workspaces of nested conditions and unlabelled variables into clean, top-to-bottom readable logic by extracting deep logic into strictly typed local helper functions.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Systematizer.md",
     "isCustom": true
   },
@@ -1749,9 +1761,10 @@
     "name": "Watermark",
     "emoji": "💮",
     "role": "Embedded Trust",
-    "category": "Docs",
+    "category": "Security",
     "tier": "Fusion",
-    "description": "Operate across overarching form wrappers, global error interceptors, and application-wide state providers to manage the visual trust boundary.",
+    "description": "EMBED graceful fallback components and interceptors across overarching form wrappers and global error boundaries to manage the visual trust boundary.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Watermark.md",
     "isCustom": true
   },
