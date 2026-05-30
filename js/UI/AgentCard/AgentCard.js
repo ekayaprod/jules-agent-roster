@@ -70,7 +70,7 @@ class AgentCard {
     const isFusionAgent = typeof index === 'string' && Number.isNaN(Number(index));
     const pinHtml =
       index !== undefined && index !== null && index !== '' && isFusionAgent
-        ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" aria-pressed="${String(Boolean(isPinned))}">📌</button>`
+        ? `<button class="icon-btn pin-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" aria-pressed="${String(Boolean(isPinned))}">📌</button>`
         : '';
 
     // Splay Out Child Fusions Logic (Refactored to Modal Trigger)
@@ -112,7 +112,7 @@ class AgentCard {
     const dropdownText = isRepoSelected ? '📋 Copy Prompt' : 'Launch in Jules 🚀';
 
     const downloadFusionsBtnHtml = !isFusionAgent
-      ? `<button class="dropdown-item" data-action="download-parent-fusions" data-parent-name="${agent.name}" role="menuitem" aria-label="Download Unlocked Fusions">🧬 Download Fusions</button>`
+      ? `<button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="download-parent-fusions" data-parent-name="${agent.name}" role="menuitem" aria-label="Download Unlocked Fusions">🧬 Download Fusions</button>`
       : '';
 
     card.innerHTML = `
@@ -152,8 +152,8 @@ class AgentCard {
                         
                         <!-- Custom Agent Dropdown -->
                         <div class="dropdown-menu" id="card-dropdown-${index}" role="menu">
-                            <button class="dropdown-item" data-action="${dropdownAction}" data-index="${index}" role="menuitem" aria-label="${dropdownText.replace(/[^a-zA-Z\\s]/g, '').trim()}">${dropdownText}</button>
-                            <button class="dropdown-item" data-action="download-agent" data-index="${index}" role="menuitem" aria-label="Download Protocol as Markdown">💾 Download .md</button>
+                            <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="${dropdownAction}" data-index="${index}" role="menuitem" aria-label="${dropdownText.replace(/[^a-zA-Z\\s]/g, '').trim()}">${dropdownText}</button>
+                            <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="download-agent" data-index="${index}" role="menuitem" aria-label="Download Protocol as Markdown">💾 Download .md</button>
                             ${downloadFusionsBtnHtml}
                         </div>
                     </div>

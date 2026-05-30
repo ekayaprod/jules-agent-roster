@@ -86,7 +86,7 @@ class ToastNotification {
                 ${icons[type] || icons.success}
                 <span class="toast-message"></span>
             </div>
-            <button class="toast-close-btn close-btn" aria-label="Close notification">
+            <button class="toast-close-btn close-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" aria-label="Close notification">
                 <svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
         `;
