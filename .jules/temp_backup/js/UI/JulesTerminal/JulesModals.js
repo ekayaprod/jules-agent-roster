@@ -78,7 +78,7 @@ class JulesModals {
         inputField?.addEventListener("keydown", (e) => {
             if (e.key === "Enter") handleSubmit();
         });
-        const debouncedInputClear = typeof PerformanceUtils !== 'undefined' ? PerformanceUtils.debounce(() => {
+        inputField?.addEventListener("input", () => {
             if (inputField && errorSpan) {
                 inputField.style.borderColor = "";
                 inputField.removeAttribute("aria-invalid");
@@ -86,16 +86,7 @@ class JulesModals {
                 errorSpan.textContent = "";
                 errorSpan.classList.add("hidden");
             }
-        }, 300) : () => {
-            if (inputField && errorSpan) {
-                inputField.style.borderColor = "";
-                inputField.removeAttribute("aria-invalid");
-                inputField.removeAttribute("aria-describedby");
-                errorSpan.textContent = "";
-                errorSpan.classList.add("hidden");
-            }
-        };
-        inputField?.addEventListener("input", debouncedInputClear);
+        });
 
         const cancelHistoryBtn = this.terminal.getEl("cancelHistoryBtn");
         const submitHistoryBtn = this.terminal.getEl("submitHistoryBtn");
@@ -132,7 +123,7 @@ class JulesModals {
         historyModalInput?.addEventListener("keydown", (e) => {
             if (e.key === "Enter") handleHistorySubmit();
         });
-        const debouncedHistoryInputClear = typeof PerformanceUtils !== 'undefined' ? PerformanceUtils.debounce(() => {
+        historyModalInput?.addEventListener("input", () => {
             if (historyModalInput && historyErrorSpan) {
                 historyModalInput.style.borderColor = "";
                 historyModalInput.removeAttribute("aria-invalid");
@@ -140,16 +131,7 @@ class JulesModals {
                 historyErrorSpan.textContent = "";
                 historyErrorSpan.classList.add("hidden");
             }
-        }, 300) : () => {
-            if (historyModalInput && historyErrorSpan) {
-                historyModalInput.style.borderColor = "";
-                historyModalInput.removeAttribute("aria-invalid");
-                historyModalInput.removeAttribute("aria-describedby");
-                historyErrorSpan.textContent = "";
-                historyErrorSpan.classList.add("hidden");
-            }
-        };
-        historyModalInput?.addEventListener("input", debouncedHistoryInputClear);
+        });
     }
 
     _showInteractionModal(sessionId, agentEmoji, agentName, promptText) {
