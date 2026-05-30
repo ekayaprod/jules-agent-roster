@@ -364,7 +364,6 @@ const runBenchmark = async () => {
   }
   roster.agents = mockAgents;
 
-  // Fix: Properly mock elements so appending results works and index gets tested
   const slotACard = getMockElement('slotACard');
   slotACard.tagName = 'BUTTON';
   slotACard.innerHTML = '<div class="slot-content"></div>';
