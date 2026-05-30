@@ -18,17 +18,21 @@ class EventBinder {
     if (app.elements.clearBtn) app.elements.clearBtn.addEventListener("click", () => app.clearSearch());
     if (app.elements.clearSearchEmptyBtn) app.elements.clearSearchEmptyBtn.addEventListener("click", () => app.clearSearch());
 
-    if (app.elements.julesRepoPicker) app.elements.julesRepoPicker.addEventListener('change', async (e) => {
+    if (app.elements.julesRepoPicker) app.elements.julesRepoPicker.addEventListener('change', (e) => {
         if (app._cardHtmlCache) app._cardHtmlCache.clear();
         if (app._domNodeCache) app._domNodeCache.clear();
         app.renderAgents();
 
         const sourceName = e.target.value;
         if (sourceName) {
-            await Promise.all([
+            Promise.all([
                 app.julesTerminal.loadActiveSessionsForRepo(sourceName),
                 app.julesTerminal.loadPullRequestsForRepo(sourceName)
-            ]);
+            ]).catch(err => {
+                const tu = window.TelemetryUtils;
+                if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", err);
+                else console.error(err);
+            });
         } else {
             const terminal = app.elements.julesTerminal;
             if (terminal) {

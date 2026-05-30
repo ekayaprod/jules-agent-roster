@@ -1099,7 +1099,8 @@
     "role": "The Stage Failsafe",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Adapt to dropped backend cues by wrapping naked network requests in strict error boundaries, keeping the audience immersed with graceful, interactive fallbacks.",
+    "description": "ADAPT to dropped backend cues by wrapping naked network requests in strict error boundaries and graceful UI fallbacks.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Pantomime.md",
     "isCustom": true
   },
@@ -1371,6 +1372,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "RUMBLE through undocumented Pull Requests, wrestle fragile logic into submission with net-new tests, and force the CI/CD pipeline to green.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Rumble.md",
     "isCustom": true
   },

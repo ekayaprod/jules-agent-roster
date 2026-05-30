@@ -177,8 +177,8 @@ class JulesModals {
         this.terminal.app.toast.show("Transmitting reply...", "info");
 
         if (statusSpan) {
-            statusSpan.className = "term-status skeleton-pulse";
-            statusSpan.textContent = "Transmitting response...";
+            statusSpan.className = "term-status status-success";
+            statusSpan.textContent = "Response provided";
             statusSpan.onclick = null;
         }
 
