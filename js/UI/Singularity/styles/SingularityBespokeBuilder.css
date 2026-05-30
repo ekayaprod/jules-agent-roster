@@ -482,3 +482,22 @@
 .sg-chevron-icon.rotated {
     transform: rotate(180deg);
 }
+
+/* Structural aesthetic reroll replacements for removed contradictory tailwind/inline classes */
+
+.sg-archetype-card, .sg-pill, .sg-advanced-btn, .sg-submit {
+    transition: all 0.3s ease-in-out;
+}
+
+.sg-archetype-card:focus-visible, .sg-pill:focus-visible, .sg-advanced-btn:focus-visible, .sg-submit:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-blue-400, #60a5fa);
+}
+
+.sg-archetype-card:active, .sg-pill:active, .sg-advanced-btn:active, .sg-submit:active {
+    transform: scale(0.95);
+}
+
+.sg-archetype-card:hover, .sg-pill:hover, .sg-advanced-btn:hover, .sg-submit:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}

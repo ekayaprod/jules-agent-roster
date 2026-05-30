@@ -293,3 +293,22 @@
 .term-clickable {
     cursor: pointer;
 }
+
+/* Structural aesthetic reroll replacements for removed contradictory tailwind/inline classes */
+
+.pin-btn, .dropdown-item, .action-main-btn, .action-toggle-btn {
+    transition: all 0.3s ease-in-out;
+}
+
+.pin-btn:focus-visible, .dropdown-item:focus-visible, .action-main-btn:focus-visible, .action-toggle-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-blue-400, #60a5fa);
+}
+
+.pin-btn:active, .dropdown-item:active, .action-main-btn:active, .action-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+.pin-btn:hover, .dropdown-item:hover, .action-main-btn:hover, .action-toggle-btn:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
