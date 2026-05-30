@@ -2,380 +2,426 @@
 
 class EventBinder {
     static bind(app) {
-    if (app.elements.searchInput) {
-      const debouncedFilter = PerformanceUtils.debounce((query) => app.filterAgents(query), SEARCH_DEBOUNCE_MS);
-      app.elements.searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
+        this._bindSearch(app);
+        this._bindRepoPicker(app);
+        this._bindMasterDropdown(app);
+        this._bindGlobalClick(app);
+        this._bindHover(app);
+        this._bindKeyboard(app);
+        this._bindTerminal(app);
+        this._bindMasterExports(app);
     }
 
-    if (app.elements.searchTriggerBtn) app.elements.searchTriggerBtn.addEventListener("click", () => {
-      const nav = app.elements["category-nav"];
-      if (nav) {
-        nav.classList.add("search-active");
-        setTimeout(() => app.elements.searchInput?.focus(), SafeUITimings?.MODAL_FOCUS_DELAY_MS || 50);
-      }
-    });
-
-    if (app.elements.clearBtn) app.elements.clearBtn.addEventListener("click", () => app.clearSearch());
-    if (app.elements.clearSearchEmptyBtn) app.elements.clearSearchEmptyBtn.addEventListener("click", () => app.clearSearch());
-
-    if (app.elements.julesRepoPicker) app.elements.julesRepoPicker.addEventListener('change', async (e) => {
-        if (app._cardHtmlCache) app._cardHtmlCache.clear();
-        if (app._domNodeCache) app._domNodeCache.clear();
-        app.renderAgents();
-
-        const sourceName = e.target.value;
-        if (sourceName) {
-            await Promise.all([
-                app.julesTerminal.loadActiveSessionsForRepo(sourceName),
-                app.julesTerminal.loadPullRequestsForRepo(sourceName)
-            ]);
-        } else {
-            const terminal = app.elements.julesTerminal;
-            if (terminal) {
-              terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
-              terminal.classList.remove('active');
-            }
-            app.julesTerminal.cleanup();
+    static _bindSearch(app) {
+        if (app.elements.searchInput) {
+            const debouncedFilter = PerformanceUtils.debounce((query) => app.filterAgents(query), SEARCH_DEBOUNCE_MS);
+            app.elements.searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
         }
-    });
 
-    // Footer Master Export Controls
-    const masterDropBtn = app.elements.masterDropdownBtn;
-    const masterDropMenu = app.elements.masterDropdownMenu;
+        if (app.elements.searchTriggerBtn) {
+            app.elements.searchTriggerBtn.addEventListener("click", () => {
+                const nav = app.elements["category-nav"];
+                if (nav) {
+                    nav.classList.add("search-active");
+                    setTimeout(() => app.elements.searchInput?.focus(), SafeUITimings?.MODAL_FOCUS_DELAY_MS || 50);
+                }
+            });
+        }
 
-    if (masterDropBtn) masterDropBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (masterDropMenu) masterDropMenu.classList.toggle("visible");
-    });
+        if (app.elements.clearBtn) app.elements.clearBtn.addEventListener("click", () => app.clearSearch());
+        if (app.elements.clearSearchEmptyBtn) app.elements.clearSearchEmptyBtn.addEventListener("click", () => app.clearSearch());
+    }
 
-    // Global Click Delegation (Handles Dropdowns, Cards, etc.)
-    document.addEventListener("click", (e) => {
-      // Close search if clicked outside and input is empty
-      const nav = app.elements["category-nav"];
-      if (nav && nav.classList.contains("search-active")) {
-          if (!nav.contains(e.target) && (!app.elements.searchInput || app.elements.searchInput.value.trim() === "")) {
-              app.clearSearch();
-          }
-      }
+    static _bindRepoPicker(app) {
+        if (app.elements.julesRepoPicker) {
+            app.elements.julesRepoPicker.addEventListener('change', async (e) => {
+                if (app._cardHtmlCache) app._cardHtmlCache.clear();
+                if (app._domNodeCache) app._domNodeCache.clear();
+                app.renderAgents();
 
-      // 1. Close master dropdown if clicked outside
-      if (masterDropMenu && masterDropMenu.classList.contains("visible") && !masterDropMenu.contains(e.target) && !masterDropBtn.contains(e.target)) {
-          masterDropMenu.classList.remove("visible");
-      }
+                const sourceName = e.target.value;
+                if (sourceName) {
+                    await Promise.all([
+                        app.julesTerminal.loadActiveSessionsForRepo(sourceName),
+                        app.julesTerminal.loadPullRequestsForRepo(sourceName)
+                    ]);
+                } else {
+                    const terminal = app.elements.julesTerminal;
+                    if (terminal) {
+                        terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
+                        terminal.classList.remove('active');
+                    }
+                    app.julesTerminal.cleanup();
+                }
+            });
+        }
+    }
 
-      // 2. Close specific card dropdowns if clicked outside
-      app.activeDropdowns.forEach(menu => {
-          if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
-              DOMUtils.closeDropdownMenu(menu, app);
-          }
-      });
+    static _bindMasterDropdown(app) {
+        const masterDropBtn = app.elements.masterDropdownBtn;
+        const masterDropMenu = app.elements.masterDropdownMenu;
 
-      // 2.5 Open Fusions Modal
-      const fusionsTarget = e.target.closest('[data-action="open-fusions-modal"]');
-      if (fusionsTarget) {
-          e.stopPropagation();
-          e.preventDefault();
+        if (masterDropBtn) {
+            masterDropBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                if (masterDropMenu) masterDropMenu.classList.toggle("visible");
+            });
+        }
+    }
 
-          const index = fusionsTarget.dataset.index;
-          let agent = app.getAgentForUI(index);
-          if (!agent) return;
+    static _bindGlobalClick(app) {
+        // Global Click Delegation (Handles Dropdowns, Cards, etc.)
+        document.addEventListener("click", (e) => {
+            this._handleOutsideClicks(app, e);
 
-          const modal = document.getElementById("fusionsModal");
-          const contentArea = document.getElementById("fusionsModalContent");
+            if (this._handleFusionsModalClicks(app, e)) return;
+            if (this._handleCardClicks(app, e)) return;
+            if (this._handleActionClicks(app, e)) return;
+        });
+    }
 
-          if (!modal || !contentArea || !app.fusionLab || !app.fusionLab.fusionIndex) return;
+    static _handleOutsideClicks(app, e) {
+        // Close search if clicked outside and input is empty
+        const nav = app.elements["category-nav"];
+        if (nav && nav.classList.contains("search-active")) {
+            if (!nav.contains(e.target) && (!app.elements.searchInput || app.elements.searchInput.value.trim() === "")) {
+                app.clearSearch();
+            }
+        }
 
-          const unlockedKeys = app.fusionLab.fusionIndex.unlockedKeys;
-          let listItems = '';
+        // 1. Close master dropdown if clicked outside
+        const masterDropBtn = app.elements.masterDropdownBtn;
+        const masterDropMenu = app.elements.masterDropdownMenu;
+        if (masterDropMenu && masterDropMenu.classList.contains("visible") && !masterDropMenu.contains(e.target) && (!masterDropBtn || !masterDropBtn.contains(e.target))) {
+            masterDropMenu.classList.remove("visible");
+        }
 
-          // Dynamically resolve fusions from the live matrix map
-          const compiler = app.fusionLab.compiler;
-          const allMatrixKeys = compiler.fusionMatrixMap ? Object.keys(compiler.fusionMatrixMap) : [];
+        // 2. Close specific card dropdowns if clicked outside
+        app.activeDropdowns.forEach(menu => {
+            if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
+                DOMUtils.closeDropdownMenu(menu, app);
+            }
+        });
+    }
 
-          // Extract unique potential fusions for this agent dynamically via a memoized dictionary lookup
-          // ⚡ Bolt+: Eliminated O(N) redundant iteration by memoizing the exact string-inclusion result per agent name.
-          if (!app.fusionLab._fusionCacheByAgent || app.fusionLab._lastMatrixMapRef !== compiler.fusionMatrixMap) {
-              app.fusionLab._fusionCacheByAgent = {};
-              app.fusionLab._lastMatrixMapRef = compiler.fusionMatrixMap;
-          }
-          if (!app.fusionLab._fusionCacheByAgent[agent.name]) {
-              const uniqueKeys = new Set(allMatrixKeys);
-              const fusions = [];
-              const prefix = agent.name + ',';
-              const suffix = ',' + agent.name;
-              for (const key of uniqueKeys) {
-                  if (key.startsWith(prefix) || key.endsWith(suffix)) {
-                      fusions.push(key);
-                  }
-              }
-              app.fusionLab._fusionCacheByAgent[agent.name] = fusions;
-          }
-          const potentialFusions = app.fusionLab._fusionCacheByAgent[agent.name];
+    static _handleFusionsModalClicks(app, e) {
+        // 2.5 Open Fusions Modal
+        const fusionsTarget = e.target.closest('[data-action="open-fusions-modal"]');
+        if (fusionsTarget) {
+            e.stopPropagation();
+            e.preventDefault();
 
-          // Reset title to base agent
-          const titleSpan = document.getElementById("fusionsModalAgent");
-          if (titleSpan) titleSpan.textContent = "Available Fusions";
-          const emojiSpan = document.getElementById("fusionsModalEmoji");
-          if (emojiSpan) emojiSpan.textContent = "🧬";
+            const index = fusionsTarget.dataset.index;
+            let agent = app.getAgentForUI(index);
+            if (!agent) return true;
 
-          for (const key of potentialFusions) {
-              const isUnlocked = typeof unlockedKeys.has === 'function'
-                  ? unlockedKeys.has(key)
-                  : unlockedKeys.includes(key);
+            const modal = document.getElementById("fusionsModal");
+            const contentArea = document.getElementById("fusionsModalContent");
 
-              if (!isUnlocked) continue;
+            if (!modal || !contentArea || !app.fusionLab || !app.fusionLab.fusionIndex) return true;
 
-              const fusionName = app.fusionLab.compiler.fusionMatrixMap[key];
-              const childAgent = AgentUtils.getCustomAgent(app.customAgents, fusionName) || app.fusionLab.compiler.customAgentsMap[fusionName];
-              if (!childAgent) continue;
+            const unlockedKeys = app.fusionLab.fusionIndex.unlockedKeys;
+            let listItems = '';
 
-              const childIcon = FormatUtils.extractIcon(childAgent);
-              const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
-              listItems += `
-                  <li class="fusion-quick-list-item">
-                      <button class="fusion-quick-btn" data-action="view-fusion-card" data-index="${key}" aria-label="View ${safeChildName}" title="${safeChildName}">
-                          ${childIcon}
-                      </button>
-                  </li>
-              `;
-          }
+            // Dynamically resolve fusions from the live matrix map
+            const compiler = app.fusionLab.compiler;
+            const allMatrixKeys = compiler.fusionMatrixMap ? Object.keys(compiler.fusionMatrixMap) : [];
 
-          const downloadBtn = document.getElementById("downloadParentFusionsBtn");
-          if (listItems) {
-              const listArea = document.getElementById("fusionsModalList");
-              const cardArea = document.getElementById("fusionsModalCard");
-              if (listArea) {
-                  listArea.innerHTML = `<ul class="fusion-quick-list fusion-quick-list-container">${listItems}</ul>`;
-              }
-              if (cardArea) {
-                  cardArea.innerHTML = '';
-              }
-              if (downloadBtn) {
-                  downloadBtn.style.display = "";
-                  downloadBtn.dataset.parentName = agent.name;
-              }
-              modal.classList.add("visible");
-          } else if (downloadBtn) {
-              downloadBtn.style.display = "none";
-          }
-          return;
-      }
+            // Extract unique potential fusions for this agent dynamically via a memoized dictionary lookup
+            // ⚡ Bolt+: Eliminated O(N) redundant iteration by memoizing the exact string-inclusion result per agent name.
+            if (!app.fusionLab._fusionCacheByAgent || app.fusionLab._lastMatrixMapRef !== compiler.fusionMatrixMap) {
+                app.fusionLab._fusionCacheByAgent = {};
+                app.fusionLab._lastMatrixMapRef = compiler.fusionMatrixMap;
+            }
+            if (!app.fusionLab._fusionCacheByAgent[agent.name]) {
+                const uniqueKeys = new Set(allMatrixKeys);
+                const fusions = [];
+                const prefix = agent.name + ',';
+                const suffix = ',' + agent.name;
+                for (const key of uniqueKeys) {
+                    if (key.startsWith(prefix) || key.endsWith(suffix)) {
+                        fusions.push(key);
+                    }
+                }
+                app.fusionLab._fusionCacheByAgent[agent.name] = fusions;
+            }
+            const potentialFusions = app.fusionLab._fusionCacheByAgent[agent.name];
 
-      // 2.6 View Fusion Card from Modal
-      const viewFusionTarget = e.target.closest('[data-action="view-fusion-card"]');
-      if (viewFusionTarget) {
-          e.stopPropagation();
-          e.preventDefault();
-          const index = viewFusionTarget.dataset.index;
-          let agent = app.getAgentForUI(index);
-          if (!agent) return;
+            // Reset title to base agent
+            const titleSpan = document.getElementById("fusionsModalAgent");
+            if (titleSpan) titleSpan.textContent = "Available Fusions";
+            const emojiSpan = document.getElementById("fusionsModalEmoji");
+            if (emojiSpan) emojiSpan.textContent = "🧬";
 
-          const cardArea = document.getElementById("fusionsModalCard");
-          if (cardArea) {
-              cardArea.innerHTML = '';
-              const card = AgentCard.create(agent, index, 0);
-              card.classList.remove("pop-in");
-              card.style.margin = "0"; // Reset margin to fit perfectly
-              cardArea.appendChild(card);
-          }
-          return;
-      }
+            for (const key of potentialFusions) {
+                const isUnlocked = typeof unlockedKeys.has === 'function'
+                    ? unlockedKeys.has(key)
+                    : unlockedKeys.includes(key);
 
-      const downloadParentFusionsBtn = e.target.closest('#downloadParentFusionsBtn');
-      if (downloadParentFusionsBtn) {
-          e.stopPropagation();
-          e.preventDefault();
-          const parentName = downloadParentFusionsBtn.dataset.parentName;
-          if (parentName && app.exportController) {
-              app.exportController.downloadCustomAgentsByParent(parentName, downloadParentFusionsBtn);
-          }
-          return;
-      }
+                if (!isUnlocked) continue;
 
-      const closeFusionsModalBtn = e.target.closest('#closeFusionsModalBtn');
-      if (closeFusionsModalBtn) {
-          e.stopPropagation();
-          e.preventDefault();
-          const modal = document.getElementById("fusionsModal");
-          if (modal) modal.classList.remove("visible");
-          return;
-      }
+                const fusionName = app.fusionLab.compiler.fusionMatrixMap[key];
+                const childAgent = AgentUtils.getCustomAgent(app.customAgents, fusionName) || app.fusionLab.compiler.customAgentsMap[fusionName];
+                if (!childAgent) continue;
 
-      // 3. Toggle Pin
-      const pinTarget = e.target.closest('[data-action="toggle-pin"]');
-      if (pinTarget) {
-          const card = pinTarget.closest('.flip-card');
-          if (card && card.classList.contains('flipped')) return;
-          e.stopPropagation();
-          e.preventDefault();
+                const childIcon = FormatUtils.extractIcon(childAgent);
+                const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
+                listItems += `
+                    <li class="fusion-quick-list-item">
+                        <button class="fusion-quick-btn" data-action="view-fusion-card" data-index="${key}" aria-label="View ${safeChildName}" title="${safeChildName}">
+                            ${childIcon}
+                        </button>
+                    </li>
+                `;
+            }
 
-          const index = pinTarget.dataset.index;
-          if (!index) return;
-          // Validate agent exists before pinning
-          let agent = app.getAgentForUI(index);
+            const downloadBtn = document.getElementById("downloadParentFusionsBtn");
+            if (listItems) {
+                const listArea = document.getElementById("fusionsModalList");
+                const cardArea = document.getElementById("fusionsModalCard");
+                if (listArea) {
+                    listArea.innerHTML = `<ul class="fusion-quick-list fusion-quick-list-container">${listItems}</ul>`;
+                }
+                if (cardArea) {
+                    cardArea.innerHTML = '';
+                }
+                if (downloadBtn) {
+                    downloadBtn.style.display = "";
+                    downloadBtn.dataset.parentName = agent.name;
+                }
+                modal.classList.add("visible");
+            } else if (downloadBtn) {
+                downloadBtn.style.display = "none";
+            }
+            return true;
+        }
 
-          if (!agent) return;
+        // 2.6 View Fusion Card from Modal
+        const viewFusionTarget = e.target.closest('[data-action="view-fusion-card"]');
+        if (viewFusionTarget) {
+            e.stopPropagation();
+            e.preventDefault();
+            const index = viewFusionTarget.dataset.index;
+            let agent = app.getAgentForUI(index);
+            if (!agent) return true;
 
-          const isPinned = app.pinnedManager.togglePin(index);
+            const cardArea = document.getElementById("fusionsModalCard");
+            if (cardArea) {
+                cardArea.innerHTML = '';
+                const card = AgentCard.create(agent, index, 0);
+                card.classList.remove("pop-in");
+                card.style.margin = "0"; // Reset margin to fit perfectly
+                cardArea.appendChild(card);
+            }
+            return true;
+        }
 
-          const safeIndex = CSS.escape(String(index));
-          const existingPins = document.querySelectorAll(`[data-action="toggle-pin"][data-index="${safeIndex}"]`);
-          existingPins.forEach(pinBtn => {
-              if (isPinned) {
-                  pinBtn.classList.add('pinned');
-                  pinBtn.setAttribute('aria-pressed', 'true');
-              } else {
-                  pinBtn.classList.remove('pinned');
-                  pinBtn.setAttribute('aria-pressed', 'false');
-              }
-          });
+        const closeFusionsModalBtn = e.target.closest('#closeFusionsModalBtn');
+        if (closeFusionsModalBtn) {
+            e.stopPropagation();
+            e.preventDefault();
+            const modal = document.getElementById("fusionsModal");
+            if (modal) modal.classList.remove("visible");
+            return true;
+        }
 
-          const nav = app.elements["category-nav"];
-          if (nav && nav.classList.contains("search-active") && app.elements.searchInput) {
-              app.filterAgents(app.elements.searchInput.value);
-          }
+        return false;
+    }
 
-          if (app._domNodeCache) app._domNodeCache.delete(String(index));
+    static _handleCardClicks(app, e) {
+        // 3. Toggle Pin
+        const pinTarget = e.target.closest('[data-action="toggle-pin"]');
+        if (pinTarget) {
+            const card = pinTarget.closest('.flip-card');
+            if (card && card.classList.contains('flipped')) return true;
+            e.stopPropagation();
+            e.preventDefault();
 
-          app.renderAgents();
+            const index = pinTarget.dataset.index;
+            if (!index) return true;
+            // Validate agent exists before pinning
+            let agent = app.getAgentForUI(index);
 
-          // Re-trigger search view if active
-          const searchInput = app.elements.searchInput;
-          if (searchInput && searchInput.value.trim() !== "") {
-              app.filterAgents(searchInput.value);
-          }
+            if (!agent) return true;
 
-          app.showToast(isPinned ? "Pinned" : "Unpinned");
+            const isPinned = app.pinnedManager.togglePin(index);
 
-          if (app._cardHtmlCache) {
-              app._cardHtmlCache.delete(String(index));
-              app._cardHtmlCache.delete(Number(index));
-          }
-          return;
-      }
+            const safeIndex = CSS.escape(String(index));
+            const existingPins = document.querySelectorAll(`[data-action="toggle-pin"][data-index="${safeIndex}"]`);
+            existingPins.forEach(pinBtn => {
+                if (isPinned) {
+                    pinBtn.classList.add('pinned');
+                    pinBtn.setAttribute('aria-pressed', 'true');
+                } else {
+                    pinBtn.classList.remove('pinned');
+                    pinBtn.setAttribute('aria-pressed', 'false');
+                }
+            });
 
-      // 4. Flip Card Front (Open)
-      const frontTarget = e.target.closest('[data-action="flip-card"]');
-      if (frontTarget && !e.target.closest('.fusion-quick-btn') && !e.target.closest('.pin-btn')) {
-          const card = frontTarget.closest('.flip-card');
-          if (!card) return;
+            const nav = app.elements["category-nav"];
+            if (nav && nav.classList.contains("search-active") && app.elements.searchInput) {
+                app.filterAgents(app.elements.searchInput.value);
+            }
 
-          const index = frontTarget.dataset.index;
-          const safeIndex = CSS.escape(String(index));
-          const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
+            if (app._domNodeCache) app._domNodeCache.delete(String(index));
 
-          if (!promptArea || promptArea.innerHTML.trim()) {
-              card.classList.add('flipped');
-              return;
-          }
+            app.renderAgents();
 
-          let agent = app.getAgentForUI(index);
-          if (!agent) {
-              card.classList.add('flipped');
-              return;
-          }
+            // Re-trigger search view if active
+            const searchInput = app.elements.searchInput;
+            if (searchInput && searchInput.value.trim() !== "") {
+                app.filterAgents(searchInput.value);
+            }
 
-          if (agent.prompt === undefined) {
-              const fallbackText = "No protocol data available.";
-              // 🎩 CONJURE: Inject structural CSS skeleton to instantly mask network latency
-              promptArea.innerHTML = '';
-              promptArea.appendChild(DOMUtils.createSkeletonElement("skeleton-pulse", "8rem"));
+            app.showToast(isPinned ? "Pinned" : "Unpinned");
 
-              const url = AgentUtils.getPromptUrl(agent);
+            if (app._cardHtmlCache) {
+                app._cardHtmlCache.delete(String(index));
+                app._cardHtmlCache.delete(Number(index));
+            }
+            return true;
+        }
 
-              app.agentRepo.fetchPrompt(agent.name, url, fallbackText).then((fetchedPrompt) => {
-                  agent.prompt = fetchedPrompt;
-                  promptArea.innerHTML = '';
-                  promptArea.appendChild(AgentCard.getPromptNode(agent));
-              });
-          } else {
-              promptArea.innerHTML = '';
-              promptArea.appendChild(AgentCard.getPromptNode(agent));
-          }
+        // 4. Flip Card Front (Open)
+        const frontTarget = e.target.closest('[data-action="flip-card"]');
+        if (frontTarget && !e.target.closest('.fusion-quick-btn') && !e.target.closest('.pin-btn')) {
+            const card = frontTarget.closest('.flip-card');
+            if (!card) return true;
 
-          card.classList.add('flipped');
-          return;
-      }
+            const index = frontTarget.dataset.index;
+            const safeIndex = CSS.escape(String(index));
+            const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
 
-      // 5. Flip Card Back (Close)
-      const backTarget = e.target.closest('[data-action="flip-card-back"]');
-      if (backTarget && !e.target.closest('.prompt-scroll-area') && !e.target.closest('.card-actions')) {
-          e.stopPropagation();
-          const card = backTarget.closest('.flip-card');
-          if (!card) return;
-          card.classList.remove('flipped');
-          return;
-      }
+            if (!promptArea || promptArea.innerHTML.trim()) {
+                card.classList.add('flipped');
+                return true;
+            }
 
-      // 6. Action Dropdown Toggle (For individual cards)
-      const toggleTarget = e.target.closest('[data-action="toggle-card-dropdown"]');
+            let agent = app.getAgentForUI(index);
+            if (!agent) {
+                card.classList.add('flipped');
+                return true;
+            }
 
-      if (toggleTarget) {
-          e.stopPropagation();
-          const index = toggleTarget.dataset.index;
-          const dropdownId = `card-dropdown-${index}`;
-          const dropdown = document.getElementById(dropdownId);
+            if (agent.prompt === undefined) {
+                const fallbackText = "No protocol data available.";
+                // 🎩 CONJURE: Inject structural CSS skeleton to instantly mask network latency
+                promptArea.innerHTML = '';
+                promptArea.appendChild(DOMUtils.createSkeletonElement("skeleton-pulse", "8rem"));
 
-          // Close others
-          app.activeDropdowns.forEach(menu => {
-              if (menu !== dropdown) {
-                  DOMUtils.closeDropdownMenu(menu, app);
-              }
-          });
+                const url = AgentUtils.getPromptUrl(agent);
 
-          if (!dropdown) return;
-          const isVisible = dropdown.classList.toggle('visible');
-          if (isVisible) {
-              app.activeDropdowns.add(dropdown);
-          } else {
-              app.activeDropdowns.delete(dropdown);
-          }
-          toggleTarget.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
-          return;
-      }
+                app.agentRepo.fetchPrompt(agent.name, url, fallbackText).then((fetchedPrompt) => {
+                    agent.prompt = fetchedPrompt;
+                    promptArea.innerHTML = '';
+                    promptArea.appendChild(AgentCard.getPromptNode(agent));
+                });
+            } else {
+                promptArea.innerHTML = '';
+                promptArea.appendChild(AgentCard.getPromptNode(agent));
+            }
 
-      // 7. General Action Buttons (Copy/Download/Launch)
-      const actionBtn = e.target.closest('[data-action]');
-      if (actionBtn && ["copy-agent", "download-agent", "launch-jules", "download-parent-fusions"].includes(actionBtn.dataset.action)) {
-          e.preventDefault();
-          e.stopPropagation();
+            card.classList.add('flipped');
+            return true;
+        }
 
-          const action = actionBtn.dataset.action;
+        // 5. Flip Card Back (Close)
+        const backTarget = e.target.closest('[data-action="flip-card-back"]');
+        if (backTarget && !e.target.closest('.prompt-scroll-area') && !e.target.closest('.card-actions')) {
+            e.stopPropagation();
+            const card = backTarget.closest('.flip-card');
+            if (!card) return true;
+            card.classList.remove('flipped');
+            return true;
+        }
 
-          if (action === "download-parent-fusions") {
-              const parentName = actionBtn.dataset.parentName;
-              if (parentName && app.exportController) {
-                  app.exportController.downloadCustomAgentsByParent(parentName, actionBtn);
-              }
-              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
-              return;
-          }
+        // 6. Action Dropdown Toggle (For individual cards)
+        const toggleTarget = e.target.closest('[data-action="toggle-card-dropdown"]');
 
-          const index = actionBtn.dataset.index;
-          let agent = app.getAgentForUI(index);
-          if (!agent) return;
+        if (toggleTarget) {
+            e.stopPropagation();
+            const index = toggleTarget.dataset.index;
+            const dropdownId = `card-dropdown-${index}`;
+            const dropdown = document.getElementById(dropdownId);
 
-          if (action === "copy-agent") {
-              app.copyAgent(index, actionBtn);
-              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
-              return;
-          }
-          if (action === "download-agent") {
-              app.downloadAgent(index, actionBtn);
-              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
-              return;
-          }
-          if (action === "launch-jules") {
-              app.julesTerminal.launchSession(agent, actionBtn);
-              const modal = document.getElementById("fusionsModal");
-              if (modal && modal.contains(actionBtn)) {
-                  modal.classList.remove("visible");
-              }
-              return;
-          }
-      }
-    });
+            // Close others
+            app.activeDropdowns.forEach(menu => {
+                if (menu !== dropdown) {
+                    DOMUtils.closeDropdownMenu(menu, app);
+                }
+            });
 
+            if (!dropdown) return true;
+            const isVisible = dropdown.classList.toggle('visible');
+            if (isVisible) {
+                app.activeDropdowns.add(dropdown);
+            } else {
+                app.activeDropdowns.delete(dropdown);
+            }
+            toggleTarget.setAttribute('aria-expanded', isVisible ? 'true' : 'false');
+            return true;
+        }
+
+        return false;
+    }
+
+    static _handleActionClicks(app, e) {
+        // 7. General Action Buttons (Copy/Download/Launch)
+        const actionBtn = e.target.closest('[data-action]');
+        if (actionBtn && ["copy-agent", "download-agent", "launch-jules", "download-parent-fusions"].includes(actionBtn.dataset.action)) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const action = actionBtn.dataset.action;
+
+            if (action === "download-parent-fusions") {
+                const parentName = actionBtn.dataset.parentName;
+                if (parentName && app.exportController) {
+                    app.exportController.downloadCustomAgentsByParent(parentName, actionBtn);
+                }
+                DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
+                return true;
+            }
+
+            const index = actionBtn.dataset.index;
+            let agent = app.getAgentForUI(index);
+            if (!agent) return true;
+
+            if (action === "copy-agent") {
+                app.copyAgent(index, actionBtn);
+                DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
+                return true;
+            }
+            if (action === "download-agent") {
+                app.downloadAgent(index, actionBtn);
+                DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
+                return true;
+            }
+            if (action === "launch-jules") {
+                app.julesTerminal.launchSession(agent, actionBtn);
+                const modal = document.getElementById("fusionsModal");
+                if (modal && modal.contains(actionBtn)) {
+                    modal.classList.remove("visible");
+                }
+                return true;
+            }
+        }
+
+        const downloadParentFusionsBtn = e.target.closest('#downloadParentFusionsBtn');
+        if (downloadParentFusionsBtn) {
+            e.stopPropagation();
+            e.preventDefault();
+            const parentName = downloadParentFusionsBtn.dataset.parentName;
+            if (parentName && app.exportController) {
+                app.exportController.downloadCustomAgentsByParent(parentName, downloadParentFusionsBtn);
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    static _bindHover(app) {
     // Pre-fetch custom/fusion agent prompts on hover to reduce flip latency
     document.addEventListener('mouseover', (e) => {
         const card = e.target.closest('.flip-card');
@@ -395,7 +441,9 @@ class EventBinder {
             agent.prompt = fetched;
         });
     });
+    }
 
+    static _bindKeyboard(app) {
     // Close search and active dropdowns on Escape key
     document.addEventListener("keydown", (e) => {
         // ☕ CAFFEINATED: The Double-Shot Override - Global hotkeys for direct action
@@ -453,7 +501,9 @@ class EventBinder {
             return;
         }
     });
+    }
 
+    static _bindTerminal(app) {
     // Jules Terminal Pull Tab & Toggle Bindings
     const pullTab = document.getElementById("julesPullTab");
     const runnerPanel = document.getElementById("julesRunnerPanel");
@@ -492,8 +542,11 @@ class EventBinder {
             }
         });
     }
+    }
 
+    static _bindMasterExports(app) {
     // Master Export bindings
+    const masterDropMenu = app.elements.masterDropdownMenu;
     if (app.elements.masterCopyBtn) app.elements.masterCopyBtn.addEventListener("click", (e) => app.copyAll(e.currentTarget));
     if (app.elements.masterDownloadCoreBtn) app.elements.masterDownloadCoreBtn.addEventListener("click", (e) => {
         app.downloadAll(e.currentTarget);
@@ -516,7 +569,7 @@ class EventBinder {
         app.downloadCustomAgents(e.currentTarget);
         if (masterDropMenu) masterDropMenu.classList.remove("visible");
     });
-  }
+    }
 }
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = EventBinder;
