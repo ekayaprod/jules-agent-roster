@@ -42,3 +42,5 @@
 * 🔗 `prompts/orphans/Captionist.md`: Broken markdown image link (`hero-banner.webp`).
 * 🔗 `prompts/orphans/Captionist.md`: Broken markdown image link (`hero-banner.png`).
 * 🔗 `prompts/orphans/Gallerist.md`: Broken markdown image link (`/heavy-art.jpg`).
+## The [OPERATOR] Queue
+* [OPERATOR] 📝 41 TODO/FIXME markers detected across the repository.

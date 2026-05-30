@@ -64,3 +64,9 @@ vite.config.ts.timestamp-*
 web_modules/
 yarn-debug.log*
 yarn-error.log*
+
+# Ephemeral Cache
+.DS_Store
+__pycache__/
+*.swp
+*.swo
