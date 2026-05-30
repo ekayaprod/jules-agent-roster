@@ -25,16 +25,37 @@ class AgentRepository {
     async fetchAgents() {
         try {
             // ⚡ Bolt+: The Waterfall Collapse. Unblocked the two-stage fetching and JSON parsing cycles into a single chained execution matrix, eliminating an artificial blocking tick.
+            const fetchPayload = async () => {
+                try {
+                    const res = await NetworkUtils.fetchWithRetry("./roster-payload.json", { throwOn404: false });
+                    return await this.safeJsonParse(res, "./roster-payload.json");
+                } catch (err) {
+                    if (err.message === "Check your configuration file formatting and try again." || err.message === "Failed to parse JSON") {
+                        throw err; // Propagate safeJsonParse errors to fail fast as expected
+                    }
+                    console.error("Failed to fetch roster payload", err);
+                    return [];
+                }
+            };
+
+            const fetchFusionMatrix = async () => {
+                try {
+                    const res = await NetworkUtils.fetchWithRetry("./fusion_matrix.json", { throwOn404: false });
+                    if (res && res.ok) {
+                        return await this.safeJsonParse(res, "./fusion_matrix.json");
+                    }
+                    return {};
+                } catch (err) {
+                    if (err.message.includes("Check your configuration file formatting")) {
+                        throw err; // Propagate safeJsonParse errors to match original behavior
+                    }
+                    return {};
+                }
+            };
+
             const [payload, fusionMatrixData] = await Promise.all([
-                NetworkUtils.fetchWithRetry("./roster-payload.json", { throwOn404: false })
-                    .then(res => this.safeJsonParse(res, "./roster-payload.json"))
-                    .catch(err => {
-                        console.error("Failed to fetch roster payload", err);
-                        return [];
-                    }),
-                NetworkUtils.fetchWithRetry("./fusion_matrix.json", { throwOn404: false })
-                    .catch(() => null)
-                    .then(res => (res && res.ok) ? this.safeJsonParse(res, "./fusion_matrix.json") : {})
+                fetchPayload(),
+                fetchFusionMatrix()
             ]);
 
             this.fusionMatrix = fusionMatrixData;
