@@ -240,7 +240,7 @@ describe('JulesTerminal Modal Tests', () => {
             expect(inputField.disabled).toBe(false); // restored in finally
 
             const statusSpan = document.getElementById('status-s123');
-            expect(statusSpan.textContent).toBe('Transmitting response...');
+            expect(statusSpan.textContent).toBe('Response provided');
         });
 
         it('should submit interaction on Enter keydown', async () => {
