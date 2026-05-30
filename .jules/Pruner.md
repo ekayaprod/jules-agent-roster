@@ -1,0 +1,1 @@
+Learning: [Pruner identified impossible branch in RarityEngine.js where getPlusMatchingDomain cannot return null if called with 'Bolt+', 'Palette+', or 'Sentinel+'] | Action: [Investigate unreachable logic in getPlusMatchingDomain]

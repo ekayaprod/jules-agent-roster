@@ -85,18 +85,6 @@ describe('RarityEngine', () => {
                 expect(RarityEngine.calculateRarity({ name: 'Bolt+', tier: 'Plus' }, { name: 'Palette+', tier: 'Plus' })).toBe('Common');
             });
 
-            it('returns "Uncommon" for Plus Agent with invalid name and unhandled Domain', () => {
-                // To hit getPlusMatchingDomain returning null, we need the agent's name to not be Bolt+, Palette+, Sentinel+
-                // AND we need getSuperDomain to return "Plus"
-                // But getSuperDomain only returns "Plus" for Bolt+, Palette+, Sentinel+.
-                // Wait, if an agent has name "Bolt+", it returns "Plus".
-                // If the application allows other agents to be "Plus", how?
-                // `if (["Bolt+", "Palette+", "Sentinel+"].includes(agent.name)) return "Plus";`
-                // So getSuperDomain ONLY returns Plus for those three.
-                // Which means `getPlusMatchingDomain` is ONLY called with "Bolt+", "Palette+", or "Sentinel+".
-                // It NEVER receives any other string! So `return null` is UNREACHABLE logic.
-            });
-
             it('returns "Common" for Plus Affinity: Plus + Matching Domain', () => {
                 expect(RarityEngine.calculateRarity({ name: 'Bolt+', tier: 'Plus' }, { name: 'A', category: 'architecture' })).toBe('Common'); // Bolt+ matches Invisible
                 expect(RarityEngine.calculateRarity({ name: 'B', category: 'architecture' }, { name: 'Bolt+', tier: 'Plus' })).toBe('Common');

@@ -39,7 +39,6 @@ const RarityEngine = (function() {
         if (agentName === "Bolt+") return "Invisible";
         if (agentName === "Palette+") return "Visible";
         if (agentName === "Sentinel+") return "Integrity";
-        return null;
     }
 
     function _evaluateFusion(agent1, agent2) {
