@@ -986,6 +986,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "ERADICATE useless React re-renders caused by unstable object references, un-memoized callbacks, and inline styles that destroy frontend performance.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Millisecond.md",
     "isCustom": true
   },
@@ -1400,6 +1401,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "PROPAGATE the structural skeleton by bridging missing architectural boilerplate.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Scaffolder.md",
     "isCustom": true
   },
