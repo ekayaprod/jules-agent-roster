@@ -50,8 +50,8 @@ describe('ExportController', () => {
             agentRepo: {
                 fetchPrompt: jest.fn().mockResolvedValue('fetched mock prompt')
             },
-            getAgentForUI: jest.fn(function(index) {
-                return this.agents[index] || (this.customAgents && this.customAgents[index]) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+            getAgentForUI: jest.fn((index) => {
+                return appMock.agents[index] || (appMock.customAgents && appMock.customAgents[index]) || (appMock.fusionLab && appMock.fusionLab.compiler.customAgentsMap[index]);
             })
         };
         const btnMock = document.createElement('button');
