@@ -21,7 +21,7 @@ global.StorageUtils = {
 
 global.DOMUtils = {
     setButtonState: jest.fn(),
-    getTerminalIndicatorHTML: jest.fn().mockImplementation((msg) => `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] ${msg}</div>`),
+    getTerminalIndicatorHTML: jest.fn().mockImplementation((msg) => `<div id="fetchingIndicator" class="term-session-line skeleton-pulse term-muted-text">[SYS] ${msg}</div>`),
     getTerminalSessionHTML: jest.fn().mockImplementation((emoji, name, status, id) => `
             <span class="term-agent-name">${emoji} ${name}</span>
             <span class="term-separator">—</span>

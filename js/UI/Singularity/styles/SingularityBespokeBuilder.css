@@ -490,8 +490,8 @@
 }
 
 .sg-archetype-card:focus-visible, .sg-pill:focus-visible, .sg-advanced-btn:focus-visible, .sg-submit:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--color-blue-400, #60a5fa);
+    outline: 2px solid var(--sg-mythic);
+    outline-offset: 2px;
 }
 
 .sg-archetype-card:active, .sg-pill:active, .sg-advanced-btn:active, .sg-submit:active {

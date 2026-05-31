@@ -19,7 +19,7 @@ global.StorageUtils = {
 
 global.DOMUtils = {
     setButtonState: jest.fn(),
-    getTerminalIndicatorHTML: jest.fn().mockImplementation((msg) => `<div id="fetchingIndicator" class="term-session-line skeleton-pulse" style="color: var(--term-muted);">[SYS] ${msg}</div>`),
+    getTerminalIndicatorHTML: jest.fn().mockImplementation((msg) => `<div id="fetchingIndicator" class="term-session-line skeleton-pulse term-muted-text">[SYS] ${msg}</div>`),
     getTerminalSessionHTML: jest.fn().mockImplementation((emoji, name, status, id) => `
             <span class="term-agent-name">${emoji} ${name}</span>
             <span class="term-separator">—</span>
@@ -468,7 +468,7 @@ describe('JulesTerminal', () => {
              window.julesAPI.getSessions.mockResolvedValue({
                  sessions: [{ id: '1', sourceContext: { source: 'sources/github/repo' } }]
              });
-             terminal.innerHTML = `<div id="fetchingIndicator" style="color: var(--term-muted);">[SYS] Ready. Awaiting execution commands...</div>`;
+             terminal.innerHTML = `<div id="fetchingIndicator" class="term-muted-text">[SYS] Ready. Awaiting execution commands...</div>`;
 
              const dummy = document.createElement('div'); dummy.id = 'session-1'; terminal.appendChild(dummy);
 
