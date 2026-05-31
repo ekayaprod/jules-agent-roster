@@ -211,14 +211,25 @@
 .tier-rare .flip-card-inner, .fusion-item.tier-rare { border-color: var(--accent); }
 
 .tier-epic .flip-card-inner, .fusion-item.tier-epic { border-color: var(--mythic); box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); animation: epicPulse 4s infinite ease-in-out; }
+@keyframes epicPulse {
+  0% { box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); border-color: var(--mythic); }
+  50% { box-shadow: 0 0 1.5rem rgba(217, 70, 239, 0.4); border-color: var(--mythic); }
+  100% { box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); border-color: var(--mythic); }
+}
+
+.tier-legendary .flip-card-inner, .fusion-item.tier-legendary { border-color: var(--warning); box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); animation: legendaryPulse 4s infinite ease-in-out; }
+@keyframes legendaryPulse {
+  0% { box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); border-color: var(--warning); }
+  50% { box-shadow: 0 0 1.25rem rgba(251, 191, 36, 0.6); border-color: var(--warning); }
+  100% { box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); border-color: var(--warning); }
+}
+
+.tier-mythic .flip-card-inner, .fusion-item.tier-mythic { border-color: var(--success); box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); animation: mythicPulse 4s infinite ease-in-out; }
 @keyframes mythicPulse {
   0% { box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); border-color: var(--success); }
   50% { box-shadow: 0 0 1.5rem rgba(16, 185, 129, 0.4); border-color: var(--success); }
   100% { box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); border-color: var(--success); }
 }
-
-.tier-legendary .flip-card-inner, .fusion-item.tier-legendary { border-color: var(--warning); box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); animation: legendaryPulse 4s infinite ease-in-out; }
-.tier-mythic .flip-card-inner, .fusion-item.tier-mythic { border-color: var(--success); box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); animation: mythicPulse 4s infinite ease-in-out; }
 
 /* Rarity Animation Particles Sync */
 .tier-common .anim-particle { --particle-color: var(--text-secondary); }
