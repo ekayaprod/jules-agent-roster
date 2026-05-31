@@ -302,7 +302,8 @@
     "role": "State Flattener",
     "category": "Strategy",
     "tier": "Fusion",
-    "description": "Transitions chaotic architectural patterns from guessing intents via natural language into executing strict, deterministic tool-calling APIs.",
+    "description": "TRANSITION chaotic architectural patterns from guessing intents via natural language into executing strict, deterministic tool-calling APIs.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Automata.md",
     "isCustom": true
   },
