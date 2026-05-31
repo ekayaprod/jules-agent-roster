@@ -241,8 +241,7 @@ class SingularityBespokeBuilder {
     });
 
     // Real-time Archetype Prediction Logic
-    this.elements.missionInput.addEventListener('input', (e) => {
-      const text = e.target.value.toLowerCase();
+    const debouncedMissionInput = typeof PerformanceUtils !== 'undefined' ? PerformanceUtils.debounce((text) => {
       const badge = this.elements.predictionBadge;
       if (!badge) return;
 
@@ -261,6 +260,29 @@ class SingularityBespokeBuilder {
         badge.innerHTML = '🛠️ Maker';
         badge.classList.add('sg-mode-maker');
       }
+    }, 300) : (text) => {
+      const badge = this.elements.predictionBadge;
+      if (!badge) return;
+
+      badge.className = 'sg-builder-mode-badge';
+      if (/delete|remove|clean|prune|strip/i.test(text)) {
+        badge.innerHTML = '🗡️ Assassin';
+        badge.classList.add('sg-mode-assassin');
+      } else if (/enforce|guard|validate|test|lint/i.test(text)) {
+        badge.innerHTML = '🛡️ Sentinel';
+        badge.classList.add('sg-mode-sentinel');
+      } else if (/document|read|analyze|audit/i.test(text)) {
+        badge.innerHTML = '🔮 Oracle';
+        badge.classList.add('sg-mode-oracle');
+      } else {
+        // Default to Maker for build/update/refactor intents
+        badge.innerHTML = '🛠️ Maker';
+        badge.classList.add('sg-mode-maker');
+      }
+    };
+
+    this.elements.missionInput.addEventListener('input', (e) => {
+      debouncedMissionInput(e.target.value.toLowerCase());
     });
 
     // Advanced panel toggle
