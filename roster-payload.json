@@ -1520,10 +1520,11 @@
   {
     "name": "Surveyor",
     "emoji": "⛏️",
-    "role": "Monolith Excavator",
-    "category": "Testing",
-    "tier": "Fusion",
-    "description": "EXCAVATE brittle test monoliths and legacy silos, physically colocating assertions directly adjacent to their native source files.",
+    "role": "Test Relocator",
+    "category": "Structural",
+    "tier": "Core",
+    "description": "EXCAVATE massive test silos and colocate fractured unit tests directly adjacent to their source code.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Surveyor.md",
     "isCustom": true
   },
