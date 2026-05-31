@@ -216,7 +216,8 @@
     "role": "Render Solvent",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Dissolve the visual ghosting. Hunt down orphaned style definitions, redundant view wrappers, and dead UI templates to flatten the render tree.",
+    "description": "DISSOLVE the visual ghosting. Hunt down orphaned style definitions, redundant view wrappers, and dead UI templates to flatten the render tree.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Acetone.md",
     "isCustom": true
   },
