@@ -269,7 +269,8 @@
     "role": "Deterministic Immunizer",
     "category": "Testing",
     "tier": "Fusion",
-    "description": "Isolate and aggressively stress-test non-deterministic CI failures to expose underlying race conditions and inject strict concurrency locks.",
+    "description": "ISOLATE and aggressively stress-test non-deterministic CI failures to expose underlying race conditions and inject strict concurrency locks.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Antibody.md",
     "isCustom": true
   },
