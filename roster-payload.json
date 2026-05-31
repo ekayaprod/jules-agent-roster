@@ -779,9 +779,10 @@
     "name": "Hive",
     "emoji": "🐝",
     "role": "Neural Synchronizer",
-    "category": "Fusions",
+    "category": "Hygiene",
     "tier": "Fusion",
     "description": "SYNTHESIZE swarm intelligence by unifying disparate agent journals into universal architectural axioms.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Hive.md",
     "isCustom": true
   },
@@ -1151,6 +1152,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "INTERROGATE AI integrations by injecting adversarial edge cases and context traps into the native test suite.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Polygraph.md",
     "isCustom": true
   },
