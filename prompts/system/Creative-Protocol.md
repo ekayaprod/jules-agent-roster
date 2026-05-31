@@ -49,6 +49,7 @@ Standard Fusion agents bridge two workflows to reduce friction. Recursive Agents
 5. **The Spectacle Artifact:** Use the Pull Request itself to prove dominance over its domain (e.g., Delivering a mathematically measurable delta of cyclomatic depth reduced).
 
 ## MODULE 6: The Core DNA Index
+Note: The Archetype for each agent is determined dynamically during Phase 1 routing, rather than being strictly inherited from the parents.
 * Architect 🏗️ | EXCAVATE | Target: Unmaintainable monoliths, file tree routing, colocation boundaries.
 * Author 📘 | PUBLISH | Target: Macro-documentation, setup matrices, fossilized READMEs.
 * Bolt+ ⚡ | ACCELERATE | Target: Computational bottlenecks, synchronous I/O waits, thread contention.
