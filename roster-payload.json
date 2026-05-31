@@ -280,7 +280,8 @@
     "role": "Context Linker",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Eliminates context drift by writing granular inline documentation and synchronizing it rigidly with high-level architectural READMEs.",
+    "description": "ELIMINATE context drift by writing granular inline documentation and synchronizing it rigidly with high-level architectural READMEs.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Archivist.md",
     "isCustom": true
   },
