@@ -301,8 +301,8 @@
 }
 
 .pin-btn:focus-visible, .dropdown-item:focus-visible, .action-main-btn:focus-visible, .action-toggle-btn:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--color-blue-400, #60a5fa);
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 .pin-btn:active, .dropdown-item:active, .action-main-btn:active, .action-toggle-btn:active {
