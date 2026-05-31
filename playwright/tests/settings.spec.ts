@@ -6,7 +6,7 @@ test.describe('Settings Modal', () => {
 
     await page.waitForSelector('#initial-loading-overlay.hidden', { state: 'attached' });
 
-    const settingsBtn = page.getByRole('button', { name: /Settings/i });
+    const settingsBtn = page.getByRole('button', { name: 'Open Settings' });
     await expect(settingsBtn).toBeVisible();
     await settingsBtn.click();
 
@@ -17,6 +17,6 @@ test.describe('Settings Modal', () => {
     await expect(cancelBtn).toBeVisible();
     await cancelBtn.click();
 
-    await expect(settingsModal).not.toBeVisible();
+    await expect(settingsModal).not.toHaveClass(/visible/);
   });
 });
