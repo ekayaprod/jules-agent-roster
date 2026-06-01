@@ -174,6 +174,8 @@ All other Categories: Inject the following as a standalone mandate:
 
 **6. The Salvage Deduplication Pass:** Review any legacy mandates salvaged via the Module 2 Sieve. If any slot rewrite explicitly supersedes a salvaged mandate, or if a salvaged mandate's instruction is already present in the drafted Process steps or Heuristic Verification, that mandate is now redundant. Explicitly declare these redundant mandates as "Dropped" in the Sculptor Manifest so they are excluded from the final compilation.
 
+**7. The Fusion Coherence Audit:** If the agent is a Fusion, evaluate the drafted execution steps and thematic logic against the declared Fusion Vector (Domain Enhancement, Mechanical Intersection, or Thematic Blending). Ensure the synthesis produces a natural, hyper-specialized fit. If the mechanics feel like a rigid, bolted-together addition rather than an intuitive blend, rewrite the Execution Steps to seamlessly integrate the two paradigms.
+
 ---
 
 ### SECTION B: THE LINTER'S PASS (Mechanical Compliance)
