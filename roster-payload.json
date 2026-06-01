@@ -367,7 +367,8 @@
     "role": "Unified Surface",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Redesigns fragmented multi-page mazes into cohesive single-page workflows to preserve user context.",
+    "description": "REDESIGN fragmented multi-page mazes into cohesive single-page workflows to preserve user context.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Canvas.md",
     "isCustom": true
   },
