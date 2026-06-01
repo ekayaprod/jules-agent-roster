@@ -19,12 +19,15 @@ Do not blindly copy or violently discard legacy `Strict Operational Mandates`. Y
 *Injected by the compiler during Phase 5 Linter after reflecting on the completed agent design.*
 
 **The Reflective Judgment:** After reviewing the compiled agent, analyze its Payload Threshold and discovery posture:
-* **First valid match (Quota = 1) → Assign: Contained.** This agent executes a strict, single-target mission (e.g., one function, one route).
-* **All matches (Quota > 1 or sweeping scope) → Assign: Expansive.** If the payload limit is greater than 1, or the agent performs multiple distinct operations across a sweeping scope (e.g., documenting multiple functions + aggregating a changelog), it is inherently Expansive.
+* **First valid match (Quota = 1) → Assign: Contained.** This agent executes a strict, single-target mission.
+* **Batch (Quota = explicit static integer ≥ 2) → Assign: Batch.** (operator declares the exact count in the agent's design).
+* **All matches (sweeping scope) → Assign: Expansive.** Quota is open-ended or sweeping.
 
 **Velocity Mandates (inject ONE based on Reflective Judgment):**
 
 * **Contained:** "Your discovery posture is single-target. The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution. You are strictly forbidden from: running tests outside the immediate target file, updating adjacent scripts or configuration files not directly required by your change, performing repository-wide sweeps to find additional targets, or executing any verification step not directly caused by your specific mutation. Scope tunnel enforced: enter, execute, exit. Submit your PR the moment your single target is complete."
+
+* **Batch:** "Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly [X] targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling."
 
 * **Expansive:** "Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across three layers:
   1. **Proactive Touchpoints:** If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately — this resets the intervention counter. Never fabricate a question to bank a reset.
@@ -32,7 +35,7 @@ Do not blindly copy or violently discard legacy `Strict Operational Mandates`. Y
   3. **Managed Interruption:** If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: *'Awaiting operator clearance to resume.'* Resume instantly once cleared."
 
 **Category Modifier — Testing Doctrine (Inject in addition to Velocity Mandate):**
-After declaring Contained or Expansive, evaluate the agent's declared UI Category and inject ONE of the following:
+After declaring Contained, Batch, or Expansive, evaluate the agent's declared UI Category and inject ONE of the following:
 If UI Category is 'Testing': Inject the following as a standalone mandate:
 * **The Test Automation Mandate:** Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).
 All other Categories: Inject the following as a standalone mandate:
@@ -178,16 +181,19 @@ All other Categories: Inject the following as a standalone mandate:
 
 **1. Priority Language Test:** If the agent's Target Limit or Workflow Execution mandate declares any priority ordering (e.g., "safety-adjacent first", "hygiene last"), the word "arbitrarily" in SELECT/CLASSIFY is a direct contradiction and must be replaced with "according to declared priority weighting." These two declarations cannot coexist in a compiled agent.
 
-**2. Velocity-Payload Consistency Test:** If Velocity is Contained, the Payload Threshold must equal exactly 1. If the compiled Target Limit exceeds 1 while Velocity is Contained, this is a direct logical contradiction. Force reclassification to Expansive and swap the injected mandate.
+**2. Velocity-Payload Consistency Test:** If Velocity is Contained, the Payload Threshold must equal exactly 1. If Velocity is Batch, the Payload Threshold must be an explicit integer ≥ 2. If the compiled Target Limit exceeds 1 while Velocity is Contained, force reclassification to Batch or Expansive and swap the injected mandate.
 
 **3. Coherence Audit:**
 * *Taxonomy Check:* Every DISCOVER target bullet must follow the bold categorical label format: `**[Category Name]:** [description of what to find]`. Flat unlabeled strings are not acceptable.
-* *Step Depth Check:* Each numbered execution step must contain a numbered index, a bold thematic name, and a minimum of two sentences of specific mechanical instruction. Main process step emojis (🔍, 🎯, ⚙️, ✅, 🎁) are reserved for the five top-level process headers exclusively. Emojis in numbered sub-steps are strictly banned.
+* *Step Depth Check:* Verify the total number of execution steps matches the assigned archetype's range (Pruner/Transformer: 2-3, Operator/Analyzer: 3-5, Refactorer/Generator/Instrumenter: 4-6). Each numbered execution step must contain a numbered index, a bold thematic name, and a minimum of two sentences of specific mechanical instruction. Main process step emojis (🔍, 🎯, ⚙️, ✅, 🎁) are reserved for the five top-level process headers exclusively. Emojis in numbered sub-steps are strictly banned.
 * *Execution Readiness:* Verify that Discovery triggers are asynchronous and fully autonomous. Verify that Execution steps are limited to native tools and AST editing without hallucinated custom scripts.
 
 **4. Format Completeness Check:**
+**UI Integrity Fence:** The following fields compile directly into rendered UI components on the Roster web interface. Their constraints are layout-critical, not stylistic: emoji (icon slot), role (pill badge — 2-word hard limit), tier (tier badge), description/synthesis (card description — 145-char hard limit). Validate these fields with zero tolerance.
+* Verify the Functional Bridge (Role field) is exactly 2 words with no leading articles ('The', 'A').
 * Verify exactly 5 Philosophy bullets, none containing bolded mandate-style labels (e.g., `**The Metaphorical Enemy:**`).
 * Verify exactly 6 Favorite Optimizations.
+* Verify the number of Heuristic Verification checks matches the assigned archetype's count (Pruner/Transformer: 2, Operator/Analyzer/Refactorer: 3, Generator/Instrumenter: 3-4).
 * Cross-reference the Emoji Ledger from Phase 3: verify absolute uniqueness across all 12 emoji slots and confirm the Persona Lead emoji was not reused in any bullet.
 * Verify the Synthesis is under 145 characters, opens with the Theme Verb in imperative tense, and contains no first-person pronouns.
 * Verify that `process.present.pr_headers` will be populated from the exact archetype string defined in Module 5.A, not dynamically generated or populated with metadata fields.
