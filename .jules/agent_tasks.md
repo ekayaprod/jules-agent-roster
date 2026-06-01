@@ -28,9 +28,24 @@
 * 📝 `js/Utils/agent-utils.js`: Missing JSDoc documentation block.
 
 ## 🎨 Rigid Presentation States ([UI / STYLIZE])
+- [ ] 🎨 `js/Features/Fusion/AgentPicker.js`: Rigid presentation state (inline style) detected at line 124.
+- [ ] 🎨 `js/Features/Fusion/AgentPicker.js`: Rigid presentation state (inline style) detected at line 168.
 
 
 ## 🧹 Semantic Dust & Hygiene ([AST / REMOVE])
+- [ ] 🧹 `js/Features/Fusion/AgentPicker.js`: Unreferenced console wrapper detected at line 212.
+- [ ] 🧹 `js/Features/Search/SearchController.js`: Unreferenced console wrapper detected at line 56.
+- [ ] 🧹 `js/Services/AgentRepository.js`: Unreferenced console wrapper detected at line 26.
+- [ ] 🧹 `js/Services/AgentRepository.js`: Unreferenced console wrapper detected at line 86.
+- [ ] 🧹 `js/Services/AgentRepository.js`: Unreferenced console wrapper detected at line 99.
+- [ ] 🧹 `js/Services/AgentRepository.js`: Unreferenced console wrapper detected at line 109.
+- [ ] 🧹 `js/Services/AgentRepository.js`: Unreferenced console wrapper detected at line 115.
+- [ ] 🧹 `js/Services/AgentRepository.js`: Unreferenced console wrapper detected at line 208.
+- [ ] 🧹 `js/Services/AgentRepository.js`: Unreferenced console wrapper detected at line 219.
+- [ ] 🧹 `js/Services/AgentRepository.js`: Unreferenced console wrapper detected at line 262.
+- [ ] 🧹 `js/Services/GithubAPI/GithubAPI.js`: Unreferenced console wrapper detected at line 71.
+- [ ] 🧹 `js/Services/GithubAPI/GithubAPI.js`: Unreferenced console wrapper detected at line 74.
+- [ ] 🧹 `js/Services/JulesAPI/JulesAPI.js`: Unreferenced console wrapper detected at line 57.
 
 ## 🧱 Resilience & Security Boundaries ([Security / FORTIFY])
 
