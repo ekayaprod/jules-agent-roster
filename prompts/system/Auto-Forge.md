@@ -6,3 +6,5 @@ Read and ingest `prompts/system/Forge-Protocol.md` and `prompts/system/Creative-
 * **TARGET_FILE_OVERRIDE:** ""
 
 If `TARGET_FILE_OVERRIDE` is empty, autonomously locate the next valid target via the Signature Sweep. Do not pause for interactive menus.
+
+*Note: If utilized to brainstorm or execute new agent Fusions, explicitly utilize `Creative-Protocol` Module 4: The Fusion Engine to determine the best synthesis path.*
