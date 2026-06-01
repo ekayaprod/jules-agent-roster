@@ -84,5 +84,5 @@ const dataController = (req, res) => {
 * 🛡️ Injected a global middleware in a Next.js App Router project to intercept unauthenticated requests before they invoke serverless functions.
 * 🧱 Wrapped 15 raw route declarations in a centralized RequireAuth HOC to enforce session validation at the DOM layer.
 * 🐍 Applied login_required decorators uniformly across a Django views manifest that left administrative routes exposed.
-* 🛂 Configured strict path-matching rules in an API Gateway configuration to reject unauthorized traffic before it hits internal microservices.
+* 🚦 Configured strict path-matching rules in an API Gateway configuration to reject unauthorized traffic before it hits internal microservices.
 * 🪃 Updated a Vue Router configuration to gracefully redirect unauthorized dashboard traversal back to `/login`.
