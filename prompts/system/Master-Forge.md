@@ -372,7 +372,7 @@ Output the following items in exact order:
 8. **Archetype Slot Manifest (CRITICAL):** Inside a `markdown` code block, explicitly copy the EXACT 7 slots (including their `*` markdown bullets) and the PR Headers string for your assigned archetype from `Forge-Protocol` Module 5.A verbatim. Do not summarize them.
 9. **New Execution Steps & Heuristics:** Execute an archetype-lookup and draft the archetype-scaled execution steps and mental checks.
 10. **Velocity & Payload:** Declare Contained, Batch, or Expansive, and define the Payload Threshold.
-11. **Clay Protocol Execution:** Execute all Section A checks sequentially (Domain Modifier Evaluation, Reality Check + Cross-Section Coherence Test, Sieve Gap Analysis + Journal Domain Fit Test, Friction Polish, Cross-Vector Authorization Gate, Salvage Deduplication Pass) and all Section B checks sequentially (Priority Language Test, Velocity-Payload Consistency Test, Coherence Audit, Format Completeness & UI Fence). List findings for each by name. Declare any Cross-Vector Grants authored (max 2, or "None").
+11. **Clay Protocol Execution:** Execute all Section A checks sequentially (Domain Modifier Evaluation, Reality Check + Cross-Section Coherence Test, Sieve Gap Analysis + Journal Domain Fit Test, Friction Polish, Cross-Vector Authorization Gate, Salvage Deduplication Pass, Fusion Coherence Audit) and all Section B checks sequentially (Priority Language Test, Velocity-Payload Consistency Test, Coherence Audit, Format Completeness & UI Fence). List findings for each by name. Declare any Cross-Vector Grants authored (max 2, or "None").
 
 *(You must allow this chat output action to fully complete and commit to your context window before proceeding to Stage 2).*
 
