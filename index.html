@@ -681,8 +681,8 @@
             <a href="https://github.com/settings/tokens" target="_blank" class="modal-link">How to get a GitHub Token →</a>
         </div>
         <div class="flex gap-4 mt-4">
-            <button id="closeSettingsBtn" class="secondary flex-1">Cancel Settings</button>
-            <button id="saveSettingsBtn" class="flex-1">Save Settings & Connect</button>
+            <button id="closeSettingsBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Cancel Settings</button>
+            <button id="saveSettingsBtn" class="flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Save Settings & Connect</button>
         </div>
       </div>
     </div>
@@ -701,8 +701,8 @@
                 <span id="historyModalError" role="alert" class="text-xs hidden" ></span>
             </div>
             <div class="flex gap-4 mt-2">
-                <button id="cancelHistoryBtn" class="secondary flex-1">Close History</button>
-                <button id="submitHistoryBtn" class="flex-1">Send Reply</button>
+                <button id="cancelHistoryBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Close History</button>
+                <button id="submitHistoryBtn" class="flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Send Reply</button>
             </div>
         </div>
     </div>
@@ -721,9 +721,9 @@
             <div id="prModalContent" ></div>
             <span id="prModalError" role="alert" class="text-xs hidden" ></span>
             <div class="flex gap-4 mt-2">
-                <button id="cancelPRBtn" class="secondary flex-1">Close View</button>
-                <button id="closePRBtn" class="btn-danger flex-1">Close PR</button>
-                <button id="mergePRBtn" class="btn-success flex-1">Merge PR</button>
+                <button id="cancelPRBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Close View</button>
+                <button id="closePRBtn" class="btn-danger flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Close PR</button>
+                <button id="mergePRBtn" class="btn-success flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Merge PR</button>
             </div>
         </article>
     </section>
@@ -742,8 +742,8 @@
                 <span id="interactionModalError" role="alert" class="text-xs hidden" ></span>
             </div>
             <div class="flex gap-4 mt-2">
-                <button id="cancelInteractionBtn" class="secondary flex-1">Cancel Reply</button>
-                <button id="submitInteractionBtn" class="flex-1">Transmit Reply</button>
+                <button id="cancelInteractionBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Cancel Reply</button>
+                <button id="submitInteractionBtn" class="flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Transmit Reply</button>
             </div>
         </div>
     </div>
@@ -762,7 +762,7 @@
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent A</span></div>
         </button>
         <div class="fusion-action-area">
-          <button id="fuseBtn" disabled>Ignite Protocol</button>
+          <button id="fuseBtn" class="transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" disabled>Ignite Protocol</button>
         </div>
         <button id="slotBCard" class="slot-card">
           <div class="slot-content"><span class="slot-icon-placeholder">+</span><span class="slot-label">Select Agent B</span></div>
@@ -793,7 +793,7 @@
       </div>
 
       <div id="fusionResultContainer" class="grid mt-6 overflow-hidden hidden"></div>
-      <button id="resetLabBtn" class="hidden mt-6 secondary">Fuse Another Protocol</button>
+      <button id="resetLabBtn" class="hidden mt-6 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Fuse Another Protocol</button>
     </div>
 
     <div class="fusion-archive-container">
@@ -802,12 +802,12 @@
 
     <footer class="roster-footer">
       <div class="flex" >
-        <button id="masterCopyBtn" class="secondary action-main-btn" data-action="copy-all">Copy All Core Prompts</button>
-        <button id="masterDropdownBtn" class="secondary action-toggle-btn" aria-label="Open Master Export Options">▼</button>
+        <button id="masterCopyBtn" class="secondary action-main-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="copy-all">Copy All Core Prompts</button>
+        <button id="masterDropdownBtn" class="secondary action-toggle-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" aria-label="Open Master Export Options">▼</button>
         <div id="masterDropdownMenu" class="dropdown-menu">
-          <button id="masterDownloadCoreBtn" class="dropdown-item">Download Core Prompts</button>
-          <button id="masterCopyFusionsBtn" class="dropdown-item">Copy Unlocked Fusions</button>
-          <button id="masterDownloadFusionsBtn" class="dropdown-item">Download Unlocked Fusions</button>
+          <button id="masterDownloadCoreBtn" class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Download Core Prompts</button>
+          <button id="masterCopyFusionsBtn" class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Copy Unlocked Fusions</button>
+          <button id="masterDownloadFusionsBtn" class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Download Unlocked Fusions</button>
         </div>
       </div>
     </footer>
@@ -835,8 +835,8 @@
           <div id="fusionsModalCard" class="mt-3 flex" ></div>
         </div>
         <div class="flex gap-4 mt-2">
-          <button id="downloadParentFusionsBtn" class="secondary action-main-btn flex-1" >Download Unlocked</button>
-          <button id="closeFusionsModalBtn" class="secondary flex-1">Close Fusions</button>
+          <button id="downloadParentFusionsBtn" class="secondary action-main-btn flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" >Download Unlocked</button>
+          <button id="closeFusionsModalBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Close Fusions</button>
         </div>
       </div>
     </div>

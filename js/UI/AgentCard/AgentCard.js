@@ -113,7 +113,7 @@ class AgentCard {
     const dropdownText = isRepoSelected ? '📋 Copy Prompt' : 'Launch in Jules 🚀';
 
     const downloadFusionsBtnHtml = !isFusionAgent
-      ? `<button class="dropdown-item" data-action="download-parent-fusions" data-parent-name="${agent.name}" role="menuitem" aria-label="Download Unlocked Fusions">🧬 Download Fusions</button>`
+      ? `<button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="download-parent-fusions" data-parent-name="${agent.name}" role="menuitem" aria-label="Download Unlocked Fusions">🧬 Download Fusions</button>`
       : '';
 
     card.innerHTML = `
@@ -144,17 +144,17 @@ class AgentCard {
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
                     
                     <div class="card-actions mt-auto pt-2 flex relative">
-                        <button class="secondary action-main-btn" data-action="${primaryAction}" data-index="${index}" title="${primaryTitle}" aria-label="${primaryTitle}">
+                        <button class="secondary action-main-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="${primaryAction}" data-index="${index}" title="${primaryTitle}" aria-label="${primaryTitle}">
                             <span class="btn-text">${primaryText}</span>
                         </button>
-                        <button class="secondary action-toggle-btn" data-action="toggle-card-dropdown" data-index="${index}" aria-label="More options" aria-haspopup="menu" aria-expanded="false" aria-controls="card-dropdown-${index}">
+                        <button class="secondary action-toggle-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="toggle-card-dropdown" data-index="${index}" aria-label="More options" aria-haspopup="menu" aria-expanded="false" aria-controls="card-dropdown-${index}">
                             ▼
                         </button>
                         
                         <!-- Custom Agent Dropdown -->
                         <div class="dropdown-menu" id="card-dropdown-${index}" role="menu">
-                            <button class="dropdown-item" data-action="${dropdownAction}" data-index="${index}" role="menuitem" aria-label="${dropdownText.replace(/[^a-zA-Z\\s]/g, '').trim()}">${dropdownText}</button>
-                            <button class="dropdown-item" data-action="download-agent" data-index="${index}" role="menuitem" aria-label="Download Protocol as Markdown">💾 Download .md</button>
+                            <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="${dropdownAction}" data-index="${index}" role="menuitem" aria-label="${dropdownText.replace(/[^a-zA-Z\\s]/g, '').trim()}">${dropdownText}</button>
+                            <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="download-agent" data-index="${index}" role="menuitem" aria-label="Download Protocol as Markdown">💾 Download .md</button>
                             ${downloadFusionsBtnHtml}
                         </div>
                     </div>
