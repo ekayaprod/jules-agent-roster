@@ -175,7 +175,7 @@ sequenceDiagram
 
 ## 5. 🎯 Key Design Decisions
 
-- **Client-Side Foundation**: Built purely to ensure portability, performance, and immediate GitHub Pages compatibility without any Node.js build steps.
+- **Client-Side Foundation**: Built purely to ensure portability, performance, and immediate GitHub Pages compatibility (it requires a lightweight Node.js build step via `npm run build:roster` to compile `roster-payload.json`).
 - **Colocated Features**: We use `js/Features` to group domains (like `Fusion` or `JulesManager`) independently to avoid a monolithic structure!
 - **Asynchronous Execution API**: Rather than waiting on blocking HTTP connections, `JulesManager.js` utilizes continuous polling intervals against `getActivities` to simulate real-time terminal progress.
 - **Strict DAG Pipeline**: Agents are processed and combined via a strict Directed Acyclic Graph order (e.g., `Architect` -> `Wordsmith`), ensuring logical consistency no matter what order the user clicked.
