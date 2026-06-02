@@ -25,6 +25,9 @@ class FusionLab {
     this.agents = agents;
     this.agentMap = new Map((agents || []).map((a) => [a.name, a]));
     this.compiler = new FusionCompiler(agents, customAgents, fusionMatrix);
+    this.events = typeof FusionLabEvents !== "undefined" ? new FusionLabEvents(this) : null;
+    this.renderer = typeof FusionLabRenderer !== "undefined" ? new FusionLabRenderer(this) : null;
+
     // Initialize Fusion Index (Collectible Shelf)
     if (typeof FusionIndex !== "undefined") {
       this.fusionIndex = new FusionIndex(
@@ -53,84 +56,18 @@ class FusionLab {
    * Binds event listeners for the Fusion Lab.
    */
   bindEvents() {
-    // ⚡ Bolt+: Extracted redundant DOM queries outside of individual methods and cached them here to prevent layout thrashing and repeated execution overhead.
-    this.elements = {
-        fuseBtn: document.getElementById("fuseBtn"),
-        copyFusionBtn: document.getElementById("copyFusionBtn"),
-        slotACard: document.getElementById("slotACard"),
-        slotBCard: document.getElementById("slotBCard"),
-        errorEl: document.getElementById("fusionError"),
-        textSpan: document.getElementById("fusionErrorText"),
-        fusionResultContainer: document.getElementById("fusionResultContainer"),
-        resetLabBtn: document.getElementById("resetLabBtn"),
-        // ⚡ Bolt+: Cached fusionLabContent query to prevent repeated DOM lookups during high-frequency reset/fusion interactions.
-        labContent: document.getElementById("fusionLabContent"),
-    };
-
-    ["slotA", "slotB"].forEach(slot => {
-        const card = this.elements[`${slot}Card`];
-        if (!card) return;
-        const open = () => this.picker && this.picker.openPicker(slot, this.state[slot]);
-        card.addEventListener("click", open);
-        card.addEventListener("keydown", e => {
-            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
-        });
-    });
-
-    if (this.elements.fuseBtn) this.elements.fuseBtn.addEventListener("click", () => this.handleFusion());
-    if (this.elements.resetLabBtn) {
-        // ☕ CAFFEINATED: Returns to lab with state intact, skipping the amnesiac reset loop
-        this.elements.resetLabBtn.addEventListener("click", () => this.returnToLab());
+    if (this.events) {
+      this.events.bindEvents();
     }
-
-    if (this.elements.copyFusionBtn) {
-      this.elements.copyFusionBtn.addEventListener("click", async (e) => {
-        const btn = e.currentTarget;
-        if (this.lastFusionResult && this.lastFusionResult.prompt) {
-          await ClipboardUtils.copyText(this.lastFusionResult.prompt);
-          if (window.rosterApp && window.rosterApp.showToast) {
-            window.rosterApp.showToast("Fusion copied to clipboard");
-          }
-          ClipboardUtils.animateButtonSuccess(btn,
-"Copied!");
-        }
-      });
-    }
-
   }
 
   /**
    * Renders the visual state of the slots based on this.state.
    */
   renderSlots() {
-    const updateSlotUI = (slotId, agent) => {
-        const card = this.elements[slotId + "Card"];
-        if (!card) return;
-
-        const content = card.querySelector(".slot-content");
-
-        if (agent) {
-            card.classList.remove("empty");
-            card.classList.add("filled");
-            card.setAttribute("aria-label", `Selected: ${agent.name}. Click to change.`);
-        } else {
-            card.classList.add("empty");
-            card.classList.remove("filled");
-            if (typeof card.removeAttribute === 'function') card.removeAttribute("aria-label");
-        }
-
-        content.innerHTML = agent
-            ? `<span class="slot-icon-placeholder transition-all duration-300 ease-in-out hover:scale-105">${FormatUtils.escapeHTML(agent.emoji)}</span>
-               <span class="slot-label transition-all duration-300 ease-in-out">${FormatUtils.escapeHTML(agent.name)}</span>`
-            : `<span class="slot-icon-placeholder transition-all duration-300 ease-in-out hover:scale-105">+</span>
-               <span class="slot-label transition-all duration-300 ease-in-out">${slotId === "slotA" ? "Select Agent A" : "Select Agent B"}</span>`;
-    };
-
-    updateSlotUI("slotA", this.state.slotA);
-    updateSlotUI("slotB", this.state.slotB);
-
-    this.updateState();
-    // Update button state
+    if (this.renderer) {
+      this.renderer.renderSlots();
+    }
   }
 
 
@@ -151,31 +88,8 @@ class FusionLab {
    * @returns {string|null} - The HTML string or null if not previewable.
    */
   getPreMergePreviewHTML(selectedAgent) {
-    const tempState = { ...this.state };
-    if (this.picker && this.picker.activePickerSlot) {
-        tempState[this.picker.activePickerSlot] = selectedAgent;
-    }
-
-    const agentA = tempState.slotA;
-    const agentB = tempState.slotB;
-    if (!agentA || !agentB || agentA.name === agentB.name) {
-        return null;
-    }
-
-    const key = AgentUtils.getFusionKey(agentA.name, agentB.name);
-
-    if (this.fusionIndex && this.fusionIndex.isUnlocked(key)) {
-        const result = this.compiler.fuse(agentA, agentB);
-        const iconHtml = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
-        const nameHtml = FormatUtils.extractDisplayName(result);
-
-        return `
-            <div class="preview-badge">Already Discovered</div>
-            <div class="preview-content">
-                <span class="preview-icon">${FormatUtils.escapeHTML(iconHtml)}</span>
-                <span class="preview-name">${FormatUtils.escapeHTML(nameHtml)}</span>
-            </div>
-        `;
+    if (this.renderer) {
+      return this.renderer.getPreMergePreviewHTML(selectedAgent);
     }
     return null;
   }
@@ -380,49 +294,8 @@ class FusionLab {
    * @param {Object} result - The fusion result object.
    */
   renderFusionResult(result) {
-    this.lastFusionResult = result;
-    const container = this.elements.fusionResultContainer;
-    if (container) {
-      container.classList.add("hidden");
-      container.classList.remove("fusion-revealed");
-      container.innerHTML = "";
-      // Clear previous
-
-      if (typeof AgentCard !== "undefined") {
-        // Find the custom agent key by finding the matching object in customAgentsMap
-        // ⚡ Bolt+: Replaced O(N) array allocation overhead from Object.entries() with a direct for...in dictionary lookup.
-        let keyStr = "fusion-result";
-        let resolvedFusionName = result.name;
-        for (const mKey in this.compiler.fusionMatrixMap) {
-            if (this.compiler.fusionMatrixMap[mKey] === resolvedFusionName) {
-                keyStr = mKey;
-                break;
-            }
-        }
-
-        const card = AgentCard.create(result, keyStr, 0);
-        card.classList.remove("pop-in");
-
-        if (result.name === "Adversary") {
-          card.addEventListener("click", () => {
-            const now = Date.now();
-            if (now - this.lastAdversaryClickTime < 400) {
-              this.adversaryClickCount++;
-            } else {
-              this.adversaryClickCount = 1;
-
-            }
-            this.lastAdversaryClickTime = now;
-
-            if (this.adversaryClickCount >= 7) {
-              this.unlockMatrix();
-              this.adversaryClickCount = 0; // Reset after trigger
-            }
-          });
-        }
-
-        container.appendChild(card);
-      }
+    if (this.renderer) {
+      this.renderer.renderFusionResult(result);
     }
   }
 
@@ -490,27 +363,8 @@ class FusionLab {
    * Reveals the fusion result with smooth transitions.
    */
   showResult() {
-    const fuseBtn = this.elements.fuseBtn;
-    if (fuseBtn) {
-      DOMUtils.setButtonState(fuseBtn, "ready", "Ignite Fusion Protocol");
-    }
-
-    const container = this.elements.fusionResultContainer;
-    const resetBtn = this.elements.resetLabBtn;
-    if (container) {
-      container.classList.remove("hidden");
-      container.classList.add("fusion-revealed");
-      if (resetBtn) {
-          resetBtn.classList.remove("hidden");
-      }
-
-      // Ensure the card inside gets focused for accessibility
-      const cardTitle = container.querySelector(".agent-title");
-      if (cardTitle) {
-          cardTitle.setAttribute("tabindex", "-1");
-          cardTitle.focus();
-          cardTitle.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }
+    if (this.renderer) {
+      this.renderer.showResult();
     }
   }
 }
