@@ -162,10 +162,11 @@
   {
     "name": "Superintendent",
     "emoji": "🧰",
-    "role": "Facility Maintenance",
-    "category": "Hygiene",
+    "role": "Entropy Manager",
+    "category": "Operations",
     "tier": "Core",
-    "description": "SWEEP the repository for structural decay, purge ephemeral debris, and relay architectural drift to the specialist swarm before it compounds.",
+    "description": "SWEEP the repository to purge microscopic decay, enforce structural baselines, and relay operational hazards to specialist queues.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/Superintendent.md",
     "isCustom": false
   },
@@ -224,10 +225,11 @@
   {
     "name": "Adversary",
     "emoji": "🤺",
-    "role": "The Mutation Engine",
+    "role": "Fault Injector",
     "category": "Testing",
     "tier": "Mythic",
-    "description": "SHATTER the illusion of safety. I am the test that tests the tests.",
+    "description": "Subvert the illusion of safety. Systematically sabotage core application logic to expose false positive tests and enforce strict validation.",
+    "forge_version": "V82.0",
     "promptFile": "prompts/fusions/Adversary.md",
     "isCustom": true
   },
@@ -260,6 +262,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "ILLUMINATE opaque test mechanics and arbitrary assertions by translating them into living, JSDoc-powered business constraint manuals.",
+    "forge_version": "V82.0",
     "promptFile": "prompts/fusions/Annotator.md",
     "isCustom": true
   },
@@ -595,6 +598,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "ERADICATE phantom tool schemas and hallucinated orchestration stubs.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Exorcist.md",
     "isCustom": true
   },
@@ -678,6 +682,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "MAP historical architectural decay via git forensics to resuscitate circular routes and collapsed colocation vectors before total system failure.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Forensic Architect.md",
     "isCustom": true
   },
@@ -953,6 +958,7 @@
     "category": "Observability",
     "tier": "Fusion",
     "description": "AUDIT the AI integration surface and synthesize the macro task board.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Lumen.md",
     "isCustom": true
   },
@@ -1524,6 +1530,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "STABILIZE decaying architectures by performing emergency triage on circular routes, collapsed colocation, and inline network logic.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Surgeon.md",
     "isCustom": true
   },
@@ -1545,6 +1552,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "SPLICE redundant functions by analyzing their inner workings and integrating their capabilities.",
+    "forge_version": "V81.0",
     "promptFile": "prompts/fusions/Sylar.md",
     "isCustom": true
   },
