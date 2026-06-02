@@ -177,7 +177,7 @@ class TerminalPolling {
             statusSpan.textContent = state.latestLog;
 
             const btn = document.createElement("button");
-            btn.className = "term-action-btn";
+            btn.className = "term-action-btn transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95";
             btn.setAttribute("aria-label", "Dismiss task error");
             btn.textContent = "[✕]";
             btn.onclick = () => {
