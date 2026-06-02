@@ -514,20 +514,12 @@ class RosterApp {
 
     // ⚡ Bolt+: Extracted redundant and repetitive DOM attribute parsing (getAttribute)
     // outside of the high-frequency intersection observer callback, caching the structured references in memory.
-    // ↗️ VECTORIZE: The Single-Pass Pipeline. We ignore the abstracted array layers and map directly.
-    const cachedPills = [];
-    if (this.elements.navPills) {
-        for (let i = 0; i < this.elements.navPills.length; i++) {
-            const pill = this.elements.navPills[i];
-            const href = pill.getAttribute("href");
-            if (href) {
-                cachedPills.push({
-                    el: pill,
-                    targetHref: href.substring(1)
-                });
-            }
-        }
-    }
+    // 🧬 COLLAPSE: Condensed imperative pill collection loop into a single-pass declarative pipeline.
+    const cachedPills = Array.from(this.elements.navPills || []).reduce((acc, el) => {
+        const href = el.getAttribute("href");
+        if (href) acc.push({ el, targetHref: href.substring(1) });
+        return acc;
+    }, []);
 
     this.observer = new IntersectionObserver(
       (entries) => {
@@ -568,18 +560,15 @@ class RosterApp {
    * unlocked fusion agents if they are not present in static maps.
    */
   getAgentForUI(index) {
-      let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || (this.fusionLab && this.fusionLab.compiler.customAgentsMap[index]);
+      let agent = this.agents[index] || AgentUtils.getCustomAgent(this.customAgents, index) || this.fusionLab?.compiler.customAgentsMap[index];
       if (index === "fusion-result" && this.fusionLab) return this.fusionLab.lastFusionResult;
 
-      if (!agent && typeof index === 'string' && Number.isNaN(Number(index)) && this.fusionLab && this.fusionLab.fusionIndex && this.fusionLab.fusionIndex.isUnlocked(index)) {
-          const names = AgentUtils.splitFusionKey(index);
-          if (names.length === 2) {
-              const agentA = this.fusionLab.agentMap.get(names[0]);
-              const agentB = this.fusionLab.agentMap.get(names[1]);
-              if (agentA && agentB) {
-                  agent = this.fusionLab.compiler.fuse(agentA, agentB);
-              }
-          }
+      // 🧬 COLLAPSE: Flattened nested reconstruction conditional with optional chaining and direct return.
+      if (!agent && typeof index === 'string' && Number.isNaN(Number(index)) && this.fusionLab?.fusionIndex?.isUnlocked(index)) {
+          const [nameA, nameB] = AgentUtils.splitFusionKey(index);
+          const agentA = this.fusionLab.agentMap.get(nameA);
+          const agentB = this.fusionLab.agentMap.get(nameB);
+          if (agentA && agentB) agent = this.fusionLab.compiler.fuse(agentA, agentB);
       }
       return agent;
   }
