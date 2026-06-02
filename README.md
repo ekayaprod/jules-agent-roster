@@ -55,8 +55,8 @@ The following environment variables are required to be set in your `.env` file t
 | :--- | :--- |
 | `CI` | Used to detect Continuous Integration environments. |
 | `JULES_FORGE_MODE` | Killswitch to bypass roster-payload.json generation and orphan tracking updates. |
-| `OPENAI_API_KEY` | Your OpenAI API key for LLM routing. |
-| `ANTHROPIC_API_KEY` | Your Anthropic API key for LLM routing. |
+| `OPENAI_API_KEY` | Your OpenAI API key for LLM routing (Mock: `your_openai_api_key_here`). |
+| `ANTHROPIC_API_KEY` | Your Anthropic API key for LLM routing (Mock: `your_anthropic_api_key_here`). |
 
 ### Usage Instructions
 
