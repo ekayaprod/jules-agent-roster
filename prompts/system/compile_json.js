@@ -15,8 +15,7 @@ function compile(jsonPayloadStr, targetFilePath) {
     try {
         data = JSON.parse(jsonPayloadStr);
     } catch (e) {
-        console.error("Failed to parse JSON payload:", e);
-        process.exit(1);
+        throw new Error(`Failed to parse JSON payload: ${e.message}`);
     }
 
     // Safe fallbacks for nested arrays
@@ -40,6 +39,15 @@ function compile(jsonPayloadStr, targetFilePath) {
         ? data.process.verify.heuristic_verification.join('\n')
         : '';
 
+    const targetLimit = data.process?.select_classify?.target_limit;
+    const targetLimitInstruction = (targetLimit && targetLimit !== '1' && targetLimit !== 1) 
+        ? `Continue executing within your locked scope up to a maximum of ${targetLimit}. ` 
+        : '';
+
+    const zeroTargetExitInstruction = data.process?.present?.requires_total_replacement_override 
+        ? '' 
+        : 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. ';
+
     const output = `---
 name: ${data.identity?.name || ''}
 emoji: ${data.identity?.emoji || ''}
@@ -47,7 +55,7 @@ role: ${data.identity?.role || ''}
 category: ${data.identity?.category || ''}
 tier: ${data.identity?.tier || ''}
 description: ${data.identity?.synthesis || ''}
-forge_version: V81.0
+forge_version: ${data.identity?.forge_version || 'V82.0'}
 ---
 
 You are "${data.identity?.name || ''}" ${data.identity?.emoji || ''} - The ${data.identity?.role || ''}.
@@ -89,13 +97,13 @@ ${data.memory_and_triage?.agent_tasks_board_rules || ''}
 1. 🔍 **DISCOVER** — Execute via ${data.process?.discover?.trigger || ''} using asynchronous tools. ${data.process?.discover?.tasks_board_cross_reference || ''}
 ${data.process?.discover?.discovery_velocity_rule || ''}
 ${formatList(data.process?.discover?.target_matrix)}
-2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${data.process?.select_classify?.priority_language || ''} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${data.process?.select_classify?.target_limit || ''}.
-3. ⚙️ **[${data.process?.execute?.theme_verb || ''}]** — **Execute Incrementally.** Execute modifications precisely and *immediately* upon discovering a valid target. Continue executing within your locked scope up to a maximum of ${data.process?.select_classify?.target_limit || ''}. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
+2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${data.process?.select_classify?.priority_language || ''} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${targetLimit || ''}.
+3. ⚙️ **[${data.process?.execute?.theme_verb || ''}]** — **${data.process?.execute?.execution_posture || ''}** ${targetLimitInstruction}Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 ${executionSteps}
 4. ✅ **VERIFY** — **The Reporter Protocol:** ${data.process?.verify?.reporter_protocol || ''} Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
 **Heuristic Verification:**
 ${heuristics}
-5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. ${data.process?.present?.pr_creation_rule || ''} Trigger this tool natively rather than using chat-based workarounds. Use the title: "${data.process?.present?.requires_caution_flag ? '[CAUTION] ' : ''}${data.identity?.emoji || ''} ${data.identity?.name || ''}: [Action]". ${data.process?.present?.presentation_slot || ''} Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. If the run produced no source mutations but did append relay entries to \`.jules/agent_tasks.md\`, submit a minimal PR documenting the relay entries rather than suppressing it.
+5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. ${data.process?.present?.pr_creation_rule || ''} Trigger this tool natively rather than using chat-based workarounds. Use the title: "${data.process?.present?.requires_caution_flag ? '[CAUTION] ' : ''}${data.identity?.emoji || ''} ${data.identity?.name || ''}: [Action]". ${data.process?.present?.presentation_slot || ''} Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. ${zeroTargetExitInstruction}If the run produced no source mutations but did append relay entries to \`.jules/agent_tasks.md\`, submit a minimal PR documenting the relay entries rather than suppressing it.
 **Required PR Headers:** ${data.process?.present?.pr_headers || ''}
 
 ### Favorite Optimizations
@@ -111,11 +119,17 @@ ${formatList(data.favorite_optimizations)}
 if (require.main === module) {
     const args = process.argv.slice(2);
     if (args.length !== 2) {
+        console.error("Usage: node compile_json.js <jsonPath> <targetPath>");
         process.exit(1);
     }
     const [jsonPath, targetPath] = args;
-    const jsonPayloadStr = fs.readFileSync(jsonPath, 'utf8');
-    compile(jsonPayloadStr, targetPath);
+    try {
+        const jsonPayloadStr = fs.readFileSync(jsonPath, 'utf8');
+        compile(jsonPayloadStr, targetPath);
+    } catch (e) {
+        console.error(e.message);
+        process.exit(1);
+    }
 }
 
 module.exports = { compile };
