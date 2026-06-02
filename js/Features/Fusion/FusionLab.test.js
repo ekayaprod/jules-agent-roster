@@ -12,6 +12,14 @@ describe('FusionLab Security', () => {
     beforeEach(() => {
         consoleWarnMock = jest.spyOn(console, 'warn').mockImplementation(() => {});
         fusionLab = new FusionLab();
+
+
+        const FusionLabRenderer = require('../../UI/FusionLab/FusionLabRenderer.js');
+        const FusionLabEvents = require('../../UI/FusionLab/FusionLabEvents.js');
+        fusionLab.elements = typeof mockElements !== 'undefined' ? mockElements : {};
+        fusionLab.renderer = new FusionLabRenderer(fusionLab);
+        fusionLab.events = new FusionLabEvents(fusionLab);
+
         mockElements = {
             slotACard: {
                 classList: { remove: jest.fn(), add: jest.fn() },
@@ -82,6 +90,14 @@ describe('FusionLab.getPreMergePreviewHTML Edge Cases', () => {
 
     beforeEach(() => {
         fusionLab = new FusionLab();
+
+
+        const FusionLabRenderer = require('../../UI/FusionLab/FusionLabRenderer.js');
+        const FusionLabEvents = require('../../UI/FusionLab/FusionLabEvents.js');
+        fusionLab.elements = typeof mockElements !== 'undefined' ? mockElements : {};
+        fusionLab.renderer = new FusionLabRenderer(fusionLab);
+        fusionLab.events = new FusionLabEvents(fusionLab);
+
         fusionLab.state.slotA = agentA;
         fusionLab.state.slotB = agentB;
         fusionLab.compiler = {
@@ -168,6 +184,14 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
     beforeEach(() => {
         fusionLab = new FusionLab();
+
+
+        const FusionLabRenderer = require('../../UI/FusionLab/FusionLabRenderer.js');
+        const FusionLabEvents = require('../../UI/FusionLab/FusionLabEvents.js');
+        fusionLab.elements = typeof mockElements !== 'undefined' ? mockElements : {};
+        fusionLab.renderer = new FusionLabRenderer(fusionLab);
+        fusionLab.events = new FusionLabEvents(fusionLab);
+
         mockElements = {
             fuseBtn: {
                 setAttribute: jest.fn(),
@@ -622,6 +646,14 @@ describe('FusionLab Initialization and Bindings', () => {
 
     beforeEach(() => {
         fusionLab = new FusionLab();
+
+
+        const FusionLabRenderer = require('../../UI/FusionLab/FusionLabRenderer.js');
+        const FusionLabEvents = require('../../UI/FusionLab/FusionLabEvents.js');
+        fusionLab.elements = typeof mockElements !== 'undefined' ? mockElements : {};
+        fusionLab.renderer = new FusionLabRenderer(fusionLab);
+        fusionLab.events = new FusionLabEvents(fusionLab);
+
 
         // Restore globals
         global.FusionCompiler = MockFusionCompiler;
