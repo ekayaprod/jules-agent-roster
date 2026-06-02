@@ -334,8 +334,12 @@ global.RarityEngine = RarityEngine;
 const FusionCompiler = loadClass('js/Features/Fusion/FusionCompiler.js');
 const FusionIndex = loadClass('js/Features/Fusion/FusionIndex.js');
 const AgentPicker = loadClass('js/Features/Fusion/AgentPicker.js');
-const FusionLab = loadClass('js/Features/Fusion/FusionLab.js');
 global.AgentPicker = AgentPicker;
+const FusionLabEvents = loadClass('js/UI/FusionLab/FusionLabEvents.js');
+global.FusionLabEvents = FusionLabEvents;
+const FusionLabRenderer = loadClass('js/UI/FusionLab/FusionLabRenderer.js');
+global.FusionLabRenderer = FusionLabRenderer;
+const FusionLab = loadClass('js/Features/Fusion/FusionLab.js');
 
 const AgentRepository = loadClass('js/Services/AgentRepository.js');
 const ToastNotification = loadClass('js/UI/Toast/ToastNotification.js');
