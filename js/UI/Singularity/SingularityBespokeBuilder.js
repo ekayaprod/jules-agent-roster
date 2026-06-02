@@ -1,3 +1,10 @@
+// 🕯️ CHRONICLE: AST reasoning explains the logic; Git history explains the business intent.
+
+/**
+ * Encapsulates the UI logic and generation pipeline for the Singularity Meta-Forge.
+ * Parses user input to generate custom bespoke agents directly from the UI.
+ * * Historical Intent: Added via 6073b10d (Apr 2026) to migrate Singularity to an Unlockable UI.
+ */
 class SingularityBespokeBuilder {
   constructor(julesTerminal) {
     this.julesTerminal = julesTerminal;

@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### 🚀 Features
+- **UI & Transitions**: Implemented fluid geometry, GPU-accelerated modal transitions using opacity/pointer-events, and fluid search bar expansion in UI components.
+- **Code Health & Monolith Refactoring**: Extracted logic into EventBinder subdomain, decoupled FusionLab monolith, and optimized FusionEngine loops (replaced string splits/Sets with direct string lookups).
+- **Agent Architecture Upgrades**: Mass migration of multiple additional agents (Canner, Dispatcher, Annotator, Adversary, Surgeon, Canvas, Customs, Rumble, Pantomime, Scaffolder, etc.) to Forge Protocol V82.0 / V81.0 architecture via Auto-Forge.
+- **Rarity & Animations**: Fixed CSS keyframe collisions preventing rarity card effects from rendering properly, added missing keyframes for epicPulse and legendaryPulse.
 - **Agent Architecture Upgrades**: Mass migration of multiple agents (Siren, Forensic Architect, Calligrapher, Sylar, Surgeon, Town Crier, Polygraph, Hive, Pantomime, Examiner, Triage Commander, Narrator, Firewall, Temporal Loom, Barricade, Medic, Pacemaker, Bulwark) to the current V68.0 / Master Forge architecture via Auto-Forge.
 - **CI/CD Infrastructure**: Provisioned optimized container transit via multi-stage Docker build.
 - **Architectural Upgrades**: Upgraded numerous core and fusion agents to the modern Master Forge V68.0 Architecture.

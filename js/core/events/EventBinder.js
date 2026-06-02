@@ -1,5 +1,12 @@
 
 
+// 🕯️ CHRONICLE: AST reasoning explains the logic; Git history explains the business intent.
+
+/**
+ * Acts as the centralized domain for binding and managing all DOM event listeners for the Roster UI.
+ * Isolates event handling from rendering logic to ensure architectural separation of concerns.
+ * * Historical Intent: Added via c568ccb1 (Apr 2026) to extract RosterApp DOM events into an EventBinder subdomain.
+ */
 class EventBinder {
     static bind(app) {
     if (app.elements.searchInput) {

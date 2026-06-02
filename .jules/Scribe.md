@@ -1,5 +1,15 @@
-## Scribe — The Zero Index Constraint & The Twin-Chronicle Integration
-**Learning:** The UI layer passes zero-based array indices as unique identifiers for pinning agents. Standard JavaScript falsy checks (`!key`) unintentionally swallow the `0` index, requiring a strict `key !== 0` override. Public changelogs should map internal architectural changes directly to the affected codebase via localized JSDocs to preserve the original business context while filtering raw git noise.
-**Action:** Always document falsy overrides in boundary APIs that handle both string IDs and numerical array indices to prevent accidental strict-equality refactors that break the first item. Continuously enforce the Twin-Chronicle pattern by pairing `CHANGELOG.md` synthesis with targeted source code annotations.
+# 🕯️ Scribe Execution Journal
 
-**Action:** Injected missing AST-driven documentation with historical git context into `js/Utils/agent-utils.js`, `js/Utils/network-utils.js`, and `js/Utils/index.js` targeting the `d840cd25` commit. Aggregated chaotic commit histories into a polished `[Unreleased]` block in the `CHANGELOG.md` file.
+## Applied Rules
+- Injected AST-driven inline JSDoc comments into `js/UI/Singularity/SingularityBespokeBuilder.js` and `js/core/events/EventBinder.js` merging structural reasoning with historical Git intent.
+- Aggregated chaotic recent commit streams into polished, user-facing feature bullets in `CHANGELOG.md`.
+
+## Commit Hashes Aggregated
+- **JSDoc Intent Sources**:
+  - `6073b10d` (Singularity migration to Unlockable UI)
+  - `c568ccb1` (Extracted RosterApp DOM events into EventBinder)
+- **Changelog Aggregation**:
+  - UI fluid transitions (e.g., `91afed8b`, `56bbc527`, `42cf0a76`)
+  - Code health & refactoring (e.g., `c568ccb1`, `e2ea3e69`, `66bee300`)
+  - Mass auto-forge upgrades (e.g., `46718c76`, `2da17257`, `0ea23c6b`, `e9868c3f`)
+  - Rarity animations fix (e.g., `74fa23b8`, `4fd5330e`, `a94beba5`)\n
