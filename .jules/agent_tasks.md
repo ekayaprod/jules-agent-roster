@@ -28,8 +28,8 @@
 * 📝 `js/Utils/agent-utils.js`: Missing JSDoc documentation block.
 
 ## 🎨 Rigid Presentation States ([UI / STYLIZE])
-- [ ] 🎨 `js/Features/Fusion/AgentPicker.js`: Rigid presentation state (inline style) detected at line 124.
-- [ ] 🎨 `js/Features/Fusion/AgentPicker.js`: Rigid presentation state (inline style) detected at line 168.
+- [x] 🎨 `js/Features/Fusion/AgentPicker.js`: Rigid presentation state (inline style) detected at line 124.
+- [x] 🎨 `js/Features/Fusion/AgentPicker.js`: Rigid presentation state (inline style) detected at line 168.
 
 
 ## 🧹 Semantic Dust & Hygiene ([AST / REMOVE])

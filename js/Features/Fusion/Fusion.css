@@ -323,3 +323,30 @@
 .pin-btn:hover, .dropdown-item:hover, .action-main-btn:hover, .action-toggle-btn:hover {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
+
+/* AgentPicker Grid Columns Utilities */
+.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+.grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+.grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+.grid-cols-7 { grid-template-columns: repeat(7, 1fr); }
+.grid-cols-8 { grid-template-columns: repeat(8, 1fr); }
+.grid-cols-9 { grid-template-columns: repeat(9, 1fr); }
+.grid-cols-10 { grid-template-columns: repeat(10, 1fr); }
+.grid-cols-11 { grid-template-columns: repeat(11, 1fr); }
+.grid-cols-12 { grid-template-columns: repeat(12, 1fr); }
+
+/* Animation Delay Utilities */
+.delay-0 { animation-delay: 0ms; }
+.delay-30 { animation-delay: 30ms; }
+.delay-60 { animation-delay: 60ms; }
+.delay-90 { animation-delay: 90ms; }
+.delay-120 { animation-delay: 120ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-180 { animation-delay: 180ms; }
+.delay-210 { animation-delay: 210ms; }
+.delay-240 { animation-delay: 240ms; }
+.delay-270 { animation-delay: 270ms; }
+.delay-300 { animation-delay: 300ms; }
