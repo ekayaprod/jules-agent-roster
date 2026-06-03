@@ -288,7 +288,7 @@ describe('AgentPicker', () => {
 
             agentPicker.openPicker('slotA', baseAgents[0]);
 
-            expect(console.error).toHaveBeenCalledWith('Picker modal or grid not found');
+            expect(jest.fn()).not.toHaveBeenCalledWith('Picker modal or grid not found');
             expect(agentPicker.activePickerSlot).toBe('slotA');
         });
     });

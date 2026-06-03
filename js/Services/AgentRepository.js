@@ -23,7 +23,6 @@ class AgentRepository {
             if (err.message === "Check your configuration file formatting and try again." || err.message === "Failed to parse JSON") {
                 throw err; // Propagate safeJsonParse errors to fail fast as expected
             }
-            console.error("Failed to fetch roster payload", err);
             return [];
         }
     }
@@ -83,20 +82,11 @@ class AgentRepository {
                     const validAgent = validation.sanitized;
                     this.customAgents[key] = validAgent;
                 } else {
-                    console.warn(
-                        JSON.stringify({
-                            event: "INVALID_CUSTOM_AGENT",
-                            key: key,
-                            reason: validation.reason,
-                            timestamp: new Date().toISOString(),
-                        })
-                    );
                 }
             }
 
             return { agents: this.agents, customAgents: this.customAgents, fusionMatrix: this.fusionMatrix };
         } catch (error) {
-            console.error("Failed to load agent payloads", error);
             throw error;
         }
     }
@@ -106,18 +96,11 @@ class AgentRepository {
             const res = await NetworkUtils.fetchWithRetry(url, { throwOn404: false });
             if (!res.ok) {
                 if (!url.includes("fusions")) {
-                    console.warn(`Failed to load prompt for ${name}`);
                 }
                 return fallback;
             }
             return await res.text();
         } catch (e) {
-            console.warn(
-                url.includes("fusions")
-                    ? `Error loading custom prompt for ${name}`
-                    : `Error loading prompt for ${name}`,
-                e
-            );
             return fallback;
         } finally {
             delete this._pendingPrompts[url];
@@ -205,7 +188,6 @@ class AgentRepository {
             }
 
             if (!isValid) {
-                console.warn("Skipping invalid agent entry:", agent);
                 continue;
             }
 
@@ -216,9 +198,6 @@ class AgentRepository {
 
             // Paramedic: Sanitize optional fields to prevent fragility
             if (agent.scope && typeof agent.scope !== "string") {
-                console.warn(
-                    `Sanitizing agent ${agent.name}: scope must be string. Casting.`,
-                );
                 agent.scope = String(agent.scope);
             }
 
@@ -259,7 +238,6 @@ class AgentRepository {
             agentPayload.description = String(agentPayload.description);
         }
         if (agentPayload.short_description !== undefined && typeof agentPayload.short_description !== "string") {
-            console.warn(`[First Responder] Sanitizing ${key}: short_description must be string. Casting.`);
             agentPayload.short_description = String(agentPayload.short_description);
         }
 

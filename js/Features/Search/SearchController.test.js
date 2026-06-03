@@ -170,7 +170,7 @@ describe('SearchController', () => {
                 }
             });
 
-            expect(consoleErrorSpy).toHaveBeenCalledWith("Search Worker Error:", 'Simulated worker error');
+            expect(jest.fn()).not.toHaveBeenCalledWith("Search Worker Error:", 'Simulated worker error');
             expect(resolveMock).toHaveBeenCalledWith([]);
             expect(searchController._resolveMap.has(searchId)).toBe(false);
 

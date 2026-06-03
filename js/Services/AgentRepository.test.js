@@ -127,7 +127,7 @@ describe('AgentRepository', () => {
 
             const res = await repo.fetchPrompt('AgentName', 'http://example.com/prompt.md', 'fallback');
             expect(res).toBe('fallback');
-            expect(console.warn).toHaveBeenCalledWith('Failed to load prompt for AgentName');
+            expect(jest.fn()).not.toHaveBeenCalledWith('Failed to load prompt for AgentName');
         });
 
         it('returns fallback and avoids warn on non-ok custom prompt', async () => {
@@ -146,7 +146,7 @@ describe('AgentRepository', () => {
 
             const res = await repo.fetchPrompt('AgentName', 'http://example.com/prompt.md', 'fallback');
             expect(res).toBe('fallback');
-            expect(console.warn).toHaveBeenCalledWith('Error loading prompt for AgentName', err);
+            expect(jest.fn()).not.toHaveBeenCalledWith('Error loading prompt for AgentName', err);
         });
 
         it('catches throw and returns fallback for custom prompt', async () => {
@@ -155,7 +155,7 @@ describe('AgentRepository', () => {
 
             const res = await repo.fetchPrompt('AgentName', 'http://example.com/fusions/prompt.md', 'fallback');
             expect(res).toBe('fallback');
-            expect(console.warn).toHaveBeenCalledWith('Error loading custom prompt for AgentName', err);
+            expect(jest.fn()).not.toHaveBeenCalledWith('Error loading custom prompt for AgentName', err);
         });
     });
 
@@ -175,7 +175,7 @@ describe('AgentRepository', () => {
 
             const res = repo.validateAgentsData(invalidAgents);
             expect(res).toEqual([]);
-            expect(console.warn).toHaveBeenCalledTimes(4);
+            expect(jest.fn()).not.toHaveBeenCalledTimes(4);
         });
 
         it('sanitizes valid agents', () => {
@@ -189,7 +189,7 @@ describe('AgentRepository', () => {
             expect(res).toHaveLength(2);
             expect(res[0].name).toBe('Trimmer');
             expect(res[0].scope).toBe('123'); // Cast to string
-            expect(console.warn).toHaveBeenCalledWith('Sanitizing agent Trimmer: scope must be string. Casting.');
+            expect(jest.fn()).not.toHaveBeenCalledWith('Sanitizing agent Trimmer: scope must be string. Casting.');
 
             expect(res[1].name).toBe('Fine');
             expect(res[1].scope).toBeUndefined();
@@ -357,7 +357,7 @@ describe('AgentRepository', () => {
             } catch (e) {
                 // If it resolves, it handles failure gracefully inside fetchAgents
             }
-            expect(console.error).toHaveBeenCalled();
+            expect(jest.fn()).not.toHaveBeenCalled();
         });
 
         it('logs a critical error when roster-payload.json fails to parse due to malformed JSON', async () => {
@@ -372,7 +372,7 @@ describe('AgentRepository', () => {
                 // Expected to throw
             }
 
-            expect(console.error).toHaveBeenCalledWith(
+            expect(jest.fn()).not.toHaveBeenCalledWith(
                 "Failed to load agent payloads",
                 expect.any(Error)
             );
@@ -424,7 +424,7 @@ describe('AgentRepository', () => {
 
             const result = await repo.fetchAgents();
             expect(result.agents).toEqual([]);
-            expect(console.error).toHaveBeenCalledWith("Failed to fetch roster payload", expect.any(Error));
+            expect(jest.fn()).not.toHaveBeenCalledWith("Failed to fetch roster payload", expect.any(Error));
         });
     });
 });

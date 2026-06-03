@@ -209,7 +209,6 @@ class AgentPicker {
         const grid = this.elements.pickerGrid;
 
         if (!modal || !grid) {
-            console.error("Picker modal or grid not found");
             return;
         }
 
