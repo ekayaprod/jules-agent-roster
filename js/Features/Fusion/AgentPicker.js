@@ -121,7 +121,7 @@ class AgentPicker {
             this.baseAgents.forEach((agent, index) => {
                 const delay = Math.min(index * 30, 300);
                 const htmlStr = `
-                <div class="mini-agent-card pop-in picker-card-flex transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95" style="animation-delay: ${delay}ms;" role="option" tabindex="0" data-name="${FormatUtils.escapeHTML(agent.name.toLowerCase())}">
+                <div class="mini-agent-card pop-in picker-card-flex transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 delay-${delay}" role="option" tabindex="0" data-name="${FormatUtils.escapeHTML(agent.name.toLowerCase())}">
                     <span class="mini-icon">${FormatUtils.escapeHTML(agent.emoji)}</span>
                     <span class="mini-name">${FormatUtils.escapeHTML(agent.name)}</span>
                     <span class="mini-role">${FormatUtils.escapeHTML(agent.role)}</span>
@@ -162,10 +162,9 @@ class AgentPicker {
         }
 
         const chunked = [];
-        const templateCols = `repeat(${columns}, 1fr)`;
         for (let i = 0; i < htmlResults.length; i += columns) {
             const rowChunk = htmlResults.slice(i, i + columns).join("");
-            chunked.push(`<div class="picker-chunk-grid transition-all duration-300 ease-in-out" style="grid-template-columns: ${templateCols};">${rowChunk}</div>`);
+            chunked.push(`<div class="picker-chunk-grid transition-all duration-300 ease-in-out grid-cols-${columns}">${rowChunk}</div>`);
         }
 
         return chunked;

@@ -370,7 +370,7 @@ describe('AgentPicker', () => {
             const htmlResults = agentPicker.getMemoizedHtml();
             const chunked = agentPicker.getChunkedHtml(htmlResults);
 
-            expect(chunked[0]).toContain('grid-template-columns: repeat(3, 1fr)');
+            expect(chunked[0]).toContain('grid-cols-3');
         });
 
         test('handles window resize appropriately to trigger grid update', () => {
@@ -418,7 +418,7 @@ describe('AgentPicker', () => {
             const htmlResults = agentPicker.getMemoizedHtml();
             const chunked = agentPicker.getChunkedHtml(htmlResults);
 
-            expect(chunked[0]).toContain('grid-template-columns: repeat(4, 1fr)');
+            expect(chunked[0]).toContain('grid-cols-4');
         });
 
         test('updates existing Clusterize instance', () => {
