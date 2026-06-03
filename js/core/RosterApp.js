@@ -306,16 +306,10 @@ class RosterApp {
         }
     };
 
-    const resolveCategory = (agent, gridCategory) => {
-      let category = gridCategory || agent.category || "strategy";
-      if (!gridCategory) {
-        category = category.toLowerCase();
-        if (agent.tier === "Plus" || (agent.name && agent.name.endsWith("+"))) {
-          category = "plus";
-        }
-      }
-      return category;
-    };
+    const resolveCategory = (agent, gridCategory) =>
+      gridCategory || (agent.tier === "Plus" || agent.name?.endsWith("+")
+        ? "plus"
+        : (agent.category || "strategy").toLowerCase());
 
     const processAgentCard = (agentItem) => {
       const { agent, indexOrKey, gridCategory } = agentItem;
@@ -348,27 +342,19 @@ class RosterApp {
 
     const applyFinalDOMUpdates = () => {
       // Final DOM updates
-      for (let i = 0; i < this.categoryKeys.length; i++) {
-        const key = this.categoryKeys[i];
+      this.categoryKeys.forEach(key => {
         const container = categoryContainers[key];
-        if (container) {
-          container.innerHTML = "";
-          const fragment = fragments[key];
-          const hasChildren = fragment && fragment.children.length > 0;
-          if (fragment) container.appendChild(fragment);
+        if (!container) return;
+        container.innerHTML = "";
+        const fragment = fragments[key];
+        const hasChildren = fragment?.children.length > 0;
+        if (fragment) container.appendChild(fragment);
 
-          const header = document.getElementById(key);
-          if (hasChildren) {
-              container.style.display = "";
-              container.classList.remove("empty");
-              if (header) header.style.display = "";
-          } else {
-              container.style.display = "none";
-              container.classList.add("empty");
-              if (header) header.style.display = "none";
-          }
-        }
-      }
+        const header = document.getElementById(key);
+        container.style.display = hasChildren ? "" : "none";
+        container.classList.toggle("empty", !hasChildren);
+        if (header) header.style.display = hasChildren ? "" : "none";
+      });
     };
 
     const dismissLoadingOverlay = () => {
@@ -376,9 +362,7 @@ class RosterApp {
       const overlay = document.getElementById("initial-loading-overlay");
       if (overlay && !overlay.classList.contains("hidden")) {
           overlay.classList.add("hidden");
-          setTimeout(() => {
-              if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-          }, LOADING_OVERLAY_DISMISS_MS);
+          setTimeout(() => overlay.remove(), LOADING_OVERLAY_DISMISS_MS);
       }
     };
 
@@ -522,16 +506,10 @@ class RosterApp {
     }, []);
 
     this.observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const targetId = CONFIG.sectionMap[entry.target.id];
-            cachedPills.forEach(({ el, targetHref }) => {
-                el.classList.toggle("active", targetHref === targetId);
-            });
-          }
-        });
-      },
+      (entries) => entries.filter(e => e.isIntersecting).forEach(entry => {
+        const targetId = CONFIG.sectionMap[entry.target.id];
+        cachedPills.forEach(({ el, targetHref }) => el.classList.toggle("active", targetHref === targetId));
+      }),
       OBSERVER_OPTIONS
     );
 
