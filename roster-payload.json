@@ -470,7 +470,8 @@
     "role": "Particle Smasher",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Accelerate outdated syntax into modern paradigms and observe the resulting collisions to mathematically prove structural integrity.",
+    "description": "COLLIDE outdated syntax into modern paradigms and observe the resulting collisions to mathematically prove structural integrity.",
+    "forge_version": "V82.0",
     "promptFile": "prompts/fusions/Collider.md",
     "isCustom": true
   },
@@ -1203,11 +1204,12 @@
   },
   {
     "name": "Prompt Engineer",
-    "emoji": "⚙️",
-    "role": "Prompt Evolutionist",
+    "emoji": "📐",
+    "role": "Payload Auditor",
     "category": "Strategy",
-    "tier": "Fusion",
-    "description": "Evolve brittle AI instructions by injecting strict cognitive constraints and expert personas while securing dynamic variables.",
+    "tier": "Mythic",
+    "description": "TRANSMUTE prompt prose into directive contracts — auditing polarity, primacy, and the silent example overrides that break payloads at scale.",
+    "forge_version": "V82.0",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },

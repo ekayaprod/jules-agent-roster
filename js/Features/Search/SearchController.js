@@ -53,7 +53,6 @@ class SearchController {
                 if (type === 'results') {
                     this._resolveMap.get(searchId)(results);
                 } else if (type === 'error') {
-                    console.error("Search Worker Error:", message);
                     this._resolveMap.get(searchId)([]);
                 }
                 this._resolveMap.delete(searchId);
