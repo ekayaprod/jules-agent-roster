@@ -5,6 +5,9 @@
 .jules
 .mcp.json
 Dockerfile
+*.md
+.prettierrc
+.markdownlint.json
 docs
 node_modules
 npm-debug.log
