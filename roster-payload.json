@@ -523,9 +523,10 @@
     "name": "Decoder",
     "emoji": "📟",
     "role": "Stack Translator",
-    "category": "observability",
+    "category": "Observability",
     "tier": "Fusion",
     "description": "DECODE broken test suites and translate massive terminal stack traces into actionable Markdown reports.",
+    "forge_version": "V82.5",
     "promptFile": "prompts/fusions/Decoder.md",
     "isCustom": true
   },
@@ -536,6 +537,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "SHOCK fatal delivery infrastructure back to life. Stabilize broken CI/CD pipelines, Dockerfiles, and manifests to unblock deployments.",
+    "forge_version": "V82.5",
     "promptFile": "prompts/fusions/Defibrillator.md",
     "isCustom": true
   },
@@ -578,7 +580,8 @@
     "role": "SDK Maintainer",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Hunt down legacy AI SDK integrations, bump their dependencies, and refactor the execution logic. Rewrite the syntax to match modern API schemas.",
+    "description": "REWIRE outdated AI provider SDKs and seamlessly upgrade the infrastructure wiring to modern API schemas.",
+    "forge_version": "V82.5",
     "promptFile": "prompts/fusions/Electrician.md",
     "isCustom": true
   },
