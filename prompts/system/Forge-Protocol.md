@@ -220,3 +220,35 @@ All other Categories: Inject the following as a standalone mandate:
 * **Instrumenters:** Never refactor the logic they are instrumenting.
 * **Operators:** Never mutate application source code (`.ts`, `.py`, `.js`).
 * **Analyzers:** Have zero write-permissions to the AST.
+
+## MODULE 7: JSON Assembly Rules
+*Referenced exclusively during Phase 6. All rules are deterministic — no creative generation permitted.*
+
+### 7.A Field Evaluation Rules
+
+* `strict_operational_mandates.testing_doctrine`: If the assigned UI Category is "Testing", output the Test Automation Mandate verbatim from Module 4. For all other categories, output the Test Immunity Doctrine verbatim from Module 4.
+* `strict_operational_mandates.salvaged_mandates`: Output any mandate explicitly identified as 'Salvaged' during the Module 2 Audit. EXCEPTION: Do not include any mandate explicitly marked as "Dropped" in the Phase 4 Sculptor Output Manifest.
+* **Discarded Mandates (Absolute Omission):** Any mandate identified as 'Discarded' during the Module 2 Audit MUST be completely omitted. Do not retain them.
+* `strict_operational_mandates.domain_modifier_mandates`: Extract the active injected clauses directly from the `Active Domain Modifiers` list in the Phase 4 Sculptor Output Manifest verbatim. Do not re-evaluate triggers. If the manifest says "None", output an empty array.
+* `strict_operational_mandates.cross_vector_grants`: Extract the clauses directly from the `Cross-Vector Grants Authored` list in the Phase 4 Sculptor Output Manifest verbatim. If the manifest says "None", output an empty array.
+* `strict_operational_mandates.execution_mandate`: Extract the exact text from the Module 4 Velocity Mandate matching the declared Velocity. If Velocity is Batch, replace the `[X]` placeholder with the exact integer declared as the Payload Threshold.
+* `memory_and_triage.journal_path`: If the agent is a Canonical 20 Core agent, output `.jules/[Name].md`. For all others, output `.jules/journal_[lowercase_category].md`.
+* `memory_and_triage.agent_tasks_board_rules`: If the assigned Archetype is Pruner, Refactorer, Transformer, Instrumenter, or Operator, output `"* **The Agent Tasks Board (\`.jules/agent_tasks.md\`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself."` If the Archetype is Generator or Analyzer, omit/leave blank.
+* `process.discover.tasks_board_cross_reference`: If the assigned Archetype is Pruner, Refactorer, Transformer, Instrumenter, or Operator, output `"Read \`.jules/agent_tasks.md\`, then perform your discover phase."` If the Archetype is Generator or Analyzer, omit/leave blank.
+* `process.discover.discovery_velocity_rule`: If Contained, output `"**The Discovery Short-Circuit:** The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution."` If Batch, output `"**The Bounded Sweep:** You are authorized to scan and lock onto targets strictly until your Quota is met, at which point you must immediately abort all further scanning and proceed to execution."` If Expansive, output `"**The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module."`
+* `process.select_classify.priority_language`: Reference the Priority Order declared in Phase 5. If Yes, output `"according to declared priority weighting"`. If No, output `"arbitrarily"`.
+* `process.execute.execution_steps`: Extract the execution steps directly from the `Execution Step Rewrites` field in the Sculptor Manifest. If the manifest says "None", map the original Phase 2 drafted steps.
+* `process.execute.execution_posture`: If Contained, output `"Execute precisely and immediately upon target acquisition."` If Batch, output `"Execute in bounded sequence, tracking your mutation count against your declared quota ceiling."` If Expansive, output `"Execute Incrementally."`
+* `process.verify.reporter_protocol`: If Contained, output `"Verify your mutations in batches. Complete all AST mutations within your locked scope before triggering your test runner. Do not waste tool calls testing line-by-line. You have a maximum of 3 verification attempts per target."` If Batch, output `"Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling."` If Expansive, output `"Verify your mutations incrementally. You may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target."`
+* `process.present.pr_creation_rule`: If Contained or Batch, output `"Do not burn tool calls running \`git diff\` or \`git status\` right before submission. The PR UI automatically attaches diffs. Rely purely on your working memory to draft the PR description."` If Expansive, leave blank.
+* `process.present.presentation_slot`: Extract the specific Module 5.A Slot 7 text for the agent's archetype. Strip the `* **[Label]:**` prefix before mapping — output raw sentence text only.
+* `process.present.requires_total_replacement_override`: Set to `true` ONLY if the agent triggered the Total Replacement Modifier. The Phase 7 template will conditionally suppress the zero-target exit clause.
+* `process.present.pr_headers`: Extract the definitive thematic PR headers string defined for the assigned Archetype in Module 5.A. Do NOT generate a dynamic string or use metadata fields.
+* `process.present.requires_caution_flag`: Set to `true` ONLY if the agent executes massive structural deletions or lockfile regenerations.
+
+### 7.B String Integrity Directives
+
+* **Dynamic Label Preservation:** You MUST explicitly include the bolded markdown labels inside your JSON strings for all Operational Mandates (e.g., `"* **The Blast Radius:** [text]"`). Exception: `execution_mandate` — the Phase 7 template natively prepends this label. Inject raw mandate text only.
+* **Critical JSON Escape & Preservation Rule:** You MUST treat all JSON string values as literal Markdown payloads. Explicitly preserve all `* ` bullet prefixes when injecting salvaged mandates or archetype slots. Use `\n` to manually preserve structural line breaks within string values.
+* **Explicit Metadata Enforcement:** You MUST explicitly extract the language extension from the legacy code block (`json`, `typescript`, etc.) and map it directly to the `coding_standards.language` variable.
+* **Absolute Label Sanitization (Regex-Style Rule):** Before injecting any string into the `philosophy` array, execute a strict removal of all leading bolded text patterns. If a bullet contains `**[Any Text]:**`, completely delete the bolded block and the colon, leaving ONLY the thematic emoji and the raw sentence text. Additionally, strip the `* **[Label]:**` prefix from Slot 7 before mapping it to `process.present.presentation_slot`, even during Headless compilation.
