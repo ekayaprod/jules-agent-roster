@@ -81,7 +81,6 @@ class AgentRepository {
                 if (validation.valid) {
                     const validAgent = validation.sanitized;
                     this.customAgents[key] = validAgent;
-                } else {
                 }
             }
 
@@ -95,8 +94,6 @@ class AgentRepository {
         try {
             const res = await NetworkUtils.fetchWithRetry(url, { throwOn404: false });
             if (!res.ok) {
-                if (!url.includes("fusions")) {
-                }
                 return fallback;
             }
             return await res.text();

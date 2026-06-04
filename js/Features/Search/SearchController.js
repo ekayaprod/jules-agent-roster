@@ -48,7 +48,7 @@ class SearchController {
     if (typeof Worker !== 'undefined') {
         this.worker = new Worker('js/Features/Search/SearchWorker.js');
         this.worker.onmessage = (e) => {
-            const { type, results, searchId, message } = e.data;
+            const { type, results, searchId } = e.data;
             if (this._resolveMap.has(searchId)) {
                 if (type === 'results') {
                     this._resolveMap.get(searchId)(results);
