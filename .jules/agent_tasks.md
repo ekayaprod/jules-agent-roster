@@ -18,6 +18,7 @@
 ## The [PRUNER] Queue
 
 * 🧹 `telemetry.json`: Large uncompressed binary (>500KB) detected.
+* 📦 `verification.png`: Generated artifact improperly committed to source control.
 
 ## The [ANALYZER] Queue
 
