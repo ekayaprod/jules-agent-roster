@@ -98,11 +98,13 @@ class JulesTerminal {
     async init() {
         this.initialized = true;
 
-        let rawApiKey = StorageUtils.getItem("jules_api_key");
-        const apiKey = (typeof rawApiKey === "string" && /^[A-Za-z0-9_.-]{8,}$/.test(rawApiKey)) ? rawApiKey : "";
+        const getValidKey = (k) => {
+            let v = StorageUtils.getItem(k);
+            return (typeof v === "string" && /^[A-Za-z0-9_.-]{8,}$/.test(v)) ? v : "";
+        };
 
-        let rawGithubToken = StorageUtils.getItem("github_api_key");
-        const githubToken = (typeof rawGithubToken === "string" && /^[A-Za-z0-9_.-]{8,}$/.test(rawGithubToken)) ? rawGithubToken : "";
+        const apiKey = getValidKey("jules_api_key");
+        const githubToken = getValidKey("github_api_key");
 
         const settingsModal = this.getEl("settingsModal");
         const openBtn = this.getEl("openSettingsBtn");
@@ -115,12 +117,10 @@ class JulesTerminal {
 
         const toggleModal = (show) => {
             if (show) {
-                let modalRawApiKey = StorageUtils.getItem("jules_api_key");
-                keyInput.value = (typeof modalRawApiKey === "string" && /^[A-Za-z0-9_.-]{8,}$/.test(modalRawApiKey)) ? modalRawApiKey : "";
+                keyInput.value = getValidKey("jules_api_key");
 
                 if (githubTokenInput) {
-                    let modalRawGithub = StorageUtils.getItem("github_api_key");
-                    githubTokenInput.value = (typeof modalRawGithub === "string" && /^[A-Za-z0-9_.-]{8,}$/.test(modalRawGithub)) ? modalRawGithub : "";
+                    githubTokenInput.value = getValidKey("github_api_key");
                 }
 
                 settingsModal.classList.add("visible");
@@ -401,28 +401,16 @@ class JulesTerminal {
         let agentEmoji = "🤖";
 
         // ⚡ ACCELERATE: Cache the agents list into a Map to eliminate redundant O(N) traversals inside the session loop.
+        // 🧬 COLLAPSE: Folded imperative mapping arrays into a single-pass reduce pipeline.
         if (!this._agentMapCache) {
             this._agentMapCache = new Map();
-            const escapedNames = [];
-
-            if (this.app.agents) {
-                for (let i = 0; i < this.app.agents.length; i++) {
-                    const a = this.app.agents[i];
+            const escapedNames = [...(this.app.agents || []), ...(this.app.customAgents ? Object.values(this.app.customAgents) : [])].reduce((acc, a) => {
+                if (a.name) {
                     this._agentMapCache.set(a.name, a);
-                    if (a.name && formatUtils) escapedNames.push(formatUtils.escapeRegex(a.name));
+                    if (formatUtils) acc.push(formatUtils.escapeRegex(a.name));
                 }
-            }
-
-            if (this.app.customAgents) {
-                const customs = Object.values(this.app.customAgents);
-                for (let i = 0; i < customs.length; i++) {
-                    const a = customs[i];
-                    if (a.name) {
-                        this._agentMapCache.set(a.name, a);
-                        if (formatUtils) escapedNames.push(formatUtils.escapeRegex(a.name));
-                    }
-                }
-            }
+                return acc;
+            }, []);
 
             if (escapedNames.length > 0) {
                 escapedNames.sort((a, b) => b.length - a.length);
