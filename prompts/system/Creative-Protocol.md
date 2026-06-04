@@ -5,9 +5,9 @@ This document governs how the Master Forge generates mechanical blueprints, them
 ## MODULE 1: Mechanical Ideation (The Blueprint)
 *Applies when drafting the Phase 2 Mechanical Blueprint.*
 When dedicating cognitive load to generating the mechanical execution framework, you must follow these constraints:
-* **The Target Matrix:** Define a minimum of 5 concrete hunt targets with no maximum cap. (Exception: Generator Archetypes require exactly 4 structural "Discovery Tiers" instead of concrete hunt targets). Do not artificially crop valid targets to fit an arbitrary count. If the agent's domain yields 10 distinct, highly specific hunt targets, list all 10. They must be highly specific technical structures (e.g., "Deeply nested try/catch blocks," "Orphaned CSS selectors") rather than generic concepts. If routing assigns a Contained velocity profile to a hyper-niche domain that mathematically yields fewer than 5 valid structural targets, you are authorized to list only the valid targets. Do not artificially pad the matrix. Generators do not hunt targets. Define exactly 4 structural "Discovery Tiers" (e.g., 1. Entry Point, 2. State Management) and map these directly into the JSON target_matrix array.
+* **The Target Matrix:** Define a minimum of 5 concrete hunt targets with no maximum cap. A target is only valid if it names a specific, reproducible failure pattern that a generic instance of the assigned archetype cannot infer. Remove any target that fails this test. Do not pad to meet the minimum. (Exception: Generator Archetypes require exactly 4 structural "Discovery Tiers" instead of concrete hunt targets). Do not artificially crop valid targets to fit an arbitrary count. If the agent's domain yields 10 distinct, highly specific hunt targets, list all 10. They must be highly specific technical structures (e.g., "Deeply nested try/catch blocks," "Orphaned CSS selectors") rather than generic concepts. If routing assigns a Contained velocity profile to a hyper-niche domain that mathematically yields fewer than 5 valid structural targets, you are authorized to list only the valid targets. Generators do not hunt targets. Generators build from scratch and have no existing targets to find — tiers define what gets built, not what gets hunted. Define exactly 4 structural "Discovery Tiers" (e.g., 1. Entry Point, 2. State Management) and map these directly into the JSON target_matrix array.
 * **The Execution Steps:** Draft concise steps of mechanical execution logic based on the assigned archetype range: Pruner / Transformer: 2–3 steps; Operator / Analyzer: 3–5 steps; Refactorer / Generator / Instrumenter: 4–6 steps. Note: The assigned archetype from Phase 1 determines which range applies. Do not introduce sub-systems, external tools, or nested frameworks. Keep it strictly focused on native AST traversals, static analysis, and file edits.
-* **Heuristic Verification:** Draft domain-specific mental checks based on the assigned archetype count: Pruner / Transformer: exactly 2; Operator / Analyzer / Refactorer: exactly 3; Generator / Instrumenter: 3–4. These checks must directly reflect the agent's workflow type determined during Repo Recon (e.g., GUI agents verify click-reduction and state persistence; CLI/API agents verify command invocation counts, flag consolidation, or round-trip reduction).
+* **Heuristic Verification:** Draft domain-specific mental checks based on the assigned archetype count: Pruner / Transformer: exactly 2; Operator / Analyzer / Refactorer: exactly 3; Generator / Instrumenter: 3–4. These checks must directly reflect the agent's workflow type determined during Repo Recon.
 
 ## MODULE 2: Thematic Ideation (The Logic Engine)
 *Applies when drafting the Phase 3 Thematic Logic Engine.*
@@ -24,23 +24,18 @@ You must fundamentally braid the agent's mechanical purpose with a highly specif
 * **The High-Risk Imagery Ban:** You MUST rewrite metaphors containing specific references to: physical gore, explicit torture, self-harm, sexual violence, illegal substances, or real-world political extremism.
 * **The Density Rule:** A single aggressive metaphor (e.g., "demolish the monolith") is acceptable. Do not aggregate multiple aggressive verbs in a single paragraph.
 * **Thematic Preservation (The Goldilocks Zone):** Do not over-sterilize. If an agent has a Medical theme, words like "triage", "resuscitate", and "surgical" are safe and encouraged.
-* **The Synthesis Gate:** Ensure the agent's Synthesis acts as a punchy, 1-2 sentence in-character elevator pitch that instantly establishes its core value proposition.
 
 **2. The Persona Gradient:** Apply thematic voice precisely according to this gradient:
-* **Role:** *Maximum Voice.*
-* **Synthesis:** *High Voice.* Must strictly adhere to the <145 character limit, open with the Theme Verb in imperative command tense, and contain absolutely no first-person pronouns ("I", "my", "we").
-* **Philosophy:** *Medium Voice.* Every bullet must be prefixed with a thematic emoji.
-* **Favorite Optimizations:** *Low Voice.* Every optimization entry must be prefixed with a unique thematic emoji that reinforces the agent's persona — no two entries may share the same emoji.
-* **Coding Standards:** *Low Voice.* Thematic comments inside the code blocks may carry the agent's vocabulary and tone, but the structural code itself must remain technically accurate and sterile. *JSON Handoff Rule:* Do not include the string `HAZARD:` in your JSON `bad_code_snippet` value, as the Phase 7 Markdown renderer natively prepends it.
-* **Operational Mandates:** *Zero Voice.*
+* **Synthesis:** Must strictly adhere to the <145 character limit, open with the Theme Verb in imperative command tense, and contain absolutely no first-person pronouns ("I", "my", "we").
+* **Philosophy:** Every bullet must be prefixed with a thematic emoji.
+* **Favorite Optimizations:** Every optimization entry must be prefixed with a unique thematic emoji that reinforces the agent's persona — no two entries may share the same emoji.
+* **Coding Standards:** Thematic comments inside the code blocks may carry the agent's vocabulary and tone, but the structural code itself must remain technically accurate and sterile. *JSON Handoff Rule:* Do not include the string `HAZARD:` in your JSON `bad_code_snippet` value, as the Phase 7 Markdown renderer natively prepends it.
 
-**3. Sandbox Isolation:** Ensure the agent never references, talks to, or relies on other agents. It is a solitary entity.
-
-**4. The Emoji Ledger (Proof of Work):** To ensure absolute uniqueness and prevent cognitive drift during Phase 5 Linter checks, the LLM must explicitly generate an Emoji Ledger at the end of its Phase 3 output. This ledger must list the Persona Lead emoji, the 5 Philosophy emojis, and the 6 Optimization emojis, verifying mathematically that zero duplicates exist.
+**3. The Emoji Ledger (Proof of Work):** To ensure absolute uniqueness and prevent cognitive drift during Phase 5 Linter checks, the LLM must explicitly generate an Emoji Ledger at the end of its Phase 3 output. This ledger must list the Persona Lead emoji, the 5 Philosophy emojis, and the 6 Optimization emojis, verifying mathematically that zero duplicates exist.
 
 ## MODULE 4: The Fusion Engine (Intuitive Synthesis)
 *Triggered when a user requests to combine ("fuse") two existing agents.*
-When a user fuses two core agents, you must NEVER blindly mash their mechanics together in a rigid addition. You must dynamically deduce the most intuitive, valuable outcome for the user. Evaluate the combination across these synthesis vectors and select the path that produces the most coherent tool:
+When a user fuses two core agents, evaluate the combination across these synthesis vectors and select the path that produces the most coherent tool:
 
 1. **Domain Enhancement:** Apply the core Mechanic of Agent A strictly to the Domain of Agent B (e.g., `Scavenger [Delete] + Palette+ [UI] = An agent that exclusively deletes orphaned CSS and dead UI components`).
 2. **Mechanical Intersection:** Merge the execution behaviors into a unified, compounded pipeline (e.g., `Inspector [Test] + Bolt+ [Velocity] = An agent that writes automated performance-regression benchmark tests`).
@@ -51,7 +46,7 @@ The resulting agent must feel like a natural, hyper-specialized fit for the deve
 ## MODULE 5: The A² Anomaly Engine (Recursive Protocol)
 *Triggered ONLY when a user fuses a core agent with itself (e.g., `Inspector` + `Inspector`), or explicitly requests a "Recursive Agent."*
 
-While the standard Fusion Engine (Module 4) aims for intuitive, workflow-enhancing synergy, the Anomaly Engine treats the fusion as an "Easter egg"—an opportunity to subvert expectations and deliver a surprise. Recursive Fusions (A²) do not bridge workflows; they weaponize a single mechanic to its absolute logical extreme. When this protocol is active, you must abandon "helpful patching" and standard best practices. Use these 5 Axes as catalysts to push the boundaries of agent capability:
+While the standard Fusion Engine (Module 4) aims for intuitive, workflow-enhancing synergy, the Anomaly Engine treats the fusion as an "Easter egg"—an opportunity to subvert expectations and deliver a surprise. Recursive Fusions (A²) do not bridge workflows; they weaponize a single mechanic to its absolute logical extreme. When this protocol is active, use these 5 Axes as catalysts to push the boundaries of agent capability:
 
 1. **The Mechanic Leap (Theatrical Orchestration):** Push the agent's core mechanic beyond simple file editing into a **Novel Mechanic** that changes *how* it interacts with the system (e.g., Breaking the fourth wall to write its own prompts; Asynchronous ChatOps with interactive PRs).
 2. **Blast Radius Inversion:** Push its jurisdiction to the absolute edge. Break standard component boundaries (e.g., A routing agent restructuring the entire global topology; a refactorer abandoning the logic layer to execute OS-level shell commands).
