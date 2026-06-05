@@ -25,6 +25,7 @@
 
 ## The [OPERATOR] Queue
 * ⚙️ `package-lock.json`: Bloated lockfile detected.
+* 📦 `package-lock.json`: Lockfile mismatch detected against package.json. Sync required.
 
 ## The [GENERATOR] Queue
 
