@@ -591,7 +591,8 @@
     "role": "Workflow Stimulant",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Caffeinate the operator's workflow by filtering out the click-tax, eliminating the manual grind, and delivering highly concentrated, direct-action shortcuts.",
+    "description": "CAFFEINATE the operator's workflow by filtering out the click-tax, eliminating the manual grind, and delivering highly concentrated shortcuts.",
+    "forge_version": "V82.5",
     "promptFile": "prompts/fusions/Espresso.md",
     "isCustom": true
   },
@@ -623,7 +624,8 @@
     "role": "Build Optimizer",
     "category": "Operations",
     "tier": "Fusion",
-    "description": "Speed up CI/CD pipelines with aggressive dependency caching, parallelism, and configuration tuning. Ensure local servers start instantly and deployments fly.",
+    "description": "SPEED up CI/CD pipelines with aggressive dependency caching, parallelism, and configuration tuning.",
+    "forge_version": "V82.5",
     "promptFile": "prompts/fusions/Expediter.md",
     "isCustom": true
   },
