@@ -70,6 +70,15 @@ describe('GithubAPI', () => {
                  status: 408,
                  name: 'GithubNetworkError'
              });
+             expect(console.error).toHaveBeenCalledWith(`[GithubAPI] Request timeout: `, expect.any(Error));
+        });
+
+        it('should handle generic errors', async () => {
+             const genericError = new Error('Generic Error');
+             global.fetch.mockRejectedValueOnce(genericError);
+
+             await expect(api._fetch('/test')).rejects.toThrow('Generic Error');
+             expect(console.error).toHaveBeenCalledWith(`[GithubAPI] Request to /test failed: `, genericError);
         });
     });
 
