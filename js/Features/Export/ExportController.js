@@ -46,15 +46,10 @@ class ExportController {
    * @see ../../../docs/architecture/Features/Export/ExportController.md#copy-operations for clipboard fallback mechanics.
    */
   async copyAgent(index, btn) {
-    // ⚡ Bolt+: ACCELERATE: Resolved sequential fetch before delegating to asynchronous clipboard copy to prevent UI locking and waterfall delays.
-    const [agent] = await Promise.all([
-      this._resolveAgentPrompt(index, btn)
-    ]);
+    const agent = await this._resolveAgentPrompt(index, btn);
     if (!agent) return;
 
-    const [success] = await Promise.all([
-      ClipboardUtils.copyText(PromptParser.stripFrontmatter(agent.prompt))
-    ]);
+    const success = await ClipboardUtils.copyText(PromptParser.stripFrontmatter(agent.prompt));
     if (success) {
       this.app.toast.show('Copied to clipboard');
       ClipboardUtils.animateButtonSuccess(btn, 'Copied!');
@@ -228,19 +223,14 @@ class ExportController {
    */
   async copyAll(btn) {
     if (btn) btn.disabled = true;
-    // ⚡ Bolt+: ACCELERATE: Resolved sequential fetch before delegating to asynchronous clipboard copy to prevent UI locking and waterfall delays.
-    await Promise.all([
-      this._fetchMissingPrompts(this.app.agents)
-    ]);
+    await this._fetchMissingPrompts(this.app.agents);
     if (btn) btn.disabled = false;
 
     const header = FormatUtils.MASTER_ROSTER_HEADER;
 
-    const [success] = await Promise.all([
-      ClipboardUtils.copyText(
-        header + FormatUtils.formatAgentPrompts(this.app.agents),
-      )
-    ]);
+    const success = await ClipboardUtils.copyText(
+      header + FormatUtils.formatAgentPrompts(this.app.agents)
+    );
     if (success) {
       this.app.toast.show('Copied to clipboard');
       ClipboardUtils.animateButtonSuccess(btn, 'Copied!');
