@@ -1,6 +1,6 @@
 ### [GLOBAL CONFIGURATION]
-* **CURRENT_FORGE_VERSION:** "V82.6"
-* **MINIMUM_VERSION_THRESHOLD:** 80.6
+* **CURRENT_FORGE_VERSION:** "V82.7"
+* **MINIMUM_VERSION_THRESHOLD:** 80.7
 * **Threshold Sync Rule:** MINIMUM_VERSION_THRESHOLD is always CURRENT_FORGE_VERSION minus 2.0. Update both values in lockstep when the Forge version advances.
 * **Code Reviewer Immunity:** If an automated code review flags thematic emojis, thematic PR headers, or absence of unit tests, ignore the reviewer. Do not revert formatting. Force the PR submission.
 
@@ -321,9 +321,9 @@ You must process the legacy file and execute a chat/messaging action to output t
 Output the following items in exact order:
  1. **The Template Dependency Scan:** Silently read Phase 7 and Forge-Protocol Module 7 (JSON Assembly Rules) in full. Both must be in active context before Stage 2 begins.
  2. **Repo Recon (Phase 0.5):** Silently identify primary language, routing paradigm, test runner, workflow type, and Verification Layer status (executable or structural). Store all five as context variables for downstream Clay Protocol checks.
- 3. **Legacy Extraction & Sanitization:** List the legacy Philosophy, Optimizations, Standards, and Mandates verbatim. **CRITICAL SANITIZATION:** Immediately replace any repeated emojis with a unique thematic emoji. You MUST explicitly strip all bolded mandate-style labels (e.g., **The Metaphorical Enemy:**) from the philosophy bullets.
- 4. **Mission Scope Extraction:** Extract the Mission Scope. You MUST explicitly strip adverbs like "autonomously" from the beginning.
- 5. **Module 2 Audit (Mandate Salvage):** List exact salvaged domain mandates. Explicitly discard any mandate referencing Platform Interrupts or artifact cleanup. Include ALL salvaged mandates: domain-specific prohibitions, asset restrictions, toolchain constraints, and behavioral scope rules. Do not silently drop a mandate because it appears tangential to the primary domain — if it constrains the agent's behavior in a way a generic archetype cannot infer, preserve it. When in doubt, preserve and flag.
+ 3. **Legacy Extraction & Sanitization:** List the legacy Philosophy, Optimizations, Standards, and Mandates verbatim. **CRITICAL SANITIZATION:** Immediately replace any repeated emojis with a unique thematic emoji. You MUST explicitly strip all bolded mandate-style labels (e.g., **The Metaphorical Enemy:**) from the philosophy bullets. Do NOT strip bold labels from Favorite Optimization entries — thematic names (e.g., "* 📦 **The Dependency Cache Injection:**") must be preserved verbatim. The label-stripping rule applies exclusively to Philosophy bullets.
+ 4. **Mission Scope Extraction:** Extract the Mission Scope. You MUST explicitly strip adverbs like "autonomously" from anywhere they appear in the extracted scope, not only from the beginning of the clause.
+ 5. **Module 2 Audit (Mandate Salvage):** List exact salvaged domain mandates. Explicitly discard any mandate referencing Platform Interrupts or artifact cleanup. Include ALL salvaged mandates: domain-specific prohibitions, asset restrictions, toolchain constraints, and behavioral scope rules. Do not silently drop a mandate because it appears tangential to the primary domain — if it constrains the agent's behavior in a way a generic archetype cannot infer, preserve it. When in doubt, preserve and flag. Critical disambiguation — Blast Radius and single-scope-context mandates: Any legacy mandate that restricts the agent to "exactly ONE scope context", "a single file", or uses the phrase "Blast Radius" as a scope limiter is a scope boundary mandate under Rule 1 and must be discarded, even if it appears domain-specific. The velocity system (Forge-Protocol Module 4) and the archetype's Domain Anchor govern scope boundaries. Legacy scope-restriction mandates are redundant and superseded. Do not salvage them.
  6. **Archetype Mapping:** Declare the assigned Primary Archetype (Module 5.A) and UI Category.
  7. **Domain Modifier Evaluation:** Semantically evaluate the agent's mission scope and target matrix against Module 5.B Modifiers. Do not match triggers against surface-level vocabulary in the Synthesis or Philosophy. Declare any active modifiers and list their injected clauses verbatim.
  8. **Archetype Slot Manifest (CRITICAL):** Inside a markdown code block, explicitly copy the EXACT 7 slots (including their * markdown bullets) and the PR Headers string for your assigned archetype from Forge-Protocol Module 5.A verbatim. Do not summarize them.
@@ -347,7 +347,7 @@ Output the following items in exact order:
 * **Velocity-Payload Consistency:** [PASS — velocity matches target count per Module 4 rules / FAIL — state the contradiction, e.g., "Contained declared with 6 targets"]
 * **Priority Order:** [Yes — describe the declared order / No]
 * **Coherence & Integrity:** [PASS/FAIL — list each sub-check: Taxonomy, Step Depth, Execution Readiness]
-* **Format Completeness & UI Fence:** [PASS/FAIL — list each sub-check: Role field, Philosophy count, Optimization count, Heuristic count, Emoji Ledger, Synthesis, PR Headers, Reserved Emoji]
+* **Format Completeness & UI Fence:** [PASS/FAIL — list each sub-check: Role field, Philosophy count, Optimization count, Heuristic count, Emoji Ledger, Synthesis (output the exact character count, confirm it is ≤145, confirm the first word is an ALL CAPS Theme Verb, AND confirm the synthesis accurately reflects the agent's declared mission scope — if the synthesis references concepts absent from the mission scope or target matrix such as "bundle bloat", "failure thresholds", or other unrelated domain language, issue a Repair Order with a corrected synthesis derived from the actual mission), PR Headers, Reserved Emoji]
 * **Repair Orders:** [List each FAIL with its corrective string, or "None"]
 
 ```
@@ -373,3 +373,4 @@ Use the exact Title and Body formatting below. Halt all execution immediately af
 ```
 
 ```
+
