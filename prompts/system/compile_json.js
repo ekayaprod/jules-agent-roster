@@ -10,6 +10,34 @@ function formatList(arr, bullet = '* ') {
     }).join('\n');
 }
 
+// Specialized formatter for Philosophy to aggressively strip bolded mandate labels
+function formatPhilosophy(arr) {
+    if (!Array.isArray(arr)) return '';
+    return arr.map(item => {
+        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        cleanItem = cleanItem.replace(/^(?:[\p{Emoji}\u200d]+\s*)?\*\*[^\*]+\*\*:\s*/u, (match) => {
+            const emojiMatch = match.match(/^[\p{Emoji}\u200d]+\s*/u);
+            return emojiMatch ? emojiMatch[0] : '';
+        });
+        cleanItem = cleanItem.replace(/^\*\*[^\*]+\*\*:\s*/, '');
+        return `* ${cleanItem}`;
+    }).join('\n');
+}
+
+// Specialized formatter for Target Matrix to strictly enforce '* **Category:** ' syntax
+function formatTargetMatrix(arr) {
+    if (!Array.isArray(arr)) return '';
+    return arr.map(item => {
+        let cleanItem = String(item).trim();
+        const match = cleanItem.match(/^[\*\-\s]*(?:\*\*?)?([^\*:]+)(?:\*\*?)?:\s*(.*)/);
+        if (match) {
+            return `* **${match[1].trim()}:** ${match[2].trim()}`;
+        }
+        cleanItem = cleanItem.replace(/^[\*\-]\s*/, '');
+        return `* ${cleanItem}`;
+    }).join('\n');
+}
+
 function compile(jsonPayloadStr, targetFilePath) {
     let data;
     try {
@@ -18,36 +46,79 @@ function compile(jsonPayloadStr, targetFilePath) {
         throw new Error(`Failed to parse JSON payload: ${e.message}`);
     }
 
-    // Safe fallbacks for nested arrays
-    const salvagedMandates = Array.isArray(data.strict_operational_mandates?.salvaged_mandates) 
-        ? data.strict_operational_mandates.salvaged_mandates.join('\n') 
-        : '';
-        
-    const domainModifiers = Array.isArray(data.strict_operational_mandates?.domain_modifier_mandates)
-        ? data.strict_operational_mandates.domain_modifier_mandates.join('\n')
-        : '';
-        
-    const crossVectorGrants = Array.isArray(data.strict_operational_mandates?.cross_vector_grants)
-        ? data.strict_operational_mandates.cross_vector_grants.join('\n')
-        : '';
-        
-    const executionSteps = Array.isArray(data.process?.execute?.execution_steps)
-        ? data.process.execute.execution_steps.join('\n')
-        : '';
-        
-    const heuristics = Array.isArray(data.process?.verify?.heuristic_verification)
-        ? data.process.verify.heuristic_verification.join('\n')
+    // --- DETERMINISTIC COMPILER LOGIC ---
+    
+    const archetype = data.archetype || '';
+    const category = data.identity?.category || '';
+    const velocity = data.velocity || 'Contained';
+    const payloadThreshold = data.payload_threshold || '1';
+    const tier = data.identity?.tier || '';
+    const isStructural = data.verification_layer === 'structural';
+    const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].includes(archetype);
+
+    // 1. Testing Doctrine
+    const testingDoctrine = category.toLowerCase() === 'testing'
+        ? "* **The Test Automation Mandate:** Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+        : "* **The Test Immunity Doctrine:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.";
+
+    // 2. Velocity & Execution Mandate
+    let executionMandate = '';
+    let discoveryVelocityRule = '';
+    let executionPosture = '';
+    let reporterProtocol = '';
+    let prCreationRule = '';
+
+    if (velocity === 'Contained') {
+        executionMandate = "Your discovery posture is single-target. The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution. You are strictly forbidden from: running tests outside the immediate target file, updating adjacent scripts or configuration files not directly required by your change, performing repository-wide sweeps to find additional targets, or executing any verification step not directly caused by your specific mutation. Scope tunnel enforced: enter, execute, exit. Submit your PR the moment your single target is complete.";
+        discoveryVelocityRule = "**The Discovery Short-Circuit:** The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution.";
+        executionPosture = "Execute precisely and immediately upon target acquisition.";
+        reporterProtocol = "Verify your mutations in batches. Complete all AST mutations within your locked scope before triggering your test runner. Do not waste tool calls testing line-by-line. You have a maximum of 3 verification attempts per target.";
+        prCreationRule = "Do not burn tool calls running `git diff` or `git status` right before submission. The PR UI automatically attaches diffs. Rely purely on your working memory to draft the PR description.";
+    } else if (velocity === 'Batch') {
+        executionMandate = `Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly ${payloadThreshold} targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.`;
+        discoveryVelocityRule = "**The Bounded Sweep:** You are authorized to scan and lock onto targets strictly until your Quota is met, at which point you must immediately abort all further scanning and proceed to execution.";
+        executionPosture = "Execute in bounded sequence, tracking your mutation count against your declared quota ceiling.";
+        reporterProtocol = "Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling.";
+        prCreationRule = "Do not burn tool calls running `git diff` or `git status` right before submission. The PR UI automatically attaches diffs. Rely purely on your working memory to draft the PR description.";
+    } else {
+        executionMandate = "Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across three layers:\n1. **Proactive Touchpoints:** If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.\n2. **Wrap-Up Checkpoints:** At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n3. **Managed Interruption:** If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: *'Awaiting operator clearance to resume.'* Resume instantly once cleared.";
+        discoveryVelocityRule = "**The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.";
+        executionPosture = "Execute Incrementally.";
+        reporterProtocol = "Verify your mutations incrementally. You may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target.";
+        prCreationRule = "";
+    }
+
+    // Adjust reporter protocol if verification layer is purely structural
+    if (isStructural) {
+        reporterProtocol = reporterProtocol.replace(/triggering your test runner/g, 'executing your heuristic checks');
+        reporterProtocol = reporterProtocol.replace(/testing line-by-line/g, 'running heuristics line-by-line');
+        reporterProtocol = reporterProtocol.replace(/test sequentially/g, 'verify sequentially');
+    }
+
+    // 3. Journal & Tasks Board
+    const journalPath = tier.toLowerCase() === 'core' ? `.jules/${data.identity?.name || 'journal'}.md` : `.jules/journal_${category.toLowerCase()}.md`;
+    const agentTasksBoardRules = requiresTasksBoard ? "* **The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself." : '';
+    const tasksBoardCrossReference = requiresTasksBoard ? "Read `.jules/agent_tasks.md`, then perform your discover phase." : '';
+
+    // --- ARRAY FORMATTING ---
+    const salvagedMandates = formatList(data.salvaged_mandates);
+    const domainModifiers = formatList(data.domain_modifier_mandates);
+    const crossVectorGrants = formatList(data.cross_vector_grants);
+    const executionSteps = formatList(data.process?.execution_steps);
+    const heuristics = formatList(data.process?.heuristic_verification);
+    
+    const targetLimitInstruction = (payloadThreshold && payloadThreshold !== '1' && payloadThreshold !== 1) 
+        ? `Continue executing within your locked scope up to a maximum of ${payloadThreshold}. ` 
         : '';
 
-    const targetLimit = data.process?.select_classify?.target_limit;
-    const targetLimitInstruction = (targetLimit && targetLimit !== '1' && targetLimit !== 1) 
-        ? `Continue executing within your locked scope up to a maximum of ${targetLimit}. ` 
-        : '';
-
-    const zeroTargetExitInstruction = data.process?.present?.requires_total_replacement_override 
+    const zeroTargetExitInstruction = data.total_replacement_active
         ? '' 
         : 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. ';
 
+    // Extract raw slots, stripping the bold labels for presentation slot specifically
+    const presentationSlotRaw = String(data.archetype_slots?.presentation_slot || '').replace(/^\*\s*\*\*[^\*]+\*\*:\s*/, '');
+
+    // --- TEMPLATE INTERPOLATION ---
     const output = `---
 name: ${data.identity?.name || ''}
 emoji: ${data.identity?.emoji || ''}
@@ -63,7 +134,7 @@ ${data.identity?.synthesis || ''}
 Your mission is to ${data.mission_scope || ''}.
 
 ### The Philosophy
-${formatList(data.philosophy)}
+${formatPhilosophy(data.philosophy)}
 
 ### Coding Standards
 * ✅ **Good Code:**
@@ -76,35 +147,35 @@ ${data.coding_standards?.bad_code_snippet || ''}
 ~~~
 
 ### Strict Operational Mandates
-${data.strict_operational_mandates?.domain_anchor || ''} If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
-${data.strict_operational_mandates?.mutation_scope || ''}
-* **The Execution Mandate:** ${data.strict_operational_mandates?.execution_mandate || ''}
-${data.strict_operational_mandates?.operational_boundaries || ''}
+${data.archetype_slots?.domain_anchor || ''} If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
+${data.archetype_slots?.mutation_scope || ''}
+* **The Execution Mandate:** ${executionMandate}
+${data.archetype_slots?.operational_boundaries || ''}
 ${domainModifiers}
-${data.strict_operational_mandates?.decisiveness_rule || ''}
-${data.strict_operational_mandates?.workflow_execution || ''}
-${data.strict_operational_mandates?.testing_doctrine || ''}
+${data.archetype_slots?.decisiveness_rule || ''}
+${data.archetype_slots?.workflow_execution || ''}
+${testingDoctrine}
 ${salvagedMandates}
 ${crossVectorGrants}
 
 ### Memory & Triage
-**Journal Path:** \`${data.memory_and_triage?.journal_path || ''}\`
-${data.memory_and_triage?.agent_tasks_board_rules || ''}
+**Journal Path:** \`${journalPath}\`
+${agentTasksBoardRules}
 
-**The Prune-and-Compress Journal Protocol:** ${data.memory_and_triage?.journal_protocol || ''}
+**The Prune-and-Compress Journal Protocol:** ${data.archetype_slots?.journal_protocol || ''}
 
 ### The Process
-1. 🔍 **DISCOVER** — Execute via ${data.process?.discover?.trigger || ''} using asynchronous tools. ${data.process?.discover?.tasks_board_cross_reference || ''}
-${data.process?.discover?.discovery_velocity_rule || ''}
-${formatList(data.process?.discover?.target_matrix)}
-2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${data.process?.select_classify?.priority_language || ''} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${targetLimit || ''}.
-3. ⚙️ **[${data.process?.execute?.theme_verb || ''}]** — **${data.process?.execute?.execution_posture || ''}** ${targetLimitInstruction}Halt when your locked scope is clean; do not expand your search to satisfy a quota.
+1. 🔍 **DISCOVER** — Execute via ${data.process?.discover_trigger || ''} using asynchronous tools. ${tasksBoardCrossReference}
+${discoveryVelocityRule}
+${formatTargetMatrix(data.process?.target_matrix)}
+2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${data.priority_language || 'arbitrarily'} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${payloadThreshold}.
+3. ⚙️ **[${data.process?.theme_verb || ''}]** — **${executionPosture}** ${targetLimitInstruction}Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 ${executionSteps}
-4. ✅ **VERIFY** — **The Reporter Protocol:** ${data.process?.verify?.reporter_protocol || ''} Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
+4. ✅ **VERIFY** — **The Reporter Protocol:** ${reporterProtocol} Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
 **Heuristic Verification:**
 ${heuristics}
-5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. ${data.process?.present?.pr_creation_rule || ''} Trigger this tool natively rather than using chat-based workarounds. Use the title: "${data.process?.present?.requires_caution_flag ? '[CAUTION] ' : ''}${data.identity?.emoji || ''} ${data.identity?.name || ''}: [Action]". ${data.process?.present?.presentation_slot || ''} Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. ${zeroTargetExitInstruction}If the run produced no source mutations but did append relay entries to \`.jules/agent_tasks.md\`, submit a minimal PR documenting the relay entries rather than suppressing it.
-**Required PR Headers:** ${data.process?.present?.pr_headers || ''}
+5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. ${prCreationRule} Trigger this tool natively rather than using chat-based workarounds. Use the title: "${data.requires_caution_flag ? '[CAUTION] ' : ''}${data.identity?.emoji || ''} ${data.identity?.name || ''}: [Action]". ${presentationSlotRaw} Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. ${zeroTargetExitInstruction}If the run produced no source mutations but did append relay entries to \`.jules/agent_tasks.md\`, submit a minimal PR documenting the relay entries rather than suppressing it.
+**Required PR Headers:** ${data.archetype_slots?.pr_headers || ''}
 
 ### Favorite Optimizations
 ${formatList(data.favorite_optimizations)}
