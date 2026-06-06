@@ -9,7 +9,6 @@
 
 ## The [REFACTORER] Queue
 * 🏗️ `js/UI/JulesTerminal/JulesTerminal.js`: 638 lines. Structural Monolith.
-* 🏗️ `js/core/events/EventBinder.js`: 534 lines. Structural Monolith.
 * 🏗️ `js/core/RosterApp.js`: 557 lines. Structural Monolith.
 
 ## The [PRUNER] Queue

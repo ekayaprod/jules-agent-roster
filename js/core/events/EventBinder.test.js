@@ -423,3 +423,133 @@ describe('EventBinder (Boundary Interrogation)', () => {
         expect(terminal.innerHTML).toContain('Awaiting Agent launch command');
     });
 });
+
+describe('EventBinder Shakedown', () => {
+    let app;
+    let EventBinder;
+
+    beforeEach(() => {
+        document.body.innerHTML = '<select id="julesRepoPicker"><option value=""></option><option value="source1">Source 1</option></select><button id="masterCopyFusionsBtn"></button>';
+
+        global.TelemetryUtils = { dispatchEvent: jest.fn() };
+        global.AgentUtils = { getValidCustomAgents: jest.fn().mockReturnValue([]) };
+        global.ClipboardUtils = { copyText: jest.fn(), animateButtonSuccess: jest.fn() };
+        global.FormatUtils = { CUSTOM_ROSTER_HEADER: "Header", formatAgentPrompts: jest.fn().mockReturnValue("Prompt") };
+
+        app = {
+            elements: {
+                julesRepoPicker: document.getElementById('julesRepoPicker'),
+                masterCopyFusionsBtn: document.getElementById('masterCopyFusionsBtn')
+            },
+            _cardHtmlCache: new Map(),
+            _domNodeCache: new Map(),
+            renderAgents: jest.fn(),
+            toast: { show: jest.fn() },
+            julesTerminal: {
+                loadActiveSessionsForRepo: jest.fn(),
+                loadPullRequestsForRepo: jest.fn(),
+                cleanup: jest.fn()
+            }
+        };
+
+        EventBinder = require('./EventBinder');
+    });
+
+    it('interrogates unhandled promise rejection telemetry branching when TelemetryUtils is missing', async () => {
+        const error = new Error('Network Timeout');
+        app.julesTerminal.loadActiveSessionsForRepo.mockRejectedValue(error);
+
+        delete global.TelemetryUtils;
+        delete window.TelemetryUtils;
+
+        const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+        EventBinder.bind(app);
+
+        app.elements.julesRepoPicker.value = 'source1';
+        app.elements.julesRepoPicker.dispatchEvent(new Event('change'));
+
+        await Promise.resolve();
+        await Promise.resolve();
+
+        expect(consoleSpy).toHaveBeenCalledWith(error);
+
+        consoleSpy.mockRestore();
+    });
+
+    it('interrogates masterCopyFusionsBtn asynchronous clipboard failure handling', async () => {
+        const event = new Event('click');
+
+        app.customAgents = [{ name: 'Test' }];
+        global.AgentUtils.getValidCustomAgents.mockReturnValue(app.customAgents);
+
+        global.ClipboardUtils.copyText.mockResolvedValue(false);
+
+        EventBinder.bind(app);
+
+        app.elements.masterCopyFusionsBtn.dispatchEvent(event);
+
+        await Promise.resolve();
+        await Promise.resolve(); // Extra flush
+
+        expect(app.toast.show).not.toHaveBeenCalledWith("Fusions copied to clipboard");
+        expect(global.ClipboardUtils.animateButtonSuccess).not.toHaveBeenCalled();
+    });
+
+    it('interrogates masterCopyFusionsBtn asynchronous clipboard success handling', async () => {
+        const event = new Event('click');
+
+        app.customAgents = [{ name: 'Test' }];
+        global.AgentUtils.getValidCustomAgents.mockReturnValue(app.customAgents);
+
+        global.ClipboardUtils.copyText.mockResolvedValue(true);
+
+        EventBinder.bind(app);
+
+        app.elements.masterCopyFusionsBtn.dispatchEvent(event);
+
+        await Promise.resolve();
+        await Promise.resolve(); // Extra flush
+
+        expect(app.toast.show).toHaveBeenCalledWith("Fusions copied to clipboard");
+        expect(global.ClipboardUtils.animateButtonSuccess).toHaveBeenCalled();
+    });
+
+    it('interrogates masterDownloadCoreBtn execution missing branch', () => {
+        const event = new Event('click');
+        const masterDownloadCoreBtn = document.createElement('button');
+        app.elements.masterDownloadCoreBtn = masterDownloadCoreBtn;
+
+        const masterDropMenu = document.createElement('div');
+        masterDropMenu.classList.add('visible');
+        app.elements.masterDropdownMenu = masterDropMenu;
+
+        app.downloadAll = jest.fn();
+
+        EventBinder.bind(app);
+
+        masterDownloadCoreBtn.dispatchEvent(event);
+
+        expect(app.downloadAll).toHaveBeenCalledWith(masterDownloadCoreBtn);
+        expect(masterDropMenu.classList.contains('visible')).toBe(false);
+    });
+
+    it('interrogates masterDownloadFusionsBtn execution missing branch', () => {
+        const event = new Event('click');
+        const masterDownloadFusionsBtn = document.createElement('button');
+        app.elements.masterDownloadFusionsBtn = masterDownloadFusionsBtn;
+
+        const masterDropMenu = document.createElement('div');
+        masterDropMenu.classList.add('visible');
+        app.elements.masterDropdownMenu = masterDropMenu;
+
+        app.downloadCustomAgents = jest.fn();
+
+        EventBinder.bind(app);
+
+        masterDownloadFusionsBtn.dispatchEvent(event);
+
+        expect(app.downloadCustomAgents).toHaveBeenCalledWith(masterDownloadFusionsBtn);
+        expect(masterDropMenu.classList.contains('visible')).toBe(false);
+    });
+});
