@@ -15,10 +15,13 @@ function formatPhilosophy(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
         let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        // Strip bold label prefixes like "**The Concept:** " leaving the emoji and text
         cleanItem = cleanItem.replace(/^(?:[\p{Emoji}\u200d]+\s*)?\*\*[^\*]+\*\*:\s*/u, (match) => {
+            // If there's an emoji before the bold text, preserve it
             const emojiMatch = match.match(/^[\p{Emoji}\u200d]+\s*/u);
             return emojiMatch ? emojiMatch[0] : '';
         });
+        // Catch basic bold strips if emoji wasn't part of the regex capture
         cleanItem = cleanItem.replace(/^\*\*[^\*]+\*\*:\s*/, '');
         return `* ${cleanItem}`;
     }).join('\n');
@@ -29,10 +32,13 @@ function formatTargetMatrix(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
         let cleanItem = String(item).trim();
+        // Match variations of broken bullets and asterisks before a colon
+        // e.g. "* **Category:** details", "**Category:** details", "*Category:** details"
         const match = cleanItem.match(/^[\*\-\s]*(?:\*\*?)?([^\*:]+)(?:\*\*?)?:\s*(.*)/);
         if (match) {
             return `* **${match[1].trim()}:** ${match[2].trim()}`;
         }
+        // Fallback if no category colon format is found
         cleanItem = cleanItem.replace(/^[\*\-]\s*/, '');
         return `* ${cleanItem}`;
     }).join('\n');
@@ -107,7 +113,7 @@ function compile(jsonPayloadStr, targetFilePath) {
     const executionSteps = formatList(data.process?.execution_steps);
     const heuristics = formatList(data.process?.heuristic_verification);
     
-    const targetLimitInstruction = (payloadThreshold && payloadThreshold !== '1' && payloadThreshold !== 1) 
+    const targetLimitInstruction = (payloadThreshold && payloadThreshold !== '1' && payloadThreshold !== 1 && String(payloadThreshold).toLowerCase() !== 'open') 
         ? `Continue executing within your locked scope up to a maximum of ${payloadThreshold}. ` 
         : '';
 
@@ -165,7 +171,7 @@ ${agentTasksBoardRules}
 **The Prune-and-Compress Journal Protocol:** ${data.archetype_slots?.journal_protocol || ''}
 
 ### The Process
-1. 🔍 **DISCOVER** — Execute via ${data.process?.discover_trigger || ''} using asynchronous tools. ${tasksBoardCrossReference}
+1. 🔍 **DISCOVER** — Execute ${data.process?.discover_trigger || ''} using asynchronous tools. ${tasksBoardCrossReference}
 ${discoveryVelocityRule}
 ${formatTargetMatrix(data.process?.target_matrix)}
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${data.priority_language || 'arbitrarily'} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${payloadThreshold}.
