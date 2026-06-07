@@ -170,8 +170,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 
 **JSON Assembly Directives:**
 *   Map all variables strictly from the Phase 4 Manifest and Phase 5 Linter outputs.
-*   **DYNAMIC LABEL PRESERVATION:** You MUST explicitly include the bolded markdown labels inside your JSON strings for all Archetype Slots. Do not output raw text. You must output "* **The Domain Anchor:** [text]" or "* **The Fortification Scope:** [text]".
-*   Extract the raw text of the Archetype Slots verbatim, incorporating any Phase 4 Slot Modifications.
+*   Extract the raw text of the Archetype Slots verbatim, incorporating any Phase 4 Slot Modifications. Do NOT include markdown bullets or bolded labels (e.g., "* **The Domain Anchor:**"). Output purely the raw text.
 *   Do not include any mandate explicitly marked as "Dropped".
 
 **Output Format:**
@@ -204,14 +203,14 @@ Output a raw JSON object matching the exact schema below, wrapped in a ````json`
     "bad_code_snippet": "[Anti-pattern]"
   },
   "archetype_slots": {
-    "domain_anchor": "[* **The Domain Anchor:** Exact text]",
-    "mutation_scope": "[* **The Scope:** Exact text]",
-    "operational_boundaries": "[* **The Resilience Protocol:** Exact text]",
-    "decisiveness_rule": "[* **The Decisiveness:** Exact text]",
-    "workflow_execution": "[* **The Execution:** Exact text]",
+    "domain_anchor": "[Exact text]",
+    "mutation_scope": "[Exact text]",
+    "operational_boundaries": "[Exact text]",
+    "decisiveness_rule": "[Exact text]",
+    "workflow_execution": "[Exact text]",
     "testing_doctrine": "[Evaluated Testing Doctrine]",
-    "journal_protocol": "[Archetype Slot 4]",
-    "presentation_slot": "[Archetype Slot 7]",
+    "journal_protocol": "[Exact text]",
+    "presentation_slot": "[Exact text]",
     "pr_headers": "[Thematic PR Headers String]"
   },
   "salvaged_mandates": [

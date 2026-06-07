@@ -21,6 +21,16 @@ function formatPhilosophy(arr) {
     }).join('\n');
 }
 
+// Resilient slot formatter: strips any existing labels/bullets and prepends the correct label
+function formatSlot(rawText, label) {
+    if (!rawText) return '';
+    // Strip bullets
+    let cleanText = String(rawText).replace(/^[\*\-]\s*/, '');
+    // Strip bold labels like "**The Label:** " or "**Label:** "
+    cleanText = cleanText.replace(/^\*\*[^\*]+\*\*:?\s*/, '').replace(/^\*\*[^\*:]+:?\*\*:?\s*/, '');
+    return `* **${label}:** ${cleanText}`;
+}
+
 // Specialized formatter for Target Matrix to enforce '* **Category:** ' syntax
 function formatTargetMatrix(arr) {
     if (!Array.isArray(arr)) return '';
@@ -131,7 +141,7 @@ function compile(jsonPayloadStr, targetFilePath) {
 
     // Clean Presentation Slot by stripping bold labels (e.g. "* **The Label:**")
     const rawPresentation = data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '';
-    const presentationSlotClean = String(rawPresentation).replace(/^\*?\s*\*\*[^\*]+\*\*:\s*/, '');
+    const presentationSlotClean = String(rawPresentation).replace(/^[\*\-]\s*/, '').replace(/^\*\*[^\*]+\*\*:?\s*/, '').replace(/^\*\*[^\*:]+:?\*\*:?\s*/, '');
     
     // Strip trailing periods from Mission Scope
     const missionScopeClean = String(data.mission_scope || '').replace(/\.+$/, '');
@@ -171,14 +181,14 @@ ${data.coding_standards?.bad_code_snippet || ''}
 ~~~
 
 ### Strict Operational Mandates
-${data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor || ''} If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
-${data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope || ''}
+${formatSlot(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor || '', 'The Domain Anchor')} If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
+${formatSlot(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope || '', 'The Scope')}
 * **The Execution Mandate:** ${executionMandate}
-${data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || ''}
+${formatSlot(data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || '', 'The Resilience Protocol')}
 ${domainModifiers}
-${data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule || ''}
-${data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution || ''}
-${testingDoctrine}
+${formatSlot(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule || '', 'The Decisiveness')}
+${formatSlot(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution || '', 'The Execution')}
+${testingDoctrine ? formatSlot(testingDoctrine, 'The Verification Protocol') : ''}
 ${salvagedMandates}
 ${crossVectorGrants}
 
@@ -186,7 +196,7 @@ ${crossVectorGrants}
 **Journal Path:** \`${journalPath}\`
 ${agentTasksBoardRules}
 
-**The Prune-and-Compress Journal Protocol:** ${data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || ''}
+${formatSlot(data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Protocol').replace(/^\*\s/, '')}
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute ${discoverTrigger} using asynchronous tools. ${tasksBoardCrossReference}
