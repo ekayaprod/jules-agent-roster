@@ -170,6 +170,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 
 **JSON Assembly Directives:**
 *   Map all variables strictly from the Phase 4 Manifest and Phase 5 Linter outputs.
+*   **DYNAMIC LABEL PRESERVATION:** You MUST explicitly include the bolded markdown labels inside your JSON strings for all Archetype Slots. Do not output raw text. You must output "* **The Domain Anchor:** [text]" or "* **The Fortification Scope:** [text]".
 *   Extract the raw text of the Archetype Slots verbatim, incorporating any Phase 4 Slot Modifications.
 *   Do not include any mandate explicitly marked as "Dropped".
 
@@ -208,6 +209,7 @@ Output a raw JSON object matching the exact schema below, wrapped in a ````json`
     "operational_boundaries": "[* **The Resilience Protocol:** Exact text]",
     "decisiveness_rule": "[* **The Decisiveness:** Exact text]",
     "workflow_execution": "[* **The Execution:** Exact text]",
+    "testing_doctrine": "[Evaluated Testing Doctrine]",
     "journal_protocol": "[Archetype Slot 4]",
     "presentation_slot": "[Archetype Slot 7]",
     "pr_headers": "[Thematic PR Headers String]"
