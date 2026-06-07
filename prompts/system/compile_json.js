@@ -1,9 +1,24 @@
 const fs = require('fs');
 const path = require('path');
 
+// Defensive type coercion for hallucinated string outputs
+function ensureArray(val) {
+    if (!val) return [];
+    if (typeof val === 'string') return [val];
+    if (Array.isArray(val)) return val;
+    return [];
+}
+
+function parseBool(val) {
+    if (typeof val === 'boolean') return val;
+    if (typeof val === 'string') return val.toLowerCase() === 'true';
+    return false;
+}
+
 // Generic helper for standard lists
 function formatList(arr, bullet = '* ') {
-    if (!Array.isArray(arr)) return '';
+    arr = ensureArray(arr);
+    if (arr.length === 0) return '';
     return arr.map(item => {
         const cleanItem = String(item).replace(/^[\*\-]\s*/, '');
         return `${bullet}${cleanItem}`;
@@ -12,7 +27,8 @@ function formatList(arr, bullet = '* ') {
 
 // Specialized formatter for Execution Steps to fix broken bolding
 function formatExecutionSteps(arr) {
-    if (!Array.isArray(arr)) return '';
+    arr = ensureArray(arr);
+    if (arr.length === 0) return '';
     return arr.map(item => {
         let cleanItem = String(item).replace(/^[\*\-\s]+/, '');
         cleanItem = cleanItem.replace(/^\*?([^\*:]+)\*\*:/, '**$1**:');
@@ -22,7 +38,8 @@ function formatExecutionSteps(arr) {
 
 // Specialized formatter for Philosophy to aggressively strip bolded mandate labels
 function formatPhilosophy(arr) {
-    if (!Array.isArray(arr)) return '';
+    arr = ensureArray(arr);
+    if (arr.length === 0) return '';
     return arr.map(item => {
         let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
         // Universally strip the bold label (e.g. "**Label:** ") regardless of preceding emojis
@@ -41,13 +58,14 @@ function formatSlot(rawText, label) {
     return `* **${label}:** ${cleanText}`;
 }
 
-// Specialized formatter for Target Matrix to enforce '* **Category:** ' syntax
+// Specialized formatter for Target Matrix to enforce '* **Category:** ' syntax across multiline strings
 function formatTargetMatrix(arr) {
-    if (!Array.isArray(arr)) return '';
+    arr = ensureArray(arr);
+    if (arr.length === 0) return '';
     return arr.map(item => {
         let cleanItem = String(item).trim();
-        // Match variations of broken bullets and asterisks before a colon
-        const match = cleanItem.match(/^[\*\-\s]*(?:\*\*?)?([^\*:]+)(?:\*\*?)?:\s*(.*)/);
+        // Match variations of broken bullets and asterisks before a colon. Uses [\s\S]* to capture newlines.
+        const match = cleanItem.match(/^[\*\-\s]*(?:\*\*?)?([^\*:]+)(?:\*\*?)?:\s*([\s\S]*)/);
         if (match) {
             const category = match[1].trim();
             // Strip any hallucinated markdown bolding/bullets from the start of the description
@@ -61,7 +79,8 @@ function formatTargetMatrix(arr) {
 
 // Specialized formatter to fix broken bolding in Heuristics
 function formatHeuristics(arr) {
-    if (!Array.isArray(arr)) return '';
+    arr = ensureArray(arr);
+    if (arr.length === 0) return '';
     return arr.map(item => {
         let cleanItem = String(item).replace(/^[\*\-\s]+/, '');
         cleanItem = cleanItem.replace(/^\*?([^\*:]+)\*\*:/, '**$1**:');
@@ -73,10 +92,9 @@ function compile(jsonPayloadStr, targetFilePath) {
     let data;
     try {
         data = JSON.parse(jsonPayloadStr);
-        console.log(`[COMPILER] JSON payload parsed successfully. Validating input arrays...`);
-        console.log(`[COMPILER] Philosophy items detected: ${Array.isArray(data.philosophy) ? data.philosophy.length : '0 (or invalid)'}`);
+        console.log(`[COMPILER] JSON payload parsed successfully. Validating input architectures...`);
     } catch (e) {
-        throw new Error(`Failed to parse JSON payload: ${e.message}`);
+        throw new Error(`Failed to parse JSON payload. Verify AST escaping: ${e.message}`);
     }
 
     // --- DETERMINISTIC COMPILER LOGIC ---
@@ -86,7 +104,12 @@ function compile(jsonPayloadStr, targetFilePath) {
     const velocity = data.velocity || 'Contained';
     const payloadThreshold = data.payload_threshold || data.process?.select_classify?.target_limit || '1';
     const tier = data.identity?.tier || '';
+    
+    // Explicit boolean coercion
     const isStructural = data.verification_layer === 'structural';
+    const totalReplacementActive = parseBool(data.total_replacement_active) || parseBool(data.process?.present?.requires_total_replacement_override) || parseBool(data.requires_total_replacement_override);
+    const requiresCautionFlag = parseBool(data.requires_caution_flag) || parseBool(data.process?.present?.requires_caution_flag);
+    
     const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].includes(archetype);
 
     // 1. Testing Doctrine
@@ -147,7 +170,7 @@ function compile(jsonPayloadStr, targetFilePath) {
         ? `Continue executing within your locked scope up to a maximum of ${targetLimitClean}. ` 
         : '';
 
-    const zeroTargetExitInstruction = (data.process?.present?.requires_total_replacement_override || data.requires_total_replacement_override || data.total_replacement_active)
+    const zeroTargetExitInstruction = totalReplacementActive
         ? '' 
         : 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. ';
 
@@ -172,7 +195,7 @@ role: ${data.identity?.role || ''}
 category: ${data.identity?.category || ''}
 tier: ${data.identity?.tier || ''}
 description: ${data.identity?.synthesis || ''}
-forge_version: ${data.identity?.forge_version || 'V82.0'}
+forge_version: ${data.identity?.forge_version || 'V82.8'}
 ---
 
 You are "${data.identity?.name || ''}" ${data.identity?.emoji || ''} - The ${data.identity?.role || ''}.
@@ -220,7 +243,7 @@ ${executionSteps}
 4. ✅ **VERIFY** — **The Reporter Protocol:** ${reporterProtocol} Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
 **Heuristic Verification:**
 ${heuristics}
-5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. ${prCreationRule} Trigger this tool natively rather than using chat-based workarounds. Use the title: "${data.requires_caution_flag || data.process?.present?.requires_caution_flag ? '[CAUTION] ' : ''}${data.identity?.emoji || ''} ${data.identity?.name || ''}: [Action]". ${presentationSlotClean} Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. ${zeroTargetExitInstruction}If the run produced no source mutations but did append relay entries to \`.jules/agent_tasks.md\`, submit a minimal PR documenting the relay entries rather than suppressing it.
+5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. ${prCreationRule} Trigger this tool natively rather than using chat-based workarounds. Use the title: "${requiresCautionFlag ? '[CAUTION] ' : ''}${data.identity?.emoji || ''} ${data.identity?.name || ''}: [Action]". ${presentationSlotClean} Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. ${zeroTargetExitInstruction}If the run produced no source mutations but did append relay entries to \`.jules/agent_tasks.md\`, submit a minimal PR documenting the relay entries rather than suppressing it.
 **Required PR Headers:** ${data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || ''}
 
 ### Favorite Optimizations
