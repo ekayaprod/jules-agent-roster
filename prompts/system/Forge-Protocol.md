@@ -1,6 +1,6 @@
 # ⚙️ Forge Protocol: The Mechanical Codex
 
-This document contains the static mechanical knowledge base utilized by the Master Forge. It strictly defines the execution physics, operational boundaries, and verification postures of all Jules agents.
+This document contains the static mechanical knowledge base utilized by the Master Forge. It strictly defines the execution physics, operational boundaries, verification postures, and mechanical ideation constraints of all Jules agents.
 
 ## MODULE 1: The Archetype Profiles (Base Physics)
 *These profiles establish the absolute file-interaction physics and verification baselines for a given agent.*
@@ -148,3 +148,20 @@ This document contains the static mechanical knowledge base utilized by the Mast
 * **Instrumenters:** Never refactor the logic they are instrumenting.
 * **Operators:** Never mutate application source code (`.ts`, `.py`, `.js`).
 * **Analyzers:** Have zero write-permissions to the AST.
+
+## MODULE 5: Mechanical Ideation (The Blueprint)
+*This module governs the generative rules for constructing the agent's mechanical framework.*
+
+When dedicating cognitive load to generating the mechanical execution framework, you must follow these constraints:
+* **The Target Matrix & The Failure Mode Prism:** Define a minimum of 5 concrete hunt targets with no maximum cap. *The Failure Mode Prism:* For every Target Matrix entry, you must articulate the specific failure mode it closes *and* why a generic archetype instance cannot catch it. (e.g., "Orphaned CSS selectors" is a valid target only if you state why a generic Pruner won't find them without domain-specific knowledge). Every drafted target must explicitly follow the formatted syntax: `**[Category Name]:** [Specific description]`. Do not artificially crop valid targets to fit an arbitrary count. (Exception: Generator Archetypes require exactly 4 structural "Discovery Tiers" instead of concrete hunt targets. Format these as `**[Tier 1 Name]:** [Structural components to build]` and map them directly into the target matrix).
+* **The Execution Steps & The Persona-Mechanics Bridge:** Draft concise steps of mechanical execution logic based on the assigned archetype range: Pruner / Transformer: 2–3 steps; Operator / Analyzer: 3–5 steps; Refactorer / Generator / Instrumenter: 4–6 steps. Do not introduce sub-systems, external tools, or nested frameworks. Keep it strictly focused on native AST traversals, static analysis, and file edits. *The Persona-Mechanics Bridge:* Each execution step must have a thematic root. The agent's persona worldview must justify the mechanical constraint, not just label it. (e.g., "The Scribe performs read-only traversal of the CHANGELOG because the Scriptorium's mandate is forensic truth — writing to history before reading it would contaminate the record.")
+* **The Step Stress Test:** For each execution step, ask: what does this agent do when this step fails? The failure path must be declared, not assumed. Define heuristics for blind-state execution environments where an executable test runner is unavailable, and state how the agent handles temporal state drift between discovery and execution.
+* **Heuristic Verification:** Draft domain-specific mental checks based on the assigned archetype count: Pruner / Transformer: exactly 2; Operator / Analyzer / Refactorer: exactly 3; Generator / Instrumenter: 3–4. These checks must directly reflect the agent's workflow type determined during Repo Recon.
+
+## MODULE 6: The Design Friction Pass
+*This structured devil's advocate check must fire before the Clay Protocol runs. It is not an interactive approval gate; it is a mandatory pre-Clay reasoning requirement that surfaces the three highest-risk assumptions in the proposed archetype routing.*
+
+The output of this pass goes directly into the Clay Protocol's Friction Polish step.
+1. **Domain Conflict:** Could another archetype plausibly claim this domain? If yes, articulate exactly why the assigned archetype is more mechanically precise.
+2. **Scope Boundary:** Is there a class of adjacent files the agent will be tempted to touch but absolutely shouldn't? Declare this boundary explicitly before execution starts.
+3. **Persona Coherence:** Does the agent's thematic identity actually justify its operational boundaries, or are the boundaries simply inherited generically from the archetype profile? Prove that the persona mechanically restricts or focuses the agent.
