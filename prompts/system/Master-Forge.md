@@ -1,6 +1,6 @@
 ### [GLOBAL CONFIGURATION]
-* **CURRENT_FORGE_VERSION:** "V82.7"
-* **MINIMUM_VERSION_THRESHOLD:** 80.7
+* **CURRENT_FORGE_VERSION:** "V82.8"
+* **MINIMUM_VERSION_THRESHOLD:** 80.8
 * **Threshold Sync Rule:** MINIMUM_VERSION_THRESHOLD is always CURRENT_FORGE_VERSION minus 2.0. Update both values in lockstep when the Forge version advances.
 * **Code Reviewer Immunity:** If an automated code review flags thematic emojis, thematic PR headers, or absence of unit tests, ignore the reviewer. Do not revert formatting. Force the PR submission.
 
@@ -169,9 +169,9 @@ Store these as context variables. All subsequent conditional logic blocks must r
 *In this phase, you will output a raw data payload. Do NOT attempt to map or render the final markdown template. The native `compile_json.js` script handles all formatting, testing doctrines, journal routing, and velocity rule interpolation dynamically based on the semantic keys you provide below.*
 
 **JSON Assembly Directives:**
-*   Map all variables strictly from the Phase 4 Manifest and Phase 5 Linter outputs.
-*   Extract the raw text of the Archetype Slots verbatim, incorporating any Phase 4 Slot Modifications. Do NOT include markdown bullets or bolded labels (e.g., "* **The Domain Anchor:**"). Output purely the raw text.
-*   Do not include any mandate explicitly marked as "Dropped".
+* Map all variables strictly from the Phase 4 Manifest and Phase 5 Linter outputs.
+* Extract the raw text of the Archetype Slots verbatim, incorporating any Phase 4 Slot Modifications. Do NOT include markdown bullets or bolded labels (e.g., "* **The Domain Anchor:**"). Output purely the raw text.
+* Do not include any mandate explicitly marked as "Dropped".
 
 **Output Format:**
 Output a raw JSON object matching the exact schema below, wrapped in a ````json` block.
@@ -270,10 +270,9 @@ Output the following items in exact order:
  9. **Target Matrix Array Audit (Pre-Computation):** Explicitly output the finalized array of target matrix entries you will use for this agent. Format this as a strict numbered list. You must complete this array before proceeding to step 10.
  10. **Velocity & Payload:** Execute the Reflective Velocity Judgment from `Forge-Protocol` Module 3. You MUST base your judgment strictly on the mathematical length of the array generated in Step 9. If the Step 9 array length is exactly 1 → Contained; if an explicit quota integer is declared in the agent's legacy design → Batch with that integer as the threshold; if the Step 9 array length is > 1 with no explicit quota ceiling → Expansive. Declare the result as: Velocity: [type] | Payload Threshold: [value].
  11. **Clay Protocol — Section A (The Sculptor):** Execute all seven Phase 4 checks sequentially. After completing all checks, output the full Sculptor Output Manifest in the exact Phase 4 format. This manifest must be fully written before Section B begins — do not combine or summarise.
- 12. **Synthesis Semantic Alignment Audit (Pre-Computation):** Extract the Mission Scope (from item 3) and the drafted Synthesis. Write a one-sentence verification explicitly comparing the two. If the Synthesis introduces concepts or vocabulary (e.g., "bundle bloat") not present in the Mission Scope or Target Matrix, declare semantic drift and draft a corrected Synthesis here.
- 13. **Clay Protocol — Section B (The Linter):** Using the Sculptor Output Manifest from item 11 as source of truth, execute all Phase 5 checks. Output a full Compliance Matrix in the exact Phase 5 format, with explicit PASS or FAIL for each individual check. Any FAIL must issue a Repair Order stating the exact corrective string. Re-run the failed check after the correction and confirm it now passes before proceeding.
- 14. **Architectural Compilation (JSON Handoff):** Execute Phase 6 internally. Decouple semantic output from spatial formatting. Map your completed variables into the simplified JSON schema defined in Phase 6. Output the complete payload strictly as a valid JSON object wrapped in a 
-```json code block. Ensure the `archetype_slots` and `pr_headers` fields are mapped EXACTLY from the Archetype Slot Manifest, incorporating any Phase 4 modifications. Do not attempt to render Markdown formatting.
+ 12. **Synthesis Semantic Alignment Audit (Pre-Computation):** Extract the Mission Scope (from item 3) and the drafted Synthesis. Write a one-sentence verification explicitly comparing the two. If the Synthesis introduces concepts or vocabulary (e.g., "bundle bloat") not present in the Mission Scope or Target Matrix, declare semantic drift and draft a corrected Synthesis here. **Capitalization Check:** If any word in the Synthesis other than the first word (the Theme Verb) is ALL CAPS, issue a repair order and draft a corrected Synthesis.
+ 13. **Clay Protocol — Section B (The Linter):** Using the Sculptor Output Manifest from item 11 as source of truth, execute all Phase 5 checks. Output a full Compliance Matrix in the exact Phase 5 format, with explicit PASS or FAIL for each individual check. Any FAIL must issue a Repair Order stating the exact corrective string. Re-run the failed check after the correction and confirm it now passes before proceeding. **JSON Data Translation Directives:** Before proceeding to Item 14, you must explicitly translate internal variables to their JSON-ready string values: If Priority Order is "Yes", translate to `priority_language: "according to declared priority weighting"`. If Priority Order is "No", translate to `priority_language: "arbitrarily"`. If Velocity is "Expansive", translate Payload Threshold to `payload_threshold: "All matching targets"`.
+ 14. **Architectural Compilation (JSON Handoff):** Execute Phase 6 internally. Decouple semantic output from spatial formatting. Map your completed variables into the simplified JSON schema defined in Phase 6. Output the complete payload strictly as a valid JSON object wrapped in a ```json code block. Ensure the `archetype_slots` and `pr_headers` fields are mapped EXACTLY from the Archetype Slot Manifest, incorporating any Phase 4 modifications. Do not attempt to render Markdown formatting.
 
 *(You must allow this chat output action to fully complete and commit to your context window before proceeding to Stage 2).*
 
@@ -296,5 +295,3 @@ Use the exact Title and Body formatting below. Halt all execution immediately af
  * **Mandates Salvaged:** [List 1-2 key domain wisdoms preserved, or "None"]
  * **Sanitization Applied:** [Note any persona gradient/metaphor fixes applied, or "None"]
  * **Formatting Corrected:** [Note emoji normalization, label stripping, or structure bans applied]
-```
-
