@@ -10,6 +10,16 @@ function formatList(arr, bullet = '* ') {
     }).join('\n');
 }
 
+// Specialized formatter for Execution Steps to fix broken bolding
+function formatExecutionSteps(arr) {
+    if (!Array.isArray(arr)) return '';
+    return arr.map(item => {
+        let cleanItem = String(item).replace(/^[\*\-\s]+/, '');
+        cleanItem = cleanItem.replace(/^\*?([^\*:]+)\*\*:/, '**$1**:');
+        return `* ${cleanItem}`;
+    }).join('\n');
+}
+
 // Specialized formatter for Philosophy to aggressively strip bolded mandate labels
 function formatPhilosophy(arr) {
     if (!Array.isArray(arr)) return '';
@@ -53,8 +63,8 @@ function formatTargetMatrix(arr) {
 function formatHeuristics(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
-        cleanItem = cleanItem.replace(/^\*([^\*:]+)\*\*:/, '**$1**:');
+        let cleanItem = String(item).replace(/^[\*\-\s]+/, '');
+        cleanItem = cleanItem.replace(/^\*?([^\*:]+)\*\*:/, '**$1**:');
         return `* ${cleanItem}`;
     }).join('\n');
 }
@@ -63,6 +73,8 @@ function compile(jsonPayloadStr, targetFilePath) {
     let data;
     try {
         data = JSON.parse(jsonPayloadStr);
+        console.log(`[COMPILER] JSON payload parsed successfully. Validating input arrays...`);
+        console.log(`[COMPILER] Philosophy items detected: ${Array.isArray(data.philosophy) ? data.philosophy.length : '0 (or invalid)'}`);
     } catch (e) {
         throw new Error(`Failed to parse JSON payload: ${e.message}`);
     }
@@ -125,11 +137,11 @@ function compile(jsonPayloadStr, targetFilePath) {
     const salvagedMandates = formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates);
     const domainModifiers = formatList(data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates);
     const crossVectorGrants = formatList(data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants);
-    const executionSteps = formatList(data.process?.execute?.execution_steps || data.process?.execution_steps);
+    const executionSteps = formatExecutionSteps(data.process?.execute?.execution_steps || data.process?.execution_steps);
     const heuristics = formatHeuristics(data.process?.verify?.heuristic_verification || data.process?.heuristic_verification);
     
     // Handle Target Limit / Payload Threshold logic cleanly
-    const ignoreLimits = ['open', 'n/a', 'none', 'null', 'expansive', 'all'];
+    const ignoreLimits = ['open', 'n/a', 'none', 'null', 'expansive', 'all', 'all matching targets'];
     const targetLimitClean = String(payloadThreshold).trim();
     const targetLimitInstruction = (targetLimitClean && targetLimitClean !== '1' && !ignoreLimits.includes(targetLimitClean.toLowerCase())) 
         ? `Continue executing within your locked scope up to a maximum of ${targetLimitClean}. ` 
@@ -219,6 +231,7 @@ ${formatList(data.favorite_optimizations)}
     const cleanedOutput = output.split('\n').filter(line => line.trim() !== '' || line === '').join('\n').replace(/\n{3,}/g, '\n\n');
 
     fs.writeFileSync(targetFilePath, cleanedOutput);
+    console.log(`[COMPILER] Compilation success. Target artifact saved: ${targetFilePath}`);
 }
 
 if (require.main === module) {
