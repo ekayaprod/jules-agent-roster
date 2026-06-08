@@ -46,55 +46,8 @@ describe('SingularityBespokeBuilder', () => {
   describe('render', () => {
     it('should inject UI template into container', () => {
       builder.init();
-      expect(container.querySelector('#sgAgentName')).not.toBeNull();
+      expect(container.querySelector('#sgMission')).not.toBeNull();
       expect(container.querySelector('#sgSubmit')).not.toBeNull();
-    });
-  });
-
-  describe('bindEvents', () => {
-    it('should toggle advanced options view on click', () => {
-      builder.init();
-      const toggleBtn = container.querySelector('#sgAdvancedBtn');
-      const advancedOpts = container.querySelector('#sgAdvancedPanel');
-
-      expect(advancedOpts.classList.contains('open')).toBe(false);
-
-      toggleBtn.click();
-      expect(advancedOpts.classList.contains('open')).toBe(true);
-
-      toggleBtn.click();
-      expect(advancedOpts.classList.contains('open')).toBe(false);
-    });
-
-    it('should handle mission input archetype badge updates', () => {
-      builder.init();
-      const missionInput = container.querySelector('#sgMission');
-      const badge = container.querySelector('#sgPredictionBadge');
-
-      missionInput.value = 'remove old files';
-      missionInput.dispatchEvent(new Event('input'));
-      expect(badge.innerHTML).toBe('🗡️ Assassin');
-
-      missionInput.value = 'enforce strict types';
-      missionInput.dispatchEvent(new Event('input'));
-      expect(badge.innerHTML).toBe('🛡️ Sentinel');
-
-      missionInput.value = 'document the codebase';
-      missionInput.dispatchEvent(new Event('input'));
-      expect(badge.innerHTML).toBe('🔮 Oracle');
-
-      missionInput.value = 'build a new feature';
-      missionInput.dispatchEvent(new Event('input'));
-      expect(badge.innerHTML).toBe('🛠️ Maker');
-    });
-
-    it('should handle quick fill pill clicks', () => {
-      builder.init();
-      const pill = container.querySelector('.sg-pill[data-mission="Prune dead code and remove all unused files and exports."]');
-      const missionInput = container.querySelector('#sgMission');
-
-      pill.click();
-      expect(missionInput.value).toBe('Prune dead code and remove all unused files and exports.');
     });
   });
 
@@ -114,17 +67,17 @@ describe('SingularityBespokeBuilder', () => {
     it('should handle successful forge request', async () => {
       global.fetch.mockResolvedValueOnce({
         ok: true,
-        text: () => Promise.resolve('Template with {{UI_AGENT_NAME}}'),
+        text: () => Promise.resolve('Template with {{UI_MISSION_STATEMENT}}'),
       });
 
       builder.init();
-      builder.elements.nameInput.value = 'Test Agent';
+      builder.elements.missionInput.value = 'Test Mission';
 
       await builder.handleForge();
 
       expect(mockTerminal.launchSession).toHaveBeenCalled();
       const payload = mockTerminal.launchSession.mock.calls[0][0];
-      expect(payload.prompt).toContain('Test Agent');
+      expect(payload.prompt).toContain('Test Mission');
     });
 
     it('should handle fetch failure gracefully', async () => {
@@ -175,31 +128,6 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
     document.body.innerHTML = '';
     jest.restoreAllMocks();
   });
-
-  it('handleForge properly constructs constraints string from checkboxes', async () => {
-    global.fetch = jest.fn().mockResolvedValue({
-      ok: true,
-      text: () => Promise.resolve('Constraints: {{UI_CHECKLIST_CONSTRAINTS}}'),
-    });
-
-    builder.init();
-
-    // Manually check some boxes
-    const cb1 = builder.elements.constraintsContainer.querySelector('input[value="No UI Mutations"]');
-    const cb2 = builder.elements.constraintsContainer.querySelector('input[value="Do not modify tests"]');
-
-    cb1.checked = true;
-    cb2.checked = true;
-
-    await builder.handleForge();
-
-    expect(mockTerminal.launchSession).toHaveBeenCalled();
-    const payload = mockTerminal.launchSession.mock.calls[0][0];
-    expect(payload.prompt).toContain('Constraints: No UI Mutations, Do not modify tests');
-
-    delete global.fetch;
-  });
-
 
   it('should dispatch BUILDER_MISSING_TERMINAL error if TelemetryUtils is available', async () => {
     global.fetch = jest.fn().mockResolvedValue({
@@ -257,7 +185,6 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
 
 describe('SingularityBespokeBuilder - Global Export Bounds', () => {
   it('should export cleanly via module.exports if defined', () => {
-    // 🕵️ Asserting the tail end of the isomorphic mapping
     expect(typeof module !== 'undefined' && module.exports).toBeTruthy();
     expect(SingularityBespokeBuilder).toBeDefined();
   });
