@@ -8,7 +8,7 @@ Here is the quick blueprint to get your local environment running and how to tes
 
 ## 🚀 Quick Start (Let's get cooking)
 
-Make sure you have Node.js installed, then fire up the local environment:
+Make sure you have Node.js (>=18.0.0) installed, then fire up the local environment:
 
 ```bash
 npm install
