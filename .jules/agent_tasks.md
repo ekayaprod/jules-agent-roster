@@ -23,6 +23,7 @@
 ## The [TRANSFORMER] Queue
 
 ## The [OPERATOR] Queue
+* 📦 `package-lock.json`: Lockfile mismatch detected against package.json. Sync required.
 * ⚙️ `package-lock.json`: Bloated lockfile detected.
 
 ## The [GENERATOR] Queue

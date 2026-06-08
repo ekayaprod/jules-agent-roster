@@ -70,3 +70,10 @@ yarn-error.log*
 __pycache__/
 *.swp
 *.swo
+
+# Workspace Debris
+replace2.txt
+replace_schema.txt
+patch2.sh
+patch_master_forge.sh
+fix_typos.sh
