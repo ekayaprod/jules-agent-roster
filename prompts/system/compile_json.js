@@ -1,6 +1,14 @@
 const fs = require('fs');
 const path = require('path');
 
+/**
+ * COMPILER ARCHITECTURE NOTES:
+ * - Compiler consumes repository automation metadata.
+ * - Compiler generates documentation artifacts.
+ * - Compiler terminology is presentation-layer metadata.
+ * - Compiler does not define or alter platform instructions.
+ */
+
 // Generic helper for standard lists
 function formatList(arr, bullet = '* ') {
     if (!Array.isArray(arr)) return '';
@@ -21,7 +29,7 @@ function formatExecutionSteps(arr) {
     }).join('\n');
 }
 
-// Specialized formatter for Philosophy to aggressively strip bolded mandate labels
+// Specialized formatter for Philosophy to aggressively strip bolded rule labels
 function formatPhilosophy(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
@@ -99,14 +107,14 @@ function compile(jsonPayloadStr, targetFilePath) {
     const payloadThreshold = data.payload_threshold || data.process?.select_classify?.target_limit || '1';
     const tier = data.identity?.tier || '';
     const isStructural = data.verification_layer === 'structural';
-    const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].includes(archetype);
+    const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].__MASK_includes(work profile)__;
 
     // 1. Testing Doctrine
     const testingDoctrine = category.toLowerCase() === 'testing'
-        ? "* **The Test Automation Mandate:** Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
-        : "* **The Test Immunity Doctrine:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.";
+        ? "* **The Test Automation Rule:** Mutate test files exclusively; source code should be handled as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+        : "* **The Test Immunity Doctrine:** all test files should be handled as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. this workflow requires either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.";
 
-    // 2. Velocity & Execution Mandate
+    // 2. Velocity & Execution Rule
     let executionMandate = '';
     let discoveryVelocityRule = '';
     let executionPosture = '';
@@ -120,14 +128,14 @@ function compile(jsonPayloadStr, targetFilePath) {
         reporterProtocol = "Verify your mutations in batches. Complete all AST mutations within your locked scope before triggering your test runner. Do not waste tool calls testing line-by-line. You have a maximum of 3 verification attempts per target.";
         prCreationRule = "Do not burn tool calls running `git diff` or `git status` right before submission. The PR UI automatically attaches diffs. Rely purely on your working memory to draft the PR description.";
     } else if (velocity === 'Batch') {
-        executionMandate = `Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly ${payloadThreshold} targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.`;
-        discoveryVelocityRule = "**The Bounded Sweep:** You are authorized to scan and lock onto targets strictly until your Quota is met, at which point you must immediately abort all further scanning and proceed to execution.";
+        executionMandate = `Your discovery posture is bounded-sweep. this workflow permits traverse the repository to locate targets but must abort execution the moment you have mutated exactly ${payloadThreshold} targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.`;
+        discoveryVelocityRule = "**The Bounded Sweep:** this workflow permits scan and lock onto targets strictly until your Quota is met, at which point this workflow requires immediately abort all further scanning and proceed to execution.";
         executionPosture = "Execute in bounded sequence, tracking your mutation count against your declared quota ceiling.";
         reporterProtocol = "Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling.";
         prCreationRule = "Do not burn tool calls running `git diff` or `git status` right before submission. The PR UI automatically attaches diffs. Rely purely on your working memory to draft the PR description.";
     } else {
-        executionMandate = "Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across three layers:\n1. **Proactive Touchpoints:** If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.\n2. **Wrap-Up Checkpoints:** At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n3. **Managed Interruption:** If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: *'Awaiting operator clearance to resume.'* Resume instantly once cleared.";
-        discoveryVelocityRule = "**The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.";
+        executionMandate = "Your discovery posture is full-sweep. this workflow permits map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across three layers:\n1. **Proactive Touchpoints:** If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.\n2. **Wrap-Up Checkpoints:** At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n3. **Managed Interruption:** If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: *'Awaiting operator clearance to resume.'* Resume instantly once cleared.";
+        discoveryVelocityRule = "**The Deep Map:** this workflow permits execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.";
         executionPosture = "Execute Incrementally.";
         reporterProtocol = "Verify your mutations incrementally. You may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target.";
         prCreationRule = "";
@@ -141,7 +149,7 @@ function compile(jsonPayloadStr, targetFilePath) {
 
     // 3. Journal & Tasks Board
     const journalPath = tier.toLowerCase() === 'core' ? `.jules/${data.identity?.name || 'journal'}.md` : `.jules/journal_${category.toLowerCase()}.md`;
-    const agentTasksBoardRules = requiresTasksBoard ? "* **The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself." : '';
+    const agentTasksBoardRules = requiresTasksBoard ? "* **The Worker Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself." : '';
     const tasksBoardCrossReference = requiresTasksBoard ? "Read `.jules/agent_tasks.md`, then perform your discover phase." : '';
 
     // --- ARRAY FORMATTING ---
@@ -203,15 +211,15 @@ ${cleanCodeFence(data.coding_standards?.good_code_snippet || '')}
 ${cleanCodeFence(data.coding_standards?.bad_code_snippet || '')}
 ~~~
 
-### Strict Operational Mandates
-${formatSlot(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor || '', 'The Domain Anchor')} If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
+### Strict Operational Rules
+${formatSlot(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor || '', 'The Primary Responsibility')} If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
 ${formatSlot(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope || '', 'The Scope')}
-* **The Execution Mandate:** ${executionMandate}
-${formatSlot(data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || '', 'The Resilience Protocol')}
+* **The Execution Rule:** ${executionMandate}
+${formatSlot(data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || '', 'The Resilience Procedure')}
 ${domainModifiers}
-${formatSlot(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule || '', 'The Decisiveness')}
+${formatSlot(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule || '', 'The Autonomous Selection')}
 ${formatSlot(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution || '', 'The Execution')}
-${testingDoctrine ? formatSlot(testingDoctrine, 'The Verification Protocol') : ''}
+${testingDoctrine ? formatSlot(testingDoctrine, 'The Verification Procedure') : ''}
 ${salvagedMandates}
 ${crossVectorGrants}
 
@@ -219,7 +227,7 @@ ${crossVectorGrants}
 **Journal Path:** \`${journalPath}\`
 ${agentTasksBoardRules}
 
-${formatSlot(data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Protocol').replace(/^\*\s/, '')}
+${formatSlot(data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Procedure').replace(/^\*\s/, '')}
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute ${discoverTrigger} using asynchronous tools. ${tasksBoardCrossReference}
@@ -228,7 +236,7 @@ ${formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.targ
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${priorityLanguage} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${targetLimitClean}.
 3. ⚙️ **[${data.process?.theme_verb || data.process?.execute?.theme_verb || ''}]** — **${executionPosture}** ${targetLimitInstruction}Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 ${executionSteps}
-4. ✅ **VERIFY** — **The Reporter Protocol:** ${reporterProtocol} Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
+4. ✅ **VERIFY** — **The Reporter Procedure:** ${reporterProtocol} Do not changing error messages should be handled as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. verification should be handled as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
 **Heuristic Verification:**
 ${heuristics}
 5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. ${prCreationRule} Trigger this tool natively rather than using chat-based workarounds. Use the title: "${data.requires_caution_flag || data.process?.present?.requires_caution_flag ? '[CAUTION] ' : ''}${data.identity?.emoji || ''} ${data.identity?.name || ''}: [Action]". ${presentationSlotClean} Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. ${zeroTargetExitInstruction}If the run produced no source mutations but did append relay entries to \`.jules/agent_tasks.md\`, submit a minimal PR documenting the relay entries rather than suppressing it.
