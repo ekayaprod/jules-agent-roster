@@ -222,24 +222,7 @@ class FusionLab {
       }
     }
 
-    if (result.name === "Singularity") {
-      if (this.animation) {
-        this.animation.runAnimation(agentA, agentB, result, () => {
-          this.resetLab();
-          if (window.rosterApp && window.rosterApp.singularityBuilderContainer) {
-            window.rosterApp.singularityBuilderContainer.classList.remove("hidden");
-            window.rosterApp.singularityBuilderContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-          }
-        });
-      } else {
-        this.resetLab();
-        if (window.rosterApp && window.rosterApp.singularityBuilderContainer) {
-          window.rosterApp.singularityBuilderContainer.classList.remove("hidden");
-          window.rosterApp.singularityBuilderContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }
-      return;
-    }
+
 
     this.renderFusionResult(result);
     if (this.animation) {
@@ -276,14 +259,7 @@ class FusionLab {
     const result = this.compiler.fuse(agentA, agentB);
 
     // Do not render Singularity as a standard card.
-    if (result.name === "Singularity") {
-      this.resetLab();
-      if (window.rosterApp && window.rosterApp.singularityBuilderContainer) {
-        window.rosterApp.singularityBuilderContainer.classList.remove("hidden");
-        window.rosterApp.singularityBuilderContainer.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-      return;
-    }
+
 
     this.renderFusionResult(result);
     this.showResult();

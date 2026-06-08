@@ -1,266 +1,61 @@
-        @font-face {
-          font-family: 'Syne-Fallback';
-          src: local('BlinkMacSystemFont'), local('Segoe UI'), local('Roboto'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
-          font-display: swap;
-          size-adjust: 106.3%;
-          ascent-override: 86.8%;
-          descent-override: 23.5%;
-        }
 
-        .sg-forge {
-          --sg-mythic:   var(--mythic);
-          --sg-card:     var(--card-bg);
-          --sg-border:   var(--border, color-mix(in srgb, var(--text-primary) 8%, transparent));
-          --sg-muted:    var(--text-secondary, color-mix(in srgb, var(--text-primary) 50%, transparent));
-          --sg-surface:  var(--details-bg, color-mix(in srgb, var(--text-primary) 4%, transparent));
-          --sg-maker:    var(--accent);
-          --sg-assassin: var(--error);
-          --sg-sentinel: var(--success);
-          --sg-oracle:   var(--warning);
-
-          background-color: var(--sg-card);
-          border: 1px solid var(--sg-border);
-          border-radius: 1rem;
-          box-shadow: 0 0.25rem 0.375rem -1px rgba(0, 0, 0, 0.2);
-          overflow: hidden;
-          width: 100%; max-width: 48rem;
-          margin: 2rem auto;
-          font-family: system-ui, -apple-system, sans-serif;
-          height: auto;
-          transition: all 0.3s ease;
-        }
-
-        @media (min-width: 640px) {
-          .sg-forge {
-            flex-basis: 20rem;
-            max-width: 24rem;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            min-height: 11.5rem; /* Same height as agent card */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          }
-          .sg-forge.expanded {
-             flex-basis: auto;
-             max-width: 48rem;
-             grid-column: 1 / -1;
-             min-height: auto;
-             height: auto;
-             justify-content: flex-start;
-          }
-        }
-
-        .sg-forge.expanded .sg-body, .sg-forge.expanded .sg-footer, .sg-forge.expanded .sg-footer-divider {
-          display: flex;
-        }
-        .sg-forge .sg-body, .sg-forge .sg-footer, .sg-forge .sg-footer-divider {
-          display: none;
-        }
-
-        .sg-forge-inner {
-            cursor: pointer;
-        }
-
-        .sg-forge.expanded .sg-forge-inner {
-            cursor: default;
-        }
-
-        /* ── Header ── */
-        .sg-header {
-          position: relative;
-          padding: 0.75rem 1rem;
-          border-bottom: 1px solid var(--sg-border);
-          text-align: left;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
-          max-height: 11.5rem;
-          box-sizing: border-box;
-          transition: max-height 0.4s ease-in-out, border-bottom 0.3s ease;
-        }
-
-        @media (min-width: 640px) {
-          .sg-forge:not(.expanded) .sg-header {
-            border-bottom: none;
-          }
-        }
-
-        .sg-forge.expanded .sg-header {
-          max-height: 40rem;
-          border-bottom: 1px solid var(--sg-border);
-        }
-
-        .sg-expand-hint {
-          bottom: 0.5rem;
-          right: 0.5rem;
-        }
-        .sg-forge.expanded .sg-expand-hint {
-          display: none;
-        }
-
-        .front-content-wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; width: 100%; justify-content: center; gap: 0.5rem; height: 100%; }
-        .card-top { display: grid; grid-template-columns: 1fr 2fr; width: 100%; gap: 0.5rem; align-items: center; }
-        .card-top-left { display: flex; justify-content: center; align-items: center; padding-top: 0.25rem; }
-        .card-top-right { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
-
-        .emoji-hero { font-size: 3.75rem; line-height: 1; margin-bottom: 0; transition: transform 0.2s ease; }
-        .sg-forge-inner:hover .emoji-hero { transform: scale(1.05) translateY(-0.125rem); }
-
-        .title-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1rem; text-align: left; }
-        .agent-title { font-size: 1rem; font-weight: 700; margin: 0; color: var(--text-primary); font-family: -apple-system, sans-serif; }
-        .role-tag { font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 999px; background-color: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--sg-maker); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; font-family: -apple-system, sans-serif; }
-
-        .description { color: var(--sg-muted); font-size: 0.8125rem; line-height: 1.5; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; margin-top: 0.75rem; font-family: -apple-system, sans-serif; }
-
-        .flip-hint { position: absolute; z-index: 2; font-size: 1.125rem; opacity: 0.6; transition: opacity 0.3s; color: var(--sg-muted); min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; }
-
-        /* ── Body ── */
-        .sg-body {
-          padding: 1.875rem 2rem;
-          display: flex;
-          flex-direction: column;
-          gap: 1.875rem;
-        }
-
-        .sg-label {
-          display: block;
-          font-size: 0.6875rem;
-          font-weight: 700;
-          letter-spacing: 0.09em;
-          text-transform: uppercase;
-          color: var(--sg-muted);
-          margin-bottom: 0.625rem;
-        }
-        .sg-label-note {
-          font-size: 0.65rem;
-          font-weight: 500;
-          letter-spacing: 0.04em;
-          color: color-mix(in srgb, var(--text-primary) 30%, transparent);
-          text-transform: none;
-          margin-left: 0.5rem;
-        }
-
-        /* ── Archetype Cards ── */
-        .sg-archetype-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-          gap: 0.5rem;
-        }
-        .sg-archetype-card {
-          --ac: color-mix(in srgb, var(--text-primary) 15%, transparent);
+        .sg-builder {
           background: var(--sg-surface);
           border: 1px solid var(--sg-border);
-          border-radius: 0.625rem;
-          padding: 0.75rem 0.875rem 0.75rem 0.75rem;
-          cursor: pointer;
-          min-height: 2.75rem;
-          transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
-          display: flex;
-          align-items: flex-start;
-          gap: 0.625rem;
-          text-align: left;
-          position: relative;
+          border-radius: 0.75rem;
+          color: var(--text-primary);
+          font-family: system-ui, -apple-system, sans-serif;
           overflow: hidden;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          transition: border-color 0.3s ease;
         }
-        .sg-archetype-card::after {
-          content: '';
-          position: absolute;
-          left: 0; top: 0; bottom: 0;
-          width: 3px;
-          background: var(--ac);
-          opacity: 0;
-          transition: opacity 0.15s ease;
-        }
-        .sg-archetype-card[data-type="MAKER"]    { --ac: var(--sg-maker);    }
-        .sg-archetype-card[data-type="ASSASSIN"] { --ac: var(--sg-assassin); }
-        .sg-archetype-card[data-type="SENTINEL"] { --ac: var(--sg-sentinel); }
-        .sg-archetype-card[data-type="ORACLE"]   { --ac: var(--sg-oracle);   }
 
+        .sg-header {
+          padding: 1.5rem 2rem;
+          background: color-mix(in srgb, var(--sg-surface) 95%, var(--sg-mythic) 5%);
+          border-bottom: 1px solid var(--sg-border);
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          transition: background-color 0.2s ease;
+        }
         @media (hover: hover) and (pointer: fine) {
-          .sg-archetype-card:hover {
-            border-color: color-mix(in srgb, var(--text-primary) 15%, transparent);
-            background: color-mix(in srgb, var(--text-primary) 4%, transparent);
-          }
+          .sg-header:hover { background: color-mix(in srgb, var(--sg-surface) 90%, var(--sg-mythic) 10%); }
         }
-        .sg-archetype-card.selected {
-          border-color: var(--ac);
-          background: color-mix(in srgb, var(--ac) 9%, transparent);
-          box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ac) 30%, transparent);
-        }
-        .sg-archetype-card.selected::after { opacity: 1; }
-        .sg-archetype-card:focus-visible { outline: 2px solid var(--ac); outline-offset: 2px; }
 
-        .sg-archetype-icon { font-size: 1.125rem; line-height: 1; flex-shrink: 0; margin-top: 1px; }
-        .sg-archetype-name {
+        .sg-header-content {
+          display: flex;
+          align-items: center;
+          gap: 1.25rem;
+        }
+        .sg-header-icon {
+          font-size: 2.25rem;
+          filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .sg-section {
+          display: flex;
+          flex-direction: column;
+          gap: 0.625rem;
+        }
+        .sg-section-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+        }
+        .sg-label {
           font-size: 0.8125rem;
           font-weight: 700;
           color: var(--text-primary);
-          display: block;
-          margin-bottom: 0.125rem;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
         }
-        .sg-archetype-desc {
+        .sg-label-note {
           font-size: 0.6875rem;
           color: var(--sg-muted);
-          line-height: 1.4;
-          display: block;
+          font-weight: 500;
         }
-
-        /* ── Mission & Prediction Badge ── */
-        .sg-mission-label { margin: 0; }
-        .sg-mission-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 0.75rem;
-          margin-bottom: 0.625rem;
-          flex-wrap: wrap;
-        }
-        .sg-mission-title-group {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-        }
-        .sg-prediction-badge {
-          font-size: 0.65rem;
-          font-weight: 700;
-          padding: 0.15rem 0.5rem;
-          border-radius: 0.25rem;
-          background: color-mix(in srgb, var(--sg-maker) 15%, transparent);
-          color: var(--sg-maker);
-          transition: all 0.2s ease;
-          border: 1px solid transparent;
-        }
-        .sg-pills {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.375rem;
-        }
-        .sg-pill {
-          font-size: 0.6875rem;
-          font-weight: 600;
-          padding: 0.2rem 0.5rem;
-          border-radius: 2rem;
-          border: 1px solid var(--sg-border);
-          background: transparent;
-          color: var(--sg-muted);
-          cursor: pointer;
-          min-height: 2.75rem;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.15s ease;
-          white-space: nowrap;
-          line-height: 1.6;
-        }
-        @media (hover: hover) and (pointer: fine) {
-          .sg-pill:hover { background: color-mix(in srgb, var(--text-primary) 5%, transparent); color: var(--text-primary); border-color: color-mix(in srgb, var(--text-primary) 20%, transparent); }
-          .sg-pill[data-archetype="MAKER"]:hover    { border-color: var(--sg-maker);    color: var(--sg-maker);    }
-          .sg-pill[data-archetype="ASSASSIN"]:hover { border-color: var(--sg-assassin); color: var(--sg-assassin); }
-          .sg-pill[data-archetype="SENTINEL"]:hover { border-color: var(--sg-sentinel); color: var(--sg-sentinel); }
-          .sg-pill[data-archetype="ORACLE"]:hover   { border-color: var(--sg-oracle);   color: var(--sg-oracle);   }
-        }
-        .sg-pill:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
 
         .sg-textarea {
           width: 100%;
@@ -280,123 +75,7 @@
         .sg-textarea:focus { outline: none; border-color: var(--sg-mythic); box-shadow: 0 0 0 1px var(--sg-mythic); }
         .sg-textarea:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
         .sg-textarea::placeholder { color: var(--sg-muted); }
-        .sg-mission-hint {
-          margin-top: 0.4rem;
-          font-size: 0.6875rem;
-          color: var(--sg-muted);
-          font-style: italic;
-          line-height: 1.5;
-        }
 
-        /* ── Constraints ── */
-        .sg-constraints-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-          gap: 0.25rem;
-        }
-        .sg-constraint {
-          display: flex;
-          align-items: flex-start;
-          gap: 0.5rem;
-          padding: 0.5rem 0.625rem;
-          border-radius: 0.375rem;
-          cursor: pointer;
-          min-height: 2.75rem;
-          transition: background 0.12s ease, transform 0.1s ease;
-        }
-        .sg-constraint:active { transform: scale(0.98); }
-        @media (hover: hover) and (pointer: fine) {
-          .sg-constraint:hover { background: color-mix(in srgb, var(--text-primary) 3%, transparent); }
-        }
-        .sg-constraint input[type="checkbox"] {
-          margin-top: 2px;
-          flex-shrink: 0;
-          accent-color: var(--sg-mythic);
-          cursor: pointer;
-        }
-        .sg-constraint input[type="checkbox"]:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
-        .sg-constraint-label {
-          font-size: 0.8125rem;
-          font-weight: 600;
-          color: var(--text-primary);
-          display: block;
-        }
-        .sg-constraint-sub {
-          font-size: 0.675rem;
-          color: var(--sg-muted);
-          line-height: 1.35;
-          display: block;
-          margin-top: 0.1rem;
-        }
-
-        /* ── Identity ── */
-        .sg-identity-row {
-          display: flex;
-          gap: 0.75rem;
-        }
-        .sg-identity-name  { flex: 1; }
-        .sg-identity-emoji { max-width: 5rem; flex-shrink: 0; }
-
-        .sg-input {
-          width: 100%;
-          background: var(--sg-surface);
-          border: 1px solid var(--sg-border);
-          border-radius: 0.5rem;
-          padding: 0.625rem 0.75rem;
-          font-size: 0.875rem;
-          color: var(--text-primary);
-          font-family: inherit;
-          transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
-          box-sizing: border-box;
-        }
-        .sg-input:focus { outline: none; border-color: var(--sg-mythic); box-shadow: 0 0 0 1px var(--sg-mythic); }
-        .sg-input:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
-        .sg-input::placeholder { color: var(--sg-muted); }
-        .sg-input-emoji { text-align: center; font-size: 1.25rem; }
-
-        /* ── Advanced ── */
-        .sg-advanced-btn {
-          background: none;
-          border: none;
-          color: var(--sg-mythic);
-          font-size: 0.8125rem;
-          font-weight: 600;
-          cursor: pointer;
-          padding: 0;
-          min-height: 2.75rem;
-          display: flex;
-          align-items: center;
-          gap: 0.375rem;
-          text-decoration: underline;
-          text-underline-offset: 2px;
-          transition: opacity 0.15s ease;
-        }
-        @media (hover: hover) and (pointer: fine) {
-          .sg-advanced-btn:hover { opacity: 0.7; }
-        }
-        .sg-advanced-btn:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 4px; border-radius: 0.125rem; }
-        .sg-chevron {
-          display: inline-block;
-          font-size: 0.6rem;
-          transition: transform 0.25s ease;
-        }
-        .sg-advanced-panel {
-          max-height: 0;
-          overflow: hidden;
-          opacity: 0;
-          transition: max-height 0.3s ease, opacity 0.25s ease, margin-top 0.25s ease;
-          display: flex;
-          flex-direction: column;
-          gap: 0.875rem;
-          margin-top: 0;
-        }
-        .sg-advanced-panel.open {
-          max-height: 30rem;
-          opacity: 1;
-          margin-top: 1rem;
-        }
-
-        /* ── Footer ── */
         .sg-footer-divider {
           height: 1px;
           background: var(--sg-border);
@@ -407,7 +86,19 @@
            flex-direction: column;
            gap: 1.5rem;
            padding: 2rem;
+           max-height: 2000px; /* high enough to avoid clipping */
+           overflow: hidden;
+           transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
         }
+
+        .sg-body:not(.expanded) {
+          max-height: 0;
+          padding-top: 0;
+          padding-bottom: 0;
+          opacity: 0;
+          pointer-events: none;
+        }
+
         .sg-footer {
           padding: 1.5rem 2rem;
           display: flex;
@@ -453,51 +144,19 @@
         .sg-submit:disabled { opacity: 0.4; cursor: not-allowed; }
         .sg-submit:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
 
-/* Dynamic mode badges */
-.sg-builder-mode-badge.sg-mode-assassin {
-    color: var(--sg-assassin);
-    background: color-mix(in srgb, var(--sg-assassin) 15%, transparent);
-    border-color: color-mix(in srgb, var(--sg-assassin) 30%, transparent);
-}
-.sg-builder-mode-badge.sg-mode-sentinel {
-    color: var(--sg-sentinel);
-    background: color-mix(in srgb, var(--sg-sentinel) 15%, transparent);
-    border-color: color-mix(in srgb, var(--sg-sentinel) 30%, transparent);
-}
-.sg-builder-mode-badge.sg-mode-oracle {
-    color: var(--sg-oracle);
-    background: color-mix(in srgb, var(--sg-oracle) 15%, transparent);
-    border-color: color-mix(in srgb, var(--sg-oracle) 30%, transparent);
-}
-.sg-builder-mode-badge.sg-mode-maker {
-    color: var(--sg-maker);
-    background: color-mix(in srgb, var(--sg-maker) 15%, transparent);
-    border-color: color-mix(in srgb, var(--sg-maker) 30%, transparent);
-}
-
-/* Chevron utility */
-.sg-chevron-icon {
-    transition: transform 0.2s ease;
-}
-.sg-chevron-icon.rotated {
-    transform: rotate(180deg);
-}
-
-/* Structural aesthetic reroll replacements for removed contradictory tailwind/inline classes */
-
-.sg-archetype-card, .sg-pill, .sg-advanced-btn, .sg-submit {
+.sg-submit {
     transition: all 0.3s ease-in-out;
 }
 
-.sg-archetype-card:focus-visible, .sg-pill:focus-visible, .sg-advanced-btn:focus-visible, .sg-submit:focus-visible {
+.sg-submit:focus-visible {
     outline: 2px solid var(--sg-mythic);
     outline-offset: 2px;
 }
 
-.sg-archetype-card:active, .sg-pill:active, .sg-advanced-btn:active, .sg-submit:active {
+.sg-submit:active {
     transform: scale(0.95);
 }
 
-.sg-archetype-card:hover, .sg-pill:hover, .sg-advanced-btn:hover, .sg-submit:hover {
+.sg-submit:hover {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
