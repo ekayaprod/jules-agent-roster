@@ -25,12 +25,13 @@ function formatList(arr, bullet = '* ') {
     }).join('\n');
 }
 
-// Specialized formatter for Execution Steps to fix broken bolding
+// Specialized formatter for Execution Steps to fix broken bolding and strip numbered lists
 function formatExecutionSteps(arr) {
     arr = ensureArray(arr);
     if (arr.length === 0) return '';
     return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-\s]+/, '');
+        // Strip existing bullets AND numbers (e.g., "1. ", "2) ")
+        let cleanItem = String(item).replace(/^[\*\-\s]+/, '').replace(/^\d+[\.\)]\s*/, '');
         cleanItem = cleanItem.replace(/^\*?([^\*:]+)\*\*:/, '**$1**:');
         return `* ${cleanItem}`;
     }).join('\n');
@@ -42,8 +43,8 @@ function formatPhilosophy(arr) {
     if (arr.length === 0) return '';
     return arr.map(item => {
         let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
-        // Universally strip the bold label (e.g. "**Label:** ") regardless of preceding emojis
-        cleanItem = cleanItem.replace(/\*\*[^\*]+\*\*:\s*/, '');
+        // Strip everything up to and including the first colon, capturing optional bolding and emojis
+        cleanItem = cleanItem.replace(/^(?:[\s\S]*?):\s*/, '');
         return `* ${cleanItem}`;
     }).join('\n');
 }
@@ -53,8 +54,8 @@ function formatSlot(rawText, label) {
     if (!rawText) return '';
     // Strip bullets
     let cleanText = String(rawText).replace(/^[\*\-]\s*/, '');
-    // Strip bold labels like "**The Label:** " or "**Label:** "
-    cleanText = cleanText.replace(/^\*\*[^\*]+\*\*:?\s*/, '').replace(/^\*\*[^\*:]+:?\*\*:?\s*/, '');
+    // Strip bolding, colons, hyphens, and em-dashes (\u2014) from the hallucinated label
+    cleanText = cleanText.replace(/^(?:\*\*)?[^\*:\u2014\-]+(?:\*\*)?[:\u2014\-]+\s*/, '');
     return `* **${label}:** ${cleanText}`;
 }
 
@@ -77,12 +78,13 @@ function formatTargetMatrix(arr) {
     }).join('\n');
 }
 
-// Specialized formatter to fix broken bolding in Heuristics
+// Specialized formatter to fix broken bolding in Heuristics and strip numbered lists
 function formatHeuristics(arr) {
     arr = ensureArray(arr);
     if (arr.length === 0) return '';
     return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-\s]+/, '');
+        // Strip existing bullets AND numbers (e.g., "1. ", "2) ")
+        let cleanItem = String(item).replace(/^[\*\-\s]+/, '').replace(/^\d+[\.\)]\s*/, '');
         cleanItem = cleanItem.replace(/^\*?([^\*:]+)\*\*:/, '**$1**:');
         return `* ${cleanItem}`;
     }).join('\n');
@@ -234,7 +236,7 @@ ${agentTasksBoardRules}
 ${formatSlot(data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Protocol').replace(/^\*\s/, '')}
 
 ### The Process
-1. 🔍 **DISCOVER** — Execute ${discoverTrigger} using asynchronous tools. ${tasksBoardCrossReference}
+1. 🔍 **DISCOVER** — ${discoverTrigger} using asynchronous tools. ${tasksBoardCrossReference}
 ${discoveryVelocityRule}
 ${formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix)}
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${priorityLanguage} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${targetLimitClean}.
