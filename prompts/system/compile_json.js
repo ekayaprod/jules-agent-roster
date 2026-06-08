@@ -107,7 +107,7 @@ function compile(jsonPayloadStr, targetFilePath) {
     const payloadThreshold = data.payload_threshold || data.process?.select_classify?.target_limit || '1';
     const tier = data.identity?.tier || '';
     const isStructural = data.verification_layer === 'structural';
-    const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].__MASK_includes(work profile)__;
+    const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].includes(archetype);
 
     // 1. Testing Doctrine
     const testingDoctrine = category.toLowerCase() === 'testing'
