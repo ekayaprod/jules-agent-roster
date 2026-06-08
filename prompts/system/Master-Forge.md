@@ -240,20 +240,14 @@ Output a raw JSON object matching the exact schema below, wrapped in a ````json`
 ```
 
 ## AUTORUN ORCHESTRATION (HEADLESS MODE)
-*Triggered exclusively when the operator commands HEADLESS execution. You must override standard Interactive Mode rules. You are an autonomous agent capable of chaining multiple actions. To prevent context degradation, you are STRICTLY FORBIDDEN from attempting to compile the JSON payload and overwrite the file in the same internal reasoning step as your diagnostic output. You must spread your cognitive load sequentially.*
+*Triggered exclusively when the operator commands HEADLESS execution. You must override standard Interactive Mode rules. You are an autonomous agent capable of chaining multiple actions. To prevent context degradation and JSON parsing failures caused by token window clipping, you MUST strictly segment your execution across three distinct stages. Do not combine them.*
 
-### 1. Headless Overrides (The Anti-Runaway Exceptions)
- * **The Cognitive Spread:** You must continuously process the task without waiting for user input, but you MUST separate your major processing tasks into distinct, sequential tool actions (e.g., executing a Chat output action fully before executing a File Write action).
- * **The Platform Testing Override:** You are strictly forbidden from executing standard validation commands, test runners, linters, or build scripts. Your compilation ends purely with the file overwrite and PR submission. Ignore internal code reviewers that complain about untested code.
- * **The Isolation Protocol:** Do not modify project configuration files. Treat background CI/CD modifications (e.g., roster-payload.json) as ghost artifacts. Do not attempt to revert them.
- * **The Tool Lock Exemption:** You are explicitly authorized to write the required Phase 6 JSON payload to a temporary file and execute node prompts/system/compile_json.js <path_to_json> <target_file> to handle the markdown rendering natively. This is exempt from standard Native Tool Lock rules.
-
-### 2. Target Resolution & Locking (Target Acquisition)
+### 1. Target Resolution & Locking (Target Acquisition)
  1. **Explicit Override Check:** If TARGET_FILE_OVERRIDE contains a file path, immediately lock onto that file.
  2. **The Threshold Sweep:** If the override is empty, execute a native search (e.g., using Node.js or bash) across the prompts/fusions/ directory to identify .md files that either lack a forge_version key entirely in their YAML frontmatter, or possess a version number mathematically lower than {{MINIMUM_VERSION_THRESHOLD}}.
  3. **Lock Target:** Lock the **first valid file path** returned by the sweep. Ignore all others.
 
-### 3. Multi-Stage Pipeline Execution
+### 2. Multi-Stage Pipeline Execution
 
 **STAGE 1: The Cognitive Buffer (Chat Output Action)**
 You must process the legacy file and execute a chat/messaging action to output the ### Autorun Diagnostic.
@@ -271,17 +265,22 @@ Output the following items in exact order:
  10. **Velocity & Payload:** Execute the Reflective Velocity Judgment from `Forge-Protocol` Module 3. You MUST base your judgment strictly on the mathematical length of the array generated in Step 9. If the Step 9 array length is exactly 1 → Contained; if an explicit quota integer is declared in the agent's legacy design → Batch with that integer as the threshold; if the Step 9 array length is > 1 with no explicit quota ceiling → Expansive. Declare the result as: Velocity: [type] | Payload Threshold: [value].
  11. **Clay Protocol — Section A (The Sculptor):** Execute all seven Phase 4 checks sequentially. After completing all checks, output the full Sculptor Output Manifest in the exact Phase 4 format. This manifest must be fully written before Section B begins — do not combine or summarise.
  12. **Synthesis Semantic Alignment Audit (Pre-Computation):** Extract the Mission Scope (from item 3) and the drafted Synthesis. Write a one-sentence verification explicitly comparing the two. If the Synthesis introduces concepts or vocabulary (e.g., "bundle bloat") not present in the Mission Scope or Target Matrix, declare semantic drift and draft a corrected Synthesis here. **Capitalization Check:** If any word in the Synthesis other than the first word (the Theme Verb) is ALL CAPS, issue a repair order and draft a corrected Synthesis.
- 13. **Clay Protocol — Section B (The Linter):** Using the Sculptor Output Manifest from item 11 as source of truth, execute all Phase 5 checks. Output a full Compliance Matrix in the exact Phase 5 format, with explicit PASS or FAIL for each individual check. Any FAIL must issue a Repair Order stating the exact corrective string. Re-run the failed check after the correction and confirm it now passes before proceeding. **JSON Data Translation Directives:** Before proceeding to Item 14, you must explicitly translate internal variables to their JSON-ready string values: If Priority Order is "Yes", translate to `priority_language: "according to declared priority weighting"`. If Priority Order is "No", translate to `priority_language: "arbitrarily"`. If Velocity is "Expansive", translate Payload Threshold to `payload_threshold: "All matching targets"`.
- 14. **Architectural Compilation (JSON Handoff):** Execute Phase 6 internally. Decouple semantic output from spatial formatting. Map your completed variables into the simplified JSON schema defined in Phase 6. Output the complete payload strictly as a valid JSON object wrapped in a ```json code block. Ensure the `archetype_slots` and `pr_headers` fields are mapped EXACTLY from the Archetype Slot Manifest, incorporating any Phase 4 modifications. Do not attempt to render Markdown formatting.
+ 13. **Clay Protocol — Section B (The Linter):** Using the Sculptor Output Manifest from item 11 as source of truth, execute all Phase 5 checks. Output a full Compliance Matrix in the exact Phase 5 format, with explicit PASS or FAIL for each individual check. Any FAIL must issue a Repair Order stating the exact corrective string. Re-run the failed check after the correction and confirm it now passes before proceeding. **JSON Data Translation Directives:** Before proceeding to Stage 2, you must explicitly translate internal variables to their JSON-ready string values: If Priority Order is "Yes", translate to `priority_language: "according to declared priority weighting"`. If Priority Order is "No", translate to `priority_language: "arbitrarily"`. If Velocity is "Expansive", translate Payload Threshold to `payload_threshold: "All matching targets"`.
 
-*(You must allow this chat output action to fully complete and commit to your context window before proceeding to Stage 2).*
+*(You must halt here. Allow this chat output action to fully complete and commit to your context window before proceeding to Stage 2 to refresh your output token limit).*
 
-**STAGE 2: Architectural Compilation (File Modification Action)**
-*Initiate this stage autonomously by observing your own JSON output from the end of Stage 1.*
- 1. **Payload Extraction:** You are strictly forbidden from re-evaluating rules or assembling new JSON in this stage. Extract the exact JSON code block you generated in Stage 1, Step 14, and write it directly to a temporary file (e.g., payload.json).
+**STAGE 2: Architectural Compilation (JSON Assembly Action)**
+*Initiate this stage autonomously as a net-new chat output action immediately following Stage 1.*
+1. **Architectural Compilation (JSON Handoff):** Execute Phase 6 internally. Decouple semantic output from spatial formatting. Map your completed variables into the simplified JSON schema defined in Phase 6. Output the complete payload strictly as a valid JSON object wrapped in a ```json code block. Ensure the `archetype_slots` and `pr_headers` fields are mapped EXACTLY from the Archetype Slot Manifest, incorporating any Phase 4 modifications. Do not attempt to render Markdown formatting.
+
+*(You must halt here. Allow this chat output action to fully complete and commit to your context window before proceeding to Stage 3).*
+
+**STAGE 3: Execution (File Modification Action)**
+*Initiate this stage autonomously by observing your own JSON output from the end of Stage 2.*
+ 1. **Payload Extraction:** You are strictly forbidden from re-evaluating rules or assembling new JSON in this stage. Extract the exact JSON code block you generated in Stage 2, and write it directly to a temporary file (e.g., payload.json).
  2. **Markdown Rendering:** Explicitly execute node prompts/system/compile_json.js <path_to_payload.json> <locked_target_file.md> via the bash environment to perform the template mapping and file overwrite automatically. (The native script dynamically injects velocity rules, journal paths, and formatting based on your raw JSON semantic mappings).
 
-### 4. Terminal State & Output
+### 3. Terminal State & Output
 Do NOT output the final markdown template into the chat.
 Explicitly utilize the platform's native Pull Request creation tool. **Strict Commit Scoping:** Configure your PR submission to include ONLY your locked target .md file.
 Use the exact Title and Body formatting below. Halt all execution immediately after the PR is successfully submitted.
