@@ -34,6 +34,7 @@ The core of this system is the **Overseer** agent. This agent runs monthly to pe
 
 Welcome aboard! To boot up the local development environment and serve the application:
 
+0. Ensure you have **Node.js >=18.0.0** installed.
 1. `cp .env.example .env` (Populate your API keys)
 2. `npm install`
 3. `npm start`
