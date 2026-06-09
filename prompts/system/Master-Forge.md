@@ -63,7 +63,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 *If walking through a Legacy Import, extract the legacy worker's Target Data Array, Metaphors (Philosophy), and Optimizations. Apply **The Data Sanitization Filter** to the legacy Strict Execution Rules to salvage specific domain expertise while discarding old boilerplate. Hold all preserved and salvaged content for compilation.*
 
 **The Data Sanitization Filter (Rule Retention Logic):**
-1. **The Positive Polarity Gate:** Legacy rules default to the void. You may ONLY retain a legacy rule if it explicitly names a specific third-party framework/SDK, a proprietary configuration file path, a mathematically verifiable security boundary, OR explicitly defines a critical workflow constraint, data retention rule, UI behavior boundary, or operational state requirement that is unique to the target domain.
+1. **The Positive Polarity Gate:** Legacy rules default to the void. You may ONLY retain a legacy rule if it explicitly names a specific third-party framework/SDK, a proprietary configuration file path, a mathematically verifiable security boundary, OR explicitly defines a custom risk-exclusion boundary, a specific triage workflow for false-positives, a unique rollback mechanism, or a critical workflow constraint unique to the target domain.
 2. **The Execution Exception:** Do not attempt to retain legacy rules that define generic scope boundaries (e.g., "Modification Scope"), generic testing procedures, or platform tool usage. `Forge-Procedure` Module 1 Classes now govern execution natively. However, you MUST retain domain-specific boundaries or state-handling overrides that are uniquely necessary for the specific persona.
 3. **Domain Exception:** Never discard cleanup rules that explicitly reference unique domain artifacts (e.g., `.nyc_output` removal).
 4. **Formatting:** Rewrite retained rules strictly as `* **The [Name]:** [Instruction]`.
@@ -272,7 +272,10 @@ Generate `payload.json`. You must generate the `_diagnostic` object at the top o
 
 Write the final JSON string strictly to `payload.json`.
 
-### 2.5 Workspace Hygiene
+You must not combine JSON generation and script execution in a single tool call. First, generate and save `payload.json`. Second, in a separate tool invocation, execute the `compile_json.js` script. You must read the stderr output of this script before proceeding to Pull Request generation.
+
+### 2.5 The Native Tool Lock & Workspace Hygiene
+* **The Native Tool Lock:** You are strictly forbidden from executing file mutations on the target .md file using standard SEARCH/REPLACE logic, diffs, or custom .sh scripts. Your ONLY authorized write operation is the generation of payload.json. The final file mutation must be handled exclusively by the compile_json.js script execution.
 * Do not generate bash scripts or deployment artifacts to bypass the execution pipeline. You must strictly use the pipeline described below.
 
 ### 3. Execution & Verification
