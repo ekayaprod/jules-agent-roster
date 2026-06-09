@@ -129,7 +129,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 3. **The Data Sanitization Gap Analysis:** *Journal Fit Test:* Rewrite the base Journal property text with tracking language specific to the exact file types or patterns this worker mutates.
 4. **The Friction Polish & Integration:** Do not rewrite the generic Work Profile properties (Slots 1-3). If the Phase 1 Rule Retention salvaged critical domain-specific constraints, risk-exclusion boundaries, or unique state-handling logic, preserve them strictly by mapping them directly into the `salvaged_custom_logic` array for compilation.
 5. **The Cross-Vector Authorization Gate:** If an execution step necessitates an action explicitly forbidden by the Primary Class, formulate a surgically bounded exception clause: `* **The Scoped [Foreign Class] Grant:** Authorizes [Action] strictly within [Constraint] during Step [X].` (Max 2 grants).
-6. **The Salvage Deduplication Pass:** Identify any Phase 1 retained rules that are now redundant due to drafted Execution steps. Mark them as "Dropped".
+6. **The Salvage Deduplication Pass:** Identify any Phase 1 retained rules that are now redundant due to drafted Execution steps OR assigned Velocity Classifications. Mark them as "Dropped".
 7. **The Combination Coherence Audit:** If the worker is a Combination, ensure logic intuitively blends both parent domains.
 
 **Output Format:**
@@ -180,6 +180,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 * Generate the `_diagnostic` object first. `linter_verdict` must strictly evaluate to `"PASS"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
 * Extract the raw text of the Class Properties verbatim, incorporating any Phase 4 Property Modifications. Do NOT include markdown bullets or bolded labels (e.g., "* **The Primary Responsibility:**"). Output purely the raw text.
 * Do not include any rule explicitly marked as "Dropped".
+* Make archetype_slots values explicitly nullable, or map to null if a direct 1:1 legacy equivalent does not exist, relying instead on salvaged_custom_logic.
 * Centralized Base Physics Dictionary: The Work Profile definitions (Domain, Scope, Operational Boundary) are stored natively within `compile_json.js`. You do not need to extract the raw text of the Class Properties for these slots. Instead, supply the `work profile` key and any domain-specific overrides in `salvaged_custom_logic`.
 * Array Triggers: Provide an array of context extension names (e.g. `["Security Perimeter Modifier"]`) in `active_modifiers` and the script will automatically append the rules.
 

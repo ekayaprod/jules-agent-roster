@@ -11,11 +11,12 @@ const path = require('path');
  */
 
 // Generic helper for standard lists
-function formatList(arr, bullet = '* ') {
+function formatList(arr, applyUniqueEmojis = false) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
-        const cleanItem = String(item).replace(/^[\*\-]\s*/, '');
-        return `${bullet}${cleanItem}`;
+        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        if (applyUniqueEmojis === true) { cleanItem = ensureUniqueEmoji(cleanItem, "🔸"); }
+        return `* ${cleanItem}`;
     }).join('\n');
 }
 
@@ -28,11 +29,25 @@ function formatExecutionSteps(arr) {
         cleanItem = cleanItem.replace(/^([a-zA-Z0-9_ \-]+)(?:\*\*|:\*\*|\*\*:\s*|\*:\s*)(.*)$/, '**$1:** $2');
         // Auto-fix literal broken asterisk labels (e.g. "*Execute:**")
         cleanItem = cleanItem.replace(/^\*([^\*]+)\*\*:?\s*/, '**$1:** ');
-        return `* ${cleanItem}`;
+        return `* ${ensureUniqueEmoji(cleanItem, "🔸")}`;
     }).join('\n');
 }
 
 // Specialized formatter for Philosophy to aggressively strip bolded rule labels
+const usedEmojis = new Set();
+function ensureUniqueEmoji(text, fallback) {
+    let emojiMatch = text.match(/^[\p{Emoji_Presentation}\p{Emoji}\uFE0F]+/u);
+    if (emojiMatch) {
+        let emoji = emojiMatch[0].trim();
+        if (usedEmojis.has(emoji)) {
+            return text.replace(emoji, fallback).trim();
+        }
+        usedEmojis.add(emoji);
+        return text;
+    }
+    return fallback + " " + text;
+}
+
 function formatPhilosophy(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
@@ -294,7 +309,7 @@ function compile(jsonPayloadStr, targetFilePath) {
     const tasksBoardCrossReference = requiresTasksBoard ? "Read `.jules/agent_tasks.md`, then perform your discover phase." : '';
 
     // --- ARRAY FORMATTING ---
-    const salvagedMandates = formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates);
+    const salvagedMandates = formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates, false);
     const profileKey = data["work profile"] || data.work_profile || "";
     const baseProfile = BASE_PROFILES[profileKey] || {};
     const domainAnchorText = data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor || baseProfile.domain || "";
@@ -308,7 +323,7 @@ function compile(jsonPayloadStr, targetFilePath) {
         }
     });
     const domainModifiers = formatList(combinedModifiers);
-    const crossVectorGrants = formatList(data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants);
+    const crossVectorGrants = formatList(data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants, false);
     const executionSteps = formatExecutionSteps(data.process?.execute?.execution_steps || data.process?.execution_steps);
     const heuristics = formatHeuristics(data.process?.verify?.heuristic_verification || data.process?.heuristic_verification);
     
@@ -321,7 +336,7 @@ function compile(jsonPayloadStr, targetFilePath) {
 
     const zeroTargetExitInstruction = (data.process?.present?.requires_total_replacement_override || data.requires_total_replacement_override || data.total_replacement_active)
         ? '' 
-        : 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. ';
+        : requiresTasksBoard ? 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. ' : 'End the task cleanly without a PR if zero targets were found. ';
 
     // Clean Presentation Slot by stripping bold labels (e.g. "* **The Label:**")
     const rawPresentation = data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '';
@@ -331,7 +346,8 @@ function compile(jsonPayloadStr, targetFilePath) {
     const missionScopeClean = String(data.mission_scope || '').replace(/\.+$/, '');
 
     // Use arbitrary unless priority language is explicitly stated
-    const priorityLanguage = data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily';
+    let priorityLanguage = data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily';
+    if (priorityLanguage.toLowerCase() === 'n/a' || priorityLanguage.toLowerCase() === 'none') priorityLanguage = 'arbitrarily';
 
     // Fix grammatical clash for Discovery Trigger by omitting "via"
     const discoverTrigger = data.process?.discover?.trigger || data.process?.discover_trigger || '';
@@ -374,7 +390,7 @@ ${formatSlot(data.archetype_slots?.decisiveness_rule || data.strict_operational_
 ${formatSlot(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution || '', 'The Execution')}
 ${testingDoctrine ? formatSlot(testingDoctrine, 'The Verification Procedure') : ''}
 ${salvagedMandates}
-${formatList(data.salvaged_custom_logic)}
+${formatList(data.salvaged_custom_logic, false)}
 ${crossVectorGrants}
 
 ### Memory & Triage
@@ -384,7 +400,7 @@ ${agentTasksBoardRules}
 ${formatSlot(data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Procedure').replace(/^\*\s/, '')}
 
 ### The Process
-1. 🔍 **DISCOVER** — Execute ${discoverTrigger} using asynchronous tools. ${tasksBoardCrossReference}
+1. 🔍 **DISCOVER** — Execute ${discoverTrigger}. ${tasksBoardCrossReference}
 ${discoveryVelocityRule}
 ${formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix)}
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${priorityLanguage} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${targetLimitClean}.
@@ -393,11 +409,11 @@ ${executionSteps}
 4. ✅ **VERIFY** — **The Reporter Procedure:** ${reporterProtocol}
 **Heuristic Verification:**
 ${heuristics}
-5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. ${prCreationRule} Trigger this tool natively rather than using chat-based workarounds. Use the title: "${data.requires_caution_flag || data.process?.present?.requires_caution_flag ? '[CAUTION] ' : ''}${data.identity?.emoji || ''} ${data.identity?.name || ''}: [Action]". ${presentationSlotClean} Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. ${zeroTargetExitInstruction}If the run produced no source mutations but did append relay entries to \`.jules/agent_tasks.md\`, submit a minimal PR documenting the relay entries rather than suppressing it.
+5. 🎁 **PRESENT** — ${presentationSlotClean} ${zeroTargetExitInstruction}${requiresTasksBoard ? "If the run produced no source mutations but did append relay entries to \\`.jules/agent_tasks.md\\`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""}
 **Required PR Headers:** ${data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || ''}
 
 ### Favorite Optimizations
-${formatList(data.favorite_optimizations)}
+${formatList(data.favorite_optimizations, true)}
 `;
 
     // Filter out completely empty lines caused by empty variables/arrays
