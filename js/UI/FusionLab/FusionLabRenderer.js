@@ -74,6 +74,10 @@ class FusionLabRenderer {
       container.classList.remove("fusion-revealed");
       container.innerHTML = "";
 
+      if (result.name === 'Singularity') {
+          return;
+      }
+
       if (typeof AgentCard !== "undefined") {
         let keyStr = "fusion-result";
         let resolvedFusionName = result.name;

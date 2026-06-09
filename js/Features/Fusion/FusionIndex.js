@@ -111,7 +111,7 @@ class FusionIndex {
       }
 
       const isUnlocked = this.unlockedKeys.has(key);
-      const emoji = this.getEmoji(safeData);
+      const emoji = safeData.name === "Singularity" ? "🌌" : this.getEmoji(safeData);
 
       const slot = document.createElement("div");
       slot.className = `fusion-item ${isUnlocked ? "unlocked" : "locked"}`;
@@ -162,7 +162,11 @@ class FusionIndex {
     slot.setAttribute("aria-label", `Load ${agentData.name} Protocol`);
 
     const handleSelect = () => {
-      this.onSelectCallback?.(key);
+      if (agentData.name === "Singularity" && window.rosterApp && window.rosterApp.singularityBuilderContainer) {
+        window.rosterApp.singularityBuilderContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } else {
+        this.onSelectCallback?.(key);
+      }
     };
 
     slot.addEventListener("click", handleSelect);
