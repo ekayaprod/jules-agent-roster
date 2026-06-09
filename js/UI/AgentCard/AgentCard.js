@@ -70,7 +70,7 @@ class AgentCard {
     const isFusionAgent = typeof index === 'string' && Number.isNaN(Number(index));
     const pinHtml =
       index !== undefined && index !== null && index !== '' && isFusionAgent
-        ? `<button class="icon-btn pin-btn ${pinClass}" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" aria-pressed="${String(Boolean(isPinned))}">📌</button>`
+        ? `<button class="icon-btn pin-btn ${pinClass} transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" aria-pressed="${String(Boolean(isPinned))}">📌</button>`
         : '';
 
     // Splay Out Child Fusions Logic (Refactored to Modal Trigger)
@@ -98,7 +98,7 @@ class AgentCard {
       }
 
       if (childKeys.length > 0) {
-        fusionQuickListHtml = `<div class="fusions-hint" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
+        fusionQuickListHtml = `<div class="fusions-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
       }
     }
 
@@ -136,11 +136,11 @@ class AgentCard {
                         <div class="description mt-3">${desc}</div>
                     </div>
                     ${fusionQuickListHtml}
-                    <div class="flip-hint" aria-label="Tap to view protocol" >↺</div>
+                    <div class="flip-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95" aria-label="Tap to view protocol" >↺</div>
                 </div>
 
                 <div class="flip-card-back" data-action="flip-card-back">
-                    <div class="flip-hint" aria-label="Tap to view front" >↺</div>
+                    <div class="flip-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95" aria-label="Tap to view front" >↺</div>
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
                     
                     <div class="card-actions mt-auto pt-2 flex relative">

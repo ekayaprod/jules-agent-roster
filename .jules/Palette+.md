@@ -19,3 +19,7 @@
 ## 2026-05-10 - [AgentPicker Inline Styles Removal]
 **Learning:** Hardcoded inline styles like `animation-delay: ${delay}ms` and `grid-template-columns: repeat(${columns}, 1fr)` create rigid presentation states and bloat HTML strings inside JavaScript files.
 **Action:** Created CSS utility classes for delays (e.g. `.delay-30`, `.delay-60`) and grid columns (e.g. `.grid-cols-4`), and replaced the inline styles in `AgentPicker.js` with these classes.
+
+## 2026-05-11 - [AgentCard Interactive Elements Polish]
+**Learning:** Interactive elements such as `.pin-btn`, `.fusions-hint`, and `.flip-hint` within `AgentCard.js` snapped instantly into place without an interpolation curve, creating rigid binary state interaction.
+**Action:** Injected consistent transition utility classes (`transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2`) to those elements. This adds fluid state choreography, improving interaction aesthetics without changing core functionality or DOM nesting.
