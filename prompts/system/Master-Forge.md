@@ -181,6 +181,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 * Extract the raw text of the Class Properties verbatim, incorporating any Phase 4 Property Modifications. Do NOT include markdown bullets or bolded labels (e.g., "* **The Primary Responsibility:**"). Output purely the raw text.
 * Do not include any rule explicitly marked as "Dropped".
 * Make archetype_slots values explicitly nullable, or map to null if a direct 1:1 legacy equivalent does not exist, relying instead on salvaged_custom_logic.
+* Do not extract legacy velocity, batching, or execution pacing rules into salvaged_custom_logic if they overlap with the velocity classification generated.
 * Centralized Base Physics Dictionary: The Work Profile definitions (Domain, Scope, Operational Boundary) are stored natively within `compile_json.js`. You do not need to extract the raw text of the Class Properties for these slots. Instead, supply the `work profile` key and any domain-specific overrides in `salvaged_custom_logic`.
 * Array Triggers: Provide an array of context extension names (e.g. `["Security Perimeter Modifier"]`) in `active_modifiers` and the script will automatically append the rules.
 
@@ -230,7 +231,7 @@ Output a raw JSON object matching the exact schema below, wrapped in a ```json b
     "domain_anchor": "[Exact text]",
     "mutation_scope": "[Exact text]",
     "operational_boundaries": "[Exact text]",
-    "decisiveness_rule": "[Exact text]",
+    "decisiveness_rule": "[Exact text or null]",
     "workflow_execution": "[Exact text]",
     "testing_doctrine": "[Evaluated Testing Configuration]",
     "journal_protocol": "[Exact text]",
@@ -239,9 +240,6 @@ Output a raw JSON object matching the exact schema below, wrapped in a ```json b
   },
   "salvaged_custom_logic": [
     "[* **The Custom Rule:** Salvaged operational mandate]"
-  ],
-  "salvaged_mandates": [
-    "[* **The Name:** Rule 1]"
   ],
   "cross_vector_grants": [],
   "process": {
