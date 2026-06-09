@@ -127,7 +127,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 1. **Context Extension Evaluation:** Evaluate the mission scope semantically against `Forge-Procedure` Module 2. Declare active modifiers and list their injected clauses verbatim. Confirm the assigned class is eligible.
 2. **The Reality Check:** Modify the base `Operational Boundary` or `Execution` properties to handle the unique failure modes of this domain. *Verification Layer Test:* If the domain lacks an executable verification layer (no test runner/parser), rewrite the testing boilerplates with domain-appropriate structural validation language. *Coherence Test:* Ensure every mutation in execution has a corresponding detection vector in DISCOVER.
 3. **The Data Sanitization Gap Analysis:** *Journal Fit Test:* Rewrite the base Journal property text with tracking language specific to the exact file types or patterns this worker mutates.
-4. **The Friction Polish & Integration:** If a generic class rule hinders the hyper-niche mission, or if the Phase 1 Rule Retention salvaged critical domain-specific constraints, rewrite the generic class properties (Slots 1-7) to explicitly incorporate and merge these unique constraints so they override or augment the generic boilerplate.
+4. **The Friction Polish & Integration:** Do not rewrite the generic Work Profile properties (Slots 1-3). If the Phase 1 Rule Retention salvaged critical domain-specific constraints, risk-exclusion boundaries, or unique state-handling logic, preserve them strictly by mapping them directly into the `salvaged_custom_logic` array for compilation.
 5. **The Cross-Vector Authorization Gate:** If an execution step necessitates an action explicitly forbidden by the Primary Class, formulate a surgically bounded exception clause: `* **The Scoped [Foreign Class] Grant:** Authorizes [Action] strictly within [Constraint] during Step [X].` (Max 2 grants).
 6. **The Salvage Deduplication Pass:** Identify any Phase 1 retained rules that are now redundant due to drafted Execution steps. Mark them as "Dropped".
 7. **The Combination Coherence Audit:** If the worker is a Combination, ensure logic intuitively blends both parent domains.
@@ -241,9 +241,6 @@ Output a raw JSON object matching the exact schema below, wrapped in a ```json b
   ],
   "salvaged_mandates": [
     "[* **The Name:** Rule 1]"
-  ],
-  "domain_modifier_mandates": [
-    "[* **The [Rule Name]:** Injected modifier clause 1]"
   ],
   "cross_vector_grants": [],
   "process": {
