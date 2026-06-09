@@ -273,8 +273,9 @@ Generate `payload.json`. You must generate the `_diagnostic` object at the top o
 Write the final JSON string strictly to `payload.json`.
 
 ### 3. Execution & Verification
- 1. **Markdown Rendering:** Explicitly execute `node prompts/system/compile_json.js payload.json <locked_target_file.md>` via the bash environment. 
+ 1. **Markdown Rendering:** Explicitly execute `JULES_FORGE_MODE=true node prompts/system/compile_json.js payload.json <locked_target_file.md>` via the bash environment. 
  2. **The Hard Exit Loop:** If the script throws a fatal validation error to stderr (e.g., array lengths, reserved emojis, linter_verdict failure), read the error string. The script specifies exactly which schema constraint failed. Fix the parameter within `payload.json` and re-execute the compile command until it exits with a success code.
+
 
 ### 4. Terminal State & Output
 Do NOT output the final markdown template into the chat.
