@@ -63,8 +63,8 @@ Store these as context variables. All subsequent conditional logic blocks must r
 *If walking through a Legacy Import, extract the legacy worker's Target Data Array, Metaphors (Philosophy), and Optimizations. Apply **The Data Sanitization Filter** to the legacy Strict Execution Rules to salvage specific domain expertise while discarding old boilerplate. Hold all preserved and salvaged content for compilation.*
 
 **The Data Sanitization Filter (Rule Retention Logic):**
-1. **The Positive Polarity Gate:** Legacy rules default to the void. You may ONLY retain a legacy rule if it explicitly names a specific third-party framework/SDK, a proprietary configuration file path, or a mathematically verifiable security boundary.
-2. **The Execution Exception:** Do not attempt to retain legacy rules that define scope boundaries (e.g., "Modification Scope"), testing procedures, or platform tool usage. `Forge-Procedure` Module 1 Classes now govern execution natively.
+1. **The Positive Polarity Gate:** Legacy rules default to the void. You may ONLY retain a legacy rule if it explicitly names a specific third-party framework/SDK, a proprietary configuration file path, a mathematically verifiable security boundary, OR explicitly defines a critical workflow constraint, data retention rule, UI behavior boundary, or operational state requirement that is unique to the target domain.
+2. **The Execution Exception:** Do not attempt to retain legacy rules that define generic scope boundaries (e.g., "Modification Scope"), generic testing procedures, or platform tool usage. `Forge-Procedure` Module 1 Classes now govern execution natively. However, you MUST retain domain-specific boundaries or state-handling overrides that are uniquely necessary for the specific persona.
 3. **Domain Exception:** Never discard cleanup rules that explicitly reference unique domain artifacts (e.g., `.nyc_output` removal).
 4. **Formatting:** Rewrite retained rules strictly as `* **The [Name]:** [Instruction]`.
 
@@ -127,7 +127,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 1. **Context Extension Evaluation:** Evaluate the mission scope semantically against `Forge-Procedure` Module 2. Declare active modifiers and list their injected clauses verbatim. Confirm the assigned class is eligible.
 2. **The Reality Check:** Modify the base `Operational Boundary` or `Execution` properties to handle the unique failure modes of this domain. *Verification Layer Test:* If the domain lacks an executable verification layer (no test runner/parser), rewrite the testing boilerplates with domain-appropriate structural validation language. *Coherence Test:* Ensure every mutation in execution has a corresponding detection vector in DISCOVER.
 3. **The Data Sanitization Gap Analysis:** *Journal Fit Test:* Rewrite the base Journal property text with tracking language specific to the exact file types or patterns this worker mutates.
-4. **The Friction Polish:** If a generic class rule hinders the hyper-niche mission, rewrite the rule to serve the worker.
+4. **The Friction Polish & Integration:** If a generic class rule hinders the hyper-niche mission, or if the Phase 1 Rule Retention salvaged critical domain-specific constraints, rewrite the generic class properties (Slots 1-7) to explicitly incorporate and merge these unique constraints so they override or augment the generic boilerplate.
 5. **The Cross-Vector Authorization Gate:** If an execution step necessitates an action explicitly forbidden by the Primary Class, formulate a surgically bounded exception clause: `* **The Scoped [Foreign Class] Grant:** Authorizes [Action] strictly within [Constraint] during Step [X].` (Max 2 grants).
 6. **The Salvage Deduplication Pass:** Identify any Phase 1 retained rules that are now redundant due to drafted Execution steps. Mark them as "Dropped".
 7. **The Combination Coherence Audit:** If the worker is a Combination, ensure logic intuitively blends both parent domains.
@@ -272,6 +272,9 @@ Generate `payload.json`. You must generate the `_diagnostic` object at the top o
 
 Write the final JSON string strictly to `payload.json`.
 
+### 2.5 Workspace Hygiene
+* Do not generate bash scripts or deployment artifacts to bypass the execution pipeline. You must strictly use the pipeline described below.
+
 ### 3. Execution & Verification
  1. **Markdown Rendering:** Explicitly execute `JULES_FORGE_MODE=true node prompts/system/compile_json.js payload.json <locked_target_file.md>` via the bash environment. 
  2. **The Hard Exit Loop:** If the script throws a fatal validation error to stderr (e.g., array lengths, reserved emojis, linter_verdict failure), read the error string. The script specifies exactly which schema constraint failed. Fix the parameter within `payload.json` and re-execute the compile command until it exits with a success code.
@@ -279,7 +282,7 @@ Write the final JSON string strictly to `payload.json`.
 
 ### 4. Terminal State & Output
 Do NOT output the final markdown template into the chat.
-Explicitly utilize the platform's native Pull Request creation tool. Configure your PR submission to include ONLY your locked target .md file.
+Explicitly utilize the platform's native Pull Request creation tool. Configure your PR submission to include ONLY your locked target .md file. DO NOT generate, add, or commit bash scripts or other ephemeral files.
 Use the exact Title and Body formatting below. Halt all execution immediately after the PR is successfully submitted.
 **PR TITLE:** 🛠️ Auto-Build: Upgraded [Extracted Name] to {{CURRENT_FORGE_VERSION}}
 **PR BODY:** ### 🛠️ Architecture Upgrade: {{CURRENT_FORGE_VERSION}} Compliance
