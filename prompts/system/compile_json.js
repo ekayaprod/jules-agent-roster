@@ -365,7 +365,7 @@ ${cleanCodeFence(data.coding_standards?.bad_code_snippet || '')}
 ~~~
 
 ### Strict Operational Rules
-${formatSlot(domainAnchorText, "The Primary Responsibility")} If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
+${formatSlot(domainAnchorText, "The Primary Responsibility")}
 ${formatSlot(scopeText, "The Scope")}
 * **The Execution Rule:** ${executionMandate}
 ${formatSlot(operationalBoundariesText, "The Resilience Procedure")}
