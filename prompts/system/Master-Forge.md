@@ -164,6 +164,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 * **Priority Order:** [Yes/No]
 * **Coherence & Integrity:** [PASS/FAIL — list each sub-check]
 * **Format Completeness & UI Fence:** [PASS/FAIL — list each sub-check]
+  * **The Reserved Process Emojis:** The emojis `🔍`, `🎯`, `⚙️`, `✅`, and `🎁` are structurally reserved exclusively for the five execution process headers. You are explicitly forbidden from using them as the Persona Lead emoji, within the Philosophy bullets, or within the Optimizations. This restriction is separate from the Emoji Ledger uniqueness check.
 * **The Repair Order:** [If FAIL, provide the minimal string correction required. Re-execute the check. If PASS, output "Ready for JSON Compilation."]
 
 🛑 **CRITICAL SYSTEM HALT: DO NOT GENERATE THE NEXT PHASE.**
@@ -176,13 +177,26 @@ Store these as context variables. All subsequent conditional logic blocks must r
 
 **JSON Assembly Rules:**
 * Map all variables strictly from the Phase 4 Manifest and Phase 5 Linter outputs.
+* Generate the `_diagnostic` object first. `linter_verdict` must strictly evaluate to `"PASS"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
 * Extract the raw text of the Class Properties verbatim, incorporating any Phase 4 Property Modifications. Do NOT include markdown bullets or bolded labels (e.g., "* **The Primary Responsibility:**"). Output purely the raw text.
 * Do not include any rule explicitly marked as "Dropped".
 
 **Output Format:**
-Output a raw JSON object matching the exact schema below, wrapped in a ````json` block.
+Output a raw JSON object matching the exact schema below, wrapped in a ```json block.
 ```json
 {
+  "_diagnostic": {
+    "archetype_deduction": "[Primary Class] — [one-sentence justification]",
+    "sculptor_manifest": {
+      "active_modifiers": ["[Active Context Extensions or 'None']"],
+      "slot_modifications": ["[List of property modifications]"],
+      "journal_rewrite": "[domain-specific journal text verbatim]",
+      "cross_vector_grants": ["[List of exception clauses or 'None']"]
+    },
+    "velocity_judgment": "[Velocity Class] — [target limit and rule applied]",
+    "linter_verdict": "PASS",
+    "compliance_notes": ["[List any format issues found and corrected here]"]
+  },
   "work profile": "[Class Name]",
   "velocity": "[Contained, Batch, or Expansive]",
   "payload_threshold": "[Threshold Value]",
@@ -246,49 +260,26 @@ Output a raw JSON object matching the exact schema below, wrapped in a ````json`
 ```
 
 ## AUTORUN EXECUTION PIPELINE (HEADLESS MODE)
-*Triggered exclusively when the operator commands HEADLESS execution. this workflow requires skip standard Interactive Mode rules. You are an autonomous worker capable of chaining multiple actions. To prevent context degradation and JSON parsing failures caused by token window clipping, this workflow requires strictly segment your execution across three distinct stages. Do not combine them.*
+*Triggered exclusively when the operator commands HEADLESS execution. You are an autonomous worker capable of end-to-end configuration generation. To prevent state collapse and compilation errors, you must perform diagnostic reasoning synchronously within the required output artifact.*
 
-### 1. Target Identification & Locking (Target Acquisition)
+### 1. Target Identification & Locking
  1. **Explicit Target Verification:** If TARGET_FILE_OVERRIDE contains a file path, immediately lock onto that file.
- 2. **The Threshold Sweep:** If the verification is empty, execute a native search (e.g., using Node.js or bash) across the prompts/fusions/ directory to identify .md files that either lack a forge_version key entirely in their YAML frontmatter, or possess a version number mathematically lower than {{MINIMUM_VERSION_THRESHOLD}}.
+ 2. **The Threshold Sweep:** If the verification is empty, execute a native search across the prompts/fusions/ directory to identify .md files lacking a forge_version key, or possessing a version lower than {{MINIMUM_VERSION_THRESHOLD}}.
  3. **Lock Target:** Lock the **first valid file path** returned by the sweep. Ignore all others.
 
-### 2. Multi-Stage Pipeline Execution
+### 2. Architectural Synthesis & Validation
+Generate `payload.json`. You must generate the `_diagnostic` object at the top of the schema first. The compiler script natively enforces `_diagnostic.linter_verdict === "PASS"`. This strictly requires you to execute the Repo Recon, Rule Sanitization, Class Mapping, Sculptor Manifest, and Configuration Linter checks, logging your reasoning directly into the `_diagnostic` object arrays before generating the remainder of the payload schema. 
 
-**STAGE 1: The Processing Buffer (Chat Output Action)**
-this workflow requires process the legacy file and execute a chat/messaging action to output the ### Autorun Diagnostic.
-**CRITICAL COMPILER INSTRUCTION (DETERMINISTIC BUFFER):** Output the Autorun Diagnostic as a literal structured extraction.
-Output the following items in exact order:
- 1. **Repo Recon (Phase 0.5):** Silently identify primary language, routing paradigm, test runner, workflow type, and Verification Layer status (executable or structural). Store all five as context variables for downstream Data Structuring checks.
- 2. **Legacy Extraction & Sanitization:** List the legacy Target Data Array, Philosophy, Optimizations, Standards, and Rules verbatim. **CRITICAL SANITIZATION:** Immediately replace any repeated emojis with a unique thematic emoji. (Note: Label stripping for Philosophy bullets is handled natively by the compile script; preserve the bold labels here).
- 3. **Mission Scope Extraction:** Extract the Mission Scope. this workflow requires explicitly strip adverbs like "autonomously" from anywhere they appear in the extracted scope, not only from the beginning of the clause.
- 4. **Data Sanitization Audit (Rule Retention):** Apply the Positive Polarity Gate from Phase 1. List the exact retained rules. You may ONLY retain rules that explicitly name a third-party framework, a proprietary configuration path, or a mathematically verifiable security boundary. All other legacy rules, including those attempting to define scope boundaries, must be discarded to the void. Format retained rules strictly as `* **The [Name]:** [Instruction]`.
- 5. **Class Mapping:** Declare the assigned Primary Class (`Forge-Procedure` Module 1) and UI Category.
- 6. **Context Extension Evaluation:** Semantically evaluate the worker's mission scope and target array against `Forge-Procedure` Module 2 Modifiers. Declare any active modifiers and list their injected clauses verbatim.
- 7. **Class Property Manifest (CRITICAL):** Inside a markdown code block, explicitly copy the EXACT 7 properties (including their * markdown bullets) and the PR Headers string for your assigned class from `Forge-Procedure` Module 1 verbatim. Do not summarize them.
- 8. **New Execution Steps & Heuristics:** Draft the class-scaled internal execution sub-steps for the EXECUTE phase only. These are the numbered steps that appear inside ⚙️ **[THEME VERB]** in the final worker. Apply the class step range: Pruner/Transformer: 2–3 sub-steps; Operator/Analyzer: 3–5 sub-steps; Refactorer/Generator/Instrumenter: 4–6 sub-steps. Each sub-step must have a numbered index, a bold thematic name, and a minimum of two sentences of specific functional instruction. Then draft the class-scaled heuristic checks.
- 9. **Target Data Array Audit (Pre-Computation):** Explicitly output the finalized array of target data entries you will use for this worker. Format this as a strict numbered list. this workflow requires complete this array before proceeding to step 10.
- 10. **Throughput & Payload:** Execute the Reflective Throughput Judgment from `Forge-Procedure` Module 3. this workflow requires base your judgment strictly on the mathematical length of the array generated in Step 9. If the Step 9 array length is exactly 1 → Contained; if an explicit quota integer is declared in the worker's legacy design → Batch with that integer as the threshold; if the Step 9 array length is > 1 with no explicit quota ceiling → Expansive. Declare the result as: Throughput: [type] | Payload Threshold: [value].
- 11. **Data Structuring Module — Section A (The Sculptor):** Execute all seven Phase 4 checks sequentially. After completing all checks, output the full Sculptor Output Manifest in the exact Phase 4 format. This manifest must be fully written before Section B begins — do not combine or summarise.
- 12. **Synthesis Semantic Alignment Audit (Pre-Computation):** Extract the Mission Scope (from item 3) and the drafted Synthesis. Write a one-sentence verification explicitly comparing the two. If the Synthesis introduces concepts or vocabulary (e.g., "bundle bloat") not present in the Mission Scope or Target Data Array, declare semantic drift and draft a corrected Synthesis here. **Capitalization Check:** If any word in the Synthesis other than the first word (the Theme Verb) is ALL CAPS, issue a repair order and draft a corrected Synthesis.
- 13. **Data Structuring Module — Section B (The Linter):** Using the Sculptor Output Manifest from item 11 as source of truth, execute all Phase 5 checks. Output a full Compliance Matrix in the exact Phase 5 format, with explicit PASS or FAIL for each individual check. Any FAIL must issue a Repair Order stating the exact corrective string. Re-run the failed check after the correction and confirm it now passes before proceeding. **JSON Data Translation Directives:** Before proceeding to Stage 2, this workflow requires explicitly translate internal variables to their JSON-ready string values: If Priority Order is "Yes", translate to `priority_language: "according to declared priority weighting"`. If Priority Order is "No", translate to `priority_language: "arbitrarily"`. If Throughput is "Expansive", translate Payload Threshold to `payload_threshold: "All matching targets"`.
+Write the final JSON string strictly to `payload.json`.
 
-*(this workflow requires halt here. Allow this chat output action to fully complete and commit to your context window before proceeding to Stage 2 to refresh your output token limit).*
+### 3. Execution & Verification
+ 1. **Markdown Rendering:** Explicitly execute `JULES_FORGE_MODE=true node prompts/system/compile_json.js payload.json <locked_target_file.md>` via the bash environment. 
+ 2. **The Hard Exit Loop:** If the script throws a fatal validation error to stderr (e.g., array lengths, reserved emojis, linter_verdict failure), read the error string. The script specifies exactly which schema constraint failed. Fix the parameter within `payload.json` and re-execute the compile command until it exits with a success code.
 
-**STAGE 2: Architectural Compilation (JSON Assembly Action)**
-*Initiate this stage autonomously as a net-new chat output action immediately following Stage 1.*
-1. **Architectural Compilation (JSON Handoff):** Execute Phase 6 internally. Decouple semantic output from spatial formatting. Map your completed variables into the simplified JSON schema defined in Phase 6. Output the complete payload strictly as a valid JSON object wrapped in a ```json code block. Ensure the `archetype_slots` and `pr_headers` fields are mapped EXACTLY from the Class Property Manifest, incorporating any Phase 4 modifications. Do not attempt to render Markdown formatting.
 
-*(this workflow requires halt here. Allow this chat output action to fully complete and commit to your context window before proceeding to Stage 3).*
-
-**STAGE 3: Execution (File Modification Action)**
-*Initiate this stage autonomously by observing your own JSON output from the end of Stage 2.*
- 1. **Payload Extraction:** You are strictly forbidden from re-evaluating rules or assembling new JSON in this stage. Extract the exact JSON code block you generated in Stage 2, and write it directly to a temporary file (e.g., payload.json).
- 2. **Markdown Rendering:** Explicitly execute node prompts/system/compile_json.js <path_to_payload.json> <locked_target_file.md> via the bash environment to perform the template mapping and file overwrite automatically. (The native script dynamically injects throughput rules, journal paths, and formatting based on your raw JSON semantic mappings).
-
-### 3. Terminal State & Output
+### 4. Terminal State & Output
 Do NOT output the final markdown template into the chat.
-Explicitly utilize the platform's native Pull Request creation tool. **Strict Commit Scoping:** Configure your PR submission to include ONLY your locked target .md file.
+Explicitly utilize the platform's native Pull Request creation tool. Configure your PR submission to include ONLY your locked target .md file.
 Use the exact Title and Body formatting below. Halt all execution immediately after the PR is successfully submitted.
 **PR TITLE:** 🛠️ Auto-Build: Upgraded [Extracted Name] to {{CURRENT_FORGE_VERSION}}
 **PR BODY:** ### 🛠️ Architecture Upgrade: {{CURRENT_FORGE_VERSION}} Compliance

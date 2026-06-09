@@ -7,6 +7,7 @@ const path = require('path');
  * - Compiler generates documentation artifacts.
  * - Compiler terminology is presentation-layer metadata.
  * - Compiler does not define or alter platform instructions.
+ * - VALIDATION GATE: Script acts as the primary QA verifier.
  */
 
 // Generic helper for standard lists
@@ -25,6 +26,8 @@ function formatExecutionSteps(arr) {
         let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
         // Fix missing opening bold marker (e.g., "Trace the Wait State:**" -> "**Trace the Wait State:**")
         cleanItem = cleanItem.replace(/^([a-zA-Z0-9_ \-]+)(?:\*\*|:\*\*|\*\*:\s*|\*:\s*)(.*)$/, '**$1:** $2');
+        // Auto-fix literal broken asterisk labels (e.g. "*Execute:**")
+        cleanItem = cleanItem.replace(/^\*([^\*]+)\*\*:?\s*/, '**$1:** ');
         return `* ${cleanItem}`;
     }).join('\n');
 }
@@ -96,8 +99,74 @@ function compile(jsonPayloadStr, targetFilePath) {
     try {
         data = JSON.parse(jsonPayloadStr);
     } catch (e) {
-        throw new Error(`Failed to parse JSON payload: ${e.message}`);
+        console.error(`[FATAL ERROR] Failed to parse JSON payload: ${e.message}`);
+        process.exit(1);
     }
+
+    // --- STRICT PARAMETER VALIDATION (QA GATE) ---
+    
+    const diagnostic = data._diagnostic;
+    if (!diagnostic || diagnostic.linter_verdict !== 'PASS') {
+        console.error(`[FATAL ERROR] _diagnostic.linter_verdict must be 'PASS'. Cannot compile without completed diagnostic work.`);
+        process.exit(1);
+    }
+
+    const philosophyRaw = data.philosophy || [];
+    if (philosophyRaw.length !== 5) {
+        console.error(`[FATAL ERROR] Philosophy count is ${philosophyRaw.length}. Must be exactly 5 bullets. Add or remove bullets to resolve.`);
+        process.exit(1);
+    }
+
+    const optimizationsRaw = data.favorite_optimizations || [];
+    if (optimizationsRaw.length !== 6) {
+        console.error(`[FATAL ERROR] Favorite Optimizations count is ${optimizationsRaw.length}. Must be exactly 6.`);
+        process.exit(1);
+    }
+
+    const RESERVED_EMOJIS = ['🔍', '🎯', '⚙️', '✅', '🎁'];
+    const leadEmoji = data.identity?.emoji || '';
+    const allThematicItems = [...philosophyRaw, ...optimizationsRaw];
+
+    allThematicItems.forEach((item, index) => {
+        const isPhilosophy = index < philosophyRaw.length;
+        const positionLabel = isPhilosophy ? `Philosophy bullet ${index + 1}` : `Optimization bullet ${index - philosophyRaw.length + 1}`;
+
+        RESERVED_EMOJIS.forEach(reserved => {
+            if (item.includes(reserved)) {
+                console.error(`[FATAL ERROR] Reserved emoji '${reserved}' found in ${positionLabel}. The emojis 🔍, 🎯, ⚙️, ✅, and 🎁 are strictly reserved for process step headers and cannot be used in thematic arrays.`);
+                process.exit(1);
+            }
+        });
+
+        if (leadEmoji && item.includes(leadEmoji)) {
+            console.error(`[FATAL ERROR] Persona Lead emoji '${leadEmoji}' found in ${positionLabel}. The thematic arrays must use unique emojis that do not duplicate the Lead emoji.`);
+            process.exit(1);
+        }
+    });
+
+    const synthesis = data.identity?.synthesis || '';
+    if (synthesis.length > 145) {
+        console.error(`[FATAL ERROR] Synthesis length is ${synthesis.length} characters. Must be strictly under 145 characters.`);
+        process.exit(1);
+    }
+
+    const firstWordMatch = synthesis.trim().split(/\s+/)[0];
+    if (firstWordMatch) {
+        const cleanWord = firstWordMatch.replace(/[^a-zA-Z]/g, '');
+        if (cleanWord && cleanWord !== cleanWord.toUpperCase()) {
+            console.error(`[FATAL ERROR] Synthesis first word '${firstWordMatch}' is not ALL CAPS. It must be an imperative action verb in ALL CAPS.`);
+            process.exit(1);
+        }
+    }
+
+    // Belt-and-suspenders validation for Philosophy bold stripping
+    philosophyRaw.forEach((item, index) => {
+        let cleanItem = String(item).replace(/^[\*\-]\s*/, '').replace(/\*\*[^\*]+\*\*:\s*/, '');
+        if (/\*\*[^\*]+\*\*:/.test(cleanItem)) {
+            console.error(`[FATAL ERROR] Philosophy bullet ${index + 1} contains a forbidden bold label pattern ('**Text:**') after stripping. Remove all bold labels from the philosophy values.`);
+            process.exit(1);
+        }
+    });
 
     // --- DETERMINISTIC COMPILER LOGIC ---
     
