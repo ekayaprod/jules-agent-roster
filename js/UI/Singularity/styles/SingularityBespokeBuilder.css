@@ -1,8 +1,9 @@
 
         .sg-builder {
-          background: var(--sg-surface);
-          border: 1px solid var(--sg-border);
-          border-radius: 0.75rem;
+          background: var(--card-bg);
+          border: 1px solid var(--border);
+          border-radius: 1rem;
+          padding: 0.75rem 1rem;
           color: var(--text-primary);
           font-family: system-ui, -apple-system, sans-serif;
           overflow: hidden;
@@ -11,23 +12,17 @@
         }
 
         .sg-header {
-          padding: 1.5rem 2rem;
-          background: color-mix(in srgb, var(--sg-surface) 95%, var(--sg-mythic) 5%);
-          border-bottom: 1px solid var(--sg-border);
+          padding: 0;
           cursor: pointer;
           display: flex;
-          justify-content: space-between;
+          justify-content: flex-start;
           align-items: center;
-          transition: background-color 0.2s ease;
-        }
-        @media (hover: hover) and (pointer: fine) {
-          .sg-header:hover { background: color-mix(in srgb, var(--sg-surface) 90%, var(--sg-mythic) 10%); }
         }
 
         .sg-header-content {
           display: flex;
           align-items: center;
-          gap: 1.25rem;
+          gap: 0.5rem;
         }
         .sg-header-icon {
           font-size: 2.25rem;
@@ -62,7 +57,7 @@
           min-height: 5.5rem;
           resize: vertical;
           background: var(--sg-surface);
-          border: 1px solid var(--sg-border);
+          border: 1px solid var(--border);
           border-radius: 0.5rem;
           padding: 0.75rem;
           font-size: 0.875rem;
@@ -72,8 +67,8 @@
           transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
           box-sizing: border-box;
         }
-        .sg-textarea:focus { outline: none; border-color: var(--sg-mythic); box-shadow: 0 0 0 1px var(--sg-mythic); }
-        .sg-textarea:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
+        .sg-textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+        .sg-textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
         .sg-textarea::placeholder { color: var(--sg-muted); }
 
         .sg-footer-divider {
