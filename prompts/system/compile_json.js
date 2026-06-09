@@ -14,7 +14,7 @@ const path = require('path');
 function formatList(arr, bullet = '* ') {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
-        const cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
         return `${bullet}${cleanItem}`;
     }).join('\n');
 }
@@ -33,6 +33,7 @@ function formatExecutionSteps(arr) {
 }
 
 // Specialized formatter for Philosophy to aggressively strip bolded rule labels
+
 function formatPhilosophy(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
@@ -240,9 +241,26 @@ function compile(jsonPayloadStr, targetFilePath) {
         }
     });
 
+
+    // FATAL ERROR if duplicates are found in thematic arrays
+    const allThematicBullets = [...(data.philosophy || []), ...(data.favorite_optimizations || [])];
+    const seenEmojis = new Set();
+    allThematicBullets.forEach((item, index) => {
+        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        let emojiMatch = cleanItem.match(/^[\p{Emoji_Presentation}\p{Emoji}\uFE0F]+/u);
+        if (emojiMatch) {
+            let emoji = emojiMatch[0].trim();
+            if (seenEmojis.has(emoji)) {
+                console.error(`[FATAL ERROR] Duplicate emoji '${emoji}' detected in thematic bullets. The Phase 3 Emoji Ledger rule strictly forbids reusing emojis across Philosophy and Optimizations.`);
+                process.exit(1);
+            }
+            seenEmojis.add(emoji);
+        }
+    });
+
     // --- DETERMINISTIC COMPILER LOGIC ---
     
-    const archetype = data.archetype || '';
+    const archetype = data['work profile'] || data.work_profile || data.archetype || '';
     const category = data.identity?.category || '';
     const velocity = data.velocity || 'Contained';
     const payloadThreshold = data.payload_threshold || data.process?.select_classify?.target_limit || '1';
@@ -321,20 +339,21 @@ function compile(jsonPayloadStr, targetFilePath) {
 
     const zeroTargetExitInstruction = (data.process?.present?.requires_total_replacement_override || data.requires_total_replacement_override || data.total_replacement_active)
         ? '' 
-        : 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. ';
+        : requiresTasksBoard ? 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. ' : 'End the task cleanly without a PR if zero targets were found. ';
 
     // Clean Presentation Slot by stripping bold labels (e.g. "* **The Label:**")
     const rawPresentation = data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '';
-    const presentationSlotClean = String(rawPresentation).replace(/^[\*\-]\s*/, '').replace(/^\*\*[^\*]+\*\*:?\s*/, '').replace(/^\*\*[^\*:]+:?\*\*:?\s*/, '');
+    const presentationSlotClean = String(rawPresentation).replace(/^[\*\-]\s*/, '').replace(/^\*\*[^\*]+\*\*:?\s*/, '').replace(/^\*\*[^\*:]+:?\*\*:?\s*/, '').replace(/End the task cleanly without a PR if zero targets were found\.?/gi, '').trim();
     
     // Strip trailing periods from Mission Scope
-    const missionScopeClean = String(data.mission_scope || '').replace(/\.+$/, '');
+    const missionScopeClean = String(data.mission_scope || '').replace(/\.+$/, '').replace(/^to\s+/i, '');
 
     // Use arbitrary unless priority language is explicitly stated
-    const priorityLanguage = data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily';
+    let priorityLanguage = data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily';
+    if (priorityLanguage.toLowerCase() === 'n/a' || priorityLanguage.toLowerCase() === 'none') priorityLanguage = 'arbitrarily';
 
     // Fix grammatical clash for Discovery Trigger by omitting "via"
-    const discoverTrigger = data.process?.discover?.trigger || data.process?.discover_trigger || '';
+    const discoverTrigger = String(data.process?.discover?.trigger || data.process?.discover_trigger || '').replace(/^via\s+/i, '');
 
     // --- TEMPLATE INTERPOLATION ---
     const output = `---
@@ -384,7 +403,7 @@ ${agentTasksBoardRules}
 ${formatSlot(data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Procedure').replace(/^\*\s/, '')}
 
 ### The Process
-1. 🔍 **DISCOVER** — Execute ${discoverTrigger} using asynchronous tools. ${tasksBoardCrossReference}
+1. 🔍 **DISCOVER** — Execute ${discoverTrigger}. ${tasksBoardCrossReference}
 ${discoveryVelocityRule}
 ${formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix)}
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${priorityLanguage} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${targetLimitClean}.
@@ -393,7 +412,7 @@ ${executionSteps}
 4. ✅ **VERIFY** — **The Reporter Procedure:** ${reporterProtocol}
 **Heuristic Verification:**
 ${heuristics}
-5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. ${prCreationRule} Trigger this tool natively rather than using chat-based workarounds. Use the title: "${data.requires_caution_flag || data.process?.present?.requires_caution_flag ? '[CAUTION] ' : ''}${data.identity?.emoji || ''} ${data.identity?.name || ''}: [Action]". ${presentationSlotClean} Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. ${zeroTargetExitInstruction}If the run produced no source mutations but did append relay entries to \`.jules/agent_tasks.md\`, submit a minimal PR documenting the relay entries rather than suppressing it.
+5. 🎁 **PRESENT** — ${presentationSlotClean} ${zeroTargetExitInstruction}${requiresTasksBoard ? "If the run produced no source mutations but did append relay entries to \\`.jules/agent_tasks.md\\`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""}
 **Required PR Headers:** ${data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || ''}
 
 ### Favorite Optimizations
