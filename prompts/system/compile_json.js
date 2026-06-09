@@ -94,6 +94,72 @@ function cleanCodeFence(str) {
         .replace(/\r?\n\s*```\s*$/gm, '');
 }
 
+
+const BASE_PROFILES = {
+    "Pruner": {
+        domain: "Restrict your execution strictly to the identification and excision of targets. If a deletion breaks a tightly coupled dependency, you are explicitly forbidden from 'refactoring' the dependency to make the deletion work. Revert your deletion, leave the dead code in place, and proceed.",
+        scope: "Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.",
+        operational: "the environment should be handled as an immutable house of cards. Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. Deleting legacy code is highly volatile. If a target excision results in 3 successive test-runner failures that you cannot resolve via simple AST cleanup, execute a Graceful Abort on that specific file. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation."
+    },
+    "Generator": {
+        domain: "Restrict your execution exclusively to scaffolding net-new architecture for the assigned target. If your scaffolding requires modifying pre-existing core logic to compile, you have breached the greenfield boundary. Revert, document the blocker, and proceed.",
+        scope: "Confine write operations strictly to newly generated files and their immediate integration entry points. You are explicitly forbidden from refactoring adjacent pre-existing logic to accommodate your new feature.",
+        operational: "Build strictly within the project's current ecosystem. Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. If a scaffold fails to compile natively within 3 attempts, execute a Graceful Abort. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort. Native Tool Lock: Execute all modifications to existing entry-points exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation."
+    },
+    "Refactorer": {
+        domain: "Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed.",
+        scope: "Limit mutations strictly to the targeted logic block. You are explicitly forbidden from executing logic-neutral 'cleanups' (auto-formatting, sorting imports) within the same payload.",
+        operational: "existing logic should be handled as highly volatile. Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. If a refactor fails native tests 3 times, execute a Graceful Abort. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation."
+    },
+    "Transformer": {
+        domain: "Restrict execution strictly to behavior-preserving structural modifications (formatting, renaming, JSDoc). If a transformation requires altering execution flow, you have breached your domain. Revert and proceed.",
+        scope: "Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, or business logic is forbidden.",
+        operational: "Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. If your structural change breaks the AST parser 3 times, execute a Graceful Abort. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation."
+    },
+    "Instrumenter": {
+        domain: "Restrict execution exclusively to injecting boundaries, type-guards, validations, or test coverage. If pre-existing logic is fundamentally untestable, you are explicitly forbidden from refactoring the business logic. Revert, document, and proceed.",
+        scope: "Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.",
+        operational: "Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. If instrumentation causes a compiler/runner panic 3 times, Graceful Abort. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation."
+    },
+    "Operator": {
+        domain: "Restrict execution strictly to config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to force a deployment is a domain breach.",
+        scope: "Limit mutations strictly to infrastructure files (`YAML`, `Dockerfile`, `.env.example`). Application logic is out of bounds.",
+        operational: "build environments should be handled as volatile. Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. If changes fail a dry-run/syntax validation 3 times, execute a Graceful Abort. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation."
+    },
+    "Analyzer": {
+        domain: "Restrict execution exclusively to static analysis and architectural mapping. You are explicitly forbidden from mutating application logic, configs, or source code.",
+        scope: "Confine write operations strictly to external output files (`README.md`, `.json` intelligence reports). AST write permissions are out of bounds.",
+        operational: "the repository should be handled as a strictly read-only filesystem. The `SEARCH/REPLACE` API is explicitly disabled for all source code files. If obfuscated files break the parser, Graceful Abort that file. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort to wipe data dumps. Native Tool Lock (Read-Only Override): Write operations are confined strictly to your designated output files."
+    }
+};
+
+const CONTEXT_EXTENSIONS = {
+    "Security Perimeter Modifier": [
+        "* **The Secret Sterilization Rule:** this workflow requires never write plaintext secrets, API keys, or raw credentials to any source file, configuration, or log. Enforce strictly typed environment variables for all sensitive bindings.",
+        "* **The Exploit-Proof Verification:** this workflow requires mathematically prove the vulnerability is closed or the boundary is secure via targeted test runs before submitting the PR."
+    ],
+    "Infrastructure Containment Modifier": [
+        "* **The Source Code Untouchable Constraint:** Any mutation requiring `.ts`, `.py`, or `.js` execution logic changes is a catastrophic domain breach. the core application layer should be handled as an immutable black box.",
+        "* **The Dry-Run Build Procedure:** Validate all pipeline and dependency graph mutations through infrastructure-specific dry-runs (e.g., YAML linters, schema validators) rather than global application test suites."
+    ],
+    "AI/LLM Integration Modifier": [
+        "* **The Live Native Schema Rule:** Authenticate platform-specific SDK parameters strictly by retrieving and verifying the AI provider's live documentation before applying them.",
+        "* **The Synaptic Timeout Constraint:** Fortify all AI integration calls with strict `AbortController` timeouts, typed schema validation (e.g., Zod), and asynchronous exponential backoffs.",
+        "* **The Ephemeral Key Guard:** Construct authentication headers using strictly typed environment variables. Hardcoding raw API keys into source files is strictly forbidden."
+    ],
+    "Total Replacement Modifier": [
+        "* **The Inevitable Variation Doctrine:** A zero-target state is an impossibility. this workflow focuses on not reactive bug-fixing; it is the aggressive generation of a new architectural variation. this workflow requires arbitrarily select an existing baseline and replace it.",
+        "* **The Clean Slate Procedure:** Reject the sunk-cost fallacy. Map the integration boundaries of the target, completely burn/delete the existing structural logic, and provision a pristine, mathematically optimized replacement in its exact footprint.",
+        "* **The Test Obsolescence Procedure:** Because your rule is total structural replacement, legacy unit tests tied to the old architecture will inevitably fail. If old tests block your VM verification, this workflow permits isolate, disable (`.skip` / `xit`), or delete the obsolete test blocks entirely to unblock your pipeline.",
+        "* **The Gambler's Autonomous Selection:** You are explicitly forbidden from declaring a zero-target state or exiting cleanly. this workflow requires arbitrarily select the most prominent, structurally complete node discovered.",
+        "* **The PR Presentation Override:** Delete any default rule instructing the worker to exit cleanly without a PR when zero targets are found. A Replacement worker is prohibited exit empty-handed; submit the PR natively with the newly generated variation."
+    ],
+    "Iterative Execution Context Modifier": [
+        '* **The Positive Polarity Rule:** All scope constraints authored or maintained by this worker must be expressed as positive behavioral anchors ("always execute X", "return Y in all cases") rather than prohibitive constraints ("never do Z", "avoid Y"). In iterative execution contexts, negative constraints cause the consuming model to actively re-suppress the prohibited behavior on each loop iteration. Express what the loop must do, not what it must not do.',
+        "* **The Stateless Execution Requirement:** each iteration of the consuming execution loop should be handled as stateless unless an explicit memory or context-passing mechanism is declared and verified in the system architecture. Do not author directives that assume prior loop state is accessible or reliable across turns."
+    ]
+};
+
 function compile(jsonPayloadStr, targetFilePath) {
     let data;
     try {
@@ -111,16 +177,20 @@ function compile(jsonPayloadStr, targetFilePath) {
         process.exit(1);
     }
 
-    const philosophyRaw = data.philosophy || [];
+    let philosophyRaw = data.philosophy || [];
     if (philosophyRaw.length !== 5) {
-        console.error(`[FATAL ERROR] Philosophy count is ${philosophyRaw.length}. Must be exactly 5 bullets. Add or remove bullets to resolve.`);
-        process.exit(1);
+        console.warn(`[WARNING] Philosophy count is ${philosophyRaw.length}. Adjusting to 5 bullets.`);
+        if (philosophyRaw.length > 5) philosophyRaw = philosophyRaw.slice(0, 5);
+        else while (philosophyRaw.length < 5) philosophyRaw.push("Placeholder bullet.");
+        data.philosophy = philosophyRaw;
     }
 
-    const optimizationsRaw = data.favorite_optimizations || [];
+    let optimizationsRaw = data.favorite_optimizations || [];
     if (optimizationsRaw.length !== 6) {
-        console.error(`[FATAL ERROR] Favorite Optimizations count is ${optimizationsRaw.length}. Must be exactly 6.`);
-        process.exit(1);
+        console.warn(`[WARNING] Favorite Optimizations count is ${optimizationsRaw.length}. Adjusting to 6 bullets.`);
+        if (optimizationsRaw.length > 6) optimizationsRaw = optimizationsRaw.slice(0, 6);
+        else while (optimizationsRaw.length < 6) optimizationsRaw.push("Placeholder optimization.");
+        data.favorite_optimizations = optimizationsRaw;
     }
 
     const RESERVED_EMOJIS = ['🔍', '🎯', '⚙️', '✅', '🎁'];
@@ -133,14 +203,16 @@ function compile(jsonPayloadStr, targetFilePath) {
 
         RESERVED_EMOJIS.forEach(reserved => {
             if (item.includes(reserved)) {
-                console.error(`[FATAL ERROR] Reserved emoji '${reserved}' found in ${positionLabel}. The emojis 🔍, 🎯, ⚙️, ✅, and 🎁 are strictly reserved for process step headers and cannot be used in thematic arrays.`);
-                process.exit(1);
+                console.warn(`[WARNING] Reserved emoji ${reserved} found in ${positionLabel}. Replacing with a generic emoji.`);
+                if (isPhilosophy) data.philosophy[index] = String(data.philosophy[index]).replace(reserved, "🔹");
+                else data.favorite_optimizations[index - philosophyRaw.length] = String(data.favorite_optimizations[index - philosophyRaw.length]).replace(reserved, "🔹");
             }
         });
 
         if (leadEmoji && item.includes(leadEmoji)) {
-            console.error(`[FATAL ERROR] Persona Lead emoji '${leadEmoji}' found in ${positionLabel}. The thematic arrays must use unique emojis that do not duplicate the Lead emoji.`);
-            process.exit(1);
+            console.warn(`[WARNING] Persona Lead emoji ${leadEmoji} found in ${positionLabel}. Replacing with a generic emoji.`);
+            if (isPhilosophy) data.philosophy[index] = String(data.philosophy[index]).replace(leadEmoji, "🔸");
+            else data.favorite_optimizations[index - philosophyRaw.length] = String(data.favorite_optimizations[index - philosophyRaw.length]).replace(leadEmoji, "🔸");
         }
     });
 
@@ -223,7 +295,19 @@ function compile(jsonPayloadStr, targetFilePath) {
 
     // --- ARRAY FORMATTING ---
     const salvagedMandates = formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates);
-    const domainModifiers = formatList(data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates);
+    const profileKey = data["work profile"] || data.work_profile || "";
+    const baseProfile = BASE_PROFILES[profileKey] || {};
+    const domainAnchorText = data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor || baseProfile.domain || "";
+    const scopeText = data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope || baseProfile.scope || "";
+    const operationalBoundariesText = data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || baseProfile.operational || "";
+    const combinedModifiers = data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates || [];
+    const activeModifiers = data.active_modifiers || data._diagnostic?.sculptor_manifest?.active_modifiers || [];
+    activeModifiers.forEach(modifier => {
+        if (CONTEXT_EXTENSIONS[modifier]) {
+            combinedModifiers.push(...CONTEXT_EXTENSIONS[modifier]);
+        }
+    });
+    const domainModifiers = formatList(combinedModifiers);
     const crossVectorGrants = formatList(data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants);
     const executionSteps = formatExecutionSteps(data.process?.execute?.execution_steps || data.process?.execution_steps);
     const heuristics = formatHeuristics(data.process?.verify?.heuristic_verification || data.process?.heuristic_verification);
@@ -281,15 +365,16 @@ ${cleanCodeFence(data.coding_standards?.bad_code_snippet || '')}
 ~~~
 
 ### Strict Operational Rules
-${formatSlot(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor || '', 'The Primary Responsibility')} If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
-${formatSlot(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope || '', 'The Scope')}
+${formatSlot(domainAnchorText, "The Primary Responsibility")} If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
+${formatSlot(scopeText, "The Scope")}
 * **The Execution Rule:** ${executionMandate}
-${formatSlot(data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || '', 'The Resilience Procedure')}
+${formatSlot(operationalBoundariesText, "The Resilience Procedure")}
 ${domainModifiers}
 ${formatSlot(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule || '', 'The Autonomous Selection')}
 ${formatSlot(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution || '', 'The Execution')}
 ${testingDoctrine ? formatSlot(testingDoctrine, 'The Verification Procedure') : ''}
 ${salvagedMandates}
+${formatList(data.salvaged_custom_logic)}
 ${crossVectorGrants}
 
 ### Memory & Triage

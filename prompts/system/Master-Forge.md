@@ -180,6 +180,8 @@ Store these as context variables. All subsequent conditional logic blocks must r
 * Generate the `_diagnostic` object first. `linter_verdict` must strictly evaluate to `"PASS"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
 * Extract the raw text of the Class Properties verbatim, incorporating any Phase 4 Property Modifications. Do NOT include markdown bullets or bolded labels (e.g., "* **The Primary Responsibility:**"). Output purely the raw text.
 * Do not include any rule explicitly marked as "Dropped".
+* Centralized Base Physics Dictionary: The Work Profile definitions (Domain, Scope, Operational Boundary) are stored natively within `compile_json.js`. You do not need to extract the raw text of the Class Properties for these slots. Instead, supply the `work profile` key and any domain-specific overrides in `salvaged_custom_logic`.
+* Array Triggers: Provide an array of context extension names (e.g. `["Security Perimeter Modifier"]`) in `active_modifiers` and the script will automatically append the rules.
 
 **Output Format:**
 Output a raw JSON object matching the exact schema below, wrapped in a ```json block.
@@ -198,6 +200,7 @@ Output a raw JSON object matching the exact schema below, wrapped in a ```json b
     "compliance_notes": ["[List any format issues found and corrected here]"]
   },
   "work profile": "[Class Name]",
+  "active_modifiers": ["[Active Context Extensions or 'None']"],
   "velocity": "[Contained, Batch, or Expansive]",
   "payload_threshold": "[Threshold Value]",
   "verification_layer": "[executable or structural]",
@@ -233,6 +236,9 @@ Output a raw JSON object matching the exact schema below, wrapped in a ```json b
     "presentation_slot": "[Exact text]",
     "pr_headers": "[Thematic PR Headers String]"
   },
+  "salvaged_custom_logic": [
+    "[* **The Custom Rule:** Salvaged operational mandate]"
+  ],
   "salvaged_mandates": [
     "[* **The Name:** Rule 1]"
   ],
