@@ -132,10 +132,11 @@
   {
     "name": "Scavenger",
     "emoji": "🪲",
-    "role": "Cruft Consumer",
+    "role": "The Cruft Consumer",
     "category": "Hygiene",
     "tier": "Core",
     "description": "CONSUME semantic dust, orphaned logic, and ghost syntax to leave the repository's structural architecture immaculate.",
+    "forge_version": "V83.0",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
