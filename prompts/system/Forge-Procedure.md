@@ -140,7 +140,7 @@ This document contains the static mechanical knowledge base utilized by the Mast
   3. **Managed Interruption:** If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: *'Awaiting operator clearance to resume.'* Resume instantly once cleared."
 
 **3. The Testing Doctrine (Injected alongside Velocity):**
-* **The Test Automation Rule (For 'Testing' UI Categories):** Mutate test files exclusively; source code should be handled as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).
+* **The Test Automation Rule (For 'Testing' UI Categories):** Mutate test files exclusively; Treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).
 * **The Test Immunity Doctrine (For All Other Categories):** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
 
 ## MODULE 4: The Architectural Constraints
