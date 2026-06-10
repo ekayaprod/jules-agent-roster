@@ -5,3 +5,4 @@
 **Target Excised:** OS-level caches | **Action:** Appended .DS_Store, __pycache__, and vim swap files to `.gitignore`.
 **Target Logged:** TODO/FIXME markers | **Action:** Logged 41 markers anomaly to `[OPERATOR]` queue.
 **Target Excised:** Broken markdown links in Foresight.md | **Action:** Repaired missing target anchors.
+**Target Logged:** Logically ambiguous conflict markers in `prompts/fusions/Void.md` and `prompts/fusions/Weaver.md` | **Action:** Relayed to `[REFACTORER]` queue.

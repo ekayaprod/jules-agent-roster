@@ -6,6 +6,8 @@
 > 3. Do not delete this file. Sweep resolved `[x]` items on execution.
 
 ## The [REFACTORER] Queue
+* 🏗️ `prompts/fusions/Void.md`: Logically ambiguous conflict marker detected.
+* 🏗️ `prompts/fusions/Weaver.md`: Logically ambiguous conflict marker detected.
 * 🏗️ `js/UI/JulesTerminal/JulesTerminal.js`: 638 lines. Structural Monolith.
 * 🏗️ `js/core/RosterApp.js`: 557 lines. Structural Monolith.
 * 🏗️ `js/core/events/EventBinder.js`: 534 lines. Structural Monolith.
