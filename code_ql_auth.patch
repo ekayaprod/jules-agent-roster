@@ -1,0 +1,13 @@
+<<<<<<< SEARCH
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+=======
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          languages: ${{ matrix.language }}
+>>>>>>> REPLACE
