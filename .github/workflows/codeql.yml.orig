@@ -46,5 +46,3 @@ jobs:
         uses: github/codeql-action/analyze@v4
         with:
           category: "/language:${{matrix.language}}"
-          upload: false
-      - run: echo "Skipping codeql upload as write permission to security events does not always apply"
