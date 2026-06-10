@@ -179,6 +179,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 * Map all variables strictly from the Phase 4 Manifest and Phase 5 Linter outputs.
 * Generate the `_diagnostic` object first. `linter_verdict` must strictly evaluate to `"PASS"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
 * Extract the raw text of the Class Properties verbatim, incorporating any Phase 4 Property Modifications. Do NOT include markdown bullets or bolded labels (e.g., "* **The Primary Responsibility:**"). Output purely the raw text.
+* Do not include Task Board reading instructions (e.g., 'Read .jules/agent_tasks.md') inside the discover_trigger JSON key. The compiler script handles this natively.
 * Do not include any rule explicitly marked as "Dropped".
 * Make archetype_slots values explicitly nullable, or map to null if a direct 1:1 legacy equivalent does not exist, relying instead on salvaged_custom_logic.
 * Do not extract legacy velocity, batching, or execution pacing rules into salvaged_custom_logic if they overlap with the velocity classification generated.
@@ -228,14 +229,11 @@ Output a raw JSON object matching the exact schema below, wrapped in a ```json b
     "bad_code_snippet": "[Anti-pattern]"
   },
   "archetype_slots": {
-    "domain_anchor": "[Exact text]",
-    "mutation_scope": "[Exact text]",
-    "operational_boundaries": "[Exact text]",
     "decisiveness_rule": "[Exact text or null]",
-    "workflow_execution": "[Exact text]",
-    "testing_doctrine": "[Evaluated Testing Configuration]",
-    "journal_protocol": "[Exact text]",
-    "presentation_slot": "[Exact text]",
+    "workflow_execution": "[Exact text or null]",
+    "testing_doctrine": "[Evaluated Testing Configuration or null]",
+    "journal_protocol": "[Exact text or null]",
+    "presentation_slot": "[Exact text or null]",
     "pr_headers": "[Thematic PR Headers String]"
   },
   "salvaged_custom_logic": [
@@ -299,6 +297,7 @@ Evaluate the agent against the **Agentic Efficacy Matrix**:
  3. **Lock Target:** Lock the **first valid file path** returned by the sweep. Ignore all others.
 
 ### 2. Architectural Synthesis & Validation
+**State Ingestion:** Before generating the payload, you MUST execute a native file read on your locked target .md file to load its legacy logic into your active context window.
 Generate `payload.json`. You must generate the `_diagnostic` object at the top of the schema first. The compiler script natively enforces `_diagnostic.linter_verdict === "PASS"`. This strictly requires you to execute the Repo Recon, Rule Sanitization, Class Mapping, Sculptor Manifest, and Configuration Linter checks, logging your reasoning directly into the `_diagnostic` object arrays before generating the remainder of the payload schema. 
 
 Write the final JSON string strictly to `payload.json`.

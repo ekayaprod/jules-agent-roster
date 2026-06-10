@@ -14,7 +14,7 @@ const path = require('path');
 function formatList(arr, bullet = '* ') {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
         return `${bullet}${cleanItem}`;
     }).join('\n');
 }
@@ -23,7 +23,7 @@ function formatList(arr, bullet = '* ') {
 function formatExecutionSteps(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
         // Fix missing opening bold marker (e.g., "Trace the Wait State:**" -> "**Trace the Wait State:**")
         cleanItem = cleanItem.replace(/^([a-zA-Z0-9_ \-]+)(?:\*\*|:\*\*|\*\*:\s*|\*:\s*)(.*)$/, '**$1:** $2');
         // Auto-fix literal broken asterisk labels (e.g. "*Execute:**")
@@ -37,7 +37,7 @@ function formatExecutionSteps(arr) {
 function formatPhilosophy(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
         // Universally strip the bold label (e.g. "**Label:** ") regardless of preceding emojis
         cleanItem = cleanItem.replace(/\*\*[^\*]+\*\*:\s*/, '');
         return `* ${cleanItem}`;
@@ -78,7 +78,7 @@ function formatTargetMatrix(arr) {
 function formatHeuristics(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
         // Fix broken bolding e.g., *Label**: -> **Label**:
         cleanItem = cleanItem.replace(/^\*([^\*:]+)\*\*:/, '**$1**:');
         // Fix collapsed heuristic format: "Semantic Equivalence: text" -> "**Semantic Equivalence Check:** text"
@@ -234,7 +234,7 @@ function compile(jsonPayloadStr, targetFilePath) {
 
     // Belt-and-suspenders validation for Philosophy bold stripping
     philosophyRaw.forEach((item, index) => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '').replace(/\*\*[^\*]+\*\*:\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s+/, '').replace(/\*\*[^\*]+\*\*:\s*/, '');
         if (/\*\*[^\*]+\*\*:/.test(cleanItem)) {
             console.error(`[FATAL ERROR] Philosophy bullet ${index + 1} contains a forbidden bold label pattern ('**Text:**') after stripping. Remove all bold labels from the philosophy values.`);
             process.exit(1);
@@ -246,7 +246,7 @@ function compile(jsonPayloadStr, targetFilePath) {
     const allThematicBullets = [...(data.philosophy || []), ...(data.favorite_optimizations || [])];
     const seenEmojis = new Set();
     allThematicBullets.forEach((item, index) => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
         let emojiMatch = cleanItem.match(/^[\p{Emoji_Presentation}\p{Emoji}\uFE0F]+/u);
         if (emojiMatch) {
             let emoji = emojiMatch[0].trim();
@@ -349,8 +349,9 @@ function compile(jsonPayloadStr, targetFilePath) {
     const missionScopeClean = String(data.mission_scope || '').replace(/\.+$/, '').replace(/^to\s+/i, '');
 
     // Use arbitrary unless priority language is explicitly stated
-    let priorityLanguage = data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily';
-    if (priorityLanguage.toLowerCase() === 'n/a' || priorityLanguage.toLowerCase() === 'none') priorityLanguage = 'arbitrarily';
+    const validPriorities = ['arbitrarily', 'sequentially', 'by highest confidence'];
+    const rawPriority = data.process?.select_classify?.priority_language || data.priority_language;
+    const priorityLanguage = validPriorities.includes(rawPriority) ? rawPriority : 'arbitrarily';
 
     // Fix grammatical clash for Discovery Trigger by omitting "via"
     const discoverTrigger = String(data.process?.discover?.trigger || data.process?.discover_trigger || '').replace(/^via\s+/i, '');
@@ -403,7 +404,7 @@ ${agentTasksBoardRules}
 ${formatSlot(data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Procedure').replace(/^\*\s/, '')}
 
 ### The Process
-1. 🔍 **DISCOVER** — Execute ${discoverTrigger}. ${tasksBoardCrossReference}
+1. 🔍 **DISCOVER** — ${discoverTrigger} ${tasksBoardCrossReference}
 ${discoveryVelocityRule}
 ${formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix)}
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${priorityLanguage} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${targetLimitClean}.
@@ -412,7 +413,7 @@ ${executionSteps}
 4. ✅ **VERIFY** — **The Reporter Procedure:** ${reporterProtocol}
 **Heuristic Verification:**
 ${heuristics}
-5. 🎁 **PRESENT** — ${presentationSlotClean} ${zeroTargetExitInstruction}${requiresTasksBoard ? "If the run produced no source mutations but did append relay entries to \\`.jules/agent_tasks.md\\`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""}
+5. 🎁 **PRESENT** — ${presentationSlotClean} ${zeroTargetExitInstruction}${requiresTasksBoard ? "If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""}
 **Required PR Headers:** ${data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || ''}
 
 ### Favorite Optimizations
