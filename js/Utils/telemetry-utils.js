@@ -15,7 +15,17 @@ class TelemetryUtils {
             error: error instanceof Error ? error.message : error,
             ...additionalContext
         };
-        try { console.error(JSON.stringify(payload)); } catch(e) { payload.error_payload_stringification_failed = true; payload.additionalContext = "[Circular Reference]"; console.error(JSON.stringify({ event: payload.event, error: payload.error, additionalContext: payload.additionalContext })); }
+        try {
+            console.error(JSON.stringify(payload));
+        } catch (e) {
+            payload.error_payload_stringification_failed = true;
+            payload.additionalContext = "[Circular Reference]";
+            console.error(JSON.stringify({
+                event: payload.event,
+                error: payload.error,
+                additionalContext: payload.additionalContext
+            }));
+        }
     }
 }
 
