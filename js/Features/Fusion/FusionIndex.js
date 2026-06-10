@@ -114,7 +114,7 @@ class FusionIndex {
       const emoji = safeData.name === "Singularity" ? "🌌" : this.getEmoji(safeData);
 
       const slot = document.createElement("div");
-      slot.className = `fusion-item ${isUnlocked ? "unlocked" : "locked"}`;
+      slot.className = `fusion-item ${isUnlocked ? "unlocked" : "locked"} transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md`;
       if (isUnlocked && safeData?.tier) {
           slot.classList.add(`tier-${safeData.tier.toLowerCase()}`);
       }

@@ -306,7 +306,7 @@ class JulesTerminal {
         const fragment = document.createDocumentFragment();
         prs.forEach(pr => {
             const item = document.createElement("div");
-            item.className = "term-pr-item";
+            item.className = "term-pr-item transition-all duration-300 ease-in-out hover:scale-[1.01] hover:shadow-sm";
 
             const escapedTitle = formatUtils ? formatUtils.escapeHTML(pr.title) : pr.title;
 
