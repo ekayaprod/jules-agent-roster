@@ -14,7 +14,7 @@ const path = require('path');
 function formatList(arr, bullet = '* ') {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
         return `${bullet}${cleanItem}`;
     }).join('\n');
 }
@@ -23,7 +23,7 @@ function formatList(arr, bullet = '* ') {
 function formatExecutionSteps(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
         // Fix missing opening bold marker (e.g., "Trace the Wait State:**" -> "**Trace the Wait State:**")
         cleanItem = cleanItem.replace(/^([a-zA-Z0-9_ \-]+)(?:\*\*|:\*\*|\*\*:\s*|\*:\s*)(.*)$/, '**$1:** $2');
         // Auto-fix literal broken asterisk labels (e.g. "*Execute:**")
@@ -37,7 +37,7 @@ function formatExecutionSteps(arr) {
 function formatPhilosophy(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
         // Universally strip the bold label (e.g. "**Label:** ") regardless of preceding emojis
         cleanItem = cleanItem.replace(/\*\*[^\*]+\*\*:\s*/, '');
         return `* ${cleanItem}`;
@@ -78,7 +78,7 @@ function formatTargetMatrix(arr) {
 function formatHeuristics(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
         // Fix broken bolding e.g., *Label**: -> **Label**:
         cleanItem = cleanItem.replace(/^\*([^\*:]+)\*\*:/, '**$1**:');
         // Fix collapsed heuristic format: "Semantic Equivalence: text" -> "**Semantic Equivalence Check:** text"
@@ -100,7 +100,7 @@ const BASE_PROFILES = {
     "Pruner": {
         domain: "Restrict your execution strictly to the identification and excision of targets. If a deletion breaks a tightly coupled dependency, you are explicitly forbidden from 'refactoring' the dependency to make the deletion work. Revert your deletion, leave the dead code in place, and proceed.",
         scope: "Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.",
-        operational: "the environment should be handled as an immutable house of cards. Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. Deleting legacy code is highly volatile. If a target excision results in 3 successive test-runner failures that you cannot resolve via simple AST cleanup, execute a Graceful Abort on that specific file. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation."
+        operational: "Treat the environment as an immutable house of cards. Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. Deleting legacy code is highly volatile. If a target excision results in 3 successive test-runner failures that you cannot resolve via simple AST cleanup, execute a Graceful Abort on that specific file. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation."
     },
     "Generator": {
         domain: "Restrict your execution exclusively to scaffolding net-new architecture for the assigned target. If your scaffolding requires modifying pre-existing core logic to compile, you have breached the greenfield boundary. Revert, document the blocker, and proceed.",
@@ -110,7 +110,7 @@ const BASE_PROFILES = {
     "Refactorer": {
         domain: "Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed.",
         scope: "Limit mutations strictly to the targeted logic block. You are explicitly forbidden from executing logic-neutral 'cleanups' (auto-formatting, sorting imports) within the same payload.",
-        operational: "existing logic should be handled as highly volatile. Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. If a refactor fails native tests 3 times, execute a Graceful Abort. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation."
+        operational: "Treat existing logic as highly volatile. Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. If a refactor fails native tests 3 times, execute a Graceful Abort. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation."
     },
     "Transformer": {
         domain: "Restrict execution strictly to behavior-preserving structural modifications (formatting, renaming, JSDoc). If a transformation requires altering execution flow, you have breached your domain. Revert and proceed.",
@@ -125,22 +125,22 @@ const BASE_PROFILES = {
     "Operator": {
         domain: "Restrict execution strictly to config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to force a deployment is a domain breach.",
         scope: "Limit mutations strictly to infrastructure files (`YAML`, `Dockerfile`, `.env.example`). Application logic is out of bounds.",
-        operational: "build environments should be handled as volatile. Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. If changes fail a dry-run/syntax validation 3 times, execute a Graceful Abort. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation."
+        operational: "Treat build environments as volatile. Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. If changes fail a dry-run/syntax validation 3 times, execute a Graceful Abort. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard `<<<<<<< SEARCH / ======= / >>>>>>> REPLACE` block logic). The creation or execution of any `.diff`, `.sh`, or `.js` script to mutate source files is a catastrophic boundary violation."
     },
     "Analyzer": {
         domain: "Restrict execution exclusively to static analysis and architectural mapping. You are explicitly forbidden from mutating application logic, configs, or source code.",
         scope: "Confine write operations strictly to external output files (`README.md`, `.json` intelligence reports). AST write permissions are out of bounds.",
-        operational: "the repository should be handled as a strictly read-only filesystem. The `SEARCH/REPLACE` API is explicitly disabled for all source code files. If obfuscated files break the parser, Graceful Abort that file. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort to wipe data dumps. Native Tool Lock (Read-Only Override): Write operations are confined strictly to your designated output files."
+        operational: "Treat the repository as a strictly read-only filesystem. The `SEARCH/REPLACE` API is explicitly disabled for all source code files. If obfuscated files break the parser, Graceful Abort that file. Operate strictly within the existing native environment stack. Installing OS-level packages (`apt-get`, `.deb`) is a hard boundary violation. If a required binary is missing from the host environment, execute a Graceful Abort immediately. Unconditional Cleanup: Run `git clean -fd -e .jules/` before PR or Abort to wipe data dumps. Native Tool Lock (Read-Only Override): Write operations are confined strictly to your designated output files."
     }
 };
 
 const CONTEXT_EXTENSIONS = {
     "Security Perimeter Modifier": [
-        "* **The Secret Sterilization Rule:** this workflow requires never write plaintext secrets, API keys, or raw credentials to any source file, configuration, or log. Enforce strictly typed environment variables for all sensitive bindings.",
-        "* **The Exploit-Proof Verification:** this workflow requires mathematically prove the vulnerability is closed or the boundary is secure via targeted test runs before submitting the PR."
+        "* **The Secret Sterilization Rule:** You must never write plaintext secrets, API keys, or raw credentials to any source file, configuration, or log. Enforce strictly typed environment variables for all sensitive bindings.",
+        "* **The Exploit-Proof Verification:** You must mathematically prove the vulnerability is closed or the boundary is secure via targeted test runs before submitting the PR."
     ],
     "Infrastructure Containment Modifier": [
-        "* **The Source Code Untouchable Constraint:** Any mutation requiring `.ts`, `.py`, or `.js` execution logic changes is a catastrophic domain breach. the core application layer should be handled as an immutable black box.",
+        "* **The Source Code Untouchable Constraint:** Any mutation requiring `.ts`, `.py`, or `.js` execution logic changes is a catastrophic domain breach. Treat the core application layer as an immutable black box.",
         "* **The Dry-Run Build Procedure:** Validate all pipeline and dependency graph mutations through infrastructure-specific dry-runs (e.g., YAML linters, schema validators) rather than global application test suites."
     ],
     "AI/LLM Integration Modifier": [
@@ -149,15 +149,15 @@ const CONTEXT_EXTENSIONS = {
         "* **The Ephemeral Key Guard:** Construct authentication headers using strictly typed environment variables. Hardcoding raw API keys into source files is strictly forbidden."
     ],
     "Total Replacement Modifier": [
-        "* **The Inevitable Variation Doctrine:** A zero-target state is an impossibility. this workflow focuses on not reactive bug-fixing; it is the aggressive generation of a new architectural variation. this workflow requires arbitrarily select an existing baseline and replace it.",
+        "* **The Inevitable Variation Doctrine:** A zero-target state is an impossibility. You focus on not reactive bug-fixing; it is the aggressive generation of a new architectural variation. You must arbitrarily select an existing baseline and replace it.",
         "* **The Clean Slate Procedure:** Reject the sunk-cost fallacy. Map the integration boundaries of the target, completely burn/delete the existing structural logic, and provision a pristine, mathematically optimized replacement in its exact footprint.",
-        "* **The Test Obsolescence Procedure:** Because your rule is total structural replacement, legacy unit tests tied to the old architecture will inevitably fail. If old tests block your VM verification, this workflow permits isolate, disable (`.skip` / `xit`), or delete the obsolete test blocks entirely to unblock your pipeline.",
-        "* **The Gambler's Autonomous Selection:** You are explicitly forbidden from declaring a zero-target state or exiting cleanly. this workflow requires arbitrarily select the most prominent, structurally complete node discovered.",
+        "* **The Test Obsolescence Procedure:** Because your rule is total structural replacement, legacy unit tests tied to the old architecture will inevitably fail. If old tests block your VM verification, You may isolate, disable (`.skip` / `xit`), or delete the obsolete test blocks entirely to unblock your pipeline.",
+        "* **The Gambler's Autonomous Selection:** You are explicitly forbidden from declaring a zero-target state or exiting cleanly. You must arbitrarily select the most prominent, structurally complete node discovered.",
         "* **The PR Presentation Override:** Delete any default rule instructing the worker to exit cleanly without a PR when zero targets are found. A Replacement worker is prohibited exit empty-handed; submit the PR natively with the newly generated variation."
     ],
     "Iterative Execution Context Modifier": [
         '* **The Positive Polarity Rule:** All scope constraints authored or maintained by this worker must be expressed as positive behavioral anchors ("always execute X", "return Y in all cases") rather than prohibitive constraints ("never do Z", "avoid Y"). In iterative execution contexts, negative constraints cause the consuming model to actively re-suppress the prohibited behavior on each loop iteration. Express what the loop must do, not what it must not do.',
-        "* **The Stateless Execution Requirement:** each iteration of the consuming execution loop should be handled as stateless unless an explicit memory or context-passing mechanism is declared and verified in the system architecture. Do not author directives that assume prior loop state is accessible or reliable across turns."
+        "* **The Stateless Execution Requirement:** Treat each iteration of the consuming execution loop as stateless unless an explicit memory or context-passing mechanism is declared and verified in the system architecture. Do not author directives that assume prior loop state is accessible or reliable across turns."
     ]
 };
 
@@ -234,7 +234,7 @@ function compile(jsonPayloadStr, targetFilePath) {
 
     // Belt-and-suspenders validation for Philosophy bold stripping
     philosophyRaw.forEach((item, index) => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '').replace(/\*\*[^\*]+\*\*:\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s+/, '').replace(/\*\*[^\*]+\*\*:\s*/, '');
         if (/\*\*[^\*]+\*\*:/.test(cleanItem)) {
             console.error(`[FATAL ERROR] Philosophy bullet ${index + 1} contains a forbidden bold label pattern ('**Text:**') after stripping. Remove all bold labels from the philosophy values.`);
             process.exit(1);
@@ -246,7 +246,7 @@ function compile(jsonPayloadStr, targetFilePath) {
     const allThematicBullets = [...(data.philosophy || []), ...(data.favorite_optimizations || [])];
     const seenEmojis = new Set();
     allThematicBullets.forEach((item, index) => {
-        let cleanItem = String(item).replace(/^[\*\-]\s*/, '');
+        let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
         let emojiMatch = cleanItem.match(/^[\p{Emoji_Presentation}\p{Emoji}\uFE0F]+/u);
         if (emojiMatch) {
             let emoji = emojiMatch[0].trim();
@@ -270,7 +270,7 @@ function compile(jsonPayloadStr, targetFilePath) {
 
     // 1. Testing Doctrine
     const testingDoctrine = category.toLowerCase() === 'testing'
-        ? "* **The Test Automation Rule:** Mutate test files exclusively; source code should be handled as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+        ? "* **The Test Automation Rule:** Mutate test files exclusively; Treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
         : "* **The Test Immunity Doctrine:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.";
 
     // 2. Velocity & Execution Rule
@@ -288,7 +288,7 @@ function compile(jsonPayloadStr, targetFilePath) {
         prCreationRule = "Do not burn tool calls running `git diff` or `git status` right before submission. The PR UI automatically attaches diffs. Rely purely on your working memory to draft the PR description.";
     } else if (velocity === 'Batch') {
         executionMandate = `Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly ${payloadThreshold} targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.`;
-        discoveryVelocityRule = "**The Bounded Sweep:** this workflow permits scan and lock onto targets strictly until your Quota is met, at which point this workflow requires immediately abort all further scanning and proceed to execution.";
+        discoveryVelocityRule = "**The Bounded Sweep:** You may scan and lock onto targets strictly until your Quota is met, at which point You must immediately abort all further scanning and proceed to execution.";
         executionPosture = "Execute in bounded sequence, tracking your mutation count against your declared quota ceiling.";
         reporterProtocol = "Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling.";
         prCreationRule = "Do not burn tool calls running `git diff` or `git status` right before submission. The PR UI automatically attaches diffs. Rely purely on your working memory to draft the PR description.";
@@ -349,8 +349,9 @@ function compile(jsonPayloadStr, targetFilePath) {
     const missionScopeClean = String(data.mission_scope || '').replace(/\.+$/, '').replace(/^to\s+/i, '');
 
     // Use arbitrary unless priority language is explicitly stated
-    let priorityLanguage = data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily';
-    if (priorityLanguage.toLowerCase() === 'n/a' || priorityLanguage.toLowerCase() === 'none') priorityLanguage = 'arbitrarily';
+    const validPriorities = ['arbitrarily', 'sequentially', 'by highest confidence'];
+    const rawPriority = data.process?.select_classify?.priority_language || data.priority_language;
+    const priorityLanguage = validPriorities.includes(rawPriority) ? rawPriority : 'arbitrarily';
 
     // Fix grammatical clash for Discovery Trigger by omitting "via"
     const discoverTrigger = String(data.process?.discover?.trigger || data.process?.discover_trigger || '').replace(/^via\s+/i, '');
@@ -403,7 +404,7 @@ ${agentTasksBoardRules}
 ${formatSlot(data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Procedure').replace(/^\*\s/, '')}
 
 ### The Process
-1. 🔍 **DISCOVER** — Execute ${discoverTrigger}. ${tasksBoardCrossReference}
+1. 🔍 **DISCOVER** — ${discoverTrigger} ${tasksBoardCrossReference}
 ${discoveryVelocityRule}
 ${formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix)}
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${priorityLanguage} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${targetLimitClean}.
@@ -412,7 +413,7 @@ ${executionSteps}
 4. ✅ **VERIFY** — **The Reporter Procedure:** ${reporterProtocol}
 **Heuristic Verification:**
 ${heuristics}
-5. 🎁 **PRESENT** — ${presentationSlotClean} ${zeroTargetExitInstruction}${requiresTasksBoard ? "If the run produced no source mutations but did append relay entries to \\`.jules/agent_tasks.md\\`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""}
+5. 🎁 **PRESENT** — ${presentationSlotClean} ${zeroTargetExitInstruction}${requiresTasksBoard ? "If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""}
 **Required PR Headers:** ${data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || ''}
 
 ### Favorite Optimizations

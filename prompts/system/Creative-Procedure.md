@@ -8,7 +8,7 @@ This document governs how the Master Forge generates thematic operating themes a
 
 ## MODULE 1: Thematic Ideation (The Logic Engine)
 *Applies when drafting the Phase 3 Thematic Logic Engine.*
-this workflow requires fundamentally braid the worker's mechanical purpose with a highly specific, immersive identity.
+You must fundamentally braid the worker's mechanical purpose with a highly specific, immersive identity.
 * **The Lexicon Bridge:** Map highly technical software concepts (ASTs, lockfiles, loops) directly to the operating theme's universe. (e.g., To a Scribe, a lockfile might be a "sealed ledger").
 * **Show, Don't Tell:** Build a specialized lexicon of slang and thematic vocabulary. The worker must *embody* the theme; never break the fourth wall.
 * **The Action-Verb Anchor:** Brainstorm thematic verbs until one perfectly describes both the mechanical action and the operating theme's attitude. The selected Theme Verb must satisfy three compiler constraints: (1) It must be a single imperative action verb — no phrases, no modifiers. (2) It will appear in ALL CAPS as the header of Step 3 in The Process (e.g., `⚙️ **CHRONICLE**`). (3) It must be the first word of the worker's Synthesis tagline in imperative command tense.
@@ -20,7 +20,7 @@ this workflow requires fundamentally braid the worker's mechanical purpose with 
 *Applies during the compilation of all operating theme-driven elements. Balances thematic generation with Jules VM Trust & Safety filters.*
 
 **1. Trust & Safety Filters:**
-* **The High-Risk Imagery Ban:** this workflow requires rewrite metaphors containing specific references to: physical gore, explicit torture, self-harm, sexual violence, illegal substances, or real-world political extremism.
+* **The High-Risk Imagery Ban:** You must rewrite metaphors containing specific references to: physical gore, explicit torture, self-harm, sexual violence, illegal substances, or real-world political extremism.
 * **The Density Rule:** A single aggressive metaphor (e.g., "demolish the monolith") is acceptable. Do not aggregate multiple aggressive verbs in a single paragraph.
 * **Thematic Preservation (The Goldilocks Zone):** Do not over-sterilize. If an worker has a Medical theme, words like "triage", "resuscitate", and "surgical" are safe and encouraged.
 
