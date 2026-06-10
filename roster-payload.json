@@ -714,6 +714,7 @@
     "category": "Feature",
     "tier": "Fusion",
     "description": "FLOW into the architecture to deduce and scaffold missing AI integrations.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Foresight.md",
     "isCustom": true
   },
