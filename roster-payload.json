@@ -1597,6 +1597,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REFACTOR loose prompt strings into rigid XML-delimited structures to maximize model attention.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Syntax.md",
     "isCustom": true
   },
