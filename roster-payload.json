@@ -1474,7 +1474,8 @@
     "role": "UI Animator",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Breathe life into static DOM elements by injecting fluid transitions, micro-interactions, and hardware-accelerated animations natively supported by the project's CSS architecture.",
+    "description": "BREATHE life into static DOM elements by injecting fluid transitions, micro-interactions, and hardware-accelerated animations.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Sculptor.md",
     "isCustom": true
   },
