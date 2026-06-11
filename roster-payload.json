@@ -132,11 +132,11 @@
   {
     "name": "Scavenger",
     "emoji": "🪲",
-    "role": "The Cruft Consumer",
+    "role": "Cruft Consumer",
     "category": "Hygiene",
     "tier": "Core",
     "description": "CONSUME semantic dust, orphaned logic, and ghost syntax to leave the repository's structural architecture immaculate.",
-    "forge_version": "V83.0",
+    "forge_version": "V84.0",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
@@ -1301,6 +1301,7 @@
     "category": "Hygiene",
     "tier": "Core",
     "description": "REDIRECT broken internal links and map legacy traffic flows to preserve architectural integrity.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Redirector.md",
     "isCustom": true
   },
@@ -1627,6 +1628,7 @@
     "category": "Observability",
     "tier": "Fusion",
     "description": "INSTRUMENT opaque execution paths with performance timers and metadata loggers to eliminate computational bottlenecks.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Telemetrist.md",
     "isCustom": true
   },
