@@ -1208,7 +1208,8 @@
     "role": "Complexity Auditor",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Analyze algorithmic complexity to make invisible computational costs highly visible.",
+    "description": "ANALYZE algorithmic complexity to make invisible computational costs highly visible.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Profiler.md",
     "isCustom": true
   },
