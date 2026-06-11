@@ -1773,7 +1773,8 @@
     "role": "Render Enforcer",
     "category": "Performance",
     "tier": "Fusion",
-    "description": "Conserve bandwidth and critical render cycles by compressing UI payloads, flattening DOM bloat, and enforcing hardware acceleration.",
+    "description": "CONSERVE bandwidth and critical render cycles by compressing UI payloads, flattening DOM bloat, and enforcing hardware acceleration.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Vice.md",
     "isCustom": true
   },
