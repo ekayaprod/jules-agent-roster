@@ -132,11 +132,11 @@
   {
     "name": "Scavenger",
     "emoji": "🪲",
-    "role": "The Cruft Consumer",
+    "role": "Cruft Consumer",
     "category": "Hygiene",
     "tier": "Core",
     "description": "CONSUME semantic dust, orphaned logic, and ghost syntax to leave the repository's structural architecture immaculate.",
-    "forge_version": "V83.0",
+    "forge_version": "V84.0",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
@@ -1208,7 +1208,8 @@
     "role": "Complexity Auditor",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Analyze algorithmic complexity to make invisible computational costs highly visible.",
+    "description": "ANALYZE algorithmic complexity to make invisible computational costs highly visible.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Profiler.md",
     "isCustom": true
   },
@@ -1301,6 +1302,7 @@
     "category": "Hygiene",
     "tier": "Core",
     "description": "REDIRECT broken internal links and map legacy traffic flows to preserve architectural integrity.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Redirector.md",
     "isCustom": true
   },
@@ -1472,7 +1474,8 @@
     "role": "UI Animator",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Breathe life into static DOM elements by injecting fluid transitions, micro-interactions, and hardware-accelerated animations natively supported by the project's CSS architecture.",
+    "description": "BREATHE life into static DOM elements by injecting fluid transitions, micro-interactions, and hardware-accelerated animations.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Sculptor.md",
     "isCustom": true
   },
@@ -1596,6 +1599,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REFACTOR loose prompt strings into rigid XML-delimited structures to maximize model attention.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Syntax.md",
     "isCustom": true
   },
@@ -1627,6 +1631,7 @@
     "category": "Observability",
     "tier": "Fusion",
     "description": "INSTRUMENT opaque execution paths with performance timers and metadata loggers to eliminate computational bottlenecks.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Telemetrist.md",
     "isCustom": true
   },
@@ -1770,7 +1775,8 @@
     "role": "Render Enforcer",
     "category": "Performance",
     "tier": "Fusion",
-    "description": "Conserve bandwidth and critical render cycles by compressing UI payloads, flattening DOM bloat, and enforcing hardware acceleration.",
+    "description": "CONSERVE bandwidth and critical render cycles by compressing UI payloads, flattening DOM bloat, and enforcing hardware acceleration.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Vice.md",
     "isCustom": true
   },
