@@ -81,10 +81,16 @@ class FusionLabRenderer {
       if (typeof AgentCard !== "undefined") {
         let keyStr = "fusion-result";
         let resolvedFusionName = result.name;
-        for (const mKey in this.lab.compiler.fusionMatrixMap) {
-            if (this.lab.compiler.fusionMatrixMap[mKey] === resolvedFusionName) {
-                keyStr = mKey;
-                break;
+        if (this.lab.compiler.invertedFusionMatrixMap) {
+            if (this.lab.compiler.invertedFusionMatrixMap[resolvedFusionName]) {
+                keyStr = this.lab.compiler.invertedFusionMatrixMap[resolvedFusionName];
+            }
+        } else {
+            for (const mKey in this.lab.compiler.fusionMatrixMap) {
+                if (this.lab.compiler.fusionMatrixMap[mKey] === resolvedFusionName) {
+                    keyStr = mKey;
+                    break;
+                }
             }
         }
 
