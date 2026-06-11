@@ -83,21 +83,28 @@ class AgentCard {
       window.rosterApp.fusionLab &&
       window.rosterApp.fusionLab.fusionIndex
     ) {
-      const unlockedKeys = window.rosterApp.fusionLab.fusionIndex.unlockedKeys;
+      const fusionIndex = window.rosterApp.fusionLab.fusionIndex;
+      let hasChildFusions = false;
 
-      // ↗️ VECTORIZE: The Single-Pass Pipeline. We bypass Array.from().filter() wrapper allocations for a direct loop.
-      const childKeys = [];
-      const prefix = agent.name + ',';
-      const suffix = ',' + agent.name;
-      for (const key of unlockedKeys) {
-        if (key.includes(agent.name)) {
-          if (key.startsWith(prefix) || key.endsWith(suffix) || key === agent.name) {
-            childKeys.push(key);
+      // Use the O(1) unlockedAgents Set if available
+      if (fusionIndex.unlockedAgents) {
+        hasChildFusions = fusionIndex.unlockedAgents.has(agent.name);
+      } else {
+        // Fallback for tests or environments where unlockedAgents isn't initialized
+        const unlockedKeys = fusionIndex.unlockedKeys;
+        const prefix = agent.name + ',';
+        const suffix = ',' + agent.name;
+        for (const key of unlockedKeys) {
+          if (key.includes(agent.name)) {
+            if (key.startsWith(prefix) || key.endsWith(suffix) || key === agent.name) {
+              hasChildFusions = true;
+              break;
+            }
           }
         }
       }
 
-      if (childKeys.length > 0) {
+      if (hasChildFusions) {
         fusionQuickListHtml = `<div class="fusions-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
       }
     }
