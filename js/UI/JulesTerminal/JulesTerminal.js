@@ -368,8 +368,11 @@ class JulesTerminal {
 
         if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
 
-        // ⚡ Bolt+: The O(n) Eradication. Replaced array iteration with a direct Set map projection.
-        const currentSessionIds = new Set(repoSessions.map(s => s.id));
+        // ⚡ Bolt+: The O(n) Eradication. Avoid intermediate array allocation from .map()
+        const currentSessionIds = new Set();
+        for (const s of repoSessions) {
+            currentSessionIds.add(s.id);
+        }
 
         for (const id of this.renderedSessionIds) {
             if (!currentSessionIds.has(id)) {
