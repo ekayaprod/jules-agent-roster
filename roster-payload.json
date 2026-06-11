@@ -756,7 +756,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "ERADICATE phantom imports, synthetic abstractions, and hallucinated dependencies to resuscitate crashed boot sequences.",
-    "forge_version": "V81.0",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Ghost Hunter.md",
     "isCustom": true
   },
