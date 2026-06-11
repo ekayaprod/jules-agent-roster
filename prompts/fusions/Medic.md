@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 ~~~typescript
 // HAZARD: Leaving a scaffold incomplete and swallowing the inevitable crash
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  // TODO: Implement later
+  // Missing implementation
   return <AuthContext.Provider value={undefined as any}>{children}</AuthContext.Provider>;
 };
 ~~~
