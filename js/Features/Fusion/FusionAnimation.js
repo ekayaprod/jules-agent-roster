@@ -98,14 +98,20 @@ const FusionAnimation = function () {
       particlesContainer.appendChild(fragment);
     }
 
-    iconLeft.innerHTML = FormatUtils.escapeHTML(agentA.emoji);
-    iconRight.innerHTML = FormatUtils.escapeHTML(agentB.emoji);
+    iconLeft.textContent = agentA.emoji;
+    iconRight.textContent = agentB.emoji;
 
     const icon = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
     const displayName = FormatUtils.extractDisplayName(result);
-    const safeDisplayName = FormatUtils.escapeHTML(displayName);
 
-    if (animResult) animResult.innerHTML = `<span class="highlight">${safeDisplayName}</span> ${FormatUtils.escapeHTML(icon)}`;
+    if (animResult) {
+      animResult.textContent = "";
+      const span = document.createElement("span");
+      span.className = "highlight";
+      span.textContent = displayName;
+      animResult.appendChild(span);
+      animResult.appendChild(document.createTextNode(` ${icon}`));
+    }
 
     if (iconResult) iconResult.textContent = icon;
 
