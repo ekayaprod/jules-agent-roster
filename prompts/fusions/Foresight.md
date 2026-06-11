@@ -39,10 +39,14 @@ export async function POST(req: Request) {
 ~~~
 * ❌ **Bad Code:**
 ~~~TypeScript
-// HAZARD: Leaving the architecture stranded with mocked endpoints
+// HAZARD: Implementing synchronous, non-streaming LLM calls that block the UI thread
 export async function POST(req: Request) {
-  // TODO: Implement actual OpenAI call here eventually
-  return Response.json({ text: "Mocked AI response" });
+  const { query } = await req.json();
+  const response = await openai.chat.completions.create({
+    model: 'gpt-4o',
+    messages: [{ role: 'user', content: query }],
+  });
+  return Response.json({ text: response.choices[0].message.content });
 }
 ~~~
 
