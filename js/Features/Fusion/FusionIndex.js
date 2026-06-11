@@ -12,6 +12,7 @@ class FusionIndex {
     this.onSelectCallback = onSelectCallback;
     this.storageKey = "fusion_discovery_state";
     this.unlockedKeys = new Set();
+    this.unlockedAgents = new Set();
     this.elements = {};
   }
 
@@ -33,6 +34,15 @@ class FusionIndex {
   loadState() {
     const storedKeys = StorageUtils.getJsonArrayItem(this.storageKey, "FUSION_INDEX_PARSE_FAILED");
     this.unlockedKeys = new Set(storedKeys ?? []);
+    this.unlockedAgents = new Set();
+    for (const key of this.unlockedKeys) {
+      if (typeof key === 'string') {
+        const parts = key.split(',');
+        for (const part of parts) {
+          if (part) this.unlockedAgents.add(part.trim());
+        }
+      }
+    }
   }
 
   /**
@@ -185,6 +195,12 @@ class FusionIndex {
     if (this.customAgents) {
       for (const key of Object.keys(this.customAgents)) {
         this.unlockedKeys.add(key);
+        if (typeof key === 'string') {
+          const parts = key.split(',');
+          for (const part of parts) {
+            if (part) this.unlockedAgents.add(part.trim());
+          }
+        }
       }
       this.saveState();
       this.render();
@@ -201,6 +217,12 @@ class FusionIndex {
 
     if (!this.unlockedKeys.has(key)) {
       this.unlockedKeys.add(key);
+      if (typeof key === 'string') {
+        const parts = key.split(',');
+        for (const part of parts) {
+          if (part) this.unlockedAgents.add(part.trim());
+        }
+      }
       this.saveState();
       this.updateSlot(key);
       if (this.progressEl) this.updateProgress(this.progressEl);
