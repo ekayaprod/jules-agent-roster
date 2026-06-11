@@ -139,23 +139,20 @@ class RosterApp {
 
       // ⚡ Bolt+: The Unbounded Concurrency Fix. Wrapped a massive Promise.all data-ingestion array with a strict semaphore chunking limit.
       const CONCURRENCY_LIMIT = 10;
-      const activeTasks = new Set();
 
-      for (const agent of missingPrompts) {
-        const url = AgentUtils.getPromptUrl(agent);
-        const taskPromise = this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
-          agent.prompt = fetched;
-        });
-
-        activeTasks.add(taskPromise);
-        taskPromise.finally(() => activeTasks.delete(taskPromise));
-
-        if (activeTasks.size >= CONCURRENCY_LIMIT) {
-          await Promise.race(activeTasks);
-        }
+      for (let i = 0; i < missingPrompts.length; i += CONCURRENCY_LIMIT) {
+        const chunk = missingPrompts.slice(i, i + CONCURRENCY_LIMIT);
+        await Promise.all(chunk.map(agent => {
+          const url = AgentUtils.getPromptUrl(agent);
+          return this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.")
+            .then(fetched => {
+              agent.prompt = fetched;
+            })
+            .catch(err => {
+              console.warn(`[RosterApp] Failed to pre-fetch prompt for ${agent.name}:`, err);
+            });
+        }));
       }
-
-      await Promise.all(activeTasks);
     }, 1000);
   }
 
