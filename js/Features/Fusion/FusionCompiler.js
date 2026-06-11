@@ -37,6 +37,17 @@ const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
   };
 
   const fusionMatrixMap = normalizeKeys(fusionMatrix);
+
+  const invertedFusionMatrixMap = {};
+  for (const key in fusionMatrixMap) {
+    if (Object.prototype.hasOwnProperty.call(fusionMatrixMap, key)) {
+      const fusionName = fusionMatrixMap[key];
+      if (!invertedFusionMatrixMap[fusionName]) {
+        invertedFusionMatrixMap[fusionName] = key;
+      }
+    }
+  }
+
   const customAgentsMap = customAgents || {};
 
 
@@ -81,6 +92,7 @@ const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
     baseAgents,
     customAgentsMap,
     fusionMatrixMap,
+    invertedFusionMatrixMap,
     fuse,
   });
 };
