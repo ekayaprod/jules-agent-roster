@@ -19,7 +19,6 @@
 * 🧹 `js/Services/LLMRouter/LLMRouter.js`: Replace raw `console.warn` calls with structured telemetry logger at line 108.
 * 🧹 `js/Services/LLMRouter/LLMRouter.js`: Replace raw `console.error` calls with structured telemetry logger at line 138.
 * 🧹 `verification.png`: Generated artifact improperly committed to source control.
-* 🧹 `telemetry.json`: Large uncompressed binary (>500KB) detected.
 
 ## The [INSTRUMENTER] Queue
 
