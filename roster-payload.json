@@ -136,7 +136,7 @@
     "category": "Hygiene",
     "tier": "Core",
     "description": "CONSUME semantic dust, orphaned logic, and ghost syntax to leave the repository's structural architecture immaculate.",
-    "forge_version": "V84.0",
+    "forge_version": "V84.1",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
@@ -721,10 +721,11 @@
   {
     "name": "Fractal",
     "emoji": "❄️",
-    "role": "Parametric Weaver",
+    "role": "Abstract Generator",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Transcend rigid, single-use logic into boundless, hyper-generic utilities to solve future architectural permutations before they emerge.",
+    "description": "SYNTHESIZE",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Fractal.md",
     "isCustom": true
   },
@@ -766,7 +767,8 @@
     "role": "Domain Taxonomist",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Sweeps codebases to strictly define and document the underlying data structures and semantic types.",
+    "description": "DEFINE UNDERLYING DATA STRUCTURES AND SEMANTIC TYPES SO DEVELOPERS NEVER HAVE TO GUESS WHAT A PROPERTY REPRESENTS.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Glossary.md",
     "isCustom": true
   },
@@ -1095,7 +1097,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "ERADICATE the Dumping Ground by magnetically pulling implicitly related files from flat roots into dedicated subdirectories.",
-    "forge_version": "V81.0",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Organizer.md",
     "isCustom": true
   },
@@ -1648,11 +1650,11 @@
   {
     "name": "Temporal Loom",
     "emoji": "🌀",
-    "role": "Spaghettification Engine",
+    "role": "Execution Flattener",
     "category": "Architecture",
-    "tier": "Titan",
-    "description": "FLATTEN unstable, branching multiverses of execution paths into one-dimensional, top-to-bottom execution pipelines.",
-    "forge_version": "V81.0",
+    "tier": "Fusion",
+    "description": "UNTANGLE execution paths by ruthlessly flattening deeply nested arrow code and nested conditional loops.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Temporal Loom.md",
     "isCustom": true
   },
@@ -1669,11 +1671,11 @@
   {
     "name": "Threat Modeler",
     "emoji": "🏯",
-    "role": "Macro Strategist",
+    "role": "Perimeter Architect",
     "category": "Security",
     "tier": "Fusion",
-    "description": "Secure globally open CORS policies and inject strict security headers to protect infrastructure boundaries.",
-    "forge_version": "V81.0",
+    "description": "SECURE HTTP perimeters by eradicating wildcard scopes, injecting strict policies, and neutralizing attack surfaces.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Threat Modeler.md",
     "isCustom": true
   },
@@ -1876,11 +1878,11 @@
   {
     "name": "Zealot",
     "emoji": "🔱",
-    "role": "The Enforcer",
+    "role": "Linting Enforcer",
     "category": "Hygiene",
-    "tier": "Core",
-    "description": "ENFORCE strict boundary enforcement by elevating soft warnings into fatal build errors.",
-    "forge_version": "V81.0",
+    "tier": "Fusion",
+    "description": "ENFORCE configuration bypasses, manually resolve underlying code violations, and permanently upgrade the rule to fatal in configuration.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Zealot.md",
     "isCustom": true
   },
