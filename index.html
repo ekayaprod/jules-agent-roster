@@ -580,10 +580,10 @@
         </div>
       </div>
       <div class="runner-inputs" id="runnerInputsContainer">
-        <select id="julesRepoPicker" class="repo-picker">
+        <select id="julesRepoPicker" class="repo-picker transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none hover:shadow-sm">
           <option value="">1. Select GitHub Repository...</option>
         </select>
-        <textarea id="julesTaskInput" class="task-input" placeholder="2. Enter specific instructions (Optional)."></textarea>
+        <textarea id="julesTaskInput" class="task-input transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none hover:shadow-sm" placeholder="2. Enter specific instructions (Optional)."></textarea>
       </div>
       <div id="julesTerminal" class="ide-viewport" >
         <div id="fetchingIndicator" class="term-session-line skeleton-pulse term-muted-text">[SYS] Awaiting repository connection...</div>
@@ -602,7 +602,7 @@
         </button>
         <div class="search-wrapper" >
           <svg class="search-icon" aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          <input type="text" id="searchInput" aria-label="Search agents by name" placeholder="Search protocols..."/>
+          <input type="text" id="searchInput" class="search-input transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none hover:shadow-sm" aria-label="Search agents by name" placeholder="Search protocols..."/>
           <button class="clear-search-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" id="clearBtn" aria-label="Clear search"><svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
         </div>
         <a href="#plus" class="nav-pill transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md focus-visible:outline-none active:scale-95">Plus</a>
