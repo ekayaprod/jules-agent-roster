@@ -276,6 +276,7 @@ Do not assume the Forge's Base Physics are superior to the legacy draft.
 Evaluate the compiled JSON payload against the original legacy draft across these exact vectors:
 
 **1. The Prompt Engineering Degradation Check [CRITICAL]**
+* **The Durable Principle Test:** Did the original draft contain structural innovations that produce measurably better autonomous behavior (e.g., tier models, Task Board Valve syntax, literal output formats)? If the Forge stripped these out in the name of "removing boilerplate," this is a **FAIL**.
 * **Few-Shot Fidelity:** Did the original draft contain concrete examples, code snippets (`Good Code / Bad Code`), or literal output formats? If the Forge stripped these out in favor of "abstract heuristics," this is a **FAIL**. Concrete examples must be restored to `salvaged_custom_logic` or the execution steps.
 * **The Anti-Paralysis Audit:** Did the original draft contain explicit caps on tool calls or read-actions (e.g., "3 strikes," "limit of 3 file reads")? If the Forge's Workload Strategy replaced this with unbounded allowances (e.g., "approaching ~100 tool calls is expected"), this is a **FAIL**. Execution caps prevent infinite LLM loops and must override generic Base Physics.
 
@@ -288,7 +289,7 @@ Answer this question truthfully: *If you were an LLM running this prompt, would 
 * If the Original was better: **FAIL**. Trigger the Regression Loop to inject the missing legacy mechanics.
 * If the New Draft is better/equal while achieving structural compliance: **PASS**.
 
-**The Regression Loop:** If the Overseer's Verdict is FAIL on any vector, explicitly detail exactly how the prompt's efficacy was degraded. You are explicitly forbidden from submitting the PR. Adjust your `payload.json` to implement the repair directive, restoring the lost legacy constraints, and re-run Phase 6 and Phase 7. Only proceed when the Overseer confirms the prompt is both structurally compliant AND cognitively superior.
+**The Regression Loop:** If the Overseer's Verdict is FAIL on any vector, explicitly detail exactly how the prompt's efficacy was degraded. You are explicitly forbidden from submitting the PR. You must cycle back to the update phases (Phase 4/5/6) and utilize **Rule 0: Efficacy Supremacy**, the **Phase 5 Efficacy Exemption**, or **Phase 6 Net-New Schema Keys** to explicitly integrate the lost legacy constraints. Adjust your `payload.json` to implement the repair directive and re-run Phase 6 and Phase 7. Only proceed when the Overseer confirms the prompt is both structurally compliant AND cognitively superior.
 
 🛑 **CRITICAL SYSTEM HALT: DO NOT PROCEED TO PR SUBMISSION.**
 **[ACTION REQUIRED] Menu:**
