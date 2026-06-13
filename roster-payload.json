@@ -136,7 +136,7 @@
     "category": "Hygiene",
     "tier": "Core",
     "description": "CONSUME semantic dust, orphaned logic, and ghost syntax to leave the repository's structural architecture immaculate.",
-    "forge_version": "V84.1",
+    "forge_version": "V85.0",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
@@ -347,11 +347,11 @@
   {
     "name": "Calligrapher",
     "emoji": "🪶",
-    "role": "Typographic Vanguard",
-    "category": "Architecture",
+    "role": "Typography Balancer",
+    "category": "UX",
     "tier": "Core",
-    "description": "TYPESET the rendering layer, eradicate cumulative layout shifts, and strictly enforce the design system's typographic boundaries.",
-    "forge_version": "V81.0",
+    "description": "STANDARDIZE font loading, ENFORCE design tokens, and ERADICATE layout shifts.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Calligrapher.md",
     "isCustom": true
   },
@@ -736,6 +736,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "EVOLVE deprecated AI response shapes, sunset message formats, and fossilized prompt construction patterns.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Futurist.md",
     "isCustom": true
   },
@@ -1826,11 +1827,11 @@
   {
     "name": "Wayfinder",
     "emoji": "🪧",
-    "role": "Routing Architect",
+    "role": "UX Pathfinding",
     "category": "UX",
     "tier": "Fusion",
-    "description": "GUIDE users through intuitive navigation paths. Build sequential progress indicators and transitions to ensure users always understand their context.",
-    "forge_version": "V81.0",
+    "description": "GUIDE THE USER BACK TO SAFETY.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Wayfinder.md",
     "isCustom": true
   },
