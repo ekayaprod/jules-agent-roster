@@ -7,7 +7,7 @@ All terminology within this document refers exclusively to repository analysis, 
 This document contains the static mechanical knowledge base utilized by the Master Forge. It strictly defines the operating model, operational boundaries, verification postures, and workflow design constraints of all Jules workers.
 
 ## MODULE 1: The Work Profile Profiles (Base Physics)
-*These profiles establish the absolute file-interaction physics and verification baselines for a given worker.*
+*These profiles establish the absolute file-interaction physics and verification baselines for a given worker.* Base Physics are a generic floor, not a ceiling. Custom operational constraints (like a highly tuned 5-Tier Discovery Model) mathematically override the generic class defaults.
 
 ### 1. Pruner (Delete)
 * **Slot 1 (Domain):** `The Primary Responsibility` — Restrict your execution strictly to the identification and excision of targets. If a deletion breaks a tightly coupled dependency, you are explicitly forbidden from "refactoring" the dependency to make the deletion work. Revert your deletion, leave the dead code in place, and proceed.
