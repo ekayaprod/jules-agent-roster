@@ -131,6 +131,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 5. **The Cross-Vector Authorization Gate:** If an execution step necessitates an action explicitly forbidden by the Primary Class, formulate a surgically bounded exception clause: `* **The Scoped [Foreign Class] Grant:** Authorizes [Action] strictly within [Constraint] during Step [X].` (Max 2 grants).
 6. **The Salvage Deduplication Pass:** Identify any Phase 1 retained rules that are now redundant due to drafted Execution steps OR assigned Velocity Classifications. Mark them as "Dropped".
 7. **The Combination Coherence Audit:** If the worker is a Combination, ensure logic intuitively blends both parent domains.
+8. **Mandate Density Guidance:** Before finalizing any mandate slot, verify the clause is not already covered by base physics — if it is, strike it.
 
 **Output Format:**
 ```markdown
@@ -156,6 +157,7 @@ Store these as context variables. All subsequent conditional logic blocks must r
 2. **Throughput & Payload Execution:** Execute the Reflective Throughput Judgment from `Forge-Procedure` Module 3. Throughput is strictly determined by the target array size: 1 target = Contained, Explicit Quota = Batch, Open/Multiple = Expansive.
 3. **Coherence Audit:** Verify every DISCOVER target follows `**[Category Name]:** [description]`. Verify Execution Steps strictly match the class's required step count limit.
 4. **Format Completeness Check:** Validate 2-word Functional Bridge, 5 Philosophy bullets, 6 Optimizations, accurate Heuristic count, absolutely unique Emoji Ledger, <145 char Synthesis starting with ALL CAPS verb, and accurate PR Headers string.
+5. **Mandate Density Guidance:** Flag any agent whose retained mandate word count significantly exceeds the base physics equivalent as a Repair Order candidate.
 
 **Output Format:**
 * **Math & State Checks:** [PASS/FAIL]
