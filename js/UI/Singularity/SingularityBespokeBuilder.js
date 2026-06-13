@@ -32,7 +32,7 @@ class SingularityBespokeBuilder {
               <label class="sg-label" for="sgMission">Core Mission</label>
               <span class="sg-label-note">Describe what you want the agent to do</span>
             </div>
-            <textarea id="sgMission" class="sg-textarea" placeholder="e.g., Build a python script to parse logs, or find and delete unused css files..."></textarea>
+            <textarea id="sgMission" class="sg-textarea transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none hover:shadow-sm" placeholder="e.g., Build a python script to parse logs, or find and delete unused css files..."></textarea>
           </div>
 
         </div>
