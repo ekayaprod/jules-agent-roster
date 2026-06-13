@@ -184,10 +184,11 @@
   {
     "name": "Vibe Check",
     "emoji": "🪩",
-    "role": "The Jive Breaker",
+    "role": "Jive Breaker",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "SQUARE up the codebase. Take those spaced-out LLM hallucinations and bring 'em back down to a righteous, lockfile-verified reality.",
+    "description": "SQUARE up every spaced-out LLM hallucination and bring the codebase back to righteous, lockfile-verified reality.",
+    "forge_version": "V85.0",
     "promptFile": "prompts/Vibe Check.md",
     "isCustom": false
   },
@@ -198,6 +199,7 @@
     "category": "Feature",
     "tier": "Core",
     "description": "FLOW through the repository to deduce semantic gaps, missing architecture, and latent features, coding them into production-ready reality.",
+    "forge_version": "V85.0",
     "promptFile": "prompts/Vibe.md",
     "isCustom": false
   },
@@ -229,8 +231,8 @@
     "role": "Fault Injector",
     "category": "Testing",
     "tier": "Mythic",
-    "description": "Subvert the illusion of safety. Systematically sabotage core application logic to expose false positive tests and enforce strict validation.",
-    "forge_version": "V82.0",
+    "description": "SUBVERT the illusion of safety. Systematically sabotage core application logic to expose false positive tests and enforce strict validation.",
+    "forge_version": "V84.1",
     "promptFile": "prompts/fusions/Adversary.md",
     "isCustom": true
   },
@@ -779,7 +781,8 @@
     "role": "Automation Maintainer",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Standardizes CI/CD configurations and authors macro maintenance guides to ensure routine repository upkeep is strictly codified.",
+    "description": "MAINTAIN AUTOMATED CHORES THAT RELY ON HUMAN MEMORY TO ERADICATE STALE DEPENDENCIES.",
+    "forge_version": "V84.1",
     "promptFile": "prompts/fusions/Groundskeeper.md",
     "isCustom": true
   },
