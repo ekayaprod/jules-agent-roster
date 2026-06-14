@@ -955,8 +955,8 @@
     "role": "Adapter Purger",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "LIQUIDATE obsolete legacy adapters, polyfills, and custom bridge wrappers that mask missing native functionality.",
-    "forge_version": "V81.0",
+    "description": "LIQUIDATE OBSOLETE LEGACY ADAPTERS, POLYFILLS, AND CUSTOM BRIDGE WRAPPERS THAT MASK MISSING NATIVE FUNCTIONALITY.",
+    "forge_version": "V84.1",
     "promptFile": "prompts/fusions/Liquidator.md",
     "isCustom": true
   },
