@@ -364,8 +364,8 @@
     "role": "State Isolator",
     "category": "Testing",
     "tier": "Fusion",
-    "description": "SEAL individual test suites by ripping out shared mutable state and brittle static fixtures, replacing them with hermetic dynamic factories.",
-    "forge_version": "V82.0",
+    "description": "SEAL INDIVIDUAL test suites by ripping out shared mutable state and brittle static fixtures, replacing them with hermetic dynamic factories.",
+    "forge_version": "V84.1",
     "promptFile": "prompts/fusions/Canner.md",
     "isCustom": true
   },
