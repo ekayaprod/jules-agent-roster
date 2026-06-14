@@ -102,10 +102,11 @@
   {
     "name": "Palette+",
     "emoji": "🎨",
-    "role": "UI Artist",
+    "role": "Design Sculptor",
     "category": "UX",
     "tier": "Core",
-    "description": "STYLIZE frontend components with fluid design tokens, refined typography, and purposeful motion to create absolute visual delight and harmony.",
+    "description": "STYLIZE frontend components with purposeful UX patterns, fluid design tokens, and motion to craft frictionless, delightful experiences.",
+    "forge_version": "V85.0",
     "promptFile": "prompts/Palette+.md",
     "isCustom": false
   },

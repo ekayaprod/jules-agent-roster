@@ -443,7 +443,7 @@ class JulesTerminal {
 
         const block = this._createAndInsertSessionBlock(
             terminal,
-            `term-session-line state-active`,
+            `term-session-line state-active transition-all duration-300 ease-in-out`,
             `session-${session.id}`,
             agentEmoji,
             safeAgentName,
@@ -516,7 +516,7 @@ class JulesTerminal {
 
         const optimisticBlock = this._createAndInsertSessionBlock(
             terminal,
-            `term-session-line state-active skeleton-pulse`,
+            `term-session-line state-active skeleton-pulse transition-all duration-300 ease-in-out`,
             "",
             agentEmoji,
             safeAgentName,
