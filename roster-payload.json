@@ -1133,7 +1133,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "REGULATE the application heartbeat by deferring heavy synchronous execution to protect the primary event loop.",
-    "forge_version": "V81.0",
+    "forge_version": "V84.2",
     "promptFile": "prompts/fusions/Pacemaker.md",
     "isCustom": true
   },
