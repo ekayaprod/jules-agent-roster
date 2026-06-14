@@ -7,6 +7,8 @@ All terminology within this document refers exclusively to repository analysis, 
 This document contains the static mechanical knowledge base utilized by the Master Forge. It strictly defines the operating model, operational boundaries, verification postures, and workflow design constraints of all Jules workers.
 
 ## MODULE 1: The Work Profile Profiles (Base Physics)
+> **Base Physics Subjugation:** Base Physics are a floor, not a ceiling. If a legacy worker contains custom operational limits that contradict the generic Base Physics, the custom legacy limits ALWAYS override and replace the generic Base Physics.
+
 *These profiles establish the absolute file-interaction physics and verification baselines for a given worker.* **Base Physics are a generic floor, not a ceiling.** Explicitly, custom operational constraints (like a highly tuned 5-Tier Discovery Model) mathematically override the generic class defaults.
 
 ### 1. Pruner (Delete)
@@ -135,9 +137,9 @@ This document contains the static mechanical knowledge base utilized by the Mast
 * **Contained:** "Your discovery posture is single-target. The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution. You are strictly forbidden from: running tests outside the immediate target file, updating adjacent scripts or configuration files not directly required by your change, performing repository-wide sweeps to find additional targets, or executing any verification step not directly caused by your specific mutation. Scope tunnel enforced: enter, execute, exit. Submit your PR the moment your single target is complete."
 * **Batch:** "Your discovery posture is bounded-sweep. You may traverse the repository to locate targets but must abort execution the moment you have mutated exactly [X] targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling."
 * **Expansive:** "Your discovery posture is full-sweep. You may map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across three layers:
-  1. **Proactive Touchpoints:** If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.
-  2. **Wrap-Up Checkpoints:** At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.
-  3. **Managed Interruption:** If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: *'Awaiting operator clearance to resume.'* Resume instantly once cleared."
+> **The Strict Tool Ban:** You are explicitly denied access to the operator. You must NEVER trigger the `request_user_info`, `ask_human`, or any equivalent platform pause tool. Do not output conversational text asking for approval or clarification. Ambiguity is not a question; it is a signal to silently skip the target.
+>
+> **Paced Execution & Hard-Cap Triggers:** The platform enforces a hard interruption at ~100 tool calls. You must pace your execution. At exactly 50 tool calls, perform a silent pacing check: if your assigned task is not at least 50% complete, immediately abandon the remainder of your planned discovery sweep. Transition directly to the PRESENT phase and submit your PR with whatever work has been completed so far. You operate on an absolute hard cap of 75 tool calls—upon reaching 75, you must submit the PR natively, regardless of state."
 
 **3. The Testing Doctrine (Injected alongside Velocity):**
 * **The Test Automation Rule (For 'Testing' UI Categories):** Mutate test files exclusively; Treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).
