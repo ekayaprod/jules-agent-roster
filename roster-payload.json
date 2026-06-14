@@ -166,8 +166,8 @@
     "role": "Entropy Manager",
     "category": "Operations",
     "tier": "Core",
-    "description": "SWEEP the repository to purge microscopic decay, enforce structural baselines, and relay operational hazards to specialist queues.",
-    "forge_version": "V81.0",
+    "description": "SWEEP the repository to purge microscopic decay, enforce structural baselines, and permanently delete unlinked generated artifacts.",
+    "forge_version": "V85.0",
     "promptFile": "prompts/Superintendent.md",
     "isCustom": false
   },

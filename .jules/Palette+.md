@@ -23,3 +23,11 @@
 ## 2026-05-11 - [AgentCard Interactive Elements Polish]
 **Learning:** Interactive elements such as `.pin-btn`, `.fusions-hint`, and `.flip-hint` within `AgentCard.js` snapped instantly into place without an interpolation curve, creating rigid binary state interaction.
 **Action:** Injected consistent transition utility classes (`transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2`) to those elements. This adds fluid state choreography, improving interaction aesthetics without changing core functionality or DOM nesting.
+
+## 2026-06-14 - [Aesthetic Restructuring]
+**Learning:** Components lacking depth, fluid transitions, and proper boundary radii fail to feel tactile. Applying visual depth to , `.empty-state`, and `.fusion-item` using tailwind-like utility structures helps establish visual hierarchy.
+**Action:** Replaced hardcoded class lists with structured, rhythmic utility classes (`rounded-xl`, `shadow-sm`, `transition-all`) across `AgentCard`, `EmptyState`, and `FusionIndex` elements without touching core logic or tests.
+
+## 2026-06-14 - [Aesthetic Restructuring]
+**Learning:** Components lacking depth, fluid transitions, and proper boundary radii fail to feel tactile. Applying visual depth to flip-cards, empty-states, and fusion-items using tailwind-like utility structures helps establish visual hierarchy.
+**Action:** Replaced hardcoded class lists with structured, rhythmic utility classes (rounded-xl, shadow-sm, transition-all) across AgentCard, EmptyState, and FusionIndex elements without touching core logic or tests.

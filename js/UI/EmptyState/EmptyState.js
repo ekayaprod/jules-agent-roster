@@ -12,7 +12,7 @@ class EmptyState {
       ERROR: `<svg class="empty-icon" aria-hidden="true" width="64" height="64" fill="none" stroke="var(--error)" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
               </svg>`,
-      SEARCH: `<div class="empty-icon text-5xl mb-4 opacity-50">🔍</div>`
+      SEARCH: `<div class="empty-icon text-5xl mb-4 opacity-50">🔍</div>`,
     };
   }
 
@@ -30,39 +30,41 @@ class EmptyState {
    * @param {string} [options.action.ariaLabel] - Optional ARIA label for the button.
    * @returns {HTMLElement} The constructed DOM element for the empty state.
    */
-  static create({ title, description, icon = "", action = null }) {
-    const container = document.createElement("div");
-    container.className = "empty-state visible transition-all duration-500 ease-in-out";
-    container.style.animation = "fadeIn 0.3s ease-out forwards";
+  static create({ title, description, icon = '', action = null }) {
+    const container = document.createElement('div');
+    container.className = 'empty-state visible transition-all duration-500 ease-in-out';
+    container.style.animation = 'fadeIn 0.3s ease-out forwards';
 
     if (icon) {
-        const iconWrapper = document.createElement("div");
-        iconWrapper.innerHTML = icon;
-        // If the icon is just a string of HTML, we use innerHTML for it specifically
-        // as it's often a complex SVG that we control.
-        container.appendChild(iconWrapper.firstElementChild || iconWrapper);
+      const iconWrapper = document.createElement('div');
+      iconWrapper.innerHTML = icon;
+      // If the icon is just a string of HTML, we use innerHTML for it specifically
+      // as it's often a complex SVG that we control.
+      container.appendChild(iconWrapper.firstElementChild || iconWrapper);
     }
 
-    const titleEl = document.createElement("p");
-    titleEl.className = "empty-title";
+    const titleEl = document.createElement('p');
+    titleEl.className = 'empty-title';
     titleEl.textContent = title;
     container.appendChild(titleEl);
 
-    const descEl = document.createElement("p");
-    descEl.className = "empty-desc";
+    const descEl = document.createElement('p');
+    descEl.className = 'empty-desc';
     descEl.textContent = description;
     container.appendChild(descEl);
 
     if (action) {
-      const btn = document.createElement("button");
-      btn.className = action.className || "mt-6 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md";
+      const btn = document.createElement('button');
+      btn.className =
+        action.className ||
+        'mt-6 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md';
       btn.textContent = action.text;
-      btn.setAttribute("aria-label", action.ariaLabel || action.text);
+      btn.setAttribute('aria-label', action.ariaLabel || action.text);
 
       if (typeof action.onClick === 'function') {
-          btn.onclick = action.onClick;
+        btn.onclick = action.onClick;
       } else if (typeof action.onClick === 'string') {
-          btn.setAttribute("onclick", action.onClick);
+        btn.setAttribute('onclick', action.onClick);
       }
 
       container.appendChild(btn);
