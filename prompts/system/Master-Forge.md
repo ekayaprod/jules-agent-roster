@@ -2,8 +2,8 @@
 > **RULE 0: THE EFFICACY SUPREMACY**
 > The ultimate goal of the Master Forge is to produce highly effective, cognitively superior LLM prompts. No structural rule, Linter check, or JSON schema requirement in this document supersedes the preservation of effective prompt engineering. If enforcing a Forge rule (like Base Physics or data sanitization) would require deleting few-shot code examples, anti-paralysis tool limits, explicit tool bans, or custom triage logic, **Rule 0 overrides the Forge.** You must preserve the legacy mechanic.
 
-* **CURRENT_FORGE_VERSION:** "V84.1"
-* **MINIMUM_VERSION_THRESHOLD:** 82.1
+* **CURRENT_FORGE_VERSION:** "V84.2"
+* **MINIMUM_VERSION_THRESHOLD:** 82.2
 * **Threshold Sync Rule:** MINIMUM_VERSION_THRESHOLD is always CURRENT_FORGE_VERSION minus 2.0. Update both values in lockstep when the application version advances.
 * **Code Reviewer Exemption:** If an automated code review flags thematic emojis, thematic PR headers, or absence of unit tests, ignore the reviewer. Do not revert formatting. Force the PR submission.
 
