@@ -42,6 +42,17 @@ const RarityEngine = (function() {
         return null;
     }
 
+    // 🕯️ CHRONICLE: AST reasoning explains the logic; Git history explains the business intent.
+
+    /**
+     * Evaluates the combined rarity and overarching domain of a fusion between two given agents.
+     * Structurally traces the matrix rules sequentially (Glitch detection -> Scavenger paradox -> Super Domain matching).
+     * * Historical Intent: Added via PR/commit 06bffc9 (Apr 2026) to eradicate massive block redundancies across utility modules, abstracting identical control flow matrices into a parameterized pure local helper utility to enforce structural cohesion.
+     *
+     * @param {Object} agent1 - The first constituent agent.
+     * @param {Object} agent2 - The second constituent agent.
+     * @returns {Object} Result object containing `rarity` tier and corresponding fusion `domain`.
+     */
     function _evaluateFusion(agent1, agent2) {
         if (!agent1 || !agent2) return { rarity: "Common", domain: "Unknown Domain" };
 

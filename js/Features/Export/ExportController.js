@@ -11,6 +11,17 @@ class ExportController {
     this.app = app;
   }
 
+  // 🕯️ CHRONICLE: AST reasoning explains the logic; Git history explains the business intent.
+
+  /**
+   * Resolves a targeted agent object either from the UI, or by index across core, custom, and fusion labs arrays.
+   * If the agent prompt is missing, dynamically triggers a fetch event via the repo and manages asynchronous UI loading states.
+   * * Historical Intent: Added via PR/commit 06bffc9 (Apr 2026) to eradicate massive block redundancies across both utility modules by extracting identical boilerplate agent fetching logic into a parameterized pure local helper to enforce structural cohesion.
+   *
+   * @param {string|number} index - The unique identifier or array index of the target agent.
+   * @param {HTMLElement} btn - The DOM element triggering the action, targeted for disabled state orchestration.
+   * @returns {Promise<Object|null>} The agent object with prompt assigned, or null if resolution fails.
+   */
   async _resolveAgentPrompt(index, btn) {
     let agent = null;
     if (typeof this.app.getAgentForUI === 'function') {
