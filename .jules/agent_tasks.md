@@ -11,6 +11,9 @@
 - [ ] 🏗️ `js/core/events/EventBinder.js`: 534 lines. Structural Monolith.
 
 ## The [PRUNER] Queue
+- [ ] 🧹 `verification.png`: Generated artifact improperly committed to source control.
+## The [INSTRUMENTER] Queue
+
 - [ ] 🧹 `js/Utils/telemetry-utils.js`: Replace raw `console.error` calls with structured telemetry logger at lines 19, 23.
 - [ ] 🧹 `js/Services/GithubAPI/GithubAPI.js`: Replace raw `console.error` calls with structured telemetry logger at lines 71, 74.
 - [ ] 🧹 `js/Services/JulesAPI/JulesAPI.js`: Replace raw `console.error` calls with structured telemetry logger at lines 57, 83, 86, 96.
@@ -23,9 +26,6 @@
 - [ ] 🧹 `js/Services/LLMRouter/LLMRouter.js`: Replace raw `console.warn` calls with structured telemetry logger at line 100.
 - [ ] 🧹 `js/Services/LLMRouter/LLMRouter.js`: Replace raw `console.warn` calls with structured telemetry logger at line 108.
 - [ ] 🧹 `js/Services/LLMRouter/LLMRouter.js`: Replace raw `console.error` calls with structured telemetry logger at line 138.
-- [ ] 🧹 `verification.png`: Generated artifact improperly committed to source control.
-
-## The [INSTRUMENTER] Queue
 
 ## The [TRANSFORMER] Queue
 
