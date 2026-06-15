@@ -35,9 +35,12 @@ The core of this system is the **Overseer** agent. This agent runs monthly to pe
 Welcome aboard! To boot up the local development environment and serve the application:
 
 0. Ensure you have **Node.js >=18.0.0** installed.
-1. `cp .env.example .env` (Populate your API keys)
-2. `npm install`
-3. `npm start`
+
+```bash
+cp .env.example .env # (Populate your API keys)
+npm install
+npm start
+```
 
 *Note: `npm start` automatically builds the roster payload and launches a local server on port 8080! To run the unit tests via JSDOM, execute `npm run test:unit`, or run the end-to-end tests via Playwright with `npx playwright test`.*
 
@@ -45,8 +48,10 @@ Welcome aboard! To boot up the local development environment and serve the appli
 
 Prefer containers? You can boot the application via Docker using the provided multi-stage `Dockerfile`:
 
-1. `docker build -t jules-roster .`
-2. `docker run -p 8080:8080 jules-roster`
+```bash
+docker build -t jules-roster .
+docker run -p 8080:8080 jules-roster
+```
 
 ### 🔐 Environment Variables
 

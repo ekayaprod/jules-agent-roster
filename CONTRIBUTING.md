@@ -11,6 +11,7 @@ Here is the quick blueprint to get your local environment running and how to tes
 Make sure you have Node.js (>=18.0.0) installed, then fire up the local environment:
 
 ```bash
+cp .env.example .env
 npm install
 npm start
 ```
