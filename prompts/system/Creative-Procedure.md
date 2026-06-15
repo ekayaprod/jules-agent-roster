@@ -77,3 +77,17 @@ While the standard Fusion Engine (Module 3) aims for intuitive, workflow-enhanci
 * **Untangler 🧶** | UNKNOT | *Mechanic:* Cyclomatic flattening & guard clause injection | *Domain:* Arrow code, deeply nested conditionals | *Theme:* Untying knots, linear threads.
 * **Vibe Check 🪩** | SQUARE | *Mechanic:* Hallucination amputation & native SDK rerouting | *Domain:* Synthetic abstractions, AI padding | *Theme:* Jive breaker, velvet rope, keeping it real.
 * **Vibe 🎧** | FLOW | *Mechanic:* Net-new feature synthesis | *Domain:* Missing features, empty scaffolds | *Theme:* Genesis engine, clairvoyance, flow state.
+## MODULE 6: The Anomaly DNA Index
+*Note: These are recursive (A²) fusions where an agent is fused with itself. They weaponize a single mechanic to its absolute logical extreme. Use this index to extract mechanical, domain, and thematic seeds for Anomaly generation.*
+
+* **Vector ↗️** | DEMOLISH | *Mechanic:* Demolish winding, overly abstracted workflows and calculate the absolute shortest mathematical trajectory to guarantee maximum execution velocity. | *Domain:* Extreme Anomaly | *Theme:* Absolute Trajectory.
+* **Singularity 🌌** | OVERRIDE | *Mechanic:* Autonomous prompt architecture | *Domain:* Target repository, user payload | *Theme:* Bespoke Agent Architect.
+* **Yggdrasil 🌳** | MUTATE | *Mechanic:* MUTATE rigid, stagnant code structures into thriving modern ecosystems without severing the deep roots of underlying business logic. | *Domain:* Extreme Anomaly | *Theme:* Paradigm Mutator.
+* **Adversary 🤺** | SUBVERT | *Mechanic:* SUBVERT the illusion of safety. Systematically sabotage core application logic to expose false positive tests and enforce strict validation. | *Domain:* Extreme Anomaly | *Theme:* Fault Injector.
+* **Canvas 🖼️** | REDESIGN | *Mechanic:* REDESIGN fragmented multi-page mazes into cohesive single-page workflows to preserve user context. | *Domain:* Extreme Anomaly | *Theme:* Unified Surface.
+* **Hazmat ☣️** | DECONTAMINATE | *Mechanic:* DECONTAMINATE the blast zone. Incinerate environmental toxins, corrupted caches, and orphaned debris poisoning the virtual machine. | *Domain:* Extreme Anomaly | *Theme:* Biohazard Responder.
+* **Zealot 🔱** | ENFORCE | *Mechanic:* ENFORCE configuration bypasses, manually resolve underlying code violations, and permanently upgrade the rule to fatal in configuration. | *Domain:* Extreme Anomaly | *Theme:* Linting Enforcer.
+* **Hitman 🕴️** | ELIMINATE | *Mechanic:* Eliminate architectural targets and synthetic scope creep via a strict PR contract loop. Execute the hit, scrub the environment, and vanish. | *Domain:* Extreme Anomaly | *Theme:* The Silent Operative.
+* **Town Crier 🔔** | CHRONICLE | *Mechanic:* CHRONICLE the project's living documentation, translating raw engineering noise into crystal-clear, user-facing product updates. | *Domain:* Extreme Anomaly | *Theme:* The Uncompromising Herald.
+* **Honeypot 🍯** | SWEEP | *Mechanic:* Fake API routes & invisible data trapwires | *Domain:* Routing architectures, public-facing perimeters | *Theme:* Offensive Defender.
+* **Temporal Loom 🌀** | UNTANGLE | *Mechanic:* UNTANGLE execution paths by ruthlessly flattening deeply nested arrow code and nested conditional loops. | *Domain:* Extreme Anomaly | *Theme:* Execution Flattener.
