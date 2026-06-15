@@ -51,6 +51,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         activateToggle.id = 'julesActivateToggle';
         document.body.appendChild(activateToggle);
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         activateToggle.checked = true;
@@ -72,6 +73,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         activateToggle.id = 'julesActivateToggle';
         document.body.appendChild(activateToggle);
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         activateToggle.checked = true;
@@ -102,6 +104,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         julesTerminal.style.display = '';
         document.body.appendChild(julesTerminal);
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         activateToggle.checked = false;
@@ -117,6 +120,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
     });
 
     it('toggles pin and synchronizes aria-pressed for valid agent index', () => {
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         const card = document.createElement('div');
@@ -138,6 +142,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
     });
 
     it('flips card back and stops propagation', () => {
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         const card = document.createElement('div');
@@ -157,6 +162,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
     });
 
     it('closes specific dropdowns when Escape is pressed', () => {
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         const dropdown = document.createElement('div');
@@ -179,6 +185,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
 
     // 🕵️ The Boundary Interrogation: Master Dropdown Toggle
     it('toggles master dropdown visibility and stops propagation', () => {
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         const btn = document.createElement('button');
@@ -188,6 +195,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         document.body.appendChild(btn);
         document.body.appendChild(menu);
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app); // Re-bind with the new elements
 
         const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
@@ -252,6 +260,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
 
         app.getAgentForUI.mockReturnValueOnce({ name: 'Agent' });
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
@@ -277,6 +286,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         card.classList.add('pop-in');
         global.AgentCard.create = jest.fn().mockReturnValue(card);
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
@@ -295,6 +305,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
 
         app.exportController = { downloadCustomAgentsByParent: jest.fn() };
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
@@ -314,6 +325,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         modal.classList.add('visible');
         document.body.appendChild(modal);
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
@@ -344,6 +356,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         global.FormatUtils.extractDisplayName = jest.fn().mockReturnValue('Fusion Agent');
         global.FormatUtils.escapeHTML = jest.fn().mockReturnValue('Fusion Agent');
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true });
@@ -354,6 +367,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
 
     // 🕵️ The Boundary Interrogation: Interrogate Global Click Delegation (Search Clear)
     it('closes search if clicked outside and input is empty', () => {
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         const nav = document.createElement('nav');
@@ -365,6 +379,8 @@ describe('EventBinder (Boundary Interrogation)', () => {
 
         document.body.appendChild(nav);
 
+        app.elements.masterDropdownMenu = document.createElement('div');
+        app.elements.masterDropdownBtn = document.createElement('button');
         const clickEvent = new MouseEvent('click', { bubbles: true });
         document.body.dispatchEvent(clickEvent);
 
@@ -383,6 +399,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         app.julesTerminal.loadActiveSessionsForRepo.mockResolvedValue();
         app.julesTerminal.loadPullRequestsForRepo.mockResolvedValue();
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         picker.value = 'repo1';
@@ -408,6 +425,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         terminal.classList.add('active');
         app.elements.julesTerminal = terminal;
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         picker.value = '';
@@ -464,6 +482,7 @@ describe('EventBinder Shakedown', () => {
 
         const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         app.elements.julesRepoPicker.value = 'source1';
@@ -478,13 +497,14 @@ describe('EventBinder Shakedown', () => {
     });
 
     it('interrogates masterCopyFusionsBtn asynchronous clipboard failure handling', async () => {
-        const event = new Event('click');
+        const event = new MouseEvent('click', { bubbles: true });
 
         app.customAgents = [{ name: 'Test' }];
         global.AgentUtils.getValidCustomAgents.mockReturnValue(app.customAgents);
 
         global.ClipboardUtils.copyText.mockResolvedValue(false);
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         app.elements.masterCopyFusionsBtn.dispatchEvent(event);
@@ -497,13 +517,14 @@ describe('EventBinder Shakedown', () => {
     });
 
     it('interrogates masterCopyFusionsBtn asynchronous clipboard success handling', async () => {
-        const event = new Event('click');
+        const event = new MouseEvent('click', { bubbles: true });
 
         app.customAgents = [{ name: 'Test' }];
         global.AgentUtils.getValidCustomAgents.mockReturnValue(app.customAgents);
 
         global.ClipboardUtils.copyText.mockResolvedValue(true);
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         app.elements.masterCopyFusionsBtn.dispatchEvent(event);
@@ -516,9 +537,10 @@ describe('EventBinder Shakedown', () => {
     });
 
     it('interrogates masterDownloadCoreBtn execution missing branch', () => {
-        const event = new Event('click');
+        const event = new MouseEvent('click', { bubbles: true });
         const masterDownloadCoreBtn = document.createElement('button');
         app.elements.masterDownloadCoreBtn = masterDownloadCoreBtn;
+        document.body.appendChild(masterDownloadCoreBtn);
 
         const masterDropMenu = document.createElement('div');
         masterDropMenu.classList.add('visible');
@@ -526,6 +548,7 @@ describe('EventBinder Shakedown', () => {
 
         app.downloadAll = jest.fn();
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         masterDownloadCoreBtn.dispatchEvent(event);
@@ -535,9 +558,10 @@ describe('EventBinder Shakedown', () => {
     });
 
     it('interrogates masterDownloadFusionsBtn execution missing branch', () => {
-        const event = new Event('click');
+        const event = new MouseEvent('click', { bubbles: true });
         const masterDownloadFusionsBtn = document.createElement('button');
         app.elements.masterDownloadFusionsBtn = masterDownloadFusionsBtn;
+        document.body.appendChild(masterDownloadFusionsBtn);
 
         const masterDropMenu = document.createElement('div');
         masterDropMenu.classList.add('visible');
@@ -545,6 +569,7 @@ describe('EventBinder Shakedown', () => {
 
         app.downloadCustomAgents = jest.fn();
 
+        app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         masterDownloadFusionsBtn.dispatchEvent(event);
