@@ -7,6 +7,7 @@
 **Target Excised:** Broken markdown links in Foresight.md | **Action:** Repaired missing target anchors.
 
 # Resolved Entropy
+* **Deleted Artifacts:** `verification.png` removed from hallway trash.
 * **Deleted Artifacts:** `code_ql_auth.patch` permanently removed and appended to `.gitignore`.
 * **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/Vibe Check.md`, `prompts/Scavenger.md`, `prompts/Superintendent.md`, `prompts/Palette+.md`, `prompts/Vibe.md`.
 

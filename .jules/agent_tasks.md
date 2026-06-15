@@ -11,7 +11,6 @@
 - [ ] 🏗️ `js/core/events/EventBinder.js`: 534 lines. Structural Monolith.
 
 ## The [PRUNER] Queue
-- [ ] 🧹 `verification.png`: Generated artifact improperly committed to source control.
 ## The [INSTRUMENTER] Queue
 
 - [ ] 🧹 `js/Utils/telemetry-utils.js`: Replace raw `console.error` calls with structured telemetry logger at lines 19, 23.
