@@ -375,7 +375,7 @@
     "role": "UI Convergence Lead",
     "category": "Frontend",
     "tier": "Specialist",
-    "description": "REFACTOR x Architect",
+    "description": "REDESIGN fragmented multi-page mazes into cohesive single-page workflows to preserve user context.",
     "forge_version": "V84.2",
     "promptFile": "prompts/fusions/Canvas.md",
     "isCustom": true
