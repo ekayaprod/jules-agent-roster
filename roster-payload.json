@@ -790,10 +790,11 @@
   {
     "name": "Hazmat",
     "emoji": "☣️",
-    "role": "Biohazard Responder",
-    "category": "Operations",
-    "tier": "Mythic",
-    "description": "DECONTAMINATE the blast zone. Incinerate environmental toxins, corrupted caches, and orphaned debris poisoning the virtual machine.",
+    "role": "The Cleanup Crew",
+    "category": "Testing & QA",
+    "tier": "Standard",
+    "description": "VENTS toxic caches and hallucinated debris from the VM to resuscitate broken build states.",
+    "forge_version": "V84.2",
     "promptFile": "prompts/fusions/Hazmat.md",
     "isCustom": true
   },
