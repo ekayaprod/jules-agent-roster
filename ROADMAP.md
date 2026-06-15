@@ -29,7 +29,7 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 <p><em>Focus: Quality Assurance</em></p>
 
-- [ ] **Prompt Validation**: Implement scripts to parse and validate the JSON/Markdown structure within agent prompts.
+- [x] **Prompt Validation**: Implement scripts to parse and validate the JSON/Markdown structure within agent prompts. (Shipped: [Commit ce27775](https://github.com/ekayaprod/jules-agent-roster/commit/ce27775))
 - [x] **Automated Testing**: Add basic tests for the `index.html` UI logic (search, filtering, copying). (Shipped: [Commit 253f2d9](https://github.com/ekayaprod/jules-agent-roster/commit/253f2d9))
 - [x] **Standardize Testing Assertions**: Adopt `@testing-library/jest-dom` to enforce semantic assertions, decoupling tests from structural CSS/DOM implementation details. (Shipped: [Commit a07a675](https://github.com/ekayaprod/jules-agent-roster/commit/a07a675))
 - [x] **Refactor JulesManager Monolith**: Extract shared logic and distinct functional domains into standalone utility classes or specialized sub-controllers. (Shipped: [Commit 532bb64](https://github.com/ekayaprod/jules-agent-roster/commit/532bb64))
@@ -91,3 +91,9 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 **The Problem:** The app manually formats dates using complex, scattered Date object math across multiple domains (e.g., polling timers, dashboard timestamps), leading to brittle tests and inconsistent display logic.
 **The Solution:** Adopt `date-fns` (or similar utility) via CDN.
 **The Benefit:** Standardizes time-based math and formatting safely, eliminating custom drift and natively supporting precise, edge-case tested timestamp manipulations.
+
+### Decentralize `index.html` Structural Monolith
+
+**The Problem:** The `index.html` file has grown to over 900 lines, becoming a structural monolith that tightly couples layout, inline scripts, and disparate UI domains.
+**The Solution:** Decentralize `index.html` by extracting distinct functional domains into domain-specific templates or colocated components.
+**The Benefit:** Standardizes domain boundaries, drastically improves maintainability, and prevents future merge conflicts in the core entry point.
