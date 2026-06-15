@@ -368,6 +368,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
 
     // 🕵️ The Boundary Interrogation: Interrogate Global Click Delegation (Search Clear)
     it('closes search if clicked outside and input is empty', () => {
+        app.searchController = { clearSearch: jest.fn() };
         app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
