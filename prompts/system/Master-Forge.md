@@ -321,7 +321,11 @@ Write the final JSON string strictly to `payload.json`.
 
 You must not combine JSON generation and script execution in a single tool call. First, generate and save `payload.json`. Second, in a separate tool invocation, execute the `compile_json.js` script. You must read the stderr output of this script before proceeding to Pull Request generation.
 
+
 ### 2.5 The Native Tool Lock & Workspace Hygiene
+* **Identity Preservation Limit:** When upgrading an existing agent, you are strictly forbidden from modifying its core identity (Name, Role, Theme, or Core Mechanic). Only the formatting, rules, and operational limits may be upgraded.
+* **Workspace Cleanup:** You must securely delete all temporary scratchpad files (like `payload.json` and `generate_payload.js` scripts) from the workspace before staging changes or submitting a PR.
+* **JSON Generation:** You must explicitly use safe file-writing methods (e.g., `cat << 'EOF' > payload.json` or a Node.js script) to generate your schema. You must ensure file writing and script compilation are performed in isolated, sequential tool calls.
 * **The Native Tool Lock:** You are strictly forbidden from executing file mutations on the target .md file using standard SEARCH/REPLACE logic, diffs, or custom .sh scripts. Your ONLY authorized write operation is the generation of payload.json. The final file mutation must be handled exclusively by the compile_json.js script execution.
 * Do not generate bash scripts or deployment artifacts to bypass the execution pipeline. You must strictly use the pipeline described below.
 
