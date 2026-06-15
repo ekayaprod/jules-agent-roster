@@ -9,13 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### 🚀 Features
-- **UI & Transitions**: Implemented fluid geometry, GPU-accelerated modal transitions using opacity/pointer-events, and fluid search bar expansion in UI components.
+- **UI & Transitions**: Implemented fluid geometry, GPU-accelerated modal transitions using opacity/pointer-events, and fluid search bar expansion in UI components. Injected fluid transitions into JulesTerminal session blocks and focus rings to Palette+ inputs.
 - **Code Health & Monolith Refactoring**: Extracted logic into EventBinder subdomain, decoupled FusionLab monolith, and optimized FusionEngine loops (replaced string splits/Sets with direct string lookups).
 - **Agent Architecture Upgrades**: Mass migration of multiple additional agents (Canner, Dispatcher, Annotator, Adversary, Surgeon, Canvas, Customs, Rumble, Pantomime, Scaffolder, etc.) to Forge Protocol V82.0 / V81.0 architecture via Auto-Forge.
 - **Rarity & Animations**: Fixed CSS keyframe collisions preventing rarity card effects from rendering properly, added missing keyframes for epicPulse and legendaryPulse.
 - **Agent Architecture Upgrades**: Mass migration of multiple agents (Siren, Forensic Architect, Calligrapher, Sylar, Surgeon, Town Crier, Polygraph, Hive, Pantomime, Examiner, Triage Commander, Narrator, Firewall, Temporal Loom, Barricade, Medic, Pacemaker, Bulwark) to the current V68.0 / Master Forge architecture via Auto-Forge.
 - **CI/CD Infrastructure**: Provisioned optimized container transit via multi-stage Docker build.
 - **Architectural Upgrades**: Upgraded numerous core and fusion agents to the modern Master Forge V68.0 Architecture.
+- **Auto-Forge CI Integration**: Automated upgrades of multiple agents to architecture V84.0/V84.1/V84.2.
+- **Scavenger Protocol**: Deployed system maintenance sweeps to prune telemetry droppings and enforce submission autonomy governance policies.
 
 ### 🛡️ Resilience & Security
 - **API Boundaries**: Fortified JulesAPI session payloads with strict type safety and parameter validation to prevent execution bleed.
