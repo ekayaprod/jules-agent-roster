@@ -309,7 +309,7 @@ function compile(jsonPayloadStr, targetFilePath) {
     // 3. Journal & Tasks Board
     const journalPath = tier.toLowerCase() === 'core' ? `.jules/${data.identity?.name || 'journal'}.md` : `.jules/journal_${category.toLowerCase()}.md`;
     const agentTasksBoardRules = requiresTasksBoard ? "* **The Worker Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself." : '';
-    const tasksBoardCrossReference = requiresTasksBoard ? "Read `.jules/agent_tasks.md`, then perform your discover phase." : '';
+    const tasksBoardCrossReference = requiresTasksBoard ? "Cross-reference `.jules/agent_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/agent_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan." : '';
 
     // --- ARRAY FORMATTING ---
     const salvagedMandates = formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates);
