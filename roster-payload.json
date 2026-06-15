@@ -788,12 +788,12 @@
     "isCustom": true
   },
   {
-    "name": "Hazmat",
-    "emoji": "☣️",
-    "role": "The Cleanup Crew",
-    "category": "Testing & QA",
-    "tier": "Standard",
-    "description": "VENTS toxic caches and hallucinated debris from the VM to resuscitate broken build states.",
+    "name": "Hazmat A²",
+    "emoji": "🚨",
+    "role": "The Terminal Resuscitator",
+    "category": "Operations",
+    "tier": "A² Anomaly",
+    "description": "FORCE-RESTORES execution during fatal boot loops by aggressively intercepting uncaught exceptions and overwriting lifecycle constraints.",
     "forge_version": "V84.2",
     "promptFile": "prompts/fusions/Hazmat.md",
     "isCustom": true
