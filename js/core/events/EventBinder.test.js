@@ -51,6 +51,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         activateToggle.id = 'julesActivateToggle';
         document.body.appendChild(activateToggle);
 
+        app.searchController = { clearSearch: jest.fn() };
         app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
@@ -303,7 +304,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         btn.setAttribute('data-parent-name', 'Parent Agent');
         document.body.appendChild(btn);
 
-        app.exportController = { downloadCustomAgentsByParent: jest.fn() };
+        app.exportController = { downloadCustomAgentsByParent: jest.fn(), downloadAll: jest.fn(), downloadCustomAgents: jest.fn() };
 
         app.activeDropdowns = new Set();
         EventBinder.bind(app);
@@ -384,7 +385,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         const clickEvent = new MouseEvent('click', { bubbles: true });
         document.body.dispatchEvent(clickEvent);
 
-        expect(app.clearSearch).toHaveBeenCalled();
+        expect(app.searchController?.clearSearch).toHaveBeenCalled();
     });
 
     // 🕵️ The Boundary Interrogation: Test julesRepoPicker DOM event integration
@@ -546,14 +547,14 @@ describe('EventBinder Shakedown', () => {
         masterDropMenu.classList.add('visible');
         app.elements.masterDropdownMenu = masterDropMenu;
 
-        app.downloadAll = jest.fn();
+        app.exportController = { ...app.exportController, downloadAll: jest.fn() };
 
         app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         masterDownloadCoreBtn.dispatchEvent(event);
 
-        expect(app.downloadAll).toHaveBeenCalledWith(masterDownloadCoreBtn);
+        expect(app.exportController.downloadAll).toHaveBeenCalledWith(masterDownloadCoreBtn);
         expect(masterDropMenu.classList.contains('visible')).toBe(false);
     });
 
@@ -567,14 +568,14 @@ describe('EventBinder Shakedown', () => {
         masterDropMenu.classList.add('visible');
         app.elements.masterDropdownMenu = masterDropMenu;
 
-        app.downloadCustomAgents = jest.fn();
+        app.exportController = { ...app.exportController, downloadCustomAgents: jest.fn() };
 
         app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
         masterDownloadFusionsBtn.dispatchEvent(event);
 
-        expect(app.downloadCustomAgents).toHaveBeenCalledWith(masterDownloadFusionsBtn);
+        expect(app.exportController.downloadCustomAgents).toHaveBeenCalledWith(masterDownloadFusionsBtn);
         expect(masterDropMenu.classList.contains('visible')).toBe(false);
     });
 });
