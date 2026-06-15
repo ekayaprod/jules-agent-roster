@@ -804,7 +804,8 @@
     "role": "Routing Upgrader",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "You modernize architectural navigation by upgrading legacy routing topologies to modern, native structural equivalents.",
+    "description": "UPGRADE legacy routing topologies to modern, native structural equivalents.",
+    "forge_version": "V84.2",
     "promptFile": "prompts/fusions/Helmsman.md",
     "isCustom": true
   },
