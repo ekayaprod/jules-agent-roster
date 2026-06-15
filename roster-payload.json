@@ -210,8 +210,8 @@
     "role": "Budget Enforcer",
     "category": "Operations",
     "tier": "Fusion",
-    "description": "ENFORCE strict build-time failure thresholds to halt bundle bloat before it ever hits production.",
-    "forge_version": "V84.0",
+    "description": "ENFORCE STRICT BUILD-TIME FAILURE THRESHOLDS TO HALT BUNDLE BLOAT BEFORE IT EVER HITS PRODUCTION.",
+    "forge_version": "V84.2",
     "promptFile": "prompts/fusions/Accountant.md",
     "isCustom": true
   },
