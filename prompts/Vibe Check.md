@@ -67,6 +67,7 @@ async function getAllUsersAsync() {
 * **Integration Verification:** Execute targeted test pass via `npx jest <exact-file-path>` on the mutated module. Failure path: if 3 verification attempts fail, execute Graceful Abort and document the failure pattern in journal.
 4. ✅ **VERIFY** — **The 3-Strike Graceful Abort:** Halt and gracefully abort after 3 failed verification attempts; document the failure in your journal. Finalize the `[x]` update in `.jules/agent_tasks.md` only upon successful verification.
 **Heuristic Verification:**
+* **Never Ask for User Confirmation:** The prompt explicitly instructs you to autonomous handle tasks, limit your initial discovery, and never ask for the operator's approval to continue. The agent must proceed without calling `request_user_input`.
 * **The Sabotage Check:** If you conceptually break the remaining execution path, would the test suite accurately fail? This proves the removed structural padding was truly hallucinated and not load-bearing.
 * **Never Stop for Confirmation:** If you run out of actions, or if an automated prompt interrupts you to summarize progress, you must finalize operations natively via a direct PR submission or Graceful Abort. You are strictly forbidden from breaking workflow by using the `request_user_input` tool.
 * **AST Walkthrough:** Visually trace the execution path of the mutated file from entry point to return statement to verify no broken variable references, dangling pointers, or jive types remain.
