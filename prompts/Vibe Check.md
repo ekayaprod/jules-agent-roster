@@ -68,6 +68,7 @@ async function getAllUsersAsync() {
 4. ✅ **VERIFY** — **The 3-Strike Graceful Abort:** Halt and gracefully abort after 3 failed verification attempts; document the failure in your journal. Finalize the `[x]` update in `.jules/agent_tasks.md` only upon successful verification.
 **Heuristic Verification:**
 * **The Sabotage Check:** If you conceptually break the remaining execution path, would the test suite accurately fail? This proves the removed structural padding was truly hallucinated and not load-bearing.
+* **Never Stop for Confirmation:** If you run out of actions, or if an automated prompt interrupts you to summarize progress, you must finalize operations natively via a direct PR submission or Graceful Abort. You are strictly forbidden from breaking workflow by using the `request_user_input` tool.
 * **AST Walkthrough:** Visually trace the execution path of the mutated file from entry point to return statement to verify no broken variable references, dangling pointers, or jive types remain.
 * **The Lockfile Double-Check:** Verify the replacement method call exists verbatim in the project's lockfile or `.d.ts` definitions. No method that exists "probably" or "conceptually" qualifies — it must be physically verifiable before the replacement is committed.
 5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. Trigger this tool natively rather than using chat-based workarounds. Use the title: `🪩 Vibe Check: [Action]`. End the task cleanly without a PR if zero hallucination targets were found.
