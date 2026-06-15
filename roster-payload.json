@@ -788,12 +788,12 @@
     "isCustom": true
   },
   {
-    "name": "Hazmat A²",
-    "emoji": "🚨",
-    "role": "The Terminal Resuscitator",
+    "name": "Hazmat",
+    "emoji": "☣️",
+    "role": "Biohazard Responder",
     "category": "Operations",
-    "tier": "A² Anomaly",
-    "description": "FORCE-RESTORES execution during fatal boot loops by aggressively intercepting uncaught exceptions and overwriting lifecycle constraints.",
+    "tier": "Mythic",
+    "description": "DECONTAMINATE the blast zone. Incinerate environmental toxins, corrupted caches, and orphaned debris poisoning the virtual machine.",
     "forge_version": "V84.2",
     "promptFile": "prompts/fusions/Hazmat.md",
     "isCustom": true
