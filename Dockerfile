@@ -27,7 +27,6 @@ RUN npm install -g http-server@14.1.1
 COPY --from=builder --chown=warden:dispatch /opt/payload/roster-payload.json ./
 COPY --chown=warden:dispatch index.html ./
 COPY --chown=warden:dispatch js ./js
-COPY --chown=warden:dispatch telemetry.json ./
 
 USER warden
 EXPOSE 8080
