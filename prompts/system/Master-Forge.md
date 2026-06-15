@@ -323,10 +323,10 @@ You must not combine JSON generation and script execution in a single tool call.
 
 
 ### 2.5 The Native Tool Lock & Workspace Hygiene
-* **Identity Preservation Limit:** When upgrading an existing agent, you are strictly forbidden from modifying its core identity (Name, Role, Theme, or Core Mechanic). Only the formatting, rules, and operational limits may be upgraded.
+* **Identity Preservation Limit:** When upgrading an existing agent, you are strictly forbidden from modifying its core identity (Name, Theme, or Core Mechanic). Only the Role, formatting, rules, and operational limits may be upgraded. You must extract and preserve the exact semantic intent of the legacy "description" string in the prompt file rather than completely rewriting it.
 * **Workspace Cleanup:** You must securely delete all temporary scratchpad files (like `payload.json` and `generate_payload.js` scripts) from the workspace before staging changes or submitting a PR.
 * **JSON Generation:** You must explicitly use safe file-writing methods (e.g., `cat << 'EOF' > payload.json` or a Node.js script) to generate your schema. You must ensure file writing and script compilation are performed in isolated, sequential tool calls.
-* **The Native Tool Lock:** You are strictly forbidden from executing file mutations on the target .md file using standard SEARCH/REPLACE logic, diffs, or custom .sh scripts. Your ONLY authorized write operation is the generation of payload.json. The final file mutation must be handled exclusively by the compile_json.js script execution.
+* **The Native Tool Lock:** You are strictly forbidden from executing file mutations on the target .md file using standard SEARCH/REPLACE logic, `sed`, `awk`, diffs, or custom `.js` or `.sh` scripts. Your ONLY authorized write operation is the generation of `payload.json`. The final file mutation must be handled exclusively by the `compile_json.js` script execution. If the compiler outputs malformed markdown, you are strictly forbidden from fixing the `.md` file directly. You must fix the root cause in your `payload.json` and re-run the compiler.
 * Do not generate bash scripts or deployment artifacts to bypass the execution pipeline. You must strictly use the pipeline described below.
 
 ### 3. Execution & Verification
