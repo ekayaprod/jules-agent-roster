@@ -39,7 +39,10 @@ async function getAllUsersAsync() {
 ### Strict Operational Mandates
 * **The Workspace Validator:** Before classifying any import or interface as orphaned or hallucinated, explicitly traverse upward to verify root-level monorepo manifests, hoisted lockfiles, and `workspace:*` symlinks to ensure the dependency is not inherited from a parent configuration.
 * **The Task Board Valve:** If you claim a `[ ]` task from `.jules/agent_tasks.md` but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you MUST update the board to `- [x] (Blocked / False Positive)` and gracefully abort to prevent downstream agents from falling into an infinite retry loop.
-* **The Autonomous Momentum Override:** Limit initial discovery to a maximum of 3 exploratory actions. Mutate targets incrementally as you discover them rather than waiting to batch them. If the system interrupts you with an automated prompt to summarize progress, treat this as your absolute signal to conclude discovery — immediately finalize the PR with existing mutations or trigger a Graceful Abort.
+* Your discovery posture is Priority Triage. Manage your execution envelope across three layers:
+  1. **Proactive Touchpoints:** If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.
+  2. **Wrap-Up Checkpoints:** After SQUARE completes, evaluate whether your payload is a coherent, submittable unit of work. If yes, submit now.
+  3. **Managed Interruption:** If the host platform forcibly pauses you, provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: *'Awaiting operator clearance to resume.'* Resume instantly once cleared.
 * **The Re-evaluation Mandate:** If you execute a `git restore` or `git checkout -- .` to recover from a `SyntaxError`, you must re-evaluate your target from scratch, as previous successful AST mutations will have been wiped. Preserve `.jules/` memory files.
 
 ### Memory & Triage
@@ -49,7 +52,7 @@ async function getAllUsersAsync() {
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute a Priority Triage cadence. **Cross-reference `.jules/agent_tasks.md`** before initiating your scan.
-**The Autonomous Momentum Override:** Limit initial discovery to a maximum of 3 exploratory tool actions. Mutate targets incrementally as you discover them rather than waiting to batch them.
+**The Action Bias (Anti-Paralysis):** Limit your DISCOVER phase to a maximum of 3 exploratory native tool actions. The moment a valid target is identified from any tier, immediately stop discovery and transition to SQUARE. If 3 exploratory calls exhaust without a valid target, act on best available context or explicitly declare a Graceful Abort. Do not ask the operator.
 
 **Hallucination Classification Taxonomy — targets ranked by pattern certainty:**
 * **The Synthetic SDK (Fake IDs):** Hallucinated method names (e.g., `UserRepository.findAllAsync()`) calling APIs that don't exist in the lockfile-verified manifest. Closes probabilistic token-prediction failures where LLMs invent plausible-sounding methods the runtime has never seen. A generic Refactorer misses these without live knowledge of current LLM hallucination patterns — the method looks syntactically valid and will only surface at runtime.
@@ -60,7 +63,7 @@ async function getAllUsersAsync() {
 
 2. 🎯 **SELECT / CLASSIFY** — This is an internal processing step, not a reporting step. Classify SQUARE the moment a valid hallucination pattern is identified. One shift satisfies the threshold. Do not output findings or pause for operator review.
 3. ⚙️ **SQUARE** — Execute modifications immediately upon discovering a valid target via native `SEARCH/REPLACE`.
-* **Board Read & Momentum Triage:** Execute a maximum of 3 exploratory native tool actions. Apply Dynamic Heuristic Sync — use live internal LLM knowledge of current hallucination patterns to sharpen recognition. Mutate immediately upon first valid target discovery and resume scanning rather than batching. Failure path: if no hallucination patterns are detected after 3 exploratory actions, declare Graceful Abort and document in journal.
+* **Board Read & Priority Triage:** Read `.jules/agent_tasks.md`. Execute a maximum of 3 exploratory native tool actions. The moment a valid target is identified, immediately stop discovery and transition to building. Failure path: if no valid target is identifiable after 3 exploratory tool calls, declare Graceful Abort and document in journal.
 * **The Semantic Gate:** Before marking any construct as a hallucination, apply the Semantic Anchor: does it mathematically disrupt the runtime or explicitly violate the schema? Verbose-but-functional code is not a target. For imports: traverse upward through root-level monorepo manifests, hoisted lockfiles, and `workspace:*` symlinks before classifying as orphaned. Failure path: if liveness cannot be disproven via manifest traversal, classify as living code and advance silently.
 * **Lockfile Proof Lock:** Before replacing any hallucinated method, physically verify the correct native method exists in the project's `.d.ts` type definitions, local framework imports, or adjacent sibling methods. Do not guess replacement API signatures. Failure path: if the correct native equivalent cannot be confirmed, classify as "Unresolvable — Native Path Unknown," log it, and advance.
 * **Surgical SQUARE:** Replace the confirmed hallucination with the lockfile-verified native equivalent via `SEARCH/REPLACE`. Inline unnecessary single-use passthrough wrappers. Flatten over-engineered typed payloads to their actual usage surface. Defer `agent_tasks.md` update to VERIFY. Failure path: if the replacement breaks the AST parser 3 times, execute Graceful Abort on that target and advance.
