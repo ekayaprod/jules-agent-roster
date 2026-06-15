@@ -50,4 +50,4 @@
 - [ ] 🧲 `js/Features/Fusion/AgentPicker.js`: Fossilized syntax pattern (`var`) at line 1. Upgrade to const/let.
 
 ## The [REFACTORER / UNKNOT] Queue
-- [ ] 🏗️ `index.html`: 905 lines. Structural Monolith. Requires domain splitting and colocation.
+- [x] (Blocked / False Positive) 🏗️ `index.html`: 905 lines. Structural Monolith. Requires domain splitting and colocation.
