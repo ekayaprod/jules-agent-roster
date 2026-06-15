@@ -78,3 +78,5 @@ patch2.sh
 patch_master_forge.sh
 fix_typos.sh
 payload.json
+
+code_ql_auth.patch
