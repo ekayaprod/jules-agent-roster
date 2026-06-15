@@ -10,7 +10,7 @@
 class EventBinder {
     static bind(app) {
     if (app.elements.searchInput) {
-      const debouncedFilter = PerformanceUtils.debounce((query) => app.filterAgents(query), SEARCH_DEBOUNCE_MS);
+      const debouncedFilter = PerformanceUtils.debounce((query) => app.searchController?.filterAgents(query), SEARCH_DEBOUNCE_MS);
       app.elements.searchInput.addEventListener("input", (e) => debouncedFilter(e.target.value));
     }
 
@@ -65,7 +65,7 @@ class EventBinder {
       const nav = app.elements["category-nav"];
       if (nav && nav.classList.contains("search-active")) {
           if (!nav.contains(e.target) && (!app.elements.searchInput || app.elements.searchInput.value.trim() === "")) {
-              app.clearSearch();
+              app.searchController?.clearSearch();
           }
       }
 
@@ -243,7 +243,7 @@ class EventBinder {
 
           const nav = app.elements["category-nav"];
           if (nav && nav.classList.contains("search-active") && app.elements.searchInput) {
-              app.filterAgents(app.elements.searchInput.value);
+              app.searchController?.filterAgents(app.elements.searchInput.value);
           }
 
           if (app._domNodeCache) app._domNodeCache.delete(String(index));
@@ -253,7 +253,7 @@ class EventBinder {
           // Re-trigger search view if active
           const searchInput = app.elements.searchInput;
           if (searchInput && searchInput.value.trim() !== "") {
-              app.filterAgents(searchInput.value);
+              app.searchController?.filterAgents(searchInput.value);
           }
 
           app.showToast(isPinned ? "Pinned" : "Unpinned");
@@ -367,12 +367,12 @@ class EventBinder {
           if (!agent) return;
 
           if (action === "copy-agent") {
-              app.copyAgent(index, actionBtn);
+              app.exportController?.copyAgent(index, actionBtn);
               DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
               return;
           }
           if (action === "download-agent") {
-              app.downloadAgent(index, actionBtn);
+              app.exportController?.downloadAgent(index, actionBtn);
               DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
               return;
           }
@@ -446,7 +446,7 @@ class EventBinder {
         // Priority 2: Close search
         const nav = app.elements["category-nav"];
         if (nav && nav.classList.contains("search-active")) {
-            app.clearSearch();
+            app.searchController?.clearSearch();
             return;
         }
 
@@ -505,9 +505,9 @@ class EventBinder {
     }
 
     // Master Export bindings
-    if (app.elements.masterCopyBtn) app.elements.masterCopyBtn.addEventListener("click", (e) => app.copyAll(e.currentTarget));
+    if (app.elements.masterCopyBtn) app.elements.masterCopyBtn.addEventListener("click", (e) => app.exportController?.copyAll(e.currentTarget));
     if (app.elements.masterDownloadCoreBtn) app.elements.masterDownloadCoreBtn.addEventListener("click", (e) => {
-        app.downloadAll(e.currentTarget);
+        app.exportController?.downloadAll(e.currentTarget);
         if (masterDropMenu) masterDropMenu.classList.remove("visible");
     });
     if (app.elements.masterCopyFusionsBtn) app.elements.masterCopyFusionsBtn.addEventListener("click", async (e) => {
@@ -524,7 +524,7 @@ class EventBinder {
         if (masterDropMenu) masterDropMenu.classList.remove("visible");
     });
     if (app.elements.masterDownloadFusionsBtn) app.elements.masterDownloadFusionsBtn.addEventListener("click", (e) => {
-        app.downloadCustomAgents(e.currentTarget);
+        app.exportController?.downloadCustomAgents(e.currentTarget);
         if (masterDropMenu) masterDropMenu.classList.remove("visible");
     });
   }
