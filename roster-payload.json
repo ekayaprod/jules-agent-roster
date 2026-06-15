@@ -75,7 +75,8 @@
     "role": "Evolution Engine",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "Evolve fossilized syntax and deprecated patterns into modern native standards to radically reduce cognitive load.",
+    "description": "EVOLVE fossilized syntax and deprecated patterns into modern native standards to radically reduce cognitive load.",
+    "forge_version": "V85.0",
     "promptFile": "prompts/Modernizer.md",
     "isCustom": false
   },

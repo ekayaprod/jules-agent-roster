@@ -1,0 +1,19 @@
+--- js/core/events/EventBinder.js
++++ js/core/events/EventBinder.js
+@@ -65,7 +65,7 @@
+       const nav = app.elements["category-nav"];
+       if (nav && nav.classList.contains("search-active")) {
+           if (!nav.contains(e.target) && (!app.elements.searchInput || app.elements.searchInput.value.trim() === "")) {
+-              app.searchController?.clearSearch();
++              app.clearSearch();
+           }
+       }
+
+@@ -446,7 +446,7 @@
+         // Priority 2: Close search
+         const nav = app.elements["category-nav"];
+         if (nav && nav.classList.contains("search-active")) {
+-            app.searchController?.clearSearch();
++            app.clearSearch();
+             return;
+         }

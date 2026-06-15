@@ -65,7 +65,7 @@ class EventBinder {
       const nav = app.elements["category-nav"];
       if (nav && nav.classList.contains("search-active")) {
           if (!nav.contains(e.target) && (!app.elements.searchInput || app.elements.searchInput.value.trim() === "")) {
-              app.searchController?.clearSearch();
+              app.clearSearch();
           }
       }
 
@@ -446,7 +446,7 @@ class EventBinder {
         // Priority 2: Close search
         const nav = app.elements["category-nav"];
         if (nav && nav.classList.contains("search-active")) {
-            app.searchController?.clearSearch();
+            app.clearSearch();
             return;
         }
 

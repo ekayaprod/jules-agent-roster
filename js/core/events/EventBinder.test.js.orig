@@ -368,7 +368,6 @@ describe('EventBinder (Boundary Interrogation)', () => {
 
     // 🕵️ The Boundary Interrogation: Interrogate Global Click Delegation (Search Clear)
     it('closes search if clicked outside and input is empty', () => {
-        app.clearSearch = jest.fn();
         app.activeDropdowns = new Set();
         EventBinder.bind(app);
 
@@ -386,7 +385,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         const clickEvent = new MouseEvent('click', { bubbles: true });
         document.body.dispatchEvent(clickEvent);
 
-        expect(app.clearSearch).toHaveBeenCalled();
+        expect(app.searchController?.clearSearch).toHaveBeenCalled();
     });
 
     // 🕵️ The Boundary Interrogation: Test julesRepoPicker DOM event integration
