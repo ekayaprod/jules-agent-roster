@@ -1,5 +1,4 @@
 // 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
-const getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
 
 const DEFAULT_SUCCESS_DURATION = 2000;
 
@@ -23,7 +22,7 @@ class ClipboardUtils {
                 await navigator.clipboard.writeText(text);
                 return true;
             } catch (err) {
-                const tu = getTelemetryUtils();
+                const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
                 if (tu) tu.dispatchEvent("CLIPBOARD_API_FAILED", err);
             }
         }
@@ -39,7 +38,7 @@ class ClipboardUtils {
         try {
             success = document.execCommand("copy");
         } catch (err) {
-            const tu = getTelemetryUtils();
+            const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
             if (tu) tu.dispatchEvent("CLIPBOARD_FALLBACK_FAILED", err);
         } finally {
             document.body.removeChild(el);
