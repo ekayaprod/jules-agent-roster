@@ -97,7 +97,6 @@ class LLMRouter {
                             const errorText = await response.text();
                             errorMsg = errorText || errorMsg;
                         } catch (e2) {
-                            console.warn(`[LLMRouter] Failed to parse error response from ${provider}:`, e2);
                             errorMsg = `${errorMsg} (Unparseable response body: ${e2.message})`;
                         }
                     }
@@ -105,7 +104,6 @@ class LLMRouter {
                     if (response.status >= 500 || response.status === 429) {
                         const error = new LLMNetworkError(errorMsg, response.status);
                         if (attempt < this.maxRetries) {
-                            console.warn(`[LLMRouter] ${provider} error ${response.status}. Retrying...`);
                             throw error; // Caught by catch block below for retry
                         }
                         throw error;

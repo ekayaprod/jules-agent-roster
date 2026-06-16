@@ -158,7 +158,6 @@ class NetworkUtils {
         error.message === 'Invalid response object';
 
       if (retries > 0 && isNetworkError) {
-        console.warn(`Retrying ${url} (${retries} left)...`);
         await new Promise((resolve) => setTimeout(resolve, backoff));
         return NetworkUtils.fetchWithRetry(url, options, retries - 1, backoff * 2);
       }
