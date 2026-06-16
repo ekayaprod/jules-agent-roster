@@ -44,9 +44,9 @@
 - [ ] 🎨 `js/core/events/EventBinder.js`: Rigid inline CSS mutations detected (style.display) at lines 165-170. Extract to semantic CSS classes.
 
 ## The [AST / MODERNIZE] Queue
-- [ ] 🧲 `js/UI/Clipboard/clipboard-utils.js`: Fossilized syntax pattern (`var`) at line 2. Upgrade to const/let.
-- [ ] 🧲 `js/Utils/storage-utils.js`: Fossilized syntax pattern (`var`) at line 2. Upgrade to const/let.
-- [ ] 🧲 `js/Features/Fusion/AgentPicker.js`: Fossilized syntax pattern (`var`) at line 1. Upgrade to const/let.
+- [x] 🧲 `js/UI/Clipboard/clipboard-utils.js`: Fossilized syntax pattern (`var`) at line 2. Upgrade to const/let.
+- [x] 🧲 `js/Utils/storage-utils.js`: Fossilized syntax pattern (`var`) at line 2. Upgrade to const/let.
+- [x] 🧲 `js/Features/Fusion/AgentPicker.js`: Fossilized syntax pattern (`var`) at line 1. Upgrade to const/let.
 
 ## The [REFACTORER / UNKNOT] Queue
 - [ ] 🏗️ `index.html`: 905 lines. Structural Monolith. Requires domain splitting and colocation.
