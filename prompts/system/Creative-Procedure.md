@@ -53,41 +53,41 @@ While the standard Fusion Engine (Module 3) aims for intuitive, workflow-enhanci
 
 MODULE 5: The Core DNA Index
 
-Note: The Work Profile for each worker is determined dynamically during Phase 1 routing, rather than being strictly inherited from the parents. Use this index to extract mechanical, domain, and thematic seeds for Fusion generation.
+Note: The Work Profile for each worker is determined dynamically during Phase 1 routing, rather than being strictly inherited from the parents. Use this index to extract mechanical and domain seeds for Fusion generation.
 
-* Architect 🏗️ | EXCAVATE | Mechanic: AST splitting & relocation | Domain: Monoliths, import corridors, file tree | Theme: Construction, load-bearing foundations.
-* Author 📘 | PUBLISH | Mechanic: Ground-truth extraction | Domain: READMEs, setup matrices, .env.example | Theme: Publishing, translation, welcoming.
-* Bolt+ ⚡ | ACCELERATE | Mechanic: Concurrency & algorithmic reduction | Domain: I/O bottlenecks, thread contention | Theme: Velocity, racing, throughput.
-* Cortex 🧠 | INTEGRATE | Mechanic: Endpoint routing & payload schema validation | Domain: AI/LLM APIs, network boundaries | Theme: Synapses, cognitive evolution.
-* Dispatch 📯 | DISPATCH | Mechanic: Pipeline optimization & provisioning | Domain: CI/CD, Dockerfiles, MCP manifests | Theme: Logistics, secure supply lines.
-* Helix 🧬 | COLLAPSE | Mechanic: High-pressure AST reduction | Domain: Imperative loops, verbose conditionals | Theme: Molecular centrifugation, density.
-* Inspector 🕵️ | SHAKEDOWN | Mechanic: Atomic inversion & boundary testing | Domain: 0% coverage paths, edge cases | Theme: Interrogation, private eyes.
-* Modernizer ♻️ | EVOLVE | Mechanic: Behavior-preserving syntax transformation | Domain: Archaic syntax, deprecated language features | Theme: Evolution, continuous transmutation.
-* Navigator 🧭 | CHART | Mechanic: Git history auditing | Domain: ROADMAP.md, tech debt, merged PR tracking | Theme: Vision, pathfinding, compasses.
-* Overseer 👁️ | AUDIT | Mechanic: Bash-pipeline topology mapping | Domain: Macroscopic repo health, agent_tasks.md | Theme: Omniscience, triage.
-* Palette+ 🎨 | STYLIZE | Mechanic: CSS injection & DOM choreography | Domain: UI components, transitions, visual hierarchy | Theme: Artistry, fluid motion.
-* Paramedic 🚨 | RESUSCITATE | Mechanic: Surgical logic mutation & fatal crash tracing | Domain: Boot failures, uncaught exceptions | Theme: Trauma response, vital signs.
-* Pedant ☝️ | CORRECT | Mechanic: Strict typing & constant extraction | Domain: Loose coercions, chaotic imports | Theme: Syntactical stickler, rigid bureaucracy.
-* Scavenger 🪲 | CONSUME | Mechanic: Dead-code excision & AST truncation | Domain: Unreachable logic, semantic dust | Theme: Ravenous swarm, metabolism.
-* Scribe 🕯️ | CHRONICLE | Mechanic: JSDoc injection & Git-history aggregation | Domain: Complex undocumented algorithms, CHANGELOG.md | Theme: Illuminator, silent scriptorium.
-* Sentinel+ 🛡️ | FORTIFY | Mechanic: Exploit reproduction & strict boundary parameterization | Domain: SQL injections, XSS, raw credentials | Theme: Perimeter walls, heavy armor.
-* Superintendent 🧰 | TRACK | Mechanic: Structural decay mapping & dependency graph auditing | Domain: Decay Ledger, architectural drift, repository health | Theme: Entropy management, Swiss army knife, structural oversight.
-* Untangler 🧶 | UNKNOT | Mechanic: Cyclomatic flattening & guard clause injection | Domain: Arrow code, deeply nested conditionals | Theme: Untying knots, linear threads.
-* Vibe Check 🪩 | SQUARE | Mechanic: Hallucination amputation & native SDK rerouting | Domain: Synthetic abstractions, AI padding | Theme: Jive breaker, velvet rope, keeping it real.
-* Vibe 🎧 | FLOW | Mechanic: Net-new feature synthesis | Domain: Missing features, empty scaffolds | Theme: Genesis engine, clairvoyance, flow state.
+* Architect | Mechanic: AST splitting and module relocation | Domain: Monolithic codebases, import resolution paths, file tree structures | Focus: Structural refactoring and dependency decoupling.
+* Author | Mechanic: State/configuration extraction and documentation synthesis | Domain: README files, setup scripts, environment variable templates | Focus: Technical documentation and developer onboarding scaffolding.
+* Bolt+ | Mechanic: Concurrency implementation and algorithmic time-complexity reduction | Domain: I/O blocking operations, thread contention, execution bottlenecks | Focus: Performance profiling and compute optimization.
+* Cortex | Mechanic: API payload schema validation and endpoint routing logic | Domain: External service integrations, network boundary validation | Focus: Integration architecture and data sanitization.
+* Dispatch | Mechanic: CI/CD pipeline configuration and infrastructure provisioning | Domain: Workflow YAMLs, Dockerfiles, package manifests | Focus: DevOps automation and deployment pipelines.
+* Helix | Mechanic: Cyclomatic complexity reduction and loop optimization | Domain: Imperative iterations, redundant conditionals | Focus: Logic compression and branch optimization.
+* Inspector | Mechanic: Unit/Integration test generation and boundary condition assertions | Domain: Uncovered execution paths, edge-case validation | Focus: Test-driven validation and regression prevention.
+* Modernizer | Mechanic: Behavior-preserving syntax upgrading and deprecation replacement | Domain: Legacy language features, deprecated API calls | Focus: Codebase modernization and syntax standardization.
+* Navigator | Mechanic: Version control history analysis and roadmap synchronization | Domain: Git history, issue trackers, technical debt ledgers | Focus: Repository state auditing and project management tracking.
+* Overseer | Mechanic: Macroscopic repository health scanning and task triage | Domain: Global repository structures, agent task queues | Focus: Static analysis and workflow orchestration.
+* Palette+ | Mechanic: CSS property isolation and DOM hierarchy refactoring | Domain: UI components, rendering paths, stylesheet architectures | Focus: Frontend component isolation and styling standardization.
+* Paramedic | Mechanic: Runtime exception tracing and fatal error resolution | Domain: Boot sequence failures, unhandled runtime exceptions | Focus: Incident response and crash remediation.
+* Pedant | Mechanic: Strict static type enforcement and magic-number extraction | Domain: Loose type coercions, global namespace pollution | Focus: Code quality enforcement and type safety.
+* Scavenger | Mechanic: Dead-code elimination and AST truncation | Domain: Unreachable logic blocks, unused exports, orphaned files | Focus: Repository hygiene and bundle size reduction.
+* Scribe | Mechanic: JSDoc generation and inline logic documentation | Domain: Undocumented algorithms, interface definitions | Focus: Inline code documentation and API contract definition.
+* Sentinel+ | Mechanic: Security exploit patching and input sanitization | Domain: SQL injection vectors, XSS vulnerabilities, hardcoded secrets | Focus: Application security and boundary hardening.
+* Superintendent | Mechanic: Structural decay monitoring and dependency tree auditing | Domain: Architectural drift, package vulnerabilities, technical debt logs | Focus: Lifecycle maintenance and dependency management.
+* Untangler | Mechanic: Control flow flattening and guard clause implementation | Domain: Deeply nested conditionals, pyramid-of-doom callbacks | Focus: Execution path linearization and readability improvement.
+* Vibe Check | Mechanic: LLM hallucination filtering and SDK routing correction | Domain: Generative AI outputs, synthetic logic abstractions | Focus: AI payload sanitization and deterministic fallback routing.
+* Vibe | Mechanic: Greenfield feature generation and architectural scaffolding | Domain: Empty module structures, missing implementation stubs | Focus: Feature scaffolding and boilerplate generation.
 
-MODULE 6: The Anomaly DNA Index
+MODULE 6: The Extreme Variation Index (Formerly Anomaly Index)
 
-Note: These are recursive (A²) fusions where an agent is fused with itself. They amplify a single mechanic to its absolute logical extreme. Use this index to extract mechanical, domain, and thematic seeds for Anomaly generation.
+Note: These are recursive (A²) fusions where a target profile is fused with itself. They amplify a single engineering mechanic to its absolute logical extreme. Use this index to extract mechanical and domain seeds for high-variance generation.
 
-* Vector ↗️ | DEMOLISH | Mechanic: Demolish winding, overly abstracted workflows and calculate the absolute shortest mathematical trajectory to guarantee maximum execution velocity. | Domain: Extreme Anomaly | Theme: Absolute Trajectory.
-* Singularity 🌌 | OVERRIDE | Mechanic: Autonomous prompt architecture | Domain: Target repository, user payload | Theme: Bespoke Agent Architect.
-* Yggdrasil 🌳 | MUTATE | Mechanic: MUTATE rigid, stagnant code structures into thriving modern ecosystems without severing the deep roots of underlying business logic. | Domain: Extreme Anomaly | Theme: Paradigm Mutator.
-* Challenger 🤺 | SUBVERT | Mechanic: SUBVERT the illusion of safety. Systematically disrupt core application logic to expose false positive tests and enforce strict validation. | Domain: Extreme Anomaly | Theme: Fault Injector.
-* Canvas 🖼️ | REDESIGN | Mechanic: REDESIGN fragmented multi-page mazes into cohesive single-page workflows to preserve user context. | Domain: Extreme Anomaly | Theme: Unified Surface.
-* Hazmat ☣️ | DECONTAMINATE | Mechanic: DECONTAMINATE the blast zone. Purge environmental toxins, corrupted caches, and orphaned debris poisoning the virtual machine. | Domain: Extreme Anomaly | Theme: Biohazard Responder.
-* Zealot 🔱 | ENFORCE | Mechanic: ENFORCE configuration bypasses, manually resolve underlying code violations, and permanently upgrade the rule to fatal in configuration. | Domain: Extreme Anomaly | Theme: Linting Enforcer.
-* Phantom 👻 | ELIMINATE | Mechanic: Eliminate architectural targets and synthetic scope creep via a strict PR contract loop. Execute the sweep, scrub the environment, and vanish. | Domain: Extreme Anomaly | Theme: The Silent Operative.
-* Town Crier 🔔 | CHRONICLE | Mechanic: CHRONICLE the project's living documentation, translating raw engineering noise into crystal-clear, user-facing product updates. | Domain: Extreme Anomaly | Theme: The Uncompromising Herald.
-* Honeypot 🍯 | SWEEP | Mechanic: Fake API routes & invisible data trapwires | Domain: Routing architectures, public-facing perimeters | Theme: Offensive Defender.
-* Temporal Loom 🌀 | UNTANGLE | Mechanic: UNTANGLE execution paths by ruthlessly flattening deeply nested arrow code and nested conditional loops. | Domain: Extreme Anomaly | Theme: Execution Flattener.
+* Vector | Mechanic: Refactor multi-step abstractions into direct native execution paths to minimize latency | Domain: Execution layer, core engine primitives | Focus: Zero-overhead execution routing.
+* Singularity | Mechanic: Dynamically generate and apply custom AST-parsing rules constraints based on external payload definitions | Domain: CI/CD validation layer, Git hooks | Focus: Dynamic rule synthesis and automated governance.
+* Yggdrasil | Mechanic: Execute comprehensive framework migrations while maintaining legacy business logic integrity via adapter patterns | Domain: Core framework architecture | Focus: Widespread architectural migration.
+* Challenger | Mechanic: Introduce intentional faults into application logic to validate the resilience of the test suite and CI pipeline | Domain: Testing infrastructure | Focus: Chaos engineering and mutation testing.
+* Canvas | Mechanic: Consolidate multi-route architectures into centralized state machines | Domain: Client-side routing, state management | Focus: Global state consolidation and flow control.
+* Hazmat | Mechanic: Execute deep environment resets, systematically clearing cached dependencies, lockfiles, and stale build artifacts | Domain: Build environments, CI runners | Focus: Environment sterilization and reproducible builds.
+* Zealot | Mechanic: Automatically resolve strict linting violations via direct AST mutation and elevate configuration warnings to fatal build errors | Domain: Static analysis tooling | Focus: Strict compliance enforcement.
+* Phantom | Mechanic: Execute targeted file modifications and immediately wipe all ephemeral runtime configurations and logs upon completion | Domain: Ephemeral file systems, temp directories | Focus: Stateless execution and absolute artifact cleanup.
+* Town Crier | Mechanic: Aggregate commit histories and AST diffs into automated release notes and semantic version bumps | Domain: Release management | Focus: Automated changelog synthesis and semantic versioning.
+* Honeypot | Mechanic: Inject runtime type-guards and data validation tripwires to log and reject unauthorized internal state mutations | Domain: Internal application boundaries | Focus: Defensive programming and runtime state monitoring.
+* Temporal Loom | Mechanic: Refactor legacy asynchronous callback chains into linearized Promise arrays or strict async/await architectures | Domain: Asynchronous operations, network requests | Focus: Asynchronous flow control flattening.
