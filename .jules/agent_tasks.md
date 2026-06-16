@@ -7,8 +7,8 @@
 
 ## The [REFACTORER] Queue
 - [ ] 🏗️ `js/UI/JulesTerminal/JulesTerminal.js`: 638 lines. Structural Monolith.
-- [ ] 🏗️ `js/core/RosterApp.js`: 557 lines. Structural Monolith.
-- [ ] 🏗️ `js/core/events/EventBinder.js`: 534 lines. Structural Monolith.
+- [x] 🏗️ `js/core/RosterApp.js`: Sabotage wrappers collapsed to EventBinder directly.
+- [x] 🏗️ `js/core/events/EventBinder.js`: Caller sites updated directly to avoid pass-throughs.
 
 ## The [PRUNER] Queue
 ## The [INSTRUMENTER] Queue
@@ -27,6 +27,7 @@
 - [ ] 🧹 `js/Services/LLMRouter/LLMRouter.js`: Replace raw `console.error` calls with structured telemetry logger at line 138.
 
 ## The [TRANSFORMER] Queue
+- [x] 🔀 `js/Services/`: Eradicated synthetic LLM Coat-Check passthrough return awaits in GithubAPI, AgentRepository, and LLMRouter.
 
 ## The [OPERATOR] Queue
 - [ ] 📦 `package-lock.json`: Lockfile mismatch detected against package.json. Sync required.

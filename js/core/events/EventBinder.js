@@ -22,8 +22,8 @@ class EventBinder {
       }
     });
 
-    if (app.elements.clearBtn) app.elements.clearBtn.addEventListener("click", () => app.clearSearch());
-    if (app.elements.clearSearchEmptyBtn) app.elements.clearSearchEmptyBtn.addEventListener("click", () => app.clearSearch());
+    if (app.elements.clearBtn) app.elements.clearBtn.addEventListener("click", () => app.searchController?.clearSearch());
+    if (app.elements.clearSearchEmptyBtn) app.elements.clearSearchEmptyBtn.addEventListener("click", () => app.searchController?.clearSearch());
 
     if (app.elements.julesRepoPicker) app.elements.julesRepoPicker.addEventListener('change', (e) => {
         if (app._cardHtmlCache) app._cardHtmlCache.clear();

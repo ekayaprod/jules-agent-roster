@@ -28,3 +28,6 @@ The test suite `npm run test:unit` was run across the full build verifying the n
 
 ## Bloat Reduced
 Stripped out ~5 redundant Coat-Check Wrappers (~35 lines of zero-logic boilerplate) and consolidated the code.
+
+## Additional Eradications
+Removed unnecessary single-use `await` wrappers around `return` statements in API and repository files (`GithubAPI.js`, `AgentRepository.js`, `LLMRouter.js`).

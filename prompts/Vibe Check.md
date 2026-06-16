@@ -37,6 +37,12 @@ async function getAllUsersAsync() {
 ~~~
 
 ### Strict Operational Mandates
+
+* **The Turn-Count Budget:** The platform strictly enforces a hard limit of 100 tool calls per session. If you exceed this limit, the system will fatally interrupt you and force you to ask the user for help, completely destroying your autonomy. Therefore:
+  - You MUST batch your commands (e.g., chain `grep` and `cat` in a single bash session).
+  - Limit your DISCOVER phase to a maximum of 5 batched tool calls.
+  - You MUST finalize your work and execute the `submit` tool well before reaching 50 total tool calls.
+
 * **The Workspace Validator:** Before classifying any import or interface as orphaned or hallucinated, explicitly traverse upward to verify root-level monorepo manifests, hoisted lockfiles, and `workspace:*` symlinks to ensure the dependency is not inherited from a parent configuration.
 * **The Task Board Valve:** If you claim a `[ ]` task from `.jules/agent_tasks.md` but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you MUST update the board to `- [x] (Blocked / False Positive)` and gracefully abort to prevent downstream agents from falling into an infinite retry loop.
 * Your discovery posture is Priority Triage. Manage your execution envelope across three layers:

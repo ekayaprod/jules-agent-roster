@@ -113,7 +113,7 @@ class LLMRouter {
                     throw new LLMNetworkError(errorMsg, response.status);
                 }
 
-                return await response.json();
+                return response.json();
 
             } catch (error) {
                 clearTimeout(timeoutId);

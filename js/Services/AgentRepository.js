@@ -18,7 +18,7 @@ class AgentRepository {
     async _fetchPayload() {
         try {
             const res = await NetworkUtils.fetchWithRetry("./roster-payload.json", { throwOn404: false });
-            return await this.safeJsonParse(res, "./roster-payload.json");
+            return this.safeJsonParse(res, "./roster-payload.json");
         } catch (err) {
             if (err.message === "Check your configuration file formatting and try again." || err.message === "Failed to parse JSON") {
                 throw err; // Propagate safeJsonParse errors to fail fast as expected
@@ -31,7 +31,7 @@ class AgentRepository {
         try {
             const res = await NetworkUtils.fetchWithRetry("./fusion_matrix.json", { throwOn404: false });
             if (res && res.ok) {
-                return await this.safeJsonParse(res, "./fusion_matrix.json");
+                return this.safeJsonParse(res, "./fusion_matrix.json");
             }
             return {};
         } catch (err) {
@@ -96,7 +96,7 @@ class AgentRepository {
             if (!res.ok) {
                 return fallback;
             }
-            return await res.text();
+            return res.text();
         } catch (e) {
             return fallback;
         } finally {

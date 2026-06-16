@@ -63,7 +63,7 @@ class GithubAPI {
                 throw new GithubNetworkError(errorMsg, response.status);
             }
 
-            return await response.json();
+            return response.json();
         } catch (error) {
             clearTimeout(timeoutId);
             if (error.name === 'AbortError') {

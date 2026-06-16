@@ -385,7 +385,7 @@ describe('EventBinder (Boundary Interrogation)', () => {
         const clickEvent = new MouseEvent('click', { bubbles: true });
         document.body.dispatchEvent(clickEvent);
 
-        expect(app.searchController?.clearSearch).toHaveBeenCalled();
+        expect(app.searchController.clearSearch).toHaveBeenCalled();
     });
 
     // 🕵️ The Boundary Interrogation: Test julesRepoPicker DOM event integration
