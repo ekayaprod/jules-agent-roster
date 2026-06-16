@@ -74,6 +74,9 @@ const createMockElement = (id = '') => {
     },
     getAttribute: (k) => attributes[k],
     removeAttribute: (k) => delete attributes[k],
+    style: {
+      setProperty: (k, v) => {}
+    },
     classList: {
       add: (c) => {
         classes.add(c);
@@ -133,6 +136,7 @@ const createMockElement = (id = '') => {
         const tagName = match[1] || match[4];
         const attrs = match[2] || match[5] || "";
         const child = global.document.createElement(tagName);
+        child.style = { setProperty: () => {} };
 
         const classMatch = attrs.match(/class=["'](.*?)["']/);
         if (classMatch) child.className = classMatch[1];
@@ -248,6 +252,7 @@ global.document = {
   getElementById: (id) => getMockElement(id),
   createElement: (tag) => {
     const el = createMockElement();
+    el.style = { setProperty: () => {} };
     el.tagName = tag.toUpperCase();
     return el;
   },

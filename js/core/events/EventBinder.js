@@ -162,12 +162,12 @@ class EventBinder {
                   cardArea.innerHTML = '';
               }
               if (downloadBtn) {
-                  downloadBtn.style.display = "";
+                  downloadBtn.classList.remove("d-none");
                   downloadBtn.dataset.parentName = agent.name;
               }
               modal.classList.add("visible");
           } else if (downloadBtn) {
-              downloadBtn.style.display = "none";
+              downloadBtn.classList.add("d-none");
           }
           return;
       }
@@ -186,7 +186,7 @@ class EventBinder {
               cardArea.innerHTML = '';
               const card = AgentCard.create(agent, index, 0);
               card.classList.remove("pop-in");
-              card.style.margin = "0"; // Reset margin to fit perfectly
+              card.classList.add("m-0"); // Reset margin to fit perfectly
               cardArea.appendChild(card);
           }
           return;
@@ -482,12 +482,12 @@ class EventBinder {
         activateToggle.addEventListener("change", async (e) => {
             if (!e.target.checked) {
                 if (runnerInputs) runnerInputs.classList.remove("active");
-                if (julesTerminal) julesTerminal.style.display = "none";
+                if (julesTerminal) julesTerminal.classList.add("d-none");
                 return;
             }
 
             if (runnerInputs) runnerInputs.classList.add("active");
-            if (julesTerminal) julesTerminal.style.display = "";
+            if (julesTerminal) julesTerminal.classList.remove("d-none");
             // Load sources if not loaded already but initialized
             if (!app.julesTerminal || !app.julesTerminal.initialized) return;
 
