@@ -149,7 +149,6 @@ class RosterApp {
               agent.prompt = fetched;
             })
             .catch(err => {
-              console.warn(`[RosterApp] Failed to pre-fetch prompt for ${agent.name}:`, err);
             });
         }));
       }

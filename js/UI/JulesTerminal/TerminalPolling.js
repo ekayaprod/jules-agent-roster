@@ -28,7 +28,6 @@ class TerminalPolling {
                 if (tu) {
                     tu.dispatchEvent("JULES_POLLING_ERROR", error);
                 } else {
-                    console.warn("Session polling cycle encountered an error:", error);
                 }
             }
 
