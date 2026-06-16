@@ -31,8 +31,7 @@ class ClipboardUtils {
         // 2. Fallback: execCommand('copy')
         const el = document.createElement("textarea");
         el.value = text;
-        el.style.position = "fixed";
-        el.style.opacity = "0";
+        el.classList.add("clipboard-hidden-textarea");
         document.body.appendChild(el);
         el.select();
 
@@ -74,9 +73,9 @@ class ClipboardUtils {
         btn.classList.add("success-state");
         span.innerText = successMessage;
 
-        if (primaryIcon) primaryIcon.style.display = "none";
+        if (primaryIcon) primaryIcon.classList.add("d-none");
         if (checkIcon) {
-            checkIcon.style.display = "block";
+            checkIcon.classList.remove("d-none");
             checkIcon.classList.add("animate");
         }
 
@@ -84,9 +83,9 @@ class ClipboardUtils {
             btn.classList.remove("success-state");
             span.innerText = originalText;
 
-            if (primaryIcon) primaryIcon.style.display = "block";
+            if (primaryIcon) primaryIcon.classList.remove("d-none");
             if (checkIcon) {
-                checkIcon.style.display = "none";
+                checkIcon.classList.add("d-none");
                 checkIcon.classList.remove("animate");
             }
         }, duration);

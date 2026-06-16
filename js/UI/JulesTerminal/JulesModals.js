@@ -38,7 +38,7 @@ class JulesModals {
             this.terminal.activeModalSessionId = null;
             if (inputField) {
                 inputField.value = "";
-                inputField.style.borderColor = "";
+                inputField.classList.remove("border-error");
                 inputField.removeAttribute("aria-invalid");
                 inputField.removeAttribute("aria-describedby");
             }
@@ -52,7 +52,7 @@ class JulesModals {
             const text = inputField.value.trim();
             if (!text) {
                 if (inputField && errorSpan) {
-                    inputField.style.borderColor = "var(--error)";
+                    inputField.classList.add("border-error");
                     inputField.setAttribute("aria-invalid", "true");
                     inputField.setAttribute("aria-describedby", "interactionModalError");
                     errorSpan.textContent = "Please provide a response before transmitting.";
@@ -80,7 +80,7 @@ class JulesModals {
         });
         const debouncedInputClear = typeof PerformanceUtils !== 'undefined' ? PerformanceUtils.debounce(() => {
             if (inputField && errorSpan) {
-                inputField.style.borderColor = "";
+                inputField.classList.remove("border-error");
                 inputField.removeAttribute("aria-invalid");
                 inputField.removeAttribute("aria-describedby");
                 errorSpan.textContent = "";
@@ -88,7 +88,7 @@ class JulesModals {
             }
         }, 300) : () => {
             if (inputField && errorSpan) {
-                inputField.style.borderColor = "";
+                inputField.classList.remove("border-error");
                 inputField.removeAttribute("aria-invalid");
                 inputField.removeAttribute("aria-describedby");
                 errorSpan.textContent = "";
@@ -134,7 +134,7 @@ class JulesModals {
         });
         const debouncedHistoryInputClear = typeof PerformanceUtils !== 'undefined' ? PerformanceUtils.debounce(() => {
             if (historyModalInput && historyErrorSpan) {
-                historyModalInput.style.borderColor = "";
+                historyModalInput.classList.remove("border-error");
                 historyModalInput.removeAttribute("aria-invalid");
                 historyModalInput.removeAttribute("aria-describedby");
                 historyErrorSpan.textContent = "";
@@ -142,7 +142,7 @@ class JulesModals {
             }
         }, 300) : () => {
             if (historyModalInput && historyErrorSpan) {
-                historyModalInput.style.borderColor = "";
+                historyModalInput.classList.remove("border-error");
                 historyModalInput.removeAttribute("aria-invalid");
                 historyModalInput.removeAttribute("aria-describedby");
                 historyErrorSpan.textContent = "";
@@ -221,16 +221,16 @@ class JulesModals {
 
     _showKeyError(input, span, message) {
         if (!input || !span) return;
-        input.style.borderColor = "var(--error)";
+        input.classList.add("border-error");
         span.textContent = message;
-        span.style.display = "block";
+        span.classList.remove("d-none");
     }
 
     _clearKeyError(input, span) {
         if (!input || !span) return;
-        input.style.borderColor = "";
+        input.classList.remove("border-error");
         span.textContent = "";
-        span.style.display = "none";
+        span.classList.add("d-none");
     }
 
     _showPRModal(pr) {

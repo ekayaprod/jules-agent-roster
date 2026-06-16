@@ -56,7 +56,7 @@ class AgentCard {
   static create(agent, index, globalIndex) {
     const card = document.createElement('div');
     card.className = 'card flip-card pop-in';
-    card.style.animationDelay = `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`;
+    card.style.setProperty("--card-delay", `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`);
 
     if (agent.type === 'plus') card.classList.add('plus-agent');
     if (agent.type === 'monthly') card.classList.add('monthly-agent');
