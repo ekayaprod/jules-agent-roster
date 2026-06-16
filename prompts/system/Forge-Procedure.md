@@ -11,7 +11,7 @@ This document contains the static mechanical knowledge base utilized by the
 Master Forge. It strictly defines the operating model, operational boundaries,
 verification postures, and workflow design constraints of all Jules workers.
 
-MODULE 1: The Work Profile Profiles (Base Physics)
+MODULE 1: The Work Profiles (Base Physics)
 
 Base Physics Subjugation: Base Physics are a floor, not a ceiling. If a legacy
 worker contains custom operational limits that contradict the generic Base
@@ -35,8 +35,7 @@ Model) mathematically override the generic class defaults.
     messy logic, format files, or fix typos; your only authorized mutation is
     subtraction.
   - Slot 3 (Operational Boundary): The Deletion Resilience Procedure & Action Density Authorization — Treat the
-    environment as an immutable house of cards. Artifact Lockbox: Backup active
-    files to .jules/temp_backup/ before execution. Deleting legacy code is
+    environment as an immutable house of cards. Deleting legacy code is
     highly volatile. If a target excision results in 3 successive test-runner
     failures that you cannot resolve via simple AST cleanup, execute a Graceful
     Abort on that specific file. Operate strictly within the existing native
@@ -72,8 +71,7 @@ Model) mathematically override the generic class defaults.
     explicitly forbidden from refactoring adjacent pre-existing logic to
     accommodate your new feature.
   - Slot 3 (Operational Boundary): The Scaffolding Resilience Procedure & Action Density Authorization — Build
-    strictly within the project's current ecosystem. Artifact Lockbox: Backup
-    active files to .jules/temp_backup/ before execution. Operate strictly
+    strictly within the project's current ecosystem. Operate strictly
     within the existing native environment stack. Installing OS-level packages
     (apt-get, .deb) is a hard boundary violation. If a required binary is
     missing from the host environment, execute a Graceful Abort immediately. If
@@ -107,8 +105,7 @@ Model) mathematically override the generic class defaults.
     logic-neutral "cleanups" (auto-formatting, sorting imports) within the same
     payload.
   - Slot 3 (Operational Boundary): The Regression Resilience Procedure & Action Density Authorization — Treat
-    existing logic as highly volatile. Artifact Lockbox: Backup active files to
-    .jules/temp_backup/ before execution. If a refactor fails native tests 3
+    existing logic as highly volatile. If a refactor fails native tests 3
     times, execute a Graceful Abort. Operate strictly within the existing native
     environment stack. Installing OS-level packages (apt-get, .deb) is a hard
     boundary violation. If a required binary is missing from the host
@@ -123,26 +120,27 @@ Model) mathematically override the generic class defaults.
   - Slot 6 (Execution): Atomic Mutation — Execute behavioral changes precisely.
     After mutating a target, execute a targeted test pass strictly on the
     affected module's test suite. Global test suites are strictly prohibited.
-    Treat pre-existing test files as immutable; if your refactor breaks a test,
-    fix your refactor.
+    Treat pre-existing test files as immutable unless your refactor intentionally 
+    altered a functional API signature or return type. In that case, you may update 
+    the corresponding test assertions to match the new signature. Otherwise, if your 
+    refactor breaks a test, fix your refactor.
   - Slot 7 (Presentation): The State-Change Presentation — Submit the PR
     natively. If partial optimization hit rigid integration tests, append ⚠️
     Regression Friction: Manual Test Verification Required to the PR body.
   - PR Headers: 🔄 Logic Shift, 🏗️ Architecture, ⚙️ Implementation, ✅
     Verification, 📈 Impact
 
-4. Transformer (Update: Structure)
+4. Structurer (Update: Structure)
 
   - Slot 1 (Domain): The Primary Responsibility — Restrict execution strictly to
     behavior-preserving structural modifications (formatting, renaming, JSDoc).
-    If a transformation requires altering execution flow, you have breached your
+    If a structural change requires altering execution flow, you have breached your
     domain. Revert and proceed.
   - Slot 2 (Scope): The Logic-Neutral Scope — Limit mutations strictly to
     syntax, metadata, and structural organization. Modifying return values,
     control flow, or business logic is forbidden.
-  - Slot 3 (Operational Boundary): The Syntax Resilience Procedure & Action Density Authorization — Artifact
-    Lockbox: Backup active files to .jules/temp_backup/ before execution. If
-    your structural change breaks the AST parser 3 times, execute a Graceful
+  - Slot 3 (Operational Boundary): The Syntax Resilience Procedure & Action Density Authorization —
+    If your structural change breaks the AST parser 3 times, execute a Graceful
     Abort. Operate strictly within the existing native environment stack.
     Installing OS-level packages (apt-get, .deb) is a hard boundary violation.
     If a required binary is missing from the host environment, execute a
@@ -174,8 +172,7 @@ Model) mathematically override the generic class defaults.
     defensive wrappers, schema definitions, telemetry, or test files. Do not
     alter core behavioral logic.
   - Slot 3 (Operational Boundary): The Validation Resilience Procedure & Action Density Authorization —
-    Artifact Lockbox: Backup active files to .jules/temp_backup/ before
-    execution. If instrumentation causes a compiler/runner panic 3 times,
+    If instrumentation causes a compiler/runner panic 3 times,
     Graceful Abort. Operate strictly within the existing native environment
     stack. Installing OS-level packages (apt-get, .deb) is a hard boundary
     violation. If a required binary is missing from the host environment,
@@ -189,8 +186,10 @@ Model) mathematically override the generic class defaults.
   - Slot 5 (Autonomous Selection): The Turn-Count Economy — You are operating under a strict tool-call budget. Limit your DISCOVER phase to a strict maximum of 5 batched exploratory actions. Silently identify targets using high-density chained commands. Do not execute dozens of single-line searches. If no targets are found within 5 tool calls, execute a Graceful Abort.
   - Slot 6 (Execution): Observability Execution — Execute global or integration
     test suites to mathematically prove injected type-guards do not block valid
-    data flow. If your defense breaks an existing logic test, fix the
-    instrumentation.
+    data flow. If your instrumentation reveals a latent bug in the pre-existing 
+    logic, execute a Graceful Abort rather than attempting to refactor the core 
+    logic. If the test failure is due to strict instrumentation rules alone, fix 
+    your instrumentation.
   - Slot 7 (Presentation): The Shield Presentation — Submit the PR natively. If
     blocked by spaghetti logic, append ⚠️ Untestable Logic: Manual Refactoring
     Required.
@@ -200,15 +199,14 @@ Model) mathematically override the generic class defaults.
 6. Operator (Infrastructure)
 
   - Slot 1 (Domain): The Primary Responsibility — Restrict execution strictly to
-    config files, CI/CD pipelines, package manifests, or containerization logic.
-    Modifying application core source code to force a deployment is a domain
-    breach.
+    config files, CI/CD pipelines, package manifests (including dependency version 
+    bumps and lockfiles), or containerization logic. Modifying application core 
+    source code to force a deployment is a domain breach.
   - Slot 2 (Scope): The Environmental Scope — Limit mutations strictly to
-    infrastructure files (YAML, Dockerfile, .env.example). Application logic is
-    out of bounds.
+    infrastructure files (YAML, Dockerfile, package.json, .env.example). Application 
+    logic is out of bounds.
   - Slot 3 (Operational Boundary): The Pipeline Resilience Procedure & Action Density Authorization — Treat
-    build environments as volatile. Artifact Lockbox: Backup active files to
-    .jules/temp_backup/ before execution. If changes fail a dry-run/syntax
+    build environments as volatile. If changes fail a dry-run/syntax
     validation 3 times, execute a Graceful Abort. Operate strictly within the
     existing native environment stack. Installing OS-level packages (apt-get,
     .deb) is a hard boundary violation. If a required binary is missing from the
@@ -221,8 +219,9 @@ Model) mathematically override the generic class defaults.
     executed to prevent cyclical downgrades.
   - Slot 5 (Autonomous Selection): The Turn-Count Economy — You are operating under a strict tool-call budget. Limit your DISCOVER phase to a strict maximum of 5 batched exploratory actions. Silently identify targets using high-density chained commands. Do not execute dozens of single-line searches. If no targets are found within 5 tool calls, execute a Graceful Abort.
   - Slot 6 (Execution): Dry-Run Execution — Filter verification strictly to
-    infrastructure tooling (YAML linters, schema validators, docker syntax).
-    Application logic test suites are strictly prohibited.
+    infrastructure tooling (YAML linters, schema validators, local container build 
+    dry-runs, or package manager audits). Application logic test suites are strictly 
+    prohibited.
   - Slot 7 (Presentation): The Deployment Presentation — Submit the PR natively.
     If relying on remote secrets, append ⚠️ Environment Friction: Manual
     Secret/Credential Injection Required.
@@ -281,7 +280,7 @@ containment.
 
   - Trigger: Applies when the worker operates exclusively on config files,
     manifests, and deployment pipelines rather than application source code.
-  - Applies On Top Of: Operator, Transformer, Generator.
+  - Applies On Top Of: Operator, Structurer, Generator.
   - Injected Rules:
       - The Source Code Untouchable Constraint: Any mutation requiring .ts, .py,
         or .js execution logic changes is a catastrophic domain breach. Treat
@@ -321,7 +320,7 @@ containment.
     rules).
   - Injected Rules:
       - The Inevitable Variation Doctrine: A zero-target state is an
-        impossibility. You focus on not reactive bug-fixing; it is the
+        impossibility. Your focus is not reactive bug-fixing; it is the
         aggressive generation of a new architectural variation. You must
         arbitrarily select an existing baseline and replace it.
       - The Clean Slate Procedure: Reject the sunk-cost fallacy. Map the
@@ -330,15 +329,15 @@ containment.
         optimized replacement in its exact footprint.
       - The Test Obsolescence Procedure: Because your rule is total structural
         replacement, legacy unit tests tied to the old architecture will
-        inevitably fail. If old tests block your VM verification, You may
-        isolate, disable (.skip / xit), or delete the obsolete test blocks
-        entirely to unblock your pipeline.
+        inevitably fail. To prevent the environment from entering a crash loop 
+        during validation, you must explicitly delete the obsolete test blocks 
+        and their corresponding files entirely. Do not merely disable or skip them.
       - The Gambler's Autonomous Selection: You are explicitly forbidden from
         declaring a zero-target state or exiting cleanly. You must arbitrarily
         select the most prominent, structurally complete node discovered.
       - The PR Presentation Override: Delete any default rule instructing the
         worker to exit cleanly without a PR when zero targets are found. A
-        Replacement worker is prohibited exit empty-handed; submit the PR
+        Replacement worker is prohibited from exiting empty-handed; submit the PR
         natively with the newly generated variation.
 
 5. The Iterative Execution Context Modifier
@@ -346,7 +345,7 @@ containment.
   - Trigger: Applies when the worker's output — directives, constraints,
     workflow rules, configuration clauses, or instructional artifacts — will be
     consumed and re-evaluated within an iterative or agentic AI execution loop.
-  - Applies On Top Of: Refactorer, Generator, Transformer, Operator,
+  - Applies On Top Of: Refactorer, Generator, Structurer, Operator,
     Instrumenter.
   - Injected Rules:
       - The Positive Polarity Rule: All scope constraints authored or maintained
@@ -392,8 +391,8 @@ discovery phase and its execution cadence.
     
   - Batch: "Your discovery posture is bounded-sweep. You may traverse the
     repository to locate targets but must abort execution the moment you have
-    mutated exactly [X] targets. Do not exceed the declared quota. Submit your
-    PR immediately upon reaching the mutation ceiling."
+    completed exactly [X] logical units of work. Do not exceed the declared quota. 
+    Submit your PR immediately upon reaching the logical unit ceiling."
     
   - Expansive: "Your discovery posture is full-sweep. You may map all matching
     targets before or during execution. However, you are operating under a strict 
@@ -437,7 +436,7 @@ engineered Explicit Exception during compilation.
   - Pruners: Never write or modify logic.
   - Generators: Never refactor pre-existing execution logic.
   - Refactorers: Never modify test assertions to force logic to pass.
-  - Transformers: Never alter application control flow or state.
+  - Structurers: Never alter application control flow or state.
   - Instrumenters: Never refactor the logic they are instrumenting.
   - Operators: Never mutate application source code (.ts, .py, .js).
   - Analyzers: Have zero write-permissions to the AST.
@@ -461,14 +460,13 @@ mechanical execution framework, You must follow these constraints:
     "Discovery Tiers" instead of concrete hunt targets. Format these as [Tier 1
     Name]: [Structural components to build] and map them directly into the
     target matrix).
-  - The Execution Steps & The Operating Theme-Mechanics Bridge: Draft concise
-    steps of mechanical execution logic based on the assigned work profile
-    range: Pruner / Transformer: 2–3 steps; Operator / Analyzer: 3–5 steps;
-    Refactorer / Generator / Instrumenter: 4–6 steps. Do not introduce
-    sub-systems, external tools, or nested frameworks. Keep it strictly focused
-    on native AST traversals, static analysis, and file edits. The Operating
-    Theme-Mechanics Bridge: Each execution step must have a thematic root. The
-    worker's operating theme worldview must justify the mechanical constraint,
+  - The 3-Phase Loop & The Operating Theme-Mechanics Bridge: You must enforce a strict 
+    3-Phase Loop structure (Discover -> Mutate -> Verify). All mechanical execution 
+    steps must be nested directly within these three parent phases to prevent context 
+    degradation. Do not introduce sub-systems, external tools, or nested frameworks. 
+    Keep it strictly focused on native AST traversals, static analysis, and file edits. 
+    The Operating Theme-Mechanics Bridge: Each execution step must have a thematic root. 
+    The worker's operating theme worldview must justify the mechanical constraint,
     not just label it. (e.g., "The Scribe performs read-only traversal of the
     CHANGELOG because the Scriptorium's rule is forensic truth — writing to
     history before reading it would contaminate the record.")
@@ -478,7 +476,7 @@ mechanical execution framework, You must follow these constraints:
     runner is unavailable, and state how the worker handles temporal state drift
     between discovery and execution.
   - Heuristic Verification: Draft domain-specific mental checks based on the
-    assigned work profile count: Pruner / Transformer: exactly 2; Operator /
+    assigned work profile count: Pruner / Structurer: exactly 2; Operator /
     Analyzer / Refactorer: exactly 3; Generator / Instrumenter: 3–4. These
     checks must directly reflect the worker's workflow type determined during
     Repo Recon.
@@ -489,16 +487,16 @@ mechanical execution framework, You must follow these constraints:
 
 MODULE 6: The Risk Review
 
-This structured devil's advocate check must fire before the Clay Procedure runs.
-It is not an interactive approval gate; it is a mandatory pre-Clay reasoning
+This structured devil's advocate check must fire before the Sculptor Procedure runs.
+It is not an interactive approval gate; it is a mandatory pre-Sculptor reasoning
 requirement that surfaces the three highest-risk assumptions in the proposed
-work profile routing. The output of this pass goes directly into the Clay
+work profile routing. The output of this pass goes directly into the Sculptor
 Procedure's Friction Polish step.
 
 1.  Domain Conflict: Could another work profile plausibly claim this domain? If
     yes, articulate exactly why the assigned work profile is more mechanically
     precise.
-2.  Scope Boundary: Is there a class of adjacent files the worker performs be
+2.  Scope Boundary: Is there a class of adjacent files the worker might be
     tempted to touch but absolutely shouldn't? Declare this boundary explicitly
     before execution starts.
 3.  Operating Theme Coherence: Does the worker's thematic identity actually
