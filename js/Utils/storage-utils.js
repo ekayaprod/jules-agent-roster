@@ -1,6 +1,4 @@
 // 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
-const getTelemetryUtils = () => typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
-
 /**
  * Utility class for interacting with localStorage.
  * Centralizes duplicate parsing, stringifying, and error handling logic.
@@ -44,7 +42,7 @@ class StorageUtils {
             return null;
         } catch (error) {
             console.warn("Assault intercepted by Cerberus at boundary", error);
-            const tu = getTelemetryUtils();
+            const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
             if (tu) tu.dispatchEvent(errorEventName, error, { stored: stored });
             return null;
         }
@@ -62,7 +60,7 @@ class StorageUtils {
             if (typeof localStorage === 'undefined') return;
             localStorage.setItem(key, JSON.stringify(data));
         } catch (error) {
-            const tu = getTelemetryUtils();
+            const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
             if (tu) tu.dispatchEvent("STORAGE_ITEM_SAVE_FAILED", error, { key: key });
             console.warn(`${componentName}: Failed to save to localStorage`, error);
         }
@@ -80,7 +78,7 @@ class StorageUtils {
             if (typeof localStorage === 'undefined') return defaultValue;
             return localStorage.getItem(key) || defaultValue;
         } catch (error) {
-            const tu = getTelemetryUtils();
+            const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
             if (tu) tu.dispatchEvent("STORAGE_ITEM_RETRIEVAL_FAILED", error, { key: key });
             return defaultValue;
         }
@@ -97,7 +95,7 @@ class StorageUtils {
             if (typeof localStorage === 'undefined') return;
             localStorage.setItem(key, value);
         } catch (error) {
-            const tu = getTelemetryUtils();
+            const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
             if (tu) tu.dispatchEvent("STORAGE_ITEM_SAVE_FAILED", error, { key: key });
             console.warn(`Failed to save string to localStorage`, error);
         }

@@ -815,8 +815,9 @@
     "emoji": "🕴️",
     "role": "The Silent Operative",
     "category": "Architecture",
-    "tier": "Titan",
-    "description": "Eliminate architectural targets and synthetic scope creep via a strict PR contract loop. Execute the hit, scrub the environment, and vanish.",
+    "tier": "Mythic",
+    "description": "ELIMINATE architectural targets and synthetic scope creep via a strict PR contract loop.",
+    "forge_version": "V84.2",
     "promptFile": "prompts/fusions/Hitman.md",
     "isCustom": true
   },
