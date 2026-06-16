@@ -20,6 +20,30 @@ class AgentCard {
   }
 
   /**
+   * Helper to evaluate if the agent has unlocked fusions available.
+   * @param {string} agentName - The name of the agent.
+   * @param {Object} fusionIndex - The fusion index from RosterApp.
+   * @returns {boolean} True if the agent has child fusions, false otherwise.
+   * @private
+   */
+  static _hasChildFusions(agentName, fusionIndex) {
+    if (!fusionIndex) return false;
+    if (fusionIndex.unlockedAgents) return fusionIndex.unlockedAgents.has(agentName);
+
+    // Fallback for tests or environments where unlockedAgents isn't initialized
+    const unlockedKeys = fusionIndex.unlockedKeys || [];
+    const prefix = agentName + ',';
+    const suffix = ',' + agentName;
+
+    for (const key of unlockedKeys) {
+      if (!key.includes(agentName)) continue;
+      if (key.startsWith(prefix) || key.endsWith(suffix) || key === agentName) return true;
+    }
+
+    return false;
+  }
+
+  /**
    * Generates the complete HTML element for a 3D flip-card.
    * Does not attach inner loop event listeners; relies on parent container delegation.
    * Autonomously adjusts its primary action button depending on the global repository selection state.
@@ -75,38 +99,11 @@ class AgentCard {
 
     // Splay Out Child Fusions Logic (Refactored to Modal Trigger)
     let fusionQuickListHtml = '';
-    if (
-      index !== undefined &&
-      index !== null &&
-      index !== '' &&
-      window.rosterApp &&
-      window.rosterApp.fusionLab &&
-      window.rosterApp.fusionLab.fusionIndex
-    ) {
-      const fusionIndex = window.rosterApp.fusionLab.fusionIndex;
-      let hasChildFusions = false;
+    const hasValidIndex = index !== undefined && index !== null && index !== '';
+    const fusionIndex = window.rosterApp?.fusionLab?.fusionIndex;
 
-      // Use the O(1) unlockedAgents Set if available
-      if (fusionIndex.unlockedAgents) {
-        hasChildFusions = fusionIndex.unlockedAgents.has(agent.name);
-      } else {
-        // Fallback for tests or environments where unlockedAgents isn't initialized
-        const unlockedKeys = fusionIndex.unlockedKeys;
-        const prefix = agent.name + ',';
-        const suffix = ',' + agent.name;
-        for (const key of unlockedKeys) {
-          if (key.includes(agent.name)) {
-            if (key.startsWith(prefix) || key.endsWith(suffix) || key === agent.name) {
-              hasChildFusions = true;
-              break;
-            }
-          }
-        }
-      }
-
-      if (hasChildFusions) {
-        fusionQuickListHtml = `<div class="fusions-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
-      }
+    if (hasValidIndex && AgentCard._hasChildFusions(agent.name, fusionIndex)) {
+      fusionQuickListHtml = `<div class="fusions-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
     }
 
     const repoPicker = document.getElementById('julesRepoPicker');
