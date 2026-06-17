@@ -126,7 +126,7 @@ of worker capability:
     in the Favorite Optimizations section with a scenario so specific it could
     only exist in the recursive context. The optimization must outline a feat
     impossible for the non-recursive version of the worker.
-MODULE 5: The Core DNA Index Note: The Work Profile for each worker is
+MODULE 5: The Core DNA Index Note: The Archetype for each worker is
 determined dynamically during Phase 1 routing, rather than being strictly
 inherited from the parents. Use this index to extract mechanical and domain
 seeds for Fusion generation.

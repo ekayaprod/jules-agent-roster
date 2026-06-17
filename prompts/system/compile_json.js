@@ -1,3 +1,4 @@
+'use strict';
 const fs = require('fs');
 const path = require('path');
 
@@ -96,6 +97,9 @@ function cleanCodeFence(str) {
 }
 
 
+
+
+function compile(jsonPayloadStr, targetFilePath) {
 const BASE_PROFILES = {
     "Pruner": {
         domain: "Restrict your execution strictly to the identification and excision of targets. If a deletion breaks a tightly coupled dependency, you are explicitly forbidden from 'refactoring' the dependency to make the deletion work. Revert your deletion, leave the dead code in place, and proceed.",
@@ -141,7 +145,7 @@ const CONTEXT_EXTENSIONS = {
     ],
     "Infrastructure Containment Modifier": [
         "* **The Source Code Untouchable Constraint:** Any mutation requiring `.ts`, `.py`, or `.js` execution logic changes is a catastrophic domain breach. Treat the core application layer as an immutable black box.",
-        "* **The Dry-Run Build Procedure:** Validate all pipeline and dependency graph mutations through infrastructure-specific dry-runs (e.g., YAML linters, schema validators) rather than global application test suites."
+        "* **The Dry-Run Build Protocol:** Validate all pipeline and dependency graph mutations through infrastructure-specific dry-runs (e.g., YAML linters, schema validators) rather than global application test suites."
     ],
     "AI/LLM Integration Modifier": [
         "* **The Live Native Schema Rule:** Authenticate platform-specific SDK parameters strictly by retrieving and verifying the AI provider's live documentation before applying them.",
@@ -150,8 +154,8 @@ const CONTEXT_EXTENSIONS = {
     ],
     "Total Replacement Modifier": [
         "* **The Inevitable Variation Doctrine:** A zero-target state is an impossibility. You focus on not reactive bug-fixing; it is the aggressive generation of a new architectural variation. You must arbitrarily select an existing baseline and replace it.",
-        "* **The Clean Slate Procedure:** Reject the sunk-cost fallacy. Map the integration boundaries of the target, completely burn/delete the existing structural logic, and provision a pristine, mathematically optimized replacement in its exact footprint.",
-        "* **The Test Obsolescence Procedure:** Because your rule is total structural replacement, legacy unit tests tied to the old architecture will inevitably fail. If old tests block your VM verification, You may isolate, disable (`.skip` / `xit`), or delete the obsolete test blocks entirely to unblock your pipeline.",
+        "* **The Clean Slate Protocol:** Reject the sunk-cost fallacy. Map the integration boundaries of the target, completely burn/delete the existing structural logic, and provision a pristine, mathematically optimized replacement in its exact footprint.",
+        "* **The Test Obsolescence Protocol:** Because your rule is total structural replacement, legacy unit tests tied to the old architecture will inevitably fail. If old tests block your VM verification, You may isolate, disable (`.skip` / `xit`), or delete the obsolete test blocks entirely to unblock your pipeline.",
         "* **The Gambler's Autonomous Selection:** You are explicitly forbidden from declaring a zero-target state or exiting cleanly. You must arbitrarily select the most prominent, structurally complete node discovered.",
         "* **The PR Presentation Override:** Delete any default rule instructing the worker to exit cleanly without a PR when zero targets are found. A Replacement worker is prohibited exit empty-handed; submit the PR natively with the newly generated variation."
     ],
@@ -161,12 +165,13 @@ const CONTEXT_EXTENSIONS = {
     ]
 };
 
-function compile(jsonPayloadStr, targetFilePath) {
     let data;
     try {
-        data = JSON.parse(jsonPayloadStr);
+        // Defensive zero-touch decoding before parsing
+        const sanitizedPayload = typeof jsonPayloadStr === 'string' ? jsonPayloadStr.trim() : '';
+        data = JSON.parse(sanitizedPayload);
     } catch (e) {
-        console.error(`[FATAL ERROR] Failed to parse JSON payload: ${e.message}`);
+        console.error(`[FATAL ERROR] JSON Structural Integrity Failure: ${e.message}. Non-interactive compiler requires perfect JSON.`);
         process.exit(1);
     }
 
@@ -251,7 +256,7 @@ function compile(jsonPayloadStr, targetFilePath) {
         if (emojiMatch) {
             let emoji = emojiMatch[0].trim();
             if (seenEmojis.has(emoji)) {
-                console.error(`[FATAL ERROR] Duplicate emoji '${emoji}' detected in thematic bullets. The Phase 3 Emoji Ledger rule strictly forbids reusing emojis across Philosophy and Optimizations.`);
+                console.error(`[FATAL ERROR] Duplicate emoji '${emoji}' detected in thematic bullets. Creative-Protocol Module 2: Universal Creative & Safety Guardrails strictly forbids reusing emojis across Philosophy and Optimizations.`);
                 process.exit(1);
             }
             seenEmojis.add(emoji);
@@ -260,13 +265,13 @@ function compile(jsonPayloadStr, targetFilePath) {
 
     // --- DETERMINISTIC COMPILER LOGIC ---
     
-    const work_profile = data['work profile'] || data.work_profile || '';
+    const archetype = data['archetype'] || data.archetype || '';
     const category = data.identity?.category || '';
     const velocity = data.velocity || 'Contained';
     const payloadThreshold = data.payload_threshold || data.process?.select_classify?.target_limit || '1';
     const tier = data.identity?.tier || '';
     const isStructural = data.verification_layer === 'structural';
-    const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].includes(work_profile);
+    const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].includes(archetype);
 
     // 1. Testing Doctrine
     const testingDoctrine = category.toLowerCase() === 'testing'
@@ -313,11 +318,12 @@ function compile(jsonPayloadStr, targetFilePath) {
 
     // --- ARRAY FORMATTING ---
     const salvagedMandates = formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates);
-    const profileKey = data["work profile"] || data.work_profile || "";
+    const zeroInteractionMandates = formatList(data.zero_interaction_mandates);
+    const profileKey = data["archetype"] || data.archetype || "";
     const baseProfile = BASE_PROFILES[profileKey] || {};
-    const domainAnchorText = data.work_profile_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor || baseProfile.domain || "";
-    const scopeText = data.work_profile_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope || baseProfile.scope || "";
-    const operationalBoundariesText = data.work_profile_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || baseProfile.operational || "";
+    const domainAnchorText = data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor || baseProfile.domain || "";
+    const scopeText = data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope || baseProfile.scope || "";
+    const operationalBoundariesText = data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || baseProfile.operational || "";
     const combinedModifiers = data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates || [];
     const activeModifiers = data.active_modifiers || data._diagnostic?.sculptor_manifest?.active_modifiers || [];
     activeModifiers.forEach(modifier => {
@@ -337,12 +343,12 @@ function compile(jsonPayloadStr, targetFilePath) {
         ? `Continue executing within your locked scope up to a maximum of ${targetLimitClean}. ` 
         : '';
 
-    const zeroTargetExitInstruction = (data.process?.present?.requires_total_replacement_override || data.requires_total_replacement_override || data.total_replacement_active)
+    const zeroTargetExitInstruction = (data.process?.present?.requires_total_replacement_override)
         ? '' 
         : requiresTasksBoard ? 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. ' : 'End the task cleanly without a PR if zero targets were found. ';
 
     // Clean Presentation Slot by stripping bold labels (e.g. "* **The Label:**")
-    const rawPresentation = data.process?.present?.presentation_slot || data.work_profile_slots?.presentation_slot || '';
+    const rawPresentation = data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '';
     const presentationSlotClean = String(rawPresentation).replace(/^[\*\-]\s*/, '').replace(/^\*\*[^\*]+\*\*:?\s*/, '').replace(/^\*\*[^\*:]+:?\*\*:?\s*/, '').replace(/End the task cleanly without a PR if zero targets were found\.?/gi, '').trim();
     
     // Strip trailing periods from Mission Scope
@@ -388,12 +394,13 @@ ${cleanCodeFence(data.coding_standards?.bad_code_snippet || '')}
 ${formatSlot(domainAnchorText, "The Primary Responsibility")}
 ${formatSlot(scopeText, "The Scope")}
 * **The Execution Rule:** ${executionMandate}
-${formatSlot(operationalBoundariesText, "The Resilience Procedure")}
+${formatSlot(operationalBoundariesText, "The Resilience Protocol")}
 ${domainModifiers}
-${formatSlot(data.work_profile_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule || '', 'The Autonomous Selection')}
-${formatSlot(data.work_profile_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution || '', 'The Execution')}
-${testingDoctrine ? formatSlot(testingDoctrine, 'The Verification Procedure') : ''}
+${formatSlot(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule || '', 'The Autonomous Selection')}
+${formatSlot(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution || '', 'The Execution')}
+${testingDoctrine ? formatSlot(testingDoctrine, 'The Verification Protocol') : ''}
 ${salvagedMandates}
+${zeroInteractionMandates}
 ${formatList(data.salvaged_custom_logic)}
 ${crossVectorGrants}
 
@@ -401,7 +408,7 @@ ${crossVectorGrants}
 **Journal Path:** \`${journalPath}\`
 ${workerTasksBoardRules}
 
-${formatSlot(data.work_profile_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Procedure').replace(/^\*\s/, '')}
+${formatSlot(data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Protocol').replace(/^\*\s/, '')}
 
 ### The Process
 1. 🔍 **DISCOVER** — ${discoverTrigger} ${tasksBoardCrossReference}
@@ -410,11 +417,11 @@ ${formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.targ
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${priorityLanguage} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${targetLimitClean}.
 3. ⚙️ **[${data.process?.theme_verb || data.process?.execute?.theme_verb || ''}]** — **${executionPosture}** ${targetLimitInstruction}Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 ${executionSteps}
-4. ✅ **VERIFY** — **The Reporter Procedure:** ${reporterProtocol}
+4. ✅ **VERIFY** — **The Reporter Protocol:** ${reporterProtocol}
 **Heuristic Verification:**
 ${heuristics}
 5. 🎁 **PRESENT** — ${presentationSlotClean} ${zeroTargetExitInstruction}${requiresTasksBoard ? "If the run produced no source mutations but did append relay entries to `.jules/worker_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""}
-**Required PR Headers:** ${data.work_profile_slots?.pr_headers || data.process?.present?.pr_headers || ''}
+**Required PR Headers:** ${data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || ''}
 
 ### Favorite Optimizations
 ${formatList(data.favorite_optimizations)}
@@ -424,6 +431,9 @@ ${formatList(data.favorite_optimizations)}
     const cleanedOutput = output.split('\n').filter(line => line.trim() !== '' || line === '').join('\n').replace(/\n{3,}/g, '\n\n');
 
     fs.writeFileSync(targetFilePath, cleanedOutput);
+
+    // Support non-interactive interoperability by returning URI-encoded string if needed
+    return encodeURIComponent(cleanedOutput);
 }
 
 if (require.main === module) {
