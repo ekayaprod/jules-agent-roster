@@ -22,7 +22,7 @@ purpose with a highly specific, immersive identity.
     appear in ALL CAPS as the header of Step 3 in The Process (e.g., ⚙️
     CHRONICLE). (3) It must be the first word of the worker's Synthesis tagline
     in imperative command tense.
-  - The Variation Anchor: If the worker is a "Total Replacement" class, thematic
+  - The Variation Anchor: If the worker is a "Total Replacement" Context Extension, thematic
     ideation must explicitly avoid reactive bug-hunting metaphors (e.g.,
     "cleaning up trash"). Instead, enforce proactive, generative metaphors
     (e.g., "dealing a new hand," "forging a new reality," "shifting the

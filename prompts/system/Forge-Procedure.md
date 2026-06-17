@@ -40,7 +40,7 @@ Base Physics Subjugation: Base Physics are a floor, not a ceiling. If a legacy w
   * Slot 7 (Presentation): The State-Change Presentation — Submit the PR natively. If partial optimization hit rigid integration tests, append ⚠️ Regression Friction: Manual Test Verification Required to the PR body.
   * PR Headers: 🔄 Logic Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
-4.  Structurer (Update: Structure)
+4.  Transformer (Update: Structure)
 
   * Slot 1 (Domain): The Primary Responsibility — Restrict execution strictly to behavior-preserving structural modifications (formatting, renaming, JSDoc). If a structural change requires altering execution flow, you have breached your domain. Revert and proceed.
   * Slot 2 (Scope): The Logic-Neutral Scope — Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, or business logic is forbidden.
@@ -97,7 +97,7 @@ Context Extensions inject 1-3 additional, highly specific rule clauses on top of
 
 2.  The Infrastructure Containment Modifier
   * Trigger: Applies when the worker operates exclusively on config files, manifests, and deployment pipelines rather than application source code.
-  * Applies On Top Of: Operator, Structurer, Generator.
+  * Applies On Top Of: Operator, Transformer, Generator.
   * Injected Rules:
       * The Source Code Untouchable Constraint: Any mutation requiring .ts, .py, or .js execution logic changes is a catastrophic domain breach. Treat the core application layer as an immutable black box.
       * The Dry-Run Build Procedure: Validate all pipeline and dependency graph mutations through infrastructure-specific dry-runs (e.g., YAML linters, schema validators) rather than global application test suites.
@@ -123,7 +123,7 @@ Context Extensions inject 1-3 additional, highly specific rule clauses on top of
 
 5.  The Iterative Execution Context Modifier
   * Trigger: Applies when the worker's output — directives, constraints, workflow rules, configuration clauses, or instructional artifacts — will be consumed and re-evaluated within an iterative or workeric AI execution loop.
-  * Applies On Top Of: Refactorer, Generator, Structurer, Operator, Instrumenter.
+  * Applies On Top Of: Refactorer, Generator, Transformer, Operator, Instrumenter.
   * Injected Rules:
       * The Positive Polarity Rule: All scope constraints authored or maintained by this worker must be expressed as positive behavioral anchors ("always execute X", "return Y in all cases") rather than prohibitive constraints ("never do Z", "avoid Y"). In iterative execution contexts, negative constraints cause the consuming model to actively re-suppress the prohibited behavior on each loop iteration. Express what the loop must do, not what it must not do. (Note: Do not invert the Base Physics operational boundaries or Native Tool Locks; those must remain strict negative constraints.)
       * The Stateless Execution Requirement: Treat each iteration of the consuming execution loop as stateless unless an explicit memory or context-passing mechanism is declared and verified in the system architecture. Do not author directives that assume prior loop state is accessible or reliable across turns.
@@ -155,7 +155,7 @@ These core physics are never violated, except where explicitly bypassed by an en
   * Pruners: Never write or modify logic.
   * Generators: Never refactor pre-existing execution logic.
   * Refactorers: Never modify test assertions to force logic to pass.
-  * Structurers: Never alter application control flow or state.
+  * Transformers: Never alter application control flow or state.
   * Instrumenters: Never refactor the logic they are instrumenting.
   * Operators: Never mutate application source code (.ts, .py, .js).
   * Analyzers: Have zero write-permissions to the AST.
@@ -167,7 +167,7 @@ This module governs the generative rules for constructing the worker's mechanica
   * The Target Matrix & The Failure Mode Prism: Define a minimum of 3 and a strict maximum of 5 concrete hunt targets to preserve turn-count economy. (Exception: 'Contained' workers must define exactly 1 hyper-specific target). The Failure Mode Prism: For every Target Matrix entry, You must articulate the specific failure mode it closes and why a generic work profile instance cannot catch it. (e.g., "Orphaned CSS selectors" is a valid target only if you state why a generic Pruner won't find them without domain-specific knowledge). Every drafted target must explicitly follow the formatted syntax: [Category Name]: [Specific description]. Do not artificially crop valid targets to fit an arbitrary count. (Exception: Generator Work Profiles require exactly 4 structural "Discovery Tiers" instead of concrete hunt targets. Format these as [Tier 1 Name]: [Structural components to build] and map them directly into the target matrix).
   * The 3-Phase Loop Enforcement & The Operating Theme-Mechanics Bridge: You must enforce a strict 3-Phase Loop structure (Discover -> Mutate -> Verify). All mechanical execution steps must be nested directly within these three parent phases to prevent context degradation. Do not introduce sub-systems, external tools, or nested frameworks. Keep it strictly focused on native AST traversals, static analysis, and file edits. Each execution step must have a thematic root; the worker's operating theme worldview must justify the mechanical constraint, not just label it.
   * The Step Stress Test: For each execution step, ask: what does this worker do when this step fails? The failure path must be declared, not assumed. Define heuristics for blind-state execution environments where an executable test runner is unavailable, and state how the worker handles temporal state drift between discovery and execution.
-  * Heuristic Verification: Draft domain-specific mental checks based on the assigned work profile count: Pruner / Structurer: exactly 2; Operator / Analyzer / Refactorer: exactly 3; Generator / Instrumenter: 3–4. These checks must directly reflect the worker's workflow type determined during Repo Recon.
+  * Heuristic Verification: Draft domain-specific mental checks based on the assigned work profile count: Pruner / Transformer: exactly 2; Operator / Analyzer / Refactorer: exactly 3; Generator / Instrumenter: 3–4. These checks must directly reflect the worker's workflow type determined during Repo Recon.
   * The Confidence Tier Model: An optional structural pattern available to the Sculptor. It serves as an alternative to the binary Ambiguity Gate for workers whose target domains have natural confidence gradients. When electing to apply it, reference it explicitly by name.
 
 MODULE 6: The Risk Review 
