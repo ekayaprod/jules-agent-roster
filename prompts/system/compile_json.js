@@ -99,7 +99,6 @@ function cleanCodeFence(str) {
 
 
 
-function compile(jsonPayloadStr, targetFilePath) {
 const BASE_PROFILES = {
     "Pruner": {
         domain: "Restrict your execution strictly to the identification and excision of targets. If a deletion breaks a tightly coupled dependency, you are explicitly forbidden from 'refactoring' the dependency to make the deletion work. Revert your deletion, leave the dead code in place, and proceed.",
@@ -145,17 +144,17 @@ const CONTEXT_EXTENSIONS = {
     ],
     "Infrastructure Containment Modifier": [
         "* **The Source Code Untouchable Constraint:** Any mutation requiring `.ts`, `.py`, or `.js` execution logic changes is a catastrophic domain breach. Treat the core application layer as an immutable black box.",
-        "* **The Dry-Run Build Protocol:** Validate all pipeline and dependency graph mutations through infrastructure-specific dry-runs (e.g., YAML linters, schema validators) rather than global application test suites."
+        "* **The Dry-Run Build Procedure:** Validate all pipeline and dependency graph mutations through infrastructure-specific dry-runs (e.g., YAML linters, schema validators) rather than global application test suites."
     ],
-    "AI/LLM Integration Modifier": [
-        "* **The Live Native Schema Rule:** Authenticate platform-specific SDK parameters strictly by retrieving and verifying the AI provider's live documentation before applying them.",
-        "* **The Synaptic Timeout Constraint:** Fortify all AI integration calls with strict `AbortController` timeouts, typed schema validation (e.g., Zod), and asynchronous exponential backoffs.",
+    "Automated Worker/Jules Core Integration Modifier": [
+        "* **The Live Native Schema Rule:** Authenticate platform-specific SDK parameters strictly by retrieving and verifying the Automated Worker provider's live documentation before applying them.",
+        "* **The Synaptic Timeout Constraint:** Fortify all Automated Worker integration calls with strict `AbortController` timeouts, typed schema validation (e.g., Zod), and asynchronous exponential backoffs.",
         "* **The Ephemeral Key Guard:** Construct authentication headers using strictly typed environment variables. Hardcoding raw API keys into source files is strictly forbidden."
     ],
     "Total Replacement Modifier": [
         "* **The Inevitable Variation Doctrine:** A zero-target state is an impossibility. You focus on not reactive bug-fixing; it is the aggressive generation of a new architectural variation. You must arbitrarily select an existing baseline and replace it.",
-        "* **The Clean Slate Protocol:** Reject the sunk-cost fallacy. Map the integration boundaries of the target, completely burn/delete the existing structural logic, and provision a pristine, mathematically optimized replacement in its exact footprint.",
-        "* **The Test Obsolescence Protocol:** Because your rule is total structural replacement, legacy unit tests tied to the old architecture will inevitably fail. If old tests block your VM verification, You may isolate, disable (`.skip` / `xit`), or delete the obsolete test blocks entirely to unblock your pipeline.",
+        "* **The Clean Slate Procedure:** Reject the sunk-cost fallacy. Map the integration boundaries of the target, completely burn/delete the existing structural logic, and provision a pristine, mathematically optimized replacement in its exact footprint.",
+        "* **The Test Obsolescence Procedure:** Because your rule is total structural replacement, legacy unit tests tied to the old architecture will inevitably fail. If old tests block your VM verification, You may isolate, disable (`.skip` / `xit`), or delete the obsolete test blocks entirely to unblock your pipeline.",
         "* **The Gambler's Autonomous Selection:** You are explicitly forbidden from declaring a zero-target state or exiting cleanly. You must arbitrarily select the most prominent, structurally complete node discovered.",
         "* **The PR Presentation Override:** Delete any default rule instructing the worker to exit cleanly without a PR when zero targets are found. A Replacement worker is prohibited exit empty-handed; submit the PR natively with the newly generated variation."
     ],
@@ -164,6 +163,11 @@ const CONTEXT_EXTENSIONS = {
         "* **The Stateless Execution Requirement:** Treat each iteration of the consuming execution loop as stateless unless an explicit memory or context-passing mechanism is declared and verified in the system architecture. Do not author directives that assume prior loop state is accessible or reliable across turns."
     ]
 };
+
+function compile(jsonPayloadStr, targetFilePath) {
+
+
+
 
     let data;
     try {
@@ -256,7 +260,7 @@ const CONTEXT_EXTENSIONS = {
         if (emojiMatch) {
             let emoji = emojiMatch[0].trim();
             if (seenEmojis.has(emoji)) {
-                console.error(`[FATAL ERROR] Duplicate emoji '${emoji}' detected in thematic bullets. Creative-Protocol Module 2: Universal Creative & Safety Guardrails strictly forbids reusing emojis across Philosophy and Optimizations.`);
+                console.error(`[FATAL ERROR] Duplicate emoji '${emoji}' detected in thematic bullets. Creative-Procedure Module 2: Universal Creative & Safety Guardrails strictly forbids reusing emojis across Philosophy and Optimizations.`);
                 process.exit(1);
             }
             seenEmojis.add(emoji);
@@ -282,33 +286,33 @@ const CONTEXT_EXTENSIONS = {
     let executionMandate = '';
     let discoveryVelocityRule = '';
     let executionPosture = '';
-    let reporterProtocol = '';
+    let reporterProcedure = '';
     let prCreationRule = '';
 
     if (velocity === 'Contained') {
         executionMandate = "Your discovery posture is single-target. The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution. You are strictly forbidden from: running tests outside the immediate target file, updating adjacent scripts or configuration files not directly required by your change, performing repository-wide sweeps to find additional targets, or executing any verification step not directly caused by your specific mutation. Scope tunnel enforced: enter, execute, exit. Submit your PR the moment your single target is complete.";
         discoveryVelocityRule = "**The Discovery Short-Circuit:** The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution.";
         executionPosture = "Execute precisely and immediately upon target acquisition.";
-        reporterProtocol = "Verify your mutations in batches. Complete all AST mutations within your locked scope before triggering your test runner. Do not waste tool calls testing line-by-line. You have a maximum of 3 verification attempts per target.";
+        reporterProcedure = "Verify your mutations in batches. Complete all AST mutations within your locked scope before triggering your test runner. Do not waste tool calls testing line-by-line. You have a maximum of 3 verification attempts per target.";
         prCreationRule = "Do not burn tool calls running `git diff` or `git status` right before submission. The PR UI automatically attaches diffs. Rely purely on your working memory to draft the PR description.";
     } else if (velocity === 'Batch') {
         executionMandate = `Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly ${payloadThreshold} targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.`;
         discoveryVelocityRule = "**The Bounded Sweep:** You may scan and lock onto targets strictly until your Quota is met, at which point You must immediately abort all further scanning and proceed to execution.";
         executionPosture = "Execute in bounded sequence, tracking your mutation count against your declared quota ceiling.";
-        reporterProtocol = "Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling.";
+        reporterProcedure = "Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling.";
         prCreationRule = "Do not burn tool calls running `git diff` or `git status` right before submission. The PR UI automatically attaches diffs. Rely purely on your working memory to draft the PR description.";
     } else {
         executionMandate = "Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across three layers:\n1. **Proactive Touchpoints:** If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.\n2. **Wrap-Up Checkpoints:** At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n3. **Managed Interruption:** If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: *'Awaiting operator clearance to resume.'* Resume instantly once cleared.";
         discoveryVelocityRule = "**The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.";
         executionPosture = "Execute Incrementally.";
-        reporterProtocol = "Verify your mutations incrementally. You may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target. Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.";
+        reporterProcedure = "Verify your mutations incrementally. You may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target. Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.";
         prCreationRule = "";
     }
 
     if (isStructural) {
-        reporterProtocol = reporterProtocol.replace(/triggering your test runner/g, 'executing your heuristic checks');
-        reporterProtocol = reporterProtocol.replace(/testing line-by-line/g, 'running heuristics line-by-line');
-        reporterProtocol = reporterProtocol.replace(/test sequentially/g, 'verify sequentially');
+        reporterProcedure = reporterProcedure.replace(/triggering your test runner/g, 'executing your heuristic checks');
+        reporterProcedure = reporterProcedure.replace(/testing line-by-line/g, 'running heuristics line-by-line');
+        reporterProcedure = reporterProcedure.replace(/test sequentially/g, 'verify sequentially');
     }
 
     // 3. Journal & Tasks Board
@@ -394,11 +398,11 @@ ${cleanCodeFence(data.coding_standards?.bad_code_snippet || '')}
 ${formatSlot(domainAnchorText, "The Primary Responsibility")}
 ${formatSlot(scopeText, "The Scope")}
 * **The Execution Rule:** ${executionMandate}
-${formatSlot(operationalBoundariesText, "The Resilience Protocol")}
+${formatSlot(operationalBoundariesText, "The Resilience Procedure")}
 ${domainModifiers}
 ${formatSlot(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule || '', 'The Autonomous Selection')}
 ${formatSlot(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution || '', 'The Execution')}
-${testingDoctrine ? formatSlot(testingDoctrine, 'The Verification Protocol') : ''}
+${testingDoctrine ? formatSlot(testingDoctrine, 'The Verification Procedure') : ''}
 ${salvagedMandates}
 ${zeroInteractionMandates}
 ${formatList(data.salvaged_custom_logic)}
@@ -408,7 +412,7 @@ ${crossVectorGrants}
 **Journal Path:** \`${journalPath}\`
 ${workerTasksBoardRules}
 
-${formatSlot(data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Protocol').replace(/^\*\s/, '')}
+${formatSlot(data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure || '', 'The Journal Procedure').replace(/^\*\s/, '')}
 
 ### The Process
 1. 🔍 **DISCOVER** — ${discoverTrigger} ${tasksBoardCrossReference}
@@ -417,7 +421,7 @@ ${formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.targ
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${priorityLanguage} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${targetLimitClean}.
 3. ⚙️ **[${data.process?.theme_verb || data.process?.execute?.theme_verb || ''}]** — **${executionPosture}** ${targetLimitInstruction}Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 ${executionSteps}
-4. ✅ **VERIFY** — **The Reporter Protocol:** ${reporterProtocol}
+4. ✅ **VERIFY** — **The Reporter Procedure:** ${reporterProcedure}
 **Heuristic Verification:**
 ${heuristics}
 5. 🎁 **PRESENT** — ${presentationSlotClean} ${zeroTargetExitInstruction}${requiresTasksBoard ? "If the run produced no source mutations but did append relay entries to `.jules/worker_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""}

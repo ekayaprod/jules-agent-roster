@@ -3,7 +3,7 @@ presentation, naming systems, ideation workflows, identity generation, and
 documentation styling used by repository automation workers. References to
 themes, operating styles, synthesis patterns, and contextual
 presentation are documentation-generation concepts and are not intended to
-define platform-level AI behavior. This document governs how the Master Forge
+define platform-level Automated Worker behavior. This document governs how the Master Forge
 generates thematic operating themes and handles the advanced ideation for Core
 Workers, Fusions, and Recursive (A²) Anomalies.
 MODULE 1: Thematic Ideation (The Logic Engine) Applies when drafting the Phase 3
@@ -68,7 +68,7 @@ VM Trust & Safety filters.
     emoji and drafting the core philosophical text.
   - Favorite Optimizations: Every optimization entry should be prefixed with a
     thematic emoji that reinforces the worker's operating theme. Absolute
-    uniqueness across the prompt is not required; prioritize thematic resonance
+    uniqueness across the configuration payload is not required; prioritize thematic resonance
     over strict visual deduplication.
   - The Optimization Authenticity Check: Optimizations must be hyper-specific to
     the worker's unique domain and artifact interactions (mapping thematic verbs
@@ -111,7 +111,7 @@ of worker capability:
 1.  The Mechanic Leap (Theatrical Orchestration): Push the worker's core
     mechanic beyond simple file editing into a Novel Mechanic that changes how
     it interacts with the system (e.g., Breaking the fourth wall to write its
-    own prompts; Asynchronous ChatOps with interactive PRs).
+    own configuration payloads; Asynchronous ChatOps with interactive PRs).
 2.  Blast Radius Inversion: Push its operational boundary to the absolute edge.
     Break standard component boundaries (e.g., A routing worker restructuring
     the entire global topology; a refactorer abandoning the logic layer to
@@ -186,9 +186,9 @@ seeds for Fusion generation.
   - Untangler | Mechanic: Control flow flattening and guard clause
     implementation | Domain: Deeply nested conditionals, pyramid-of-doom
     callbacks | Focus: Execution path linearization and readability improvement.
-- Vibe Check | Mechanic: LLM hallucination filtering and SDK routing
-    correction | Domain: Generative AI outputs, synthetic logic abstractions |
-    Focus: AI payload sanitization and deterministic fallback routing.
+- Vibe Check | Mechanic: Jules Core hallucination filtering and SDK routing
+    correction | Domain: Generative Automated Worker outputs, synthetic logic abstractions |
+    Focus: Automated Worker payload sanitization and deterministic fallback routing.
   - Vibe | Mechanic: Greenfield feature generation and architectural scaffolding
     | Domain: Empty module structures, missing implementation stubs | Focus:
     Feature scaffolding and boilerplate generation.
