@@ -1,7 +1,7 @@
 🎨 Forge Procedure: Creative & Ideation Directives This document governs thematic
 presentation, naming systems, ideation workflows, identity generation, and
 documentation styling used by repository automation workers. References to
-themes, personas, operating styles, synthesis patterns, and contextual
+themes, operating styles, synthesis patterns, and contextual
 presentation are documentation-generation concepts and are not intended to
 define platform-level AI behavior. This document governs how the Master Forge
 generates thematic operating themes and handles the advanced ideation for Core

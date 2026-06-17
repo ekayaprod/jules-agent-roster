@@ -211,7 +211,7 @@ function compile(jsonPayloadStr, targetFilePath) {
         });
 
         if (leadEmoji && item.includes(leadEmoji)) {
-            console.warn(`[WARNING] Persona Lead emoji ${leadEmoji} found in ${positionLabel}. Replacing with a generic emoji.`);
+            console.warn(`[WARNING] Operating Theme Lead emoji ${leadEmoji} found in ${positionLabel}. Replacing with a generic emoji.`);
             if (isPhilosophy) data.philosophy[index] = String(data.philosophy[index]).replace(leadEmoji, "🔸");
             else data.favorite_optimizations[index - philosophyRaw.length] = String(data.favorite_optimizations[index - philosophyRaw.length]).replace(leadEmoji, "🔸");
         }
@@ -260,13 +260,13 @@ function compile(jsonPayloadStr, targetFilePath) {
 
     // --- DETERMINISTIC COMPILER LOGIC ---
     
-    const archetype = data['work profile'] || data.work_profile || data.archetype || '';
+    const work_profile = data['work profile'] || data.work_profile || '';
     const category = data.identity?.category || '';
     const velocity = data.velocity || 'Contained';
     const payloadThreshold = data.payload_threshold || data.process?.select_classify?.target_limit || '1';
     const tier = data.identity?.tier || '';
     const isStructural = data.verification_layer === 'structural';
-    const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].includes(archetype);
+    const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].includes(work_profile);
 
     // 1. Testing Doctrine
     const testingDoctrine = category.toLowerCase() === 'testing'
@@ -315,9 +315,9 @@ function compile(jsonPayloadStr, targetFilePath) {
     const salvagedMandates = formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates);
     const profileKey = data["work profile"] || data.work_profile || "";
     const baseProfile = BASE_PROFILES[profileKey] || {};
-    const domainAnchorText = data.work_profile_slots?.domain_anchor || data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor || baseProfile.domain || "";
-    const scopeText = data.work_profile_slots?.mutation_scope || data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope || baseProfile.scope || "";
-    const operationalBoundariesText = data.work_profile_slots?.operational_boundaries || data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || baseProfile.operational || "";
+    const domainAnchorText = data.work_profile_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor || baseProfile.domain || "";
+    const scopeText = data.work_profile_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope || baseProfile.scope || "";
+    const operationalBoundariesText = data.work_profile_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || baseProfile.operational || "";
     const combinedModifiers = data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates || [];
     const activeModifiers = data.active_modifiers || data._diagnostic?.sculptor_manifest?.active_modifiers || [];
     activeModifiers.forEach(modifier => {
@@ -342,7 +342,7 @@ function compile(jsonPayloadStr, targetFilePath) {
         : requiresTasksBoard ? 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. ' : 'End the task cleanly without a PR if zero targets were found. ';
 
     // Clean Presentation Slot by stripping bold labels (e.g. "* **The Label:**")
-    const rawPresentation = data.process?.present?.presentation_slot || data.work_profile_slots?.presentation_slot || data.archetype_slots?.presentation_slot || '';
+    const rawPresentation = data.process?.present?.presentation_slot || data.work_profile_slots?.presentation_slot || '';
     const presentationSlotClean = String(rawPresentation).replace(/^[\*\-]\s*/, '').replace(/^\*\*[^\*]+\*\*:?\s*/, '').replace(/^\*\*[^\*:]+:?\*\*:?\s*/, '').replace(/End the task cleanly without a PR if zero targets were found\.?/gi, '').trim();
     
     // Strip trailing periods from Mission Scope
@@ -390,8 +390,8 @@ ${formatSlot(scopeText, "The Scope")}
 * **The Execution Rule:** ${executionMandate}
 ${formatSlot(operationalBoundariesText, "The Resilience Procedure")}
 ${domainModifiers}
-${formatSlot(data.work_profile_slots?.decisiveness_rule || data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule || '', 'The Autonomous Selection')}
-${formatSlot(data.work_profile_slots?.workflow_execution || data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution || '', 'The Execution')}
+${formatSlot(data.work_profile_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule || '', 'The Autonomous Selection')}
+${formatSlot(data.work_profile_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution || '', 'The Execution')}
 ${testingDoctrine ? formatSlot(testingDoctrine, 'The Verification Procedure') : ''}
 ${salvagedMandates}
 ${formatList(data.salvaged_custom_logic)}
@@ -401,7 +401,7 @@ ${crossVectorGrants}
 **Journal Path:** \`${journalPath}\`
 ${workerTasksBoardRules}
 
-${formatSlot(data.work_profile_slots?.journal_protocol || data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Procedure').replace(/^\*\s/, '')}
+${formatSlot(data.work_profile_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Procedure').replace(/^\*\s/, '')}
 
 ### The Process
 1. 🔍 **DISCOVER** — ${discoverTrigger} ${tasksBoardCrossReference}
@@ -414,7 +414,7 @@ ${executionSteps}
 **Heuristic Verification:**
 ${heuristics}
 5. 🎁 **PRESENT** — ${presentationSlotClean} ${zeroTargetExitInstruction}${requiresTasksBoard ? "If the run produced no source mutations but did append relay entries to `.jules/worker_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""}
-**Required PR Headers:** ${data.work_profile_slots?.pr_headers || data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || ''}
+**Required PR Headers:** ${data.work_profile_slots?.pr_headers || data.process?.present?.pr_headers || ''}
 
 ### Favorite Optimizations
 ${formatList(data.favorite_optimizations)}
