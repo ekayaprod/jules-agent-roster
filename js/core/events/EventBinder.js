@@ -69,19 +69,16 @@ class EventBinder {
           }
       }
 
-      // 1. Close master dropdown if clicked outside
       if (masterDropMenu && masterDropMenu.classList.contains("visible") && !masterDropMenu.contains(e.target) && !masterDropBtn.contains(e.target)) {
           masterDropMenu.classList.remove("visible");
       }
 
-      // 2. Close specific card dropdowns if clicked outside
       app.activeDropdowns.forEach(menu => {
           if (menu.id !== 'masterDropdownMenu' && !menu.contains(e.target) && !e.target.closest('[data-action="toggle-card-dropdown"]')) {
               DOMUtils.closeDropdownMenu(menu, app);
           }
       });
 
-      // 2.5 Open Fusions Modal
       const fusionsTarget = e.target.closest('[data-action="open-fusions-modal"]');
       if (fusionsTarget) {
           e.stopPropagation();
@@ -110,16 +107,9 @@ class EventBinder {
               app.fusionLab._lastMatrixMapRef = compiler.fusionMatrixMap;
           }
           if (!app.fusionLab._fusionCacheByAgent[agent.name]) {
-              const fusions = [];
               const prefix = agent.name + ',';
               const suffix = ',' + agent.name;
-              for (let i = 0; i < allMatrixKeys.length; i++) {
-                  const key = allMatrixKeys[i];
-                  if (key.startsWith(prefix) || key.endsWith(suffix)) {
-                      fusions.push(key);
-                  }
-              }
-              app.fusionLab._fusionCacheByAgent[agent.name] = fusions;
+              app.fusionLab._fusionCacheByAgent[agent.name] = allMatrixKeys.filter(key => key.startsWith(prefix) || key.endsWith(suffix));
           }
           const potentialFusions = app.fusionLab._fusionCacheByAgent[agent.name];
 
@@ -129,27 +119,21 @@ class EventBinder {
           const emojiSpan = document.getElementById("fusionsModalEmoji");
           if (emojiSpan) emojiSpan.textContent = "🧬";
 
-          for (const key of potentialFusions) {
-              const isUnlocked = typeof unlockedKeys.has === 'function'
-                  ? unlockedKeys.has(key)
-                  : unlockedKeys.includes(key);
-
-              if (!isUnlocked) continue;
-
+          listItems = potentialFusions.reduce((acc, key) => {
+              const isUnlocked = typeof unlockedKeys.has === 'function' ? unlockedKeys.has(key) : unlockedKeys.includes(key);
+              if (!isUnlocked) return acc;
               const fusionName = app.fusionLab.compiler.fusionMatrixMap[key];
               const childAgent = AgentUtils.getCustomAgent(app.customAgents, fusionName) || app.fusionLab.compiler.customAgentsMap[fusionName];
-              if (!childAgent) continue;
-
-              const childIcon = FormatUtils.extractIcon(childAgent);
+              if (!childAgent) return acc;
               const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
-              listItems += `
+              return acc + `
                   <li class="fusion-quick-list-item">
                       <button class="fusion-quick-btn transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95" data-action="view-fusion-card" data-index="${key}" aria-label="View ${safeChildName}" title="${safeChildName}">
-                          ${childIcon}
+                          ${FormatUtils.extractIcon(childAgent)}
                       </button>
                   </li>
               `;
-          }
+          }, "");
 
           const downloadBtn = document.getElementById("downloadParentFusionsBtn");
           if (listItems) {
@@ -172,7 +156,6 @@ class EventBinder {
           return;
       }
 
-      // 2.6 View Fusion Card from Modal
       const viewFusionTarget = e.target.closest('[data-action="view-fusion-card"]');
       if (viewFusionTarget) {
           e.stopPropagation();
@@ -212,7 +195,6 @@ class EventBinder {
           return;
       }
 
-      // 3. Toggle Pin
       const pinTarget = e.target.closest('[data-action="toggle-pin"]');
       if (pinTarget) {
           const card = pinTarget.closest('.flip-card');
@@ -265,7 +247,6 @@ class EventBinder {
           return;
       }
 
-      // 4. Flip Card Front (Open)
       const frontTarget = e.target.closest('[data-action="flip-card"]');
       if (frontTarget && !e.target.closest('.fusion-quick-btn') && !e.target.closest('.pin-btn')) {
           const card = frontTarget.closest('.flip-card');
@@ -308,7 +289,6 @@ class EventBinder {
           return;
       }
 
-      // 5. Flip Card Back (Close)
       const backTarget = e.target.closest('[data-action="flip-card-back"]');
       if (backTarget && !e.target.closest('.prompt-scroll-area') && !e.target.closest('.card-actions')) {
           e.stopPropagation();
@@ -318,7 +298,6 @@ class EventBinder {
           return;
       }
 
-      // 6. Action Dropdown Toggle (For individual cards)
       const toggleTarget = e.target.closest('[data-action="toggle-card-dropdown"]');
 
       if (toggleTarget) {
@@ -345,7 +324,6 @@ class EventBinder {
           return;
       }
 
-      // 7. General Action Buttons (Copy/Download/Launch)
       const actionBtn = e.target.closest('[data-action]');
       if (actionBtn && ["copy-agent", "download-agent", "launch-jules", "download-parent-fusions"].includes(actionBtn.dataset.action)) {
           e.preventDefault();
@@ -429,7 +407,6 @@ class EventBinder {
 
         if (e.key !== "Escape") return;
 
-        // Priority 1: Close active dropdowns
         if (app.activeDropdowns && app.activeDropdowns.size > 0) {
             app.activeDropdowns.forEach(menu => {
                 DOMUtils.closeDropdownMenu(menu, app);
@@ -443,14 +420,12 @@ class EventBinder {
             return;
         }
 
-        // Priority 2: Close search
         const nav = app.elements["category-nav"];
         if (nav && nav.classList.contains("search-active")) {
             app.searchController?.clearSearch();
             return;
         }
 
-        // Priority 3: Close active modals
         const activeModals = document.querySelectorAll('.modal-backdrop.visible');
         if (activeModals.length > 0) {
             activeModals.forEach(modal => {
