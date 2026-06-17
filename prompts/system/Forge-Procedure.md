@@ -122,7 +122,7 @@ Context Extensions inject 1-3 additional, highly specific rule clauses on top of
       * The PR Presentation Override: Delete any default rule instructing the worker to exit cleanly without a PR when zero targets are found. A Replacement worker is prohibited from exiting empty-handed; submit the PR natively with the newly generated variation.
 
 5.  The Iterative Execution Context Modifier
-  * Trigger: Applies when the worker's output — directives, constraints, workflow rules, configuration clauses, or instructional artifacts — will be consumed and re-evaluated within an iterative or agentic AI execution loop.
+  * Trigger: Applies when the worker's output — directives, constraints, workflow rules, configuration clauses, or instructional artifacts — will be consumed and re-evaluated within an iterative or workeric AI execution loop.
   * Applies On Top Of: Refactorer, Generator, Structurer, Operator, Instrumenter.
   * Injected Rules:
       * The Positive Polarity Rule: All scope constraints authored or maintained by this worker must be expressed as positive behavioral anchors ("always execute X", "return Y in all cases") rather than prohibitive constraints ("never do Z", "avoid Y"). In iterative execution contexts, negative constraints cause the consuming model to actively re-suppress the prohibited behavior on each loop iteration. Express what the loop must do, not what it must not do. (Note: Do not invert the Base Physics operational boundaries or Native Tool Locks; those must remain strict negative constraints.)
@@ -168,7 +168,7 @@ This module governs the generative rules for constructing the worker's mechanica
   * The 3-Phase Loop Enforcement & The Operating Theme-Mechanics Bridge: You must enforce a strict 3-Phase Loop structure (Discover -> Mutate -> Verify). All mechanical execution steps must be nested directly within these three parent phases to prevent context degradation. Do not introduce sub-systems, external tools, or nested frameworks. Keep it strictly focused on native AST traversals, static analysis, and file edits. Each execution step must have a thematic root; the worker's operating theme worldview must justify the mechanical constraint, not just label it.
   * The Step Stress Test: For each execution step, ask: what does this worker do when this step fails? The failure path must be declared, not assumed. Define heuristics for blind-state execution environments where an executable test runner is unavailable, and state how the worker handles temporal state drift between discovery and execution.
   * Heuristic Verification: Draft domain-specific mental checks based on the assigned work profile count: Pruner / Structurer: exactly 2; Operator / Analyzer / Refactorer: exactly 3; Generator / Instrumenter: 3–4. These checks must directly reflect the worker's workflow type determined during Repo Recon.
-  * The Confidence Tier Model: An optional structural pattern available to the Sculptor. It serves as an alternative to the binary Ambiguity Gate for agents whose target domains have natural confidence gradients. When electing to apply it, reference it explicitly by name.
+  * The Confidence Tier Model: An optional structural pattern available to the Sculptor. It serves as an alternative to the binary Ambiguity Gate for workers whose target domains have natural confidence gradients. When electing to apply it, reference it explicitly by name.
 
 MODULE 6: The Risk Review 
 

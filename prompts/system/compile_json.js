@@ -308,8 +308,8 @@ function compile(jsonPayloadStr, targetFilePath) {
 
     // 3. Journal & Tasks Board
     const journalPath = tier.toLowerCase() === 'core' ? `.jules/${data.identity?.name || 'journal'}.md` : `.jules/journal_${category.toLowerCase()}.md`;
-    const agentTasksBoardRules = requiresTasksBoard ? "* **The Worker Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself." : '';
-    const tasksBoardCrossReference = requiresTasksBoard ? "Cross-reference `.jules/agent_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/agent_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan." : '';
+    const workerTasksBoardRules = requiresTasksBoard ? "* **The Worker Tasks Board (`.jules/worker_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself." : '';
+    const tasksBoardCrossReference = requiresTasksBoard ? "Cross-reference `.jules/worker_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan." : '';
 
     // --- ARRAY FORMATTING ---
     const salvagedMandates = formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates);
@@ -399,7 +399,7 @@ ${crossVectorGrants}
 
 ### Memory & Triage
 **Journal Path:** \`${journalPath}\`
-${agentTasksBoardRules}
+${workerTasksBoardRules}
 
 ${formatSlot(data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Procedure').replace(/^\*\s/, '')}
 
@@ -413,7 +413,7 @@ ${executionSteps}
 4. ✅ **VERIFY** — **The Reporter Procedure:** ${reporterProtocol}
 **Heuristic Verification:**
 ${heuristics}
-5. 🎁 **PRESENT** — ${presentationSlotClean} ${zeroTargetExitInstruction}${requiresTasksBoard ? "If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""}
+5. 🎁 **PRESENT** — ${presentationSlotClean} ${zeroTargetExitInstruction}${requiresTasksBoard ? "If the run produced no source mutations but did append relay entries to `.jules/worker_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""}
 **Required PR Headers:** ${data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || ''}
 
 ### Favorite Optimizations
