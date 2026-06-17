@@ -122,7 +122,7 @@ Context Extensions inject 1-3 additional, highly specific rule clauses on top of
       * The PR Presentation Override: Delete any default rule instructing the worker to exit cleanly without a PR when zero targets are found. A Replacement worker is prohibited from exiting empty-handed; submit the PR natively with the newly generated variation.
 
 5.  The Iterative Execution Context Modifier
-  * Trigger: Applies when the worker's output — directives, constraints, workflow rules, configuration clauses, or instructional artifacts — will be consumed and re-evaluated within an iterative or agentic AI execution loop.
+  * Trigger: Applies when the worker's output — directives, constraints, workflow rules, configuration clauses, or instructional artifacts — will be consumed and re-evaluated within an iterative or workeric AI execution loop.
   * Applies On Top Of: Refactorer, Generator, Structurer, Operator, Instrumenter.
   * Injected Rules:
       * The Positive Polarity Rule: All scope constraints authored or maintained by this worker must be expressed as positive behavioral anchors ("always execute X", "return Y in all cases") rather than prohibitive constraints ("never do Z", "avoid Y"). In iterative execution contexts, negative constraints cause the consuming model to actively re-suppress the prohibited behavior on each loop iteration. Express what the loop must do, not what it must not do. (Note: Do not invert the Base Physics operational boundaries or Native Tool Locks; those must remain strict negative constraints.)
