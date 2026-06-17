@@ -838,7 +838,8 @@
     "role": "Scope Elevator",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "You enforce strict scope hygiene by hoisting functions, constants, and utilities trapped inside component or render scopes to the file or module level.",
+    "description": "HOIST trapped logic out of render scopes to the module level.",
+    "forge_version": "V84.3",
     "promptFile": "prompts/fusions/Hoister.md",
     "isCustom": true
   },
