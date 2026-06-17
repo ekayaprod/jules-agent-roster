@@ -2,7 +2,7 @@ GLOBAL CONFIGURATION RULE 0: THE EFFICACY SUPREMACY The ultimate goal of the
 Master Forge is to produce highly effective, cognitively superior LLM prompts.
 No structural rule, Linter check, or JSON schema requirement in this document
 supersedes the preservation of effective prompt engineering. If enforcing a
-Forge rule (like System Mechanics or data sanitization) would require deleting
+Forge rule (like system mechanics or data sanitization) would require deleting
 few-shot code examples, anti-paralysis tool limits, explicit tool bans, or
 custom triage logic, Rule 0 overrides the Forge. You must preserve the legacy
 mechanic.
@@ -224,13 +224,13 @@ Checks
 1.  Context Extension Evaluation: Evaluate the mission scope semantically
     against Forge-Protocol Module 2: Context Extensions. Declare active modifiers and list their
     injected clauses verbatim. Confirm the assigned Archetype is eligible.
-2.  The Reality Check: Modify the base Operational Mandate or Execution
+2.  The Reality Check: Modify the base operational mandate or Execution
     properties to handle the unique failure modes of this domain.
       - Verification Layer Test: If the domain lacks an executable verification
         layer (no test runner/parser), rewrite the testing boilerplates with
         domain-appropriate structural validation language.
       - Coherence Test: Ensure every mutation in execution has a corresponding
-        detection vector in DISCOVER.
+        detection vector in PLAN.
 3.  The Data Sanitization Gap Analysis: * Journal Fit Test: Rewrite the base
     Journal property text with tracking language specific to the exact file
     types or patterns this worker mutates.
@@ -264,7 +264,7 @@ truth. Section B: The Linter's Pass Checks
     from Forge-Protocol Module 3: The Workload Strategy. Throughput is strictly determined by the
     target array size: 1 target = Contained, Explicit Quota = Batch,
     Open/Multiple = Expansive.
-3.  Coherence Audit: Verify every DISCOVER target follows [Category Name]:
+3.  Coherence Audit: Verify every PLAN target follows [Category Name]:
     [description]. Verify Execution Steps strictly match the Archetype's required
     step count limit.
 4.  Format Completeness Check: Validate 2-word Functional Bridge, 5 Philosophy
@@ -332,8 +332,8 @@ JSON Assembly Rules:
   - Do not extract legacy velocity, batching, or execution pacing rules into
     salvaged_custom_logic if they overlap with the velocity classification
     generated.
-  - Centralized System Mechanics Dictionary: The Archetype definitions (Domain,
-    Scope, Operational Mandate) are stored natively within compile_json.js. You
+  - Centralized system mechanics Dictionary: The Archetype definitions (Domain,
+    Scope, operational mandate) are stored natively within compile_json.js. You
     do not need to extract the raw text of the Archetype Properties for these slots.
     Instead, supply the Archetype key and any domain-specific overrides in
     salvaged_custom_logic.
@@ -346,7 +346,7 @@ critical, adversarial QA Engineer. Your goal is NOT to validate that the Master
 Forge successfully applied its templates. Your goal is to aggressively defend
 the legacy draft against "over-sanitization" and ensure the new prompt will
 actually perform better in a live LLM execution environment. Do not assume the
-Forge's System Mechanics are superior to the legacy draft. Evaluate the compiled
+Forge's system mechanics are superior to the legacy draft. Evaluate the compiled
 JSON payload against the original legacy draft across these exact vectors:
 1.  The Prompt Engineering Degradation Check [CRITICAL]
 
@@ -364,14 +364,14 @@ JSON payload against the original legacy draft across these exact vectors:
     tool calls or read-actions (e.g., "3 strikes," "limit of 3 file reads")? If
     the Forge's Workload Strategy replaced this with unbounded allowances (e.g.,
     "approaching ~100 tool calls is expected"), this is a FAIL . Execution caps
-    prevent infinite LLM loops and must override generic System Mechanics.
+    prevent infinite LLM loops and must override generic system mechanics.
 
-2.  The System Mechanics Override Audit
+2.  The system mechanics Override Audit
 
   - Hygiene and Safety Overwrites: Compare the legacy safety rules against the
-    inherited Archetype System Mechanics. If the System Mechanics omit a specific, critical
+    inherited Archetype system mechanics. If the system mechanics omit a specific, critical
     safeguard (e.g., forgetting to add -e .jules/ during a git clean command),
-    the legacy safeguard must override the System Mechanics.
+    the legacy safeguard must override the system mechanics.
   - Instruction Bloat: Does the new salvaged_custom_logic array contain generic
     boilerplate, or does it exclusively contain preserved, hyper-specific legacy
     mechanics?

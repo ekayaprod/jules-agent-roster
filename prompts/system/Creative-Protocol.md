@@ -235,3 +235,8 @@ extract mechanical and domain seeds for high-variance generation.
     linearized Promise arrays or strict async/await architectures | Domain:
     Asynchronous operations, network requests | Focus: Asynchronous flow control
     flattening.
+
+
+
+
+**Workflow Integrity Directive:** Ensure that all routines enforce a strict 'Plan -> Execute -> Validate' sequence. Do not rely on 'happy path' assumptions.

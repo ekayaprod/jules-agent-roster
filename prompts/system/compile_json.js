@@ -12,7 +12,7 @@ const path = require('path');
  */
 
 // Generic helper for standard lists
-function formatList(arr, bullet = '* ') {
+const formatList = function(arr, bullet = '* ') {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
         let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
@@ -21,7 +21,7 @@ function formatList(arr, bullet = '* ') {
 }
 
 // Specialized formatter for Execution Steps to upgrade single asterisks
-function formatExecutionSteps(arr) {
+const formatExecutionSteps = function(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
         let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
@@ -35,7 +35,7 @@ function formatExecutionSteps(arr) {
 
 // Specialized formatter for Philosophy to aggressively strip bolded rule labels
 
-function formatPhilosophy(arr) {
+const formatPhilosophy = function(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
         let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
@@ -46,7 +46,7 @@ function formatPhilosophy(arr) {
 }
 
 // Resilient slot formatter: strips any existing labels/bullets and prepends the correct label
-function formatSlot(rawText, label) {
+const formatSlot = function(rawText, label) {
     if (!rawText) return '';
     // Strip bullets
     let cleanText = String(rawText).replace(/^[\*\-]\s*/, '');
@@ -58,7 +58,7 @@ function formatSlot(rawText, label) {
 }
 
 // Specialized formatter for Target Matrix to enforce '* **Category:** ' syntax
-function formatTargetMatrix(arr) {
+const formatTargetMatrix = function(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
         let cleanItem = String(item).trim();
@@ -76,7 +76,7 @@ function formatTargetMatrix(arr) {
 }
 
 // Specialized formatter to fix broken bolding in Heuristics
-function formatHeuristics(arr) {
+const formatHeuristics = function(arr) {
     if (!Array.isArray(arr)) return '';
     return arr.map(item => {
         let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
@@ -89,7 +89,7 @@ function formatHeuristics(arr) {
 }
 
 // Clean nested markdown fences from raw code snippets
-function cleanCodeFence(str) {
+const cleanCodeFence = function(str) {
     if (!str) return '';
     return String(str)
         .replace(/^\s*```[a-zA-Z0-9]*\r?\n/gm, '')
@@ -99,7 +99,7 @@ function cleanCodeFence(str) {
 
 
 
-function compile(jsonPayloadStr, targetFilePath) {
+const compile = function(jsonPayloadStr, targetFilePath) {
 const BASE_PROFILES = {
     "Pruner": {
         domain: "Restrict your execution strictly to the identification and excision of targets. If a deletion breaks a tightly coupled dependency, you are explicitly forbidden from 'refactoring' the dependency to make the deletion work. Revert your deletion, leave the dead code in place, and proceed.",
@@ -298,7 +298,7 @@ const CONTEXT_EXTENSIONS = {
         reporterProtocol = "Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling.";
         prCreationRule = "Do not burn tool calls running `git diff` or `git status` right before submission. The PR UI automatically attaches diffs. Rely purely on your working memory to draft the PR description.";
     } else {
-        executionMandate = "Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across three layers:\n1. **Proactive Touchpoints:** If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.\n2. **Wrap-Up Checkpoints:** At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n3. **Managed Interruption:** If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: *'Awaiting operator clearance to resume.'* Resume instantly once cleared.";
+        executionMandate = "Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across three layers:\n1. **Proactive Touchpoints:** If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.\n2. **Wrap-Up Checkpoints:** At the end of PLAN and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n3. **Managed Interruption:** If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: *'Awaiting operator clearance to resume.'* Resume instantly once cleared.";
         discoveryVelocityRule = "**The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.";
         executionPosture = "Execute Incrementally.";
         reporterProtocol = "Verify your mutations incrementally. You may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target. Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.";
@@ -411,13 +411,13 @@ ${workerTasksBoardRules}
 ${formatSlot(data.archetype_slots?.journal_protocol || data.memory_and_triage?.journal_protocol || '', 'The Journal Protocol').replace(/^\*\s/, '')}
 
 ### The Process
-1. 🔍 **DISCOVER** — ${discoverTrigger} ${tasksBoardCrossReference}
+1. 🔍 **PLAN** — ${discoverTrigger} ${tasksBoardCrossReference}
 ${discoveryVelocityRule}
 ${formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix)}
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets ${priorityLanguage} up to your limit. Log any remaining unhandled targets into your \`.jules/\` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: ${targetLimitClean}.
 3. ⚙️ **[${data.process?.theme_verb || data.process?.execute?.theme_verb || ''}]** — **${executionPosture}** ${targetLimitInstruction}Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 ${executionSteps}
-4. ✅ **VERIFY** — **The Reporter Protocol:** ${reporterProtocol}
+4. ✅ **VALIDATE** — **The Reporter Protocol:** ${reporterProtocol}
 **Heuristic Verification:**
 ${heuristics}
 5. 🎁 **PRESENT** — ${presentationSlotClean} ${zeroTargetExitInstruction}${requiresTasksBoard ? "If the run produced no source mutations but did append relay entries to `.jules/worker_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""}
@@ -433,7 +433,7 @@ ${formatList(data.favorite_optimizations)}
     fs.writeFileSync(targetFilePath, cleanedOutput);
 
     // Support non-interactive interoperability by returning URI-encoded string if needed
-    return encodeURIComponent(cleanedOutput);
+    return cleanedOutput;
 }
 
 if (require.main === module) {

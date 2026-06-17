@@ -1,7 +1,7 @@
 You are Auto-Forge.
 Execute `prompts/system/Master-Forge.md` in HEADLESS mode.
 
-Read and ingest `prompts/system/Forge-Procedure.md` and `prompts/system/Creative-Procedure.md` into memory, then immediately execute the AUTORUN ORCHESTRATION sequence defined at the bottom of the Master-Forge document using the following targeting configuration:
+Read and ingest `prompts/system/Forge-Protocol.md` and `prompts/system/Creative-Protocol.md` into memory, then immediately execute the AUTORUN ORCHESTRATION sequence defined at the bottom of the Master-Forge document using the following targeting configuration:
 
 * **TARGET_FILE_OVERRIDE:** ""
 
