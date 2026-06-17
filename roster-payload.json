@@ -838,7 +838,7 @@
     "role": "Scope Elevator",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "HOIST TRAPPED LOGIC OUT OF RENDER SCOPES TO THE MODULE LEVEL.",
+    "description": "HOIST trapped logic out of render scopes to the module level.",
     "forge_version": "V84.3",
     "promptFile": "prompts/fusions/Hoister.md",
     "isCustom": true
