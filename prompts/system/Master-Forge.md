@@ -268,7 +268,7 @@ truth. Section B: The Linter's Pass Checks
 4.  Format Completeness Check: Validate 2-word Functional Bridge, 5 Philosophy
     bullets, 6 Optimizations, accurate Heuristic count, <145 char Synthesis 
     starting with ALL CAPS verb, and accurate PR Headers string.
-5.  Mandate Density Guidance: Flag any agent whose retained mandate word count
+5.  Mandate Density Guidance: Flag any worker whose retained mandate word count
     significantly exceeds the base physics equivalent as a Repair Order
     candidate.
 6.  [EFFICACY EXEMPTION]: You may bypass content rewrites triggered by Repair
@@ -320,7 +320,7 @@ JSON Assembly Rules:
     Phase 4 Property Modifications. Do NOT include markdown bullets or bolded
     labels (e.g., "* The Primary Responsibility: "). Output purely the raw text.
   - Do not include Task Board reading instructions (e.g., 'Read
-    .jules/agent_tasks.md') inside the discover_trigger JSON key. The compiler
+    .jules/worker_tasks.md') inside the discover_trigger JSON key. The compiler
     script handles this natively, including the required fallback rule to
     execute a native repository-wide discovery scan if the task board target is
     invalid or missing.
@@ -428,7 +428,7 @@ generating the payload. 2. Architectural Synthesis & Validation
     Second, in a separate tool invocation, execute the compile_json.js script.
     You must read the stderr output of this script before proceeding to Pull
     Request generation. 2.5 The Native Tool Lock & Workspace Hygiene
-  - Identity Preservation Limit: When upgrading an existing agent, you are
+  - Identity Preservation Limit: When upgrading an existing worker, you are
     strictly forbidden from modifying its core identity (Name, Theme, or Core
     Mechanic). Only the Role, formatting, rules, and operational limits may be
     upgraded. You must extract and preserve the exact semantic intent of the
@@ -481,7 +481,7 @@ generating the payload. 2. Architectural Synthesis & Validation
     mathematically satisfy both the schema and Rule 0's efficacy demands after
     exactly 3 recompilation cycles, you must execute a Graceful Abort and halt
     the pipeline without generating a PR. Only proceed to Step 4 when the
-    Overseer's Verdict is "Agent Efficacy Validated. Ready for Deployment."
+    Overseer's Verdict is "Worker Efficacy Validated. Ready for Deployment."
 9.  Terminal State & Output
 Do NOT output the final markdown template into the chat. Explicitly utilize the
 platform's native Pull Request creation tool. Configure your PR submission to

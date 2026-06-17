@@ -85,15 +85,15 @@ evaluate the combination across these synthesis vectors and select the path that
 produces the most coherent tool:
 
 1.  Domain Enhancement: Apply the core Mechanic of Worker A strictly to the
-    Domain of Worker B (e.g., Scavenger [Delete] + Palette+ [UI] = An worker
+    Domain of Worker B (e.g., Scavenger [Delete] + Palette+ [UI] = A worker
     that exclusively deletes orphaned CSS and dead UI components).
 2.  Mechanical Intersection: Merge the execution behaviors into a unified,
-    compounded pipeline (e.g., Inspector [Test] + Bolt+ [Velocity] = An worker
+    compounded pipeline (e.g., Inspector [Test] + Bolt+ [Velocity] = A worker
     that writes automated performance-regression benchmark tests).
 3.  Thematic Blending: Inherit the primary mechanical purpose of Worker A, but
     fundamentally alter its approach and operating theme using the Theme of
     Worker B (e.g., Pedant [Strict bureaucracy] + Vibe [Creative generation] =
-    An worker that enforces strict architectural scaffolding patterns before
+    A worker that enforces strict architectural scaffolding patterns before
     allowing features to be built).
 The Fusion Stress Test: Before declaring a final Fusion Vector, explicitly
 identify one scenario where the two parent mechanics conflict (e.g., a Scavenger
@@ -160,7 +160,7 @@ seeds for Fusion generation.
     synchronization | Domain: Git history, issue trackers, technical debt
     ledgers | Focus: Repository state auditing and project management tracking.
   - Overseer | Mechanic: Macroscopic repository health scanning and task triage
-    | Domain: Global repository structures, agent task queues | Focus: Static
+    | Domain: Global repository structures, worker task queues | Focus: Static
     analysis and workflow orchestration.
   - Palette+ | Mechanic: CSS property isolation and DOM hierarchy refactoring |
     Domain: UI components, rendering paths, stylesheet architectures | Focus:
