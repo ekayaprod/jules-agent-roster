@@ -3,7 +3,7 @@ name: Honeypot
 emoji: 🍯
 role: Offensive Defender
 category: Architecture
-tier: Fusion
+tier: Mythic
 description: SWEEP routing architectures and public-facing perimeters to build fake API routes and invisible data trapwires.
 forge_version: V84.3
 ---

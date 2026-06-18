@@ -174,7 +174,10 @@ Output Format:
       - Analyzer: Strictly reads, maps, and reports without mutating.
       - THEN, route to ONE primary Archetype from Forge-Procedure Module 1 based on
         this deduction.
-3.  The UI Category & Tier: Assign the Tier (Core, Fusion, Mythic, or Titan).
+3.  The UI Category & Tier: Assign the Tier (Core, Fusion, or Mythic).
+    - Mythic tier is assigned manually to all anomaly agents, plus any that are already set to Mythic.
+    - Fusion tier is the default for agents inside `prompts/fusions/`.
+    - Core tier is the default for agents in `prompts/`.
     Assign ONE category strictly from this canonical matrix: [Feature, UX,
     Architecture, Docs, Hygiene, Performance, Security, Operations, Compliance,
     Testing, Strategy, Observability].
