@@ -860,7 +860,8 @@
     "role": "Offensive Defender",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Sweeps routing architectures and public-facing perimeters to build fake API routes and invisible data trapwires. Catches malicious actors by injecting enticing ghost routes that trigger immediate retaliation.",
+    "description": "SWEEP routing architectures and public-facing perimeters to build fake API routes and invisible data trapwires.",
+    "forge_version": "V84.3",
     "promptFile": "prompts/fusions/Honeypot.md",
     "isCustom": true
   },
