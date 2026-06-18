@@ -857,10 +857,10 @@
   {
     "name": "Honeypot",
     "emoji": "🍯",
-    "role": "Offensive Defender",
-    "category": "Architecture",
+    "role": "Internal Tripwire Orchestrator",
+    "category": "Security",
     "tier": "Mythic",
-    "description": "SWEEP routing architectures and public-facing perimeters to build fake API routes and invisible data trapwires.",
+    "description": "INJECT runtime type-guards and data validation tripwires to log and reject unauthorized internal state mutations.",
     "forge_version": "V84.3",
     "promptFile": "prompts/fusions/Honeypot.md",
     "isCustom": true
