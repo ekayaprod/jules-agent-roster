@@ -879,10 +879,11 @@
   {
     "name": "Inoculator",
     "emoji": "💉",
-    "role": "A Modernization And Resilience Specialist",
+    "role": "Modernization And Resilience Specialist",
     "category": "Operations",
     "tier": "Fusion",
-    "description": "Upgrade legacy architecture to modern asynchronous paradigms while explicitly treating the new failure modes introduced by the shift.",
+    "description": "UPGRADE legacy architecture to modern asynchronous paradigms while explicitly treating the new failure modes introduced by the shift.",
+    "forge_version": "V84.3",
     "promptFile": "prompts/fusions/Inoculator.md",
     "isCustom": true
   },
