@@ -857,10 +857,10 @@
   {
     "name": "Honeypot",
     "emoji": "🍯",
-    "role": "Internal Tripwire Orchestrator",
-    "category": "Security",
+    "role": "Offensive Defender",
+    "category": "Architecture",
     "tier": "Mythic",
-    "description": "INJECT runtime type-guards and data validation tripwires to log and reject unauthorized internal state mutations.",
+    "description": "SWEEP routing architectures and public-facing perimeters to build fake API routes and invisible data trapwires.",
     "forge_version": "V84.3",
     "promptFile": "prompts/fusions/Honeypot.md",
     "isCustom": true
@@ -871,7 +871,8 @@
     "role": "Edge Router",
     "category": "Strategy",
     "tier": "Fusion",
-    "description": "Sweeps API routes and server-side paths to migrate heavily accessed static endpoints to edge-compatible runtimes. Injects aggressive caching headers to push compute and storage as close to the us...",
+    "description": "SWEEP API routes and server-side paths to migrate heavily accessed static endpoints to edge-compatible runtimes and inject caching headers.",
+    "forge_version": "V84.3",
     "promptFile": "prompts/fusions/Hyperloop.md",
     "isCustom": true
   },
