@@ -399,7 +399,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "OPTIMIZE legacy architecture by ruthlessly ripping out outdated heavy polyfills and utility libraries.",
-    "forge_version": "V82.0",
+    "forge_version": "V84.3",
     "promptFile": "prompts/fusions/Catalyst.md",
     "isCustom": true
   },
