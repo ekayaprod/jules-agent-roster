@@ -845,11 +845,12 @@
   },
   {
     "name": "Hologram",
-    "emoji": "🎇",
+    "emoji": "🎆",
     "role": "Generative Projectionist",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Transforms lifeless AI text streams into dynamic, beautifully rendered UI components. It projects raw markdown into rich, interactive interfaces that feel native to your application.",
+    "description": "PROJECTS RAW AI TEXT STREAMS INTO DYNAMIC, BEAUTIFULLY RENDERED NATIVE UI COMPONENTS.",
+    "forge_version": "V84.3",
     "promptFile": "prompts/fusions/Hologram.md",
     "isCustom": true
   },
