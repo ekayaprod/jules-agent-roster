@@ -382,6 +382,10 @@ class EventBinder {
         const url = AgentUtils.getPromptUrl(agent);
         app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
             agent.prompt = fetched;
+        }).catch(err => {
+            const tu = window.TelemetryUtils;
+            if (tu) tu.dispatchEvent("PROMPT_FETCH_ERROR", err);
+            else console.error("Failed to pre-fetch custom agent prompt:", err);
         });
     });
 
