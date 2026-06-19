@@ -160,6 +160,7 @@
     "category": "Security",
     "tier": "Core",
     "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries.",
+    "forge_version": "V84.5",
     "promptFile": "prompts/Sentinel+.md",
     "isCustom": false
   },
@@ -895,6 +896,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "INTERROGATE weak test suites. I am Internal Affairs. I drag lazy assertions under the bright lights and upgrade them into behavioral polygraphs.",
+    "forge_version": "V84.3",
     "promptFile": "prompts/fusions/Interrogator.md",
     "isCustom": true
   },
@@ -912,10 +914,11 @@
   {
     "name": "Jeweler",
     "emoji": "💎",
-    "role": "Visual Interaction QA",
+    "role": "Interaction QA",
     "category": "Testing",
     "tier": "Fusion",
-    "description": "Polish interactive UI components with strict focus and accessibility states, then permanently lock those facets in place with rigorous DOM interaction tests.",
+    "description": "POLISH UI components with strict accessibility states, then permanently lock those facets in place with rigorous DOM interaction tests.",
+    "forge_version": "V84.5",
     "promptFile": "prompts/fusions/Jeweler.md",
     "isCustom": true
   },
