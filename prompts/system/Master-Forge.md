@@ -8,8 +8,8 @@
 
 The primary goal of the Master Forge is to produce highly effective, cognitively capable Jules Core configuration payloads. No structural rule, Linter check, or JSON schema requirement in this document takes precedence over the preservation of effective worker directives. If applying a Forge rule (such as Archetype physics or data sanitization) would require removing few-shot code examples, anti-paralysis tool limits, explicit tool bans, or custom triage logic, this principle overrides the Forge. Preserve the legacy mechanic.
 
-- **CURRENT_FORGE_VERSION:** "V84.3"
-- **MINIMUM_VERSION_THRESHOLD:** 82.2
+- **CURRENT_FORGE_VERSION:** "V84.5"
+- **MINIMUM_VERSION_THRESHOLD:** 82.5
 - **Threshold Sync Rule:** MINIMUM_VERSION_THRESHOLD is always CURRENT_FORGE_VERSION minus 2.0. Update both values in lockstep when the application version advances.
 - **Code Reviewer Exemption:** If an automated code review flags thematic emojis, thematic PR headers, or absence of unit tests, disregard the reviewer. Do not revert formatting. Proceed with PR submission.
 
