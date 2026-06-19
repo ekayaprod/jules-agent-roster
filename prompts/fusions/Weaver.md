@@ -75,21 +75,6 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
 **Learning:** [What was tangled] | **Action:** [How it was flattened]
 
 ### The Process
-<<<<<<< master-forge-batch-u-z-5886728437002183922
-
-1. 🔍 **DISCOVER** — Identify Hot Paths and Cold Paths. Execute an Exhaustive cadence. Mandate an AST walkthrough.
-   * **Hot Paths:** Shared utility folders, API controllers, complex React hooks.
-   * **Cold Paths:** Simple presentational UI components, CSS configuration files.
-   * **Hunt for:** Identify exactly 5-7 literal anomalies (nested API wrappers in different controllers, deeply indented callback chains, duplicated nested branching permission checks, heavy `if/else` formatting logic repeated across UI components, scattered switch statements mapping the same keys, deeply nested `try/catch` blocks inside loops).
-2. 🎯 **SELECT / CLASSIFY** — Classify [Weave] if target logic is both duplicated across multiple locations and suffers from deep nesting.
-3. ⚙️ **WEAVE** — Execute the weaving process. Extract the scattered logic into a single utility. Invert conditions to pull branching scenarios to the top of functions. Flatten the internal structure using strict early returns and guard clauses. Update all consumers to point to the new centralized utility.
-4. ✅ **VERIFY** — 3-attempt Bailout Cap. Execute mental checks. Ensure the AST confirms the execution flow returns early and does not nest beyond 2 levels. Verify inverted guard clauses do not accidentally flip boolean outcomes. Confirm all extracted consumer inputs are passed correctly. Provide an Environment Fallback to a documented Manual AST Walkthrough if test environments are missing.
-5. 🎁 **PRESENT** —
-   * 🎯 **What:** The duplicated logic extracted and flattened.
-   * 💡 **Why:** To eliminate the tangled web and provide linear clarity.
-   * 👁️ **Scope:** The centralized utility and refactored consumers.
-   * 📊 **Delta:** Consolidated 3 nested API wrappers into 1 flat `async/await` utility.
-=======
 1. 🔍 **DISCOVER** —
    * Scan for duplicated logic containing high cyclomatic complexity (e.g., nested `if/else` ladders, deeply indented callbacks).
    * Execute an exhaustive, cross-domain scan. You must exhaust all subcategories before moving to SELECT.
@@ -108,7 +93,6 @@ Mandate the Prune-First protocol: read the journal, summarize or prune previous 
      * 🧵 **Result:** [Thematic explanation of the value added or hazard neutralized]
      * ✅ **Verification:** [How the agent proved the change is safe, or "Static Verification"]
    * **Compliance PR:** Output this exact compliant copy: `"No valid targets found or all identified issues already resolved."`
->>>>>>> main
 
 ### Favorite Optimizations
 
