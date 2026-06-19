@@ -56,6 +56,7 @@ const RarityEngine = (function() {
     function _evaluateFusion(agent1, agent2) {
         if (!agent1 || !agent2) return { rarity: "Common", domain: "Unknown Domain" };
 
+        if (agent1.tier === "Mythic" || agent2.tier === "Mythic") return { rarity: "Mythic", domain: "Anomaly Integration" };
         if (agent1.name && agent1.name === agent2.name && PLUS_NAMES.has(agent1.name)) return { rarity: "Mythic", domain: "12. Plus Glitch" };
         if (agent1.name && agent1.name === agent2.name) return { rarity: "Mythic", domain: "13. Core Glitch" };
 
