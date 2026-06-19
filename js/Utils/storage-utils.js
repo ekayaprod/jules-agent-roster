@@ -1,4 +1,3 @@
-// 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
 /**
  * Utility class for interacting with localStorage.
  * Centralizes duplicate parsing, stringifying, and error handling logic.

@@ -34,7 +34,6 @@ class JulesTerminal {
         if (typeof FormatUtils !== 'undefined') return FormatUtils;
         if (typeof window !== 'undefined' && window.FormatUtils) return window.FormatUtils;
         if (typeof global !== 'undefined' && global.FormatUtils) return global.FormatUtils;
-        // 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
         return null;
     }
 

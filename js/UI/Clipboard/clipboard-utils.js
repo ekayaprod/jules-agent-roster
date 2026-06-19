@@ -1,4 +1,3 @@
-// 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
 
 const DEFAULT_SUCCESS_DURATION = 2000;
 
