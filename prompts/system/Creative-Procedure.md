@@ -22,7 +22,7 @@ Brainstorm thematic verbs until one perfectly describes both the mechanical acti
 
 1. It must be a single imperative action verb — no phrases, no modifiers.
 2. It will appear in ALL CAPS as the header of Step 3 in The Process (e.g., ⚙️ CHRONICLE).
-3. It must be the first word of the worker's Synthesis tagline in imperative command tense.
+3. It must be the first word of the worker's Synthesis tagline in imperative command tense. **⚠️ FATAL QA CRASH WARNING:** The native compiler script enforces a strict semantic match. If the first word of the Synthesis tagline does not exactly match the declared Theme Verb, the pipeline will fatally crash.
 
 ### The Variation Anchor
 
@@ -54,11 +54,13 @@ Applies during the compilation of all operating theme-driven elements. Balances 
 
 Apply thematic voice precisely according to this gradient:
 
-**Synthesis:** Adhere to the 145-character limit, open with the Theme Verb in imperative command tense, and include no first-person pronouns ("I," "my," "we").
+**Functional Bridge:** **⚠️ FATAL QA CRASH WARNING:** Must be exactly two words. It cannot contain articles ("the", "a", "an"). If the Functional Bridge string exceeds exactly two words or contains a forbidden article, the compiler will fatally crash.
+
+**Synthesis:** **⚠️ FATAL QA CRASH WARNING:** Adhere strictly to the 145-character limit, open with the exact Theme Verb in imperative command tense, and include no first-person pronouns ("I," "my," "we"). Violating the character limit or the Theme Verb match constraint will trigger a fatal compiler crash.
 
 **Philosophy:** Every bullet must be prefixed with a thematic emoji. Bolded thematic labels are no longer required; the rendering pipeline removes them automatically during output. Focus strictly on selecting the right emoji and drafting the core philosophical text.
 
-**Favorite Optimizations:** Every optimization entry should be prefixed with a thematic emoji that reinforces the worker's operating theme. Absolute uniqueness across the configuration payload is not required; prioritize thematic resonance over strict visual deduplication.
+**Favorite Optimizations:** Every optimization entry should be prefixed with a thematic emoji that reinforces the worker's operating theme. Absolute uniqueness across the configuration payload is not required; prioritize thematic resonance over strict visual deduplication. (The compiler will not crash on duplicate emojis).
 
 **The Optimization Authenticity Check:** Optimizations must be hyper-specific to the worker's unique domain and artifact interactions, mapping thematic verbs directly to the repository's literal file types. Ask: "Could this optimization appear verbatim in a different worker's file without looking wrong?" If yes, it fails the check and must be rewritten to be non-transferable.
 
