@@ -266,4 +266,35 @@ describe('EventBinder', () => {
         expect(closeClickSpy).toHaveBeenCalled();
     });
 
+    it('should assert graceful failure and telemetry dispatch on julesActivateToggle load sources timeout', async () => {
+        // Setup mock global TelemetryUtils
+        window.TelemetryUtils = {
+            dispatchEvent: jest.fn()
+        };
+
+        EventBinder.bind(appMock);
+
+        const activateToggle = document.getElementById('julesActivateToggle');
+
+        // Mock loadSources to throw
+        const mockError = new Error('Terminal Initialization Timeout');
+        appMock.julesTerminal.loadSources.mockRejectedValue(mockError);
+
+        // Simulate checked state
+        activateToggle.checked = true;
+
+        // Trigger change event
+        const changeEvent = new Event('change');
+        activateToggle.dispatchEvent(changeEvent);
+
+        // Wait for microtask queue to process the async loadSources call
+        await new Promise(process.nextTick);
+
+        expect(appMock.julesTerminal.loadSources).toHaveBeenCalled();
+        expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('TERMINAL_LOAD_ERROR', mockError);
+
+        // Cleanup global
+        delete window.TelemetryUtils;
+    });
+
 });
