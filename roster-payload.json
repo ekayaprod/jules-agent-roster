@@ -1325,10 +1325,11 @@
   {
     "name": "Refiner",
     "emoji": "🛢️",
-    "role": "Structural Modernization Specialist",
+    "role": "Structural Modernizer",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Distills messy, nested callback spaghetti into flat, modern async/await execution paths by untangling the structure and upgrading the syntax.",
+    "description": "DISTILL messy callback spaghetti into flat, modern async/await execution paths by untangling structure and upgrading syntax.",
+    "forge_version": "V84.3",
     "promptFile": "prompts/fusions/Refiner.md",
     "isCustom": true
   },
