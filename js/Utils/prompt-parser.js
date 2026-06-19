@@ -76,7 +76,6 @@ const PromptParser = {
       return { format: 'xml', sections };
 
     } catch (e) {
-      // 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
             const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
       if (tu) {
           tu.dispatchEvent('PROMPT_PARSE_FAILED', e, {

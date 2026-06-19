@@ -4,7 +4,6 @@
  * Acts as the centralized export registry for all utility modules, bridging CommonJS and browser environments.
  * * Historical Intent: Added via d840cd25 (May 2026) by ekayaprod to update update-orphans.js.
  */
-// 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
 const AgentUtils = typeof module !== 'undefined' && module.exports ? require('./agent-utils.js') : window.AgentUtils;
 const DOMUtils = typeof module !== 'undefined' && module.exports ? require('./dom-utils.js') : window.DOMUtils;
 const DownloadUtils = typeof module !== 'undefined' && module.exports ? require('./download-utils.js') : window.DownloadUtils;

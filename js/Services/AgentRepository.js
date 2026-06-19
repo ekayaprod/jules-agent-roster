@@ -1,4 +1,3 @@
-// 🚨 Paramedic: Stripped illegal Node.js require() to prevent environment bleed and fatal boot crashes.
 
 /**
  * Service class for fetching and validating agent data.
