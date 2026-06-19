@@ -128,15 +128,14 @@ If walking through a Legacy Import, extract the legacy worker's Target Data Arra
 
 1. **The Mission Scope:** [Literal operational mission in max 2 sentences]. Format as a clean infinitive clause beginning with a plain, unmodified verb. Do not include the worker's name, a subject pronoun, or a conjugated verb form.
 
-2. **The Archetype Engine:** Provide a functional deduction of the worker's Target Execution Outcome, ignoring aggressive flavor text. Use these strict definitions:
-   - Pruner: Deletes or removes dead code/assets.
-   - Generator: Builds net-new features or scaffolding.
-   - Refactorer: Alters, optimizes, or restructures existing logic.
-   - Transformer: Applies behavior-preserving structural modifications (formatting).
-   - Instrumenter: Injects defensive type-guards, validations, or tests.
-   - Operator: Modifies infrastructure/configs/pipelines.
-   - Analyzer: Reads, maps, and reports without mutating.
-   - Then route to one primary Archetype from Forge-Procedure Module 1 based on this deduction.
+2. **The Archetype Engine:** Provide a functional deduction of the worker's Target Execution Outcome, ignoring aggressive flavor text. Do not cross-pollinate with the 20 Core DNA profiles used for collaborative net-new builds. Legacy upgrades must strictly route to one of these 7 structural Base Profiles:
+   - **Pruner:** Deletes or removes dead code/assets.
+   - **Generator:** Builds net-new features or scaffolding.
+   - **Refactorer:** Alters, optimizes, or restructures existing logic.
+   - **Transformer:** Applies behavior-preserving structural modifications (formatting).
+   - **Instrumenter:** Injects defensive type-guards, validations, or tests.
+   - **Operator:** Modifies infrastructure/configs/pipelines.
+   - **Analyzer:** Reads, maps, and reports without mutating.
 
 3. **The UI Category & Tier:** Assign the Tier (Core, Fusion, or Mythic).
    - Mythic tier is assigned manually to all anomaly agents, plus any already set to Mythic.
@@ -254,18 +253,18 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 
 5. **Instruction Density Guidance:** Flag any worker whose retained instruction word count significantly exceeds the base physics equivalent as a Repair Order candidate.
 
-6. **Efficacy Exemption:** Content rewrites triggered by Repair Orders (such as format and wording checks) may be bypassed if preserving the original language genuinely improves the Jules Core's operational efficacy. However, structural minimums like the minimum heuristic or philosophy counts may not be waived. Format checks must not rewrite working content to fit a template, but structural minimums must be enforced.
+6. **Efficacy Exemption:** Content rewrites triggered by Repair Orders (such as format and wording checks) may be bypassed if preserving the original language genuinely improves the Jules Core's operational efficacy. However, structural minimums like the minimum heuristic or philosophy counts may not be waived. Format checks must not rewrite working content to fit a template, but structural minimums must be enforced. If this exemption is applied, the Linter output must explicitly declare `"EFFICACY_EXEMPTION"`.
 
 ### Output Format
 
-- Math & State Checks: [PASS/FAIL]
+- Math & State Checks: [PASS/FAIL/EFFICACY_EXEMPTION]
 - Throughput & Payload: [Contained, Batch, or Expansive] | [Payload Threshold]
 - Throughput-Payload Consistency: [PASS/FAIL]
 - Priority Order: [Yes/No]
 - Coherence & Integrity: [PASS/FAIL — list each sub-check]
 - Format Completeness & UI Fence: [PASS/FAIL — list each sub-check]
   - **Reserved Process Emojis:** The emojis 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution process headers. Do not use them as the Operating Theme Lead emoji, within Philosophy bullets, or within Optimizations. This restriction is separate from the Emoji Ledger uniqueness check.
-- The Repair Order: [If FAIL, provide the minimal string correction required. Re-run the check. If PASS, output "Ready for JSON Compilation."]
+- The Repair Order: [If FAIL, provide the minimal string correction required. Re-run the check. If PASS or EFFICACY_EXEMPTION, output "Ready for JSON Compilation."]
 
 ---
 
@@ -281,20 +280,26 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 
 **Dynamic Schema Generation:** The `payload.json` file is dynamic. Create net-new schema keys (e.g., `"few_shot_examples"`, `"zero_interaction_mandates"`) if the legacy worker contains custom sections that do not fit the base template. Do not delete them.
 
-In this phase, output a raw data payload. Do not attempt to map or render the final markdown template. The native `compile_json.js` script acts as a Dumb Formatter, mapping the semantic keys provided below directly into the `worker_template.md` artifact to handle all formatting.
+In this phase, output a raw data payload. Do not attempt to map or render the final markdown template. The native `compile_json.js` script handles formatting, testing configurations, and journal routing based on the semantic keys provided below.
 
 ### JSON Assembly Rules
 
 - Map all variables from the Phase 4 Manifest and Phase 5 Linter outputs.
 - **Risk Review Logging:** Run Forge-Procedure Module 6: The Risk Review and log its output (Domain Conflict, Scope Boundary, Operating Theme Coherence) directly into the `_diagnostic` object before synthesizing the rest of the schema.
 - **Net-New Schema Keys:** Dynamically generate net-new schema keys (e.g., `few_shot_examples`, `custom_triage`) in `payload.json` rather than deleting legacy data that doesn't fit the standard Generator template. Extend the JSON structurally before discarding data.
-- Generate the `_diagnostic` object first. `linter_verdict` must evaluate to `"PASS"` before any remaining keys are synthesized. Validation is enforced at the LLM level; the compile script no longer acts as a strict QA gate.
+- **Diagnostic Gate:** Generate the `_diagnostic` object first. `linter_verdict` must evaluate to `"PASS"` or `"EFFICACY_EXEMPTION"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
 - Extract the raw text of the Archetype Properties verbatim, incorporating any Phase 4 Property Modifications. Do not include markdown bullets or bolded labels (e.g., `"* The Primary Responsibility: "`). Output purely the raw text.
-- Do not include Task Board reading instructions (e.g., `'Read .jules/worker_tasks.md'`) inside the `discover_trigger` JSON key. The compiler script handles this natively, including the required fallback rule to run a native repository-wide discovery scan if the task board target is invalid or missing.
+- Do not include Task Board reading instructions (e.g., `'Read .jules/worker_tasks.md'`) inside the `discover_trigger` JSON key. The compiler script handles this natively.
 - Do not include any rule marked as "Dropped."
 - Make `archetype_slots` values explicitly nullable, or map to `null` if a direct 1:1 legacy equivalent does not exist, relying instead on `salvaged_custom_logic`.
 - Do not extract legacy velocity, batching, or execution pacing rules into `salvaged_custom_logic` if they overlap with the velocity classification generated.
-- **Decoupled Archetype Physics:** The `compile_json.js` script no longer stores the Archetype dictionaries. You must explicitly inject the finalized text for `domain_anchor`, `mutation_scope`, and `operational_boundaries` directly into the `archetype_slots` object within `payload.json` so the formatter can place them in the template.
+- **Decoupled Archetype Physics:** The `compile_json.js` script no longer stores the Archetype dictionaries. You must explicitly inject the finalized text for `domain_anchor`, `mutation_scope`, and `operational_boundaries` directly into the `archetype_slots` object within `payload.json`.
+- **Decoupled Velocity & Physics Generation:** The `compile_json.js` script no longer auto-generates velocity strings or testing doctrines. You must explicitly generate and inject the following strings into your JSON payload based on the designated throughput and verification layer:
+  - `data.process.execute.execution_mandate`
+  - `data.process.discover.discovery_velocity_rule`
+  - `data.process.execute.execution_posture`
+  - `data.process.verify.reporter_procedure`
+  - `data.process.verify.testing_doctrine`
 - **Array Triggers & Modifiers:** The script no longer stores Context Extensions natively. If a context modifier is active, you must explicitly inject its clauses into the `domain_modifier_mandates` array in the JSON payload.
 
 **Output Format:** Output a raw JSON object matching the exact schema, wrapped in a ` ```json ` block.
@@ -351,7 +356,7 @@ Run a native file read on the locked target `.md` file to load its legacy logic 
 
 ### Step 3: Architectural Synthesis & Validation
 
-- **Generate payload.json:** Generate the `_diagnostic` object at the top of the schema first. You must self-enforce that `_diagnostic.linter_verdict === "PASS"`. This requires running the Repo Recon, Rule Sanitization, Archetype Mapping, Sculptor Manifest, Configuration Linter checks, and Forge-Procedure Module 6: The Risk Review, logging your reasoning directly into the `_diagnostic` object arrays before generating the remainder of the payload schema. Write the final JSON string to `payload.json`.
+- **Generate payload.json:** Generate the `_diagnostic` object at the top of the schema first. You must self-enforce that `_diagnostic.linter_verdict` equates to `"PASS"` or `"EFFICACY_EXEMPTION"`. This requires running the Repo Recon, Rule Sanitization, Archetype Mapping, Sculptor Manifest, Configuration Linter checks, and Forge-Procedure Module 6: The Risk Review, logging your reasoning directly into the `_diagnostic` object arrays before generating the remainder of the payload schema. Write the final JSON string to `payload.json`.
 - **Separation of Actions:** Do not combine JSON generation and script execution in a single tool call. First, generate and save `payload.json`. Second, in a separate tool invocation, run the `compile_json.js` script with the required template path. Read the `stderr` output of this script before proceeding to Pull Request generation.
 
 ### Step 4: Native Tool Lock & Workspace Hygiene
@@ -365,7 +370,7 @@ Run a native file read on the locked target `.md` file to load its legacy logic 
 ### Step 5: Execution & Verification
 
 - **Markdown Rendering:** Run `node prompts/system/compile_json.js payload.json prompts/system/worker_template.md <locked_target_file.md>` via the bash environment.
-- **The Retry Loop:** The script acts as a Dumb Formatter. It will only throw a fatal error to `stderr` upon a total JSON structural integrity failure (i.e., malformed JSON syntax). If this occurs, read the error string, fix the syntax in `payload.json`, and re-run the compile command. All semantic and array-length validations are now your exclusive responsibility during payload generation.
+- **The Retry Loop:** The script acts as a Formatter with strict structural QA gates. If the script throws a fatal validation error to `stderr` (e.g., Target Matrix lengths, Functional Bridge articles, Theme Verb mismatches, or `linter_verdict` failure), read the error string. The script specifies exactly which schema constraint failed. Fix the parameter in `payload.json` and re-run the compile command until it exits with a success code.
 
 ### Step 6: The Efficacy Audit (Post-Compilation Verification)
 
@@ -392,3 +397,4 @@ Do not output the final markdown template into the chat. Use the platform's nati
   - Sanitization Applied: [Note any operating theme gradient/metaphor fixes applied, or "None"]
   - Formatting Corrected: [Note emoji normalization, label stripping, or structure bans applied]
 ```
+
