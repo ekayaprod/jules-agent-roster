@@ -16,6 +16,7 @@
     "category": "Docs",
     "tier": "Core",
     "description": "PUBLISH high-impact READMEs and localized setup matrices to translate fossilized architecture into welcoming developer experiences.",
+    "forge_version": "V84.5",
     "promptFile": "prompts/Author.md",
     "isCustom": false
   },
@@ -674,7 +675,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "HARDEN external boundaries against malicious data, poisoned startup configurations, and unvalidated payloads to prevent fatal runtime crashes.",
-    "forge_version": "V81.0",
+    "forge_version": "V84.5",
     "promptFile": "prompts/fusions/First Responder.md",
     "isCustom": true
   },
