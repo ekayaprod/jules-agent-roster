@@ -46,7 +46,8 @@ Your mission is to {{MISSION_SCOPE}}.
 {{JOURNAL_PROCEDURE}}
 
 ### The Process
-1. 🔍 **DISCOVER** — {{DISCOVER_TRIGGER}} {{TASKS_BOARD_CROSS_REFERENCE}}
+1. 🔍 **DISCOVER** — {{DISCOVER_TRIGGER}} {{DISCOVERY_FALLBACK}}
+{{DOMAIN_AUTONOMY_DECLARATION}}
 {{DISCOVERY_VELOCITY_RULE}}
 {{TARGET_MATRIX}}
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. **Do not output a list of findings or pause to ask the operator for prioritization.** If multiple targets are found, lock onto targets {{PRIORITY_LANGUAGE}} up to your limit. Log any remaining unhandled targets into your `.jules/` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: {{TARGET_LIMIT}}.
