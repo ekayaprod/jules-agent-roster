@@ -6,8 +6,6 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "EXCAVATE unmaintainable monoliths and erect load-bearing domain structures to reinforce the physical foundations of the repository.",
-    "forge_version": "V84.5",
-    "foundational_domain": "Architect logic",
     "promptFile": "prompts/Architect.md",
     "isCustom": false
   },
@@ -19,7 +17,6 @@
     "tier": "Core",
     "description": "PUBLISH high-impact READMEs and localized setup matrices to translate fossilized architecture into welcoming developer experiences.",
     "forge_version": "V84.5",
-    "foundational_domain": "Author logic",
     "promptFile": "prompts/Author.md",
     "isCustom": false
   },
@@ -30,7 +27,6 @@
     "category": "Performance",
     "tier": "Core",
     "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge latency.",
-    "foundational_domain": "Bolt+ logic",
     "promptFile": "prompts/Bolt+.md",
     "isCustom": false
   },
@@ -41,7 +37,6 @@
     "category": "Feature",
     "tier": "Core",
     "description": "INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art handshakes.",
-    "foundational_domain": "Cortex logic",
     "promptFile": "prompts/Cortex.md",
     "isCustom": false
   },
@@ -52,7 +47,6 @@
     "category": "Operations",
     "tier": "Core",
     "description": "Dispatch pristine CI/CD payloads, optimize container transit, fortify meta-infrastructure, and provision context-aware MCP arrays.",
-    "foundational_domain": "Dispatch logic",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
@@ -63,7 +57,6 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "COLLAPSE sprawling imperative logic into highly dense, functional crystals using high-pressure vertical reduction.",
-    "foundational_domain": "Helix logic",
     "promptFile": "prompts/Helix.md",
     "isCustom": false
   },
@@ -74,7 +67,6 @@
     "category": "Testing",
     "tier": "Core",
     "description": "SHAKEDOWN unverified logic. Author ruthless test suites that drag perfect setups into the interrogation room until their alibis crack.",
-    "foundational_domain": "Inspector logic",
     "promptFile": "prompts/Inspector.md",
     "isCustom": false
   },
@@ -86,7 +78,6 @@
     "tier": "Core",
     "description": "EVOLVE fossilized syntax and deprecated patterns into modern native standards to radically reduce cognitive load.",
     "forge_version": "V85.0",
-    "foundational_domain": "Modernizer logic",
     "promptFile": "prompts/Modernizer.md",
     "isCustom": false
   },
@@ -97,7 +88,6 @@
     "category": "Strategy",
     "tier": "Core",
     "description": "CHART the path forward. Audit physical git history to synchronize milestones and target architectural obsolescence for the innovation backlog.",
-    "foundational_domain": "Navigator logic",
     "promptFile": "prompts/Navigator.md",
     "isCustom": false
   },
@@ -108,7 +98,6 @@
     "category": "Observability",
     "tier": "Core",
     "description": "Audit the macroscopic repository topology, categorize structural decay, and govern the centralized triage queue to optimize swarm execution.",
-    "foundational_domain": "Overseer logic",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
@@ -120,7 +109,6 @@
     "tier": "Core",
     "description": "STYLIZE frontend components with purposeful UX patterns, fluid design tokens, and motion to craft frictionless, delightful experiences.",
     "forge_version": "V85.0",
-    "foundational_domain": "Palette+ logic",
     "promptFile": "prompts/Palette+.md",
     "isCustom": false
   },
@@ -131,7 +119,6 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "RESUSCITATE fatal boot sequences, trace catastrophic crashes, and mutate logic to restore operational stability.",
-    "foundational_domain": "Paramedic logic",
     "promptFile": "prompts/Paramedic.md",
     "isCustom": false
   },
@@ -142,7 +129,6 @@
     "category": "Hygiene",
     "tier": "Core",
     "description": "CORRECT loose typings, implicit coercions, and chaotic sorting because there is a canonical way to write this, and you didn't use it.",
-    "foundational_domain": "Pedant logic",
     "promptFile": "prompts/Pedant.md",
     "isCustom": false
   },
@@ -154,7 +140,6 @@
     "tier": "Core",
     "description": "CONSUME semantic dust, orphaned logic, and ghost syntax to leave the repository's structural architecture immaculate.",
     "forge_version": "V85.0",
-    "foundational_domain": "Scavenger logic",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
@@ -165,7 +150,6 @@
     "category": "Docs",
     "tier": "Core",
     "description": "CHRONICLE complex logic via AST-driven docs, and aggregate release cycles using git history to silently preserve institutional memory.",
-    "foundational_domain": "Scribe logic",
     "promptFile": "prompts/Scribe.md",
     "isCustom": false
   },
@@ -177,7 +161,6 @@
     "tier": "Core",
     "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries.",
     "forge_version": "V84.5",
-    "foundational_domain": "Sentinel+ logic",
     "promptFile": "prompts/Sentinel+.md",
     "isCustom": false
   },
@@ -189,7 +172,6 @@
     "tier": "Core",
     "description": "SWEEP the repository to purge microscopic decay, enforce structural baselines, and permanently delete unlinked generated artifacts.",
     "forge_version": "V85.0",
-    "foundational_domain": "Superintendent logic",
     "promptFile": "prompts/Superintendent.md",
     "isCustom": false
   },
@@ -200,7 +182,6 @@
     "category": "Hygiene",
     "tier": "Core",
     "description": "UNKNOT deeply nested code to restore readability through linear execution paths and guard clauses.",
-    "foundational_domain": "Untangler logic",
     "promptFile": "prompts/Untangler.md",
     "isCustom": false
   },
@@ -212,7 +193,6 @@
     "tier": "Core",
     "description": "SQUARE up every spaced-out LLM hallucination and bring the codebase back to righteous, lockfile-verified reality.",
     "forge_version": "V85.0",
-    "foundational_domain": "Vibe Check logic",
     "promptFile": "prompts/Vibe Check.md",
     "isCustom": false
   },
@@ -224,7 +204,6 @@
     "tier": "Core",
     "description": "FLOW through the repository to deduce semantic gaps, missing architecture, and latent features, coding them into production-ready reality.",
     "forge_version": "V85.0",
-    "foundational_domain": "Vibe logic",
     "promptFile": "prompts/Vibe.md",
     "isCustom": false
   },

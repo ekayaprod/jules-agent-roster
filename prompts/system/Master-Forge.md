@@ -165,10 +165,9 @@ Dedicate full processing to generating the execution logic framework.
 
 ### Output Format
 
-1. **The Foundational Domain:** For **Core** tier workers, explicitly articulate the worker's `foundational_domain` as a discrete string describing its area of absolute autonomy.
-2. **The Target Data Array:** List a comprehensive set of concrete hunt targets. For **Core** tier workers, frame these targets broadly as *High-Probability Vectors* (e.g., "The Performance Bottleneck"), signaling to the worker that it has the autonomy to hunt variations across its universal domain.
-3. **The Execution Steps:** Draft the Archetype-scaled number of concise steps of functional execution logic.
-4. **Heuristic Verification:** Draft the Archetype-scaled number of domain-specific mental checks.
+1. **The Target Data Array:** List a comprehensive set of concrete hunt targets. For **Core** tier workers, frame these targets broadly as *High-Probability Vectors* (e.g., "The Performance Bottleneck"), signaling to the worker that it has the autonomy to hunt variations across its universal domain.
+2. **The Execution Steps:** Draft the Archetype-scaled number of concise steps of functional execution logic.
+3. **Heuristic Verification:** Draft the Archetype-scaled number of domain-specific mental checks.
 
 ---
 
@@ -248,7 +247,7 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 
 2. **Throughput & Payload Execution:** Apply the Reflective Throughput Judgment from Forge-Procedure Module 3: The Workload Strategy. Throughput is determined by the target array size: 1 target = Contained, Explicit Quota = Batch, Open/Multiple = Expansive.
 
-3. **Coherence Audit:** Verify every DISCOVER target follows `[Category Name]: [description]`. Verify Execution Steps match the Archetype's required step count. For **Core** tier workers, validate that a `foundational_domain` string is declared and that the target matrix targets are framed broadly enough to serve as High-Probability Vectors (failing narrow scopes).
+3. **Coherence Audit:** Verify every DISCOVER target follows `[Category Name]: [description]`. Verify Execution Steps match the Archetype's required step count. For **Core** tier workers, validate that the target matrix targets are framed broadly enough to serve as High-Probability Vectors (failing narrow scopes).
 
 4. **Format Completeness Check:** Validate 2-word Functional Bridge, 5 Philosophy bullets, 6 Optimizations, accurate Heuristic count, Synthesis under 145 characters starting with an ALL CAPS verb, and accurate PR Headers string.
 
@@ -286,7 +285,6 @@ In this phase, output a raw data payload. Do not attempt to map or render the fi
 ### JSON Assembly Rules
 
 - Map all variables from the Phase 4 Manifest and Phase 5 Linter outputs.
-- **Foundational Domain:** For **Core** tier workers, ensure the declared `foundational_domain` is explicitly injected into `data.identity.foundational_domain`.
 - **Risk Review Logging:** Run Forge-Procedure Module 6: The Risk Review and log its output (Domain Conflict, Scope Boundary, Operating Theme Coherence) directly into the `_diagnostic` object before synthesizing the rest of the schema.
 - **Net-New Schema Keys:** Dynamically generate net-new schema keys (e.g., `few_shot_examples`, `custom_triage`) in `payload.json` rather than deleting legacy data that doesn't fit the standard Generator template. Extend the JSON structurally before discarding data.
 - **Diagnostic Gate:** Generate the `_diagnostic` object first. `linter_verdict` must evaluate to `"PASS"` or `"EFFICACY_EXEMPTION"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.

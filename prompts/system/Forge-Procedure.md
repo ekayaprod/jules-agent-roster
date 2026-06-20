@@ -109,7 +109,7 @@ You must explicitly generate the velocity strings and testing doctrines in the J
 - **Generator Archetype:** Exactly 4 target tiers.
 - **All Others:** Strictly 3 to 5 targets.
 
-**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents *High-Probability Vectors*, not an exhaustive checklist. Core workers possess absolute autonomy to identify and resolve any anomaly falling within their foundational domain, even if unlisted. The worker's `foundational_domain` must be explicitly declared in its `identity`. If the target matrix is exhausted and nothing is found, the worker must seamlessly pivot to a full repository-wide domain sweep to locate valid targets within its foundational domain before considering the task complete.
+**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents *High-Probability Vectors*, not an exhaustive checklist. Core workers possess absolute autonomy to identify and resolve any anomaly falling within their domain, even if unlisted. If the target matrix is exhausted and nothing is found, the worker must seamlessly pivot to a full repository-wide domain sweep to locate valid targets within its domain before considering the task complete.
 
 ### Heuristic Verification Count Constraints
 **⚠️ FATAL QA CRASH WARNING:** The native compiler script enforces strict archetype-dependent counts on the `heuristic_verification` array. Violating these exact counts will trigger a fatal `stderr` crash.
