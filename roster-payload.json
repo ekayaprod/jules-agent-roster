@@ -940,6 +940,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "DISPATCH delivery-layer fixes to ensure AI payloads survive deployment.",
+    "forge_version": "V84.5",
     "promptFile": "prompts/fusions/Launchpad.md",
     "isCustom": true
   },
