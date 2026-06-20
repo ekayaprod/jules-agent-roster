@@ -140,7 +140,7 @@ If walking through a Legacy Import, extract the legacy worker's Target Data Arra
 3. **The UI Category & Tier:** Assign the Tier (Core, Fusion, or Mythic).
    - Mythic tier is assigned manually to all anomaly agents, plus any already set to Mythic.
    - Fusion tier is the default for agents inside `prompts/fusions/`.
-   - Core tier is the default for agents in `prompts/`.
+   - Core tier is the default for agents in `prompts/`. (Core tier workers inherently possess Domain Autonomy to hunt beyond explicit targets).
    - Assign one category from this canonical matrix: [Feature, UX, Architecture, Docs, Hygiene, Performance, Security, Operations, Compliance, Testing, Strategy, Observability].
 
 4. **Execution Trigger:** [Determine the primary async tool trigger].
@@ -165,7 +165,7 @@ Dedicate full processing to generating the execution logic framework.
 
 ### Output Format
 
-1. **The Target Data Array:** List a comprehensive set of concrete hunt targets.
+1. **The Target Data Array:** List a comprehensive set of concrete hunt targets. For **Core** tier workers, frame these targets broadly as *High-Probability Vectors* (e.g., "The Performance Bottleneck"), signaling to the worker that it has the autonomy to hunt variations across its universal domain.
 2. **The Execution Steps:** Draft the Archetype-scaled number of concise steps of functional execution logic.
 3. **Heuristic Verification:** Draft the Archetype-scaled number of domain-specific mental checks.
 
@@ -396,5 +396,3 @@ Do not output the final markdown template into the chat. Use the platform's nati
   - Rules Retained: [List 1-2 key domain functions preserved, or "None"]
   - Sanitization Applied: [Note any operating theme gradient/metaphor fixes applied, or "None"]
   - Formatting Corrected: [Note emoji normalization, label stripping, or structure bans applied]
-```
-
