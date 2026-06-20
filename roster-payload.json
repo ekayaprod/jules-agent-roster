@@ -1031,11 +1031,11 @@
   {
     "name": "Medic",
     "emoji": "🩹",
-    "role": "Incompleteness Specialist",
+    "role": "Implementation Fixer",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "COMPLETE missing structural logic and unfinished scaffolds that trigger null references, stabilizing the system from fatal crashes.",
-    "forge_version": "V81.0",
+    "description": "COMPLETE missing contracts and unfulfilled state objects to stabilize crashing logic flow.",
+    "forge_version": "V84.5",
     "promptFile": "prompts/fusions/Medic.md",
     "isCustom": true
   },
