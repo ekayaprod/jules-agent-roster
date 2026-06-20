@@ -70,7 +70,7 @@ Apply thematic voice precisely according to this gradient:
 
 ## Module 3: The Fusion Engine (Intuitive Synthesis)
 
-Applies when a user requests combining ("fusing") two existing workers. Evaluate the combination across these three synthesis vectors and select the path that produces the most coherent tool.
+Applies when a user requests combining ("fusing") two existing workers. When combining two Core workers, you inherently strip away their universal domain autonomy. A Fusion is always a narrow, strictly bounded specialist. Evaluate the combination across these three synthesis vectors and select the path that produces the most coherent tool.
 
 ### Synthesis Vectors
 
@@ -108,7 +108,7 @@ When generating a recursive worker, draw on these six creative dimensions:
 
 ## Module 5: The Core DNA Index
 
-Use this index as a starting reference for a worker's mechanical domain when generating Fusions. Archetypes are assigned dynamically during Phase 1 routing, not inherited from parents.
+The Core DNA Index represents 20 universal domain owners. Core workers operate in broad strokes across the fundamental areas of software engineering. Use this index as a starting reference for a worker's mechanical domain when generating Fusions. Archetypes are assigned dynamically during Phase 1 routing, not inherited from parents.
 
 - **Architect** — monolithic structure splitting and module relocation
 - **Author** — documentation synthesis and developer onboarding scaffolding
