@@ -41,7 +41,7 @@ function formatSlot(rawText, label) {
 
 function formatTargetMatrix(arr, tier) {
     if (!Array.isArray(arr)) return '';
-    
+
     const formattedList = arr.map(item => {
         let cleanItem = String(item).trim();
         const match = cleanItem.match(/^[\*\-\s]*(?:\*\*?)?([^\*:]+)(?:\*\*?)?:\s*(.*)/);
@@ -132,6 +132,13 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
         }
     });
 
+    const isCoreTier = String(data.identity?.tier).toLowerCase() === 'core';
+    if (isCoreTier) {
+        if (!data.identity?.foundational_domain || data.identity.foundational_domain.trim() === '') {
+            throw new Error(`[FATAL ERROR] foundational_domain must be explicitly declared for Core workers.`);
+        }
+    }
+
     // --- DETERMINISTIC COMPILER LOGIC ---
 
     const category = data.identity?.category || '';
@@ -176,8 +183,8 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
         'WORKER_TASKS_BOARD': requiresTasksBoard ? "* **The Worker Tasks Board (`.jules/worker_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself." : '',
         'JOURNAL_PROCEDURE': formatSlot(data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure, 'The Journal Procedure').replace(/^\*\s/, ''),
         'DISCOVER_TRIGGER': String(data.process?.discover?.trigger || data.process?.discover_trigger || '').replace(/^via\s+/i, ''),
-        'DISCOVERY_FALLBACK': requiresTasksBoard ? "Cross-reference `.jules/worker_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan." : (isCore ? "If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your foundational domain before considering the task complete." : ''),
-        'DOMAIN_AUTONOMY_DECLARATION': isCore ? `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your foundational domain (${data.identity?.foundational_domain || 'your operating theme'}), even if unlisted.` : '',
+        'DISCOVERY_FALLBACK': requiresTasksBoard ? "Cross-reference `.jules/worker_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan." + (isCore ? " If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your foundational domain before considering the task complete." : "") : (isCore ? "If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your foundational domain before considering the task complete." : ''),
+        'DOMAIN_AUTONOMY_DECLARATION': isCore ? `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your foundational domain (${data.identity?.foundational_domain}), even if unlisted.` : '',
         'DISCOVERY_VELOCITY_RULE': data.process?.discover?.discovery_velocity_rule || '',
         'TARGET_MATRIX': formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix, data.identity?.tier),
         'PRIORITY_LANGUAGE': data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily',
