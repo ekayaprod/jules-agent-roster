@@ -39,14 +39,23 @@ function formatSlot(rawText, label) {
     return `* **${label}:** ${cleanText}`;
 }
 
-function formatTargetMatrix(arr) {
+function formatTargetMatrix(arr, tier) {
     if (!Array.isArray(arr)) return '';
-    return arr.map(item => {
+    
+    let intro = '';
+    // Only apply the Domain Autonomy preamble to Core workers. Leave all others exactly as they are.
+    if (String(tier).toLowerCase() === 'core') {
+        intro = "**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your foundational domain, even if unlisted.\n";
+    }
+
+    const formattedList = arr.map(item => {
         let cleanItem = String(item).trim();
         const match = cleanItem.match(/^[\*\-\s]*(?:\*\*?)?([^\*:]+)(?:\*\*?)?:\s*(.*)/);
         if (match) return `* **${match[1].trim()}:** ${match[2].trim().replace(/^[\*\-\s]+/, '')}`;
         return `* ${cleanItem.replace(/^[\*\-]\s*/, '')}`;
     }).join('\n');
+    
+    return intro ? `${intro}${formattedList}` : formattedList;
 }
 
 function formatHeuristics(arr) {
@@ -174,7 +183,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
         'DISCOVER_TRIGGER': String(data.process?.discover?.trigger || data.process?.discover_trigger || '').replace(/^via\s+/i, ''),
         'TASKS_BOARD_CROSS_REFERENCE': requiresTasksBoard ? "Cross-reference `.jules/worker_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan." : '',
         'DISCOVERY_VELOCITY_RULE': data.process?.discover?.discovery_velocity_rule || '',
-        'TARGET_MATRIX': formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix),
+        'TARGET_MATRIX': formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix, data.identity?.tier),
         'PRIORITY_LANGUAGE': data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily',
         'TARGET_LIMIT': targetLimitClean,
         'THEME_VERB': definedThemeVerb || 'EXECUTE',
