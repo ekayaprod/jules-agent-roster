@@ -6,6 +6,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "EXCAVATE unmaintainable monoliths and erect load-bearing domain structures to reinforce the physical foundations of the repository.",
+    "forge_version": "V84.5",
     "promptFile": "prompts/Architect.md",
     "isCustom": false
   },
@@ -940,6 +941,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "DISPATCH delivery-layer fixes to ensure AI payloads survive deployment.",
+    "forge_version": "V84.5",
     "promptFile": "prompts/fusions/Launchpad.md",
     "isCustom": true
   },
