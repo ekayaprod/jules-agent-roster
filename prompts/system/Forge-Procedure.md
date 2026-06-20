@@ -103,15 +103,13 @@ You must explicitly generate the velocity strings and testing doctrines in the J
 
 ## Module 5: Workflow Design (The Blueprint)
 
-### Target Matrix Posture & Array Constraints
-The `target_matrix` defines the worker's operational focus. Its interpretation is strictly governed by the worker's assigned Tier (Core vs. Fusion):
-* **Core Tier (Domain Autonomy):** Core workers operate in broad strokes across universal domains. Their target array represents *High-Probability Vectors*—archetypal examples of their domain. Core workers possess absolute autonomy to identify and resolve any anomaly falling within their foundational domain, even if unlisted.
-* **Fusion Tier (Strict Specialization):** Fusions are highly specialized instruments deployed for niche workflows. Their target array is an *Exhaustive Checklist*. If the repository lacks these exact scenarios, the worker must exit cleanly. Do not invent generalized tasks.
-
+### Target Matrix Array Constraints
 **⚠️ FATAL QA CRASH WARNING:** The native compiler script enforces rigid length checks on the `target_matrix` array. Violating these bounds will trigger a fatal `stderr` crash and destroy the configuration build.
 - **Contained Velocity:** Exactly 1 target.
 - **Generator Archetype:** Exactly 4 target tiers.
 - **All Others:** Strictly 3 to 5 targets.
+
+**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents *High-Probability Vectors*, not an exhaustive checklist. Core workers possess absolute autonomy to identify and resolve any anomaly falling within their foundational domain, even if unlisted.
 
 ### Heuristic Verification Count Constraints
 **⚠️ FATAL QA CRASH WARNING:** The native compiler script enforces strict archetype-dependent counts on the `heuristic_verification` array. Violating these exact counts will trigger a fatal `stderr` crash.
