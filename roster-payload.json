@@ -926,9 +926,10 @@
     "name": "Keymaster",
     "emoji": "🗝️",
     "role": "Cryptographic Auditor",
-    "category": "Docs",
+    "category": "Security",
     "tier": "Fusion",
-    "description": "Hunt down hardcoded secrets, extract them into environment variables, and enforce pre-commit hook scanning patterns.",
+    "description": "AUDIT hardcoded secrets by extracting them into environment variables without manual rotation.",
+    "forge_version": "V84.5",
     "promptFile": "prompts/fusions/Keymaster.md",
     "isCustom": true
   },
