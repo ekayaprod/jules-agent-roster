@@ -33,7 +33,7 @@ Operational: Treat build environments as volatile. If changes fail a dry-run/syn
 7. Analyzer (Read)
 Domain: Restrict execution exclusively to static analysis and architectural mapping. Mutating application logic, configs, or source code is not permitted.
 Scope: Confine write operations strictly to external output files (README.md, .json intelligence reports). AST write permissions are out of bounds.
-Operational:
+Operational: Treat the repository as a strictly read-only filesystem. The SEARCH/REPLACE API is disabled for all source code files. If obfuscated files break the parser, initiate a Graceful Abort on that file. Read-Only Override: Write operations are confined strictly to your designated output files.
 Module 2: Context Extensions (Modifiers)
 Context Extensions are injected directly into the domain_modifier_mandates array of the JSON payload. You must supply the verbatim text below if the modifier is declared active during Repo Recon.
 Security Perimeter Modifier
@@ -66,6 +66,9 @@ discovery_velocity_rule: "The Bounded Sweep: You may scan and lock onto targets 
 execution_posture: "Execute in bounded sequence, tracking your mutation count against your declared quota ceiling."
 reporter_procedure: "Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling."
 
+Expansive_Standard (Full-Sweep): * execution_mandate: "Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across three layers:\n1. Proactive Touchpoints: If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.\n2. Wrap-Up Checkpoints: At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n3. Managed Interruption: If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: 'Awaiting operator clearance to resume.' Resume instantly once cleared."
+
+Expansive_Pruner (Full-Sweep): * execution_mandate: "Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across two layers:\n1. Wrap-Up Checkpoints: At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n2. Managed Interruption: If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: 'Awaiting operator clearance to resume.' Resume instantly once cleared."
 discovery_velocity_rule: "The Deep Map: You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module."
 execution_posture: "Execute Incrementally."
 reporter_procedure: "Verify your mutations incrementally. You may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target. Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed."
@@ -82,11 +85,3 @@ Count constraints are enforced natively by compile_json.js. Consult the compiler
 These checks must directly reflect the worker's workflow type as determined during Repo Recon.
 Confidence Tier Model
 An optional structural pattern available to the Sculptor. It serves as an alternative to the binary Ambiguity Gate for workers whose target domains have natural confidence gradients. When electing to apply it, reference it explicitly by name.
-Module 6: Risk Review
-This structured devil's advocate check runs before the Sculptor Procedure begins. It is not an interactive approval gate; it is a mandatory pre-Sculptor reasoning step that surfaces the three highest-risk assumptions in the proposed Archetype routing. The output of this pass feeds directly into the Sculptor Procedure's Friction Polish step.
-1. Domain Conflict
-Could another Archetype plausibly claim this domain? If yes, articulate exactly why the assigned Archetype is more mechanically precise.
-2. Scope Boundary
-Is there a class of adjacent files the worker might be tempted to touch but should not? Declare this boundary explicitly before execution begins.
-3. Operating Theme Coherence
-Does the worker's thematic identity actually justify its operational boundaries, or are the boundaries simply inherited generically from the base profile? Confirm that the operating theme mechanically restricts or focuses the worker, rather than serving as mere decoration.
