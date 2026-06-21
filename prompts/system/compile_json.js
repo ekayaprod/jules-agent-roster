@@ -5,7 +5,7 @@ const CURRENT_FORGE_VERSION = 84.5;
 const MINIMUM_VERSION_THRESHOLD = CURRENT_FORGE_VERSION - 2.0;
 
 
-const ANALYZER_OPERATIONAL_BASELINE = "Operational: Treat the repository as a strictly read-only filesystem. The SEARCH/REPLACE API is disabled for all source code files. If obfuscated files break the parser, initiate a Graceful Abort on that file. Unconditional Cleanup: Run git clean -fd -e .jules/ before PR or Abort to wipe data dumps. Read-Only Override: Write operations are confined strictly to your designated output files.";
+const ANALYZER_OPERATIONAL_BASELINE = "Unconditional Cleanup: Run git clean -fd -e .jules/ before PR or Abort to wipe data dumps.";
 const UNIVERSAL_OPERATIONAL_BASELINE = "Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. Operate strictly within the existing native environment stack. Installing OS-level packages (apt-get, .deb) is a scope violation. If a required binary is missing from the host environment, initiate a Graceful Abort immediately. Unconditional Cleanup: Run git clean -fd -e .jules/ before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard <<<<<<< SEARCH / ======= / >>>>>>> REPLACE block logic). The creation or execution of any .diff, .sh, or .js script to mutate source files is a critical scope violation.";
 
 /**
