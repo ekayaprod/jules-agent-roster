@@ -951,7 +951,8 @@
     "role": "Vocabulary Standardizer",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Hunt down naming drift and synonymous variables, and standardize them into a unified, explicit vocabulary.",
+    "description": "STANDARDIZE naming drift and synonymous variables into a unified, explicit vocabulary.",
+    "forge_version": "V84.5",
     "promptFile": "prompts/fusions/Lexicon.md",
     "isCustom": true
   },
