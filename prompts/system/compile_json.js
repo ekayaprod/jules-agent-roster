@@ -41,12 +41,6 @@ function formatSlot(rawText, label) {
 
 function formatTargetMatrix(arr, tier) {
     if (!Array.isArray(arr)) return '';
-    
-    let intro = '';
-    // Only apply the Domain Autonomy preamble to Core workers. Leave all others exactly as they are.
-    if (String(tier).toLowerCase() === 'core') {
-        intro = "**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your foundational domain, even if unlisted.\n";
-    }
 
     const formattedList = arr.map(item => {
         let cleanItem = String(item).trim();
@@ -55,7 +49,7 @@ function formatTargetMatrix(arr, tier) {
         return `* ${cleanItem.replace(/^[\*\-]\s*/, '')}`;
     }).join('\n');
     
-    return intro ? `${intro}${formattedList}` : formattedList;
+    return formattedList;
 }
 
 function formatHeuristics(arr) {
@@ -143,13 +137,14 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     const category = data.identity?.category || '';
     const payloadThreshold = data.payload_threshold || data.process?.select_classify?.target_limit || '1';
     const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].includes(profileKey);
+    const isCore = String(data.identity?.tier).toLowerCase() === 'core';
 
     const ignoreLimits = ['open', 'n/a', 'none', 'null', 'expansive', 'all'];
     const targetLimitClean = String(payloadThreshold).trim();
     const targetLimitInstruction = (targetLimitClean && targetLimitClean !== '1' && !ignoreLimits.includes(targetLimitClean.toLowerCase())) 
         ? `Continue executing within your locked scope up to a maximum of ${targetLimitClean}. ` : '';
 
-    const zeroTargetExitInstruction = data.process?.present?.requires_total_replacement_override 
+    const zeroTargetExitInstruction = (data.process?.present?.requires_total_replacement_override || isCore)
         ? '' : (requiresTasksBoard ? 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. ' : 'End the task cleanly without a PR if zero targets were found. ');
 
     const map = {
@@ -181,7 +176,8 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
         'WORKER_TASKS_BOARD': requiresTasksBoard ? "* **The Worker Tasks Board (`.jules/worker_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself." : '',
         'JOURNAL_PROCEDURE': formatSlot(data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure, 'The Journal Procedure').replace(/^\*\s/, ''),
         'DISCOVER_TRIGGER': String(data.process?.discover?.trigger || data.process?.discover_trigger || '').replace(/^via\s+/i, ''),
-        'TASKS_BOARD_CROSS_REFERENCE': requiresTasksBoard ? "Cross-reference `.jules/worker_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan." : '',
+        'DISCOVERY_FALLBACK': requiresTasksBoard ? "Cross-reference `.jules/worker_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan." + (isCore ? " If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete." : "") : (isCore ? "If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete." : ''),
+        'DOMAIN_AUTONOMY_DECLARATION': isCore ? `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.` : '',
         'DISCOVERY_VELOCITY_RULE': data.process?.discover?.discovery_velocity_rule || '',
         'TARGET_MATRIX': formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix, data.identity?.tier),
         'PRIORITY_LANGUAGE': data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily',
