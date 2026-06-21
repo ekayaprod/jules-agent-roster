@@ -489,7 +489,6 @@ class RosterApp {
    */
   initObserver() {
     if (typeof IntersectionObserver === 'undefined') {
-        console.warn("IntersectionObserver not supported, skipping pill observer initialization.");
         return;
     }
 

@@ -15,3 +15,8 @@
 * `js/Utils/index.js` | Tier 5 (Knip) (Coupled)
 * `js/constants/ui.js` | Tier 5 (Knip) (Coupled)
 * `js/Services/AgentRepository.js` | Tier 5 (Knip) (Coupled)
+* `js/core/RosterApp.js` | Tier 1 (Diagnostic Droppings) | `console.warn("IntersectionObserver not supported, skipping pill observer initialization.");`
+* `js/UI/Singularity/SingularityBespokeBuilder.js` | Tier 1 (Coupled)
+* `js/Utils/network-utils.js` | Tier 1 (Coupled)
+* `js/Utils/storage-utils.js` | Tier 1 (Coupled)
+* `js/Utils/markdown-renderer.js` | Tier 1 (Coupled)
