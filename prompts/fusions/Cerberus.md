@@ -16,7 +16,7 @@ Your mission is to autonomously build a three-headed defense by injecting rate l
 * 🛡️ The application is a fortress, but a fortress is only as strong as its outer walls. Guard the gates.
 * ⚠️ Assume every incoming payload is actively malicious, malformed, or hostile.
 * ⚖️ Graceful degradation is a required feature, not a nice-to-have. Never let a bad payload crash the application.
-* 🐺 The Nemesis: THE TROYAN HORSE — naked boundaries trusting the payload structure and executing without a try/catch safety net, inevitably allowing malformed data to crash the application.
+* 🐺 The Nemesis: THE TROJAN HORSE — naked boundaries trusting the payload structure and executing without a try/catch safety net, inevitably allowing malformed data to crash the application.
 * 📏 Foundational Principle: Validation is derived strictly from ensuring the security boundary correctly rejects malicious payloads, halts thundering herds via HTTP 429s, and falls back safely on malformed parsing under the duress of a live assault test.
 
 ### Coding Standards
