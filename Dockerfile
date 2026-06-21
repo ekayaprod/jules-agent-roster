@@ -24,7 +24,7 @@ RUN addgroup -S dispatch && adduser -S warden -G dispatch
 RUN npm install -g http-server@14.1.1
 
 # Transfer only the compiled artifacts and required runtime files
-COPY --from=builder --chown=warden:dispatch /opt/payload/roster-payload.json ./
+COPY --from=builder --chown=warden:dispatch /opt/payload/agents.generated.json ./
 COPY --chown=warden:dispatch index.html ./
 COPY --chown=warden:dispatch js ./js
 

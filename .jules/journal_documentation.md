@@ -6,7 +6,7 @@
 5. [STABILITY] Limit integrations strictly to isolated, bounded contexts to prevent test collapse.
 6. [UI/UX] Replace static disablement and generic errors with active, context-aware microcopy and proper aria attributes.
 7. [PERFORMANCE] Flatten multi-pass array iterations into direct `for` loops for high-throughput data paths.
-8. [HYGIENE] Do not commit build artifacts (like `roster-payload.json`); verify exact diffs via `git diff HEAD` before review.
+8. [HYGIENE] Do not commit build artifacts (like `agents.generated.json`); verify exact diffs via `git diff HEAD` before review.
 9. [ARCHITECTURE] Rely on semantic locators (`getByRole`) over structural DOM checks (`querySelector`) in UI tests.
 10. [ARCHITECTURE] Centralize utility functions (like `fetchWithRetry` or `getCustomAgent`) into single-source-of-truth modules.
 11. [STABILITY] Ensure environment-specific globals (like `module.exports`) are strictly guarded to prevent crashes in mixed contexts.
@@ -30,5 +30,5 @@
 
 **Knowledge Gap:** The `@xmldom/xmldom` polyfill was removed from the test suite because `jest-environment-jsdom` provides the `DOMParser` natively, but the macro architecture documentation still described the `PromptParser` component without explicitly mapping this dependency evolution and the removal of the legacy compatibility code. | **Clarity:** Updated `docs/architecture/Utils/README.md` to explicitly state that the native `DOMParser` is natively provided by `jest-environment-jsdom` (version 30.3.0+) and explicitly map the removal of the legacy `@xmldom/xmldom` polyfill, ensuring documentation reflects the actual native testing architecture.
 
-**Knowledge Gap:** CONTRIBUTING.md contained ghost instructions telling developers to manually register agents in legacy `agents.json` and `custom_agents.json` files that no longer exist. | **Clarity:** Rewrote the setup instructions in `CONTRIBUTING.md` to map the new native architectural standard where Markdown YAML frontmatter is the sole source of truth and `roster-payload.json` is generated via `npm run build:roster`.
+**Knowledge Gap:** CONTRIBUTING.md contained ghost instructions telling developers to manually register agents in legacy `agents.json` and `custom_agents.json` files that no longer exist. | **Clarity:** Rewrote the setup instructions in `CONTRIBUTING.md` to map the new native architectural standard where Markdown YAML frontmatter is the sole source of truth and `agents.generated.json` is generated via `npm run build:roster`.
 **Knowledge Gap:** The active architecture uses `JulesTerminal.js` and `JulesAPI.js`, but macro-documentation erroneously referred to `JulesManager` and `JulesService`. | **Clarity:** Ensure macro documentation (`ARCHITECTURE.md`) is completely synchronized with active module names instead of hallucinated abstractions or stale legacy nomenclature.

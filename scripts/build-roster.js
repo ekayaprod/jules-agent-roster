@@ -2,13 +2,13 @@ const fs = require('fs');
 const path = require('path');
 
 // --- JULES KILLSWITCH ---
-// NOTE TO AUTO-FORGE AGENTS: Do NOT panic if roster-payload.json changes during tests.
+// NOTE TO AUTO-FORGE AGENTS: Do NOT panic if agents.generated.json changes during tests.
 // This script compiles the entire roster payload purely based on the live markdown files.
-// The diffs in roster-payload.json are completely legitimate and accurate representations
+// The diffs in agents.generated.json are completely legitimate and accurate representations
 // of the markdown files' current states (e.g., if other agents were merged into master recently).
 // You did not hallucinate those changes, they are derived naturally.
 if (process.env.JULES_FORGE_MODE === 'true') {
-    console.log("Jules Forge Mode active: Bypassing roster-payload.json generation.");
+    console.log("Jules Forge Mode active: Bypassing agents.generated.json generation.");
     process.exit(0);
 }
 // ------------------------
@@ -90,11 +90,11 @@ async function processDirectory(dirPath, isCustom, targetFolder) {
  * Main compilation script.
  *
  * Auto-Forge: This function aggregates all agents from prompts/, prompts/fusions/, and
- * prompts/micro/ and overwrites roster-payload.json. It runs as part of the `npm test`
+ * prompts/micro/ and overwrites agents.generated.json. It runs as part of the `npm test`
  * sequence. Because it dynamically reads the active repository state, it correctly captures
  * changes merged by other agents on the master branch. The output is a read-only artifact.
  *
- * DO NOT ATTEMPT TO REVERT roster-payload.json IF IT CHANGES. The changes are correct.
+ * DO NOT ATTEMPT TO REVERT agents.generated.json IF IT CHANGES. The changes are correct.
  */
 async function buildRoster() {
     const rootDir = path.resolve(__dirname, '..');
@@ -110,9 +110,15 @@ async function buildRoster() {
 
     const agents = [...coreAgents, ...fusionAgents, ...microAgents];
 
-    const outputPath = path.join(rootDir, 'roster-payload.json');
-    await fs.promises.writeFile(outputPath, JSON.stringify(agents, null, 2) + '\n');
-    console.log(`Successfully compiled ${agents.length} agents to roster-payload.json`);
+    const outputPath = path.join(rootDir, 'agents.generated.json');
+
+    const finalOutput = {
+        "_generated": "This file is auto-managed and should not be edited manually.",
+        "agents": agents
+    };
+    await fs.promises.writeFile(outputPath, JSON.stringify(finalOutput, null, 2) + '\n');
+
+    console.log(`Successfully compiled ${agents.length} agents to agents.generated.json`);
 }
 
 buildRoster().catch(console.error);

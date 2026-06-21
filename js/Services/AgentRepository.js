@@ -16,8 +16,8 @@ class AgentRepository {
 
     async _fetchPayload() {
         try {
-            const res = await NetworkUtils.fetchWithRetry("./roster-payload.json", { throwOn404: false });
-            return await this.safeJsonParse(res, "./roster-payload.json");
+            const res = await NetworkUtils.fetchWithRetry("./agents.generated.json", { throwOn404: false });
+            return await this.safeJsonParse(res, "./agents.generated.json");
         } catch (err) {
             if (err.message === "Check your configuration file formatting and try again." || err.message === "Failed to parse JSON") {
                 throw err; // Propagate safeJsonParse errors to fail fast as expected
@@ -58,7 +58,14 @@ class AgentRepository {
 
             this.fusionMatrix = fusionMatrixData;
 
-            const rawAgents = Array.isArray(payload) ? payload : [];
+
+            // Unpack _generated object if necessary
+            let targetPayload = payload;
+            if (payload && !Array.isArray(payload) && payload.agents && Array.isArray(payload.agents)) {
+                targetPayload = payload.agents;
+            }
+            const rawAgents = Array.isArray(targetPayload) ? targetPayload : [];
+
             const standardAgentsRaw = [];
             const customAgentsRaw = [];
 

@@ -40,7 +40,7 @@ The `RosterApp` orchestrates the primary application flow, emphasizing asynchron
 
 ### Services (`js/Services`)
 
-* **`AgentRepository.js`**: Responsible for fetching and parsing `roster-payload.json`. It normalizes data and handles error states for network requests.
+* **`AgentRepository.js`**: Responsible for fetching and parsing `agents.generated.json`. It normalizes data and handles error states for network requests.
 * **`GithubAPI.js`**: Service for communicating with GitHub APIs.
 * **`JulesAPI.js`**: Service for communicating with Jules internal APIs.
 * **`LLMRouter.js`**: Service for routing LLM requests based on API keys.
@@ -67,7 +67,7 @@ The `RosterApp` orchestrates the primary application flow, emphasizing asynchron
 
 1. **Initialization**: `index.html` loads scripts in dependency order (Core -> Utils -> UI -> App).
 2. **Bootstrap**: `RosterApp` is instantiated and calls `init()`.
-3. **Data Fetching**: `AgentRepository` fetches `roster-payload.json`.
+3. **Data Fetching**: `AgentRepository` fetches `agents.generated.json`.
 4. **Rendering**:
    * `RosterApp` renders the main grid using `AgentCard`.
    * `RosterApp` initializes `FusionLab` with the fetched agent data.

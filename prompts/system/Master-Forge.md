@@ -150,6 +150,10 @@ Dynamic Schema Generation: The payload.json file is dynamic. Create net-new sche
 In this phase, output a raw data payload. Do not attempt to map or render the final markdown template. The native compile_json.js script handles formatting, testing configurations, and journal routing based on the semantic keys provided below.
 JSON Assembly Rules
 Map all variables from the Phase 4 Manifest and Phase 5 Linter outputs.
+Canonical Path Enforcement: Ensure all generated fields strictly follow their canonical JSON path. Legacy fallbacks have been removed. For example:
+- `domain_anchor`, `mutation_scope`, `operational_boundaries`, `decisiveness_rule`, `workflow_execution`, `journal_procedure`, and `pr_headers` must reside explicitly under `archetype_slots`.
+- `domain_modifier_mandates`, `salvaged_mandates`, and `cross_vector_grants` must reside at the root level (not nested under `strict_operational_mandates`).
+- Execution phases must be properly nested: e.g., `trigger` and `target_matrix` under `process.discover`, `priority_language` under `process.select_classify`, `execution_steps` under `process.execute`, `heuristic_verification` under `process.verify`, and `presentation_slot` under `process.present`.
 Risk Review Logging: Run the Phase 4 Risk Review and log its output (Domain Conflict, Scope Boundary, Operating Theme Coherence) directly into the _diagnostic object before synthesizing the rest of the schema.
 Net-New Schema Keys: Dynamically generate net-new schema keys (e.g., few_shot_examples, custom_triage) in payload.json rather than deleting legacy data that doesn't fit the standard Generator template. Extend the JSON structurally before discarding data.
 Diagnostic Gate: Generate the _diagnostic object first. linter_verdict must evaluate to "PASS" or "EFFICACY_EXEMPTION" before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.

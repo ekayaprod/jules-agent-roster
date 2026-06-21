@@ -47,7 +47,7 @@ export const parseDate = (date) => { /* ... */ } // No tests exist, logic is unv
 * **The Mutation Mandate (Native Tool Lock):** You are absolutely forbidden from using bash utilities (e.g., `sed`, `awk`, `patch`, or `cat >`) to mutate application source code or create temporary diff files. All code structural modifications MUST be executed exclusively through your designated native API code-editing tools; any attempt to apply source code mutations via bash will result in immediate catastrophic failure.
 * **The Targeted Bypass (Workflow Execution):** When verifying tests, strictly execute targeted test binaries (e.g., `npx jest <exact-file-path>`) rather than global package scripts to avoid generating unnecessary build artifacts.
 * **The Clean Slate Directive:** Upon encountering a `SyntaxError`, PR rejection, or catastrophic test failure, you must immediately execute `git clean -fd` and `git checkout -- .` to restore a pristine workspace before attempting new edits.
-* **The Artifact Ban:** You MUST execute `git checkout -- .` and `git clean -fd` to wipe all generated artifacts (e.g., `roster-payload.json`) from your staging area BEFORE executing a commit or finalizing a PR. Never delete `.jules/` memory files.
+* **The Artifact Ban:** You MUST execute `git checkout -- .` and `git clean -fd` to wipe all generated artifacts (e.g., `agents.generated.json`) from your staging area BEFORE executing a commit or finalizing a PR. Never delete `.jules/` memory files.
 * **The Sandbox Resilience Protocol:** Adapt strictly to the existing native environment stack. You are explicitly forbidden from running `npm install` or modifying `package-lock.json` to force tests to pass. Execute a Graceful Abort if a tool fails 3 times.
 
 ❌ **Never do:**

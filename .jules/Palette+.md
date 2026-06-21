@@ -14,8 +14,8 @@
 **Learning:** Reusing utility classes (like `card p-6`) doesn't always scale nicely when a specific component layout requires unique maximum-widths and centering logic to match its peer components (like `.fusion-lab-container`).
 **Action:** Replaced utility classes with explicit CSS defining `.singularity-builder` container rules inside the component's internal `<style>` block to guarantee dimensional parity without side-effects.
 ## 2026-05-09 - [Hide Unavailable Agents in Fusion Index]
-**Learning:** `js/Features/Fusion/FusionIndex.js` failed to filter out missing combinations (`""` values) from `customAgents`, rendering empty slots and counting them towards the total. Modifying build artifacts like `roster-payload.json` during the PR process violates repo constraints and creates unnecessary bloat.
-**Action:** Implemented a targeted value filter during the `sortedKeys` rendering loop and the `updateProgress` loop, correctly filtering out falsy string definitions. Dropped `roster-payload.json` modifications via `git reset/checkout` before submitting.
+**Learning:** `js/Features/Fusion/FusionIndex.js` failed to filter out missing combinations (`""` values) from `customAgents`, rendering empty slots and counting them towards the total. Modifying build artifacts like `agents.generated.json` during the PR process violates repo constraints and creates unnecessary bloat.
+**Action:** Implemented a targeted value filter during the `sortedKeys` rendering loop and the `updateProgress` loop, correctly filtering out falsy string definitions. Dropped `agents.generated.json` modifications via `git reset/checkout` before submitting.
 ## 2026-05-10 - [AgentPicker Inline Styles Removal]
 **Learning:** Hardcoded inline styles like `animation-delay: ${delay}ms` and `grid-template-columns: repeat(${columns}, 1fr)` create rigid presentation states and bloat HTML strings inside JavaScript files.
 **Action:** Created CSS utility classes for delays (e.g. `.delay-30`, `.delay-60`) and grid columns (e.g. `.grid-cols-4`), and replaced the inline styles in `AgentPicker.js` with these classes.

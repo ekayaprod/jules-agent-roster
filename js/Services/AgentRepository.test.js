@@ -299,7 +299,7 @@ describe('AgentRepository', () => {
             expect(results.customAgents['Custom1'].name).toBe("Custom1");
             expect(Object.keys(results.fusionMatrix)).toHaveLength(1);
 
-            expect(global.NetworkUtils.fetchWithRetry).toHaveBeenCalledWith("./roster-payload.json", { throwOn404: false });
+            expect(global.NetworkUtils.fetchWithRetry).toHaveBeenCalledWith("./agents.generated.json", { throwOn404: false });
             expect(global.NetworkUtils.fetchWithRetry).toHaveBeenCalledWith("./fusion_matrix.json", { throwOn404: false });
         });
 
@@ -360,7 +360,7 @@ describe('AgentRepository', () => {
             expect(jest.fn()).not.toHaveBeenCalled();
         });
 
-        it('logs a critical error when roster-payload.json fails to parse due to malformed JSON', async () => {
+        it('logs a critical error when agents.generated.json fails to parse due to malformed JSON', async () => {
             repo.safeJsonParse = jest.fn()
                 .mockRejectedValueOnce(new Error('Failed to parse JSON'));
 
@@ -420,7 +420,7 @@ describe('AgentRepository', () => {
 
         it('fails securely when Promise.all completely rejects', async () => {
             global.NetworkUtils.fetchWithRetry = jest.fn()
-                .mockImplementation((url) => { if (url === "./roster-payload.json") return Promise.reject(new Error("Global Rejection")); return Promise.resolve({ ok: true, json: async () => ({}) }); });
+                .mockImplementation((url) => { if (url === "./agents.generated.json") return Promise.reject(new Error("Global Rejection")); return Promise.resolve({ ok: true, json: async () => ({}) }); });
 
             const result = await repo.fetchAgents();
             expect(result.agents).toEqual([]);

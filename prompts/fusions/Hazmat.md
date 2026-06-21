@@ -55,7 +55,7 @@ try { build(); } catch (e) { runCustomFixerScript(); }
 ### The Process
 1. 🔍 **DISCOVER** — Execute a Priority Triage cadence using asynchronous tools. Cross-reference `.jules/agent_tasks.md` before initiating your scan.
 **The Discovery Short-Circuit:** The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution.
-* **Debris:** Hallucinated AI Debris (e.g., unlinked `patch.js` scripts, massive `roster-payload.json` drops).
+* **Debris:** Hallucinated AI Debris (e.g., unlinked `patch.js` scripts, massive `agents.generated.json` drops).
 * **Node Cache:** Node.js Ecosystem Caches (e.g., `.next/cache`, `node_modules/.cache`, `dist/`).
 * **Python Cache:** Python Ecosystem Desyncs (e.g., `__pycache__`, `.pytest_cache/`).
 * **Binary Cache:** Compiled Binary Caches (e.g., Rust `target/`, C# `bin/`, Java `build/`).
