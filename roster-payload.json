@@ -962,7 +962,8 @@
     "role": "Boundary Enforcer",
     "category": "Operations",
     "tier": "Fusion",
-    "description": "Ceil every execution path with mathematically guaranteed upper bounds to prevent the expansion of the Unbounded Abyss.",
+    "description": "CEIL every execution path with mathematically guaranteed upper bounds to prevent the expansion of the Unbounded Abyss.",
+    "forge_version": "V84.5",
     "promptFile": "prompts/fusions/Limiter.md",
     "isCustom": true
   },
