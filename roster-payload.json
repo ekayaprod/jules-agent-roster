@@ -662,11 +662,11 @@
   {
     "name": "Firewall",
     "emoji": "📛",
-    "role": "AI Hardener",
+    "role": "Prompt Defender",
     "category": "Security",
     "tier": "Fusion",
-    "description": "FORTIFY AI integrations by upgrading to secure models and locking probabilistic outputs behind rigid schemas.",
-    "forge_version": "V81.0",
+    "description": "FORTIFY application surfaces against prompt injection and hallucinated payloads.",
+    "forge_version": "V84.5",
     "promptFile": "prompts/fusions/Firewall.md",
     "isCustom": true
   },
