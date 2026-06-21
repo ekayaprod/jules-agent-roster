@@ -4,6 +4,8 @@ const fs = require('fs');
 const CURRENT_FORGE_VERSION = 84.5;
 const MINIMUM_VERSION_THRESHOLD = CURRENT_FORGE_VERSION - 2.0;
 
+
+const ANALYZER_OPERATIONAL_BASELINE = "Operational: Treat the repository as a strictly read-only filesystem. The SEARCH/REPLACE API is disabled for all source code files. If obfuscated files break the parser, initiate a Graceful Abort on that file. Unconditional Cleanup: Run git clean -fd -e .jules/ before PR or Abort to wipe data dumps. Read-Only Override: Write operations are confined strictly to your designated output files.";
 const UNIVERSAL_OPERATIONAL_BASELINE = "Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. Operate strictly within the existing native environment stack. Installing OS-level packages (apt-get, .deb) is a scope violation. If a required binary is missing from the host environment, initiate a Graceful Abort immediately. Unconditional Cleanup: Run git clean -fd -e .jules/ before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard <<<<<<< SEARCH / ======= / >>>>>>> REPLACE block logic). The creation or execution of any .diff, .sh, or .js script to mutate source files is a critical scope violation.";
 
 /**
@@ -127,18 +129,10 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].includes(profileKey);
     const isCore = String(data.identity?.tier).toLowerCase() === 'core';
     const targetLimitClean = String(payloadThreshold).trim();
-    const targetLimitInstruction = (targetLimitClean && targetLimitClean !== '1' && targetLimitClean !== 'null')
+    const targetLimitInstruction = (targetLimitClean && targetLimitClean !== '1' && !isNaN(targetLimitClean))
         ? `Continue executing within your locked scope up to a maximum of ${targetLimitClean}. ` : '';
 
-    const baseExecutionRule = data.process?.execute?.execution_mandate || '';
-let finalExecutionRule = baseExecutionRule;
-if (finalExecutionRule === "Expansive_Standard" || finalExecutionRule === "Expansive_Pruner" || (!targetLimitClean || targetLimitClean === 'null' || targetLimitClean === 'open')) {
-    if (profileKey === 'Pruner') {
-        finalExecutionRule = "Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across two layers:\n1. Wrap-Up Checkpoints: At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n2. Managed Interruption: If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: 'Awaiting operator clearance to resume.' Resume instantly once cleared.";
-    } else if (finalExecutionRule !== '') {
-        finalExecutionRule = "Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across three layers:\n1. Proactive Touchpoints: If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.\n2. Wrap-Up Checkpoints: At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n3. Managed Interruption: If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: 'Awaiting operator clearance to resume.' Resume instantly once cleared.";
-    }
-}
+    const finalExecutionRule = data.process?.execute?.execution_mandate || '';
 const zeroTargetExitInstruction = (data.process?.present?.requires_total_replacement_override || isCore)
         ? '' : (requiresTasksBoard ? 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. ' : 'End the task cleanly without a PR if zero targets were found. ');
 
@@ -158,7 +152,7 @@ const zeroTargetExitInstruction = (data.process?.present?.requires_total_replace
         'PRIMARY_RESPONSIBILITY': formatSlot(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor, "The Primary Responsibility"),
         'THE_SCOPE': formatSlot(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope, "The Scope"),
         'EXECUTION_RULE': finalExecutionRule,
-        'RESILIENCE_PROCEDURE': formatSlot((data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || '') + ' ' + UNIVERSAL_OPERATIONAL_BASELINE, "The Resilience Procedure"),
+        'RESILIENCE_PROCEDURE': formatSlot((data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || '') + ' ' + (profileKey === 'Analyzer' ? ANALYZER_OPERATIONAL_BASELINE : UNIVERSAL_OPERATIONAL_BASELINE), "The Resilience Procedure"),
         'DOMAIN_MODIFIERS': formatList(data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates),
         'AUTONOMOUS_SELECTION': formatSlot(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule, 'The Autonomous Selection'),
         'WORKFLOW_EXECUTION': formatSlot(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution, 'The Execution'),
@@ -183,7 +177,7 @@ const zeroTargetExitInstruction = (data.process?.present?.requires_total_replace
         'EXECUTION_STEPS': formatExecutionSteps(data.process?.execute?.execution_steps || data.process?.execution_steps),
         'REPORTER_PROCEDURE': data.process?.verify?.reporter_procedure || '',
         'HEURISTICS': formatHeuristics(data.process?.verify?.heuristic_verification || data.process?.heuristic_verification),
-        'PRESENTATION_SLOT': String(data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '').replace(/^[\*\-]\s*/, '').replace(/^\*\*[^\*]+\*\*:?\s*/, '').replace(/^\*\*[^\*:]+:?\*\*:?\s*/, '').trim(),
+        'PRESENTATION_SLOT': String(data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '').replace(/^[\*\-\s]+/, '').trim(),
         'ZERO_TARGET_EXIT': zeroTargetExitInstruction + (requiresTasksBoard && !data.process?.present?.requires_total_replacement_override ? "If the run produced no source mutations but did append relay entries to `.jules/worker_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""),
         'PR_HEADERS': data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || '',
         'FAVORITE_OPTIMIZATIONS': formatList(data.favorite_optimizations)
