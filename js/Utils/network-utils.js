@@ -93,6 +93,7 @@ class NetworkUtils {
     try {
       NetworkUtils._enforceRateLimit(url);
     } catch (error) {
+      console.warn('Assault intercepted by Cerberus at boundary', error);
       const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
       if (tu) tu.dispatchEvent("NETWORK_RATE_LIMIT_EXCEEDED", error, { url: url });
       throw error;
