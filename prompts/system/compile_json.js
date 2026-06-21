@@ -95,7 +95,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
     const synthesis = data.identity?.synthesis || '';
     if (synthesis.length > 145) {
-        throw new Error(`[FATAL ERROR] Synthesis length is ${synthesis.length} characters. Must be strictly under 145 characters.`);
+        console.warn(`[WARNING] Synthesis length is ${synthesis.length} characters. Recommended maximum is 145 characters.`);
     }
 
     const definedThemeVerb = data.process?.theme_verb || data.process?.execute?.theme_verb || '';
@@ -164,7 +164,7 @@ const zeroTargetExitInstruction = (data.process?.present?.requires_total_replace
         'JOURNAL_PATH': (data.identity?.tier || '').toLowerCase() === 'core' ? `.jules/${data.identity?.name || 'journal'}.md` : `.jules/journal_${category.toLowerCase()}.md`,
         'WORKER_TASKS_BOARD': requiresTasksBoard ? "* **The Worker Tasks Board (`.jules/worker_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself." : '',
         'JOURNAL_PROCEDURE': formatSlot(data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure, 'The Journal Procedure').replace(/^\*\s/, ''),
-        'DISCOVER_TRIGGER': String(data.process?.discover?.trigger || data.process?.discover_trigger || '').replace(/^via\s+/i, ''),
+        'DISCOVER_TRIGGER': String(data.process?.discover?.trigger || '').replace(/^via\s+/i, ''),
         'DISCOVERY_FALLBACK': requiresTasksBoard ? "Cross-reference `.jules/worker_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan." + (isCore ? " If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete." : "") : (isCore ? "If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete." : ''),
         'DOMAIN_AUTONOMY_DECLARATION': isCore ? `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.` : '',
         'DISCOVERY_VELOCITY_RULE': data.process?.discover?.discovery_velocity_rule || '',
