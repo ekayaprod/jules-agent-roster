@@ -488,6 +488,11 @@ class RosterApp {
    * natively as the user scrolls past each categorized grid section.
    */
   initObserver() {
+    if (typeof IntersectionObserver === 'undefined') {
+        console.warn("IntersectionObserver not supported, skipping pill observer initialization.");
+        return;
+    }
+
     if (this.observer) {
         this.observer.disconnect();
     }
