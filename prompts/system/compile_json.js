@@ -179,7 +179,7 @@ const zeroTargetExitInstruction = (data.process?.present?.requires_total_replace
         'HEURISTICS': formatHeuristics(data.process?.verify?.heuristic_verification),
         'PRESENTATION_SLOT': String(data.process?.present?.presentation_slot || '').replace(/^[\*\-\s]+/, '').trim(),
         'ZERO_TARGET_EXIT': zeroTargetExitInstruction + (requiresTasksBoard && !data.process?.present?.requires_total_replacement_override ? "If the run produced no source mutations but did append relay entries to `.jules/worker_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""),
-        'PR_HEADERS': data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || '',
+        'PR_HEADERS': data.archetype_slots?.pr_headers || '',
         'FAVORITE_OPTIMIZATIONS': formatList(data.favorite_optimizations)
     };
 
