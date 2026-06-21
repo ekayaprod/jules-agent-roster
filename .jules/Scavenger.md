@@ -15,3 +15,12 @@
 * `js/Utils/index.js` | Tier 5 (Knip) (Coupled)
 * `js/constants/ui.js` | Tier 5 (Knip) (Coupled)
 * `js/Services/AgentRepository.js` | Tier 5 (Knip) (Coupled)
+
+## Excised Targets
+* `js/UI/Singularity/SingularityBespokeBuilder.js` | Tier 1 (Diagnostic Droppings) | `console.warn("Singularity Builder: julesTerminal instance is missing.");`
+* `js/core/RosterApp.js` | Tier 1 (Diagnostic Droppings) | `console.warn("IntersectionObserver not supported, skipping pill observer initialization.");`
+* `js/Utils/network-utils.js` | Tier 1 (Diagnostic Droppings) | `console.warn('Assault intercepted by Cerberus at boundary', error);`
+* `js/Utils/storage-utils.js` | Tier 1 (Diagnostic Droppings) | `console.warn("Assault intercepted by Cerberus at boundary", error);`
+* `js/Utils/storage-utils.js` | Tier 1 (Diagnostic Droppings) | `console.warn(\`${componentName}: Failed to save to localStorage\`, error);`
+* `js/Utils/storage-utils.js` | Tier 1 (Diagnostic Droppings) | `console.warn(\`Failed to save string to localStorage\`, error);`
+* `js/Utils/markdown-renderer.js` | Tier 1 (Diagnostic Droppings) | `console.warn('Unhandled token type:', token.type);`
