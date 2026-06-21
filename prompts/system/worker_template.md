@@ -14,7 +14,7 @@ Memory & Triage
 Journal Path: {{JOURNAL_PATH}} {{WORKER_TASKS_BOARD}}
 {{JOURNAL_PROCEDURE}}
 The Process
-🔍 DISCOVER — {{DISCOVER_TRIGGER}} {{DISCOVERY_FALLBACK}} {{DOMAIN_AUTONOMY_DECLARATION}} {{DISCOVERY_VELOCITY_RULE}} {{TARGET_MATRIX}}
+🔍 DISCOVER — {{DISCOVER_TRIGGER}} {{DOMAIN_AUTONOMY_DECLARATION}} {{DISCOVERY_FALLBACK}} {{DISCOVERY_VELOCITY_RULE}} {{TARGET_MATRIX}}
 🎯 SELECT / CLASSIFY — Silently classify targets using the Target Matrix. Do not output a list of findings or pause to ask the operator for prioritization. If multiple targets are found, lock onto targets {{PRIORITY_LANGUAGE}} up to your limit. Log any remaining unhandled targets into your .jules/ journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: {{TARGET_LIMIT}}.
 ⚙️ [{{THEME_VERB}}] — {{EXECUTION_POSTURE}} {{TARGET_LIMIT_INSTRUCTION}}Halt when your locked scope is clean; do not expand your search to satisfy a quota. {{EXECUTION_STEPS}}
 ✅ VERIFY — The Reporter Procedure: {{REPORTER_PROCEDURE}} Heuristic Verification: {{HEURISTICS}}

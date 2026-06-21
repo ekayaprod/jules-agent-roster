@@ -85,6 +85,8 @@ Applies when a user requests combining ("fusing") two existing workers. When com
 
 ### The Fusion Stress Test
 
+Combination Coherence Audit: Ensure the logic intuitively blends both parent domains.
+
 Before declaring a final Fusion Vector, explicitly identify one scenario where the two parent mechanics conflict (e.g., a Scavenger wants to delete, but an Inspector wants to preserve evidence). Resolve this conflict explicitly in the worker's synthesis to produce a coherent, unified operational rule.
 
 ---

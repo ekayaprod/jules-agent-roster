@@ -1,6 +1,11 @@
 'use strict';
 const fs = require('fs');
 
+const CURRENT_FORGE_VERSION = 84.5;
+const MINIMUM_VERSION_THRESHOLD = CURRENT_FORGE_VERSION - 2.0;
+
+const UNIVERSAL_OPERATIONAL_BASELINE = "Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. Operate strictly within the existing native environment stack. Installing OS-level packages (apt-get, .deb) is a scope violation. If a required binary is missing from the host environment, initiate a Graceful Abort immediately. Unconditional Cleanup: Run git clean -fd -e .jules/ before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard <<<<<<< SEARCH / ======= / >>>>>>> REPLACE block logic). The creation or execution of any .diff, .sh, or .js script to mutate source files is a critical scope violation.";
+
 /**
  * COMPILER ARCHITECTURE NOTES:
  * - Hybrid Formatter & QA Gate execution paradigm.
@@ -16,12 +21,7 @@ function formatList(arr, bullet = '* ') {
 
 function formatExecutionSteps(arr) {
     if (!Array.isArray(arr)) return '';
-    return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-]\s+/, '');
-        cleanItem = cleanItem.replace(/^([a-zA-Z0-9_ \-]+)(?:\*\*|:\*\*|\*\*:\s*|\*:\s*)(.*)$/, '**$1:** $2');
-        cleanItem = cleanItem.replace(/^\*([^\*]+)\*\*:?\s*/, '**$1:** ');
-        return `* ${cleanItem}`;
-    }).join('\n');
+    return arr.map(item => `* ${String(item).replace(/^[\*\-\s]+/, '')}`).join('\n');
 }
 
 function formatPhilosophy(arr) {
@@ -31,11 +31,7 @@ function formatPhilosophy(arr) {
 
 function formatSlot(rawText, label) {
     if (!rawText) return '';
-    let cleanText = String(rawText).replace(/^[\*\-]\s*/, '')
-        .replace(/^\*\*[^\*]+\*\*:?\s*/, '')
-        .replace(/^\*\*[^\*:]+:?\*\*:?\s*/, '')
-        .replace(/^\s*\*\*\s*/, '')
-        .replace(/\*\*\s*$/, '').trim();
+    let cleanText = String(rawText).replace(/^[\*\-\s]+/, '');
     return `* **${label}:** ${cleanText}`;
 }
 
@@ -54,15 +50,7 @@ function formatTargetMatrix(arr, tier) {
 
 function formatHeuristics(arr) {
     if (!Array.isArray(arr)) return '';
-    return arr.map(item => {
-        let cleanItem = String(item).replace(/^[\*\-]\s+/, '').replace(/^\*([^\*:]+)\*\*:/, '**$1**:');
-        cleanItem = cleanItem.replace(/^([a-zA-Z0-9_ \-]+):\s*(?![\*])(.*)$/, (match, p1, p2) => {
-            const label = p1.trim();
-            const suffix = label.toLowerCase().endsWith('check') ? '' : ' Check';
-            return `**${label}${suffix}:** ${p2.trim()}`;
-        });
-        return `* ${cleanItem}`;
-    }).join('\n');
+    return arr.map(item => `* ${String(item).replace(/^[\*\-\s]+/, '')}`).join('\n');
 }
 
 function cleanCodeFence(str) {
@@ -86,7 +74,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     }
 
     const VALID_ARCHETYPES = ['Pruner', 'Generator', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator', 'Analyzer'];
-    const profileKey = data.archetype || data.identity?.archetype || "";
+    const profileKey = data.identity?.archetype;
     if (!profileKey || !VALID_ARCHETYPES.includes(profileKey)) {
         throw new Error(`[FATAL ERROR] Archetype key '${profileKey}' is not a valid Structural Base Profile. Must be one of: ${VALID_ARCHETYPES.join(', ')}`);
     }
@@ -138,13 +126,20 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     const payloadThreshold = data.payload_threshold || data.process?.select_classify?.target_limit || '1';
     const requiresTasksBoard = ['Pruner', 'Refactorer', 'Transformer', 'Instrumenter', 'Operator'].includes(profileKey);
     const isCore = String(data.identity?.tier).toLowerCase() === 'core';
-
-    const ignoreLimits = ['open', 'n/a', 'none', 'null', 'expansive', 'all'];
     const targetLimitClean = String(payloadThreshold).trim();
-    const targetLimitInstruction = (targetLimitClean && targetLimitClean !== '1' && !ignoreLimits.includes(targetLimitClean.toLowerCase())) 
+    const targetLimitInstruction = (targetLimitClean && targetLimitClean !== '1' && targetLimitClean !== 'null')
         ? `Continue executing within your locked scope up to a maximum of ${targetLimitClean}. ` : '';
 
-    const zeroTargetExitInstruction = (data.process?.present?.requires_total_replacement_override || isCore)
+    const baseExecutionRule = data.process?.execute?.execution_mandate || '';
+let finalExecutionRule = baseExecutionRule;
+if (finalExecutionRule === "Expansive_Standard" || finalExecutionRule === "Expansive_Pruner" || (!targetLimitClean || targetLimitClean === 'null' || targetLimitClean === 'open')) {
+    if (profileKey === 'Pruner') {
+        finalExecutionRule = "Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across two layers:\n1. Wrap-Up Checkpoints: At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n2. Managed Interruption: If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: 'Awaiting operator clearance to resume.' Resume instantly once cleared.";
+    } else if (finalExecutionRule !== '') {
+        finalExecutionRule = "Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across three layers:\n1. Proactive Touchpoints: If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.\n2. Wrap-Up Checkpoints: At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n3. Managed Interruption: If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: 'Awaiting operator clearance to resume.' Resume instantly once cleared.";
+    }
+}
+const zeroTargetExitInstruction = (data.process?.present?.requires_total_replacement_override || isCore)
         ? '' : (requiresTasksBoard ? 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. ' : 'End the task cleanly without a PR if zero targets were found. ');
 
     const map = {
@@ -162,8 +157,8 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
         'BAD_CODE': cleanCodeFence(data.coding_standards?.bad_code_snippet),
         'PRIMARY_RESPONSIBILITY': formatSlot(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor, "The Primary Responsibility"),
         'THE_SCOPE': formatSlot(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope, "The Scope"),
-        'EXECUTION_RULE': data.process?.execute?.execution_mandate || '',
-        'RESILIENCE_PROCEDURE': formatSlot(data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries, "The Resilience Procedure"),
+        'EXECUTION_RULE': finalExecutionRule,
+        'RESILIENCE_PROCEDURE': formatSlot((data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || '') + ' ' + UNIVERSAL_OPERATIONAL_BASELINE, "The Resilience Procedure"),
         'DOMAIN_MODIFIERS': formatList(data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates),
         'AUTONOMOUS_SELECTION': formatSlot(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule, 'The Autonomous Selection'),
         'WORKFLOW_EXECUTION': formatSlot(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution, 'The Execution'),
@@ -188,7 +183,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
         'EXECUTION_STEPS': formatExecutionSteps(data.process?.execute?.execution_steps || data.process?.execution_steps),
         'REPORTER_PROCEDURE': data.process?.verify?.reporter_procedure || '',
         'HEURISTICS': formatHeuristics(data.process?.verify?.heuristic_verification || data.process?.heuristic_verification),
-        'PRESENTATION_SLOT': String(data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '').replace(/^[\*\-]\s*/, '').replace(/^\*\*[^\*]+\*\*:?\s*/, '').replace(/^\*\*[^\*:]+:?\*\*:?\s*/, '').replace(/End the task cleanly without a PR if zero targets were found\.?/gi, '').trim(),
+        'PRESENTATION_SLOT': String(data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '').replace(/^[\*\-]\s*/, '').replace(/^\*\*[^\*]+\*\*:?\s*/, '').replace(/^\*\*[^\*:]+:?\*\*:?\s*/, '').trim(),
         'ZERO_TARGET_EXIT': zeroTargetExitInstruction + (requiresTasksBoard && !data.process?.present?.requires_total_replacement_override ? "If the run produced no source mutations but did append relay entries to `.jules/worker_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it." : ""),
         'PR_HEADERS': data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || '',
         'FAVORITE_OPTIMIZATIONS': formatList(data.favorite_optimizations)
