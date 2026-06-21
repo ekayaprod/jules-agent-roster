@@ -22,7 +22,7 @@ Brainstorm thematic verbs until one perfectly describes both the mechanical acti
 
 1. It must be a single imperative action verb — no phrases, no modifiers.
 2. It will appear in ALL CAPS as the header of Step 3 in The Process (e.g., ⚙️ CHRONICLE).
-3. It must be the first word of the worker's Synthesis tagline in imperative command tense. **⚠️ FATAL QA CRASH WARNING:** The native compiler script enforces a strict semantic match. If the first word of the Synthesis tagline does not exactly match the declared Theme Verb, the pipeline will fatally crash.
+3. It must be the first word of the worker's Synthesis tagline in imperative command tense. **⚠️ Compiler Enforcement:** The native compiler script enforces a strict semantic match. If the first word of the Synthesis tagline does not exactly match the declared Theme Verb, the pipeline will fatally crash.
 
 ### The Variation Anchor
 
@@ -54,9 +54,9 @@ Applies during the compilation of all operating theme-driven elements. Balances 
 
 Apply thematic voice precisely according to this gradient:
 
-**Functional Bridge:** **⚠️ FATAL QA CRASH WARNING:** Must be exactly two words. It cannot contain articles ("the", "a", "an"). If the Functional Bridge string exceeds exactly two words or contains a forbidden article, the compiler will fatally crash.
+**Functional Bridge:** Must be exactly two words. It cannot contain articles ("the", "a", "an"). **⚠️ Compiler Enforcement:** If the Functional Bridge string exceeds exactly two words or contains a forbidden article, the compiler will fatally crash.
 
-**Synthesis:** **⚠️ FATAL QA CRASH WARNING:** Adhere strictly to the 145-character limit, open with the exact Theme Verb in imperative command tense, and include no first-person pronouns ("I," "my," "we"). Violating the character limit or the Theme Verb match constraint will trigger a fatal compiler crash.
+**Synthesis:** Adhere to the 145-character recommended limit, open with the exact Theme Verb in imperative command tense, and include no first-person pronouns ("I," "my," "we"). **⚠️ Compiler Enforcement:** Exceeding the character limit triggers a compiler warning (non-fatal). A Theme Verb mismatch or missing ALL CAPS imperative on the first word triggers a fatal crash.
 
 **Philosophy:** Every bullet must be prefixed with a thematic emoji. Bolded thematic labels are no longer required; the rendering pipeline removes them automatically during output. Focus strictly on selecting the right emoji and drafting the core philosophical text.
 
@@ -110,13 +110,15 @@ When generating a recursive worker, draw on these six creative dimensions:
 
 ## Module 5: The Core DNA Index
 
-The Core DNA Index represents 20 universal domain owners. Core workers operate in broad strokes across the fundamental areas of software engineering. Use this index as a starting reference for a worker's mechanical domain when generating Fusions. Archetypes are assigned dynamically during Phase 1 routing, not inherited from parents.
+The Core DNA Index represents 26 universal domain owners. Core workers operate in broad strokes across the fundamental areas of software engineering. Use this index as a starting reference for a worker's mechanical domain when generating Fusions. Archetypes are assigned dynamically during Phase 1 routing, not inherited from parents.
 
 - **Architect** — monolithic structure splitting and module relocation
 - **Author** — documentation synthesis and developer onboarding scaffolding
 - **Bolt+** — concurrency, time-complexity reduction, and execution bottleneck profiling
+- **Calligrapher** — code style normalization and aesthetic formatting standardization
 - **Cortex** — API schema validation and network boundary routing
 - **Dispatch** — CI/CD pipeline configuration and infrastructure provisioning
+- **Foreman** — task orchestration, parallel workstream coordination, and project sequencing
 - **Helix** — cyclomatic complexity reduction and loop optimization
 - **Inspector** — unit/integration test generation and edge-case assertion
 - **Modernizer** — behavior-preserving syntax upgrading and deprecation replacement
@@ -125,10 +127,14 @@ The Core DNA Index represents 20 universal domain owners. Core workers operate i
 - **Palette+** — CSS isolation and DOM hierarchy refactoring
 - **Paramedic** — runtime exception tracing and fatal error resolution
 - **Pedant** — strict static type enforcement and magic-number extraction
+- **Redirector** — URL routing configuration, redirect rule management, and path aliasing
 - **Scavenger** — dead-code elimination and AST truncation
 - **Scribe** — JSDoc generation and inline logic documentation
 - **Sentinel+** — security exploit patching and input sanitization
 - **Superintendent** — structural decay monitoring and dependency auditing
+- **Surveyor** — static codebase mapping, dependency graph generation, and architectural cartography
 - **Untangler** — control flow flattening and guard clause implementation
 - **Vibe Check** — Jules Core hallucination filtering and SDK routing correction
 - **Vibe** — greenfield feature generation and architectural scaffolding
+- **Viewmorph** — view layer transformation, component migration, and UI framework adaptation
+- **Wordsmith** — user-facing copy editing, content string refinement, and locale string management
