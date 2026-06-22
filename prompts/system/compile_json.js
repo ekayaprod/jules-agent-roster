@@ -178,8 +178,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     SYNTHESIS: data.identity?.synthesis || '',
     FORGE_VERSION: forgeVersion,
     MISSION_SCOPE: String(data.mission_scope || '')
-      .replace(/\.+$/, '')
-      .replace(/^to\s+/i, ''),
+      .replace(/\.+$/, ''),
     PHILOSOPHY: formatList(data.philosophy),
     LANGUAGE: data.coding_standards?.language || '',
     GOOD_CODE: cleanCodeFence(data.coding_standards?.good_code_snippet),
