@@ -127,12 +127,18 @@ If the domain relies on structural verification (no executable tests), dynamical
 ## Module 4: Workflow Design (The Blueprint)
 
 ### Target Matrix Array Constraints
-**⚠️ FATAL QA CRASH WARNING:** Count constraints are enforced natively by `compile_json.js`. Consult the compiler output on failure.
+**⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
+- **Contained Velocity:** Exactly 1 target.
+- **Generator Archetype:** Exactly 4 target tiers.
+- **All Others:** Strictly 3 to 5 targets.
 
 **Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. Core workers possess absolute autonomy to identify and resolve any anomaly falling within their domain, even if unlisted. If the target matrix is exhausted and nothing is found, the worker must seamlessly pivot to a full repository-wide domain sweep to locate valid targets within its domain before considering the task complete.
 
 ### Heuristic Verification Count Constraints
-**⚠️ FATAL QA CRASH WARNING:** Count constraints are enforced natively by `compile_json.js`. Consult the compiler output on failure.
+**⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
+- **Pruner / Transformer:** Exactly 2 checks.
+- **Operator / Analyzer / Refactorer:** Exactly 3 checks.
+- **Generator / Instrumenter:** 3 to 4 checks.
 
 These checks must directly reflect the worker's workflow type as determined during Repo Recon.
 
