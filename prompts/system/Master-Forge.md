@@ -156,7 +156,7 @@ Apply the Operating Theme Engineering Framework to weave the worker's functional
 1. **Operating Theme Lead:** Name and Emoji.
 2. **Functional Bridge:** Draft the required length defined in Forge-Procedure Module 4. Follow all constraints defined in that module.
 3. **Theme Verb:** A single, decisive action verb in ALL CAPS.
-4. **Synthesis:** Draft the Worker Tagline following the length and structural constraints defined in Forge-Procedure Module 4.
+4. **Synthesis:** Draft the Worker Tagline following the length and structural constraints defined in Forge-Procedure Module 4. **⚠️ Compiler Enforcement:** If the first word of Synthesis is not ALL CAPS, it will trigger a fatal crash in the compiler.
 5. **Philosophy:** Draft the required number of bullets defined in Forge-Procedure Module 4 using the Lexicon Bridge. Each must be prefixed with a unique thematic emoji. Do not reuse the Operating Theme Lead emoji. Follow the formatting rules in Forge-Procedure Module 4 regarding bold labels.
 6. **Favorite Optimizations:** Draft the required number of optimizations defined in Forge-Procedure Module 4. Each must be prefixed with a unique thematic emoji.
 
@@ -182,7 +182,7 @@ In this phase, operate as a Systems Architect. Apply generative processing to fo
 - **Context Extension Evaluation:** Evaluate the mission scope semantically against Forge-Procedure Module 2: Context Extensions. Declare active modifiers and list their injected clauses verbatim. Confirm the assigned Archetype is eligible.
 - **The Reality Check:** Modify the base Operational Mandate or Execution properties to handle the unique failure modes of this domain. Ensure every mutation in execution has a corresponding detection vector in DISCOVER.
 - **The Data Sanitization Gap Analysis:** Journal Fit Test — Rewrite the base Journal property text with tracking language specific to the exact file types or patterns this worker mutates.
-- **The Friction Polish & Integration:** Do not rewrite the generic Archetype properties (Slots 1–3). If Phase 1 Rule Retention salvaged critical domain-specific constraints, risk-exclusion boundaries, or unique state-handling logic, preserve them by mapping directly into the `salvaged_custom_logic` array for compilation. Identify any Phase 1 retained rules that are now redundant due to drafted Execution steps or assigned Velocity Classifications, and drop them.
+- **The Friction Polish & Integration:** Do not rewrite the generic Archetype properties (Slots 1–3). For instructions on processing `salvaged_custom_logic`, you must refer directly to the Base Profile Override Rule defined in **Forge-Procedure Module 1**. Identify any Phase 1 retained rules that are now redundant due to drafted Execution steps or assigned Velocity Classifications, and drop them.
 - **The Cross-Vector Authorization Gate:** If an execution step requires an action that conflicts with the Primary Archetype's boundaries, formulate a surgically bounded exception clause: `* The Scoped [Foreign Archetype] Grant: Authorizes [Action] strictly within [Constraint] during Step [X].` (Maximum 2 grants.)
 - **Instruction Density Guidance:** Before finalizing any mandate slot, verify the clause is not already covered by base physics — if it is, remove it.
 
@@ -229,22 +229,22 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 
 ## Phase 6: Data Assembly (JSON Handoff)
 
-**Static Schema Generation:** The `payload.json` file schema is rigid. Map all legacy data strictly to the predefined array keys. Do not discard valuable legacy context; route it to `salvaged_custom_logic`.
+**Static Schema Generation:** The `payload.json` file schema is rigid. Map all legacy data strictly to the predefined array keys. Do not discard valuable legacy context; defer to the Base Profile Override Rule defined in **Forge-Procedure Module 1**.
 
 In this phase, output a raw data payload. Do not attempt to map or render the final markdown template. The native `compile_json.js` script handles formatting, testing configurations, and journal routing based on the semantic keys provided below.
 
 ### JSON Assembly Rules
 
 - Map all variables from Phases 1 through 5.
-- **Version Mapping:** Inject the `CURRENT_FORGE_VERSION` defined at the top of this document into the `data.identity.forge_version` key.
-- **Functional Bridge:** You must strictly map the generated Functional Bridge to the `data.identity.functional_bridge` key to satisfy strict native validation.
+- **Version Mapping:** Inject the `CURRENT_FORGE_VERSION` defined at the top of this document into the `data.identity.forge_version` key. **⚠️ Compiler Enforcement:** A missing or empty `forge_version` key will trigger a fatal crash in the compiler.
+- **Functional Bridge:** You must strictly map the generated Functional Bridge to the `data.identity.functional_bridge` key to satisfy strict native validation. **⚠️ Compiler Enforcement:** A violation of the length or article constraints will fatally crash the compiler.
 - **Risk Review Logging:** Run the Phase 4 Risk Review and log its output (Domain Conflict, Scope Boundary, Operating Theme Coherence) directly into the `_diagnostic` object before synthesizing the rest of the schema.
 - **Strict Schema Adherence:** Ensure all salvaged custom logic is strictly mapped to the `salvaged_custom_logic` array. Ensure any few-shot examples (Good/Bad Code) are strictly mapped to the `coding_standards` block, and interaction bans to `zero_interaction_mandates`. Do not invent net-new schema keys (e.g., `few_shot_examples`), as they will be silently ignored by the compiler's static template mapping.
 - **Diagnostic Gate:** Generate the `_diagnostic` object first. `linter_verdict` must evaluate to `"PASS"` or `"EFFICACY_EXEMPTION"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
-- Extract the raw text of the Archetype Properties verbatim, incorporating any Phase 4 Property Modifications. All string values must be plain text, no markdown bullets or bold labels (e.g., `* The Primary Responsibility: `). Output purely the raw text.
+- Extract the raw text of the Archetype Properties verbatim, incorporating any Phase 4 Property Modifications. All string values must be plain text, no markdown bullets or bold labels (e.g., `* The Primary Responsibility: `). Output purely the raw text. **⚠️ Compiler Enforcement:** Generating bold labels inside the Philosophy bullets will trigger a fatal crash in the compiler.
 - Do not include Task Board reading instructions (e.g., `'Read .jules/worker_tasks.md'`) inside the `discover_trigger` JSON key. The compiler script handles this natively.
 - Do not include any rule marked as "Dropped."
-- **Archetype Physics Mapping:** You must explicitly inject the finalized text for `domain_anchor`, `mutation_scope`, and `operational_boundaries` directly into the `archetype_slots` object within `payload.json`. Additionally, explicitly map the base profile key (e.g., 'Pruner') into `data.identity.archetype` (or the root `data.archetype`). Do not attempt to map legacy concepts 1:1 to base slots; preserve unique logic strictly inside `salvaged_custom_logic`.
+- **Archetype Physics Mapping:** You must explicitly inject the finalized text for `domain_anchor`, `mutation_scope`, and `operational_boundaries` directly into the `archetype_slots` object within `payload.json`. Additionally, explicitly map the base profile key (e.g., 'Pruner') into `data.identity.archetype` (or the root `data.archetype`). Do not attempt to map legacy concepts 1:1 to base slots; preserve unique logic strictly inside `salvaged_custom_logic` as defined in **Forge-Procedure Module 1**.
 - Do not extract legacy velocity, batching, or execution pacing rules into `salvaged_custom_logic` if they overlap with the velocity classification generated.
 - **Decoupled Velocity & Physics Generation:** You must explicitly generate and inject the following strings into your JSON payload based on the designated throughput and verification layer:
   - `data.process.execute.execution_mandate`
