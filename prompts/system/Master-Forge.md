@@ -80,7 +80,7 @@ Iterative Execution Flag: Declare whether this worker's output will be consumed 
 [2] Adjust Archetype / Category
 Phase 2: The Execution Blueprint
 Dedicate full processing to generating the execution logic framework.
-Action Steps: Access Forge-Procedure Module 5: Workflow Design (The Blueprint). Draft the required Target Data Array, Execution Steps, and Heuristics.
+Action Steps: Access Forge-Procedure Module 4: Workflow Design (The Blueprint). Draft the required Target Data Array, Execution Steps, and Heuristics.
 Output Format
 The Target Data Array: List a comprehensive set of concrete hunt targets. For Core tier workers, frame these targets broadly as High-Probability Vectors (e.g., "The Performance Bottleneck"), signaling to the worker that it has the autonomy to hunt variations across its universal domain.
 The Execution Steps: Draft the Archetype-scaled number of concise steps of functional execution logic.
