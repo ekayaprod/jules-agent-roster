@@ -297,4 +297,33 @@ describe('EventBinder', () => {
         delete window.TelemetryUtils;
     });
 
+    it('should assert graceful failure and telemetry dispatch on julesRepoPicker repo load timeout', async () => {
+        // Setup mock global TelemetryUtils
+        window.TelemetryUtils = {
+            dispatchEvent: jest.fn()
+        };
+
+        EventBinder.bind(appMock);
+
+        // Trigger change event with a non-empty sourceName
+        const changeEvent = new Event('change');
+        Object.defineProperty(changeEvent, 'target', { value: { value: 'jules-repo' }, enumerable: true });
+
+        // Mock loadActiveSessionsForRepo to throw
+        const mockError = new Error('Repo Load Timeout');
+        appMock.julesTerminal.loadActiveSessionsForRepo.mockRejectedValue(mockError);
+        appMock.julesTerminal.loadPullRequestsForRepo.mockResolvedValue(); // Happy path for this one
+
+        appMock.elements.julesRepoPicker.dispatchEvent(changeEvent);
+
+        // Wait for microtask queue to process the async catch handler
+        await new Promise(process.nextTick);
+
+        expect(appMock.julesTerminal.loadActiveSessionsForRepo).toHaveBeenCalledWith('jules-repo');
+        expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('REPO_LOAD_ERROR', mockError);
+
+        // Cleanup global
+        delete window.TelemetryUtils;
+    });
+
 });
