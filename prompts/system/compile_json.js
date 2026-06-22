@@ -66,8 +66,7 @@ function cleanCodeFence(str) {
   if (!str) return '';
   return String(str)
     .replace(/^\s*```[a-zA-Z0-9]*\r?\n/gm, '')
-    .replace(/\r?\n\s*
-```\s*$/gm, '');
+    .replace(/\r?\n\s*```\s*$/gm, '');
 }
 
 function compile(jsonPayloadStr, templateStr, targetFilePath) {
@@ -99,7 +98,8 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     'Operator',
     'Analyzer',
   ];
-  const profileKey = data.identity?.archetype;
+  
+  const profileKey = data.archetype || data.identity?.archetype;
   if (!profileKey || !VALID_ARCHETYPES.includes(profileKey)) {
     throw new Error(
       `[FATAL ERROR] Archetype key '${profileKey}' is not a valid Structural Base Profile. Must be one of: ${VALID_ARCHETYPES.join(', ')}`,
