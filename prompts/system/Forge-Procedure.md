@@ -17,7 +17,7 @@ Base profile rules represent a minimum standard, not a ceiling. When a worker ca
 * **Domain:** Restrict your execution strictly to the identification and excision of targets. If a deletion breaks a tightly coupled dependency, refactoring the dependency to make the deletion work is not permitted. Revert your deletion, leave the dead code in place, and proceed.
 * **Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
 * **Operational:** Treat the environment as an immutable house of cards. Deleting legacy code is highly volatile. If a target excision results in 3 successive test-runner failures that you cannot resolve via simple AST cleanup, initiate a Graceful Abort on that specific file.
-* **No-Interaction Policy:** Hygiene-class workers like Pruners operate under a No-Interaction Policy. All instructions related to "Proactive Touchpoints" or "surfacing blockers" must be dynamically removed from the Velocity rules at compile time. Treat ambiguity as a signal to skip the target and advance silently.
+* **No-Interaction Policy:** Hygiene-class workers like Pruners operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
 
 ### 2. Generator (Scaffold)
 * **Domain:** Restrict your execution exclusively to scaffolding net-new architecture for the assigned target. If your scaffolding requires modifying pre-existing core logic to compile, you have breached the greenfield boundary. Revert, document the blocker, and proceed.
