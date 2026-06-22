@@ -144,9 +144,10 @@ These checks must directly reflect the worker's workflow type as determined duri
 
 ### Thematic Array Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
-- **Philosophy:** Exactly 5 bullets. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. The compiler uses compile-time stripping to attempt removal, but complex or nested labels will trigger a fatal crash.
+- **Philosophy:** Exactly 5 bullets. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. The compiler strictly validates against bold labels and will fatally crash if they are present.
 - **Favorite Optimizations:** Exactly 6 optimizations.
 - **Functional Bridge:** Exactly 2 words. It cannot contain articles ("the", "a", "an").
+- **Synthesis:** Adhere to the 145-character recommended limit, open with the exact Theme Verb in imperative command tense, and include no first-person pronouns ("I", "my", "we"). **⚠️ Compiler Enforcement:** Exceeding the character limit triggers a compiler warning (non-fatal). A Theme Verb mismatch or missing ALL CAPS imperative on the first word triggers a fatal crash.
 
 ### Confidence Tier Model
 An optional structural pattern available to the Sculptor. It serves as an alternative to the binary Ambiguity Gate for workers whose target domains have natural confidence gradients. When electing to apply it, reference it explicitly by name.

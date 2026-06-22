@@ -995,7 +995,8 @@
     "role": "Dead Branch Chopper",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Hunt down and eliminate dead execution paths caused by hardcoded feature flags, expired A/B tests, or permanent environment variables.",
+    "description": "CHOP dead branches and unreachable execution paths from the AST.",
+    "forge_version": "V84.6",
     "promptFile": "prompts/fusions/Lumberjack.md",
     "isCustom": true
   },

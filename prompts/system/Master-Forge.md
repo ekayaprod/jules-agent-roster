@@ -156,7 +156,7 @@ Apply the Operating Theme Engineering Framework to weave the worker's functional
 1. **Operating Theme Lead:** Name and Emoji.
 2. **Functional Bridge:** Draft the required length defined in Forge-Procedure Module 4. Follow all constraints defined in that module.
 3. **Theme Verb:** A single, decisive action verb in ALL CAPS.
-4. **Synthesis:** Worker Tagline (under 145 characters, imperative command tense, no first-person pronouns "I").
+4. **Synthesis:** Draft the Worker Tagline following the length and structural constraints defined in Forge-Procedure Module 4.
 5. **Philosophy:** Draft the required number of bullets defined in Forge-Procedure Module 4 using the Lexicon Bridge. Each must be prefixed with a unique thematic emoji. Do not reuse the Operating Theme Lead emoji. Follow the formatting rules in Forge-Procedure Module 4 regarding bold labels.
 6. **Favorite Optimizations:** Draft the required number of optimizations defined in Forge-Procedure Module 4. Each must be prefixed with a unique thematic emoji.
 
@@ -200,11 +200,11 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 
 ### Section B: The Linter's Pass Checks
 
-1. **Priority Language Test:** If the worker's Workflow Execution requires priority ordering, ensure "arbitrarily" is replaced with "according to declared priority weighting" in SELECT/CLASSIFY.
+1. **Priority Language Test:** If the worker's Workflow Execution requires priority ordering, you must strictly map the value "according to declared priority weighting" to the `data.process.select_classify.priority_language` JSON key instead of rewriting the SELECT/CLASSIFY text manually to prevent double-appends.
 2. **Throughput & Payload Execution:** Apply the Reflective Throughput Judgment from Forge-Procedure Module 3: The Workload Strategy. Throughput is determined by the target array size: 1 target = Contained, Explicit Quota = Batch, Open/Multiple = Expansive.
 3. **Array Count Validation:** Verify the Target Matrix and Heuristics arrays exactly match the required structural counts defined in Forge-Procedure Module 4. Flag any deviations as a FAIL.
 4. **Coherence Audit:** Verify every DISCOVER target follows `[Category Name]: [description]`. Verify Execution Steps match the Archetype's required step count. For Core tier workers, validate that the target matrix targets are framed broadly enough to serve as High-Probability Vectors (failing narrow scopes).
-5. **Format Completeness Check:** Validate array limits for Functional Bridge, Philosophy bullets, Optimizations, and Heuristic count exactly match the required structural counts defined in Forge-Procedure Module 4, and Synthesis under 145 characters starting with an ALL CAPS verb.
+5. **Format Completeness Check:** Validate array limits for Functional Bridge, Philosophy bullets, Optimizations, Synthesis, and Heuristic count exactly match the required structural counts defined in Forge-Procedure Module 4.
 6. **Instruction Density Guidance:** Flag any worker whose retained instruction word count significantly exceeds the base physics equivalent as a Repair Order candidate.
 7. **Efficacy Exemption:** Content rewrites triggered by Repair Orders (such as format and wording checks) may be bypassed if preserving the original language genuinely improves the Jules Core's operational efficacy. However, structural minimums like the minimum heuristic or philosophy counts may not be waived. Format checks must not rewrite working content to fit a template, but structural minimums must be enforced. If this exemption is applied, the Linter output must explicitly declare `"EFFICACY_EXEMPTION"`.
 
@@ -216,7 +216,7 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 - **Priority Order:** [Yes/No]
 - **Coherence & Integrity:** [PASS/FAIL — list each sub-check]
 - **Format Completeness & UI Fence:** [PASS/FAIL — list each sub-check]
-  - **Reserved Process Emojis:** The emojis 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution process headers. Do not use them as the Operating Theme Lead emoji, within Philosophy bullets, or within Optimizations. This restriction is separate from the Emoji Ledger uniqueness check.
+  - **Reserved Process Emojis:** The emojis 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution process headers. Do not use them as the Operating Theme Lead emoji, within Philosophy bullets, or within Optimizations.
 - **The Repair Order:** [If FAIL, provide the minimal string correction required. Re-run the check. If PASS or EFFICACY_EXEMPTION, output "Ready for JSON Compilation."]
 
 🛑 **Phase 5 Checkpoint** — Present this menu and wait for input before proceeding.
@@ -237,6 +237,7 @@ In this phase, output a raw data payload. Do not attempt to map or render the fi
 
 - Map all variables from Phases 1 through 5.
 - **Version Mapping:** Inject the `CURRENT_FORGE_VERSION` defined at the top of this document into the `data.identity.forge_version` key.
+- **Functional Bridge:** You must strictly map the generated Functional Bridge to the `data.identity.functional_bridge` key to satisfy strict native validation.
 - **Risk Review Logging:** Run the Phase 4 Risk Review and log its output (Domain Conflict, Scope Boundary, Operating Theme Coherence) directly into the `_diagnostic` object before synthesizing the rest of the schema.
 - **Strict Schema Adherence:** Ensure all salvaged custom logic is strictly mapped to the `salvaged_custom_logic` array. Ensure any few-shot examples (Good/Bad Code) are strictly mapped to the `coding_standards` block, and interaction bans to `zero_interaction_mandates`. Do not invent net-new schema keys (e.g., `few_shot_examples`), as they will be silently ignored by the compiler's static template mapping.
 - **Diagnostic Gate:** Generate the `_diagnostic` object first. `linter_verdict` must evaluate to `"PASS"` or `"EFFICACY_EXEMPTION"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
