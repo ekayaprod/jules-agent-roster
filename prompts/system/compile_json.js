@@ -1,9 +1,6 @@
 'use strict';
 const fs = require('fs');
 
-const CURRENT_FORGE_VERSION = 84.5;
-const MINIMUM_VERSION_THRESHOLD = CURRENT_FORGE_VERSION - 2.0;
-
 const ANALYZER_OPERATIONAL_BASELINE =
   'Unconditional Cleanup: Run git clean -fd -e .jules/ before PR or Abort to wipe data dumps.';
 const UNIVERSAL_OPERATIONAL_BASELINE =
@@ -69,7 +66,8 @@ function cleanCodeFence(str) {
   if (!str) return '';
   return String(str)
     .replace(/^\s*```[a-zA-Z0-9]*\r?\n/gm, '')
-    .replace(/\r?\n\s*```\s*$/gm, '');
+    .replace(/\r?\n\s*
+```\s*$/gm, '');
 }
 
 function compile(jsonPayloadStr, templateStr, targetFilePath) {
@@ -195,7 +193,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     CATEGORY: category,
     TIER: data.identity?.tier || '',
     SYNTHESIS: data.identity?.synthesis || '',
-    FORGE_VERSION: data.identity?.forge_version || 'V82.0',
+    FORGE_VERSION: data.identity?.forge_version || '',
     MISSION_SCOPE: String(data.mission_scope || '')
       .replace(/\.+$/, '')
       .replace(/^to\s+/i, ''),
