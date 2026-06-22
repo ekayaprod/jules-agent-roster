@@ -16,24 +16,7 @@ const UNIVERSAL_OPERATIONAL_BASELINE =
 
 function formatList(arr, bullet = '* ') {
   if (!Array.isArray(arr)) return '';
-  return arr.map((item) => `${bullet}${String(item).replace(/^[\*\-]\s+/, '')}`).join('\n');
-}
-
-function formatExecutionSteps(arr) {
-  if (!Array.isArray(arr)) return '';
-  return arr.map((item) => `* ${String(item).replace(/^[\*\-\s]+/, '')}`).join('\n');
-}
-
-function formatPhilosophy(arr) {
-  if (!Array.isArray(arr)) return '';
-  return arr
-    .map(
-      (item) =>
-        `* ${String(item)
-          .replace(/^[\*\-]\s+/, '')
-          .replace(/\*\*[^\*]+\*\*:\s*/, '')}`,
-    )
-    .join('\n');
+  return arr.map((item) => `${bullet}${String(item).replace(/^[\*\-\s]+/, '')}`).join('\n');
 }
 
 function formatSlot(rawText, label) {
@@ -42,10 +25,10 @@ function formatSlot(rawText, label) {
   return `* **${label}:** ${cleanText}`;
 }
 
-function formatTargetMatrix(arr, tier) {
+function formatTargetMatrix(arr) {
   if (!Array.isArray(arr)) return '';
 
-  const formattedList = arr
+  return arr
     .map((item) => {
       let cleanItem = String(item).trim();
       const match = cleanItem.match(/^[\*\-\s]*(?:\*\*?)?([^\*:]+)(?:\*\*?)?:\s*(.*)/);
@@ -53,13 +36,6 @@ function formatTargetMatrix(arr, tier) {
       return `* ${cleanItem.replace(/^[\*\-]\s*/, '')}`;
     })
     .join('\n');
-
-  return formattedList;
-}
-
-function formatHeuristics(arr) {
-  if (!Array.isArray(arr)) return '';
-  return arr.map((item) => `* ${String(item).replace(/^[\*\-\s]+/, '')}`).join('\n');
 }
 
 function cleanCodeFence(str) {
@@ -159,6 +135,13 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     }
   });
 
+  const forgeVersion = data.identity?.forge_version || data.forge_version || '';
+  if (!forgeVersion || String(forgeVersion).trim() === '') {
+    throw new Error(
+      `[FATAL ERROR] The 'forge_version' key is missing or empty. You must inject the CURRENT_FORGE_VERSION into data.identity.forge_version to prevent infinite Autorun loops.`
+    );
+  }
+
   // --- DETERMINISTIC COMPILER LOGIC ---
 
   const category = data.identity?.category || '';
@@ -193,11 +176,11 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     CATEGORY: category,
     TIER: data.identity?.tier || '',
     SYNTHESIS: data.identity?.synthesis || '',
-    FORGE_VERSION: data.identity?.forge_version || '',
+    FORGE_VERSION: forgeVersion,
     MISSION_SCOPE: String(data.mission_scope || '')
       .replace(/\.+$/, '')
       .replace(/^to\s+/i, ''),
-    PHILOSOPHY: formatPhilosophy(data.philosophy),
+    PHILOSOPHY: formatList(data.philosophy),
     LANGUAGE: data.coding_standards?.language || '',
     GOOD_CODE: cleanCodeFence(data.coding_standards?.good_code_snippet),
     BAD_CODE: cleanCodeFence(data.coding_standards?.bad_code_snippet),
@@ -270,8 +253,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
       : '',
     DISCOVERY_VELOCITY_RULE: data.process?.discover?.discovery_velocity_rule || '',
     TARGET_MATRIX: formatTargetMatrix(
-      data.process?.target_matrix || data.process?.discover?.target_matrix,
-      data.identity?.tier,
+      data.process?.target_matrix || data.process?.discover?.target_matrix
     ),
     PRIORITY_LANGUAGE:
       data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily',
@@ -279,11 +261,11 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     THEME_VERB: definedThemeVerb || 'EXECUTE',
     EXECUTION_POSTURE: data.process?.execute?.execution_posture || '',
     TARGET_LIMIT_INSTRUCTION: targetLimitInstruction,
-    EXECUTION_STEPS: formatExecutionSteps(
+    EXECUTION_STEPS: formatList(
       data.process?.execute?.execution_steps || data.process?.execution_steps,
     ),
     REPORTER_PROCEDURE: data.process?.verify?.reporter_procedure || '',
-    HEURISTICS: formatHeuristics(
+    HEURISTICS: formatList(
       data.process?.verify?.heuristic_verification || data.process?.heuristic_verification,
     ),
     PRESENTATION_SLOT: String(
