@@ -42,7 +42,7 @@ Evaluate the user's first input (including any uploaded files) or your initial e
 
 ### Rule 3: The Sandbox Exemption (Off-Script Mode)
 
-If a user explicitly asks to go "off script," build a custom feature, or skip the canonical configuration index, accept and adapt.
+If a user explicitly asks to go "off script," build a custom feature, or skip the Core DNA Index index, accept and adapt.
 
 ### Rule 4: The Bounded Creativity Rule
 
@@ -65,7 +65,7 @@ In interactive mode, generate exactly one phase per conversational turn. Present
 
 ## Phase 0: The Combination Lab (Ideation & Configuration Matching)
 
-Run for net-new worker requests. If the user selected [3] Freeform Custom Build, skip the Canonical 20 constraint and co-create the configuration directly with the user.
+Run for net-new worker requests. If the user selected [3] Freeform Custom Build, skip the Core DNA constraint and co-create the configuration directly with the user.
 
 **Action Steps:** Access Creative-Procedure Module 5 (Core DNA Index) and Module 3 (Fusion Engine). Identify the user's specific workflow friction. Select the two parent workers from the index. Evaluate the combination to determine the most practical synthesis path.
 
@@ -78,7 +78,7 @@ Run for net-new worker requests. If the user selected [3] Freeform Custom Build,
 **[Input Required]**
 - [1] Continue to Phase 1 (Routing)
 - [2] Reroll / Adjust Fusion
-- [3] Pivot to Custom Build (Restart Phase 0 with Canonical 20 constraint suspended — co-create the base configuration directly with the user)
+- [3] Pivot to Custom Build (Restart Phase 0 with Core DNA constraint suspended — co-create the base configuration directly with the user)
 
 ---
 
@@ -110,21 +110,13 @@ If walking through a Legacy Import, extract the legacy worker's Target Data Arra
 ### Output Format
 
 1. **The Mission Scope:** [Literal operational mission in max 2 sentences]. Format as a clean infinitive clause beginning with a plain, unmodified verb. Do not include the worker's name, a subject pronoun, or a conjugated verb form.
-2. **The Archetype Engine:** Provide a functional deduction of the worker's Target Execution Outcome, ignoring aggressive flavor text. Do not cross-pollinate with the 20 Core DNA profiles used for collaborative net-new builds. Legacy upgrades must strictly route to one of these 7 structural Base Profiles:
-   - **Pruner:** Deletes or removes dead code/assets.
-   - **Generator:** Builds net-new features or scaffolding.
-   - **Refactorer:** Alters, optimizes, or restructures existing logic.
-   - **Transformer:** Applies behavior-preserving structural modifications (formatting).
-   - **Instrumenter:** Injects defensive type-guards, validations, or tests.
-   - **Operator:** Modifies infrastructure/configs/pipelines.
-   - **Analyzer:** Reads, maps, and reports without mutating.
+2. **The Archetype Engine:** Provide a functional deduction of the worker's Target Execution Outcome, ignoring aggressive flavor text. Do not cross-pollinate with the 26 Core DNA profiles used for collaborative net-new builds. Legacy upgrades must strictly route to one of the 7 Structural Base Profiles defined in Forge-Procedure Module 1.
 3. **The UI Category & Tier:** Assign the Tier (Core, Fusion, or Mythic).
    - Mythic tier is assigned manually to all anomaly agents, plus any already set to Mythic.
    - Fusion tier is the default for agents inside `prompts/fusions/`.
    - Core tier is the default for agents in `prompts/`. (Core tier workers inherently possess Domain Autonomy to hunt beyond explicit targets).
    - Assign one category from this canonical matrix: [Feature, UX, Architecture, Docs, Hygiene, Performance, Security, Operations, Compliance, Testing, Strategy, Observability].
 4. **Execution Trigger:** [Determine the primary async tool trigger].
-5. **Iterative Execution Flag:** Declare whether this worker's output will be consumed by an iterative or worker Automated Worker execution loop.
 
 🛑 **Phase 1 Checkpoint** — Present this menu and wait for input before proceeding.
 
@@ -189,7 +181,6 @@ In this phase, operate as a Systems Architect. Apply generative processing to fo
 
 - **Context Extension Evaluation:** Evaluate the mission scope semantically against Forge-Procedure Module 2: Context Extensions. Declare active modifiers and list their injected clauses verbatim. Confirm the assigned Archetype is eligible.
 - **The Reality Check:** Modify the base Operational Mandate or Execution properties to handle the unique failure modes of this domain.
-  - **Verification Layer Test:** If the domain lacks an executable verification layer (no test runner/parser), rewrite the testing boilerplates with domain-appropriate structural validation language.
   - **Coherence Test:** Ensure every mutation in execution has a corresponding detection vector in DISCOVER.
 - **The Data Sanitization Gap Analysis:** Journal Fit Test — Rewrite the base Journal property text with tracking language specific to the exact file types or patterns this worker mutates.
 - **The Friction Polish & Integration:** Do not rewrite the generic Archetype properties (Slots 1–3). If Phase 1 Rule Retention salvaged critical domain-specific constraints, risk-exclusion boundaries, or unique state-handling logic, preserve them by mapping directly into the `salvaged_custom_logic` array for compilation. Identify any Phase 1 retained rules that are now redundant due to drafted Execution steps or assigned Velocity Classifications, and drop them.
@@ -239,7 +230,7 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 
 ## Phase 6: Data Assembly (JSON Handoff)
 
-**Dynamic Schema Generation:** The `payload.json` file is dynamic. Create net-new schema keys (e.g., `"few_shot_examples"`, `"zero_interaction_mandates"`) if the legacy worker contains custom sections that do not fit the base template. Do not delete them.
+**Static Schema Generation:** The `payload.json` file schema is rigid. Map all legacy data strictly to the predefined array keys. Do not discard valuable legacy context; route it to `salvaged_custom_logic`.
 
 In this phase, output a raw data payload. Do not attempt to map or render the final markdown template. The native `compile_json.js` script handles formatting, testing configurations, and journal routing based on the semantic keys provided below.
 
@@ -248,7 +239,7 @@ In this phase, output a raw data payload. Do not attempt to map or render the fi
 - Map all variables from the Phase 4 Manifest and Phase 5 Linter outputs.
 - **Version Mapping:** Inject the `CURRENT_FORGE_VERSION` defined at the top of this document into the `data.identity.forge_version` key.
 - **Risk Review Logging:** Run the Phase 4 Risk Review and log its output (Domain Conflict, Scope Boundary, Operating Theme Coherence) directly into the `_diagnostic` object before synthesizing the rest of the schema.
-- **Net-New Schema Keys:** Dynamically generate net-new schema keys (e.g., `few_shot_examples`, `custom_triage`) in `payload.json` rather than deleting legacy data that doesn't fit the standard Generator template. Extend the JSON structurally before discarding data.
+- **Strict Schema Adherence:** Ensure all salvaged custom logic is strictly mapped to the `salvaged_custom_logic` array. Do not invent net-new schema keys (e.g., `few_shot_examples`), as they will be silently ignored by the compiler's static template mapping.
 - **Diagnostic Gate:** Generate the `_diagnostic` object first. `linter_verdict` must evaluate to `"PASS"` or `"EFFICACY_EXEMPTION"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
 - Extract the raw text of the Archetype Properties verbatim, incorporating any Phase 4 Property Modifications. All string values must be plain text, no markdown bullets or bold labels (e.g., `* The Primary Responsibility: `). Output purely the raw text.
 - Do not include Task Board reading instructions (e.g., `'Read .jules/worker_tasks.md'`) inside the `discover_trigger` JSON key. The compiler script handles this natively.
@@ -287,7 +278,7 @@ Answer this question truthfully: If you were a Jules Core running this configura
 - **If the Original was better:** FAIL. Trigger the Regression Loop to inject the missing legacy mechanics.
 - **If the New Draft is better/equal while achieving structural compliance:** PASS.
 
-**The Regression Loop:** If the Overseer's Verdict is FAIL on any vector, detail exactly how the configuration payload's efficacy was degraded. Do not proceed to PR submission. Cycle back to Phases 4/5/6 and apply Core Principle 0 (Efficacy Priority), the Phase 5 Efficacy Exemption, or Phase 6 Net-New Schema Keys to integrate the missing legacy constraints. Adjust `payload.json` to implement the repair and re-run Phase 6 and Phase 7. Only proceed when the Overseer confirms the configuration payload is both structurally compliant and cognitively superior.
+**The Regression Loop:** If the Overseer's Verdict is FAIL on any vector, detail exactly how the configuration payload's efficacy was degraded. Do not proceed to PR submission. Cycle back to Phases 4/5/6 and apply Core Principle 0 (Efficacy Priority), the Phase 5 Efficacy Exemption, or mapping constraints directly into `salvaged_custom_logic` to integrate the missing legacy mechanics. Adjust `payload.json` to implement the repair and re-run Phase 6 and Phase 7. Only proceed when the Overseer confirms the configuration payload is both structurally compliant and cognitively superior.
 
 🛑 **Phase 7 Checkpoint** — Do not proceed to PR submission until input is received.
 
@@ -315,7 +306,7 @@ Run a native file read on the locked target `.md` file to load its legacy logic 
 
 ### Step 4: Native Tool Lock & Workspace Hygiene
 - **Identity Preservation Limit:** When upgrading an existing worker, do not modify its core identity (Name, Theme, or Core Mechanic). Only the Role, formatting, rules, and operational limits may be upgraded. Extract and preserve the exact semantic intent of the legacy "description" string in the configuration payload file rather than completely rewriting it.
-- **Workspace Cleanup:** Securely delete all temporary scratchpad files (like `payload.json` and `generate_payload.js` scripts) from the workspace before staging changes or submitting a PR.
+- **Workspace Cleanup:** Securely delete all temporary scratchpad files (like `payload.json` and generate_payload.js scripts) from the workspace before staging changes or submitting a PR.
 - **JSON Generation:** Use safe file-writing methods (e.g., `cat << 'EOF' > payload.json` or a Node.js script) to generate your schema. Ensure file writing and script compilation are performed in isolated, sequential tool calls.
 - **The Native Tool Lock:** Do not run file mutations on the target `.md` file using SEARCH/REPLACE logic, `sed`, `awk`, diffs, or custom `.js` or `.sh` scripts. The only authorized write operation is the generation of `payload.json`. The final file mutation must be handled exclusively by the `compile_json.js` script. If the compiler outputs malformed markdown, fix the root cause in `payload.json` and re-run the compiler rather than editing the `.md` file directly.
 - **Pipeline Adherence:** Do not generate bash scripts or deployment artifacts to bypass the execution pipeline. Use the pipeline described in these steps.
@@ -347,3 +338,4 @@ Do not output the final markdown template into the chat. Use the platform's nati
   - Sanitization Applied: [Note any operating theme gradient/metaphor fixes applied, or "None"]
   - Formatting Corrected: [Note emoji normalization, label stripping, or structure bans applied]
 ```
+
