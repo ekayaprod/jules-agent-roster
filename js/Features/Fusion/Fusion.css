@@ -3,7 +3,7 @@
 .fusion-lab-container h2 { margin-top: 0; margin-bottom: 1.5rem; background: linear-gradient(to right, var(--mythic), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: -apple-system, sans-serif; font-weight: var(--weight-extrabold); }
 .fusion-visual-slots { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
 .slot-card { background-color: color-mix(in srgb, var(--bg-color) 30%, transparent); border: 2px dashed var(--border); border-radius: 1rem; flex: 1 1 100%; max-width: 100%; min-height: 7.5rem; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; padding: 1rem; text-align: center; transition: all 0.2s ease-in-out; touch-action: manipulation; }
-.slot-card:hover { border-color: var(--accent); background-color: color-mix(in srgb, var(--accent) 5%, transparent); }
+@media (hover: hover) and (pointer: fine) { .slot-card:hover { border-color: var(--accent); background-color: color-mix(in srgb, var(--accent) 5%, transparent); } }
 .slot-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .slot-card:active { transform: scale(0.98); }
 
@@ -17,7 +17,7 @@
 .slot-card.filled .slot-label { color: var(--text-primary) !important; font-weight: 700; font-size: var(--text-sm); text-shadow: 0px 2px 4px rgba(0,0,0,0.9); }
 
 #fuseBtn { background: linear-gradient(to right, var(--mythic), var(--accent)); color: white; padding: 0.75rem 2rem; transition: all 0.3s ease-in-out; border: none; border-radius: 0.5rem; font-weight: var(--weight-bold); cursor: pointer; }
-#fuseBtn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 6px 20px color-mix(in srgb, var(--mythic) calc(0.4 * 100%), transparent); }
+@media (hover: hover) and (pointer: fine) { #fuseBtn:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 6px 20px color-mix(in srgb, var(--mythic) calc(0.4 * 100%), transparent); } }
 #fuseBtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 #fuseBtn:active:not(:disabled) { transform: scale(0.95); }
 #fuseBtn:disabled { background: var(--card-bg); border: 1px solid var(--border); color: var(--text-secondary); opacity: 0.5; }
@@ -37,7 +37,7 @@
 .fusion-item.locked { opacity: 0.6; cursor: not-allowed; }
 .fusion-item.locked .slot-icon { filter: brightness(0); }
 .fusion-item.unlocked { cursor: pointer; border-color: color-mix(in srgb, var(--mythic) calc(0.3 * 100%), transparent); }
-.fusion-item.unlocked:hover { border-color: color-mix(in srgb, var(--mythic) calc(0.6 * 100%), transparent); background-color: color-mix(in srgb, var(--mythic) calc(0.05 * 100%), transparent); transform: translateY(-2px); }
+@media (hover: hover) and (pointer: fine) { .fusion-item.unlocked:hover { border-color: color-mix(in srgb, var(--mythic) calc(0.6 * 100%), transparent); background-color: color-mix(in srgb, var(--mythic) calc(0.05 * 100%), transparent); transform: translateY(-2px); } }
 .fusion-item.unlocked:focus-visible { outline: 2px solid color-mix(in srgb, var(--mythic) calc(1 * 100%), transparent); outline-offset: 2px; }
 
 .picker-modal { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(4px); border: none; width: 100%; height: 100%; position: fixed; z-index: 100; display: none; align-items: center; justify-content: center; top: 0; left: 0; font-family: -apple-system, sans-serif; padding: 0; color: inherit; }
@@ -47,12 +47,12 @@
 .picker-header { padding: 1rem 1.5rem; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
 .picker-header h3 { margin: 0; font-size: var(--text-lg); }
 .close-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.5rem; display: flex; align-items: center; justify-content: center; border-radius: 0.25rem; font-size: var(--text-lg); line-height: var(--leading-none); transition: all 0.2s ease-in-out; min-width: 2.75rem; min-height: 2.75rem; }
-.close-btn:hover { color: var(--text-primary); background-color: rgba(255, 255, 255, 0.1); }
+@media (hover: hover) and (pointer: fine) { .close-btn:hover { color: var(--text-primary); background-color: rgba(255, 255, 255, 0.1); } }
 .close-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .close-btn:active { transform: scale(0.95); }
 .picker-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(7.5rem, 100%), 1fr)); gap: 0.5rem; padding: 1.5rem; overflow-y: auto; }
 .mini-agent-card { background-color: color-mix(in srgb, var(--bg-color) 50%, transparent); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.5rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 0.25rem; text-align: center; transition: all 0.2s ease-in-out; }
-.mini-agent-card:hover { border-color: var(--accent); background-color: color-mix(in srgb, var(--accent) 5%, transparent); }
+@media (hover: hover) and (pointer: fine) { .mini-agent-card:hover { border-color: var(--accent); background-color: color-mix(in srgb, var(--accent) 5%, transparent); } }
 .mini-agent-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .mini-agent-card:active { transform: scale(0.98); }
 .mini-agent-card.selected { border-color: var(--accent); background: radial-gradient(circle at center, color-mix(in srgb, var(--accent) 10%, transparent), color-mix(in srgb, var(--bg-color) 60%, transparent)); }
@@ -320,8 +320,10 @@
     transform: scale(0.95);
 }
 
-.pin-btn:hover, .dropdown-item:hover, .action-main-btn:hover, .action-toggle-btn:hover {
+@media (hover: hover) and (pointer: fine) {
+  .pin-btn:hover, .dropdown-item:hover, .action-main-btn:hover, .action-toggle-btn:hover {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
 }
 
 /* AgentPicker Grid Columns Utilities */
