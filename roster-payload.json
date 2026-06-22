@@ -984,7 +984,8 @@
     "role": "Logic Documenter",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Map chaotic, undocumented `if/else`, `switch`, and Bitwise operations into clean, tabular Truth Tables directly inside JSDoc/Docstrings.",
+    "description": "DOCUMENT undocumented if/else, switch, and Bitwise operations into clean Truth Tables inside JSDoc.",
+    "forge_version": "V84.5",
     "promptFile": "prompts/fusions/Logician.md",
     "isCustom": true
   },
