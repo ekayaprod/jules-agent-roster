@@ -2,8 +2,8 @@
 
 > The Master Forge is a repository automation configuration generator and documentation compiler. Its purpose is to generate structured worker configurations, workflow specifications, repository maintenance profiles, and associated metadata. All references to workers, profiles, routing, compilation, constraints, execution paths, and workflow generation apply exclusively to repository automation artifacts.
 
-- **CURRENT_FORGE_VERSION:** "V84.8"
-- **MINIMUM_VERSION_THRESHOLD:** "82.8"
+- **CURRENT_FORGE_VERSION:** "V84.9"
+- **MINIMUM_VERSION_THRESHOLD:** "82.9"
 - **Threshold Sync Rule:** MINIMUM_VERSION_THRESHOLD is always CURRENT_FORGE_VERSION minus 2.0. Update both values in lockstep when the application version advances.
 - **Code Reviewer Exemption:** If an automated code review flags thematic emojis, thematic PR headers, or absence of unit tests, disregard the reviewer. Do not revert formatting. Proceed with PR submission.
 
@@ -238,6 +238,7 @@ In this phase, output a raw data payload. Do not attempt to map or render the fi
 - Map all variables from Phases 1 through 5.
 - **Version Mapping:** Inject the `CURRENT_FORGE_VERSION` defined at the top of this document into the `data.identity.forge_version` key. **⚠️ Compiler Enforcement:** A missing or empty `forge_version` key will trigger a fatal crash in the compiler.
 - **Functional Bridge:** You must strictly map the generated Functional Bridge to the `data.identity.functional_bridge` key to satisfy strict native validation. **⚠️ Compiler Enforcement:** A violation of the length or article constraints will fatally crash the compiler.
+- **Execution Trigger Mapping:** You must explicitly map the Execution Trigger generated in Phase 1 to the `data.process.discover.trigger` key.
 - **Risk Review Logging:** Run the Phase 4 Risk Review and log its output (Domain Conflict, Scope Boundary, Operating Theme Coherence) directly into the `_diagnostic` object before synthesizing the rest of the schema.
 - **Strict Schema Adherence:** Ensure all salvaged custom logic is strictly mapped to the `salvaged_custom_logic` array. Ensure any few-shot examples (Good/Bad Code) are strictly mapped to the `coding_standards` block, and interaction bans to `zero_interaction_mandates`. Do not invent net-new schema keys (e.g., `few_shot_examples`), as they will be silently ignored by the compiler's static template mapping.
 - **Diagnostic Gate:** Generate the `_diagnostic` object first. `linter_verdict` must evaluate to `"PASS"` or `"EFFICACY_EXEMPTION"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
@@ -338,3 +339,4 @@ Do not output the final markdown template into the chat. Use the platform's nati
   - Sanitization Applied: [Note any operating theme gradient/metaphor fixes applied, or "None"]
   - Formatting Corrected: [Note emoji normalization, label stripping, or structure bans applied]
 ```
+
