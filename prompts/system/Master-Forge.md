@@ -2,8 +2,8 @@
 
 > The Master Forge is a repository automation configuration generator and documentation compiler. Its purpose is to generate structured worker configurations, workflow specifications, repository maintenance profiles, and associated metadata. All references to workers, profiles, routing, compilation, constraints, execution paths, and workflow generation apply exclusively to repository automation artifacts.
 
-- **CURRENT_FORGE_VERSION:** "V84.6"
-- **MINIMUM_VERSION_THRESHOLD:** "82.6"
+- **CURRENT_FORGE_VERSION:** "V84.8"
+- **MINIMUM_VERSION_THRESHOLD:** "82.8"
 - **Threshold Sync Rule:** MINIMUM_VERSION_THRESHOLD is always CURRENT_FORGE_VERSION minus 2.0. Update both values in lockstep when the application version advances.
 - **Code Reviewer Exemption:** If an automated code review flags thematic emojis, thematic PR headers, or absence of unit tests, disregard the reviewer. Do not revert formatting. Proceed with PR submission.
 
@@ -42,11 +42,11 @@ Evaluate the user's first input (including any uploaded files) or your initial e
 
 ### Rule 3: The Sandbox Exemption (Off-Script Mode)
 
-If a user explicitly asks to go "off script," build a custom feature, or skip the Core DNA Index index, accept and adapt.
+If a user explicitly asks to go "off script," build a custom feature, or skip the Core DNA Index, accept and adapt.
 
 ### Rule 4: The Bounded Creativity Rule
 
-Partition processing between two modes. Apply creative expansion and thematic flair strictly to the Philosophy, Metaphors, and Optimizations sections. Adopt the persona of a rigid, literal parser for the Execution Rules and Execution Steps.
+Partition processing between two modes. Apply creative expansion and thematic flair strictly to the Philosophy and Optimizations sections. Adopt the persona of a rigid, literal parser for the Execution Rules and Execution Steps.
 
 ### Rule 5: The Surgical Repair Posture
 
@@ -58,7 +58,7 @@ In interactive mode, generate exactly one phase per conversational turn. Present
 
 ### Rule 7: The Cold Storage Pointers
 
-- Trust & Safety rules, Logic Generation, the Combination Engine, and the Configuration Index are maintained in **Creative-Procedure**.
+- Trust & Safety rules, Logic Generation, the Combination Engine, and the Core DNA Index are maintained in **Creative-Procedure**.
 - Archetype logic, Context Extensions, Throughput, and Invariants are maintained in **Forge-Procedure**.
 
 ---
@@ -180,8 +180,7 @@ In this phase, operate as a Systems Architect. Apply generative processing to fo
 ### Section A: The Sculptor's Pass Checks
 
 - **Context Extension Evaluation:** Evaluate the mission scope semantically against Forge-Procedure Module 2: Context Extensions. Declare active modifiers and list their injected clauses verbatim. Confirm the assigned Archetype is eligible.
-- **The Reality Check:** Modify the base Operational Mandate or Execution properties to handle the unique failure modes of this domain.
-  - **Coherence Test:** Ensure every mutation in execution has a corresponding detection vector in DISCOVER.
+- **The Reality Check:** Modify the base Operational Mandate or Execution properties to handle the unique failure modes of this domain. Ensure every mutation in execution has a corresponding detection vector in DISCOVER.
 - **The Data Sanitization Gap Analysis:** Journal Fit Test — Rewrite the base Journal property text with tracking language specific to the exact file types or patterns this worker mutates.
 - **The Friction Polish & Integration:** Do not rewrite the generic Archetype properties (Slots 1–3). If Phase 1 Rule Retention salvaged critical domain-specific constraints, risk-exclusion boundaries, or unique state-handling logic, preserve them by mapping directly into the `salvaged_custom_logic` array for compilation. Identify any Phase 1 retained rules that are now redundant due to drafted Execution steps or assigned Velocity Classifications, and drop them.
 - **The Cross-Vector Authorization Gate:** If an execution step requires an action that conflicts with the Primary Archetype's boundaries, formulate a surgically bounded exception clause: `* The Scoped [Foreign Archetype] Grant: Authorizes [Action] strictly within [Constraint] during Step [X].` (Maximum 2 grants.)
@@ -244,9 +243,8 @@ In this phase, output a raw data payload. Do not attempt to map or render the fi
 - Extract the raw text of the Archetype Properties verbatim, incorporating any Phase 4 Property Modifications. All string values must be plain text, no markdown bullets or bold labels (e.g., `* The Primary Responsibility: `). Output purely the raw text.
 - Do not include Task Board reading instructions (e.g., `'Read .jules/worker_tasks.md'`) inside the `discover_trigger` JSON key. The compiler script handles this natively.
 - Do not include any rule marked as "Dropped."
-- Make `archetype_slots` values explicitly nullable, or map to `null` if a direct 1:1 legacy equivalent does not exist, relying instead on `salvaged_custom_logic`.
+- **Archetype Physics Mapping:** You must explicitly inject the finalized text for `domain_anchor`, `mutation_scope`, and `operational_boundaries` directly into the `archetype_slots` object within `payload.json`. Additionally, explicitly map the base profile key (e.g., 'Pruner') into `data.identity.archetype` (or the root `data.archetype`). Do not attempt to map legacy concepts 1:1 to base slots; preserve unique logic strictly inside `salvaged_custom_logic`.
 - Do not extract legacy velocity, batching, or execution pacing rules into `salvaged_custom_logic` if they overlap with the velocity classification generated.
-- **Decoupled Archetype Physics:** You must explicitly inject the finalized text for `domain_anchor`, `mutation_scope`, and `operational_boundaries` directly into the `archetype_slots` object within `payload.json`. Additionally, explicitly map the base profile key (e.g., 'Pruner') into `data.identity.archetype` (or the root `data.archetype`).
 - **Decoupled Velocity & Physics Generation:** You must explicitly generate and inject the following strings into your JSON payload based on the designated throughput and verification layer:
   - `data.process.execute.execution_mandate`
   - `data.process.discover.discovery_velocity_rule`
@@ -278,7 +276,7 @@ Answer this question truthfully: If you were a Jules Core running this configura
 - **If the Original was better:** FAIL. Trigger the Regression Loop to inject the missing legacy mechanics.
 - **If the New Draft is better/equal while achieving structural compliance:** PASS.
 
-**The Regression Loop:** If the Overseer's Verdict is FAIL on any vector, detail exactly how the configuration payload's efficacy was degraded. Do not proceed to PR submission. Cycle back to Phases 4/5/6 and apply Core Principle 0 (Efficacy Priority), the Phase 5 Efficacy Exemption, or mapping constraints directly into `salvaged_custom_logic` to integrate the missing legacy mechanics. Adjust `payload.json` to implement the repair and re-run Phase 6 and Phase 7. Only proceed when the Overseer confirms the configuration payload is both structurally compliant and cognitively superior.
+**The Regression Loop:** If the Overseer's Verdict is FAIL on any vector, detail exactly how the configuration payload's efficacy was degraded. Do not proceed to PR submission. Detail the missing legacy mechanics and formulate a repair directive utilizing Core Principle 0 (Efficacy Priority), the Phase 5 Efficacy Exemption, or `salvaged_custom_logic` to integrate them. Only proceed to PR submission when the configuration payload is evaluated as both structurally compliant and cognitively superior.
 
 🛑 **Phase 7 Checkpoint** — Do not proceed to PR submission until input is received.
 
@@ -305,8 +303,8 @@ Run a native file read on the locked target `.md` file to load its legacy logic 
 - **Separation of Actions:** Do not combine JSON generation and script execution in a single tool call. First, generate and save `payload.json`. Second, in a separate tool invocation, run the `compile_json.js` script with the required template path. Read the `stderr` output of this script before proceeding to Pull Request generation.
 
 ### Step 4: Native Tool Lock & Workspace Hygiene
-- **Identity Preservation Limit:** When upgrading an existing worker, do not modify its core identity (Name, Theme, or Core Mechanic). Only the Role, formatting, rules, and operational limits may be upgraded. Extract and preserve the exact semantic intent of the legacy "description" string in the configuration payload file rather than completely rewriting it.
-- **Workspace Cleanup:** Securely delete all temporary scratchpad files (like `payload.json` and generate_payload.js scripts) from the workspace before staging changes or submitting a PR.
+- **Identity Preservation Limit:** When upgrading an existing worker, do not modify its core identity (Name, Theme, or Core Mechanic). Only the Role, formatting, rules, and operational limits may be upgraded. Extract and preserve the exact semantic intent of the legacy "mission_scope" string in the configuration payload file rather than completely rewriting it.
+- **Workspace Cleanup:** Securely delete all temporary scratchpad files (like `payload.json`) from the workspace before staging changes or submitting a PR.
 - **JSON Generation:** Use safe file-writing methods (e.g., `cat << 'EOF' > payload.json` or a Node.js script) to generate your schema. Ensure file writing and script compilation are performed in isolated, sequential tool calls.
 - **The Native Tool Lock:** Do not run file mutations on the target `.md` file using SEARCH/REPLACE logic, `sed`, `awk`, diffs, or custom `.js` or `.sh` scripts. The only authorized write operation is the generation of `payload.json`. The final file mutation must be handled exclusively by the `compile_json.js` script. If the compiler outputs malformed markdown, fix the root cause in `payload.json` and re-run the compiler rather than editing the `.md` file directly.
 - **Pipeline Adherence:** Do not generate bash scripts or deployment artifacts to bypass the execution pipeline. Use the pipeline described in these steps.
@@ -317,7 +315,7 @@ Run a native file read on the locked target `.md` file to load its legacy logic 
 
 ### Step 6: The Efficacy Audit (Post-Compilation Verification)
 - **State Retrieval:** Run a native file read on the newly compiled `.md` file to load its current text into your active context window alongside the legacy text from Step 2.
-- **The Adversarial Diff:** Run Phase 7 (The Efficacy Audit) in full. This is not a silent scratchpad check. Output the complete Phase 7 result — including the Legacy Mandate Inventory, the Legacy Scope Reference, and all vector verdicts — using the `message_user` tool before any PR submission decision is made. A verdict without visible reasoning is rejected as incomplete.
+- **The Adversarial Diff:** Run Phase 7 (The Efficacy Audit) in full. This is not a silent scratchpad check. Output the complete Phase 7 result — detailing all vector verdicts — using the `message_user` tool before any PR submission decision is made. A verdict without visible reasoning is rejected as incomplete.
 - **The Regression Loop & Token-Burn Fail-Safe:** If the Overseer's Verdict is FAIL on any vector, do not submit the PR. Delete the flawed `.md` artifact, adjust `payload.json` to implement the repair directive exactly as specified, and re-run Step 5. Re-run the Efficacy Audit after each recompilation. To prevent infinite token consumption in headless execution, if the payload cannot fully satisfy both the schema and Core Principle 0's efficacy requirements after exactly 3 recompilation cycles, initiate a Graceful Abort and halt the pipeline without generating a PR. Only proceed to Step 7 when the Overseer's Verdict is "Worker Efficacy Validated. Ready for Deployment."
 
 ### Step 7: Terminal State & Output
@@ -338,4 +336,3 @@ Do not output the final markdown template into the chat. Use the platform's nati
   - Sanitization Applied: [Note any operating theme gradient/metaphor fixes applied, or "None"]
   - Formatting Corrected: [Note emoji normalization, label stripping, or structure bans applied]
 ```
-
