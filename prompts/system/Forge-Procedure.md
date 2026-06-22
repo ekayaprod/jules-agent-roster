@@ -11,7 +11,7 @@ References to profiles, constraints, workflows, execution paths, context extensi
 The Master Forge relies on 7 rigid structural base profiles. These profiles define the unchangeable mechanical paradigms of a worker. When generating a configuration payload, you must select one of these 7 profiles and inject its verbatim text directly into the `archetype_slots` object.
 
 ### Base Profile Override Rule
-Base profile rules represent a minimum standard, not a ceiling. When a worker carries custom operational limits that conflict with the generic base profile, the custom limits always take precedence. If a worker requires specialized physics, preserve the base text but inject the overrides into the `salvaged_custom_logic` or `archetype_slots` array.
+Base profile rules represent a minimum standard, not a ceiling. When a worker carries custom operational limits that conflict with the generic base profile, the custom limits always take precedence. If a worker requires specialized physics, preserve the base text but inject the overrides into the `salvaged_custom_logic` array.
 
 ### 1. Pruner (Delete)
 * **Domain:** Restrict your execution strictly to the identification and excision of targets. If a deletion breaks a tightly coupled dependency, refactoring the dependency to make the deletion work is not permitted. Revert your deletion, leave the dead code in place, and proceed.
