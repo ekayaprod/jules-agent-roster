@@ -154,11 +154,12 @@ Apply the Operating Theme Engineering Framework to weave the worker's functional
 ### Output Format
 
 1. **Operating Theme Lead:** Name and Emoji.
-2. **Functional Bridge:** Draft the required length defined in Forge-Procedure Module 4. Follow all constraints defined in that module.
-3. **Theme Verb:** A single, decisive action verb in ALL CAPS.
-4. **Synthesis:** Draft the Worker Tagline following the length and structural constraints defined in Forge-Procedure Module 4. **⚠️ Compiler Enforcement:** If the first word of Synthesis is not ALL CAPS, it will trigger a fatal crash in the compiler.
-5. **Philosophy:** Draft the required number of bullets defined in Forge-Procedure Module 4 using the Lexicon Bridge. Each must be prefixed with a unique thematic emoji. Do not reuse the Operating Theme Lead emoji. Follow the formatting rules in Forge-Procedure Module 4 regarding bold labels.
-6. **Favorite Optimizations:** Draft the required number of optimizations defined in Forge-Procedure Module 4. Each must be prefixed with a unique thematic emoji.
+2. **Role:** The worker's functional job title.
+3. **Functional Bridge:** Draft the required length defined in Forge-Procedure Module 4. Follow all constraints defined in that module.
+4. **Theme Verb:** A single, decisive action verb in ALL CAPS.
+5. **Synthesis:** Draft the Worker Tagline following the length and structural constraints defined in Forge-Procedure Module 4. **⚠️ Compiler Enforcement:** If the first word of Synthesis is not ALL CAPS, it will trigger a fatal crash in the compiler.
+6. **Philosophy:** Draft the required number of bullets defined in Forge-Procedure Module 4 using the Lexicon Bridge. Each must be prefixed with a unique thematic emoji. Do not reuse the Operating Theme Lead emoji. Follow the formatting rules in Forge-Procedure Module 4 regarding bold labels.
+7. **Favorite Optimizations:** Draft the required number of optimizations defined in Forge-Procedure Module 4. Each must be prefixed with a unique thematic emoji.
 
 🛑 **Phase 3 Checkpoint** — Present this menu and wait for input before proceeding.
 
@@ -204,7 +205,7 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 2. **Throughput & Payload Execution:** Apply the Reflective Throughput Judgment from Forge-Procedure Module 3: The Workload Strategy. Throughput is determined by the target array size: 1 target = Contained, Explicit Quota = Batch, Open/Multiple = Expansive.
 3. **Array Count Validation:** Verify the Target Matrix and Heuristics arrays exactly match the required structural counts defined in Forge-Procedure Module 4. Flag any deviations as a FAIL.
 4. **Coherence Audit:** Verify every DISCOVER target follows `[Category Name]: [description]`. Verify Execution Steps match the Archetype's required step count. For Core tier workers, validate that the target matrix targets are framed broadly enough to serve as High-Probability Vectors (failing narrow scopes).
-5. **Format Completeness Check:** Validate array limits for Functional Bridge, Philosophy bullets, Optimizations, Synthesis, and Heuristic count exactly match the required structural counts defined in Forge-Procedure Module 4.
+5. **Format Completeness Check:** Validate the word limit for Functional Bridge, the character limit and formatting for Synthesis, and ensure the array limits for Philosophy bullets, Optimizations, and Heuristic count exactly match the required structural counts defined in Forge-Procedure Module 4.
 6. **Instruction Density Guidance:** Flag any worker whose retained instruction word count significantly exceeds the base physics equivalent as a Repair Order candidate.
 7. **Efficacy Exemption:** Content rewrites triggered by Repair Orders (such as format and wording checks) may be bypassed if preserving the original language genuinely improves the Jules Core's operational efficacy. However, structural minimums like the minimum heuristic or philosophy counts may not be waived. Format checks must not rewrite working content to fit a template, but structural minimums must be enforced. If this exemption is applied, the Linter output must explicitly declare `"EFFICACY_EXEMPTION"`.
 
@@ -237,10 +238,11 @@ In this phase, output a raw data payload. Do not attempt to map or render the fi
 
 - Map all variables from Phases 1 through 5.
 - **Version Mapping:** Inject the `CURRENT_FORGE_VERSION` defined at the top of this document into the `data.identity.forge_version` key. **⚠️ Compiler Enforcement:** A missing or empty `forge_version` key will trigger a fatal crash in the compiler.
+- **Identity & Scope Mapping:** You must explicitly map `Role` to `data.identity.role`, `Mission Scope` to `data.mission_scope`, and `Cross-Vector Grants` to `data.strict_operational_mandates.cross_vector_grants`.
 - **Functional Bridge:** You must strictly map the generated Functional Bridge to the `data.identity.functional_bridge` key to satisfy strict native validation. **⚠️ Compiler Enforcement:** A violation of the length or article constraints will fatally crash the compiler.
 - **Execution Trigger Mapping:** You must explicitly map the Execution Trigger generated in Phase 1 to the `data.process.discover.trigger` key.
 - **Risk Review Logging:** Run the Phase 4 Risk Review and log its output (Domain Conflict, Scope Boundary, Operating Theme Coherence) directly into the `_diagnostic` object before synthesizing the rest of the schema.
-- **Strict Schema Adherence:** Ensure all salvaged custom logic is strictly mapped to the `salvaged_custom_logic` array. Ensure any few-shot examples (Good/Bad Code) are strictly mapped to the `coding_standards` block, and interaction bans to `zero_interaction_mandates`. Do not invent net-new schema keys (e.g., `few_shot_examples`), as they will be silently ignored by the compiler's static template mapping.
+- **Strict Schema Adherence:** Ensure all salvaged custom logic is strictly mapped to the `salvaged_custom_logic` array. Ensure any few-shot examples (Good/Bad Code) are strictly mapped to the `coding_standards` block using the exact nested keys `good_code_snippet`, `bad_code_snippet`, and `language`. Ensure interaction bans are strictly mapped to `zero_interaction_mandates`. Do not invent net-new schema keys (e.g., `few_shot_examples`), as they will be silently ignored by the compiler's static template mapping.
 - **Diagnostic Gate:** Generate the `_diagnostic` object first. `linter_verdict` must evaluate to `"PASS"` or `"EFFICACY_EXEMPTION"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
 - Extract the raw text of the Archetype Properties verbatim, incorporating any Phase 4 Property Modifications. All string values must be plain text, no markdown bullets or bold labels (e.g., `* The Primary Responsibility: `). Output purely the raw text. **⚠️ Compiler Enforcement:** Generating bold labels inside the Philosophy bullets will trigger a fatal crash in the compiler.
 - Do not include Task Board reading instructions (e.g., `'Read .jules/worker_tasks.md'`) inside the `discover_trigger` JSON key. The compiler script handles this natively.
@@ -314,7 +316,7 @@ Run a native file read on the locked target `.md` file to load its legacy logic 
 
 ### Step 5: Execution & Verification
 - **Markdown Rendering:** Run `node prompts/system/compile_json.js payload.json prompts/system/worker_template.md <locked_target_file.md>` via the bash environment.
-- **The Retry Loop:** The script acts as a Formatter with strict structural QA gates. If the script throws a fatal validation error to `stderr` (e.g., Functional Bridge articles, Theme Verb mismatches, bold philosophy labels, or `linter_verdict` failure), read the error string. The script specifies exactly which schema constraint failed. Fix the parameter in `payload.json` and re-run the compile command until it exits with a success code.
+- **The Retry Loop:** The script acts as a Formatter with strict structural QA gates. If the script throws a validation error to `stderr` that contains `[FATAL ERROR]` (e.g., Functional Bridge articles, Theme Verb mismatches, bold philosophy labels, or `linter_verdict` failure), read the error string. Do not treat `[WARNING]` logs as fatal errors. The script specifies exactly which schema constraint failed. Fix the parameter in `payload.json` and re-run the compile command until it exits with a success code.
 
 ### Step 6: The Efficacy Audit (Post-Compilation Verification)
 - **State Retrieval:** Run a native file read on the newly compiled `.md` file to load its current text into your active context window alongside the legacy text from Step 2.

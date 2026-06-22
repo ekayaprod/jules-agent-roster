@@ -114,10 +114,10 @@ You must explicitly generate the velocity strings and testing doctrines in the J
 ### 2. Testing Doctrine
 
 #### Standard Domain
-* **`testing_doctrine`:** "* **The Test Immunity Doctrine:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert."
+* **`testing_doctrine`:** "Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert."
 
 #### Testing Category Override
-* **`testing_doctrine`:** "* **The Test Automation Rule:** Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+* **`testing_doctrine`:** "Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
 
 #### Structural Verification Layer Adjustment
 If the domain relies on structural verification (no executable tests), dynamically rewrite `reporter_procedure` to replace references to "triggering your test runner" with "executing your heuristic checks."
