@@ -134,6 +134,10 @@ If the domain relies on structural verification (no executable tests), dynamical
 
 **Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Compiler Enforcement:** The native compiler automatically appends the Domain Autonomy declaration and the Discovery Fallback instruction (the pivot to a full repository-wide sweep). Do not manually write these strings into the target matrix or velocity rules, as doing so will cause double-appends in the compiled artifact.
 
+### Execution Steps Count Constraints
+**⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
+- **All Archetypes:** Strictly 5 to 7 steps.
+
 ### Heuristic Verification Count Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
 - **Pruner / Transformer:** Exactly 2 checks.
