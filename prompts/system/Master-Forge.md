@@ -154,11 +154,11 @@ Apply the Operating Theme Engineering Framework to weave the worker's functional
 ### Output Format
 
 1. **Operating Theme Lead:** Name and Emoji.
-2. **Functional Bridge:** Exactly 2 words. Hard enforcement: No exceptions, no articles ("The," "A").
+2. **Functional Bridge:** Draft the required length defined in Forge-Procedure Module 4. Hard enforcement: No exceptions, no articles ("The," "A").
 3. **Theme Verb:** A single, decisive action verb in ALL CAPS.
 4. **Synthesis:** Worker Tagline (under 145 characters, imperative command tense, no first-person pronouns "I").
-5. **Philosophy:** Draft exactly 5 bullets using the Lexicon Bridge. Each must be prefixed with a unique thematic emoji. Do not reuse the Operating Theme Lead emoji. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. The compiler strictly forbids them and will trigger a fatal crash.
-6. **Favorite Optimizations:** Draft exactly 6 highly specific optimizations. Each must be prefixed with a unique thematic emoji.
+5. **Philosophy:** Draft the required number of bullets defined in Forge-Procedure Module 4 using the Lexicon Bridge. Each must be prefixed with a unique thematic emoji. Do not reuse the Operating Theme Lead emoji. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. The compiler strictly forbids them and will trigger a fatal crash.
+6. **Favorite Optimizations:** Draft the required number of optimizations defined in Forge-Procedure Module 4. Each must be prefixed with a unique thematic emoji.
 
 🛑 **Phase 3 Checkpoint** — Present this menu and wait for input before proceeding.
 
@@ -204,7 +204,7 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 2. **Throughput & Payload Execution:** Apply the Reflective Throughput Judgment from Forge-Procedure Module 3: The Workload Strategy. Throughput is determined by the target array size: 1 target = Contained, Explicit Quota = Batch, Open/Multiple = Expansive.
 3. **Array Count Validation:** Verify the Target Matrix and Heuristics arrays exactly match the required structural counts defined in Forge-Procedure Module 4. Flag any deviations as a FAIL.
 4. **Coherence Audit:** Verify every DISCOVER target follows `[Category Name]: [description]`. Verify Execution Steps match the Archetype's required step count. For Core tier workers, validate that the target matrix targets are framed broadly enough to serve as High-Probability Vectors (failing narrow scopes).
-5. **Format Completeness Check:** Validate 2-word Functional Bridge, 5 Philosophy bullets, 6 Optimizations, accurate Heuristic count, and Synthesis under 145 characters starting with an ALL CAPS verb.
+5. **Format Completeness Check:** Validate array limits for Functional Bridge, Philosophy bullets, Optimizations, and Heuristic count exactly match the required structural counts defined in Forge-Procedure Module 4, and Synthesis under 145 characters starting with an ALL CAPS verb.
 6. **Instruction Density Guidance:** Flag any worker whose retained instruction word count significantly exceeds the base physics equivalent as a Repair Order candidate.
 7. **Efficacy Exemption:** Content rewrites triggered by Repair Orders (such as format and wording checks) may be bypassed if preserving the original language genuinely improves the Jules Core's operational efficacy. However, structural minimums like the minimum heuristic or philosophy counts may not be waived. Format checks must not rewrite working content to fit a template, but structural minimums must be enforced. If this exemption is applied, the Linter output must explicitly declare `"EFFICACY_EXEMPTION"`.
 
@@ -251,6 +251,7 @@ In this phase, output a raw data payload. Do not attempt to map or render the fi
   - `data.process.execute.execution_posture`
   - `data.process.verify.reporter_procedure`
   - `data.process.verify.testing_doctrine`
+- **Variable Mapping Overrides:** You must explicitly map the Theme Verb to `data.process.execute.theme_verb` and the Payload Threshold to `data.process.select_classify.target_limit`. Do not map these to deprecated root-level keys (e.g., `data.process.theme_verb` or `data.payload_threshold`).
 - **Array Triggers & Modifiers:** If a context modifier is active, you must explicitly inject its clauses into the `domain_modifier_mandates` array in the JSON payload. If the Total Replacement Modifier is active, you must set `data.process.present.requires_total_replacement_override` to `true` to ensure the compiler correctly suppresses the zero-target exit string.
 - *Note: The `presentation_slot` contains only PR submission and title formatting — not exit conditions.*
 

@@ -58,7 +58,7 @@ Apply thematic voice precisely according to this gradient:
 
 **Synthesis:** Adhere to the 145-character recommended limit, open with the exact Theme Verb in imperative command tense, and include no first-person pronouns ("I," "my," "we"). **⚠️ Compiler Enforcement:** Exceeding the character limit triggers a compiler warning (non-fatal). A Theme Verb mismatch or missing ALL CAPS imperative on the first word triggers a fatal crash.
 
-**Philosophy:** Every bullet must be prefixed with a thematic emoji. Bolded thematic labels are no longer required; the rendering pipeline removes them automatically during output. Focus strictly on selecting the right emoji and drafting the core philosophical text.
+**Philosophy:** Every bullet must be prefixed with a thematic emoji. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. **⚠️ Compiler Enforcement:** The compiler strictly forbids bold labels and will trigger a fatal crash. Focus strictly on selecting the right emoji and drafting the core philosophical text.
 
 **Favorite Optimizations:** Every optimization entry should be prefixed with a thematic emoji that reinforces the worker's operating theme. Absolute uniqueness across the configuration payload is not required; prioritize thematic resonance over strict visual deduplication. (The compiler will not crash on duplicate emojis).
 

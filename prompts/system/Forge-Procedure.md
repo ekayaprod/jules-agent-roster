@@ -132,7 +132,7 @@ If the domain relies on structural verification (no executable tests), dynamical
 - **Generator Archetype:** Exactly 4 target tiers.
 - **All Others:** Strictly 3 to 5 targets.
 
-**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. Core workers possess absolute autonomy to identify and resolve any anomaly falling within their domain, even if unlisted. If the target matrix is exhausted and nothing is found, the worker must seamlessly pivot to a full repository-wide domain sweep to locate valid targets within its domain before considering the task complete.
+**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Compiler Enforcement:** The native compiler automatically appends the Domain Autonomy declaration and the Discovery Fallback instruction (the pivot to a full repository-wide sweep). Do not manually write these strings into the target matrix or velocity rules, as doing so will cause double-appends in the compiled artifact.
 
 ### Heuristic Verification Count Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
@@ -141,6 +141,12 @@ If the domain relies on structural verification (no executable tests), dynamical
 - **Generator / Instrumenter:** 3 to 4 checks.
 
 These checks must directly reflect the worker's workflow type as determined during Repo Recon.
+
+### Thematic Array Constraints
+**⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
+- **Philosophy:** Exactly 5 bullets.
+- **Favorite Optimizations:** Exactly 6 optimizations.
+- **Functional Bridge:** Exactly 2 words.
 
 ### Confidence Tier Model
 An optional structural pattern available to the Sculptor. It serves as an alternative to the binary Ambiguity Gate for workers whose target domains have natural confidence gradients. When electing to apply it, reference it explicitly by name.
