@@ -103,7 +103,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     );
   }
 
-  const definedThemeVerb = data.process?.theme_verb || data.process?.execute?.theme_verb || '';
+  const definedThemeVerb = data.process?.execute?.theme_verb || data.process?.theme_verb || '';
   const firstWordMatch = synthesis.trim().split(/\s+/)[0];
 
   if (definedThemeVerb && firstWordMatch) {
@@ -146,7 +146,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   const category = data.identity?.category || '';
   const payloadThreshold =
-    data.payload_threshold || data.process?.select_classify?.target_limit || '1';
+    data.process?.select_classify?.target_limit || data.payload_threshold || '1';
   const requiresTasksBoard = [
     'Pruner',
     'Refactorer',
