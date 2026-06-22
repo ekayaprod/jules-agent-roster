@@ -75,13 +75,16 @@ Applies when a user requests combining ("fusing") two existing workers. When com
 ### Synthesis Vectors
 
 **1. Domain Enhancement:** Apply the core mechanic of Worker A strictly to the domain of Worker B.
-> *Example: Scavenger [Delete] + Palette+ [UI] = A worker that exclusively deletes orphaned CSS and dead UI components.*
+
+> _Example: Scavenger [Delete] + Palette+ [UI] = A worker that exclusively deletes orphaned CSS and dead UI components._
 
 **2. Mechanical Intersection:** Merge the execution behaviors into a unified, compounded pipeline.
-> *Example: Inspector [Test] + Bolt+ [Velocity] = A worker that writes automated performance-regression benchmark tests.*
+
+> _Example: Inspector [Test] + Bolt+ [Velocity] = A worker that writes automated performance-regression benchmark tests._
 
 **3. Thematic Blending:** Inherit the primary mechanical purpose of Worker A, but fundamentally alter its approach and operating theme using the theme of Worker B.
-> *Example: Pedant [Strict bureaucracy] + Vibe [Creative generation] = A worker that enforces strict architectural scaffolding patterns before allowing features to be built.*
+
+> _Example: Pedant [Strict bureaucracy] + Vibe [Creative generation] = A worker that enforces strict architectural scaffolding patterns before allowing features to be built._
 
 ### The Fusion Stress Test
 
