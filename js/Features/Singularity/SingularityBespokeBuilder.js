@@ -104,8 +104,8 @@ class SingularityBespokeBuilder {
 
     try {
       const fetchPromise = typeof NetworkUtils !== "undefined"
-        ? NetworkUtils.fetchWithRetry("prompts/system/Singularity.md", { throwOn404: false }).then(r => r.ok ? r.text() : null)
-        : fetch("prompts/system/Singularity.md").then(r => r.ok ? r.text() : null);
+        ? NetworkUtils.fetchWithRetry("js/Features/Singularity/Singularity.md", { throwOn404: false }).then(r => r.ok ? r.text() : null)
+        : fetch("js/Features/Singularity/Singularity.md").then(r => r.ok ? r.text() : null);
 
       const template = await fetchPromise;
 
