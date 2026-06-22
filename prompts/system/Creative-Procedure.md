@@ -54,11 +54,11 @@ Applies during the compilation of all operating theme-driven elements. Balances 
 
 Apply thematic voice precisely according to this gradient:
 
-**Functional Bridge:** Must be exactly two words. It cannot contain articles ("the", "a", "an"). **⚠️ Compiler Enforcement:** If the Functional Bridge string exceeds exactly two words or contains a forbidden article, the compiler will fatally crash.
+**Functional Bridge:** Must follow the length and structural constraints defined in Forge-Procedure Module 4. **⚠️ Compiler Enforcement:** If the string violates these bounds, the compiler will fatally crash.
 
 **Synthesis:** Adhere to the 145-character recommended limit, open with the exact Theme Verb in imperative command tense, and include no first-person pronouns ("I," "my," "we"). **⚠️ Compiler Enforcement:** Exceeding the character limit triggers a compiler warning (non-fatal). A Theme Verb mismatch or missing ALL CAPS imperative on the first word triggers a fatal crash.
 
-**Philosophy:** Every bullet must be prefixed with a thematic emoji. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. **⚠️ Compiler Enforcement:** The compiler strictly forbids bold labels and will trigger a fatal crash. Focus strictly on selecting the right emoji and drafting the core philosophical text.
+**Philosophy:** Every bullet must be prefixed with a thematic emoji and follow the bold label constraints defined in Forge-Procedure Module 4. **⚠️ Compiler Enforcement:** The compiler uses compile-time stripping to remove standard bold labels, but complex structures may bypass this and trigger a fatal crash. Focus strictly on selecting the right emoji and drafting the core philosophical text without bold labels.
 
 **Favorite Optimizations:** Every optimization entry should be prefixed with a thematic emoji that reinforces the worker's operating theme. Absolute uniqueness across the configuration payload is not required; prioritize thematic resonance over strict visual deduplication. (The compiler will not crash on duplicate emojis).
 

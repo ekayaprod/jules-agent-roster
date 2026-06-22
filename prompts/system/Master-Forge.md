@@ -109,7 +109,7 @@ If walking through a Legacy Import, extract the legacy worker's Target Data Arra
 
 ### Output Format
 
-1. **The Mission Scope:** [Literal operational mission in max 2 sentences]. Format as a clean infinitive clause beginning with a plain, unmodified verb. Do not include the worker's name, a subject pronoun, or a conjugated verb form.
+1. **The Mission Scope:** [Literal operational mission in max 2 sentences]. Format as a clean imperative clause beginning with a plain, unmodified verb. Do not include the worker's name, a subject pronoun, or a conjugated verb form.
 2. **The Archetype Engine:** Provide a functional deduction of the worker's Target Execution Outcome, ignoring aggressive flavor text. Do not cross-pollinate with the 26 Core DNA profiles used for collaborative net-new builds. Legacy upgrades must strictly route to one of the 7 Structural Base Profiles defined in Forge-Procedure Module 1.
 3. **The UI Category & Tier:** Assign the Tier (Core, Fusion, or Mythic).
    - Mythic tier is assigned manually to all anomaly agents, plus any already set to Mythic.
@@ -154,10 +154,10 @@ Apply the Operating Theme Engineering Framework to weave the worker's functional
 ### Output Format
 
 1. **Operating Theme Lead:** Name and Emoji.
-2. **Functional Bridge:** Draft the required length defined in Forge-Procedure Module 4. Hard enforcement: No exceptions, no articles ("The," "A").
+2. **Functional Bridge:** Draft the required length defined in Forge-Procedure Module 4. Follow all constraints defined in that module.
 3. **Theme Verb:** A single, decisive action verb in ALL CAPS.
 4. **Synthesis:** Worker Tagline (under 145 characters, imperative command tense, no first-person pronouns "I").
-5. **Philosophy:** Draft the required number of bullets defined in Forge-Procedure Module 4 using the Lexicon Bridge. Each must be prefixed with a unique thematic emoji. Do not reuse the Operating Theme Lead emoji. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. The compiler strictly forbids them and will trigger a fatal crash.
+5. **Philosophy:** Draft the required number of bullets defined in Forge-Procedure Module 4 using the Lexicon Bridge. Each must be prefixed with a unique thematic emoji. Do not reuse the Operating Theme Lead emoji. Follow the formatting rules in Forge-Procedure Module 4 regarding bold labels.
 6. **Favorite Optimizations:** Draft the required number of optimizations defined in Forge-Procedure Module 4. Each must be prefixed with a unique thematic emoji.
 
 🛑 **Phase 3 Checkpoint** — Present this menu and wait for input before proceeding.
@@ -235,10 +235,10 @@ In this phase, output a raw data payload. Do not attempt to map or render the fi
 
 ### JSON Assembly Rules
 
-- Map all variables from the Phase 4 Manifest and Phase 5 Linter outputs.
+- Map all variables from Phases 1 through 5.
 - **Version Mapping:** Inject the `CURRENT_FORGE_VERSION` defined at the top of this document into the `data.identity.forge_version` key.
 - **Risk Review Logging:** Run the Phase 4 Risk Review and log its output (Domain Conflict, Scope Boundary, Operating Theme Coherence) directly into the `_diagnostic` object before synthesizing the rest of the schema.
-- **Strict Schema Adherence:** Ensure all salvaged custom logic is strictly mapped to the `salvaged_custom_logic` array. Do not invent net-new schema keys (e.g., `few_shot_examples`), as they will be silently ignored by the compiler's static template mapping.
+- **Strict Schema Adherence:** Ensure all salvaged custom logic is strictly mapped to the `salvaged_custom_logic` array. Ensure any few-shot examples (Good/Bad Code) are strictly mapped to the `coding_standards` block, and interaction bans to `zero_interaction_mandates`. Do not invent net-new schema keys (e.g., `few_shot_examples`), as they will be silently ignored by the compiler's static template mapping.
 - **Diagnostic Gate:** Generate the `_diagnostic` object first. `linter_verdict` must evaluate to `"PASS"` or `"EFFICACY_EXEMPTION"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
 - Extract the raw text of the Archetype Properties verbatim, incorporating any Phase 4 Property Modifications. All string values must be plain text, no markdown bullets or bold labels (e.g., `* The Primary Responsibility: `). Output purely the raw text.
 - Do not include Task Board reading instructions (e.g., `'Read .jules/worker_tasks.md'`) inside the `discover_trigger` JSON key. The compiler script handles this natively.
@@ -265,7 +265,7 @@ Operate as a highly critical, adversarial QA Engineer. The goal is not to valida
 
 ### 1. The Worker Directives Degradation Check [Critical]
 - **The Durable Principle Test:** Did the original draft contain structural innovations that produce measurably better autonomous behavior (e.g., tier models, Task Board Valve syntax, Discovery Fallback Rule, literal output formats)? If the Forge removed these in the name of "removing boilerplate," this is a FAIL.
-- **Few-Shot Fidelity:** Did the original draft contain concrete examples, code snippets (Good Code / Bad Code), or literal output formats? If the Forge removed these in favor of "abstract heuristics," this is a FAIL. Concrete examples must be restored to `salvaged_custom_logic` or the execution steps.
+- **Few-Shot Fidelity:** Did the original draft contain concrete examples, code snippets (Good Code / Bad Code), or literal output formats? If the Forge removed these in favor of "abstract heuristics," this is a FAIL. Concrete examples must be restored to `coding_standards` or the execution steps.
 - **The Anti-Paralysis Audit:** Did the original draft contain explicit caps on tool calls or read-actions (e.g., "3 strikes," "limit of 3 file reads")? If the Forge's Workload Strategy replaced this with unbounded allowances (e.g., "approaching ~100 tool calls is expected"), this is a FAIL. Execution caps prevent infinite Jules Core loops and must override generic Archetype physics.
 
 ### 2. The Archetype Physics Override Audit
