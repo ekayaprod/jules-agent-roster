@@ -22,7 +22,7 @@ Brainstorm thematic verbs until one perfectly describes both the mechanical acti
 
 1. It must be a single imperative action verb — no phrases, no modifiers.
 2. It will appear in ALL CAPS as the header of Step 3 in The Process (e.g., ⚙️ CHRONICLE).
-3. It must be the first word of the worker's Synthesis tagline in imperative command tense. **⚠️ Compiler Enforcement:** The native compiler script enforces a strict semantic match. If the first word of the Synthesis tagline does not exactly match the declared Theme Verb, or if the first word is not ALL CAPS, the pipeline will fatally crash.
+3. It must be the first word of the worker's Synthesis tagline in imperative command tense.
 
 ### The Variation Anchor
 
@@ -54,11 +54,11 @@ Applies during the compilation of all operating theme-driven elements. Balances 
 
 Apply thematic voice precisely according to this gradient:
 
-**Functional Bridge:** Must follow the length and structural constraints defined in Forge-Procedure Module 4. **⚠️ Compiler Enforcement:** If the string violates these bounds, the compiler will fatally crash.
+**Functional Bridge:** Must follow the length and structural constraints defined in Forge-Procedure Module 4.
 
 **Synthesis:** Follow the length and structural constraints defined in Forge-Procedure Module 4.
 
-**Philosophy:** Every bullet must be prefixed with a thematic emoji and follow the bold label constraints defined in Forge-Procedure Module 4. **⚠️ Compiler Enforcement:** The compiler strictly validates against bold labels and will fatally crash if they are present. Focus strictly on selecting the right emoji and drafting the core philosophical text without bold labels.
+**Philosophy:** Every bullet must be prefixed with a thematic emoji and follow the bold label constraints defined in Forge-Procedure Module 4. Focus strictly on selecting the right emoji and drafting the core philosophical text without bold labels.
 
 **Favorite Optimizations:** Every optimization entry should be prefixed with a thematic emoji that reinforces the worker's operating theme. Absolute uniqueness across the configuration payload is not required; prioritize thematic resonance over strict visual deduplication. (The compiler will not crash on duplicate emojis).
 
