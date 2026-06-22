@@ -105,6 +105,7 @@ If walking through a Legacy Import, extract the legacy worker's Target Data Arra
 3. **The Execution Exception:** Do not retain legacy rules that define generic scope boundaries (e.g., "Modification Scope"), generic testing procedures, or platform tool usage. Forge-Procedure Module 1 Archetypes govern execution natively. However, retain domain-specific boundaries or state-handling overrides that are uniquely necessary for the specific operating theme.
 4. **Domain Exception:** Never discard cleanup rules that explicitly reference unique domain artifacts (e.g., `.nyc_output` removal).
 5. **Formatting:** Rewrite retained rules strictly as `* The [Name]: [Instruction].`
+6. **Universal Baseline Exemption:** The compiler script natively appends the Universal Operational Baseline (Artifact Lockbox, Native Tool Lock, Unconditional Cleanup) to all compiled profiles. Aggressively strip these standard safety rules from legacy drafts to prevent duplicate rule injections in the final output.
 
 ### Output Format
 
@@ -164,7 +165,7 @@ Apply the Operating Theme Engineering Framework to weave the worker's functional
 2. **Functional Bridge:** Exactly 2 words. Hard enforcement: No exceptions, no articles ("The," "A").
 3. **Theme Verb:** A single, decisive action verb in ALL CAPS.
 4. **Synthesis:** Worker Tagline (under 145 characters, imperative command tense, no first-person pronouns "I").
-5. **Philosophy:** Draft exactly 5 bullets using the Lexicon Bridge. Each must be prefixed with a unique thematic emoji. Do not reuse the Operating Theme Lead emoji.
+5. **Philosophy:** Draft exactly 5 bullets using the Lexicon Bridge. Each must be prefixed with a unique thematic emoji. Do not reuse the Operating Theme Lead emoji. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. The compiler strictly forbids them and will trigger a fatal crash.
 6. **Favorite Optimizations:** Draft exactly 6 highly specific optimizations. Each must be prefixed with a unique thematic emoji.
 
 🛑 **Phase 3 Checkpoint** — Present this menu and wait for input before proceeding.
@@ -211,10 +212,11 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 
 1. **Priority Language Test:** If the worker's Workflow Execution requires priority ordering, ensure "arbitrarily" is replaced with "according to declared priority weighting" in SELECT/CLASSIFY.
 2. **Throughput & Payload Execution:** Apply the Reflective Throughput Judgment from Forge-Procedure Module 3: The Workload Strategy. Throughput is determined by the target array size: 1 target = Contained, Explicit Quota = Batch, Open/Multiple = Expansive.
-3. **Coherence Audit:** Verify every DISCOVER target follows `[Category Name]: [description]`. Verify Execution Steps match the Archetype's required step count. For Core tier workers, validate that the target matrix targets are framed broadly enough to serve as High-Probability Vectors (failing narrow scopes).
-4. **Format Completeness Check:** Validate 2-word Functional Bridge, 5 Philosophy bullets, 6 Optimizations, accurate Heuristic count, Synthesis under 145 characters starting with an ALL CAPS verb, and accurate PR Headers string.
-5. **Instruction Density Guidance:** Flag any worker whose retained instruction word count significantly exceeds the base physics equivalent as a Repair Order candidate.
-6. **Efficacy Exemption:** Content rewrites triggered by Repair Orders (such as format and wording checks) may be bypassed if preserving the original language genuinely improves the Jules Core's operational efficacy. However, structural minimums like the minimum heuristic or philosophy counts may not be waived. Format checks must not rewrite working content to fit a template, but structural minimums must be enforced. If this exemption is applied, the Linter output must explicitly declare `"EFFICACY_EXEMPTION"`.
+3. **Array Count Validation:** Verify the Target Matrix and Heuristics arrays exactly match the required structural counts defined in Forge-Procedure Module 4. Flag any deviations as a FAIL.
+4. **Coherence Audit:** Verify every DISCOVER target follows `[Category Name]: [description]`. Verify Execution Steps match the Archetype's required step count. For Core tier workers, validate that the target matrix targets are framed broadly enough to serve as High-Probability Vectors (failing narrow scopes).
+5. **Format Completeness Check:** Validate 2-word Functional Bridge, 5 Philosophy bullets, 6 Optimizations, accurate Heuristic count, and Synthesis under 145 characters starting with an ALL CAPS verb.
+6. **Instruction Density Guidance:** Flag any worker whose retained instruction word count significantly exceeds the base physics equivalent as a Repair Order candidate.
+7. **Efficacy Exemption:** Content rewrites triggered by Repair Orders (such as format and wording checks) may be bypassed if preserving the original language genuinely improves the Jules Core's operational efficacy. However, structural minimums like the minimum heuristic or philosophy counts may not be waived. Format checks must not rewrite working content to fit a template, but structural minimums must be enforced. If this exemption is applied, the Linter output must explicitly declare `"EFFICACY_EXEMPTION"`.
 
 ### Output Format
 
@@ -244,6 +246,7 @@ In this phase, output a raw data payload. Do not attempt to map or render the fi
 ### JSON Assembly Rules
 
 - Map all variables from the Phase 4 Manifest and Phase 5 Linter outputs.
+- **Version Mapping:** Inject the `CURRENT_FORGE_VERSION` defined at the top of this document into the `data.identity.forge_version` key.
 - **Risk Review Logging:** Run the Phase 4 Risk Review and log its output (Domain Conflict, Scope Boundary, Operating Theme Coherence) directly into the `_diagnostic` object before synthesizing the rest of the schema.
 - **Net-New Schema Keys:** Dynamically generate net-new schema keys (e.g., `few_shot_examples`, `custom_triage`) in `payload.json` rather than deleting legacy data that doesn't fit the standard Generator template. Extend the JSON structurally before discarding data.
 - **Diagnostic Gate:** Generate the `_diagnostic` object first. `linter_verdict` must evaluate to `"PASS"` or `"EFFICACY_EXEMPTION"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
@@ -252,14 +255,14 @@ In this phase, output a raw data payload. Do not attempt to map or render the fi
 - Do not include any rule marked as "Dropped."
 - Make `archetype_slots` values explicitly nullable, or map to `null` if a direct 1:1 legacy equivalent does not exist, relying instead on `salvaged_custom_logic`.
 - Do not extract legacy velocity, batching, or execution pacing rules into `salvaged_custom_logic` if they overlap with the velocity classification generated.
-- **Decoupled Archetype Physics:** The `compile_json.js` script no longer stores the Archetype dictionaries. You must explicitly inject the finalized text for `domain_anchor`, `mutation_scope`, and `operational_boundaries` directly into the `archetype_slots` object within `payload.json`. Additionally, explicitly map the base profile key (e.g., 'Pruner') into `data.identity.archetype` (or the root `data.archetype`).
-- **Decoupled Velocity & Physics Generation:** The `compile_json.js` script no longer auto-generates velocity strings or testing doctrines. You must explicitly generate and inject the following strings into your JSON payload based on the designated throughput and verification layer:
+- **Decoupled Archetype Physics:** You must explicitly inject the finalized text for `domain_anchor`, `mutation_scope`, and `operational_boundaries` directly into the `archetype_slots` object within `payload.json`. Additionally, explicitly map the base profile key (e.g., 'Pruner') into `data.identity.archetype` (or the root `data.archetype`).
+- **Decoupled Velocity & Physics Generation:** You must explicitly generate and inject the following strings into your JSON payload based on the designated throughput and verification layer:
   - `data.process.execute.execution_mandate`
   - `data.process.discover.discovery_velocity_rule`
   - `data.process.execute.execution_posture`
   - `data.process.verify.reporter_procedure`
   - `data.process.verify.testing_doctrine`
-- **Array Triggers & Modifiers:** The script no longer stores Context Extensions natively. If a context modifier is active, you must explicitly inject its clauses into the `domain_modifier_mandates` array in the JSON payload. If the Total Replacement Modifier is active, you must set `data.process.present.requires_total_replacement_override` to `true` to ensure the compiler correctly suppresses the zero-target exit string.
+- **Array Triggers & Modifiers:** If a context modifier is active, you must explicitly inject its clauses into the `domain_modifier_mandates` array in the JSON payload. If the Total Replacement Modifier is active, you must set `data.process.present.requires_total_replacement_override` to `true` to ensure the compiler correctly suppresses the zero-target exit string.
 - *Note: The `presentation_slot` contains only PR submission and title formatting — not exit conditions.*
 
 **Output Format:** Output a raw JSON object matching the exact schema, wrapped in a ` ```json ` block.
@@ -319,7 +322,7 @@ Run a native file read on the locked target `.md` file to load its legacy logic 
 
 ### Step 5: Execution & Verification
 - **Markdown Rendering:** Run `node prompts/system/compile_json.js payload.json prompts/system/worker_template.md <locked_target_file.md>` via the bash environment.
-- **The Retry Loop:** The script acts as a Formatter with strict structural QA gates. If the script throws a fatal validation error to `stderr` (e.g., Target Matrix lengths, Functional Bridge articles, Theme Verb mismatches, or `linter_verdict` failure), read the error string. The script specifies exactly which schema constraint failed. Fix the parameter in `payload.json` and re-run the compile command until it exits with a success code.
+- **The Retry Loop:** The script acts as a Formatter with strict structural QA gates. If the script throws a fatal validation error to `stderr` (e.g., Functional Bridge articles, Theme Verb mismatches, bold philosophy labels, or `linter_verdict` failure), read the error string. The script specifies exactly which schema constraint failed. Fix the parameter in `payload.json` and re-run the compile command until it exits with a success code.
 
 ### Step 6: The Efficacy Audit (Post-Compilation Verification)
 - **State Retrieval:** Run a native file read on the newly compiled `.md` file to load its current text into your active context window alongside the legacy text from Step 2.
@@ -344,4 +347,3 @@ Do not output the final markdown template into the chat. Use the platform's nati
   - Sanitization Applied: [Note any operating theme gradient/metaphor fixes applied, or "None"]
   - Formatting Corrected: [Note emoji normalization, label stripping, or structure bans applied]
 ```
-
