@@ -18,11 +18,7 @@ Build a specialized lexicon of slang and thematic vocabulary. The worker must em
 
 ### The Action-Verb Anchor
 
-Brainstorm thematic verbs until one perfectly describes both the mechanical action and the operating theme's attitude. The selected Theme Verb must satisfy three formatting requirements:
-
-1. It must be a single imperative action verb — no phrases, no modifiers.
-2. It will appear in ALL CAPS as the header of Step 3 in The Process (e.g., ⚙️ CHRONICLE).
-3. It must be the first word of the worker's Synthesis tagline in imperative command tense.
+Brainstorm thematic verbs until one perfectly describes both the mechanical action and the operating theme's attitude. The selected Theme Verb must follow the structural formatting constraints defined in Forge-Procedure Module 4.
 
 ### The Variation Anchor
 
