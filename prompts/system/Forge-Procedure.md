@@ -127,7 +127,7 @@ If the domain relies on structural verification (no executable tests), dynamical
 ## Module 4: Workflow Design (The Blueprint)
 
 ### Forge Version Constraint
-**⚠️ STRICT GENERATIVE BOUNDARY:** The configuration payload must include the `CURRENT_FORGE_VERSION` injected into `data.identity.forge_version`. **⚠️ Compiler Enforcement:** A missing or empty `forge_version` will fatally crash the compiler.
+**⚠️ STRICT GENERATIVE BOUNDARY:** The configuration payload must include the `CURRENT_FORGE_VERSION` injected into `data.identity.forge_version`. **⚠️ Structural Mandate:** A missing or empty `forge_version` will fatally crash the compilation QA gate.
 
 ### Target Matrix Array Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
@@ -135,7 +135,7 @@ If the domain relies on structural verification (no executable tests), dynamical
 - **Generator Archetype:** Exactly 4 target tiers.
 - **All Others:** Strictly 3 to 5 targets.
 
-**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Compiler Enforcement:** The native compiler automatically appends the Domain Autonomy declaration and the Discovery Fallback instruction (the pivot to a full repository-wide sweep). Do not manually write these strings into the target matrix or velocity rules, as doing so will cause double-appends in the compiled artifact.
+**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Structural Mandate:** The layout engine automatically maps the Domain Autonomy declaration and the Discovery Fallback instruction via the native template tokens (`{{DOMAIN_AUTONOMY_DECLARATION}}`). Do not manually write these strings into the target matrix or velocity rules, as doing so will cause double-appends in the compiled artifact.
 
 ### Execution Steps Count Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
@@ -152,10 +152,10 @@ These checks must directly reflect the worker's workflow type as determined duri
 ### Thematic Array Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
 - **Theme Verb:** Must be a single imperative action verb, in ALL CAPS.
-- **Philosophy:** Exactly 5 bullets. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. **⚠️ Compiler Enforcement:** The compiler strictly validates against bold labels and will fatally crash if they are present.
+- **Philosophy:** Exactly 5 bullets. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. **⚠️ Structural Mandate:** The QA gate strictly validates against bold labels and will fatally crash the pipeline if they are present.
 - **Favorite Optimizations:** Exactly 6 optimizations.
-- **Functional Bridge:** Exactly 2 words. It cannot contain articles ("the", "a", "an"). **⚠️ Compiler Enforcement:** A violation of the length or article constraints will fatally crash the compiler.
-- **Synthesis:** Adhere to the 145-character recommended limit, open with the exact Theme Verb in imperative command tense, and include no first-person pronouns ("I", "my", "we"). **⚠️ Compiler Enforcement:** Exceeding the character limit triggers a compiler warning (non-fatal). A Theme Verb mismatch or missing ALL CAPS imperative on the first word triggers a fatal crash.
+- **Functional Bridge:** Exactly 2 words. It cannot contain articles ("the", "a", "an"). **⚠️ Structural Mandate:** A violation of the length or article constraints will fatally crash the compilation QA gate.
+- **Synthesis:** Adhere to the 145-character recommended limit, open with the exact Theme Verb in imperative command tense, and include no first-person pronouns ("I", "my", "we"). **⚠️ Structural Mandate:** Exceeding the character limit triggers a pipeline warning. A Theme Verb mismatch or missing ALL CAPS imperative on the first word triggers a fatal pipeline crash.
 
 ### Confidence Tier Model
 An optional structural pattern available to the Sculptor. It serves as an alternative to the binary Ambiguity Gate for workers whose target domains have natural confidence gradients. When electing to apply it, reference it explicitly by name.
