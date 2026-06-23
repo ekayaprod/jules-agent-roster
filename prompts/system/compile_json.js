@@ -1,11 +1,6 @@
 'use strict';
 const fs = require('fs');
 
-const ANALYZER_OPERATIONAL_BASELINE =
-  'Unconditional Cleanup: Run git clean -fd -e .jules/ before PR or Abort to wipe data dumps.';
-const UNIVERSAL_OPERATIONAL_BASELINE =
-  'Artifact Lockbox: Backup active files to .jules/temp_backup/ before execution. Operate strictly within the existing native environment stack. Installing OS-level packages (apt-get, .deb) is a scope violation. If a required binary is missing from the host environment, initiate a Graceful Abort immediately. Unconditional Cleanup: Run git clean -fd -e .jules/ before PR or Abort. Native Tool Lock: Execute all file modifications exclusively through native API code-editing tools (standard <<<<<<< SEARCH / ======= / >>>>>>> REPLACE block logic). The creation or execution of any .diff, .sh, or .js script to mutate source files is a critical scope violation.';
-
 /**
  * COMPILER ARCHITECTURE NOTES:
  * - Hybrid Formatter & QA Gate execution paradigm.
@@ -14,33 +9,19 @@ const UNIVERSAL_OPERATIONAL_BASELINE =
  * - Relies entirely on the generator LLM for physics injection and payload sizing.
  */
 
-function formatList(arr, bullet = '* ') {
+function formatList(arr) {
   if (!Array.isArray(arr)) return '';
-  return arr.map((item) => `${bullet}${String(item).replace(/^[\*\-\s]+/, '')}`).join('\n');
+  return arr.map((item) => String(item).trim()).join('\n');
 }
 
-function formatBullet(rawText) {
+function trimText(rawText) {
   if (!rawText) return '';
-  let cleanText = String(rawText).replace(/^[\*\-\s]+/, '');
-  return `* ${cleanText}`;
-}
-
-function formatText(rawText) {
-  if (!rawText) return '';
-  return String(rawText).replace(/^[\*\-\s]+/, '');
+  return String(rawText).trim();
 }
 
 function formatTargetMatrix(arr) {
   if (!Array.isArray(arr)) return '';
-
-  return arr
-    .map((item) => {
-      let cleanItem = String(item).trim();
-      const match = cleanItem.match(/^[\*\-\s]*(?:\*\*?)?([^\*:]+)(?:\*\*?)?:\s*(.*)/);
-      if (match) return `* **${match[1].trim()}:** ${match[2].trim().replace(/^[\*\-\s]+/, '')}`;
-      return `* ${cleanItem.replace(/^[\*\-]\s*/, '')}`;
-    })
-    .join('\n');
+  return arr.map((item) => String(item).trim()).join('\n');
 }
 
 function cleanCodeFence(str) {
@@ -149,29 +130,10 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   // --- DETERMINISTIC COMPILER LOGIC ---
 
   const category = data.identity?.category || '';
-  const payloadThreshold =
-    data.process?.select_classify?.target_limit || data.payload_threshold || '1';
-  const requiresTasksBoard = [
-    'Pruner',
-    'Refactorer',
-    'Transformer',
-    'Instrumenter',
-    'Operator',
-  ].includes(profileKey);
   const isCore = String(data.identity?.tier).toLowerCase() === 'core';
-  const targetLimitClean = String(payloadThreshold).trim();
-  const targetLimitInstruction =
-    targetLimitClean && targetLimitClean !== '1' && !isNaN(targetLimitClean)
-      ? `Continue executing within your locked scope up to a maximum of ${targetLimitClean}. `
-      : '';
+  const targetLimitClean = String(data.process?.select_classify?.target_limit || data.payload_threshold || '1').trim();
 
   const finalExecutionRule = data.process?.execute?.execution_mandate || '';
-  const zeroTargetExitInstruction =
-    data.process?.present?.requires_total_replacement_override
-      ? ''
-      : requiresTasksBoard
-        ? 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. '
-        : 'End the task cleanly without a PR if zero targets were found. ';
 
   const map = {
     NAME: data.identity?.name || '',
@@ -186,41 +148,36 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     LANGUAGE: data.coding_standards?.language || '',
     GOOD_CODE: cleanCodeFence(data.coding_standards?.good_code_snippet),
     BAD_CODE: cleanCodeFence(data.coding_standards?.bad_code_snippet),
-    PRIMARY_RESPONSIBILITY: formatBullet(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor),
-    THE_SCOPE: formatBullet(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope),
-    EXECUTION_RULE: formatBullet(finalExecutionRule),
-    RESILIENCE_PROCEDURE: formatBullet((data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || '') + ' ' + (profileKey === 'Analyzer' ? ANALYZER_OPERATIONAL_BASELINE : UNIVERSAL_OPERATIONAL_BASELINE)),
+    PRIMARY_RESPONSIBILITY: trimText(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor),
+    THE_SCOPE: trimText(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope),
+    EXECUTION_RULE: trimText(finalExecutionRule),
+    RESILIENCE_PROCEDURE: trimText(data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries),
     DOMAIN_MODIFIERS: formatList(data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates),
-    AUTONOMOUS_SELECTION: formatBullet(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule),
-    WORKFLOW_EXECUTION: formatBullet(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution),
-    VERIFICATION_PROCEDURE: formatBullet(data.process?.verify?.testing_doctrine || ''),
+    AUTONOMOUS_SELECTION: trimText(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule),
+    WORKFLOW_EXECUTION: trimText(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution),
+    VERIFICATION_PROCEDURE: trimText(data.process?.verify?.testing_doctrine),
     SALVAGED_MANDATES: formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates),
     ZERO_INTERACTION_MANDATES: formatList(data.zero_interaction_mandates),
     SALVAGED_CUSTOM_LOGIC: formatList(data.salvaged_custom_logic),
     CROSS_VECTOR_GRANTS: formatList(data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants),
     JOURNAL_PATH: isCore ? `.jules/${data.identity?.name || 'journal'}.md` : `.jules/journal_${category.toLowerCase()}.md`,
-    WORKER_TASKS_BOARD: data.memory_and_triage?.agent_tasks_board ? `**The Agent Tasks Board (\`.jules/agent_tasks.md\`):** ${formatText(data.memory_and_triage.agent_tasks_board)}` : (requiresTasksBoard ? '**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.' : ''),
-    JOURNAL_PROCEDURE: formatText(data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure),
+    WORKER_TASKS_BOARD: trimText(data.memory_and_triage?.agent_tasks_board),
+    JOURNAL_PROCEDURE: trimText(data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure),
     DISCOVER_TRIGGER: String(data.process?.discover?.trigger || '').replace(/^via\s+/i, ''),
-    DISCOVERY_FALLBACK: data.process?.discover?.discovery_fallback ? String(data.process.discover.discovery_fallback) : (requiresTasksBoard
-      ? 'Cross-reference `.jules/agent_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/agent_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' +
-        (isCore ? ' If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.' : '')
-      : isCore
-        ? 'If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.'
-        : ''),
-    DOMAIN_AUTONOMY_DECLARATION: isCore ? `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.` : '',
-    DISCOVERY_VELOCITY_RULE: data.process?.discover?.discovery_velocity_rule || '',
+    DISCOVERY_FALLBACK: trimText(data.process?.discover?.discovery_fallback),
+    DOMAIN_AUTONOMY_DECLARATION: trimText(data.process?.discover?.domain_autonomy_declaration),
+    DISCOVERY_VELOCITY_RULE: trimText(data.process?.discover?.discovery_velocity_rule),
     TARGET_MATRIX: formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix),
     PRIORITY_LANGUAGE: data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily',
     TARGET_LIMIT: targetLimitClean,
     THEME_VERB: definedThemeVerb || 'EXECUTE',
-    EXECUTION_POSTURE: data.process?.execute?.execution_posture || '',
-    TARGET_LIMIT_INSTRUCTION: targetLimitInstruction,
+    EXECUTION_POSTURE: trimText(data.process?.execute?.execution_posture),
+    TARGET_LIMIT_INSTRUCTION: trimText(data.process?.execute?.target_limit_instruction),
     EXECUTION_STEPS: formatList(data.process?.execute?.execution_steps || data.process?.execution_steps),
-    REPORTER_PROCEDURE: data.process?.verify?.reporter_procedure || '',
+    REPORTER_PROCEDURE: trimText(data.process?.verify?.reporter_procedure),
     HEURISTICS: formatList(data.process?.verify?.heuristic_verification || data.process?.heuristic_verification),
     PRESENTATION_SLOT: String(data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '').replace(/^[\*\-\s]+/, '').trim(),
-    ZERO_TARGET_EXIT: zeroTargetExitInstruction + (requiresTasksBoard && !data.process?.present?.requires_total_replacement_override ? 'If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it.' : ''),
+    ZERO_TARGET_EXIT: trimText(data.process?.present?.zero_target_exit),
     PR_HEADERS: data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || '',
     FAVORITE_OPTIMIZATIONS: formatList(data.favorite_optimizations),
   };
