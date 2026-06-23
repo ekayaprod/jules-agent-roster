@@ -167,7 +167,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   const finalExecutionRule = data.process?.execute?.execution_mandate || '';
   const zeroTargetExitInstruction =
-    data.process?.present?.requires_total_replacement_override || isCore
+    data.process?.present?.requires_total_replacement_override
       ? ''
       : requiresTasksBoard
         ? 'End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. '
@@ -199,15 +199,15 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     SALVAGED_CUSTOM_LOGIC: formatList(data.salvaged_custom_logic),
     CROSS_VECTOR_GRANTS: formatList(data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants),
     JOURNAL_PATH: isCore ? `.jules/${data.identity?.name || 'journal'}.md` : `.jules/journal_${category.toLowerCase()}.md`,
-    WORKER_TASKS_BOARD: requiresTasksBoard ? '**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file for situational awareness only — do not claim tasks.' : '',
+    WORKER_TASKS_BOARD: data.memory_and_triage?.agent_tasks_board ? `**The Agent Tasks Board (\`.jules/agent_tasks.md\`):** ${formatText(data.memory_and_triage.agent_tasks_board)}` : (requiresTasksBoard ? '**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.' : ''),
     JOURNAL_PROCEDURE: formatText(data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure),
     DISCOVER_TRIGGER: String(data.process?.discover?.trigger || '').replace(/^via\s+/i, ''),
-    DISCOVERY_FALLBACK: requiresTasksBoard
+    DISCOVERY_FALLBACK: data.process?.discover?.discovery_fallback ? String(data.process.discover.discovery_fallback) : (requiresTasksBoard
       ? 'Cross-reference `.jules/agent_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/agent_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' +
         (isCore ? ' If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.' : '')
       : isCore
         ? 'If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.'
-        : '',
+        : ''),
     DOMAIN_AUTONOMY_DECLARATION: isCore ? `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.` : '',
     DISCOVERY_VELOCITY_RULE: data.process?.discover?.discovery_velocity_rule || '',
     TARGET_MATRIX: formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix),
@@ -227,15 +227,17 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   let output = templateStr;
   for (const [key, value] of Object.entries(map)) {
-    const regex = new RegExp(`{{${key}}}`, 'g');
-    output = output.replace(regex, value || '');
+    const regex = new RegExp(`{{${key}}}\n?`, 'g');
+    if (value && value.trim() !== '') {
+      output = output.replace(new RegExp(`{{${key}}}`, 'g'), value);
+    } else {
+      // Safely swallow trailing newlines if the token is empty to prevent large whitespace gaps
+      output = output.replace(regex, '');
+    }
   }
 
-  const cleanedOutput = output
-    .split('\n')
-    .filter((line) => line.trim() !== '' || line === '')
-    .join('\n')
-    .replace(/\n{3,}/g, '\n\n');
+  // Final structural cleanup for trailing carriage returns
+  const cleanedOutput = output.replace(/\n{3,}/g, '\n\n').trim();
 
   if (targetFilePath && targetFilePath.trim() !== '') {
     fs.writeFileSync(targetFilePath, cleanedOutput);
