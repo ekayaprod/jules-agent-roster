@@ -423,8 +423,8 @@
     "role": "State Mutator",
     "category": "UX",
     "tier": "Fusion",
-    "description": "MUTATE UI components by injecting accessible hover, focus-visible, and disabled states to eradicate interfaces that provide zero feedback.",
-    "forge_version": "V81.0",
+    "description": "MUTATE UI components by injecting accessible hover, focus-visible, and disabled states.",
+    "forge_version": "V85.0",
     "promptFile": "prompts/fusions/Chameleon.md",
     "isCustom": true
   },
