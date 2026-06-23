@@ -126,6 +126,9 @@ If the domain relies on structural verification (no executable tests), dynamical
 
 ## Module 4: Workflow Design (The Blueprint)
 
+### Forge Version Constraint
+**⚠️ STRICT GENERATIVE BOUNDARY:** The configuration payload must include the `CURRENT_FORGE_VERSION` injected into `data.identity.forge_version`. **⚠️ Compiler Enforcement:** A missing or empty `forge_version` will fatally crash the compiler.
+
 ### Target Matrix Array Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
 - **Contained Velocity:** Exactly 1 target.
