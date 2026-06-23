@@ -19,10 +19,15 @@ function formatList(arr, bullet = '* ') {
   return arr.map((item) => `${bullet}${String(item).replace(/^[\*\-\s]+/, '')}`).join('\n');
 }
 
-function formatSlot(rawText, label) {
+function formatBullet(rawText) {
   if (!rawText) return '';
   let cleanText = String(rawText).replace(/^[\*\-\s]+/, '');
-  return `* **${label}:** ${cleanText}`;
+  return `* ${cleanText}`;
+}
+
+function formatText(rawText) {
+  if (!rawText) return '';
+  return String(rawText).replace(/^[\*\-\s]+/, '');
 }
 
 function formatTargetMatrix(arr) {
@@ -176,106 +181,46 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     TIER: data.identity?.tier || '',
     SYNTHESIS: data.identity?.synthesis || '',
     FORGE_VERSION: forgeVersion,
-    MISSION_SCOPE: String(data.mission_scope || '')
-      .replace(/\.+$/, ''),
+    MISSION_SCOPE: String(data.mission_scope || '').replace(/\.+$/, ''),
     PHILOSOPHY: formatList(data.philosophy),
     LANGUAGE: data.coding_standards?.language || '',
     GOOD_CODE: cleanCodeFence(data.coding_standards?.good_code_snippet),
     BAD_CODE: cleanCodeFence(data.coding_standards?.bad_code_snippet),
-    PRIMARY_RESPONSIBILITY: formatSlot(
-      data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor,
-      'The Primary Responsibility',
-    ),
-    THE_SCOPE: formatSlot(
-      data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope,
-      'The Scope',
-    ),
-    EXECUTION_RULE: finalExecutionRule,
-    RESILIENCE_PROCEDURE: formatSlot(
-      (data.archetype_slots?.operational_boundaries ||
-        data.strict_operational_mandates?.operational_boundaries ||
-        '') +
-        ' ' +
-        (profileKey === 'Analyzer'
-          ? ANALYZER_OPERATIONAL_BASELINE
-          : UNIVERSAL_OPERATIONAL_BASELINE),
-      'The Resilience Procedure',
-    ),
-    DOMAIN_MODIFIERS: formatList(
-      data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates,
-    ),
-    AUTONOMOUS_SELECTION: formatSlot(
-      data.archetype_slots?.decisiveness_rule ||
-        data.strict_operational_mandates?.decisiveness_rule,
-      'The Autonomous Selection',
-    ),
-    WORKFLOW_EXECUTION: formatSlot(
-      data.archetype_slots?.workflow_execution ||
-        data.strict_operational_mandates?.workflow_execution,
-      'The Execution',
-    ),
-    VERIFICATION_PROCEDURE: formatSlot(
-      data.process?.verify?.testing_doctrine || '',
-      'The Verification Procedure',
-    ),
-    SALVAGED_MANDATES: formatList(
-      data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates,
-    ),
+    PRIMARY_RESPONSIBILITY: formatBullet(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor),
+    THE_SCOPE: formatBullet(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope),
+    EXECUTION_RULE: formatBullet(finalExecutionRule),
+    RESILIENCE_PROCEDURE: formatBullet((data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries || '') + ' ' + (profileKey === 'Analyzer' ? ANALYZER_OPERATIONAL_BASELINE : UNIVERSAL_OPERATIONAL_BASELINE)),
+    DOMAIN_MODIFIERS: formatList(data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates),
+    AUTONOMOUS_SELECTION: formatBullet(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule),
+    WORKFLOW_EXECUTION: formatBullet(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution),
+    VERIFICATION_PROCEDURE: formatBullet(data.process?.verify?.testing_doctrine || ''),
+    SALVAGED_MANDATES: formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates),
     ZERO_INTERACTION_MANDATES: formatList(data.zero_interaction_mandates),
     SALVAGED_CUSTOM_LOGIC: formatList(data.salvaged_custom_logic),
-    CROSS_VECTOR_GRANTS: formatList(
-      data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants,
-    ),
-    JOURNAL_PATH:
-      (data.identity?.tier || '').toLowerCase() === 'core'
-        ? `.jules/${data.identity?.name || 'journal'}.md`
-        : `.jules/journal_${category.toLowerCase()}.md`,
-    WORKER_TASKS_BOARD: requiresTasksBoard
-      ? '* **The Worker Tasks Board (`.jules/worker_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself.'
-      : '',
-    JOURNAL_PROCEDURE: formatSlot(
-      data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure,
-      'The Journal Procedure',
-    ).replace(/^\*\s/, ''),
+    CROSS_VECTOR_GRANTS: formatList(data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants),
+    JOURNAL_PATH: isCore ? `.jules/${data.identity?.name || 'journal'}.md` : `.jules/journal_${category.toLowerCase()}.md`,
+    WORKER_TASKS_BOARD: requiresTasksBoard ? '**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file for situational awareness only — do not claim tasks.' : '',
+    JOURNAL_PROCEDURE: formatText(data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure),
     DISCOVER_TRIGGER: String(data.process?.discover?.trigger || '').replace(/^via\s+/i, ''),
     DISCOVERY_FALLBACK: requiresTasksBoard
-      ? 'Cross-reference `.jules/worker_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' +
-        (isCore
-          ? ' If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.'
-          : '')
+      ? 'Cross-reference `.jules/agent_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/agent_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' +
+        (isCore ? ' If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.' : '')
       : isCore
         ? 'If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.'
         : '',
-    DOMAIN_AUTONOMY_DECLARATION: isCore
-      ? `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.`
-      : '',
+    DOMAIN_AUTONOMY_DECLARATION: isCore ? `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.` : '',
     DISCOVERY_VELOCITY_RULE: data.process?.discover?.discovery_velocity_rule || '',
-    TARGET_MATRIX: formatTargetMatrix(
-      data.process?.target_matrix || data.process?.discover?.target_matrix
-    ),
-    PRIORITY_LANGUAGE:
-      data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily',
+    TARGET_MATRIX: formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix),
+    PRIORITY_LANGUAGE: data.process?.select_classify?.priority_language || data.priority_language || 'arbitrarily',
     TARGET_LIMIT: targetLimitClean,
     THEME_VERB: definedThemeVerb || 'EXECUTE',
     EXECUTION_POSTURE: data.process?.execute?.execution_posture || '',
     TARGET_LIMIT_INSTRUCTION: targetLimitInstruction,
-    EXECUTION_STEPS: formatList(
-      data.process?.execute?.execution_steps || data.process?.execution_steps,
-    ),
+    EXECUTION_STEPS: formatList(data.process?.execute?.execution_steps || data.process?.execution_steps),
     REPORTER_PROCEDURE: data.process?.verify?.reporter_procedure || '',
-    HEURISTICS: formatList(
-      data.process?.verify?.heuristic_verification || data.process?.heuristic_verification,
-    ),
-    PRESENTATION_SLOT: String(
-      data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '',
-    )
-      .replace(/^[\*\-\s]+/, '')
-      .trim(),
-    ZERO_TARGET_EXIT:
-      zeroTargetExitInstruction +
-      (requiresTasksBoard && !data.process?.present?.requires_total_replacement_override
-        ? 'If the run produced no source mutations but did append relay entries to `.jules/worker_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it.'
-        : ''),
+    HEURISTICS: formatList(data.process?.verify?.heuristic_verification || data.process?.heuristic_verification),
+    PRESENTATION_SLOT: String(data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '').replace(/^[\*\-\s]+/, '').trim(),
+    ZERO_TARGET_EXIT: zeroTargetExitInstruction + (requiresTasksBoard && !data.process?.present?.requires_total_replacement_override ? 'If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it.' : ''),
     PR_HEADERS: data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || '',
     FAVORITE_OPTIMIZATIONS: formatList(data.favorite_optimizations),
   };
@@ -302,9 +247,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 if (require.main === module) {
   const args = process.argv.slice(2);
   if (args.length < 2) {
-    console.error(
-      'Usage: node compile_json.js <jsonPath|-|/dev/stdin> <templatePath> [targetPath]',
-    );
+    console.error('Usage: node compile_json.js <jsonPath|-|/dev/stdin> <templatePath> [targetPath]');
     process.exit(1);
   }
 
@@ -313,10 +256,7 @@ if (require.main === module) {
   const targetPath = args[2] || '';
 
   try {
-    const jsonPayloadStr =
-      source === '-' || source === '/dev/stdin'
-        ? fs.readFileSync(0, 'utf-8')
-        : fs.readFileSync(source, 'utf8');
+    const jsonPayloadStr = source === '-' || source === '/dev/stdin' ? fs.readFileSync(0, 'utf-8') : fs.readFileSync(source, 'utf8');
     const templateStr = fs.readFileSync(templatePath, 'utf8');
     compile(jsonPayloadStr, templateStr, targetPath);
   } catch (e) {
