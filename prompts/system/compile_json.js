@@ -127,7 +127,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   philosophyRaw.forEach((item, index) => {
     let cleanItem = String(item)
       .replace(/^[\*\-]\s+/, '');
-    if (/\*\*[^\*]+\*\*:/.test(cleanItem)) {
+    if (/\*\*[^\*:]+:\*\*|\*\*[^\*]+\*\*:/.test(cleanItem)) {
       throw new Error(
         `[FATAL ERROR] Philosophy bullet ${index + 1} contains a forbidden bold label pattern ('**Text:**'). Remove all bold labels from the philosophy values.`,
       );

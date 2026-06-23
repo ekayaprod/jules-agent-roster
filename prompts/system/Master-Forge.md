@@ -203,11 +203,10 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 
 1. **Priority Language Test:** If the worker's Workflow Execution requires priority ordering, you must strictly map the value "according to declared priority weighting" to the `data.process.select_classify.priority_language` JSON key instead of rewriting the SELECT/CLASSIFY text manually to prevent double-appends.
 2. **Throughput & Payload Execution:** Apply the Reflective Throughput Judgment from Forge-Procedure Module 3: The Workload Strategy. Throughput is determined by the target array size: 1 target = Contained, Explicit Quota = Batch, Open/Multiple = Expansive.
-3. **Array Count Validation:** Verify the Target Matrix and Heuristics arrays exactly match the required structural counts defined in Forge-Procedure Module 4. Flag any deviations as a FAIL.
+3. **Structural & Formatting Boundaries:** Verify every generated array (Target Matrix, Execution Steps, Heuristics, Philosophy, Optimizations) and text field (Synthesis, Functional Bridge, Theme Verb, Forge Version) explicitly matches the absolute constraints defined in **Forge-Procedure Module 4**. Flag any deviation as a FAIL.
 4. **Coherence Audit:** Verify every DISCOVER target follows `[Category Name]: [description]`. Verify Execution Steps match the Archetype's required step count. For Core tier workers, validate that the target matrix targets are framed broadly enough to serve as High-Probability Vectors (failing narrow scopes).
-5. **Format Completeness Check:** Validate the word limit for Functional Bridge, the character limit and formatting for Synthesis, and ensure the array limits for Philosophy bullets, Optimizations, and Heuristic count exactly match the required structural counts defined in Forge-Procedure Module 4.
-6. **Instruction Density Guidance:** Flag any worker whose retained instruction word count significantly exceeds the base physics equivalent as a Repair Order candidate.
-7. **Efficacy Exemption:** Content rewrites triggered by Repair Orders (such as format and wording checks) may be bypassed if preserving the original language genuinely improves the Jules Core's operational efficacy. However, structural minimums like the minimum heuristic or philosophy counts may not be waived. Format checks must not rewrite working content to fit a template, but structural minimums must be enforced. If this exemption is applied, the Linter output must explicitly declare `"EFFICACY_EXEMPTION"`.
+5. **Instruction Density Guidance:** Flag any worker whose retained instruction word count significantly exceeds the base physics equivalent as a Repair Order candidate.
+6. **Efficacy Exemption:** Content rewrites triggered by Repair Orders (such as format and wording checks) may be bypassed if preserving the original language genuinely improves the Jules Core's operational efficacy. However, structural minimums like the minimum heuristic or philosophy counts may not be waived. Format checks must not rewrite working content to fit a template, but structural minimums must be enforced. If this exemption is applied, the Linter output must explicitly declare `"EFFICACY_EXEMPTION"`.
 
 ### Output Format
 
@@ -215,8 +214,9 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 - **Throughput & Payload:** [Contained, Batch, or Expansive] | [Payload Threshold]
 - **Throughput-Payload Consistency:** [PASS/FAIL]
 - **Priority Order:** [Yes/No]
+- **Structural Boundaries:** [PASS/FAIL — list each sub-check]
 - **Coherence & Integrity:** [PASS/FAIL — list each sub-check]
-- **Format Completeness & UI Fence:** [PASS/FAIL — list each sub-check]
+- **UI Fence:** [PASS/FAIL — list each sub-check]
   - **Reserved Process Emojis:** The emojis 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution process headers. Do not use them as the Operating Theme Lead emoji, within Philosophy bullets, or within Optimizations.
 - **The Repair Order:** [If FAIL, provide the minimal string correction required. Re-run the check. If PASS or EFFICACY_EXEMPTION, output "Ready for JSON Compilation."]
 
@@ -255,6 +255,7 @@ In this phase, output a raw data payload. Do not attempt to map or render the fi
   - `data.process.execute.execution_posture`
   - `data.process.verify.reporter_procedure`
   - `data.process.verify.testing_doctrine`
+- **Phase 2 & Thematic Mapping:** You must explicitly map the generated Target Data Array to `data.process.target_matrix`, Execution Steps to `data.process.execute.execution_steps`, Heuristic Verification checks to `data.process.verify.heuristic_verification`, Philosophy bullets to `data.philosophy`, and Favorite Optimizations to `data.favorite_optimizations`.
 - **Variable Mapping Overrides:** You must explicitly map the Theme Verb to `data.process.execute.theme_verb` and the Payload Threshold to `data.process.select_classify.target_limit`. Do not map these to deprecated root-level keys (e.g., `data.process.theme_verb` or `data.payload_threshold`).
 - **Array Triggers & Modifiers:** If a context modifier is active, you must explicitly inject its clauses into the `domain_modifier_mandates` array in the JSON payload. If the Total Replacement Modifier is active, you must set `data.process.present.requires_total_replacement_override` to `true` to ensure the compiler correctly suppresses the zero-target exit string.
 - *Note: The `presentation_slot` contains only PR submission and title formatting — not exit conditions.*
