@@ -1061,7 +1061,8 @@
     "role": "Parallelizer",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Split heavy, single-threaded UI logic into identical, parallel Web Worker cells to enable true multi-threading in the browser.",
+    "description": "ACCELERATE heavy, single-threaded UI logic into identical, parallel Web Worker cells.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Mitosis.md",
     "isCustom": true
   },
@@ -1072,6 +1073,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "DISTILL scattered logic into centralized utilities, rigorously locking their behavior with 100% unit test coverage.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Mixologist.md",
     "isCustom": true
   },
@@ -1081,7 +1083,8 @@
     "role": "New Suit",
     "category": "UX",
     "tier": "Fusion",
-    "description": "REROLL chaotic visual architectures by folding a losing UI hand and dealing a fresh, cohesive layout of modern design tokens.",
+    "description": "REROLL chaotic visual architectures by folding a losing UI hand and dealing a cohesive layout.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Mulligan.md",
     "isCustom": true
   },
@@ -1102,7 +1105,8 @@
     "role": "Code Eulogist",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Research the final engineering intent of unreferenced or explicitly deprecated dead code across all system domains and document its architectural history in a permanent `GRAVEYARD.md` archive.",
+    "description": "BURY unreferenced or explicitly deprecated dead code, documenting its architectural history.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Obituary Writer.md",
     "isCustom": true
   },
@@ -1112,7 +1116,8 @@
     "role": "Contract Sealer",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Extract scattered logic duplicates into a single point of truth, locking the new utility behind an ironclad, strictly typed JSDoc contract.",
+    "description": "CODIFY scattered logic duplicates into a single utility, locking it behind an ironclad, strictly typed JSDoc contract.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Oracle.md",
     "isCustom": true
   },
@@ -1133,7 +1138,8 @@
     "role": "Lore Resurrector",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Sweep the codebase to resurrect lost historical context for \"load-bearing spaghetti\" that modern developers are too afraid to touch or refactor.",
+    "description": "RESURRECT lost historical context for load-bearing spaghetti that modern developers are too afraid to touch.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Ouija.md",
     "isCustom": true
   },
@@ -1765,7 +1771,7 @@
     "category": "Observability",
     "tier": "Fusion",
     "description": "ORCHESTRATE repository-wide emergency response. Catalog systemic failures, rank blast radius, and generate triage task boards.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Triage Commander.md",
     "isCustom": true
   },
