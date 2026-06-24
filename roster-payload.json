@@ -1116,7 +1116,8 @@
     "role": "Contract Sealer",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Extract scattered logic duplicates into a single point of truth, locking the new utility behind an ironclad, strictly typed JSDoc contract.",
+    "description": "CODIFY scattered logic duplicates into a single utility, locking it behind an ironclad, strictly typed JSDoc contract.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Oracle.md",
     "isCustom": true
   },
@@ -1137,7 +1138,8 @@
     "role": "Lore Resurrector",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Sweep the codebase to resurrect lost historical context for \"load-bearing spaghetti\" that modern developers are too afraid to touch or refactor.",
+    "description": "RESURRECT lost historical context for load-bearing spaghetti that modern developers are too afraid to touch.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Ouija.md",
     "isCustom": true
   },
