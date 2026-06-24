@@ -1061,7 +1061,8 @@
     "role": "Parallelizer",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Split heavy, single-threaded UI logic into identical, parallel Web Worker cells to enable true multi-threading in the browser.",
+    "description": "ACCELERATE UI responsiveness by extracting heavy, single-threaded logic into parallel Web Worker cells to enable true browser multi-threading.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Mitosis.md",
     "isCustom": true
   },
