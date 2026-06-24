@@ -40,7 +40,6 @@ class StorageUtils {
             }
             return null;
         } catch (error) {
-            console.warn("Assault intercepted by Cerberus at boundary", error);
             const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
             if (tu) tu.dispatchEvent(errorEventName, error, { stored: stored });
             return null;
@@ -61,7 +60,6 @@ class StorageUtils {
         } catch (error) {
             const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
             if (tu) tu.dispatchEvent("STORAGE_ITEM_SAVE_FAILED", error, { key: key });
-            console.warn(`${componentName}: Failed to save to localStorage`, error);
         }
     }
 
@@ -96,7 +94,6 @@ class StorageUtils {
         } catch (error) {
             const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
             if (tu) tu.dispatchEvent("STORAGE_ITEM_SAVE_FAILED", error, { key: key });
-            console.warn(`Failed to save string to localStorage`, error);
         }
     }
 }

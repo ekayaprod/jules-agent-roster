@@ -99,7 +99,6 @@ class MarkdownRenderer {
           return el;
       }
       default: {
-          console.warn('Unhandled token type:', token.type);
           return document.createTextNode(token.raw);
       }
     }
