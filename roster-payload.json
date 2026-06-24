@@ -435,7 +435,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "SECURE external dependencies and immediately refactor validation schemas (Zod/Joi) to ensure airtight architectural boundaries.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.0",
     "promptFile": "prompts/fusions/Checkpoint.md",
     "isCustom": true
   },
@@ -446,7 +446,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "BUILD the automated machinery and pipelines that generate documentation, forging net-new release infrastructure from scratch.",
-    "forge_version": "V82.0",
+    "forge_version": "V85.0",
     "promptFile": "prompts/fusions/Chronicle.md",
     "isCustom": true
   },
@@ -1017,7 +1017,8 @@
     "role": "Coverage Mapper",
     "category": "Testing",
     "tier": "Fusion",
-    "description": "Identify untested code, critical execution paths, and missing edge cases, meticulously updating the `TESTING_PLAN.md` file to construct actionable coverage roadmaps.",
+    "description": "MAP untested code, critical paths, and missing edge cases, updating TESTING_PLAN.md to construct coverage roadmaps.",
+    "forge_version": "V85.0",
     "promptFile": "prompts/fusions/Mapper.md",
     "isCustom": true
   },
@@ -1091,7 +1092,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "TRANSLATE test assertions into crystal-clear specifications, turning vague test names into living documentation without altering logic.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.0",
     "promptFile": "prompts/fusions/Narrator.md",
     "isCustom": true
   },
