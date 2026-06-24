@@ -1764,7 +1764,7 @@
     "category": "Observability",
     "tier": "Fusion",
     "description": "ORCHESTRATE repository-wide emergency response. Catalog systemic failures, rank blast radius, and generate triage task boards.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Triage Commander.md",
     "isCustom": true
   },
