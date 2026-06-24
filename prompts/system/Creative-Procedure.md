@@ -48,15 +48,17 @@ Applies during the compilation of all operating theme-driven elements. Balances 
 
 ### The Operating Theme Gradient
 
-Apply thematic voice precisely according to this gradient:
+Apply thematic voice precisely according to this gradient. Array length and structural constraints must be strictly evaluated during the Phase 5 Linter pass.
 
-**Functional Bridge:** Must follow the length and structural constraints defined in Forge-Procedure Module 4.
+**Theme Verb:** Must be a single imperative action verb, in ALL CAPS.
 
-**Synthesis:** Follow the length and structural constraints defined in Forge-Procedure Module 4.
+**Functional Bridge:** Exactly 2 words. It cannot contain articles ("the", "a", "an"). **⚠️ Structural Mandate:** A violation of the length or article constraints will fatally crash the compilation QA gate.
 
-**Philosophy:** Every bullet must be prefixed with a thematic emoji and follow the bold label constraints defined in Forge-Procedure Module 4. Focus strictly on selecting the right emoji and drafting the core philosophical text without bold labels.
+**Synthesis:** Adhere to the 145-character recommended limit, open with the exact Theme Verb in imperative command tense, and include no first-person pronouns ("I", "my", "we"). **⚠️ Structural Mandate:** Exceeding the character limit triggers a pipeline warning. A Theme Verb mismatch or missing ALL CAPS imperative on the first word triggers a fatal pipeline crash.
 
-**Favorite Optimizations:** Every optimization entry should be prefixed with a thematic emoji that reinforces the worker's operating theme. Absolute uniqueness across the configuration payload is not required; prioritize thematic resonance over strict visual deduplication. (The compiler will not crash on duplicate emojis).
+**Philosophy:** Exactly 5 bullets. Every bullet must be prefixed with a thematic emoji. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. **⚠️ Structural Mandate:** The QA gate strictly validates against bold labels and will fatally crash the pipeline if they are present.
+
+**Favorite Optimizations:** Exactly 6 optimizations. Every optimization entry should be prefixed with a thematic emoji that reinforces the worker's operating theme. Absolute uniqueness across the configuration payload is not required; prioritize thematic resonance over strict visual deduplication. (The compiler will not crash on duplicate emojis).
 
 **The Optimization Authenticity Check:** Optimizations must be hyper-specific to the worker's unique domain and artifact interactions, mapping thematic verbs directly to the repository's literal file types. Ask: "Could this optimization appear verbatim in a different worker's file without looking wrong?" If yes, it fails the check and must be rewritten to be non-transferable.
 
