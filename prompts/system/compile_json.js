@@ -32,6 +32,13 @@ function cleanCodeFence(str) {
 }
 
 function compile(jsonPayloadStr, templateStr, targetFilePath) {
+  const startMarker = '<!-- WORKER_TEMPLATE_START -->';
+  const endMarker = '<!-- WORKER_TEMPLATE_END -->';
+  let extractedTemplate = templateStr;
+  if (templateStr.includes(startMarker) && templateStr.includes(endMarker)) {
+    extractedTemplate = templateStr.split(startMarker)[1].split(endMarker)[0].trim();
+  }
+
   let data;
   try {
     data = JSON.parse(typeof jsonPayloadStr === 'string' ? jsonPayloadStr.trim() : '');
@@ -110,6 +117,9 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   }
 
   const philosophyRaw = data.philosophy || [];
+  if (philosophyRaw.length !== 5) {
+    throw new Error(`[FATAL ERROR] Philosophy must contain exactly 5 bullets. Found ${philosophyRaw.length}.`);
+  }
   philosophyRaw.forEach((item, index) => {
     let cleanItem = String(item)
       .replace(/^[\*\-]\s+/, '');
@@ -119,6 +129,11 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
       );
     }
   });
+
+  const optimizationsRaw = data.favorite_optimizations || [];
+  if (optimizationsRaw.length !== 6) {
+    throw new Error(`[FATAL ERROR] Favorite Optimizations must contain exactly 6 entries. Found ${optimizationsRaw.length}.`);
+  }
 
   const forgeVersion = data.identity?.forge_version || data.forge_version || '';
   if (!forgeVersion || String(forgeVersion).trim() === '') {
@@ -177,12 +192,12 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     REPORTER_PROCEDURE: trimText(data.process?.verify?.reporter_procedure),
     HEURISTICS: formatList(data.process?.verify?.heuristic_verification || data.process?.heuristic_verification),
     PRESENTATION_SLOT: String(data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '').replace(/^[\*\-\s]+/, '').trim(),
-    ZERO_TARGET_EXIT: trimText(data.process?.present?.zero_target_exit),
+    ZERO_TARGET_EXIT: data.process?.present?.requires_total_replacement_override ? '' : trimText(data.process?.present?.zero_target_exit),
     PR_HEADERS: data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || '',
     FAVORITE_OPTIMIZATIONS: formatList(data.favorite_optimizations),
   };
 
-  let output = templateStr;
+  let output = extractedTemplate;
   for (const [key, value] of Object.entries(map)) {
     const regex = new RegExp(`{{${key}}}\n?`, 'g');
     if (value && value.trim() !== '') {
