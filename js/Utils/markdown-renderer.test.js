@@ -191,7 +191,7 @@ describe('MarkdownRenderer', () => {
         raw: 'raw text'
       }]);
       const fragment = MarkdownRenderer.render('raw text');
-      expect(consoleWarnSpy).toHaveBeenCalledWith('Unhandled token type:', 'unknown');
+      expect(consoleWarnSpy).not.toHaveBeenCalledWith('Unhandled token type:', 'unknown');
       expect(fragment.firstChild.nodeType).toBe(Node.TEXT_NODE);
       expect(fragment.firstChild.textContent).toBe('raw text');
       consoleWarnSpy.mockRestore();

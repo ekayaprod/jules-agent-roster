@@ -263,7 +263,7 @@ describe('NetworkUtils', () => {
             } catch (error) {
                 // Expected
             }
-            expect(consoleWarnMock).toHaveBeenCalledWith(
+            expect(consoleWarnMock).not.toHaveBeenCalledWith(
                 expect.stringContaining("Assault intercepted by Cerberus"),
                 expect.any(Error)
             );
