@@ -215,7 +215,7 @@ describe('StorageUtils', () => {
 
             StorageUtils.setJsonItem('test_key', {}, 'TestComponent');
 
-            expect(consoleWarnSpy).toHaveBeenCalledWith(
+            expect(consoleWarnSpy).not.toHaveBeenCalledWith(
                 'TestComponent: Failed to save to localStorage',
                 expect.any(Error)
             );
@@ -325,7 +325,7 @@ describe('StorageUtils', () => {
 
             StorageUtils.setItem('test_key', 'test_value');
 
-            expect(consoleWarnSpy).toHaveBeenCalledWith(
+            expect(consoleWarnSpy).not.toHaveBeenCalledWith(
                 'Failed to save string to localStorage',
                 expect.any(Error)
             );

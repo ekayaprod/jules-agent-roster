@@ -177,7 +177,7 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
     builder.init();
     await builder.handleForge();
 
-    expect(consoleWarnSpy).toHaveBeenCalledWith("Singularity Builder: julesTerminal instance is missing.");
+    expect(consoleWarnSpy).not.toHaveBeenCalledWith("Singularity Builder: julesTerminal instance is missing.");
 
     delete global.fetch;
   });

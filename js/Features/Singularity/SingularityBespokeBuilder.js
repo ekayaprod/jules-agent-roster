@@ -135,8 +135,6 @@ class SingularityBespokeBuilder {
         const tu = window.TelemetryUtils;
         if (tu) {
             tu.dispatchEvent("BUILDER_MISSING_TERMINAL", new Error("julesTerminal instance is missing"));
-        } else {
-            console.warn("Singularity Builder: julesTerminal instance is missing.");
         }
       }
     } catch (error) {
