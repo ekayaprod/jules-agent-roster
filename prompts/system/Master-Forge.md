@@ -317,7 +317,7 @@ Run a native file read on the locked target `.md` file to load its legacy logic 
 - **Pipeline Adherence:** Do not generate bash scripts or deployment artifacts to bypass the execution pipeline. Use the pipeline described in these steps.
 
 ### Step 5: Execution & Verification
-- **Markdown Rendering:** Run `node prompts/system/compile_json.js payload.json prompts/system/worker_template.md <locked_target_file.md>` via the bash environment.
+- **Markdown Rendering:** Run `node prompts/system/compile_json.js payload.json prompts/system/Creative-Procedure.md <locked_target_file.md>` via the bash environment.
 - **The Retry Loop:** The script acts as a Formatter with strict structural QA gates. If the script throws a validation error to `stderr` that contains `[FATAL ERROR]` (e.g., Functional Bridge articles, Theme Verb mismatches, bold philosophy labels, or `linter_verdict` failure), read the error string. Do not treat `[WARNING]` logs as fatal errors. The script specifies exactly which schema constraint failed. Fix the parameter in `payload.json` and re-run the compile command until it exits with a success code.
 
 ### Step 6: The Efficacy Audit (Post-Compilation Verification)

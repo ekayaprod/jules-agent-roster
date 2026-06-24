@@ -32,6 +32,13 @@ function cleanCodeFence(str) {
 }
 
 function compile(jsonPayloadStr, templateStr, targetFilePath) {
+  const startMarker = '<!-- WORKER_TEMPLATE_START -->';
+  const endMarker = '<!-- WORKER_TEMPLATE_END -->';
+  let extractedTemplate = templateStr;
+  if (templateStr.includes(startMarker) && templateStr.includes(endMarker)) {
+    extractedTemplate = templateStr.split(startMarker)[1].split(endMarker)[0].trim();
+  }
+
   let data;
   try {
     data = JSON.parse(typeof jsonPayloadStr === 'string' ? jsonPayloadStr.trim() : '');
@@ -190,7 +197,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     FAVORITE_OPTIMIZATIONS: formatList(data.favorite_optimizations),
   };
 
-  let output = templateStr;
+  let output = extractedTemplate;
   for (const [key, value] of Object.entries(map)) {
     const regex = new RegExp(`{{${key}}}\n?`, 'g');
     if (value && value.trim() !== '') {
