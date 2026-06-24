@@ -446,7 +446,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "BUILD the automated machinery and pipelines that generate documentation, forging net-new release infrastructure from scratch.",
-    "forge_version": "V82.0",
+    "forge_version": "V85.0",
     "promptFile": "prompts/fusions/Chronicle.md",
     "isCustom": true
   },
