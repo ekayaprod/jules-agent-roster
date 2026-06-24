@@ -1361,7 +1361,8 @@
     "role": "UX Polisher",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Restructures disorganized feature hierarchies by colocating fragmented components, styles, and hooks into unified feature folders.",
+    "description": "POLISH disorganized feature hierarchies by colocating fragmented components, styles, and hooks into feature folders.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Renovator.md",
     "isCustom": true
   },
