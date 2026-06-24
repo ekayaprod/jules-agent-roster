@@ -60,13 +60,27 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     'Operator',
     'Analyzer',
   ];
-  
+
   const profileKey = data.archetype || data.identity?.archetype;
   if (!profileKey || !VALID_ARCHETYPES.includes(profileKey)) {
     throw new Error(
       `[FATAL ERROR] Archetype key '${profileKey}' is not a valid Structural Base Profile. Must be one of: ${VALID_ARCHETYPES.join(', ')}`,
     );
   }
+
+  const functionalBridge = data.identity?.functional_bridge || '';
+  const fbWords = functionalBridge.trim().split(/\s+/).filter(Boolean);
+  if (fbWords.length !== 2) {
+    throw new Error(
+      `[FATAL ERROR] Functional Bridge must be exactly 2 words. Found ${fbWords.length}: '${functionalBridge}'`,
+    );
+  }
+  const forbiddenArticles = ['the', 'a', 'an'];
+  fbWords.forEach((word) => {
+    if (forbiddenArticles.includes(word.toLowerCase())) {
+      throw new Error(`[FATAL ERROR] Functional Bridge contains forbidden article: '${word}'.`);
+    }
+  });
 
   const synthesis = data.identity?.synthesis || '';
   if (synthesis.length > 145) {

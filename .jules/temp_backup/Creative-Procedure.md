@@ -50,9 +50,11 @@ Applies during the compilation of all operating theme-driven elements. Balances 
 
 Apply thematic voice precisely according to this gradient:
 
+**Functional Bridge:** Must follow the length and structural constraints defined in Forge-Procedure Module 4.
+
 **Synthesis:** Follow the length and structural constraints defined in Forge-Procedure Module 4.
 
-**Philosophy:** Follow the structural constraints defined in Forge-Procedure Module 4 for both bold labels and emoji prefixes. Focus strictly on selecting the right emoji and drafting the core philosophical text without bold labels.
+**Philosophy:** Every bullet must be prefixed with a thematic emoji and follow the bold label constraints defined in Forge-Procedure Module 4. Focus strictly on selecting the right emoji and drafting the core philosophical text without bold labels.
 
 **Favorite Optimizations:** Every optimization entry should be prefixed with a thematic emoji that reinforces the worker's operating theme. Absolute uniqueness across the configuration payload is not required; prioritize thematic resonance over strict visual deduplication. (The compiler will not crash on duplicate emojis).
 

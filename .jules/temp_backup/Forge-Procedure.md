@@ -155,9 +155,9 @@ These checks must directly reflect the worker's workflow type as determined duri
 ### Thematic Array Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
 - **Theme Verb:** Must be a single imperative action verb, in ALL CAPS.
-- **Reserved Process Emojis:** The emojis 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution process headers. Do not use them as the Operating Theme Lead emoji, within Philosophy bullets, or within Optimizations.
-- **Philosophy:** Exactly 5 bullets. Each must be prefixed with a unique thematic emoji. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. **⚠️ Structural Mandate:** The QA gate strictly validates against bold labels and will fatally crash the pipeline if they are present.
+- **Philosophy:** Exactly 5 bullets. **No Bold Labels:** Do not use bolded thematic labels (e.g., `**Text:**`) within the bullets. **⚠️ Structural Mandate:** The QA gate strictly validates against bold labels and will fatally crash the pipeline if they are present.
 - **Favorite Optimizations:** Exactly 6 optimizations.
+- **Functional Bridge:** Exactly 2 words. It cannot contain articles ("the", "a", "an"). **⚠️ Structural Mandate:** A violation of the length or article constraints will fatally crash the compilation QA gate.
 - **Synthesis:** Adhere to the 145-character recommended limit, open with the exact Theme Verb in imperative command tense, and include no first-person pronouns ("I", "my", "we"). **⚠️ Structural Mandate:** Exceeding the character limit triggers a pipeline warning. A Theme Verb mismatch or missing ALL CAPS imperative on the first word triggers a fatal pipeline crash.
 
 ### Confidence Tier Model
