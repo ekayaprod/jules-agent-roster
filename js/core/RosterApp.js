@@ -139,19 +139,21 @@ class RosterApp {
 
       // ⚡ Bolt+: The Unbounded Concurrency Fix. Wrapped a massive Promise.all data-ingestion array with a strict semaphore chunking limit.
       const CONCURRENCY_LIMIT = 10;
+      let index = 0;
 
-      for (let i = 0; i < missingPrompts.length; i += CONCURRENCY_LIMIT) {
-        const chunk = missingPrompts.slice(i, i + CONCURRENCY_LIMIT);
-        await Promise.all(chunk.map(agent => {
+      const workers = Array(Math.min(CONCURRENCY_LIMIT, missingPrompts.length)).fill(0).map(async () => {
+        while (index < missingPrompts.length) {
+          const agent = missingPrompts[index++];
           const url = AgentUtils.getPromptUrl(agent);
-          return this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.")
-            .then(fetched => {
-              agent.prompt = fetched;
-            })
-            .catch(err => {
-            });
-        }));
-      }
+          try {
+            const fetched = await this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
+            agent.prompt = fetched;
+          } catch (err) {
+            // Silently ignore errors as per original implementation
+          }
+        }
+      });
+      await Promise.all(workers);
     }, 1000);
   }
 
