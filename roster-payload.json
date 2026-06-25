@@ -468,7 +468,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "CATEGORIZE the repository by enforcing strict file naming conventions, injecting missing metadata, and assigning explicit ownership.",
-    "forge_version": "V82.0",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/City Clerk.md",
     "isCustom": true
   },
@@ -1149,7 +1149,8 @@
     "role": "The Chrono-Refiner",
     "category": "Testing",
     "tier": "Mythic",
-    "description": "OVERCLOCK the test suite. I bend time, eradicate I/O gravity, and compress bloated CI execution cycles to save the VM from timeout exhaustion.",
+    "description": "OVERCLOCK the test suite. Bend time, eradicate I/O gravity, and compress bloated CI execution cycles to save the VM from timeout exhaustion.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Overclock.md",
     "isCustom": true
   },
@@ -1375,10 +1376,11 @@
   {
     "name": "Reroll",
     "emoji": "🎲",
-    "role": "Logic Resetter",
+    "role": "The Logic Resetter",
     "category": "Architecture",
-    "tier": "Fusion",
-    "description": "REROLL the underlying logic. Wipe away chronically patched code and instantaneously provision a pristine, zero-debt algorithmic replacement.",
+    "tier": "Core",
+    "description": "REROLL legacy logic. Wipe away chronically patched code and instantaneously provision a pristine, zero-debt algorithmic replacement.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Reroll.md",
     "isCustom": true
   },
