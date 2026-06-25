@@ -37,11 +37,11 @@
 ## The [ANALYZER] Queue
 
 ## The [UI / STYLIZE] Queue
-- [ ] 🎨 `js/UI/JulesTerminal/JulesModals.js`: Rigid inline CSS mutations detected (style.borderColor) across lines 41-233. Extract to semantic CSS classes.
-- [ ] 🎨 `js/UI/AgentCard/AgentCard.js`: Rigid inline CSS mutations detected (style.animationDelay) at line 35. Extract to semantic CSS classes.
-- [ ] 🎨 `js/UI/EmptyState/EmptyState.js`: Rigid inline CSS mutations detected (style.animation) at line 36. Extract to semantic CSS classes.
-- [ ] 🎨 `js/UI/Clipboard/clipboard-utils.js`: Rigid inline CSS mutations detected (style.position, style.opacity) at lines 34-89. Extract to semantic CSS classes.
-- [ ] 🎨 `js/core/events/EventBinder.js`: Rigid inline CSS mutations detected (style.display) at lines 165-170. Extract to semantic CSS classes.
+- [x] 🎨 `js/UI/JulesTerminal/JulesModals.js`: Rigid inline CSS mutations detected (style.borderColor) across lines 41-233. Extract to semantic CSS classes.
+- [x] 🎨 `js/UI/AgentCard/AgentCard.js`: Rigid inline CSS mutations detected (style.animationDelay) at line 35. Extract to semantic CSS classes.
+- [x] 🎨 `js/UI/EmptyState/EmptyState.js`: Rigid inline CSS mutations detected (style.animation) at line 36. Extract to semantic CSS classes.
+- [x] 🎨 `js/UI/Clipboard/clipboard-utils.js`: Rigid inline CSS mutations detected (style.position, style.opacity) at lines 34-89. Extract to semantic CSS classes.
+- [x] 🎨 `js/core/events/EventBinder.js`: Rigid inline CSS mutations detected (style.display) at lines 165-170. Extract to semantic CSS classes.
 
 ## The [AST / MODERNIZE] Queue
 - [x] 🧲 `js/UI/Clipboard/clipboard-utils.js`: Fossilized syntax pattern (`var`) at line 2. Upgrade to const/let.
