@@ -58,7 +58,7 @@ class GithubAPI {
             clearTimeout(timeoutId);
 
             if (!response.ok) {
-                const errorData = await response.json().catch(() => ({}));
+                const errorData = await response.json().catch((err) => ({ message: `Failed to parse error response: ${err.message}` }));
                 const errorMsg = errorData.message || `Github API Error (${response.status})`;
                 throw new GithubNetworkError(errorMsg, response.status);
             }
