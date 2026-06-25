@@ -99,11 +99,15 @@ You must explicitly generate the velocity strings and testing doctrines in the J
 * **`execution_posture`:** "* Execute in bounded sequence, tracking your mutation count against your declared quota ceiling."
 * **`reporter_procedure`:** "* Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling."
 
+Note: The Managed Interruption clause is encoded in this execution_mandate string. Do not re-state it in salvaged_custom_logic or as a standalone named mandate in the output.
+
 #### Expansive_Standard (Full-Sweep)
 * **`execution_mandate`:** "* Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across three layers:\n1. **Proactive Touchpoints:** If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.\n2. **Wrap-Up Checkpoints:** At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n3. **Managed Interruption:** If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: 'Awaiting operator clearance to resume.' Resume instantly once cleared."
 * **`discovery_velocity_rule`:** "* **The Full-Sweep:** You are authorized to map and execute against all matching targets across the repository. Thorough coverage is the mandate; do not short-circuit discovery to reach execution faster."
 * **`execution_posture`:** "* Execute progressively across all valid targets, managing your tool call envelope."
 * **`reporter_procedure`:** "* Verify your mutations incrementally. You have a maximum of 3 verification attempts per target. Do not treat changing error messages as forward progress. If you cannot cleanly verify a target within 3 attempts due to flaky test runners or environmental opacity, do not abort the session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed."
+
+Note: The Managed Interruption clause is encoded in this execution_mandate string. Do not re-state it in salvaged_custom_logic or as a standalone named mandate in the output.
 
 #### Expansive_Pruner (Full-Sweep)
 * **`execution_mandate`:** "* Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across two layers:\n1. **Wrap-Up Checkpoints:** At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.\n2. **Managed Interruption:** If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: 'Awaiting operator clearance to resume.' Resume instantly once cleared."
@@ -144,6 +148,8 @@ If the domain relies on structural verification (no executable tests), dynamical
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
 - **All Archetypes:** Strictly 5 to 7 steps.
 
+Note: Structural minimums and maximums for Target Matrix and Heuristic counts may NOT be waived by the Efficacy Exemption.
+
 ### Heuristic Verification Count Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
 - **Pruner / Transformer:** Exactly 2 checks.
@@ -151,6 +157,8 @@ If the domain relies on structural verification (no executable tests), dynamical
 - **Generator / Instrumenter:** 3 to 4 checks.
 
 These checks must directly reflect the worker's workflow type as determined during Repo Recon.
+
+Note: Structural minimums and maximums for Target Matrix and Heuristic counts may NOT be waived by the Efficacy Exemption.
 
 ### Confidence Tier Model
 An optional structural pattern available to the Sculptor. It serves as an alternative to the binary Ambiguity Gate for workers whose target domains have natural confidence gradients. When electing to apply it, reference it explicitly by name.

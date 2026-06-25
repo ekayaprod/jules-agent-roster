@@ -105,7 +105,8 @@ If walking through a Legacy Import, extract the legacy worker's Target Data Arra
 3. **The Execution Exception:** Do not retain legacy rules that define generic scope boundaries (e.g., "Modification Scope"), generic testing procedures, or platform tool usage. Forge-Procedure Module 1 Archetypes govern execution natively. However, retain domain-specific boundaries or state-handling overrides that are uniquely necessary for the specific operating theme.
 4. **Domain Exception:** Never discard cleanup rules that explicitly reference unique domain artifacts (e.g., `.nyc_output` removal).
 5. **Formatting:** Rewrite retained rules strictly as `* The [Name]: [Instruction].`
-6. **Universal Baseline Exemption:** The Master Forge natively provides the Universal Operational Baseline (Artifact Lockbox, Native Tool Lock, Unconditional Cleanup) within the Base Profiles. Aggressively strip these standard safety rules from legacy drafts to prevent duplicate rule injections in the final output.
+6. **The Multi-Clause Preservation Rule:** Any legacy rule that contains a numbered decision tree, a named tool constraint, or more than two subordinate behavioral directives must be preserved verbatim and may not be summarized, shortened, or paraphrased.
+7. **Universal Baseline Exemption:** The Master Forge natively provides the Universal Operational Baseline (Artifact Lockbox, Native Tool Lock, Unconditional Cleanup) within the Base Profiles. Aggressively strip these standard safety rules from legacy drafts to prevent duplicate rule injections in the final output.
 
 ### Output Format
 
@@ -203,10 +204,12 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 
 1. **Priority Language Test:** If the worker's Workflow Execution requires priority ordering, you must strictly map the value "according to declared priority weighting" to the `data.process.select_classify.priority_language` JSON key instead of rewriting the SELECT/CLASSIFY text manually to prevent double-appends.
 2. **Throughput & Payload Execution:** Apply the Reflective Throughput Judgment from Forge-Procedure Module 3: The Workload Strategy. Throughput is determined by the target array size: 1 target = Contained, Explicit Quota = Batch, Open/Multiple = Expansive.
-3. **Array Count Validation:** Verify the Target Matrix and Heuristics arrays exactly match the required structural counts defined in Forge-Procedure Module 4. Flag any deviations as a FAIL.
+3. **Array Count Validation:** Verify the Target Matrix and Heuristics arrays exactly match the required structural counts defined in Forge-Procedure Module 4. Flag any deviations as a FAIL. Note: Structural minimums and maximums for Target Matrix and Heuristic counts may NOT be waived by the Efficacy Exemption.
 4. **Coherence Audit:** Verify every DISCOVER target follows `* **[Category Name]:** [description]`. Verify Execution Steps match the Archetype's required step count. For Core tier workers, validate that the target matrix targets are framed broadly enough to serve as High-Probability Vectors (failing narrow scopes).
 5. **Format Completeness Check:** Validate array limits for Functional Bridge, Philosophy bullets, Optimizations, and Synthesis exactly match the required structural counts defined in Creative-Procedure under "The Operating Theme Gradient", and Heuristic count exactly matches the required structural count defined in Forge-Procedure Module 4.
 6. **Instruction Density Guidance:** Flag any worker whose retained instruction word count significantly exceeds the base physics equivalent as a Repair Order candidate.
+8. **The Baseline Deduplication Check:** Verify that no bare unlabeled bullet variants of Artifact Lockbox, Unconditional Cleanup, or Native Tool Lock survive in the output alongside their named equivalents. Flag any duplicate pair as a FAIL.
+9. **The Task Board Valve Check:** For workers routed to Pruner, Refactorer, Transformer, Instrumenter, or Operator archetypes, verify that the Task Board Valve (`[x] (Blocked / False Positive)` syntax) is present in the Strict Operational Mandates. Flag its absence as a FAIL.
 7. **Efficacy Exemption:** Content rewrites triggered by Repair Orders (such as format and wording checks) may be bypassed if preserving the original language genuinely improves the Jules Core's operational efficacy. However, structural minimums like the minimum heuristic or philosophy counts may not be waived. Format checks must not rewrite working content to fit a template, but structural minimums must be enforced. If this exemption is applied, the Linter output must explicitly declare `"EFFICACY_EXEMPTION"`.
 
 ### Output Format
@@ -218,6 +221,7 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 - **Structural Boundaries:** [PASS/FAIL — list each sub-check]
 - **Coherence & Integrity:** [PASS/FAIL — list each sub-check]
 - **UI Fence:** [PASS/FAIL — list each sub-check]
+  - **The Optimizations Emoji Check:** Verify every Favorite Optimizations entry carries a thematic emoji prefix. Flag any plain-text entry as a FAIL.
   - **Reserved Process Emojis:** The emojis 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution process headers. Do not use them as the Operating Theme Lead emoji, within Philosophy bullets, or within Optimizations.
 - **The Repair Order:** [If FAIL, provide the minimal string correction required. Re-run the check. If PASS or EFFICACY_EXEMPTION, output "Ready for JSON Compilation."]
 
