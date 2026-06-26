@@ -17,3 +17,8 @@
 
 # Hazard Log
 * No unhandled operational hazards observed.
+* 🔐 Secret signature detected: `prompts/fusions/Keymaster.md` contains `sk_live_` prefix pattern and hardcoded AWS `AKIA` access keys.
+* 🔐 Secret signature detected: `prompts/fusions/Revoker.md` contains hardcoded `AKIA...` AWS access keys.
+
+# Persistent Entropy
+* Deferred fixing EOF newlines in remaining 16 Markdown files due to target limit (10).
