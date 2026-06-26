@@ -127,6 +127,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "RESUSCITATE fatal boot sequences, trace catastrophic crashes, and mutate logic to restore operational stability.",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Paramedic.md",
     "isCustom": false
   },
