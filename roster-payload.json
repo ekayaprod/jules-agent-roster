@@ -193,6 +193,7 @@
     "category": "Hygiene",
     "tier": "Core",
     "description": "UNKNOT deeply nested code to restore readability through linear execution paths and guard clauses.",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Untangler.md",
     "isCustom": false
   },
