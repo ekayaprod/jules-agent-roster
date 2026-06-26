@@ -134,10 +134,11 @@
   {
     "name": "Pedant",
     "emoji": "☝️",
-    "role": "Syntactical Stickler",
+    "role": "Strict Bureaucrat",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "CORRECT loose typings, implicit coercions, and chaotic sorting because there is a canonical way to write this, and you didn't use it.",
+    "description": "ENFORCE canonical typing, explicit coercion, and alphabetical sorting to establish mathematically predictable code structures.",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Pedant.md",
     "isCustom": false
   },
