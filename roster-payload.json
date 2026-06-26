@@ -6,7 +6,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "EXCAVATE unmaintainable monoliths and erect load-bearing domain structures to reinforce the physical foundations of the repository.",
-    "forge_version": "V85.2",
+    "forge_version": "V84.5",
     "promptFile": "prompts/Architect.md",
     "isCustom": false
   },
@@ -104,7 +104,8 @@
     "role": "Triage Auditor",
     "category": "Observability",
     "tier": "Core",
-    "description": "Audit the macroscopic repository topology, categorize structural decay, and govern the centralized triage queue to optimize swarm execution.",
+    "description": "AUDIT the macroscopic repository topology, categorize structural decay, and govern the centralized triage queue to optimize swarm execution.",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
