@@ -1,33 +1,21 @@
-## Palette+ — Harmonized Fusions Modal Layout
-**Learning:** Reusing existing `.flip-card` rendering within a localized modal context requires careful management of internal state variables (`_domNodeCache`, `_cardHtmlCache`) to accurately reflect state boundaries.
-**Action:** Always clear internal rendering cache variables before forcing layout renders via Playwright `page.evaluate()` or manual injection.
+# Design Decision Ledger
 
-## Palette+ — Terminal Interaction State Polish
-**Learning:** A rigid color swap without an interpolation curve creates a harsh interaction edge on terminal feedback nodes.
-**Action:** Injected a fast but fluid `0.2s ease-in-out` interpolation curve into terminal feedback indicators to soften visual feedback without destroying user attention.
+## Component: `js/UI/JulesTerminal/JulesModals.js`
+- **Design Pattern**: Semantic Error States
+- **Action**: Removed rigid `style.borderColor = "var(--error)"` inline styles in favor of the `border-error` CSS class. Cleaned up arbitrary DOM resetting logic (replacing empty inline styles with `classList.remove()`).
 
-## 2026-03-09 - [Empty State Visual Polish]
-**Learning:** `js/UI/EmptyState/EmptyState.js` had a broken class name `empty-title-mutated` that disrupted the visual layout and style definitions for the empty state titles.
-**Action:** Reverted the `className` back to `empty-title` to resolve broken empty state styling, maintaining consistent and accurate UI across the platform.
+## Component: `js/UI/AgentCard/AgentCard.js`
+- **Design Pattern**: Choreography & Motion
+- **Action**: Replaced brittle inline `style.animationDelay` logic with dynamic CSS Custom Properties mapped via `style.setProperty("--card-delay")`.
 
-## 2026-03-09 - [Component Layout Alignment]
-**Learning:** Reusing utility classes (like `card p-6`) doesn't always scale nicely when a specific component layout requires unique maximum-widths and centering logic to match its peer components (like `.fusion-lab-container`).
-**Action:** Replaced utility classes with explicit CSS defining `.singularity-builder` container rules inside the component's internal `<style>` block to guarantee dimensional parity without side-effects.
-## 2026-05-09 - [Hide Unavailable Agents in Fusion Index]
-**Learning:** `js/Features/Fusion/FusionIndex.js` failed to filter out missing combinations (`""` values) from `customAgents`, rendering empty slots and counting them towards the total. Modifying build artifacts like `roster-payload.json` during the PR process violates repo constraints and creates unnecessary bloat.
-**Action:** Implemented a targeted value filter during the `sortedKeys` rendering loop and the `updateProgress` loop, correctly filtering out falsy string definitions. Dropped `roster-payload.json` modifications via `git reset/checkout` before submitting.
-## 2026-05-10 - [AgentPicker Inline Styles Removal]
-**Learning:** Hardcoded inline styles like `animation-delay: ${delay}ms` and `grid-template-columns: repeat(${columns}, 1fr)` create rigid presentation states and bloat HTML strings inside JavaScript files.
-**Action:** Created CSS utility classes for delays (e.g. `.delay-30`, `.delay-60`) and grid columns (e.g. `.grid-cols-4`), and replaced the inline styles in `AgentPicker.js` with these classes.
+## Component: `js/UI/EmptyState/EmptyState.js`
+- **Design Pattern**: Semantic Transitions
+- **Action**: Extracted inline `style.animation = "fadeIn 0.3s ease-out forwards"` into standard `animate-fade-in` and fluid transition utilities.
 
-## 2026-05-11 - [AgentCard Interactive Elements Polish]
-**Learning:** Interactive elements such as `.pin-btn`, `.fusions-hint`, and `.flip-hint` within `AgentCard.js` snapped instantly into place without an interpolation curve, creating rigid binary state interaction.
-**Action:** Injected consistent transition utility classes (`transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2`) to those elements. This adds fluid state choreography, improving interaction aesthetics without changing core functionality or DOM nesting.
+## Component: `js/UI/Clipboard/clipboard-utils.js`
+- **Design Pattern**: Accessible Fallbacks
+- **Action**: Stripped hardcoded `style.position = "fixed"` and `style.opacity = "0"` properties targeting the `execCommand` copy text area, migrating the layout responsibilities to a `.clipboard-hidden-textarea` utility class. Replaced hardcoded `style.display` properties with standard `.d-none` structural classes.
 
-## 2026-06-14 - [Aesthetic Restructuring]
-**Learning:** Components lacking depth, fluid transitions, and proper boundary radii fail to feel tactile. Applying visual depth to , `.empty-state`, and `.fusion-item` using tailwind-like utility structures helps establish visual hierarchy.
-**Action:** Replaced hardcoded class lists with structured, rhythmic utility classes (`rounded-xl`, `shadow-sm`, `transition-all`) across `AgentCard`, `EmptyState`, and `FusionIndex` elements without touching core logic or tests.
-
-## 2026-06-14 - [Aesthetic Restructuring]
-**Learning:** Components lacking depth, fluid transitions, and proper boundary radii fail to feel tactile. Applying visual depth to flip-cards, empty-states, and fusion-items using tailwind-like utility structures helps establish visual hierarchy.
-**Action:** Replaced hardcoded class lists with structured, rhythmic utility classes (rounded-xl, shadow-sm, transition-all) across AgentCard, EmptyState, and FusionIndex elements without touching core logic or tests.
+## Component: `js/core/events/EventBinder.js`
+- **Design Pattern**: Structural Utilities
+- **Action**: Consolidated ad-hoc `style.display = ""` and `style.display = "none"` interactions across rendering sequences into predictable `d-none` utility toggles for buttons and containers.
