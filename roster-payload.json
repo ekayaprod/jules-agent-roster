@@ -6,7 +6,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "EXCAVATE unmaintainable monoliths and erect load-bearing domain structures to reinforce the physical foundations of the repository.",
-    "forge_version": "V84.5",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Architect.md",
     "isCustom": false
   },
@@ -28,6 +28,7 @@
     "category": "Performance",
     "tier": "Core",
     "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge latency.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/Bolt+.md",
     "isCustom": false
   },
@@ -38,6 +39,7 @@
     "category": "Feature",
     "tier": "Core",
     "description": "INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art handshakes.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/Cortex.md",
     "isCustom": false
   },
@@ -47,7 +49,8 @@
     "role": "Logistics Warden",
     "category": "Operations",
     "tier": "Core",
-    "description": "Dispatch pristine CI/CD payloads, optimize container transit, fortify meta-infrastructure, and provision context-aware MCP arrays.",
+    "description": "DISPATCH pristine CI/CD payloads, optimize container transit, fortify meta-infrastructure, and provision context-aware MCP arrays.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
@@ -58,6 +61,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "COLLAPSE sprawling imperative logic into highly dense, functional crystals using high-pressure vertical reduction.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/Helix.md",
     "isCustom": false
   },
@@ -68,6 +72,7 @@
     "category": "Testing",
     "tier": "Core",
     "description": "SHAKEDOWN unverified logic. Author ruthless test suites that drag perfect setups into the interrogation room until their alibis crack.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/Inspector.md",
     "isCustom": false
   },
@@ -85,10 +90,11 @@
   {
     "name": "Navigator",
     "emoji": "🧭",
-    "role": "Roadmap Visionary",
+    "role": "Cartographer",
     "category": "Strategy",
     "tier": "Core",
-    "description": "CHART the path forward. Audit physical git history to synchronize milestones and target architectural obsolescence for the innovation backlog.",
+    "description": "CHART static codebase mapping, dependency graph generation, and architectural cartography to expose stagnation and inject visionary pathfinding.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/Navigator.md",
     "isCustom": false
   },
@@ -215,7 +221,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "ENFORCE strict build-time failure thresholds to halt bundle bloat before it ever hits production.",
-    "forge_version": "V84.0",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Accountant.md",
     "isCustom": true
   },
@@ -1183,6 +1189,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "BUILD modern, dormant replacements alongside legacy systems without migrating or deleting the original architecture.",
+    "forge_version": "V85.1",
     "promptFile": "prompts/fusions/Parallel.md",
     "isCustom": true
   },
