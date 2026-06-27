@@ -171,7 +171,7 @@
     "category": "Security",
     "tier": "Core",
     "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries.",
-    "forge_version": "V84.5",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Sentinel+.md",
     "isCustom": false
   },
