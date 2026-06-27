@@ -28,7 +28,7 @@
     "category": "Performance",
     "tier": "Core",
     "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge latency.",
-    "forge_version": "V85.1",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Bolt+.md",
     "isCustom": false
   },
