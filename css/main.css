@@ -498,8 +498,8 @@
       @media (min-width: 640px) {
         .ide-viewport { max-height: 25rem; padding: 1rem 1.5rem; }
         .flip-card, .skeleton-card { flex-basis: 20rem !important; max-width: 24rem !important; margin-top: 2rem; }
-        #main > .section-header { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-        .grid > *:first-child::before { position: absolute; top: -2rem; left: 0.5rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); font-weight: normal; white-space: nowrap; pointer-events: none; }
+        #main > .section-header { position: static; width: 100%; height: auto; padding: 1rem 1rem 0; margin: 0; overflow: visible; clip: auto; white-space: normal; border-bottom: none; text-align: left; }
+        .grid > *:first-child::before { display: none; }
         #architectureGrid > *:first-child::before { content: "Architecture"; }
         #hygieneGrid > *:first-child::before { content: "Hygiene"; }
         #strategyGrid > *:first-child::before { content: "Strategy"; }
