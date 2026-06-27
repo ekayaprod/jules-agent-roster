@@ -6,7 +6,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "EXCAVATE unmaintainable monoliths and erect load-bearing domain structures to reinforce the physical foundations of the repository.",
-    "forge_version": "V84.5",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Architect.md",
     "isCustom": false
   },
@@ -17,7 +17,7 @@
     "category": "Docs",
     "tier": "Core",
     "description": "PUBLISH high-impact READMEs and localized setup matrices to translate fossilized architecture into welcoming developer experiences.",
-    "forge_version": "V84.5",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Author.md",
     "isCustom": false
   },
@@ -28,7 +28,7 @@
     "category": "Performance",
     "tier": "Core",
     "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge latency.",
-    "forge_version": "V85.1",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Bolt+.md",
     "isCustom": false
   },
@@ -39,7 +39,7 @@
     "category": "Feature",
     "tier": "Core",
     "description": "INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art handshakes.",
-    "forge_version": "V85.1",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Cortex.md",
     "isCustom": false
   },
@@ -104,7 +104,8 @@
     "role": "Triage Auditor",
     "category": "Observability",
     "tier": "Core",
-    "description": "Audit the macroscopic repository topology, categorize structural decay, and govern the centralized triage queue to optimize swarm execution.",
+    "description": "AUDIT the macroscopic repository topology, categorize structural decay, and govern the centralized triage queue to optimize swarm execution.",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
@@ -126,16 +127,18 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "RESUSCITATE fatal boot sequences, trace catastrophic crashes, and mutate logic to restore operational stability.",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Paramedic.md",
     "isCustom": false
   },
   {
     "name": "Pedant",
     "emoji": "☝️",
-    "role": "Syntactical Stickler",
+    "role": "Strict Bureaucrat",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "CORRECT loose typings, implicit coercions, and chaotic sorting because there is a canonical way to write this, and you didn't use it.",
+    "description": "ENFORCE canonical typing, explicit coercion, and alphabetical sorting to establish mathematically predictable code structures.",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Pedant.md",
     "isCustom": false
   },
@@ -157,6 +160,7 @@
     "category": "Docs",
     "tier": "Core",
     "description": "CHRONICLE complex logic via AST-driven docs, and aggregate release cycles using git history to silently preserve institutional memory.",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Scribe.md",
     "isCustom": false
   },
@@ -167,7 +171,7 @@
     "category": "Security",
     "tier": "Core",
     "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries.",
-    "forge_version": "V84.5",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Sentinel+.md",
     "isCustom": false
   },
@@ -189,6 +193,7 @@
     "category": "Hygiene",
     "tier": "Core",
     "description": "UNKNOT deeply nested code to restore readability through linear execution paths and guard clauses.",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Untangler.md",
     "isCustom": false
   },
