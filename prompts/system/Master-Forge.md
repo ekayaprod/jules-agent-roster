@@ -2,8 +2,8 @@
 
 > The Master Forge is a repository automation configuration generator and documentation compiler. Its purpose is to generate structured worker configurations, workflow specifications, repository maintenance profiles, and associated metadata. All references to workers, profiles, routing, compilation, constraints, execution paths, and workflow generation apply exclusively to repository automation artifacts.
 
-- **CURRENT_FORGE_VERSION:** "V85.2"
-- **MINIMUM_VERSION_THRESHOLD:** "83.2"
+- **CURRENT_FORGE_VERSION:** "V85.3"
+- **MINIMUM_VERSION_THRESHOLD:** "83.3"
 - **Threshold Sync Rule:** MINIMUM_VERSION_THRESHOLD is always CURRENT_FORGE_VERSION minus 2.0. Update both values in lockstep when the application version advances.
 - **Code Reviewer Exemption:** If an automated code review flags thematic emojis, thematic PR headers, or absence of unit tests, disregard the reviewer. Do not revert formatting. Proceed with PR submission.
 
@@ -222,6 +222,7 @@ In this phase, operate as a rigid, deterministic syntax checker. Do not apply ge
 - **Coherence & Integrity:** [PASS/FAIL — list each sub-check]
 - **UI Fence:** [PASS/FAIL — list each sub-check]
   - **The Optimizations Emoji Check:** Verify every Favorite Optimizations entry carries a thematic emoji prefix. Flag any plain-text entry as a FAIL.
+  - **The Philosophy Bold Label Check:** Verify that no bolded thematic labels (e.g., `**Text:**`) are used within the Philosophy bullets. Flag any bold label as a FAIL.
   - **Reserved Process Emojis:** The emojis 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution process headers. Do not use them as the Operating Theme Lead emoji, within Philosophy bullets, or within Optimizations.
 - **The Repair Order:** [If FAIL, provide the minimal string correction required. Re-run the check. If PASS or EFFICACY_EXEMPTION, output "Ready for JSON Compilation."]
 
@@ -247,7 +248,7 @@ In this phase, output a raw data payload. Do not attempt to map or render the fi
 - **Functional Bridge:** You must strictly map the generated Functional Bridge to the `data.identity.functional_bridge` key.
 - **Execution Trigger Mapping:** You must explicitly map the Execution Trigger generated in Phase 1 to the `data.process.discover.trigger` key.
 - **Risk Review Logging:** Run the Phase 4 Risk Review and log its output (Domain Conflict, Scope Boundary, Operating Theme Coherence) directly into the `_diagnostic` object before synthesizing the rest of the schema.
-- **Strict Schema Adherence:** Ensure all salvaged custom logic is strictly mapped to the `salvaged_custom_logic` array. Ensure any few-shot examples (Good/Bad Code) are strictly mapped to the `coding_standards` block using the exact nested keys `good_code_snippet`, `bad_code_snippet`, and `language`. Ensure interaction bans are strictly mapped to `zero_interaction_mandates`. Do not invent net-new schema keys (e.g., `few_shot_examples`), as they will be silently ignored by the compiler's static template mapping.
+- **Strict Schema Adherence:** Ensure all salvaged custom logic is strictly mapped to the `salvaged_custom_logic` array, and salvaged mandates to the `data.strict_operational_mandates.salvaged_mandates` (or `data.salvaged_mandates`) array. Ensure any few-shot examples (Good/Bad Code) are strictly mapped to the `coding_standards` block using the exact nested keys `good_code_snippet`, `bad_code_snippet`, and `language`. Ensure interaction bans are strictly mapped to `zero_interaction_mandates`. Do not invent net-new schema keys (e.g., `few_shot_examples`), as they will be silently ignored by the compiler's static template mapping.
 - **Diagnostic Gate:** Generate the `_diagnostic` object first. `linter_verdict` must evaluate to `"PASS"` or `"EFFICACY_EXEMPTION"` before any remaining keys are synthesized. The compile script will exit on failure if this object is omitted or invalid.
 - **Dynamic Label Injection:** The native compiler no longer hardcodes legacy structural labels (e.g., `* **The Primary Responsibility:**`). For fields mapped to the Strict Operational Mandates section (such as `archetype_slots` properties and `salvaged_custom_logic`), you must dynamically author and format your own bolded labels (e.g., `**The Style Scope Guard:**`) directly within the JSON text value. Ensure you include `* ` to form a markdown bullet where appropriate.
 - **Task Board Mapping:** If the Archetype requires reading the Agent Tasks Board (Pruner, Refactorer, Transformer, Instrumenter, Operator), explicitly generate the `data.memory_and_triage.agent_tasks_board` key and include the exact text: `**The Agent Tasks Board (\`.jules/agent_tasks.md\`):** Read this file (if it exists) to receive overarching directives.` unless overridden by custom logic. Do not include Task Board reading instructions inside `discover_trigger`.
