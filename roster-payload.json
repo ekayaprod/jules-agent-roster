@@ -501,7 +501,7 @@
     "category": "Feature",
     "tier": "Fusion",
     "description": "BUILD net-new architecture, atomic components, and foundational feature files.",
-    "forge_version": "V82.0",
+    "forge_version": "V85.3",
     "promptFile": "prompts/fusions/Construct.md",
     "isCustom": true
   },
@@ -1213,9 +1213,10 @@
     "name": "Pathfinder",
     "emoji": "🥾",
     "role": "Friction Eradicator",
-    "category": "Hygiene",
+    "category": "UX",
     "tier": "Fusion",
-    "description": "Streamline core interaction loops and flatten logic routing to ensure the \"Happy Path\" requires the absolute minimum number of clicks.",
+    "description": "STREAMLINE core interaction loops and flatten logic routing to ensure the \"Happy Path\" requires the absolute minimum number of clicks.",
+    "forge_version": "V85.2",
     "promptFile": "prompts/fusions/Pathfinder.md",
     "isCustom": true
   },
