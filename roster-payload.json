@@ -39,7 +39,7 @@
     "category": "Feature",
     "tier": "Core",
     "description": "INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art handshakes.",
-    "forge_version": "V85.1",
+    "forge_version": "V85.2",
     "promptFile": "prompts/Cortex.md",
     "isCustom": false
   },
