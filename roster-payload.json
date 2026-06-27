@@ -490,7 +490,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "COLLIDE outdated syntax into modern paradigms and observe the resulting collisions to mathematically prove structural integrity.",
-    "forge_version": "V82.0",
+    "forge_version": "V85.2",
     "promptFile": "prompts/fusions/Collider.md",
     "isCustom": true
   },
@@ -1062,7 +1062,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "ERADICATE useless React re-renders caused by unstable object references, un-memoized callbacks, and inline styles that destroy frontend performance.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.2",
     "promptFile": "prompts/fusions/Millisecond.md",
     "isCustom": true
   },
