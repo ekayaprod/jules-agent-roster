@@ -48,7 +48,7 @@ Applies during the compilation of all operating theme-driven elements. Balances 
 
 ### The Operating Theme Gradient
 
-Apply thematic voice precisely according to this gradient. Array length and structural constraints must be strictly evaluated during the Phase 5 Linter pass.
+Apply thematic voice precisely according to this gradient.
 
 **Theme Verb:** Must be a single imperative action verb, in ALL CAPS.
 
