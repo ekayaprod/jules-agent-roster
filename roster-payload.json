@@ -622,7 +622,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "ALIGN outdated assertions with current source files to correct semantic drift without inventing net-new test coverage.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.2",
     "promptFile": "prompts/fusions/Examiner.md",
     "isCustom": true
   },
@@ -1204,7 +1204,8 @@
     "role": "Route Extractor",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Eradicate hardcoded API endpoints, file paths, and routing constants by extracting them into centralized configuration maps.",
+    "description": "CENTRALIZE scattered literal string magic routes and canonicalize them to prevent maintenance-heavy infrastructure breakages.",
+    "forge_version": "V85.2",
     "promptFile": "prompts/fusions/PathCentralizer.md",
     "isCustom": true
   },
