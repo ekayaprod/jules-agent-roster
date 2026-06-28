@@ -275,11 +275,12 @@ class EventBinder {
 
               const url = AgentUtils.getPromptUrl(agent);
 
-              app.agentRepo.fetchPrompt(agent.name, url, fallbackText).then((fetchedPrompt) => {
+              (async () => {
+                  const fetchedPrompt = await app.agentRepo.fetchPrompt(agent.name, url, fallbackText);
                   agent.prompt = fetchedPrompt;
                   promptArea.innerHTML = '';
                   promptArea.appendChild(AgentCard.getPromptNode(agent));
-              });
+              })();
           } else {
               promptArea.innerHTML = '';
               promptArea.appendChild(AgentCard.getPromptNode(agent));
@@ -366,7 +367,7 @@ class EventBinder {
     });
 
     // Pre-fetch custom/fusion agent prompts on hover to reduce flip latency
-    document.addEventListener('mouseover', (e) => {
+    document.addEventListener('mouseover', async (e) => {
         const card = e.target.closest('.flip-card');
         if (!card || card.classList.contains('flipped')) return;
 
@@ -380,13 +381,14 @@ class EventBinder {
         if (!agent || !agent.isCustom || agent.prompt !== undefined) return;
 
         const url = AgentUtils.getPromptUrl(agent);
-        app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.").then(fetched => {
+        try {
+            const fetched = await app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
             agent.prompt = fetched;
-        }).catch(err => {
+        } catch (err) {
             const tu = window.TelemetryUtils;
             if (tu) tu.dispatchEvent("PROMPT_FETCH_ERROR", err);
             else console.error("Failed to pre-fetch custom agent prompt:", err);
-        });
+        }
     });
 
     // Close search and active dropdowns on Escape key
