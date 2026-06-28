@@ -108,13 +108,14 @@ class ExportController {
       if (agent && agent.prompt === undefined) {
         const url = AgentUtils.getPromptUrl(agent);
 
-        const taskPromise = this.app.agentRepo.fetchPrompt(
-          agent.name,
-          url,
-          'No protocol data available.'
-        ).then(prompt => {
+        const taskPromise = (async () => {
+          const prompt = await this.app.agentRepo.fetchPrompt(
+            agent.name,
+            url,
+            'No protocol data available.'
+          );
           agent.prompt = prompt;
-        });
+        })();
 
         activeTasks.add(taskPromise);
         taskPromise.finally(() => activeTasks.delete(taskPromise));
@@ -149,8 +150,8 @@ class ExportController {
     );
 
     // ⚡ Bolt+: The O(n²) Eradication. Extracted constant split operation to reduce algorithmic complexity inside inner loop from O(N) allocations to O(1) matching.
-    const prefix = parentName + ',';
-    const suffix = ',' + parentName;
+    const prefix = `${parentName},`;
+    const suffix = `,${parentName}`;
     for (const key in fusionMatrixMap) {
       if (Object.prototype.hasOwnProperty.call(fusionMatrixMap, key)) {
         if (key.includes(parentName)) {
@@ -173,7 +174,7 @@ class ExportController {
     if (exportableAgents.length === 0)
       return this.app.toast.show('No unlocked fusions found for this agent.');
     DownloadUtils.downloadTextFile(
-      header + FormatUtils.formatAgentPrompts(exportableAgents),
+      `${header}${FormatUtils.formatAgentPrompts(exportableAgents)}`,
       `jules_custom_agents_${parentName.replace(/\s+/g, '_').toLowerCase()}.md`,
     );
     ClipboardUtils.animateButtonSuccess(btn, 'Downloaded!');
@@ -200,7 +201,7 @@ class ExportController {
 
     if (validCustomAgents.length === 0) return this.app.toast.show('No custom agents available.');
     DownloadUtils.downloadTextFile(
-      header + FormatUtils.formatAgentPrompts(validCustomAgents),
+      `${header}${FormatUtils.formatAgentPrompts(validCustomAgents)}`,
       'jules_custom_agents.md',
     );
     ClipboardUtils.animateButtonSuccess(btn, 'Downloaded!');
@@ -220,7 +221,7 @@ class ExportController {
 
     const header = FormatUtils.MASTER_ROSTER_HEADER;
     DownloadUtils.downloadTextFile(
-      header + FormatUtils.formatAgentPrompts(this.app.agents),
+      `${header}${FormatUtils.formatAgentPrompts(this.app.agents)}`,
       'jules_roster.md',
     );
     ClipboardUtils.animateButtonSuccess(btn, 'Downloaded!');
@@ -240,7 +241,7 @@ class ExportController {
     const header = FormatUtils.MASTER_ROSTER_HEADER;
 
     const success = await ClipboardUtils.copyText(
-      header + FormatUtils.formatAgentPrompts(this.app.agents)
+      `${header}${FormatUtils.formatAgentPrompts(this.app.agents)}`
     );
     if (success) {
       this.app.toast.show('Copied to clipboard');

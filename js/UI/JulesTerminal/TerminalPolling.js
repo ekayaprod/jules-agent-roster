@@ -106,7 +106,7 @@ class TerminalPolling {
 
                     if (text) {
                         state.rawMessage = act.description || act.title;
-                        if (text.length > 70) text = text.substring(0, 70) + "...";
+                        if (text.length > 70) text = `${text.substring(0, 70)}...`;
                         state.latestLog = text;
                     }
 
@@ -116,7 +116,7 @@ class TerminalPolling {
 
                     if (act.error) {
                         state.hasError = true;
-                        state.latestLog = "Exception: " + (act.error.message || "Unknown error");
+                        state.latestLog = `Exception: ${act.error.message ?? "Unknown error"}`;
                         state.rawMessage = state.latestLog;
                     }
 

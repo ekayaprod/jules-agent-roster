@@ -32,8 +32,8 @@ class AgentCard {
 
     // Fallback for tests or environments where unlockedAgents isn't initialized
     const unlockedKeys = fusionIndex.unlockedKeys || [];
-    const prefix = agentName + ',';
-    const suffix = ',' + agentName;
+    const prefix = `${agentName},`;
+    const suffix = `,${agentName}`;
 
     for (const key of unlockedKeys) {
       if (!key.includes(agentName)) continue;

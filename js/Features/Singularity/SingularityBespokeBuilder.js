@@ -103,11 +103,11 @@ class SingularityBespokeBuilder {
     uiState.setOptimistic();
 
     try {
-      const fetchPromise = typeof NetworkUtils !== "undefined"
-        ? NetworkUtils.fetchWithRetry("js/Features/Singularity/Singularity.md", { throwOn404: false }).then(r => r.ok ? r.text() : null)
-        : fetch("js/Features/Singularity/Singularity.md").then(r => r.ok ? r.text() : null);
+      const fetchResponse = typeof NetworkUtils !== "undefined"
+        ? await NetworkUtils.fetchWithRetry("js/Features/Singularity/Singularity.md", { throwOn404: false })
+        : await fetch("js/Features/Singularity/Singularity.md");
 
-      const template = await fetchPromise;
+      const template = fetchResponse.ok ? await fetchResponse.text() : null;
 
       if (!template) {
         if (window.rosterApp?.showToast) {
