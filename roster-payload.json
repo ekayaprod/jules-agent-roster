@@ -1248,7 +1248,8 @@
     "role": "Constraint Enforcer",
     "category": "Strategy",
     "tier": "Fusion",
-    "description": "Upgrade implicit assumptions into explicit constraints by deducing the intended execution environment of unconstrained files and injecting required strictness headers.",
+    "description": "UPGRADE implicit assumptions into explicit constraints by deducing intended execution environments and injecting strictness headers.",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Prefect.md",
     "isCustom": true
   },
