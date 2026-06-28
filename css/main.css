@@ -168,8 +168,8 @@
         left: 0;
         top: 0;
         height: 100vh;
-        width: 32rem;
-        max-width: 90vw;
+        width: 100%;
+        max-width: 32rem;
         background: var(--term-bg);
         border-right: 1px solid var(--term-border);
         display: flex;
@@ -186,10 +186,13 @@
       }
       .jules-pull-tab {
         position: absolute;
-        right: -2.5rem;
+        right: -2.75rem;
         top: 20vh;
-        width: 2.5rem;
+        width: 2.75rem;
         height: 3rem;
+        min-width: 44px;
+        min-height: 44px;
+        touch-action: manipulation;
         background: var(--term-bg);
         border: 1px solid var(--term-border);
         border-left: none;
@@ -208,6 +211,12 @@
         background: var(--term-panel-bg);
         color: var(--accent);
         transform: translateX(0.25rem);
+      }
+  }
+      .jules-pull-tab:active {
+        background: var(--term-panel-bg);
+        color: var(--accent);
+        transform: translateX(0.25rem) scale(0.95);
       }
       .jules-pull-tab:focus-visible {
         outline: 2px solid var(--accent);
