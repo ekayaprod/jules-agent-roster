@@ -53,17 +53,17 @@
 
 ## The [RESILIENCE / SAFEGUARD] Queue
 - [x] 🛡️ `js/Services/GithubAPI/GithubAPI.js`: Missing error-handling catch block logic detected at line 61. Ensure graceful degradation.
-- [ ] 🛡️ `js/UI/JulesTerminal/JulesTerminal.js`: Empty catch block mapped at line 245. Ensure resilient fallback.
-- [ ] 🛡️ `js/UI/JulesTerminal/JulesTerminal.js`: Empty catch block mapped at line 541. Ensure resilient fallback.
-- [ ] 🛡️ `js/UI/JulesTerminal/JulesTerminal.js`: Empty catch block mapped at line 579. Ensure resilient fallback.
-- [ ] 🛡️ `js/UI/JulesTerminal/JulesModals.js`: Empty catch block mapped at line 206. Ensure resilient fallback.
-- [ ] 🛡️ `js/UI/JulesTerminal/TerminalPolling.js`: Empty catch block mapped at line 25. Ensure resilient fallback.
-- [ ] 🛡️ `js/UI/Clipboard/clipboard-utils.js`: Empty catch block mapped at line 23. Ensure resilient fallback.
-- [ ] 🛡️ `js/UI/Clipboard/clipboard-utils.js`: Empty catch block mapped at line 39. Ensure resilient fallback.
-- [ ] 🛡️ `js/core/events/EventBinder.js`: Empty catch block mapped at line 475. Ensure resilient fallback.
-- [ ] 🛡️ `js/core/RosterApp.js`: Empty catch block mapped at line 108. Ensure resilient fallback.
-- [ ] 🛡️ `js/Utils/telemetry-utils.js`: Empty catch block mapped at line 20. Ensure resilient fallback.
-- [ ] 🛡️ `js/Utils/network-utils.js`: Empty catch block mapped at line 53. Ensure resilient fallback.
-- [ ] 🛡️ `js/Utils/network-utils.js`: Empty catch block mapped at line 75. Ensure resilient fallback.
-- [ ] 🛡️ `js/Utils/network-utils.js`: Empty catch block mapped at line 79. Ensure resilient fallback.
-- [ ] 🛡️ `js/Utils/network-utils.js`: Empty catch block mapped at line 95. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/UI/JulesTerminal/JulesTerminal.js`: Empty catch block mapped at line 245. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/UI/JulesTerminal/JulesTerminal.js`: Empty catch block mapped at line 541. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/UI/JulesTerminal/JulesTerminal.js`: Empty catch block mapped at line 579. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/UI/JulesTerminal/JulesModals.js`: Empty catch block mapped at line 206. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/UI/JulesTerminal/TerminalPolling.js`: Empty catch block mapped at line 25. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/UI/Clipboard/clipboard-utils.js`: Empty catch block mapped at line 23. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/UI/Clipboard/clipboard-utils.js`: Empty catch block mapped at line 39. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/core/events/EventBinder.js`: Empty catch block mapped at line 475. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/core/RosterApp.js`: Empty catch block mapped at line 108. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/Utils/telemetry-utils.js`: Empty catch block mapped at line 20. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/Utils/network-utils.js`: Empty catch block mapped at line 53. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/Utils/network-utils.js`: Empty catch block mapped at line 75. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/Utils/network-utils.js`: Empty catch block mapped at line 79. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/Utils/network-utils.js`: Empty catch block mapped at line 95. Ensure resilient fallback.
