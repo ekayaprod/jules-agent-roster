@@ -1282,6 +1282,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "PROPAGATE overgrown WET clippings into pristine, net-new utility soil to cultivate a centralized, structurally cohesive root system.",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Propagator.md",
     "isCustom": true
   },
