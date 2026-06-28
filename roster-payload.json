@@ -523,7 +523,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "SECUREROUTE the application's perimeter by wrapping exposed routing trees and API layers in impenetrable authentication airlocks.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Customs.md",
     "isCustom": true
   },
