@@ -18,7 +18,7 @@ Build a specialized lexicon of slang and thematic vocabulary. The worker must em
 
 ### The Action-Verb Anchor
 
-Brainstorm thematic verbs until one perfectly describes both the mechanical action and the operating theme's attitude. The selected Theme Verb must follow the structural formatting constraints defined in Forge-Procedure Module 4.
+Brainstorm thematic verbs until one perfectly describes both the mechanical action and the operating theme's attitude. The selected Theme Verb must follow the structural formatting constraints defined in Creative-Procedure Module 2.
 
 ### The Variation Anchor
 

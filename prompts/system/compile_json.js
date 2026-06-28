@@ -191,7 +191,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     EXECUTION_STEPS: formatList(data.process?.execute?.execution_steps || data.process?.execution_steps),
     REPORTER_PROCEDURE: trimText(data.process?.verify?.reporter_procedure),
     HEURISTICS: formatList(data.process?.verify?.heuristic_verification || data.process?.heuristic_verification),
-    PRESENTATION_SLOT: String(data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '').replace(/^[\*\-\s]+/, '').trim(),
+    PRESENTATION_SLOT: String(data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '').trim(),
     ZERO_TARGET_EXIT: data.process?.present?.requires_total_replacement_override ? '' : trimText(data.process?.present?.zero_target_exit),
     PR_HEADERS: data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || '',
     FAVORITE_OPTIMIZATIONS: formatList(data.favorite_optimizations),
