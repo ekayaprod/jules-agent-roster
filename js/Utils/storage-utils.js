@@ -73,7 +73,7 @@ class StorageUtils {
     static getItem(key, defaultValue = "") {
         try {
             if (typeof localStorage === 'undefined') return defaultValue;
-            return localStorage.getItem(key) || defaultValue;
+            return localStorage.getItem(key) ?? defaultValue;
         } catch (error) {
             const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
             if (tu) tu.dispatchEvent("STORAGE_ITEM_RETRIEVAL_FAILED", error, { key: key });

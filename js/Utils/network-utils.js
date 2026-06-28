@@ -109,7 +109,7 @@ class NetworkUtils {
       // 🐺 FORTIFY: Head 3 - Wrap naked execution in try/catch (already robustly handled here)
       const response = await fetch(url, {
         ...options,
-        signal: options.signal || controller.signal,
+        signal: options.signal ?? controller.signal,
       });
 
       clearTimeout(timeoutId);
