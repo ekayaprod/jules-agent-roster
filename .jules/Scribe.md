@@ -16,3 +16,9 @@
   - JSDoc Injections for structural cohesion (`06bffc9f`)
   - Fluid UI Transitions & V84 Auto-Forge Upgrades (e.g., `32ea8631`, `b36a8cca`, `0a60a60a`)
   - Scavenger Protocol system sweeps (`03d4c0bd`)\n
+- **Changelog Aggregation (Current Pass)**:
+  - System Governance (e.g., `d82af381`, `0f563e2b`, `cb2808cb`, `55426530`)
+  - Auto-Build Agent Upgrades to V85.2-V85.4 (e.g., `82bba67b`, `a4dbab8a`, `81be1854`, `12c6416e`, `3b9d7917`, `88bc2487`, `8f35d2d3`, `31981b64`, `1212d2d6`, `e29d946f`, `73c48b4e`, `35afbd9a`, `c81a0389`, `223c01cf`, `33ba58e0`)
+  - API Fortification (e.g., `ae3cacd8`)
+  - UI & Layout (e.g., `9abf4b05`, `a0a3c4fb`)
+  - Modernization & Resilience (e.g., `2a1808b0`, `6274b6cf`, `6d55e396`, `e45008dd`, `65216797`)

@@ -12,6 +12,11 @@ class NetworkUtils {
   // 🐺 FORTIFY: The Three-Headed Defense - Rate Limiter State
   static _requestBuckets = {};
 
+  /**
+   * Enforces a client-side rate limit per hostname.
+   * * Historical Intent: Added via PR #2007 by ekayaprod to prevent API abuse and thundering herds.
+   * * Magic Numbers: Limits requests to 100 within a 60000ms (1 minute) sliding window.
+   */
   static _enforceRateLimit(url) {
     const now = Date.now();
     const hostname = (() => { try { return new URL(url).hostname; } catch (e) { return url; } })();
