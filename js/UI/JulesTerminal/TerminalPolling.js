@@ -106,6 +106,8 @@ class TerminalPolling {
 
                     if (text) {
                         state.rawMessage = act.description || act.title;
+                        // 🕯️ CHRONICLE: Magic Number Translation. 70 character limit truncates excessively long log strings.
+                        // Historical Intent: Introduced via PR #2007 by ekayaprod to prevent terminal layout fractures in UI grids.
                         if (text.length > 70) text = text.substring(0, 70) + "...";
                         state.latestLog = text;
                     }

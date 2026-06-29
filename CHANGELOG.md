@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### 🚀 Features
+- **Agent Architecture Upgrades**: Auto-Forge mass upgraded numerous agents (Coroner, Triage, Pruner, Proton Pack, Customs, Propagator, Prefect, Payload, Construct, Pathfinder, PathCentralizer, Millisecond) to V85.2 - V85.4.
+- **UI & Layout**: Morphed Jules Runner Panel to Responsive Architecture and corrected flex wrap layout for section headers on desktop.
+
+### 🛡️ Resilience & Security
+- **API Fortification**: Fortified AI API keys against pre-fetch fatal crashes.
+- **Error Handling**: Implemented Bolt+ Graceful Abort for safer execution termination.
+
+### 🔧 Chores & Code Health
+- **System Governance**: Enforced Creation Imperative in Generator base profile and executed Superintendent sweeps for baselines, artifact purges, and hazards.
+- **Modernization**: Evolved syntax, flattened Promises, and injected strict Nullish Coalescing guards. Conducted horizontal alignment sweeps across the codebase.
+
+### 🚀 Features
 - **UI & Transitions**: Implemented fluid geometry, GPU-accelerated modal transitions using opacity/pointer-events, and fluid search bar expansion in UI components. Injected fluid transitions into JulesTerminal session blocks and focus rings to Palette+ inputs.
 - **Code Health & Monolith Refactoring**: Extracted logic into EventBinder subdomain, decoupled FusionLab monolith, and optimized FusionEngine loops (replaced string splits/Sets with direct string lookups).
 - **Agent Architecture Upgrades**: Mass migration of multiple additional agents (Canner, Dispatcher, Annotator, Adversary, Surgeon, Canvas, Customs, Rumble, Pantomime, Scaffolder, etc.) to Forge Protocol V82.0 / V81.0 architecture via Auto-Forge.
