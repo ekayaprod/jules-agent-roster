@@ -48,7 +48,7 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 **The Solution:** Adopt `TypeScript` across the core services and UI components.
 **The Benefit:** Standardizes data models via interfaces, strictly typing network payloads, resolving ambiguous object assignments, and eradicating null-reference bugs at compile-time.
 
-- [x] [UX] Idea: Custom agent tile layout, allowing users to put their favourite fusion agent cards on the main page for easy access - using local storage (Source: User Request) (Shipped: [Commit feeca72](https://github.com/ekayaprod/jules-agent-roster/commit/feeca72))
+- [x] [UX] Idea: Custom agent tile layout, allowing users to put their favourite fusion agent cards on the main page for easy access - using local storage (Source: User Request) (Shipped: [Commit 7df1982c](https://github.com/ekayaprod/jules-agent-roster/commit/7df1982c))
 - [x] [UX] Idea: Adopt `fuse.js` (20k stars) for fuzzy search to fix strict typo failures. (Source: fusejs.io) (Shipped: [Commit a54cf1e](https://github.com/ekayaprod/jules-agent-roster/commit/a54cf1e))
 - [x] [Performance] Idea: Implement debounce pattern for search input to prevent layout thrashing on every keystroke. (Source: lodash) (Shipped: [Commit 73228b7](https://github.com/ekayaprod/jules-agent-roster/commit/73228b7))
 
@@ -97,3 +97,9 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 **The Problem:** The `index.html` file has grown to over 900 lines, becoming a structural monolith that tightly couples layout, inline scripts, and disparate UI domains.
 **The Solution:** Decentralize `index.html` by extracting distinct functional domains into domain-specific templates or colocated components.
 **The Benefit:** Standardizes domain boundaries, drastically improves maintainability, and prevents future merge conflicts in the core entry point.
+
+### Break Down UI Monoliths
+
+**The Problem:** Core architectural files like `js/UI/JulesTerminal/JulesTerminal.js` and `js/core/RosterApp.js` have grown into massive structural monoliths (over 500 lines each), creating unmanageable physical blockades and synchronous bottlenecks that hinder high-velocity development and risk merge conflicts.
+**The Solution:** Decentralize these monolithic classes by splitting them into cohesive, domain-specific modules, utility classes, and sub-controllers.
+**The Benefit:** Restores maintainability by standardizing domain boundaries, massively reduces cognitive load for developers, and unlocks future parallel development and architectural scalability.
