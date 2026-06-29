@@ -512,7 +512,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "NEUTRALIZE fatal crashes by surgically tracing the uncaught exception to its origin and injecting precise guard clauses.",
-    "forge_version": "V82.0",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Coroner.md",
     "isCustom": true
   },
@@ -1803,6 +1803,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "RESUSCITATE silent failures by deducing operational intent and engineering precise error boundaries.",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Triage.md",
     "isCustom": true
   },
