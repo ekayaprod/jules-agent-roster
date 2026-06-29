@@ -7,6 +7,7 @@
 **Target Excised:** Broken markdown links in Foresight.md | **Action:** Repaired missing target anchors.
 
 # Resolved Entropy
+* **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/Author.md`, `prompts/Paramedic.md`, `prompts/Pedant.md`, `prompts/Dispatch.md`, `prompts/Sentinel+.md`, `prompts/Bolt+.md`, `prompts/Helix.md`, `prompts/Navigator.md`, `prompts/Architect.md`, `prompts/Untangler.md`.
 * **Deleted Artifacts:** `verification.png` removed from hallway trash.
 * **Deleted Artifacts:** `code_ql_auth.patch` permanently removed and appended to `.gitignore`.
 * **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/Vibe Check.md`, `prompts/Scavenger.md`, `prompts/Superintendent.md`, `prompts/Palette+.md`, `prompts/Vibe.md`, `prompts/Modernizer.md`, `.jules/Untangler.md`.
@@ -21,4 +22,4 @@
 * 🔐 Secret signature detected: `prompts/fusions/Revoker.md` contains hardcoded `AKIA...` AWS access keys.
 
 # Persistent Entropy
-* Deferred fixing EOF newlines in remaining 16 Markdown files due to target limit (10).
+* Deferred fixing EOF newlines in remaining 27 Markdown files due to target limit (10).
