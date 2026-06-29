@@ -1,0 +1,12 @@
+🛠️ Auto-Build: Upgraded Triage to V85.4
+
+### 🛠️ Architecture Upgrade: V85.4 Compliance
+- Class Deduced: Instrumenter
+  - UI Category & Tier: Operations | Fusion
+  - Throughput & Payload limits: Contained | 1
+  - Execution Trigger: Execute via Macro-Sweep using asynchronous tools.
+
+🧠 Data Sanitization Results
+  - Rules Retained: The Task Board Valve, Tool execution limits, and The Test Alignment Protocol preserved.
+  - Sanitization Applied: Consolidated redundant philosophy and heuristic gates into standardized matrix.
+  - Formatting Corrected: Enforced Instrumenter archetype physics and normalized target loops.
