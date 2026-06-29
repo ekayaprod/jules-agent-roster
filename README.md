@@ -70,6 +70,19 @@ The following environment variables are required to be set in your `.env` file t
 2. **Copy:** Click "Copy Prompt" for the agent you need.
 3. **Paste:** Paste the prompt into your Jules chat window.
 
+## 🗺️ Architectural Domain Map
+
+Wondering where everything lives? Here's the macroscopic layout of our physical directories:
+
+| Directory | Purpose |
+| :--- | :--- |
+| 🎨 `/css` | The styling layer! Keeps our vanilla UI looking sharp. |
+| 📚 `/docs` | Macroscopic architectural blueprints and API documentation. |
+| 🧠 `/js` | The core vanilla JavaScript application logic and modular features. |
+| 🎭 `/playwright` | End-to-End test suites simulating the user journey. |
+| 🤖 `/prompts` | The Markdown source-of-truth for all agent personas and fusions. |
+| ⚙️ `/scripts` | Node.js utilities for payload compilation and system ops. |
+
 ## 📦 The Agents
 
 ### Core Maintenance (Plus)
