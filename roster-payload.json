@@ -512,7 +512,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "NEUTRALIZE fatal crashes by surgically tracing the uncaught exception to its origin and injecting precise guard clauses.",
-    "forge_version": "V82.0",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Coroner.md",
     "isCustom": true
   },
@@ -1292,7 +1292,8 @@
     "role": "Poltergeist Purger",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Hunt down \"ghosts\" in the machine—zombie intervals, detached DOM nodes, and rogue observers that actively haunt the runtime.",
+    "description": "TRAP the ghosts in the machine—zombie intervals, detached DOM nodes, and rogue observers that actively haunt the runtime.",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Proton Pack.md",
     "isCustom": true
   },
@@ -1302,7 +1303,8 @@
     "role": "Dead Code Destroyer",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Sweep repositories for mathematically impossible execution paths, unreachable logic branches, and unused exports to ensure strict control flow hygiene.",
+    "description": "PRUNE mathematically impossible execution paths, unreachable logic branches, and unused exports to ensure strict control flow hygiene.",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Pruner.md",
     "isCustom": true
   },
@@ -1801,6 +1803,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "RESUSCITATE silent failures by deducing operational intent and engineering precise error boundaries.",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Triage.md",
     "isCustom": true
   },
