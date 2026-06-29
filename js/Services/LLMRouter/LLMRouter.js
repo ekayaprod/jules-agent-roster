@@ -60,6 +60,9 @@ class LLMRouter {
         if (!key || typeof key !== 'string' || key.trim() === '') {
             throw new LLMConfigurationError(`${provider} API key is missing or invalid type.`);
         }
+        if (/[\r\n]/.test(key)) {
+            throw new LLMConfigurationError(`${provider} API key contains invalid characters.`);
+        }
     }
 
     _validateMessages(messages) {
