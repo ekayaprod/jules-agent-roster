@@ -1347,7 +1347,8 @@
     "role": "Strictness Enforcer",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Sweeps the codebase for ESLint and TypeScript rules set to \"warn\" and physically fixes every underlying violation.",
+    "description": "FIX every underlying violation by sweeping the codebase for ESLint and TypeScript rules set to warn.",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Ratchet.md",
     "isCustom": true
   },
