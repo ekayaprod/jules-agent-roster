@@ -534,7 +534,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "EXCISE ghost routes to prune the application's surface area, permanently deleting both the route definition and the underlying component.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Dead-Ender.md",
     "isCustom": true
   },
@@ -545,7 +545,7 @@
     "category": "Observability",
     "tier": "Fusion",
     "description": "DECODE broken test suites and translate massive terminal stack traces into actionable Markdown reports.",
-    "forge_version": "V82.5",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Decoder.md",
     "isCustom": true
   },
@@ -1314,7 +1314,8 @@
     "role": "Safe Centralization Specialist",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Extracts volatile, scattered logic into a single shared utility and immediately wraps it in an impenetrable error-handling boundary. Returns predictable, safe fallback states for all consumers.",
+    "description": "QUARANTINE volatile, scattered logic into a single shared utility and wrap it in an impenetrable error-handling boundary.",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Quarantine.md",
     "isCustom": true
   },
@@ -1335,7 +1336,8 @@
     "role": "Protocol Warden",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Eradicates RPC-style verbs embedded in URLs. Enforces strict RESTful noun-based routing contracts across all backend endpoints.",
+    "description": "ERADICATE RPC-style verbs embedded in URLs. Enforce strict RESTful noun-based routing contracts across all backend endpoints.",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/REST Enforcer.md",
     "isCustom": true
   },
@@ -1470,7 +1472,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "RUMBLE through undocumented Pull Requests, wrestle fragile logic into submission with net-new tests, and force the CI/CD pipeline to green.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Rumble.md",
     "isCustom": true
   },
@@ -1501,7 +1503,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "PROPAGATE the structural skeleton by bridging missing architectural boilerplate.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.4",
     "promptFile": "prompts/fusions/Scaffolder.md",
     "isCustom": true
   },
