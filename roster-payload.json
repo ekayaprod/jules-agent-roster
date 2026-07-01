@@ -563,11 +563,11 @@
   {
     "name": "Defuser",
     "emoji": "🪢",
-    "role": "Authorization Specialist",
-    "category": "Hygiene",
+    "role": "Authorization Untangler",
+    "category": "Security",
     "tier": "Fusion",
-    "description": "UNTANGLE convoluted security logic, expose its true trust boundary, and harden it with strict typing.",
-    "forge_version": "V82.0",
+    "description": "UNTANGLE deeply nested security logic into flat, readable authorization structures.",
+    "forge_version": "V85.5",
     "promptFile": "prompts/fusions/Defuser.md",
     "isCustom": true
   },
@@ -578,7 +578,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "PURGE dead infrastructure code and orphaned dependencies to accelerate deployment velocity.",
-    "forge_version": "V82.0",
+    "forge_version": "V85.5",
     "promptFile": "prompts/fusions/Discharge.md",
     "isCustom": true
   },
@@ -589,7 +589,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "INTEGRATE new MCP servers into configuration manifests to ensure immediate discoverability.",
-    "forge_version": "V82.0",
+    "forge_version": "V85.5",
     "promptFile": "prompts/fusions/Dispatcher.md",
     "isCustom": true
   },
@@ -600,7 +600,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REWIRE outdated AI provider SDKs and seamlessly upgrade the infrastructure wiring to modern API schemas.",
-    "forge_version": "V82.5",
+    "forge_version": "V85.5",
     "promptFile": "prompts/fusions/Electrician.md",
     "isCustom": true
   },
