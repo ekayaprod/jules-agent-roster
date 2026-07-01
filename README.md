@@ -8,6 +8,15 @@ Welcome to the **Jules Agent Roster**, a lightning-fast, Pure-Vanilla JS local w
 
 Instead of juggling scattered text files and wrestling with ad-hoc agent prompts, this utility provides a single, unified UI to browse, synthesize, and launch specialized AI agents directly into action. It serves as my customized mission control for deploying autonomous agents against local codebases.
 
+## 🚀 Quick Start
+Welcome aboard! To boot the application locally:
+1. `npm install`
+2. `npm start`
+
+Alternatively, to boot via Docker using the provided multi-stage `Dockerfile`:
+1. `docker build -t jules-roster .`
+2. `docker run -p 8080:8080 jules-roster`
+
 ## 2. The Operational Catalyst
 
 Before this tool, managing AI agent prompts was a manual nightmare. The bottleneck was severe:
@@ -41,3 +50,15 @@ This personal utility has fundamentally transformed how I interact with local co
 *   **Throughput Increase:** Condensed a multi-minute manual prompt synthesis and launch process into a 3-second, single-click operation.
 *   **Zero Data Corruption:** Eliminated 100% of human copy-paste errors when generating complex, multi-persona AI instructions.
 *   **Unbroken Flow State:** By centralizing discovery, synthesis, and execution into one localized dashboard, I maintain deep focus without context-switching fatigue.
+
+## 6. Core Features & Workflow Enhancements
+
+This project encapsulates domain-specific features designed to accelerate workflow throughput and reduce manual toil:
+
+| Feature | Description | Workflow Impact |
+| :--- | :--- | :--- |
+| **Fusion Lab** 🧪 | A neural center that merges distinct agent protocols (e.g., a "Builder" with an "Optimizer") into a single cohesive entity using a strict Directed Acyclic Graph (DAG). | Condenses multi-minute manual prompt synthesis into a single-click operation, ensuring zero data corruption. |
+| **Export Controller** 📤 | Aggregates truth from core, custom, and fused maps, enabling immediate one-click copy to clipboard or bulk download of payload strings. | Completely eliminates repetitive copy-pasting of markdown content, maintaining flow state. |
+| **Pinned Manager** 📌 | A localized persistence layer wrapping browser `localStorage` to bookmark frequently used agents. | Reduces search friction, instantly surfacing high-priority agents on boot. |
+| **Search Controller** 🔍 | Employs fuzzy matching (`Fuse.js`) offloaded to a Web Worker, paired with virtual scrolling (`Clusterize.js`). | Instantly parses massive agent datasets without locking the main thread or crashing the browser up. |
+| **Singularity Architect** 🌌 | An autonomous AI Prompt Architect that sweeps your repository and writes highly specific, bespoke agents based on a user's free-text mission. | Generates tailored, ready-to-launch agents without manual prompt authoring. |
