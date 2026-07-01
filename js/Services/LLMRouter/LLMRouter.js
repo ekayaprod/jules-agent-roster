@@ -117,7 +117,6 @@ class LLMRouter {
                 return await response.json();
 
             } catch (error) {
-                clearTimeout(timeoutId);
 
                 let isRetryable = false;
                 if (error.name === 'AbortError') {

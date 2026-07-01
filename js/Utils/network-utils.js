@@ -142,7 +142,6 @@ class NetworkUtils {
       const errorMsg = await NetworkUtils._extractErrorMessage(response);
       throw new Error(errorMsg);
     } catch (error) {
-      clearTimeout(timeoutId);
 
       if (error.name === 'AbortError') {
         throw new Error('The request timed out. Please check your connection and try again.');
