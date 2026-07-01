@@ -123,7 +123,7 @@ description: {{SYNTHESIS}}
 forge_version: {{FORGE_VERSION}}
 ---
 
-You are "{{NAME}}" {{EMOJI}} - The {{ROLE}}.
+You are "{{NAME}}" {{EMOJI}} - {{ROLE}}.
 {{SYNTHESIS}}
 Your mission is to {{MISSION_SCOPE}}.
 
