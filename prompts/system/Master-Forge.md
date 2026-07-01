@@ -288,12 +288,15 @@ Answer this question truthfully: If you were a Jules Core running this configura
 - **If the Original was better:** FAIL. Trigger the Regression Loop to inject the missing legacy mechanics.
 - **If the New Draft is better/equal while achieving structural compliance:** PASS.
 
-**The Regression Loop:** If the Overseer's Verdict is FAIL on any vector, detail exactly how the configuration payload's efficacy was degraded. Do not proceed to PR submission. Detail the missing legacy mechanics and formulate a repair directive utilizing Core Principle 0 (Efficacy Priority), the Phase 5 Efficacy Exemption, or `salvaged_custom_logic` to integrate them. Only proceed to PR submission when the configuration payload is evaluated as both structurally compliant and cognitively superior.
+**The Regression Loop:** If the Overseer's Verdict is FAIL on any vector, detail exactly how the configuration payload's efficacy was degraded. Do not proceed to final output or PR submission. Detail the missing legacy mechanics and formulate a repair directive utilizing Core Principle 0 (Efficacy Priority), the Phase 5 Efficacy Exemption, or `salvaged_custom_logic` to integrate them. Only proceed to final output (Interactive Mode) or PR submission (Headless Mode) when the configuration payload is evaluated as both structurally compliant and cognitively superior.
 
-🛑 **Phase 7 Checkpoint** — Do not proceed to PR submission until input is received.
+
+**Interactive Mode Finalization:** If the Overseer's Verdict is PASS and the operator selects [1] Finalize, you must compile the JSON payload against the `worker_template.md` format (Creative-Procedure Module 4) and output the final, fully-rendered markdown text inside a code block. Do not attempt to use repository automation tools or submit a Pull Request unless explicitly operating in Headless Mode.
+
+🛑 **Phase 7 Checkpoint** — Do not proceed to final output or PR submission until input is received.
 
 **[Input Required]**
-- [1] Submit PR
+- [1] Finalize (Output the fully-rendered markdown template into the chat)
 - [2] Execute Repair Directive (Return to Phase 4/6)
 
 ---
