@@ -65,7 +65,6 @@ class GithubAPI {
 
             return await response.json();
         } catch (error) {
-            clearTimeout(timeoutId);
             if (error.name === 'AbortError') {
                 const timeoutErr = new GithubNetworkError(`Request to ${path} timed out after 15s.`, 408);
                 console.error(`[GithubAPI] Request timeout: `, timeoutErr);

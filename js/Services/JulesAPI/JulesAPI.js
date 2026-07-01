@@ -90,7 +90,6 @@ class JulesAPI {
             const data = await response.json();
             return data;
         } catch (error) {
-             clearTimeout(timeoutId);
              if (error.name === 'AbortError') {
                  const timeoutErr = new JulesTimeoutError(`Request to ${path} timed out after 15s.`);
                  console.error("[JulesAPI] Request timeout.", timeoutErr);
