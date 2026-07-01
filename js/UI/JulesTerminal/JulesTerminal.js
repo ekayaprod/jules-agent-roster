@@ -400,7 +400,7 @@ class JulesTerminal {
         const formatUtils = JulesTerminal.getFormatUtils();
         const agentName = session.title || "Agent Task";
         let safeAgentName = formatUtils ? formatUtils.escapeHTML(agentName) : agentName;
-        let agentEmoji = "🤖";
+        let agentEmoji;
 
         // ⚡ ACCELERATE: Cache the agents list into a Map to eliminate redundant O(N) traversals inside the session loop.
         // 🧬 COLLAPSE: Folded imperative mapping arrays into a single-pass reduce pipeline.
@@ -429,16 +429,7 @@ class JulesTerminal {
             }
         }
 
-        if (matchedAgent && matchedAgent.emoji) {
-            agentEmoji = matchedAgent.emoji;
-        } else {
-            let emoji = CORE_EMOJIS_MAP.get(safeAgentName);
-            if (!emoji && safeAgentName) {
-                const match = safeAgentName.match(CORE_EMOJIS_REGEX);
-                if (match) emoji = CORE_EMOJIS_MAP.get(match[0]);
-            }
-            if (emoji) agentEmoji = emoji;
-        }
+        agentEmoji = matchedAgent?.emoji || CORE_EMOJIS_MAP.get(safeAgentName) || CORE_EMOJIS_MAP.get(safeAgentName?.match(CORE_EMOJIS_REGEX)?.[0]) || "🤖";
 
         const block = this._createAndInsertSessionBlock(
             terminal,
@@ -469,17 +460,9 @@ class JulesTerminal {
         }
 
         const formatUtils = JulesTerminal.getFormatUtils();
-        const escapedEmoji = formatUtils ? formatUtils.escapeHTML(agentEmoji) : agentEmoji;
-
-        block.innerHTML = DOMUtils.getTerminalSessionHTML(escapedEmoji, safeAgentName, statusMsg, statusId);
-
+        block.innerHTML = DOMUtils.getTerminalSessionHTML(formatUtils ? formatUtils.escapeHTML(agentEmoji) : agentEmoji, safeAgentName, statusMsg, statusId);
         const firstSession = terminal.querySelector('.term-session-line:not(#fetchingIndicator)');
-        if (firstSession) {
-            terminal.insertBefore(block, firstSession);
-        } else {
-            terminal.appendChild(block);
-        }
-
+        firstSession ? terminal.insertBefore(block, firstSession) : terminal.appendChild(block);
         return block;
     }
 
