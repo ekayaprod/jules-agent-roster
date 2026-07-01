@@ -1380,7 +1380,8 @@
     "role": "Boundary Enforcer",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Sweeps validation logic to extract hardcoded, magic numbers and convert them into centralized, heavily-typed constants.",
+    "description": "REGULATE validation logic to extract hardcoded, magic numbers and convert them into centralized, heavily-typed constants.",
+    "forge_version": "V85.5",
     "promptFile": "prompts/fusions/Regulator.md",
     "isCustom": true
   },
