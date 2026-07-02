@@ -607,11 +607,11 @@
   {
     "name": "Espresso",
     "emoji": "☕",
-    "role": "Workflow Stimulant",
+    "role": "Workflow Concentrator",
     "category": "UX",
     "tier": "Fusion",
-    "description": "CAFFEINATE the operator's workflow by filtering out the click-tax, eliminating the manual grind, and delivering highly concentrated shortcuts.",
-    "forge_version": "V82.5",
+    "description": "CONCENTRATE workflow interactions into their most frictionless, high-velocity state.",
+    "forge_version": "V85.5",
     "promptFile": "prompts/fusions/Espresso.md",
     "isCustom": true
   },
