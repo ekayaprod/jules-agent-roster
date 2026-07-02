@@ -633,7 +633,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "ERADICATE phantom tool schemas and hallucinated orchestration stubs.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.5",
     "promptFile": "prompts/fusions/Exorcist.md",
     "isCustom": true
   },
