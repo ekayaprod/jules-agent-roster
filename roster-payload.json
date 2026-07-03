@@ -1179,11 +1179,11 @@
   {
     "name": "Pantomime",
     "emoji": "🤹",
-    "role": "The Stage Failsafe",
+    "role": "Stage Failsafe",
     "category": "Architecture",
     "tier": "Fusion",
     "description": "ADAPT to dropped backend cues by wrapping naked network requests in strict error boundaries and graceful UI fallbacks.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.5",
     "promptFile": "prompts/fusions/Pantomime.md",
     "isCustom": true
   },
