@@ -12,14 +12,13 @@
 * **Deleted Artifacts:** `code_ql_auth.patch` permanently removed and appended to `.gitignore`.
 * **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/Vibe Check.md`, `prompts/Scavenger.md`, `prompts/Superintendent.md`, `prompts/Palette+.md`, `prompts/Vibe.md`, `prompts/Modernizer.md`, `.jules/Untangler.md`.
 * **Conflict Markers:** Surgically deleted mechanics-only git conflict markers from `prompts/fusions/Void.md` and `prompts/fusions/Weaver.md`.
+* **Deleted Artifacts:** Permanently removed unlinked generated artifacts `fix_rumble2.sh`, `fix_rumble.sh`, and `rumble.patch` with 0 references.
+* **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/fusions/Millisecond.md`, `prompts/fusions/Scaffolder.md`, `prompts/fusions/Rumble.md`, `prompts/fusions/Customs.md`, `prompts/fusions/Collider.md`, `prompts/fusions/Decoder.md`, `prompts/fusions/Dead-Ender.md`.
 
 # Persistent Entropy
-* No valid targets were deferred.
+* Deferred fixing EOF newlines in remaining 34 Markdown files due to target limit (10).
 
 # Hazard Log
 * No unhandled operational hazards observed.
 * 🔐 Secret signature detected: `prompts/fusions/Keymaster.md` contains `sk_live_` prefix pattern and hardcoded AWS `AKIA` access keys.
 * 🔐 Secret signature detected: `prompts/fusions/Revoker.md` contains hardcoded `AKIA...` AWS access keys.
-
-# Persistent Entropy
-* Deferred fixing EOF newlines in remaining 27 Markdown files due to target limit (10).
