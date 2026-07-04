@@ -90,13 +90,16 @@ class RosterApp {
         const skeleton = this.elements.fusionLabSkeleton;
         const content = this.elements.fusionLabContent;
         if (skeleton && content) {
-            skeleton.style.opacity = '0';
+            skeleton.classList.remove('opacity-100');
+            skeleton.classList.add('opacity-0');
             const revealContent = () => {
                 skeleton.classList.add("hidden");
-                content.style.opacity = '0';
+                content.classList.remove('opacity-100');
+                content.classList.add('opacity-0');
                 content.classList.remove("hidden");
                 content.offsetHeight; // Force reflow
-                content.style.opacity = '1';
+                content.classList.remove('opacity-0');
+                content.classList.add('opacity-100');
             };
 
             if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -349,9 +352,11 @@ class RosterApp {
         if (fragment) container.appendChild(fragment);
 
         const header = document.getElementById(key);
-        container.style.display = hasChildren ? "" : "none";
+        container.classList.toggle("d-none", !hasChildren);
         container.classList.toggle("empty", !hasChildren);
-        if (header) header.style.display = hasChildren ? "" : "none";
+        if (header) {
+            header.classList.toggle("d-none", !hasChildren);
+        }
       });
     };
 
