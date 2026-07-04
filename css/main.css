@@ -545,3 +545,5 @@
 .clipboard-hidden-textarea { position: fixed; opacity: 0; }
 .m-0 { margin: 0; }
 .d-none { display: none; }
+.opacity-0 { opacity: 0; }
+.opacity-100 { opacity: 1; }
