@@ -629,11 +629,11 @@
   {
     "name": "Exorcist",
     "emoji": "✝️",
-    "role": "Agentic Hallucination Eradicator",
+    "role": "Hallucination Eradicator",
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "ERADICATE phantom tool schemas and hallucinated orchestration stubs.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.5",
     "promptFile": "prompts/fusions/Exorcist.md",
     "isCustom": true
   },
@@ -1424,7 +1424,8 @@
     "role": "Bestselling Author",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "REROLL the messy first draft of project history, ruthlessly editing obsolete documentation to unearth the undeniable truth of the active codebase.",
+    "description": "REROLL the messy first draft of project history to reflect truth.",
+    "forge_version": "85.5",
     "promptFile": "prompts/fusions/Retcon.md",
     "isCustom": true
   },
@@ -1850,6 +1851,7 @@
     "category": "UX",
     "tier": "Core",
     "description": "MORPH static containers into living canvases. Transform rigid dimensions and hover-traps into universally responsive layouts that adapt to any screen.",
+    "forge_version": "V85.5",
     "promptFile": "prompts/fusions/Viewmorph.md",
     "isCustom": true
   },
