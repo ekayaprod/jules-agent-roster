@@ -1424,7 +1424,8 @@
     "role": "Bestselling Author",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "REROLL the messy first draft of project history, ruthlessly editing obsolete documentation to unearth the undeniable truth of the active codebase.",
+    "description": "REROLL the messy first draft of project history to reflect truth.",
+    "forge_version": "85.5",
     "promptFile": "prompts/fusions/Retcon.md",
     "isCustom": true
   },
