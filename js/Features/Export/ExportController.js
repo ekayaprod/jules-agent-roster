@@ -29,8 +29,8 @@ class ExportController {
     } else {
       agent =
         this.app.agents[index] ||
-        (this.app.customAgents && this.app.customAgents[index]) ||
-        (this.app.fusionLab && this.app.fusionLab.compiler.customAgentsMap[index]);
+        this.app.customAgents?.[index] ||
+        this.app.fusionLab?.compiler?.customAgentsMap?.[index];
     }
     if (!agent) return null;
 
@@ -139,14 +139,10 @@ class ExportController {
       this.app.fusionLab.compiler.fusionMatrixMap
         ? this.app.fusionLab.compiler.fusionMatrixMap
         : {};
-    const customAgentsMap = Object.assign(
-      {},
-      this.app.customAgents || {},
-      (this.app.fusionLab &&
-        this.app.fusionLab.compiler &&
-        this.app.fusionLab.compiler.customAgentsMap) ||
-        {},
-    );
+    const customAgentsMap = {
+      ...(this.app.customAgents ?? {}),
+      ...(this.app.fusionLab?.compiler?.customAgentsMap ?? {})
+    };
 
     // ⚡ Bolt+: The O(n²) Eradication. Extracted constant split operation to reduce algorithmic complexity inside inner loop from O(N) allocations to O(1) matching.
     const prefix = parentName + ',';
