@@ -77,7 +77,7 @@ class AgentCard {
       card.classList.add(`tier-${lowerTier}`);
     }
 
-    const icon = FormatUtils.extractIcon(agent);
+    const icon = FormatUtils.escapeHTML(FormatUtils.extractIcon(agent));
     const displayName = FormatUtils.extractDisplayName(agent);
 
     const role = FormatUtils.escapeHTML(agent.role || 'Fusion Protocol');

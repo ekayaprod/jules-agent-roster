@@ -629,11 +629,11 @@
   {
     "name": "Exorcist",
     "emoji": "✝️",
-    "role": "Agentic Hallucination Eradicator",
+    "role": "Hallucination Eradicator",
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "ERADICATE phantom tool schemas and hallucinated orchestration stubs.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.5",
     "promptFile": "prompts/fusions/Exorcist.md",
     "isCustom": true
   },
@@ -1850,6 +1850,7 @@
     "category": "UX",
     "tier": "Core",
     "description": "MORPH static containers into living canvases. Transform rigid dimensions and hover-traps into universally responsive layouts that adapt to any screen.",
+    "forge_version": "V85.5",
     "promptFile": "prompts/fusions/Viewmorph.md",
     "isCustom": true
   },
