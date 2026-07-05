@@ -14,6 +14,6 @@ describe('AgentCard Security', () => {
         const agent = { name: "Agent", emoji: '<script>alert("XSS")</script>' };
         const card = AgentCard.create(agent, 0, 0);
         expect(card.innerHTML).not.toContain('<script>alert("XSS")</script>');
-        expect(card.innerHTML).toContain('&amp;lt;script&amp;gt;alert(&amp;quot;XSS&amp;quot;)&amp;lt;/script&amp;gt;');
+        expect(card.innerHTML).toContain('&lt;script&gt;alert("XSS")&lt;/script&gt;');
     });
 });
