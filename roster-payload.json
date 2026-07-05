@@ -643,8 +643,8 @@
     "role": "Build Optimizer",
     "category": "Operations",
     "tier": "Fusion",
-    "description": "SPEED up CI/CD pipelines with aggressive dependency caching, parallelism, and configuration tuning.",
-    "forge_version": "V82.8",
+    "description": "OPTIMIZE CI/CD pipelines with aggressive dependency caching, parallelism, and configuration tuning.",
+    "forge_version": "V85.6",
     "promptFile": "prompts/fusions/Expediter.md",
     "isCustom": true
   },
@@ -1446,7 +1446,8 @@
     "role": "Lie Detector",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Sweep codebases to hunt for comments and docstrings that contradict the actual execution logic below them.",
+    "description": "SWEEP codebases to hunt for comments and docstrings that contradict the actual execution logic below them.",
+    "forge_version": "V85.6",
     "promptFile": "prompts/fusions/Revisionist.md",
     "isCustom": true
   },
@@ -1631,7 +1632,7 @@
     "category": "Structural",
     "tier": "Core",
     "description": "EXCAVATE massive test silos and colocate fractured unit tests directly adjacent to their source code.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.6",
     "promptFile": "prompts/fusions/Surveyor.md",
     "isCustom": true
   },
