@@ -133,8 +133,8 @@ const createMockElement = (id = '') => {
       const tagRegex = /<([a-z0-9]+)([^>]*?)>(.*?)<\/\1>|<([a-z0-9]+)([^>]*?)\/>/gi;
       let match;
       while ((match = tagRegex.exec(v)) !== null) {
-        const tagName = match[1] || match[4];
-        const attrs = match[2] || match[5] || "";
+        const tagName = match[1] ?? match[4];
+        const attrs = match[2] ?? match[5] ?? "";
         const child = global.document.createElement(tagName);
         child.style = { setProperty: () => {} };
 
@@ -216,7 +216,7 @@ const createMockElement = (id = '') => {
       };
       const traverse = (node) => {
         if (matches(node)) results.push(node);
-        (node.children || []).forEach(traverse);
+        (node.children ?? []).forEach(traverse);
       };
       children.forEach(traverse);
       return results;
@@ -289,7 +289,7 @@ global.document = {
 // Mock localStorage
 const storage = {};
 global.localStorage = {
-  getItem: (key) => storage[key] || null,
+  getItem: (key) => storage[key] ?? null,
   setItem: (key, value) => (storage[key] = String(value)),
   removeItem: (key) => delete storage[key],
   clear: () => {

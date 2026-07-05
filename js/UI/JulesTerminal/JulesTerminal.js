@@ -218,7 +218,7 @@ class JulesTerminal {
                     opt.value = s.name;
 
                     const formatUtils = JulesTerminal.getFormatUtils();
-                    opt.textContent = (s.githubRepo && s.githubRepo.owner && s.githubRepo.repo) ? `${s.githubRepo.owner}/${s.githubRepo.repo}` : (formatUtils ? formatUtils.extractRepoPath(s.name) : s.name);
+                    opt.textContent = (s.githubRepo?.owner && s.githubRepo?.repo) ? `${s.githubRepo.owner}/${s.githubRepo.repo}` : (formatUtils ? formatUtils.extractRepoPath(s.name) : s.name);
 
                     picker.appendChild(opt);
                 });
@@ -345,7 +345,7 @@ class JulesTerminal {
             if (!s.sourceContext || s.sourceContext.source !== sourceName) continue;
             if (this.dismissedSessionIds && this.dismissedSessionIds.has(s.id)) continue;
 
-            const timeStr = s.updateTime || s.createTime || s.startTime;
+            const timeStr = s.updateTime ?? s.createTime ?? s.startTime;
             if (timeStr) {
                 const ageHours = (Date.now() - new Date(timeStr).getTime()) / (1000 * 60 * 60);
                 if (ageHours > 2) continue;
@@ -388,7 +388,7 @@ class JulesTerminal {
 
     _checkEmptyTerminal() {
         const terminal = this.getEl("julesTerminal");
-        if (terminal && (terminal.children.length === 0 || (terminal.children.length === 1 && terminal.firstElementChild.id === 'fetchingIndicator'))) {
+        if (terminal?.children.length === 0 || (terminal?.children.length === 1 && terminal.firstElementChild.id === 'fetchingIndicator')) {
              terminal.innerHTML = DOMUtils.getTerminalIndicatorHTML("Ready. Awaiting execution commands...");
         }
     }
