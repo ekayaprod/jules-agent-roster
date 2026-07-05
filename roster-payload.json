@@ -1435,7 +1435,8 @@
     "role": "Syntactic Upgrader",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Scans outdated codebases and surgically replaces deprecated language features and legacy APIs with their modern equivalents.",
+    "description": "UPGRADE legacy APIs with modern equivalents.",
+    "forge_version": "V85.6",
     "promptFile": "prompts/fusions/Retrofitter.md",
     "isCustom": true
   },
