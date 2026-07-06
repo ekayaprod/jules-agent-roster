@@ -17,23 +17,23 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 <p><em>Focus: Broadening the Roster</em></p>
 
-- [x] **Interactive Jules API Dashboard Modal**: Make all active processes in the dashboard clickable to display a full modal thread. When Jules API pauses and requires user input (`Needs Input` status), the modal should provide a chat-like interface to reply and continue the execution thread. (Shipped: [Commit 25c76bd](https://github.com/ekayaprod/jules-agent-roster/commit/25c76bd))
+- [x] **Interactive Jules API Dashboard Modal**: Make all active processes in the dashboard clickable to display a full modal thread. When Jules API pauses and requires user input (`Needs Input` status), the modal should provide a chat-like interface to reply and continue the execution thread. (Shipped: [Commit 25c76bde](https://github.com/ekayaprod/jules-agent-roster/commit/25c76bde))
   - _Estimation_: ~250-300 LOC. Requires creating a new modal UI, rendering markdown for full activity history, and adding `replyToSession` (POST) network methods to `JulesAPI.js`.
 - [ ] **New Agent Categories**: Explore specialized agents for Data Science, DevOps, and Mobile dev.
 - [ ] **Framework-Specific Variants**: Create variants of agents for specific stacks (e.g., Next.js vs. Remix vs. Vue).
 - [ ] **Community Contributions**: Streamline the process for community submitted agents.
-- [x] **Dark/Light Mode**: Add toggle (currently Dark only). (Shipped: [Commit b70bd3f](https://github.com/ekayaprod/jules-agent-roster/commit/b70bd3f))
-- [x] **Persistence**: Add LocalStorage support for "Favorites" or "Recently Used". (Shipped: [Commit 9bdba40](https://github.com/ekayaprod/jules-agent-roster/commit/9bdba40))
+- [x] **Dark/Light Mode**: Add toggle (currently Dark only). (Shipped: [Commit b70bd3f7](https://github.com/ekayaprod/jules-agent-roster/commit/b70bd3f7))
+- [x] **Persistence**: Add LocalStorage support for "Favorites" or "Recently Used". (Shipped: [Commit 9bdba401](https://github.com/ekayaprod/jules-agent-roster/commit/9bdba401))
 
 ## 🛠️ Phase 3: Tooling & Automation (Future)
 
 <p><em>Focus: Quality Assurance</em></p>
 
-- [x] **Prompt Validation**: Implement scripts to parse and validate the JSON/Markdown structure within agent prompts. (Shipped: [Commit ce27775](https://github.com/ekayaprod/jules-agent-roster/commit/ce27775))
-- [x] **Automated Testing**: Add basic tests for the `index.html` UI logic (search, filtering, copying). (Shipped: [Commit 253f2d9](https://github.com/ekayaprod/jules-agent-roster/commit/253f2d9))
-- [x] **Standardize Testing Assertions**: Adopt `@testing-library/jest-dom` to enforce semantic assertions, decoupling tests from structural CSS/DOM implementation details. (Shipped: [Commit a07a675](https://github.com/ekayaprod/jules-agent-roster/commit/a07a675))
-- [x] **Refactor JulesManager Monolith**: Extract shared logic and distinct functional domains into standalone utility classes or specialized sub-controllers. (Shipped: [Commit 532bb64](https://github.com/ekayaprod/jules-agent-roster/commit/532bb64))
-- [x] **Decentralize Core RosterApp Monolith**: Extract distinct sub-domains into specialized delegate classes leaving `RosterApp` strictly as an event-driven orchestrator. (Shipped: [Commit 51ef57b](https://github.com/ekayaprod/jules-agent-roster/commit/51ef57b))
+- [x] **Prompt Validation**: Implement scripts to parse and validate the JSON/Markdown structure within agent prompts. (Shipped: [Commit ce277759](https://github.com/ekayaprod/jules-agent-roster/commit/ce277759))
+- [x] **Automated Testing**: Add basic tests for the `index.html` UI logic (search, filtering, copying). (Shipped: [Commit 253f2d9d](https://github.com/ekayaprod/jules-agent-roster/commit/253f2d9d))
+- [x] **Standardize Testing Assertions**: Adopt `@testing-library/jest-dom` to enforce semantic assertions, decoupling tests from structural CSS/DOM implementation details. (Shipped: [Commit a07a675e](https://github.com/ekayaprod/jules-agent-roster/commit/a07a675e))
+- [x] **Refactor JulesManager Monolith**: Extract shared logic and distinct functional domains into standalone utility classes or specialized sub-controllers. (Shipped: [Commit 532bb644](https://github.com/ekayaprod/jules-agent-roster/commit/532bb644))
+- [x] **Decentralize Core RosterApp Monolith**: Extract distinct sub-domains into specialized delegate classes leaving `RosterApp` strictly as an event-driven orchestrator. (Shipped: [Commit 51ef57b5](https://github.com/ekayaprod/jules-agent-roster/commit/51ef57b5))
 - [ ] **CLI Tool**: Potential CLI to fetch specific agents directly into the terminal.
 
 ## 📦 Backlog (Unscheduled)
@@ -42,6 +42,13 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 ## 🧪 Innovation Backlog (Spark)
 
+
+### Implement Strict Schema Validation with `Zod`
+
+**The Problem:** The application relies on scattered, custom-built object traversal loops and brittle string validations across the network fetch wrappers (`NetworkUtils.js`) and storage layers (`StorageUtils.js`) to parse complex payloads, leading to runtime failures and prototype pollution risks.
+**The Solution:** Adopt `Zod` to enforce strict schema validation across all data ingress boundaries.
+**The Benefit:** Standardizes data parsing deterministically, strips unexpected mutations dynamically, drastically increases perimeter security against malicious payloads, and provides guaranteed type safety throughout the component tree.
+
 ### Migrate Core Logic to TypeScript
 
 **The Problem:** The application relies heavily on dynamic type coercion (e.g. `typeof window !== 'undefined'`) and lacks type safety across complex JSON payloads and UI interactions, leading to brittle unit tests and runtime `TypeError` issues.
@@ -49,8 +56,8 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 **The Benefit:** Standardizes data models via interfaces, strictly typing network payloads, resolving ambiguous object assignments, and eradicating null-reference bugs at compile-time.
 
 - [x] [UX] Idea: Custom agent tile layout, allowing users to put their favourite fusion agent cards on the main page for easy access - using local storage (Source: User Request) (Shipped: [Commit 7df1982c](https://github.com/ekayaprod/jules-agent-roster/commit/7df1982c))
-- [x] [UX] Idea: Adopt `fuse.js` (20k stars) for fuzzy search to fix strict typo failures. (Source: fusejs.io) (Shipped: [Commit a54cf1e](https://github.com/ekayaprod/jules-agent-roster/commit/a54cf1e))
-- [x] [Performance] Idea: Implement debounce pattern for search input to prevent layout thrashing on every keystroke. (Source: lodash) (Shipped: [Commit 73228b7](https://github.com/ekayaprod/jules-agent-roster/commit/73228b7))
+- [x] [UX] Idea: Adopt `fuse.js` (20k stars) for fuzzy search to fix strict typo failures. (Source: fusejs.io) (Shipped: [Commit a54cf1ea](https://github.com/ekayaprod/jules-agent-roster/commit/a54cf1ea))
+- [x] [Performance] Idea: Implement debounce pattern for search input to prevent layout thrashing on every keystroke. (Source: lodash) (Shipped: [Commit 73228b77](https://github.com/ekayaprod/jules-agent-roster/commit/73228b77))
 
 ### Standardize Unicode Processing with `emoji-regex`
 
@@ -82,9 +89,9 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 **The Solution:** Adopt a lightweight, vetted templating engine (e.g., `lit-html`) via CDN.
 **The Benefit:** Standardizes templating safely, preventing XSS, and eliminates multi-line string errors without requiring a build step.
 
-- [x] [DX] Idea: Introduce a standard `package.json` to define npm scripts for verification and task running, replacing scattered manual python scripts and unifying DX. (Shipped: [Commit 861d7fd](https://github.com/ekayaprod/jules-agent-roster/commit/861d7fd))
-- [x] [Performance] Idea: Implement virtualized lists via `Clusterize.js` (via CDN) to render large agent rosters without layout thrashing, resolving the 'Missing pagination' audit finding while maintaining the zero-build-step constraint. (Source: clusterize.js.org) (Shipped: [Commit b1e678d](https://github.com/ekayaprod/jules-agent-roster/commit/b1e678d))
-- [x] [UX] Idea: Adopt `focus-trap` via CDN to standardize keyboard navigation and modal accessibility in FusionLab, replacing brittle custom roving tabindex logic (`handleGridKeydown`). (Source: github.com/focus-trap/focus-trap) (Shipped: [Commit 572a514](https://github.com/ekayaprod/jules-agent-roster/commit/572a514))
+- [x] [DX] Idea: Introduce a standard `package.json` to define npm scripts for verification and task running, replacing scattered manual python scripts and unifying DX. (Shipped: [Commit 861d7fd5](https://github.com/ekayaprod/jules-agent-roster/commit/861d7fd5))
+- [x] [Performance] Idea: Implement virtualized lists via `Clusterize.js` (via CDN) to render large agent rosters without layout thrashing, resolving the 'Missing pagination' audit finding while maintaining the zero-build-step constraint. (Source: clusterize.js.org) (Shipped: [Commit b1e678d2](https://github.com/ekayaprod/jules-agent-roster/commit/b1e678d2))
+- [x] [UX] Idea: Adopt `focus-trap` via CDN to standardize keyboard navigation and modal accessibility in FusionLab, replacing brittle custom roving tabindex logic (`handleGridKeydown`). (Source: github.com/focus-trap/focus-trap) (Shipped: [Commit 572a5144](https://github.com/ekayaprod/jules-agent-roster/commit/572a5144))
 
 ### Migrate Date Utilities to `date-fns`
 
