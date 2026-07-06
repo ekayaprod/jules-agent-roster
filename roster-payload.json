@@ -1457,7 +1457,8 @@
     "role": "Credential Scrubber",
     "category": "Security",
     "tier": "Fusion",
-    "description": "Extracts hardcoded credentials, static IPs, and server secrets from source code into secure environment boundaries.",
+    "description": "EXTRACT hardcoded credentials, static IPs, and server secrets from source code.",
+    "forge_version": "V85.6",
     "promptFile": "prompts/fusions/Revoker.md",
     "isCustom": true
   },
