@@ -1446,7 +1446,8 @@
     "role": "Lie Detector",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Sweep codebases to hunt for comments and docstrings that contradict the actual execution logic below them.",
+    "description": "SWEEP codebases to hunt for comments and docstrings that contradict the actual execution logic below them.",
+    "forge_version": "V85.6",
     "promptFile": "prompts/fusions/Revisionist.md",
     "isCustom": true
   },
