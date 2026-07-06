@@ -8,6 +8,19 @@ Welcome to the **Jules Agent Roster**, a lightning-fast, Pure-Vanilla JS local w
 
 Instead of juggling scattered text files and wrestling with ad-hoc agent prompts, this utility provides a single, unified UI to browse, synthesize, and launch specialized AI agents directly into action. It serves as my customized mission control for deploying autonomous agents against local codebases.
 
+### 🗺️ Repository Domain Map
+
+To help you navigate the physical structure of the monorepo, here is the architectural domain purpose of each physical root directory:
+
+| Directory | Structural Purpose |
+| :--- | :--- |
+| `css/` | Contains the global stylesheets and utility classes for the Vanilla JS interface. |
+| `docs/` | Houses extended architectural diagrams and internal documentation. |
+| `js/` | The core client-side Vanilla JS application, broken down into Features, UI components, and API Services. |
+| `playwright/` | The End-to-End (E2E) testing suite to verify UI flows and browser interactions. |
+| `prompts/` | The absolute source of truth. Contains the raw Markdown files representing individual agent personas and instructions. |
+| `scripts/` | Build scripts, including the Node.js compiler that compiles raw markdown prompts into the `roster-payload.json` artifact. |
+
 ## 🚀 Quick Start
 Welcome aboard! To boot the application locally:
 1. `npm install`
