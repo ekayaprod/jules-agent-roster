@@ -59,6 +59,12 @@ jobs:
           restore-keys: |
             playwright-${{ runner.os }}-
 
+      - name: Clean up broken apt sources
+        run: |
+          sudo rm -f /etc/apt/sources.list.d/azure-cli.list
+          sudo rm -f /etc/apt/sources.list.d/microsoft-prod.list
+          sudo apt-get update || true
+
       - name: Install Playwright Browsers
         if: steps.cache-playwright.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps
