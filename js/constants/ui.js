@@ -1,22 +1,22 @@
 const TOAST_TYPES = Object.freeze({
-  SUCCESS: 'success',
   ERROR: 'error',
-  INFO: 'info'
+  INFO: 'info',
+  SUCCESS: 'success'
 });
 
 const BUTTON_STATES = Object.freeze({
-  READY: 'ready',
-  LOADING: 'loading',
+  DISABLED: 'disabled',
   ERROR: 'error',
-  DISABLED: 'disabled'
+  LOADING: 'loading',
+  READY: 'ready'
 });
 
 const HTTP_STATUS = Object.freeze({
-  OK: 200,
-  NOT_FOUND: 404,
   FORBIDDEN: 403,
-  UNAUTHORIZED: 401,
-  INTERNAL_SERVER_ERROR: 500
+  INTERNAL_SERVER_ERROR: 500,
+  NOT_FOUND: 404,
+  OK: 200,
+  UNAUTHORIZED: 401
 });
 
 /**
