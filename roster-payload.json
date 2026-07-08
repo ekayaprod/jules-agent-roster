@@ -665,8 +665,8 @@
     "role": "Aesthetic Purist",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Elevate the layout. Eradicate hallucinated inline styling and synthetic components to enforce absolute design system elegance.",
-    "forge_version": "V83.0",
+    "description": "ELEVATE the layout. Eradicate hallucinated inline styling and synthetic components to enforce absolute design system elegance.",
+    "forge_version": "V85.6",
     "promptFile": "prompts/fusions/Finesse.md",
     "isCustom": true
   },
@@ -698,8 +698,8 @@
     "role": "Mirage Architect",
     "category": "UX",
     "tier": "Fusion",
-    "description": "CONJURE seamless frontend experiences by injecting optimistic UI, CSS skeletons, and GPU transitions to completely mask network latency.",
-    "forge_version": "V83.0",
+    "description": "CONJURE seamless experiences by injecting optimistic UI, CSS skeletons, and GPU transitions to completely mask network latency.",
+    "forge_version": "V85.6",
     "promptFile": "prompts/fusions/Flourish.md",
     "isCustom": true
   },
