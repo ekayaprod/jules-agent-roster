@@ -18,6 +18,7 @@ class FusionIndex {
 
   /**
    * Initializes the Fusion Index.
+   * @returns {void}
    */
   init() {
     // 🚨 RESUSCITATE: Explicitly verifies environment context before executing boot logic.
@@ -30,6 +31,7 @@ class FusionIndex {
 
   /**
    * Loads discovered fusions from localStorage.
+   * @returns {void}
    */
   loadState() {
     const storedKeys = StorageUtils.getJsonArrayItem(this.storageKey, 'FUSION_INDEX_PARSE_FAILED');
@@ -47,6 +49,7 @@ class FusionIndex {
 
   /**
    * Saves discovered fusions to localStorage.
+   * @returns {void}
    */
   saveState() {
     StorageUtils.setJsonItem(this.storageKey, Array.from(this.unlockedKeys), 'FusionIndex');
@@ -64,6 +67,7 @@ class FusionIndex {
 
   /**
    * Renders the Fusion Index shelf.
+   * @returns {void}
    */
   render() {
     const container = this.elements.container ?? document.getElementById(this.containerId);
@@ -112,6 +116,7 @@ class FusionIndex {
   /**
    * Helper to render an individual fusion slot.
    * @private
+   * @returns {void}
    */
   _renderSlot(grid, key, agentData) {
     let safeData =
@@ -152,6 +157,7 @@ class FusionIndex {
 
   /**
    * Updates the progress counter.
+   * @returns {void}
    */
   updateProgress(element) {
     let total = 0;
@@ -168,6 +174,7 @@ class FusionIndex {
    * @param {Object} agentData - The custom agent data.
    * @param {string} key - The fusion key.
    * @private
+   * @returns {void}
    */
   _bindSlotInteractions(slot, agentData, key) {
     // 💎 Jeweler: A11y Polish
@@ -201,6 +208,7 @@ class FusionIndex {
 
   /**
    * Unlocks all fusions.
+   * @returns {void}
    */
   unlockAll() {
     if (this.customAgents) {
@@ -221,6 +229,7 @@ class FusionIndex {
   /**
    * Unlocks a fusion slot.
    * @param {string} key - The fusion key.
+   * @returns {void}
    */
   unlock(key) {
     const fusionName = this.customAgents[key];
@@ -243,6 +252,7 @@ class FusionIndex {
   /**
    * Updates a specific slot UI to unlocked state.
    * @param {string} key - The fusion key.
+   * @returns {void}
    */
   updateSlot(key) {
     // 🛡️ Bastion: Use safe selector escaping to prevent querySelector injection attacks

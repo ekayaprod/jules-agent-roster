@@ -114,6 +114,7 @@ class AgentPicker {
     /**
      * Retrieves the memoized HTML strings for the base agents.
      * Uses Clusterize.js to virtualize DOM nodes and avoid main-thread blocking.
+   * @returns {string}
      */
     getMemoizedHtml(itemsToRender) {
         if (!this.cachedHtmlStrings) {
@@ -147,6 +148,7 @@ class AgentPicker {
     /**
      * Chunk array into a 2D array representing rows, based on calculated columns.
      * This makes Clusterize.js compatible with CSS Grid layout.
+   * @returns {string}
      */
     getChunkedHtml(htmlResults) {
         const scrollArea = this.elements.pickerScrollArea;
@@ -172,6 +174,7 @@ class AgentPicker {
 
     /**
      * Updates the Clusterize instance and handles DOM focus synchronization.
+   * @returns {void}
      */
     updateGrid() {
         const htmlResults = this.getMemoizedHtml(this.filteredResults);
@@ -200,6 +203,7 @@ class AgentPicker {
      * Opens the agent picker modal for a specific slot.
      * @param {string} slotKey - "slotA" or "slotB"
      * @param {Object} currentAgent - Currently selected agent in this slot
+   * @returns {void}
      */
     openPicker(slotKey, currentAgent) {
         this.activePickerSlot = slotKey;
@@ -256,6 +260,7 @@ class AgentPicker {
 
     /**
      * Handles selection from the picker.
+   * @returns {void}
      */
     handlePickerSelection(agent) {
         if (this.activePickerSlot) {
@@ -270,6 +275,7 @@ class AgentPicker {
     /**
      * Closes the picker modal.
      * @param {boolean} navigateBack - Whether to call history.back() to clean up the pushed state.
+   * @returns {void}
      */
     closePicker(navigateBack = true) {
         const slotKey = this.activePickerSlot;
@@ -303,6 +309,7 @@ class AgentPicker {
 
     /**
      * Renders the pre-merge "Known Recipe" preview if the resulting agent is already unlocked.
+   * @returns {void}
      */
     renderPreMergePreview(selectedAgent) {
         const actionArea = document.querySelector("#fusionLabContent .fusion-action-area");
