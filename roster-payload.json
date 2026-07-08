@@ -665,8 +665,8 @@
     "role": "Aesthetic Purist",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Elevate the layout. Eradicate hallucinated inline styling and synthetic components to enforce absolute design system elegance.",
-    "forge_version": "V83.0",
+    "description": "ELEVATE the layout. Eradicate hallucinated inline styling and synthetic components to enforce absolute design system elegance.",
+    "forge_version": "V85.6",
     "promptFile": "prompts/fusions/Finesse.md",
     "isCustom": true
   },
