@@ -462,7 +462,7 @@ describe('AgentPicker', () => {
             const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
 
             agentPicker.getPreMergePreviewHTML = jest.fn(() => '<div>Preview</div>');
-            jest.spyOn(agentPicker, 'renderPreMergePreview');
+            jest.spyOn(agentPicker, 'renderPreMergePreview').mockImplementation(() => {});
             agentPicker.activePickerSlot = 'slotA';
 
             const selectedAgent = baseAgents[2];
@@ -497,12 +497,16 @@ describe('AgentPicker', () => {
             agentPicker.getPreMergePreviewHTML = jest.fn(() => '<p>Known Recipe</p>');
             const mockActionArea = document.querySelector('#fusionLabContent .fusion-action-area');
 
+            const mockPreviewEl = { classList: { add: jest.fn(), remove: jest.fn() } };
+
             // Mock that the element does not exist yet to test creation
             document.getElementById = jest.fn().mockReturnValue(null);
+            document.createElement = jest.fn().mockReturnValue(mockPreviewEl);
 
             agentPicker.renderPreMergePreview(baseAgents[0]);
 
             expect(mockActionArea.appendChild).toHaveBeenCalled();
+            expect(mockPreviewEl.classList.remove).toHaveBeenCalledWith('d-none');
             // Since we mocked document.createElement, we verify the interaction indirectly
             expect(agentPicker.getPreMergePreviewHTML).toHaveBeenCalledWith(baseAgents[0]);
         });
@@ -514,12 +518,12 @@ describe('AgentPicker', () => {
              const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
 
              agentPicker.getPreMergePreviewHTML = jest.fn(() => null);
-             const mockPreviewEl = { style: { display: 'flex' } };
+             const mockPreviewEl = { style: { display: 'flex' }, classList: { add: jest.fn(), remove: jest.fn() } };
              document.getElementById = jest.fn((id) => id === 'preMergePreview' ? mockPreviewEl : null);
 
              agentPicker.renderPreMergePreview(baseAgents[0]);
 
-             expect(mockPreviewEl.style.display).toBe('none');
+             expect(mockPreviewEl.classList.add).toHaveBeenCalledWith('d-none');
         });
 
         test('fails securely if action area does not exist', () => {

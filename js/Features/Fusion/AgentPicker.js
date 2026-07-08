@@ -323,13 +323,13 @@ class AgentPicker {
             if (!previewEl) {
                 previewEl = document.createElement("div");
                 previewEl.id = "preMergePreview";
-                previewEl.className = "pre-merge-preview";
+                previewEl.className = "pre-merge-preview d-flex";
                 actionArea.appendChild(previewEl);
             }
             previewEl.innerHTML = previewHtml;
-            previewEl.style.display = "flex";
+            previewEl.classList.remove("d-none");
         } else {
-            if (previewEl) previewEl.style.display = "none";
+            if (previewEl) previewEl.classList.add("d-none");
         }
     }
 }

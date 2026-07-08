@@ -92,7 +92,15 @@ class DOMUtils {
 
     elements.forEach(el => {
       if (!excludeId || el.id !== excludeId) {
-        el.style.display = display;
+        if (display === 'none') {
+          el.style.display = '';
+          el.classList.add('d-none');
+        } else {
+          el.classList.remove('d-none');
+          if (display !== '') {
+            el.style.display = display;
+          }
+        }
       }
     });
   }
@@ -149,10 +157,7 @@ class DOMUtils {
    */
   static createMarkdownPreBlock(text) {
     const container = document.createElement("div");
-    container.className = "markdown-rendered details-content transition-all";
-    container.style.transitionProperty = "height, min-height";
-    container.style.transitionDuration = "0.2s";
-    container.style.transitionTimingFunction = "ease-out";
+    container.className = "markdown-rendered details-content transition-all transition-height-min-height";
 
     const safeHtmlNode = window.MarkdownRenderer ? window.MarkdownRenderer.render(text) : document.createTextNode(text || "");
     container.appendChild(safeHtmlNode);
