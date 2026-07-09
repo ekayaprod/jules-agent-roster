@@ -545,5 +545,8 @@
 .clipboard-hidden-textarea { position: fixed; opacity: 0; }
 .m-0 { margin: 0; }
 .d-none { display: none; }
+.d-flex { display: flex; }
 .opacity-0 { opacity: 0; }
 .opacity-100 { opacity: 1; }
+.transition-height-min-height { transition-property: height, min-height; transition-duration: 0.2s; transition-timing-function: ease-out; }
+.fusion-particle-anim { animation-duration: calc(1.0s / var(--speed-multiplier, 1)); animation-delay: 1.8s; animation-timing-function: cubic-bezier(0.1, 0.8, 0.3, 1); }
