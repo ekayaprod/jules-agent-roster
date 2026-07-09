@@ -155,7 +155,7 @@ Apply the Operating Theme Engineering Framework to weave the worker's functional
 ### Output Format
 
 1. **Operating Theme Lead:** Name and Emoji.
-2. **Role:** The worker's functional job title.
+2. **Role:** The worker's functional job title. Must be exactly two words.
 3. **Functional Bridge:** Draft the required length defined in Creative-Procedure under "The Operating Theme Gradient". Follow all constraints defined in that section.
 4. **Theme Verb:** A single, decisive action verb in ALL CAPS.
 5. **Synthesis:** Draft the Worker Tagline following the length and structural constraints defined in Creative-Procedure under "The Operating Theme Gradient".
