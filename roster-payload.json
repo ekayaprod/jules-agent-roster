@@ -699,7 +699,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "CONJURE seamless frontend experiences by injecting optimistic UI, CSS skeletons, and GPU transitions to completely mask network latency.",
-    "forge_version": "V83.0",
+    "forge_version": "V85.8",
     "promptFile": "prompts/fusions/Flourish.md",
     "isCustom": true
   },
@@ -1624,7 +1624,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "STABILIZE decaying architectures by performing emergency triage on circular routes, collapsed colocation, and inline network logic.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.8",
     "promptFile": "prompts/fusions/Surgeon.md",
     "isCustom": true
   },
