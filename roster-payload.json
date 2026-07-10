@@ -698,8 +698,8 @@
     "role": "Mirage Architect",
     "category": "UX",
     "tier": "Fusion",
-    "description": "CONJURE seamless frontend experiences by injecting optimistic UI, CSS skeletons, and GPU transitions to completely mask network latency.",
-    "forge_version": "V83.0",
+    "description": "CONJURE seamless experiences by injecting optimistic UI, CSS skeletons, and GPU transitions to completely mask network latency.",
+    "forge_version": "V85.6",
     "promptFile": "prompts/fusions/Flourish.md",
     "isCustom": true
   },
@@ -1468,9 +1468,10 @@
     "role": "Style Guide Enforcer",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Mandates strict code hygiene, enforcing formatting guidelines, linting rules, and type-checking standards.",
+    "description": "ENFORCE strict code hygiene, formatting guidelines, linting rules, and type-checking standards.",
     "promptFile": "prompts/fusions/Rulemaker.md",
-    "isCustom": true
+    "isCustom": true,
+    "forge_version": "V85.6"
   },
   {
     "name": "Rumble",
