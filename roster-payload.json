@@ -1487,10 +1487,11 @@
   {
     "name": "Safety Inspector",
     "emoji": "🦺",
-    "role": "Dependency QA Specialist",
+    "role": "QA Specialist",
     "category": "Testing",
     "tier": "Fusion",
-    "description": "Bump outdated package versions and immediately secure the affected integration paths with strict regression tests.",
+    "description": "SECURE the integration paths immediately with strict regression tests when bumping outdated package versions.",
+    "forge_version": "V85.8",
     "promptFile": "prompts/fusions/Safety Inspector.md",
     "isCustom": true
   },
