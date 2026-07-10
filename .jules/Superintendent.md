@@ -7,6 +7,7 @@
 **Target Excised:** Broken markdown links in Foresight.md | **Action:** Repaired missing target anchors.
 
 # Resolved Entropy
+* **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/fusions/Hive.md`, `prompts/fusions/Polygraph.md`, `prompts/fusions/Surgeon.md`, `prompts/fusions/PathCentralizer.md`, `prompts/fusions/Mixologist.md`, `prompts/fusions/Ouija.md`, `prompts/fusions/Retrofitter.md`, `prompts/fusions/Regulator.md`, `prompts/fusions/Overclock.md`, `prompts/fusions/Mulligan.md`.
 * **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/fusions/Pantomime.md`, `prompts/fusions/Surveyor.md`, `prompts/fusions/Exorcist.md`, `prompts/fusions/Defuser.md`, `prompts/fusions/Triage.md`, `prompts/fusions/Electrician.md`, `prompts/fusions/Viewmorph.md`, `prompts/fusions/Ratchet.md`, `prompts/fusions/Discharge.md`, `prompts/fusions/Espresso.md`.
 * **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/Author.md`, `prompts/Paramedic.md`, `prompts/Pedant.md`, `prompts/Dispatch.md`, `prompts/Sentinel+.md`, `prompts/Bolt+.md`, `prompts/Helix.md`, `prompts/Navigator.md`, `prompts/Architect.md`, `prompts/Untangler.md`.
 * **Deleted Artifacts:** `verification.png` removed from hallway trash.
@@ -17,7 +18,7 @@
 * **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/fusions/Millisecond.md`, `prompts/fusions/Scaffolder.md`, `prompts/fusions/Rumble.md`, `prompts/fusions/Customs.md`, `prompts/fusions/Collider.md`, `prompts/fusions/Decoder.md`, `prompts/fusions/Dead-Ender.md`.
 
 # Persistent Entropy
-* Deferred fixing EOF newlines in remaining 24 Markdown files due to target limit (10).
+* Deferred fixing EOF newlines in remaining 14 Markdown files due to target limit (10).
 
 # Hazard Log
 * No unhandled operational hazards observed.
