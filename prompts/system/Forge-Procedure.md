@@ -140,19 +140,13 @@ If the domain relies on structural verification (no executable tests), dynamical
 - **Generator Archetype:** Exactly 4 target tiers.
 - **All Others:** Strictly 3 to 5 targets.
 
-**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Structural Mandate:** You must explicitly define the Domain Autonomy declaration and the Discovery Fallback instruction natively within the JSON payload (`data.process.discover.domain_autonomy_declaration` and `data.process.discover.discovery_fallback`). Supply the exact strings defined below:
-
-**Domain Autonomy String:** `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.`
-
-**Core Discovery Fallback:** `If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.`
-
-**Task Board Discovery Fallback:** `Cross-reference \`.jules/agent_tasks.md\` before initiating your scan. If you fail to find a valid target in \`.jules/agent_tasks.md\`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.` (Append the Core Discovery Fallback to this string if the worker is Tier: Core).
+**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Structural Mandate:** You must explicitly define the Domain Autonomy declaration and the Discovery Fallback instruction natively within the JSON payload (`data.process.discover.domain_autonomy_declaration` and `data.process.discover.discovery_fallback`). Supply the exact strings defined in Creative-Procedure Module 2:
 
 ### Execution Steps Count Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
 - **All Archetypes:** Strictly 5 to 7 steps.
 
-Note: Structural minimums and maximums for Target Matrix, Execution Steps, and Heuristic counts may NOT be waived by the Efficacy Exemption.
+Note: Structural minimums and maximums for Target Matrix and Heuristic counts may NOT be waived by the Efficacy Exemption.
 
 ### Heuristic Verification Count Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
@@ -162,7 +156,7 @@ Note: Structural minimums and maximums for Target Matrix, Execution Steps, and H
 
 These checks must directly reflect the worker's workflow type as determined during Repo Recon.
 
-Note: Structural minimums and maximums for Target Matrix, Execution Steps, and Heuristic counts may NOT be waived by the Efficacy Exemption.
+Note: Structural minimums and maximums for Target Matrix and Heuristic counts may NOT be waived by the Efficacy Exemption.
 
 ### Confidence Tier Model
 An optional structural pattern available to the Sculptor. It serves as an alternative to the binary Ambiguity Gate for workers whose target domains have natural confidence gradients. When electing to apply it, reference it explicitly by name.

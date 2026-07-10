@@ -50,7 +50,7 @@ Applies during the compilation of all operating theme-driven elements. Balances 
 
 Apply thematic voice precisely according to this gradient.
 
-**Theme Verb:** Must be a single imperative action verb, in ALL CAPS.
+**Theme Verb:** Must be a single imperative action verb, in ALL CAPS. It must be highly thematic to the specific agent and their theme, avoiding repetitive or generic verbs.
 
 **Functional Bridge:** Exactly 2 words. It cannot contain articles ("the", "a", "an"). **⚠️ Structural Mandate:** A violation of the length or article constraints will fatally crash the compilation QA gate.
 
@@ -72,6 +72,12 @@ Apply thematic voice precisely according to this gradient.
 **Target Matrix Formatting:** Every DISCOVER target must follow the exact format: `* **[Category Name]:** [description]`.
 
 **Retained Rules Formatting:** Retained legacy rules must be formatted strictly as: `* The [Name]: [Instruction].`
+
+**Domain Autonomy String:** `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.`
+
+**Core Discovery Fallback:** `If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.`
+
+**Task Board Discovery Fallback:** `Cross-reference \`.jules/agent_tasks.md\` before initiating your scan. If you fail to find a valid target in \`.jules/agent_tasks.md\`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.` (Append the Core Discovery Fallback to this string if the worker is Tier: Core).
 
 ## Module 3: The Core DNA Index
 

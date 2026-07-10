@@ -97,6 +97,7 @@ class ExportController {
    * that contain the given parent agent's name in their fusion key.
    * @param {string} parentName - The name of the parent agent to filter by.
    * @param {HTMLElement} btn - The DOM element triggering the action.
+   * @returns {Promise<void>}
    */
   async _fetchMissingPrompts(agentsList) {
     // ⚡ Bolt+: Connection Pool. Migrated sequential batch-chunking to a sliding-window concurrency pool, eliminating batch-boundary waterfall latency.

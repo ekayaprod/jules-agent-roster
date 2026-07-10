@@ -20,6 +20,7 @@ class FusionLab {
    * Initializes the Fusion Lab component.
    * @param {Array} agents - The list of agents.
    * @param {Object} customAgents - The map of custom agent fusions.
+   * @returns {void}
    */
   init(agents, customAgents, fusionMatrix = {}) {
     this.agents = agents;
@@ -54,6 +55,7 @@ class FusionLab {
 
   /**
    * Binds event listeners for the Fusion Lab.
+   * @returns {void}
    */
   bindEvents() {
     if (this.events) {
@@ -63,6 +65,7 @@ class FusionLab {
 
   /**
    * Renders the visual state of the slots based on this.state.
+   * @returns {void}
    */
   renderSlots() {
     if (this.renderer) {
@@ -75,6 +78,7 @@ class FusionLab {
    * Handles selection from the picker.
    * @param {string} slotKey - The slot key being populated
    * @param {Object} agent - The selected agent
+   * @returns {void}
    */
   handlePickerSelection(slotKey, agent) {
       this.state[slotKey] = agent;
@@ -96,6 +100,7 @@ class FusionLab {
 
   /**
    * Updates the state of the Fusion button and visual indicators.
+   * @returns {void}
    */
   updateState() {
     const fuseBtn = this.elements.fuseBtn;
@@ -116,6 +121,7 @@ class FusionLab {
   /**
    * Displays an error message in the Fusion Lab.
    * @param {string} message - The error message to display.
+   * @returns {void}
    */
   showError(message) {
     const errorEl = this.elements.errorEl;
@@ -143,6 +149,7 @@ class FusionLab {
 
   /**
    * Clears the error state.
+   * @returns {void}
    */
   clearError() {
     const errorEl = this.elements.errorEl;
@@ -161,6 +168,7 @@ class FusionLab {
 
   /**
    * Handles the fusion logic when the Fuse button is clicked.
+   * @returns {Promise<void>}
    */
   async handleFusion() {
     const fuseBtn = this.elements.fuseBtn;
@@ -234,6 +242,7 @@ class FusionLab {
    * Handles selection from the Fusion Index shelf.
    * Recreates the fusion result without the long animation.
    * @param {string} key - The fusion key (AgentA,AgentB).
+   * @returns {void}
    */
   handleShelfSelection(key) {
     const names = AgentUtils.splitFusionKey(key);
@@ -268,6 +277,7 @@ class FusionLab {
   /**
    * Renders the fusion result into the DOM.
    * @param {Object} result - The fusion result object.
+   * @returns {void}
    */
   renderFusionResult(result) {
     if (this.renderer) {
@@ -299,6 +309,7 @@ class FusionLab {
 
   /**
    * Resets the lab state for another fusion.
+   * @returns {void}
    */
   resetLab() {
     this.state.slotA = null;
@@ -309,6 +320,7 @@ class FusionLab {
 
   /**
    * ☕ CAFFEINATED: Preserves slot context so the user can modify one agent without restarting.
+   * @returns {void}
    */
   returnToLab() {
     const resetBtn = this.elements.resetLabBtn;
@@ -337,6 +349,7 @@ class FusionLab {
 
   /**
    * Reveals the fusion result with smooth transitions.
+   * @returns {void}
    */
   showResult() {
     if (this.renderer) {

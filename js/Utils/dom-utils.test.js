@@ -161,6 +161,7 @@ describe('DOMUtils', () => {
 
         it('should accept a CSS selector string', () => {
             DOMUtils.setElementsDisplay('.target-class', 'flex');
+            expect(el1.classList.contains('d-none')).toBe(false);
             expect(el1.style.display).toBe('flex');
             expect(el2.style.display).toBe('flex');
             expect(el3.style.display).toBe('flex');
@@ -169,15 +170,16 @@ describe('DOMUtils', () => {
         it('should accept an iterable of elements', () => {
             const elements = [el1, el2];
             DOMUtils.setElementsDisplay(elements, 'none');
-            expect(el1.style.display).toBe('none');
-            expect(el2.style.display).toBe('none');
-            expect(el3.style.display).toBe(''); // untouched
+            expect(el1.classList.contains('d-none')).toBe(true);
+            expect(el2.classList.contains('d-none')).toBe(true);
+            expect(el3.classList.contains('d-none')).toBe(false); // untouched
         });
 
         it('should exclude an element by ID', () => {
             DOMUtils.setElementsDisplay('.target-class', 'block', 'exclude-me');
             expect(el1.style.display).toBe('block');
             expect(el2.style.display).toBe('block');
+            expect(el3.classList.contains('d-none')).toBe(false);
             expect(el3.style.display).toBe(''); // untouched
         });
     });
@@ -204,7 +206,7 @@ describe('DOMUtils', () => {
             expect(el.tagName).toBe('DIV');
             expect(el.className).toContain('markdown-rendered');
             expect(el.className).toContain('transition-all');
-            expect(el.style.transitionProperty).toBe('height, min-height');
+            expect(el.className).toContain('transition-height-min-height');
             // Ensure exact text content is retained without executing HTML
             expect(el.textContent).toBe(payload);
             expect(el.innerHTML).not.toContain('<script>');

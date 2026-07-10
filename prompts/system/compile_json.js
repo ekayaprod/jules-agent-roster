@@ -75,6 +75,14 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     );
   }
 
+  const roleStr = data.identity?.role || '';
+  const roleWords = roleStr.trim().split(/\s+/).filter(Boolean);
+  if (roleWords.length !== 2) {
+    throw new Error(
+      `[FATAL ERROR] Role must be exactly 2 words. Found ${roleWords.length}: '${roleStr}'`,
+    );
+  }
+
   const functionalBridge = data.identity?.functional_bridge || '';
   const fbWords = functionalBridge.trim().split(/\s+/).filter(Boolean);
   if (fbWords.length !== 2) {

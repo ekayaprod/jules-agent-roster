@@ -6,6 +6,8 @@
 .mcp.json
 Dockerfile
 *.md
+!prompts/**/*.md
+!prompts/*.md
 .prettierrc
 .markdownlint.json
 docs

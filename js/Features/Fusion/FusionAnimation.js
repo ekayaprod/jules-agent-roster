@@ -85,13 +85,9 @@ const FusionAnimation = function () {
 
         particle.style.setProperty("--tx", `${tx / 16}rem`);
         particle.style.setProperty("--ty", `${ty / 16}rem`);
+        particle.style.setProperty("--speed-multiplier", speedMultiplier);
 
-        // Sync duration to the explosion curve
-        particle.style.animationDuration = `${1.0 / speedMultiplier}s`;
-
-        // Lock delay exactly to the 1.8s flash frame
-        particle.style.animationDelay = `1.8s`;
-        particle.style.animationTimingFunction = "cubic-bezier(0.1, 0.8, 0.3, 1)";
+        particle.classList.add("fusion-particle-anim");
 
         fragment.appendChild(particle);
       }
