@@ -50,7 +50,7 @@ Applies during the compilation of all operating theme-driven elements. Balances 
 
 Apply thematic voice precisely according to this gradient.
 
-**Theme Verb:** Must be a single imperative action verb, in ALL CAPS.
+**Theme Verb:** Must be a single imperative action verb, in ALL CAPS. It must be highly thematic to the specific agent and their theme, avoiding repetitive or generic verbs.
 
 **Functional Bridge:** Exactly 2 words. It cannot contain articles ("the", "a", "an"). **⚠️ Structural Mandate:** A violation of the length or article constraints will fatally crash the compilation QA gate.
 
