@@ -41,6 +41,10 @@ Forced CoT journals (e.g., "Write a paragraph explaining why before editing") ar
 When providing examples of "Good Code" vs "Bad Code" in system prompts, injecting full functions pollutes the context window.
 * **The Fix:** Provide **isolated diffs** or minimal 2-line snippets. The transformer architecture easily extrapolates patterns from syntax fragments without needing the surrounding boilerplate.
 
+### Testing Constraints
+Agents must treat pre-existing tests as immutable. If a refactor breaks a test, the agent must fix its refactor, not the test.
+* **The Fix:** Instruct agents to verify logic without altering the test files.
+
 ### Task Board "Mission Drift"
 Loading a master `.md` file containing the swarm's entire backlog into an agent's active memory creates systemic distraction. An agent assigned to fix CSS will cross-reference the board and spontaneously attempt to patch a database query.
 * **The Fix:** Isolate payloads. Agents should only receive their *exact* target. If they must update a global board, it must be declared as a **terminal action** immediately before halting.
