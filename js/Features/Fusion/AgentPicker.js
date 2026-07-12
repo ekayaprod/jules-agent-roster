@@ -81,34 +81,36 @@ class AgentPicker {
 
         // Ensure event delegation catches events bubbled from clusterize
         const pickerScrollArea = this.elements.pickerScrollArea;
-        if (pickerScrollArea) {
-            // Remove brittle custom roving tabindex logic, replacing with standard focus-trap
-            pickerScrollArea.addEventListener("keydown", (e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                    const target = e.target.closest(".mini-agent-card");
-                    if (target) {
-                        e.preventDefault();
-                        const agentName = target.getAttribute("data-name");
-                        // ⚡ Bolt+: Eliminated O(n) linear search on selection by utilizing the O(1) Map dictionary.
-                        const agent = this.agentMap.get(agentName);
-                        if (agent) this.handlePickerSelection(agent);
-                    }
-                }
-            });
+        if (!pickerScrollArea) return;
 
-            // Global event delegation for memoized/virtualized grid items
-            pickerScrollArea.addEventListener("click", (e) => {
-                const target = e.target.closest(".mini-agent-card");
-                if (target) {
-                    const agentName = target.getAttribute("data-name");
-                    // ⚡ Bolt+: Eliminated O(n) linear search on selection by utilizing the O(1) Map dictionary.
-                    const agent = this.agentMap.get(agentName);
-                    if (agent) {
-                        this.handlePickerSelection(agent);
-                    }
-                }
-            });
-        }
+        // Remove brittle custom roving tabindex logic, replacing with standard focus-trap
+        pickerScrollArea.addEventListener("keydown", (e) => {
+            if (e.key !== "Enter" && e.key !== " ") return;
+
+            const target = e.target.closest(".mini-agent-card");
+            if (!target) return;
+
+            e.preventDefault();
+            const agentName = target.getAttribute("data-name");
+            // ⚡ Bolt+: Eliminated O(n) linear search on selection by utilizing the O(1) Map dictionary.
+            const agent = this.agentMap.get(agentName);
+            if (!agent) return;
+
+            this.handlePickerSelection(agent);
+        });
+
+        // Global event delegation for memoized/virtualized grid items
+        pickerScrollArea.addEventListener("click", (e) => {
+            const target = e.target.closest(".mini-agent-card");
+            if (!target) return;
+
+            const agentName = target.getAttribute("data-name");
+            // ⚡ Bolt+: Eliminated O(n) linear search on selection by utilizing the O(1) Map dictionary.
+            const agent = this.agentMap.get(agentName);
+            if (!agent) return;
+
+            this.handlePickerSelection(agent);
+        });
     }
 
     /**
