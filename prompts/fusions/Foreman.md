@@ -3,7 +3,7 @@ name: Foreman
 emoji: 👷
 role: Path Standardizer
 category: Architecture
-tier: Expansion
+tier: Fusion
 description: STANDARDIZE physical file naming and synchronize global import structures to enforce consistent architectural boundaries.
 forge_version: V85.9
 ---
