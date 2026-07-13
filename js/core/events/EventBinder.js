@@ -326,7 +326,7 @@ class EventBinder {
       }
 
       const actionBtn = e.target.closest('[data-action]');
-      if (actionBtn && ["copy-agent", "download-agent", "launch-jules", "download-parent-fusions"].includes(actionBtn.dataset.action)) {
+      if (actionBtn && ["copy-agent", "copy-agent-instruction", "download-agent", "launch-jules", "download-parent-fusions"].includes(actionBtn.dataset.action)) {
           e.preventDefault();
           e.stopPropagation();
 
@@ -347,6 +347,11 @@ class EventBinder {
 
           if (action === "copy-agent") {
               app.exportController?.copyAgent(index, actionBtn);
+              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
+              return;
+          }
+          if (action === "copy-agent-instruction") {
+              app.exportController?.copyAgentInstruction(index, actionBtn);
               DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
               return;
           }
