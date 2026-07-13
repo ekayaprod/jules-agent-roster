@@ -103,7 +103,9 @@ class JulesAPI {
      * @returns {Promise<object>} Sources payload (repositories).
      */
     async getSources() {
-        return this._fetch("/sources");
+        const data = await this._fetch("/sources");
+        if (data && !data.sources) data.sources = [];
+        return data;
     }
 
     /**
