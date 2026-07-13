@@ -1534,7 +1534,8 @@
     "role": "Trail Scribe",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Read highly convoluted, multi-file execution chains and conceptually untangle them into pristine, linear macro-documentation.",
+    "description": "UNTANGLE highly convoluted, multi-file execution chains into pristine, linear macro-documentation.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Scout.md",
     "isCustom": true
   },
@@ -1555,7 +1556,8 @@
     "role": "Graveyard Destroyer",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Delete commented-out code that has sat untouched for over 30 days to reduce visual noise.",
+    "description": "DESTROY commented-out code that has sat untouched for over 30 days to reduce visual noise.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Shredder.md",
     "isCustom": true
   },
@@ -1648,7 +1650,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "SPLICE redundant functions by analyzing their inner workings and integrating their capabilities.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Sylar.md",
     "isCustom": true
   },
