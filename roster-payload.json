@@ -1534,7 +1534,8 @@
     "role": "Trail Scribe",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Read highly convoluted, multi-file execution chains and conceptually untangle them into pristine, linear macro-documentation.",
+    "description": "UNTANGLE highly convoluted, multi-file execution chains into pristine, linear macro-documentation.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Scout.md",
     "isCustom": true
   },
@@ -1648,7 +1649,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "SPLICE redundant functions by analyzing their inner workings and integrating their capabilities.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Sylar.md",
     "isCustom": true
   },
@@ -1794,7 +1795,8 @@
     "role": "Paradigm Migrator",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Executes piecemeal paradigm evolution by autonomously transmuting legacy files into the modern repository standard one by one.",
+    "description": "TRANSMUTE legacy files into modern repository standards by executing safe, piecemeal paradigm evolution without breaking parity.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Transmuter.md",
     "isCustom": true
   },
