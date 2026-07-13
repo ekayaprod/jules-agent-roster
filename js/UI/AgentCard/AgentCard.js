@@ -158,6 +158,7 @@ class AgentCard {
                         <!-- Custom Agent Dropdown -->
                         <div class="dropdown-menu" id="card-dropdown-${index}" role="menu">
                             <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="${dropdownAction}" data-index="${index}" role="menuitem" aria-label="${dropdownText.replace(/[^a-zA-Z\\s]/g, '').trim()}">${dropdownText}</button>
+                            <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="copy-agent-instruction" data-index="${index}" role="menuitem" aria-label="Copy Instructions">📋 Copy Instructions</button>
                             <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="download-agent" data-index="${index}" role="menuitem" aria-label="Download Protocol as Markdown">💾 Download .md</button>
                             ${downloadFusionsBtnHtml}
                         </div>

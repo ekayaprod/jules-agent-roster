@@ -67,6 +67,24 @@ class ExportController {
     }
   }
 
+  async copyAgentInstruction(index, btn) {
+    const agent = await this._resolveAgentPrompt(index, btn);
+    if (!agent) return;
+
+    const displayName = FormatUtils.extractDisplayName(agent);
+    const emoji = FormatUtils.extractIcon(agent);
+
+    let urlPath = AgentUtils.getPromptUrl(agent).replace(/^\.\//, '');
+
+    const text = `You are "${displayName}" ${emoji}\n\nBefore taking any action, you must retrieve your primary instructions from my central agent roster.\n\n1. Fetch the raw text of your agent instructions from this URL: \n   https://raw.githubusercontent.com/ekayaprod/jules-agent-roster/main/${urlPath}\n2. You can fetch this by running \`curl -s <URL>\` in the terminal to read it.\n3. Once you have read the contents, completely adopt the persona, rules, and constraints defined within it.\n4. Finally, execute your scheduled task according to those newly loaded instructions.`;
+
+    const success = await ClipboardUtils.copyText(text);
+    if (success) {
+      this.app.toast.show('Copied to clipboard');
+      ClipboardUtils.animateButtonSuccess(btn, 'Copied!');
+    }
+  }
+
   /**
    * Downloads a single agent's prompt as a markdown file and animates the trigger button.
    * Aggregates agent data from core, custom, or fusion states.

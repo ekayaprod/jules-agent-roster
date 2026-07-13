@@ -71,6 +71,25 @@ describe('ExportController', () => {
     });
 
 
+    describe('copyAgentInstruction', () => {
+        it('copies instruction with agent name, emoji, and url', async () => {
+            const { appMock, btnMock, controller } = buildMockEnv();
+            global.ClipboardUtils.copyText.mockResolvedValueOnce(true);
+
+            global.FormatUtils.extractDisplayName = jest.fn().mockReturnValueOnce('Agent 1');
+            global.FormatUtils.extractIcon = jest.fn().mockReturnValueOnce('🤖');
+            global.AgentUtils.getPromptUrl = jest.fn().mockReturnValueOnce('./prompts/agent1.md');
+
+            await controller.copyAgentInstruction(0, btnMock);
+
+            const expectedText = `You are "Agent 1" 🤖\n\nBefore taking any action, you must retrieve your primary instructions from my central agent roster.\n\n1. Fetch the raw text of your agent instructions from this URL: \n   https://raw.githubusercontent.com/ekayaprod/jules-agent-roster/main/prompts/agent1.md\n2. You can fetch this by running \`curl -s <URL>\` in the terminal to read it.\n3. Once you have read the contents, completely adopt the persona, rules, and constraints defined within it.\n4. Finally, execute your scheduled task according to those newly loaded instructions.`;
+
+            expect(global.ClipboardUtils.copyText).toHaveBeenCalledWith(expectedText);
+            expect(appMock.toast.show).toHaveBeenCalledWith('Copied to clipboard');
+            expect(global.ClipboardUtils.animateButtonSuccess).toHaveBeenCalledWith(btnMock, 'Copied!');
+        });
+    });
+
     describe('copyAgent', () => {
         it('copies a core agent successfully', async () => {
             const { appMock, btnMock, controller } = buildMockEnv();
