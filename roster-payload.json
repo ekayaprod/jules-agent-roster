@@ -1556,7 +1556,8 @@
     "role": "Graveyard Destroyer",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Delete commented-out code that has sat untouched for over 30 days to reduce visual noise.",
+    "description": "DELETE commented-out code that has sat untouched for over 30 days to reduce visual noise.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Shredder.md",
     "isCustom": true
   },
