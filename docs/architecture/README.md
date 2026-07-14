@@ -6,6 +6,19 @@ This directory contains the core application logic for the Jules Roster. The app
 
 The codebase is organized into modular components that separate concerns between data fetching, UI rendering, and complex business logic (Fusion).
 
+### 🗺️ Architectural Domain Map
+
+To help you navigate the physical structure of the JS application, here is the structural purpose of each physical sub-folder:
+
+| Directory | Structural Purpose |
+| :--- | :--- |
+| `js/core/` | The core client-side Vanilla JS application initialization and rendering orchestration. |
+| `js/Features/` | Domain-specific logic groupings (e.g., Fusion Lab, Pinned Agents, Search). |
+| `js/Services/` | Data fetching, validation, and external integration layers for backend AI services. |
+| `js/UI/` | Reusable DOM rendering components, generic functional templates, and UI state managers. |
+| `js/Utils/` | Standalone helpers for performance optimization, markdown parsing, and generic DOM utilities. |
+| `js/constants/` | Shared static configuration parameters and global application constants. |
+
 ### Core Logic (`js/core`)
 
 * **`RosterApp.js`**: The main entry point. Initializes the application, coordinates data fetching via `AgentRepository`, and manages the main agent grid UI.
