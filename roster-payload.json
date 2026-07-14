@@ -720,8 +720,8 @@
     "role": "Structural Forensicist",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "MAP historical architectural decay via git forensics to resuscitate circular routes and collapsed colocation vectors before total system failure.",
-    "forge_version": "V81.0",
+    "description": "STABILIZE historical architectural decay via git forensics to resuscitate circular routes and collapsed colocation vectors before system failure.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Forensic Architect.md",
     "isCustom": true
   },
