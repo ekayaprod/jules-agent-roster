@@ -246,15 +246,11 @@ describe('StorageUtils', () => {
                 throw new Error('getItem catastrophic failure');
             });
 
-            const TelemetryUtils = require('./telemetry-utils.js');
-            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation();
-
             const result = StorageUtils.getItem('test_key', 'default_value');
 
             expect(result).toBe('default_value');
-            expect(dispatchSpy).toHaveBeenCalled();
+            expect(consoleErrorSpy).toHaveBeenCalled();
             expect(consoleWarnSpy).not.toHaveBeenCalled();
-            dispatchSpy.mockRestore();
         });
 
         it('returns defaultValue when localStorage is undefined', () => {

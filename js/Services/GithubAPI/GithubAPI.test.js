@@ -65,7 +65,6 @@ describe('GithubAPI', () => {
              abortError.name = 'AbortError';
              global.fetch.mockRejectedValueOnce(abortError);
 
-             // Set up mock TelemetryUtils
              const originalTelemetryUtils = global.TelemetryUtils;
              global.TelemetryUtils = { dispatchEvent: jest.fn() };
 
@@ -76,7 +75,6 @@ describe('GithubAPI', () => {
              });
              expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('GITHUB_API_TIMEOUT', expect.any(Error));
 
-             // Restore TelemetryUtils
              global.TelemetryUtils = originalTelemetryUtils;
         });
 
@@ -84,14 +82,12 @@ describe('GithubAPI', () => {
              const genericError = new Error('Generic Error');
              global.fetch.mockRejectedValueOnce(genericError);
 
-             // Set up mock TelemetryUtils
              const originalTelemetryUtils = global.TelemetryUtils;
              global.TelemetryUtils = { dispatchEvent: jest.fn() };
 
              await expect(api._fetch('/test')).rejects.toThrow('Generic Error');
              expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('GITHUB_API_ERROR', genericError, { path: '/test' });
 
-             // Restore TelemetryUtils
              global.TelemetryUtils = originalTelemetryUtils;
         });
     });
