@@ -3,21 +3,21 @@ const fs = require('fs');
 const path = require('path');
 
 describe('TelemetryUtils boundary and coverage logic', () => {
-    let originalConsoleError;
+    let originalConsoleWarn;
     const code = fs.readFileSync(path.join(__dirname, 'telemetry-utils.js'), 'utf8');
 
     beforeEach(() => {
-        originalConsoleError = console.error;
-        console.error = jest.fn();
+        originalConsoleWarn = console.warn;
+        console.warn = jest.fn();
     });
 
     afterEach(() => {
-        console.error = originalConsoleError;
+        console.warn = originalConsoleWarn;
     });
 
     it('formats error properly from Error object', () => {
         TelemetryUtils.dispatchEvent('TEST_EVENT', new Error('Message'), { extra: 1 });
-        expect(console.error).toHaveBeenCalledWith(JSON.stringify({
+        expect(console.warn).toHaveBeenCalledWith(JSON.stringify({
             event: 'TEST_EVENT',
             error: 'Message',
             extra: 1
@@ -26,7 +26,7 @@ describe('TelemetryUtils boundary and coverage logic', () => {
 
     it('formats error properly from string', () => {
         TelemetryUtils.dispatchEvent('TEST_EVENT', 'String error', { extra: 1 });
-        expect(console.error).toHaveBeenCalledWith(JSON.stringify({
+        expect(console.warn).toHaveBeenCalledWith(JSON.stringify({
             event: 'TEST_EVENT',
             error: 'String error',
             extra: 1
@@ -35,7 +35,7 @@ describe('TelemetryUtils boundary and coverage logic', () => {
 
     it('uses default additionalContext if not provided', () => {
         TelemetryUtils.dispatchEvent('TEST_EVENT', 'String error');
-        expect(console.error).toHaveBeenCalledWith(JSON.stringify({
+        expect(console.warn).toHaveBeenCalledWith(JSON.stringify({
             event: 'TEST_EVENT',
             error: 'String error'
         }));
@@ -99,8 +99,8 @@ describe('TelemetryUtils boundary and coverage logic', () => {
 
         TelemetryUtils.dispatchEvent('TEST_CIRCULAR', 'error', { data: circularObj });
 
-        expect(console.error).toHaveBeenCalledWith(expect.stringContaining('TEST_CIRCULAR'));
-        expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Circular Reference]'));
+        expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('TEST_CIRCULAR'));
+        expect(console.warn).toHaveBeenCalledWith(expect.stringContaining('[Circular Reference]'));
     });
 });
 

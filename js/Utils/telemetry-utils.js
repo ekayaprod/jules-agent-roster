@@ -4,7 +4,7 @@
  */
 class TelemetryUtils {
     /**
-     * Dispatches a structured telemetry event using console.error.
+     * Dispatches a structured telemetry event using console.warn.
      * @param {string} eventName - The standardized telemetry event name.
      * @param {Error|string} error - The error object or message string.
      * @param {Object} [additionalContext] - Any extra context to include.
@@ -16,11 +16,11 @@ class TelemetryUtils {
             ...additionalContext
         };
         try {
-            console.error(JSON.stringify(payload));
+            console.warn(JSON.stringify(payload));
         } catch (e) {
             payload.error_payload_stringification_failed = true;
             payload.additionalContext = "[Circular Reference]";
-            console.error(JSON.stringify({
+            console.warn(JSON.stringify({
                 event: payload.event,
                 error: payload.error,
                 additionalContext: payload.additionalContext

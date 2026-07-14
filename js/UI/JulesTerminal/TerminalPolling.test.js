@@ -189,7 +189,9 @@ describe('JulesTerminal', () => {
         jest.advanceTimersByTime(10);
         await Promise.resolve(); // flush promises
 
-        expect(consoleSpy).toHaveBeenCalledWith("Session polling cycle encountered an error:", expect.any(Error));
+        // After removing console.error fallback in TerminalPolling,
+        // it shouldn't log to console.error anymore.
+        expect(consoleSpy).not.toHaveBeenCalledWith("Session polling cycle encountered an error:", expect.any(Error));
         consoleSpy.mockRestore();
     });
 

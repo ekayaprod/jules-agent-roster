@@ -65,20 +65,34 @@ describe('GithubAPI', () => {
              abortError.name = 'AbortError';
              global.fetch.mockRejectedValueOnce(abortError);
 
+             // Set up mock TelemetryUtils
+             const originalTelemetryUtils = global.TelemetryUtils;
+             global.TelemetryUtils = { dispatchEvent: jest.fn() };
+
              await expect(api._fetch('/test')).rejects.toMatchObject({
                  message: 'Request to /test timed out after 15s.',
                  status: 408,
                  name: 'GithubNetworkError'
              });
-             expect(console.error).toHaveBeenCalledWith(`[GithubAPI] Request timeout: `, expect.any(Error));
+             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('GITHUB_API_TIMEOUT', expect.any(Error));
+
+             // Restore TelemetryUtils
+             global.TelemetryUtils = originalTelemetryUtils;
         });
 
         it('should handle generic errors', async () => {
              const genericError = new Error('Generic Error');
              global.fetch.mockRejectedValueOnce(genericError);
 
+             // Set up mock TelemetryUtils
+             const originalTelemetryUtils = global.TelemetryUtils;
+             global.TelemetryUtils = { dispatchEvent: jest.fn() };
+
              await expect(api._fetch('/test')).rejects.toThrow('Generic Error');
-             expect(console.error).toHaveBeenCalledWith(`[GithubAPI] Request to /test failed: `, genericError);
+             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('GITHUB_API_ERROR', genericError, { path: '/test' });
+
+             // Restore TelemetryUtils
+             global.TelemetryUtils = originalTelemetryUtils;
         });
     });
 

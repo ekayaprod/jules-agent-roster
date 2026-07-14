@@ -52,9 +52,10 @@ class JulesAPI {
      * @returns {Promise<object>} The JSON parsed response.
      */
     async _fetch(path, options = {}) {
+        const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
         if (!this.apiKey) {
              const error = new JulesConfigurationError("Jules API key not configured");
-             console.error("[JulesAPI] Request aborted. API Key is missing.", error);
+             if (tu) tu.dispatchEvent("JULES_API_MISSING_KEY", error);
              throw error;
         }
 
@@ -80,10 +81,10 @@ class JulesAPI {
                     }
                 } catch (e) {
                    // Fallback if parsing fails
-                   console.error("[JulesAPI] Failed to parse error response JSON", e);
+                   if (tu) tu.dispatchEvent("JULES_API_PARSE_ERROR", e);
                 }
                 const error = new JulesNetworkError(errorMsg, response.status);
-                console.error(`[JulesAPI] Request to ${path} failed: ${errorMsg}`, error);
+                if (tu) tu.dispatchEvent("JULES_API_ERROR", error, { path, errorMsg });
                 throw error;
             }
 
@@ -92,7 +93,7 @@ class JulesAPI {
         } catch (error) {
              if (error.name === 'AbortError') {
                  const timeoutErr = new JulesTimeoutError(`Request to ${path} timed out after 15s.`);
-                 console.error("[JulesAPI] Request timeout.", timeoutErr);
+                 if (tu) tu.dispatchEvent("JULES_API_TIMEOUT", timeoutErr);
                  throw timeoutErr;
              }
              throw error;
@@ -148,7 +149,8 @@ class JulesAPI {
     async createSession(prompt, userTask, source, title) {
          if (!prompt || !userTask || !source || !title) {
              const error = new JulesConfigurationError("Missing required parameters for createSession");
-             console.error("[JulesAPI] Cannot create session", error);
+             const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+             if (tu) tu.dispatchEvent("JULES_API_CREATE_SESSION_ERROR", error);
              throw error;
          }
 

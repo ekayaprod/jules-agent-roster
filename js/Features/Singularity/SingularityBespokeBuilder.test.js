@@ -84,13 +84,15 @@ describe('SingularityBespokeBuilder', () => {
       global.fetch.mockRejectedValueOnce(new Error('Network error'));
 
       builder.init();
-      const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+      window.TelemetryUtils = { dispatchEvent: jest.fn() };
 
       await builder.handleForge();
 
-      expect(consoleSpy).toHaveBeenCalledWith('Unable to forge bespoke agent:', expect.any(Error));
+      expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BUILDER_FORGE_ERROR', expect.any(Error));
       expect(global.window.rosterApp.showToast).toHaveBeenCalledWith(expect.stringContaining('Unable to forge bespoke agent:'));
       expect(mockTerminal.launchSession).not.toHaveBeenCalled();
+
+      delete window.TelemetryUtils;
     });
 
     it('should handle missing template response', async () => {

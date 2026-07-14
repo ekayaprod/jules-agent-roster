@@ -144,8 +144,6 @@ class SingularityBespokeBuilder {
       const tu = window.TelemetryUtils;
       if (tu) {
           tu.dispatchEvent("BUILDER_FORGE_ERROR", forgeError);
-      } else {
-          console.error("Unable to forge bespoke agent:", forgeError);
       }
       if (window.rosterApp?.showToast) {
         window.rosterApp.showToast(`Unable to forge bespoke agent: ${error.message || "Unknown error"}`);
