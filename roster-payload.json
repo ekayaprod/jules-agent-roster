@@ -720,8 +720,8 @@
     "role": "Structural Forensicist",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "MAP historical architectural decay via git forensics to resuscitate circular routes and collapsed colocation vectors before total system failure.",
-    "forge_version": "V81.0",
+    "description": "STABILIZE historical architectural decay via git forensics to resuscitate circular routes and collapsed colocation vectors before system failure.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Forensic Architect.md",
     "isCustom": true
   },
@@ -1657,10 +1657,11 @@
   {
     "name": "Synchronizer",
     "emoji": "🔄",
-    "role": "Dependency Migration Specialist",
+    "role": "Dependency Migrator",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Execute major package version bumps and simultaneously map their breaking changes across the entire abstract syntax tree (AST) to rewrite every deprecated consumer reference.",
+    "description": "MIGRATE deprecated consumer references to modern standards when performing major package version bumps.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Synchronizer.md",
     "isCustom": true
   },
