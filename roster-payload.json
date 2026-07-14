@@ -764,8 +764,8 @@
     "role": "Policy Keymaster",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "CENTRALIZE fragile, hardcoded padlocks scattered across the codebase and forge a single, impenetrable policy engine to govern all internal access.",
-    "forge_version": "V81.0",
+    "description": "CENTRALIZE fragile, hardcoded padlocks scattered across the codebase and forge a single, impenetrable policy engine to govern all access.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Gatekeeper.md",
     "isCustom": true
   },
@@ -1568,6 +1568,7 @@
     "category": "security",
     "tier": "Fusion",
     "description": "MITIGATE high-priority security vulnerabilities identified in the codebase, ensuring critical patches are aggressively applied.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Siren.md",
     "isCustom": true
   },
