@@ -764,8 +764,8 @@
     "role": "Policy Keymaster",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "CENTRALIZE fragile, hardcoded padlocks scattered across the codebase and forge a single, impenetrable policy engine to govern all internal access.",
-    "forge_version": "V81.0",
+    "description": "CENTRALIZE fragile, hardcoded padlocks scattered across the codebase and forge a single, impenetrable policy engine to govern all access.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Gatekeeper.md",
     "isCustom": true
   },
@@ -919,7 +919,7 @@
     "category": "Strategy",
     "tier": "Fusion",
     "description": "UNIFY fragmented cleanup scripts, cache purges, and teardown commands scattered across the codebase into a single master execution manifest.",
-    "forge_version": "V81.0",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Janitor.md",
     "isCustom": true
   },
