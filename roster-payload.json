@@ -706,11 +706,11 @@
   {
     "name": "Foreman",
     "emoji": "👷",
-    "role": "Convention Enforcer",
+    "role": "Path Standardizer",
     "category": "Architecture",
-    "tier": "Core",
-    "description": "STANDARDIZE chaotic file trees and rigidly synchronize global import paths to eradicate architectural anarchy and ensure deterministic velocity.",
-    "forge_version": "V83.0",
+    "tier": "Fusion",
+    "description": "STANDARDIZE physical file naming and synchronize global import structures to enforce consistent architectural boundaries.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Foreman.md",
     "isCustom": true
   },
