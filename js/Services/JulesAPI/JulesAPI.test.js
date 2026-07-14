@@ -39,7 +39,11 @@ describe('JulesAPI', () => {
 
         it('should throw if apiKey is not set', async () => {
              api.apiKey = null;
+             const originalTelemetryUtils = global.TelemetryUtils;
+             global.TelemetryUtils = { dispatchEvent: jest.fn() };
              await expect(api._fetch('/test')).rejects.toThrow(JulesConfigurationError);
+             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('JULES_API_MISSING_KEY', expect.any(Error));
+             global.TelemetryUtils = originalTelemetryUtils;
         });
 
         it('should append API key to URL', async () => {
@@ -52,10 +56,15 @@ describe('JulesAPI', () => {
         });
 
         it('should handle network errors correctly', async () => {
+             const originalTelemetryUtils = global.TelemetryUtils;
+             global.TelemetryUtils = { dispatchEvent: jest.fn() };
              global.fetch.mockResolvedValueOnce({ ok: false, status: 404, json: async () => ({ error: { message: 'Not Found' } }) });
              await expect(api._fetch('/test')).rejects.toThrow(JulesNetworkError);
+             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('JULES_API_ERROR', expect.any(Error), { path: '/test', errorMsg: 'Not Found' });
+
              global.fetch.mockResolvedValueOnce({ ok: false, status: 404, json: async () => ({ error: { message: 'Not Found' } }) });
              await expect(api._fetch('/test')).rejects.toThrow('Not Found');
+             global.TelemetryUtils = originalTelemetryUtils;
         });
 
         it('should handle malformed JSON in error response gracefully', async () => {
@@ -71,6 +80,9 @@ describe('JulesAPI', () => {
         });
 
         it('should handle request timeout', async () => {
+            const originalTelemetryUtils = global.TelemetryUtils;
+            global.TelemetryUtils = { dispatchEvent: jest.fn() };
+
             global.fetch.mockImplementationOnce(() => new Promise((resolve, reject) => {
                  setTimeout(() => {
                     const abortErr = new Error('AbortError');
@@ -83,6 +95,9 @@ describe('JulesAPI', () => {
             jest.advanceTimersByTime(15000);
 
             await expect(fetchPromise).rejects.toThrow(JulesTimeoutError);
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('JULES_API_TIMEOUT', expect.any(Error));
+
+            global.TelemetryUtils = originalTelemetryUtils;
         });
 
         it('should rethrow non-abort fetch errors', async () => {

@@ -249,8 +249,8 @@ describe('StorageUtils', () => {
             const result = StorageUtils.getItem('test_key', 'default_value');
 
             expect(result).toBe('default_value');
-            expect(consoleErrorSpy).toHaveBeenCalled();
-            expect(consoleWarnSpy).not.toHaveBeenCalled();
+            expect(consoleWarnSpy).toHaveBeenCalled();
+            expect(consoleErrorSpy).not.toHaveBeenCalled();
         });
 
         it('returns defaultValue when localStorage is undefined', () => {
