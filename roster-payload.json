@@ -1600,7 +1600,8 @@
     "role": "Load Reducer",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Flatten underlying cognitive complexity and mask it with clean, chunked UI, transforming overwhelming tasks into simple, step-by-step actions using progressive disclosure.",
+    "description": "FLATTEN underlying cognitive complexity and mask it with clean, chunked UI, transforming overwhelming tasks into simple, step-by-step actions using progressive disclosure.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Streamliner.md",
     "isCustom": true
   },
