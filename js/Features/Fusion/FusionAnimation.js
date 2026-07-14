@@ -61,11 +61,11 @@ const FusionAnimation = function () {
 
       const tierConfig = {
         "Common": { particleCount: 0, speedMultiplier: 1 },
-        "Uncommon": { particleCount: 20, speedMultiplier: 1 },
-        "Rare": { particleCount: 40, speedMultiplier: 1.2 },
         "Epic": { particleCount: 160, speedMultiplier: 1.5 },
         "Legendary": { particleCount: 300, speedMultiplier: 2 },
-        "Mythic": { particleCount: 500, speedMultiplier: 2.5 }
+        "Mythic": { particleCount: 500, speedMultiplier: 2.5 },
+        "Rare": { particleCount: 40, speedMultiplier: 1.2 },
+        "Uncommon": { particleCount: 20, speedMultiplier: 1 }
       };
 
       const config = tierConfig[tier] || tierConfig["Common"];

@@ -5,10 +5,25 @@ const hasPullRequest = o => o.pullRequest;
 
 // Hardcoded fallback for missing core metadata
 const CORE_EMOJIS = {
-    "Architect": "🏗️", "Navigator": "🧭", "Helix": "🧬", "Modernizer": "🚀", "Untangler": "🧶",
-    "Scavenger": "🗑️", "Superintendent": "🧽", "Pedant": "🧐", "Paramedic": "🚑", "Cortex": "🧠",
-    "Author": "✍️", "Scribe": "🖋️", "Herald": "📣", "Wordsmith": "🔤", "Curator": "🖼️", "Inspector": "🕵️",
-    "Bolt+": "⚡", "Palette+": "🎨", "Sentinel+": "🛡️"
+    "Architect": "🏗️",
+    "Author": "✍️",
+    "Bolt+": "⚡",
+    "Cortex": "🧠",
+    "Curator": "🖼️",
+    "Helix": "🧬",
+    "Herald": "📣",
+    "Inspector": "🕵️",
+    "Modernizer": "🚀",
+    "Navigator": "🧭",
+    "Palette+": "🎨",
+    "Paramedic": "🚑",
+    "Pedant": "🧐",
+    "Scavenger": "🗑️",
+    "Scribe": "🖋️",
+    "Sentinel+": "🛡️",
+    "Superintendent": "🧽",
+    "Untangler": "🧶",
+    "Wordsmith": "🔤"
 };
 
 const CORE_EMOJIS_MAP = new Map(Object.entries(CORE_EMOJIS));
