@@ -1589,7 +1589,8 @@
     "role": "Dependency Caretaker",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Document and map the overarching impact of dependency updates and polyfill removals, bridging the gap between package bumps and macro architecture.",
+    "description": "MAP the overarching impact of dependency updates and polyfill removals, bridging the gap between package bumps and macro architecture.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Steward.md",
     "isCustom": true
   },
