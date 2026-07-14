@@ -1578,7 +1578,8 @@
     "role": "Frictionless Router",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Flatten winding conditional logic and deeply nested `if/else` statements into lightning-fast, highly readable guard clauses and early returns.",
+    "description": "FLATTEN winding conditional logic and deeply nested `if/else` statements into lightning-fast, highly readable guard clauses and early returns.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Slipstream.md",
     "isCustom": true
   },
