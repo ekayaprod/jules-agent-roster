@@ -1608,10 +1608,11 @@
   {
     "name": "Stylist",
     "emoji": "👗",
-    "role": "Design Token Standardizer",
+    "role": "Token Standardizer",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Audit stylesheets to rip out hardcoded hex codes, pixel font sizes, and arbitrary margins, replacing them with the project's official CSS variables or Tailwind classes.",
+    "description": "STANDARDIZE stylesheets to rip out hardcoded hex codes, pixel font sizes, and arbitrary margins, replacing them with the project's official CSS variables or Tailwind classes.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Stylist.md",
     "isCustom": true
   },
