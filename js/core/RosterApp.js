@@ -321,7 +321,7 @@ class RosterApp {
       let card = this._domNodeCache.get(String(indexOrKey));
       if (card) {
           // Re-use cached node but recalculate animation delay
-          card.style.animationDelay = `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`;
+          card.style.setProperty("--card-delay", `${Math.min(globalIndex * AgentCard.ANIMATION_DELAY_STEP_MS, AgentCard.ANIMATION_DELAY_MAX_MS)}ms`);
       } else {
           card = AgentCard.create(agent, indexOrKey, globalIndex);
           this._domNodeCache.set(String(indexOrKey), card);
