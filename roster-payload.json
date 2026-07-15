@@ -1568,6 +1568,7 @@
     "category": "security",
     "tier": "Fusion",
     "description": "MITIGATE high-priority security vulnerabilities identified in the codebase, ensuring critical patches are aggressively applied.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Siren.md",
     "isCustom": true
   },
@@ -1577,7 +1578,8 @@
     "role": "Frictionless Router",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Flatten winding conditional logic and deeply nested `if/else` statements into lightning-fast, highly readable guard clauses and early returns.",
+    "description": "FLATTEN winding conditional logic and deeply nested `if/else` statements into lightning-fast, highly readable guard clauses and early returns.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Slipstream.md",
     "isCustom": true
   },
@@ -1587,7 +1589,8 @@
     "role": "Dependency Caretaker",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Document and map the overarching impact of dependency updates and polyfill removals, bridging the gap between package bumps and macro architecture.",
+    "description": "MAP the overarching impact of dependency updates and polyfill removals, bridging the gap between package bumps and macro architecture.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Steward.md",
     "isCustom": true
   },
@@ -1597,17 +1600,19 @@
     "role": "Load Reducer",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Flatten underlying cognitive complexity and mask it with clean, chunked UI, transforming overwhelming tasks into simple, step-by-step actions using progressive disclosure.",
+    "description": "FLATTEN underlying cognitive complexity and mask it with clean, chunked UI, transforming overwhelming tasks into simple, step-by-step actions using progressive disclosure.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Streamliner.md",
     "isCustom": true
   },
   {
     "name": "Stylist",
     "emoji": "👗",
-    "role": "Design Token Standardizer",
+    "role": "Token Standardizer",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Audit stylesheets to rip out hardcoded hex codes, pixel font sizes, and arbitrary margins, replacing them with the project's official CSS variables or Tailwind classes.",
+    "description": "STANDARDIZE stylesheets to rip out hardcoded hex codes, pixel font sizes, and arbitrary margins, replacing them with the project's official CSS variables or Tailwind classes.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Stylist.md",
     "isCustom": true
   },
