@@ -8,6 +8,9 @@ on:
     paths:
       - 'fusion_matrix.json'
 
+permissions:
+  contents: read
+
 jobs:
   update-orphans:
     runs-on: ubuntu-latest
