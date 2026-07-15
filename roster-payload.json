@@ -1039,8 +1039,8 @@
     "role": "Runbook Architect",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "MAP catastrophic outage scenarios and explicitly draft actionable, command-level disaster recovery steps into a formalized runbook.",
-    "forge_version": "V81.0",
+    "description": "DRILL into catastrophic outage scenarios and explicitly draft actionable, command-level disaster recovery steps into a formalized runbook.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Marshal.md",
     "isCustom": true
   },
