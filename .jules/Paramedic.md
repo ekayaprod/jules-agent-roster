@@ -10,7 +10,7 @@
 ### Execution:
 - Removed the illegal repeated global constant definitions `const getTelemetryUtils = ...` from:
   - `js/UI/Clipboard/clipboard-utils.js`
-  - `js/Utils/storage-utils.js`
+  - `js/Utils/storage/storage-utils.js`
   - `js/Utils/prompt-parser.js`
 - Substituted references inside the affected modules to use an inline `typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null)` instead of a pre-declared constant.
 
