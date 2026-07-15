@@ -6,7 +6,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "EXCAVATE unmaintainable monoliths and erect load-bearing domain structures to reinforce the physical foundations of the repository.",
-    "forge_version": "V85.2",
+    "forge_version": "V85.9",
     "promptFile": "prompts/Architect.md",
     "isCustom": false
   },
@@ -1014,11 +1014,11 @@
   {
     "name": "Lumen",
     "emoji": "💡",
-    "role": "AI Health Auditor",
+    "role": "Health Auditor",
     "category": "Observability",
     "tier": "Fusion",
     "description": "AUDIT the AI integration surface and synthesize the macro task board.",
-    "forge_version": "V81.0",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Lumen.md",
     "isCustom": true
   },
@@ -1684,11 +1684,11 @@
   {
     "name": "Systematizer",
     "emoji": "🗄️",
-    "role": "Structure Enforcer",
-    "category": "Hygiene",
+    "role": "Logic Extractor",
+    "category": "Refactoring",
     "tier": "Fusion",
-    "description": "ORGANIZE tangled workspaces of nested conditions and unlabelled variables into clean, top-to-bottom readable logic by extracting deep logic into strictly typed local helper functions.",
-    "forge_version": "V81.0",
+    "description": "UNTANGLE workspaces of nested conditions and unlabelled variables by extracting deep logic into strictly typed local helper functions.",
+    "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Systematizer.md",
     "isCustom": true
   },
