@@ -1,4 +1,4 @@
-const { BUTTON_STATES } = require("../constants/ui.js");
+const { BUTTON_STATES } = require("../../constants/ui.js");
 global.BUTTON_STATES = BUTTON_STATES;
 /**
  * @jest-environment jsdom
@@ -245,7 +245,7 @@ describe('DOMUtils', () => {
 
     it('exports gracefully across different environment module definitions', () => {
         const fs = require('fs');
-        const code = fs.readFileSync('js/Utils/dom-utils.js', 'utf8');
+        const code = fs.readFileSync('js/Utils/dom/dom-utils.js', 'utf8');
 
         // Assert exports assign successfully in Node-like environment
         let isExported = false;

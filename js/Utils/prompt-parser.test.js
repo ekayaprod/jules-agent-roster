@@ -94,7 +94,7 @@ describe('PromptParser', () => {
     expect(result.format).toBe('legacy');
     expect(result.raw).toBe(rawText);
 
-    const TelemetryUtils = require('./telemetry-utils.js');
+    const TelemetryUtils = require('./telemetry/telemetry-utils.js');
     const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
 
     // Need to run it again because spy was created after
@@ -135,7 +135,7 @@ describe('PromptParser', () => {
     expect(result.format).toBe('legacy');
     expect(result.raw).toBe(rawText);
 
-    const TelemetryUtils = require('./telemetry-utils.js');
+    const TelemetryUtils = require('./telemetry/telemetry-utils.js');
     const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
 
     // Need to run it again because spy was created after

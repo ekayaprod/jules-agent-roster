@@ -163,7 +163,7 @@ describe('JulesTerminal', () => {
 
         window.julesAPI.getActivities.mockRejectedValue(new Error('API fail'));
 
-        const TelemetryUtils = require('../../Utils/telemetry-utils.js');
+        const TelemetryUtils = require('../../Utils/telemetry/telemetry-utils.js');
         const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
@@ -317,7 +317,7 @@ describe('JulesTerminal', () => {
         const originalFetch = polling.terminal._fetchAndRenderSessions;
         polling.terminal._fetchAndRenderSessions = jest.fn().mockRejectedValueOnce(new Error('Fetch failed'));
 
-        const TelemetryUtils = require('../../Utils/telemetry-utils.js');
+        const TelemetryUtils = require('../../Utils/telemetry/telemetry-utils.js');
         const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
         polling._startSessionPolling('test-repo', polling.terminal);
