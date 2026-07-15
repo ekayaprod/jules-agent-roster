@@ -166,14 +166,14 @@ class JulesAPI {
          const cleanPrompt = match ? prompt.slice(match[0].length) : prompt;
 
          const payload = {
+            automationMode: "AUTO_CREATE_PR",
             prompt: `${cleanPrompt.trim()}\n\n${userTask}`,
             sourceContext: {
-                source: source,
                 githubRepoContext: {
                     startingBranch: "main"
-                }
+                },
+                source: source
             },
-            automationMode: "AUTO_CREATE_PR",
             title: title
         };
 

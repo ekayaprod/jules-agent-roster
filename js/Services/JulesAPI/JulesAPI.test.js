@@ -164,14 +164,14 @@ describe('JulesAPI', () => {
               expect(global.fetch).toHaveBeenCalledWith('https://jules.googleapis.com/v1alpha/sessions?key=test-key', expect.objectContaining({
                   method: 'POST',
                   body: JSON.stringify({
+                      automationMode: "AUTO_CREATE_PR",
                       prompt: "Real prompt content\n\ntask",
                       sourceContext: {
-                          source: 'source',
                           githubRepoContext: {
                               startingBranch: 'main'
-                          }
+                          },
+                          source: 'source'
                       },
-                      automationMode: 'AUTO_CREATE_PR',
                       title: 'title'
                   })
               }));

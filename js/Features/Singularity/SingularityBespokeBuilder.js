@@ -121,11 +121,11 @@ class SingularityBespokeBuilder {
         .replace(/{{UI_MISSION_STATEMENT}}/g, mission);
 
       const agentPayload = {
-        name:     "Singularity",
         emoji:    "🌌",
-        role:     "Meta-Architect",
-        prompt:   payloadPrompt,
         isCustom: true,
+        name:     "Singularity",
+        prompt:   payloadPrompt,
+        role:     "Meta-Architect",
       };
 
       if (this.julesTerminal) {
