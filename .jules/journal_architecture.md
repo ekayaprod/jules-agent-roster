@@ -27,3 +27,7 @@
 ## Coroner — The Dead Investigator
 **Learning:** A legacy class `fusion-slot` used in older layouts was lingering in tests (`benchmark.js`) and CSS (`Fusion.css`), acting as a ghost constraint after the source changed to `fusion-item`.
 **Action:** Always unify class names between source code, tests, and style sheets during architectural refactors to prevent dead selectors from causing test or build failures.
+
+## Organizer - The Semantic Organizer
+**Learning:** Eradicating dumping grounds requires domain-driven folders. Grouping generic utility files directly inside flat folders creates architectural communication failure.
+**Action:** Identified implicit groups in `js/Utils/`, created 5 subdirectories (`agent`, `dom`, `network`, `storage`, `telemetry`), relocated targets physically and globally updated all cross-references in codebase while maintaining backward compatibility with `index.js`.

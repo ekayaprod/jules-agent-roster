@@ -14,14 +14,14 @@ const loadClass = (filePath) => {
   return eval(content + '\nmodule.exports = ' + className + ';');
 };
 
-const NetworkUtils = loadClass('js/Utils/network-utils.js');
+const NetworkUtils = loadClass('js/Utils/network/network-utils.js');
 global.NetworkUtils = NetworkUtils;
 
 const FormatUtils = loadClass('js/Utils/format-utils.js');
-const StorageUtils = loadClass('js/Utils/storage-utils.js');
+const StorageUtils = loadClass('js/Utils/storage/storage-utils.js');
 const PerformanceUtils = loadClass('js/Utils/performance-utils.js');
-const DOMUtils = loadClass('js/Utils/dom-utils.js');
-const AgentUtils = loadClass('js/Utils/agent-utils.js');
+const DOMUtils = loadClass('js/Utils/dom/dom-utils.js');
+const AgentUtils = loadClass('js/Utils/agent/agent-utils.js');
 
 global.FormatUtils = FormatUtils;
 global.StorageUtils = StorageUtils;

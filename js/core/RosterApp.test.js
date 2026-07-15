@@ -3,7 +3,7 @@ const { TextEncoder, TextDecoder } = require("util"); global.TextEncoder = TextE
 
 // Read the actual FormatUtils, AgentUtils, and PinnedManager
 const FormatUtils = require('../Utils/format-utils');
-const AgentUtils = require('../Utils/agent-utils');
+const AgentUtils = require('../Utils/agent/agent-utils');
 const PinnedManager = require('../Features/Pinned/PinnedManager');
 
 describe('RosterApp (Boundary Interrogation)', () => {
@@ -11,7 +11,7 @@ describe('RosterApp (Boundary Interrogation)', () => {
     let dom;
 
     beforeAll(() => {
-        global.DOMUtils = require('../Utils/dom-utils');
+        global.DOMUtils = require('../Utils/dom/dom-utils');
         global.EventBinder = require('./events/EventBinder');
     });
 

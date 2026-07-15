@@ -176,7 +176,7 @@ describe('NetworkUtils', () => {
             };
             global.fetch.mockResolvedValueOnce(mockResponse);
 
-            const TelemetryUtils = require('./telemetry-utils');
+            const TelemetryUtils = require('../telemetry/telemetry-utils');
             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
 
             await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("HTTP Error: 400");
@@ -206,7 +206,7 @@ describe('NetworkUtils', () => {
             };
             global.fetch.mockResolvedValueOnce(mockResponse);
 
-            const TelemetryUtils = require('./telemetry-utils');
+            const TelemetryUtils = require('../telemetry/telemetry-utils');
             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
 
             await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("HTTP Error: 403");
@@ -244,7 +244,7 @@ describe('NetworkUtils', () => {
             };
             global.fetch.mockResolvedValueOnce(mockResponse);
 
-            const TelemetryUtils = require('./telemetry-utils');
+            const TelemetryUtils = require('../telemetry/telemetry-utils');
             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
 
             await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("HTTP Error: 400");
@@ -285,7 +285,7 @@ describe('NetworkUtils', () => {
     describe('environment exports', () => {
         it('exports gracefully across different environment module definitions', () => {
             const fs = require('fs');
-            const code = fs.readFileSync('js/Utils/network-utils.js', 'utf8');
+            const code = fs.readFileSync('js/Utils/network/network-utils.js', 'utf8');
 
             // Assert exports assign successfully in Node-like environment
             let isExported = false;
@@ -348,7 +348,7 @@ describe('NetworkUtils', () => {
     describe('browser environment mock test', () => {
         it('assigns correctly to window if module is undefined', () => {
              const fs = require('fs');
-             const code = fs.readFileSync('js/Utils/network-utils.js', 'utf8');
+             const code = fs.readFileSync('js/Utils/network/network-utils.js', 'utf8');
              let windowMock = {};
              // Simulate environment where module is NOT defined, but window IS
              // Wrapping in a function and explicitly passing undefined for module

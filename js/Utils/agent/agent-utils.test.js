@@ -104,7 +104,7 @@ describe('AgentUtils', () => {
 
     it('exports gracefully across different environment module definitions', () => {
         const fs = require('fs');
-        const code = fs.readFileSync('js/Utils/agent-utils.js', 'utf8');
+        const code = fs.readFileSync('js/Utils/agent/agent-utils.js', 'utf8');
 
         // Assert exports assign successfully in Node-like environment
         let isExported = false;

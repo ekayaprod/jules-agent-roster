@@ -64,7 +64,7 @@ describe('StorageUtils', () => {
             }
 
             // The 501st attempt should trigger the 429 console warning block
-            const TelemetryUtils = require('./telemetry-utils.js');
+            const TelemetryUtils = require('../telemetry/telemetry-utils.js');
             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
             StorageUtils.getJsonArrayItem('test_key', 'test_event');
@@ -84,7 +84,7 @@ describe('StorageUtils', () => {
             mockLocalStorage.getItem.mockReturnValue(massivePayload);
             StorageUtils._readLimits = null; // Ensure rate limit doesn't block this test
 
-            const TelemetryUtils = require('./telemetry-utils.js');
+            const TelemetryUtils = require('../telemetry/telemetry-utils.js');
             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
             const result = StorageUtils.getJsonArrayItem('test_key', 'test_event');
@@ -119,7 +119,7 @@ describe('StorageUtils', () => {
         });
 
         it('returns null and logs error when parsing fails', () => {
-            const TelemetryUtils = require('./telemetry-utils.js');
+            const TelemetryUtils = require('../telemetry/telemetry-utils.js');
             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
             mockLocalStorage.getItem.mockReturnValue('invalid-json');
@@ -152,7 +152,7 @@ describe('StorageUtils', () => {
         });
 
         it('handles exceptions when localStorage.getItem throws', () => {
-             const TelemetryUtils = require('./telemetry-utils.js');
+             const TelemetryUtils = require('../telemetry/telemetry-utils.js');
              const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
              mockLocalStorage.getItem.mockImplementation(() => { throw new Error('getItem failed'); });
@@ -334,7 +334,7 @@ describe('StorageUtils', () => {
 });
     it('exports gracefully across different environment module definitions', () => {
         const fs = require('fs');
-        const code = fs.readFileSync('js/Utils/storage-utils.js', 'utf8');
+        const code = fs.readFileSync('js/Utils/storage/storage-utils.js', 'utf8');
 
         // Assert exports assign successfully in Node-like environment
         let isExported = false;

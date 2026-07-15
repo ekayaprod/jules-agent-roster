@@ -13,7 +13,7 @@
 ## The [PRUNER] Queue
 ## The [INSTRUMENTER] Queue
 
-- [ ] 🧹 `js/Utils/telemetry-utils.js`: Replace raw `console.error` calls with structured telemetry logger at lines 19, 23.
+- [ ] 🧹 `js/Utils/telemetry/telemetry-utils.js`: Replace raw `console.error` calls with structured telemetry logger at lines 19, 23.
 - [ ] 🧹 `js/Services/GithubAPI/GithubAPI.js`: Replace raw `console.error` calls with structured telemetry logger at lines 71, 74.
 - [ ] 🧹 `js/Services/JulesAPI/JulesAPI.js`: Replace raw `console.error` calls with structured telemetry logger at lines 57, 83, 86, 96.
 - [ ] 🧹 `js/UI/Singularity/SingularityBespokeBuilder.js`: Replace raw `console.warn` calls with structured telemetry logger at line 139.
@@ -45,7 +45,7 @@
 
 ## The [AST / MODERNIZE] Queue
 - [x] 🧲 `js/UI/Clipboard/clipboard-utils.js`: Fossilized syntax pattern (`var`) at line 2. Upgrade to const/let.
-- [x] 🧲 `js/Utils/storage-utils.js`: Fossilized syntax pattern (`var`) at line 2. Upgrade to const/let.
+- [x] 🧲 `js/Utils/storage/storage-utils.js`: Fossilized syntax pattern (`var`) at line 2. Upgrade to const/let.
 - [x] 🧲 `js/Features/Fusion/AgentPicker.js`: Fossilized syntax pattern (`var`) at line 1. Upgrade to const/let.
 
 ## The [REFACTORER / UNKNOT] Queue
@@ -62,8 +62,8 @@
 - [x] (Blocked / False Positive) 🛡️ `js/UI/Clipboard/clipboard-utils.js`: Empty catch block mapped at line 39. Ensure resilient fallback.
 - [x] (Blocked / False Positive) 🛡️ `js/core/events/EventBinder.js`: Empty catch block mapped at line 475. Ensure resilient fallback.
 - [x] (Blocked / False Positive) 🛡️ `js/core/RosterApp.js`: Empty catch block mapped at line 108. Ensure resilient fallback.
-- [x] (Blocked / False Positive) 🛡️ `js/Utils/telemetry-utils.js`: Empty catch block mapped at line 20. Ensure resilient fallback.
-- [x] (Blocked / False Positive) 🛡️ `js/Utils/network-utils.js`: Empty catch block mapped at line 53. Ensure resilient fallback.
-- [x] (Blocked / False Positive) 🛡️ `js/Utils/network-utils.js`: Empty catch block mapped at line 75. Ensure resilient fallback.
-- [x] (Blocked / False Positive) 🛡️ `js/Utils/network-utils.js`: Empty catch block mapped at line 79. Ensure resilient fallback.
-- [x] (Blocked / False Positive) 🛡️ `js/Utils/network-utils.js`: Empty catch block mapped at line 95. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/Utils/telemetry/telemetry-utils.js`: Empty catch block mapped at line 20. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/Utils/network/network-utils.js`: Empty catch block mapped at line 53. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/Utils/network/network-utils.js`: Empty catch block mapped at line 75. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/Utils/network/network-utils.js`: Empty catch block mapped at line 79. Ensure resilient fallback.
+- [x] (Blocked / False Positive) 🛡️ `js/Utils/network/network-utils.js`: Empty catch block mapped at line 95. Ensure resilient fallback.

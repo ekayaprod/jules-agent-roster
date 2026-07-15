@@ -1,6 +1,6 @@
-global.AgentUtils = require('../Utils/agent-utils.js');
+global.AgentUtils = require('../Utils/agent/agent-utils.js');
 const AgentRepository = require('./AgentRepository');
-const NetworkUtils = require('../Utils/network-utils.js');
+const NetworkUtils = require('../Utils/network/network-utils.js');
 global.NetworkUtils = NetworkUtils;
 const REQUEST_TIMEOUT_MS = AgentRepository.REQUEST_TIMEOUT_MS || 10000;
 
@@ -63,7 +63,7 @@ describe('AgentRepository', () => {
         it('catches invalid json and throws formatted error', async () => {
             const mockResponse = { json: async () => { throw new Error('Unexpected token'); } };
 
-            const TelemetryUtils = require('../Utils/telemetry-utils.js');
+            const TelemetryUtils = require('../Utils/telemetry/telemetry-utils.js');
             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
             await expect(repo.safeJsonParse(mockResponse, 'test.json')).rejects.toThrow("Check your configuration file formatting and try again.");

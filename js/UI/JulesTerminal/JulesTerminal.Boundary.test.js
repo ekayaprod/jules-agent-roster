@@ -401,7 +401,7 @@ expect(() => { julesTerminal.modals._showKeyError(null, null, 'Error'); julesTer
              const item = document.createElement('div');
              item.innerHTML = `<span id="status-123"></span><div class="dashboard-meta"></div><div class="dashboard-status"></div>`;
 
-             const TelemetryUtils = require('../../Utils/telemetry-utils.js');
+             const TelemetryUtils = require('../../Utils/telemetry/telemetry-utils.js');
              const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
              julesTerminal.polling.startTerminalPolling('123', item, 'o/r');

@@ -70,9 +70,9 @@ graph TD;
         DownloadUtils[js/Utils/download-utils.js]
         PerformanceUtils[js/Utils/performance-utils.js]
         MarkdownRenderer[js/Utils/markdown-renderer.js]
-        StorageUtils[js/Utils/storage-utils.js]
+        StorageUtils[js/Utils/storage/storage-utils.js]
         PromptParser[js/Utils/prompt-parser.js]
-        DomUtils[js/Utils/dom-utils.js]
+        DomUtils[js/Utils/dom/dom-utils.js]
     end
 
     subgraph Data Flow
