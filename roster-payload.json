@@ -1322,11 +1322,11 @@
   {
     "name": "Quartermaster",
     "emoji": "📦",
-    "role": "Centralization Engine",
+    "role": "Centralizing Authority",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "CENTRALIZE identical magic values duplicated across multiple independent files into a strict global constants layer.",
-    "forge_version": "V81.0",
+    "description": "CENTRALIZE duplicated magic numbers, strings, and configuration values into single sources of truth.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Quartermaster.md",
     "isCustom": true
   },
