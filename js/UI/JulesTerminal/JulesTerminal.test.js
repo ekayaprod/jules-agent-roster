@@ -299,7 +299,7 @@ describe('JulesTerminal', () => {
                 sessions: [
                     { id: 's1', sourceContext: { source: 'other-repo' } },
                     { id: 's2', sourceContext: { source: 'sources/github/owner/repo' }, state: 'COMPLETED' },
-                    { id: 's3', sourceContext: { source: 'sources/github/owner/repo' }, state: 'RUNNING' },
+                    { id: 's3', sourceContext: { source: 'sources/github/owner/repo' }, state: 'RUNNING', createTime: new Date().toISOString() },
                     { id: 's4', sourceContext: { source: 'sources/github/owner/repo' }, state: 'RUNNING' }
                 ]
             });
@@ -379,11 +379,7 @@ describe('JulesTerminal', () => {
             await julesTerminal.launchSession(agent, btn);
 
             expect(queueSpy).toHaveBeenCalled();
-            expect(julesTerminal.sessionQueue.length).toBe(1);
-
-            // Execute the queue manually to await it properly
-            const task = julesTerminal.sessionQueue.shift();
-            await task();
+            expect(julesTerminal.sessionQueue.length).toBe(0); // already shifted and executed by _processSessionQueue
 
             expect(global.window.julesAPI.createSession).toHaveBeenCalledWith('My Prompt', 'Test task', 'sources/github/owner/repo', 'TestAgent');
             expect(mockToast.show).toHaveBeenCalledWith('Session launched successfully.', TOAST_TYPES.SUCCESS);
@@ -399,8 +395,6 @@ describe('JulesTerminal', () => {
             const agent = { name: 'TestAgent' }; // No prompt
 
             await julesTerminal.launchSession(agent, btn);
-            const task = julesTerminal.sessionQueue.shift();
-            await task();
 
             expect(mockApp.agentRepo.fetchPrompt).toHaveBeenCalled();
             expect(agent.prompt).toBe('Fetched Prompt');
@@ -416,9 +410,6 @@ describe('JulesTerminal', () => {
 
             const agent = { name: 'TestAgent', prompt: 'My Prompt' };
             await julesTerminal.launchSession(agent);
-
-            const task = julesTerminal.sessionQueue.shift();
-            await task();
 
             expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session: Creation Failed'), TOAST_TYPES.ERROR, 20000);
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('JULES_LAUNCH_SESSION_FAILED', expect.any(Error), expect.any(Object));
