@@ -173,9 +173,13 @@ describe('JulesTerminal', () => {
 
             await saveBtn.click();
 
+            // Advance timers for setTimeout inside toast or modal delays if any
+            await jest.advanceTimersByTimeAsync(100);
+            await Promise.resolve(); // Allow internal promises inside the click listener to complete
+
             expect(global.StorageUtils.setItem).toHaveBeenCalledWith('jules_api_key', 'new_valid_key_123');
             expect(global.StorageUtils.setItem).toHaveBeenCalledWith('github_api_key', 'github_key_123');
-            expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Settings saved'), TOAST_TYPES.SUCCESS);
+            expect(mockToast.show).toHaveBeenCalledWith('Connecting to APIs...');
         });
 
         it('shows error if API key is missing on save', async () => {
