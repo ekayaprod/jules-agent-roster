@@ -129,7 +129,7 @@ class EventBinder {
               return acc + `
                   <li class="fusion-quick-list-item">
                       <button class="fusion-quick-btn transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95" data-action="view-fusion-card" data-index="${key}" aria-label="View ${safeChildName}" title="${safeChildName}">
-                          ${FormatUtils.extractIcon(childAgent)}
+                          ${FormatUtils.escapeHTML(FormatUtils.extractIcon(childAgent))}
                       </button>
                   </li>
               `;
