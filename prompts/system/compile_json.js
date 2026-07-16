@@ -206,13 +206,16 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   };
 
   let output = extractedTemplate;
-  for (const [key, value] of Object.entries(map)) {
-    const regex = new RegExp(`{{${key}}}\n?`, 'g');
-    if (value && value.trim() !== '') {
-      output = output.replace(new RegExp(`{{${key}}}`, 'g'), value);
-    } else {
-      // Safely swallow trailing newlines if the token is empty to prevent large whitespace gaps
-      output = output.replace(regex, '');
+  for (const key in map) {
+    if (Object.prototype.hasOwnProperty.call(map, key)) {
+      const value = map[key];
+      const regex = new RegExp(`{{${key}}}\n?`, 'g');
+      if (value && value.trim() !== '') {
+        output = output.replace(new RegExp(`{{${key}}}`, 'g'), value);
+      } else {
+        // Safely swallow trailing newlines if the token is empty to prevent large whitespace gaps
+        output = output.replace(regex, '');
+      }
     }
   }
 
