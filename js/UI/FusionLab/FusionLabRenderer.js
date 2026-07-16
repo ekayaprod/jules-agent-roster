@@ -56,8 +56,8 @@ class FusionLabRenderer {
         const nameHtml = FormatUtils.extractDisplayName(result);
 
         return `
-            <div class="preview-badge">Already Discovered</div>
-            <div class="preview-content">
+            <div class="preview-badge rounded-md px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold mb-1 shadow-sm transition-all duration-300">Already Discovered</div>
+            <div class="preview-content flex items-center gap-2">
                 <span class="preview-icon">${FormatUtils.escapeHTML(iconHtml)}</span>
                 <span class="preview-name">${FormatUtils.escapeHTML(nameHtml)}</span>
             </div>
