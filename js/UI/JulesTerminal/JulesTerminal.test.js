@@ -62,6 +62,9 @@ describe('JulesTerminal', () => {
                 fetchPrompt: jest.fn().mockResolvedValue("Fetched Prompt")
             }
         };
+        global.AgentUtils = {
+            getPromptUrl: jest.fn().mockReturnValue('some/url')
+        };
 
         document.body.innerHTML = `
             <div id="settingsModal"></div>
@@ -295,12 +298,13 @@ describe('JulesTerminal', () => {
 
         it('_fetchAndRenderSessions skips ended and dismissed sessions', async () => {
             const terminal = document.getElementById('julesTerminal');
+            const oneHourAgo = new Date(Date.now() - 1000 * 60 * 60).toISOString();
             global.window.julesAPI.getSessions.mockResolvedValue({
                 sessions: [
-                    { id: 's1', sourceContext: { source: 'other-repo' } },
-                    { id: 's2', sourceContext: { source: 'sources/github/owner/repo' }, state: 'COMPLETED' },
-                    { id: 's3', sourceContext: { source: 'sources/github/owner/repo' }, state: 'RUNNING' },
-                    { id: 's4', sourceContext: { source: 'sources/github/owner/repo' }, state: 'RUNNING' }
+                    { id: 's1', sourceContext: { source: 'other-repo' }, startTime: oneHourAgo },
+                    { id: 's2', sourceContext: { source: 'sources/github/owner/repo' }, state: 'COMPLETED', startTime: oneHourAgo },
+                    { id: 's3', sourceContext: { source: 'sources/github/owner/repo' }, state: 'RUNNING', startTime: oneHourAgo },
+                    { id: 's4', sourceContext: { source: 'sources/github/owner/repo' }, state: 'RUNNING', startTime: oneHourAgo }
                 ]
             });
             julesTerminal.dismissedSessionIds.add('s4');
@@ -374,7 +378,9 @@ describe('JulesTerminal', () => {
             const agent = { name: 'TestAgent', prompt: 'My Prompt', emoji: '🤖' };
 
             julesTerminal._fetchAndRenderSessions = jest.fn();
-            const queueSpy = jest.spyOn(julesTerminal, '_processSessionQueue');
+            // We need to prevent the queue from immediately executing so we can verify the queue manually
+            // BUT wait, if we mock it, we must mock it consistently
+            const queueSpy = jest.spyOn(julesTerminal, '_processSessionQueue').mockImplementation(() => {});
 
             await julesTerminal.launchSession(agent, btn);
 
@@ -383,7 +389,11 @@ describe('JulesTerminal', () => {
 
             // Execute the queue manually to await it properly
             const task = julesTerminal.sessionQueue.shift();
-            await task();
+            if (typeof task === 'function') {
+                const taskPromise = task();
+                jest.runAllTimers();
+                await taskPromise;
+            }
 
             expect(global.window.julesAPI.createSession).toHaveBeenCalledWith('My Prompt', 'Test task', 'sources/github/owner/repo', 'TestAgent');
             expect(mockToast.show).toHaveBeenCalledWith('Session launched successfully.', TOAST_TYPES.SUCCESS);
@@ -395,13 +405,26 @@ describe('JulesTerminal', () => {
             picker.innerHTML = '<option value="sources/github/owner/repo">owner/repo</option>';
             picker.value = 'sources/github/owner/repo';
 
+
+
             const btn = document.createElement('button');
             const agent = { name: 'TestAgent' }; // No prompt
 
+            const queueSpy = jest.spyOn(julesTerminal, '_processSessionQueue').mockImplementation(() => {});
+
             await julesTerminal.launchSession(agent, btn);
             const task = julesTerminal.sessionQueue.shift();
-            await task();
 
+            // Advance timers to allow async queue functions to execute
+            if (typeof task === 'function') {
+                const taskPromise = task();
+                // We need to resolve the microtasks for promises to finish
+                await Promise.resolve();
+                jest.runAllTimers();
+                await taskPromise;
+            }
+
+            expect(global.AgentUtils.getPromptUrl).toHaveBeenCalled();
             expect(mockApp.agentRepo.fetchPrompt).toHaveBeenCalled();
             expect(agent.prompt).toBe('Fetched Prompt');
             expect(global.window.julesAPI.createSession).toHaveBeenCalledWith('Fetched Prompt', expect.any(String), 'sources/github/owner/repo', 'TestAgent');
@@ -414,11 +437,18 @@ describe('JulesTerminal', () => {
 
             global.window.julesAPI.createSession.mockRejectedValue(new Error('Creation Failed'));
 
+            const queueSpy = jest.spyOn(julesTerminal, '_processSessionQueue').mockImplementation(() => {});
+
             const agent = { name: 'TestAgent', prompt: 'My Prompt' };
             await julesTerminal.launchSession(agent);
 
             const task = julesTerminal.sessionQueue.shift();
-            await task();
+
+            if (typeof task === 'function') {
+                const taskPromise = task();
+                jest.runAllTimers();
+                await taskPromise;
+            }
 
             expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session: Creation Failed'), TOAST_TYPES.ERROR, 20000);
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('JULES_LAUNCH_SESSION_FAILED', expect.any(Error), expect.any(Object));
