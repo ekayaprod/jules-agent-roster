@@ -32,7 +32,7 @@ class EmptyState {
    */
   static create({ title, description, icon = '', action = null }) {
     const container = document.createElement('div');
-    container.className = 'empty-state visible transition-all duration-500 ease-in-out animate-fade-in';
+    container.className = 'empty-state visible transition-all duration-500 ease-in-out animate-fade-in rounded-xl';
 
     if (icon) {
       const iconWrapper = document.createElement('div');
@@ -56,7 +56,7 @@ class EmptyState {
       const btn = document.createElement('button');
       btn.className =
         action.className ||
-        'mt-6 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md';
+        'mt-6 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl';
       btn.textContent = action.text;
       btn.setAttribute('aria-label', action.ariaLabel || action.text);
 
