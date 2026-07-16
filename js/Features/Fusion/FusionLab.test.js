@@ -401,7 +401,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
     });
 
     // THE BOUNDARY INTERROGATION: Explicitly asserts a structural logic flaw (silently swallowed exception) without fixing the app code.
-    test('vulnerability check: handleFusion logs fusionIndex unlock exception', async () => {
+    test('vulnerability check: handleFusion logs fusionIndex unlock exception and aborts', async () => {
         fusionLab.state.slotA = { name: 'A' };
         fusionLab.state.slotB = { name: 'B' };
         fusionLab.fusionIndex.customAgents['A,B'] = true;
@@ -414,6 +414,7 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         fusionLab.compiler.fuse.mockReturnValue(fusedAgent);
         fusionLab.animation = { runAnimation: jest.fn() };
         fusionLab.renderFusionResult = jest.fn();
+        fusionLab.showError = jest.fn();
 
         const dispatchSpy = jest.fn();
         global.getTelemetryUtils = () => ({
@@ -425,12 +426,13 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
         await fusionLab.handleFusion();
 
-        // Prove the application continued as normal
-        expect(fusionLab.renderFusionResult).toHaveBeenCalledWith(fusedAgent);
-        expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
+        // Prove the application aborted
+        expect(fusionLab.renderFusionResult).not.toHaveBeenCalled();
+        expect(fusionLab.animation.runAnimation).not.toHaveBeenCalled();
+        expect(fusionLab.showError).toHaveBeenCalledWith("FusionLab: Failed to unlock agent in index");
+        expect(mockElements.labContent.classList.remove).toHaveBeenCalledWith("hidden");
 
         // Prove the error was logged via telemetry
-        // The original logic expected a console.error, but it was replaced by telemetry event FUSION_LAB_INDEX_UNLOCK_FAILED.
         expect(dispatchSpy).toHaveBeenCalledWith(
             "FUSION_LAB_INDEX_UNLOCK_FAILED",
             expect.any(Error),
@@ -457,13 +459,15 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
         fusionLab.animation = { runAnimation: jest.fn() };
         fusionLab.renderFusionResult = jest.fn();
+        fusionLab.showError = jest.fn();
 
         const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
         await fusionLab.handleFusion();
 
-        expect(fusionLab.renderFusionResult).toHaveBeenCalledWith(fusedAgent);
-        expect(fusionLab.animation.runAnimation).toHaveBeenCalled();
+        expect(fusionLab.renderFusionResult).not.toHaveBeenCalled();
+        expect(fusionLab.animation.runAnimation).not.toHaveBeenCalled();
+        expect(fusionLab.showError).toHaveBeenCalledWith("FusionLab: Failed to unlock agent in index");
 
         consoleErrorSpy.mockRestore();
     });

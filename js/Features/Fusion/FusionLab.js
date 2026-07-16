@@ -227,6 +227,12 @@ class FusionLab {
         unlockError.cause = e;
         const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
         if (tu) tu.dispatchEvent("FUSION_LAB_INDEX_UNLOCK_FAILED", unlockError, { agentA: agentA.name, agentB: agentB.name });
+
+        if (labContent) {
+          labContent.classList.remove("hidden");
+        }
+        this.showError("FusionLab: Failed to unlock agent in index");
+        return;
       }
     }
 
