@@ -39,12 +39,28 @@ class FusionIndex {
     this.unlockedAgents = new Set();
     for (const key of this.unlockedKeys) {
       if (typeof key === 'string') {
-        const parts = key.split(',');
-        for (const part of parts) {
-          if (part) this.unlockedAgents.add(part.trim());
-        }
+        this._addUnlockedAgentsFromKey(key);
       }
     }
+  }
+
+  /**
+   * Helper to add unlocked agents from a comma-separated key without creating intermediate arrays.
+   * @param {string} key - The fusion key.
+   * @private
+   * @returns {void}
+   */
+  _addUnlockedAgentsFromKey(key) {
+    let start = 0;
+    let commaIdx = key.indexOf(',');
+    while (commaIdx !== -1) {
+      const part = key.substring(start, commaIdx);
+      if (part) this.unlockedAgents.add(part.trim());
+      start = commaIdx + 1;
+      commaIdx = key.indexOf(',', start);
+    }
+    const lastPart = key.substring(start);
+    if (lastPart) this.unlockedAgents.add(lastPart.trim());
   }
 
   /**
@@ -212,13 +228,11 @@ class FusionIndex {
    */
   unlockAll() {
     if (this.customAgents) {
-      for (const key of Object.keys(this.customAgents)) {
+      for (const key in this.customAgents) {
+        if (!Object.prototype.hasOwnProperty.call(this.customAgents, key)) continue;
         this.unlockedKeys.add(key);
         if (typeof key === 'string') {
-          const parts = key.split(',');
-          for (const part of parts) {
-            if (part) this.unlockedAgents.add(part.trim());
-          }
+          this._addUnlockedAgentsFromKey(key);
         }
       }
       this.saveState();
@@ -238,10 +252,7 @@ class FusionIndex {
     if (!this.unlockedKeys.has(key)) {
       this.unlockedKeys.add(key);
       if (typeof key === 'string') {
-        const parts = key.split(',');
-        for (const part of parts) {
-          if (part) this.unlockedAgents.add(part.trim());
-        }
+        this._addUnlockedAgentsFromKey(key);
       }
       this.saveState();
       this.updateSlot(key);
