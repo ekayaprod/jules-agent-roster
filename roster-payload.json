@@ -1322,11 +1322,11 @@
   {
     "name": "Quartermaster",
     "emoji": "📦",
-    "role": "Centralization Engine",
+    "role": "Centralizing Authority",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "CENTRALIZE identical magic values duplicated across multiple independent files into a strict global constants layer.",
-    "forge_version": "V81.0",
+    "description": "CENTRALIZE duplicated magic numbers, strings, and configuration values into single sources of truth.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Quartermaster.md",
     "isCustom": true
   },
@@ -1898,8 +1898,8 @@
     "role": "Embedded Trust",
     "category": "Security",
     "tier": "Fusion",
-    "description": "EMBED graceful fallback components and interceptors across overarching form wrappers and global error boundaries to manage the visual trust boundary.",
-    "forge_version": "V81.0",
+    "description": "EMBED graceful fallback components across form wrappers and error boundaries to firmly manage the application's visual trust perimeter.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Watermark.md",
     "isCustom": true
   },
