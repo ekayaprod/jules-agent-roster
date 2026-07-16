@@ -140,7 +140,7 @@ class RosterApp {
     setTimeout(async () => {
       const missingPrompts = this.agents.filter(agent => agent.prompt === undefined);
 
-      // ⚡ Bolt+: The Unbounded Concurrency Fix. Wrapped a massive Promise.all data-ingestion array with a strict semaphore chunking limit.
+      // The Unbounded Concurrency Fix: Wrapped a massive Promise.all data-ingestion array with a strict semaphore chunking limit.
       const CONCURRENCY_LIMIT = 10;
       let index = 0;
 
