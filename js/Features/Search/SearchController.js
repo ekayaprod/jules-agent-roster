@@ -46,18 +46,23 @@ class SearchController {
 
     // 🧫 Mitosis: Initialize Web Worker for background fuzzy searching
     if (typeof Worker !== 'undefined') {
-        this.worker = new Worker('js/Features/Search/SearchWorker.js');
-        this.worker.onmessage = (e) => {
-            const { type, results, searchId } = e.data;
-            if (this._resolveMap.has(searchId)) {
-                if (type === 'results') {
-                    this._resolveMap.get(searchId)(results);
-                } else if (type === 'error') {
-                    this._resolveMap.get(searchId)([]);
+        try {
+            this.worker = new Worker('js/Features/Search/SearchWorker.js');
+            this.worker.onmessage = (e) => {
+                const { type, results, searchId } = e.data;
+                if (this._resolveMap.has(searchId)) {
+                    if (type === 'results') {
+                        this._resolveMap.get(searchId)(results);
+                    } else if (type === 'error') {
+                        this._resolveMap.get(searchId)([]);
+                    }
+                    this._resolveMap.delete(searchId);
                 }
-                this._resolveMap.delete(searchId);
-            }
-        };
+            };
+        } catch (e) {
+            console.error("Failed to construct Worker. Falling back to synchronous search.", e);
+            this.worker = null;
+        }
     }
   }
 
