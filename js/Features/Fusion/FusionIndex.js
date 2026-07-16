@@ -112,14 +112,17 @@ class FusionIndex {
       const nameB = customAgentsSafe[b] || b;
       return nameA.localeCompare(nameB);
     });
+
+    const fragment = document.createDocumentFragment();
     for (const key of sortedKeys) {
       if (
         Object.prototype.hasOwnProperty.call(customAgentsSafe, key) &&
         customAgentsSafe[key] !== ''
       ) {
-        this._renderSlot(grid, key, customAgentsSafe[key]);
+        this._renderSlot(fragment, key, customAgentsSafe[key]);
       }
     }
+    grid.appendChild(fragment);
 
     // Progress Counter
     const progress = document.createElement('div');
@@ -134,7 +137,7 @@ class FusionIndex {
    * @private
    * @returns {void}
    */
-  _renderSlot(grid, key, agentData) {
+  _renderSlot(fragment, key, agentData) {
     let safeData =
       agentData && agentData.name ? agentData : { name: this.customAgents[key] || key };
 
@@ -168,7 +171,7 @@ class FusionIndex {
         `;
     }
 
-    grid.appendChild(slot);
+    fragment.appendChild(slot);
   }
 
   /**
