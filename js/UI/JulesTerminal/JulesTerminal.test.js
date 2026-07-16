@@ -241,8 +241,9 @@ describe('JulesTerminal', () => {
 
         it('loadActiveSessionsForRepo starts polling and updates UI', async () => {
             const terminal = document.getElementById('julesTerminal');
+            // Mock _startSessionPolling to prevent background polling loops during test
+            const startSpy = jest.spyOn(julesTerminal.polling, '_startSessionPolling').mockImplementation(() => {});
             const clearSpy = jest.spyOn(julesTerminal.polling, '_clearPollingAndCache');
-            const startSpy = jest.spyOn(julesTerminal.polling, '_startSessionPolling');
 
             await julesTerminal.loadActiveSessionsForRepo('sources/github/owner/repo1');
 
