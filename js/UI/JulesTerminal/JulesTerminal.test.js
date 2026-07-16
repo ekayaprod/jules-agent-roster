@@ -101,6 +101,7 @@ describe('JulesTerminal', () => {
         julesTerminal.cleanup();
         jest.clearAllTimers();
         jest.restoreAllMocks();
+        jest.clearAllMocks();
         document.body.innerHTML = '';
         delete global.window.julesAPI;
         delete global.window.githubAPI;
