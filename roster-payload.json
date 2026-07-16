@@ -1696,10 +1696,11 @@
   {
     "name": "Tachyon",
     "emoji": "☄️",
-    "role": "Stream-State Accelerator",
+    "role": "Stream Accelerator",
     "category": "Strategy",
     "tier": "Fusion",
-    "description": "Converts synchronous AI responses into fluid, typewriter-style data streams, eliminating blocking wait states.",
+    "description": "ACCELERATE synchronous responses into fluid data streams to eliminate wait states.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Tachyon.md",
     "isCustom": true
   },
