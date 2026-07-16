@@ -36,6 +36,9 @@ class AgentUtils {
     }
 
     static getPromptUrl(agent) {
+        if (!agent) {
+            return "";
+        }
         if (agent.promptFile) {
             return agent.promptFile;
         }
