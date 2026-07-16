@@ -377,9 +377,11 @@ describe('JulesTerminal', () => {
             const queueSpy = jest.spyOn(julesTerminal, '_processSessionQueue');
 
             await julesTerminal.launchSession(agent, btn);
+            await new Promise(process.nextTick);
 
             expect(queueSpy).toHaveBeenCalled();
-            expect(julesTerminal.sessionQueue.length).toBe(0); // already shifted and executed by _processSessionQueue
+            expect(julesTerminal.sessionQueue.length).toBe(0);
+            await new Promise(process.nextTick);
 
             expect(global.window.julesAPI.createSession).toHaveBeenCalledWith('My Prompt', 'Test task', 'sources/github/owner/repo', 'TestAgent');
             expect(mockToast.show).toHaveBeenCalledWith('Session launched successfully.', TOAST_TYPES.SUCCESS);
@@ -395,6 +397,7 @@ describe('JulesTerminal', () => {
             const agent = { name: 'TestAgent' }; // No prompt
 
             await julesTerminal.launchSession(agent, btn);
+            await new Promise(process.nextTick);
 
             expect(mockApp.agentRepo.fetchPrompt).toHaveBeenCalled();
             expect(agent.prompt).toBe('Fetched Prompt');
@@ -410,6 +413,7 @@ describe('JulesTerminal', () => {
 
             const agent = { name: 'TestAgent', prompt: 'My Prompt' };
             await julesTerminal.launchSession(agent);
+            await new Promise(process.nextTick);
 
             expect(mockToast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session: Creation Failed'), TOAST_TYPES.ERROR, 20000);
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('JULES_LAUNCH_SESSION_FAILED', expect.any(Error), expect.any(Object));

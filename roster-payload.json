@@ -1696,10 +1696,11 @@
   {
     "name": "Tachyon",
     "emoji": "☄️",
-    "role": "Stream-State Accelerator",
+    "role": "Stream Accelerator",
     "category": "Strategy",
     "tier": "Fusion",
-    "description": "Converts synchronous AI responses into fluid, typewriter-style data streams, eliminating blocking wait states.",
+    "description": "ACCELERATE synchronous responses into fluid data streams to eliminate wait states.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Tachyon.md",
     "isCustom": true
   },
@@ -1898,8 +1899,8 @@
     "role": "Embedded Trust",
     "category": "Security",
     "tier": "Fusion",
-    "description": "EMBED graceful fallback components and interceptors across overarching form wrappers and global error boundaries to manage the visual trust boundary.",
-    "forge_version": "V81.0",
+    "description": "EMBED graceful fallback components across form wrappers and error boundaries to firmly manage the application's visual trust perimeter.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Watermark.md",
     "isCustom": true
   },
