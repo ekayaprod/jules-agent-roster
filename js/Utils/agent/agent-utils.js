@@ -17,11 +17,19 @@ class AgentUtils {
 
     static splitFusionKey(key) {
         if (!key) return [];
-        const parts = key.split(",");
-        for (let i = 0; i < parts.length; i++) {
-            parts[i] = parts[i].trim();
+        let idx = key.indexOf(',');
+        if (idx === -1) {
+            return [key.trim()];
         }
-        return parts;
+        let idx2 = key.indexOf(',', idx + 1);
+        if (idx2 === -1) {
+             return [
+                 key.substring(0, idx).trim(),
+                 key.substring(idx + 1).trim()
+             ];
+        }
+
+        return key.split(",").map(p => p.trim());
     }
 
     static getValidCustomAgents(customAgents) {
