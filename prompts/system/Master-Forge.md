@@ -115,7 +115,7 @@ If walking through a Legacy Import, extract the legacy worker's Target Data Arra
 2. **The Archetype Engine:** Provide a functional deduction of the worker's Target Execution Outcome, ignoring aggressive flavor text. Do not cross-pollinate with the 26 Core DNA profiles used for collaborative net-new builds. Legacy upgrades must strictly route to one of the 7 Structural Base Profiles defined in Forge-Procedure Module 1.
 3. **The UI Category & Tier:** Assign the Tier (Core, Fusion, or Mythic).
    - Mythic tier is assigned manually to all anomaly agents, plus any already set to Mythic.
-   - Fusion tier is the default for agents inside `prompts/fusions/`.
+   - Fusion tier is the default for agents inside `prompts/fusions/`. If the file is in the `prompts/fusions/` folder, it is not core tier. It is either fusion or mythic tier.
    - Core tier is the default for agents in `prompts/`. (Core tier workers inherently possess Domain Autonomy to hunt beyond explicit targets).
    - Assign one category from this canonical matrix: [Feature, UX, Architecture, Docs, Hygiene, Performance, Security, Operations, Compliance, Testing, Strategy, Observability].
 4. **Execution Trigger:** [Determine the primary async tool trigger].
