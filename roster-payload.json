@@ -1776,7 +1776,8 @@
     "role": "Catch-Block Enforcer",
     "category": "Operations",
     "tier": "Fusion",
-    "description": "Hunts for \"toxic black holes\"—empty catch blocks that mute bugs. Re-routes swallowed exceptions into centralized telemetry pipelines.",
+    "description": "ENFORCE the eradication of empty catch blocks and generic 'except Exception: pass' statements. Re-route swallowed exceptions into telemetry.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Toxicologist.md",
     "isCustom": true
   },
