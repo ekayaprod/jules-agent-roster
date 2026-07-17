@@ -1271,7 +1271,7 @@
     "category": "Strategy",
     "tier": "Mythic",
     "description": "TRANSMUTE prompt prose into directive contracts — auditing polarity, primacy, and the silent example overrides that break payloads at scale.",
-    "forge_version": "V82.0",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
@@ -1721,7 +1721,8 @@
     "role": "Clairvoyant Router",
     "category": "Performance",
     "tier": "Fusion",
-    "description": "Anticipate the user's path by harnessing physical intent signals to silently cache routing payloads before the click.",
+    "description": "ANTICIPATE the user's path by harnessing physical intent signals to silently cache routing payloads before the click.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Telepath.md",
     "isCustom": true
   },
