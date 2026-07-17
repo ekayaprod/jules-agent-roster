@@ -1622,7 +1622,8 @@
     "role": "Deprecation Documentarian",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Author formal DEPRECATION.md plans and sweep wikis to erase or rewrite tutorials that still point to retired systems.",
+    "description": "SUNSET legacy patterns. Author formal DEPRECATION.md plans and sweep wikis to erase or rewrite tutorials that still point to retired systems.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Sunsetter.md",
     "isCustom": true
   },

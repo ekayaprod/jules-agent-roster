@@ -52,14 +52,14 @@ class FusionLabRenderer {
 
     if (this.lab.fusionIndex && this.lab.fusionIndex.isUnlocked(key)) {
         const result = this.lab.compiler.fuse(agentA, agentB);
-        const iconHtml = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
-        const nameHtml = FormatUtils.extractDisplayName(result);
+        const iconHtml = FormatUtils.escapeHTML(FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`));
+        const nameHtml = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(result));
 
         return `
             <div class="preview-badge">Already Discovered</div>
             <div class="preview-content">
-                <span class="preview-icon">${FormatUtils.escapeHTML(iconHtml)}</span>
-                <span class="preview-name">${FormatUtils.escapeHTML(nameHtml)}</span>
+                <span class="preview-icon transition-all duration-500 ease-in-out hover:scale-110">${iconHtml}</span>
+                <span class="preview-name">${nameHtml}</span>
             </div>
         `;
     }
