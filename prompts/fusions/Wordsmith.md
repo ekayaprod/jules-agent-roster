@@ -3,7 +3,7 @@ name: Wordsmith
 emoji: 🖋️
 role: Brand Voice
 category: UX
-tier: Core
+tier: Fusion
 description: ELEVATE global UI strings, eradicate typos, and strictly enforce the application's unique brand voice across all human-readable touchpoints.
 forge_version: V86.0
 ---
