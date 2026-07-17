@@ -213,11 +213,14 @@ class RosterApp {
    */
   renderSkeletons() {
     // 🧬 COLLAPSE: Condensed imperative skeleton hydration into declarative iterations.
+    const fragment = document.createDocumentFragment();
+    for (let j = 0; j < 12; j++) fragment.appendChild(DOMUtils.createSkeletonElement("card skeleton-card skeleton-pulse"));
+
     this.categoryKeys.forEach(key => {
       const container = this.categoryElements[key];
       if (!container) return;
-      container.innerHTML = "";
-      for (let j = 0; j < 12; j++) container.appendChild(DOMUtils.createSkeletonElement("card skeleton-card skeleton-pulse"));
+      container.textContent = "";
+      container.appendChild(fragment.cloneNode(true));
     });
   }
 
@@ -346,7 +349,7 @@ class RosterApp {
       this.categoryKeys.forEach(key => {
         const container = categoryContainers[key];
         if (!container) return;
-        container.innerHTML = "";
+        container.textContent = "";
         const fragment = fragments[key];
         const hasChildren = fragment?.children.length > 0;
         if (fragment) container.appendChild(fragment);
