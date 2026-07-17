@@ -30,6 +30,11 @@ describe('LLMRouter', () => {
             await expect(router.chatAnthropic([{role: 'user', content: 'hi'}])).rejects.toThrow(LLMConfigurationError);
         });
 
+        it('should throw LLMConfigurationError if API key contains newline characters', async () => {
+            router.configure('key-with\n-newline', 'anthropic-key');
+            await expect(router.chatOpenAI([{role: 'user', content: 'hi'}])).rejects.toThrow(LLMConfigurationError);
+        });
+
         it('should throw LLMValidationError if messages array is empty', async () => {
             router.configure('open-key', 'anthropic-key');
             await expect(router.chatOpenAI([])).rejects.toThrow(LLMValidationError);
@@ -46,6 +51,11 @@ describe('LLMRouter', () => {
             router.configure('test-open-key', 'test-anthropic-key');
             jest.spyOn(console, 'warn').mockImplementation(() => {});
             jest.spyOn(console, 'error').mockImplementation(() => {});
+            jest.useFakeTimers();
+        });
+
+        afterEach(() => {
+            jest.useRealTimers();
         });
 
         it('should throw LLMValidationError if model is not a string', async () => {
@@ -87,6 +97,21 @@ describe('LLMRouter', () => {
             await expect(promise).rejects.toThrow('Bad Request Text');
         });
 
+        it('should correctly propagate base network error when both json() and text() parsing fail', async () => {
+            global.fetch.mockResolvedValueOnce({
+                ok: false,
+                status: 400,
+                json: async () => { throw new Error('JSON parsing failed'); },
+                text: async () => { throw new Error('Text parsing failed'); }
+            });
+
+            const expectedErrorMsg = 'OpenAI API Error (400)';
+
+            const promise = router.chatOpenAI([{ role: 'user', content: 'test payload' }]);
+            await expect(promise).rejects.toThrow(LLMNetworkError);
+            await expect(promise).rejects.toThrow(expectedErrorMsg);
+        });
+
         it('should handle non-retriable network error directly (e.g. 401)', async () => {
             global.fetch.mockResolvedValueOnce({
                 ok: false,
@@ -98,6 +123,35 @@ describe('LLMRouter', () => {
             await expect(promise).rejects.toThrow(LLMNetworkError);
             await expect(promise).rejects.toThrow('Unauthorized');
             expect(global.fetch).toHaveBeenCalledTimes(1);
+        });
+
+        it('should throw an error on 500 when maxRetries is exhausted without hanging', async () => {
+            let fetchCallCount = 0;
+            global.fetch.mockImplementation(() => {
+                fetchCallCount++;
+                return Promise.resolve({
+                    ok: false,
+                    status: 500,
+                    json: async () => ({ error: { message: 'Server Internal Error' } }),
+                    text: async () => 'Server Internal Error'
+                });
+            });
+
+            router.maxRetries = 2;
+            router.baseBackoffMs = 1;
+
+            const fetchPromise = router.chatOpenAI([{ role: 'user', content: 'test payload' }]);
+
+            // Attempt 1 -> fails -> backoff 1ms
+            await Promise.resolve(); await Promise.resolve(); jest.advanceTimersByTime(1);
+            // Attempt 2 -> fails -> backoff 2ms
+            await Promise.resolve(); await Promise.resolve(); jest.advanceTimersByTime(2);
+            // Attempt 3 -> fails -> backoff 4ms
+            await Promise.resolve(); await Promise.resolve(); jest.advanceTimersByTime(4);
+            // Attempt 4 -> fails -> exhausted
+
+            await expect(fetchPromise).rejects.toThrow(LLMNetworkError);
+            expect(fetchCallCount).toBe(3); // 1 initial + 2 retries
         });
 
         it('should handle fetch TypeError and retry', async () => {
@@ -176,6 +230,11 @@ describe('LLMRouter', () => {
             router.configure('test-open-key', 'test-anthropic-key');
             jest.spyOn(console, 'warn').mockImplementation(() => {});
             jest.spyOn(console, 'error').mockImplementation(() => {});
+            jest.useFakeTimers();
+        });
+
+        afterEach(() => {
+            jest.useRealTimers();
         });
 
         it('should throw LLMValidationError if model is not a string', async () => {
@@ -258,12 +317,27 @@ describe('LLMRouter', () => {
             const path = require('path');
             const sourceCode = fs.readFileSync(path.join(__dirname, 'LLMRouter.js'), 'utf8');
 
+            // Force evaluation in a global scope where module is strictly absent
+            const vm = require('vm');
             const sandbox = { window: {} };
-            const script = new Function('window', `
-                let module = undefined;
+            vm.createContext(sandbox);
+            vm.runInContext(sourceCode, sandbox);
+
+            expect(sandbox.window.LLMRouter).toBeDefined();
+            expect(sandbox.window.LLMRouter.name).toBe('LLMRouter');
+        });
+
+        it('should handle undefined module.exports', () => {
+            const fs = require('fs');
+            const path = require('path');
+            const sourceCode = fs.readFileSync(path.join(__dirname, 'LLMRouter.js'), 'utf8');
+
+            const sandbox = { window: {} };
+            const script = new Function('window', 'module', `
                 ${sourceCode}
             `);
-            script(sandbox.window);
+            // we pass `module` as an object without `exports`
+            script(sandbox.window, {});
 
             expect(sandbox.window.LLMRouter).toBeDefined();
             expect(sandbox.window.LLMRouter.name).toBe('LLMRouter');
