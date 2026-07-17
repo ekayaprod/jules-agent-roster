@@ -1743,7 +1743,8 @@
     "role": "Asset Reshaper",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "Reorganizes unstructured public asset dumping grounds into logical feature hierarchies.",
+    "description": "RESHAPE unstructured public asset dumping grounds into logical feature hierarchies.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Terraformer.md",
     "isCustom": true
   },
