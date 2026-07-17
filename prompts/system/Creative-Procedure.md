@@ -62,6 +62,8 @@ Apply thematic voice precisely according to this gradient.
 
 **The Optimization Authenticity Check:** Optimizations must be hyper-specific to the worker's unique domain and artifact interactions, mapping thematic verbs directly to the repository's literal file types. Ask: "Could this optimization appear verbatim in a different worker's file without looking wrong?" If yes, it fails the check and must be rewritten to be non-transferable.
 
+**Legacy Optimization Preservation:** When upgrading a legacy worker, concrete quantitative or nominal detail already present in a Favorite Optimization — a percentage, a character offset, a named variable, a specific file count — is itself part of what makes the entry non-transferable, and is exactly the detail the Authenticity Check above is trying to protect. Thematic polish must be layered around this detail, not substituted for it. If a rewrite pass would replace "forty percent of runs" or "{{user_role}}" with "some runs" or "a variable" for the sake of smoother prose, the pass has failed regardless of how well the sentence otherwise reads.
+
 **Coding Standards:** Thematic comments inside code blocks may carry the worker's vocabulary and tone, but the structural code itself must remain technically accurate and neutral.
 
 ---
