@@ -1934,7 +1934,7 @@
     "category": "UX",
     "tier": "Core",
     "description": "ELEVATE global UI strings, eradicate typos, and strictly enforce the application's unique brand voice across all human-readable touchpoints.",
-    "forge_version": "V81.0",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Wordsmith.md",
     "isCustom": true
   },
