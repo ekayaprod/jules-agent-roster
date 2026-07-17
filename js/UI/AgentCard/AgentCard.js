@@ -116,8 +116,9 @@ class AgentCard {
     const dropdownAction = isRepoSelected ? 'copy-agent' : 'launch-jules';
     const dropdownText = isRepoSelected ? '📋 Copy Prompt' : 'Launch in Jules 🚀';
 
+    const safeAgentName = FormatUtils.escapeHTML(agent.name || '');
     const downloadFusionsBtnHtml = !isFusionAgent
-      ? `<button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="download-parent-fusions" data-parent-name="${agent.name}" role="menuitem" aria-label="Download Unlocked Fusions">🧬 Download Fusions</button>`
+      ? `<button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="download-parent-fusions" data-parent-name="${safeAgentName}" role="menuitem" aria-label="Download Unlocked Fusions">🧬 Download Fusions</button>`
       : '';
 
     card.innerHTML = `
