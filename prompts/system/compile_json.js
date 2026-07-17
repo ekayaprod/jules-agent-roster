@@ -150,6 +150,43 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     );
   }
 
+  // --- BASELINE RESTATEMENT GATE ---
+  // Prose rules in Master-Forge (Universal Baseline Exemption, Internal Duplication Check) instruct
+  // the generator LLM not to restate baseline-owned mechanics inside custom free-text fields. This
+  // block enforces that mechanically: it does not trust the generator to have followed the rule.
+  const BASELINE_RESTATEMENT_PATTERNS = [
+    { label: 'Artifact Lockbox', pattern: /artifact lockbox/i },
+    { label: 'Native Tool Lock', pattern: /native tool lock/i },
+    { label: 'Unconditional Cleanup', pattern: /unconditional cleanup/i },
+    { label: 'git clean baseline command', pattern: /git clean -fd/i },
+    { label: 'temp_backup baseline path', pattern: /\.jules\/temp_backup/i },
+    { label: 'SEARCH/REPLACE tool-lock block syntax', pattern: /<{3,}\s*SEARCH/i },
+    { label: 'Test Immunity Doctrine restatement', pattern: /test immunity doctrine/i },
+    { label: 'Canonical testing doctrine phrase', pattern: /treat all test files as immutable and read-only/i },
+    { label: 'Canonical testing doctrine failure clause', pattern: /prove (?:the test|it) was already failing on the main branch/i },
+  ];
+
+  const freeTextFieldsToScan = {
+    salvaged_custom_logic: data.salvaged_custom_logic,
+    salvaged_mandates: data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates,
+    zero_interaction_mandates: data.zero_interaction_mandates,
+    cross_vector_grants: data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants,
+  };
+
+  for (const [fieldName, fieldArr] of Object.entries(freeTextFieldsToScan)) {
+    if (!Array.isArray(fieldArr)) continue;
+    fieldArr.forEach((item, index) => {
+      const itemText = String(item);
+      for (const { label, pattern } of BASELINE_RESTATEMENT_PATTERNS) {
+        if (pattern.test(itemText)) {
+          throw new Error(
+            `[FATAL ERROR] Baseline Restatement Detected: '${fieldName}[${index}]' appears to restate '${label}', which is supplied natively by the Base Profile or the testing_doctrine slot. Per Master-Forge's Universal Baseline Exemption, strip this content from custom fields rather than re-authoring it under a new label. Offending text: "${itemText.slice(0, 120)}${itemText.length > 120 ? '...' : ''}"`,
+          );
+        }
+      }
+    });
+  }
+
   // --- DETERMINISTIC COMPILER LOGIC ---
 
   const category = data.identity?.category || '';
