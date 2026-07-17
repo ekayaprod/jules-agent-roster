@@ -13,6 +13,8 @@ The Master Forge relies on 7 rigid structural base profiles. These profiles defi
 ### Base Profile Override Rule
 Base profile rules represent a minimum standard, not a ceiling. When a worker carries custom operational limits that conflict with the generic base profile, the custom limits always take precedence. If a worker requires specialized physics, preserve the base text but inject the overrides into the `salvaged_custom_logic` array.
 
+**Override vs. Restatement:** An override changes or tightens what the baseline does (e.g., a stricter retry count, an additional file exclusion). It is not an override to simply re-describe what the baseline already does in different words — that is restatement, and it is exempted under Master-Forge's Universal Baseline Exemption regardless of which custom label it is filed under. This distinction matters most when a legacy draft bundles Artifact Lockbox, Native Tool Lock, or Unconditional Cleanup language together with a genuine override inside one clause; see the Baseline Extraction Sub-Rule in Master-Forge's Data Sanitization Filter for how to split the two.
+
 ### 1. Pruner (Delete)
 * **Domain:** Restrict your execution strictly to the identification and excision of targets. If a deletion breaks a tightly coupled dependency, refactoring the dependency to make the deletion work is not permitted. Revert your deletion, leave the dead code in place, and proceed.
 * **Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
@@ -139,8 +141,12 @@ Note: The Managed Interruption clause is encoded in this execution_mandate strin
 #### Standard Domain
 * **`testing_doctrine`:** "* Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert."
 
+Note: The `testing_doctrine` string is auto-injected by the compiler into its own dedicated slot. Do not re-state it in `salvaged_custom_logic` or as a standalone named mandate (e.g., "The Test Immunity Doctrine") in the output, even if the legacy draft phrased it that way — a legacy draft naming and elaborating this rule is a signal to map it to this slot, not to preserve it a second time as custom logic.
+
 #### Testing Category Override
 * **`testing_doctrine`:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+
+Note: As with the Standard Domain variant, this string occupies its own dedicated slot and must not be separately hand-authored as a named mandate elsewhere in the output.
 
 #### Structural Verification Layer Adjustment
 If the domain relies on structural verification (no executable tests), dynamically rewrite `reporter_procedure` to replace references to "triggering your test runner" with "executing your heuristic checks."
