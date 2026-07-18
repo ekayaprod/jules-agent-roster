@@ -19,39 +19,39 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Bolt+,Vibe Check`
 - `Dispatch,Dispatch`
 - `Dispatch,Helix`
+- `Dispatch,Janitor`
 - `Dispatch,Modernizer`
 - `Dispatch,Navigator`
 - `Dispatch,Overseer`
 - `Dispatch,Pedant`
 - `Dispatch,Scavenger`
-- `Dispatch,Janitor`
 - `Dispatch,Untangler`
 - `Dispatch,Vibe Check`
 - `Helix,Janitor`
 - `Helix,Vibe Check`
 - `Inspector,Vibe Check`
 - `Inspector,Vibe`
+- `Janitor,Janitor`
+- `Janitor,Vibe Check`
+- `Janitor,Vibe`
 - `Modernizer,Modernizer`
 - `Modernizer,Overseer`
 - `Modernizer,Vibe Check`
 - `Navigator,Navigator`
 - `Navigator,Overseer`
 - `Navigator,Vibe Check`
+- `Overseer,Janitor`
 - `Overseer,Overseer`
 - `Overseer,Palette+`
 - `Overseer,Pedant`
 - `Overseer,Scavenger`
 - `Overseer,Scribe`
-- `Overseer,Janitor`
 - `Overseer,Untangler`
 - `Overseer,Vibe Check`
 - `Pedant,Vibe Check`
 - `Pedant,Vibe`
 - `Scribe,Vibe Check`
 - `Sentinel+,Vibe Check`
-- `Janitor,Janitor`
-- `Janitor,Vibe Check`
-- `Janitor,Vibe`
 - `Untangler,Vibe Check`
 - `Untangler,Vibe`
 - `Vibe Check,Vibe Check`
