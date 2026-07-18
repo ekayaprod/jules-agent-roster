@@ -1,4 +1,4 @@
-# Superintendent Journal
+# Janitor Journal
 
 **Target Excised:** Unambiguous merge conflict in `prompts/orphans/Upgrader.md` | **Action:** Natively parsed and resolved, taking the main branch changes.
 **Target Excised:** Missing EOF newlines in text files (e.g. `JULES_CORE_ARCHITECTURE.md`, `index.html`, etc.) | **Action:** Enforced baseline infrastructure constraints by appending trailing newlines.
@@ -12,7 +12,7 @@
 * **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/Author.md`, `prompts/Paramedic.md`, `prompts/Pedant.md`, `prompts/Dispatch.md`, `prompts/Sentinel+.md`, `prompts/Bolt+.md`, `prompts/Helix.md`, `prompts/Navigator.md`, `prompts/Architect.md`, `prompts/Untangler.md`.
 * **Deleted Artifacts:** `verification.png` removed from hallway trash.
 * **Deleted Artifacts:** `code_ql_auth.patch` permanently removed and appended to `.gitignore`.
-* **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/Vibe Check.md`, `prompts/Scavenger.md`, `prompts/Superintendent.md`, `prompts/Palette+.md`, `prompts/Vibe.md`, `prompts/Modernizer.md`, `.jules/Untangler.md`.
+* **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/Vibe Check.md`, `prompts/Scavenger.md`, `prompts/Janitor.md`, `prompts/Palette+.md`, `prompts/Vibe.md`, `prompts/Modernizer.md`, `.jules/Untangler.md`.
 * **Conflict Markers:** Surgically deleted mechanics-only git conflict markers from `prompts/fusions/Void.md` and `prompts/fusions/Weaver.md`.
 * **Deleted Artifacts:** Permanently removed unlinked generated artifacts `fix_rumble2.sh`, `fix_rumble.sh`, and `rumble.patch` with 0 references.
 * **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/fusions/Millisecond.md`, `prompts/fusions/Scaffolder.md`, `prompts/fusions/Rumble.md`, `prompts/fusions/Customs.md`, `prompts/fusions/Collider.md`, `prompts/fusions/Decoder.md`, `prompts/fusions/Dead-Ender.md`.

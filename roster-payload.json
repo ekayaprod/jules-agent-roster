@@ -77,6 +77,17 @@
     "isCustom": false
   },
   {
+    "name": "Janitor",
+    "emoji": "🧹",
+    "role": "Sanitation Crew",
+    "category": "Operations",
+    "tier": "Core",
+    "description": "SWEEP the repository to clear hallway trash, purge microscopic decay, delete unlinked artifacts, and strip manifest bloat.",
+    "forge_version": "V86.0",
+    "promptFile": "prompts/Janitor.md",
+    "isCustom": false
+  },
+  {
     "name": "Modernizer",
     "emoji": "♻️",
     "role": "Evolution Engine",
@@ -173,17 +184,6 @@
     "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries.",
     "forge_version": "V85.2",
     "promptFile": "prompts/Sentinel+.md",
-    "isCustom": false
-  },
-  {
-    "name": "Superintendent",
-    "emoji": "🧰",
-    "role": "Entropy Manager",
-    "category": "Operations",
-    "tier": "Core",
-    "description": "SWEEP the repository to purge microscopic decay, enforce structural baselines, and permanently delete unlinked generated artifacts.",
-    "forge_version": "V85.0",
-    "promptFile": "prompts/Superintendent.md",
     "isCustom": false
   },
   {

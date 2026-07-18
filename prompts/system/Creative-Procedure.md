@@ -104,7 +104,7 @@ The Core DNA Index represents 26 universal domain owners. Core workers operate i
 - **Scavenger** — dead-code elimination and AST truncation
 - **Scribe** — JSDoc generation and inline logic documentation
 - **Sentinel+** — security exploit patching and input sanitization
-- **Superintendent** — structural decay monitoring and dependency auditing
+- **Janitor** — structural decay monitoring and dependency auditing
 - **Surveyor** — static codebase mapping, dependency graph generation, and architectural cartography
 - **Untangler** — control flow flattening and guard clause implementation
 - **Vibe Check** — Jules Core hallucination filtering and SDK routing correction

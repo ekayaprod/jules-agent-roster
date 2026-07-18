@@ -17,7 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Error Handling**: Implemented Bolt+ Graceful Abort for safer execution termination.
 
 ### 🔧 Chores & Code Health
-- **System Governance**: Enforced Creation Imperative in Generator base profile and executed Superintendent sweeps for baselines, artifact purges, and hazards.
+- **System Governance**: Enforced Creation Imperative in Generator base profile and executed Janitor sweeps for baselines, artifact purges, and hazards.
 - **Modernization**: Evolved syntax, flattened Promises, and injected strict Nullish Coalescing guards. Conducted horizontal alignment sweeps across the codebase.
 
 ### 🚀 Features
@@ -40,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Asynchronous Rendering**: Unblocked the main UI thread during DOM hydration by replacing `requestAnimationFrame` with modern `scheduler.yield()` fallback patterns.
 
 ### 🔧 Chores
-- **Maintenance**: Abstracted task board heuristics, purged obsolete deployment artifacts, and alphabetized Superintendent configuration manifests.
+- **Maintenance**: Abstracted task board heuristics, purged obsolete deployment artifacts, and alphabetized Janitor configuration manifests.
 - **Dependencies**: Bumped Playwright, Github Actions Node, and Checkout workflow versions.
 
 ## 0.9.0 - 2026-04-12
