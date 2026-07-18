@@ -1831,7 +1831,8 @@
     "role": "Pixel Perfectionist",
     "category": "UX",
     "tier": "Fusion",
-    "description": "Enforces visual rhythm at the code level by hunting down rogue inline margins and enforcing WCAG contrast ratios.",
+    "description": "ENFORCE visual rhythm at the code level by hunting down rogue inline margins and enforcing WCAG contrast ratios.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Typesetter.md",
     "isCustom": true
   },
