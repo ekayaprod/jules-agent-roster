@@ -317,6 +317,21 @@
 
 #
 
+## Janitor
+
+- **Role:** Maintenance Centralizer
+- **Category:** Strategy
+- **Description:** UNIFY fragmented cleanup scripts, cache purges, and teardown commands scattered across the codebase into a single master execution manifest.
+
+### Favorite Optimizations
+
+🪠 The Make Sweep: Centralized 6 different Node.js microservices with slightly different `npm run clean` commands into a single top-level `Makefile` execution.
+🐳 The Docker Alias: Unified 4 scattered `.sh` and `.ps1` Docker teardown scripts in a DevOps repository into a single master `docker-compose down -v` alias.
+⚙️ The C# Purge: Centralized fragmented SQL Server maintenance jobs embedded directly in C# application code into a single PowerShell module specifically designated for database teardowns.
+🐍 The PyCache Destroyer: Unified multiple Python build scripts manually deleting `__pycache__` into a single `clean.sh` master script.
+🗺️ The Monorepo Map: Combined deeply nested Lerna/Turborepo workspace cache clearing commands into a singular, parallelized top-level utility target.
+📦 The Artifact Pipeline: Grouped separate GitHub Action workflows that individually scrubbed build artifacts into one cohesive final job step.
+
 ## LiveFeed
 
 - **Role:** State Broadcaster

@@ -27,6 +27,7 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Dispatch,Superintendent`
 - `Dispatch,Untangler`
 - `Dispatch,Vibe Check`
+- `Helix,Superintendent`
 - `Helix,Vibe Check`
 - `Inspector,Vibe Check`
 - `Inspector,Vibe`
