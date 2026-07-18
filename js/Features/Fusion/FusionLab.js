@@ -207,20 +207,13 @@ class FusionLab {
       try {
         const key = AgentUtils.getFusionKey(agentA.name, agentB.name);
         // Check if it's a known custom fusion
-        let isKnown = false;
-        if (this.fusionIndex.customAgents && this.fusionIndex.customAgents[key]) {
-            isKnown = true;
-        }
-
-        if (isKnown) {
+        if (this.fusionIndex.customAgents?.[key]) {
           this.fusionIndex.unlock(key);
         }
 
         // Notify the app state about Cortex x Cortex state change
-        if (key === "Cortex,Cortex" && window.rosterApp) {
-          if (window.rosterApp.singularityBuilderContainer) {
-            window.rosterApp.singularityBuilderContainer.classList.remove("hidden");
-          }
+        if (key === "Cortex,Cortex") {
+          window.rosterApp?.singularityBuilderContainer?.classList.remove("hidden");
         }
       } catch (e) {
         const unlockError = new Error("FusionLab: Failed to unlock agent in index");

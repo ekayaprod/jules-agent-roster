@@ -203,8 +203,8 @@
     "role": "Jive Breaker",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "SQUARE up every spaced-out LLM hallucination and bring the codebase back to righteous, lockfile-verified reality.",
-    "forge_version": "V85.0",
+    "description": "SQUARE the synthetic jive of iterative vibe coding errors, bouncing hallucinated posers to restore the codebase's righteous native groove.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/Vibe Check.md",
     "isCustom": false
   },
@@ -1946,8 +1946,9 @@
     "emoji": "🌳",
     "role": "Paradigm Mutator",
     "category": "Architecture",
-    "tier": "Mythic",
-    "description": "MUTATE rigid, stagnant code structures into thriving modern ecosystems without severing the deep roots of underlying business logic.",
+    "tier": "Core",
+    "description": "MUTATE rigid structures into thriving modern ecosystems without severing the deep roots of underlying business logic.",
+    "forge_version": "86.0",
     "promptFile": "prompts/fusions/Yggdrasil.md",
     "isCustom": true
   },
