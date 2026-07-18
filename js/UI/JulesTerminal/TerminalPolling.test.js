@@ -353,4 +353,54 @@ describe('JulesTerminal', () => {
         expect(window.julesAPI.getActivities).toHaveBeenCalledWith('session123');
         expect(polling.terminal.getEl).toHaveBeenCalledWith('historyModalContent');
     });
+
+    it('cleanup and _clearPollingAndCache should properly reset state', () => {
+        polling.terminal.activeSessionsTimeout = 999;
+        polling.terminal.julesPollingIntervals = { '123': 888 };
+        polling.terminal.renderedSessionIds = new Set(['123']);
+        polling.terminal.dismissedSessionIds = new Set(['456']);
+        polling.terminal._flatCustomsCache = { test: true };
+        polling.terminal._agentMapCache = new Map();
+        polling.terminal.currentRepo = 'my-repo';
+
+        const originalClearTimeout = global.clearTimeout;
+        const originalClearInterval = global.clearInterval;
+        global.clearTimeout = jest.fn();
+        global.clearInterval = jest.fn();
+
+        polling.cleanup();
+
+        expect(global.clearTimeout).toHaveBeenCalledWith(999);
+        expect(global.clearInterval).toHaveBeenCalledWith(888, expect.anything(), expect.anything());
+        expect(polling.terminal._pollingActive).toBe(false);
+        expect(polling.terminal.activeSessionsTimeout).toBeNull();
+        expect(polling.terminal.julesPollingIntervals).toEqual({});
+        expect(polling.terminal.renderedSessionIds.size).toBe(0);
+        expect(polling.terminal.dismissedSessionIds.size).toBe(0);
+        expect(polling.terminal.currentRepo).toBeNull();
+        expect(polling.terminal._flatCustomsCache).toBeNull();
+        expect(polling.terminal._agentMapCache).toBeNull();
+
+        global.clearTimeout = originalClearTimeout;
+        global.clearInterval = originalClearInterval;
+    });
+
+    it('should dismiss error and remove element on click', () => {
+        const mockRemove = jest.fn();
+        const mockEl = { remove: mockRemove };
+        jest.spyOn(document, 'getElementById').mockReturnValue(mockEl);
+
+        const state = { hasError: true, latestLog: "Error msg" };
+        const block = document.createElement("div");
+        const span = document.createElement("span");
+        span.id = "status-session123";
+        block.appendChild(span);
+
+        polling._updatePollingState('session123', block, state, 'Agent', '🤖');
+
+        const btn = span.querySelector('button');
+        btn.onclick();
+
+        expect(mockRemove).toHaveBeenCalled();
+    });
 });
