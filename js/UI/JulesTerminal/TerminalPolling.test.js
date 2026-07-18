@@ -176,21 +176,20 @@ describe('JulesTerminal', () => {
         consoleSpy.mockRestore();
     });
 
-    it('should fallback to console.error when catching API errors if TelemetryUtils is missing', async () => {
-        const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
-
+    it('should fallback to TelemetryUtils when catching API errors if JulesTerminal.getTelemetryUtils is missing', async () => {
         window.julesAPI.getActivities.mockRejectedValue(new Error('API fail'));
 
         // Force JulesTerminal to return null for TelemetryUtils
         jest.spyOn(JulesTerminal, 'getTelemetryUtils').mockReturnValueOnce(null);
+        global.window.TelemetryUtils = { dispatchEvent: jest.fn() };
 
         polling.startTerminalPolling('session123', mockBlock, 'Agent', '🤖');
 
         jest.advanceTimersByTime(10);
         await Promise.resolve(); // flush promises
 
-        expect(consoleSpy).toHaveBeenCalledWith("Session polling cycle encountered an error:", expect.any(Error));
-        consoleSpy.mockRestore();
+        expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("JULES_POLLING_ERROR", expect.any(Error));
+        delete global.window.TelemetryUtils;
     });
 
     it('should handle isWaitingForInput=false correctly', () => {
@@ -318,6 +317,10 @@ describe('JulesTerminal', () => {
         polling.terminal._fetchAndRenderSessions = jest.fn().mockRejectedValueOnce(new Error('Fetch failed'));
 
         const TelemetryUtils = require('../../Utils/telemetry/telemetry-utils.js');
+        // Ensure getTelemetryUtils returns our mocked TelemetryUtils for this test
+        const originalGetTelemetryUtils = TerminalPolling.getTelemetryUtils;
+        TerminalPolling.getTelemetryUtils = jest.fn().mockReturnValue(TelemetryUtils);
+
         const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
 
         polling._startSessionPolling('test-repo', polling.terminal);
@@ -332,6 +335,7 @@ describe('JulesTerminal', () => {
         consoleWarnSpy.mockRestore();
         global.clearTimeout = originalClearTimeout;
         polling.terminal._fetchAndRenderSessions = originalFetch;
+        TerminalPolling.getTelemetryUtils = originalGetTelemetryUtils;
     });
 
     it('should format long text and handle missing historyModalContent element', async () => {

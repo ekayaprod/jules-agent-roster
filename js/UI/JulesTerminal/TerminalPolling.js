@@ -154,7 +154,8 @@ class TerminalPolling {
                 if (tu) {
                     tu.dispatchEvent("JULES_POLLING_ERROR", e);
                 } else {
-                    console.error("Session polling cycle encountered an error:", e);
+                    const globalTu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+                    if (globalTu) globalTu.dispatchEvent("JULES_POLLING_ERROR", e);
                 }
             }
         }, this.terminal.constructor.TERMINAL_POLL_MS);
