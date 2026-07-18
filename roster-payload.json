@@ -1787,7 +1787,8 @@
     "role": "Migration Architect",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Modernizes legacy syntax to the current standard and writes the official, inline historical context explaining the paradigm shift.",
+    "description": "MODERNIZE legacy syntax to the current standard and write the official, inline historical context explaining the paradigm shift for the team.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Transition Manager.md",
     "isCustom": true
   },
