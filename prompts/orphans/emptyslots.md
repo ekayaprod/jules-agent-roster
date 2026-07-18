@@ -24,10 +24,10 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Dispatch,Overseer`
 - `Dispatch,Pedant`
 - `Dispatch,Scavenger`
-- `Dispatch,Superintendent`
+- `Dispatch,Janitor`
 - `Dispatch,Untangler`
 - `Dispatch,Vibe Check`
-- `Helix,Superintendent`
+- `Helix,Janitor`
 - `Helix,Vibe Check`
 - `Inspector,Vibe Check`
 - `Inspector,Vibe`
@@ -42,16 +42,16 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Overseer,Pedant`
 - `Overseer,Scavenger`
 - `Overseer,Scribe`
-- `Overseer,Superintendent`
+- `Overseer,Janitor`
 - `Overseer,Untangler`
 - `Overseer,Vibe Check`
 - `Pedant,Vibe Check`
 - `Pedant,Vibe`
 - `Scribe,Vibe Check`
 - `Sentinel+,Vibe Check`
-- `Superintendent,Superintendent`
-- `Superintendent,Vibe Check`
-- `Superintendent,Vibe`
+- `Janitor,Janitor`
+- `Janitor,Vibe Check`
+- `Janitor,Vibe`
 - `Untangler,Vibe Check`
 - `Untangler,Vibe`
 - `Vibe Check,Vibe Check`

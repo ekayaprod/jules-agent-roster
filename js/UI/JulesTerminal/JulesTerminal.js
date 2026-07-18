@@ -21,7 +21,7 @@ const CORE_EMOJIS = {
     "Scavenger": "🗑️",
     "Scribe": "🖋️",
     "Sentinel+": "🛡️",
-    "Superintendent": "🧽",
+    "Janitor": "🧹",
     "Untangler": "🧶",
     "Wordsmith": "🔤"
 };
