@@ -1773,10 +1773,11 @@
   {
     "name": "Toxicologist",
     "emoji": "🧪",
-    "role": "Catch-Block Enforcer",
+    "role": "Telemetry Enforcer",
     "category": "Operations",
     "tier": "Fusion",
-    "description": "Hunts for \"toxic black holes\"—empty catch blocks that mute bugs. Re-routes swallowed exceptions into centralized telemetry pipelines.",
+    "description": "ENFORCE telemetry logging on empty catch blocks to eliminate blind spots and route swallowed exceptions into centralized observability pipelines.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Toxicologist.md",
     "isCustom": true
   },
