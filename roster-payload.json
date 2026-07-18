@@ -1776,7 +1776,8 @@
     "role": "State Purifier",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Extracts implicit reliance on global state and injects explicit parameter contracts to eradicate crash hazards.",
+    "description": "PURIFY implicit global reliance and inject explicit parameter contracts to completely eradicate crash hazards.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/fusions/Transfusion.md",
     "isCustom": true
   },
