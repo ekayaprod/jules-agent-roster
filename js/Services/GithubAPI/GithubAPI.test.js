@@ -19,6 +19,16 @@ describe('GithubAPI', () => {
             expect(() => api.configure(null)).toThrow(GithubConfigurationError);
         });
 
+        it('should throw if apiKey is not a string or empty', () => {
+            expect(() => api.configure(123)).toThrow(GithubConfigurationError);
+            expect(() => api.configure('   ')).toThrow(GithubConfigurationError);
+        });
+
+        it('should throw if apiKey contains invalid characters like newlines', () => {
+            expect(() => api.configure('gh-token\n')).toThrow(GithubConfigurationError);
+            expect(() => api.configure('gh-\rtoken')).toThrow(GithubConfigurationError);
+        });
+
         it('should set apiKey successfully', () => {
             api.configure('gh-token');
             expect(api.apiKey).toBe('gh-token');

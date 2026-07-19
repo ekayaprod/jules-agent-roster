@@ -36,8 +36,11 @@ class JulesAPI {
      * @param {string} apiKey - Google API key authorized for the Jules API.
      */
     configure(apiKey) {
-        if (!apiKey) {
-            throw new JulesConfigurationError("Jules API key is missing");
+        if (!apiKey || typeof apiKey !== 'string' || apiKey.trim() === '') {
+            throw new JulesConfigurationError("Jules API key is missing or invalid");
+        }
+        if (/[\r\n]/.test(apiKey)) {
+            throw new JulesConfigurationError("Jules API key contains invalid characters");
         }
         this.apiKey = apiKey;
     }

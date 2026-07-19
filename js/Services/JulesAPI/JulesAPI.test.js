@@ -21,6 +21,16 @@ describe('JulesAPI', () => {
             expect(() => api.configure(null)).toThrow(JulesConfigurationError);
         });
 
+        it('should throw if apiKey is not a string or empty', () => {
+            expect(() => api.configure(123)).toThrow(JulesConfigurationError);
+            expect(() => api.configure('   ')).toThrow(JulesConfigurationError);
+        });
+
+        it('should throw if apiKey contains invalid characters like newlines', () => {
+            expect(() => api.configure('my-key\n')).toThrow(JulesConfigurationError);
+            expect(() => api.configure('my-\rkey')).toThrow(JulesConfigurationError);
+        });
+
         it('should set apiKey successfully', () => {
             api.configure('my-key');
             expect(api.apiKey).toBe('my-key');
