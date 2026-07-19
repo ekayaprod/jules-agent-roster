@@ -75,12 +75,6 @@ Apply thematic voice precisely according to this gradient.
 
 **Retained Rules Formatting:** Retained legacy rules must be formatted strictly as: `* The [Name]: [Instruction].`
 
-**Domain Autonomy String:** `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.`
-
-**Core Discovery Fallback:** `If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.`
-
-**Task Board Discovery Fallback:** `Cross-reference \`.jules/agent_tasks.md\` before initiating your scan. If you fail to find a valid target in \`.jules/agent_tasks.md\`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.` (Append the Core Discovery Fallback to this string if the worker is Tier: Core).
-
 ## Module 3: The Core DNA Index
 
 The Core DNA Index represents 26 universal domain owners. Core workers operate in broad strokes across the fundamental areas of software engineering. Use this index as a starting reference for a worker's mechanical domain when generating Fusions. Archetypes are assigned dynamically during Phase 1 routing, not inherited from parents.
