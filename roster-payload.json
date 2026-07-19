@@ -155,12 +155,12 @@
   },
   {
     "name": "Scavenger",
-    "emoji": "🪲",
-    "role": "Cruft Consumer",
+    "emoji": "🦴",
+    "role": "Bone Collector",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "CONSUME semantic dust, orphaned logic, and ghost syntax to leave the repository's structural architecture immaculate.",
-    "forge_version": "V85.0",
+    "description": "EXCISE dead structural logic, severed helper functions, and hollow syntax to strip the repository down to its bare, functional bones.",
+    "forge_version": "V86.0",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
@@ -1842,7 +1842,8 @@
     "role": "Absolute Trajectory",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Demolish winding, overly abstracted workflows and calculate the absolute shortest mathematical trajectory to guarantee maximum execution velocity.",
+    "description": "VECTORIZE execution paths to demolish winding, abstracted workflows and calculate the absolute shortest trajectory.",
+    "forge_version": "V86.1",
     "promptFile": "prompts/fusions/Vector.md",
     "isCustom": true
   },
