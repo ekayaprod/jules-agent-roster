@@ -26,8 +26,11 @@ class GithubAPI {
      * @param {string} apiKey - Github Personal Access Token.
      */
     configure(apiKey) {
-        if (!apiKey) {
-            throw new GithubConfigurationError("Github API key is missing");
+        if (!apiKey || typeof apiKey !== 'string' || apiKey.trim() === '') {
+            throw new GithubConfigurationError("Github API key is missing or invalid");
+        }
+        if (/[\r\n]/.test(apiKey)) {
+            throw new GithubConfigurationError("Github API key contains invalid characters");
         }
         this.apiKey = apiKey;
     }
