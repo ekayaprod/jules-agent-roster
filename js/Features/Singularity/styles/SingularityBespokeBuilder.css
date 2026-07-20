@@ -4,8 +4,9 @@
           border: 1px solid var(--border);
           border-radius: 1rem;
           padding: 0.75rem 1rem;
+          margin-top: 2rem;
           color: var(--text-primary);
-          font-family: system-ui, -apple-system, sans-serif;
+          font-family: inherit;
           overflow: hidden;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
           transition: border-color 0.3s ease;
@@ -48,7 +49,7 @@
         }
         .sg-label-note {
           font-size: 0.6875rem;
-          color: var(--sg-muted);
+          color: var(--text-secondary);
           font-weight: 500;
         }
 
@@ -56,7 +57,7 @@
           width: 100%;
           min-height: 5.5rem;
           resize: vertical;
-          background: var(--sg-surface);
+          background: var(--details-bg);
           border: 1px solid var(--border);
           border-radius: 0.5rem;
           padding: 0.75rem;
@@ -69,11 +70,11 @@
         }
         .sg-textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
         .sg-textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-        .sg-textarea::placeholder { color: var(--sg-muted); }
+        .sg-textarea::placeholder { color: var(--text-secondary); }
 
         .sg-footer-divider {
           height: 1px;
-          background: var(--sg-border);
+          background: var(--border);
         }
 
         .sg-body {
@@ -102,7 +103,7 @@
         }
         .sg-outcome-note {
           font-size: 0.7rem;
-          color: var(--sg-muted);
+          color: var(--text-secondary);
           text-align: center;
           line-height: 1.6;
         }
@@ -116,11 +117,11 @@
         .sg-submit {
           width: 100%;
           padding: 0.875rem;
-          background: var(--sg-mythic);
+          background: var(--mythic);
           color: var(--bg-color);
           font-weight: 800;
           font-size: 0.9375rem;
-          font-family: 'Syne', 'Syne-Fallback', system-ui, sans-serif;
+          font-family: inherit;
           letter-spacing: 0.01em;
           border: none;
           border-radius: 0.5rem;
@@ -132,19 +133,19 @@
           .sg-submit:not(:disabled):hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
-            box-shadow: 0 8px 28px color-mix(in srgb, var(--sg-mythic) 35%, transparent);
+            box-shadow: 0 8px 28px color-mix(in srgb, var(--mythic) 35%, transparent);
           }
         }
         .sg-submit:not(:disabled):active { transform: scale(0.985); }
         .sg-submit:disabled { opacity: 0.4; cursor: not-allowed; }
-        .sg-submit:focus-visible { outline: 2px solid var(--sg-mythic); outline-offset: 2px; }
+        .sg-submit:focus-visible { outline: 2px solid var(--mythic); outline-offset: 2px; }
 
 .sg-submit {
     transition: all 0.3s ease-in-out;
 }
 
 .sg-submit:focus-visible {
-    outline: 2px solid var(--sg-mythic);
+    outline: 2px solid var(--mythic);
     outline-offset: 2px;
 }
 
