@@ -168,7 +168,7 @@
         left: 0;
         top: 0;
         height: 100vh;
-        width: 100%;
+        width: calc(100% - 2.75rem);
         max-width: 32rem;
         background: var(--term-bg);
         border-right: 1px solid var(--term-border);
