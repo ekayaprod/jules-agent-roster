@@ -237,7 +237,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "DISSOLVE the visual ghosting. Hunt down orphaned style definitions, redundant view wrappers, and dead UI templates to flatten the render tree.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.1",
     "promptFile": "prompts/fusions/Acetone.md",
     "isCustom": true
   },
@@ -259,7 +259,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "PURGE anomalies. Cross-reference multi-system architectures to hunt down and surgically assassinate semantically dead code.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.1",
     "promptFile": "prompts/fusions/Agent.md",
     "isCustom": true
   },
@@ -1887,6 +1887,7 @@
     "category": "Observability",
     "tier": "Fusion",
     "description": "ILLUMINATE blind spots by sensing macroscopic system gaps and weaving net-new observability infrastructure from the void.",
+    "forge_version": "V86.1",
     "promptFile": "prompts/fusions/Watchtower.md",
     "isCustom": true
   },
