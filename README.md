@@ -23,8 +23,9 @@ To help you navigate the physical structure of the monorepo, here is the archite
 
 ## 🚀 Quick Start
 Welcome aboard! To boot the application locally:
-1. `npm install`
-2. `npm start`
+1. `cp .env.example .env` (Populate your API keys).
+2. `npm install`
+3. `npm start`
 
 Alternatively, to boot via Docker using the provided multi-stage `Dockerfile`:
 1. `docker build -t jules-roster .`
