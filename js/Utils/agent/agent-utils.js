@@ -12,24 +12,25 @@ class AgentUtils {
 
     static getFusionKey(nameA, nameB) {
         if (!nameA || !nameB) return "";
-        return [nameA.trim(), nameB.trim()].sort().join(",");
+        return [String(nameA).trim(), String(nameB).trim()].sort().join(",");
     }
 
     static splitFusionKey(key) {
         if (!key) return [];
-        let idx = key.indexOf(',');
+        const strKey = String(key);
+        let idx = strKey.indexOf(',');
         if (idx === -1) {
-            return [key.trim()];
+            return [strKey.trim()];
         }
-        let idx2 = key.indexOf(',', idx + 1);
+        let idx2 = strKey.indexOf(',', idx + 1);
         if (idx2 === -1) {
              return [
-                 key.substring(0, idx).trim(),
-                 key.substring(idx + 1).trim()
+                 strKey.substring(0, idx).trim(),
+                 strKey.substring(idx + 1).trim()
              ];
         }
 
-        return key.split(",").map(p => p.trim());
+        return strKey.split(",").map(p => p.trim());
     }
 
     static getValidCustomAgents(customAgents) {
