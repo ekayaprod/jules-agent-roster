@@ -10,3 +10,9 @@
   - **Design/UX Pattern Applied**: Extracted rigid inline CSS (`animationDelay`) into semantic CSS custom properties (`--card-delay`) for proper stylesheet hook management.
 - **Component**: `.fusion-item` in `FusionIndex.js`
   - **Design/UX Pattern Applied**: Added standard interaction utilities for focus rings and active scale transforms (`focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95`) to ensure consistency and accessibility.
+- **Component**: `.jules-pull-tab`
+  - **Design/UX Pattern Applied**: Added `transition: box-shadow`, `transform: cubic-bezier()`, and a `box-shadow` on hover to make the pull tab feel organic and responsive.
+- **Component**: `.category-nav`
+  - **Design/UX Pattern Applied**: Injected glassmorphism (`backdrop-filter`) and drop-shadow (`box-shadow`) to elevate the navigation container off the canvas, closing the flat monolith gap.
+- **Component**: `.skeleton-card`
+  - **Design/UX Pattern Applied**: Replaced static state with a premium shimmer gradient sweep (`::after` pseudo-element with `translateX` animation) to enhance perceived performance.
