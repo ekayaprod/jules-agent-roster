@@ -155,12 +155,12 @@
   },
   {
     "name": "Scavenger",
-    "emoji": "🦴",
-    "role": "Bone Collector",
+    "emoji": "🪲",
+    "role": "Cruft Consumer",
     "category": "Hygiene",
     "tier": "Core",
-    "description": "EXCISE dead structural logic, severed helper functions, and hollow syntax to strip the repository down to its bare, functional bones.",
-    "forge_version": "V86.0",
+    "description": "CONSUME dead structural flesh and hollow carapaces, swarming the file to meticulously pick its load-bearing architecture completely clean.",
+    "forge_version": "V86.1",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },

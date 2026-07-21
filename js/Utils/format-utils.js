@@ -86,7 +86,7 @@ ${PromptParser.stripFrontmatter(a.prompt)}
     static extractDisplayName(agent) {
         if (!agent || !agent.name) return 'Unknown Protocol';
 
-        return agent.name.trim();
+        return String(agent.name).trim();
     }
 
     /**
@@ -96,7 +96,7 @@ ${PromptParser.stripFrontmatter(a.prompt)}
      */
     static extractRepoPath(sourceName) {
         if (!sourceName) return "";
-        return sourceName.replace('sources/github/', '');
+        return String(sourceName).replace('sources/github/', '');
     }
 
 }
