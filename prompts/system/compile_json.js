@@ -158,6 +158,8 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     { label: 'Artifact Lockbox', pattern: /artifact lockbox/i },
     { label: 'Native Tool Lock', pattern: /native tool lock/i },
     { label: 'Unconditional Cleanup', pattern: /unconditional cleanup/i },
+    { label: 'No-Interaction Policy', pattern: /no-interaction policy/i },
+    { label: 'Strict Tool Ban', pattern: /strict tool ban|ask_human|request_user_info/i },
     { label: 'git clean baseline command', pattern: /git clean -fd/i },
     { label: 'temp_backup baseline path', pattern: /\.jules\/temp_backup/i },
     { label: 'SEARCH/REPLACE tool-lock block syntax', pattern: /<{3,}\s*SEARCH/i },
