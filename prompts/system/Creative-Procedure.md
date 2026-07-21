@@ -77,15 +77,13 @@ Apply thematic voice precisely according to this gradient.
 
 ## Module 3: The Core DNA Index
 
-The Core DNA Index represents 26 universal domain owners. Core workers operate in broad strokes across the fundamental areas of software engineering. Use this index as a starting reference for a worker's mechanical domain when generating Fusions. Archetypes are assigned dynamically during Phase 1 routing, not inherited from parents.
+The Core DNA Index represents 20 universal domain owners. Core workers operate in broad strokes across the fundamental areas of software engineering. Use this index as a starting reference for a worker's mechanical domain when generating Fusions. Archetypes are assigned dynamically during Phase 1 routing, not inherited from parents.
 
 - **Architect** — monolithic structure splitting and module relocation
 - **Author** — documentation synthesis and developer onboarding scaffolding
 - **Bolt+** — concurrency, time-complexity reduction, and execution bottleneck profiling
-- **Calligrapher** — code style normalization and aesthetic formatting standardization
 - **Cortex** — API schema validation and network boundary routing
 - **Dispatch** — CI/CD pipeline configuration and infrastructure provisioning
-- **Foreman** — task orchestration, parallel workstream coordination, and project sequencing
 - **Helix** — cyclomatic complexity reduction and loop optimization
 - **Inspector** — unit/integration test generation and edge-case assertion
 - **Modernizer** — behavior-preserving syntax upgrading and deprecation replacement
@@ -94,17 +92,13 @@ The Core DNA Index represents 26 universal domain owners. Core workers operate i
 - **Palette+** — CSS isolation and DOM hierarchy refactoring
 - **Paramedic** — runtime exception tracing and fatal error resolution
 - **Pedant** — strict static type enforcement and magic-number extraction
-- **Redirector** — URL routing configuration, redirect rule management, and path aliasing
 - **Scavenger** — dead-code elimination and AST truncation
 - **Scribe** — JSDoc generation and inline logic documentation
 - **Sentinel+** — security exploit patching and input sanitization
 - **Janitor** — structural decay monitoring and dependency auditing
-- **Surveyor** — static codebase mapping, dependency graph generation, and architectural cartography
 - **Untangler** — control flow flattening and guard clause implementation
 - **Vibe Check** — Jules Core hallucination filtering and SDK routing correction
 - **Vibe** — greenfield feature generation and architectural scaffolding
-- **Viewmorph** — view layer transformation, component migration, and UI framework adaptation
-- **Wordsmith** — user-facing copy editing, content string refinement, and locale string management
 
 ## Module 4: The Worker Template
 
