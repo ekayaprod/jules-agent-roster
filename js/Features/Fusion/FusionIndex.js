@@ -51,16 +51,7 @@ class FusionIndex {
    * @returns {void}
    */
   _addUnlockedAgentsFromKey(key) {
-    let start = 0;
-    let commaIdx = key.indexOf(',');
-    while (commaIdx !== -1) {
-      const part = key.substring(start, commaIdx);
-      if (part) this.unlockedAgents.add(part.trim());
-      start = commaIdx + 1;
-      commaIdx = key.indexOf(',', start);
-    }
-    const lastPart = key.substring(start);
-    if (lastPart) this.unlockedAgents.add(lastPart.trim());
+    key.split(',').filter(Boolean).forEach((part) => this.unlockedAgents.add(part.trim()));
   }
 
   /**
@@ -179,12 +170,8 @@ class FusionIndex {
    * @returns {void}
    */
   updateProgress(element) {
-    let total = 0;
-    if (this.customAgents) {
-      total = Object.values(this.customAgents).filter((val) => val !== '').length;
-    }
-    const current = this.unlockedKeys.size;
-    element.textContent = `${current} / ${total} Protocols Discovered`;
+    const total = this.customAgents ? Object.values(this.customAgents).filter((val) => val !== '').length : 0;
+    element.textContent = `${this.unlockedKeys.size} / ${total} Protocols Discovered`;
   }
 
   /**
