@@ -242,7 +242,7 @@ global.AgentUtils = AgentUtils;
 
     it('escapes emoji payload to prevent DOM XSS', () => {
         // Create an unmocked escapeHTML version for this test, since it's mocked globally in beforeEach
-        mockFormatUtils.escapeHTML = jest.requireActual('../../Utils/format-utils').escapeHTML;
+        mockFormatUtils.escapeHTML = jest.requireActual('../../Utils/format/format-utils').escapeHTML;
         mockFormatUtils.extractIcon = jest.fn().mockImplementation(agent => agent ? agent.emoji : '❓');
 
         fusionIndex.unlockedKeys = new Set(['MaliciousAgent']);

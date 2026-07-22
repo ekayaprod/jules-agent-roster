@@ -2,7 +2,7 @@ const { BUTTON_STATES } = require("../../constants/ui.js");
 global.BUTTON_STATES = BUTTON_STATES;
 global.AgentUtils = require('../../Utils/agent/agent-utils.js');
 const FusionLab = require('./FusionLab');
-const FormatUtils = require('../../Utils/format-utils');
+const FormatUtils = require('../../Utils/format/format-utils');
 
 describe('FusionLab Security', () => {
     let fusionLab;

@@ -3,7 +3,7 @@ const AgentCard = require('./AgentCard');
 describe('AgentCard Security', () => {
     // Setup globals that AgentCard uses
     beforeAll(() => {
-        global.FormatUtils = jest.requireActual('../../Utils/format-utils');
+        global.FormatUtils = jest.requireActual('../../Utils/format/format-utils');
         global.DOMUtils = {
             createMarkdownPreBlock: () => document.createElement('div')
         };

@@ -17,9 +17,9 @@ const loadClass = (filePath) => {
 const NetworkUtils = loadClass('js/Utils/network/network-utils.js');
 global.NetworkUtils = NetworkUtils;
 
-const FormatUtils = loadClass('js/Utils/format-utils.js');
+const FormatUtils = loadClass('js/Utils/format/format-utils.js');
 const StorageUtils = loadClass('js/Utils/storage/storage-utils.js');
-const PerformanceUtils = loadClass('js/Utils/performance-utils.js');
+const PerformanceUtils = loadClass('js/Utils/performance/performance-utils.js');
 const DOMUtils = loadClass('js/Utils/dom/dom-utils.js');
 const AgentUtils = loadClass('js/Utils/agent/agent-utils.js');
 

@@ -3,7 +3,7 @@
  */
 
 const AgentPicker = require('./AgentPicker');
-const FormatUtils = require('../../Utils/format-utils');
+const FormatUtils = require('../../Utils/format/format-utils');
 
 // Mock external dependencies
 global.FormatUtils = FormatUtils;

@@ -94,7 +94,7 @@ describe('PromptParser', () => {
     expect(result.format).toBe('legacy');
     expect(result.raw).toBe(rawText);
 
-    const TelemetryUtils = require('./telemetry/telemetry-utils.js');
+    const TelemetryUtils = require('../telemetry/telemetry-utils.js');
     const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
 
     // Need to run it again because spy was created after
@@ -135,7 +135,7 @@ describe('PromptParser', () => {
     expect(result.format).toBe('legacy');
     expect(result.raw).toBe(rawText);
 
-    const TelemetryUtils = require('./telemetry/telemetry-utils.js');
+    const TelemetryUtils = require('../telemetry/telemetry-utils.js');
     const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent').mockImplementation(() => {});
 
     // Need to run it again because spy was created after
@@ -155,7 +155,7 @@ describe('PromptParser', () => {
 describe('PromptParser module exports', () => {
   it('exports gracefully across different environment module definitions', () => {
     const fs = require('fs');
-    const code = fs.readFileSync('js/Utils/prompt-parser.js', 'utf8');
+    const code = fs.readFileSync('js/Utils/prompt/prompt-parser.js', 'utf8');
 
     // Assert exports assign successfully in Node-like environment
     let isExported = false;

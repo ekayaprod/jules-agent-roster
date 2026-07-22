@@ -39,7 +39,7 @@ global.DOMUtils = {
 // If we use the REAL FormatUtils, it DOES have escapeHTML.
 // If the code DOES NOT call FormatUtils.escapeHTML(agentEmoji), it will be injected raw.
 
-const FormatUtils = require('../../Utils/format-utils.js');
+const FormatUtils = require('../../Utils/format/format-utils.js');
 global.FormatUtils = FormatUtils;
 
 describe('JulesTerminal Security Repro', () => {

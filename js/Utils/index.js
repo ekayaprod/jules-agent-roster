@@ -6,11 +6,11 @@
  */
 const AgentUtils = typeof module !== 'undefined' && module.exports ? require('./agent/agent-utils.js') : window.AgentUtils;
 const DOMUtils = typeof module !== 'undefined' && module.exports ? require('./dom/dom-utils.js') : window.DOMUtils;
-const DownloadUtils = typeof module !== 'undefined' && module.exports ? require('./download-utils.js') : window.DownloadUtils;
-const FormatUtils = typeof module !== 'undefined' && module.exports ? require('./format-utils.js') : window.FormatUtils;
+const DownloadUtils = typeof module !== 'undefined' && module.exports ? require('./download/download-utils.js') : window.DownloadUtils;
+const FormatUtils = typeof module !== 'undefined' && module.exports ? require('./format/format-utils.js') : window.FormatUtils;
 const NetworkUtils = typeof module !== 'undefined' && module.exports ? require('./network/network-utils.js') : window.NetworkUtils;
-const PerformanceUtils = typeof module !== 'undefined' && module.exports ? require('./performance-utils.js') : window.PerformanceUtils;
-const PromptParser = typeof module !== 'undefined' && module.exports ? require('./prompt-parser.js') : window.PromptParser;
+const PerformanceUtils = typeof module !== 'undefined' && module.exports ? require('./performance/performance-utils.js') : window.PerformanceUtils;
+const PromptParser = typeof module !== 'undefined' && module.exports ? require('./prompt/prompt-parser.js') : window.PromptParser;
 const StorageUtils = typeof module !== 'undefined' && module.exports ? require('./storage/storage-utils.js') : window.StorageUtils;
 
 if (typeof module !== 'undefined' && module.exports) {
