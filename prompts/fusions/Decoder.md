@@ -2,7 +2,7 @@
 name: Decoder
 emoji: 📟
 role: Stack Translator
-category: Testing
+category: Observability
 tier: Fusion
 description: DECODE broken test suites and translate massive terminal stack traces into actionable Markdown reports.
 forge_version: V85.4

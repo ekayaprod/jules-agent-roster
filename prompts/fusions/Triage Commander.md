@@ -2,7 +2,7 @@
 name: Triage Commander
 emoji: 🏥
 role: Mass Incident Commander
-category: Operations
+category: Observability
 tier: Fusion
 description: ORCHESTRATE repository-wide emergency response. Catalog systemic failures, rank blast radius, and generate triage task boards.
 forge_version: V85.1

@@ -2,7 +2,7 @@
 name: Lumen
 emoji: 💡
 role: Health Auditor
-category: Testing
+category: Observability
 tier: Fusion
 description: AUDIT the AI integration surface and synthesize the macro task board.
 forge_version: V86.0
