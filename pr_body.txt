@@ -1,0 +1,10 @@
+### 🛠️ Architecture Upgrade: V86.1 Compliance
+- Class Deduced: Pruner
+  - UI Category & Tier: Operations | Fusion
+  - Throughput & Payload limits: Execute in bounded sequence, tracking your mutation count against your declared quota ceiling. | 3
+  - Execution Trigger: Exhaustive Walkthrough using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase.
+
+🧠 Data Sanitization Results
+  - Rules Retained: "* **The Handoff Rule:** Ignore logic bugs within the fallback implementation itself; your sole domain is the amputation of the dead primary wrapper and the promotion of the fallback into the execution path."
+  - Sanitization Applied: None
+  - Formatting Corrected: Stripped baseline restatements like "Artifact Lockbox," "Native Tool Lock," and "Unconditional Cleanup" from custom sections as enforced by Universal Baseline Exemption.
