@@ -1,4 +1,4 @@
-global.PromptParser = require('./prompt-parser.js');
+global.PromptParser = require('../prompt/prompt-parser.js');
 const FormatUtils = require('./format-utils');
 
 describe('FormatUtils', () => {
@@ -136,7 +136,7 @@ Agent 2 prompt
 describe('environment exports', () => {
   it('exports gracefully across different environment module definitions', () => {
     const fs = require('fs');
-    const code = fs.readFileSync('js/Utils/format-utils.js', 'utf8');
+    const code = fs.readFileSync('js/Utils/format/format-utils.js', 'utf8');
 
     // Assert exports assign successfully in Node-like environment
     let isExported = false;

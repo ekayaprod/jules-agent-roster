@@ -2,7 +2,7 @@ const { TextEncoder, TextDecoder } = require("util"); global.TextEncoder = TextE
 
 
 // Read the actual FormatUtils, AgentUtils, and PinnedManager
-const FormatUtils = require('../Utils/format-utils');
+const FormatUtils = require('../Utils/format/format-utils');
 const AgentUtils = require('../Utils/agent/agent-utils');
 const PinnedManager = require('../Features/Pinned/PinnedManager');
 
