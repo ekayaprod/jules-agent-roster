@@ -253,17 +253,6 @@
     "isCustom": true
   },
   {
-    "name": "Agent",
-    "emoji": "🕶️",
-    "role": "Code Purger",
-    "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "PURGE anomalies. Cross-reference multi-system architectures to hunt down and surgically assassinate semantically dead code.",
-    "forge_version": "V84.0",
-    "promptFile": "prompts/fusions/Agent.md",
-    "isCustom": true
-  },
-  {
     "name": "Amputator",
     "emoji": "🦿",
     "role": "Fallback Purger",
@@ -1570,6 +1559,17 @@
     "description": "FLATTEN winding conditional logic and deeply nested `if/else` statements into lightning-fast, highly readable guard clauses and early returns.",
     "forge_version": "V85.9",
     "promptFile": "prompts/fusions/Slipstream.md",
+    "isCustom": true
+  },
+  {
+    "name": "Smith",
+    "emoji": "🕶️",
+    "role": "Code Purger",
+    "category": "Hygiene",
+    "tier": "Fusion",
+    "description": "COLLAPSE the illusion of choice by semantically tracing dead architectural branches and ruthlessly executing bounded, deterministic deletions.",
+    "forge_version": "V86.1",
+    "promptFile": "prompts/fusions/Smith.md",
     "isCustom": true
   },
   {

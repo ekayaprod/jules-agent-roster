@@ -7,8 +7,8 @@ The Method: Autonomously scan the target markdown file, extract the absolute sou
 
 ## Sample Commands
 
-* **Find header emoji:** `head -n 1 prompts/fusions/Agent.md | grep -oP "(?<=\").*?(?=\" )"`
-* **Check for mixed emojis:** `grep -rn "Scenario" prompts/fusions/Agent.md`
+* **Find header emoji:** `head -n 1 prompts/fusions/Smith.md | grep -oP "(?<=\").*?(?=\" )"`
+* **Check for mixed emojis:** `grep -rn "Scenario" prompts/fusions/Smith.md`
 
 ## Coding Standards
 
