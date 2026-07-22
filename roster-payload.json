@@ -1919,7 +1919,8 @@
     "role": "Logic Flattener",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Consolidates duplicated logic into single utilities while simultaneously flattening deeply nested execution paths into pristine, linear strands.",
+    "description": "WEAVE duplicated logic into single utilities, flattening deeply nested execution paths into pristine, linear strands.",
+    "forge_version": "V86.1",
     "promptFile": "prompts/fusions/Weaver.md",
     "isCustom": true
   },
