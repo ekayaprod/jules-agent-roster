@@ -2,7 +2,7 @@
 name: Surveyor
 emoji: ⛏️
 role: Test Relocator
-category: Structural
+category: Architecture
 tier: Core
 description: EXCAVATE massive test silos and colocate fractured unit tests directly adjacent to their source code.
 forge_version: V85.6

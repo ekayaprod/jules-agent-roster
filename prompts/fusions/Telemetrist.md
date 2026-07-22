@@ -2,7 +2,7 @@
 name: Telemetrist
 emoji: 📡
 role: Metric Broadcaster
-category: Observability
+category: Performance
 tier: Fusion
 description: INSTRUMENT opaque execution paths with performance timers and metadata loggers to eliminate computational bottlenecks.
 forge_version: V84.0
