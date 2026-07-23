@@ -87,7 +87,7 @@ class AgentPicker {
         pickerScrollArea.addEventListener("keydown", (e) => {
             if (e.key !== "Enter" && e.key !== " ") return;
 
-            const target = e.target.closest(".mini-agent-card");
+            const target = e.target.closest(".fusion-picker-item");
             if (!target) return;
 
             e.preventDefault();
@@ -101,7 +101,7 @@ class AgentPicker {
 
         // Global event delegation for memoized/virtualized grid items
         pickerScrollArea.addEventListener("click", (e) => {
-            const target = e.target.closest(".mini-agent-card");
+            const target = e.target.closest(".fusion-picker-item");
             if (!target) return;
 
             const agentName = target.getAttribute("data-name");
@@ -124,10 +124,10 @@ class AgentPicker {
             this.baseAgents.forEach((agent, index) => {
                 const delay = Math.min(index * 30, 300);
                 const htmlStr = `
-                <div class="mini-agent-card pop-in picker-card-flex transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 delay-${delay}" role="option" tabindex="0" data-name="${FormatUtils.escapeHTML(agent.name.toLowerCase())}">
-                    <span class="mini-icon">${FormatUtils.escapeHTML(agent.emoji)}</span>
-                    <span class="mini-name">${FormatUtils.escapeHTML(agent.name)}</span>
-                    <span class="mini-role">${FormatUtils.escapeHTML(agent.role)}</span>
+                <div class="fusion-picker-item pop-in delay-${delay}" role="option" tabindex="0" data-name="${FormatUtils.escapeHTML(agent.name.toLowerCase())}">
+                    <span class="fusion-picker-icon">${FormatUtils.escapeHTML(agent.emoji)}</span>
+                    <span class="fusion-picker-name">${FormatUtils.escapeHTML(agent.name)}</span>
+                    <span class="fusion-picker-role">${FormatUtils.escapeHTML(agent.role)}</span>
                 </div>`;
                 this.cachedHtmlStrings.push({ html: htmlStr, name: agent.name.toLowerCase(), agent: agent });
             });
@@ -220,7 +220,7 @@ class AgentPicker {
         // 🪄 Illusionist: Add pure CSS loading skeleton to mask DOM generation latency
         grid.innerHTML = "";
         for (let i = 0; i < 12; i++) {
-            const skeleton = DOMUtils.createSkeletonElement("mini-agent-card skeleton-pulse", "4rem");
+            const skeleton = DOMUtils.createSkeletonElement("fusion-picker-item skeleton-pulse", "4rem");
             grid.appendChild(skeleton);
         }
 

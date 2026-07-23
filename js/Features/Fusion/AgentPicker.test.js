@@ -174,6 +174,7 @@ describe('AgentPicker', () => {
             const clickHandler = agentPicker.elements.pickerScrollArea.addEventListener.mock.calls.find(c => c[0] === 'click')[1];
             clickHandler(clickEvent);
 
+            expect(clickEvent.target.closest).toHaveBeenCalledWith('.fusion-picker-item');
             expect(agentPicker.handlePickerSelection).toHaveBeenCalledWith(baseAgents[0]);
         });
 
@@ -200,6 +201,7 @@ describe('AgentPicker', () => {
             const keydownHandler = agentPicker.elements.pickerScrollArea.addEventListener.mock.calls.find(c => c[0] === 'keydown')[1];
             keydownHandler(keyEvent);
 
+            expect(keyEvent.target.closest).toHaveBeenCalledWith('.fusion-picker-item');
             expect(agentPicker.handlePickerSelection).toHaveBeenCalledWith(baseAgents[0]);
             expect(keyEvent.preventDefault).toHaveBeenCalled();
         });
@@ -263,6 +265,7 @@ describe('AgentPicker', () => {
             expect(window.history.pushState).toHaveBeenCalledWith({ modalOpen: true }, '');
 
             // Check skeleton pulse
+            expect(DOMUtils.createSkeletonElement).toHaveBeenCalledWith("fusion-picker-item skeleton-pulse", "4rem");
             expect(DOMUtils.createSkeletonElement).toHaveBeenCalledTimes(12);
             expect(grid.appendChild).toHaveBeenCalledTimes(12);
 
