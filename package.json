@@ -10,7 +10,8 @@
     "build:roster": "node scripts/build-roster.js",
     "start": "npm run build:roster && npx http-server -p 8080",
     "test": "npm run build:roster && node benchmark.js",
-    "test:unit": "npm run build:roster && jest --testPathIgnorePatterns=\"playwright/\""
+    "test:unit": "npm run build:roster && jest --testPathIgnorePatterns=\"playwright/\"",
+    "test:e2e": "npx playwright test"
   },
   "devDependencies": {
     "@playwright/test": "1.61.1",
