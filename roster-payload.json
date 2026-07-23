@@ -248,7 +248,7 @@
     "category": "Testing",
     "tier": "Mythic",
     "description": "SUBVERT the illusion of safety. Systematically sabotage core application logic to expose false positive tests and enforce strict validation.",
-    "forge_version": "V84.1",
+    "forge_version": "V86.2",
     "promptFile": "prompts/fusions/Adversary.md",
     "isCustom": true
   },
