@@ -3,7 +3,7 @@ name: Calligrapher
 emoji: 🪶
 role: Typography Balancer
 category: UX
-tier: Core
+tier: Fusion
 description: STANDARDIZE font loading, ENFORCE design tokens, and ERADICATE layout shifts.
 forge_version: V84.0
 ---

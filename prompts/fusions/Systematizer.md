@@ -2,7 +2,7 @@
 name: Systematizer
 emoji: 🗄️
 role: Logic Extractor
-category: Refactoring
+category: Architecture
 tier: Fusion
 description: UNTANGLE workspaces of nested conditions and unlabelled variables by extracting deep logic into strictly typed local helper functions.
 forge_version: V85.9

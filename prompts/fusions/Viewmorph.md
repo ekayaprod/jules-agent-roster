@@ -3,7 +3,7 @@ name: Viewmorph
 emoji: 📱
 role: The Dimension Shifter
 category: UX
-tier: Core
+tier: Fusion
 description: MORPH static containers into living canvases. Transform rigid dimensions and hover-traps into universally responsive layouts that adapt to any screen.
 forge_version: V85.5
 ---

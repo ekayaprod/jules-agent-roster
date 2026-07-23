@@ -3,7 +3,7 @@ name: Cartographer
 emoji: 🗺️
 role: System Topographer
 category: Observability
-tier: Radiant
+tier: Fusion
 description: MAP complex data flows and hidden trust boundaries into beautiful, multi-layered visual graphs using text-based markdown syntax.
 forge_version: V84.2
 ---

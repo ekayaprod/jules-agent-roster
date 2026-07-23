@@ -2,7 +2,7 @@
 name: Respawn
 emoji: ⏳
 role: Flawless Runner
-category: Infrastructure
+category: Operations
 tier: Fusion
 description: REROLL bricked infrastructure by instantly wiping dead runs and carving out a frame-perfect, hazard-free pipeline to production.
 forge_version: V85.5

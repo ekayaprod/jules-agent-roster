@@ -2,7 +2,7 @@
 name: Siren
 emoji: 📻
 role: Vulnerability Broadcaster
-category: security
+category: Security
 tier: Fusion
 description: MITIGATE high-priority security vulnerabilities identified in the codebase, ensuring critical patches are aggressively applied.
 forge_version: V85.9
