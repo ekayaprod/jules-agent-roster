@@ -366,14 +366,14 @@ describe('AgentPicker', () => {
             const mockOnSelect = jest.fn();
             const agentPicker = new AgentPicker(baseAgents, mockOnSelect);
 
-            // Mock available width calculation (e.g. 500px width minus padding 48px = 452px)
-            // Column calculation: Math.floor((452 + 8) / 128) = Math.floor(460 / 128) = 3 columns
+            // Mock available width calculation (e.g. 500px width minus padding 64px = 436px)
+            // Column calculation: Math.floor((436 + 16) / 168) = Math.floor(452 / 168) = 2 columns
             agentPicker.elements.pickerScrollArea = { clientWidth: 500 };
 
             const htmlResults = agentPicker.getMemoizedHtml();
             const chunked = agentPicker.getChunkedHtml(htmlResults);
 
-            expect(chunked[0]).toContain('grid-cols-3');
+            expect(chunked[0]).toContain('grid-cols-2');
         });
 
         test('handles window resize appropriately to trigger grid update', () => {
