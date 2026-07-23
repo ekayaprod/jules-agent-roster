@@ -3,7 +3,7 @@ name: Reroll
 emoji: 🎲
 role: The Logic Resetter
 category: Architecture
-tier: Core
+tier: Fusion
 description: REROLL legacy logic. Wipe away chronically patched code and instantaneously provision a pristine, zero-debt algorithmic replacement.
 forge_version: V85.1
 ---
