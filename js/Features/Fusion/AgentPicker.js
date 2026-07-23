@@ -157,9 +157,9 @@ class AgentPicker {
         let columns = 1;
 
         if (scrollArea && scrollArea.clientWidth > 0) {
-            // CSS Grid uses minmax(120px, 1fr) with 8px gap
-            const availableWidth = scrollArea.clientWidth - 48; // account for padding (1.5rem * 2)
-            columns = Math.max(1, Math.floor((availableWidth + 8) / (120 + 8)));
+            // CSS Grid uses minmax(152px, 1fr) with 16px gap (9.5rem and 1rem)
+            const availableWidth = scrollArea.clientWidth - 64; // account for padding (2rem * 2)
+            columns = Math.max(1, Math.floor((availableWidth + 16) / (152 + 16)));
         } else {
             // Fallback for purely hidden modal or unit test environments
             columns = 4;
