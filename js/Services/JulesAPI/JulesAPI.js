@@ -89,6 +89,13 @@ class JulesAPI {
                    if (tu) tu.dispatchEvent("JULES_API_PARSE_ERROR", e, { path });
                    else console.error("[JulesAPI] Failed to parse error response JSON", e);
                 }
+
+                if (response.status >= 400 && response.status < 500) {
+                    errorMsg = `Client Error: ${errorMsg}`;
+                } else if (response.status >= 500) {
+                    errorMsg = `Server Error: ${errorMsg}`;
+                }
+
                 const error = new JulesNetworkError(errorMsg, response.status);
                 if (tu) tu.dispatchEvent("JULES_API_NETWORK_ERROR", error, { path, status: response.status });
                 else console.error(`[JulesAPI] Request to ${path} failed: ${errorMsg}`, error);

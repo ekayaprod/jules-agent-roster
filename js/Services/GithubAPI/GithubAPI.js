@@ -62,7 +62,14 @@ class GithubAPI {
 
             if (!response.ok) {
                 const errorData = await response.json().catch((err) => ({ message: `Failed to parse error response: ${err.message}` }));
-                const errorMsg = errorData.message || `Github API Error (${response.status})`;
+                let errorMsg = errorData.message || `Github API Error (${response.status})`;
+
+                if (response.status >= 400 && response.status < 500) {
+                    errorMsg = `Client Error: ${errorMsg}`;
+                } else if (response.status >= 500) {
+                    errorMsg = `Server Error: ${errorMsg}`;
+                }
+
                 throw new GithubNetworkError(errorMsg, response.status);
             }
 
