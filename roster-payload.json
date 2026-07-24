@@ -1117,7 +1117,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "ERADICATE the Dumping Ground by magnetically pulling implicitly related files from flat roots into dedicated subdirectories.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.3",
     "promptFile": "prompts/fusions/Organizer.md",
     "isCustom": true
   },
