@@ -251,6 +251,7 @@ class AgentPicker {
 
                 grid.innerHTML = "";
                 this.updateGrid();
+                if (this.pickerClusterize) this.pickerClusterize.refresh(true);
 
                 // Activate focus trap after the grid DOM is updated
                 if (this.trap) {

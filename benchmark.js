@@ -318,6 +318,9 @@ global.Clusterize = class Clusterize {
   update(data) {
     this.options.rows = data;
   }
+  refresh(force) {
+    // mock refresh method
+  }
 };
 global.CSS = { escape: (str) => str };
 global.CONFIG = { selectors: {}, categories: {}, sectionMap: {} };
