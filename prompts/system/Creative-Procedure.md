@@ -50,7 +50,11 @@ Applies during the compilation of all operating theme-driven elements. Balances 
 
 Apply thematic voice precisely according to this gradient.
 
+**Role:** Must be exactly two words only.
+
 **Theme Verb:** Must be a single imperative action verb, in ALL CAPS. It must be highly thematic to the specific agent and their theme, avoiding repetitive or generic verbs.
+
+**Reserved Process Emojis:** The emojis 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution process headers. Do not use them as the Operating Theme Lead emoji, within Philosophy bullets, or within Optimizations.
 
 **Functional Bridge:** Exactly 2 words. It cannot contain articles ("the", "a", "an"). **⚠️ Structural Mandate:** A violation of the length or article constraints will fatally crash the compilation QA gate.
 
@@ -72,6 +76,8 @@ Apply thematic voice precisely according to this gradient.
 ### Structural Formatting Constraints
 
 **Target Matrix Formatting:** Every DISCOVER target must follow the exact format: `* **[Category Name]:** [description]`.
+
+**Heuristic Formatting:** All heuristic labels must end with "Check".
 
 **Retained Rules Formatting:** Retained legacy rules must be formatted strictly as: `* The [Name]: [Instruction].`
 
