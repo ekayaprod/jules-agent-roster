@@ -243,12 +243,12 @@
   },
   {
     "name": "Adversary",
-    "emoji": "🤺",
-    "role": "Fault Injector",
+    "emoji": "🥷",
+    "role": "Testing Architect",
     "category": "Testing",
-    "tier": "Mythic",
-    "description": "SUBVERT the illusion of safety. Systematically sabotage core application logic to expose false positive tests and enforce strict validation.",
-    "forge_version": "V84.1",
+    "tier": "Standard",
+    "description": "SUBVERT false-positive test-files by mutating core source logic to ensure assertions deterministically fail upon failure.",
+    "forge_version": "V86.3",
     "promptFile": "prompts/fusions/Adversary.md",
     "isCustom": true
   },
