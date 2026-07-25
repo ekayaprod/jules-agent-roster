@@ -138,7 +138,7 @@ describe('EmptyState Component', () => {
             const icons = EmptyState.ICONS;
             expect(icons.ERROR).toContain('stroke="var(--error)"');
             expect(icons.ERROR).toContain('<path stroke-linecap="round"');
-            expect(icons.SEARCH).toContain('🔍');
+            expect(icons.SEARCH).toContain('<svg aria-hidden="true"');
         });
     });
 });
