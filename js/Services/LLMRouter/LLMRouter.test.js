@@ -1,4 +1,4 @@
-const { LLMRouter, LLMConfigurationError, LLMNetworkError, LLMTimeoutError, LLMValidationError } = require('./LLMRouter');
+const { LLMRouter, LLMConfigurationError, LLMNetworkError, LLMValidationError } = require('./LLMRouter');
 
 describe('LLMRouter', () => {
     let router;

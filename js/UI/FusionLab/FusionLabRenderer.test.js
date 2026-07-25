@@ -1,4 +1,3 @@
-const { screen } = require('@testing-library/dom');
 require('@testing-library/jest-dom');
 const FusionLabRenderer = require('./FusionLabRenderer');
 
