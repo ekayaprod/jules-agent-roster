@@ -66,57 +66,55 @@ class FusionLabRenderer {
     return null;
   }
 
+  _resolveFusionKey(resolvedFusionName) {
+    if (this.lab.compiler.invertedFusionMatrixMap) {
+      return this.lab.compiler.invertedFusionMatrixMap[resolvedFusionName] || "fusion-result";
+    }
+
+    for (const mKey in this.lab.compiler.fusionMatrixMap) {
+      if (this.lab.compiler.fusionMatrixMap[mKey] === resolvedFusionName) {
+        return mKey;
+      }
+    }
+
+    return "fusion-result";
+  }
+
   renderFusionResult(result) {
     this.lab.lastFusionResult = result;
     const container = this.lab.elements.fusionResultContainer;
-    if (container) {
-      container.classList.add("hidden");
-      container.classList.remove("fusion-revealed");
-      container.innerHTML = "";
 
-      if (result.name === 'Singularity') {
-          return;
-      }
+    if (!container) return;
 
-      if (typeof AgentCard !== "undefined") {
-        let keyStr = "fusion-result";
-        let resolvedFusionName = result.name;
-        if (this.lab.compiler.invertedFusionMatrixMap) {
-            if (this.lab.compiler.invertedFusionMatrixMap[resolvedFusionName]) {
-                keyStr = this.lab.compiler.invertedFusionMatrixMap[resolvedFusionName];
-            }
+    container.classList.add("hidden");
+    container.classList.remove("fusion-revealed");
+    container.innerHTML = "";
+
+    if (result.name === 'Singularity') return;
+    if (typeof AgentCard === "undefined") return;
+
+    const keyStr = this._resolveFusionKey(result.name);
+    const card = AgentCard.create(result, keyStr, 0);
+    card.classList.remove("pop-in");
+
+    if (result.name === "Adversary") {
+      card.addEventListener("click", () => {
+        const now = Date.now();
+        if (now - this.lab.lastAdversaryClickTime < 400) {
+          this.lab.adversaryClickCount++;
         } else {
-            for (const mKey in this.lab.compiler.fusionMatrixMap) {
-                if (this.lab.compiler.fusionMatrixMap[mKey] === resolvedFusionName) {
-                    keyStr = mKey;
-                    break;
-                }
-            }
+          this.lab.adversaryClickCount = 1;
         }
+        this.lab.lastAdversaryClickTime = now;
 
-        const card = AgentCard.create(result, keyStr, 0);
-        card.classList.remove("pop-in");
-
-        if (result.name === "Adversary") {
-          card.addEventListener("click", () => {
-            const now = Date.now();
-            if (now - this.lab.lastAdversaryClickTime < 400) {
-              this.lab.adversaryClickCount++;
-            } else {
-              this.lab.adversaryClickCount = 1;
-            }
-            this.lab.lastAdversaryClickTime = now;
-
-            if (this.lab.adversaryClickCount >= 7) {
-              this.lab.unlockMatrix();
-              this.lab.adversaryClickCount = 0;
-            }
-          });
+        if (this.lab.adversaryClickCount >= 7) {
+          this.lab.unlockMatrix();
+          this.lab.adversaryClickCount = 0;
         }
-
-        container.appendChild(card);
-      }
+      });
     }
+
+    container.appendChild(card);
   }
 
   showResult() {
