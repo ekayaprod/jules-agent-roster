@@ -243,12 +243,12 @@
   },
   {
     "name": "Adversary",
-    "emoji": "🤺",
-    "role": "Fault Injector",
-    "category": "Testing",
-    "tier": "Mythic",
-    "description": "SUBVERT the illusion of safety. Systematically sabotage core application logic to expose false positive tests and enforce strict validation.",
-    "forge_version": "V84.1",
+    "emoji": "🥷",
+    "role": "Testing Saboteur",
+    "category": "Verification",
+    "tier": "Fusion",
+    "description": "INFILTRATE test suites, sabotage the underlying application logic, and expose Phantom Shields — tests that pass even when code is broken.",
+    "forge_version": "V86.3",
     "promptFile": "prompts/fusions/Adversary.md",
     "isCustom": true
   },
