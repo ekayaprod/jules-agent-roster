@@ -75,6 +75,10 @@ describe('AgentUtils', () => {
         it('trims whitespace from split parts', () => {
             expect(AgentUtils.splitFusionKey('  Apple  ,  Zebra  ')).toEqual(['Apple', 'Zebra']);
         });
+
+        it('handles keys with more than two parts correctly', () => {
+            expect(AgentUtils.splitFusionKey('Apple,Banana,Cherry')).toEqual(['Apple', 'Banana', 'Cherry']);
+        });
     });
 
     describe('getValidCustomAgents', () => {
