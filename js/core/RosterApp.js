@@ -34,6 +34,11 @@ class RosterApp {
     this.julesTerminal = new JulesTerminal(this);
     this.searchController = new SearchController(this);
     this.exportController = new ExportController(this);
+
+    if (typeof GlobalErrorBoundary !== 'undefined') {
+        this.errorBoundary = new GlobalErrorBoundary(this);
+        this.errorBoundary.init();
+    }
   }
 
   /**

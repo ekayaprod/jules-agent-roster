@@ -28,3 +28,19 @@ The test suite `npm run test:unit` was run across the full build verifying the n
 
 ## Bloat Reduced
 Stripped out ~5 redundant Coat-Check Wrappers (~35 lines of zero-logic boilerplate) and consolidated the code.
+
+## Target Eradicated
+Tier 3 Interactive Architecture: Missing `GlobalErrorBoundary` component implementation. Found through domain clairvoyance checking missing framework essentials.
+
+## Justification
+The application was missing a robust mechanism for catching `window.onerror` and `unhandledrejection` errors. This resulted in silent failures where errors would be printed to the console (or disappear entirely in unhandled async execution), bypassing the `TelemetryUtils` and the native UI error presentation standard `ToastNotification`.
+
+## Methodology
+- Authored `js/core/events/GlobalErrorBoundary.js` and hooked into standard browser events natively.
+- Implemented comprehensive Jest assertions in `js/core/events/GlobalErrorBoundary.test.js`.
+- Wired the boundary initialization natively in `RosterApp.js` constructor, and embedded the module into `index.html`.
+
+## Safety Check
+- Successfully tested the implementation isolated via `npm run test:unit`.
+- No side-effect disruptions to benchmark runs.
+- Fallback paths defined gracefully if dependencies are missing during early initialization phase.
