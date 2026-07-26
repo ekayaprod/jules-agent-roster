@@ -1942,6 +1942,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REROLL monolithic file trees by tearing down corrupted directory chunks and spawning logically bounded, procedural biomes.",
+    "forge_version": "V86.3",
     "promptFile": "prompts/fusions/WorldGen.md",
     "isCustom": true
   },
