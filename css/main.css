@@ -139,7 +139,7 @@
       @media (hover: hover) and (pointer: fine) { .flip-card-inner:hover .flip-hint, .flip-card-inner:hover .fusions-hint { opacity: 1; } }
       .flip-card-back .flip-hint { top: 0; right: 0; bottom: auto; }
 
-      .prompt-scroll-area { position: relative; z-index: 1; flex-grow: 1; overflow-y: auto; background: var(--details-bg); padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: var(--text-2xs); color: var(--text-secondary); margin-bottom: 0.5rem; white-space: pre-wrap; font-family: inherit; cursor: text; }
+      .prompt-scroll-area { position: relative; z-index: 1; flex-grow: 1; overflow-y: auto; background: var(--details-bg); padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: var(--text-2xs); line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: 0.5rem; white-space: pre-wrap; font-family: inherit; cursor: text; box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2); }
       .prompt-scroll-area::-webkit-scrollbar { width: 0.25rem; }
       .prompt-scroll-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0.25rem; }
 
@@ -150,7 +150,7 @@
       /* HEADER AND CONTROLS */
       .header { max-width: 75rem; margin: 0 auto 1.5rem auto; display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
       .header-title-group { display: flex; flex-direction: column; }
-      .header h1 { font-size: var(--text-2xl); margin: 0; font-weight: var(--weight-extrabold); letter-spacing: -0.05em; background: linear-gradient(135deg, #38bdf8, #818cf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+      .header h1 { font-size: var(--text-2xl); margin: 0; font-weight: var(--weight-extrabold); font-family: 'Syne', sans-serif; letter-spacing: -0.02em; line-height: var(--leading-tight); background: linear-gradient(135deg, #38bdf8, #818cf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
       .controls-bar { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; max-width: 75rem; margin: 0 auto 2rem auto; }
 
@@ -462,8 +462,8 @@
       .action-main-btn { border-top-right-radius: 0; border-bottom-right-radius: 0; flex-grow: 1; padding: 0.5rem; font-size: var(--text-sm);}
       .action-toggle-btn { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid var(--border); padding: 0 0.75rem;}
 
-      .dropdown-menu { position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; z-index: 50; display: none; flex-direction: column; min-width: 12rem;  overflow: hidden; }
-      .dropdown-menu.visible { display: flex !important; }
+      .dropdown-menu { position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; z-index: 50; display: none; flex-direction: column; min-width: 12rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1); opacity: 0; transform: translateY(10px) scale(0.95); transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none; }
+      .dropdown-menu.visible { display: flex !important; opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
       .dropdown-item { width: 100%; background: transparent; color: var(--text-primary); border: none; padding: 0.75rem 1rem; text-align: left; font-size: var(--text-sm); border-radius: 0; transition: all 0.3s ease-in-out;}
       @media (hover: hover) and (pointer: fine) { .dropdown-item:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); } }
       .dropdown-item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
@@ -499,9 +499,9 @@
       .fusion-quick-container { display: flex; flex-direction: column; gap: 0.5rem; border-top: 1px dashed var(--border); padding-top: 0.75rem; margin-top: auto; }
       .fusion-quick-label { font-size: var(--text-3xs); color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-family: -apple-system, sans-serif; font-weight: var(--weight-semibold); }
       .fusion-quick-list { list-style: none; padding: 0; margin: 0; display: flex; gap: 0.5rem; flex-wrap: wrap; }
-      .fusion-quick-btn { background: color-mix(in srgb, var(--bg-color) 50%, transparent); border: 1px solid var(--border); border-radius: 0.25rem; width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: all 0.2s ease; padding: 0; }
+      .fusion-quick-btn { background: color-mix(in srgb, var(--bg-color) 50%, transparent); border: 1px solid var(--border); border-radius: 0.25rem; min-width: 2.75rem; min-height: 2.75rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: all 0.2s ease; padding: 0; }
       @media (hover: hover) and (pointer: fine) { .fusion-quick-btn:hover { border-color: var(--accent); background-color: color-mix(in srgb, var(--accent) 10%, transparent); transform: translateY(-2px); } }
-      .fusion-quick-btn:focus-visible { border-color: var(--accent); background-color: color-mix(in srgb, var(--accent) 10%, transparent); transform: translateY(-2px); }
+      .fusion-quick-btn:focus-visible { border-color: var(--accent); background-color: color-mix(in srgb, var(--accent) 10%, transparent); transform: translateY(-2px); outline: 2px solid var(--accent); outline-offset: 2px; }
       .fusion-quick-btn:active { transform: translateY(0); }
 
       .dropdown-header { padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: bold; color: var(--text-secondary); text-transform: uppercase; border-bottom: 1px solid var(--border); }
@@ -511,7 +511,8 @@
       .empty-title { font-size: var(--text-xl); font-weight: var(--weight-bold); margin: 0 0 0.5rem 0; font-family: -apple-system, sans-serif; }
       .empty-desc { font-size: var(--text-sm); color: var(--text-secondary); max-width: 25rem; line-height: var(--leading-normal); margin: 0; font-family: -apple-system, sans-serif; }
       .hidden { display: none !important; } .mt-6 { margin-top: 1.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .flex { display: flex; }
-      .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: var(--text-primary); padding: 1rem 1.5rem; border-radius: 0.5rem;  transform: translateY(200%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; border: 1px solid var(--success); font-family: -apple-system, sans-serif; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);}
+      .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: var(--text-primary); padding: 1rem 1.5rem; border-radius: 0.5rem; transform: translateY(200%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; border: 1px solid var(--success); font-family: -apple-system, sans-serif; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-width: 20rem; }
+      .toast-content { display: flex; align-items: center; gap: 0.75rem; flex: 1; }
       .toast.show { transform: translateY(0); }
 
       .skeleton-card { height: 11.5rem; background-color: var(--card-bg); border: 1px dashed var(--border); border-radius: 1rem; flex: 1 1 100%; max-width: 100%; display: flex; align-items: center; justify-content: center; opacity: 0.6; position: relative; overflow: hidden; }
@@ -547,7 +548,7 @@
         #securityGrid > *:first-child::before { content: "Security"; }
       }
 
-      .fusion-error-alert { border-left: 4px solid var(--error); background-color: var(--card-bg); border-radius: 0 0.5rem 0.5rem 0; margin-top: 1.5rem; }
+      .fusion-error-alert { border-left: 4px solid var(--error); background-color: var(--card-bg); border-radius: 0 0.5rem 0.5rem 0; margin-top: 1.5rem; padding: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); display: flex; align-items: flex-start; gap: 0.75rem; }
       .fusion-error-icon { color: var(--error); width: 1.5rem; height: 1.5rem; flex-shrink: 0; }
       .fusion-error-content { display: flex; flex-direction: column; gap: 0.25rem; }
       .fusion-error-title { margin: 0; font-size: 0.875rem; font-weight: 600; color: var(--error); }
