@@ -28,3 +28,9 @@ The test suite `npm run test:unit` was run across the full build verifying the n
 
 ## Bloat Reduced
 Stripped out ~5 redundant Coat-Check Wrappers (~35 lines of zero-logic boilerplate) and consolidated the code.
+
+### Hallucination Taxonomy Ledger
+* **Type:** Silent Failure Injections (Cosmetic error handling)
+* **File:** `js/Services/AgentRepository.js`
+* **Details:** Located a cosmetic try/catch block wrapping the `fetchAgents()` method that merely caught and re-threw the error without adding any logic or telemetry. Stripped the syntax to allow the native error propagation to handle it.
+* **Date:** $(date)

@@ -49,44 +49,40 @@ class AgentRepository {
      * @throws {Error} If loading fails.
      */
     async fetchAgents() {
-        try {
-            // ⚡ Bolt+: The Waterfall Collapse. Unblocked the two-stage fetching and JSON parsing cycles into a single chained execution matrix, eliminating an artificial blocking tick.
-            const [payload, fusionMatrixData] = await Promise.all([
-                this._fetchPayload(),
-                this._fetchFusionMatrix()
-            ]);
+        // ⚡ Bolt+: The Waterfall Collapse. Unblocked the two-stage fetching and JSON parsing cycles into a single chained execution matrix, eliminating an artificial blocking tick.
+        const [payload, fusionMatrixData] = await Promise.all([
+            this._fetchPayload(),
+            this._fetchFusionMatrix()
+        ]);
 
-            this.fusionMatrix = fusionMatrixData;
+        this.fusionMatrix = fusionMatrixData;
 
-            const rawAgents = Array.isArray(payload) ? payload : [];
-            const standardAgentsRaw = [];
-            const customAgentsRaw = [];
+        const rawAgents = Array.isArray(payload) ? payload : [];
+        const standardAgentsRaw = [];
+        const customAgentsRaw = [];
 
-            for (const agent of rawAgents) {
-                if (agent.isCustom) {
-                    customAgentsRaw.push(agent);
-                } else {
-                    standardAgentsRaw.push(agent);
-                }
+        for (const agent of rawAgents) {
+            if (agent.isCustom) {
+                customAgentsRaw.push(agent);
+            } else {
+                standardAgentsRaw.push(agent);
             }
-
-            this.agents = this.validateAgentsData(standardAgentsRaw);
-
-            this.customAgents = {};
-            for (const agent of customAgentsRaw) {
-                // We use the name as the key for customAgents
-                const key = agent.name;
-                const validation = this.validateCustomAgent(key, agent);
-                if (validation.valid) {
-                    const validAgent = validation.sanitized;
-                    this.customAgents[key] = validAgent;
-                }
-            }
-
-            return { agents: this.agents, customAgents: this.customAgents, fusionMatrix: this.fusionMatrix };
-        } catch (error) {
-            throw error;
         }
+
+        this.agents = this.validateAgentsData(standardAgentsRaw);
+
+        this.customAgents = {};
+        for (const agent of customAgentsRaw) {
+            // We use the name as the key for customAgents
+            const key = agent.name;
+            const validation = this.validateCustomAgent(key, agent);
+            if (validation.valid) {
+                const validAgent = validation.sanitized;
+                this.customAgents[key] = validAgent;
+            }
+        }
+
+        return { agents: this.agents, customAgents: this.customAgents, fusionMatrix: this.fusionMatrix };
     }
 
     async _executeFetchPrompt(name, url, fallback) {
