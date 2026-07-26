@@ -81,6 +81,15 @@ Agent 2 prompt
       expect(FormatUtils.escapeRegex(123)).toBe('');
       expect(FormatUtils.escapeRegex({})).toBe('');
     });
+
+        it('should use cached value on subsequent calls', () => {
+            const str = 'test.*';
+            const first = FormatUtils.escapeRegex(str);
+            const second = FormatUtils.escapeRegex(str);
+            expect(first).toBe('test\\.\\*');
+            expect(second).toBe('test\\.\\*');
+            expect(FormatUtils._regexCache.has(str)).toBe(true);
+        });
   });
 
   describe('extractIcon and extractDisplayName', () => {

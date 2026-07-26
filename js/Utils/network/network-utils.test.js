@@ -279,6 +279,14 @@ describe('NetworkUtils', () => {
 
             await expect(NetworkUtils.fetchWithRetry('http://test.com')).rejects.toThrow("String error from API");
         });
+
+        it('should strictly throw generic error without retrying', async () => {
+            const fetchMock = jest.fn(() => Promise.reject(new Error('Some Generic Non-Network Error')));
+            global.fetch = fetchMock;
+
+            await expect(NetworkUtils.fetchWithRetry('http://test.com', { method: 'GET' })).rejects.toThrow('Some Generic Non-Network Error');
+            expect(fetchMock).toHaveBeenCalledTimes(1);
+        });
     });
 });
 
