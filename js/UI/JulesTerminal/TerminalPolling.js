@@ -27,7 +27,6 @@ class TerminalPolling {
                 const tu = TerminalPolling.getTelemetryUtils();
                 if (tu) {
                     tu.dispatchEvent("JULES_POLLING_ERROR", error);
-                } else {
                 }
             }
 
