@@ -12,6 +12,7 @@ Here is the exact layout of the network operations used to orchestrate Jules Age
 | `getSessions()` | `/sessions` | `GET` | Fetches all active sessions across all repositories. |
 | `getSessionsByRepo(repo)` | `/sessions?repo={repo}` | `GET` | Fetches sessions filtered for a specific target repository. |
 | `getSession(sessionId)` | `/sessions/{sessionId}` | `GET` | Fetches the precise details of a specific session payload. |
+| `approvePlan(sessionId)` | `/sessions/{sessionId}:approvePlan` | `POST` | Approves a plan in a session. |
 | `createSession(prompt, userTask, source, title)` | `/sessions` | `POST` | Launches a new agent session. Requires `prompt`, `sourceContext`, and `automationMode`. |
 | `getActivities(sessionId)` | `/sessions/{sessionId}/activities` | `GET` | Polls the activities payload (chat logs, outputs) for a given session. |
 | `provideInput(sessionId, text)` | `/sessions/{sessionId}/activities` | `POST` | Dispatches user input back to a blocked session requiring intervention. |

@@ -154,6 +154,29 @@ class JulesAPI {
     }
 
     /**
+     * Approve a session plan.
+     * @param {string} sessionId - The session ID.
+     * @returns {Promise<object>} The specific session payload.
+     */
+    async approvePlan(sessionId) {
+         if (!sessionId) {
+             const error = new JulesConfigurationError("Missing sessionId for approvePlan");
+             const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+             if (tu) tu.dispatchEvent("JULES_API_SESSION_APPROVE_ERROR", error);
+             else console.error("[JulesAPI] Cannot approve session", error);
+             throw error;
+         }
+
+         return this._fetch(`/sessions/${sessionId}:approvePlan`, {
+             method: "POST",
+             headers: {
+                 "Content-Type": "application/json"
+             },
+             body: JSON.stringify({})
+         });
+    }
+
+    /**
      * Launch a new agent session.
      * @param {string} prompt - The raw markdown prompt for the agent.
      * @param {string} userTask - The user's task.
