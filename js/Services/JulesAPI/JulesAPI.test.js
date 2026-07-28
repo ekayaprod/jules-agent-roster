@@ -71,7 +71,7 @@ describe('JulesAPI', () => {
         it('should handle malformed JSON in error response gracefully', async () => {
             const malformedError = new Error('Malformed JSON');
             global.fetch.mockResolvedValueOnce({ ok: false, status: 500, json: async () => { throw malformedError; } });
-            await expect(api._fetch('/test')).rejects.toThrow('Jules API Error (500)');
+            await expect(api._fetch('/test')).rejects.toThrow('We encountered a server error. Please wait a moment and try again.');
             expect(console.error).toHaveBeenCalledWith("[JulesAPI] Failed to parse error response JSON", malformedError);
         });
 

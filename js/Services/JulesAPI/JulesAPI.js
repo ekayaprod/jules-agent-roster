@@ -93,7 +93,7 @@ class JulesAPI {
                 if (response.status >= 400 && response.status < 500) {
                     errorMsg = `Client Error: ${errorMsg}`;
                 } else if (response.status >= 500) {
-                    errorMsg = `Server Error: ${errorMsg}`;
+                    errorMsg = `We encountered a server error. Please wait a moment and try again.`;
                 }
 
                 const error = new JulesNetworkError(errorMsg, response.status);
@@ -106,7 +106,7 @@ class JulesAPI {
             return data;
         } catch (error) {
              if (error.name === 'AbortError') {
-                 const timeoutErr = new JulesTimeoutError(`Request to ${path} timed out after 15s.`);
+                 const timeoutErr = new JulesTimeoutError(`The request timed out. Please check your connection and try again.`);
                  if (tu) tu.dispatchEvent("JULES_API_TIMEOUT", timeoutErr, { path });
                  else console.error("[JulesAPI] Request timeout.", timeoutErr);
                  throw timeoutErr;
