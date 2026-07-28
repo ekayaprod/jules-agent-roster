@@ -30,6 +30,6 @@ describe('JulesAPI explicit 400/500 HTTP status assertions', () => {
             status: 500,
             json: async () => ({ error: { message: 'Internal Server Error' } })
         });
-        await expect(api.getSources()).rejects.toThrow('Server Error: Internal Server Error');
+        await expect(api.getSources()).rejects.toThrow('We encountered a server error. Please wait a moment and try again.');
     });
 });
