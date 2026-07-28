@@ -247,8 +247,8 @@
     "role": "Fault Injector",
     "category": "Testing",
     "tier": "Mythic",
-    "description": "SUBVERT the illusion of safety. Systematically sabotage core application logic to expose false positive tests and enforce strict validation.",
-    "forge_version": "V84.1",
+    "description": "SUBVERT complacent tests. Expose Phantom Shields by injecting fatal flaws into core logic and verifying the test actually fails.",
+    "forge_version": "V86.3",
     "promptFile": "prompts/fusions/Adversary.md",
     "isCustom": true
   },
@@ -292,7 +292,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "ELIMINATE context drift. Write granular inline documentation and synchronize it rigidly with high-level architectural READMEs.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.3",
     "promptFile": "prompts/fusions/Archivist.md",
     "isCustom": true
   },
@@ -1116,8 +1116,8 @@
     "role": "Semantic Organizer",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "ERADICATE the Dumping Ground by magnetically pulling implicitly related files from flat roots into dedicated subdirectories.",
-    "forge_version": "V84.0",
+    "description": "ORGANIZE semantic groupings and relocate files into domain-driven folders.",
+    "forge_version": "V86.3",
     "promptFile": "prompts/fusions/Organizer.md",
     "isCustom": true
   },
@@ -1942,6 +1942,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REROLL monolithic file trees by tearing down corrupted directory chunks and spawning logically bounded, procedural biomes.",
+    "forge_version": "V86.3",
     "promptFile": "prompts/fusions/WorldGen.md",
     "isCustom": true
   },
