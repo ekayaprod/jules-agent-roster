@@ -383,20 +383,9 @@ class JulesTerminal {
         if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
 
         // ⚡ Bolt+: The O(n) Eradication. Avoid intermediate array allocation from .map()
-        const currentSessionIds = new Set();
-        for (const s of repoSessions) {
-            currentSessionIds.add(s.id);
-        }
-
-        for (const id of this.renderedSessionIds) {
-            if (!currentSessionIds.has(id)) {
-                this.dismissSession(id);
-            }
-        }
-
-        for (const session of repoSessions) {
-            this._processSession(session, terminal);
-        }
+        const currentSessionIds = repoSessions.reduce((acc, s) => acc.add(s.id), new Set());
+        this.renderedSessionIds.forEach(id => !currentSessionIds.has(id) && this.dismissSession(id));
+        repoSessions.forEach(session => this._processSession(session, terminal));
 
         this._checkEmptyTerminal();
     }
