@@ -326,48 +326,48 @@ class EventBinder {
       }
 
       const actionBtn = e.target.closest('[data-action]');
-      if (actionBtn && ["copy-agent", "copy-agent-instruction", "download-agent", "launch-jules", "download-parent-fusions"].includes(actionBtn.dataset.action)) {
-          e.preventDefault();
-          e.stopPropagation();
+      if (!actionBtn) return;
+      const action = actionBtn.dataset.action;
+      if (!["copy-agent", "copy-agent-instruction", "download-agent", "launch-jules", "download-parent-fusions"].includes(action)) return;
 
-          const action = actionBtn.dataset.action;
+      e.preventDefault();
+      e.stopPropagation();
 
-          if (action === "download-parent-fusions") {
-              const parentName = actionBtn.dataset.parentName;
-              if (parentName && app.exportController) {
-                  app.exportController.downloadCustomAgentsByParent(parentName, actionBtn);
-              }
-              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
-              return;
+      if (action === "download-parent-fusions") {
+          const parentName = actionBtn.dataset.parentName;
+          if (parentName && app.exportController) {
+              app.exportController.downloadCustomAgentsByParent(parentName, actionBtn);
           }
+          DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
+          return;
+      }
 
-          const index = actionBtn.dataset.index;
-          let agent = app.getAgentForUI(index);
-          if (!agent) return;
+      const index = actionBtn.dataset.index;
+      let agent = app.getAgentForUI(index);
+      if (!agent) return;
 
-          if (action === "copy-agent") {
-              app.exportController?.copyAgent(index, actionBtn);
-              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
-              return;
+      if (action === "copy-agent") {
+          app.exportController?.copyAgent(index, actionBtn);
+          DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
+          return;
+      }
+      if (action === "copy-agent-instruction") {
+          app.exportController?.copyAgentInstruction(index, actionBtn);
+          DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
+          return;
+      }
+      if (action === "download-agent") {
+          app.exportController?.downloadAgent(index, actionBtn);
+          DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
+          return;
+      }
+      if (action === "launch-jules") {
+          app.julesTerminal.launchSession(agent, actionBtn);
+          const modal = document.getElementById("fusionsModal");
+          if (modal && modal.contains(actionBtn)) {
+              modal.classList.remove("visible");
           }
-          if (action === "copy-agent-instruction") {
-              app.exportController?.copyAgentInstruction(index, actionBtn);
-              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
-              return;
-          }
-          if (action === "download-agent") {
-              app.exportController?.downloadAgent(index, actionBtn);
-              DOMUtils.closeDropdownMenu(actionBtn.closest('.dropdown-menu'), app);
-              return;
-          }
-          if (action === "launch-jules") {
-              app.julesTerminal.launchSession(agent, actionBtn);
-              const modal = document.getElementById("fusionsModal");
-              if (modal && modal.contains(actionBtn)) {
-                  modal.classList.remove("visible");
-              }
-              return;
-          }
+          return;
       }
     });
 
