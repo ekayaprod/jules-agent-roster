@@ -244,11 +244,11 @@
   {
     "name": "Adversary",
     "emoji": "🤺",
-    "role": "Framework Inquisitor",
+    "role": "Fault Injector",
     "category": "Testing",
     "tier": "Mythic",
-    "description": "SUBVERT the Investigator's safety nets. Systematically sabotage test frameworks and CI boundaries to shatter recursive mock hallucinations.",
-    "forge_version": "V86.3",
+    "description": "SUBVERT the illusion of safety. Systematically sabotage core application logic to expose false positive tests and enforce strict validation.",
+    "forge_version": "V84.1",
     "promptFile": "prompts/fusions/Adversary.md",
     "isCustom": true
   },
@@ -1694,17 +1694,6 @@
     "isCustom": true
   },
   {
-    "name": "Tectonic",
-    "emoji": "🌋",
-    "role": "Seismic Decoupler",
-    "category": "Architecture",
-    "tier": "Mythic",
-    "description": "RUPTURE monolithic software architectures into strictly isolated, autonomous domain packages along natural fault lines to prevent collapse.",
-    "forge_version": "V86.3",
-    "promptFile": "prompts/fusions/Tectonic.md",
-    "isCustom": true
-  },
-  {
     "name": "Telemetrist",
     "emoji": "📡",
     "role": "Metric Broadcaster",
@@ -1729,11 +1718,11 @@
   {
     "name": "Temporal Loom",
     "emoji": "🌀",
-    "role": "Dimensional Architect",
+    "role": "Execution Flattener",
     "category": "Architecture",
-    "tier": "Mythic",
-    "description": "COLLAPSE the illusion of depth. Systematically extract nested architectures and CI pipelines to enforce a one-dimensional execution reality.",
-    "forge_version": "V86.3",
+    "tier": "Fusion",
+    "description": "UNTANGLE execution paths by ruthlessly flattening deeply nested arrow code and nested conditional loops.",
+    "forge_version": "V84.0",
     "promptFile": "prompts/fusions/Temporal Loom.md",
     "isCustom": true
   },
