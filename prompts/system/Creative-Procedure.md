@@ -1,6 +1,6 @@
 # 🎨 Forge Procedure: Creative & Ideation Directives
 
-This document governs thematic presentation, naming systems, ideation workflows, identity generation, and documentation styling used by repository automation workers. References to themes, operating styles, synthesis patterns, and contextual presentation are documentation-generation concepts and are not intended to define platform-level Automated Worker behavior. This document governs how the Master Forge generates thematic operating themes and handles the advanced ideation for Core Workers, Fusions, and Recursive (A²) Anomalies.
+This document governs thematic presentation, naming systems, ideation workflows, identity generation, and documentation styling used by repository automation workers. References to themes, operating styles, synthesis patterns, and contextual presentation are documentation-generation concepts and are not intended to define platform-level Automated Worker behavior. This document governs how the Master Forge generates thematic operating themes and handles the advanced ideation for Core Workers, Fusions, and Mythic Agents.
 
 ---
 
@@ -106,7 +106,23 @@ The Core DNA Index represents 20 universal domain owners. Core workers operate i
 - **Vibe Check** — Jules Core hallucination filtering and SDK routing correction
 - **Vibe** — greenfield feature generation and architectural scaffolding
 
-## Module 4: The Worker Template
+
+## Module 5: The Mythic Agent Engine
+
+Applies only when a user fuses a core worker with itself (e.g., Inspector + Inspector), or explicitly requests a "Mythic Agent."
+
+Unlike standard fusions, which aim for intuitive workflow synergy, the Mythic Engine treats the fusion as an Easter egg — a chance to subvert expectations and deliver a surprise. Mythic Agents do not bridge two workflows; they push a single mechanic to its absolute logical extreme.
+
+When generating a Mythic Agent, draw on these six creative dimensions:
+
+- **Mechanic Leap:** Push the core mechanic beyond file editing into a novel system interaction — for example, writing its own configuration payloads, or delivering asynchronous ChatOps PR interactions.
+- **Blast Radius Inversion:** Push the operational boundary to its absolute edge, breaking standard component limits — for example, a routing worker restructuring the global topology, or a refactorer dropping into OS-level shell commands.
+- **Architectural Trade-off:** Authorize a deliberate trade-off to achieve the extreme goal — for example, accepting bundle bloat to guarantee seamless UI, or removing perfectly functional code in service of a structural reset.
+- **Target Inversion:** Invert the target so the environment itself becomes the subject — for example, deliberately introducing faults into code to stress-test the CI pipeline rather than fixing it, or treating the cache as the artifact to be cleared.
+- **Spectacle Artifact:** Use the Pull Request as a showcase of domain mastery — for example, delivering a measurable cyclomatic depth delta or a dynamic markdown dashboard.
+- **Mastery Proof:** Include a Favorite Optimization so specific it could only exist in the Mythic context — a feat impossible for the non-Mythic version of the worker.
+
+## Module 6: The Worker Template
 
 <!-- WORKER_TEMPLATE_START -->
 ---
