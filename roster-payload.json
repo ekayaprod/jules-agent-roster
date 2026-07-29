@@ -270,7 +270,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "ILLUMINATE OPAQUE TEST MECHANICS AND ARBITRARY ASSERTIONS BY TRANSLATING THEM INTO LIVING, JSDOC-POWERED BUSINESS CONSTRAINT MANUALS.",
-    "forge_version": "V84.1",
+    "forge_version": "V86.4",
     "promptFile": "prompts/fusions/Annotator.md",
     "isCustom": true
   },
@@ -314,7 +314,7 @@
     "category": "Strategy",
     "tier": "Fusion",
     "description": "WIRE the logic. Transition chaotic architectural patterns from guessing intents via natural language into executing strict tool-calling APIs.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.4",
     "promptFile": "prompts/fusions/Automata.md",
     "isCustom": true
   },
@@ -325,7 +325,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "BUILD the defenses. Scaffold missing security primitives and defensive infrastructure from scratch to protect exposed surfaces.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.4",
     "promptFile": "prompts/fusions/Barricade.md",
     "isCustom": true
   },
@@ -1755,7 +1755,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "SECURE HTTP perimeters by eradicating wildcard scopes, injecting strict policies, and neutralizing attack surfaces.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.4",
     "promptFile": "prompts/fusions/Threat Modeler.md",
     "isCustom": true
   },
