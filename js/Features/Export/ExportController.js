@@ -120,31 +120,24 @@ class ExportController {
   async _fetchMissingPrompts(agentsList) {
     // ⚡ Bolt+: Connection Pool. Migrated sequential batch-chunking to a sliding-window concurrency pool, eliminating batch-boundary waterfall latency.
     const CONCURRENCY_LIMIT = 5;
-    const activeTasks = new Set();
+    let index = 0;
 
-    for (let i = 0; i < agentsList.length; i++) {
-      const agent = agentsList[i];
-      if (agent && agent.prompt === undefined) {
-        const url = AgentUtils.getPromptUrl(agent);
-
-        const taskPromise = this.app.agentRepo.fetchPrompt(
-          agent.name,
-          url,
-          MESSAGES.NO_PROTOCOL_DATA
-        ).then(prompt => {
+    const workers = Array(Math.min(CONCURRENCY_LIMIT, agentsList.length)).fill(0).map(async () => {
+      while (index < agentsList.length) {
+        const agent = agentsList[index++];
+        if (agent && agent.prompt === undefined) {
+          const url = AgentUtils.getPromptUrl(agent);
+          const prompt = await this.app.agentRepo.fetchPrompt(
+            agent.name,
+            url,
+            MESSAGES.NO_PROTOCOL_DATA
+          );
           agent.prompt = prompt;
-        });
-
-        activeTasks.add(taskPromise);
-        taskPromise.finally(() => activeTasks.delete(taskPromise));
-
-        if (activeTasks.size >= CONCURRENCY_LIMIT) {
-          await Promise.race(activeTasks);
         }
       }
-    }
+    });
 
-    await Promise.all(activeTasks);
+    await Promise.all(workers);
   }
 
   async downloadCustomAgentsByParent(parentName, btn) {

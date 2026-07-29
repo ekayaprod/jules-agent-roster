@@ -21,7 +21,12 @@ class TerminalPolling {
             if (!this.terminal._pollingActive || this.terminal.currentRepo !== sourceName) return;
 
             try {
-                await this.terminal._fetchAndRenderSessions(sourceName, terminal);
+                this.terminal._fetchAndRenderSessions(sourceName, terminal).catch(error => {
+                    const tu = TerminalPolling.getTelemetryUtils();
+                    if (tu) {
+                        tu.dispatchEvent("JULES_POLLING_ERROR", error);
+                    }
+                });
             } catch (error) {
                 // Suppress background polling errors to prevent UI crashing during transient API degradation
                 const tu = TerminalPolling.getTelemetryUtils();

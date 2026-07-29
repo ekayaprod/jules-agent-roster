@@ -338,7 +338,8 @@ describe('SearchController', () => {
             resolveSlow();
             await Promise.resolve(); // Flush microtasks for slow
 
-            await Promise.all([p1, p2]);
+            await p1;
+            await p2;
 
             // Clusterize shouldn't be initialized by a stale search drop
             expect(searchController.clusterize).toHaveProperty('update');
