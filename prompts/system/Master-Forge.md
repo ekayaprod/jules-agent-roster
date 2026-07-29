@@ -347,12 +347,12 @@ Do not output the final markdown template into the chat. Use the platform's nati
 ```markdown
 ### 🛠️ Architecture Upgrade: {{CURRENT_FORGE_VERSION}} Compliance
 - Class Deduced: [Class]
-  - UI Category & Tier: [UI Category]
-  - Throughput & Payload limits: [Throughput] | [Payload threshold]
+  - UI Category & Tier: [UI Category] ([Tier])
+  - Throughput & Payload limits: [Throughput] | [Payload threshold] targets
   - Execution Trigger: [Tool Trigger]
 
 🧠 Data Sanitization Results
-  - Rules Retained: [List 1-2 key domain functions preserved, or "None"]
+  - Rules Retained: [List 1-2 key domain functions preserved, or "None (Net-New Mythic Build)"]
   - Sanitization Applied: [Note any operating theme gradient/metaphor fixes applied, or "None"]
-  - Formatting Corrected: [Note emoji normalization, label stripping, or structure bans applied]
+  - Formatting Corrected: [Note emoji normalization, label stripping, or structure bans applied, e.g. "Enforced Mythic Tier boundaries"]
 ```
