@@ -1,4 +1,4 @@
-const { JulesAPI, JulesNetworkError } = require('./JulesAPI');
+const { JulesAPI } = require('./JulesAPI');
 
 describe('JulesAPI explicit 400/500 HTTP status assertions', () => {
     let api;

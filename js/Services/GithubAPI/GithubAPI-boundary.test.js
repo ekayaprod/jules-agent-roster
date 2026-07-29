@@ -1,4 +1,4 @@
-const { GithubAPI, GithubNetworkError } = require('./GithubAPI');
+const { GithubAPI } = require('./GithubAPI');
 
 describe('GithubAPI explicit 400/500 HTTP status assertions', () => {
     let api;
