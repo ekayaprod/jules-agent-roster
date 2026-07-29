@@ -243,10 +243,8 @@ class JulesTerminal {
                     picker.addEventListener("change", async (e) => {
                         const sourceName = e.target.value;
                         if (sourceName) {
-                            await Promise.all([
-                                this.loadPullRequestsForRepo(sourceName),
-                                this.loadActiveSessionsForRepo(sourceName)
-                            ]);
+                            this.loadPullRequestsForRepo(sourceName);
+                            this.loadActiveSessionsForRepo(sourceName);
                         } else {
                             this.polling._clearPollingAndCache();
                             this.getEl("julesTerminal").innerHTML = DOMUtils.getTerminalIndicatorHTML("Awaiting repository connection...");

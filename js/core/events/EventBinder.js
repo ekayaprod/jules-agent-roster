@@ -32,10 +32,12 @@ class EventBinder {
 
         const sourceName = e.target.value;
         if (sourceName) {
-            Promise.all([
-                app.julesTerminal.loadActiveSessionsForRepo(sourceName),
-                app.julesTerminal.loadPullRequestsForRepo(sourceName)
-            ]).catch(err => {
+            app.julesTerminal.loadActiveSessionsForRepo(sourceName).catch(err => {
+                const tu = window.TelemetryUtils;
+                if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", err);
+                else console.error(err);
+            });
+            app.julesTerminal.loadPullRequestsForRepo(sourceName).catch(err => {
                 const tu = window.TelemetryUtils;
                 if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", err);
                 else console.error(err);
