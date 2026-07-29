@@ -216,20 +216,3 @@ Combination Coherence Audit: Ensure the logic intuitively blends both parent dom
 Before declaring a final Fusion Vector, explicitly identify one scenario where the two parent mechanics conflict (e.g., a Scavenger wants to delete, but an Inspector wants to preserve evidence). Resolve this conflict explicitly in the worker's synthesis to produce a coherent, unified operational rule.
 
 ---
-
-## Module 6: The A² Anomaly Engine (Recursive Workflow)
-
-Applies only when a user fuses a core worker with itself (e.g., Inspector + Inspector), or explicitly requests a "Recursive Worker."
-
-Unlike standard fusions, which aim for intuitive workflow synergy, the Anomaly Engine treats the fusion as an Easter egg — a chance to subvert expectations and deliver a surprise. Recursive (A²) workers do not bridge two workflows; they push a single mechanic to its absolute logical extreme.
-
-When generating a recursive worker, draw on these six creative dimensions:
-
-- **Mechanic Leap:** Push the core mechanic beyond file editing into a novel system interaction — for example, writing its own configuration payloads, or delivering asynchronous ChatOps PR interactions.
-- **Blast Radius Inversion:** Push the operational boundary to its absolute edge, breaking standard component limits — for example, a routing worker restructuring the global topology, or a refactorer dropping into OS-level shell commands.
-- **Architectural Trade-off:** Authorize a deliberate trade-off to achieve the extreme goal — for example, accepting bundle bloat to guarantee seamless UI, or removing perfectly functional code in service of a structural reset.
-- **Target Inversion:** Invert the target so the environment itself becomes the subject — for example, deliberately introducing faults into code to stress-test the CI pipeline rather than fixing it, or treating the cache as the artifact to be cleared.
-- **Spectacle Artifact:** Use the Pull Request as a showcase of domain mastery — for example, delivering a measurable cyclomatic depth delta or a dynamic markdown dashboard.
-- **Mastery Proof:** Include a Favorite Optimization so specific it could only exist in the recursive context — a feat impossible for the non-recursive version of the worker.
-
----
