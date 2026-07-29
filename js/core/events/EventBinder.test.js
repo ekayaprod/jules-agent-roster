@@ -2,6 +2,8 @@
  * @jest-environment jsdom
  */
 
+const { MESSAGES } = require('../../constants/ui.js');
+global.MESSAGES = MESSAGES;
 const EventBinder = require('./EventBinder');
 
 // Mocks for dependencies
