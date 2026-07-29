@@ -1,6 +1,10 @@
-const { TOAST_TYPES, BUTTON_STATES, HTTP_STATUS, ANIMATION_DURATIONS } = require('./ui.js');
+const { TOAST_TYPES, BUTTON_STATES, HTTP_STATUS, ANIMATION_DURATIONS, MESSAGES } = require('./ui.js');
 
 describe('UI Constants', () => {
+  it('should freeze MESSAGES', () => {
+    expect(Object.isFrozen(MESSAGES)).toBe(true);
+    expect(MESSAGES.NO_PROTOCOL).toBe('No protocol data available.');
+  });
   it('should freeze ANIMATION_DURATIONS', () => {
     expect(Object.isFrozen(ANIMATION_DURATIONS)).toBe(true);
     expect(ANIMATION_DURATIONS.FUSION_BURST_MS).toBe(3500);

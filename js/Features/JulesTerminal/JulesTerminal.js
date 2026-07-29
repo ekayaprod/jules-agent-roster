@@ -518,7 +518,7 @@ class JulesTerminal {
                 let prompt = agent.prompt;
                 if (prompt === undefined) {
                     const url = AgentUtils.getPromptUrl(agent);
-                    prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
+                    prompt = await this.app.agentRepo.fetchPrompt(agent.name, url, (typeof MESSAGES !== "undefined" ? MESSAGES.NO_PROTOCOL : "No protocol data available."));
                     agent.prompt = prompt;
                     if (btn) btn.disabled = false;
                 }

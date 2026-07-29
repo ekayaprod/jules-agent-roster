@@ -40,7 +40,7 @@ class ExportController {
       agent.prompt = await this.app.agentRepo.fetchPrompt(
         agent.name,
         url,
-        'No protocol data available.',
+        (typeof MESSAGES !== 'undefined' ? MESSAGES.NO_PROTOCOL : 'No protocol data available.'),
       );
       if (btn) btn.disabled = false;
     }
@@ -130,7 +130,7 @@ class ExportController {
         const taskPromise = this.app.agentRepo.fetchPrompt(
           agent.name,
           url,
-          'No protocol data available.'
+          (typeof MESSAGES !== 'undefined' ? MESSAGES.NO_PROTOCOL : 'No protocol data available.')
         ).then(prompt => {
           agent.prompt = prompt;
         });

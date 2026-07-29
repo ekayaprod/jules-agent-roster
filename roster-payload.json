@@ -1971,11 +1971,11 @@
   {
     "name": "Zealot",
     "emoji": "🔱",
-    "role": "Linting Enforcer",
+    "role": "Linting Overlord",
     "category": "Hygiene",
-    "tier": "Fusion",
-    "description": "ENFORCE configuration bypasses, manually resolve underlying code violations, and permanently upgrade the rule to fatal in configuration.",
-    "forge_version": "V84.0",
+    "tier": "Mythic",
+    "description": "SUBJUGATE rogue configuration bypasses. Manually resolve underlying code violations and elevate soft warnings to fatal decrees.",
+    "forge_version": "V86.3",
     "promptFile": "prompts/fusions/Zealot.md",
     "isCustom": true
   },

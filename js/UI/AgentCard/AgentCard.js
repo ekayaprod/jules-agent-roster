@@ -15,7 +15,7 @@ class AgentCard {
    */
   static getPromptNode(agent) {
     return DOMUtils.createMarkdownPreBlock(
-      PromptParser.stripFrontmatter(agent.prompt || 'No protocol data available.'),
+      PromptParser.stripFrontmatter(agent.prompt || (typeof MESSAGES !== 'undefined' ? MESSAGES.NO_PROTOCOL : 'No protocol data available.')),
     );
   }
 

@@ -1,3 +1,0 @@
-[CAUTION] 🪲 Scavenger: Clean Codebase
-
-No safe targets found across all confidence tiers.

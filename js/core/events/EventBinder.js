@@ -268,7 +268,7 @@ class EventBinder {
           }
 
           if (agent.prompt === undefined) {
-              const fallbackText = "No protocol data available.";
+              const fallbackText = (typeof MESSAGES !== "undefined" ? MESSAGES.NO_PROTOCOL : "No protocol data available.");
               // 🎩 CONJURE: Inject structural CSS skeleton to instantly mask network latency
               promptArea.innerHTML = '';
               promptArea.appendChild(DOMUtils.createSkeletonElement("skeleton-pulse", "8rem"));
@@ -387,7 +387,7 @@ class EventBinder {
 
         const url = AgentUtils.getPromptUrl(agent);
         try {
-            const fetched = await app.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
+            const fetched = await app.agentRepo.fetchPrompt(agent.name, url, (typeof MESSAGES !== "undefined" ? MESSAGES.NO_PROTOCOL : "No protocol data available."));
             agent.prompt = fetched;
         } catch (err) {
             const tu = window.TelemetryUtils;

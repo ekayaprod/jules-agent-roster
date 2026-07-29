@@ -149,7 +149,7 @@ class RosterApp {
           const agent = missingPrompts[index++];
           const url = AgentUtils.getPromptUrl(agent);
           try {
-            const fetched = await this.agentRepo.fetchPrompt(agent.name, url, "No protocol data available.");
+            const fetched = await this.agentRepo.fetchPrompt(agent.name, url, (typeof MESSAGES !== "undefined" ? MESSAGES.NO_PROTOCOL : "No protocol data available."));
             agent.prompt = fetched;
           } catch (err) {
             // Silently ignore errors as per original implementation
