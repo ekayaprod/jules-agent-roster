@@ -38,7 +38,7 @@ class AgentUtils {
         for (const key in customAgents) {
             if (Object.prototype.hasOwnProperty.call(customAgents, key)) {
                 const a = customAgents[key];
-                if (a && a.prompt && a.prompt.length > 0) validCustomAgents.push(a);
+                if (a && a.prompt && a.prompt.length > 0 && a.name !== "Error") validCustomAgents.push(a);
             }
         }
         return validCustomAgents;
