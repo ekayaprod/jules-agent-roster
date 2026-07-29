@@ -1,0 +1,1 @@
+[x] 1. The Structural Fracture: Unmaintainable monolithic files exceeding 500 lines mixing domain responsibilities, deeply nested relative import corridors ('../../'), orphaned peripheral assets, or bloated utility directories lacking a cohesive barrel export facade.
