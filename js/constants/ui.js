@@ -30,6 +30,14 @@ const ANIMATION_DURATIONS = Object.freeze({
   FUSION_BURST_MS: 3500
 });
 
+const MESSAGES = Object.freeze({
+  NO_PROTOCOL_DATA: 'No protocol data available.'
+});
+
+if (typeof window !== 'undefined') {
+  window.MESSAGES = MESSAGES;
+}
+
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { TOAST_TYPES, BUTTON_STATES, HTTP_STATUS, UI_TIMINGS, ANIMATION_DURATIONS };
+    module.exports = { TOAST_TYPES, BUTTON_STATES, HTTP_STATUS, UI_TIMINGS, ANIMATION_DURATIONS, MESSAGES };
 }

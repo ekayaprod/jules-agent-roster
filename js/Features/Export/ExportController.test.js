@@ -1,6 +1,8 @@
 /** @jest-environment jsdom */
 const fs = require('fs');
 const path = require('path');
+const { MESSAGES } = require('../../constants/ui.js');
+global.MESSAGES = MESSAGES;
 
 const code = fs.readFileSync(path.join(__dirname, 'ExportController.js'), 'utf8');
 const ExportController = eval(`
