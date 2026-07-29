@@ -1,4 +1,3 @@
-const { MESSAGES } = require('../../constants/ui');
 const AgentCard = require('./AgentCard');
 
 describe('AgentCard Security', () => {
@@ -125,7 +124,7 @@ describe('AgentCard Logic & Edge Cases', () => {
     describe('getPromptNode', () => {
         it('handles null prompt gracefully', () => {
             const node = AgentCard.getPromptNode({});
-            expect(global.PromptParser.stripFrontmatter).toHaveBeenCalledWith(MESSAGES.NO_PROTOCOL);
+            expect(global.PromptParser.stripFrontmatter).toHaveBeenCalledWith('No protocol data available.');
             expect(node).toBe('mocked-pre-block');
         });
 
