@@ -4,7 +4,15 @@ const { performance } = require('perf_hooks');
 
 // Native node execution using eval to prevent external tooling
 const loadClass = (filePath) => {
-  const content = fs.readFileSync(path.join(__dirname, filePath), 'utf-8');
+  let fullPath = path.join(__dirname, filePath);
+  if (!fs.existsSync(fullPath)) {
+    if (filePath.includes('js/UI/JulesTerminal')) {
+      fullPath = fullPath.replace('js/UI/JulesTerminal', 'js/Features/JulesTerminal');
+    } else if (filePath.includes('js/Features/JulesTerminal')) {
+      fullPath = fullPath.replace('js/Features/JulesTerminal', 'js/UI/JulesTerminal');
+    }
+  }
+  const content = fs.readFileSync(fullPath, 'utf-8');
   const baseName = path.basename(filePath, '.js');
   let className = baseName
     .split('-')
