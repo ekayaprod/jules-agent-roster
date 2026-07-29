@@ -244,11 +244,11 @@
   {
     "name": "Adversary",
     "emoji": "🤺",
-    "role": "Fault Injector",
+    "role": "Framework Inquisitor",
     "category": "Testing",
     "tier": "Mythic",
-    "description": "SUBVERT the illusion of safety. Systematically sabotage core application logic to expose false positive tests and enforce strict validation.",
-    "forge_version": "V84.1",
+    "description": "SUBVERT the Investigator's safety nets. Systematically sabotage test frameworks and CI boundaries to shatter recursive mock hallucinations.",
+    "forge_version": "V86.3",
     "promptFile": "prompts/fusions/Adversary.md",
     "isCustom": true
   },
@@ -1694,6 +1694,17 @@
     "isCustom": true
   },
   {
+    "name": "Tectonic",
+    "emoji": "🌋",
+    "role": "Seismic Decoupler",
+    "category": "Architecture",
+    "tier": "Mythic",
+    "description": "RUPTURE monolithic software architectures into strictly isolated, autonomous domain packages along natural fault lines to prevent collapse.",
+    "forge_version": "V86.3",
+    "promptFile": "prompts/fusions/Tectonic.md",
+    "isCustom": true
+  },
+  {
     "name": "Telemetrist",
     "emoji": "📡",
     "role": "Metric Broadcaster",
@@ -1718,11 +1729,11 @@
   {
     "name": "Temporal Loom",
     "emoji": "🌀",
-    "role": "Execution Flattener",
+    "role": "Dimensional Architect",
     "category": "Architecture",
-    "tier": "Fusion",
-    "description": "UNTANGLE execution paths by ruthlessly flattening deeply nested arrow code and nested conditional loops.",
-    "forge_version": "V84.0",
+    "tier": "Mythic",
+    "description": "COLLAPSE the illusion of depth. Systematically extract nested architectures and CI pipelines to enforce a one-dimensional execution reality.",
+    "forge_version": "V86.3",
     "promptFile": "prompts/fusions/Temporal Loom.md",
     "isCustom": true
   },
@@ -1964,7 +1975,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "ENFORCE configuration bypasses, manually resolve underlying code violations, and permanently upgrade the rule to fatal in configuration.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.3",
     "promptFile": "prompts/fusions/Zealot.md",
     "isCustom": true
   },
