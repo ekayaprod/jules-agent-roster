@@ -1919,8 +1919,8 @@
     "role": "UX Pathfinding",
     "category": "UX",
     "tier": "Fusion",
-    "description": "GUIDE THE USER BACK TO SAFETY.",
-    "forge_version": "V84.0",
+    "description": "GUIDE the user back to safety. Your mission is to map and inject missing visual navigation structures into complex frontend workflows.",
+    "forge_version": "V86.4",
     "promptFile": "prompts/fusions/Wayfinder.md",
     "isCustom": true
   },
