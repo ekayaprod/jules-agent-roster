@@ -335,8 +335,8 @@
     "role": "Boundary Hardener",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "SWEEP infrastructure. Sweep infrastructure-as-code and server configurations to explicitly lock down exposed boundaries.",
-    "forge_version": "V84.0",
+    "description": "SWEEP infrastructure-as-code and server configurations to explicitly lock down exposed boundaries.",
+    "forge_version": "V86.4",
     "promptFile": "prompts/fusions/Bastion.md",
     "isCustom": true
   },
