@@ -261,6 +261,7 @@ describe('NetworkUtils', () => {
                     await NetworkUtils.fetchWithRetry('http://test-warn.com');
                 }
             } catch (error) {
+                console.error("Expected error:", error);
                 // Expected
             }
             expect(consoleWarnMock).not.toHaveBeenCalledWith(
