@@ -33,6 +33,15 @@ class SingularityBespokeBuilder {
               <span class="sg-label-note">Describe what you want the agent to do</span>
             </div>
             <textarea id="sgMission" class="sg-textarea transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none hover:shadow-sm" placeholder="e.g., Build a python script to parse logs, or find and delete unused css files..."></textarea>
+            <div id="sgErrorWrapper" class="fusion-error-alert transition-all duration-300 ease-in-out hidden mt-2">
+              <svg class="fusion-error-icon shrink-0 mt-1" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <div class="fusion-error-content">
+                <p class="fusion-error-title">Forge Error</p>
+                <p id="sgErrorText" class="fusion-error-desc">An error occurred while forging.</p>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -52,6 +61,8 @@ class SingularityBespokeBuilder {
     this.elements = {
       missionInput: document.getElementById("sgMission"),
       submitBtn:    document.getElementById("sgSubmit"),
+      errorWrapper: document.getElementById("sgErrorWrapper"),
+      errorText:    document.getElementById("sgErrorText"),
     };
   }
 
@@ -71,6 +82,13 @@ class SingularityBespokeBuilder {
 
   async handleForge() {
     let mission = this.elements.missionInput.value.trim() || "";
+
+    if (this.elements.errorWrapper) {
+      this.elements.errorWrapper.classList.add("hidden");
+    }
+    if (this.elements.missionInput) {
+      this.elements.missionInput.classList.remove("border-error");
+    }
 
     const uiState = {
       original: this.elements.submitBtn.innerHTML,
@@ -148,6 +166,15 @@ class SingularityBespokeBuilder {
       }
     } catch (error) {
       uiState.rollback();
+      if (this.elements.errorWrapper && this.elements.errorText) {
+        this.elements.errorWrapper.classList.remove("hidden");
+        this.elements.errorText.innerText = error.message || "Unknown error";
+        this.elements.errorWrapper.setAttribute("aria-live", "assertive");
+      }
+      if (this.elements.missionInput) {
+        this.elements.missionInput.classList.add("border-error");
+        this.elements.missionInput.focus();
+      }
       const forgeError = new Error(`Singularity Forge Error: ${error.message}`);
       forgeError.cause = error;
       const tu = window.TelemetryUtils;
