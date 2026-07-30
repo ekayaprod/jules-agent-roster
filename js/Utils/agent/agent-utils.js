@@ -60,4 +60,6 @@ class AgentUtils {
 
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = AgentUtils;
+} else if (typeof window !== 'undefined') {
+    window.AgentUtils = AgentUtils;
 }
