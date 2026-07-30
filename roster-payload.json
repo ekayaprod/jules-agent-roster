@@ -963,7 +963,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "LIQUIDATE OBSOLETE LEGACY ADAPTERS, POLYFILLS, AND CUSTOM BRIDGE WRAPPERS THAT MASK MISSING NATIVE FUNCTIONALITY.",
-    "forge_version": "V84.1",
+    "forge_version": "V86.4",
     "promptFile": "prompts/fusions/Liquidator.md",
     "isCustom": true
   },
