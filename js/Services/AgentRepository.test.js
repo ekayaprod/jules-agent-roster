@@ -355,6 +355,7 @@ describe('AgentRepository', () => {
             try {
                 await repo.fetchAgents();
             } catch (e) {
+                console.error("Expected error:", e);
                 // If it resolves, it handles failure gracefully inside fetchAgents
             }
             expect(jest.fn()).not.toHaveBeenCalled();
@@ -369,6 +370,7 @@ describe('AgentRepository', () => {
             try {
                 await repo.fetchAgents();
             } catch (e) {
+                console.error("Expected error:", e);
                 // Expected to throw
             }
 

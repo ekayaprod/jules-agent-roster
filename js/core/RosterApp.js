@@ -152,6 +152,7 @@ class RosterApp {
             const fetched = await this.agentRepo.fetchPrompt(agent.name, url, MESSAGES.NO_PROTOCOL_DATA);
             agent.prompt = fetched;
           } catch (err) {
+            console.error("Failed to fetch prompt", err);
             // Silently ignore errors as per original implementation
           }
         }
