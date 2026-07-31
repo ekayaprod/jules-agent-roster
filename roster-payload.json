@@ -369,7 +369,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "SEAL INDIVIDUAL test suites by ripping out shared mutable state and brittle static fixtures, replacing them with hermetic dynamic factories.",
-    "forge_version": "V84.1",
+    "forge_version": "V86.5",
     "promptFile": "prompts/fusions/Canner.md",
     "isCustom": true
   },
@@ -380,7 +380,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "REDESIGN fragmented multi-page mazes into cohesive single-page workflows to preserve user context.",
-    "forge_version": "V84.2",
+    "forge_version": "V86.5",
     "promptFile": "prompts/fusions/Canvas.md",
     "isCustom": true
   },
@@ -1146,11 +1146,11 @@
   {
     "name": "Pacemaker",
     "emoji": "🫀",
-    "role": "Thread Protector",
+    "role": "Thread Surgeon",
     "category": "Performance",
     "tier": "Fusion",
-    "description": "REGULATE the application heartbeat by deferring heavy synchronous execution to protect the primary event loop.",
-    "forge_version": "V84.2",
+    "description": "REGULATE the primary thread's synchronous heartbeat by implanting temporal buffers to debounce noise and restore predictable execution flow.",
+    "forge_version": "V86.5",
     "promptFile": "prompts/fusions/Pacemaker.md",
     "isCustom": true
   },
