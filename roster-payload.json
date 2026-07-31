@@ -336,7 +336,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "SWEEP infrastructure. Sweep infrastructure-as-code and server configurations to explicitly lock down exposed boundaries.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.4",
     "promptFile": "prompts/fusions/Bastion.md",
     "isCustom": true
   },
@@ -1146,11 +1146,11 @@
   {
     "name": "Pacemaker",
     "emoji": "🫀",
-    "role": "Thread Protector",
-    "category": "Performance",
-    "tier": "Fusion",
-    "description": "REGULATE the application heartbeat by deferring heavy synchronous execution to protect the primary event loop.",
-    "forge_version": "V84.2",
+    "role": "Performance Engineer",
+    "category": "Architecture",
+    "tier": "Core",
+    "description": "REGULATE performance by mitigating high frequency synchronous event emitters.",
+    "forge_version": "V86.5",
     "promptFile": "prompts/fusions/Pacemaker.md",
     "isCustom": true
   },
