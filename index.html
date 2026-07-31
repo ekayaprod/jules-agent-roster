@@ -32,7 +32,7 @@
         <h1>Jules Agent Roster</h1>
         <span >Directory & Execution Interface</span>
       </div>
-      <button id="openSettingsBtn" class="secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" aria-label="Open Settings">
+      <button id="openSettingsBtn" class="secondary rounded-xl transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" aria-label="Open Settings">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
         <span >Settings</span>
       </button>
@@ -71,7 +71,7 @@
     <!-- Navigation & Search -->
     <div class="controls-bar" >
       <nav id="category-nav" class="category-nav">
-        <button id="searchTriggerBtn" class="nav-pill search-trigger transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" aria-label="Search">
+        <button id="searchTriggerBtn" class="nav-pill search-trigger rounded-xl transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" aria-label="Search">
           <svg aria-hidden="true" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
         </button>
         <div class="search-wrapper" >
@@ -104,7 +104,7 @@
       <div class="empty-icon text-5xl mb-4 opacity-50"><svg aria-hidden="true" width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></div>
       <h2 class="empty-title">No results match your filters</h2>
       <p class="empty-desc text-secondary mt-2">We couldn't find any protocols matching your search. Try using different keywords, or clear your filters to explore the matrix.</p>
-      <button id="clearSearchEmptyBtn" class="mt-3 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Clear Filters</button>
+      <button id="clearSearchEmptyBtn" class="mt-3 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Clear Filters</button>
     </div>
 
     <main id="main">
@@ -156,8 +156,8 @@
             <a href="https://github.com/settings/tokens" target="_blank" class="modal-link">How to get a GitHub Token →</a>
         </div>
         <div class="flex gap-4 mt-4">
-            <button id="closeSettingsBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Cancel Settings</button>
-            <button id="saveSettingsBtn" class="flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Save Settings & Connect</button>
+            <button id="closeSettingsBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Cancel Settings</button>
+            <button id="saveSettingsBtn" class="flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Save Settings & Connect</button>
         </div>
       </div>
     </div>
@@ -176,8 +176,8 @@
                 <span id="historyModalError" role="alert" class="text-xs hidden" ></span>
             </div>
             <div class="flex gap-4 mt-2">
-                <button id="cancelHistoryBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Close History</button>
-                <button id="submitHistoryBtn" class="flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Send Reply</button>
+                <button id="cancelHistoryBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Close History</button>
+                <button id="submitHistoryBtn" class="flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Send Reply</button>
             </div>
         </div>
     </div>
@@ -196,9 +196,9 @@
             <div id="prModalContent" ></div>
             <span id="prModalError" role="alert" class="text-xs hidden" ></span>
             <div class="flex gap-4 mt-2">
-                <button id="cancelPRBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Close View</button>
-                <button id="closePRBtn" class="btn-danger flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Close PR</button>
-                <button id="mergePRBtn" class="btn-success flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Merge PR</button>
+                <button id="cancelPRBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Close View</button>
+                <button id="closePRBtn" class="btn-danger flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Close PR</button>
+                <button id="mergePRBtn" class="btn-success flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Merge PR</button>
             </div>
         </article>
     </section>
@@ -217,8 +217,8 @@
                 <span id="interactionModalError" role="alert" class="text-xs hidden" ></span>
             </div>
             <div class="flex gap-4 mt-2">
-                <button id="cancelInteractionBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Cancel Reply</button>
-                <button id="submitInteractionBtn" class="flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Transmit Reply</button>
+                <button id="cancelInteractionBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Cancel Reply</button>
+                <button id="submitInteractionBtn" class="flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Transmit Reply</button>
             </div>
         </div>
     </div>
@@ -268,7 +268,7 @@
       </div>
 
       <div id="fusionResultContainer" class="grid mt-6 overflow-hidden hidden"></div>
-      <button id="resetLabBtn" class="hidden mt-6 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Fuse Another Protocol</button>
+      <button id="resetLabBtn" class="hidden mt-6 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Fuse Another Protocol</button>
     </div>
 
     <div class="fusion-archive-container">
@@ -291,7 +291,7 @@
         <div class="picker-container">
             <header class="picker-header">
                 <h3>Select Protocol Component</h3>
-                <button id="closePickerBtn" class="close-btn transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95" aria-label="Close Protocol Selection">✕</button>
+                <button id="closePickerBtn" class="close-btn transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 rounded-xl" aria-label="Close Protocol Selection">✕</button>
             </header>
             <div id="pickerScrollArea" class="clusterize-scroll" >
                 <div id="pickerGrid" class="picker-grid clusterize-content" ></div>
@@ -310,8 +310,8 @@
           <div id="fusionsModalCard" class="mt-3 flex" ></div>
         </div>
         <div class="flex gap-4 mt-2">
-          <button id="downloadParentFusionsBtn" class="secondary action-main-btn flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" >Download Unlocked</button>
-          <button id="closeFusionsModalBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Close Fusions</button>
+          <button id="downloadParentFusionsBtn" class="secondary action-main-btn flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl" >Download Unlocked</button>
+          <button id="closeFusionsModalBtn" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Close Fusions</button>
         </div>
       </div>
     </div>
