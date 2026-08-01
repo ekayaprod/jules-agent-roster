@@ -48,13 +48,15 @@ class AgentUtils {
         if (!agent) {
             return "";
         }
+        let url = "";
         if (agent.promptFile) {
-            return agent.promptFile;
+            url = agent.promptFile;
+        } else if (agent.isCustom) {
+            url = `./prompts/fusions/${agent.name}.md`;
+        } else {
+            url = `./prompts/${agent.name}.md`;
         }
-        if (agent.isCustom) {
-            return `./prompts/fusions/${agent.name}.md`;
-        }
-        return `./prompts/${agent.name}.md`;
+        return encodeURI(url);
     }
 }
 
