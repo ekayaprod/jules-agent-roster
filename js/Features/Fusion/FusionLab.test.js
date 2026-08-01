@@ -109,6 +109,12 @@ describe('FusionLab.getPreMergePreviewHTML Edge Cases', () => {
         global.FormatUtils = FormatUtils;
     });
 
+
+    test('should return null when renderer is missing', () => {
+        fusionLab.renderer = null;
+        expect(fusionLab.getPreMergePreviewHTML({ name: 'Agent' })).toBeNull();
+    });
+
     test('should return null if agentA is missing', () => {
         fusionLab.state.slotA = null;
         expect(fusionLab.getPreMergePreviewHTML(agentB)).toBeNull();
@@ -443,6 +449,58 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
         consoleErrorSpy.mockRestore();
         consoleWarnSpy.mockRestore();
         delete global.getTelemetryUtils;
+    });
+
+
+    test('handleFusion catch block functions correctly without telemetry and labContent', async () => {
+        fusionLab.state.slotA = { name: 'A' };
+        fusionLab.state.slotB = { name: 'B' };
+        fusionLab.fusionIndex.customAgents['A,B'] = true;
+        fusionLab.elements.labContent = null;
+        fusionLab.fusionIndex.unlock.mockImplementation(() => { throw new Error('Err'); });
+
+        fusionLab.compiler.fuse.mockReturnValue({ name: 'C' });
+        fusionLab.showError = jest.fn();
+        fusionLab.animation = { runAnimation: jest.fn() };
+        fusionLab.renderFusionResult = jest.fn();
+
+        const oldGetTu = global.getTelemetryUtils;
+        const oldWinTu = global.window.TelemetryUtils;
+        global.getTelemetryUtils = undefined;
+        global.window.TelemetryUtils = undefined;
+
+        const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+        await fusionLab.handleFusion();
+
+        expect(fusionLab.showError).toHaveBeenCalledWith("FusionLab: Failed to unlock agent in index");
+
+        global.getTelemetryUtils = oldGetTu;
+        global.window.TelemetryUtils = oldWinTu;
+        consoleErrorSpy.mockRestore();
+    });
+
+    test('handleFusion displays singularity container for Cortex x Cortex fusion', async () => {
+        fusionLab.state.slotA = { name: 'Cortex' };
+        fusionLab.state.slotB = { name: 'Cortex' };
+        fusionLab.fusionIndex.customAgents['Cortex,Cortex'] = true;
+
+        global.window.rosterApp = {
+            singularityBuilderContainer: {
+                classList: { remove: jest.fn() }
+            }
+        };
+
+        const fusedAgent = { name: 'SuperCortex' };
+        fusionLab.compiler.fuse.mockReturnValue(fusedAgent);
+        fusionLab.animation = { runAnimation: jest.fn() };
+        fusionLab.renderFusionResult = jest.fn();
+
+        await fusionLab.handleFusion();
+
+        expect(global.window.rosterApp.singularityBuilderContainer.classList.remove).toHaveBeenCalledWith('hidden');
+
+        delete global.window.rosterApp;
     });
 
     test('handleFusion gracefully handles fusionIndex unlock exception', async () => {
