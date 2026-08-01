@@ -402,7 +402,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "OPTIMIZE legacy architecture by ruthlessly ripping out outdated heavy polyfills and utility libraries.",
-    "forge_version": "V84.3",
+    "forge_version": "V86.5",
     "promptFile": "prompts/fusions/Catalyst.md",
     "isCustom": true
   },
@@ -1336,8 +1336,8 @@
     "role": "Link Sweeper",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "REDIRECT broken internal links and map legacy traffic flows to preserve architectural integrity.",
-    "forge_version": "V84.0",
+    "description": "REDIRECT broken internal links and map traffic flows to preserve architectural integrity.",
+    "forge_version": "V86.5",
     "promptFile": "prompts/fusions/Redirector.md",
     "isCustom": true
   },
@@ -1711,7 +1711,7 @@
     "category": "Observability",
     "tier": "Fusion",
     "description": "INSTRUMENT opaque execution paths with performance timers and metadata loggers to eliminate computational bottlenecks.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.5",
     "promptFile": "prompts/fusions/Telemetrist.md",
     "isCustom": true
   },
