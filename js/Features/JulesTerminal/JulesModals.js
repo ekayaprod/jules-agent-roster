@@ -243,7 +243,18 @@ class JulesModals {
         const errorEl = this.terminal.getEl("prModalError");
 
         if (titleEl) titleEl.textContent = `#${pr.number} ${pr.title}`;
-        if (linkEl) linkEl.href = pr.html_url;
+        if (linkEl) {
+            try {
+                const parsedUrl = new URL(pr.html_url, window.location.origin);
+                if (['http:', 'https:'].includes(parsedUrl.protocol)) {
+                    linkEl.href = parsedUrl.href;
+                } else {
+                    linkEl.removeAttribute('href');
+                }
+            } catch (e) {
+                linkEl.removeAttribute('href');
+            }
+        }
 
         if (contentEl) {
             contentEl.innerHTML = '';
