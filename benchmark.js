@@ -374,9 +374,7 @@ const ExportController = loadClass('js/Features/Export/ExportController.js');
 global.ExportController = ExportController;
 const RosterApp = loadClass('js/core/RosterApp.js');
 
-const runBenchmark = async () => {
-  const roster = new RosterApp();
-
+const setupMocks = (roster) => {
   // Mock 5000 massive agents array
   const mockAgents = [];
   for (let i = 0; i < 5000; i++) {
@@ -449,7 +447,10 @@ const runBenchmark = async () => {
     return arr;
   };
 
-  // 1. RosterApp Benchmark
+  return { mockAgents, fusionIndexContainer };
+};
+
+const runRosterAppBenchmark = (roster) => {
   let start = performance.now();
   for (let i = 0; i < 5; i++) {
     roster.filterAgents('test');
@@ -463,8 +464,9 @@ const runBenchmark = async () => {
     );
     process.exit(1);
   }
+};
 
-  // Setup FusionLab
+const runFusionLabBenchmark = (roster, mockAgents, fusionIndexContainer) => {
   roster.fusionLab = new FusionLab();
 
   const mockCustomAgents = {
@@ -486,11 +488,11 @@ const runBenchmark = async () => {
   roster.fusionLab.picker.openPicker('slotA', null);
 
   // Re-run filter benchmark with unlocked fusion to test cache invalidation logic
-  start = performance.now();
+  let start = performance.now();
   for (let i = 0; i < 5; i++) {
     roster.filterAgents('fusion');
   }
-  duration = (performance.now() - start) / 5;
+  let duration = (performance.now() - start) / 5;
   console.log(`RosterApp search with unlocked fusions: ${duration.toFixed(2)}ms`);
 
   // Verify FusionIndex rendering
@@ -500,8 +502,9 @@ const runBenchmark = async () => {
     process.exit(1);
   }
   console.log(`FusionIndex verified: ${unlockedSlots.length} unlocked slot(s) found.`);
+};
 
-  // 2. Fusion Execution Benchmark
+const runFusionExecutionBenchmark = async (roster, mockAgents) => {
   console.log('Testing Fusion Execution...');
   roster.fusionLab.state.slotA = mockAgents[0];
   roster.fusionLab.state.slotB = mockAgents[1];
@@ -515,6 +518,21 @@ const runBenchmark = async () => {
     process.exit(1);
   }
   console.log('Fusion result verification: Card successfully appended to container.');
+};
+
+const runBenchmark = async () => {
+  const roster = new RosterApp();
+
+  const { mockAgents, fusionIndexContainer } = setupMocks(roster);
+
+  // 1. RosterApp Benchmark
+  runRosterAppBenchmark(roster);
+
+  // Setup FusionLab and its benchmark
+  runFusionLabBenchmark(roster, mockAgents, fusionIndexContainer);
+
+  // 2. Fusion Execution Benchmark
+  await runFusionExecutionBenchmark(roster, mockAgents);
 
   console.log('✅ All benchmarks passed within structural limits.');
 };
