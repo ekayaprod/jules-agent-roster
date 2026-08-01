@@ -391,7 +391,7 @@
     "category": "Observability",
     "tier": "Fusion",
     "description": "MAP complex data flows and hidden trust boundaries into beautiful, multi-layered visual graphs using text-based markdown syntax.",
-    "forge_version": "V84.2",
+    "forge_version": "V86.5",
     "promptFile": "prompts/fusions/Cartographer.md",
     "isCustom": true
   },
