@@ -44,7 +44,7 @@ function extractFavoriteOptimizations(body) {
 
 async function updateOrphans() {
     // 1. Read matrix
-    const matrixContent = fs.readFileSync(matrixPath, 'utf8');
+    const matrixContent = await fs.promises.readFile(matrixPath, 'utf8');
     const matrix = JSON.parse(matrixContent);
 
     // 2. Identify referenced agents and empty slots
@@ -63,46 +63,44 @@ async function updateOrphans() {
     emptySlots.sort();
 
     // 3. Read fusions
-    const fusions = fs.readdirSync(fusionsDir).filter(f => f.endsWith('.md') && f !== 'README.md');
+    const fusionsRaw = await fs.promises.readdir(fusionsDir);
+    const fusions = fusionsRaw.filter(f => f.endsWith('.md') && f !== 'README.md');
     const newlyOrphaned = [];
 
     // Ensure orphans dir exists
-    if (!fs.existsSync(orphansDir)) {
-        fs.mkdirSync(orphansDir, { recursive: true });
-    }
+    await fs.promises.mkdir(orphansDir, { recursive: true });
 
-    for (const file of fusions) {
+    await Promise.all(fusions.map(async file => {
         const filePath = path.join(fusionsDir, file);
-        const content = fs.readFileSync(filePath, 'utf8');
+        const content = await fs.promises.readFile(filePath, 'utf8');
         const { attributes } = parseMarkdownFrontmatter(content);
         const name = attributes.name || file.replace('.md', '');
 
         if (!referencedAgents.has(name)) {
             newlyOrphaned.push({ file, filePath, name });
         }
-    }
+    }));
 
     // 4. Move orphaned files
-    for (const orphan of newlyOrphaned) {
+    await Promise.all(newlyOrphaned.map(async orphan => {
         const destPath = path.join(orphansDir, orphan.file);
-        fs.renameSync(orphan.filePath, destPath);
+        await fs.promises.rename(orphan.filePath, destPath);
         console.log(`Moved orphaned agent: ${orphan.name}`);
-    }
+    }));
 
     // 5. Update emptyslots.md
     const emptySlotsContent = `# Empty Fusion Slots\n\nThis document tracks all fusion combinations from \`fusion_matrix.json\` that currently do not have an assigned agent (\`""\`).\n\n## How to update\n\nTo update this file, run a script that parses \`fusion_matrix.json\` for empty values and regenerates the list below. Do not edit this manually.\n\n## Missing Combinations\n\n${emptySlots.join('\n')}\n`;
-    fs.writeFileSync(emptySlotsMdPath, emptySlotsContent);
+    await fs.promises.writeFile(emptySlotsMdPath, emptySlotsContent);
     console.log(`Updated ${emptySlotsMdPath}`);
 
     // 6. Regenerate orphans.md
-    const allOrphans = fs.readdirSync(orphansDir).filter(f => f.endsWith('.md') && f !== 'orphans.md' && f !== 'emptyslots.md');
+    const allOrphansRaw = await fs.promises.readdir(orphansDir);
+    const allOrphans = allOrphansRaw.filter(f => f.endsWith('.md') && f !== 'orphans.md' && f !== 'emptyslots.md');
     let orphansMdContent = '# Orphaned Agents\n\n';
 
-    allOrphans.sort();
-
-    for (const file of allOrphans) {
+    const orphansContentArr = await Promise.all(allOrphans.map(async file => {
         const filePath = path.join(orphansDir, file);
-        const content = fs.readFileSync(filePath, 'utf8');
+        const content = await fs.promises.readFile(filePath, 'utf8');
         const { attributes, body } = parseMarkdownFrontmatter(content);
         const name = attributes.name || file.replace('.md', '');
         const role = attributes.role || 'UNKNOWN';
@@ -111,17 +109,25 @@ async function updateOrphans() {
 
         const optimizations = extractFavoriteOptimizations(body);
 
-        orphansMdContent += `## ${name}\n\n`;
-        orphansMdContent += `- **Role:** ${role}\n`;
-        orphansMdContent += `- **Category:** ${category}\n`;
-        orphansMdContent += `- **Description:** ${description}\n\n`;
+        let res = `## ${name}\n\n`;
+        res += `- **Role:** ${role}\n`;
+        res += `- **Category:** ${category}\n`;
+        res += `- **Description:** ${description}\n\n`;
 
         if (optimizations) {
-            orphansMdContent += `### Favorite Optimizations\n\n${optimizations}\n\n`;
+            res += `### Favorite Optimizations\n\n${optimizations}\n\n`;
         }
+        return { file, res };
+    }));
+
+    // Sort by filename to match original behaviour
+    orphansContentArr.sort((a, b) => a.file.localeCompare(b.file));
+
+    for (const item of orphansContentArr) {
+        orphansMdContent += item.res;
     }
 
-    fs.writeFileSync(orphansMdPath, orphansMdContent);
+    await fs.promises.writeFile(orphansMdPath, orphansMdContent);
     console.log(`Updated ${orphansMdPath}`);
 }
 
