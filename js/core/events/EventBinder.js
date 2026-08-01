@@ -33,12 +33,12 @@ class EventBinder {
         const sourceName = e.target.value;
         if (sourceName) {
             app.julesTerminal.loadActiveSessionsForRepo(sourceName).catch(err => {
-                const tu = window.TelemetryUtils;
+                const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
                 if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", err);
                 else console.error(err);
             });
             app.julesTerminal.loadPullRequestsForRepo(sourceName).catch(err => {
-                const tu = window.TelemetryUtils;
+                const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
                 if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", err);
                 else console.error(err);
             });
@@ -392,7 +392,7 @@ class EventBinder {
             const fetched = await app.agentRepo.fetchPrompt(agent.name, url, MESSAGES.NO_PROTOCOL_DATA);
             agent.prompt = fetched;
         } catch (err) {
-            const tu = window.TelemetryUtils;
+            const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
             if (tu) tu.dispatchEvent("PROMPT_FETCH_ERROR", err);
             else console.error("Failed to pre-fetch custom agent prompt:", err);
         }
@@ -480,7 +480,7 @@ class EventBinder {
             if (!app.julesTerminal || !app.julesTerminal.initialized) return;
 
             app.julesTerminal.loadSources().catch(err => {
-                const tu = window.TelemetryUtils;
+                const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
                 if (tu) {
                     tu.dispatchEvent("TERMINAL_LOAD_ERROR", err);
                 } else {

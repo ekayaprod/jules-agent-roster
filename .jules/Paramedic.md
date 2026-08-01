@@ -17,3 +17,7 @@
 ### Verification:
 - Both the `jest` based `npm run test:unit` and standard test benchmarks continue to pass.
 - Simulated browser context loading no longer encounters the SyntaxError or prevents subsequent initialization (`RosterApp` parses properly in DOM).
+
+### Heuristic Verification Update
+The 'EventBinder-prompt-fetch.test.js' test failed initially due to the uncaught `EventBinder.js` 'Failed to pre-fetch custom agent prompt' error in the catch block where it attempts to use a missing `TelemetryUtils`. This matches the silent crash/fatal boot sequence profile.
+I substituted references inside the affected modules to use an inline `typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null)` instead of a pre-declared constant.
