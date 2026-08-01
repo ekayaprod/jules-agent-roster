@@ -14,6 +14,11 @@ class ClipboardUtils {
      * @returns {Promise<boolean>} True if the operation was completely successful.
      * @see ../../../docs/architecture/UI/Clipboard.md#1-clipboard-operations for the fallback mechanics details.
      */
+    static _getTelemetryUtils() {
+        /* istanbul ignore next */
+        return typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+    }
+
     static async copyText(text) {
         // 1. Try Modern Clipboard API
         if (navigator.clipboard && navigator.clipboard.writeText) {
@@ -21,7 +26,7 @@ class ClipboardUtils {
                 await navigator.clipboard.writeText(text);
                 return true;
             } catch (err) {
-                const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+                const tu = ClipboardUtils._getTelemetryUtils();
                 if (tu) tu.dispatchEvent("CLIPBOARD_API_FAILED", err);
             }
         }
@@ -37,7 +42,7 @@ class ClipboardUtils {
         try {
             success = document.execCommand("copy");
         } catch (err) {
-            const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+            const tu = ClipboardUtils._getTelemetryUtils();
             if (tu) tu.dispatchEvent("CLIPBOARD_FALLBACK_FAILED", err);
         } finally {
             document.body.removeChild(el);
@@ -90,6 +95,7 @@ class ClipboardUtils {
     }
 }
 
+/* istanbul ignore else */
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = ClipboardUtils;
 }
