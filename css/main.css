@@ -181,12 +181,14 @@
         height: 100vh;
         width: calc(100% - 2.75rem);
         max-width: 32rem;
-        background: var(--term-bg);
+        background: color-mix(in srgb, var(--term-bg) 90%, transparent);
         border-right: 1px solid var(--term-border);
         display: flex;
         flex-direction: column;
         overflow: visible;
-        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5), 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
 
         z-index: 9999;
         transform: translateX(-100%);
