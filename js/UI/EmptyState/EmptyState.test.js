@@ -7,6 +7,10 @@ require('@testing-library/jest-dom');
 const userEvent = require('@testing-library/user-event').default;
 const EmptyState = require('./EmptyState');
 
+// Make DOMPurify available globally in the Jest environment
+const createDOMPurify = require('dompurify');
+window.DOMPurify = createDOMPurify(window);
+
 describe('EmptyState Component', () => {
     beforeEach(() => {
         document.body.innerHTML = '';
@@ -55,6 +59,21 @@ describe('EmptyState Component', () => {
         document.body.appendChild(container);
 
         expect(screen.getByText('Missing File')).toBeInTheDocument();
+    });
+
+    test('should sanitize malicious SVG/HTML icon', () => {
+        const maliciousIcon = '<svg onload="alert(1)"><circle cx="50" cy="50" r="40" /></svg><script>alert("xss")</script>';
+        const container = EmptyState.create({
+            title: 'Title',
+            description: 'Description',
+            icon: maliciousIcon
+        });
+        document.body.appendChild(container);
+
+        const svgEl = container.querySelector('svg');
+        expect(svgEl).toBeInTheDocument();
+        expect(svgEl.getAttribute('onload')).toBeNull(); // Should be stripped by DOMPurify
+        expect(container.innerHTML).not.toContain('<script>');
     });
 
     test('should render action button if provided', () => {

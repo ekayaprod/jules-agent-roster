@@ -36,9 +36,14 @@ class EmptyState {
 
     if (icon) {
       const iconWrapper = document.createElement('div');
-      iconWrapper.innerHTML = icon;
-      // If the icon is just a string of HTML, we use innerHTML for it specifically
-      // as it's often a complex SVG that we control.
+
+      // Use DOMPurify if available, otherwise fallback to explicit textContent
+      if (typeof window !== 'undefined' && window.DOMPurify) {
+        iconWrapper.innerHTML = window.DOMPurify.sanitize(icon);
+      } else {
+        iconWrapper.textContent = icon;
+      }
+
       container.appendChild(iconWrapper.firstElementChild || iconWrapper);
     }
 
