@@ -366,3 +366,12 @@ describe('NetworkUtils', () => {
             expect(typeof windowMock.NetworkUtils).toBe('function');
         });
     });
+
+    describe('_validateBody', () => {
+        it('should throw prototype pollution error when parsing invalid JSON containing __proto__', () => {
+            const badJsonString = 'this is not valid JSON but contains __proto__';
+            expect(() => {
+                NetworkUtils._validateBody(badJsonString);
+            }).toThrow('Invalid payload: Prototype pollution detected in payload.');
+        });
+    });
