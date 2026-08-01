@@ -44,7 +44,7 @@ function extractFavoriteOptimizations(body) {
 
 async function updateOrphans() {
     // 1. Read matrix
-    const matrixContent = fs.readFileSync(matrixPath, 'utf8');
+    const matrixContent = await fs.promises.readFile(matrixPath, 'utf8');
     const matrix = JSON.parse(matrixContent);
 
     // 2. Identify referenced agents and empty slots
@@ -63,65 +63,68 @@ async function updateOrphans() {
     emptySlots.sort();
 
     // 3. Read fusions
-    const fusions = fs.readdirSync(fusionsDir).filter(f => f.endsWith('.md') && f !== 'README.md');
-    const newlyOrphaned = [];
+    const fusions = (await fs.promises.readdir(fusionsDir)).filter(f => f.endsWith('.md') && f !== 'README.md');
 
     // Ensure orphans dir exists
     if (!fs.existsSync(orphansDir)) {
-        fs.mkdirSync(orphansDir, { recursive: true });
+        await fs.promises.mkdir(orphansDir, { recursive: true });
     }
 
-    for (const file of fusions) {
-        const filePath = path.join(fusionsDir, file);
-        const content = fs.readFileSync(filePath, 'utf8');
-        const { attributes } = parseMarkdownFrontmatter(content);
-        const name = attributes.name || file.replace('.md', '');
-
-        if (!referencedAgents.has(name)) {
-            newlyOrphaned.push({ file, filePath, name });
-        }
-    }
+    const newlyOrphaned = (await Promise.all(
+        fusions.map(async (file) => {
+            const filePath = path.join(fusionsDir, file);
+            const content = await fs.promises.readFile(filePath, 'utf8');
+            const { attributes } = parseMarkdownFrontmatter(content);
+            const name = attributes.name || file.replace('.md', '');
+            if (!referencedAgents.has(name)) {
+                return { file, filePath, name };
+            }
+            return null;
+        })
+    )).filter(Boolean);
 
     // 4. Move orphaned files
-    for (const orphan of newlyOrphaned) {
+    await Promise.all(newlyOrphaned.map(async (orphan) => {
         const destPath = path.join(orphansDir, orphan.file);
-        fs.renameSync(orphan.filePath, destPath);
+        await fs.promises.rename(orphan.filePath, destPath);
         console.log(`Moved orphaned agent: ${orphan.name}`);
-    }
+    }));
 
     // 5. Update emptyslots.md
     const emptySlotsContent = `# Empty Fusion Slots\n\nThis document tracks all fusion combinations from \`fusion_matrix.json\` that currently do not have an assigned agent (\`""\`).\n\n## How to update\n\nTo update this file, run a script that parses \`fusion_matrix.json\` for empty values and regenerates the list below. Do not edit this manually.\n\n## Missing Combinations\n\n${emptySlots.join('\n')}\n`;
-    fs.writeFileSync(emptySlotsMdPath, emptySlotsContent);
+    await fs.promises.writeFile(emptySlotsMdPath, emptySlotsContent);
     console.log(`Updated ${emptySlotsMdPath}`);
 
     // 6. Regenerate orphans.md
-    const allOrphans = fs.readdirSync(orphansDir).filter(f => f.endsWith('.md') && f !== 'orphans.md' && f !== 'emptyslots.md');
+    const allOrphans = (await fs.promises.readdir(orphansDir)).filter(f => f.endsWith('.md') && f !== 'orphans.md' && f !== 'emptyslots.md');
     let orphansMdContent = '# Orphaned Agents\n\n';
 
     allOrphans.sort();
 
-    for (const file of allOrphans) {
+    const orphanContents = await Promise.all(allOrphans.map(async (file) => {
         const filePath = path.join(orphansDir, file);
-        const content = fs.readFileSync(filePath, 'utf8');
+        const content = await fs.promises.readFile(filePath, 'utf8');
         const { attributes, body } = parseMarkdownFrontmatter(content);
         const name = attributes.name || file.replace('.md', '');
         const role = attributes.role || 'UNKNOWN';
         const category = attributes.category || 'UNKNOWN';
         const description = attributes.description || 'UNKNOWN';
-
         const optimizations = extractFavoriteOptimizations(body);
 
-        orphansMdContent += `## ${name}\n\n`;
-        orphansMdContent += `- **Role:** ${role}\n`;
-        orphansMdContent += `- **Category:** ${category}\n`;
-        orphansMdContent += `- **Description:** ${description}\n\n`;
+        let part = `## ${name}\n\n`;
+        part += `- **Role:** ${role}\n`;
+        part += `- **Category:** ${category}\n`;
+        part += `- **Description:** ${description}\n\n`;
 
         if (optimizations) {
-            orphansMdContent += `### Favorite Optimizations\n\n${optimizations}\n\n`;
+            part += `### Favorite Optimizations\n\n${optimizations}\n\n`;
         }
-    }
+        return part;
+    }));
 
-    fs.writeFileSync(orphansMdPath, orphansMdContent);
+    orphansMdContent += orphanContents.join('');
+
+    await fs.promises.writeFile(orphansMdPath, orphansMdContent);
     console.log(`Updated ${orphansMdPath}`);
 }
 
