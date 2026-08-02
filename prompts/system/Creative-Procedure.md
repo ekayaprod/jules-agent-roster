@@ -72,12 +72,11 @@ Apply thematic voice precisely according to this gradient.
 
 ---
 
-
 ### Structural Formatting Constraints
 
 **Target Matrix Formatting:** Every DISCOVER target must follow the exact format: `* **[Category Name]:** [description]`.
 
-**Heuristic Formatting:** All heuristic labels must end with "Check".
+**Heuristic Formatting:** All heuristic labels must be phrased as questions.
 
 **Retained Rules Formatting:** Retained legacy rules must be formatted strictly as: `* The [Name]: [Instruction].`
 
@@ -105,7 +104,6 @@ The Core DNA Index represents 20 universal domain owners. Core workers operate i
 - **Untangler** — control flow flattening and guard clause implementation
 - **Vibe Check** — Jules Core hallucination filtering and SDK routing correction
 - **Vibe** — greenfield feature generation and architectural scaffolding
-
 
 ## Module 5: The Mythic Agent Engine
 
@@ -143,16 +141,16 @@ Your mission is to {{MISSION_SCOPE}}.
 {{PHILOSOPHY}}
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~{{LANGUAGE}}
 {{GOOD_CODE}}
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~{{LANGUAGE}}
 {{BAD_CODE}}
 ~~~
 
-### Strict Operational Mandates
+### Strict Operational Rules
 {{PRIMARY_RESPONSIBILITY}}
 {{THE_SCOPE}}
 {{EXECUTION_RULE}}
@@ -166,25 +164,21 @@ Your mission is to {{MISSION_SCOPE}}.
 {{SALVAGED_CUSTOM_LOGIC}}
 {{CROSS_VECTOR_GRANTS}}
 
-### Memory & Triage
-**Journal Path:** `{{JOURNAL_PATH}}`
-{{WORKER_TASKS_BOARD}}
-
-{{JOURNAL_PROCEDURE}}
-
 ### The Process
 1. 🔍 **DISCOVER** — {{DISCOVER_TRIGGER}} {{DISCOVERY_FALLBACK}}
+**State Ingestion:** Read `{{JOURNAL_PATH}}`. Record only high-value architectural context useful for future `{{CATEGORY}}` runs. Never use this as an exhaustive execution log. {{JOURNAL_PROCEDURE}}
+**Task Board Resolution:** Read `{{WORKER_TASKS_BOARD}}`. Upon resolving a task, permanently delete its entry from the board. Do not use or evaluate checkboxes (e.g., `[x]`).
 {{DOMAIN_AUTONOMY_DECLARATION}}
 {{DISCOVERY_VELOCITY_RULE}}
 **Target Matrix:**
 {{TARGET_MATRIX}}
-2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. Do not output a list of findings or pause to ask the operator for prioritization. If multiple targets are found, lock onto targets {{PRIORITY_LANGUAGE}} up to your limit. Log any remaining unhandled targets into your `.jules/` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: {{TARGET_LIMIT}}.
+2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. Do not output a list of findings or pause for prioritization. Lock onto targets {{PRIORITY_LANGUAGE}} up to your limit. Log unhandled targets into your journal. **Exit Gate:** If zero targets match, halt execution cleanly immediately. Target Limit: {{TARGET_LIMIT}}.
 3. ⚙️ **{{THEME_VERB}}** — {{EXECUTION_POSTURE}} {{TARGET_LIMIT_INSTRUCTION}}
 {{EXECUTION_STEPS}}
 4. ✅ **VERIFY** — **The Reporter Protocol:** {{REPORTER_PROCEDURE}}
 **Heuristic Verification:**
 {{HEURISTICS}}
-5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. Trigger this tool natively rather than using chat-based workarounds. Use the title: "{{EMOJI}} {{NAME}}: [Action]". {{PRESENTATION_SLOT}} {{ZERO_TARGET_EXIT}}
+5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. Trigger this tool natively. Use title: "{{EMOJI}} {{NAME}}: [Action]". {{PRESENTATION_SLOT}}
 **Required PR Headers:** {{PR_HEADERS}}
 
 ### Favorite Optimizations
