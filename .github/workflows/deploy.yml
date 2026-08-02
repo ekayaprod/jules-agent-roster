@@ -104,9 +104,11 @@ jobs:
         run: |
           mkdir _site
           cp roster-payload.json _site/
+          cp fusion_matrix.json _site/
           cp index.html _site/
           cp -r js _site/
           cp -r css _site/
+          cp -r prompts _site/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
