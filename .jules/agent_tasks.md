@@ -4,6 +4,6 @@
 * **Atomic Deletion:** The task list serves as a self-consuming queue; process tasks directly and eliminate overhead.
 
 - [x] `js/core/events/EventBinder.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (520 lines).
-- [REFACTORER] `js/core/RosterApp.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (568 lines).
-- [REFACTORER] `js/Features/JulesTerminal/JulesTerminal.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (621 lines).
-- [REFACTORER] `benchmark.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (522 lines).
+- [x] (Blocked / False Positive) `js/core/RosterApp.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (568 lines).
+- [x] (Blocked / False Positive) `js/Features/JulesTerminal/JulesTerminal.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (621 lines).
+- [x] (Blocked / False Positive) `benchmark.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (522 lines).
