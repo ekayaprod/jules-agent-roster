@@ -717,11 +717,11 @@
   {
     "name": "Foresight",
     "emoji": "🔮",
-    "role": "AI Feature Synthesizer",
+    "role": "AI Synthesizer",
     "category": "Feature",
     "tier": "Fusion",
     "description": "FLOW into the architecture to deduce and scaffold missing AI integrations.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.5",
     "promptFile": "prompts/fusions/Foresight.md",
     "isCustom": true
   },
