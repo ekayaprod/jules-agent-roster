@@ -731,8 +731,8 @@
     "role": "Abstract Generator",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "SYNTHESIZE",
-    "forge_version": "V84.0",
+    "description": "SYNTHESIZE hardcoded utility functions into boundless abstractions while preserving the caller signature.",
+    "forge_version": "V86.5",
     "promptFile": "prompts/fusions/Fractal.md",
     "isCustom": true
   },
