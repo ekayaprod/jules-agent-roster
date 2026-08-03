@@ -107,6 +107,12 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 ### Break Down UI Monoliths
 
-**The Problem:** Core architectural files like `js/UI/JulesTerminal/JulesTerminal.js` and `js/core/RosterApp.js` have grown into massive structural monoliths (over 500 lines each), creating unmanageable physical blockades and synchronous bottlenecks that hinder high-velocity development and risk merge conflicts.
+**The Problem:** Core architectural files like `js/Features/JulesTerminal/JulesTerminal.js`, `js/core/RosterApp.js`, `js/core/events/EventBinder.js`, and `benchmark.js` have grown into massive structural monoliths (over 500 lines each), creating unmanageable physical blockades and synchronous bottlenecks that hinder high-velocity development and risk merge conflicts.
 **The Solution:** Decentralize these monolithic classes by splitting them into cohesive, domain-specific modules, utility classes, and sub-controllers.
 **The Benefit:** Restores maintainability by standardizing domain boundaries, massively reduces cognitive load for developers, and unlocks future parallel development and architectural scalability.
+
+### Standardize Benchmarking with `Vitest Bench`
+
+**The Problem:** The project relies on a custom, 522-line `benchmark.js` file for performance testing, which is a structural monolith containing bespoke timing logic, manual output formatting, and reinvented file-loading mechanisms.
+**The Solution:** Adopt a standard community benchmarking tool like `Vitest Bench` (or similar).
+**The Benefit:** Standardizes performance testing, eliminating the need to maintain complex, error-prone custom benchmarking logic and ensuring reliable, reproducible performance metrics.
