@@ -71,9 +71,9 @@ Update all call sites to explicitly pass the required dependency argument.
 Delete any temporary testing harnesses, inline comments, or throwaway scripts created during execution before finalizing.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling.
 **Heuristic Verification:**
-**Compilation Check:** Verify the updated function signature does not break typescript compilation at any of the newly modified call sites.
-**Headless Safety Check:** Ensure the function can now be theoretically invoked in a headless/Node environment without throwing `ReferenceError`.
-**Purity Check:** Confirm the refactored function relies solely on explicitly passed parameters.
+* **Compilation Check:** Verify the updated function signature does not break typescript compilation at any of the newly modified call sites.
+* **Headless Safety Check:** Ensure the function can now be theoretically invoked in a headless/Node environment without throwing `ReferenceError`.
+* **Purity Check:** Confirm the refactored function relies solely on explicitly passed parameters.
 5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. Trigger this tool natively rather than using chat-based workarounds. Use the title: "🩸 Transfusion: [Action]".  If no targets remain, exit gracefully.
 **Required PR Headers:**
 ### Favorite Optimizations

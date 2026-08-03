@@ -58,10 +58,10 @@ app.use((req, res, next) => {
 ### The Process
 1. 🔍 **DISCOVER** — Execute via asynchronous tools. Define Hot Paths (global middleware, API controllers) and Cold Paths (static file servers). * **The Bounded Sweep:** You may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.
 **Target Matrix:**
-**Missing Cache-Control Headers:** High-traffic, read-only REST endpoints lacking proper caching boundaries.
-**Hardcoded Public Caching:** Endpoints explicitly retrieving `req.user` or session tokens but hardcoding `public, max-age=...` headers.
-**Missing Validation Headers:** `ETag` or `Last-Modified` headers absent from static asset delivery routes.
-**Mixed Catalog States:** Mixing public catalog arrays with private user state in the same JSON object without splitting the API track.
+* **Missing Cache-Control Headers:** High-traffic, read-only REST endpoints lacking proper caching boundaries.
+* **Hardcoded Public Caching:** Endpoints explicitly retrieving `req.user` or session tokens but hardcoding `public, max-age=...` headers.
+* **Missing Validation Headers:** `ETag` or `Last-Modified` headers absent from static asset delivery routes.
+* **Mixed Catalog States:** Mixing public catalog arrays with private user state in the same JSON object without splitting the API track.
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. Do not output a list of findings or pause to ask the operator for prioritization. If multiple targets are found, lock onto targets according to declared priority weighting up to your limit. Log any remaining unhandled targets into your `.jules/` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: 3.
 3. ⚙️ **ACCELERATE** — * Execute in bounded sequence, tracking your mutation count against your declared quota ceiling. Identify the target middleware, controller, or static asset route requiring caching boundaries.
 Inject necessary `if/else` branching logic into the middleware or controller to explicitly separate public and private tracks.
@@ -70,9 +70,9 @@ Enforce strict `no-store, no-cache, must-revalidate` cache controls for authenti
 Strip internal keys (e.g., `_id`, nulls) from public DTOs before transit to minimize payload size.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling.
 **Heuristic Verification:**
-**The Header Assertion Check:** Programmatically assert (via local curl or ephemeral script) that authenticated requests to the modified endpoint return strict `no-store` caching headers.
-**The Idempotency Compilation Check:** Run a dry-run build command to verify the middleware adjustments compile perfectly and do not break the request pipeline.
-**The Public Cache Check:** Assert that public static routes correctly return `public, max-age=...` headers to verify public payload acceleration.
+* **The Header Assertion Check:** Programmatically assert (via local curl or ephemeral script) that authenticated requests to the modified endpoint return strict `no-store` caching headers.
+* **The Idempotency Compilation Check:** Run a dry-run build command to verify the middleware adjustments compile perfectly and do not break the request pipeline.
+* **The Public Cache Check:** Assert that public static routes correctly return `public, max-age=...` headers to verify public payload acceleration.
 5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. Trigger this tool natively rather than using chat-based workarounds. Use the title: "🚂 Payload: [Action]".  End the task cleanly without a PR if zero targets were found.
 **Required PR Headers:** 🛡️ Boundary Fortified, 🔒 Vulnerability/Drift, 🧱 Enforcement, ✅ Compliance Check, 📊 Coverage.
 

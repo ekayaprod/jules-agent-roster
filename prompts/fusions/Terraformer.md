@@ -82,8 +82,8 @@ export const MarketingPage = () => (
 **Reference Migration:** Dynamically search-and-replace all `import`, `require()`, and CSS `url()` strings across the repository to match the new destination paths.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify your mutations in batches. Complete all AST mutations within your locked scope before triggering your test runner. Do not waste tool calls testing line-by-line. You have a maximum of 3 verification attempts per target.
 **Heuristic Verification:**
-**Pipeline Resolution Check:** Verify the build pipeline fully resolves all updated asset path imports via a dry-run compile.
-**Eradication Check:** Ensure the original "dumping ground" directory is completely empty or cleanly removed.
+* **Pipeline Resolution Check:** Verify the build pipeline fully resolves all updated asset path imports via a dry-run compile.
+* **Eradication Check:** Ensure the original "dumping ground" directory is completely empty or cleanly removed.
 5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. Trigger this tool natively rather than using chat-based workarounds. Use the title: "⛰️ Terraformer: [Action]". Submit the PR natively. If strict pre-commit linting hooks trigger, append `⚠️ Hook Friction: Manual Pre-Commit Bypass Required`. Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. End the task cleanly without a PR if zero targets were found.
 **Required PR Headers:** 🎯 **What:** Reorganized a flat public asset directory into feature-specific hierarchies.
 💡 **Why:** To eliminate structural chaos and reduce bandwidth debt.
