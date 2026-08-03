@@ -156,11 +156,11 @@
 
       .search-wrapper { position: relative; flex: 1; max-width: 0; opacity: 0; pointer-events: none; visibility: hidden; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden; margin-left: 0; }
       .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary); pointer-events: none; }
-      .clear-search-btn { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%) scale(0.8); background: none; border: none; color: var(--text-secondary); padding: 0.25rem; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s ease-in-out; min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 0.5rem; }
+      .clear-search-btn { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%) scale(0.8); background: none; border: none; color: var(--text-secondary); padding: 0.25rem; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; border-radius: 0.5rem; }
       .clear-search-btn.visible { opacity: 1; visibility: visible; transform: translateY(-50%) scale(1); pointer-events: auto; }
-      @media (hover: hover) and (pointer: fine) { .clear-search-btn:hover { color: var(--text-primary); background-color: rgba(255, 255, 255, 0.1); transform: translateY(-50%) scale(1.05); } }
+      @media (hover: hover) and (pointer: fine) { .clear-search-btn:hover { color: var(--text-primary); background-color: rgba(255, 255, 255, 0.1); transform: translateY(-50%) scale(1.1); box-shadow: 0 4px 10px rgba(0,0,0,0.2); } }
       .clear-search-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-      .clear-search-btn:active { transform: translateY(-50%) scale(0.95); }
+      .clear-search-btn:active { transform: translateY(-50%) scale(0.9); }
       input[type="text"] { padding: 0.6rem 2.5rem 0.6rem 2.75rem; border-radius: 999px; background: transparent; border: 1px solid transparent; color: var(--text-primary); width: 100%; font-family: inherit; transition: all 0.2s ease-in-out; font-size: var(--text-sm);}
       input[type="text"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-color: transparent; }
 
@@ -468,10 +468,10 @@
       .action-main-btn { border-top-right-radius: 0; border-bottom-right-radius: 0; flex-grow: 1; padding: 0.5rem; font-size: var(--text-sm);}
       .action-toggle-btn { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid var(--border); padding: 0 0.75rem;}
 
-      .dropdown-menu { position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; z-index: 50; display: none; flex-direction: column; min-width: 12rem; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1); opacity: 0; transform: translateY(10px) scale(0.95); transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none; }
+      .dropdown-menu { position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; z-index: 50; display: none; flex-direction: column; min-width: 12rem; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2); opacity: 0; transform: translateY(10px) scale(0.95); transform-origin: bottom right; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: none; }
       .dropdown-menu.visible { display: flex !important; opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
       .dropdown-item { width: 100%; background: transparent; color: var(--text-primary); border: none; padding: 0.75rem 1rem; text-align: left; font-size: var(--text-sm); border-radius: 0; transition: all 0.3s ease-in-out;}
-      @media (hover: hover) and (pointer: fine) { .dropdown-item:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); } }
+      @media (hover: hover) and (pointer: fine) { .dropdown-item:hover { background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); padding-left: 1.25rem; } }
       .dropdown-item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
       /* MODALS */
@@ -554,7 +554,14 @@
         #securityGrid > *:first-child::before { content: "Security"; }
       }
 
-      .fusion-error-alert { border-left: 4px solid var(--error); background-color: var(--card-bg); border-radius: 0 0.5rem 0.5rem 0; margin-top: 1.5rem; padding: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); display: flex; align-items: flex-start; gap: 0.75rem; }
+      @keyframes errorShake {
+        0%, 100% { transform: translateX(0); }
+        20% { transform: translateX(-4px); }
+        40% { transform: translateX(4px); }
+        60% { transform: translateX(-2px); }
+        80% { transform: translateX(2px); }
+      }
+      .fusion-error-alert { border-left: 4px solid var(--error); background-color: var(--card-bg); border-radius: 0 0.75rem 0.75rem 0; margin-top: 1.5rem; padding: 1rem 1.25rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); display: flex; align-items: flex-start; gap: 0.75rem; animation: errorShake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both; }
       .fusion-error-icon { color: var(--error); width: 1.5rem; height: 1.5rem; flex-shrink: 0; }
       .fusion-error-content { display: flex; flex-direction: column; gap: 0.25rem; }
       .fusion-error-title { margin: 0; font-size: 0.875rem; font-weight: 600; color: var(--error); }
