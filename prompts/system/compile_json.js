@@ -179,8 +179,8 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     { label: 'temp_backup baseline path', pattern: /\.jules\/temp_backup/i },
     { label: 'SEARCH/REPLACE tool-lock block syntax', pattern: /<{3,}\s*SEARCH/i },
     { label: 'Test Immunity Doctrine restatement', pattern: /test immunity doctrine/i },
-    { label: 'Canonical testing doctrine phrase', pattern: /treat all test files as immutable and read-only/i },
-    { label: 'Canonical testing doctrine failure clause', pattern: /prove (?:the test|it) was already failing on the main branch/i },
+    { label: 'Canonical testing doctrine phrase', pattern: /treat test files as immutable and read-only/i },
+    { label: 'Canonical testing doctrine failure clause', pattern: /prove (?:the test|it) was failing on `main`/i },
   ];
 
   const freeTextFieldsToScan = {
