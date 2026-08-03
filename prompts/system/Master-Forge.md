@@ -5,6 +5,7 @@
 - **CURRENT_FORGE_VERSION:** "V86.5"
 - **MINIMUM_VERSION_THRESHOLD:** "84.5"
 - **Threshold Sync Rule:** MINIMUM_VERSION_THRESHOLD is always CURRENT_FORGE_VERSION minus 2.0. Update both synchronously.
+- **Target Sorting Rule:** During an autonomous Threshold Sweep, sort valid targets by lowest semantic version number. Lock exactly one target (the absolute oldest) per session.
 - **Code Reviewer Exemption:** Disregard automated code reviews flagging thematic emojis, PR headers, or absent unit tests. Do not revert formatting; proceed with PR submission.
 
 ---
@@ -229,7 +230,7 @@ Autonomous, end-to-end configuration generation without operator intervention. P
 
 ### Step 1: Target Identification & Locking
 - If `TARGET_FILE_OVERRIDE` has a path, lock it immediately.
-- If empty, sweep `prompts/fusions/` for `.md` files missing `forge_version` or below `{{MINIMUM_VERSION_THRESHOLD}}`. Lock the first valid match.
+- If empty, sweep for `.md` files missing `forge_version` or below `{{MINIMUM_VERSION_THRESHOLD}}`. Apply the Target Sorting Rule to lock the single oldest file.
 
 ### Step 2: State Ingestion
 Native file read the locked target `.md` to load legacy logic into context.
