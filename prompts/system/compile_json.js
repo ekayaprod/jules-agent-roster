@@ -9,12 +9,16 @@ const fs = require('fs');
  * - Relies entirely on the generator LLM for physics injection and payload sizing.
  */
 
-function formatList(arr) {
-  if (!Array.isArray(arr)) return '';
-  return arr.map((item) => {
-    const str = String(item).trim();
-    return /^([\*\-]|\d+\.)\s/.test(str) ? str : `* ${str}`;
-  }).join('\n');
+function formatList(input) {
+  if (!input) return '';
+  const arr = Array.isArray(input) ? input : String(input).split('\n');
+  return arr
+    .map((item) => String(item).trim())
+    .filter(Boolean)
+    .map((item) => {
+      return /^([\*\-]|\d+\.)(?:\s+|$)/.test(item) ? item : `* ${item}`;
+    })
+    .join('\n');
 }
 
 function trimText(rawText) {
@@ -22,16 +26,21 @@ function trimText(rawText) {
   return String(rawText).trim();
 }
 
-function formatTargetMatrix(arr) {
-  if (!Array.isArray(arr)) return '';
-  return arr.map((item) => String(item).trim()).join('\n');
+function formatTargetMatrix(input) {
+  if (!input) return '';
+  const arr = Array.isArray(input) ? input : String(input).split('\n');
+  return arr
+    .map((item) => String(item).trim())
+    .filter(Boolean)
+    .join('\n');
 }
 
 function cleanCodeFence(str) {
   if (!str) return '';
   return String(str)
     .replace(/^\s*```[a-zA-Z0-9]*\r?\n/gm, '')
-    .replace(/\r?\n\s*```\s*$/gm, '');
+    .replace(/\r?\n\s*```\s*$/gm, '')
+    .trim();
 }
 
 function compile(jsonPayloadStr, templateStr, targetFilePath) {
@@ -42,16 +51,19 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     extractedTemplate = templateStr.split(startMarker)[1].split(endMarker)[0].trim();
   }
 
+  // --- LLM HALLUCINATION HANDLING ---
+  let cleanedJsonStr = typeof jsonPayloadStr === 'string' ? jsonPayloadStr.trim() : '';
+  cleanedJsonStr = cleanedJsonStr.replace(/^\s*```(?:json)?\s*/i, '').replace(/\s*```\s*$/i, '');
+
   let data;
   try {
-    data = JSON.parse(typeof jsonPayloadStr === 'string' ? jsonPayloadStr.trim() : '');
+    data = JSON.parse(cleanedJsonStr);
   } catch (e) {
     throw new Error(`[FATAL ERROR] JSON Structural Integrity Failure: ${e.message}`);
   }
 
   // --- STRICT PARAMETER VALIDATION (QA GATE) ---
   const isMythic = String(data.identity?.tier || data.tier || '').toLowerCase() === 'mythic';
-
 
   const diagnostic = data._diagnostic;
   if (
@@ -158,9 +170,6 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   }
 
   // --- BASELINE RESTATEMENT GATE ---
-  // Prose rules in Master-Forge (Universal Baseline Exemption, Internal Duplication Check) instruct
-  // the generator LLM not to restate baseline-owned mechanics inside custom free-text fields. This
-  // block enforces that mechanically: it does not trust the generator to have followed the rule.
   const BASELINE_RESTATEMENT_PATTERNS = [
     { label: 'Artifact Lockbox', pattern: /artifact lockbox/i },
     { label: 'Native Tool Lock', pattern: /native tool lock/i },
@@ -196,11 +205,9 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   }
 
   // --- DETERMINISTIC COMPILER LOGIC ---
-
   const category = data.identity?.category || '';
   const isCore = String(data.identity?.tier).toLowerCase() === 'core';
   const targetLimitClean = String(data.process?.select_classify?.target_limit || data.payload_threshold || '1').trim();
-
   const finalExecutionRule = data.process?.execute?.execution_mandate || '';
 
   const map = {
@@ -249,19 +256,19 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     FAVORITE_OPTIMIZATIONS: formatList(data.favorite_optimizations),
   };
 
-  let output = extractedTemplate;
-  for (const key in map) {
+  // Single-pass regex replacement (O(N) vs O(M*N))
+  let output = extractedTemplate.replace(/\{\{([A-Z_]+)\}\}(\n?)/g, (match, key, newline) => {
     if (Object.prototype.hasOwnProperty.call(map, key)) {
       const value = map[key];
-      const regex = new RegExp(`{{${key}}}\n?`, 'g');
-      if (value && value.trim() !== '') {
-        output = output.replace(new RegExp(`{{${key}}}`, 'g'), value);
-      } else {
-        // Safely swallow trailing newlines if the token is empty to prevent large whitespace gaps
-        output = output.replace(regex, '');
+      // If the mapped value exists, inject it and preserve the original newline structure
+      if (value && String(value).trim() !== '') {
+        return `${value}${newline}`;
       }
+      // Safely swallow the token and its trailing newline if empty to prevent whitespace gaps
+      return '';
     }
-  }
+    return match;
+  });
 
   // Final structural cleanup for trailing carriage returns
   const cleanedOutput = output.replace(/\n{3,}/g, '\n\n').trim();
