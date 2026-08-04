@@ -636,3 +636,39 @@
     background-color: color-mix(in srgb, var(--term-border) 30%, transparent);
   }
 }
+
+/* Prominent Pokemon-style Silhouette Preview */
+.pokemon-preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 15%, transparent) 0%, transparent 70%);
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+}
+
+.pokemon-silhouette {
+    filter: brightness(0) drop-shadow(0 0 8px color-mix(in srgb, var(--accent) 50%, transparent));
+    opacity: 0.9;
+    font-size: 3.5rem;
+    line-height: 1;
+    user-select: none;
+    display: inline-block;
+    animation: floatPulse 3s ease-in-out infinite;
+}
+
+.unknown-pokemon-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-top: 0.75rem;
+}
+
+@keyframes floatPulse {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-5px) scale(1.05); filter: brightness(0) drop-shadow(0 0 16px color-mix(in srgb, var(--accent) 80%, transparent)); }
+}

@@ -151,7 +151,7 @@ describe('FusionLab.getPreMergePreviewHTML Edge Cases', () => {
         expect(result).not.toBeNull();
         expect(result).toContain('Undiscovered');
         expect(result).toContain('???');
-        expect(result).toContain('brightness(0)');
+        expect(result).toContain('pokemon-silhouette');
     });
 
     test('should return preview HTML if fusion is unlocked', () => {

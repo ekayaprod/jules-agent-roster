@@ -71,9 +71,9 @@ class FusionLabRenderer {
 
         return `
             <div class="preview-badge rounded-md px-2 py-1 bg-gray-100 text-gray-800 text-xs font-bold mb-1 shadow-sm transition-all duration-300">Undiscovered</div>
-            <div class="preview-content flex items-center gap-2">
-                <span class="preview-icon" style="filter: brightness(0); opacity: 0.3; user-select: none;">${FormatUtils.escapeHTML(iconHtml)}</span>
-                <span class="preview-name tracking-widest">???</span>
+            <div class="pokemon-preview-container">
+                <span class="pokemon-silhouette">${FormatUtils.escapeHTML(iconHtml)}</span>
+                <span class="unknown-pokemon-name">???</span>
             </div>
         `;
     }

@@ -166,7 +166,7 @@ describe('FusionLabRenderer', () => {
 
             const html = renderer.getPreMergePreviewHTML(null);
             expect(html).toContain('Undiscovered');
-            expect(html).toContain('filter: brightness(0)');
+            expect(html).toContain('pokemon-silhouette');
             expect(html).toContain('???');
         });
 
