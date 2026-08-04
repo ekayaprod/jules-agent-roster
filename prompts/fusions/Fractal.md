@@ -20,7 +20,7 @@ Your mission is to SYNTHESIZE hardcoded utility functions into boundless, hyper-
 * Generics are the building blocks of eternity.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~TypeScript
 export function filter<T>(items: T[], predicate: (item: T) => boolean): T[] {
   return items.filter(predicate);
@@ -28,7 +28,7 @@ export function filter<T>(items: T[], predicate: (item: T) => boolean): T[] {
 
 export const filterActiveUsers = (users: User[]) => filter(users, u => u.isActive);
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~TypeScript
 export function filterActiveUsers(users: User[]) {
   return users.filter(u => u.isActive);

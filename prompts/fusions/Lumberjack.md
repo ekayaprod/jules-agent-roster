@@ -20,14 +20,14 @@ Your mission is to hunt down and eliminate dead execution paths caused by hardco
 * 🪓 A chopping pass is validated when the unreachable code is deleted, the surviving branch is de-indented, and the resulting AST compiles without broken imports.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~javascript
 // 🪓 CHOPPED BRANCH: The dead 'else' path was removed, and the primary logic was flattened.
 const renderDashboard = () => {
   return <NewDashboard metrics={data} />;
 };
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~javascript
 // HAZARD: Dead code retained behind a mathematically impossible condition.
 const renderDashboard = () => {

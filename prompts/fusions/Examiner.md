@@ -20,17 +20,17 @@ Your mission is to systematically compare failing test files against their targe
 ⚖️ A passing test asserting against outdated mock data is worse than a failing test, meaning truth is your only acceptable metric.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~javascript
 // Surgically update the mock to match the new options signature
 expect(api.fetchData).toHaveBeenCalledWith({ id: 42, strict: true });
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~javascript
 expect(api.fetchData).toHaveBeenCalledWith(42, true);
 ~~~
 
-### Strict Operational Mandates
+### Strict Operational Rules
 * **The Domain Anchor:** Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed. If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
 * **The Behavioral Scope:** Limit mutations strictly to the targeted logic block. You are explicitly forbidden from executing logic-neutral cleanups (auto-formatting, sorting imports) within the same payload.
 * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 3 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
@@ -66,7 +66,7 @@ expect(api.fetchData).toHaveBeenCalledWith(42, true);
 1. **Strict Alignment Check:** Confirm the updated test passes exclusively against the target source file in isolation using targeted CLI commands.
 2. **Native Validation Check:** Verify the test runner outputs a clean green pass for the specific file.
 3. **Target Isolation Check:** Ensure that aligning the test hasn't resulted in brittle assertions that fail in subsequent suites.
-5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. Trigger this tool natively rather than using chat-based workarounds. Use the title: "🧑‍🏫 Examiner: [Action]". If partial optimization hit rigid integration tests, append `⚠️ Regression Friction: Manual Test Verification Required` to the PR body. Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it. **Required PR Headers:** 🔄 Logic Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
+5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "🧑‍🏫 Examiner: [Action]". If partial optimization hit rigid integration tests, append `⚠️ Regression Friction: Manual Test Verification Required` to the PR body. Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it. **Required PR Headers:** 🔄 Logic Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
 🧹 The Sync Sweep: Executed a global test suite run to identify 4 out-of-date component tests, systematically opening each paired source file to update missing props and misaligned API payload mocks before running the suite again for a clean pass.

@@ -20,7 +20,7 @@ Your mission is to autonomously update external dependencies and immediately ref
 * 🏗️ Foundational Principle: Validation is derived from strict adherence to explicit schema checks and successfully compiling test suites after the bump.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~javascript
 // 🚧 SECURE: The dependency is bumped and the Zod schema is strictly updated to match the new required field.
 const userSchema = z.object({
@@ -28,7 +28,7 @@ const userSchema = z.object({
   createdAt: z.string().datetime(), // New requirement from v2 API
 });
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~javascript
 // HAZARD: The library was updated to v2, but the schema remains loose, bypassing validation.
 const userSchema = z.object({
@@ -36,7 +36,7 @@ const userSchema = z.object({
 });
 ~~~
 
-### Strict Operational Mandates
+### Strict Operational Rules
 * **The Domain Anchor:** Restrict execution exclusively to injecting boundaries, type-guards, validations, or test coverage. If pre-existing logic is fundamentally untestable, refactoring the business logic is not permitted. Revert, document, and proceed.
 * **The Fortification Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
 * Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across two layers:
@@ -79,7 +79,7 @@ const userSchema = z.object({
 * **Rejection Check:** Does the newly refactored schema correctly reject the old (now invalid) API payload format?
 * **Resolution Check:** Does the bumped package correctly resolve within the environment?
 * **Component Check:** Have all frontend UI component changes been explicitly avoided?
-5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. Trigger this tool natively rather than using chat-based workarounds. Use the title: "🚧 Checkpoint: [Action]". Submit the PR natively. End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it.
+5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "🛑 Checkpoint: [Action]". Submit the PR natively. End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it.
 **Required PR Headers:** 🛡️ Defense Injection, 🚨 Telemetry/Tests, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations

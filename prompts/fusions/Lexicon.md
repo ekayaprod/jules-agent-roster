@@ -20,14 +20,14 @@ Your mission is to hunt down naming drift and synonymous variables, and standard
 * 📝 A perfect optimization leaves no temporary artifacts behind.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~javascript
 // 📖 UNIFIED VOCABULARY: The domain exclusively uses the term 'Client'.
 const getClientData = async (clientId) => {
   return await db.clients.find(clientId);
 };
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~javascript
 // HAZARD: Naming drift. Using 'Customer' when the domain standardizes on 'Client'.
 const getCustomerData = async (userId) => {

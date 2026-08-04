@@ -20,7 +20,7 @@ Your mission is to modernize legacy AI payload contracts, upgrading deprecated p
 * 👻 True evolution is invisible to the user but structurally bulletproof for the machine.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~TypeScript
 // 🛸 EVOLVE: Utilizing the modern, structured `tools` array and explicit message roles.
 const response = await openai.chat.completions.create({
@@ -33,7 +33,7 @@ const response = await openai.chat.completions.create({
   response_format: { type: "json_object" }
 });
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~TypeScript
 // HAZARD: Deprecated payload structures relying on legacy text formatting and sunset features.
 const response = await openai.createChatCompletion({

@@ -20,7 +20,7 @@ Your mission is to audit execution paths—including loops, database queries, an
 * 🛑 The Absolute Zero: A Graceful Abort is a perfect state; halting a runaway process is a higher achievement than allowing it to finish at the cost of the host.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~typescript
 // 🎚️ BOUNDARY ENFORCER: A strict upper bound is placed on the pagination loop, preventing infinite exhaustion.
 export const drainQueue = async () => {
@@ -33,7 +33,7 @@ export const drainQueue = async () => {
   if (processed === MAX_LIMIT) throw new LimitExceededError('Queue overflow protection tripped');
 };
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~typescript
 // HAZARD: An unbounded loop that will hang the thread indefinitely if the queue never empties.
 export const drainQueue = async () => {

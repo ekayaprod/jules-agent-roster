@@ -20,11 +20,11 @@ Your mission is to autonomously identify when a repository is 'contaminated' by 
 * 🔥 Foundational Validation Axiom: If a native 'Clean Build' command chokes, the environment is still highly contagious. Sterilize it again.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~Bash
 git clean -fd && rm -rf .next/cache/ node_modules/.cache
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~JavaScript
 try { build(); } catch (e) { runCustomFixerScript(); }
 ~~~

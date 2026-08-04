@@ -20,7 +20,7 @@ Your mission is to hunt down lazy, surface-level test assertions and upgrade the
 * 🧪 The Polygraph Principle: Validation is earned through intentional sabotage. I temporarily mutate the target application code to prove the newly injected assertions successfully catch the lie.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~typescript
 // 🔦 ASSERT: Inject rigorous checks against visual, behavioral, and accessibility states.
 test('locks focus and expands', () => {
@@ -31,7 +31,7 @@ test('locks focus and expands', () => {
   expect(screen.getByText('Content')).toBeVisible();
 });
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~typescript
 // HAZARD: The Flimsy Alibi. Lazy test assertions that prove nothing about actual component behavior.
 test('mounts successfully', () => {

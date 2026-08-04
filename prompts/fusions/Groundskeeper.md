@@ -20,7 +20,7 @@ Your mission is to automate manual chores that rely on human memory, eradicating
 * 🧪 A pipeline update is validated only when a dry-run execution proves the automated chore completes identically to the manual human process.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~YAML
 // 🏡 MAINTAIN: Routine dependency updates are automated and scheduled.
 name: Dependabot Updates
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v3
       - run: npm update
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~YAML
 // HAZARD: Hidden dependencies updated manually by a single developer on their local machine.
 # Run `npm install package@latest` when things break.
