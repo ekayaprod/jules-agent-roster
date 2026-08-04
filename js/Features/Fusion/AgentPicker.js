@@ -325,7 +325,7 @@ class AgentPicker {
             if (!previewEl) {
                 previewEl = document.createElement("div");
                 previewEl.id = "preMergePreview";
-                previewEl.className = "pre-merge-preview d-flex";
+                previewEl.className = "pre-merge-preview flex flex-col items-center justify-center";
                 actionArea.appendChild(previewEl);
             }
             previewEl.innerHTML = previewHtml;

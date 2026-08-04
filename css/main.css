@@ -672,3 +672,20 @@
     0%, 100% { transform: translateY(0) scale(1); }
     50% { transform: translateY(-5px) scale(1.05); filter: brightness(0) drop-shadow(0 0 16px color-mix(in srgb, var(--accent) 80%, transparent)); }
 }
+
+/* Fusion Lab Alignment Fixes */
+.fusion-action-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.pre-merge-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
