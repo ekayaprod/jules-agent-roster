@@ -7,3 +7,4 @@
 - [REFACTORER] `js/core/RosterApp.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (568 lines).
 - [REFACTORER] `js/Features/JulesTerminal/JulesTerminal.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (621 lines).
 - [REFACTORER] `benchmark.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (522 lines).
+- [x] 15 redundant comments were removed across the application codebase.

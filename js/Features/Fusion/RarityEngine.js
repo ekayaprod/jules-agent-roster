@@ -121,7 +121,6 @@ const RarityEngine = (function() {
         return _evaluateFusion(agent1, agent2).domain;
     }
 
-    // Return frozen API
     return Object.freeze({
         calculateRarity,
         getSuperDomain,

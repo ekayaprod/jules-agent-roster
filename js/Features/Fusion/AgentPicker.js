@@ -60,7 +60,6 @@ class AgentPicker {
         const closeBtn = this.elements.closePickerBtn;
 
         if (modal) {
-            // Close on backdrop click
             modal.addEventListener("click", (e) => {
                 if (e.target === modal) this.closePicker();
             });
@@ -188,7 +187,6 @@ class AgentPicker {
                 rows: chunkedRows
             });
 
-            // Re-calculate chunks if window resizes to ensure grid alignment
             if (typeof window !== 'undefined') {
                 window.addEventListener('resize', PerformanceUtils.debounce(() => {
                     if (this.activePickerSlot) this.updateGrid();
@@ -232,7 +230,6 @@ class AgentPicker {
             history.pushState({ modalOpen: true }, "");
         }
 
-        // Initialize and activate focus-trap
         if (typeof focusTrap !== 'undefined') {
             this.trap = focusTrap.createFocusTrap(modal, {
                 escapeDeactivates: false, // Handled by our own close logic if needed, or let focus-trap handle it
@@ -253,7 +250,6 @@ class AgentPicker {
                 this.updateGrid();
                 if (this.pickerClusterize) this.pickerClusterize.refresh(true);
 
-                // Activate focus trap after the grid DOM is updated
                 if (this.trap) {
                     this.trap.activate();
                 }

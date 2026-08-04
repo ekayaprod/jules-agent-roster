@@ -55,7 +55,6 @@ const FusionAnimation = function () {
       const particle = document.createElement("div");
       particle.className = "anim-particle";
 
-      // Randomize burst angle and travel distance
       const angle = Math.random() * Math.PI * 2;
       const distance = 50 + Math.random() * 200;
       const tx = Math.cos(angle) * distance;
