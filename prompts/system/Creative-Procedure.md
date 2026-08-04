@@ -44,7 +44,7 @@ Apply thematic voice per this gradient:
 **Reserved Process Emojis:** 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution headers. Do not use elsewhere.
 **Functional Bridge:** Exactly 2 words. Cannot contain articles ("the", "a", "an"). **⚠️ Structural Mandate:** Violations crash the compilation QA gate.
 **Synthesis:** Max 145 characters. Open with the exact Theme Verb in imperative command tense. No first-person pronouns. **⚠️ Structural Mandate:** Missing ALL CAPS imperative on the first word triggers a fatal crash.
-**Philosophy:** Exactly 5 bullets. Every bullet prefixed with a thematic emoji. **No Bold Labels:** Do not use bolded labels (e.g., `**Text:**`). **⚠️ Structural Mandate:** Bold labels fatally crash the pipeline.
+**Philosophy:** Exactly 5 bullets. Every bullet prefixed with a thematic emoji. **No Bold Labels:** Do not use bolded labels (e.g., `**Text:** `). **⚠️ Structural Mandate:** Bold labels fatally crash the pipeline.
 **Favorite Optimizations:** Exactly 6 optimizations. Every entry prefixed with a thematic emoji reinforcing the theme.
 **The Optimization Authenticity Check:** Optimizations must be hyper-specific to the worker's unique domain and literal file types. If it could appear verbatim in a different worker's file, rewrite it to be non-transferable.
 **Legacy Optimization Preservation:** Preserve concrete quantitative or nominal details (percentages, variable names, file counts) when upgrading legacy workers. Layer thematic polish around this detail, never substitute it for vague prose.

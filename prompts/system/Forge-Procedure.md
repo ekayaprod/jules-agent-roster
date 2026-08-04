@@ -114,7 +114,7 @@ You must explicitly generate the velocity strings and testing doctrines in the J
 * **`reporter_procedure`:** "* Verify mutations in batches. Complete all AST mutations in scope before triggering the test runner. Do not test line-by-line. Max 3 verification attempts per target."
 
 #### Batch (Quota)
-*Note: Replace `[PAYLOAD_THRESHOLD]` with the declared target limit integer before writing to the JSON payload.*
+* Note: Replace `[PAYLOAD_THRESHOLD]` with the declared target limit integer before writing to the JSON payload.*
 * **`execution_mandate`:** "* Bounded-sweep posture: Traverse the repository to locate targets. Abort execution upon mutating exactly [PAYLOAD_THRESHOLD] targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling."
 * **`discovery_velocity_rule`:** "* **The Bounded Sweep:** Scan and lock targets strictly until your quota is met, then immediately abort scanning and execute."
 * **`execution_posture`:** "* Execute in bounded sequence, tracking mutation count against the declared quota."
