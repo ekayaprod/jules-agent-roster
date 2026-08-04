@@ -26,3 +26,6 @@
 Edge Case: Swallowed exceptions inside JSON/text parsing block in `NetworkUtils.fetchWithRetry`. | Assertion: Enforced telemetry dispatch `NETWORK_ERROR_PARSING_FAILED` and `NETWORK_ERROR_TEXT_FAILED` to centralize failure visibility.
 
 Edge Case: Swallowed exceptions inside JSON/text parsing block in `NetworkUtils.fetchWithRetry`. | Assertion: Enforced telemetry dispatch `NETWORK_ERROR_PARSING_FAILED` and `NETWORK_ERROR_TEXT_FAILED` to centralize failure visibility.
+
+**Integration:** Wired `filesystem` MCP server with absolute path `/app` into `.mcp.json` manifest. Handled by Dispatcher.
+**Next Schedule Target:** `github` MCP server is missing `env` bindings (requires GitHub API key). Logged for next scheduled run.
