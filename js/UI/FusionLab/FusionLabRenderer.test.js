@@ -158,12 +158,15 @@ describe('FusionLabRenderer', () => {
             expect(renderer.getPreMergePreviewHTML(null)).toBeNull();
         });
 
-        it('returns null if fusion is not unlocked', () => {
+        it('returns undiscovered HTML if fusion is not unlocked', () => {
             mockLab.state.slotA = { name: 'Agent1', emoji: '🤖' };
             mockLab.state.slotB = { name: 'Agent2', emoji: '👽' };
             mockLab.fusionIndex.isUnlocked.mockReturnValue(false);
 
-            expect(renderer.getPreMergePreviewHTML(null)).toBeNull();
+            const html = renderer.getPreMergePreviewHTML(null);
+            expect(html).toContain('Undiscovered');
+            expect(html).toContain('❓');
+            expect(html).toContain('Unknown');
         });
 
         it('returns preview HTML if fusion is unlocked', () => {

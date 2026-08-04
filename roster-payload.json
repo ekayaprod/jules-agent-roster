@@ -1989,5 +1989,16 @@
     "forge_version": "V86.1",
     "promptFile": "prompts/fusions/Zen.md",
     "isCustom": true
+  },
+  {
+    "name": "Echo",
+    "emoji": "🗣️",
+    "role": "Symbology Propagator",
+    "category": "Hygiene",
+    "tier": "Core",
+    "description": "PROPAGATE canonical header emojis throughout markdown files to eliminate visual drift and ensure thematic consistency.",
+    "forge_version": "V86.5",
+    "promptFile": "prompts/micro/Echo.md",
+    "isCustom": true
   }
 ]

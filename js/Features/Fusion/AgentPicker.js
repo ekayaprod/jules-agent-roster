@@ -63,6 +63,9 @@ class AgentPicker {
             modal.addEventListener("click", (e) => {
                 if (e.target === modal) this.closePicker();
             });
+            modal.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") this.closePicker();
+            });
         }
         if (closeBtn) closeBtn.addEventListener("click", () => this.closePicker());
 

@@ -138,9 +138,11 @@ describe('FusionLab.getPreMergePreviewHTML Edge Cases', () => {
         expect(fusionLab.getPreMergePreviewHTML(agentB)).toBeNull();
     });
 
-    test('should return null if fusion is not unlocked in index', () => {
+    test('should return undiscovered HTML if fusion is not unlocked in index', () => {
         fusionLab.fusionIndex.isUnlocked.mockReturnValue(false);
-        expect(fusionLab.getPreMergePreviewHTML(agentB)).toBeNull();
+        const result = fusionLab.getPreMergePreviewHTML(agentB);
+        expect(result).not.toBeNull();
+        expect(result).toContain('Undiscovered');
     });
 
     test('should return preview HTML if fusion is unlocked', () => {
