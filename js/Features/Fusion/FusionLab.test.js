@@ -138,11 +138,20 @@ describe('FusionLab.getPreMergePreviewHTML Edge Cases', () => {
         expect(fusionLab.getPreMergePreviewHTML(agentB)).toBeNull();
     });
 
-    test('should return undiscovered HTML if fusion is not unlocked in index', () => {
+    test('should return null for invalid undiscovered recipes', () => {
+        fusionLab.fusionIndex.isUnlocked.mockReturnValue(false);
+        fusionLab.compiler.fuse.mockReturnValueOnce({ name: 'Error' });
+        const result = fusionLab.getPreMergePreviewHTML(agentB);
+        expect(result).toBeNull();
+    });
+
+    test('should return undiscovered HTML with silhouette if fusion is not unlocked in index', () => {
         fusionLab.fusionIndex.isUnlocked.mockReturnValue(false);
         const result = fusionLab.getPreMergePreviewHTML(agentB);
         expect(result).not.toBeNull();
         expect(result).toContain('Undiscovered');
+        expect(result).toContain('???');
+        expect(result).toContain('brightness(0)');
     });
 
     test('should return preview HTML if fusion is unlocked', () => {

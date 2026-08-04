@@ -51,11 +51,15 @@ class FusionLabRenderer {
     const key = AgentUtils.getFusionKey(agentA.name, agentB.name);
 
     if (this.lab.fusionIndex) {
-        if (this.lab.fusionIndex.isUnlocked(key)) {
-            const result = this.lab.compiler.fuse(agentA, agentB);
-            const iconHtml = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
-            const nameHtml = FormatUtils.extractDisplayName(result);
+        const result = this.lab.compiler.fuse(agentA, agentB);
+        if (result.name === "Error") {
+            return null;
+        }
 
+        const iconHtml = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
+
+        if (this.lab.fusionIndex.isUnlocked(key)) {
+            const nameHtml = FormatUtils.extractDisplayName(result);
             return `
                 <div class="preview-badge rounded-md px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold mb-1 shadow-sm transition-all duration-300">Already Discovered</div>
                 <div class="preview-content flex items-center gap-2">
@@ -68,8 +72,8 @@ class FusionLabRenderer {
         return `
             <div class="preview-badge rounded-md px-2 py-1 bg-gray-100 text-gray-800 text-xs font-bold mb-1 shadow-sm transition-all duration-300">Undiscovered</div>
             <div class="preview-content flex items-center gap-2">
-                <span class="preview-icon">❓</span>
-                <span class="preview-name">Unknown</span>
+                <span class="preview-icon" style="filter: brightness(0); opacity: 0.3; user-select: none;">${FormatUtils.escapeHTML(iconHtml)}</span>
+                <span class="preview-name tracking-widest">???</span>
             </div>
         `;
     }
