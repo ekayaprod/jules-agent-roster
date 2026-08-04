@@ -175,7 +175,6 @@ class ExportController {
     await this._fetchMissingPrompts(validCustomAgents);
     if (btn) btn.disabled = false;
 
-    // Filter again to make sure they have a valid prompt length after fetching
     const exportableAgents = validCustomAgents.filter((a) => a.prompt && a.prompt.length > 0);
 
     if (exportableAgents.length === 0)

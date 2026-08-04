@@ -18,7 +18,6 @@ class ToastNotification {
         this.timeout = null;
         this.isHovered = false;
 
-        // Bind methods for event listeners
         this.handleMouseEnter = this.handleMouseEnter.bind(this);
         this.handleMouseLeave = this.handleMouseLeave.bind(this);
         this.dismiss = this.dismiss.bind(this);
@@ -28,7 +27,6 @@ class ToastNotification {
             this.element.addEventListener('pointerenter', this.handleMouseEnter);
             this.element.addEventListener('pointerleave', this.handleMouseLeave);
 
-            // Delegate click for close button
             this.element.addEventListener('click', (e) => {
                 if (e.target.closest('.toast-close-btn')) {
                     this.dismiss();
@@ -61,7 +59,6 @@ class ToastNotification {
         this._setAccessibility(type);
         this._animate(true);
 
-        // Start auto-dismiss timer if duration is positive
         if (duration > 0) {
             this.startTimer(duration);
         }

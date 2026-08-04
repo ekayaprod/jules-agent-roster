@@ -6,7 +6,6 @@ class FusionLab {
     this.lastFusionResult = null;
     this.picker = null;
     this.animation = typeof FusionAnimation !== "undefined" ? new FusionAnimation() : null;
-    // Internal State for Selection
     this.state = {
       slotA: null,
       slotB: null,
@@ -211,7 +210,6 @@ class FusionLab {
           this.fusionIndex.unlock(key);
         }
 
-        // Notify the app state about Cortex x Cortex state change
         if (key === "Cortex,Cortex") {
           window.rosterApp?.singularityBuilderContainer?.classList.remove("hidden");
         }

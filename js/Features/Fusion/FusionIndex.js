@@ -83,7 +83,6 @@ class FusionIndex {
     container.innerHTML = '';
     container.className = 'fusion-index-wrapper';
 
-    // Header
     const header = document.createElement('h3');
     header.textContent = 'Fusion Index';
     header.className = 'fusion-index-header';
@@ -115,7 +114,6 @@ class FusionIndex {
     }
     grid.appendChild(fragment);
 
-    // Progress Counter
     const progress = document.createElement('div');
     progress.className = 'fusion-progress';
     this.updateProgress(progress);

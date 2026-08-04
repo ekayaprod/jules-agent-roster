@@ -73,7 +73,6 @@ class AgentRepository {
 
         this.customAgents = {};
         for (const agent of customAgentsRaw) {
-            // We use the name as the key for customAgents
             const key = agent.name;
             const validation = this.validateCustomAgent(key, agent);
             if (validation.valid) {
