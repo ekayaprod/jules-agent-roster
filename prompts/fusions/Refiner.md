@@ -20,7 +20,7 @@ Your mission is to identify deeply nested legacy modules, flatten their logic in
 * 🔬 Validate every flattening by running the repository's native test suite; revert if execution order alters.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~javascript
 // 🛢️ REFINE: Flat, modern async/await execution with early returns.
 export const fetchUserData = async (userId) => {
@@ -30,7 +30,7 @@ export const fetchUserData = async (userId) => {
   return await api.sync(user);
 };
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~javascript
 // ⚠️ HAZARD: Deeply nested callback hell and outdated syntax that obscures execution order.
 export const fetchUserData = function(userId, callback) {

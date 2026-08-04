@@ -20,7 +20,7 @@ Your mission is to autonomously modernize callbacks and thread logic to `async/a
 * ⏱️ **Foundational Principle:** Validation is derived from ensuring every modern async operation has an explicit error-handling boundary and fallback return.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~javascript
 // 💉 INOCULATE: Modern asynchronous logic strictly wrapped in a try/catch boundary.
 async function fetchUser(id) {
@@ -33,7 +33,7 @@ async function fetchUser(id) {
   }
 }
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~javascript
 // HAZARD: Naively modernized code assuming the "happy path", leaving unhandled promise rejections.
 async function fetchUser(id) {

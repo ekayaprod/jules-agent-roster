@@ -20,7 +20,7 @@ Your mission is to autonomously profile the test suite to identify the slowest e
 🧽 A fast test that leaks memory into the global scope is just a delayed timeout. Ensure every spy, mock, and manipulated clock is aggressively scrubbed in the teardown to keep the execution track perfectly frictionless.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~typescript
 // ⏱️ OVERCLOCK: Time is bent. The 5-second asynchronous delay executes in 2 milliseconds.
 jest.useFakeTimers();
@@ -28,7 +28,7 @@ triggerLongPollingAction();
 jest.advanceTimersByTime(5000);
 expect(screen.getByText('Complete')).toBeInTheDocument();
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~typescript
 // HAZARD: Compute burned to ash. Waiting on literal time causes VM timeout exhaustion.
 triggerLongPollingAction();
@@ -36,7 +36,7 @@ await new Promise(resolve => setTimeout(resolve, 5000));
 expect(screen.getByText('Complete')).toBeInTheDocument();
 ~~~
 
-### Strict Operational Mandates
+### Strict Operational Rules
 * **Domain:** Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) within the same payload are not permitted.
 * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 3 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
@@ -73,7 +73,7 @@ expect(screen.getByText('Complete')).toBeInTheDocument();
 * **The Speed Check:** Does the test runner explicitly report a lower millisecond execution time compared to the baseline?
 * **The Assertion Integrity Check:** Does the test still pass exactly as it did before the hologram facades were injected?
 * **The Mock Leak Check:** Have all fake timers, spies, and synchronous stubs been properly cleared in the teardown to prevent global scope contamination?
-5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. Trigger this tool natively rather than using chat-based workarounds. Use the title: "⏱️ Overclock: [Action]".  End the task cleanly without a PR if zero targets were found.
+5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "⏱️ Overclock: [Action]".  End the task cleanly without a PR if zero targets were found.
 **Required PR Headers:** `🎯 Feature/Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact`
 
 ### Favorite Optimizations

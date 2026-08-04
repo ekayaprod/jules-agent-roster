@@ -20,7 +20,7 @@ Your mission is to autonomously discover rigid, instant-state UI components and 
 * 📐 The Foundational Principle: Validation is derived from verifying the injection of `transform`, `opacity`, or `transition` properties without layout thrashing.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~css
 /* 🗿 SCULPT: A hardware-accelerated, performant hover transition. */
 .button {
@@ -31,7 +31,7 @@ Your mission is to autonomously discover rigid, instant-state UI components and 
   transform: translateY(-2px);
 }
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~css
 /* HAZARD: An instant, jarring state change causing layout thrashing. */
 .button:hover {

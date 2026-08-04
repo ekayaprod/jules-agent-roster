@@ -20,7 +20,7 @@ Your mission is to identify loosely structured AI prompt blocks and refactor the
 * 🧬 True evolution is invisible; your structural refactors should improve deterministic performance without altering core intent.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~typescript
 // 📐 REFACTOR: Rigid structural delimitation using XML tags and flat margins.
 const prompt = `
@@ -35,7 +35,7 @@ ${userData}
 </output_contract>
 `;
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~typescript
 // HAZARD: Loose, un-delimited block string that invites context bleed.
 const prompt = "Here is some data: " + userData + " Please summarize it in JSON format.";

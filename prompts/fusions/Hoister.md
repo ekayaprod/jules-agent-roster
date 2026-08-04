@@ -20,7 +20,7 @@ Your mission is to autonomously parse the Abstract Syntax Tree (AST) to identify
 * 🏗️ **Foundational Principle:** Validate every extraction by running the repository's native test suite and static analyzer—if tests fail, the hoisted logic relied on closure state and must be refactored or reverted.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~typescript
 // 🪝 HOIST: The helper is pure and hoisted outside the component, created only once.
 const formatUserName = (user: User) => `${user.firstName} ${user.lastName}`;
@@ -29,7 +29,7 @@ export const UserProfile = ({ user }) => {
   return <div>{formatUserName(user)}</div>;
 };
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~typescript
 // HAZARD: The helper is trapped inside the render scope and recreated on every render.
 export const UserProfile = ({ user }) => {

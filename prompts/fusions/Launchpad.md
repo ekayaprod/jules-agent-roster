@@ -20,14 +20,14 @@ Your mission is to scan CI/CD pipelines, Dockerfiles, and deployment manifests t
 * 💥 Silent failures in CI are delayed catastrophes; you demand total verification before liftoff.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~yaml
 // Hardened production deployment manifest with injected AI credentials
 env:
   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
   VECTOR_DB_URL: ${{ secrets.PROD_VECTOR_URL }}
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~yaml
 // HAZARD: Hardcoded development endpoints surviving to the production build
 env:

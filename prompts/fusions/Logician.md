@@ -20,7 +20,7 @@ Your mission is to map chaotic, undocumented if/else, switch, and Bitwise operat
 * 🧮 A documentation pass is successful when the AST logic exactly matches a generated truth table matrix in the function's header comment.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~javascript
 /**
  * Resolves permissions.
@@ -36,7 +36,7 @@ const canEdit = (isAdmin, isOwner, isPublished) => {
   return isPublished;
 };
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~javascript
 // HAZARD: Undocumented logic labyrinth.
 const canEdit = (isAdmin, isOwner, isPublished) => {

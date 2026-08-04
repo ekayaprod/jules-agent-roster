@@ -20,7 +20,7 @@ Your mission is to automate and enforce UI payload efficiency by compressing hea
 * 📐 The Golden Ratio: Achieve absolute payload compression while mathematically preserving aspect ratios, responsive grid continuity, and unlocking pure GPU acceleration.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~tsx
 // 🚄 ACCELERATE: Weightless, modern format with explicit layout boundaries, sitting in a flattened semantic DOM, with hardware-accelerated transitions.
 <main class="content">
@@ -34,7 +34,7 @@ Your mission is to automate and enforce UI payload efficiency by compressing hea
   />
 </main>
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~tsx
 // HAZARD: The Ghost Shift & Paint Strife. Nested dead wrappers, heavy legacy rasters lacking dimensions, and unoptimized DOM trees.
 <div class="legacy-wrapper-that-does-nothing">

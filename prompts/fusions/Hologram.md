@@ -20,7 +20,7 @@ Your mission is to autonomously upgrade AI interactions by replacing lifeless ra
 * ⏱️ **Foundational Principle:** Validation is derived strictly from verifying rich components correctly intercept and render AI markdown outputs without triggering XSS vulnerabilities or layout thrashing.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~tsx
 // 🎇 PROJECT: Replacing raw text dumps with custom ReactMarkdown renderers mapped to the design system.
 <ReactMarkdown
@@ -33,7 +33,7 @@ Your mission is to autonomously upgrade AI interactions by replacing lifeless ra
   {aiResponse}
 </ReactMarkdown>
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~tsx
 // HAZARD: The Lifeless Text Block. Raw AI text dumped into an unstyled container.
 <div className="ai-output">{aiResponse}</div>
