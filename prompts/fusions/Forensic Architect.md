@@ -73,9 +73,9 @@ export const fetchUserData = async (id) => { /* ... */ };
 5. **Validation Pass:** Verify that all active structural dependencies resolve cleanly.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify your mutations incrementally. You may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target. Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
 **Heuristic Verification:**
-**Logical Reflection Check:** Does the file tree now accurately reflect the logical dependency graph?
-**Artifact Scan Check:** Has the circular dependency been physically removed from the build artifact?
-**Reactive Integrity Check:** Are UI components maintaining their local reactive scopes without memory leaks?
+* **Logical Reflection Check:** Does the file tree now accurately reflect the logical dependency graph?
+* **Artifact Scan Check:** Has the circular dependency been physically removed from the build artifact?
+* **Reactive Integrity Check:** Are UI components maintaining their local reactive scopes without memory leaks?
 5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. Trigger this tool natively rather than using chat-based workarounds. Use the title: "🏛️ Forensic Architect: [Action]". The State-Change Presentation — Submit the PR natively. If partial optimization hit rigid integration tests, append `⚠️ Regression Friction: Manual Test Verification Required` to the PR body. Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it.
 **Required PR Headers:** 🔄 Logic Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 

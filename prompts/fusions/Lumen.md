@@ -74,9 +74,9 @@ Your mission is to perform a macroscopic audit of all AI SDK dependencies, promp
 5. **Task Board Output:** Output the structured execution queue directly into `.jules/agent_tasks.md`.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify your mutations incrementally. You may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target. Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
 **Heuristic Verification:**
-**Actionability Check:** Verify that every task isolated to a single, actionable mutation.
-**Path Verification:** Ensure every task in the board contains an exact, deterministic file path.
-**Safety Verification:** Confirm that absolutely zero core source files were mutated.
+* **Actionability Check:** Verify that every task isolated to a single, actionable mutation.
+* **Path Verification:** Ensure every task in the board contains an exact, deterministic file path.
+* **Safety Verification:** Confirm that absolutely zero core source files were mutated.
 5. 🎁 **PRESENT** — Explicitly utilize the platform's native Pull Request creation tool to publish your work. Trigger this tool natively rather than using chat-based workarounds. Use the title: "💡 Lumen: [Action]". The Intelligence Presentation — Submit the PR natively with reports. If the scan was incomplete, append `⚠️ Intelligence Gap: Manual Traversal Required`. Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it.
 **Required PR Headers:** 🗺️ Topography, 📊 Static Analysis, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
