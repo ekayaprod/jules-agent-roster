@@ -251,7 +251,7 @@ describe('LLMRouter', () => {
                 {role: 'system', content: 'You are an AI.'},
                 {role: 'system', content: 'Be helpful.'},
                 {role: 'user', content: 'hi'}
-            ], 'claude-3-5-sonnet-latest');
+            ], 'claude-sonnet-5');
 
             expect(global.fetch).toHaveBeenCalledWith(expect.any(String), expect.objectContaining({
                 body: expect.stringContaining('"system":"You are an AI.\\nBe helpful."')
@@ -273,7 +273,7 @@ describe('LLMRouter', () => {
             await router.chatAnthropic([
                 {role: 'system', content: 'You are an AI.'},
                 {role: 'user', content: 'hi'}
-            ], 'claude-3-5-sonnet-latest');
+            ], 'claude-sonnet-5');
 
             expect(global.fetch).toHaveBeenCalledWith('https://api.anthropic.com/v1/messages', expect.objectContaining({
                 method: 'POST',
@@ -283,7 +283,7 @@ describe('LLMRouter', () => {
                     'anthropic-version': '2023-06-01'
                 },
                 body: JSON.stringify({
-                    model: 'claude-3-5-sonnet-latest',
+                    model: 'claude-sonnet-5',
                     messages: [{role: 'user', content: 'hi'}],
                     max_tokens: 4096,
                     temperature: 0.7,

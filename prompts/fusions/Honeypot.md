@@ -20,7 +20,7 @@ Your mission is to defend internal application boundaries by injecting extreme, 
 * ⏱️ **Foundational Principle:** Validation is derived strictly from deploying a custom tripwire that provokes a simulated state mutation and confirms the malicious attempt is logged and violently rejected.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~typescript
 // 🍯 DEPLOY: We inject a strict runtime tripwire to log and reject any unauthorized mutation to critical internal state.
 function updateAdminPrivileges(user: User, payload: any) {
@@ -31,7 +31,7 @@ function updateAdminPrivileges(user: User, payload: any) {
   // proceed with secure update
 }
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~typescript
 // HAZARD: Blindly accepting internal state mutations allows silent privilege escalation or data corruption.
 function updateAdminPrivileges(user: User, payload: any) {

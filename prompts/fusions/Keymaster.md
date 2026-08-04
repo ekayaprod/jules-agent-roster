@@ -20,12 +20,12 @@ Your mission is to autonomously prevent catastrophic key leaks by sanitizing sou
 * ✅ **Foundational Principle:** Validation is derived from ensuring the application boots perfectly utilizing the new localized environment configuration variables.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~javascript
 // 🗝️ AUDIT: A hardcoded Supabase Service Role key ripped out and buried in an environment variable.
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~javascript
 // HAZARD: Hardcoded secrets committed to version control, lacking proper architectural abstraction.
 const supabase = createClient("https://example.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...");

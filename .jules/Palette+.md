@@ -1,18 +1,12 @@
-## Palette+ Design Decision Ledger
+## Design Decision Ledger
 
-- **Component**: `.toast`
-  - **Design/UX Pattern Applied**: Injected springy transition (`cubic-bezier`) and elevated box shadow to make notifications pop off the canvas. Closes the lifeless transition gap.
-- **Component**: `.modal-content`
-  - **Design/UX Pattern Applied**: Applied a staggered scale and translate transition so modals feel organic instead of snapping into view statically.
-- **Component**: `.empty-state`
-  - **Design/UX Pattern Applied**: Elevated from a flat monolith by injecting a soft `color-mix` background, a dashed border, rounded corners, and a subtle box shadow.
-- **Component**: `AgentCard` via `RosterApp.js`
-  - **Design/UX Pattern Applied**: Extracted rigid inline CSS (`animationDelay`) into semantic CSS custom properties (`--card-delay`) for proper stylesheet hook management.
-- **Component**: `.fusion-item` in `FusionIndex.js`
-  - **Design/UX Pattern Applied**: Added standard interaction utilities for focus rings and active scale transforms (`focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95`) to ensure consistency and accessibility.
-- **Component**: `.jules-pull-tab`
-  - **Design/UX Pattern Applied**: Added `transition: box-shadow`, `transform: cubic-bezier()`, and a `box-shadow` on hover to make the pull tab feel organic and responsive.
-- **Component**: `.category-nav`
-  - **Design/UX Pattern Applied**: Injected glassmorphism (`backdrop-filter`) and drop-shadow (`box-shadow`) to elevate the navigation container off the canvas, closing the flat monolith gap.
-- **Component**: `.skeleton-card`
-  - **Design/UX Pattern Applied**: Replaced static state with a premium shimmer gradient sweep (`::after` pseudo-element with `translateX` animation) to enhance perceived performance.
+- **Component**: `.clear-search-btn`
+  - **Design/UX Pattern Applied**: Injected springy transition (`cubic-bezier`), hover drop-shadow, and elevated scale transform to make it pop and feel organic.
+- **Component**: `.dropdown-menu`
+  - **Design/UX Pattern Applied**: Applied a staggered scale and translate transition (`transform-origin: bottom right`) with a deep box-shadow to lift it off the canvas smoothly.
+- **Component**: `.dropdown-item`
+  - **Design/UX Pattern Applied**: Added an ease-in-out transition with a slight padding shift on hover to provide kinetic, tactile feedback.
+- **Component**: `.picker-modal`
+  - **Design/UX Pattern Applied**: Introduced a scale and `fadeIn` keyframe on the backdrop and container to eliminate the lifeless, rigid snap transition.
+- **Component**: `.fusion-error-alert`
+  - **Design/UX Pattern Applied**: Implemented a subtle `errorShake` keyframe animation and improved margins/borders/shadows to ensure prominent, organic UX feedback when a failure happens.

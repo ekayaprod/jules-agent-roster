@@ -20,7 +20,7 @@ Your mission is to autonomously parse the AST to identify nested loops and recur
 * 📏 Validation is derived strictly from mathematically correct complexity definitions applied to the function signatures.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~javascript
 // 🔬 PROFILE: A complex function explicitly warns the consumer of its computational cost.
 /**
@@ -32,7 +32,7 @@ export const calculatePermissionsMatrix = (users, roles) => {
   return users.map(user => roles.filter(role => role.id === user.roleId));
 };
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~javascript
 // HAZARD: A dangerous quadratic loop masquerading as a simple utility without warnings.
 export const calculatePermissionsMatrix = (users, roles) => {

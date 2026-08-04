@@ -20,7 +20,7 @@ Your mission is to rigorously define and document underlying data structures and
 * 🏷️ A taxonomy update is validated only when static analysis proves structural integrity.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~typescript
 // 💡 ACCELERATE: Documented every single field explicitly.
 /**
@@ -30,7 +30,7 @@ interface User {
   createdAt: string;
 }
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~typescript
 // HAZARD: Naked data models lacking context.
 interface User {

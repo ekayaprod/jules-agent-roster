@@ -20,7 +20,7 @@ Your mission is to hunt fragile, untested UI components lacking visual feedback 
 * 💎 Foundational Principle: Validation is derived from passing strict React Testing Library (or native DOM) interaction assertions.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~typescript
 // 💎 POLISH: Disabled buttons explicitly use aria-disabled alongside opacity changes, tested rigorously.
 test('locks focus and sets aria-disabled', () => {
@@ -29,7 +29,7 @@ test('locks focus and sets aria-disabled', () => {
   expect(overlay).toHaveAttribute('aria-hidden', 'false');
 });
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~typescript
 // HAZARD: Fragile, untested UI components that lack visual feedback for interactive states (hover, focus, disabled).
 test('mounts', () => {

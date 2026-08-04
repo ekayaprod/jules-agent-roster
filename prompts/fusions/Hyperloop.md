@@ -20,7 +20,7 @@ Your mission is to refactor stateless endpoints to utilize edge compute runtimes
 * ⏱️ **Foundational Principle:** Validate every caching layer by executing a baseline benchmark versus the optimized time—if the response does not mathematically accelerate or if state breaks, the edge rewrite must be reverted.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~typescript
 // 🚄 ACCELERATE: The response is immediately cached at the edge network utilizing strict stale-while-revalidate headers.
 export const GET = async () => {
@@ -30,7 +30,7 @@ export const GET = async () => {
   });
 };
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~typescript
 // HAZARD: Stateless, static CMS data being re-fetched and re-computed on every single request.
 export const GET = async () => {

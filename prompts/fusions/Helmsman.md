@@ -20,7 +20,7 @@ Your mission is to hunt down archaic navigation syntax and deprecated navigation
 * 🗺️ **Foundational Principle:** Validate every routing upgrade by running the repository's native E2E test suite—if navigation fails, the new topology is flawed and must be reverted.
 
 ### Coding Standards
-* ✅ **Good Code:**
+* ✅ **EXPECTED PATTERN:**
 ~~~React / Next.js / Vue
 // ⛵ UPGRADE: A modern, native structural equivalent utilizing declarative routing.
 import { Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ export const DashboardNav = () => (
   </nav>
 );
 ~~~
-* ❌ **Bad Code:**
+* ❌ **ANTI-PATTERN:**
 ~~~React / Next.js / Vue
 // HAZARD: An archaic navigation paradigm triggering a destructive full-page reload.
 export const DashboardNav = () => (
