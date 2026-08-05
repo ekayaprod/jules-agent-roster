@@ -2011,5 +2011,16 @@
     "forge_version": "V86.6",
     "promptFile": "prompts/micro/Iconographer.md",
     "isCustom": true
+  },
+  {
+    "name": "Nomenclator",
+    "emoji": "🏷️",
+    "role": "Filename Synchronizer",
+    "category": "Architecture",
+    "tier": "Micro",
+    "description": "SWEEP the repository to enforce absolute synchronization between custom_agents.json and fusion filenames.",
+    "forge_version": "V86.7",
+    "promptFile": "prompts/micro/Nomenclator.md",
+    "isCustom": true
   }
 ]
