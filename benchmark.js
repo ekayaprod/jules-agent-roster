@@ -115,12 +115,8 @@ const createMockElement = (id = '') => {
       const tag = this.tagName.toLowerCase();
       const idAttr = this.id ? ` id="${this.id}"` : '';
       const classAttr = this.className ? ` class="${this.className}"` : '';
-      let styleAttr = '';
       const styleKeys = Object.keys(this.style);
-      if (styleKeys.length > 0) {
-        const styleString = styleKeys.map((k) => `${k}: ${this.style[k]}`).join('; ');
-        styleAttr = ` style="${styleString}"`;
-      }
+      const styleAttr = styleKeys.length > 0 ? ` style="${styleKeys.map((k) => `${k}: ${this.style[k]}`).join('; ')}"` : '';
       return `<${tag}${idAttr}${classAttr}${styleAttr}>${this.innerHTML}</${tag}>`;
     },
     _innerHTML: '',
