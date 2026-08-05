@@ -2000,5 +2000,16 @@
     "forge_version": "V86.5",
     "promptFile": "prompts/micro/Echo.md",
     "isCustom": true
+  },
+  {
+    "name": "Iconographer",
+    "emoji": "🔣",
+    "role": "Symbology Curator",
+    "category": "Micro",
+    "tier": "Core",
+    "description": "SWEEP the repository looking for semantic inconsistencies.",
+    "forge_version": "V86.6",
+    "promptFile": "prompts/micro/Iconographer.md",
+    "isCustom": true
   }
 ]
