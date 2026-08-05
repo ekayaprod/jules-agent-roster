@@ -297,6 +297,17 @@
     "isCustom": true
   },
   {
+    "name": "Assessor",
+    "emoji": "🧑‍🏫",
+    "role": "Test Upgrader",
+    "category": "Testing",
+    "tier": "Fusion",
+    "description": "UPGRADE brittle, implementation-heavy testing paradigms into resilient, user-centric testing behaviors.",
+    "forge_version": "V86.7",
+    "promptFile": "prompts/fusions/Assessor.md",
+    "isCustom": true
+  },
+  {
     "name": "Auditor",
     "emoji": "🔎",
     "role": "Quality Inspector",
