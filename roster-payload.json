@@ -776,7 +776,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "DEFINE UNDERLYING DATA STRUCTURES AND SEMANTIC TYPES SO DEVELOPERS NEVER HAVE TO GUESS WHAT A PROPERTY REPRESENTS.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.7",
     "promptFile": "prompts/fusions/Glossary.md",
     "isCustom": true
   },
@@ -2010,6 +2010,17 @@
     "description": "SWEEP the repository looking for semantic inconsistencies.",
     "forge_version": "V86.6",
     "promptFile": "prompts/micro/Iconographer.md",
+    "isCustom": true
+  },
+  {
+    "name": "Nomenclator",
+    "emoji": "🏷️",
+    "role": "Filename Synchronizer",
+    "category": "Architecture",
+    "tier": "Micro",
+    "description": "SWEEP the repository to enforce absolute synchronization between custom_agents.json and fusion filenames.",
+    "forge_version": "V86.7",
+    "promptFile": "prompts/micro/Nomenclator.md",
     "isCustom": true
   }
 ]
