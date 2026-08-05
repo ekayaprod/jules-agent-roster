@@ -320,11 +320,9 @@ class JulesTerminal {
             const item = document.createElement("div");
             item.className = "term-pr-item transition-all duration-300 ease-in-out hover:scale-[1.01] hover:shadow-sm";
 
-            const escapedTitle = formatUtils ? formatUtils.escapeHTML(pr.title) : pr.title;
-
             item.innerHTML = `
                 <span class="pr-open-status">[PR OPEN]</span>
-                <a href="#" class="term-pr-title term-link pr-modal-trigger" data-pr-number="${pr.number}">#${pr.number} ${escapedTitle}</a>
+                <a href="#" class="term-pr-title term-link pr-modal-trigger" data-pr-number="${pr.number}">#${pr.number} ${formatUtils?.escapeHTML(pr.title) ?? pr.title}</a>
             `;
             const link = item.querySelector('.pr-modal-trigger');
             if (link) {
@@ -381,10 +379,7 @@ class JulesTerminal {
         if (!this.renderedSessionIds) this.renderedSessionIds = new Set();
 
         // ⚡ Bolt+: The O(n) Eradication. Avoid intermediate array allocation from .map()
-        const currentSessionIds = new Set();
-        for (let i = 0, len = repoSessions.length; i < len; i++) {
-            currentSessionIds.add(repoSessions[i].id);
-        }
+        const currentSessionIds = new Set(repoSessions.map(s => s.id));
         this.renderedSessionIds.forEach(id => !currentSessionIds.has(id) && this.dismissSession(id));
         repoSessions.forEach(session => this._processSession(session, terminal));
 
@@ -464,10 +459,8 @@ class JulesTerminal {
             block.onclick = onClickCallback;
         }
 
-        const formatUtils = JulesTerminal.getFormatUtils();
-        block.innerHTML = DOMUtils.getTerminalSessionHTML(formatUtils ? formatUtils.escapeHTML(agentEmoji) : agentEmoji, safeAgentName, statusMsg, statusId);
-        const firstSession = terminal.querySelector('.term-session-line:not(#fetchingIndicator)');
-        firstSession ? terminal.insertBefore(block, firstSession) : terminal.appendChild(block);
+        block.innerHTML = DOMUtils.getTerminalSessionHTML(JulesTerminal.getFormatUtils()?.escapeHTML(agentEmoji) ?? agentEmoji, safeAgentName, statusMsg, statusId);
+        terminal.insertBefore(block, terminal.querySelector('.term-session-line:not(#fetchingIndicator)') || null);
         return block;
     }
 

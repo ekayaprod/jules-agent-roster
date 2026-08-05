@@ -346,7 +346,6 @@ class RosterApp {
     };
 
     const applyFinalDOMUpdates = () => {
-      // Final DOM updates
       this.categoryKeys.forEach(key => {
         const container = categoryContainers[key];
         if (!container) return;
@@ -355,12 +354,9 @@ class RosterApp {
         const hasChildren = fragment?.children.length > 0;
         if (fragment) container.appendChild(fragment);
 
-        const header = document.getElementById(key);
         container.classList.toggle("d-none", !hasChildren);
         container.classList.toggle("empty", !hasChildren);
-        if (header) {
-            header.classList.toggle("d-none", !hasChildren);
-        }
+        document.getElementById(key)?.classList.toggle("d-none", !hasChildren);
       });
     };
 
