@@ -297,17 +297,6 @@
     "isCustom": true
   },
   {
-    "name": "Assessor",
-    "emoji": "🧑‍🏫",
-    "role": "Test Upgrader",
-    "category": "Testing",
-    "tier": "Fusion",
-    "description": "UPGRADE brittle, implementation-heavy testing paradigms into resilient, user-centric testing behaviors.",
-    "forge_version": "V86.7",
-    "promptFile": "prompts/fusions/Assessor.md",
-    "isCustom": true
-  },
-  {
     "name": "Auditor",
     "emoji": "🔎",
     "role": "Quality Inspector",
@@ -787,7 +776,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "DEFINE UNDERLYING DATA STRUCTURES AND SEMANTIC TYPES SO DEVELOPERS NEVER HAVE TO GUESS WHAT A PROPERTY REPRESENTS.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.7",
     "promptFile": "prompts/fusions/Glossary.md",
     "isCustom": true
   },
