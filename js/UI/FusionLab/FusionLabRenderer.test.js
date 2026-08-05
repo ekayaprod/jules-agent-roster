@@ -158,12 +158,26 @@ describe('FusionLabRenderer', () => {
             expect(renderer.getPreMergePreviewHTML(null)).toBeNull();
         });
 
-        it('returns null if fusion is not unlocked', () => {
+        it('returns undiscovered HTML with silhouette if fusion is not unlocked', () => {
             mockLab.state.slotA = { name: 'Agent1', emoji: '🤖' };
             mockLab.state.slotB = { name: 'Agent2', emoji: '👽' };
             mockLab.fusionIndex.isUnlocked.mockReturnValue(false);
+            mockLab.compiler.fuse.mockReturnValue({ name: 'FusedAgent', emoji: '🌟' });
 
-            expect(renderer.getPreMergePreviewHTML(null)).toBeNull();
+            const html = renderer.getPreMergePreviewHTML(null);
+            expect(html).toContain('Undiscovered');
+            expect(html).toContain('pokemon-silhouette');
+            expect(html).toContain('???');
+        });
+
+        it('returns null if fusion is invalid', () => {
+            mockLab.state.slotA = { name: 'Agent1', emoji: '🤖' };
+            mockLab.state.slotB = { name: 'Agent2', emoji: '👽' };
+            mockLab.fusionIndex.isUnlocked.mockReturnValue(false);
+            mockLab.compiler.fuse.mockReturnValue({ name: 'Error' });
+
+            const html = renderer.getPreMergePreviewHTML(null);
+            expect(html).toBeNull();
         });
 
         it('returns preview HTML if fusion is unlocked', () => {
