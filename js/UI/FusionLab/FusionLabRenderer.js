@@ -50,16 +50,30 @@ class FusionLabRenderer {
 
     const key = AgentUtils.getFusionKey(agentA.name, agentB.name);
 
-    if (this.lab.fusionIndex && this.lab.fusionIndex.isUnlocked(key)) {
+    if (this.lab.fusionIndex) {
         const result = this.lab.compiler.fuse(agentA, agentB);
+        if (result.name === "Error") {
+            return null;
+        }
+
         const iconHtml = FormatUtils.extractIcon(result, `${agentA.emoji}${agentB.emoji}`);
-        const nameHtml = FormatUtils.extractDisplayName(result);
+
+        if (this.lab.fusionIndex.isUnlocked(key)) {
+            const nameHtml = FormatUtils.extractDisplayName(result);
+            return `
+                <div class="preview-badge rounded-md px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold mb-1 shadow-sm transition-all duration-300">Already Discovered</div>
+                <div class="preview-content flex items-center gap-2">
+                    <span class="preview-icon">${FormatUtils.escapeHTML(iconHtml)}</span>
+                    <span class="preview-name">${FormatUtils.escapeHTML(nameHtml)}</span>
+                </div>
+            `;
+        }
 
         return `
-            <div class="preview-badge rounded-md px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold mb-1 shadow-sm transition-all duration-300">Already Discovered</div>
-            <div class="preview-content flex items-center gap-2">
-                <span class="preview-icon">${FormatUtils.escapeHTML(iconHtml)}</span>
-                <span class="preview-name">${FormatUtils.escapeHTML(nameHtml)}</span>
+            <div class="preview-badge rounded-md px-2 py-1 bg-gray-100 text-gray-800 text-xs font-bold mb-1 shadow-sm transition-all duration-300">Undiscovered</div>
+            <div class="pokemon-preview-container">
+                <span class="pokemon-silhouette">${FormatUtils.escapeHTML(iconHtml)}</span>
+                <span class="unknown-pokemon-name">???</span>
             </div>
         `;
     }
