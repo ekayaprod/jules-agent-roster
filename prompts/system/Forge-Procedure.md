@@ -162,6 +162,7 @@ If the domain relies on structural verification (no executable tests), dynamical
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
 - **Contained Velocity:** Exactly 1 target.
 - **Generator Archetype:** Exactly 4 target tiers.
+- **Tier: Core:** Exempt from array bounds.
 - **All Others:** Strictly 3 to 5 targets.
 
 **Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Structural Mandate:** You must explicitly define the Domain Autonomy declaration and the Discovery Fallback instruction natively within the JSON payload (`data.process.discover.domain_autonomy_declaration` and `data.process.discover.discovery_fallback`). Supply the exact literal strings defined below.
