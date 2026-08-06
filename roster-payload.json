@@ -775,8 +775,8 @@
     "role": "Domain Taxonomist",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "DEFINE UNDERLYING DATA STRUCTURES AND SEMANTIC TYPES SO DEVELOPERS NEVER HAVE TO GUESS WHAT A PROPERTY REPRESENTS.",
-    "forge_version": "V84.0",
+    "description": "CATALOGUE deeply-nested payloads and database schemas to eliminate ambient cognitive load for feature developers.",
+    "forge_version": "V86.7",
     "promptFile": "prompts/fusions/Glossary.md",
     "isCustom": true
   },

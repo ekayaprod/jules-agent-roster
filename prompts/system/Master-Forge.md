@@ -230,7 +230,7 @@ Autonomous, end-to-end configuration generation without operator intervention. P
 
 ### Step 1: Target Identification & Locking
 - If `TARGET_FILE_OVERRIDE` has a path, lock it immediately.
-- If empty, sweep for `.md` files missing `forge_version` or below `{{MINIMUM_VERSION_THRESHOLD}}`. Apply the Target Sorting Rule to lock the single oldest file.
+- If empty, sweep ONLY the `prompts/fusions/` directory for `.md` files missing `forge_version` or below `{{MINIMUM_VERSION_THRESHOLD}}`. Ignore orphans or other directories. Apply the Target Sorting Rule to lock the single oldest file.
 
 ### Step 2: State Ingestion
 Native file read the locked target `.md` to load legacy logic into context.
