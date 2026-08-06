@@ -73,12 +73,13 @@ For Legacy Imports: Extract Target Data Array, Metaphors, Optimizations. Apply t
 
 ### Data Sanitization Filter
 1. **Positive Polarity Gate:** Legacy rules default to the void. Retain only if explicitly naming a 3rd-party framework, proprietary path, verifiable security boundary, or unique domain constraint.
-2. **Worker Directives Exemption:** Preserve structural innovations that improve autonomy (few-shot code, git recovery, tool execution limits, Discovery Fallback).
-3. **Execution Exception:** Strip generic boundaries (e.g., "Modification Scope") and generic testing procedures. Defer to Forge-Procedure Module 1 Base Profile Override Rule.
-4. **Domain Exception:** Never discard cleanup rules referencing unique domain artifacts (e.g., `.nyc_output`).
-5. **Formatting:** Rewrite retained rules per Creative-Procedure Module 2.
-6. **Multi-Clause Preservation:** Preserve verbatim any retained rule containing a numbered decision tree, named tool constraint, or 2+ subordinate directives. Strip baseline sentences (Rule 7) before preserving the remainder.
-7. **Universal Baseline Exemption:** Aggressively strip baseline safety rules (Artifact Lockbox, Native Tool Lock, Unconditional Cleanup, No-Interaction Policy) to prevent duplicates.
+2. **Descriptive Revision Guard:** Proactively revise and tighten legacy descriptions, philosophies, and optimizations rather than blindly carrying them forward. Eliminate scope drift. Every agent possesses a unique talent that it must lean into; enforce this focus heavily in the rewritten descriptive text.
+3. **Worker Directives Exemption:** Preserve structural innovations that improve autonomy (few-shot code, git recovery, tool execution limits, Discovery Fallback).
+4. **Execution Exception:** Strip generic boundaries (e.g., "Modification Scope") and generic testing procedures. Defer to Forge-Procedure Module 1 Base Profile Override Rule.
+5. **Domain Exception:** Never discard cleanup rules referencing unique domain artifacts (e.g., `.nyc_output`).
+6. **Formatting:** Rewrite retained rules per Creative-Procedure Module 2.
+7. **Multi-Clause Preservation:** Preserve verbatim any retained rule containing a numbered decision tree, named tool constraint, or 2+ subordinate directives. Strip baseline sentences (Rule 8) before preserving the remainder.
+8. **Universal Baseline Exemption:** Aggressively strip baseline safety rules (Artifact Lockbox, Native Tool Lock, Unconditional Cleanup, No-Interaction Policy) to prevent duplicates.
    - **Baseline Extraction Sub-Rule:** If a legacy draft mixes baseline mechanics with genuine domain logic in one clause, strip only the baseline portion. Extract the domain-specific sentence into `salvaged_custom_logic` with a fresh label.
 
 ### Output Format
@@ -186,7 +187,7 @@ Output raw JSON matching the exact `payload.json` static schema. Do not map or r
 - **Strict Adherence:** Map salvaged custom logic to `salvaged_custom_logic`, and salvaged mandates to `data.strict_operational_mandates.salvaged_mandates`. Map few-shot examples to `coding_standards` (`good_code_snippet`, `bad_code_snippet`, `language`). Map interaction bans to `zero_interaction_mandates`. Do not invent net-new schema keys. Do not include dropped rules.
 - **Dynamic Label Injection:** Dynamically author and format your own bolded labels with bullets (e.g., `* **The Style Scope Guard:** `) inside JSON string values for fields mapped to the Strict Operational Rules section (such as `salvaged_custom_logic` and `archetype_slots`).
 - **Task Board Mapping:** If the Archetype requires the Task Board, explicitly map the literal string `".jules/agent_tasks.md"` to `data.memory_and_triage.agent_tasks_board`. Do not generate surrounding markdown or instructions.
-- **Archetype Physics Mapping:** Inject finalized `domain_anchor`, `mutation_scope`, `operational_boundaries`, `decisiveness_rule`, `workflow_execution`, and `journal_procedure` into `archetype_slots`. Preverse unique overrides in `salvaged_custom_logic` (Forge-Procedure Module 1).
+- **Archetype Physics Mapping:** Inject finalized `domain_anchor`, `mutation_scope`, `operational_boundaries`, `decisiveness_rule`, `workflow_execution`, and `journal_procedure` into `archetype_slots`. Map base profile key to `data.identity.archetype`. Preverse unique overrides in `salvaged_custom_logic` (Forge-Procedure Module 1).
 - **Presentation Mapping:** Inject finalized `presentation_slot` and `pr_headers` into `data.process.present`.
 - **Decoupled Velocity Generation:** Inject `execution_mandate`, `discovery_velocity_rule`, `execution_posture`, `reporter_procedure`, and `testing_doctrine` based on throughput and verification layers. Do not extract legacy pacing rules into `salvaged_custom_logic` if they overlap with the velocity classification.
 - **Phase 2 & Thematic Mapping:** Map Target Data Array to `data.process.target_matrix`, Execution Steps to `data.process.execute.execution_steps`, Heuristics to `data.process.verify.heuristic_verification`, Philosophy to `data.philosophy`, Optimizations to `data.favorite_optimizations`. Map `domain_autonomy_declaration` and `discovery_fallback` using exact strings from Forge-Procedure Module 4.
