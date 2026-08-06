@@ -89,7 +89,7 @@ class ToastNotification {
         `;
 
         this.element.querySelector('.toast-message').textContent = msgText;
-        this.element.className = 'toast';
+        this.element.className = 'toast rounded-xl shadow-lg backdrop-blur-md transition-all duration-300 ease-in-out';
         this.element.classList.add(type);
     }
 
