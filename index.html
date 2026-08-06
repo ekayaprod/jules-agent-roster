@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <div id="initial-loading-overlay" aria-busy="true" aria-label="Loading Application">
+    <div id="initial-loading-overlay" class="transition-all duration-500 ease-in-out backdrop-blur-md" aria-busy="true" aria-label="Loading Application">
       <div class="loading-spinner"></div>
       <div >Initializing Protocol Matrix...</div>
     </div>
@@ -63,7 +63,7 @@
         <div id="fetchingIndicator" class="term-session-line skeleton-pulse term-muted-text">[SYS] Awaiting repository connection...</div>
         <!-- 1-Line Terminal Feed Injected Here -->
       </div>
-      <div class="jules-pull-tab" id="julesPullTab" aria-label="Toggle Terminal Panel">
+      <div class="jules-pull-tab transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none hover:shadow-md" id="julesPullTab" aria-label="Toggle Terminal Panel" tabindex="0">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
       </div>
     </div>
