@@ -28,7 +28,7 @@
     "category": "Performance",
     "tier": "Core",
     "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge latency.",
-    "forge_version": "V85.2",
+    "forge_version": "V86.8",
     "promptFile": "prompts/Bolt+.md",
     "isCustom": false
   },
@@ -181,8 +181,8 @@
     "role": "Perimeter Fortifier",
     "category": "Security",
     "tier": "Core",
-    "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries.",
-    "forge_version": "V85.2",
+    "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries across the repository.",
+    "forge_version": "V86.8",
     "promptFile": "prompts/Sentinel+.md",
     "isCustom": false
   },
@@ -1667,7 +1667,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REFACTOR loose prompt strings into rigid XML-delimited structures to maximize model attention.",
-    "forge_version": "V84.0",
+    "forge_version": "V86.7",
     "promptFile": "prompts/fusions/Syntax.md",
     "isCustom": true
   },
