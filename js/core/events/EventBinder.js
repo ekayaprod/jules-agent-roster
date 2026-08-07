@@ -435,7 +435,13 @@ class EventBinder {
 
         const nav = app.elements["category-nav"];
         if (nav && nav.classList.contains("search-active")) {
-            app.searchController?.clearSearch();
+            // ☕ CAFFEINATED: Persist context. Hide search visually but retain query to prevent amnesiac loop.
+            if (!app.elements.searchInput || app.elements.searchInput.value.trim() === "") {
+                app.searchController?.clearSearch();
+            } else {
+                nav.classList.remove("search-active");
+                if (app.elements.searchInput.blur) app.elements.searchInput.blur();
+            }
             return;
         }
 
