@@ -743,7 +743,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "EVOLVE deprecated AI response shapes, sunset message formats, and fossilized prompt patterns.",
-    "forge_version": "V84.1",
+    "forge_version": "V86.8",
     "promptFile": "prompts/fusions/Futurist.md",
     "isCustom": true
   },
@@ -787,7 +787,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "MAINTAIN AUTOMATED CHORES THAT RELY ON HUMAN MEMORY TO ERADICATE STALE DEPENDENCIES.",
-    "forge_version": "V84.1",
+    "forge_version": "V86.8",
     "promptFile": "prompts/fusions/Groundskeeper.md",
     "isCustom": true
   },
