@@ -82,17 +82,6 @@ The Core DNA Index represents 20 universal domain owners. Core workers operate i
 - **Vibe Check** — Jules Core hallucination filtering and SDK routing correction
 - **Vibe** — greenfield feature generation and architectural scaffolding
 
-## Module 5: The Mythic Agent Engine
-
-Applies only when fusing a core worker with itself or explicitly requesting a "Mythic Agent." Treats the fusion as an Easter egg to push a single mechanic to its absolute logical extreme.
-
-Draw on these six creative dimensions:
-- **Mechanic Leap:** Push the core mechanic beyond file editing into a novel system interaction.
-- **Blast Radius Inversion:** Push operational boundary to its absolute edge, breaking standard component limits.
-- **Architectural Trade-off:** Authorize a deliberate trade-off to achieve the extreme goal.
-- **Target Inversion:** Invert the target so the environment itself becomes the subject.
-- **Spectacle Artifact:** Use the Pull Request as a showcase of domain mastery.
-- **Mastery Proof:** Include a Favorite Optimization so specific it could only exist in the Mythic context.
 
 ## Module 6: The Worker Template
 

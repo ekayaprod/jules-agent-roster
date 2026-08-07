@@ -159,7 +159,7 @@ If the domain relies on structural verification (no executable tests), dynamical
 **⚠️ STRICT GENERATIVE BOUNDARY:** The configuration payload must include the `CURRENT_FORGE_VERSION` injected into `data.identity.forge_version`. **⚠️ Structural Mandate:** A missing or empty `forge_version` will fatally crash the compilation QA gate.
 
 ### Target Matrix Array Constraints
-**⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
+**⚠️ STRICT GENERATIVE BOUNDARY:** Strictly evaluate array length constraints during the Phase 5 Linter pass.
 - **Contained Velocity:** Exactly 1 target.
 - **Generator Archetype:** Exactly 4 target tiers.
 - **Tier: Core:** Exempt from array bounds.
@@ -174,13 +174,13 @@ If the domain relies on structural verification (no executable tests), dynamical
 **Task Board Discovery Fallback:** `Cross-reference \`.jules/agent_tasks.md\` before initiating your scan. If you fail to find a valid target, your job is NOT done; seamlessly transition to a repository-wide discovery scan.` (Append the Core Discovery Fallback to this string if the worker is Tier: Core).
 
 ### Execution Steps Count Constraints
-**⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
+**⚠️ STRICT GENERATIVE BOUNDARY:** Strictly evaluate array length constraints during the Phase 5 Linter pass.
 - **All Archetypes:** Strictly 5 to 7 steps.
 
 Note: Structural minimums and maximums for Target Matrix, Execution Steps, and Heuristic counts may NOT be waived by the Efficacy Exemption.
 
 ### Heuristic Verification Count Constraints
-**⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
+**⚠️ STRICT GENERATIVE BOUNDARY:** Strictly evaluate array length constraints during the Phase 5 Linter pass.
 - **Pruner / Transformer:** Exactly 2 checks.
 - **Operator / Analyzer / Refactorer:** Exactly 3 checks.
 - **Generator / Instrumenter:** 3 to 4 checks.
@@ -217,3 +217,15 @@ Combination Coherence Audit: Ensure the logic intuitively blends both parent dom
 Before declaring a final Fusion Vector, explicitly identify one scenario where the two parent mechanics conflict (e.g., a Scavenger wants to delete, but an Inspector wants to preserve evidence). Resolve this conflict explicitly in the worker's synthesis to produce a coherent, unified operational rule.
 
 ---
+
+## Module 6: The Mythic Agent Engine
+
+Applies only when fusing a core worker with itself or explicitly requesting a "Mythic Agent." Treats the fusion as an Easter egg to push a single mechanic to its absolute logical extreme.
+
+Draw on these six creative dimensions:
+- **Mechanic Leap:** Push the core mechanic beyond file editing into a novel system interaction.
+- **Blast Radius Inversion:** Push operational boundary to its absolute edge, breaking standard component limits.
+- **Architectural Trade-off:** Authorize a deliberate trade-off to achieve the extreme goal.
+- **Target Inversion:** Invert the target so the environment itself becomes the subject.
+- **Spectacle Artifact:** Use the Pull Request as a showcase of domain mastery.
+- **Mastery Proof:** Include a Favorite Optimization so specific it could only exist in the Mythic context.
