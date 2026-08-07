@@ -219,25 +219,28 @@
 .tier-rare .flip-card-front, .tier-rare .flip-card-back, .fusion-item.tier-rare { border-color: var(--accent); }
 
 @keyframes epicGlow {
-  0% { box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); border-color: var(--mythic); }
-  50% { box-shadow: 0 0 1.5rem rgba(217, 70, 239, 0.4); border-color: var(--mythic); }
-  100% { box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); border-color: var(--mythic); }
+  0% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.05); }
+  100% { opacity: 0.15; transform: scale(1); }
 }
-.tier-epic .flip-card-front, .tier-epic .flip-card-back, .fusion-item.tier-epic { border-color: var(--mythic); box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); animation: epicGlow 4s infinite ease-in-out; }
+.tier-epic .flip-card-front, .tier-epic .flip-card-back, .fusion-item.tier-epic { border-color: var(--mythic); box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 0.15); }
+.tier-epic .flip-card-front::before, .tier-epic .flip-card-back::before, .fusion-item.tier-epic::before { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; box-shadow: 0 0 0.9375rem rgba(217, 70, 239, 1); animation: epicGlow 4s infinite ease-in-out; pointer-events: none; }
 
 @keyframes legendaryGlow {
-  0% { box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); border-color: var(--warning); }
-  50% { box-shadow: 0 0 1rem rgba(251, 191, 36, 0.6); border-color: var(--warning); }
-  100% { box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); border-color: var(--warning); }
+  0% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+  100% { opacity: 0.4; transform: scale(1); }
 }
-.tier-legendary .flip-card-front, .tier-legendary .flip-card-back, .fusion-item.tier-legendary { border-color: var(--warning); box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); animation: legendaryGlow 4s infinite ease-in-out; }
+.tier-legendary .flip-card-front, .tier-legendary .flip-card-back, .fusion-item.tier-legendary { border-color: var(--warning); box-shadow: 0 0 0.625rem rgba(251, 191, 36, 0.4); }
+.tier-legendary .flip-card-front::before, .tier-legendary .flip-card-back::before, .fusion-item.tier-legendary::before { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; box-shadow: 0 0 0.625rem rgba(251, 191, 36, 1); animation: legendaryGlow 4s infinite ease-in-out; pointer-events: none; }
 
 @keyframes mythicGlow {
-  0% { box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); border-color: var(--success); }
-  50% { box-shadow: 0 0 1.5rem rgba(16, 185, 129, 0.4); border-color: var(--success); }
-  100% { box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); border-color: var(--success); }
+  0% { opacity: 0.15; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.05); }
+  100% { opacity: 0.15; transform: scale(1); }
 }
-.tier-mythic .flip-card-front, .tier-mythic .flip-card-back, .fusion-item.tier-mythic { border-color: var(--success); box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); animation: mythicGlow 4s infinite ease-in-out; }
+.tier-mythic .flip-card-front, .tier-mythic .flip-card-back, .fusion-item.tier-mythic { border-color: var(--success); box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 0.15); }
+.tier-mythic .flip-card-front::before, .tier-mythic .flip-card-back::before, .fusion-item.tier-mythic::before { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; box-shadow: 0 0 0.9375rem rgba(16, 185, 129, 1); animation: mythicGlow 4s infinite ease-in-out; pointer-events: none; }
 
 /* Rarity Animation Particles Sync */
 .tier-common .anim-particle { --particle-color: var(--text-secondary); }
