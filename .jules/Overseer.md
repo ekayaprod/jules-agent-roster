@@ -1,13 +1,12 @@
 # Overseer Journal
-## Mapped Domains:
-- js/UI
-- js/core
-- css
-- js/Features
-- js/Services
-- js/Utils
+Mapped target directories for anomalies.
 
-## Completed Actions:
-- Mapped Monoliths
-- Mapped Semantic Dust (Empty Catch blocks/Empty Object declarations)
-- Mapped Hardcoded configurations and raw telemetry (console.*)
+Targets added to .jules/agent_tasks.md:
+- [REFACTORER] js/Features/JulesTerminal/JulesTerminal.js
+- [REFACTORER] js/Features/JulesTerminal/JulesModals.test.js
+- [REFACTORER] js/core/RosterApp.js
+- [REFACTORER] js/Features/Fusion/AgentPicker.test.js
+- [REFACTORER] benchmark.js
+- [REFACTORER] js/core/events/EventBinder.js
+- [INSTRUMENTER] js/Utils/network/network-utils.js
+- [TRANSFORMER] css/main.css
