@@ -309,9 +309,6 @@ class FusionLab {
    * @returns {void}
    */
   resetLab() {
-    this.state.slotA = null;
-    this.state.slotB = null;
-
     this.returnToLab();
   }
 

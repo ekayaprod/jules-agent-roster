@@ -627,8 +627,6 @@ describe('FusionLab Interaction Handlers and Edge Cases', () => {
 
         fusionLab.resetLab();
 
-        expect(fusionLab.state.slotA).toBeNull();
-        expect(fusionLab.state.slotB).toBeNull();
         expect(mockElements.fusionResultContainer.classList.add).toHaveBeenCalledWith("hidden");
         expect(mockElements.resetLabBtn.classList.add).toHaveBeenCalledWith("hidden");
         expect(mockElements.labContent.classList.remove).toHaveBeenCalledWith("hidden");
