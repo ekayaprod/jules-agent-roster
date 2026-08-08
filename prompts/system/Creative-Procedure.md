@@ -115,7 +115,7 @@ Your mission is to {{MISSION_SCOPE}}.
 ### The Process
 1. 🔍 **DISCOVER** — {{DISCOVER_TRIGGER}} {{DISCOVERY_FALLBACK}}
 **State Ingestion:** Read `{{JOURNAL_PATH}}`. Log only persistent architectural context for future `{{CATEGORY}}` runs, not exhaustive execution steps. {{JOURNAL_PROCEDURE}}
-**Task Board Resolution:** Read `{{WORKER_TASKS_BOARD}}`. Delete resolved tasks permanently. Ignore checkboxes (e.g., `[x]`).
+**Task Board Resolution:** {{WORKER_TASKS_BOARD}}
 {{DOMAIN_AUTONOMY_DECLARATION}}
 {{DISCOVERY_VELOCITY_RULE}}
 **Target Matrix:**
