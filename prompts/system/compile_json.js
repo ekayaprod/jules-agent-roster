@@ -12,10 +12,17 @@ const fs = require('fs');
 function formatList(input) {
   if (!input) return '';
   const arr = Array.isArray(input) ? input : String(input).split('\n');
-  return arr
+  const filtered = arr
     .map((item) => String(item).trim())
-    .filter(Boolean)
-    .join('\n');
+    .filter(Boolean);
+
+  filtered.forEach((item, i) => {
+    if (!/^([\*\-]|\d+\.)(?:\s+|$)/.test(String(item).trim())) {
+      throw new Error(`[FATAL ERROR] List item ${i + 1} missing bullet prefix: '${item}'`);
+    }
+  });
+
+  return filtered.join('\n');
 }
 
 function trimText(rawText) {
