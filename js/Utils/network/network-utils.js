@@ -17,17 +17,20 @@ class NetworkUtils {
    * * Historical Intent: Added via PR #2007 by ekayaprod to prevent API abuse and thundering herds.
    * * Magic Numbers: Limits requests to 100 within a 60000ms (1 minute) sliding window.
    */
+  static _extractHostname(url) {
+    try {
+        return new URL(url).hostname;
+    } catch (e) {
+        return url;
+    }
+  }
+
   static _enforceRateLimit(url) {
     if (typeof url !== 'string' || !url.trim()) {
         throw new TypeError('Invalid URL parameter');
     }
     const now = Date.now();
-    let hostname;
-    try {
-        hostname = new URL(url).hostname;
-    } catch (e) {
-        hostname = url;
-    }
+    const hostname = NetworkUtils._extractHostname(url);
 
     if (!this._requestBuckets[hostname]) {
       this._requestBuckets[hostname] = { count: 0, windowStart: now };
@@ -45,6 +48,22 @@ class NetworkUtils {
     bucket.count++;
   }
 
+  static _checkPrototypePollution(body) {
+    try {
+      let isPolluted = false;
+      JSON.parse(body, (key, value) => {
+        if (key === '__proto__') {
+          isPolluted = true;
+        }
+        return value;
+      });
+      return isPolluted;
+    } catch (e) {
+      // If parsing fails, fall back to blocking it for safety
+      return true;
+    }
+  }
+
   static _validateBody(body) {
     if (!body) return;
     if (typeof body !== 'string') {
@@ -55,19 +74,7 @@ class NetworkUtils {
     }
     if (!body.includes('__proto__')) return;
 
-    let isPolluted = false;
-    try {
-      JSON.parse(body, (key, value) => {
-        if (key === '__proto__') {
-          isPolluted = true;
-        }
-        return value;
-      });
-    } catch (e) {
-      // If parsing fails, fall back to blocking it for safety
-      isPolluted = true;
-    }
-    if (isPolluted) {
+    if (NetworkUtils._checkPrototypePollution(body)) {
       throw new Error('Invalid payload: Prototype pollution detected in payload.');
     }
   }

@@ -57,11 +57,11 @@
   {
     "name": "Helix",
     "emoji": "🧬",
-    "role": "Molecular Centrifuge",
+    "role": "Logic Centrifuge",
     "category": "Architecture",
     "tier": "Core",
     "description": "COLLAPSE sprawling imperative logic into highly dense, functional crystals using high-pressure vertical reduction.",
-    "forge_version": "V85.1",
+    "forge_version": "V86.9",
     "promptFile": "prompts/Helix.md",
     "isCustom": false
   },

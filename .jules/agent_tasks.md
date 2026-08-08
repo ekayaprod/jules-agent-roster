@@ -9,5 +9,5 @@
 - [REFACTORER] `js/Features/Fusion/AgentPicker.test.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (545 lines).
 - [REFACTORER] `benchmark.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (536 lines).
 - [REFACTORER] `js/core/events/EventBinder.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (526 lines).
-- [INSTRUMENTER] `js/Utils/network/network-utils.js`: Naked execution wrapper blocks and complex URL handling that require better type-guards.
+- [x] [INSTRUMENTER] `js/Utils/network/network-utils.js`: Naked execution wrapper blocks and complex URL handling that require better type-guards.
 - [TRANSFORMER] `css/main.css`: Rigid Presentation States with hardcoded hex codes (#38bdf8, #0ea5e9, etc).
