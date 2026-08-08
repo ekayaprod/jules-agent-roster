@@ -63,7 +63,6 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   }
 
   // --- STRICT PARAMETER VALIDATION (QA GATE) ---
-  const isMythic = String(data.identity?.tier || data.tier || '').toLowerCase() === 'mythic';
 
   const diagnostic = data._diagnostic;
   if (
@@ -94,19 +93,17 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   const roleStr = data.identity?.role || '';
   const roleWords = roleStr.trim().split(/\s+/).filter(Boolean);
-  if (!isMythic && roleWords.length !== 2) {
+  if (roleWords.length !== 2) {
     throw new Error(
       `[FATAL ERROR] Role must be exactly 2 words. Found ${roleWords.length}: '${roleStr}'`,
     );
   }
   const forbiddenArticles = ['the', 'a', 'an'];
-  if (!isMythic) {
-    roleWords.forEach((word) => {
+  roleWords.forEach((word) => {
       if (forbiddenArticles.includes(word.toLowerCase())) {
         throw new Error(`[FATAL ERROR] Role contains forbidden article: '${word}'.`);
       }
     });
-  }
 
   const synthesis = data.identity?.synthesis || '';
   if (synthesis.length > 145) {
@@ -118,7 +115,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   const definedThemeVerb = data.process?.execute?.theme_verb || data.process?.theme_verb || '';
   const firstWordMatch = synthesis.trim().split(/\s+/)[0];
 
-  if (!isMythic && definedThemeVerb && firstWordMatch) {
+  if (definedThemeVerb && firstWordMatch) {
     if (firstWordMatch.replace(/[^a-zA-Z]/g, '').toUpperCase() !== definedThemeVerb.toUpperCase()) {
       throw new Error(
         `[FATAL ERROR] Synthesis first word '${firstWordMatch}' does not match defined Theme Verb '${definedThemeVerb}'.`,
@@ -126,7 +123,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     }
   }
 
-  if (!isMythic && firstWordMatch) {
+  if (firstWordMatch) {
     const cleanWord = firstWordMatch.replace(/[^a-zA-Z]/g, '');
     if (cleanWord && cleanWord !== cleanWord.toUpperCase()) {
       throw new Error(
@@ -136,13 +133,13 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   }
 
   const philosophyRaw = data.philosophy || [];
-  if (!isMythic && philosophyRaw.length !== 5) {
+  if (philosophyRaw.length !== 5) {
     throw new Error(`[FATAL ERROR] Philosophy must contain exactly 5 bullets. Found ${philosophyRaw.length}.`);
   }
   philosophyRaw.forEach((item, index) => {
     let cleanItem = String(item)
       .replace(/^[\*\-]\s+/, '');
-    if (!isMythic && /\*\*[^\*:]+:\*\*|\*\*[^\*]+\*\*:/.test(cleanItem)) {
+    if (/\*\*[^\*:]+:\*\*|\*\*[^\*]+\*\*:/.test(cleanItem)) {
       throw new Error(
         `[FATAL ERROR] Philosophy bullet ${index + 1} contains a forbidden bold label pattern ('**Text:**'). Remove all bold labels from the philosophy values.`,
       );
@@ -150,7 +147,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   });
 
   const optimizationsRaw = data.favorite_optimizations || [];
-  if (!isMythic && optimizationsRaw.length !== 6) {
+  if (optimizationsRaw.length !== 6) {
     throw new Error(`[FATAL ERROR] Favorite Optimizations must contain exactly 6 entries. Found ${optimizationsRaw.length}.`);
   }
 
@@ -216,7 +213,6 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     LANGUAGE: data.coding_standards?.language || '',
     GOOD_CODE: cleanCodeFence(data.coding_standards?.good_code_snippet),
     BAD_CODE: cleanCodeFence(data.coding_standards?.bad_code_snippet),
-    PRIMARY_RESPONSIBILITY: trimText(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor),
     THE_SCOPE: trimText(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope),
     EXECUTION_RULE: trimText(finalExecutionRule),
     RESILIENCE_PROCEDURE: trimText(data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries),
@@ -229,7 +225,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     SALVAGED_CUSTOM_LOGIC: formatList(data.salvaged_custom_logic),
     CROSS_VECTOR_GRANTS: formatList(data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants),
     JOURNAL_PATH: isCore ? `.jules/${data.identity?.name || 'journal'}.md` : `.jules/journal_${category.toLowerCase()}.md`,
-    WORKER_TASKS_BOARD: trimText(data.memory_and_triage?.agent_tasks_board),
+    TASK_BOARD_PROTOCOL: trimText(data.memory_and_triage?.task_board_protocol),
     JOURNAL_PROCEDURE: trimText(data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure),
     DISCOVER_TRIGGER: String(data.process?.discover?.trigger || '').replace(/^via\s+/i, ''),
     DISCOVERY_FALLBACK: trimText(data.process?.discover?.discovery_fallback),
