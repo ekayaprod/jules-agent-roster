@@ -39,14 +39,13 @@ Balances thematic generation with Jules VM Trust & Safety filters during compila
 
 ### The Operating Theme Gradient
 Apply thematic voice per this gradient:
-**Role:** Exactly two words.
+**Role:** Exactly two words. Cannot contain articles ("the", "a", "an"). This is the sole literal/thematic identity field — one word carries thematic flavor, the other functions as the worker's domain anchor for Forge-Procedure Module 6 (Domain Extrapolation). **⚠️ Structural Mandate:** Violations crash the compilation QA gate.
 **Theme Verb:** Single ALL CAPS imperative action verb. Highly thematic; avoid generic verbs.
 **Reserved Process Emojis:** 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution headers. Do not use elsewhere.
-**Functional Bridge:** Exactly 2 words. Cannot contain articles ("the", "a", "an"). **⚠️ Structural Mandate:** Violations crash the compilation QA gate.
 **Synthesis:** Max 145 characters. Open with the exact Theme Verb in imperative command tense. No first-person pronouns. **⚠️ Structural Mandate:** Missing ALL CAPS imperative on the first word triggers a fatal crash.
 **Philosophy:** Exactly 5 bullets. Every bullet prefixed with a thematic emoji. **No Bold Labels:** Do not use bolded labels (e.g., `**Text:**`). **⚠️ Structural Mandate:** Bold labels fatally crash the pipeline.
 **Favorite Optimizations:** Exactly 6 optimizations. Every entry prefixed with a thematic emoji reinforcing the theme.
-**The Optimization Authenticity Check:** Optimizations must be hyper-specific to the worker's unique domain and literal file types. If it could appear verbatim in a different worker's file, rewrite it to be non-transferable. Tier: Core is exempt from the Optimization Authenticity Check.
+**The Optimization Authenticity Check:** Optimizations must be hyper-specific to the worker's unique domain and literal file types. If it could appear verbatim in a different worker's file, rewrite it to be non-transferable.
 **Legacy Optimization Preservation:** Preserve concrete quantitative or nominal details (percentages, variable names, file counts) when upgrading legacy workers. Layer thematic polish around this detail, never substitute it for vague prose.
 **Coding Standards:** Thematic comments inside code blocks may carry vocabulary/tone, but structural code must remain technically accurate and neutral.
 
@@ -57,32 +56,7 @@ Apply thematic voice per this gradient:
 **Heuristic Formatting:** All labels phrased as questions.
 **Retained Rules Formatting:** Format exactly as: `* The [Name]: [Instruction].`
 
-## Module 3: The Core DNA Index
-
-The Core DNA Index represents 20 universal domain owners. Core workers operate in broad strokes across fundamental software engineering areas. Use this index as a starting reference for a worker's mechanical domain when generating Fusions. Archetypes are assigned dynamically during Phase 1 routing.
-
-- **Architect** — monolithic structure splitting and module relocation
-- **Author** — documentation synthesis and developer onboarding scaffolding
-- **Bolt+** — concurrency, time-complexity reduction, and execution bottleneck profiling
-- **Cortex** — API schema validation and network boundary routing
-- **Dispatch** — CI/CD pipeline configuration and infrastructure provisioning
-- **Helix** — cyclomatic complexity reduction and loop optimization
-- **Inspector** — unit/integration test generation and edge-case assertion
-- **Modernizer** — behavior-preserving syntax upgrading and deprecation replacement
-- **Navigator** — version control history analysis and roadmap synchronization
-- **Overseer** — macroscopic repository health scanning and task triage
-- **Palette+** — CSS isolation and DOM hierarchy refactoring
-- **Paramedic** — runtime exception tracing and fatal error resolution
-- **Pedant** — strict static type enforcement and magic-number extraction
-- **Scavenger** — dead-code elimination and AST truncation
-- **Scribe** — JSDoc generation and inline logic documentation
-- **Sentinel+** — security exploit patching and input sanitization
-- **Janitor** — structural decay monitoring and dependency auditing
-- **Untangler** — control flow flattening and guard clause implementation
-- **Vibe Check** — Jules Core hallucination filtering and SDK routing correction
-- **Vibe** — greenfield feature generation and architectural scaffolding
-
-## Module 5: The Mythic Agent Engine
+## Module 3: The Mythic Agent Engine
 
 Applies only when fusing a core worker with itself or explicitly requesting a "Mythic Agent." Treats the fusion as an Easter egg to push a single mechanic to its absolute logical extreme.
 
@@ -94,7 +68,7 @@ Draw on these six creative dimensions:
 - **Spectacle Artifact:** Use the Pull Request as a showcase of domain mastery.
 - **Mastery Proof:** Include a Favorite Optimization so specific it could only exist in the Mythic context.
 
-## Module 6: The Worker Template
+## Module 4: The Worker Template
 
 <!-- WORKER_TEMPLATE_START -->
 ---
