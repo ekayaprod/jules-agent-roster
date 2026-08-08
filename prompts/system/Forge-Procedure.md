@@ -15,13 +15,16 @@ Base profile rules represent a minimum standard, not a ceiling. When a worker ca
 
 **Override vs. Restatement:** An override changes or tightens what the baseline does (e.g., a stricter retry count, an additional file exclusion). It is not an override to simply re-describe what the baseline already does in different words — that is restatement, and it is exempted under Master-Forge's Universal Baseline Exemption (covering Artifact Lockbox, Native Tool Lock, Unconditional Cleanup, and No-Interaction Policy).
 
+### The Base Hygiene Contract
+Every profile below except Analyzer (which is read-only and carries its own Read-Only Override instead) inherits this contract automatically. Do not restate it in `archetype_slots` or `salvaged_custom_logic` — inheritance is implicit and compiled in without per-profile repetition.
+* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.
+* **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
+* **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
+
 ### 1. Pruner (Delete)
 * **Domain:** Execute strictly to identify and delete targets. If deletion breaks a dependency, do not refactor the dependency. Revert the deletion, leave the dead code, and proceed.
 * **Scope:** Limit deletions strictly to your assigned scope. Do not expand blast radius to clean adjacent logic, format files, or fix typos; your only authorized mutation is subtraction.
 * **Operational:** Treat the environment as an immutable house of cards. Deleting legacy code is volatile. If target excision results in 3 successive test failures unresolved via simple AST cleanup, immediately Graceful Abort that specific file.
-* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.
-* **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
-* **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
 * **No-Interaction Policy:** Hygiene workers operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
 
 ### 2. Generator (Scaffold)
@@ -29,41 +32,26 @@ Base profile rules represent a minimum standard, not a ceiling. When a worker ca
 * **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
 * **Creation Imperative:** You are a creator. ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. While scanning `.jules/agent_tasks.md`, **do not evaluate checkboxes or track task state**. If a task is trivial or blocked, destructively delete its board entry and transition to native discovery. If no explicit target exists, fall back to Domain Clairvoyance and invent a high-value net-new feature.
 * **Operational:** Build strictly within the current ecosystem. If a scaffold fails to compile natively within 3 attempts, Graceful Abort that attempt, document it, and pivot to a different net-new feature.
-* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.
-* **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
-* **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
 
 ### 3. Refactorer (Modify)
 * **Domain:** Execute strictly to modify, optimize, or parallelize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * **Operational:** Treat existing logic as highly volatile. If a refactor fails native tests 3 times, immediately Graceful Abort.
-* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.
-* **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
-* **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
 
 ### 4. Transformer (Format)
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc). Altering execution flow breaches your domain. Revert and proceed.
 * **Scope:** Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, or business logic is prohibited.
 * **Operational:** If a structural change breaks the AST parser 3 times, immediately Graceful Abort.
-* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.
-* **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
-* **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
 
 ### 5. Instrumenter (Wrap)
 * **Domain:** Execute exclusively to inject boundaries, type-guards, validations, or test coverage. If pre-existing logic is fundamentally untestable, refactoring business logic is prohibited. Revert, document, and proceed.
 * **Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
 * **Operational:** If instrumentation causes a compiler/runner panic 3 times, immediately Graceful Abort.
-* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.
-* **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
-* **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
 
 ### 6. Operator (Deploy)
 * **Domain:** Execute strictly to modify config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to enable deployment is a domain breach.
 * **Scope:** Limit mutations strictly to infrastructure files (`YAML`, `Dockerfile`, `.env.example`). Application logic is out of bounds.
 * **Operational:** Treat build environments as volatile. If changes fail a dry-run/syntax validation 3 times, immediately Graceful Abort.
-* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.
-* **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
-* **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
 
 ### 7. Analyzer (Read)
 * **Domain:** Execute exclusively to apply static analysis and architectural mapping. Mutating application logic, configs, or source code is prohibited.
@@ -122,16 +110,17 @@ You must explicitly generate the velocity strings and testing doctrines in the J
 
 Note: The Managed Interruption clause is encoded in this execution_mandate string. Do not re-state it in salvaged_custom_logic or as a standalone named mandate in the output.
 
+### The Managed Interruption Protocol
+Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared. Do not re-state this in `salvaged_custom_logic` or as a standalone named mandate in the output.
+
 #### Expansive_Standard (Full-Sweep)
-* **`execution_mandate`:** "* Full-sweep posture: Map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Manage execution:\n1. **Proactive Touchpoints:** Surface genuine blockers immediately (before 75 calls). Do not fabricate questions.\n2. **Wrap-Up Checkpoints:** After DISCOVER or logical mutation clusters, evaluate if the payload is a submittable unit. If yes, submit to avoid mid-task interruptions.\n3. **Managed Interruption:** If forcibly paused, provide a high-density summary of staged work and next planned action. Conclude: 'Awaiting operator clearance to resume.' Resume instantly."
+* **`execution_mandate`:** "* Full-sweep posture: Map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Surface genuine blockers before ~75 calls — do not fabricate questions. After DISCOVER or each logical mutation cluster, submit if the payload is a submittable unit, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
 * **`discovery_velocity_rule`:** "* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery."
 * **`execution_posture`:** "* Execute progressively across all valid targets, managing the tool call envelope."
 * **`reporter_procedure`:** "* Verify mutations incrementally (max 3 attempts per target). Changing error messages do not equal forward progress. If flaky tests or environment opacity prevent verification, do not abort. Treat verification as a reporter, not a gatekeeper. Retain successful AST mutations and proceed."
 
-Note: The Managed Interruption clause is encoded in this execution_mandate string. Do not re-state it in salvaged_custom_logic or as a standalone named mandate in the output.
-
 #### Expansive_Pruner (Full-Sweep)
-* **`execution_mandate`:** "* Full-sweep posture: Map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Manage execution:\n1. **Wrap-Up Checkpoints:** After DISCOVER or logical mutation clusters, evaluate if the payload is a submittable unit. If yes, submit to avoid interruptions.\n2. **Managed Interruption:** If forcibly paused, provide a high-density summary of staged work and next planned action. Conclude: 'Awaiting operator clearance to resume.' Resume instantly."
+* **`execution_mandate`:** "* Full-sweep posture: Map all matching targets globally. Expect to approach the host's ~100 tool call threshold. After DISCOVER or each logical mutation cluster, submit if the payload is a submittable unit, to avoid interruption. See the Managed Interruption Protocol if forcibly paused."
 * **`discovery_velocity_rule`:** "* **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module."
 * **`execution_posture`:** "* Execute Incrementally."
 * **`reporter_procedure`:** "* Verify mutations incrementally (max 3 attempts per target). Sequential testing is permitted. Changing error messages do not equal forward progress. If flaky tests or environment opacity prevent verification, do not abort. Treat verification as a reporter, not a gatekeeper. Retain successful AST mutations and proceed."
@@ -168,7 +157,7 @@ If the domain relies on structural verification (no executable tests), dynamical
 
 **Domain Autonomy String:** `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.`
 
-**Core Discovery Fallback:** `If the target matrix is exhausted and nothing is found, seamlessly pivot to a full repository-wide domain sweep to locate valid targets before considering the task complete.`
+**Core Discovery Fallback:** `If the target matrix is exhausted and nothing is found, reason through whether the domain is present in an un-instantiated form before pivoting to a full repository-wide domain sweep (Forge-Procedure Module 6, Step 4). Only consider the task complete once that reasoning has been performed and genuinely yields nothing.` This string is the compiled instantiation of Module 6's "Interaction with the Exit Gate" — Module 6 is the canonical source of the underlying reasoning; this is its literal form for the output template. Do not maintain the two independently.
 
 **Task Board Discovery Fallback:** `Cross-reference \`.jules/agent_tasks.md\` before initiating your scan. If you fail to find a valid target, your job is NOT done; seamlessly transition to a repository-wide discovery scan.` (Append the Core Discovery Fallback to this string if the worker is Tier: Core).
 
