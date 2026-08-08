@@ -22,7 +22,7 @@
     "jest": "30.4.2",
     "jest-environment-jsdom": "^30.4.1",
     "jsdom": "30.0.1",
-    "playwright": "1.62.0"
+    "playwright": "^1.62.0"
   },
   "jest": {
     "testEnvironment": "jsdom",
