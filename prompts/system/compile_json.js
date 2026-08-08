@@ -15,9 +15,6 @@ function formatList(input) {
   return arr
     .map((item) => String(item).trim())
     .filter(Boolean)
-    .map((item) => {
-      return /^([\*\-]|\d+\.)(?:\s+|$)/.test(item) ? item : `* ${item}`;
-    })
     .join('\n');
 }
 
