@@ -101,20 +101,13 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     );
   }
 
-  const functionalBridge = data.identity?.functional_bridge || '';
-  const fbWords = functionalBridge.trim().split(/\s+/).filter(Boolean);
-  if (!isMythic && !isCore && fbWords.length !== 2) {
-    throw new Error(
-      `[FATAL ERROR] Functional Bridge must be exactly 2 words. Found ${fbWords.length}: '${functionalBridge}'`,
-    );
-  }
   const forbiddenArticles = ['the', 'a', 'an'];
   if (!isMythic && !isCore) {
-    fbWords.forEach((word) => {
-    if (forbiddenArticles.includes(word.toLowerCase())) {
-      throw new Error(`[FATAL ERROR] Functional Bridge contains forbidden article: '${word}'.`);
-    }
-  });
+    roleWords.forEach((word) => {
+      if (forbiddenArticles.includes(word.toLowerCase())) {
+        throw new Error(`[FATAL ERROR] Role contains forbidden article: '${word}'.`);
+      }
+    });
   }
 
   const synthesis = data.identity?.synthesis || '';

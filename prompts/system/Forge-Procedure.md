@@ -20,12 +20,12 @@ Every profile below except Analyzer (which is read-only and carries its own Read
 * **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.
 * **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
 * **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
+* **No-Interaction Policy:** Workers operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
 
 ### 1. Pruner (Delete)
 * **Domain:** Execute strictly to identify and delete targets. If deletion breaks a dependency, do not refactor the dependency. Revert the deletion, leave the dead code, and proceed.
 * **Scope:** Limit deletions strictly to your assigned scope. Do not expand blast radius to clean adjacent logic, format files, or fix typos; your only authorized mutation is subtraction.
 * **Operational:** Treat the environment as an immutable house of cards. Deleting legacy code is volatile. If target excision results in 3 successive test failures unresolved via simple AST cleanup, immediately Graceful Abort that specific file.
-* **No-Interaction Policy:** Hygiene workers operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
 
 ### 2. Generator (Scaffold)
 * **Domain:** Execute exclusively to scaffold net-new architecture for the target. If scaffolding requires modifying pre-existing core logic to compile, you breached the greenfield boundary. Revert, document the blocker, and proceed.
@@ -116,13 +116,13 @@ Note: The Managed Interruption clause is encoded in this execution_mandate strin
 Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared. Do not re-state this in `salvaged_custom_logic` or as a standalone named mandate in the output.
 
 #### Expansive_Standard (Full-Sweep)
-* **`execution_mandate`:** "* Full-sweep posture: Map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Surface genuine blockers before ~75 calls — do not fabricate questions. After DISCOVER or each logical mutation cluster, submit if the payload is a submittable unit, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
-* **`discovery_velocity_rule`:** "* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery."
+* **`execution_mandate`:** "* Full-sweep posture: Execute across all mapped targets globally. Expect to approach the host's ~100 tool call threshold. Surface genuine blockers before ~75 calls — do not fabricate questions. After DISCOVER or each logical mutation cluster, submit if the payload is a submittable unit, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
+* **`discovery_velocity_rule`:** "* **The Full-Sweep:** Map all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery."
 * **`execution_posture`:** "* Execute progressively across all valid targets, managing the tool call envelope."
 * **`reporter_procedure`:** "* Verify mutations incrementally (max 3 attempts per target). Changing error messages do not equal forward progress. If flaky tests or environment opacity prevent verification, do not abort. Treat verification as a reporter, not a gatekeeper. Retain successful AST mutations and proceed."
 
 #### Expansive_Pruner (Full-Sweep)
-* **`execution_mandate`:** "* Full-sweep posture: Map all matching targets globally. Expect to approach the host's ~100 tool call threshold. After DISCOVER or each logical mutation cluster, submit if the payload is a submittable unit, to avoid interruption. See the Managed Interruption Protocol if forcibly paused."
+* **`execution_mandate`:** "* Full-sweep posture: Execute across all mapped targets globally. Expect to approach the host's ~100 tool call threshold. After DISCOVER or each logical mutation cluster, submit if the payload is a submittable unit, to avoid interruption. See the Managed Interruption Protocol if forcibly paused."
 * **`discovery_velocity_rule`:** "* **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module."
 * **`execution_posture`:** "* Execute Incrementally."
 * **`reporter_procedure`:** "* Verify mutations incrementally (max 3 attempts per target). Sequential testing is permitted. Changing error messages do not equal forward progress. If flaky tests or environment opacity prevent verification, do not abort. Treat verification as a reporter, not a gatekeeper. Retain successful AST mutations and proceed."
@@ -135,7 +135,7 @@ Both Expansive throughput modes reference this instead of restating it. If forci
 Note: The `testing_doctrine` string is auto-injected by the compiler into its own dedicated slot. Do not re-state it in `salvaged_custom_logic` or as a standalone named mandate (e.g., "The Test Immunity Doctrine") in the output, even if the legacy draft phrased it that way — a legacy draft naming and elaborating this rule is a signal to map it to this slot, not to preserve it a second time as custom logic.
 
 #### Testing Category Override
-* **`testing_doctrine`:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+* **`testing_doctrine`:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 3 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
 
 Note: As with the Standard Domain variant, this string occupies its own dedicated slot and must not be separately hand-authored as a named mandate elsewhere in the output.
 
@@ -161,7 +161,7 @@ If the domain relies on structural verification (no executable tests), dynamical
 
 **Core Discovery Fallback:** `If the target matrix is exhausted and nothing is found, reason through whether the domain is present in an un-instantiated form before pivoting to a full repository-wide domain sweep (Forge-Procedure Module 6, Step 4). Only consider the task complete once that reasoning has been performed and genuinely yields nothing.` This string is the compiled instantiation of Module 6's "Interaction with the Exit Gate" — Module 6 is the canonical source of the underlying reasoning; this is its literal form for the output template. Do not maintain the two independently.
 
-**Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to a repository-wide discovery scan.` (Append the Core Discovery Fallback to this string if the worker is Tier: Core). This is the single canonical source for task-board state semantics — Data Sanitization's Worker Directives Exemption and Phase 4's Gap Analysis must reference or extend this string, never author independent task-board resolution language alongside it.
+**Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark Blocked or False-Positive tasks (- [ ] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to a repository-wide discovery scan.` (Append the Core Discovery Fallback to this string if the worker is Tier: Core). This is the single canonical source for task-board state semantics — Data Sanitization's Worker Directives Exemption and Phase 4's Gap Analysis must reference or extend this string, never author independent task-board resolution language alongside it.
 
 ### Execution Steps Count Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
