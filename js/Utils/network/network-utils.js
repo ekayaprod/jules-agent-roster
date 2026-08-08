@@ -18,8 +18,16 @@ class NetworkUtils {
    * * Magic Numbers: Limits requests to 100 within a 60000ms (1 minute) sliding window.
    */
   static _enforceRateLimit(url) {
+    if (typeof url !== 'string' || !url.trim()) {
+        throw new TypeError('Invalid URL parameter');
+    }
     const now = Date.now();
-    const hostname = (() => { try { return new URL(url).hostname; } catch (e) { return url; } })();
+    let hostname;
+    try {
+        hostname = new URL(url).hostname;
+    } catch (e) {
+        hostname = url;
+    }
 
     if (!this._requestBuckets[hostname]) {
       this._requestBuckets[hostname] = { count: 0, windowStart: now };
