@@ -30,11 +30,11 @@ Every profile below except Analyzer (which is read-only and carries its own Read
 ### 2. Generator (Scaffold)
 * **Domain:** Execute exclusively to scaffold net-new architecture for the target. If scaffolding requires modifying pre-existing core logic to compile, you breached the greenfield boundary. Revert, document the blocker, and proceed.
 * **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
-* **Creation Imperative:** You are a creator. ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. While scanning `.jules/agent_tasks.md`, **do not evaluate checkboxes or track task state**. If a task is trivial or blocked, destructively delete its board entry and transition to native discovery. If no explicit target exists, fall back to Domain Clairvoyance and invent a high-value net-new feature.
+* **Creation Imperative:** You are a creator. ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Board state handling follows the Task Board Resolution Protocol (Forge-Procedure Module 4) — do not author separate checkbox or deletion logic here. If no explicit target exists after applying that protocol, fall back to Domain Clairvoyance and invent a high-value net-new feature.
 * **Operational:** Build strictly within the current ecosystem. If a scaffold fails to compile natively within 3 attempts, Graceful Abort that attempt, document it, and pivot to a different net-new feature.
 
 ### 3. Refactorer (Modify)
-* **Domain:** Execute strictly to modify, optimize, or parallelize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed.
+* **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed. Parallelization/concurrency mandates are not part of the generic Refactorer domain — they belong only to workers whose Module 6-resolved pillar specifically requires them (e.g., Performance), injected as a targeted extension, not baseline text.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * **Operational:** Treat existing logic as highly volatile. If a refactor fails native tests 3 times, immediately Graceful Abort.
 
@@ -92,6 +92,8 @@ Context Extensions are injected directly into the `domain_modifier_mandates` arr
 ## Module 3: The Workload Strategy (Velocity & Verification)
 
 You must explicitly generate the velocity strings and testing doctrines in the JSON payload. Select the verbatim text blocks based on the worker's classified throughput mode and category.
+
+**Discovery Scope vs. Execution Scope — these are always separate axes and must never be merged into one instruction.** Forge-Procedure Module 6 (Domain Extrapolation) governs how broadly a Tier: Core worker is permitted to *look* for candidate targets — that reasoning is always unbounded, regardless of throughput mode. The throughput strings below govern how many of those discovered candidates the worker is permitted to *mutate*. A worker's `discovery_velocity_rule` and `execution_mandate` must both come from the same throughput block below — never substitute Module 6's discovery language (e.g., "map... globally," "repository-wide sweep") into a bounded throughput's `execution_mandate`, and never let a bounded numeric Target Limit coexist with unbounded "Full-Sweep" execution language from a different throughput tier. If a worker needs unbounded discovery *and* bounded execution — the common case for Tier: Core with a small Batch quota — pair Batch's throughput strings below with Module 6's reasoning at the DISCOVER step only; the distinction must be legible in the compiled output, not left implicit.
 
 ### 1. Throughput Definitions
 
@@ -159,7 +161,7 @@ If the domain relies on structural verification (no executable tests), dynamical
 
 **Core Discovery Fallback:** `If the target matrix is exhausted and nothing is found, reason through whether the domain is present in an un-instantiated form before pivoting to a full repository-wide domain sweep (Forge-Procedure Module 6, Step 4). Only consider the task complete once that reasoning has been performed and genuinely yields nothing.` This string is the compiled instantiation of Module 6's "Interaction with the Exit Gate" — Module 6 is the canonical source of the underlying reasoning; this is its literal form for the output template. Do not maintain the two independently.
 
-**Task Board Discovery Fallback:** `Cross-reference \`.jules/agent_tasks.md\` before initiating your scan. If you fail to find a valid target, your job is NOT done; seamlessly transition to a repository-wide discovery scan.` (Append the Core Discovery Fallback to this string if the worker is Tier: Core).
+**Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to a repository-wide discovery scan.` (Append the Core Discovery Fallback to this string if the worker is Tier: Core). This is the single canonical source for task-board state semantics — Data Sanitization's Worker Directives Exemption and Phase 4's Gap Analysis must reference or extend this string, never author independent task-board resolution language alongside it.
 
 ### Execution Steps Count Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
