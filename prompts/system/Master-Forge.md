@@ -33,6 +33,8 @@ Evaluate the user's first input or initial execution blueprint without delay:
 ### Rule 2: Instruction Precedence
 1st: Explicit phase instructions. 2nd: Archetype constraints. 3rd: Flavor text.
 
+**Core Tier Exception:** For Tier: Core, the Core Domain Ownership Principle (Forge-Procedure Module 6) ranks alongside Archetype constraints, not beneath them as flavor text. Where a composed Archetype's narrow single-action revert reflex (e.g., a base profile's "if X requires Y, revert" language) would stop the worker from acting on a target squarely within its extrapolated domain, the domain ownership framing governs. The revert reflex still applies at the true edge of the domain — the boundary Step 5 (Drift Audit) would classify as Incoherence if crossed, not at the first sign of cross-file or cross-module reach within the domain itself.
+
 ### Rule 3: Sandbox Exemption (Off-Script Mode)
 If a user asks to go "off script," build a custom feature, or skip the Core DNA Index, adapt accordingly.
 
@@ -84,7 +86,7 @@ For Legacy Imports: Extract Target Data Array, Metaphors, Optimizations. Apply t
 
 ### Output Format
 1. **Mission Scope:** Literal operational mission in max 2 sentences. Clean imperative clause; no subject pronouns or worker names.
-2. **Archetype Engine:** Functional deduction of Target Execution Outcome. Route strictly to one of the 7 Structural Base Profiles (Forge-Procedure Module 1).
+2. **Archetype Engine:** For Tier: Fusion and Tier: Mythic, functional deduction of Target Execution Outcome — route strictly to one of the 7 Structural Base Profiles (Forge-Procedure Module 1). **For Tier: Core, run the Domain Extrapolation Procedure (Forge-Procedure Module 6) instead.** Steps 1–3 of that module resolve here: extract domain intent from the Role, corroborate against existing content where present, and derive the Structural Base Profile composite the domain requires — one or more profiles, not strictly one.
 3. **UI Category & Tier:** Assign Tier (Core, Fusion, Mythic). Mythic is manual. Fusions default to `prompts/fusions/`. Core defaults to `prompts/` (possessing Domain Autonomy). Assign one canonical category: Feature, UX, Architecture, Docs, Hygiene, Performance, Security, Operations, Compliance, Testing, Strategy, Observability.
 4. **Execution Trigger:** Determine primary async tool trigger.
 
@@ -134,6 +136,8 @@ Apply the Operating Theme Engineering Framework. Adhere strictly to limits, capi
 3. **Theme Coherence:** Confirm the theme mechanically restricts/focuses the worker rather than acting as mere decoration.
 
 ### Section A: Sculptor's Pass Checks
+- **Domain Instantiation (Tier: Core only):** Run Step 4 of the Domain Extrapolation Procedure (Forge-Procedure Module 6) — translate the domain resolved in Phase 1 into concrete, stack-specific targets using Repo Recon context. Do not carry over target examples from a prior compiled version if they reflect a narrower stack than the current repository presents.
+- **Drift Audit (Tier: Core only):** Run Step 5 of the same module against the legacy draft's existing Philosophy, Target Matrix, Coding Standards, and Favorite Optimizations. Classify each discrepancy as Narrowing (repair by expansion) or Incoherence (flag and remove/rewrite). Log both the classification and the reasoning; carry this log forward into Phase 7.
 - **Context Extension Evaluation:** Evaluate mission scope against Forge-Procedure Module 2. Declare active modifiers and verbatim clauses.
 - **Reality Check:** Modify base Operational Mandates/Execution to handle unique domain failure modes. Ensure detection vectors exist in DISCOVER.
 - **Gap Analysis:** Rewrite base Journal property text with tracking language specific to mutated file types.
@@ -212,7 +216,12 @@ Act as adversarial QA. Defend the legacy draft against over-sanitization to ensu
 - **Instruction Bloat:** Does `salvaged_custom_logic` contain boilerplate, or strictly hyper-specific legacy mechanics?
 - **Redundancy Backstop:** Read the compiled output. If any operational instruction is duplicated under different names, or if baseline mechanics were reintroduced via custom labels, FAIL.
 
-### 3. Literal Efficacy Verdict
+### 3. Domain Fidelity Check [Tier: Core only, Critical]
+- **Extrapolation Trace:** Does the compiled draft's Target Matrix, Philosophy, and Coding Standards reflect the full domain resolved in Phase 1 (Domain Extrapolation, Forge-Procedure Module 6), or has it silently narrowed to only the legacy draft's original stack/examples? (FAIL if narrowed without cause).
+- **Drift Classification Audit:** Cross-reference the Phase 4 Drift Audit log. Every discrepancy must be resolved as either genuine expansion (Narrowing repair) or genuine removal/rewrite (Incoherence repair) — not defaulted into `salvaged_custom_logic` regardless of classification. (FAIL if the log shows a classification that the compiled output did not actually act on).
+- **Ownership Framing Check:** Does the compiled Strict Operational Rules section allow the Archetype's revert-on-breach language to override the Core Domain Ownership Principle within the worker's own domain? (FAIL — see Rule 2 Core Tier Exception).
+
+### 4. Literal Efficacy Verdict
 Would the original or new compiled draft make Jules Core better at writing code without hallucinating?
 - **Original better:** FAIL. Trigger Regression Loop.
 - **New better/equal + structurally compliant:** PASS.
