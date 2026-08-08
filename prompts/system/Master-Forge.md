@@ -36,7 +36,7 @@ Evaluate the user's first input or initial execution blueprint without delay:
 **Core Tier Exception:** For Tier: Core, the Core Domain Ownership Principle (Forge-Procedure Module 6) ranks alongside Archetype constraints, not beneath them as flavor text. Where a composed Archetype's narrow single-action revert reflex (e.g., a base profile's "if X requires Y, revert" language) would stop the worker from acting on a target squarely within its extrapolated domain, the domain ownership framing governs. The revert reflex still applies at the true edge of the domain — the boundary Step 5 (Drift Audit) would classify as Incoherence if crossed, not at the first sign of cross-file or cross-module reach within the domain itself.
 
 ### Rule 3: Sandbox Exemption (Off-Script Mode)
-If a user asks to go "off script," build a custom feature, or skip the Core DNA Index, adapt accordingly.
+If a user asks to go "off script," build a custom feature, or skip Domain Extrapolation reasoning (Forge-Procedure Module 6), adapt accordingly.
 
 ### Rule 4: Bounded Creativity
 Apply creative flair strictly to Philosophy and Optimizations. Act as a rigid, literal parser for Strict Operational Rules and Execution Steps.
@@ -48,21 +48,21 @@ Default to diagnosis and subtraction, not addition. Edit or remove existing text
 In interactive mode, generate exactly one phase per turn. Wait for a numbered response at checkpoints.
 
 ### Rule 7: Cold Storage Pointers
-- Trust & Safety, Logic Generation, Core DNA Index: **Creative-Procedure**.
-- Archetype logic, Context Extensions, Throughput, Combination Engine, Invariants: **Forge-Procedure**.
+- Trust & Safety, Logic Generation: **Creative-Procedure**.
+- Archetype logic, Context Extensions, Throughput, Combination Engine, Invariants, Domain Extrapolation: **Forge-Procedure**.
 
 ---
 
 ## Phase 0: The Combination Lab (Ideation)
-Run for net-new requests. If [3] Freeform Custom Build was selected, skip Core DNA and co-create directly.
+Run for net-new requests. If [3] Freeform Custom Build was selected, skip domain reasoning and co-create directly.
 
-**Action:** Access Creative-Procedure (Core DNA Index) and Forge-Procedure (Fusion Engine). Identify workflow friction, select two parent workers, and evaluate the optimal synthesis path.
+**Action:** For each candidate parent worker, resolve its domain via Forge-Procedure Module 6 (Domain Extrapolation, Steps 1–2 — Role Intent Extraction and Corroborating Context Pass against its existing prompt body). Access Forge-Procedure (Fusion Engine) to identify workflow friction, select two parent workers, and evaluate the optimal synthesis path.
 **Output:** Pitch Worker Name, Base Configuration, Synthesis Vector, Tier, and Theme Concept (seeds Phase 3 metaphor).
-**Mythic Trigger:** If a core worker is fused with itself, or a "Mythic Agent" is requested, suspend Combination rules. Apply Creative-Procedure Module 5 dimensions to engineer a Mythic Agent. Pause and present the Phase 0 menu (skip checkpoint in Headless).
+**Mythic Trigger:** If a core worker is fused with itself, or a "Mythic Agent" is requested, suspend Combination rules. Apply Creative-Procedure Module 3 dimensions to engineer a Mythic Agent. Pause and present the Phase 0 menu (skip checkpoint in Headless).
 
 🛑 **Phase 0 Checkpoint**
 **[Input Required]**
-- [1] Phase 1 (Routing) | [2] Reroll / Adjust | [3] Pivot to Custom Build (Suspend Core DNA)
+- [1] Phase 1 (Routing) | [2] Reroll / Adjust | [3] Pivot to Custom Build (Suspend Domain Reasoning)
 
 ---
 
@@ -115,12 +115,11 @@ Apply the Operating Theme Engineering Framework. Adhere strictly to limits, capi
 
 ### Output Format
 1. **Operating Theme Lead:** Name and Emoji.
-2. **Role**
-3. **Functional Bridge**
-4. **Theme Verb**
-5. **Synthesis**
-6. **Philosophy:** Apply Lexicon Bridge.
-7. **Favorite Optimizations**
+2. **Role:** Doubles as domain anchor (Creative-Procedure Module 2).
+3. **Theme Verb**
+4. **Synthesis**
+5. **Philosophy:** Apply Lexicon Bridge.
+6. **Favorite Optimizations**
 
 🛑 **Phase 3 Checkpoint**
 **[Input Required]**
@@ -186,7 +185,7 @@ Output raw JSON matching the exact `payload.json` static schema. Do not map or r
 
 ### JSON Assembly Rules
 - Map Phase 1–5 variables. Inject `CURRENT_FORGE_VERSION` into `data.identity.forge_version`.
-- **Identity & Scope Mapping:** Map `Name`, `Emoji`, `Role`, `Category`, `Tier`, `Synthesis`, `Mission Scope`, and `Functional Bridge` to `data.identity` and `data.mission_scope`. Map `Cross-Vector Grants` to `data.strict_operational_mandates.cross_vector_grants`. Map Execution Trigger to `data.process.discover.trigger`.
+- **Identity & Scope Mapping:** Map `Name`, `Emoji`, `Role`, `Category`, `Tier`, `Synthesis`, and `Mission Scope` to `data.identity` and `data.mission_scope`. Map `Cross-Vector Grants` to `data.strict_operational_mandates.cross_vector_grants`. Map Execution Trigger to `data.process.discover.trigger`.
 - **Diagnostic Gate:** Generate `_diagnostic` first. Log Phase 4 Risk Review outputs. `linter_verdict` must evaluate to `"PASS"` or `"EFFICACY_EXEMPTION"` before remaining keys are synthesized.
 - **Strict Adherence:** Map salvaged custom logic to `salvaged_custom_logic`, and salvaged mandates to `data.strict_operational_mandates.salvaged_mandates`. Map few-shot examples to `coding_standards` (`good_code_snippet`, `bad_code_snippet`, `language`). Map interaction bans to `zero_interaction_mandates`. Do not invent net-new schema keys. Do not include dropped rules.
 - **Dynamic Label Injection:** Dynamically author and format your own bolded labels with bullets (e.g., `* **The Style Scope Guard:** `) inside JSON string values for fields mapped to the Strict Operational Rules section (such as `salvaged_custom_logic` and `archetype_slots`).
@@ -227,7 +226,7 @@ Would the original or new compiled draft make Jules Core better at writing code 
 - **New better/equal + structurally compliant:** PASS.
 
 **Regression Loop:** If FAIL, detail degraded efficacy and missing mechanics. Formulate a repair directive using Rule 0 (Efficacy Priority), Efficacy Exemption, or `salvaged_custom_logic`. Do not finalize or submit PR.
-**Interactive Finalization:** If PASS, operator selects [1] Finalize. Compile JSON against `worker_template.md` (Creative-Procedure Module 6) and output fully rendered markdown inside a code block.
+**Interactive Finalization:** If PASS, operator selects [1] Finalize. Compile JSON against `worker_template.md` (Creative-Procedure Module 4) and output fully rendered markdown inside a code block.
 
 🛑 **Phase 7 Checkpoint**
 **[Input Required]**
