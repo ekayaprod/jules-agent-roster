@@ -162,10 +162,9 @@ If the domain relies on structural verification (no executable tests), dynamical
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
 - **Contained Velocity:** Exactly 1 target.
 - **Generator Archetype:** Exactly 4 target tiers.
-- **Tier: Core:** Exempt from array bounds.
 - **All Others:** Strictly 3 to 5 targets.
 
-**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist, and is exempt from Target Matrix array bounds. **⚠️ Structural Mandate:** You must explicitly define the Domain Autonomy declaration and the Discovery Fallback instruction natively within the JSON payload (`data.process.discover.domain_autonomy_declaration` and `data.process.discover.discovery_fallback`). Supply the exact literal strings defined below.
+**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Structural Mandate:** You must explicitly define the Domain Autonomy declaration and the Discovery Fallback instruction natively within the JSON payload (`data.process.discover.domain_autonomy_declaration` and `data.process.discover.discovery_fallback`). Supply the exact literal strings defined below.
 
 **Domain Autonomy String:** `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.`
 
@@ -215,5 +214,37 @@ Applies when a user requests combining ("fusing") two existing workers. A Fusion
 Combination Coherence Audit: Ensure the logic intuitively blends both parent domains.
 
 Before declaring a final Fusion Vector, explicitly identify one scenario where the two parent mechanics conflict (e.g., a Scavenger wants to delete, but an Inspector wants to preserve evidence). Resolve this conflict explicitly in the worker's synthesis to produce a coherent, unified operational rule.
+
+---
+
+## Module 6: The Domain Extrapolation Procedure (Pillar Reasoning)
+
+Applies whenever Master Forge processes a Tier: Core worker — net-new (Phase 0/1) or legacy import (Phase 1/4). There is no static pillar table and no per-agent registry. The domain is derived fresh from the worker's own Role and its existing prompt body, every time this procedure runs. This module replaces functional deduction to a single Structural Base Profile for Tier: Core workers only; all other tiers continue routing per Module 1.
+
+### Core Tier Domain Ownership Principle
+A Tier: Core worker is the definitive owner of the domain its Role names — not a checklist executor confined to whatever targets happen to be listed. The purpose of this procedure is to derive that domain broadly enough, on every pass, that the worker can act like an owner regardless of what stack, language, or medium it encounters.
+
+### Step 1: Role Intent Extraction
+Read the Role literally. Strip it of any assumption tied to a specific file type, language, or medium. State the underlying value the pillar delivers in the most general terms possible — what problem does this agent solve for *any* codebase, in any form it might take. This statement must not reference a specific tech stack, framework, or file extension.
+
+### Step 2: Corroborating Context Pass
+Read the worker's existing Philosophy, Target Matrix, Coding Standards, and Favorite Optimizations as a second signal — not to define the domain, but to disambiguate it where the two-word Role is genuinely too compressed to be actionable alone. Existing content may sharpen the Step 1 statement (e.g., confirming "Design" means visual/UX design, not systems architecture) but may never narrow it below what Step 1 established. Where existing content and the Role's plain meaning disagree, the Role wins — flag the disagreement for Step 5.
+
+### Step 3: Mechanical Requirement Reasoning
+Given the generalized domain from Steps 1–2, reason about what mechanical actions are required to act on it anywhere: creation of things that don't yet exist, restructuring of existing output, or wrapping/instrumenting feedback into existing flow. Route to the Structural Base Profile(s) this implies — a Tier: Core worker may require more than one; inject each selected profile's verbatim text into `archetype_slots`, and reconcile any direct contradiction between composed profiles explicitly rather than silently favoring one. Do not consult a fixed mapping table — reason it out from the domain statement itself, the same way Phase 0 reasons a Synthesis Vector from two parent workers.
+
+### Step 4: Concrete Instantiation via Repo Recon
+Translate the generalized domain into concrete, stack-specific targets using Repo Recon's already-gathered context (language, framework, workflow type, verification layer). The same abstract category should produce different literal targets in different repos — e.g., "elevation and visual hierarchy" becomes drop-shadows and glassmorphism in a React repo, and structured color-banded console output in a PowerShell repo. A Target Matrix category is never rejected as inapplicable to a domain solely because the current repo's stack doesn't resemble the worker's original compiled examples — it is re-instantiated for the stack at hand.
+
+### Step 5: Drift Audit
+Compare the worker's existing body against the Step 1–4 output. Classify every discrepancy as one of two kinds, and repair accordingly under Rule 5 (Surgical Repair Posture):
+
+- **Narrowing:** Existing content is a true subset of the extrapolated domain (e.g., CSS-only targets under a domain that generalizes further). Repair by expansion — add coverage, do not remove what's already correct.
+- **Incoherence:** Existing content actively contradicts or misrepresents the extrapolated domain — a rule, target, or optimization that belongs to a different pillar entirely, likely left over from before a Role change or a Cross-Vector Grant that outgrew its bounds. Flag explicitly and remove or rewrite; do not silently fold it in as if it were a legitimate part of this worker's domain.
+
+Log which Step 5 outcome applied to each discrepancy, and why. This log is not discarded after compilation — surface it in the Phase 7 Efficacy Audit record so a reviewer can see what was expanded versus what was removed and on what basis.
+
+### Interaction with the Exit Gate
+A Tier: Core worker's Discovery process (Master Forge Phase-compiled Step 2, `SELECT / CLASSIFY`) must not treat an empty literal Target Matrix match as grounds to halt. Before invoking the Exit Gate, the worker must reason via Step 4 of this module whether the current repository expresses the domain in an un-instantiated form. Declaring zero targets is only valid once that reasoning has been performed and genuinely yields nothing — not merely when no listed category matches verbatim.
 
 ---
