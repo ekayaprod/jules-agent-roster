@@ -64,7 +64,6 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   // --- STRICT PARAMETER VALIDATION (QA GATE) ---
   const isMythic = String(data.identity?.tier || data.tier || '').toLowerCase() === 'mythic';
-  const isCore = String(data.identity?.tier || data.tier || '').toLowerCase() === 'core';
 
   const diagnostic = data._diagnostic;
   if (
@@ -95,26 +94,18 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   const roleStr = data.identity?.role || '';
   const roleWords = roleStr.trim().split(/\s+/).filter(Boolean);
-  if (!isMythic && !isCore && roleWords.length !== 2) {
+  if (!isMythic && roleWords.length !== 2) {
     throw new Error(
       `[FATAL ERROR] Role must be exactly 2 words. Found ${roleWords.length}: '${roleStr}'`,
     );
   }
-
-  const functionalBridge = data.identity?.functional_bridge || '';
-  const fbWords = functionalBridge.trim().split(/\s+/).filter(Boolean);
-  if (!isMythic && !isCore && fbWords.length !== 2) {
-    throw new Error(
-      `[FATAL ERROR] Functional Bridge must be exactly 2 words. Found ${fbWords.length}: '${functionalBridge}'`,
-    );
-  }
   const forbiddenArticles = ['the', 'a', 'an'];
-  if (!isMythic && !isCore) {
-    fbWords.forEach((word) => {
-    if (forbiddenArticles.includes(word.toLowerCase())) {
-      throw new Error(`[FATAL ERROR] Functional Bridge contains forbidden article: '${word}'.`);
-    }
-  });
+  if (!isMythic) {
+    roleWords.forEach((word) => {
+      if (forbiddenArticles.includes(word.toLowerCase())) {
+        throw new Error(`[FATAL ERROR] Role contains forbidden article: '${word}'.`);
+      }
+    });
   }
 
   const synthesis = data.identity?.synthesis || '';
@@ -127,7 +118,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   const definedThemeVerb = data.process?.execute?.theme_verb || data.process?.theme_verb || '';
   const firstWordMatch = synthesis.trim().split(/\s+/)[0];
 
-  if (!isMythic && !isCore && definedThemeVerb && firstWordMatch) {
+  if (!isMythic && definedThemeVerb && firstWordMatch) {
     if (firstWordMatch.replace(/[^a-zA-Z]/g, '').toUpperCase() !== definedThemeVerb.toUpperCase()) {
       throw new Error(
         `[FATAL ERROR] Synthesis first word '${firstWordMatch}' does not match defined Theme Verb '${definedThemeVerb}'.`,
@@ -135,7 +126,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     }
   }
 
-  if (!isMythic && !isCore && firstWordMatch) {
+  if (!isMythic && firstWordMatch) {
     const cleanWord = firstWordMatch.replace(/[^a-zA-Z]/g, '');
     if (cleanWord && cleanWord !== cleanWord.toUpperCase()) {
       throw new Error(
@@ -145,13 +136,13 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   }
 
   const philosophyRaw = data.philosophy || [];
-  if (!isMythic && !isCore && philosophyRaw.length !== 5) {
+  if (!isMythic && philosophyRaw.length !== 5) {
     throw new Error(`[FATAL ERROR] Philosophy must contain exactly 5 bullets. Found ${philosophyRaw.length}.`);
   }
   philosophyRaw.forEach((item, index) => {
     let cleanItem = String(item)
       .replace(/^[\*\-]\s+/, '');
-    if (!isMythic && !isCore && /\*\*[^\*:]+:\*\*|\*\*[^\*]+\*\*:/.test(cleanItem)) {
+    if (!isMythic && /\*\*[^\*:]+:\*\*|\*\*[^\*]+\*\*:/.test(cleanItem)) {
       throw new Error(
         `[FATAL ERROR] Philosophy bullet ${index + 1} contains a forbidden bold label pattern ('**Text:**'). Remove all bold labels from the philosophy values.`,
       );
@@ -159,7 +150,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   });
 
   const optimizationsRaw = data.favorite_optimizations || [];
-  if (!isMythic && !isCore && optimizationsRaw.length !== 6) {
+  if (!isMythic && optimizationsRaw.length !== 6) {
     throw new Error(`[FATAL ERROR] Favorite Optimizations must contain exactly 6 entries. Found ${optimizationsRaw.length}.`);
   }
 
@@ -208,6 +199,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   // --- DETERMINISTIC COMPILER LOGIC ---
   const category = data.identity?.category || '';
+  const isCore = String(data.identity?.tier).toLowerCase() === 'core';
   const targetLimitClean = String(data.process?.select_classify?.target_limit || data.payload_threshold || '1').trim();
   const finalExecutionRule = data.process?.execute?.execution_mandate || '';
 
