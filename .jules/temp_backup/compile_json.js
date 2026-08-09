@@ -88,7 +88,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     'Operator',
     'Analyzer',
   ];
-  
+
   const profileKey = data.archetype || data.identity?.archetype;
   if (!profileKey || !VALID_ARCHETYPES.includes(profileKey)) {
     throw new Error(
@@ -98,17 +98,19 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   const roleStr = data.identity?.role || '';
   const roleWords = roleStr.trim().split(/\s+/).filter(Boolean);
-  if (roleWords.length !== 2) {
+  if (!isMythic && roleWords.length !== 2) {
     throw new Error(
       `[FATAL ERROR] Role must be exactly 2 words. Found ${roleWords.length}: '${roleStr}'`,
     );
   }
   const forbiddenArticles = ['the', 'a', 'an'];
-  roleWords.forEach((word) => {
-    if (forbiddenArticles.includes(word.toLowerCase())) {
-      throw new Error(`[FATAL ERROR] Role contains forbidden article: '${word}'.`);
-    }
-  });
+  if (!isMythic) {
+    roleWords.forEach((word) => {
+      if (forbiddenArticles.includes(word.toLowerCase())) {
+        throw new Error(`[FATAL ERROR] Role contains forbidden article: '${word}'.`);
+      }
+    });
+  }
 
   const synthesis = data.identity?.synthesis || '';
   if (synthesis.length > 145) {
@@ -120,7 +122,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   const definedThemeVerb = data.process?.execute?.theme_verb || data.process?.theme_verb || '';
   const firstWordMatch = synthesis.trim().split(/\s+/)[0];
 
-  if (definedThemeVerb && firstWordMatch) {
+  if (!isMythic && definedThemeVerb && firstWordMatch) {
     if (firstWordMatch.replace(/[^a-zA-Z]/g, '').toUpperCase() !== definedThemeVerb.toUpperCase()) {
       throw new Error(
         `[FATAL ERROR] Synthesis first word '${firstWordMatch}' does not match defined Theme Verb '${definedThemeVerb}'.`,
@@ -128,7 +130,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     }
   }
 
-  if (firstWordMatch) {
+  if (!isMythic && firstWordMatch) {
     const cleanWord = firstWordMatch.replace(/[^a-zA-Z]/g, '');
     if (cleanWord && cleanWord !== cleanWord.toUpperCase()) {
       throw new Error(
@@ -138,13 +140,13 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   }
 
   const philosophyRaw = data.philosophy || [];
-  if (philosophyRaw.length !== 5) {
+  if (!isMythic && philosophyRaw.length !== 5) {
     throw new Error(`[FATAL ERROR] Philosophy must contain exactly 5 bullets. Found ${philosophyRaw.length}.`);
   }
   philosophyRaw.forEach((item, index) => {
     let cleanItem = String(item)
       .replace(/^[\*\-]\s+/, '');
-    if (/\*\*[^\*:]+:\*\*|\*\*[^\*]+\*\*:/.test(cleanItem)) {
+    if (!isMythic && /\*\*[^\*:]+:\*\*|\*\*[^\*]+\*\*:/.test(cleanItem)) {
       throw new Error(
         `[FATAL ERROR] Philosophy bullet ${index + 1} contains a forbidden bold label pattern ('**Text:**'). Remove all bold labels from the philosophy values.`,
       );
@@ -152,43 +154,8 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   });
 
   const optimizationsRaw = data.favorite_optimizations || [];
-  if (optimizationsRaw.length !== 6) {
+  if (!isMythic && optimizationsRaw.length !== 6) {
     throw new Error(`[FATAL ERROR] Favorite Optimizations must contain exactly 6 entries. Found ${optimizationsRaw.length}.`);
-  }
-
-  // --- ARRAY LIMIT VALIDATIONS ---
-  const targetMatrixRaw = data.process?.target_matrix || data.process?.discover?.target_matrix || [];
-  const targetMatrixList = Array.isArray(targetMatrixRaw) ? targetMatrixRaw : String(targetMatrixRaw).split('\n').filter(Boolean);
-  const throughput = data.process?.execute?.execution_mandate || '';
-  const isContained = /Contained|Single-target/i.test(throughput);
-  const isGenerator = profileKey === 'Generator';
-
-  if (!isMythic) {
-    if (isContained && targetMatrixList.length !== 1) {
-      throw new Error(`[FATAL ERROR] Contained Velocity requires exactly 1 target. Found ${targetMatrixList.length}.`);
-    } else if (isGenerator && targetMatrixList.length !== 4) {
-      throw new Error(`[FATAL ERROR] Generator Archetype requires exactly 4 target tiers. Found ${targetMatrixList.length}.`);
-    } else if (!isContained && !isGenerator && (targetMatrixList.length < 3 || targetMatrixList.length > 5)) {
-      throw new Error(`[FATAL ERROR] Target Matrix must have 3 to 5 targets. Found ${targetMatrixList.length}.`);
-    }
-  }
-
-  const executionStepsRaw = data.process?.execute?.execution_steps || data.process?.execution_steps || [];
-  const execStepsList = Array.isArray(executionStepsRaw) ? executionStepsRaw : String(executionStepsRaw).split('\n').filter(Boolean);
-  if (!isMythic && (execStepsList.length < 5 || execStepsList.length > 7)) {
-    throw new Error(`[FATAL ERROR] Execution Steps must have strictly 5 to 7 steps. Found ${execStepsList.length}.`);
-  }
-
-  const heuristicsRaw = data.process?.verify?.heuristic_verification || data.process?.heuristic_verification || [];
-  const heuristicsList = Array.isArray(heuristicsRaw) ? heuristicsRaw : String(heuristicsRaw).split('\n').filter(Boolean);
-  if (!isMythic) {
-    if ((profileKey === 'Pruner' || profileKey === 'Transformer') && heuristicsList.length !== 2) {
-      throw new Error(`[FATAL ERROR] ${profileKey} requires exactly 2 heuristic checks. Found ${heuristicsList.length}.`);
-    } else if ((profileKey === 'Operator' || profileKey === 'Analyzer' || profileKey === 'Refactorer') && heuristicsList.length !== 3) {
-      throw new Error(`[FATAL ERROR] ${profileKey} requires exactly 3 heuristic checks. Found ${heuristicsList.length}.`);
-    } else if ((profileKey === 'Generator' || profileKey === 'Instrumenter') && (heuristicsList.length < 3 || heuristicsList.length > 4)) {
-      throw new Error(`[FATAL ERROR] ${profileKey} requires 3 to 4 heuristic checks. Found ${heuristicsList.length}.`);
-    }
   }
 
   const forgeVersion = data.identity?.forge_version || data.forge_version || '';
@@ -257,9 +224,10 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     THE_SCOPE: trimText(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope),
     EXECUTION_RULE: trimText(finalExecutionRule),
     RESILIENCE_PROCEDURE: trimText(data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries),
-    VERIFICATION_PROCEDURE: trimText(data.process?.verify?.testing_doctrine),
     DOMAIN_MODIFIERS: formatList(data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates),
-    JOURNAL_PROCEDURE: trimText(data.memory_and_triage?.journal_procedure),
+    AUTONOMOUS_SELECTION: trimText(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule),
+    WORKFLOW_EXECUTION: trimText(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution),
+    VERIFICATION_PROCEDURE: trimText(data.process?.verify?.testing_doctrine),
     SALVAGED_MANDATES: formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates),
     ZERO_INTERACTION_MANDATES: formatList(data.zero_interaction_mandates),
     SALVAGED_CUSTOM_LOGIC: formatList(data.salvaged_custom_logic),

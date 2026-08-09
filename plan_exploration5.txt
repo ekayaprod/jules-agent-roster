@@ -1,0 +1,104 @@
+What else needs fixing?
+1. `Master-Forge.md` Phase 6: Orphaned tokens `decisiveness_rule` and `workflow_execution`.
+Solution: Remove from `Master-Forge.md` ("Inject finalized domain_anchor, mutation_scope, operational_boundaries into archetype_slots."), `Creative-Procedure.md` template (`{{AUTONOMOUS_SELECTION}}`, `{{WORKFLOW_EXECUTION}}`), and `compile_json.js` mappings (`AUTONOMOUS_SELECTION`, `WORKFLOW_EXECUTION`). And also `journal_procedure` which is already properly handled by `data.memory_and_triage.journal_procedure`. So just remove it from `archetype_slots` in `Master-Forge.md` phase 6 instruction.
+
+2. `Creative-Procedure.md` Structural Formatting Constraints:
+Move "Dynamically author and format your own bolded labels with bullets (e.g., `* **The Style Scope Guard:** `) inside JSON string values for fields mapped to the Strict Operational Rules section (such as `salvaged_custom_logic` and `archetype_slots`)." from `Master-Forge.md` Phase 6 to `Creative-Procedure.md` under Structural Formatting Constraints.
+Wait, `Creative-Procedure.md` already says:
+"Retained Rules Formatting: Format exactly as: `* The [Name]: [Instruction].`"
+If I move the bold labels instruction there, I need to reconcile them. "Retained Rules" are in `salvaged_custom_logic`. So should they use bold labels or not?
+Let's look at `Creative-Procedure.md`:
+"Retained Rules Formatting: Format exactly as: `* The [Name]: [Instruction].`"
+If they format exactly like that, they don't have bold labels. The instruction from `Master-Forge.md` says "bolded labels with bullets (e.g., `* **The Style Scope Guard:** `)". This is a contradiction!
+"Does the same concept have multiple authoritative definitions?"
+Yes! `Creative-Procedure.md` says NO bold labels for Retained Rules: `* The [Name]: [Instruction].`
+But `Master-Forge.md` says YES bold labels for Strict Operational Rules (including salvaged_custom_logic): `* **The Style Scope Guard:** `
+I need to resolve this contradiction. Let's make it consistent. Since the bold label format (`* **The Style Scope Guard:** `) looks better and is explicitly detailed in `Master-Forge.md`, I will adopt it and update `Creative-Procedure.md` to:
+"Strict Operational Rules Formatting: Format all injected rules (including retained rules and archetype slots) with bolded labels and bullets exactly as: `* **The [Name]:** [Instruction].`"
+Then I'll remove the conflicting instruction from `Master-Forge.md`.
+
+3. `compile_json.js` validation coverage:
+The Linter requires evaluating Array length constraints for Target Matrix, Execution Steps, Heuristic Verification.
+In `compile_json.js`, I must add length validation for:
+- Target Matrix
+- Execution Steps
+- Heuristics
+Because `compile_json.js` is the "QA Gate" and "Validation Coverage Principle: Every validation constraint must be evaluated against the population of artifacts that its owning source-of-truth rule governs."
+But wait, what about the Mythic exemption? Mythic agents are EXEMPT from Array Validations (Target Matrix, Execution Steps, Heuristics counts).
+So for those checks, `if (!isMythic)` is correct.
+However, currently `compile_json.js` exempts Mythic from EVERYTHING: Role length, Synthesis all caps, Philosophy counts, etc.
+But the rule says Mythic agents are ONLY exempt from Array Validations ("Verify counts exactly match Forge-Procedure Module 4. Flag deviations as FAIL (Mythic Agents exempt).").
+Therefore, I must remove `!isMythic` from the creative constraints (Role length, Synthesis formatting, Philosophy length/bold labels, Optimizations count) in `compile_json.js`. And I will add the array validations with `!isMythic` exemption.
+
+4. Numerical consistency:
+In `Forge-Procedure.md`, Testing Category Override says: "Abort instrumentation after 2 failed approaches."
+I will change it to "3 failed approaches" to match all other structural/operational retries in the repository ("Max 3 verification attempts per target", "3 successive test failures", etc).
+
+5. Scope boundary in `compile_json.js`:
+"compile_json.js is strictly forbidden from manually hardcoding UI labels or structural Markdown into its rendering/mapping objects... Validation Logic Exception: This prohibition does not extend to literal reference strings used for pattern-matching inside validation gates."
+There is no hardcoded UI label in `compile_json.js` mapping currently, BUT I should double check if I missed any.
+Wait! `formatTargetMatrix(input)` just trims and joins with `\n`. That's fine.
+`cleanCodeFence(str)` removes backticks. That's fine.
+
+6. Version Bump:
+Increment `CURRENT_FORGE_VERSION` by 0.1 (from V86.9 to V87.0).
+Mathematically recalculate `MINIMUM_VERSION_THRESHOLD` to be exactly 2.0 behind (85.0).
+Update in `Master-Forge.md`.
+
+Let's verify the array validation logic I will add to `compile_json.js`.
+```javascript
+  // Target Matrix check
+  const targetMatrixRaw = data.process?.target_matrix || data.process?.discover?.target_matrix || [];
+  const targetMatrixList = Array.isArray(targetMatrixRaw) ? targetMatrixRaw : String(targetMatrixRaw).split('\n').filter(Boolean);
+  const throughput = data.process?.execute?.execution_mandate || '';
+  const isContained = /Contained/i.test(throughput) || /Single-target/i.test(throughput);
+  const isGenerator = profileKey === 'Generator';
+
+  if (!isMythic) {
+    if (isContained && targetMatrixList.length !== 1) {
+      throw new Error(`[FATAL ERROR] Contained Velocity requires exactly 1 target. Found ${targetMatrixList.length}.`);
+    } else if (isGenerator && targetMatrixList.length !== 4) {
+      throw new Error(`[FATAL ERROR] Generator Archetype requires exactly 4 target tiers. Found ${targetMatrixList.length}.`);
+    } else if (!isContained && !isGenerator && (targetMatrixList.length < 3 || targetMatrixList.length > 5)) {
+      throw new Error(`[FATAL ERROR] Target Matrix must have 3 to 5 targets. Found ${targetMatrixList.length}.`);
+    }
+  }
+
+  // Execution Steps check
+  const executionStepsRaw = data.process?.execute?.execution_steps || data.process?.execution_steps || [];
+  const execStepsList = Array.isArray(executionStepsRaw) ? executionStepsRaw : String(executionStepsRaw).split('\n').filter(Boolean);
+  if (!isMythic && (execStepsList.length < 5 || execStepsList.length > 7)) {
+    throw new Error(`[FATAL ERROR] Execution Steps must have strictly 5 to 7 steps. Found ${execStepsList.length}.`);
+  }
+
+  // Heuristics check
+  const heuristicsRaw = data.process?.verify?.heuristic_verification || data.process?.heuristic_verification || [];
+  const heuristicsList = Array.isArray(heuristicsRaw) ? heuristicsRaw : String(heuristicsRaw).split('\n').filter(Boolean);
+  if (!isMythic) {
+    if ((profileKey === 'Pruner' || profileKey === 'Transformer') && heuristicsList.length !== 2) {
+      throw new Error(`[FATAL ERROR] ${profileKey} requires exactly 2 heuristic checks. Found ${heuristicsList.length}.`);
+    } else if ((profileKey === 'Operator' || profileKey === 'Analyzer' || profileKey === 'Refactorer') && heuristicsList.length !== 3) {
+      throw new Error(`[FATAL ERROR] ${profileKey} requires exactly 3 heuristic checks. Found ${heuristicsList.length}.`);
+    } else if ((profileKey === 'Generator' || profileKey === 'Instrumenter') && (heuristicsList.length < 3 || heuristicsList.length > 4)) {
+      throw new Error(`[FATAL ERROR] ${profileKey} requires 3 to 4 heuristic checks. Found ${heuristicsList.length}.`);
+    }
+  }
+```
+
+Wait, `targetMatrixList` might contain empty strings. `filter(Boolean)` handles it. But we should probably use `trim()` as well.
+Let's see: `const listLen = Array.isArray(input) ? input.length : input.split('\n').map(s=>s.trim()).filter(Boolean).length;`
+
+Let's check if there are any other contradictions.
+"Wait, `Master-Forge.md` Phase 4: 'Do not carry over target examples from a prior compiled version if they reflect a narrower stack than the current repository presents.'"
+This seems fine.
+
+Let's check `Forge-Procedure.md`:
+"Task Board Resolution Protocol: Read \`.jules/agent_tasks.md\`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth."
+This resolves the State Machine Integrity Rule correctly.
+
+What about:
+"Does a validation gate exclude artifacts governed by its source-of-truth rule?"
+Yes, `!isMythic` on creative formatting excluded Mythic agents when the source-of-truth rule in Creative-Procedure.md did not exempt them. Fixing that!
+
+What about "The Version Bump Protocol"?
+V86.9 -> V87.0. `MINIMUM_VERSION_THRESHOLD` 84.9 -> 85.0.

@@ -1,0 +1,99 @@
+Let's systematically go through the Alignment Matrix audit points from the system prompt:
+
+A. Token Pipeline
+"Does every key generated in the "payload.json" instructions of "Master-Forge.md" Phase 6 map correctly to a variable in "compile_json.js"? Flag any Phase 6-generated key with zero consumers in "compile_json.js" or the Template as orphaned"
+
+Let's check `Master-Forge.md` Phase 6 keys:
+- `data.identity`: `name`, `emoji`, `role`, `category`, `tier`, `synthesis`, `forge_version`, `archetype`. (mapped in compile_json.js to NAME, EMOJI, ROLE, CATEGORY, TIER, SYNTHESIS, FORGE_VERSION)
+- `data.mission_scope`: (mapped to MISSION_SCOPE)
+- `data.strict_operational_mandates.cross_vector_grants`: (mapped to CROSS_VECTOR_GRANTS)
+- `data.process.discover.trigger`: (mapped to DISCOVER_TRIGGER)
+- `_diagnostic.linter_verdict` (used in compile_json.js)
+- `salvaged_custom_logic` (mapped to SALVAGED_CUSTOM_LOGIC)
+- `data.strict_operational_mandates.salvaged_mandates` (mapped to SALVAGED_MANDATES)
+- `coding_standards`: `good_code_snippet`, `bad_code_snippet`, `language` (mapped to GOOD_CODE, BAD_CODE, LANGUAGE)
+- `zero_interaction_mandates` (mapped to ZERO_INTERACTION_MANDATES)
+- `data.memory_and_triage.agent_tasks_board` (mapped to WORKER_TASKS_BOARD)
+- `archetype_slots`: `domain_anchor`, `mutation_scope`, `operational_boundaries`, `decisiveness_rule`, `workflow_execution`, `journal_procedure` (mapped to PRIMARY_RESPONSIBILITY, THE_SCOPE, RESILIENCE_PROCEDURE, AUTONOMOUS_SELECTION, WORKFLOW_EXECUTION, JOURNAL_PROCEDURE)
+- `data.process.present`: `presentation_slot`, `pr_headers` (mapped to PRESENTATION_SLOT, PR_HEADERS)
+- `execution_mandate`, `discovery_velocity_rule`, `execution_posture`, `reporter_procedure`, `testing_doctrine` (Wait! Are these mapped directly or under some nested object? In `Master-Forge.md`: "Inject `execution_mandate`, `discovery_velocity_rule`, `execution_posture`, `reporter_procedure`, and `testing_doctrine` based on throughput and verification layers." Wait, in compile_json.js they are read from `data.process.execute.execution_mandate` (or similar) but let's check `compile_json.js`)
+
+In `compile_json.js`:
+`EXECUTION_RULE: trimText(finalExecutionRule),` where `finalExecutionRule = data.process?.execute?.execution_mandate || '';`
+`DISCOVERY_VELOCITY_RULE: trimText(data.process?.discover?.discovery_velocity_rule),`
+`EXECUTION_POSTURE: trimText(data.process?.execute?.execution_posture),`
+`REPORTER_PROCEDURE: trimText(data.process?.verify?.reporter_procedure),`
+`VERIFICATION_PROCEDURE: trimText(data.process?.verify?.testing_doctrine),`
+
+- `data.process.target_matrix` (mapped to TARGET_MATRIX)
+- `data.process.execute.execution_steps` (mapped to EXECUTION_STEPS)
+- `data.process.verify.heuristic_verification` (mapped to HEURISTICS)
+- `data.philosophy` (mapped to PHILOSOPHY)
+- `data.favorite_optimizations` (mapped to FAVORITE_OPTIMIZATIONS)
+- `data.process.discover.domain_autonomy_declaration` (mapped to DOMAIN_AUTONOMY_DECLARATION)
+- `data.process.discover.discovery_fallback` (mapped to DISCOVERY_FALLBACK)
+- `data.process.execute.theme_verb` (mapped to THEME_VERB)
+- `data.process.select_classify.target_limit` (mapped to TARGET_LIMIT)
+- `data.process.execute.target_limit_instruction` (mapped to TARGET_LIMIT_INSTRUCTION)
+- `domain_modifier_mandates` (mapped to DOMAIN_MODIFIERS)
+
+Wait, where do `decisiveness_rule`, `workflow_execution`, `journal_procedure` come from? They are mentioned in `Master-Forge.md` to be injected into `archetype_slots` based on Base Profiles. But `Forge-Procedure.md` Module 1 does NOT define them.
+Let's check `decisiveness_rule` in `Forge-Procedure.md` - it's not there.
+Let's check `workflow_execution` - not there.
+Let's check `journal_procedure` - not in Module 1, but maybe in Module 4? Not defined as a baseline text block.
+
+Also wait, what about "Creation Imperative" from Generator? And "No-Interaction Policy" from Pruner? Where do they go?
+Maybe `Creation Imperative` maps to `decisiveness_rule`?
+Wait, if they are not mapped cleanly, I should fix the schema mismatch. The instructions say:
+"If removing a token's only consumer in "compile_json.js" or the Template, update or remove the corresponding Phase 6 generation instruction in "Master-Forge.md" in the same patch. A field consistently absent from consumption but still instructed for generation is drift, not stability."
+Since `decisiveness_rule`, `workflow_execution` and `journal_procedure` are empty fields (they have no text to populate them in `Forge-Procedure.md`), maybe we should just remove them entirely from the Template, from `compile_json.js`, and from `Master-Forge.md` Phase 6?
+
+Wait! Are they just token bloat? Yes, `decisiveness_rule`, `workflow_execution`, `journal_procedure` have no source of truth in `Forge-Procedure.md` to generate from. The text says "Inject finalized domain_anchor, mutation_scope, operational_boundaries, decisiveness_rule, workflow_execution, and journal_procedure into archetype_slots." But there are only 3 or 4 slots provided by Forge-Procedure Module 1: Domain, Scope, Operational, and optionally No-Interaction Policy or Creation Imperative.
+
+Wait! Could `decisiveness_rule` be "No-Interaction Policy" and `workflow_execution` be "Creation Imperative"? If so, this is a schema mismatch. But if they are just obsolete tokens, maybe I should consolidate?
+
+Let's check `Forge-Procedure.md`:
+Pruner has 4 rules: Domain, Scope, Operational, No-Interaction Policy.
+Generator has 4: Domain, Scope, Creation Imperative, Operational.
+Others have 3: Domain, Scope, Operational.
+
+How to handle this? Instead of having fixed `domain_anchor`, `mutation_scope`, `operational_boundaries`, `decisiveness_rule`, `workflow_execution`, we should probably just have one generic `ARCHETYPE_PHYSICS` block or map them to `PRIMARY_RESPONSIBILITY`, `THE_SCOPE`, `RESILIENCE_PROCEDURE`, and drop `AUTONOMOUS_SELECTION` and `WORKFLOW_EXECUTION`. But wait, in `compile_json.js`:
+```
+    PRIMARY_RESPONSIBILITY: trimText(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor),
+    THE_SCOPE: trimText(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope),
+    RESILIENCE_PROCEDURE: trimText(data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries),
+    AUTONOMOUS_SELECTION: trimText(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule),
+    WORKFLOW_EXECUTION: trimText(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution),
+    JOURNAL_PROCEDURE: trimText(data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure),
+```
+
+Wait, `journal_procedure` is used in the Template:
+`**State Ingestion:** Read \`{{JOURNAL_PATH}}\`. Log only persistent architectural context for future \`{{CATEGORY}}\` runs, not exhaustive execution steps. {{JOURNAL_PROCEDURE}}`
+But `Forge-Procedure.md` Module 4 says:
+"Gap Analysis: Before authoring new journal/tracking language, read the DISCOVER section's existing State Ingestion text and any baseline Journal Protocol string already present. Only add domain-specific extensions describing what to track for this worker's mutated file types — do not restate the general retention instruction that already exists."
+So `journal_procedure` is meant for domain-specific tracking instructions. It shouldn't come from "Archetype Physics Mapping" (Base Profile), it should be generated uniquely by the Sculptor. In `Master-Forge.md` Phase 6, it says: "Inject finalized domain_anchor, mutation_scope, operational_boundaries, decisiveness_rule, workflow_execution, and journal_procedure into archetype_slots." This seems like drift. `journal_procedure` should probably be mapped to `data.memory_and_triage.journal_procedure`, and not be an archetype slot. Wait, `compile_json.js` allows `data.memory_and_triage?.journal_procedure`. So just remove `journal_procedure` from the `archetype_slots` list in Phase 6.
+
+What about `decisiveness_rule` and `workflow_execution`? They map to `AUTONOMOUS_SELECTION` and `WORKFLOW_EXECUTION` in the Template's `Strict Operational Rules` section. Since Generator has "Creation Imperative" and Pruner has "No-Interaction Policy", maybe those are mapped to `salvaged_custom_logic`? No, Module 1 says they are part of the base profile!
+Wait, in `Master-Forge.md`, Phase 6: "Map base profile key to `data.identity.archetype`. Preserve unique overrides in `salvaged_custom_logic` (Forge-Procedure Module 1)." But the actual compilation doesn't automatically insert the base profile strings in `compile_json.js`. The LLM has to generate the text and put it into `domain_anchor`, etc.
+So the LLM is instructed to "Inject finalized domain_anchor, mutation_scope, operational_boundaries, decisiveness_rule, workflow_execution, and journal_procedure into archetype_slots."
+But the base profiles only have Domain, Scope, Operational, and occasionally one extra.
+I should clean up `Master-Forge.md` Phase 6 to only mention the ones that exist, or better yet, maybe I can just rename the tokens in the template and `compile_json.js` to match the Base Profile keys: `DOMAIN`, `SCOPE`, `OPERATIONAL`, etc., or keep them as `domain_anchor`, `mutation_scope`, `operational_boundaries` and remove the empty ones. Wait, what about `Creation Imperative` and `No-Interaction Policy`? We could just tell the LLM to put the extra profile rules into `salvaged_custom_logic` or a dedicated array `base_profile_rules`.
+Wait, in `compile_json.js`, `ZERO_INTERACTION_MANDATES: formatList(data.zero_interaction_mandates),` maps to `{{ZERO_INTERACTION_MANDATES}}`. So Pruner's "No-Interaction Policy" can map there, as `Master-Forge.md` Phase 6 already says: "Map interaction bans to `zero_interaction_mandates`."
+So `decisiveness_rule` and `workflow_execution` are completely orphaned/obsolete!
+Let's look at `AUTONOMOUS_SELECTION` and `WORKFLOW_EXECUTION` in `Creative-Procedure.md`:
+```markdown
+### Strict Operational Rules
+{{PRIMARY_RESPONSIBILITY}}
+{{THE_SCOPE}}
+{{EXECUTION_RULE}}
+{{RESILIENCE_PROCEDURE}}
+{{VERIFICATION_PROCEDURE}}
+{{DOMAIN_MODIFIERS}}
+{{AUTONOMOUS_SELECTION}}
+{{WORKFLOW_EXECUTION}}
+{{SALVAGED_MANDATES}}
+{{ZERO_INTERACTION_MANDATES}}
+{{SALVAGED_CUSTOM_LOGIC}}
+{{CROSS_VECTOR_GRANTS}}
+```
+We can safely remove `{{AUTONOMOUS_SELECTION}}` and `{{WORKFLOW_EXECUTION}}` from the Template in `Creative-Procedure.md`, remove `AUTONOMOUS_SELECTION` and `WORKFLOW_EXECUTION` from `compile_json.js`, and remove `decisiveness_rule` and `workflow_execution` from `Master-Forge.md` Phase 6!

@@ -1,0 +1,3 @@
+Things to find:
+1. `decisiveness_rule`, `workflow_execution`, `journal_procedure` aren't mentioned in `Forge-Procedure.md`. The instruction says "Inject finalized domain_anchor, mutation_scope, operational_boundaries, decisiveness_rule, workflow_execution, and journal_procedure into archetype_slots." Where do they come from?
+2. Looking at `Master-Forge.md`, `Forge-Procedure.md`, `Creative-Procedure.md` to see what fields are generated but not consumed, or consumed but not generated.

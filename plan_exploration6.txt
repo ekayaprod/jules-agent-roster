@@ -1,0 +1,39 @@
+Let's double check "Token Bloat Audit": "Identify passive voice, conversational filler, redundant boilerplate, repeated explanations, obsolete examples, excessive narrative around already-defined constraints."
+In `Forge-Procedure.md` Module 3:
+```markdown
+#### Standard Domain
+* **`testing_doctrine`:** "* Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert."
+
+Note: The `testing_doctrine` string is auto-injected by the compiler into its own dedicated slot. Do not re-state it in `salvaged_custom_logic` or as a standalone named mandate (e.g., "The Test Immunity Doctrine") in the output, even if the legacy draft phrased it that way — a legacy draft naming and elaborating this rule is a signal to map it to this slot, not to preserve it a second time as custom logic.
+
+#### Testing Category Override
+* **`testing_doctrine`:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 3 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+
+Note: As with the Standard Domain variant, this string occupies its own dedicated slot and must not be separately hand-authored as a named mandate elsewhere in the output.
+```
+I can consolidate the note: "Note: The `testing_doctrine` string (for both standard and testing variants) is auto-injected by the compiler into its own dedicated slot. Do not re-state it in `salvaged_custom_logic` or as a standalone named mandate (e.g., "The Test Immunity Doctrine") in the output, even if a legacy draft phrased it that way." and put it outside/below the section. That removes the redundant explanation.
+
+And the Managed Interruption Protocol:
+```markdown
+Note: The Managed Interruption clause is encoded in this execution_mandate string. Do not re-state it in salvaged_custom_logic or as a standalone named mandate in the output.
+```
+This is in Batch. And Expansive_Standard has: "See the Managed Interruption Protocol if forcibly paused."
+And then:
+```markdown
+### The Managed Interruption Protocol
+Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared. Do not re-state this in `salvaged_custom_logic` or as a standalone named mandate in the output.
+```
+This is definitely redundant bloat. I will just keep the definition in `The Managed Interruption Protocol` and state once: "The Managed Interruption Protocol is referenced by throughput modes and must not be restated as a standalone mandate."
+
+Let's check `Creative-Procedure.md`:
+"Retained Rules Formatting: Format exactly as: `* The [Name]: [Instruction].`"
+Change to: "Strict Operational Rules Formatting: Format all injected rules (including retained rules and archetype slots) with bolded labels and bullets exactly as: `* **The [Name]:** [Instruction].`"
+
+Let's review the plan logic so far:
+1. Version Bump in `Master-Forge.md` to V87.0 and 85.0.
+2. Remove orphaned tokens (`decisiveness_rule`, `workflow_execution`) from `Master-Forge.md` Phase 6, `Creative-Procedure.md` Template, and `compile_json.js`. Also remove `journal_procedure` from `archetype_slots` logic in `Master-Forge.md`.
+3. Fix Bifurcation Index violation: Move the bold label formatting rule for `salvaged_custom_logic` from `Master-Forge.md` to `Creative-Procedure.md` (replacing the conflicting `Retained Rules Formatting` which dictated no bold labels).
+4. Fix Validation Coverage violation in `compile_json.js`: Remove `!isMythic` exemption from Role, Synthesis, Philosophy, and Optimization creative formatting constraints, as Mythic is not exempt from these in the source rules.
+5. Add missing Validation Coverage in `compile_json.js`: Implement array length validation (Target Matrix, Execution Steps, Heuristics) according to `Forge-Procedure.md` Module 4, with Mythic properly exempted from this specific check.
+6. Fix Numerical Consistency in `Forge-Procedure.md`: Change "2 failed approaches" to "3 failed approaches" in the Testing Category Override to match the universal limit.
+7. Token Bloat Audit in `Forge-Procedure.md`: Consolidate the redundant notes about `testing_doctrine` injection, and consolidate the redundant warnings about `Managed Interruption Protocol` restatements.

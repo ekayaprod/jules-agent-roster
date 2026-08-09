@@ -1,0 +1,425 @@
+What about `journal_procedure` in `Master-Forge.md`?
+"Inject finalized domain_anchor, mutation_scope, operational_boundaries, decisiveness_rule, workflow_execution, and journal_procedure into archetype_slots." -> change to "Inject finalized `domain_anchor`, `mutation_scope`, and `operational_boundaries` into `archetype_slots`."
+
+Also wait, what about `Creation Imperative` from Generator? Where should it map?
+If we look at `Forge-Procedure.md` Module 1: "Creation Imperative" is an extra rule for Generator.
+Should we add an instruction to put it in `salvaged_custom_logic`? Or maybe just inject it into `operational_boundaries`? Let's check how the instructions map Base Profiles: "inject its verbatim text directly into the archetype_slots object". So if `archetype_slots` has only three slots, and the LLM must inject "verbatim text directly into the archetype_slots object", how does it fit 4 rules into 3 slots?
+Ah, "No-Interaction Policy" is stated to be mapped to `zero_interaction_mandates` in Master-Forge ("Map interaction bans to zero_interaction_mandates").
+What about `Creation Imperative`? We could just tell the LLM to map extra base profile rules into `salvaged_custom_logic` (Wait, "Preserve unique overrides in salvaged_custom_logic" is already there). Or we can tell it to map it to `salvaged_mandates`.
+
+Let's look at `compile_json.js`:
+```javascript
+    SALVAGED_MANDATES: formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates),
+```
+We don't need to overthink it, just removing the unused variables is a huge win for Token Bloat.
+
+Let's check the Schema limits for `Role` in `compile_json.js` versus `Creative-Procedure.md`.
+`compile_json.js`:
+```javascript
+  const roleStr = data.identity?.role || '';
+  const roleWords = roleStr.trim().split(/\s+/).filter(Boolean);
+  if (!isMythic && roleWords.length !== 2) {
+    throw new Error(
+      `[FATAL ERROR] Role must be exactly 2 words. Found ${roleWords.length}: '${roleStr}'`,
+    );
+  }
+```
+`Creative-Procedure.md` Module 2:
+"Role: Exactly two words. Cannot contain articles ("the", "a", "an"). This is the sole literal/thematic identity field — one word carries thematic flavor, the other functions as the worker's domain anchor for Forge-Procedure Module 6 (Domain Extrapolation). ⚠️ Structural Mandate: Violations crash the compilation QA gate."
+Is this perfectly aligned? The prompt mentions: "incorrect Role length (Role now also serves as the Domain Anchor per Creative-Procedure Module 2 — do not treat this as two separate fields);". This seems already true.
+
+Wait, check the rest of the problem description:
+1. `compile_json.js` "is strictly forbidden from manually hardcoding UI labels or structural Markdown into its rendering/mapping objects, including the map object and token-fill logic."
+"Validation Logic Exception: This prohibition does not extend to literal reference strings used for pattern-matching inside validation gates."
+Let's check `compile_json.js`:
+```javascript
+    PHILOSOPHY: formatList(data.philosophy),
+```
+Wait! `compile_json.js` doesn't hardcode markdown labels inside the map object... let me look closer at the map object:
+```javascript
+    TARGET_MATRIX: formatTargetMatrix(data.process?.target_matrix || data.process?.discover?.target_matrix),
+```
+Wait, where are the bold labels coming from?
+Ah! `compile_json.js` has this:
+```javascript
+// Let's check formatTargetMatrix
+function formatTargetMatrix(input) {
+  if (!input) return '';
+  const arr = Array.isArray(input) ? input : String(input).split('\n');
+  return arr
+    .map((item) => String(item).trim())
+    .filter(Boolean)
+    .join('\n');
+}
+```
+No hardcoding there.
+Wait, let's look at `compile_json.js` line by line for any UI label hardcoding...
+None found? Wait, what about `Master-Forge.md` Phase 6?
+`- **Dynamic Label Injection:** Dynamically author and format your own bolded labels with bullets (e.g., \`* **The Style Scope Guard:** \`) inside JSON string values for fields mapped to the Strict Operational Rules section (such as \`salvaged_custom_logic\` and \`archetype_slots\`).`
+This means the LLM generates the markdown labels.
+
+Is there any hardcoded markdown in `compile_json.js`?
+```javascript
+  const BASELINE_RESTATEMENT_PATTERNS = [
+    { label: 'Artifact Lockbox', pattern: /artifact lockbox/i },
+    { label: 'Native Tool Lock', pattern: /native tool lock/i },
+...
+    { label: 'Test Immunity Doctrine restatement', pattern: /test immunity doctrine/i },
+...
+```
+This is allowed ("Validation Logic Exception").
+
+Let's check `compile_json.js` `formatList(input)`:
+```javascript
+function formatList(input) {
+  if (!input) return '';
+  const arr = Array.isArray(input) ? input : String(input).split('\n');
+  const filtered = arr
+    .map((item) => String(item).trim())
+    .filter(Boolean);
+
+  filtered.forEach((item, i) => {
+    if (!/^([\*\-]|\d+\.)(?:\s+|$)/.test(String(item).trim())) {
+      throw new Error(`[FATAL ERROR] List item ${i + 1} missing bullet prefix: '${item}'`);
+    }
+  });
+
+  return filtered.join('\n');
+}
+```
+It throws if an item lacks a bullet. This is validation, not hardcoding.
+
+Wait, look at `compile_json.js` line 125:
+```javascript
+  const forgeVersion = data.identity?.forge_version || data.forge_version || '';
+```
+It checks if `forge_version` exists.
+
+What else? Let's check `Master-Forge.md` Phase 6 keys generated but NOT mapped in `compile_json.js`:
+- `data.process.execute.execution_mandate` is mapped to `EXECUTION_RULE`.
+- `data.process.discover.discovery_velocity_rule` is mapped to `DISCOVERY_VELOCITY_RULE`.
+- `data.process.execute.execution_posture` is mapped to `EXECUTION_POSTURE`.
+- `data.process.verify.reporter_procedure` is mapped to `REPORTER_PROCEDURE`.
+- `data.process.verify.testing_doctrine` is mapped to `VERIFICATION_PROCEDURE`.
+Wait, in `Master-Forge.md` Phase 6:
+`Inject execution_mandate, discovery_velocity_rule, execution_posture, reporter_procedure, and testing_doctrine based on throughput and verification layers. Do not extract legacy pacing rules into salvaged_custom_logic if they overlap with the velocity classification.`
+Where do these get generated? It doesn't specify the exact path, just "Inject...". But `compile_json.js` looks for them in specific paths like `data.process?.execute?.execution_mandate`. This seems fine.
+
+Let's check "A. Token Pipeline"
+"Flag any Phase 6-generated key with zero consumers in "compile_json.js" or the Template as orphaned"
+- `decisiveness_rule`
+- `workflow_execution`
+
+"B. Bi-Directional Token Audit"
+"Does every literal {{TOKEN}} inside the embedded worker_template.md have an explicitly defined mapping object inside compile_json.js? Flag orphaned tokens that would render as raw text."
+Let's check `worker_template.md` (inside `Creative-Procedure.md` Module 4).
+Tokens:
+{{NAME}}
+{{EMOJI}}
+{{ROLE}}
+{{CATEGORY}}
+{{TIER}}
+{{SYNTHESIS}}
+{{FORGE_VERSION}}
+{{MISSION_SCOPE}}
+{{PHILOSOPHY}}
+{{LANGUAGE}}
+{{GOOD_CODE}}
+{{BAD_CODE}}
+{{PRIMARY_RESPONSIBILITY}}
+{{THE_SCOPE}}
+{{EXECUTION_RULE}}
+{{RESILIENCE_PROCEDURE}}
+{{VERIFICATION_PROCEDURE}}
+{{DOMAIN_MODIFIERS}}
+{{AUTONOMOUS_SELECTION}}  -> mapped to `decisiveness_rule`, to remove.
+{{WORKFLOW_EXECUTION}}    -> mapped to `workflow_execution`, to remove.
+{{SALVAGED_MANDATES}}
+{{ZERO_INTERACTION_MANDATES}}
+{{SALVAGED_CUSTOM_LOGIC}}
+{{CROSS_VECTOR_GRANTS}}
+{{DISCOVER_TRIGGER}}
+{{DISCOVERY_FALLBACK}}
+{{JOURNAL_PATH}}
+{{JOURNAL_PROCEDURE}}
+{{WORKER_TASKS_BOARD}}
+{{DOMAIN_AUTONOMY_DECLARATION}}
+{{DISCOVERY_VELOCITY_RULE}}
+{{TARGET_MATRIX}}
+{{PRIORITY_LANGUAGE}}
+{{TARGET_LIMIT}}
+{{THEME_VERB}}
+{{EXECUTION_POSTURE}}
+{{TARGET_LIMIT_INSTRUCTION}}
+{{EXECUTION_STEPS}}
+{{REPORTER_PROCEDURE}}
+{{HEURISTICS}}
+{{PRESENTATION_SLOT}}
+{{PR_HEADERS}}
+{{FAVORITE_OPTIMIZATIONS}}
+
+All seem mapped in `compile_json.js`. We will remove `AUTONOMOUS_SELECTION` and `WORKFLOW_EXECUTION`.
+
+Let's read prompt: "Validation Logic Exception: This prohibition does not extend to literal reference strings used for pattern-matching inside validation gates... If a canonical phrase changed without the gate updating, flag and repair the stale pattern list."
+Let's check `BASELINE_RESTATEMENT_PATTERNS` in `compile_json.js`:
+1. Artifact Lockbox: `/artifact lockbox/i` -> still exists in Forge-Procedure.md
+2. Native Tool Lock: `/native tool lock/i` -> still exists
+3. Unconditional Cleanup: `/unconditional cleanup/i` -> still exists
+4. No-Interaction Policy: `/no-interaction policy/i` -> still exists
+5. git clean baseline command: `/git clean -fd/i` -> still exists
+6. temp_backup baseline path: `/\.jules\/temp_backup/i` -> still exists
+7. SEARCH/REPLACE tool-lock block syntax: `/<{3,}\s*SEARCH/i` -> still exists
+8. Test Immunity Doctrine restatement: `/test immunity doctrine/i` -> Let's check `Forge-Procedure.md` Module 3:
+"Note: The `testing_doctrine` string is auto-injected by the compiler into its own dedicated slot. Do not re-state it in `salvaged_custom_logic` or as a standalone named mandate (e.g., "The Test Immunity Doctrine") in the output, even if the legacy draft phrased it that way" -> Yes, it mentions "The Test Immunity Doctrine".
+9. Canonical testing doctrine phrase: `/treat test files as immutable and read-only/i` -> Let's check Module 3:
+"Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert." Wait! The validation pattern checks `/prove (?:the test|it) was failing on \`?main\`?/i`. Let's check if the word "prove" still exists. Yes: "prove the test was failing on `main`".
+10. Managed Interruption clause: `/managed interruption/i` -> Yes, still exists in Expansive_Standard and Expansive_Pruner.
+
+Wait! What about "A rule can be internally correct yet architecturally defective when the same concept is defined multiple times with different wording, scope, thresholds, or consequences."
+Let's look for duplicated rules across the files.
+"Identify mechanical rules in Creative-Procedure.md; creative/style rules in Forge-Procedure.md; schema/rendering rules incorrectly embedded in operational documentation; operational mandates duplicated in creative documentation."
+
+In `Creative-Procedure.md`:
+Module 2:
+"Target Matrix Formatting: Format exactly as: `* **[Category Name]:** [description]`.
+Heuristic Formatting: All labels phrased as questions.
+Retained Rules Formatting: Format exactly as: `* The [Name]: [Instruction].`"
+These are creative/formatting rules.
+Wait, what about the target limits? "Target Limit: {{TARGET_LIMIT}}." is in the template.
+
+Let's look at `Forge-Procedure.md` Module 4:
+```markdown
+### Target Matrix Array Constraints
+**⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
+- **Contained Velocity:** Exactly 1 target.
+- **Generator Archetype:** Exactly 4 target tiers.
+- **All Others:** Strictly 3 to 5 targets.
+...
+### Execution Steps Count Constraints
+**⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
+- **All Archetypes:** Strictly 5 to 7 steps.
+
+Note: Structural minimums and maximums for Target Matrix, Execution Steps, and Heuristic counts may NOT be waived by the Efficacy Exemption.
+
+### Heuristic Verification Count Constraints
+**⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
+- **Pruner / Transformer:** Exactly 2 checks.
+- **Operator / Analyzer / Refactorer:** Exactly 3 checks.
+- **Generator / Instrumenter:** 3 to 4 checks.
+```
+These are mechanical limits. Does `compile_json.js` validate them? No, `compile_json.js` currently does not validate array lengths for Target Matrix, Execution Steps, or Heuristics. Wait, should `compile_json.js` validate them?
+"compile_json.js is a structural QA gate, not a formatter. It must evaluate schema limits natively and crash on violations such as: bold labels in philosophy bullets; incorrect Role length... missing versions; malformed required fields; invalid structural output."
+Ah! "Validation Coverage Audit — For every schema or content constraint, identify the source-of-truth population it governs and compare that population against the artifacts actually covered by the corresponding validation gate."
+
+Let's check if `compile_json.js` checks Target Matrix, Execution Steps, Heuristics counts.
+No, it only checks `philosophyRaw.length !== 5` and `optimizationsRaw.length !== 6` and `roleWords.length !== 2`.
+Wait! Does `compile_json.js` need to validate Target Matrix, Execution Steps, Heuristics? "It must evaluate schema limits natively".
+If so, I should add these checks to `compile_json.js`.
+Wait, in `Master-Forge.md`, Phase 5 Linter: "Array Validation: Verify counts exactly match Forge-Procedure Module 4. Flag deviations as FAIL (Mythic Agents exempt)." So the LLM Linter checks it. Should the compiler also check it?
+Let's see: "Validation Coverage Principle: Every validation constraint must be evaluated against the population of artifacts that its owning source-of-truth rule governs. If a validation gate excludes a class of artifacts covered by the source rule, flag the exclusion for intentionality review."
+Actually, wait, look at `Forge-Procedure.md`:
+"Array length constraints must be strictly evaluated during the Phase 5 Linter pass." It doesn't explicitly say they must be evaluated by the *compiler*. But wait!
+"Validation Coverage Audit — For every schema or content constraint, identify the source-of-truth population it governs and compare that population against the artifacts actually covered by the corresponding validation gate. Flag exemptions, tier checks, conditionals, or early exits that exclude artifacts covered by the source rule."
+
+Let's look at `compile_json.js` for exemptions:
+```javascript
+  const isMythic = String(data.identity?.tier || data.tier || '').toLowerCase() === 'mythic';
+```
+It skips `Role` length check for Mythic: `if (!isMythic && roleWords.length !== 2)`
+It skips Role article check for Mythic.
+It skips Synthesis theme verb match for Mythic.
+It skips Synthesis ALL CAPS first word for Mythic.
+It skips Philosophy bullet count for Mythic: `if (!isMythic && philosophyRaw.length !== 5)`
+It skips Philosophy bold label check for Mythic: `if (!isMythic && /\*\*[^\*:]+:\*\*|\*\*[^\*]+\*\*:/.test(cleanItem))`
+It skips Favorite Optimizations count for Mythic: `if (!isMythic && optimizationsRaw.length !== 6)`
+
+Does the source-of-truth rule exempt Mythic from these?
+In `Creative-Procedure.md`:
+"Role: Exactly two words. Cannot contain articles... ⚠️ Structural Mandate: Violations crash the compilation QA gate."
+"Synthesis: Max 145 characters. Open with the exact Theme Verb in imperative command tense... ⚠️ Structural Mandate: Missing ALL CAPS imperative on the first word triggers a fatal crash."
+"Philosophy: Exactly 5 bullets. Every bullet prefixed with a thematic emoji. No Bold Labels: Do not use bolded labels... ⚠️ Structural Mandate: Bold labels fatally crash the pipeline."
+"Favorite Optimizations: Exactly 6 optimizations."
+
+Is Mythic exempt from these creative rules?
+Let's check `Creative-Procedure.md` Module 3:
+"Module 3: The Mythic Agent Engine... Treats the fusion as an Easter egg to push a single mechanic to its absolute logical extreme."
+It does NOT mention exempting Mythic from the structural formatting constraints (Role length, Philosophy length, no bold labels, etc.).
+Wait, in `Master-Forge.md` Phase 5 Linter:
+"3. Array Validation: Verify counts exactly match Forge-Procedure Module 4. Flag deviations as FAIL (Mythic Agents exempt)."
+Mythic Agents are only explicitly exempt from *Array Validation* (Target Matrix, Execution Steps, Heuristics counts) in `Forge-Procedure.md` Module 4 (Wait, Module 4 doesn't mention Mythic, but Phase 5 does).
+Wait, they are NOT explicitly exempt from Philosophy count, Optimizations count, Role length, or bold labels.
+The `compile_json.js` gate excludes Mythic from EVERYTHING (`!isMythic` on almost every check). This is a Validation Coverage violation!
+"If a validation gate excludes a class of artifacts covered by the source rule, flag the exclusion for intentionality review. Do not automatically remove or broaden an exemption. Determine whether current architecture explicitly establishes that exemption as intentional, obsolete, or contradictory before changing it."
+Wait, `Master-Forge.md` Phase 5 explicitly says: "Verify counts exactly match Forge-Procedure Module 4. Flag deviations as FAIL (Mythic Agents exempt)." This means Mythic is exempt from Forge-Procedure Module 4 array constraints. But it does NOT say Mythic is exempt from Creative-Procedure Module 2 formatting constraints (Philosophy, Optimizations, Role, bold labels). So the compiler (`compile_json.js`) is wrongly exempting Mythic from these checks. I should remove `!isMythic &&` from those checks in `compile_json.js`.
+
+Let's check Numerical Consistency Audit:
+In `Forge-Procedure.md`:
+"If target excision results in 3 successive test failures... immediately Graceful Abort"
+"If a scaffold fails to compile natively within 3 attempts, Graceful Abort"
+"If a refactor fails native tests 3 times..."
+"If a structural change breaks the AST parser 3 times..."
+"If instrumentation causes a compiler/runner panic 3 times..."
+"If changes fail a dry-run/syntax validation 3 times..."
+"Max 3 verification attempts per target." (in Contained, Batch, Expansive_Standard, Expansive_Pruner)
+
+Wait, look at Testing Category Override in `Forge-Procedure.md` Module 3:
+"Testing Category Override
+`testing_doctrine`: "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).""
+Wait, here it says "Abort instrumentation after 2 failed approaches."
+But Instrumenter Base Profile says: "If instrumentation causes a compiler/runner panic 3 times, immediately Graceful Abort."
+This is a Numerical Conflict! "Abort instrumentation after 2 failed approaches" vs "3 times".
+"Does a numerical or scope constraint have multiple interpretations? ... A value whose unit changes between sections."
+I should consolidate this to "3 failed approaches" in the Testing Category Override to match the rest of the architecture, or if Testing is stricter, make sure the wording defines the scope correctly. Actually, Rule 7 says: "Every constraint should have one unambiguous semantic interpretation." So change 2 to 3 to match the rest of the architecture.
+
+Let's check Vertical Semantic Integrity Rule.
+"During every audit, identify all repeated definitions of the same operational concept within each architecture file."
+Is there duplication of "Managed Interruption"?
+In `Forge-Procedure.md`:
+"Note: The Managed Interruption clause is encoded in this execution_mandate string. Do not re-state it in salvaged_custom_logic or as a standalone named mandate in the output."
+And below:
+"### The Managed Interruption Protocol
+Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared. Do not re-state this in `salvaged_custom_logic` or as a standalone named mandate in the output."
+Wait, Expansive_Standard and Expansive_Pruner have: "See the Managed Interruption Protocol if forcibly paused."
+So the Protocol is defined once. Is it duplicated?
+Wait, what about "Artifact Lockbox"?
+In `Forge-Procedure.md`:
+"* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort."
+Is this duplicated?
+In `Master-Forge.md`:
+"8. **Universal Baseline Exemption:** Aggressively strip baseline safety rules (Artifact Lockbox, Native Tool Lock, Unconditional Cleanup, No-Interaction Policy) to prevent duplicates."
+This is consistent.
+
+Wait, check `Master-Forge.md`:
+"7. **Baseline Deduplication:** Verify no unlabeled baseline rules (Artifact Lockbox, Native Tool Lock, Unconditional Cleanup, No-Interaction Policy) survive alongside named equivalents, or within custom-labeled `salvaged_custom_logic` mandates."
+Consistent.
+
+Let's check `Creative-Procedure.md` Module 4 (Worker Template):
+`{{EXECUTION_RULE}}`
+`{{RESILIENCE_PROCEDURE}}`
+Wait, does it have `{{VERIFICATION_PROCEDURE}}`?
+Yes, under Strict Operational Rules. But wait, `VERIFICATION_PROCEDURE` is `testing_doctrine`.
+"The Process
+4. ✅ **VERIFY** — **The Reporter Protocol:** {{REPORTER_PROCEDURE}}
+**Heuristic Verification:**
+{{HEURISTICS}}"
+Is `VERIFICATION_PROCEDURE` just floating in the Strict Operational Rules?
+Yes, the template has:
+```markdown
+### Strict Operational Rules
+{{PRIMARY_RESPONSIBILITY}}
+{{THE_SCOPE}}
+{{EXECUTION_RULE}}
+{{RESILIENCE_PROCEDURE}}
+{{VERIFICATION_PROCEDURE}}
+```
+Wait, if `VERIFICATION_PROCEDURE` maps to `testing_doctrine`, it's an operational rule. Is there duplication here?
+In `Master-Forge.md` Phase 6: "Inject execution_mandate, discovery_velocity_rule, execution_posture, reporter_procedure, and testing_doctrine based on throughput and verification layers."
+
+Let's look for "Task Board Resolution Protocol"
+In `Master-Forge.md` Phase 6:
+"- **Task Board Mapping:** If the Archetype requires the Task Board, explicitly map the full Task Board Resolution Protocol string (from Forge-Procedure Module 4) into `data.memory_and_triage.agent_tasks_board`, instead of just the file path. Do not generate surrounding markdown or instructions."
+In `Forge-Procedure.md` Module 4:
+"**Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.` (Append the Core Discovery Fallback to this string if the worker is Tier: Core). This is the single canonical source for task-board state semantics — Data Sanitization's Worker Directives Exemption and Phase 4's Gap Analysis must reference or extend this string, never author independent task-board resolution language alongside it."
+Wait, "Task Board Resolution: {{WORKER_TASKS_BOARD}}" is in the Template under **DISCOVER**.
+Is there duplication or state-lifecycle contradiction here?
+Rule 8: "If checkbox state is intentionally non-authoritative, state that once and define what is authoritative. If completed tasks are deleted while blocked tasks remain marked, explicitly distinguish those terminal states."
+This is already well-defined in the string.
+
+Let's check "State Ingestion: Read `{{JOURNAL_PATH}}`. Log only persistent architectural context for future `{{CATEGORY}}` runs, not exhaustive execution steps. {{JOURNAL_PROCEDURE}}" in `Creative-Procedure.md`.
+Wait, `Master-Forge.md` says: "Gap Analysis: Before authoring new journal/tracking language, read the DISCOVER section's existing State Ingestion text and any baseline Journal Protocol string already present. Only add domain-specific extensions describing what to track for this worker's mutated file types — do not restate the general retention instruction that already exists."
+
+Let's check "Scope Matrix Audit — Apply Rule 6. For every instruction involving autonomy, discovery, selection, mutation, verification, or submission, determine the authorized scope. Flag unexplained scope expansion, including scope expansion introduced by a proposed repair."
+"Throughput-Discovery Consistency: Verify `discovery_velocity_rule` and `execution_mandate` are drawn from the same throughput block. FAIL if unbounded "Full-Sweep"/"map... globally" language co-occurs with a bounded numeric Target Limit from a different tier, or vice versa — Module 6's unbounded discovery reasoning governs DISCOVER only, never the execution mandate."
+This distinction is clearly maintained in `Forge-Procedure.md` Module 3.
+
+Wait, check "Numerical Consistency Audit" again:
+In `Master-Forge.md`: "Phase 6 Data Assembly ... Inject CURRENT_FORGE_VERSION into data.identity.forge_version."
+CURRENT_FORGE_VERSION: "V86.9"
+MINIMUM_VERSION_THRESHOLD: "84.9"
+"Threshold Sync Rule: MINIMUM_VERSION_THRESHOLD is always CURRENT_FORGE_VERSION minus 2.0."
+So it's fine.
+
+Wait! Look at `Master-Forge.md`:
+"1. Pruner (Delete) ... Operational: Treat the environment as an immutable house of cards. Deleting legacy code is volatile. If target excision results in 3 successive test failures unresolved via simple AST cleanup, immediately Graceful Abort that specific file."
+Wait, `Master-Forge.md` doesn't have this. It's in `Forge-Procedure.md`.
+
+What about "A. Token Pipeline — Does every key generated in the 'payload.json' instructions of 'Master-Forge.md' Phase 6 map correctly to a variable in 'compile_json.js'?"
+We found that `decisiveness_rule` and `workflow_execution` were orphaned. And `journal_procedure` is mapped, but should be removed from `archetype_slots` logic.
+
+Wait! What about "Bifurcation Index — Identify mechanical rules in Creative-Procedure.md; creative/style rules in Forge-Procedure.md; schema/rendering rules incorrectly embedded in operational documentation; operational mandates duplicated in creative documentation."
+Let's look at `Creative-Procedure.md`:
+"Structural Formatting Constraints
+Target Matrix Formatting: Format exactly as: `* **[Category Name]:** [description]`.
+Heuristic Formatting: All labels phrased as questions.
+Retained Rules Formatting: Format exactly as: `* The [Name]: [Instruction].`"
+These are formatting rules in Creative-Procedure. Good.
+Wait, what about `Forge-Procedure.md`?
+"**⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
+- **Contained Velocity:** Exactly 1 target.
+- **Generator Archetype:** Exactly 4 target tiers.
+- **All Others:** Strictly 3 to 5 targets."
+These are mechanical limits in Forge-Procedure. Good.
+
+What about `Master-Forge.md`?
+```markdown
+- **Dynamic Label Injection:** Dynamically author and format your own bolded labels with bullets (e.g., `* **The Style Scope Guard:** `) inside JSON string values for fields mapped to the Strict Operational Rules section (such as `salvaged_custom_logic` and `archetype_slots`).
+```
+This is a formatting rule embedded in `Master-Forge.md` Phase 6! "Bifurcation Index — ... schema/rendering rules incorrectly embedded in operational documentation". Should this be moved to `Creative-Procedure.md`? Or maybe it's fine in `Master-Forge.md` because it's assembly?
+Wait! The instruction says: "Module 4: The Worker Template in Creative-Procedure.md is the absolute Source of Truth for presentation."
+"compile_json.js is a structural QA gate, not a formatter. ... It is strictly forbidden from manually hardcoding UI labels or structural Markdown into its rendering/mapping objects"
+If formatting logic is in `Master-Forge.md`, maybe it's fine?
+Wait, look at `Creative-Procedure.md` again:
+"Structural Formatting Constraints"
+It has Target Matrix, Heuristic, Retained Rules formatting. But it doesn't have formatting for `salvaged_custom_logic` and `archetype_slots`! Wait, it has "Retained Rules Formatting: Format exactly as: `* The [Name]: [Instruction].`". This IS for `salvaged_custom_logic` / `salvaged_mandates`.
+In `Master-Forge.md`, we have:
+"Dynamically author and format your own bolded labels with bullets (e.g., `* **The Style Scope Guard:** `) inside JSON string values for fields mapped to the Strict Operational Rules section (such as `salvaged_custom_logic` and `archetype_slots`)."
+So `Master-Forge.md` dictates the formatting for `salvaged_custom_logic` and `archetype_slots`! This is a creative/style rule inside `Master-Forge.md`! It belongs in `Creative-Procedure.md`!
+I should move it to `Creative-Procedure.md` under `Structural Formatting Constraints`:
+"Strict Operational Rules Formatting: Dynamically author and format your own bolded labels with bullets (e.g., `* **The Style Scope Guard:** `) inside JSON string values for fields mapped to the Strict Operational Rules section (such as `salvaged_custom_logic` and `archetype_slots`)."
+And remove it from `Master-Forge.md`.
+
+Wait, in `Creative-Procedure.md`, there is already:
+"Retained Rules Formatting: Format exactly as: `* The [Name]: [Instruction].`"
+If I add "Strict Operational Rules Formatting: Dynamically author and format your own bolded labels with bullets...", does it conflict with "Retained Rules Formatting"?
+"Retained Rules" usually go into `salvaged_custom_logic` or `salvaged_mandates`. If they use `* The [Name]: [Instruction].` they don't have bold labels. But `Master-Forge` says `* **The Style Scope Guard:** `. That's a bold label!
+Wait! Module 2 says: "No Bold Labels: Do not use bolded labels (e.g., `**Text:**`). ⚠️ Structural Mandate: Bold labels fatally crash the pipeline."
+Wait, the bold labels ban applies to **Philosophy** bullets! "Philosophy: Exactly 5 bullets. Every bullet prefixed with a thematic emoji. No Bold Labels: Do not use bolded labels..."
+But `Master-Forge.md` Phase 6 says: "Dynamically author and format your own bolded labels with bullets (e.g., `* **The Style Scope Guard:** `) inside JSON string values for fields mapped to the Strict Operational Rules section (such as `salvaged_custom_logic` and `archetype_slots`)."
+Is this a contradiction?
+The bold label ban is specifically for `Philosophy`. `compile_json.js` enforces it ONLY on Philosophy:
+```javascript
+  philosophyRaw.forEach((item, index) => {
+    let cleanItem = String(item)
+      .replace(/^[\*\-]\s+/, '');
+    if (!isMythic && /\*\*[^\*:]+:\*\*|\*\*[^\*]+\*\*:/.test(cleanItem)) {
+```
+So it's allowed in Strict Operational Rules.
+But the rule in `Master-Forge.md` is definitely a formatting rule. I'll move it to `Creative-Procedure.md` under `Structural Formatting Constraints`.
+
+Wait, what about:
+`Master-Forge.md` Phase 1:
+"6. Formatting: Rewrite retained rules per Creative-Procedure Module 2."
+That correctly defers to Creative-Procedure.
+
+Let's check "Token Bloat Audit — Identify passive voice, conversational filler, redundant boilerplate, repeated explanations, obsolete examples, excessive narrative around already-defined constraints. Prefer dense, imperative architecture documentation. Do not remove wording merely because it is verbose if removing it would erase a necessary semantic distinction."
+
+Let's look for duplicated text in `Forge-Procedure.md`.
+Wait, "Note: The Managed Interruption clause is encoded in this execution_mandate string. Do not re-state it in salvaged_custom_logic or as a standalone named mandate in the output."
+And then right below it:
+"### The Managed Interruption Protocol
+Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared. Do not re-state this in `salvaged_custom_logic` or as a standalone named mandate in the output."
+This is redundant. The sentence "Do not re-state it in salvaged_custom_logic..." is stated twice. I can consolidate this.
+
+Also in `Forge-Procedure.md` Module 3 Testing Doctrine:
+```markdown
+#### Standard Domain
+* **`testing_doctrine`:** "* Treat test files as immutable and read-only. ...
+
+Note: The `testing_doctrine` string is auto-injected by the compiler into its own dedicated slot. Do not re-state it in `salvaged_custom_logic` or as a standalone named mandate (e.g., "The Test Immunity Doctrine") in the output, even if the legacy draft phrased it that way — a legacy draft naming and elaborating this rule is a signal to map it to this slot, not to preserve it a second time as custom logic.
+
+#### Testing Category Override
+* **`testing_doctrine`:** "* Mutate test files exclusively; treat source code as read-only. ...
+
+Note: As with the Standard Domain variant, this string occupies its own dedicated slot and must not be separately hand-authored as a named mandate elsewhere in the output.
+```
+This is a bit bloaty but conceptually clear.

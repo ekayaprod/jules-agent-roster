@@ -110,8 +110,10 @@ You must explicitly generate the velocity strings and testing doctrines in the J
 * **`execution_posture`:** "* Execute in bounded sequence, tracking mutation count against the declared quota."
 * **`reporter_procedure`:** "* Verify mutations in bounded batches. Max 3 verification attempts per target. Halt execution upon reaching the quota ceiling."
 
+Note: The Managed Interruption clause is encoded in this execution_mandate string. Do not re-state it in salvaged_custom_logic or as a standalone named mandate in the output.
+
 ### The Managed Interruption Protocol
-Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared. The Managed Interruption Protocol is referenced by throughput modes and must not be restated as a standalone mandate or in `salvaged_custom_logic`.
+Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared. Do not re-state this in `salvaged_custom_logic` or as a standalone named mandate in the output.
 
 #### Expansive_Standard (Full-Sweep)
 * **`execution_mandate`:** "* Full-sweep posture: Map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Surface genuine blockers before ~75 calls — do not fabricate questions. After DISCOVER or each logical mutation cluster, submit if the payload is a submittable unit, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
@@ -130,10 +132,12 @@ Both Expansive throughput modes reference this instead of restating it. If forci
 #### Standard Domain
 * **`testing_doctrine`:** "* Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert."
 
-#### Testing Category Override
-* **`testing_doctrine`:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 3 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+Note: The `testing_doctrine` string is auto-injected by the compiler into its own dedicated slot. Do not re-state it in `salvaged_custom_logic` or as a standalone named mandate (e.g., "The Test Immunity Doctrine") in the output, even if the legacy draft phrased it that way — a legacy draft naming and elaborating this rule is a signal to map it to this slot, not to preserve it a second time as custom logic.
 
-Note: The `testing_doctrine` string (for both standard and testing variants) is auto-injected by the compiler into its own dedicated slot. Do not re-state it in `salvaged_custom_logic` or as a standalone named mandate (e.g., "The Test Immunity Doctrine") in the output, even if a legacy draft phrased it that way.
+#### Testing Category Override
+* **`testing_doctrine`:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+
+Note: As with the Standard Domain variant, this string occupies its own dedicated slot and must not be separately hand-authored as a named mandate elsewhere in the output.
 
 #### Structural Verification Layer Adjustment
 If the domain relies on structural verification (no executable tests), dynamically rewrite `reporter_procedure` to replace references to "triggering your test runner" with "executing your heuristic checks."

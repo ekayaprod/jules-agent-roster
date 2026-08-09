@@ -54,7 +54,7 @@ Apply thematic voice per this gradient:
 ### Structural Formatting Constraints
 **Target Matrix Formatting:** Format exactly as: `* **[Category Name]:** [description]`.
 **Heuristic Formatting:** All labels phrased as questions.
-**Strict Operational Rules Formatting:** Format all injected rules (including retained rules and archetype slots) with bolded labels and bullets exactly as: `* **The [Name]:** [Instruction].`
+**Retained Rules Formatting:** Format exactly as: `* The [Name]: [Instruction].`
 
 ## Module 3: The Mythic Agent Engine
 
@@ -105,6 +105,8 @@ Your mission is to {{MISSION_SCOPE}}.
 {{RESILIENCE_PROCEDURE}}
 {{VERIFICATION_PROCEDURE}}
 {{DOMAIN_MODIFIERS}}
+{{AUTONOMOUS_SELECTION}}
+{{WORKFLOW_EXECUTION}}
 {{SALVAGED_MANDATES}}
 {{ZERO_INTERACTION_MANDATES}}
 {{SALVAGED_CUSTOM_LOGIC}}

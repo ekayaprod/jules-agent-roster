@@ -1,0 +1,19 @@
+Let me double check what I removed in compile_json.js.
+I removed:
+```
+    AUTONOMOUS_SELECTION: trimText(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule),
+    WORKFLOW_EXECUTION: trimText(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution),
+    VERIFICATION_PROCEDURE: trimText(data.process?.verify?.testing_doctrine),
+```
+Wait! I accidentally removed `VERIFICATION_PROCEDURE`?! Let me look at the diff:
+```javascript
+<<<<<<< SEARCH
+    AUTONOMOUS_SELECTION: trimText(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule),
+    WORKFLOW_EXECUTION: trimText(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution),
+    JOURNAL_PROCEDURE: trimText(data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure),
+=======
+    JOURNAL_PROCEDURE: trimText(data.memory_and_triage?.journal_procedure),
+>>>>>>> REPLACE
+```
+Wait, the `SEARCH` block didn't include `VERIFICATION_PROCEDURE`?
+Let me grep `VERIFICATION_PROCEDURE` in `compile_json.js`.
