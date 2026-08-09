@@ -79,8 +79,7 @@ For Legacy Imports: Extract Target Data Array, Metaphors, Optimizations. Apply t
 5. **Domain Exception:** Never discard cleanup rules referencing unique domain artifacts (e.g., `.nyc_output`).
 6. **Formatting:** Rewrite retained rules per Creative-Procedure Module 2.
 7. **Multi-Clause Preservation:** Preserve verbatim any retained rule containing a numbered decision tree, named tool constraint, or 2+ subordinate directives. Strip baseline sentences (Point 8) before preserving the remainder.
-8. **Universal Baseline Exemption:** Aggressively strip baseline safety rules (Artifact Lockbox, Native Tool Lock, Unconditional Cleanup, No-Interaction Policy) to prevent duplicates.
-   - **Baseline Extraction Sub-Rule:** If a legacy draft mixes baseline mechanics with genuine domain logic in one clause, strip only the baseline portion. Extract the domain-specific sentence into `salvaged_custom_logic` with a fresh label.
+8. **Zero-Trust Baseline Purge:** Do not attempt to identify, name, or track legacy baseline rules. Assume all standard safety, tool interaction, terminal limits, and generic cleanup mechanics are handled natively by modern base physics. Strip any legacy rule that broadly governs behavior, file safety, or autonomy. Retain a rule ONLY if it contains a strict, verifiable technical constraint unique to the extrapolated domain (e.g., a specific framework command or proprietary file path).
 
 ### Output Format
 1. **Mission Scope:** Literal operational mission in max 2 sentences. Clean imperative clause; no subject pronouns or worker names.
@@ -131,6 +130,7 @@ Apply the Operating Theme Engineering Framework. Adhere strictly to limits, capi
 1. **Domain Conflict:** Why is this Archetype the most mechanically precise?
 2. **Scope Boundary:** Declare files the worker might be tempted to touch but shouldn't.
 3. **Theme Coherence:** Confirm the theme mechanically restricts/focuses the worker rather than acting as mere decoration.
+4. **Generic Bleed Check:** Review `salvaged_custom_logic`. If any retained rule applies universally to general coding tasks rather than strictly to this worker's domain, delete it.
 
 ### Section A: Sculptor's Pass Checks
 - **Domain Instantiation (Tier: Core only):** Run Step 4 of the Domain Extrapolation Procedure (Forge-Procedure Module 6) — translate the domain resolved in Phase 1 into concrete, stack-specific targets using Repo Recon context. Do not carry over target examples from a prior compiled version if they reflect a narrower stack than the current repository presents.
@@ -159,8 +159,8 @@ Operate as a rigid syntax checker using the Sculptor Manifest.
 4. **Coherence Audit:** Validate DISCOVER formats (Creative-Procedure Module 2) and Core tier framing (Forge-Procedure Module 4). **Task Board State Coherence:** If task-board handling language appears in more than one section (DISCOVER, Strict Operational Rules, Journal/Gap Analysis), verify all instances describe one consistent state model matching the Task Board Resolution Protocol (Forge-Procedure Module 4). FAIL if two sections imply different outcomes for the same task state (e.g., one says delete, another says mark and preserve).
 5. **Format Completeness:** Validate structural limits, emojis, and bold label bans against Creative-Procedure Module 2. Flag deviations as FAIL.
 6. **Instruction Density:** Flag retained instruction bloat exceeding base physics equivalents as a Repair Order.
-7. **Baseline Deduplication:** Verify no unlabeled baseline rules (Artifact Lockbox, Native Tool Lock, Unconditional Cleanup, No-Interaction Policy) survive alongside named equivalents, or within custom-labeled `salvaged_custom_logic` mandates.
-8. **Internal Duplication:** Verify canonical mechanics (testing doctrine, resilience) are not hand-authored a second time under a different label within the Strict Operational Rules, and are not restated in different phrasing within the same field or an adjacent field even under the same label. Collapse duplicates either way.
+7. **Domain-Exclusive Retention:** Verify `salvaged_custom_logic` contains zero generic behavioral instructions or legacy safety rules. It must contain only hyper-specific domain constraints.
+8. **Internal Duplication:** Verify canonical mechanics (testing doctrine, resilience) are not hand-authored within the Strict Operational Rules, and are not restated in different phrasing within the same field. Collapse duplicates.
 9. **Efficacy Exemption:** Structural minimums cannot be waived, but formatting/wording edits may declare `"EFFICACY_EXEMPTION"` if preserving legacy text measurably improves Jules Core efficacy.
 
 ### Output Format
