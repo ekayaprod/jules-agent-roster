@@ -102,12 +102,15 @@ class NetworkUtils {
     retries = NetworkUtils.MAX_RETRIES,
     backoff = NetworkUtils.DEFAULT_BACKOFF_MS,
   ) {
+    options = options || {};
+    const urlString = url instanceof URL ? url.toString() : url;
+
     // 🐺 FORTIFY: Head 1 - Rate Limiting (Block thundering herds)
     try {
-      NetworkUtils._enforceRateLimit(url);
+      NetworkUtils._enforceRateLimit(urlString);
     } catch (error) {
       const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
-      if (tu) tu.dispatchEvent("NETWORK_RATE_LIMIT_EXCEEDED", error, { url: url });
+      if (tu) tu.dispatchEvent("NETWORK_RATE_LIMIT_EXCEEDED", error, { url: urlString });
       throw error;
     }
 
@@ -120,7 +123,7 @@ class NetworkUtils {
 
     try {
       // 🐺 FORTIFY: Head 3 - Wrap naked execution in try/catch (already robustly handled here)
-      const response = await fetch(url, {
+      const response = await fetch(urlString, {
         ...options,
         signal: options.signal ?? controller.signal,
       });
@@ -170,7 +173,7 @@ class NetworkUtils {
 
       if (retries > 0 && isNetworkError) {
         await new Promise((resolve) => setTimeout(resolve, backoff));
-        return NetworkUtils.fetchWithRetry(url, options, retries - 1, backoff * 2);
+        return NetworkUtils.fetchWithRetry(urlString, options, retries - 1, backoff * 2);
       }
 
       if (isServerError) {
