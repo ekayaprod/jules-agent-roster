@@ -151,9 +151,9 @@ If the domain relies on structural verification (no executable tests), dynamical
 
 ### Target Matrix Array Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
-- **Contained Velocity:** Exactly 1 target.
-- **Generator Archetype:** Exactly 4 target tiers.
-- **All Others:** Strictly 3 to 5 targets.
+- **Contained Velocity:** Minimum 1 target.
+- **Generator Archetype:** Minimum 4 target tiers.
+- **All Others:** Minimum 3 targets.
 
 **Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Structural Mandate:** You must explicitly define the Domain Autonomy declaration and the Discovery Fallback instruction natively within the JSON payload (`data.process.discover.domain_autonomy_declaration` and `data.process.discover.discovery_fallback`). Supply the exact literal strings defined below.
 
@@ -165,19 +165,19 @@ If the domain relies on structural verification (no executable tests), dynamical
 
 ### Execution Steps Count Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
-- **All Archetypes:** Strictly 5 to 7 steps.
+- **All Archetypes:** Minimum 5 steps.
 
-Note: Structural minimums and maximums for Target Matrix, Execution Steps, and Heuristic counts may NOT be waived by the Efficacy Exemption.
+Note: Structural minimums for Target Matrix, Execution Steps, and Heuristic counts may NOT be waived by the Efficacy Exemption.
 
 ### Heuristic Verification Count Constraints
 **⚠️ STRICT GENERATIVE BOUNDARY:** Array length constraints must be strictly evaluated during the Phase 5 Linter pass.
-- **Pruner / Transformer:** Exactly 2 checks.
-- **Operator / Analyzer / Refactorer:** Exactly 3 checks.
-- **Generator / Instrumenter:** 3 to 4 checks.
+- **Pruner / Transformer:** Minimum 2 checks.
+- **Operator / Analyzer / Refactorer:** Minimum 3 checks.
+- **Generator / Instrumenter:** Minimum 3 checks.
 
 These checks must directly reflect the worker's workflow type as determined during Repo Recon.
 
-Note: Structural minimums and maximums for Target Matrix, Execution Steps, and Heuristic counts may NOT be waived by the Efficacy Exemption.
+Note: Structural minimums for Target Matrix, Execution Steps, and Heuristic counts may NOT be waived by the Efficacy Exemption.
 
 ### Confidence Tier Model
 An optional structural pattern available to the Sculptor. It serves as an alternative to the binary Ambiguity Gate for workers whose target domains have natural confidence gradients. When electing to apply it, reference it explicitly by name.
