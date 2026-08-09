@@ -34,3 +34,10 @@ Stripped out ~5 redundant Coat-Check Wrappers (~35 lines of zero-logic boilerpla
 * **File:** `js/Services/AgentRepository.js`
 * **Details:** Located a cosmetic try/catch block wrapping the `fetchAgents()` method that merely caught and re-threw the error without adding any logic or telemetry. Stripped the syntax to allow the native error propagation to handle it.
 * **Date:** $(date)
+
+### Hallucination Taxonomy Ledger Update
+
+*   **Pattern Eradicated:** Hallucinated wrapper function (`getTelemetryUtils()`) that did not exist in the global scope but was synthetically injected into the code path by the LLM as a passthrough abstraction.
+*   **File Mutated:** `js/Utils/network/network-utils.js`
+*   **Native Equivalent:** `typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null)`
+*   **Status:** Jive Neutralized.

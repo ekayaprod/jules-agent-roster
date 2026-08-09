@@ -86,11 +86,11 @@ class NetworkUtils {
           errorMsg = errJson.message;
         }
       } catch (error) {
-        const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+        const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
         if (tu) tu.dispatchEvent("NETWORK_ERROR_PARSING_FAILED", error, { url: response.url, status: response.status });
       }
     } catch (error) {
-      const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+      const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
       if (tu) tu.dispatchEvent("NETWORK_ERROR_TEXT_FAILED", error, { url: response.url, status: response.status });
     }
     return errorMsg;
@@ -106,7 +106,7 @@ class NetworkUtils {
     try {
       NetworkUtils._enforceRateLimit(url);
     } catch (error) {
-      const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+      const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
       if (tu) tu.dispatchEvent("NETWORK_RATE_LIMIT_EXCEEDED", error, { url: url });
       throw error;
     }
