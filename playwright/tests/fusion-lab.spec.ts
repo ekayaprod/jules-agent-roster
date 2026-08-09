@@ -16,7 +16,7 @@ test.describe('Fusion Lab End-to-End', () => {
     // Select an agent from the picker modal
     const pickerModal = page.getByRole('dialog', { name: /Select Protocol Component/i });
     await expect(pickerModal).toBeVisible();
-    await page.getByRole('option').first().click();
+    await pickerModal.getByRole('option').first().click();
 
     // Click on Slot B (Select Agent B) to select second agent
     const slotB = page.locator('#slotBCard');
@@ -25,7 +25,7 @@ test.describe('Fusion Lab End-to-End', () => {
 
     // Select another agent from the picker modal
     await expect(pickerModal).toBeVisible();
-    await page.getByRole('option').nth(1).click();
+    await pickerModal.getByRole('option').nth(1).click();
 
     // Verify fuse button is active and click it
     // The button has text "Ignite Protocol" (formerly had aria-label "Fuse Selected Protocols")
