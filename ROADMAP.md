@@ -69,7 +69,7 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 **The Problem:** The application lacks a robust, standardized way to sanitize dynamically rendered outputs in Fusion Lab, leaving potential XSS vulnerabilities.
 **The Solution:** Integrate `DOMPurify` via CDN.
-**The Benefit:** Standardizes sanitization with a vetted, security-focused library without requiring a build step.
+**The Benefit:** Standardizes sanitization with a vetted, security-focused library without complicating our lightweight Node.js compilation step.
 
 ### Standardize Clipboard Logic with `clipboard-polyfill`
 
@@ -81,7 +81,7 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 
 **The Problem:** The `index.html` file contains excessive inline CSS, making maintenance difficult and causing style duplication across components.
 **The Solution:** Adopt `UnoCSS` via CDN.
-**The Benefit:** Eliminates inline CSS bloat through on-demand utility classes while maintaining the strict zero-build-step requirement.
+**The Benefit:** Eliminates inline CSS bloat through on-demand utility classes without adding heavy bundlers to our lightweight compilation step.
 
 ### Standardize UI Templating
 
