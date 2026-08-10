@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### 🚀 Features
-- **Agent Architecture Upgrades**: Auto-Forge mass upgraded numerous agents (Coroner, Triage, Pruner, Proton Pack, Customs, Propagator, Prefect, Payload, Construct, Pathfinder, PathCentralizer, Millisecond) to V85.2 - V85.4.
+- **UI & Transitions**: Implemented comprehensive Palette+ aesthetic upgrades, injecting fluid transitions, glassmorphism, depth layers, and semantic CSS utilities across frontend components (e.g., AgentCards, EmptyStates, Modals).
+- **Agent Architecture Upgrades**: Auto-Forge mass upgraded numerous agents (Coroner, Triage, Pruner, Proton Pack, Customs, Propagator, Prefect, Payload, Construct, Pathfinder, PathCentralizer, Millisecond, Hazmat, Groundskeeper) to V85.2 - V86.9.
 - **UI & Layout**: Morphed Jules Runner Panel to Responsive Architecture and corrected flex wrap layout for section headers on desktop.
 
 ### 🛡️ Resilience & Security
@@ -18,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🔧 Chores & Code Health
 - **System Governance**: Enforced Creation Imperative in Generator base profile and executed Janitor sweeps for baselines, artifact purges, and hazards.
-- **Modernization**: Evolved syntax, flattened Promises, and injected strict Nullish Coalescing guards. Conducted horizontal alignment sweeps across the codebase.
+- **Modernization**: Evolved syntax, flattened Promises, and injected strict Nullish Coalescing guards. Conducted horizontal alignment sweeps across the codebase (including Groundskeeper standards V86.8).
 
 ### 🚀 Features
 - **UI & Transitions**: Implemented fluid geometry, GPU-accelerated modal transitions using opacity/pointer-events, and fluid search bar expansion in UI components. Injected fluid transitions into JulesTerminal session blocks and focus rings to Palette+ inputs.

@@ -55,6 +55,8 @@ const FusionAnimation = function () {
       const particle = document.createElement("div");
       particle.className = "anim-particle";
 
+      // 🧮 CHRONICLE: Calculates random orbital coordinates (angle 0-360 deg, distance 50-250px)
+      // to distribute tier-specific particle bursts outwards from the center during fusion visualization.
       const angle = Math.random() * Math.PI * 2;
       const distance = 50 + Math.random() * 200;
       const tx = Math.cos(angle) * distance;
