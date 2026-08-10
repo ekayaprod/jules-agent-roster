@@ -170,6 +170,8 @@ class SearchController {
             cardHtml = card.outerHTML || '';
             this.app._cardHtmlCache.set(keyOrIndex, cardHtml);
         }
+        // 🧮 CHRONICLE: Staggers search result list rendering animations by 30ms per item up to a 600ms cap
+        // to prevent long-list rendering lag in the UI.
         const delay = `${Math.min(visibleCount * 30, 600)}ms`;
         const renderedHtml = typeof cardHtml === 'string' ? cardHtml.replace(ANIMATION_DELAY_REGEX, `animation-delay: ${delay};`) : '';
         visibleCount++;

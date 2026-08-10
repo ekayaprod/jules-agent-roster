@@ -124,6 +124,8 @@ class AgentPicker {
         if (!this.cachedHtmlStrings) {
             this.cachedHtmlStrings = [];
             this.baseAgents.forEach((agent, index) => {
+                // 🧮 CHRONICLE: Staggers list element animations by 30ms per item up to a 300ms cap
+                // to prevent staggered rendering lag on long Agent Pickers.
                 const delay = Math.min(index * 30, 300);
                 const htmlStr = `
                 <div class="fusion-picker-item pop-in delay-${delay}" role="option" tabindex="0" data-name="${FormatUtils.escapeHTML(agent.name.toLowerCase())}">
