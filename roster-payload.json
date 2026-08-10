@@ -809,7 +809,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "UPGRADE legacy routing topologies to modern, native structural equivalents.",
-    "forge_version": "V84.2",
+    "forge_version": "V86.9",
     "promptFile": "prompts/fusions/Helmsman.md",
     "isCustom": true
   },
