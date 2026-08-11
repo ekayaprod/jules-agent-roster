@@ -168,7 +168,17 @@ class FusionIndex {
    * @returns {void}
    */
   updateProgress(element) {
-    const total = this.customAgents ? Object.values(this.customAgents).filter((val) => val !== '').length : 0;
+    let total = 0;
+    if (this.customAgents) {
+      for (const key in this.customAgents) {
+        if (
+          Object.prototype.hasOwnProperty.call(this.customAgents, key) &&
+          this.customAgents[key] !== ''
+        ) {
+          total++;
+        }
+      }
+    }
     element.textContent = `${this.unlockedKeys.size} / ${total} Protocols Discovered`;
   }
 
