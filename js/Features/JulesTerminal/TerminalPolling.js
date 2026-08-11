@@ -143,7 +143,7 @@ class TerminalPolling {
                 if (this.terminal.activeModalSessionId === sessionId) {
                     const contentEl = this.terminal.getEl("historyModalContent");
                     if (contentEl) {
-                        contentEl.innerHTML = "";
+                        contentEl.textContent = "";
                         const fullHistoryMarkdown = historyBuffer.join('');
                         const pre = DOMUtils.createMarkdownPreBlock(fullHistoryMarkdown || "No history available.");
                         contentEl.appendChild(pre);
@@ -171,7 +171,7 @@ class TerminalPolling {
 
         if (state.isCompleted) {
             statusSpan.className = "term-status status-success";
-            statusSpan.innerHTML = `✅ Execution Finished`;
+            statusSpan.textContent = `✅ Execution Finished`;
             this.terminal.loadPullRequestsForRepo(this.terminal.currentRepo);
             clearInterval(this.terminal.julesPollingIntervals[sessionId]);
             setTimeout(() => this.terminal.dismissSession(sessionId), this.terminal.constructor.SUCCESS_DISMISS_DELAY_MS);
@@ -199,7 +199,7 @@ class TerminalPolling {
 
         if (state.isWaitingForInput) {
             statusSpan.className = "term-status status-waiting";
-            statusSpan.innerHTML = `⚠️ Response Needed (Click to view)`;
+            statusSpan.textContent = `⚠️ Response Needed (Click to view)`;
             statusSpan.onclick = (e) => {
                 e.stopPropagation();
                 this.terminal.modals._showInteractionModal(sessionId, agentEmoji, agentName, state.rawMessage);
