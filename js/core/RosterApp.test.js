@@ -42,7 +42,6 @@ describe('RosterApp (Boundary Interrogation)', () => {
         global.SearchController = class { init() {} };
         global.ExportController = class { init() {} };
         global.AgentRepository = class { async fetchWithRetry() { return []; } async initialize() { return true; } };
-        global.SEARCH_DEBOUNCE_MS = 300;
         global.PinnedManager = PinnedManager;
 
         // Mock module export for test environment injection

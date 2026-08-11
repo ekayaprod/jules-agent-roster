@@ -7,7 +7,6 @@ global.MESSAGES = MESSAGES;
 const EventBinder = require('./EventBinder');
 
 // Mocks for dependencies
-global.SEARCH_DEBOUNCE_MS = 300;
 global.SafeUITimings = { MODAL_FOCUS_DELAY_MS: 50 };
 
 global.DOMUtils = {
