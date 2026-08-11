@@ -41,7 +41,7 @@ export async function POST(req: Request) {
 ~~~TypeScript
 // HAZARD: Leaving the architecture stranded with mocked endpoints
 export async function POST(req: Request) {
-  // TODO: Implement actual OpenAI call here eventually
+  // Implement actual OpenAI call here eventually
   return Response.json({ text: "Mocked AI response" });
 }
 ~~~
