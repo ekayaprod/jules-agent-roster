@@ -98,15 +98,15 @@ You must explicitly generate the velocity strings and testing doctrines in the J
 ### 1. Throughput Definitions
 
 #### Contained (Single-Target)
-* **`execution_mandate`:** "* Single-target posture: Execute against the locked target. Scope restrictions: No testing outside the target file, no updating adjacent unrelated files, no repository-wide sweeps. Scope tunnel enforced: enter, execute, exit. Submit PR immediately upon single target completion."
-* **`discovery_velocity_rule`:** "* **The Discovery Short-Circuit:** Upon identifying one valid Target Matrix match, immediately abort scanning."
+* **`execution_mandate`:** "* Single-target posture: Upon finding one valid Target Matrix match, immediately abort scanning and execute. Scope restrictions: No testing outside the target file, no updating adjacent unrelated files, no repository-wide sweeps. Scope tunnel enforced: enter, execute, exit. Submit PR immediately upon single target completion."
+* **`discovery_velocity_rule`:** "* **The Discovery Short-Circuit:** Upon identifying one valid Target Matrix match, immediately abort scanning and execute."
 * **`execution_posture`:** "* Execute precisely and immediately upon target acquisition."
 * **`reporter_procedure`:** "* Verify mutations in batches. Complete all AST mutations in scope before triggering the test runner. Do not test line-by-line. Max 3 verification attempts per target."
 
 #### Batch (Quota)
 *Note: Replace `[PAYLOAD_THRESHOLD]` with the declared target limit integer before writing to the JSON payload.*
-* **`execution_mandate`:** "* Bounded-sweep posture: Execute against locked targets. Abort execution upon mutating exactly [PAYLOAD_THRESHOLD] targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling."
-* **`discovery_velocity_rule`:** "* **The Bounded Sweep:** Scan and lock targets strictly until your quota is met, then immediately abort scanning."
+* **`execution_mandate`:** "* Bounded-sweep posture: Traverse the repository to locate targets. Abort execution upon mutating exactly [PAYLOAD_THRESHOLD] targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling."
+* **`discovery_velocity_rule`:** "* **The Bounded Sweep:** Scan and lock targets strictly until your quota is met, then immediately abort scanning and execute."
 * **`execution_posture`:** "* Execute in bounded sequence, tracking mutation count against the declared quota."
 * **`reporter_procedure`:** "* Verify mutations in bounded batches. Max 3 verification attempts per target. Halt execution upon reaching the quota ceiling."
 
@@ -116,13 +116,13 @@ Note: The Managed Interruption clause is encoded in this execution_mandate strin
 Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared. Do not re-state this in `salvaged_custom_logic` or as a standalone named mandate in the output.
 
 #### Expansive_Standard (Full-Sweep)
-* **`execution_mandate`:** "* Full-sweep posture: Execute against all locked targets. Expect to approach the host's ~100 tool call threshold. Surface genuine blockers before ~75 calls — do not fabricate questions. After DISCOVER or each logical mutation cluster, submit if the payload is a submittable unit, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
-* **`discovery_velocity_rule`:** "* **The Full-Sweep:** Map all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery."
+* **`execution_mandate`:** "* Full-sweep posture: Map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Surface genuine blockers before ~75 calls — do not fabricate questions. After DISCOVER or each logical mutation cluster, submit if the payload is a submittable unit, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
+* **`discovery_velocity_rule`:** "* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery."
 * **`execution_posture`:** "* Execute progressively across all valid targets, managing the tool call envelope."
 * **`reporter_procedure`:** "* Verify mutations incrementally (max 3 attempts per target). Changing error messages do not equal forward progress. If flaky tests or environment opacity prevent verification, do not abort. Treat verification as a reporter, not a gatekeeper. Retain successful AST mutations and proceed."
 
 #### Expansive_Pruner (Full-Sweep)
-* **`execution_mandate`:** "* Full-sweep posture: Execute against all locked targets. Expect to approach the host's ~100 tool call threshold. After DISCOVER or each logical mutation cluster, submit if the payload is a submittable unit, to avoid interruption. See the Managed Interruption Protocol if forcibly paused."
+* **`execution_mandate`:** "* Full-sweep posture: Map all matching targets globally. Expect to approach the host's ~100 tool call threshold. After DISCOVER or each logical mutation cluster, submit if the payload is a submittable unit, to avoid interruption. See the Managed Interruption Protocol if forcibly paused."
 * **`discovery_velocity_rule`:** "* **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module."
 * **`execution_posture`:** "* Execute Incrementally."
 * **`reporter_procedure`:** "* Verify mutations incrementally (max 3 attempts per target). Sequential testing is permitted. Changing error messages do not equal forward progress. If flaky tests or environment opacity prevent verification, do not abort. Treat verification as a reporter, not a gatekeeper. Retain successful AST mutations and proceed."

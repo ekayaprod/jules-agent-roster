@@ -67,6 +67,8 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   }
 
   // --- STRICT PARAMETER VALIDATION (QA GATE) ---
+  const isMythic = String(data.identity?.tier || data.tier || '').toLowerCase() === 'mythic';
+
   const diagnostic = data._diagnostic;
   if (
     !diagnostic ||
@@ -86,7 +88,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     'Operator',
     'Analyzer',
   ];
-  
+
   const profileKey = data.archetype || data.identity?.archetype;
   if (!profileKey || !VALID_ARCHETYPES.includes(profileKey)) {
     throw new Error(
@@ -96,17 +98,19 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   const roleStr = data.identity?.role || '';
   const roleWords = roleStr.trim().split(/\s+/).filter(Boolean);
-  if (roleWords.length !== 2) {
+  if (!isMythic && roleWords.length !== 2) {
     throw new Error(
       `[FATAL ERROR] Role must be exactly 2 words. Found ${roleWords.length}: '${roleStr}'`,
     );
   }
   const forbiddenArticles = ['the', 'a', 'an'];
-  roleWords.forEach((word) => {
-    if (forbiddenArticles.includes(word.toLowerCase())) {
-      throw new Error(`[FATAL ERROR] Role contains forbidden article: '${word}'.`);
-    }
-  });
+  if (!isMythic) {
+    roleWords.forEach((word) => {
+      if (forbiddenArticles.includes(word.toLowerCase())) {
+        throw new Error(`[FATAL ERROR] Role contains forbidden article: '${word}'.`);
+      }
+    });
+  }
 
   const synthesis = data.identity?.synthesis || '';
   if (synthesis.length > 145) {
@@ -118,7 +122,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   const definedThemeVerb = data.process?.execute?.theme_verb || data.process?.theme_verb || '';
   const firstWordMatch = synthesis.trim().split(/\s+/)[0];
 
-  if (definedThemeVerb && firstWordMatch) {
+  if (!isMythic && definedThemeVerb && firstWordMatch) {
     if (firstWordMatch.replace(/[^a-zA-Z]/g, '').toUpperCase() !== definedThemeVerb.toUpperCase()) {
       throw new Error(
         `[FATAL ERROR] Synthesis first word '${firstWordMatch}' does not match defined Theme Verb '${definedThemeVerb}'.`,
@@ -126,7 +130,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     }
   }
 
-  if (firstWordMatch) {
+  if (!isMythic && firstWordMatch) {
     const cleanWord = firstWordMatch.replace(/[^a-zA-Z]/g, '');
     if (cleanWord && cleanWord !== cleanWord.toUpperCase()) {
       throw new Error(
@@ -136,13 +140,13 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   }
 
   const philosophyRaw = data.philosophy || [];
-  if (philosophyRaw.length !== 5) {
+  if (!isMythic && philosophyRaw.length !== 5) {
     throw new Error(`[FATAL ERROR] Philosophy must contain exactly 5 bullets. Found ${philosophyRaw.length}.`);
   }
   philosophyRaw.forEach((item, index) => {
     let cleanItem = String(item)
       .replace(/^[\*\-]\s+/, '');
-    if (/\*\*[^\*:]+:\*\*|\*\*[^\*]+\*\*:/.test(cleanItem)) {
+    if (!isMythic && /\*\*[^\*:]+:\*\*|\*\*[^\*]+\*\*:/.test(cleanItem)) {
       throw new Error(
         `[FATAL ERROR] Philosophy bullet ${index + 1} contains a forbidden bold label pattern ('**Text:**'). Remove all bold labels from the philosophy values.`,
       );
@@ -150,7 +154,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   });
 
   const optimizationsRaw = data.favorite_optimizations || [];
-  if (optimizationsRaw.length !== 6) {
+  if (!isMythic && optimizationsRaw.length !== 6) {
     throw new Error(`[FATAL ERROR] Favorite Optimizations must contain exactly 6 entries. Found ${optimizationsRaw.length}.`);
   }
 
