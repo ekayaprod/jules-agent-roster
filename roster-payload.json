@@ -138,7 +138,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "RESUSCITATE fatal boot sequences and silent semantic failures alike — trace crashes and mute output states to their root cause and restore true operational stability.",
-    "forge_version": "V86.6",
+    "forge_version": "V86.9",
     "promptFile": "prompts/Paramedic.md",
     "isCustom": false
   },
@@ -820,7 +820,7 @@
     "category": "Architecture",
     "tier": "Mythic",
     "description": "ELIMINATE architectural targets and synthetic scope creep via a strict PR contract loop.",
-    "forge_version": "V84.2",
+    "forge_version": "V86.9",
     "promptFile": "prompts/fusions/Hitman.md",
     "isCustom": true
   },
