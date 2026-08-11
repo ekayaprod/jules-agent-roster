@@ -553,14 +553,19 @@ class JulesTerminal {
         if (this.isProcessingQueue) return;
         this.isProcessingQueue = true;
 
+        const CHUNK_SIZE = 3;
+
         while (this.sessionQueue.length > 0) {
-            const task = this.sessionQueue.shift();
-            try {
-                await task();
-            } catch (error) {
-                const tu = JulesTerminal.getTelemetryUtils();
-                if (tu) tu.dispatchEvent("QUEUE_EXECUTION_ERROR", error);
-            }
+            const chunk = this.sessionQueue.splice(0, CHUNK_SIZE);
+            await Promise.all(chunk.map(async (task) => {
+                try {
+                    await task();
+                } catch (error) {
+                    const tu = JulesTerminal.getTelemetryUtils();
+                    if (tu) tu.dispatchEvent("QUEUE_EXECUTION_ERROR", error);
+                }
+            }));
+
             // Rate limit delay (1s) to prevent overwhelming the API on mass launch
             if (this.sessionQueue.length > 0) {
                 await new Promise(resolve => setTimeout(resolve, 1000));
