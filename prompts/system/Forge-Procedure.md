@@ -6,7 +6,7 @@ This document is the static knowledge base used by Master Forge. It defines the 
 
 ## Module 1: The 7 Structural Base Profiles
 
-The Master Forge relies on 7 rigid structural base profiles defining a worker's unchangeable mechanical paradigm. Select exactly one and inject its verbatim text into `archetype_slots`.
+The Master Forge relies on 7 rigid structural base profiles defining a worker's mechanical paradigms. Tier: Fusion and Tier: Mythic workers select exactly one and inject its verbatim text into `archetype_slots`. Tier: Core workers may require more than one profile as determined by Module 6; inject each selected profile's verbatim text and reconcile direct contradictions explicitly.
 
 ### Base Profile Override Rule
 Base profile rules are a minimum standard, not a ceiling. A worker's custom operational limits always take precedence over a conflicting generic base rule — preserve the base text, and inject the override into `salvaged_custom_logic`.
