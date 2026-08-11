@@ -78,7 +78,7 @@ class JulesAPI {
             clearTimeout(timeoutId);
 
             if (!response.ok) {
-                let errorMsg = `Jules API Error (${response.status})`;
+                let errorMsg = `We encountered a network error. Please check your connection and try again.`;
                 try {
                     const errorData = await response.json();
                     if (errorData.error && errorData.error.message) {
@@ -90,9 +90,7 @@ class JulesAPI {
                    else console.error("[JulesAPI] Failed to parse error response JSON", e);
                 }
 
-                if (response.status >= 400 && response.status < 500) {
-                    errorMsg = `Client Error: ${errorMsg}`;
-                } else if (response.status >= 500) {
+                if (response.status >= 500) {
                     errorMsg = `We encountered a server error. Please wait a moment and try again.`;
                 }
 
