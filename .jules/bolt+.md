@@ -4,3 +4,6 @@
 ## Bolt+ — The Buffer Allocation
 **Bottleneck:** String concatenation in a tight loop generating transient string allocations inside `js/UI/JulesTerminal/TerminalPolling.js` where fullHistoryMarkdown was being built repetitively using `+=`.
 **Optimization:** Replaced repetitive string concatenations with an allocated buffer stream using `const historyBuffer = []; historyBuffer.push(...)` and subsequently `historyBuffer.join('')`. Prevents transient garbage collection sweeps and scales well with large activity payloads.
+## Bolt+ — The Queue Concurrency Cap
+**Bottleneck:** Sequential I/O waterfall in `js/Features/JulesTerminal/JulesTerminal.js` `_processSessionQueue` blocking execution of independent task execution.
+**Optimization:** Bounded concurrency chunking using `Promise.all` with a strict semaphore chunk size limit of 3 applied to high-traffic session launching to parallelize network resolution while preventing memory or API pool exhaustion.
