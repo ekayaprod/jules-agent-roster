@@ -90,7 +90,7 @@ class LLMRouter {
                 clearTimeout(timeoutId);
 
                 if (!response.ok) {
-                    let errorMsg = `${provider} API Error (${response.status})`;
+                    let errorMsg = `We encountered a network error with ${provider}. Please check your connection and try again.`;
                     try {
                         const errorData = await response.json();
                         errorMsg = errorData.error?.message || errorMsg;

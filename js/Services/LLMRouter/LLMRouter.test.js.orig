@@ -105,7 +105,7 @@ describe('LLMRouter', () => {
                 text: async () => { throw new Error('Text parsing failed'); }
             });
 
-            const expectedErrorMsg = 'We encountered a network error with OpenAI. Please check your connection and try again.';
+            const expectedErrorMsg = 'OpenAI API Error (400)';
 
             const promise = router.chatOpenAI([{ role: 'user', content: 'test payload' }]);
             await expect(promise).rejects.toThrow(LLMNetworkError);

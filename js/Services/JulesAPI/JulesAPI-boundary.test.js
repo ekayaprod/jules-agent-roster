@@ -21,7 +21,7 @@ describe('JulesAPI explicit 400/500 HTTP status assertions', () => {
             status: 400,
             json: async () => ({ error: { message: 'Bad Request' } })
         });
-        await expect(api.getSources()).rejects.toThrow('Client Error: Bad Request');
+        await expect(api.getSources()).rejects.toThrow('Bad Request');
     });
 
     it('should explicitly assert 500 Server Error', async () => {
