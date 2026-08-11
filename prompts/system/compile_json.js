@@ -3,10 +3,9 @@ const fs = require('fs');
 
 /**
  * COMPILER ARCHITECTURE NOTES:
- * - Hybrid Formatter & QA Gate execution paradigm.
- * - Validates core schema limits natively. Throws fatal exceptions on structural violations.
- * - Maps JSON payload values to {{TOKENS}} in the provided Markdown template.
- * - Relies entirely on the generator LLM for physics injection and payload sizing.
+ * - Structural QA gate and deterministic token mapper.
+ * - Validates compiler-owned schema limits natively and throws fatal exceptions on structural violations.
+ * - Maps JSON payload values directly to {{TOKENS}} in the provided Markdown template.
  */
 
 function formatList(input) {
@@ -33,10 +32,82 @@ function trimText(rawText) {
 function formatTargetMatrix(input) {
   if (!input) return '';
   const arr = Array.isArray(input) ? input : String(input).split('\n');
-  return arr
+  const filtered = arr
     .map((item) => String(item).trim())
-    .filter(Boolean)
-    .join('\n');
+    .filter(Boolean);
+
+  filtered.forEach((item, i) => {
+    if (!/^\*\s+\*\*[^*:\n]+:\*\*\s+\S/.test(item)) {
+      throw new Error(
+        `[FATAL ERROR] Target Matrix item ${i + 1} violates the required format '* **[Category Name]:** [description]': '${item}'`,
+      );
+    }
+  });
+
+  return filtered.join('\n');
+}
+
+function formatHeuristics(input) {
+  if (!input) return '';
+  const arr = Array.isArray(input) ? input : String(input).split('\n');
+  const filtered = arr
+    .map((item) => String(item).trim())
+    .filter(Boolean);
+
+  filtered.forEach((item, i) => {
+    if (!/\?\s*$/.test(item)) {
+      throw new Error(
+        `[FATAL ERROR] Heuristic Verification item ${i + 1} must be phrased as a question: '${item}'`,
+      );
+    }
+  });
+
+  return filtered.join('\n');
+}
+
+function formatFavoriteOptimizations(input) {
+  if (!input) return '';
+  const arr = Array.isArray(input) ? input : String(input).split('\n');
+  const filtered = arr
+    .map((item) => String(item).trim())
+    .filter(Boolean);
+
+  filtered.forEach((item, i) => {
+    if (!/^\p{Extended_Pictographic}/u.test(item)) {
+      throw new Error(
+        `[FATAL ERROR] Favorite Optimization item ${i + 1} must begin with a thematic emoji: '${item}'`,
+      );
+    }
+  });
+
+  return filtered.join('\n');
+}
+
+function formatRetainedRules(input) {
+  if (!input) return '';
+  const arr = Array.isArray(input) ? input : String(input).split('\n');
+  const filtered = arr
+    .map((item) => String(item).trim())
+    .filter(Boolean);
+
+  filtered.forEach((item, i) => {
+    // Matches the real convention used throughout salvaged_custom_logic and
+    // salvaged_mandates: '* **Name:** Instruction.' — the bold markers
+    // around the label are required, not optional.
+    if (!/^\*\s+\*\*[^*:]+:\*\*\s+\S.*\.$/.test(item)) {
+      throw new Error(
+        `[FATAL ERROR] Retained Rule item ${i + 1} violates the required format '* **[Name]:** [Instruction].': '${item}'`,
+      );
+    }
+  });
+
+  return filtered.join('\n');
+}
+
+function validateRequiredString(value, fieldName) {
+  if (!String(value || '').trim()) {
+    throw new Error(`[FATAL ERROR] Required field '${fieldName}' is missing or empty.`);
+  }
 }
 
 function cleanCodeFence(str) {
@@ -89,10 +160,11 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     'Analyzer',
   ];
   
-  const profileKey = data.archetype || data.identity?.archetype;
-  if (!profileKey || !VALID_ARCHETYPES.includes(profileKey)) {
+  const profileValue = data.archetype || data.identity?.archetype;
+  const profileKeys = Array.isArray(profileValue) ? profileValue : [profileValue];
+  if (!profileKeys.length || profileKeys.some((key) => !VALID_ARCHETYPES.includes(key))) {
     throw new Error(
-      `[FATAL ERROR] Archetype key '${profileKey}' is not a valid Structural Base Profile. Must be one of: ${VALID_ARCHETYPES.join(', ')}`,
+      `[FATAL ERROR] Archetype key(s) '${profileKeys.join(', ')}' contain an invalid Structural Base Profile. Must use only: ${VALID_ARCHETYPES.join(', ')}`,
     );
   }
 
@@ -113,6 +185,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   }
 
   const synthesis = data.identity?.synthesis || '';
+  validateRequiredString(synthesis, 'identity.synthesis');
   if (synthesis.length > 145) {
     console.warn(
       `[WARNING] Synthesis length is ${synthesis.length} characters. Recommended maximum is 145 characters.`,
@@ -121,6 +194,14 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   const definedThemeVerb = data.process?.execute?.theme_verb || data.process?.theme_verb || '';
   const firstWordMatch = synthesis.trim().split(/\s+/)[0];
+
+  if (!isMythic) {
+    if (!definedThemeVerb || !/^[A-Z]+$/.test(String(definedThemeVerb).trim())) {
+      throw new Error(
+        `[FATAL ERROR] Theme Verb must be exactly one ALL CAPS imperative action verb. Found: '${definedThemeVerb}'.`,
+      );
+    }
+  }
 
   if (!isMythic && definedThemeVerb && firstWordMatch) {
     if (firstWordMatch.replace(/[^a-zA-Z]/g, '').toUpperCase() !== definedThemeVerb.toUpperCase()) {
@@ -146,6 +227,16 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
   philosophyRaw.forEach((item, index) => {
     let cleanItem = String(item)
       .replace(/^[\*\-]\s+/, '');
+    if (!isMythic && !/^\p{Extended_Pictographic}/u.test(cleanItem)) {
+      throw new Error(
+        `[FATAL ERROR] Philosophy bullet ${index + 1} must begin with a thematic emoji. Found: '${item}'.`,
+      );
+    }
+    if (!isMythic && /^[🔍🎯⚙️✅🎁]/u.test(cleanItem)) {
+      throw new Error(
+        `[FATAL ERROR] Philosophy bullet ${index + 1} uses a reserved process emoji. Reserved process emojis may appear only on execution headers.`,
+      );
+    }
     if (!isMythic && /\*\*[^\*:]+:\*\*|\*\*[^\*]+\*\*:/.test(cleanItem)) {
       throw new Error(
         `[FATAL ERROR] Philosophy bullet ${index + 1} contains a forbidden bold label pattern ('**Text:**'). Remove all bold labels from the philosophy values.`,
@@ -228,9 +319,9 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     AUTONOMOUS_SELECTION: trimText(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule),
     WORKFLOW_EXECUTION: trimText(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution),
     VERIFICATION_PROCEDURE: trimText(data.process?.verify?.testing_doctrine),
-    SALVAGED_MANDATES: formatList(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates),
+    SALVAGED_MANDATES: formatRetainedRules(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates),
     ZERO_INTERACTION_MANDATES: formatList(data.zero_interaction_mandates),
-    SALVAGED_CUSTOM_LOGIC: formatList(data.salvaged_custom_logic),
+    SALVAGED_CUSTOM_LOGIC: formatRetainedRules(data.salvaged_custom_logic),
     CROSS_VECTOR_GRANTS: formatList(data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants),
     JOURNAL_PATH: isCore ? `.jules/${data.identity?.name || 'journal'}.md` : `.jules/journal_${category.toLowerCase()}.md`,
     WORKER_TASKS_BOARD: trimText(data.memory_and_triage?.agent_tasks_board),
@@ -247,10 +338,10 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     TARGET_LIMIT_INSTRUCTION: trimText(data.process?.execute?.target_limit_instruction),
     EXECUTION_STEPS: formatList(data.process?.execute?.execution_steps || data.process?.execution_steps),
     REPORTER_PROCEDURE: trimText(data.process?.verify?.reporter_procedure),
-    HEURISTICS: formatList(data.process?.verify?.heuristic_verification || data.process?.heuristic_verification),
+    HEURISTICS: formatHeuristics(data.process?.verify?.heuristic_verification || data.process?.heuristic_verification),
     PRESENTATION_SLOT: String(data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '').trim(),
     PR_HEADERS: data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || '',
-    FAVORITE_OPTIMIZATIONS: formatList(data.favorite_optimizations),
+    FAVORITE_OPTIMIZATIONS: formatFavoriteOptimizations(data.favorite_optimizations),
   };
 
   // Single-pass regex replacement (O(N) vs O(M*N))
@@ -269,6 +360,13 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   // Final structural cleanup for trailing carriage returns
   const cleanedOutput = output.replace(/\n{3,}/g, '\n\n').trim();
+
+  const unresolvedTokens = cleanedOutput.match(/\{\{[A-Z_]+\}\}/g);
+  if (unresolvedTokens) {
+    throw new Error(
+      `[FATAL ERROR] Unmapped template token(s) remain after compilation: ${[...new Set(unresolvedTokens)].join(', ')}`,
+    );
+  }
 
   if (targetFilePath && targetFilePath.trim() !== '') {
     fs.writeFileSync(targetFilePath, cleanedOutput);
