@@ -74,6 +74,29 @@ describe('ClipboardUtils', () => {
             expect(document.execCommand).toHaveBeenCalledWith('copy');
             expect(result).toBe(true);
         });
+
+        it('should dispatch telemetry if fallback fails when Clipboard API is not available', async () => {
+            delete global.navigator.clipboard;
+            const mockFallbackError = new Error('execCommand failed');
+            document.execCommand.mockImplementation(() => { throw mockFallbackError; });
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', mockFallbackError);
+            expect(result).toBe(false);
+        });
+
+        it('should return false if fallback returns false when Clipboard API is not available', async () => {
+            delete global.navigator.clipboard;
+            document.execCommand.mockReturnValue(false);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(window.TelemetryUtils.dispatchEvent).not.toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', expect.any(Error));
+            expect(result).toBe(false);
+        });
     });
 
     describe('animateButtonSuccess', () => {
