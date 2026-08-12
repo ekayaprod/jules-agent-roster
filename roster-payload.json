@@ -816,11 +816,11 @@
   {
     "name": "Hitman",
     "emoji": "🕴️",
-    "role": "The Silent Operative",
-    "category": "Architecture",
-    "tier": "Mythic",
-    "description": "ELIMINATE architectural targets and synthetic scope creep via a strict PR contract loop.",
-    "forge_version": "V84.2",
+    "role": "Orphan Demolitions",
+    "category": "Fusions",
+    "tier": "Fusion",
+    "description": "ELIMINATE macro-level architectural decay and synthetic scope creep through authorized, unbounded structural deletion.",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/Hitman.md",
     "isCustom": true
   },
