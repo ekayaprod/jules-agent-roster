@@ -51,7 +51,23 @@ class FusionIndex {
    * @returns {void}
    */
   _addUnlockedAgentsFromKey(key) {
-    key.split(',').filter(Boolean).forEach((part) => this.unlockedAgents.add(part.trim()));
+    let start = 0;
+    let end = key.indexOf(',');
+
+    while (end !== -1) {
+      if (end > start) {
+        this.unlockedAgents.add(key.slice(start, end).trim());
+      }
+      start = end + 1;
+      end = key.indexOf(',', start);
+    }
+
+    if (start < key.length) {
+      const lastPart = key.slice(start).trim();
+      if (lastPart) {
+        this.unlockedAgents.add(lastPart);
+      }
+    }
   }
 
   /**
