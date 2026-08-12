@@ -2,6 +2,8 @@
 
 // 🕯️ CHRONICLE: AST reasoning explains the logic; Git history explains the business intent.
 
+const SEARCH_DEBOUNCE_MS = 300;
+
 /**
  * Acts as the centralized domain for binding and managing all DOM event listeners for the Roster UI.
  * Isolates event handling from rendering logic to ensure architectural separation of concerns.

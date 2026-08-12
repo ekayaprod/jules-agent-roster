@@ -5,7 +5,6 @@ const OBSERVER_OPTIONS = {
     threshold: 0
 };
 const LOADING_OVERLAY_DISMISS_MS = 500;
-const SEARCH_DEBOUNCE_MS = 300;
 
 // --- ROSTER APP ---
 /**
