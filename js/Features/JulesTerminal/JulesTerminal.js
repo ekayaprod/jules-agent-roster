@@ -177,8 +177,7 @@ class JulesTerminal {
                     window.julesAPI.configure(key, githubKey);
                     // ⚡ Bolt+: Severed the synchronous I/O waterfall to prevent freezing the UI modal thread on configuration updates.
                     this.loadSources().catch(err => {
-                        const tu = JulesTerminal.getTelemetryUtils();
-                        if (tu) tu.dispatchEvent("BACKGROUND_FETCH_FAILED", err);
+                        JulesTerminal.getTelemetryUtils()?.dispatchEvent("BACKGROUND_FETCH_FAILED", err);
                     });
                 }
             } finally {
@@ -197,8 +196,7 @@ class JulesTerminal {
             if (toggle && toggle.checked) {
                 // ⚡ Bolt+: The Waterfall Collapse. Unblocked the primary application boot thread by shifting synchronous remote API resolution into a parallel fire-and-forget execution.
                 this.loadSources().catch(err => {
-                    const tu = JulesTerminal.getTelemetryUtils();
-                    if (tu) tu.dispatchEvent("BACKGROUND_FETCH_FAILED", err);
+                    JulesTerminal.getTelemetryUtils()?.dispatchEvent("BACKGROUND_FETCH_FAILED", err);
                 });
             }
         } else {
@@ -257,8 +255,7 @@ class JulesTerminal {
             }
         } catch (error) {
             picker.innerHTML = `<option value="">${originalText}</option>`;
-            const tu = JulesTerminal.getTelemetryUtils();
-            if (tu) tu.dispatchEvent("SOURCES_LOAD_FAILED", error);
+            JulesTerminal.getTelemetryUtils()?.dispatchEvent("SOURCES_LOAD_FAILED", error);
             this.app.toast.show(`Unable to connect to GitHub: ${error.message || "Unknown error"}`, true);
         } finally {
             picker.disabled = false;
@@ -522,8 +519,7 @@ class JulesTerminal {
             } catch (error) {
                 const launchError = new Error("JulesSessionLaunchFailure: " + error.message);
                 launchError.cause = error;
-                const tu = JulesTerminal.getTelemetryUtils();
-                if (tu) tu.dispatchEvent("JULES_LAUNCH_SESSION_FAILED", launchError, { sourceName });
+                JulesTerminal.getTelemetryUtils()?.dispatchEvent("JULES_LAUNCH_SESSION_FAILED", launchError, { sourceName });
                 this.app.toast.show(`Could not launch the session: ${error.message || "Unknown error"}`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error", 20000);
                 if (fetchingIndicator) fetchingIndicator.classList.remove('hidden');
 
@@ -537,8 +533,7 @@ class JulesTerminal {
             try {
                 await this._fetchAndRenderSessions(sourceName, terminal);
             } catch (pollError) {
-                const tu = JulesTerminal.getTelemetryUtils();
-                if (tu) tu.dispatchEvent("SESSION_SYNC_TIMEOUT", pollError);
+                JulesTerminal.getTelemetryUtils()?.dispatchEvent("SESSION_SYNC_TIMEOUT", pollError);
             } finally {
                 if (optimisticBlock.parentNode) optimisticBlock.remove();
                 if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Launch in Jules 🚀");
