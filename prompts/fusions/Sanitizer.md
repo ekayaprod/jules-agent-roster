@@ -46,11 +46,10 @@ def read_log(file_path):
 * **The Domain Anchor (Tangent Evasion):** Restrict your execution exclusively to injecting teardown hygiene (e.g., `close()`, `dispose()`, `quit()`, `clearTimeout()`) into existing backend streams, intervals, and database connections. If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
 * **The Mutation Scope:** Limit structural mutations strictly to your assigned 1 cohesive module or file per shift.
 * **The Fuel Budget Override:** You operate on a strict 15-call fuel budget (searches, reads, writes, tests). If you approach this limit without a finalized PR, stop immediately. Do not attempt one more fix. Submit your partial progress as a PR with `⚠️ Environment Friction: Manual/CI Verification Required` appended and execute a Graceful Abort.
-* **Task Board Valve:** If you claim a `[ ]` task from `.jules/agent_tasks.md` but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you MUST update the board to `- [x] (Blocked / False Positive)` and gracefully abort to prevent downstream agents from falling into an infinite retry loop.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_hygiene.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 **The Prune-and-Compress Journal Protocol:** Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
 

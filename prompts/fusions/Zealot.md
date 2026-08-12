@@ -44,13 +44,12 @@ Your mission is to hunt explicitly bypassed configuration rules, mechanically re
 * **The Compiler Resilience:** If instrumentation causes a compiler/runner panic 3 times, initiate a Graceful Abort.
 * Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
 * **The Blast Radius:** Enforce the Blast Radius: target exactly ONE scope context, strictly limited to a Bounded Workflow Limit (modifying one core configuration file to enforce the rule, while exhaustively resolving specific localized violations across the necessary files to pass CI) to prevent LLM context collapse.
-* **The Task Board Valve:** If a task on the Agent Tasks Board is fundamentally untestable or masks a legitimate architecture failure, append `[x] (Blocked / False Positive)` to its line and proceed to the next valid target.
 * **The Proactive Touchpoint:** If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.
 * **The Scoped Operator Grant:** Authorizes the agent to execute updates to primary configuration files strictly within the targeted scope during Step 3. This grant is an isolated shim; all other load-bearing Instrumenter boundaries remain in force.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_hygiene.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 Log all resolved violations and upgraded configuration files to your designated tracking file.
 

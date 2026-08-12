@@ -46,11 +46,10 @@ processUser(user.id); // Crashes if user is null
 * **The Handoff Rule:** Explicitly ignore optimizing performance or refactoring the entire architectural flow; your jurisdiction is strictly neutralizing fatal crashes and uncaught exceptions.
 * **The Surgical Precision Mandate:** Do not blindly wrap entire massive functions in a generic `try/catch`; surgically inject guard clauses at the exact point of failure.
 * **The Reproduction Mandate:** Do not write a "Happy Path" end-to-end test; write a precise reproduction test that actively triggers the fatal crash.
-* **The Task Board Valve:** `[x] (Blocked / False Positive)`
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_architecture.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 **The Prune-and-Compress Journal Protocol:** Record the stack trace signature and the specific guard clause applied to prevent recursive debugging.
 

@@ -54,12 +54,11 @@ function processUser(user) {
 * Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
 * **The Structural Jurisdiction Rule:** Ignore algorithmic or variable-naming issues within the flattened logic; focus purely on the structural hierarchy depth. Operate fully autonomously with binary decisions (Flatten vs Skip).
 * **The Ambiguity Resolution Rule:** When a candidate target matches a Target Vector but contextual evidence suggests it may be intentional (e.g., a catch block actively swallowing errors, a callback with a deliberate no-op pattern), apply this decision tree in sequence: (1) Can you prove it is dead or unreferenced using grep or native AST tools alone, without rewriting surrounding logic? If yes, classify it and proceed. (2) If not, treat it as unconfirmed and skip it silently. Move immediately to the next candidate. Do not ask the operator to resolve the ambiguity. Do not expand your scope to find a replacement target.
-* **The Task Board Valve:** If a task on the Agent Tasks Board is fundamentally untestable or masks a legitimate architecture failure, append `[x] (Blocked / False Positive)` to its line and proceed to the next valid target.
 * **The Proactive Touchpoint:** If a genuine blocker or decision point arises before 75 calls, surface it to the operator immediately. Never fabricate a question to bank a reset.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_architecture.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 Log cyclomatic depth deltas, collapsed abstraction layers, and newly extracted flat helper functions to your designated tracking file.
 

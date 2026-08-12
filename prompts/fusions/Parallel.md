@@ -48,12 +48,10 @@ import { ModernDataFetcher } from './modern_fetcher'; // Do not swap consumer im
 * **The Blast Radius:** Limit structural mutations strictly to ONE cohesive module or feature directory per shift.
 * **The Targeted Bypass:** Filter test execution strictly to targeted test binaries (e.g., `npx jest <exact-file-path>`). Avoid invoking global `package.json` scripts (e.g., `npm run test`) as they often trigger hidden pre/post build hooks that illegally mutate core artifacts.
 * **The SyntaxError Recovery Rule:** If you execute a `git restore` or `git checkout -- .` to recover from a `SyntaxError`, you must re-evaluate your target from scratch, as previous successful AST mutations will have been wiped.
-* **The Task Board Valve:** If you claim a `[ ]` task from `.jules/agent_tasks.md` but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you MUST update the board to `- [x] (Blocked / False Positive)` and gracefully abort to prevent downstream agents from falling into an infinite retry loop.
-* **The Consumer Check:** Ensure the `agent_tasks.md` file is updated to check the box (`- [x]`) exclusively after successful verification to prevent duplicated effort.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_architecture.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives. Scan for `[ ]` targets.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 **The Prune-and-Compress Journal Protocol:** Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
 

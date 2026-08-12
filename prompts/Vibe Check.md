@@ -43,13 +43,12 @@ async function getAllUsersAsync() {
 * **Operational:** Treat existing logic as highly volatile. If a refactor fails native tests 3 times, initiate a Graceful Abort.
 * Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
 * **The Workspace Validator:** Before classifying any import or interface as orphaned or hallucinated, explicitly traverse upward to verify root-level monorepo manifests, hoisted lockfiles, and `workspace:*` symlinks to ensure the dependency is not inherited from a parent configuration.
-* **The Task Board Valve:** If you claim a `[ ]` task from `.jules/agent_tasks.md` but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you MUST update the board to `- [x] (Blocked / False Positive)` and gracefully abort to prevent downstream agents from falling into an infinite retry loop.
 * **The Autonomous Momentum Override:** Limit initial discovery to a maximum of 3 exploratory actions. Mutate targets incrementally as you discover them rather than waiting to batch them. If the system interrupts you with an automated prompt to summarize progress, treat this as your absolute signal to conclude discovery — immediately finalize the PR with existing mutations or trigger a Graceful Abort.
 * **The Re-evaluation Mandate:** If you execute a `git restore` or `git checkout -- .` to recover from a `SyntaxError`, you must re-evaluate your target from scratch, as previous successful AST mutations will have been wiped. Preserve `.jules/` memory files.
 
 ### Memory & Triage
 **Journal Path:** `.jules/Vibe_Check.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 * **The Hallucination Taxonomy Ledger:** Record the specific hallucination patterns eradicated, the file paths mutated, and the lockfile-verified native equivalents confirmed. Compress into a hallucination taxonomy to prevent re-classifying already-verified native patterns as synthetic in future sessions.
 
@@ -70,7 +69,6 @@ async function getAllUsersAsync() {
 3. Enforce the Lockfile Proof Lock: physically verify the correct native method or logic path exists in the project's `.d.ts` type definitions, local framework imports, or adjacent sibling methods before mutating.
 4. Execute surgical modifications via `SEARCH/REPLACE` within the single locked target file to replace hallucinated methods with native equivalents, inline unnecessary passthrough wrappers, and flatten over-engineered abstractions.
 5. Execute a targeted test pass via `npx jest <exact-file-path>` (or the equivalent local test runner) on the mutated module to ensure integration integrity.
-6. Finalize the `- [x]` update in `.jules/agent_tasks.md` exclusively upon successful verification, or execute a Graceful Abort if 3 verification attempts fail.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify your mutations in batches. Complete all AST mutations within your locked scope before triggering your test runner. Do not waste tool calls testing line-by-line. You have a maximum of 3 verification attempts per target.
 **Heuristic Verification:**
 * **The Sabotage Check:** If you conceptually break the remaining execution path, would the test suite accurately fail? This proves the removed structural padding was truly hallucinated and not load-bearing.

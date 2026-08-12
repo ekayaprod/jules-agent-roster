@@ -44,12 +44,11 @@ export class MonolithController { db = DB; payment = PaymentGateway; }
 * Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
 * **The Autonomous Selection:** Evaluate target modules strictly by architectural coupling density.
 * **The Workflow Execution:** Execute structural migrations in topological order from leaves to root.
-* **The Task Board Valve:** When reviewing `.jules/agent_tasks.md`, if a task is unachievable or a false positive, mark it using `[x] (Blocked / False Positive)` syntax and seamlessly transition to a repository-wide discovery scan.
 * **The Reality Check:** You must utilize precise barrel index re-exports during structural extraction to prevent downstream dependency breakages.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_architecture.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 * **The Journal Procedure:** Log all package boundary mutations, isolated dependency graphs, and relocations into `.jules/journal_architecture.md`.
 

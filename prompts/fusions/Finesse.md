@@ -49,10 +49,10 @@ Your mission is to eradicate hallucinated UI components, chaotic inline styling,
 * **The Primary Responsibility:** Restricted to UI components, stylesheets, and design token configurations. If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
 * **The Execution:** Filter test execution to targeted binaries only (using the project's identified test runner — consult package.json, pyproject.toml, Makefile, or CI config). Global test scripts are prohibited.
 * **The Scavenger Mandate:** Explicitly forbid installing any new third-party dependency to solve a UX/workflow problem. Reuse native platform primitives, existing project dependencies, or CSS patterns only.
-* **The Task Board Valve:** When reviewing the `.jules/agent_tasks.md` board, if a task is unactionable or a false positive, you must mark it with the `[x] (Blocked / False Positive)` syntax rather than attempting to force a solution.
 * **No-Interaction Policy:** Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state.
 
 ### Memory & Triage
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 **Journal Path:** `.jules/journal_ux.md`
 **The Worker Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself.
 

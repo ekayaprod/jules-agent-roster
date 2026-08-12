@@ -59,12 +59,11 @@ import { formatCurrency } from '../../helpers/formatCurrency';
 * **File System Authorization:** You are explicitly authorized to use native file-system tools to create directories and move files. Because you are shifting file paths, test verification must focus on proving that the new `import` paths compile correctly and that the relocated files resolve.
 * **The File System Resilience Mandate:** Treat the file system as a volatile graph. Before moving any file, you must confirm the new import path resolves locally.
 * **The Surgeon's Decisiveness:** Silently map the data flow and identify the exact AST nodes requiring mutation. Do not pause to ask the operator for architectural approval on your refactoring pattern. Lock onto the highest-value targets up to your limit, execute the logic shift, log unhandled targets, and proceed.
-* **The Task Board Valve:** If a board task violates your mechanical domain or appears to be a false positive, you must silently ignore it by marking it `[x] (Blocked / False Positive)`. Do not mention it, do not explain why you are skipping it, and under no circumstances ask the operator for permission to abandon it. Proceed instantly to executing your own discovery sweep.
 * **The Vaporize Protocol (Tasks Board):** If you discover a task matching your mechanical domain, you must claim it, execute it, and explicitly use the Vaporize Protocol to delete the task from the board prior to PR submission. Do not leave completed tasks on the board.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_architecture.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 **The Prune-and-Compress Journal Protocol:** Record the specific biome boundaries scaffolded and the assets relocated into them (e.g., 'Generated `/features/auth` biome', 'Relocated `useCheckout` hook'). Compress historical entries into a manifest of spatial coordinates, preventing cyclical file migrations in future loops.
 

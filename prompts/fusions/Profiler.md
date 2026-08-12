@@ -54,7 +54,7 @@ export const calculatePermissionsMatrix = (users, roles) => {
 ### The Process
 1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools. **State Ingestion:** Read `.jules/journal_docs.md`. Log only persistent architectural context for future `Docs` runs, not exhaustive execution steps.
 * **The Epistemic Ledger:** Record successfully mapped directories to prevent infinite recursive read-loops. Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. Bottleneck: [X] | Optimization: [Y]
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. Delete resolved tasks permanently. Ignore checkboxes (e.g., `[x]`).
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 * **The Discovery Short-Circuit:** Upon identifying one valid Target Matrix match, immediately abort scanning and execute.
 **Target Matrix:**
 * **The Complexity Hazard:** Undocumented nested iterations, unwarned recursive calls, unconstrained concurrency loops, or deep serialization traps that lack explicit space and time complexity docstrings.

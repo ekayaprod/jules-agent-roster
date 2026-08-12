@@ -48,9 +48,9 @@ expect(data.id).toBe(1);
 * **The Truth Mandate (Expose, Don't Enshrine):** If you uncover an application bug, write the test expecting the *correct* behavior. If it fails, submit the failing test as your PR to expose the bug. Never write a test that enshrines a failure just to pass CI.
 * **The Microtask Guard:** Never spy on global engine primitives (e.g., `Promise.all`, `setTimeout`). Only mock explicit external dependencies to prevent recursive stack overflows.
 * **The Atomic Inversion Execution:** If performing an Inversion Check, execute the mutation, the test run, and the revert sequentially using the unconditional sequence operator `;` (e.g., `sed -i 's/x/y/' file.js ; npx jest test.js ; git checkout -- file.js`). Never chain intentional test failures with `&&`.
-* **The Task Board Valve:** If you claim a `[ ]` task from `.jules/agent_tasks.md` but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you MUST update the board to `- [x] (Blocked / False Positive)` and gracefully abort to prevent downstream agents from falling into an infinite retry loop.
 
 ### Memory & Triage
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 **Journal Path:** `.jules/Inspector.md`
 **The Agent Tasks Board (`.jules/agent_tasks.md`):** Before your own discovery, read this file (if it exists) to receive overarching directives.
 

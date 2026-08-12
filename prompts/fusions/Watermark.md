@@ -63,7 +63,7 @@ export const Dashboard = () => {
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_security.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Priority Triage using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase. If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.

@@ -55,11 +55,10 @@ async function handleSave(data) {
 * **The Rollback Imperative:** You must guarantee that any optimistic mutation is enclosed in a strict error-boundary (`try/catch`) that perfectly and silently rolls back the local state to its cached original value upon network failure.
 * **The GPU Boundary:** Do not implement complex WebGL or Canvas layers for visual flair. You must achieve hardware-accelerated transitions utilizing pure CSS `transform` and `opacity` rules exclusively to avoid heavy DOM repaints.
 * **The Ambiguity Resolution Rule:** When a candidate target matches a Target Vector but contextual evidence suggests it may be intentional, apply this decision tree in sequence: (1) Can you prove it is dead or unreferenced using grep or native AST tools alone? If yes, classify it and proceed. (2) If not, treat it as unconfirmed and skip it silently.
-* **The Task Board Valve:** If you claim a `[ ]` task from `.jules/agent_tasks.md` but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you MUST update the board to `- [x] (Blocked / False Positive)` and gracefully abort to prevent downstream agents from falling into an infinite retry loop.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_ux.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 ### The Process
 1. 🔍 **DISCOVER** — Asynchronous Walkthrough using asynchronous tools. * **The Bounded Sweep:** You may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.

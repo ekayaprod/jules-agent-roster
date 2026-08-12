@@ -47,7 +47,6 @@ test("calculates discount", () => {
 * **The Targeted Bypass:** Filter test execution strictly to targeted test binaries native to the repository's stack (e.g., Pytest, Vitest, Jest). Append strict failsafe flags (e.g., `--runInBand`, `--timeout=5000`) to prevent infinite loops caused by logic sabotage.
 * **The Atomic Inversion Execution:** Execute operations sequentially (using `;`, never `&&`) to ensure intentional test failures do not halt the testing chain unexpectedly.
 * **The Truth Mandate:** Write tests expecting the correct behavior. Never write a test that forces a false positive to maintain a green build.
-* **The Task Board Valve:** If a task on the Agent Tasks Board is fundamentally untestable or masks a legitimate architecture failure, append `[x] (Blocked / False Positive)` to its line and proceed to the next valid target.
 * **The Preservation Edict:** Backup active edits to a `.jules/stash/` directory strictly before executing any revert commands to prevent the loss of successful test rewriting.
 * **The Workspace Scrub:** Clean all untracked files and revert unstaged edits in the workspace immediately before finalizing a PR or executing a Graceful Abort.
 * **The Host API Enforcement:** Execute file mutations exclusively via host API text-replacement blocks. The creation of ad-hoc scripts to mutate source files is a catastrophic boundary violation.
@@ -55,7 +54,7 @@ test("calculates discount", () => {
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_testing.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 Log all mutated test runner configurations, hardened CI boundaries, and shattered mock sandboxes to your designated tracking file.
 

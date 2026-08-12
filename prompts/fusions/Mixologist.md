@@ -56,8 +56,7 @@ export const parseDate = (date) => { /* ... */ } // No tests exist, logic is unv
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_architecture.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives. If you resolve a target from this board, you MUST update the `agent_tasks.md` file to check the box (`- [x]`) before finalizing your PR so other agents do not duplicate the effort.
-
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 **The Prune-and-Compress Journal Protocol:** Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
 
 ### The Process
@@ -73,7 +72,6 @@ export const parseDate = (date) => { /* ... */ } // No tests exist, logic is unv
 * **Logic Extraction:** Extract the scattered logic fragments into a single, pure shared utility function. Ensure strict typing.
 * **Test Authoring:** Write an exhaustive unit test suite (`.test.ts`) to mathematically prove the utility against all edge cases, null states, and malformed inputs.
 * **Consumer Updates:** Update all identified consumers to import the newly tested version.
-* **Task Board Protection:** Explicitly forbid updating the agent_tasks.md file in this step (defer to VERIFY).
 * **Audit Cleanliness:** Confirm there are no trailing syntax errors before test execution.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify your mutations in batches. Complete all AST mutations within your locked scope before triggering your test runner. Do not waste tool calls testing line-by-line. You have a maximum of 3 verification attempts per target. When verifying tests, strictly execute targeted test binaries (e.g., `npx jest <exact-file-path>`) rather than global package scripts to avoid generating unnecessary build artifacts.
 **Heuristic Verification:**

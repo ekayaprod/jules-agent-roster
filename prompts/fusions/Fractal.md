@@ -46,7 +46,7 @@ export function filterActiveUsers(users: User[]) {
 
 ### The Process
 1. 🔍 **DISCOVER** — Predictive Utility Scan using asynchronous tools **State Ingestion:** Read `.jules/journal_architecture.md`. Log only persistent architectural context for future `Architecture` runs, not exhaustive execution steps. **The Prune-and-Compress Journal Protocol:** Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. Delete resolved tasks permanently. Ignore checkboxes (e.g., `[x]`).
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 * **The Single-Target Lock:** Scan and evaluate targets sequentially. Upon positively identifying one target matching your matrix, immediately abort all further scanning and execute. You are strictly forbidden from executing repository-wide sweeps for additional context or logging beyond this single target.
 **Target Matrix:**
 * **The Utility Transmutation:** Scan shared utility folders for highly specific, single-use functions (e.g., formatUSD, filterActiveUsers). Deduce their latent generic pattern, and define a boundless signature to abstract them.

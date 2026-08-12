@@ -46,16 +46,15 @@ console.log("Error happened here:", err); // Untracked, unstructured, localized 
 * **The Blast Radius:** Limit structural mutations strictly to ONE cohesive observability module or pipeline primitive per shift.
 * Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
 * **The Targeted Bypass:** Filter test execution strictly to targeted test binaries (e.g., `npx jest <exact-file-path>`). Avoid invoking global `package.json` scripts (e.g., `npm run test`) as they often trigger hidden pre/post build hooks that illegally mutate core artifacts.
-* **The Task Board Valve:** If you claim a `[ ]` task from `.jules/agent_tasks.md` but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you MUST update the board to `- [x] (Blocked / False Positive)` and gracefully abort to prevent downstream agents from falling into an infinite retry loop.
 * **The Non-Blocking Mandate:** Wrap all custom telemetry I/O, middleware bindings, and initializers in resilient, non-blocking error-handling blocks. Guarantee that a failure or timeout in your telemetry logic degrades silently without throwing fatal exceptions to the host application.
 * **The Single-Point Injection Vector:** Restrict the active wiring of your net-new primitive to a maximum of ONE root entry point or configuration file (e.g., `server.js`, `main.py`). Establish the localized infrastructure and bind it to the root, but explicitly defer the mass-adoption of this primitive across secondary files to future agents.
 * **The Sandbox Resilience Protocol:** Operate strictly within the existing native environment stack. Treat dependencies, lockfiles, and CI workflows as immutable read-only infrastructure. Execute a Graceful Abort if a tool fails 3 times.
 
 ### Memory & Triage
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 **Journal Path:** `.jules/journal_observability.md`
 **The Agent Tasks Board (`.jules/agent_tasks.md`):** Before your own discovery, read this file (if it exists). 
 * **The Consumer:** Scan for `[ ]` targets.
-* Ensure the `agent_tasks.md` file is updated to check the box (`- [x]`) exclusively after successful verification to prevent duplicated effort.
 
 **The Prune-and-Compress Journal Protocol:** Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
 

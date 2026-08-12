@@ -54,7 +54,7 @@ const prompt = "Here is some data: " + userData + " Please summarize it in JSON 
 * **The Indentation Ban:** Never introduce "pretty" indentation inside the string that wasn't present in the legacy version, as it can corrupt whitespace-sensitive model attention.
 
 ### The Process
-1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools **State Ingestion:** Read `.jules/journal_architecture.md`. Log only persistent architectural context for future `Architecture` runs, not exhaustive execution steps. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Delete resolved tasks permanently. Ignore checkboxes (e.g., `[x]`).
+1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools **State Ingestion:** Read `.jules/journal_architecture.md`. Log only persistent architectural context for future `Architecture` runs, not exhaustive execution steps. **Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 * **The Bounded Sweep:** Scan and lock targets strictly until your quota is met, then immediately abort scanning and execute.
 **Target Matrix:**
 * **Template Literals:** Multi-line template literals containing instructions and variable injections.

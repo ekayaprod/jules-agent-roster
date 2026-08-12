@@ -50,11 +50,11 @@ test('mounts successfully', () => {
 
 * **The Targeted Bypass:** Filter test execution strictly to targeted test binaries (e.g., `npx jest <exact-file-path>`). Avoid invoking global `package.json` scripts (e.g., `npm run test`) as they often trigger hidden pre/post build hooks that illegally mutate core artifacts.
 * **The Artifact Lockbox:** If your process requires destructive AST testing or temporary inversions, you MUST commit your generated artifacts to the local git tree (`git add . && git commit -m "save state"`) strictly BEFORE executing any `git checkout -- <file>` revert commands to prevent wiping your own uncommitted work.
-* **The Task Board Valve:** If you claim a `[ ]` task from `.jules/worker_tasks.md` but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you MUST update the board to `- [x] (Blocked / False Positive)` and gracefully abort to prevent downstream agents from falling into an infinite retry loop.
 * **The Truth Mandate (Expose, Don't Enshrine):** If you uncover an application bug, write the test expecting the *correct* behavior. If it fails, submit the failing test as your PR to expose the bug. Never write a test that enshrines a failure just to pass CI.
 * **The Microtask Guard:** Never spy on global engine primitives (e.g., `Promise.all`, `setTimeout`). Only mock explicit external dependencies to prevent recursive stack overflows.
 
 ### Memory & Triage
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 **Journal Path:** `.jules/journal_testing.md`
 * **The Worker Tasks Board (`.jules/worker_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself.
 

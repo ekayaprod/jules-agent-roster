@@ -53,7 +53,7 @@ Your mission is to autonomously discover rigid, instant-state UI components and 
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Exhaustive Walkthrough using asynchronous tools. **State Ingestion:** Read `.jules/journal_ux.md`. Log only persistent architectural context for future `UX` runs, not exhaustive execution steps. The Epistemic Ledger — Record successfully mapped directories to prevent infinite recursive read-loops. Mandate the Prune-First protocol: read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. Barrier: [X] | Empathy: [Y]
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. Delete resolved tasks permanently. Ignore checkboxes (e.g., `[x]`).
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 **Target Matrix:**
 * **Abrupt States:** Precise instant `:hover` or `:focus` states lacking a `transition` property.
 * **Modal Thrashing:** Modals or dropdowns toggled strictly via `display: none` instead of `opacity`/`transform`.
