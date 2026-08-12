@@ -18,7 +18,8 @@ class NetworkUtils {
    * * Magic Numbers: Limits requests to 100 within a 60000ms (1 minute) sliding window.
    */
   static _enforceRateLimit(url) {
-    if (typeof url !== 'string' || !url.trim()) {
+    const urlString = url instanceof URL ? url.toString() : url;
+    if (typeof urlString !== 'string' || !urlString.trim()) {
         throw new TypeError('Invalid URL parameter');
     }
     const now = Date.now();
@@ -116,7 +117,7 @@ class NetworkUtils {
 
     // 🐺 FORTIFY: Head 2 - Strict Schema Validation (Reject massive buffers & prototype pollution)
     // ✍️ CHRONICLE: Fortified in v0.9.0 to prevent fatal payload crashes by enforcing type safety and .startsWith validaton.
-    NetworkUtils._validateBody(options.body);
+    NetworkUtils._validateBody(options?.body);
 
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), NetworkUtils.REQUEST_TIMEOUT_MS);
