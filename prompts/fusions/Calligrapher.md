@@ -61,11 +61,10 @@ const Typography = ({ variant = "large-text", children }) => (
 * **The Format Prioritization:** Prioritize `.woff2` formats and strip legacy `.eot`, `.svg`, or `.ttf` fallbacks unless explicitly required by a documented legacy browser support matrix.
 * **The Token Synchronization Rule:** Convert loose string props in typography components into strict TypeScript (or JSDoc/prop-types) literal unions strictly based on the established global CSS design tokens. Write pristine JSDoc for typed design tokens to expose the options directly in IDE autocomplete.
 * **The Display Enforcer:** Enforce `font-display: swap` or `optional` on all `@font-face` rules.
-* **The Task Board Valve:** Scan `.jules/agent_tasks.md` for `[x] (Blocked / False Positive)` syntax to triage actionable targets.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_ux.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives. The instructions for interacting with the board are encoded directly within the file itself.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 **The Journal Procedure:** Record specific structural rules or documentation patterns applied to ensure absolute stylistic consistency.
 

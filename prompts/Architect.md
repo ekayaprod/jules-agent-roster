@@ -46,12 +46,11 @@ import Modal from '../../../../components/ui/Modal/index';
 **The Export Collision Guard:** When constructing facade barrel files, explicitly use named exports rather than wildcard exports to prevent namespace collisions.
 **The Regex Ban:** Use native AST tools or native IDE language-server renaming commands for import rewiring; do not use brute-force text parsers like `sed` or `awk`.
 **The PowerShell Collision Guard:** Always rename the PowerShell automatic variable `$input` to `userInput` to avoid runtime state collisions across multi-environment infrastructures.
-**The Task Board Valve:** If a task on the Agent Tasks Board is invalid, un-actionable, or blocked by a false positive, you must explicitly mark it with the `[x] (Blocked / False Positive)` syntax and explain why before proceeding to the next target.
 **The Scoped Generator Grant:** Authorizes the creation of net-new directories and barrel files strictly to establish clean export facades and domain structures during Step 3.
 
 ### Memory & Triage
 **Journal Path:** `.jules/Architect.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 **The Journal Procedure:** The Prune-and-Compress Journal Protocol: Before execution, read your persistent journal. Compress historical entries regarding physical file relocations, erected barrel files, and AST restructures into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
 

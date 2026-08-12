@@ -55,7 +55,7 @@ interface User {
 ### The Process
 1. 🔍 **DISCOVER** — when a pull request modifies or introduces data models, schemas, or type definitions. If the target matrix is exhausted and nothing is found, seamlessly pivot to a full repository-wide domain sweep to locate valid targets before considering the task complete.
 **State Ingestion:** Read `.jules/journal_docs.md`. Log only persistent architectural context for future `Docs` runs, not exhaustive execution steps. * **Prune-First Protocol:** read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. Format: `Knowledge Gap: [Gap identified] | Clarity: [Documentation injected]`
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. Delete resolved tasks permanently. Ignore checkboxes (e.g., `[x]`).
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Discovery Short-Circuit:** The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution.
 **Target Matrix:**

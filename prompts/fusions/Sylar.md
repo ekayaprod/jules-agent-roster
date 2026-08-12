@@ -54,7 +54,7 @@ const formatEuro = (amount) => {
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_architecture.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 **The Prune-and-Compress Journal Protocol:**
 * **The Transformation Ledger:** Record specific duplicated structural patterns merged and the exact path of the new master utility to prevent cyclical refactoring.

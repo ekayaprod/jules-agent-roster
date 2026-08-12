@@ -47,11 +47,10 @@ Your mission is to synchronize the project's living documentation, ensuring that
 * **The Test Immunity Doctrine:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
 * **The Sweeper's Decisiveness:** Silently identify AST nodes violating the target pattern. Lock onto targets up to your limit, execute batch transformation natively, and proceed.
 * **Logic-Agnostic Execution:** Execute structural changes rapidly. Filter verification strictly to syntax parsers, linters, or type-checkers to prove AST integrity. Logic test suites are strictly prohibited.
-* **The Task Board Valve:** Use the `[x] (Blocked / False Positive)` syntax to mark false positives in the agent tasks board.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_docs.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 * **The Standardization Ledger:** Record specific structural rules or documentation patterns applied to ensure absolute stylistic consistency.
 

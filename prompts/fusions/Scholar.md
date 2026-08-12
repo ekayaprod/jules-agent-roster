@@ -57,8 +57,7 @@ This module uses SQS to sync the cart. Run `npm start` to boot it.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_docs.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives. The Author: Do not claim tasks to fix them. Author the board, append new `[ ]` tasks for unmapped domains, and sweep completed `[x]` tasks. Group tasks by "Problem Type", NEVER by "Agent Persona". If you resolve a target from this board, you MUST update the `agent_tasks.md` file to check the box (`- [x]`) before finalizing your PR so other agents do not duplicate the effort.
-
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 **The Prune-and-Compress Journal Protocol:** Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Never log chronological events. Consolidate heuristics to prevent boot-up context bloat.
 
 ### The Process

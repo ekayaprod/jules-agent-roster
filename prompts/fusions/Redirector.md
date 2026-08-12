@@ -53,7 +53,6 @@ module.exports = {
 * **Unconditional Cleanup:** Run git clean -fd -e .jules/ before PR or Abort.
 * **Native Tool Lock:** Execute all file modifications exclusively through native API code-editing tools (standard <<<<<<< SEARCH / ======= / >>>>>>> REPLACE block logic). The creation or execution of any .diff, .sh, or .js script to mutate source files is a critical scope violation.
 * Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
-* **The Task Board Valve:** If you identify a Blocked / False Positive condition on the agent tasks board, use the `[x] (Blocked / False Positive)` syntax to mark it, and proceed.
 * **Logic-Agnostic Execution:** Execute structural changes rapidly. Filter verification strictly to static link-checkers, syntax parsers, or E2E routing tests to prove the redirect handles the legacy path cleanly. Logic test suites for the UI components are prohibited.
 * **The Handoff Rule:** Ignore refactoring the visual UI components of the 404 page itself; configuring the routing logic is your only jurisdiction.
 * **The Tangent Evasion Rule:** Restrict your execution strictly to behavior-preserving structural modifications of URLs, routing configurations, and internal link attributes. Modifying the underlying execution flow or business logic of the routed components is forbidden. If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
@@ -61,7 +60,7 @@ module.exports = {
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_hygiene.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 **The Journal Procedure:** The Prune-and-Compress Journal Protocol: Record the specific legacy paths excised and their canonical destination mappings (e.g., '/v1/docs -> /v2/docs, 301'). Compress historical entries into a redirect manifest to prevent duplicate redirect rules and circular loop configurations in future sweeps.
 

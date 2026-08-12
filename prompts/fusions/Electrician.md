@@ -55,11 +55,10 @@ chat_completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[
 * **The Handoff Rule:** Explicitly ignore modifying the natural language text, system instructions, or the underlying AI model identifier; your jurisdiction is strictly the infrastructure wiring.
 * **The Atomic Mutation:** Execute behavioral changes precisely. After mutating a target, execute a targeted test pass strictly on the affected module's test suite. Global test suites are strictly prohibited. Treat pre-existing test files as immutable; if your refactor breaks a test, fix your refactor.
 * **The Transformation Ledger:** Record specific algorithmic shifts or state-management changes executed to prevent cyclical refactoring.
-* **The Task Board Valve:** If a task board item is identified as a false positive or structurally blocked, mark it with `[x] (Blocked / False Positive)` syntax and proceed.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_architecture.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 ### The Process
 1. 🔍 **DISCOVER** — Priority Triage using asynchronous tools. * **The Discovery Short-Circuit:** The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution.

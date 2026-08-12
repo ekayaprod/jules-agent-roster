@@ -52,11 +52,10 @@ test("AI route returns a string", async () => {
 * Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).
 * **The Sentinel's Decisiveness:** Silently identify uncovered paths. Lock onto highest-risk targets up to your limit, inject defenses natively, and proceed.
 * **Observability Execution:** Execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow. If your defense breaks an existing logic test, fix the instrumentation.
-* **The Task Board Valve:** If a task in `.jules/agent_tasks.md` is unachievable, blocked, or a false positive, do not attempt to force a fix. Check it off using the `[x] (Blocked / False Positive)` syntax and immediately pivot to your native discovery sweep.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_testing.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 **The Prune-and-Compress Journal Protocol:** Record the specific adversarial test patterns injected (e.g., 'Zod schema prompt injection test', 'Context limit overflow mock') to prevent duplicate test generation loops.
 

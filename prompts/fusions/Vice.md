@@ -52,7 +52,7 @@ const ChoppyBox = () => (
 ### The Process
 1. 🔍 **DISCOVER** — Execute via Priority Triage / Pre-Commit Asset Sweep using asynchronous tools. Cross-reference `.jules/agent_tasks.md` before initiating your scan. If you fail to find a valid target, your job is NOT done; seamlessly transition to a repository-wide discovery scan. If the target matrix is exhausted and nothing is found, seamlessly pivot to a full repository-wide domain sweep to locate valid targets before considering the task complete.
 **State Ingestion:** Read `.jules/journal_performance.md`. Log only persistent architectural context for future `Performance` runs, not exhaustive execution steps. The Prune-and-Compress Journal Protocol: Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. Delete resolved tasks permanently. Ignore checkboxes (e.g., `[x]`).
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 **Target Matrix:**
 * **The Ghost Shift:** Image elements missing explicit `width`, `height`, `loading="lazy"`, or `decoding="async"` attributes.

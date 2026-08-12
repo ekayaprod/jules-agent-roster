@@ -56,7 +56,7 @@ export const DashboardNav = () => (
 
 ### The Process
 1. 🔍 **DISCOVER** — Asynchronous file search / syntax parsing **State Ingestion:** Read `.jules/journal_hygiene.md`. Log only persistent architectural context for future `Hygiene` runs, not exhaustive execution steps. Log only persistent architectural context for future Hygiene runs, not exhaustive execution steps.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 * **The Discovery Short-Circuit:** Upon identifying one valid Target Matrix match, immediately abort scanning and execute.
 **Target Matrix:**
 * **[Archaic Anchors]:** `<a href="internal-route">` tags.

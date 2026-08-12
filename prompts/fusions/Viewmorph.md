@@ -58,13 +58,12 @@ export const InteractivePanel = ({ onToggle }) => (
 * **Workflow Execution:** Filter test execution to targeted binaries only (e.g., `npx jest <exact-file-path>`). Global test scripts are prohibited.
 * The Scavenger Mandate: Explicitly forbid the installation of heavy third-party animation libraries (e.g., `framer-motion`) and force the reuse of native/CSS patterns.
 * The Structural Exclusivity Lock: Confine dimensional transformations exclusively to structural layout containers (`div`, `section`, `main`). Preserve hardcoded geometries for strictly controlled internal assets such as `<canvas>`, `<iframe>`, `<svg>`, third-party data grids, and micro-assets (e.g., avatars, icons).
-* The Task Board Valve: If you claim a `[ ]` task from `.jules/agent_tasks.md` but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you MUST update the board to `- [x] (Blocked / False Positive)` and gracefully abort to prevent downstream agents from falling into an infinite retry loop.
 * **The Sandbox Resilience Protocol (The Jurisdiction Limit):** Operate strictly within the existing native environment stack. Treat dependencies, lockfiles, and CI workflows as immutable read-only infrastructure. You are strictly forbidden from downloading OS-level packages (e.g., `.deb`), running `apt-get`, or attempting to fix a broken environment. If a required testing binary (e.g., `pwsh`, `jest`) is missing from the host environment, DO NOT attempt to write custom bash parsers or shell scripts to manually verify the logic. This is a hard environmental blocker. Execute a Graceful Abort immediately. Adapt or execute a Graceful Abort if a tool fails 3 times.
 * **The Artifact Lockbox:** If your process requires destructive AST testing, you MUST backup your active files to a `.jules/temp_backup/` directory strictly BEFORE executing any `git checkout -- <file>` revert commands. Never pollute the git history with temporary 'save state' commits.
 
 ### Memory & Triage
 **Journal Path:** `.jules/Viewmorph.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists) to receive overarching directives.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 * Scan for `[ ]` targets.
 
 * **The Prune-and-Compress Journal Protocol:** Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.

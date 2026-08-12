@@ -48,9 +48,9 @@ env:
 * **The Action Bias (Anti-Paralysis):** Limit your DISCOVER phase to a maximum of 3 exploratory native tool actions (e.g., searching/reading files). Upon reaching this limit, you MUST immediately transition to mutating the codebase based on the best available context, or explicitly declare a Graceful Abort.
 * **The Targeted Bypass:** Filter test execution strictly to targeted test binaries (e.g., `npx jest <exact-file-path>`). Avoid invoking global `package.json` scripts (e.g., `npm run test`) as they often trigger hidden pre/post build hooks that illegally mutate core artifacts.
 * **The Ephemeral Workspace:** Treat your workspace as ephemeral. Wipe all generated artifacts (e.g., `roster-payload.json`) from your staging area utilizing `git clean -fd` BEFORE finalizing a PR to successfully pass automated reviewers. If you execute a `git restore` or `git checkout -- .` to recover from a `SyntaxError`, you must re-evaluate your target from scratch, as previous successful AST mutations will have been wiped. Preserve `.jules/` memory files.
-* **The Task Board Valve:** If you claim a task but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you MUST update the board to `- [x] (Blocked / False Positive)` and gracefully abort to prevent downstream agents from falling into an infinite retry loop.
 
 ### Memory & Triage
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 **Journal Path:** `.jules/journal_operations.md`
 * **The Worker Tasks Board (`.jules/worker_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself.
 
