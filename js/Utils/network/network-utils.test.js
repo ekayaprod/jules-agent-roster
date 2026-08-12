@@ -375,3 +375,25 @@ describe('NetworkUtils', () => {
             }).toThrow('Invalid payload: Prototype pollution detected in payload.');
         });
     });
+
+    describe('_enforceRateLimit', () => {
+        it('should throw TypeError for invalid url inputs', () => {
+            expect(() => NetworkUtils._enforceRateLimit(null)).toThrow(TypeError);
+            expect(() => NetworkUtils._enforceRateLimit(undefined)).toThrow(TypeError);
+            expect(() => NetworkUtils._enforceRateLimit(123)).toThrow(TypeError);
+            expect(() => NetworkUtils._enforceRateLimit({})).toThrow(TypeError);
+            expect(() => NetworkUtils._enforceRateLimit('')).toThrow(TypeError);
+            expect(() => NetworkUtils._enforceRateLimit('   ')).toThrow(TypeError);
+        });
+
+        it('should fallback to using the original string as hostname if URL parsing fails', () => {
+            const malformedUrl = 'invalid';
+
+            // Should not throw Error due to malformed URL (as it is caught and handled via fallback)
+            expect(() => NetworkUtils._enforceRateLimit(malformedUrl)).not.toThrow();
+
+            // The state should now track 'invalid' directly
+            expect(NetworkUtils._requestBuckets[malformedUrl]).toBeDefined();
+            expect(NetworkUtils._requestBuckets[malformedUrl].count).toBeGreaterThan(0);
+        });
+    });
