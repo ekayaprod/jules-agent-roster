@@ -293,6 +293,21 @@ describe('JulesTerminal', () => {
             expect(mockStatusSpan.textContent).toBe('⚠️ Response Needed (Click to view)');
             expect(mockStatusSpan.onclick).toBeNull();
         });
+
+        it('should not crash and skip rollback if statusSpan is missing on API failure', async () => {
+            document.getElementById.mockReturnValue(null);
+            window.julesAPI.provideInput.mockRejectedValueOnce(new Error('API 500'));
+
+            const rollbackState = {
+                className: 'term-status status-waiting',
+                textContent: 'Needs response',
+                onclick: jest.fn()
+            };
+
+            await expect(modals._transmitReply('session-1', 'user reply', mockCloseFn, rollbackState)).resolves.not.toThrow();
+
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to send reply.", "error");
+        });
     });
 
     describe('_showKeyError and _clearKeyError', () => {
