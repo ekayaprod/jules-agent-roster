@@ -78,6 +78,54 @@ describe('StorageUtils', () => {
             dispatchSpy.mockRestore();
         });
 
+        it('returns null and logs error when JSON.parse explicitly throws', () => {
+            const TelemetryUtils = require('../telemetry/telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+            const parseSpy = jest.spyOn(JSON, 'parse').mockImplementation(() => {
+                throw new Error('Custom parse error');
+            });
+
+            mockLocalStorage.getItem.mockReturnValue('["valid"]');
+            StorageUtils._readLimits = null;
+
+            const result = StorageUtils.getJsonArrayItem('test_key', 'test_event');
+
+            expect(result).toBeNull();
+            expect(dispatchSpy).toHaveBeenCalledWith(
+                'test_event',
+                expect.any(Error),
+                { stored: '["valid"]' }
+            );
+
+            parseSpy.mockRestore();
+            dispatchSpy.mockRestore();
+        });
+
+        it('returns null and logs error when validator explicitly throws', () => {
+            const TelemetryUtils = require('../telemetry/telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
+            // Because Array.isArray is used widely in Jest internally, we shouldn't mock it entirely for the test.
+            // Instead, we use getValidatedJsonItem directly to pass a custom throwing validator.
+            mockLocalStorage.getItem.mockReturnValue('[]');
+            StorageUtils._readLimits = null;
+
+            const throwingValidator = () => {
+                throw new Error('Validator error');
+            };
+
+            const result = StorageUtils.getValidatedJsonItem('test_key', throwingValidator, 'test_event');
+
+            expect(result).toBeNull();
+            expect(dispatchSpy).toHaveBeenCalledWith(
+                'test_event',
+                expect.any(Error),
+                { stored: '[]' }
+            );
+
+            dispatchSpy.mockRestore();
+        });
+
         // 🐺 FORTIFY: Sad Path - Oversized Buffer Rejection
         it('safely rejects oversized data buffers before parsing', () => {
             const massivePayload = 'A'.repeat(500001);
