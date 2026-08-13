@@ -92,11 +92,11 @@ function formatRetainedRules(input) {
 
   filtered.forEach((item, i) => {
     // Matches the real convention used throughout salvaged_custom_logic and
-    // salvaged_mandates: '* **Name:** Instruction.' — the bold markers
-    // around the label are required, not optional.
-    if (!/^\*\s+\*\*[^*:]+:\*\*\s+\S.*\.$/.test(item)) {
+    // salvaged_mandates: '* The [Name]: Instruction.' — the bold markers
+    // around the label are not allowed, following Creative-Procedure.md formatting.
+    if (!/^\*\s+The\s+[^*:]+:\s+\S.*\.$/.test(item)) {
       throw new Error(
-        `[FATAL ERROR] Retained Rule item ${i + 1} violates the required format '* **[Name]:** [Instruction].': '${item}'`,
+        `[FATAL ERROR] Retained Rule item ${i + 1} violates the required format '* The [Name]: [Instruction].': '${item}'`,
       );
     }
   });
@@ -265,7 +265,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     { label: 'git clean baseline command', pattern: /git clean -fd/i },
     { label: 'temp_backup baseline path', pattern: /\.jules\/temp_backup/i },
     { label: 'SEARCH/REPLACE tool-lock block syntax', pattern: /<{3,}\s*SEARCH/i },
-    { label: 'Test Immunity Doctrine restatement', pattern: /test immunity doctrine/i },
+    { label: 'Testing Doctrine restatement', pattern: /(test immunity doctrine|testing doctrine)/i },
     { label: 'Canonical testing doctrine phrase', pattern: /treat test files as immutable and read-only/i },
     { label: 'Canonical testing doctrine failure clause', pattern: /prove (?:the test|it) was failing on `?main`?/i },
     { label: 'Managed Interruption clause', pattern: /managed interruption/i },
