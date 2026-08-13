@@ -97,6 +97,39 @@ describe('ClipboardUtils', () => {
             expect(window.TelemetryUtils.dispatchEvent).not.toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', expect.any(Error));
             expect(result).toBe(false);
         });
+
+        it('should silently catch errors if TelemetryUtils is missing during Clipboard API failure', async () => {
+            const mockError = new Error('Clipboard denied');
+            global.navigator.clipboard.writeText.mockRejectedValue(mockError);
+            document.execCommand.mockReturnValue(true);
+
+            const getTelemetrySpy = jest.spyOn(ClipboardUtils, '_getTelemetryUtils').mockReturnValue(null);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(window.TelemetryUtils.dispatchEvent).not.toHaveBeenCalled();
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(result).toBe(true);
+
+            getTelemetrySpy.mockRestore();
+        });
+
+        it('should silently catch errors if TelemetryUtils is missing during fallback execCommand failure', async () => {
+            delete global.navigator.clipboard;
+            const mockFallbackError = new Error('execCommand failed');
+            document.execCommand.mockImplementation(() => { throw mockFallbackError; });
+
+            const getTelemetrySpy = jest.spyOn(ClipboardUtils, '_getTelemetryUtils').mockReturnValue(null);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(window.TelemetryUtils.dispatchEvent).not.toHaveBeenCalled();
+            expect(result).toBe(false);
+
+            getTelemetrySpy.mockRestore();
+        });
     });
 
     describe('animateButtonSuccess', () => {
@@ -130,6 +163,40 @@ describe('ClipboardUtils', () => {
             expect(primaryIcon.classList.contains('d-none')).toBe(false);
             expect(checkIcon.classList.contains('d-none')).toBe(true);
             expect(checkIcon.classList.contains('animate')).toBe(false);
+
+            jest.useRealTimers();
+        });
+
+        it('should do nothing if btn is missing', () => {
+            expect(() => {
+                ClipboardUtils.animateButtonSuccess(null, 'Success!');
+            }).not.toThrow();
+        });
+
+        it('should do nothing if span is missing', () => {
+            const btn = document.createElement('button');
+            expect(() => {
+                ClipboardUtils.animateButtonSuccess(btn, 'Success!');
+            }).not.toThrow();
+            expect(btn.classList.contains('success-state')).toBe(false);
+        });
+
+        it('should handle missing primary and check icons gracefully', () => {
+            jest.useFakeTimers();
+            const btn = document.createElement('button');
+            const span = document.createElement('span');
+            span.innerText = 'Original Text';
+            btn.appendChild(span);
+
+            ClipboardUtils.animateButtonSuccess(btn, 'Success!', 1000);
+
+            expect(btn.classList.contains('success-state')).toBe(true);
+            expect(span.innerText).toBe('Success!');
+
+            jest.advanceTimersByTime(1000);
+
+            expect(btn.classList.contains('success-state')).toBe(false);
+            expect(span.innerText).toBe('Original Text');
 
             jest.useRealTimers();
         });
