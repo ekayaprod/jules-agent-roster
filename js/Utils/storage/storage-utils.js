@@ -11,7 +11,15 @@ class StorageUtils {
      * @returns {Array|null} The parsed array, or null if parsing fails or item doesn't exist.
      * @see ../../docs/architecture/Utils/README.md#storageutils-architecture
      */
-    static getJsonArrayItem(key, errorEventName) {
+    /**
+     * Generic method to retrieve, sanitize, and validate a parsed JSON item from localStorage.
+     * @template T
+     * @param {string} key - The localStorage key.
+     * @param {function(unknown): boolean} validator - A predicate function to validate the parsed JSON.
+     * @param {string} errorEventName - The name of the event for error logging.
+     * @returns {T|null} The parsed and validated item, or null if it fails or doesn't exist.
+     */
+    static getValidatedJsonItem(key, validator, errorEventName) {
         let stored = null;
         try {
             // 🐺 FORTIFY: Head 1 - Rate Limiting (Throttle massive read assaults)
@@ -32,11 +40,11 @@ class StorageUtils {
                 // 🐺 FORTIFY: Head 2 & 3 - Wrap parser and enforce schema stripping pollution
                 if (stored.length > 500000) throw new Error("Invalid payload: Storage buffer exceeds maximum length.");
 
-                const parsed = JSON.parse(stored, (key, value) => {
-                    if (key === '__proto__' || key === 'constructor') return undefined;
+                const parsed = JSON.parse(stored, (k, value) => {
+                    if (k === '__proto__' || k === 'constructor') return undefined;
                     return value;
                 });
-                if (Array.isArray(parsed)) return parsed;
+                if (validator(parsed)) return parsed;
             }
             return null;
         } catch (error) {
@@ -44,6 +52,17 @@ class StorageUtils {
             if (tu) tu.dispatchEvent(errorEventName, error, { stored: stored });
             return null;
         }
+    }
+
+    /**
+     * Retrieves and parses a JSON array from localStorage.
+     * @param {string} key - The localStorage key.
+     * @param {string} errorEventName - The name of the event for error logging.
+     * @returns {Array|null} The parsed array, or null if parsing fails or item doesn't exist.
+     * @see ../../docs/architecture/Utils/README.md#storageutils-architecture
+     */
+    static getJsonArrayItem(key, errorEventName) {
+        return this.getValidatedJsonItem(key, Array.isArray, errorEventName);
     }
 
     /**
