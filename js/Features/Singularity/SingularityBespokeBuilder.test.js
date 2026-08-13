@@ -106,6 +106,31 @@ describe('SingularityBespokeBuilder', () => {
       expect(global.window.rosterApp.showToast).toHaveBeenCalledWith('Unable to load the Singularity template. Please try again.');
       expect(mockTerminal.launchSession).not.toHaveBeenCalled();
     });
+
+    it('should handle terminal launchSession failure and show error UI', async () => {
+      global.fetch.mockResolvedValueOnce({
+        ok: true,
+        text: () => Promise.resolve('Template with {{UI_MISSION_STATEMENT}}'),
+      });
+
+      mockTerminal.launchSession.mockImplementation(() => {
+        throw new Error('Launch failed');
+      });
+
+      builder.init();
+      builder.elements.missionInput.value = 'Failing Mission';
+
+      const focusSpy = jest.spyOn(builder.elements.missionInput, 'focus');
+
+      await builder.handleForge();
+
+      expect(mockTerminal.launchSession).toHaveBeenCalled();
+
+      expect(builder.elements.errorWrapper.classList.contains('hidden')).toBe(false);
+      expect(builder.elements.errorText.innerText).toBe('Launch failed');
+      expect(builder.elements.missionInput.classList.contains('border-error')).toBe(true);
+      expect(focusSpy).toHaveBeenCalled();
+    });
   });
 });
 
