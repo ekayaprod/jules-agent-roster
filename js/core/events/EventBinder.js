@@ -123,28 +123,41 @@ class EventBinder {
           const emojiSpan = document.getElementById("fusionsModalEmoji");
           if (emojiSpan) emojiSpan.textContent = "🧬";
 
-          listItems = potentialFusions.reduce((acc, key) => {
+          const ul = document.createElement('ul');
+          ul.className = "fusion-quick-list fusion-quick-list-container";
+          let hasItems = false;
+
+          potentialFusions.forEach(key => {
               const isUnlocked = typeof unlockedKeys.has === 'function' ? unlockedKeys.has(key) : unlockedKeys.includes(key);
-              if (!isUnlocked) return acc;
+              if (!isUnlocked) return;
               const fusionName = app.fusionLab.compiler.fusionMatrixMap[key];
               const childAgent = AgentUtils.getCustomAgent(app.customAgents, fusionName) || app.fusionLab.compiler.customAgentsMap[fusionName];
-              if (!childAgent) return acc;
-              const safeChildName = FormatUtils.escapeHTML(FormatUtils.extractDisplayName(childAgent));
-              return acc + `
-                  <li class="fusion-quick-list-item">
-                      <button class="fusion-quick-btn transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95" data-action="view-fusion-card" data-index="${key}" aria-label="View ${safeChildName}" title="${safeChildName}">
-                          ${FormatUtils.escapeHTML(FormatUtils.extractIcon(childAgent))}
-                      </button>
-                  </li>
-              `;
-          }, "");
+              if (!childAgent) return;
+              const safeChildName = FormatUtils.extractDisplayName(childAgent); // textContent handles escaping
+
+              const li = document.createElement('li');
+              li.className = "fusion-quick-list-item";
+
+              const button = document.createElement('button');
+              button.className = "fusion-quick-btn transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95";
+              button.setAttribute("data-action", "view-fusion-card");
+              button.setAttribute("data-index", key);
+              button.setAttribute("aria-label", `View ${safeChildName}`);
+              button.title = safeChildName;
+              button.textContent = FormatUtils.extractIcon(childAgent); // textContent handles escaping
+
+              li.appendChild(button);
+              ul.appendChild(li);
+              hasItems = true;
+          });
 
           const downloadBtn = document.getElementById("downloadParentFusionsBtn");
-          if (listItems) {
+          if (hasItems) {
               const listArea = document.getElementById("fusionsModalList");
               const cardArea = document.getElementById("fusionsModalCard");
               if (listArea) {
-                  listArea.innerHTML = `<ul class="fusion-quick-list fusion-quick-list-container">${listItems}</ul>`;
+                  listArea.innerHTML = '';
+                  listArea.appendChild(ul);
               }
               if (cardArea) {
                   cardArea.innerHTML = '';
