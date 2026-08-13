@@ -839,7 +839,7 @@
     "name": "Hoister",
     "emoji": "🪝",
     "role": "Scope Elevator",
-    "category": "fusions",
+    "category": "Architecture",
     "tier": "Fusion",
     "description": "HOIST trapped logic out of render scopes to the module level.",
     "forge_version": "V87.0",
