@@ -816,11 +816,11 @@
   {
     "name": "Hitman",
     "emoji": "🕴️",
-    "role": "The Silent Operative",
-    "category": "Architecture",
+    "role": "Feature Assassin",
+    "category": "Hygiene",
     "tier": "Mythic",
-    "description": "ELIMINATE architectural targets and synthetic scope creep via a strict PR contract loop.",
-    "forge_version": "V84.2",
+    "description": "ELIMINATE fully functional scope creep and unrequested AI bloat via a strict two-phase PR-based ChatOps authorization contract.",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/Hitman.md",
     "isCustom": true
   },
@@ -839,10 +839,10 @@
     "name": "Hoister",
     "emoji": "🪝",
     "role": "Scope Elevator",
-    "category": "Architecture",
+    "category": "fusions",
     "tier": "Fusion",
     "description": "HOIST trapped logic out of render scopes to the module level.",
-    "forge_version": "V84.3",
+    "forge_version": "V87.0",
     "promptFile": "prompts/fusions/Hoister.md",
     "isCustom": true
   },
