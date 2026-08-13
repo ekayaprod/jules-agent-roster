@@ -208,17 +208,41 @@ describe('StorageUtils', () => {
             StorageUtils.setJsonItem('test_key', {}, 'TestComponent');
         });
 
-        it('logs a warning when localStorage.setItem throws an error', () => {
+        it('dispatches telemetry when localStorage.setItem throws an error', () => {
+            const TelemetryUtils = require('../telemetry/telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
             mockLocalStorage.setItem.mockImplementation(() => {
                 throw new Error('Quota Exceeded');
             });
 
             StorageUtils.setJsonItem('test_key', {}, 'TestComponent');
 
-            expect(consoleWarnSpy).not.toHaveBeenCalledWith(
-                'TestComponent: Failed to save to localStorage',
-                expect.any(Error)
+            expect(dispatchSpy).toHaveBeenCalledWith(
+                'STORAGE_ITEM_SAVE_FAILED',
+                expect.any(Error),
+                { key: 'test_key' }
             );
+
+            dispatchSpy.mockRestore();
+        });
+
+        it('dispatches telemetry when JSON.stringify throws an error', () => {
+            const TelemetryUtils = require('../telemetry/telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
+            const circularObj = {};
+            circularObj.self = circularObj;
+
+            StorageUtils.setJsonItem('test_key', circularObj, 'TestComponent');
+
+            expect(dispatchSpy).toHaveBeenCalledWith(
+                'STORAGE_ITEM_SAVE_FAILED',
+                expect.any(Error),
+                { key: 'test_key' }
+            );
+
+            dispatchSpy.mockRestore();
         });
     });
 
@@ -318,17 +342,23 @@ describe('StorageUtils', () => {
             StorageUtils.setItem('test_key', 'test_value');
         });
 
-        it('logs a warning when localStorage.setItem throws an error', () => {
+        it('dispatches telemetry when localStorage.setItem throws an error', () => {
+            const TelemetryUtils = require('../telemetry/telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
             mockLocalStorage.setItem.mockImplementation(() => {
                 throw new Error('Quota Exceeded');
             });
 
             StorageUtils.setItem('test_key', 'test_value');
 
-            expect(consoleWarnSpy).not.toHaveBeenCalledWith(
-                'Failed to save string to localStorage',
-                expect.any(Error)
+            expect(dispatchSpy).toHaveBeenCalledWith(
+                'STORAGE_ITEM_SAVE_FAILED',
+                expect.any(Error),
+                { key: 'test_key' }
             );
+
+            dispatchSpy.mockRestore();
         });
     });
 });
