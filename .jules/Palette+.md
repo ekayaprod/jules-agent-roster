@@ -10,3 +10,15 @@
   - **Design/UX Pattern Applied**: Introduced a scale and `fadeIn` keyframe on the backdrop and container to eliminate the lifeless, rigid snap transition.
 - **Component**: `.fusion-error-alert`
   - **Design/UX Pattern Applied**: Implemented a subtle `errorShake` keyframe animation and improved margins/borders/shadows to ensure prominent, organic UX feedback when a failure happens.
+- **Component**: `button`
+  - **Design/UX Pattern Applied**: Softened the harsh border radius from `0.5rem` to `0.75rem` (rounded-xl) for a more modern, organic feel.
+- **Component**: `.ide-viewport`
+  - **Design/UX Pattern Applied**: Elevated visual design by softening border radius to `0.75rem` (rounded-xl) to remove sharp, unrefined edges.
+- **Component**: `.repo-picker, .task-input`
+  - **Design/UX Pattern Applied**: Eased harsh bounds by upgrading border radius from `0.25rem` to `0.5rem`.
+- **Component**: `.toast`
+  - **Design/UX Pattern Applied**: Injected a deeper `box-shadow` and upgraded border radius to `1rem` to create visual elevation and separate it from the flat canvas.
+- **Component**: `.empty-state.visible`
+  - **Design/UX Pattern Applied**: Added a `fadeIn` keyframe to transform a lifeless instant-snap transition into a polished, staggered entrance choreography.
+- **Component**: `.sg-textarea`
+  - **Design/UX Pattern Applied**: Replaced the harsh `0.5rem` border with a softened `0.75rem` (rounded-xl) edge to match overarching aesthetic flow.
