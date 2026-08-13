@@ -171,7 +171,7 @@
       input[type="text"] { padding: 0.6rem 2.5rem 0.6rem 2.75rem; border-radius: 999px; background: transparent; border: 1px solid transparent; color: var(--text-primary); width: 100%; font-family: inherit; transition: all 0.2s ease-in-out; font-size: var(--text-sm);}
       input[type="text"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-color: transparent; }
 
-      button { background-color: var(--accent); color: var(--bg-color); border: none; padding: 0.5rem 1rem; font-weight: var(--weight-semibold); border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease-in-out; font-family: -apple-system, sans-serif; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; }
+      button { background-color: var(--accent); color: var(--bg-color); border: none; padding: 0.5rem 1rem; font-weight: var(--weight-semibold); border-radius: 0.75rem; cursor: pointer; transition: all 0.3s ease-in-out; font-family: -apple-system, sans-serif; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; }
       @media (hover: hover) and (pointer: fine) { button:hover { background-color: var(--accent-hover); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transform: translateY(-1px); } }
       button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       button:active { transform: scale(0.95); }
@@ -357,7 +357,7 @@
         border: 1px solid var(--term-border);
         color: var(--term-text);
         padding: 0.4rem 0.75rem;
-        border-radius: 0.25rem;
+        border-radius: 0.5rem;
         font-family: inherit;
         font-size: var(--text-xs);
         outline: none;
@@ -385,7 +385,7 @@
         line-height: 1.4;
         color: var(--term-text);
         box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-        border-radius: 0.5rem;
+        border-radius: 0.75rem;
         border: 1px solid var(--term-border);
       }
       .ide-viewport::-webkit-scrollbar { width: 6px; }
@@ -529,12 +529,12 @@
 
       .dropdown-header { padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: bold; color: var(--text-secondary); text-transform: uppercase; border-bottom: 1px solid var(--border); }
       .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; background: color-mix(in srgb, var(--card-bg) 60%, transparent); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.2); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-size: 1.125rem; }
-      .empty-state.visible { display: flex; }
+      .empty-state.visible { display: flex; animation: fadeIn 0.4s ease-out forwards; }
       .empty-icon { font-size: var(--text-5xl); margin-bottom: 1rem; }
       .empty-title { font-size: var(--text-xl); font-weight: var(--weight-bold); margin: 0 0 0.5rem 0; font-family: -apple-system, sans-serif; }
       .empty-desc { font-size: var(--text-sm); color: var(--text-secondary); max-width: 25rem; line-height: var(--leading-normal); margin: 0; font-family: -apple-system, sans-serif; }
       .hidden { display: none !important; } .mt-6 { margin-top: 1.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .flex { display: flex; }
-      .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: var(--text-primary); padding: 1rem 1.5rem; border-radius: 0.5rem; transform: translateY(200%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; border: 1px solid var(--success); font-family: -apple-system, sans-serif; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-width: 20rem; }
+      .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: var(--text-primary); padding: 1rem 1.5rem; border-radius: 1rem; transform: translateY(200%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 1000; border: 1px solid var(--success); font-family: -apple-system, sans-serif; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2); display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-width: 20rem; }
       .toast-content { display: flex; align-items: center; gap: 0.75rem; flex: 1; }
       .toast.show { transform: translateY(0); }
 

@@ -59,7 +59,7 @@
           resize: vertical;
           background: var(--details-bg);
           border: 1px solid var(--border);
-          border-radius: 0.5rem;
+          border-radius: 0.75rem;
           padding: 0.75rem;
           font-size: 0.875rem;
           color: var(--text-primary);
