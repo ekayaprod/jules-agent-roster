@@ -271,12 +271,17 @@ class RosterApp {
     // 🧬 COLLAPSE: Collapsed nested imperative accumulator and sort loops into a dense functional pipeline, eliminating intermediary scaffolding arrays.
     const hasPinnedManager = Boolean(this.pinnedManager);
     const flattenedAgents = this.categoryKeys.flatMap(categoryKey => {
-      const sorted = (categorizedAgents[categoryKey] || []).map(item => ({
-        ...item,
-        gridCategory: categoryKey,
-        _isPinned: hasPinnedManager ? this.pinnedManager.isPinned(item.indexOrKey) : false
-      })).sort((a, b) => {
-        if (a._isPinned !== b._isPinned) return a._isPinned ? -1 : 1;
+      const arr = categorizedAgents[categoryKey] || [];
+      for (let i = 0; i < arr.length; i++) {
+        arr[i].gridCategory = categoryKey;
+      }
+      arr.sort((a, b) => {
+        let aPinned = false, bPinned = false;
+        if (hasPinnedManager) {
+          aPinned = this.pinnedManager.isPinned(a.indexOrKey);
+          bPinned = this.pinnedManager.isPinned(b.indexOrKey);
+        }
+        if (aPinned !== bPinned) return aPinned ? -1 : 1;
         const aTier = a.agent?.tier === "Plus" ? 1 : 0;
         const bTier = b.agent?.tier === "Plus" ? 1 : 0;
         if (aTier !== bTier) return bTier - aTier;
@@ -284,8 +289,7 @@ class RosterApp {
         const bName = b.agent?.name?.endsWith("+") ? 1 : 0;
         return bName - aName;
       });
-      sorted.forEach(item => delete item._isPinned);
-      return sorted;
+      return arr;
     });
 
     const currentRenderId = Symbol();
