@@ -5,7 +5,7 @@
 
 - [REFACTORER] `js/Features/JulesTerminal/JulesTerminal.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (617 lines).
 - [REFACTORER] `js/Features/JulesTerminal/JulesModals.test.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (578 lines).
-- [REFACTORER] `js/core/RosterApp.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (564 lines).
+
 - [REFACTORER] `js/Features/Fusion/AgentPicker.test.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (545 lines).
 - [REFACTORER] `benchmark.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (536 lines).
 - [REFACTORER] `js/core/events/EventBinder.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (526 lines).
