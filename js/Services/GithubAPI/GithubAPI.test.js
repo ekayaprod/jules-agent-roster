@@ -90,6 +90,28 @@ describe('GithubAPI', () => {
              await expect(api._fetch('/test')).rejects.toThrow('Generic Error');
              expect(console.error).toHaveBeenCalledWith(`[GithubAPI] Request to /test failed: `, genericError);
         });
+
+        it('should handle successful response but failing json parsing', async () => {
+             const jsonError = new Error('JSON parsing error');
+             global.fetch.mockResolvedValueOnce({
+                 ok: true,
+                 json: async () => Promise.reject(jsonError)
+             });
+
+             await expect(api._fetch('/test')).rejects.toThrow('JSON parsing error');
+             expect(console.error).toHaveBeenCalledWith(`[GithubAPI] Request to /test failed: `, jsonError);
+        });
+
+        it('should handle ok:false and failing json parsing gracefully', async () => {
+             const jsonError = new Error('Failed to parse error response JSON');
+             global.fetch.mockResolvedValueOnce({
+                 ok: false,
+                 status: 400,
+                 json: async () => Promise.reject(jsonError)
+             });
+
+             await expect(api._fetch('/test')).rejects.toThrow('Client Error: Failed to parse error response: Failed to parse error response JSON');
+        });
     });
 
     describe('Endpoints', () => {
