@@ -163,17 +163,22 @@ class FusionIndex {
     }
     slot.setAttribute('data-key', key);
 
+    const iconSpan = document.createElement('span');
+    iconSpan.className = 'slot-icon';
+    iconSpan.textContent = emoji;
+
+    const labelSpan = document.createElement('span');
+    labelSpan.className = 'slot-label';
+
     if (isUnlocked) {
-      slot.innerHTML = `
-          <span class="slot-icon">${FormatUtils.escapeHTML(emoji)}</span>
-          <span class="slot-label">${FormatUtils.escapeHTML(safeData.name)}</span>
-        `;
+      labelSpan.textContent = safeData.name;
+      slot.appendChild(iconSpan);
+      slot.appendChild(labelSpan);
       this._bindSlotInteractions(slot, safeData, key);
     } else {
-      slot.innerHTML = `
-          <span class="slot-icon">${FormatUtils.escapeHTML(emoji)}</span>
-          <span class="slot-label">Locked Protocol</span>
-        `;
+      labelSpan.textContent = 'Locked Protocol';
+      slot.appendChild(iconSpan);
+      slot.appendChild(labelSpan);
     }
 
     fragment.appendChild(slot);
