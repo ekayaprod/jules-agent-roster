@@ -44,22 +44,14 @@ const RarityEngine = (function() {
 
     // 🕯️ CHRONICLE: AST reasoning explains the logic; Git history explains the business intent.
 
-    /**
-     * Evaluates the combined rarity and overarching domain of a fusion between two given agents.
-     * Structurally traces the matrix rules sequentially (Glitch detection -> Scavenger paradox -> Super Domain matching).
-     * * Historical Intent: Added via PR/commit 06bffc9 (Apr 2026) to eradicate massive block redundancies across utility modules, abstracting identical control flow matrices into a parameterized pure local helper utility to enforce structural cohesion.
-     *
-     * @param {Object} agent1 - The first constituent agent.
-     * @param {Object} agent2 - The second constituent agent.
-     * @returns {Object} Result object containing `rarity` tier and corresponding fusion `domain`.
-     */
-    function _evaluateFusion(agent1, agent2) {
-        if (!agent1 || !agent2) return { rarity: "Common", domain: "Unknown Domain" };
-
+    function _checkMythic(agent1, agent2) {
         if (agent1.tier === "Mythic" || agent2.tier === "Mythic") return { rarity: "Mythic", domain: "Anomaly Integration" };
         if (agent1.name && agent1.name === agent2.name && PLUS_NAMES.has(agent1.name)) return { rarity: "Mythic", domain: "12. Plus Glitch" };
         if (agent1.name && agent1.name === agent2.name) return { rarity: "Mythic", domain: "13. Core Glitch" };
+        return null;
+    }
 
+    function _checkLegendary(agent1, agent2) {
         const isScavenger1 = agent1.name === "Scavenger";
         const isScavenger2 = agent2.name === "Scavenger";
         const hasScavenger = isScavenger1 || isScavenger2;
@@ -72,9 +64,10 @@ const RarityEngine = (function() {
                                   (agent2.name === "Architect" && agent1.name === "Pedant");
         if (isArchitectPedant) return { rarity: "Legendary", domain: "11. Core Paradox" };
 
-        const sd1 = getSuperDomain(agent1);
-        const sd2 = getSuperDomain(agent2);
+        return null;
+    }
 
+    function _checkEpicOrRare(sd1, sd2) {
         const hasIntegrity = sd1 === "Integrity" || sd2 === "Integrity";
         const hasVisible = sd1 === "Visible" || sd2 === "Visible";
         const hasInvisible = sd1 === "Invisible" || sd2 === "Invisible";
@@ -82,6 +75,10 @@ const RarityEngine = (function() {
         if (hasIntegrity && (hasVisible || hasInvisible)) return { rarity: "Epic", domain: "9. QA Bridge" };
         if (hasVisible && hasInvisible) return { rarity: "Rare", domain: "8. Full-Stack Bridge" };
 
+        return null;
+    }
+
+    function _checkSynergy(agent1, agent2, sd1, sd2) {
         if (sd1 === "Plus" && sd2 === "Plus") return { rarity: "Common", domain: "1. Base Synthesis" };
 
         const hasPlus = sd1 === "Plus" || sd2 === "Plus";
@@ -96,6 +93,36 @@ const RarityEngine = (function() {
         if (sd1 === "Visible" && sd2 === "Visible") return { rarity: "Uncommon", domain: "5. Frontend Synergy" };
         if (sd1 === "Integrity" && sd2 === "Integrity") return { rarity: "Uncommon", domain: "7. Integrity Synergy" };
         if (sd1 === "Invisible" && sd2 === "Invisible") return { rarity: "Common", domain: "6. Backend Synergy" };
+
+        return null;
+    }
+
+    /**
+     * Evaluates the combined rarity and overarching domain of a fusion between two given agents.
+     * Structurally traces the matrix rules sequentially (Glitch detection -> Scavenger paradox -> Super Domain matching).
+     * * Historical Intent: Added via PR/commit 06bffc9 (Apr 2026) to eradicate massive block redundancies across utility modules, abstracting identical control flow matrices into a parameterized pure local helper utility to enforce structural cohesion.
+     *
+     * @param {Object} agent1 - The first constituent agent.
+     * @param {Object} agent2 - The second constituent agent.
+     * @returns {Object} Result object containing `rarity` tier and corresponding fusion `domain`.
+     */
+    function _evaluateFusion(agent1, agent2) {
+        if (!agent1 || !agent2) return { rarity: "Common", domain: "Unknown Domain" };
+
+        let result = _checkMythic(agent1, agent2);
+        if (result) return result;
+
+        result = _checkLegendary(agent1, agent2);
+        if (result) return result;
+
+        const sd1 = getSuperDomain(agent1);
+        const sd2 = getSuperDomain(agent2);
+
+        result = _checkEpicOrRare(sd1, sd2);
+        if (result) return result;
+
+        result = _checkSynergy(agent1, agent2, sd1, sd2);
+        if (result) return result;
 
         return { rarity: "Common", domain: "Unknown Domain" };
     }
