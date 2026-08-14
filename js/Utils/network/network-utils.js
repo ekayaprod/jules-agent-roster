@@ -12,13 +12,32 @@ class NetworkUtils {
   // 🐺 FORTIFY: The Three-Headed Defense - Rate Limiter State
   static _requestBuckets = {};
 
+  static _resolveUrlString(url) {
+    if (url === null || url === undefined) return null;
+    if (typeof Request !== 'undefined' && url instanceof Request) {
+        return url.url;
+    }
+    if (url instanceof URL) {
+        return url.toString();
+    }
+    if (url && typeof url === 'object') {
+        if (typeof url.toString === 'function' && url.toString !== Object.prototype.toString) {
+            return url.toString();
+        }
+        if (typeof url.url === 'string') {
+            return url.url;
+        }
+    }
+    return typeof url === 'string' ? url : null;
+  }
+
   /**
    * Enforces a client-side rate limit per hostname.
    * * Historical Intent: Added via PR #2007 by ekayaprod to prevent API abuse and thundering herds.
    * * Magic Numbers: Limits requests to 100 within a 60000ms (1 minute) sliding window.
    */
   static _enforceRateLimit(url) {
-    const urlString = url instanceof URL ? url.toString() : url;
+    const urlString = NetworkUtils._resolveUrlString(url);
     if (typeof urlString !== 'string' || !urlString.trim()) {
         throw new TypeError('Invalid URL parameter');
     }
@@ -104,7 +123,11 @@ class NetworkUtils {
     backoff = NetworkUtils.DEFAULT_BACKOFF_MS,
   ) {
     options = options || {};
-    const urlString = url instanceof URL ? url.toString() : url;
+    const urlString = NetworkUtils._resolveUrlString(url);
+
+    if (typeof urlString !== 'string') {
+       throw new TypeError('Invalid URL parameter');
+    }
 
     // 🐺 FORTIFY: Head 1 - Rate Limiting (Block thundering herds)
     try {
@@ -124,7 +147,8 @@ class NetworkUtils {
 
     try {
       // 🐺 FORTIFY: Head 3 - Wrap naked execution in try/catch (already robustly handled here)
-      const response = await fetch(urlString, {
+      const fetchTarget = (typeof Request !== 'undefined' && url instanceof Request) ? url : urlString;
+      const response = await fetch(fetchTarget, {
         ...options,
         signal: options.signal ?? controller.signal,
       });
