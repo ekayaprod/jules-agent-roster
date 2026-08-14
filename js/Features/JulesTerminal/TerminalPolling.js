@@ -154,7 +154,7 @@ class TerminalPolling {
                 this._updatePollingState(sessionId, block, state, agentName, agentEmoji);
 
             } catch (e) {
-                const tu = JulesTerminal.getTelemetryUtils();
+                const tu = TerminalPolling.getTelemetryUtils();
                 if (tu) {
                     tu.dispatchEvent("JULES_POLLING_ERROR", e);
                 } else {
