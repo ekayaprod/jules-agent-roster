@@ -52,6 +52,14 @@ describe('JulesAPI', () => {
              await expect(api._fetch('/test')).rejects.toThrow(JulesConfigurationError);
         });
 
+        it('should trigger JULES_API_CONFIG_ERROR via TelemetryUtils', async () => {
+             global.TelemetryUtils = { dispatchEvent: jest.fn() };
+             api.apiKey = null;
+             await expect(api._fetch('/test')).rejects.toThrow(JulesConfigurationError);
+             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("JULES_API_CONFIG_ERROR", expect.any(JulesConfigurationError), { path: '/test' });
+             delete global.TelemetryUtils;
+        });
+
         it('should append API key to URL', async () => {
              global.fetch.mockResolvedValueOnce({
                  ok: true,
@@ -68,11 +76,38 @@ describe('JulesAPI', () => {
              await expect(api._fetch('/test')).rejects.toThrow('Not Found');
         });
 
+        it('should prefix 400-level error messages with "Client Error:"', async () => {
+            global.fetch.mockResolvedValueOnce({ ok: false, status: 400, json: async () => ({ error: { message: 'Bad Request Data' } }) });
+            await expect(api._fetch('/test')).rejects.toThrow('Client Error: Bad Request Data');
+        });
+
+        it('should use default error structure if json is unparseable', async () => {
+            global.fetch.mockResolvedValueOnce({ ok: false, status: 404, json: async () => { throw new Error('Unparseable'); } });
+            await expect(api._fetch('/test')).rejects.toThrow('Client Error: Jules API Error (404)');
+        });
+
+        it('should trigger JULES_API_NETWORK_ERROR via TelemetryUtils', async () => {
+             global.TelemetryUtils = { dispatchEvent: jest.fn() };
+             global.fetch.mockResolvedValueOnce({ ok: false, status: 404, json: async () => ({ error: { message: 'Not Found' } }) });
+             await expect(api._fetch('/test')).rejects.toThrow(JulesNetworkError);
+             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("JULES_API_NETWORK_ERROR", expect.any(JulesNetworkError), { path: '/test', status: 404 });
+             delete global.TelemetryUtils;
+        });
+
         it('should handle malformed JSON in error response gracefully', async () => {
             const malformedError = new Error('Malformed JSON');
             global.fetch.mockResolvedValueOnce({ ok: false, status: 500, json: async () => { throw malformedError; } });
             await expect(api._fetch('/test')).rejects.toThrow('We encountered a server error. Please wait a moment and try again.');
             expect(console.error).toHaveBeenCalledWith("[JulesAPI] Failed to parse error response JSON", malformedError);
+        });
+
+        it('should trigger JULES_API_PARSE_ERROR via TelemetryUtils', async () => {
+            global.TelemetryUtils = { dispatchEvent: jest.fn() };
+            const malformedError = new Error('Malformed JSON');
+            global.fetch.mockResolvedValueOnce({ ok: false, status: 500, json: async () => { throw malformedError; } });
+            await expect(api._fetch('/test')).rejects.toThrow('We encountered a server error. Please wait a moment and try again.');
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("JULES_API_PARSE_ERROR", malformedError, { path: '/test' });
+            delete global.TelemetryUtils;
         });
 
         it('should handle request timeout', async () => {
@@ -88,6 +123,24 @@ describe('JulesAPI', () => {
             jest.advanceTimersByTime(15000);
 
             await expect(fetchPromise).rejects.toThrow(JulesTimeoutError);
+        });
+
+        it('should trigger JULES_API_TIMEOUT via TelemetryUtils', async () => {
+            global.TelemetryUtils = { dispatchEvent: jest.fn() };
+            global.fetch.mockImplementationOnce(() => new Promise((resolve, reject) => {
+                 setTimeout(() => {
+                    const abortErr = new Error('AbortError');
+                    abortErr.name = 'AbortError';
+                    reject(abortErr);
+                 }, 15000);
+            }));
+
+            const fetchPromise = api._fetch('/test');
+            jest.advanceTimersByTime(15000);
+
+            await expect(fetchPromise).rejects.toThrow(JulesTimeoutError);
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("JULES_API_TIMEOUT", expect.any(JulesTimeoutError), { path: '/test' });
+            delete global.TelemetryUtils;
         });
 
         it('should rethrow non-abort fetch errors', async () => {
@@ -125,6 +178,26 @@ describe('JulesAPI', () => {
               expect(global.fetch).toHaveBeenCalledWith('https://jules.googleapis.com/v1alpha/sessions/123?key=test-key', expect.any(Object));
          });
 
+         it('approvePlan throws on missing sessionId', async () => {
+             jest.spyOn(console, 'error').mockImplementation(() => {});
+             await expect(api.approvePlan(null)).rejects.toThrow(JulesConfigurationError);
+         });
+
+         it('approvePlan triggers JULES_API_SESSION_APPROVE_ERROR via TelemetryUtils', async () => {
+             global.TelemetryUtils = { dispatchEvent: jest.fn() };
+             await expect(api.approvePlan(null)).rejects.toThrow(JulesConfigurationError);
+             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("JULES_API_SESSION_APPROVE_ERROR", expect.any(JulesConfigurationError));
+             delete global.TelemetryUtils;
+         });
+
+         it('approvePlan calls correct endpoint', async () => {
+              await api.approvePlan('123');
+              expect(global.fetch).toHaveBeenCalledWith('https://jules.googleapis.com/v1alpha/sessions/123:approvePlan?key=test-key', expect.objectContaining({
+                  method: 'POST',
+                  body: JSON.stringify({})
+              }));
+         });
+
          it('getActivities calls correct endpoint', async () => {
               await api.getActivities('123');
               expect(global.fetch).toHaveBeenCalledWith('https://jules.googleapis.com/v1alpha/sessions/123/activities?key=test-key', expect.any(Object));
@@ -146,6 +219,13 @@ describe('JulesAPI', () => {
          it('createSession throws on missing parameters', async () => {
              jest.spyOn(console, 'error').mockImplementation(() => {});
              await expect(api.createSession(null, 'task', 'source', 'title')).rejects.toThrow(JulesConfigurationError);
+         });
+
+         it('createSession triggers JULES_API_SESSION_CREATE_ERROR via TelemetryUtils', async () => {
+             global.TelemetryUtils = { dispatchEvent: jest.fn() };
+             await expect(api.createSession(null, 'task', 'source', 'title')).rejects.toThrow(JulesConfigurationError);
+             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("JULES_API_SESSION_CREATE_ERROR", expect.any(JulesConfigurationError));
+             delete global.TelemetryUtils;
          });
 
          it('createSession calls POST with correct payload', async () => {
