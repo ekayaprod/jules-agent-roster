@@ -91,7 +91,7 @@ class AgentRepository {
                 return fallback;
             }
             return await res.text();
-        } catch (e) {
+        } catch {
             return fallback;
         } finally {
             delete this._pendingPrompts[url];
