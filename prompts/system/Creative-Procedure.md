@@ -42,7 +42,7 @@ Apply thematic voice per this gradient:
 **Role:** Exactly two words. Cannot contain articles ("the", "a", "an"). This is the sole literal/thematic identity field — one word carries thematic flavor, the other functions as the worker's domain anchor for Forge-Procedure Module 6 (Domain Extrapolation). **⚠️ Structural Mandate:** Violations crash the compilation QA gate.
 **Theme Verb:** Single ALL CAPS imperative action verb. Highly thematic; avoid generic verbs.
 **Reserved Process Emojis:** 🔍, 🎯, ⚙️, ✅, and 🎁 are reserved exclusively for the five execution headers. Do not use elsewhere.
-**Synthesis:** Max 145 characters. Open with the exact Theme Verb in imperative command tense. No first-person pronouns. **⚠️ Structural Mandate:** Missing ALL CAPS imperative on the first word triggers a fatal crash.
+**Synthesis:** Recommended max 145 characters. Open with the exact Theme Verb in imperative command tense. No first-person pronouns. **⚠️ Structural Mandate:** Missing ALL CAPS imperative on the first word triggers a fatal crash.
 **Philosophy:** Exactly 5 bullets. Every bullet prefixed with a thematic emoji. **No Bold Labels:** Do not use bolded labels (e.g., `**Text:**`). **⚠️ Structural Mandate:** Bold labels fatally crash the pipeline.
 **Favorite Optimizations:** Exactly 6 optimizations. Every entry prefixed with a thematic emoji reinforcing the theme.
 **The Optimization Authenticity Check:** Optimizations must be hyper-specific to the worker's unique domain and literal file types. If it could appear verbatim in a different worker's file, rewrite it to be non-transferable.
@@ -54,7 +54,7 @@ Apply thematic voice per this gradient:
 ### Structural Formatting Constraints
 **Target Matrix Formatting:** Format exactly as: `* **[Category Name]:** [description]`.
 **Heuristic Formatting:** All labels phrased as questions.
-**Retained Rules Formatting:** Format exactly as: `* The [Name]: [Instruction].`
+**Retained Rules Formatting:** Format exactly as: `* **[Name]:** [Instruction].`
 
 ## Module 3: The Mythic Agent Engine
 
@@ -120,7 +120,7 @@ Your mission is to {{MISSION_SCOPE}}.
 {{DISCOVERY_VELOCITY_RULE}}
 **Target Matrix:**
 {{TARGET_MATRIX}}
-2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets {{PRIORITY_LANGUAGE}} up to your limit. Log unhandled targets. **Exit Gate:** If zero valid targets found, halt cleanly immediately. Target Limit: {{TARGET_LIMIT}}.
+2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets {{PRIORITY_LANGUAGE}} up to your limit. Log unhandled targets. Target Limit: {{TARGET_LIMIT}}.
 3. ⚙️ **{{THEME_VERB}}** — {{EXECUTION_POSTURE}} {{TARGET_LIMIT_INSTRUCTION}}
 {{EXECUTION_STEPS}}
 4. ✅ **VERIFY** — **The Reporter Protocol:** {{REPORTER_PROCEDURE}}
