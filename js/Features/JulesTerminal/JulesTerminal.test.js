@@ -136,6 +136,26 @@ describe('JulesTerminal', () => {
             expect(global.window.julesAPI.configure).not.toHaveBeenCalled();
             expect(manager.loadSources).not.toHaveBeenCalled();
         });
+
+        it('dispatches BACKGROUND_FETCH_FAILED telemetry when saveSettingsBtn click fails loadSources', async () => {
+            global.StorageUtils.getItem.mockReturnValue(null);
+            const mockError = new Error("Test background fetch error");
+            manager.loadSources.mockRejectedValueOnce(mockError);
+
+            await manager.init();
+
+            const keyInput = document.getElementById('julesApiKeyInput');
+            keyInput.value = 'valid_key_123';
+
+            const saveBtn = document.getElementById('saveSettingsBtn');
+            saveBtn.click();
+
+            await Promise.resolve(); // allow promise resolution
+            await Promise.resolve();
+            await Promise.resolve();
+
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BACKGROUND_FETCH_FAILED", mockError);
+        });
     });
 
     describe('dismissSession', () => {
