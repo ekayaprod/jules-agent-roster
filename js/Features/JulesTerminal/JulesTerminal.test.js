@@ -306,6 +306,20 @@ describe('JulesTerminal', () => {
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('JULES_LAUNCH_SESSION_FAILED', expect.any(Error), { sourceName: 'owner/repo' });
             expect(manager._fetchAndRenderSessions).not.toHaveBeenCalled();
         });
+
+        it('dispatches SESSION_SYNC_TIMEOUT if _fetchAndRenderSessions fails', async () => {
+            const agent = { name: 'TestAgent', prompt: 'test' };
+            const mockError = new Error('Poll Error');
+            manager._fetchAndRenderSessions.mockRejectedValue(mockError);
+
+            await manager.launchSession(agent);
+
+            await Promise.resolve();
+            await Promise.resolve();
+            await Promise.resolve();
+
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('SESSION_SYNC_TIMEOUT', mockError);
+        });
     });
 
     describe('_processSessionQueue', () => {
