@@ -462,6 +462,34 @@ describe('StorageUtils', () => {
 
             dispatchSpy.mockRestore();
         });
+
+        it('dispatches telemetry when accessing global.localStorage throws a SecurityError', () => {
+            const TelemetryUtils = require('../telemetry/telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
+            const originalLocalStorageDescriptor = Object.getOwnPropertyDescriptor(global, 'localStorage');
+
+            Object.defineProperty(global, 'localStorage', {
+                get: () => { throw new Error('SecurityError: access denied'); },
+                configurable: true
+            });
+
+            StorageUtils.setItem('test_key', 'test_value');
+
+            expect(dispatchSpy).toHaveBeenCalledWith(
+                'STORAGE_ITEM_SAVE_FAILED',
+                expect.any(Error),
+                { key: 'test_key' }
+            );
+
+            if (originalLocalStorageDescriptor) {
+                Object.defineProperty(global, 'localStorage', originalLocalStorageDescriptor);
+            } else {
+                delete global.localStorage;
+            }
+
+            dispatchSpy.mockRestore();
+        });
     });
 
         it('handles exceptions safely when TelemetryUtils is undefined', () => {
