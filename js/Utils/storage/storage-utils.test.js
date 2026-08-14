@@ -277,6 +277,8 @@ describe('StorageUtils', () => {
         it('dispatches telemetry when localStorage.setItem throws an error', () => {
             const TelemetryUtils = require('../telemetry/telemetry-utils.js');
             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+            const originalTU = global.TelemetryUtils;
+            global.TelemetryUtils = TelemetryUtils;
 
             mockLocalStorage.setItem.mockImplementation(() => {
                 throw new Error('Quota Exceeded');
@@ -291,6 +293,11 @@ describe('StorageUtils', () => {
             );
 
             dispatchSpy.mockRestore();
+            if (originalTU) {
+                global.TelemetryUtils = originalTU;
+            } else {
+                delete global.TelemetryUtils;
+            }
         });
 
         it('dispatches telemetry when JSON.stringify throws an error', () => {
@@ -348,8 +355,40 @@ describe('StorageUtils', () => {
             expect(result).toBe('default_value');
         });
 
+        it('returns defaultValue and dispatches telemetry when localStorage.getItem throws an error', () => {
+            const TelemetryUtils = require('../telemetry/telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+            // Ensure global.TelemetryUtils is accessible as the implementation tries to find it there
+            const originalTU = global.TelemetryUtils;
+            global.TelemetryUtils = TelemetryUtils;
+
+            mockLocalStorage.getItem.mockImplementation(() => {
+                throw new Error('getItem catastrophic failure');
+            });
+
+            const result = StorageUtils.getItem('test_key', 'default_value');
+
+            expect(result).toBe('default_value');
+            expect(dispatchSpy).toHaveBeenCalledWith(
+                'STORAGE_ITEM_RETRIEVAL_FAILED',
+                expect.any(Error),
+                { key: 'test_key' }
+            );
+
+            dispatchSpy.mockRestore();
+            if (originalTU) {
+                global.TelemetryUtils = originalTU;
+            } else {
+                delete global.TelemetryUtils;
+            }
+        });
+
         // 🕵️ The Boundary Interrogation: Explicitly assert the vulnerability that getItem silently swallows errors
         it('vulnerability check: error logging is caught and dispatched when localStorage.getItem throws', () => {
+            const TelemetryUtils = require('../telemetry/telemetry-utils.js');
+            const originalTU = global.TelemetryUtils;
+            global.TelemetryUtils = TelemetryUtils;
+
             mockLocalStorage.getItem.mockImplementation(() => {
                 throw new Error('getItem catastrophic failure');
             });
@@ -359,6 +398,12 @@ describe('StorageUtils', () => {
             expect(result).toBe('default_value');
             expect(consoleErrorSpy).toHaveBeenCalled();
             expect(consoleWarnSpy).not.toHaveBeenCalled();
+
+            if (originalTU) {
+                global.TelemetryUtils = originalTU;
+            } else {
+                delete global.TelemetryUtils;
+            }
         });
 
         it('returns defaultValue when localStorage is undefined', () => {
