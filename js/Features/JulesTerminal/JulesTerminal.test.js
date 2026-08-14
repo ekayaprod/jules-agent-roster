@@ -157,6 +157,29 @@ describe('JulesTerminal', () => {
 
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
         });
+
+        it('dispatches BACKGROUND_FETCH_FAILED telemetry event if loadSources fails when saveSettingsBtn is clicked', async () => {
+            global.StorageUtils.getItem.mockReturnValue(null);
+
+            await manager.init(); // Sets up event listeners
+
+            const keyInput = document.getElementById('julesApiKeyInput');
+            keyInput.value = 'new_valid_key';
+            const saveBtn = document.getElementById('saveSettingsBtn');
+
+            const mockError = new Error('Save fetch failed');
+            manager.loadSources.mockRejectedValueOnce(mockError);
+
+            // Execute
+            saveBtn.click();
+
+            // Wait for promises in the async event listener
+            await Promise.resolve(); // for the initial async handler ticks
+            await Promise.resolve(); // for loadSources catch block
+            await Promise.resolve();
+
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
+        });
     });
 
     describe('dismissSession', () => {
