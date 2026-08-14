@@ -136,6 +136,27 @@ describe('JulesTerminal', () => {
             expect(global.window.julesAPI.configure).not.toHaveBeenCalled();
             expect(manager.loadSources).not.toHaveBeenCalled();
         });
+
+        it('dispatches BACKGROUND_FETCH_FAILED telemetry event if loadSources fails during init', async () => {
+            global.StorageUtils.getItem.mockImplementation((k) => {
+                if (k === 'jules_api_key') return 'valid_key_123';
+                if (k === 'github_api_key') return 'gh_token_123';
+                return null;
+            });
+
+            const mockError = new Error('Background fetch failed');
+            manager.loadSources.mockRejectedValueOnce(mockError);
+
+            await manager.init();
+
+            // loadSources is called, fails, and dispatchEvent catches the error
+            expect(manager.loadSources).toHaveBeenCalled();
+
+            // Wait for next tick so background promise catch can run
+            await Promise.resolve();
+
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
+        });
     });
 
     describe('dismissSession', () => {
