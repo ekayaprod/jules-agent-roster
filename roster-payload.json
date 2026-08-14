@@ -853,7 +853,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "PROJECT raw markdown into rich, interactive interfaces that feel native to your application.",
-    "forge_version": "V84.3",
+    "forge_version": "V87.1",
     "promptFile": "prompts/fusions/Hologram.md",
     "isCustom": true
   },
@@ -864,7 +864,7 @@
     "category": "Security",
     "tier": "Mythic",
     "description": "INJECT runtime type-guards and data validation tripwires to log and reject unauthorized internal state mutations.",
-    "forge_version": "V84.3",
+    "forge_version": "V87.1",
     "promptFile": "prompts/fusions/Honeypot.md",
     "isCustom": true
   },
