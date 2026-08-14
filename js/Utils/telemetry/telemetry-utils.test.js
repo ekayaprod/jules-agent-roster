@@ -102,6 +102,23 @@ describe('TelemetryUtils boundary and coverage logic', () => {
         expect(console.error).toHaveBeenCalledWith(expect.stringContaining('TEST_CIRCULAR'));
         expect(console.error).toHaveBeenCalledWith(expect.stringContaining('[Circular Reference]'));
     });
+
+    it('handles console.error throwing an error by falling back to simplified payload', () => {
+        console.error.mockImplementationOnce(() => {
+            throw new Error('console.error failed');
+        });
+
+        TelemetryUtils.dispatchEvent('TEST_FALLBACK', 'error', { someContext: 'value' });
+
+        expect(console.error).toHaveBeenCalledTimes(2);
+
+        // Second call should have the fallback payload
+        expect(console.error).toHaveBeenNthCalledWith(2, JSON.stringify({
+            event: 'TEST_FALLBACK',
+            error: 'error',
+            additionalContext: '[Circular Reference]'
+        }));
+    });
 });
 
 describe('TelemetryUtils native branch coverage via node VM (Coverage Injection bypass)', () => {
