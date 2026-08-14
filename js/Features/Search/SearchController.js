@@ -103,7 +103,11 @@ class SearchController {
         this.app._searchCache.agentCount !== this.app.agents.length ||
         this.app._searchCache.unlockedSize !== currentUnlockedSize) {
 
-        const allAgents = this.app.agents.map(MAP_AGENT_TO_SEARCH_ITEM);
+        if (!this.app._mappedAgentsCache || this.app._mappedAgentsCache.length !== this.app.agents.length) {
+            this.app._mappedAgentsCache = this.app.agents.map(MAP_AGENT_TO_SEARCH_ITEM);
+        }
+        const allAgents = this.app._mappedAgentsCache.slice();
+
         if (this.app.fusionLab && this.app.fusionLab.fusionIndex) {
             for (const key of this.app.fusionLab.fusionIndex.unlockedKeys) {
                 let agent = AgentUtils.getCustomAgent(this.app.customAgents, key) || this.app.fusionLab.compiler.customAgentsMap[key];
