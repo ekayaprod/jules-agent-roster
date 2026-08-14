@@ -73,9 +73,15 @@ function formatFavoriteOptimizations(input) {
     .filter(Boolean);
 
   filtered.forEach((item, i) => {
-    if (!/^\p{Extended_Pictographic}/u.test(item)) {
+    const cleanItem = item.replace(/^[\*\-]\s+/, '');
+    if (!/^\p{Extended_Pictographic}/u.test(cleanItem)) {
       throw new Error(
         `[FATAL ERROR] Favorite Optimization item ${i + 1} must begin with a thematic emoji: '${item}'`,
+      );
+    }
+    if (/^[🔍🎯⚙️✅🎁]/u.test(cleanItem)) {
+      throw new Error(
+        `[FATAL ERROR] Favorite Optimization item ${i + 1} uses a reserved process emoji. Reserved process emojis may appear only on execution headers.`,
       );
     }
   });
