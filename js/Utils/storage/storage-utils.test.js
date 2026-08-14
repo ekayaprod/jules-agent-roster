@@ -219,6 +219,24 @@ describe('StorageUtils', () => {
     });
 
 
+
+        it('handles exceptions safely when TelemetryUtils is undefined', () => {
+            const originalWindow = global.window;
+            const originalGlobalTu = global.TelemetryUtils;
+
+            delete global.window;
+            delete global.TelemetryUtils;
+
+            mockLocalStorage.getItem.mockImplementation(() => { throw new Error('getItem failed'); });
+
+            const result = StorageUtils.getJsonArrayItem('test_key', 'test_event');
+
+            expect(result).toBeNull();
+
+            global.window = originalWindow;
+            global.TelemetryUtils = originalGlobalTu;
+        });
+
     describe('StorageUtils rate limit boundary', () => {
         it('covers rate limit window reset boundary', () => {
             const now = Date.now();
@@ -293,6 +311,24 @@ describe('StorageUtils', () => {
             dispatchSpy.mockRestore();
         });
     });
+
+
+        it('handles exceptions safely when TelemetryUtils is undefined', () => {
+            const originalWindow = global.window;
+            const originalGlobalTu = global.TelemetryUtils;
+
+            delete global.window;
+            delete global.TelemetryUtils;
+
+            mockLocalStorage.setItem.mockImplementation(() => { throw new Error('setItem failed'); });
+
+            expect(() => {
+                StorageUtils.setJsonItem('test_key', {}, 'test_event');
+            }).not.toThrow();
+
+            global.window = originalWindow;
+            global.TelemetryUtils = originalGlobalTu;
+        });
 
     describe('getItem', () => {
         it('returns string value when it exists in localStorage', () => {
@@ -373,6 +409,24 @@ describe('StorageUtils', () => {
         });
     });
 
+
+        it('handles exceptions safely when TelemetryUtils is undefined', () => {
+            const originalWindow = global.window;
+            const originalGlobalTu = global.TelemetryUtils;
+
+            delete global.window;
+            delete global.TelemetryUtils;
+
+            mockLocalStorage.getItem.mockImplementation(() => { throw new Error('getItem failed'); });
+
+            const result = StorageUtils.getItem('test_key', 'default_value');
+
+            expect(result).toBe('default_value');
+
+            global.window = originalWindow;
+            global.TelemetryUtils = originalGlobalTu;
+        });
+
     describe('setItem', () => {
         it('saves string value to localStorage', () => {
             StorageUtils.setItem('test_key', 'test_value');
@@ -409,7 +463,89 @@ describe('StorageUtils', () => {
             dispatchSpy.mockRestore();
         });
     });
-});
+
+        it('handles exceptions safely when TelemetryUtils is undefined', () => {
+            const originalWindow = global.window;
+            const originalGlobalTu = global.TelemetryUtils;
+
+            delete global.window;
+            delete global.TelemetryUtils;
+
+            mockLocalStorage.setItem.mockImplementation(() => { throw new Error('setItem failed'); });
+
+            expect(() => {
+                StorageUtils.setItem('test_key', 'test_value');
+            }).not.toThrow();
+
+            global.window = originalWindow;
+            global.TelemetryUtils = originalGlobalTu;
+        });
+
+    });
+
+
+
+
+    it('covers the else branch where module is undefined completely', () => {
+        const fs = require('fs');
+        const code = fs.readFileSync('js/Utils/storage/storage-utils.js', 'utf8');
+
+        // Execute without module defined (browser-like execution where module throws ReferenceError if accessed directly)
+        // new Function scope automatically defines things passed in
+        expect(() => {
+            new Function(code)();
+        }).not.toThrow();
+    });
+
+    it('covers the else branch for if (typeof module !== "undefined" && module.exports)', () => {
+        const fs = require('fs');
+        const code = fs.readFileSync('js/Utils/storage/storage-utils.js', 'utf8');
+
+        // We provide a module that exists, but module.exports is explicitly undefined
+        const moduleMock = {
+            exports: undefined
+        };
+
+        expect(() => {
+            new Function('module', 'require', code)(moduleMock, require);
+        }).not.toThrow();
+
+        expect(moduleMock.exports).toBeUndefined();
+    });
+
+    it('does not export when module is not undefined but module.exports is falsy', () => {
+        const fs = require('fs');
+        const code = fs.readFileSync('js/Utils/storage/storage-utils.js', 'utf8');
+
+        let isExported = false;
+        let moduleMock = {
+            get exports() { return false; },
+            set exports(val) { isExported = true; }
+        };
+
+        expect(() => {
+            new Function('module', 'require', code)(moduleMock, require);
+        }).not.toThrow();
+
+        expect(isExported).toBe(false);
+    });
+
+    it('safely skips module.exports assignment if module.exports is falsy', () => {
+        const fs = require('fs');
+        const code = fs.readFileSync('js/Utils/storage/storage-utils.js', 'utf8');
+
+        // Test with module existing but exports is falsy
+        let moduleMock = {
+            exports: null
+        };
+
+        expect(() => {
+            new Function('module', 'require', code)(moduleMock, require);
+        }).not.toThrow();
+
+        expect(moduleMock.exports).toBeNull(); // Should not have been assigned
+    });
+
     it('exports gracefully across different environment module definitions', () => {
         const fs = require('fs');
         const code = fs.readFileSync('js/Utils/storage/storage-utils.js', 'utf8');
