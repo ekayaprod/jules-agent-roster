@@ -73,9 +73,15 @@ function formatFavoriteOptimizations(input) {
     .filter(Boolean);
 
   filtered.forEach((item, i) => {
-    if (!/^\p{Extended_Pictographic}/u.test(item)) {
+    let cleanItem = item.replace(/^[\*\-]\s+/, '');
+    if (!/^\p{Extended_Pictographic}/u.test(cleanItem)) {
       throw new Error(
         `[FATAL ERROR] Favorite Optimization item ${i + 1} must begin with a thematic emoji: '${item}'`,
+      );
+    }
+    if (/^[🔍🎯⚙️✅🎁]/u.test(cleanItem)) {
+      throw new Error(
+        `[FATAL ERROR] Favorite Optimization item ${i + 1} uses a reserved process emoji. Reserved process emojis may appear only on execution headers.`,
       );
     }
   });
@@ -265,9 +271,9 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     { label: 'git clean baseline command', pattern: /git clean -fd/i },
     { label: 'temp_backup baseline path', pattern: /\.jules\/temp_backup/i },
     { label: 'SEARCH/REPLACE tool-lock block syntax', pattern: /<{3,}\s*SEARCH/i },
-    { label: 'Test Immunity Doctrine restatement', pattern: /test immunity doctrine/i },
-    { label: 'Canonical testing doctrine phrase', pattern: /treat test files as immutable and read-only/i },
-    { label: 'Canonical testing doctrine failure clause', pattern: /prove (?:the test|it) was failing on `?main`?/i },
+    { label: 'Testing Doctrine restatement', pattern: /testing doctrine/i },
+    { label: 'Canonical testing doctrine phrase', pattern: /mutate test files exclusively/i },
+    { label: 'Canonical testing doctrine failure clause', pattern: /expose bugs via failing tests/i },
     { label: 'Managed Interruption clause', pattern: /managed interruption/i },
   ];
 

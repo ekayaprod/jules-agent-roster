@@ -127,7 +127,7 @@ Both Expansive throughput modes reference this instead of restating it. If forci
 Note: This string is auto-injected into its own dedicated slot. Do not re-state it in `salvaged_custom_logic` or as a standalone named mandate, even if a legacy draft phrased it that way — treat that as a signal to map it here, not to preserve it twice.
 
 #### Testing Category Override
-* **`testing_doctrine`:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+* **`testing_doctrine`:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 3 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
 
 Note: Same rule as above — this occupies its own dedicated slot and must not be separately hand-authored elsewhere.
 
