@@ -286,4 +286,26 @@ describe('JulesTerminal', () => {
             expect(manager._fetchAndRenderSessions).not.toHaveBeenCalled();
         });
     });
+
+    describe('_processSessionQueue', () => {
+        beforeEach(() => {
+            jest.useFakeTimers();
+        });
+
+        afterEach(() => {
+            jest.useRealTimers();
+        });
+
+        it('dispatches QUEUE_EXECUTION_ERROR on task failure', async () => {
+            const mockError = new Error('Task Failed');
+            manager.sessionQueue.push(async () => {
+                throw mockError;
+            });
+
+            await manager._processSessionQueue();
+
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('QUEUE_EXECUTION_ERROR', mockError);
+            expect(manager.isProcessingQueue).toBe(false);
+        });
+    });
 });
