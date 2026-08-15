@@ -10,3 +10,8 @@
 - [REFACTORER] `benchmark.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (536 lines).
 - [REFACTORER] `js/core/events/EventBinder.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (526 lines).
 - [INSTRUMENTER] `js/Utils/network/network-utils.js`: Naked execution wrapper blocks and complex URL handling that require better type-guards.
+- [INSTRUMENTER] `js/Utils/network/network-utils.js`: Empty catch blocks at lines 29 and 67 swallowing exceptions.
+- [INSTRUMENTER] `js/Utils/telemetry/telemetry-utils.js`: Empty catch block at line 20 swallowing exceptions.
+- [INSTRUMENTER] `js/Features/JulesTerminal/JulesModals.js`: Empty catch block at line 254 swallowing exceptions.
+- [INSTRUMENTER] `js/Services/AgentRepository.js`: Empty catch block at line 94 swallowing exceptions.
+- [INSTRUMENTER] `js/Services/LLMRouter/LLMRouter.js`: Empty catch block at line 97 swallowing exceptions.
