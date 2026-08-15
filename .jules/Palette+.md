@@ -22,3 +22,8 @@
   - **Design/UX Pattern Applied**: Added a `fadeIn` keyframe to transform a lifeless instant-snap transition into a polished, staggered entrance choreography.
 - **Component**: `.sg-textarea`
   - **Design/UX Pattern Applied**: Replaced the harsh `0.5rem` border with a softened `0.75rem` (rounded-xl) edge to match overarching aesthetic flow.
+
+### Design Decision Ledger
+*   **The Empty State Polish (`#emptyState .empty-icon`)**: Injected `skeleton-pulse` to create a more dynamic empty state, avoiding a lifeless feeling and improving perceived performance.
+*   **The Lifeless Transition (`#fusionResultContainer`)**: Injected `animate-fade-in` utility class to ensure the result container transitions in smoothly instead of snapping into the DOM instantly.
+*   **The Flat Monolith (`#initial-loading-overlay`)**: Injected a subtle `radial-gradient` using brand-aligned accents to replace the flat background, enhancing visual hierarchy and depth.
