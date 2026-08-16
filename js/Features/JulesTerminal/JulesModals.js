@@ -251,7 +251,9 @@ class JulesModals {
                 } else {
                     linkEl.removeAttribute('href');
                 }
-            } catch {
+            } catch (error) {
+                const tu = JulesTerminal.getTelemetryUtils();
+                if (tu) tu.dispatchEvent("JULES_PR_MODAL_URL_PARSE_FAILED", error, { url: pr.html_url });
                 linkEl.removeAttribute('href');
             }
         }

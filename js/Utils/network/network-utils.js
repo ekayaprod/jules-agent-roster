@@ -26,7 +26,9 @@ class NetworkUtils {
     let hostname;
     try {
         hostname = new URL(url).hostname;
-    } catch {
+    } catch (error) {
+        const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+        if (tu) tu.dispatchEvent("NETWORK_URL_PARSE_FAILED", error, { url: urlString });
         hostname = url;
     }
 
@@ -64,7 +66,9 @@ class NetworkUtils {
         }
         return value;
       });
-    } catch {
+    } catch (error) {
+      const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+      if (tu) tu.dispatchEvent("NETWORK_PAYLOAD_PARSE_FAILED", error, { body_length: body.length });
       // If parsing fails, fall back to blocking it for safety
       isPolluted = true;
     }

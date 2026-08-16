@@ -91,7 +91,9 @@ class AgentRepository {
                 return fallback;
             }
             return await res.text();
-        } catch {
+        } catch (error) {
+            const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+            if (tu) tu.dispatchEvent('AGENT_REPOSITORY_PROMPT_FETCH_FAILED', error, { url });
             return fallback;
         } finally {
             delete this._pendingPrompts[url];

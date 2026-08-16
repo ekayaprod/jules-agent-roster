@@ -17,13 +17,14 @@ class TelemetryUtils {
         };
         try {
             console.error(JSON.stringify(payload));
-        } catch {
+        } catch (stringificationError) {
             payload.error_payload_stringification_failed = true;
             payload.additionalContext = "[Circular Reference]";
             console.error(JSON.stringify({
                 event: payload.event,
                 error: payload.error,
-                additionalContext: payload.additionalContext
+                additionalContext: payload.additionalContext,
+                stringification_error: stringificationError instanceof Error ? stringificationError.message : stringificationError
             }));
         }
     }

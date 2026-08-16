@@ -94,12 +94,15 @@ class LLMRouter {
                     try {
                         const errorData = await response.json();
                         errorMsg = errorData.error?.message || errorMsg;
-                    } catch {
+                    } catch (jsonError) {
+                        const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+                        if (tu) tu.dispatchEvent('LLM_ROUTER_JSON_PARSE_FAILED', jsonError, { status: response.status });
                         // Fallback to text
                         try {
                             const errorText = await response.text();
                             errorMsg = errorText || errorMsg;
                         } catch (e2) {
+                            if (tu) tu.dispatchEvent('LLM_ROUTER_TEXT_PARSE_FAILED', e2, { status: response.status });
                             errorMsg = `${errorMsg} (Unparseable response body: ${e2.message})`;
                         }
                     }

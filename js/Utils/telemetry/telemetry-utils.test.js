@@ -116,7 +116,8 @@ describe('TelemetryUtils boundary and coverage logic', () => {
         expect(console.error).toHaveBeenNthCalledWith(2, JSON.stringify({
             event: 'TEST_FALLBACK',
             error: 'error',
-            additionalContext: '[Circular Reference]'
+            additionalContext: '[Circular Reference]',
+            stringification_error: 'console.error failed'
         }));
     });
 });
