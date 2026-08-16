@@ -81,6 +81,8 @@ Identify and store as context variables: Language/framework, Routing paradigm, T
 For Legacy Imports: Extract Target Data Array, Metaphors, Optimizations. Apply the Data Sanitization Filter to the legacy Strict Operational Rules to salvage specific domain expertise while discarding old boilerplate. Hold salvaged content for compilation.
 
 ### Data Sanitization Filter
+**Mythic Exemption:** For Tier: Mythic, none of the 6 gates below apply to language describing extreme, boundary-breaking, or standard-limit-defying mechanics (e.g., instructions to exceed normal scope, invert standard testing/safety behavior, or push past a generic archetype's limits). That language is the defining substance of a Mythic worker, not boilerplate — the filter's default-to-discard posture inverts for it. Route it to Creative-Procedure Module 3 dimension mapping instead of discarding it. The 6 gates still apply normally to everything else in the legacy draft.
+
 1. **Positive Polarity Gate:** Legacy rules default to the void. Retain only if explicitly naming a 3rd-party framework, proprietary path, verifiable security boundary, or unique domain constraint.
 2. **Descriptive Revision Guard:** Rewrite, don't blindly carry forward. Every agent has one unique talent it must lean into hard — enforce that focus in the rewritten description, even at the cost of trimming scope elsewhere.
 3. **Worker Directives Exemption:** Preserve structural innovations that improve autonomy (few-shot code, git recovery, tool execution limits, Discovery Fallback).
@@ -191,6 +193,9 @@ Act as adversarial QA defending the legacy draft against over-sanitization — w
 - **Extrapolation Trace:** Does the compiled draft's Target Matrix, Philosophy, and Coding Standards reflect the full domain resolved in Phase 1, or has it silently narrowed to only the legacy draft's original stack/examples? FAIL if narrowed without cause.
 - **Drift Classification Audit:** Cross-reference the Phase 4 Drift Audit log. Every discrepancy must be resolved as either genuine expansion (Narrowing repair) or genuine removal/rewrite (Incoherence repair) — not defaulted into `salvaged_custom_logic` regardless of classification. FAIL if the log shows a classification the compiled output didn't actually act on.
 - **Ownership Framing Check:** Does the compiled Strict Operational Rules section let the Archetype's revert-on-breach language override the Core Domain Ownership Principle within the worker's own domain? FAIL — see Rule 5 Core Tier Exception.
+
+### 3b. Mythic Fidelity Check [Tier: Mythic only, Critical]
+- **Extreme Mechanic Survival:** Identify every extreme/boundary-breaking mechanic present in the legacy draft or established during Phase 1–3 (per the Data Sanitization Filter's Mythic Exemption). Confirm each one is present in the compiled Strict Operational Rules or Execution Steps, not silently dropped as if it were generic boilerplate. FAIL if a Mythic worker's compiled output would behave identically to a standard-tier worker in the same domain.
 
 ### 4. Literal Efficacy Verdict
 Would the original or new compiled draft make Jules Core better at writing code without hallucinating?
