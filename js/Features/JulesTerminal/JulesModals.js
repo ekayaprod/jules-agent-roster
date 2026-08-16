@@ -251,7 +251,7 @@ class JulesModals {
                 } else {
                     linkEl.removeAttribute('href');
                 }
-            } catch {
+            } catch (error) {
                 linkEl.removeAttribute('href');
             }
         }

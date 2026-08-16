@@ -26,7 +26,7 @@ class NetworkUtils {
     let hostname;
     try {
         hostname = new URL(url).hostname;
-    } catch {
+    } catch (error) {
         hostname = url;
     }
 
@@ -64,7 +64,7 @@ class NetworkUtils {
         }
         return value;
       });
-    } catch {
+    } catch (error) {
       // If parsing fails, fall back to blocking it for safety
       isPolluted = true;
     }
