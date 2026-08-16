@@ -17,7 +17,8 @@ class TelemetryUtils {
         };
         try {
             console.error(JSON.stringify(payload));
-        } catch {
+        } catch (error) {
+            console.error("TelemetryUtils: Failed to stringify original payload", error);
             payload.error_payload_stringification_failed = true;
             payload.additionalContext = "[Circular Reference]";
             console.error(JSON.stringify({

@@ -19,7 +19,8 @@ describe('TelemetryUtils edge cases', () => {
         TelemetryUtils.dispatchEvent('TEST_EVENT', 'Test error', { circular });
 
         expect(consoleErrorSpy).toHaveBeenCalled();
-        const callArgs = consoleErrorSpy.mock.calls[0][0];
+        // The first call is the stringification failure, the second is our new console.error from the catch block, the third is the final JSON payload
+        const callArgs = consoleErrorSpy.mock.calls[1][0]; // we check 2nd call, which is the json payload fallback
         const parsed = JSON.parse(callArgs);
         expect(parsed.event).toBe('TEST_EVENT');
         expect(parsed.additionalContext).toBe('[Circular Reference]');

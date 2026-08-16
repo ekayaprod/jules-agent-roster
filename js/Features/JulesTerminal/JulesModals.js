@@ -251,7 +251,8 @@ class JulesModals {
                 } else {
                     linkEl.removeAttribute('href');
                 }
-            } catch {
+            } catch (error) {
+                console.error("JulesModals: Failed to parse PR URL", error);
                 linkEl.removeAttribute('href');
             }
         }

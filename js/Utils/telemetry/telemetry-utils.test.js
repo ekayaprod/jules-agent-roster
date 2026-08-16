@@ -110,10 +110,11 @@ describe('TelemetryUtils boundary and coverage logic', () => {
 
         TelemetryUtils.dispatchEvent('TEST_FALLBACK', 'error', { someContext: 'value' });
 
-        expect(console.error).toHaveBeenCalledTimes(2);
+        expect(console.error).toHaveBeenCalledTimes(3);
 
-        // Second call should have the fallback payload
-        expect(console.error).toHaveBeenNthCalledWith(2, JSON.stringify({
+        // Second call is our new console.error from the catch block
+        // Third call should have the fallback payload
+        expect(console.error).toHaveBeenNthCalledWith(3, JSON.stringify({
             event: 'TEST_FALLBACK',
             error: 'error',
             additionalContext: '[Circular Reference]'

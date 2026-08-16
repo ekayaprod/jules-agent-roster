@@ -91,7 +91,8 @@ class AgentRepository {
                 return fallback;
             }
             return await res.text();
-        } catch {
+        } catch (error) {
+            console.error("AgentRepository: Failed to fetch prompt", error);
             return fallback;
         } finally {
             delete this._pendingPrompts[url];

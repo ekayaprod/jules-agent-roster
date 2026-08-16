@@ -26,7 +26,8 @@ class NetworkUtils {
     let hostname;
     try {
         hostname = new URL(url).hostname;
-    } catch {
+    } catch (error) {
+        console.error("NetworkUtils: URL parsing failed for rate limit check", error);
         hostname = url;
     }
 
@@ -64,7 +65,8 @@ class NetworkUtils {
         }
         return value;
       });
-    } catch {
+    } catch (error) {
+      console.error("NetworkUtils: Failed to parse body for prototype pollution check", error);
       // If parsing fails, fall back to blocking it for safety
       isPolluted = true;
     }

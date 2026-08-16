@@ -94,7 +94,8 @@ class LLMRouter {
                     try {
                         const errorData = await response.json();
                         errorMsg = errorData.error?.message || errorMsg;
-                    } catch {
+                    } catch (error) {
+                        console.error("LLMRouter: Failed to parse JSON error response", error);
                         // Fallback to text
                         try {
                             const errorText = await response.text();
