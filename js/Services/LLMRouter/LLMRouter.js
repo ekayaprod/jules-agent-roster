@@ -101,6 +101,8 @@ class LLMRouter {
                             errorMsg = errorText || errorMsg;
                         } catch (e2) {
                             errorMsg = `${errorMsg} (Unparseable response body: ${e2.message})`;
+                            const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+                            if (tu) tu.dispatchEvent("LLM_RESPONSE_PARSE_FAILED", e2);
                         }
                     }
 

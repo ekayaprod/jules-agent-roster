@@ -26,8 +26,10 @@ class NetworkUtils {
     let hostname;
     try {
         hostname = new URL(url).hostname;
-    } catch {
+    } catch (error) {
         hostname = url;
+        const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+        if (tu) tu.dispatchEvent("NETWORK_URL_PARSE_FAILED", error, { url: url instanceof URL ? url.toString() : url });
     }
 
     if (!this._requestBuckets[hostname]) {
@@ -64,9 +66,11 @@ class NetworkUtils {
         }
         return value;
       });
-    } catch {
+    } catch (error) {
       // If parsing fails, fall back to blocking it for safety
       isPolluted = true;
+      const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+      if (tu) tu.dispatchEvent("NETWORK_BODY_PARSE_FAILED", error);
     }
     if (isPolluted) {
       throw new Error('Invalid payload: Prototype pollution detected in payload.');
