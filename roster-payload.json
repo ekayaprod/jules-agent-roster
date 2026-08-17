@@ -897,7 +897,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "INTERROGATE weak test suites. I am Internal Affairs. I drag lazy assertions under the bright lights and upgrade them into behavioral polygraphs.",
-    "forge_version": "V84.3",
+    "forge_version": "V87.1",
     "promptFile": "prompts/fusions/Interrogator.md",
     "isCustom": true
   },
