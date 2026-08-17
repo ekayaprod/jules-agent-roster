@@ -404,7 +404,7 @@ class EventBinder {
 
         const url = AgentUtils.getPromptUrl(agent);
         try {
-            const fetched = await app.agentRepo.fetchPrompt(agent.name, url, MESSAGES.NO_PROTOCOL_DATA);
+            const fetched = await app.agentRepo.fetchPrompt(agent.name, url, typeof window !== 'undefined' && window.MESSAGES ? window.MESSAGES.NO_PROTOCOL_DATA : (typeof global !== 'undefined' && global.MESSAGES ? global.MESSAGES.NO_PROTOCOL_DATA : "No protocol data available."));
             agent.prompt = fetched;
         } catch (err) {
             const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
