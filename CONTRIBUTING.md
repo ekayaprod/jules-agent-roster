@@ -4,6 +4,10 @@
 
 Welcome! This roster is designed to evolve. Whether you're adding a new Fusion Agent, fixing a bug, or polishing the UI, we're excited to see what you build.
 
+## 🏛️ Architectural Purpose
+
+The Jules Agent Roster is a lightning-fast, Pure-Vanilla JS local web app designed to act as a personal AI prompt synthesis engine. It provides a single, unified UI to browse, synthesize, and launch specialized AI agents directly into action against local codebases.
+
 Here is the quick blueprint to get your local environment running and how to test your changes.
 
 ## 🚀 Quick Start (Let's get cooking)

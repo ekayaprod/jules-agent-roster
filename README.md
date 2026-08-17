@@ -34,9 +34,12 @@ Alternatively, to boot via Docker using the provided multi-stage `Dockerfile`:
 ## 2. The Operational Catalyst
 
 Before this tool, managing AI agent prompts was a manual nightmare. The bottleneck was severe:
-*   **Context Loss:** Losing hours to repetitive copy-pasting of prompt templates from various Markdown files.
-*   **Data Entry Errors:** Manually attempting to fuse different agent personas (like merging a Security expert with a Performance optimizer) frequently led to malformed instructions or broken context.
-*   **Execution Friction:** Launching agents required bouncing between terminal windows, text editors, and web interfaces, breaking my state of flow.
+
+| Bottleneck | Description |
+| :--- | :--- |
+| **Context Loss** | Losing hours to repetitive copy-pasting of prompt templates from various Markdown files. |
+| **Data Entry Errors** | Manually attempting to fuse different agent personas (like merging a Security expert with a Performance optimizer) frequently led to malformed instructions or broken context. |
+| **Execution Friction** | Launching agents required bouncing between terminal windows, text editors, and web interfaces, breaking my state of flow. |
 
 I needed a localized, single source of truth that lived strictly on my machine, entirely free from the bloated overhead of a full-stack enterprise application, and designed exclusively to eliminate my personal manual data entry errors.
 
