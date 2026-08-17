@@ -32,7 +32,7 @@ class EmptyState {
    */
   static create({ title, description, icon = '', action = null }) {
     const container = document.createElement('div');
-    container.className = 'empty-state visible transition-all duration-500 ease-in-out animate-fade-in rounded-xl';
+    container.className = 'empty-state visible transition-all duration-500 ease-in-out animate-fade-in rounded-xl shadow-md hover:shadow-lg';
 
     if (icon) {
       const iconWrapper = document.createElement('div');

@@ -22,6 +22,10 @@
   - **Design/UX Pattern Applied**: Added a `fadeIn` keyframe to transform a lifeless instant-snap transition into a polished, staggered entrance choreography.
 - **Component**: `.sg-textarea`
   - **Design/UX Pattern Applied**: Replaced the harsh `0.5rem` border with a softened `0.75rem` (rounded-xl) edge to match overarching aesthetic flow.
+- **Component**: `input.modal-input`
+  - **Design/UX Pattern Applied**: Added `focus-visible` rings and eased transitions to prevent rigid interaction states.
+- **Component**: `.empty-state.visible`
+  - **Design/UX Pattern Applied**: Injected soft drop shadows to lift empty states off the flat canvas, reducing visual monotony.
 
 ### Design Decision Ledger
 *   **The Empty State Polish (`#emptyState .empty-icon`)**: Injected `skeleton-pulse` to create a more dynamic empty state, avoiding a lifeless feeling and improving perceived performance.
