@@ -65,11 +65,7 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 **The Solution:** Adopt `emoji-regex` via CDN.
 **The Benefit:** Standardizes Unicode processing safely and eliminates brittle custom logic.
 
-### Integrate `DOMPurify` for XSS Prevention
-
-**The Problem:** The application lacks a robust, standardized way to sanitize dynamically rendered outputs in Fusion Lab, leaving potential XSS vulnerabilities.
-**The Solution:** Integrate `DOMPurify` via CDN.
-**The Benefit:** Standardizes sanitization with a vetted, security-focused library without complicating our lightweight Node.js compilation step.
+- [x] Integrate `DOMPurify` for XSS Prevention (Shipped: [Commit 66473f01](https://github.com/ekayaprod/jules-agent-roster/commit/66473f01))
 
 ### Standardize Clipboard Logic with `clipboard-polyfill`
 
@@ -116,3 +112,9 @@ This document outlines the strategic direction for the **Jules Agent Roster**.
 **The Problem:** The project relies on a custom, 522-line `benchmark.js` file for performance testing, which is a structural monolith containing bespoke timing logic, manual output formatting, and reinvented file-loading mechanisms.
 **The Solution:** Adopt a standard community benchmarking tool like `Vitest Bench` (or similar).
 **The Benefit:** Standardizes performance testing, eliminating the need to maintain complex, error-prone custom benchmarking logic and ensuring reliable, reproducible performance metrics.
+
+### Break Down UI Monolithic Tests
+
+**The Problem:** Core architectural test files like `js/Features/JulesTerminal/JulesModals.test.js` and `js/Features/Fusion/AgentPicker.test.js` have grown into massive structural monoliths (over 500 lines each), creating unmanageable physical blockades and synchronous bottlenecks that hinder high-velocity development and risk merge conflicts.
+**The Solution:** Decentralize these monolithic test classes by splitting them into cohesive, domain-specific modules, utility classes, and sub-controllers.
+**The Benefit:** Restores maintainability by standardizing domain boundaries, massively reduces cognitive load for developers, and unlocks future parallel development and architectural scalability.
