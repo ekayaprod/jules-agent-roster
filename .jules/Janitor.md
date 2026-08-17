@@ -7,6 +7,8 @@
 **Target Excised:** Broken markdown links in Foresight.md | **Action:** Repaired missing target anchors.
 
 # Resolved Entropy
+* **Deleted Artifacts:** Permanently removed unlinked generated artifacts `patch.diff`, `patch_test.diff`, `push.sh`, `check_errors.js`, and `.github/workflows/codeql.yml.orig` with 0 references.
+* **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `Bastion.md`, `.jules/Untangler.md`, `prompts/micro/Iconographer.md`, `prompts/micro/Nomenclator.md`, `prompts/fusions/Zen.md`, `prompts/fusions/Wayfinder.md`, `prompts/fusions/Liquidator.md`, `prompts/fusions/Auditor.md`, `prompts/fusions/Pacemaker.md`, and `prompts/fusions/Calligrapher.md`.
 * **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/fusions/Hive.md`, `prompts/fusions/Polygraph.md`, `prompts/fusions/Surgeon.md`, `prompts/fusions/PathCentralizer.md`, `prompts/fusions/Mixologist.md`, `prompts/fusions/Ouija.md`, `prompts/fusions/Retrofitter.md`, `prompts/fusions/Regulator.md`, `prompts/fusions/Overclock.md`, `prompts/fusions/Mulligan.md`.
 * **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/fusions/Pantomime.md`, `prompts/fusions/Surveyor.md`, `prompts/fusions/Exorcist.md`, `prompts/fusions/Defuser.md`, `prompts/fusions/Triage.md`, `prompts/fusions/Electrician.md`, `prompts/fusions/Viewmorph.md`, `prompts/fusions/Ratchet.md`, `prompts/fusions/Discharge.md`, `prompts/fusions/Espresso.md`.
 * **Enforced Baselines:** Injected POSIX-compliant EOF newlines to `prompts/Author.md`, `prompts/Paramedic.md`, `prompts/Pedant.md`, `prompts/Dispatch.md`, `prompts/Sentinel+.md`, `prompts/Bolt+.md`, `prompts/Helix.md`, `prompts/Navigator.md`, `prompts/Architect.md`, `prompts/Untangler.md`.
