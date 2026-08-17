@@ -120,7 +120,7 @@ class JulesAPI {
      */
     async getSources() {
         const data = await this._fetch("/sources");
-        if (data && !data.sources) data.sources = [];
+        if (data && !("sources" in data)) data.sources = [];
         return data;
     }
 
@@ -130,7 +130,7 @@ class JulesAPI {
      */
     async getSessions() {
         const data = await this._fetch("/sessions");
-        if (data && !data.sessions) data.sessions = [];
+        if (data && !("sessions" in data)) data.sessions = [];
         return data;
     }
 
@@ -140,7 +140,7 @@ class JulesAPI {
      */
     async getSessionsByRepo(repo) {
         const data = await this._fetch(`/sessions?repo=${encodeURIComponent(repo)}`);
-        if (data && !data.sessions) data.sessions = [];
+        if (data && !("sessions" in data)) data.sessions = [];
         return data;
     }
 
@@ -231,7 +231,7 @@ class JulesAPI {
      */
     async getActivities(sessionId) {
         const data = await this._fetch(`/sessions/${sessionId}/activities`);
-        if (data && !data.activities) data.activities = [];
+        if (data && !("activities" in data)) data.activities = [];
         return data;
     }
 
