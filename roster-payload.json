@@ -35,7 +35,7 @@
   {
     "name": "Cortex",
     "emoji": "🧠",
-    "role": "Synapse Architect",
+    "role": "AI Intergration",
     "category": "Feature",
     "tier": "Core",
     "description": "INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art handshakes.",
@@ -68,11 +68,11 @@
   {
     "name": "Inspector",
     "emoji": "🕵️",
-    "role": "Private Eye",
+    "role": "Coverage Detective",
     "category": "Testing",
     "tier": "Core",
     "description": "SHAKEDOWN unverified logic. Author ruthless test suites that drag perfect setups into the interrogation room until their alibis crack.",
-    "forge_version": "V85.1",
+    "forge_version": "V87.1",
     "promptFile": "prompts/Inspector.md",
     "isCustom": false
   },
@@ -666,7 +666,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "FORTIFY application surfaces against prompt injection and hallucinated payloads.",
-    "forge_version": "V84.5",
+    "forge_version": "V87.1",
     "promptFile": "prompts/fusions/Firewall.md",
     "isCustom": true
   },
