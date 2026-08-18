@@ -919,7 +919,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "AUDIT hardcoded secrets by extracting them into environment variables without manual rotation.",
-    "forge_version": "V84.5",
+    "forge_version": "V87.1",
     "promptFile": "prompts/fusions/Keymaster.md",
     "isCustom": true
   },
