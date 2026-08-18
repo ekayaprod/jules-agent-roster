@@ -2,7 +2,7 @@
   {
     "name": "Architect",
     "emoji": "🏗️",
-    "role": "Structure Excavator",
+    "role": "Filesystem Foreman",
     "category": "Architecture",
     "tier": "Core",
     "description": "EXCAVATE unmaintainable monoliths and erect load-bearing domain structures to reinforce the physical foundations of the repository.",
@@ -24,7 +24,7 @@
   {
     "name": "Bolt+",
     "emoji": "⚡",
-    "role": "Velocity Tuner",
+    "role": "Speed Daemon",
     "category": "Performance",
     "tier": "Core",
     "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge latency.",
@@ -35,7 +35,7 @@
   {
     "name": "Cortex",
     "emoji": "🧠",
-    "role": "AI Intergration",
+    "role": "AI Integrator",
     "category": "Feature",
     "tier": "Core",
     "description": "INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art handshakes.",
@@ -46,7 +46,7 @@
   {
     "name": "Dispatch",
     "emoji": "📯",
-    "role": "Logistics Warden",
+    "role": "Logistics Leverager",
     "category": "Operations",
     "tier": "Core",
     "description": "DISPATCH pristine CI/CD payloads, optimize container transit, fortify meta-infrastructure, and provision context-aware MCP arrays.",
@@ -666,7 +666,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "FORTIFY application surfaces against prompt injection and hallucinated payloads.",
-    "forge_version": "V84.5",
+    "forge_version": "V87.1",
     "promptFile": "prompts/fusions/Firewall.md",
     "isCustom": true
   },
@@ -1403,7 +1403,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "REROLL the messy first draft of project history to reflect truth.",
-    "forge_version": "85.5",
+    "forge_version": "V87.1",
     "promptFile": "prompts/fusions/Retcon.md",
     "isCustom": true
   },
