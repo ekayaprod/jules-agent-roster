@@ -79,3 +79,28 @@ describe('NetworkUtils Instrumenter Boundary Stress Tests', () => {
         expect(mockDispatchEvent).toHaveBeenCalledWith('NETWORK_ERROR_TEXT_FAILED', expect.any(Error), expect.any(Object));
     });
 });
+
+describe('NetworkUtils Naked Execution and Complex URLs', () => {
+    afterEach(() => {
+        delete global.getTelemetryUtils;
+    });
+    it('should not crash when getTelemetryUtils is defined but not a function', async () => {
+        global.getTelemetryUtils = "not a function";
+        global.fetch = jest.fn(() => Promise.reject(new Error("Network Error")));
+
+        await expect(NetworkUtils.fetchWithRetry('invalid-url', {}, 0)).rejects.toThrow(new Error('Network Error'));
+
+
+    });
+
+    it('should process complex URL-like objects gracefully instead of throwing TypeError', async () => {
+        global.fetch = jest.fn(() => Promise.resolve({ ok: true, status: 200 }));
+
+        const complexUrlObject = {
+            toString: () => 'http://example.com',
+            href: 'http://example.com'
+        };
+
+        await expect(NetworkUtils.fetchWithRetry(complexUrlObject)).resolves.toBeDefined();
+    });
+});
