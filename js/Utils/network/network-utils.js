@@ -25,11 +25,20 @@ class NetworkUtils {
     const now = Date.now();
     let hostname;
     try {
-        hostname = new URL(url).hostname;
+        hostname = new URL(urlString).hostname;
     } catch (error) {
-        hostname = url;
-        const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
-        if (tu) tu.dispatchEvent("NETWORK_URL_PARSE_FAILED", error, { url: url instanceof URL ? url.toString() : url });
+        // Fallback for relative URLs
+        try {
+            if (urlString.startsWith('.') || urlString.startsWith('/')) {
+                hostname = new URL(urlString, typeof window !== 'undefined' && window.location ? window.location.href : 'http://localhost').hostname;
+            } else {
+                 throw new Error("Not a relative URL");
+            }
+        } catch (innerError) {
+            hostname = urlString;
+            const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+            if (tu) tu.dispatchEvent("NETWORK_URL_PARSE_FAILED", error, { url: urlString });
+        }
     }
 
     if (!this._requestBuckets[hostname]) {
