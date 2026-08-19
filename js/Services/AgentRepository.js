@@ -71,15 +71,12 @@ class AgentRepository {
 
         this.agents = this.validateAgentsData(standardAgentsRaw);
 
-        this.customAgents = {};
-        for (const agent of customAgentsRaw) {
-            const key = agent.name;
-            const validation = this.validateCustomAgent(key, agent);
-            if (validation.valid) {
-                const validAgent = validation.sanitized;
-                this.customAgents[key] = validAgent;
-            }
-        }
+        // 🧬 COLLAPSE: Functional reduce pipeline directly constructing the customAgents dictionary.
+        this.customAgents = customAgentsRaw.reduce((acc, agent) => {
+            const validation = this.validateCustomAgent(agent.name, agent);
+            if (validation.valid) acc[agent.name] = validation.sanitized;
+            return acc;
+        }, {});
 
         return { agents: this.agents, customAgents: this.customAgents, fusionMatrix: this.fusionMatrix };
     }
@@ -87,13 +84,9 @@ class AgentRepository {
     async _executeFetchPrompt(name, url, fallback) {
         try {
             const res = await NetworkUtils.fetchWithRetry(url, { throwOn404: false });
-            if (!res.ok) {
-                return fallback;
-            }
-            return await res.text();
+            return res.ok ? await res.text() : fallback;
         } catch (error) {
-            const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
-            if (tu) tu.dispatchEvent("FETCH_PROMPT_FAILED", error, { url: url });
+            globalThis.TelemetryUtils?.dispatchEvent("FETCH_PROMPT_FAILED", error, { url: url });
             return fallback;
         } finally {
             delete this._pendingPrompts[url];
@@ -110,14 +103,9 @@ class AgentRepository {
     async fetchPrompt(name, url, fallback) {
         // If this exact prompt is currently being fetched, wait for the existing promise.
         // Prevent concurrent identical fetch requests.
-        this._pendingPrompts = this._pendingPrompts || {};
-        if (this._pendingPrompts[url]) {
-            return this._pendingPrompts[url];
-        }
-
-        const fetchPromise = this._executeFetchPrompt(name, url, fallback);
-        this._pendingPrompts[url] = fetchPromise;
-        return fetchPromise;
+        // 🧬 COLLAPSE: Condensed redundant cache checks and assignments into native null-coalescing operations.
+        this._pendingPrompts ??= {};
+        return this._pendingPrompts[url] ??= this._executeFetchPrompt(name, url, fallback);
     }
 
     /**
@@ -158,45 +146,21 @@ class AgentRepository {
         // ↗️ VECTORIZE: The Single-Pass Bypass. We ignore the heavily abstracted layers and execute the calculation in one direct, zero-allocation pass.
         // ⚡ Bolt+: The O(n²) Eradication. Replaced a nested array linear search with a pre-computed Set dictionary lookup, dropping algorithmic complexity to O(1) per loop iteration.
         const validCategoriesSet = new Set(Object.keys(CONFIG.categories));
-        const result = [];
+        // 🧬 COLLAPSE: Collapsed sprawling validation accumulator loop into a single-pass reduce pipeline.
+        return agentPayload.reduce((acc, agent) => {
+            if (!agent || typeof agent.name !== "string") return acc;
 
-        for (let i = 0; i < agentPayload.length; i++) {
-            const agent = agentPayload[i];
-            let normalizedCategory = "";
-            if (agent && typeof agent.category === "string") {
-                normalizedCategory = agent.category.toLowerCase();
-            }
+            let normalizedCategory = typeof agent.category === "string" ? agent.category.toLowerCase() : "";
+            if (agent.tier === "Plus") normalizedCategory = "plus";
 
-            if (agent && agent.tier === "Plus") {
-                normalizedCategory = "plus";
-            }
-
-            const isValid =
-                agent &&
-                typeof agent.name === "string" &&
-                validCategoriesSet.has(normalizedCategory);
-
-            if (isValid) {
+            if (validCategoriesSet.has(normalizedCategory)) {
                 agent.category = normalizedCategory;
+                if (agent.name) agent.name = agent.name.trim();
+                if (agent.scope && typeof agent.scope !== "string") agent.scope = String(agent.scope);
+                acc.push(agent);
             }
-
-            if (!isValid) {
-                continue;
-            }
-
-            // Pedant: Ensure name is trimmed to prevent matching issues
-            if (agent.name) {
-                agent.name = agent.name.trim();
-            }
-
-            // Paramedic: Sanitize optional fields to prevent fragility
-            if (agent.scope && typeof agent.scope !== "string") {
-                agent.scope = String(agent.scope);
-            }
-
-            result.push(agent);
-        }
-        return result;
+            return acc;
+        }, []);
     }
 
     /**
