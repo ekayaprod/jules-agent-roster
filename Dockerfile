@@ -3,16 +3,12 @@ FROM node:20-alpine AS builder
 
 WORKDIR /opt/payload
 
-# 1. Cache dependency resolution
-COPY package*.json ./
-RUN npm ci
-
-# 2. Inject source logic and build
+# 1. Inject source logic and build
 COPY scripts/ ./scripts/
 COPY prompts/ ./prompts/
-RUN npm run build:roster
+RUN node scripts/build-roster.js
 
-# 3. Production Serving Layer
+# 2. Production Serving Layer
 FROM node:20-alpine AS production
 
 WORKDIR /opt/payload
@@ -28,6 +24,8 @@ COPY --from=builder --chown=warden:dispatch /opt/payload/roster-payload.json ./
 COPY --chown=warden:dispatch index.html ./
 COPY --chown=warden:dispatch js ./js
 COPY --chown=warden:dispatch css ./css
+COPY --chown=warden:dispatch fusion_matrix.json ./
+COPY --chown=warden:dispatch prompts/ ./prompts/
 
 USER warden
 EXPOSE 8080
