@@ -926,11 +926,11 @@
   {
     "name": "Launchpad",
     "emoji": "🚀",
-    "role": "AI Pipeline Deployer",
+    "role": "Pipeline Deployer",
     "category": "Operations",
     "tier": "Fusion",
     "description": "DISPATCH delivery-layer fixes to ensure AI payloads survive deployment.",
-    "forge_version": "V84.5",
+    "forge_version": "V87.1",
     "promptFile": "prompts/fusions/Launchpad.md",
     "isCustom": true
   },
