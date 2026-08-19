@@ -18,7 +18,12 @@ class NetworkUtils {
    * * Magic Numbers: Limits requests to 100 within a 60000ms (1 minute) sliding window.
    */
   static _enforceRateLimit(url) {
-    const urlString = url instanceof URL ? url.toString() : url;
+    let urlString = url;
+    if (url instanceof URL) {
+        urlString = url.toString();
+    } else if (url && typeof url === 'object' && url.toString && url.toString !== Object.prototype.toString) {
+        urlString = url.toString();
+    }
     if (typeof urlString !== 'string' || !urlString.trim()) {
         throw new TypeError('Invalid URL parameter');
     }
@@ -36,7 +41,7 @@ class NetworkUtils {
             }
         } catch (innerError) {
             hostname = urlString;
-            const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+            const tu = typeof getTelemetryUtils === "function" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
             if (tu) tu.dispatchEvent("NETWORK_URL_PARSE_FAILED", error, { url: urlString });
         }
     }
@@ -78,7 +83,7 @@ class NetworkUtils {
     } catch (error) {
       // If parsing fails, fall back to blocking it for safety
       isPolluted = true;
-      const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+      const tu = typeof getTelemetryUtils === "function" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
       if (tu) tu.dispatchEvent("NETWORK_BODY_PARSE_FAILED", error);
     }
     if (isPolluted) {
@@ -100,11 +105,11 @@ class NetworkUtils {
           errorMsg = errJson.message;
         }
       } catch (error) {
-        const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+        const tu = typeof getTelemetryUtils === "function" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
         if (tu) tu.dispatchEvent("NETWORK_ERROR_PARSING_FAILED", error, { url: response.url, status: response.status });
       }
     } catch (error) {
-      const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+      const tu = typeof getTelemetryUtils === "function" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
       if (tu) tu.dispatchEvent("NETWORK_ERROR_TEXT_FAILED", error, { url: response.url, status: response.status });
     }
     return errorMsg;
@@ -117,13 +122,18 @@ class NetworkUtils {
     backoff = NetworkUtils.DEFAULT_BACKOFF_MS,
   ) {
     options = options || {};
-    const urlString = url instanceof URL ? url.toString() : url;
+    let urlString = url;
+    if (url instanceof URL) {
+        urlString = url.toString();
+    } else if (url && typeof url === 'object' && url.toString && url.toString !== Object.prototype.toString) {
+        urlString = url.toString();
+    }
 
     // 🐺 FORTIFY: Head 1 - Rate Limiting (Block thundering herds)
     try {
       NetworkUtils._enforceRateLimit(urlString);
     } catch (error) {
-      const tu = typeof getTelemetryUtils !== "undefined" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
+      const tu = typeof getTelemetryUtils === "function" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
       if (tu) tu.dispatchEvent("NETWORK_RATE_LIMIT_EXCEEDED", error, { url: urlString });
       throw error;
     }
