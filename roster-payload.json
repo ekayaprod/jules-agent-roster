@@ -952,7 +952,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "CEIL every execution path with mathematically guaranteed upper bounds to prevent the expansion of the Unbounded Abyss.",
-    "forge_version": "V84.5",
+    "forge_version": "V87.2",
     "promptFile": "prompts/fusions/Limiter.md",
     "isCustom": true
   },
