@@ -6,7 +6,7 @@ This document governs thematic presentation, naming systems, ideation workflows,
 
 ## Module 1: Thematic Ideation (The Logic Engine)
 
-Applies during Phase 3 Thematic Logic Engine drafting. Weave mechanical purpose with immersive identity.
+Applies during Phase 4 Thematic Logic Engine drafting. Weave mechanical purpose with immersive identity.
 
 ### The Lexicon Bridge
 Map highly technical software concepts (ASTs, lockfiles, loops) directly to the operating theme's universe (e.g., a lockfile is a "sealed ledger" to a Scribe).
