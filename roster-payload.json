@@ -941,7 +941,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "STANDARDIZE naming drift and synonymous variables into a unified, explicit vocabulary.",
-    "forge_version": "V84.5",
+    "forge_version": "V87.2",
     "promptFile": "prompts/fusions/Lexicon.md",
     "isCustom": true
   },
