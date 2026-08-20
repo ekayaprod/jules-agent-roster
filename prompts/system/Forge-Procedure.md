@@ -142,7 +142,7 @@ If the domain relies on structural verification (no executable tests), rewrite `
 **⚠️ STRICT GENERATIVE BOUNDARY:** The payload must include `CURRENT_FORGE_VERSION` in `data.identity.forge_version` — a missing or empty value fatally crashes the compilation QA gate.
 
 ### Array Length Constraints
-**⚠️ STRICT GENERATIVE BOUNDARY:** The following Target Matrix, Execution Steps, and Heuristic Verification array lengths are all strictly evaluated during the Phase 5 Linter pass, and none may be waived by the Efficacy Exemption.
+**⚠️ STRICT GENERATIVE BOUNDARY:** The following Target Matrix, Execution Steps, and Heuristic Verification array lengths are all strictly evaluated during the Phase 6 Linter pass, and none may be waived by the Efficacy Exemption.
 
 **Target Matrix:**
 - **Contained Velocity:** Minimum 1 target.
@@ -155,7 +155,7 @@ If the domain relies on structural verification (no executable tests), rewrite `
 
 **Core Discovery Fallback:** `If the target matrix is exhausted and nothing is found, pivot to a full repository-wide domain sweep, reasoning through whether the domain is present in an un-instantiated form (Forge-Procedure Module 6, Step 4). The platform already governs total runtime — do not stop searching merely because a first pass found no literal match. A zero-target declaration is valid only after that full sweep genuinely yields nothing.` This string is the compiled instantiation of Module 6's "Persistent Discovery Requirement" — Module 6 is the canonical source of the underlying reasoning; this is its literal form for the output template. Do not maintain the two independently.
 
-**Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.` (Append the Core Discovery Fallback to this string if the worker is Tier: Core). This is the single canonical source for task-board state semantics — Data Sanitization's Worker Directives Exemption and Phase 4's Gap Analysis must reference or extend this string, never author independent task-board resolution language alongside it.
+**Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.` (Append the Core Discovery Fallback to this string if the worker is Tier: Core). This is the single canonical source for task-board state semantics — Data Sanitization's Worker Directives Exemption must reference or extend this string, never author independent task-board resolution language alongside it; Phase 6's Task Board State Coherence check is what verifies that in the compiled output.
 
 **Execution Steps:**
 - **All Archetypes:** Minimum 5 steps.
@@ -193,7 +193,7 @@ Before declaring a final Fusion Vector, explicitly identify one scenario where t
 
 ## Module 6: The Domain Extrapolation Procedure (Pillar Reasoning)
 
-Applies whenever Master Forge processes a Tier: Core worker — net-new (Phase 0/1) or legacy import (Phase 1/4). There is no static pillar table and no per-agent registry. The domain is derived fresh from the worker's own Role and its existing prompt body, every time this procedure runs. This module replaces functional deduction to a single Structural Base Profile for Tier: Core workers only; all other tiers continue routing per Module 1.
+Applies whenever Master Forge processes a Tier: Core worker — net-new (Phase 0/1) or legacy import (Phase 1/3). There is no static pillar table and no per-agent registry. The domain is derived fresh from the worker's own Role and its existing prompt body, every time this procedure runs. This module replaces functional deduction to a single Structural Base Profile for Tier: Core workers only; all other tiers continue routing per Module 1.
 
 ### Core Tier Domain Ownership Principle
 A Tier: Core worker is the definitive owner of the domain its Role names — not a checklist executor confined to whatever targets happen to be listed. The purpose of this procedure is to derive that domain broadly enough, on every pass, that the worker can act like an owner regardless of what stack, language, or medium it encounters.
@@ -216,7 +216,7 @@ Compare the worker's existing body against the Step 1–4 output. Classify every
 - **Narrowing:** Existing content is a true subset of the extrapolated domain (e.g., CSS-only targets under a domain that generalizes further). Repair by expansion — add coverage, do not remove what's already correct.
 - **Incoherence:** Existing content actively contradicts or misrepresents the extrapolated domain — a rule, target, or optimization that belongs to a different pillar entirely, likely left over from before a Role change or a Cross-Vector Grant that outgrew its bounds. Flag explicitly and remove or rewrite; do not silently fold it in as if it were a legitimate part of this worker's domain.
 
-Log which Step 5 outcome applied to each discrepancy, and why. This log is not discarded after compilation — surface it in the Phase 7 Efficacy Audit record so a reviewer can see what was expanded versus what was removed and on what basis.
+Log which Step 5 outcome applied to each discrepancy, and why. This log is not discarded after compilation — surface it in the Phase 8 Efficacy Audit record so a reviewer can see what was expanded versus what was removed and on what basis.
 
 ### Persistent Discovery Requirement
 A Tier: Core worker's Discovery process (Master Forge Phase-compiled Step 2, `SELECT / CLASSIFY`) must not treat an empty literal Target Matrix match as grounds to halt. Before declaring zero targets, the worker must reason via Step 4 of this module whether the current repository expresses the domain in an un-instantiated form, then perform the full repository-wide sweep that reasoning points to. The platform already governs total session runtime — this module does not need to add its own caution against searching too long. A zero-target declaration is only valid once that full sweep has genuinely yielded nothing, not merely when no listed category matches verbatim on the first pass.
