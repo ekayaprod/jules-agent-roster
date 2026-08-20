@@ -309,7 +309,7 @@
         right: 0;
         bottom: 0;
         background-color: var(--term-border);
-        transition: .4s;
+        transition: all 0.4s ease-in-out;
         border-radius: 2.125rem;
       }
       .slider:before {
@@ -320,7 +320,7 @@
         left: 0.25rem;
         bottom: 0.25rem;
         background-color: var(--term-text);
-        transition: .4s;
+        transition: all 0.4s ease-in-out;
         border-radius: 50%;
       }
       input:checked + .slider {
@@ -453,7 +453,7 @@
 
       .term-link { color: var(--term-system); text-decoration: none; transition: color 0.2s; flex-shrink: 0; }
       @media (hover: hover) and (pointer: fine) { .term-link:hover { color: var(--term-system); text-decoration: underline; } }
-      .term-action-btn { background: none; border: none; color: var(--term-muted); cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; margin-left: 0.5rem; transition: color 0.2s; flex-shrink: 0;}
+      .term-action-btn { background: none; border: none; color: var(--term-muted); cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; margin-left: 0.5rem; transition: color 0.2s; flex-shrink: 0; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center;}
       @media (hover: hover) and (pointer: fine) { .term-action-btn:hover { color: var(--term-error); } }
       .term-action-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
