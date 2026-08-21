@@ -974,7 +974,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "DOCUMENT undocumented if/else, switch, and Bitwise operations into clean Truth Tables inside JSDoc.",
-    "forge_version": "V84.5",
+    "forge_version": "V87.2",
     "promptFile": "prompts/fusions/Logician.md",
     "isCustom": true
   },
