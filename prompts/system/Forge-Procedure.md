@@ -102,8 +102,6 @@ You must explicitly generate the velocity strings and testing doctrines in the J
 * **`execution_posture`:** "* Execute in bounded sequence, tracking mutation count against the declared quota."
 * **`reporter_procedure`:** "* Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling."
 
-Note: The Managed Interruption clause is encoded in this execution_mandate string. Do not re-state it in salvaged_custom_logic or as a standalone named mandate in the output.
-
 ### The Managed Interruption Protocol
 Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared. Do not re-state this in `salvaged_custom_logic` or as a standalone named mandate in the output.
 
