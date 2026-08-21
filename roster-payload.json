@@ -981,11 +981,11 @@
   {
     "name": "Lumberjack",
     "emoji": "🪓",
-    "role": "Dead Branch Chopper",
+    "role": "Branch Chopper",
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "CHOP dead branches and unreachable execution paths from the AST.",
-    "forge_version": "V84.6",
+    "forge_version": "V87.2",
     "promptFile": "prompts/fusions/Lumberjack.md",
     "isCustom": true
   },
