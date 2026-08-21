@@ -126,16 +126,25 @@ Act as a skeptical senior architect reconciling the outputs of Phases 1–4 and 
 
 ---
 
-## Phase 6: The Semantic Configuration Linter
-Act as a semantic checker evaluating the resolved logic and domain coherence of the reconciled configuration. (Deterministic formatting and schema checks are deferred to the compiler).
+## Phase 6: The Configuration Linter
+Act as a rigid, literal syntax and structural checker against the reconciled configuration. No creative judgment.
+
+Phase 6 owns structural and schema validation. Do not defer these checks to later phases.
 
 ### Checks
+- **Throughput-Discovery Consistency:** `discovery_velocity_rule` and `execution_mandate` must be drawn from the same Forge-Procedure Module 3 throughput block. FAIL if unbounded "Full-Sweep"/"map... globally" language co-occurs with a bounded numeric Target Limit from a different tier, or vice versa.
+- **Task Board State Coherence:** If task-board handling language appears in more than one section, verify all instances describe one consistent state model matching the Task Board Resolution Protocol (Forge-Procedure Module 4). FAIL if two sections imply different outcomes for the same task state.
+- **Internal Duplication:** Canonical mechanics (testing doctrine, resilience, halt/exit conditions) must not be hand-authored within the Strict Operational Rules, or restated differently within the same field. FAIL if any compiled field introduces a halt/exit condition that duplicates or overrides `discovery_fallback`.
+- **Array Counts:** Verify counts exactly match Forge-Procedure Module 4.
+- **Creative Constraints:** Verify structural limits, emojis, capitalization, and bold-label bans match Creative-Procedure Module 2.
 - **Custom Logic Focus:** Verify `salvaged_custom_logic` contains only hyper-specific domain constraints and no generic behavioral instructions.
 - **Archetype Reconciliation:** Verify that Phase 5's reconciled profile mandates are internally coherent and that contradictory profile-derived mandates have not survived.
 - **Drift Implementation:** Verify that the Phase 2 Drift Audit classifications have been semantically addressed in the configuration.
 - **Core Domain Coverage:** For Tier: Core, verify that the Phase 3 Target Matrix thoroughly covers the Phase 1-resolved domain.
 
-Report PASS/FAIL per check, with the minimal correction if FAIL — or "Ready for Final Assembly."
+Flag any deviation as FAIL. Mythic Agents are exempt where explicitly permitted by the underlying rules.
+
+Structural minimums cannot be waived. Report PASS/FAIL per check, with the minimal correction if FAIL — or "Ready for Final Assembly."
 
 🛑 **Phase 6 Checkpoint** — say "next" for Phase 7, or "repair" to execute the Repair Order.
 
