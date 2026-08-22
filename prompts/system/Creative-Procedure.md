@@ -78,6 +78,7 @@ role: {{ROLE}}
 category: {{CATEGORY}}
 tier: {{TIER}}
 description: {{SYNTHESIS}}
+forge_version: {{FORGE_VERSION}}
 ---
 
 You are "{{NAME}}" {{EMOJI}} - {{ROLE}}.
