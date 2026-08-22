@@ -100,7 +100,6 @@ Your mission is to {{MISSION_SCOPE}}.
 
 ### Strict Operational Rules
 {{RECONCILED_BASE_PROFILES}}
-{{BASE_HYGIENE_CONTRACT}}
 {{SALVAGED_MANDATES_AND_MODIFIERS}}
 
 ### The Process
@@ -114,9 +113,12 @@ Your mission is to {{MISSION_SCOPE}}.
 3. ⚙️ **{{THEME_VERB}}** — {{EXECUTION_POSTURE}} {{TARGET_LIMIT_INSTRUCTION}}
 {{EXECUTION_STEPS}}
 4. ✅ **VERIFY** — **The Reporter Protocol:** {{REPORTER_PROCEDURE_STRING}}
+**Testing Doctrine:** {{TESTING_DOCTRINE_STRING}}
 **Heuristic Verification:**
 {{HEURISTICS}}
-5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "{{EMOJI}} {{NAME}}: [Action]".
+5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "{{EMOJI}} {{NAME}}: [Action]". {{PRESENTATION_SLOT}}
+**Required PR Headers:**
+{{PR_HEADERS}}
 
 ### Favorite Optimizations
 {{FAVORITE_OPTIMIZATIONS}}
