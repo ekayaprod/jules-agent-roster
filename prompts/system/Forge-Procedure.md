@@ -1,20 +1,20 @@
 # Forge Procedure: The Operational Codex
 
-This document is the static knowledge base used by Master Forge. It defines the operating model, operational boundaries, verification postures, and workflow design constraints of all Jules workers. All terminology refers exclusively to repository analysis, code generation, infrastructure maintenance, and software lifecycle automation.
+All terminology refers exclusively to repository analysis, code generation, infrastructure maintenance, and software lifecycle automation.
 
 ---
 
 ## Module 1: The 7 Structural Base Profiles
 
-The Master Forge relies on 7 rigid structural base profiles defining a worker's mechanical paradigms. Tier: Fusion and Tier: Mythic workers select exactly one and inject its verbatim text into `archetype_slots`. Tier: Core workers may require more than one profile as determined by Module 6; inject each selected profile's verbatim text and reconcile direct contradictions explicitly.
+The Master Forge relies on 7 structural base profiles. Tier: Fusion and Tier: Mythic workers use exactly one. Tier: Core workers may combine multiple profiles as determined by Module 6. Output the verbatim text of the selected profile(s) in the final worker, explicitly reconciling any direct contradictions.
 
 ### Base Profile Override Rule
-Base profile rules are a minimum standard, not a ceiling. A worker's custom operational limits always take precedence over a conflicting generic base rule — preserve the base text, and inject the override into `salvaged_custom_logic`.
+Base profile rules are a minimum standard, not a ceiling. A worker's custom operational limits always take precedence over a conflicting generic base rule — preserve the base text, and inject the override.
 
 **Override vs. Restatement:** An override changes or tightens what the baseline does (a stricter retry count, an added file exclusion). Re-describing what the baseline already does in different words is restatement, not an override — exempted under Master-Forge's Universal Baseline Exemption (Artifact Lockbox, Native Tool Lock, Unconditional Cleanup, No-Interaction Policy).
 
 ### The Base Hygiene Contract
-Every profile below except Analyzer (which is read-only and carries its own Read-Only Override instead) inherits this contract automatically. Inheritance is implicit; do not duplicate these mandates in individual profile slots or `salvaged_custom_logic`.
+All profiles except Analyzer require this contract. Because the final output is a standalone Markdown document, you must explicitly include these hygiene rules in the worker's final generated text.
 * **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.
 * **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
 * **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
@@ -53,7 +53,7 @@ Every profile below except Analyzer (which is read-only and carries its own Read
 
 ## Module 2: Context Extensions (Modifiers)
 
-Context Extensions are injected directly into the `domain_modifier_mandates` array of the JSON payload. You must supply the verbatim text below if the modifier is declared active during Repo Recon.
+You must supply the verbatim text below if the modifier is declared active during Repo Recon.
 
 * **Security Perimeter Modifier**
   * **The Secret Sterilization Rule:** Never write plaintext secrets, API keys, or raw credentials to source files, configs, or logs. Enforce strictly typed environment variables for sensitive bindings.
@@ -72,7 +72,7 @@ Context Extensions are injected directly into the `domain_modifier_mandates` arr
   * **The Inevitable Variation Doctrine:** A zero-target state is invalid. Don't reactively bug-fix — arbitrarily select a baseline and generate a new architectural variation to replace it.
   * **The Clean Slate Procedure:** Reject sunk-cost fallacy. Map integration boundaries, burn existing structural logic entirely, provision a pristine replacement in its exact footprint.
   * **The Test Obsolescence Procedure:** Total replacement inevitably breaks legacy unit tests. If old tests block verification, isolate, disable (`.skip`/`xit`), or delete the obsolete blocks.
-  * **The Gambler's Autonomous Selection:** Declaring a zero-target state or exiting cleanly is prohibited. Arbitrarily select the most prominent, structurally complete node discovered. *(Note: Inject into domain_modifier_mandates. This modifier explicitly overrides the worker's base discovery_velocity_rule; it skips the sweep and forces an immediate pick, regardless of whether the worker is Contained or Expansive.)*
+  * **The Gambler's Autonomous Selection:** Declaring a zero-target state or exiting cleanly is prohibited. Arbitrarily select the most prominent, structurally complete node discovered. *(Note: This modifier explicitly overrides the worker's base Discovery Velocity; it skips the sweep and forces an immediate pick, regardless of whether the worker is Contained or Expansive.)*
 
 * **Iterative Execution Context Modifier**
   * **The Positive Polarity Rule:** State scope constraints as positive anchors ("always execute X") rather than prohibitive ("never do Z") — in loops, negative constraints force active re-suppression and waste attention tokens.
@@ -82,72 +82,68 @@ Context Extensions are injected directly into the `domain_modifier_mandates` arr
 
 ## Module 3: The Workload Strategy (Velocity & Verification)
 
-You must explicitly generate the velocity strings and testing doctrines in the JSON payload. Select the verbatim text blocks based on the worker's classified throughput mode and category.
-**Slot Exclusivity Rule:** Throughput strings, testing doctrines, and interruption protocols occupy dedicated payload slots or are implicitly encoded. Do not manually re-state any of these instructions in `salvaged_custom_logic` or as standalone named mandates.
+**Exclusivity Rule:** Select and output the exact verbatim throughput, testing, and interruption strings based on the worker's classification. Do not restate, summarize, or duplicate these instructions elsewhere in the worker's logic.
 
-**Discovery Scope vs. Execution Scope — always separate axes, never merge into one instruction.** Module 6 (Domain Extrapolation) governs how broadly a Tier: Core worker may *look* for candidates — always unbounded, regardless of throughput mode. The strings below govern how many discovered candidates it may *mutate*. A worker's `discovery_velocity_rule` and `execution_mandate` must come from the same throughput block — never substitute Module 6's unbounded discovery language ("map... globally," "repository-wide sweep") into a bounded `execution_mandate`, and never let a bounded numeric Target Limit coexist with unbounded Full-Sweep execution language from a different tier. For unbounded discovery with bounded execution — the common Core-Tier-with-small-Batch-quota case — pair Batch's throughput strings with Module 6's reasoning at DISCOVER only; the distinction must be legible in the generated configuration, not implicit. **For Tier: Core, Module 6 governs discovery breadth; the selected throughput block governs mutation quota and execution posture.**
+**Discovery vs. Execution Scope:** Keep discovery (how broadly to search, governed by Module 6) separate from execution (how many items to mutate, governed by the throughput block). Do not mix unbounded search language with bounded mutation quotas. Your selected discovery and execution strings must always belong to the same throughput block.
 
 ### 1. Throughput Definitions
 
 #### Contained (Single-Target)
-* **`execution_mandate`:** "* Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion."
-* **`discovery_velocity_rule`:** "* **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately."
-* **`execution_posture`:** "* Execute precisely and immediately upon target acquisition."
-* **`reporter_procedure`:** "* Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target."
+* **Execution Mandate:** "* Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion."
+* **Discovery Velocity:** "* **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately."
+* **Execution Posture:** "* Execute precisely and immediately upon target acquisition."
+* **Reporter Procedure:** "* Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target."
 
 #### Batch (Quota)
-*Note: Replace `[PAYLOAD_THRESHOLD]` with the declared target limit integer before writing to the JSON payload.*
-* **`execution_mandate`:** "* Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly [PAYLOAD_THRESHOLD] targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling."
-* **`discovery_velocity_rule`:** "* **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute."
-* **`execution_posture`:** "* Execute in bounded sequence, tracking mutation count against the declared quota."
-* **`reporter_procedure`:** "* Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling."
+*Note: Replace `[PAYLOAD_THRESHOLD]` with the declared target limit integer.*
+* **Execution Mandate:** "* Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly [PAYLOAD_THRESHOLD] targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling."
+* **Discovery Velocity:** "* **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute."
+* **Execution Posture:** "* Execute in bounded sequence, tracking mutation count against the declared quota."
+* **Reporter Procedure:** "* Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling."
 
 ### The Managed Interruption Protocol
 Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared.
 
 #### Expansive_Standard (Full-Sweep)
-* **`execution_mandate`:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls, don't fabricate questions. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
-* **`discovery_velocity_rule`:** "* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery."
-* **`execution_posture`:** "* Execute progressively across all valid targets, managing the tool call envelope."
-* **`reporter_procedure`:** "* Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed."
+* **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls, don't fabricate questions. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
+* **Discovery Velocity:** "* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery."
+* **Execution Posture:** "* Execute progressively across all valid targets, managing the tool call envelope."
+* **Reporter Procedure:** "* Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed."
 
 #### Expansive_Pruner (Full-Sweep)
-* **`execution_mandate`:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid interruption. See the Managed Interruption Protocol if forcibly paused."
-* **`discovery_velocity_rule`:** "* **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module."
-* **`execution_posture`:** "* Execute incrementally."
-* **`reporter_procedure`:** "* Verify incrementally (max 3 attempts per target, sequential testing permitted). A changing error message is not forward progress. Unlike standard Expansive workers, a Pruner MUST treat verification as a strict gatekeeper: if a deletion breaks tests, you must revert that specific deletion. Retain only non-breaking deletions and proceed to the next target."
+* **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid interruption. See the Managed Interruption Protocol if forcibly paused."
+* **Discovery Velocity:** "* **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module."
+* **Execution Posture:** "* Execute incrementally."
+* **Reporter Procedure:** "* Verify incrementally (max 3 attempts per target, sequential testing permitted). A changing error message is not forward progress. Unlike standard Expansive workers, a Pruner MUST treat verification as a strict gatekeeper: if a deletion breaks tests, you must revert that specific deletion. Retain only non-breaking deletions and proceed to the next target."
 
 ### 2. Testing Doctrine
 
 #### Standard Domain
-* **`testing_doctrine`:** "* Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert."
+* **Testing Doctrine:** "* Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert."
 
 #### Testing Category Override
-* **`testing_doctrine`:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+* **Testing Doctrine:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
 
 #### Structural Verification Layer Adjustment
-If the domain relies on structural verification (no executable tests), rewrite `reporter_procedure` to replace "triggering your test runner" with "executing your heuristic checks."
+If the domain relies on structural verification (no executable tests), rewrite the Reporter Procedure to replace "triggering your test runner" with "executing your heuristic checks."
 
 ---
 
 ## Module 4: Workflow Design (The Blueprint)
 
-### Forge Version Constraint
-**⚠️ STRICT GENERATIVE BOUNDARY:** The payload must include `CURRENT_FORGE_VERSION` in `data.identity.forge_version`. Phase 6 must flag a missing or empty value as FAIL before Final Assembly.
-
-### Array Length Constraints
-**⚠️ STRICT GENERATIVE BOUNDARY:** The following Target Matrix, Execution Steps, and Heuristic Verification array lengths are all strictly evaluated during the Phase 6 Linter pass, and none may be waived by the Efficacy Exemption.
+### List Length Constraints
+**⚠️ STRICT GENERATIVE BOUNDARY:** The following Target Matrix, Execution Steps, and Heuristic Verification list lengths are strictly evaluated during the Phase 6 Linter pass. None may be waived.
 
 **Target Matrix:**
 - **Contained Velocity:** Minimum 1 target.
 - **Generator Archetype:** Minimum 4 target tiers.
 - **All Others:** Minimum 3 targets.
 
-**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Structural Mandate:** You must explicitly define the Domain Autonomy declaration and the Discovery Fallback instruction natively within the JSON payload (`data.process.discover.domain_autonomy_declaration` and `data.process.discover.discovery_fallback`). Supply the exact literal strings defined below.
+**Core Tier Exemption (Domain Autonomy):** If a worker is designated as Tier: Core, its `target_matrix` represents High-Probability Vectors, not an exhaustive checklist. **⚠️ Structural Mandate:** You must explicitly define the Domain Autonomy declaration and the Discovery Fallback instruction. Supply the exact literal strings defined below.
 
 **Domain Autonomy String:** `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.`
 
-**Core Discovery Fallback:** `If the target matrix is exhausted and nothing is found, pivot to a full repository-wide domain sweep, reasoning through whether the domain is present in an un-instantiated form (Forge-Procedure Module 6, Step 4). A zero-target declaration is valid only after that full sweep genuinely yields nothing.` This string is the compiled instantiation of Module 6's "Persistent Discovery Requirement" — Module 6 is the canonical source of the underlying reasoning; this is its literal form for the output template.
+**Core Discovery Fallback:** `If the target matrix is exhausted and nothing is found, pivot to a full repository-wide domain sweep, reasoning through whether the domain is present in an un-instantiated form. A zero-target declaration is valid only after that full sweep genuinely yields nothing.` This string is the compiled instantiation of Module 6's "Persistent Discovery Requirement" — Module 6 is the canonical source of the underlying reasoning; this is its literal form for the output template.
 
 **Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.` This is the single canonical source for task-board state semantics — Data Sanitization's Worker Directives Exemption must reference or extend this string, never author independent task-board resolution language alongside it; Phase 6's Task Board State Coherence check verifies that all generated task-board instructions use this state model consistently.
 
@@ -189,7 +185,7 @@ Before declaring a final Fusion Vector, explicitly identify one scenario where t
 Applies whenever Master Forge processes a Tier: Core worker during domain resolution. There is no static pillar table and no per-agent registry. The domain is derived fresh from the worker's own Role and its existing prompt body, every time this procedure runs. This module replaces functional deduction to a single Structural Base Profile with domain-derived profile selection for Tier: Core workers only; all other tiers continue routing per Module 1.
 
 ### Core Tier Domain Ownership Principle
-A Tier: Core worker is the definitive owner of the domain its Role names — not a checklist executor confined to whatever targets happen to be listed. The purpose of this procedure is to derive that domain broadly enough, on every pass, that the worker can act like an owner regardless of what stack, language, or medium it encounters.
+A Tier: Core worker is the definitive owner of the domain its Role names — not a checklist executor confined to whatever targets happen to be listed.
 
 ### Step 1: Role Intent Extraction
 Read the Role literally. Strip it of any assumption tied to a specific file type, language, or medium. State the underlying value the pillar delivers in the most general terms possible — what problem does this agent solve for *any* codebase, in any form it might take. This statement must not reference a specific tech stack, framework, or file extension.
@@ -198,7 +194,7 @@ Read the Role literally. Strip it of any assumption tied to a specific file type
 Read the worker's existing Philosophy, Target Matrix, Coding Standards, and Favorite Optimizations as a second signal — not to define the domain, but to disambiguate it where the two-word Role is genuinely too compressed to be actionable alone. Existing content may sharpen the Step 1 statement (e.g., confirming "Design" means visual/UX design, not systems architecture) but may never narrow it below what Step 1 established. Where existing content and the Role's plain meaning disagree, the Role wins — flag the disagreement for Step 5.
 
 ### Step 3: Mechanical Requirement Reasoning
-Given the generalized domain from Steps 1–2, reason about what mechanical actions are required to act on it anywhere: creation of things that don't yet exist, restructuring of existing output, or wrapping/instrumenting feedback into existing flow. Route to the Structural Base Profile(s) this implies — a Tier: Core worker may require more than one; inject each selected profile's verbatim text into `archetype_slots`, and reconcile any direct contradiction between composed profiles explicitly rather than silently favoring one. Do not consult a fixed mapping table — reason it out from the domain statement itself, the same way Phase 0 reasons a Synthesis Vector from two parent workers.
+Given the generalized domain from Steps 1–2, reason about what mechanical actions are required to act on it anywhere: creation of things that don't yet exist, restructuring of existing output, or wrapping/instrumenting feedback into existing flow. Route to the Structural Base Profile(s) this implies — a Tier: Core worker may require more than one. Synthesize the selected profiles, explicitly resolving any contradictions into unified Domain and Scope rules rather than appending them verbatim. Do not consult a fixed mapping table — reason it out from the domain statement itself, the same way Phase 0 reasons a Synthesis Vector from two parent workers.
 
 ### Step 4: Concrete Instantiation via Repo Recon
 Translate the generalized domain into concrete, stack-specific targets using Repo Recon's already-gathered context (language, framework, workflow type, verification layer). The same abstract category should produce different literal targets in different repos — e.g., "elevation and visual hierarchy" becomes drop-shadows and glassmorphism in a React repo, and structured color-banded console output in a PowerShell repo. A Target Matrix category is never rejected as inapplicable to a domain solely because the current repo's stack doesn't resemble the worker's original compiled examples — it is re-instantiated for the stack at hand.
@@ -209,7 +205,7 @@ Compare the worker's existing body against the Step 1–4 output. Identify every
 - **Narrowing:** Existing content is a true subset of the extrapolated domain (e.g., CSS-only targets under a domain that generalizes further). Indicates required expansion to add coverage without removing what is already correct.
 - **Incoherence:** Existing content actively contradicts or misrepresents the extrapolated domain — a rule, target, or optimization that belongs to a different pillar entirely, likely left over from before a Role change or a Cross-Vector Grant that outgrew its bounds. Indicates required removal or rewrite; it must not be silently folded in as a legitimate part of this worker's domain.
 
-Preserve the discrepancy analysis as context for the Master Forge Drift Audit and subsequent Efficacy Audit, so reviewers can distinguish domain expansion from removal or rewriting.
+Preserve the discrepancy analysis as context for the Master Forge Drift Audit and subsequent Efficacy Audit.
 
 ### Persistent Discovery Requirement
 A Tier: Core worker's Discovery process (SELECT / CLASSIFY) must not treat an empty literal Target Matrix match as grounds to halt. Before declaring zero targets, the worker must reason via Step 4 of this module whether the current repository expresses the domain in an un-instantiated form, then perform the full repository-wide sweep that reasoning points to. A zero-target declaration is only valid once that full sweep has genuinely yielded nothing, not merely when no listed category matches verbatim on the first pass.
