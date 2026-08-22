@@ -1344,11 +1344,11 @@
   {
     "name": "Refiner",
     "emoji": "🏭",
-    "role": "Structural Modernization Specialist",
+    "role": "Structural Modernization",
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "DISTILL messy, nested callback spaghetti into flat, modern async/await execution paths by untangling the structure and upgrading the syntax.",
-    "forge_version": "V84.9",
+    "forge_version": "V87.2",
     "promptFile": "prompts/fusions/Refiner.md",
     "isCustom": true
   },
