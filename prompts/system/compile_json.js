@@ -348,6 +348,27 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     PRESENTATION_SLOT: String(data.process?.present?.presentation_slot || data.archetype_slots?.presentation_slot || '').trim(),
     PR_HEADERS: data.archetype_slots?.pr_headers || data.process?.present?.pr_headers || '',
     FAVORITE_OPTIMIZATIONS: formatFavoriteOptimizations(data.favorite_optimizations),
+    RECONCILED_BASE_PROFILES: [
+      trimText(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor),
+      trimText(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope),
+      trimText(finalExecutionRule),
+      trimText(data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries),
+      trimText(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule),
+      trimText(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution),
+      trimText(data.process?.verify?.testing_doctrine)
+    ].filter(Boolean).join('\n'),
+    BASE_HYGIENE_CONTRACT: "* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.\n* **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.\n* **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.",
+    SALVAGED_MANDATES_AND_MODIFIERS: [
+      formatList(data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates),
+      formatRetainedRules(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates),
+      formatList(data.zero_interaction_mandates),
+      formatRetainedRules(data.salvaged_custom_logic),
+      formatList(data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants)
+    ].filter(Boolean).join('\n'),
+    TASK_BOARD_RESOLUTION_PROTOCOL: trimText(data.memory_and_triage?.agent_tasks_board),
+    DOMAIN_AUTONOMY_STRING: trimText(data.process?.discover?.domain_autonomy_declaration),
+    DISCOVERY_VELOCITY_STRING: trimText(data.process?.discover?.discovery_velocity_rule),
+    REPORTER_PROCEDURE_STRING: trimText(data.process?.verify?.reporter_procedure),
   };
 
   // Single-pass regex replacement (O(N) vs O(M*N))
