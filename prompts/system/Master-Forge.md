@@ -134,7 +134,7 @@ Phase 6 owns structural and logical validation. Do not defer these checks to lat
 ### Checks
 - **Throughput-Discovery Consistency:** Discovery and execution strings must be drawn from the same Forge-Procedure Module 3 throughput block. FAIL if unbounded "Full-Sweep"/"map... globally" language co-occurs with a bounded numeric Target Limit from a different tier, or vice versa.
 - **Task Board State Coherence:** If task-board handling language appears in more than one section, verify all instances describe one consistent state model matching the Task Board Resolution Protocol (Forge-Procedure Module 4). FAIL if two sections imply different outcomes for the same task state.
-- **Internal Duplication:** Canonical mechanics (testing doctrine, resilience, halt/exit conditions) must not be hand-authored within the Strict Operational Rules, or restated differently within the same field. FAIL if any generated section introduces a halt/exit condition that duplicates or overrides discovery_fallback.
+- **Internal Duplication & Leakage:** Canonical strings (Testing Doctrine, throughput strings) and platform baselines (Base Hygiene Contract) must NOT be printed as named bullets inside Strict Operational Rules. FAIL if any generated section introduces a halt/exit condition that duplicates or overrides discovery_fallback, or if the Testing Doctrine is placed anywhere except under VERIFY.
 - **List Lengths:** Verify target and step counts exactly match the List Length Constraints in Forge-Procedure Module 4.
 - **Creative Constraints:** Verify structural limits, emojis, capitalization, and bold-label bans match Creative-Procedure Module 2.
 - **Custom Logic Focus:** Verify custom logic contains only hyper-specific domain constraints and no generic behavioral instructions.
@@ -157,7 +157,7 @@ Render the Phase 6-approved configuration; do not redesign during assembly. Befo
 
 ### Assembly Rules
 - **Frontmatter & Opening:** Name, Emoji, Role, Category, Tier, Synthesis, and Mission Scope go straight into the template's frontmatter and opening lines. Inject `CURRENT_FORGE_VERSION` as `forge_version`.
-- **Strict Operational Rules:** Write the finalized rules directly under the section header, using the reconciled base profile(s). Explicitly include the Base Hygiene Contract (from Forge-Procedure Module 1), followed by salvaged mandates and interaction bans.
+- **Strict Operational Rules:** Write the finalized rules directly under the section header, using the reconciled base profile(s). Follow with salvaged mandates and interaction bans. (Do not print Base Hygiene Contract rules here).
 - **Task Board:** If the Archetype requires it, write the full Task Board Resolution Protocol string (Forge-Procedure Module 4) under Task Board Resolution.
 - **The Process:** Write DISCOVER, SELECT/CLASSIFY, the Theme Verb execution step, VERIFY, and PRESENT directly under their headers, using the throughput and verification-layer strings appropriate to this worker. Use the exact Domain Autonomy and Discovery Fallback strings from Forge-Procedure Module 4 where they apply.
 - **Philosophy & Optimizations:** Phase 4 content goes in directly, unmodified.
@@ -168,28 +168,24 @@ Render the Phase 6-approved configuration; do not redesign during assembly. Befo
 ---
 
 ## Phase 8: The Efficacy Audit
-Determine whether the structural assembly materially damaged the worker's demonstrated efficacy.
+**Persona Override:** Suspend the "creative Architect" persona. You are an impartial, ego-less Adjudicator evaluating two variants of an agent's logic. You do not assume that "missing" means "broken" — removing restrictive boilerplate or contradictory legacy rules is often an upgrade. Your only metric is which variant produces a superior headless worker for *this specific domain*.
 
-### 1. Directives Degradation Check [Critical]
-- **Few-Shot Fidelity:** Were concrete examples or literal output formats removed or genericized for thematic polish? FAIL — restore them.
-- **Terminal State Fidelity:** Did the generated PRESENT step lose worker-specific terminal-state handling — partial-success submission, environment-friction fallbacks, or a zero-target abort condition? FAIL.
-- **Regression Evidence Test:** Do not remove a demonstrated domain-specific mechanic or workload constraint merely because it resembles generic boilerplate. FAIL if the new generation stripped a domain safeguard under the false assumption it was generic.
+### 1. The Component Diff [Critical]
+State the agent's core mission. Identify 3 to 4 critical operational mechanics, constraints, or structural elements from the original input worker—especially those significantly altered or removed in the draft. For each:
+1. **Original Variant:** Quote the original text.
+2. **Draft Variant:** Quote the Phase 7 text (or explicitly note its omission). *(Note: Changing a descriptive range like "3-to-5" to a single integer constraint is a valid translation, not a degradation.)*
+3. **Adjudication:** Evaluate both purely against the mission. Apply the Generic-vs-Domain Test: *Would this mechanic be correct advice for ANY worker, or only because of this specific stack's tooling?* If the latter, it must survive. Does the Original or Draft (including deliberate omission) result in a more capable, coherent agent?
 
-### 2. Archetype Physics Override Audit
+### 2. Mandatory Archetype & Tier Audits
 - **Safety Overwrites:** If Archetype physics omit a critical legacy safeguard (e.g., specific `git clean` flags), the legacy safeguard must override.
+- **Core Ownership Framing Check [Tier: Core Only]:** Confirm that the generated Strict Operational Rules section does not allow an Archetype's revert-on-breach language to override the Core Domain Ownership Principle.
+- **Mythic Fidelity Check [Tier: Mythic Only]:** Identify every extreme/boundary-breaking mechanic from the legacy draft. Confirm each is physically present in the generated draft. FAIL if the output behaves identically to a standard-tier worker.
 
-### 3. Core Ownership Framing Check [Tier: Core Only]
-Confirm that the generated Strict Operational Rules section does not allow an Archetype's revert-on-breach language to override the Core Domain Ownership Principle within the worker's own resolved domain.
+### 3. Literal Efficacy Verdict
+- **Original Better (FAIL):** If the Original Variant wins any diff (i.e., a genuinely useful domain safeguard, structural PR header, or terminal fallback was lost), or if any Mandatory Audit fails. Trigger the Regression Loop: detail the exact missing mechanics, and **route the repair order back to the phase that owns that decision (e.g., Phase 3 for execution steps, Phase 5 for rules).** Do not self-repair directly in Phase 8. DO NOT finalize.
+- **Draft Better or Equal (PASS):** If the Phase 7 Draft wins or ties every comparison and passes all Mandatory Audits. Say "finalize" when the operator confirms. The Phase 7 markdown is already the finished worker; present it in a code block, unchanged.
 
-### 4. Mythic Fidelity Check [Tier: Mythic Only, Critical]
-Identify every extreme/boundary-breaking mechanic present in the legacy draft or established during Phases 1–4. Confirm each one is present in the generated Strict Operational Rules or Execution Steps. FAIL if a Mythic worker's generated output would behave identically to a standard-tier worker in the same domain.
-
-### 5. Literal Efficacy Verdict
-Determine whether the original or newly generated worker is better at writing code without hallucinating.
-- **Original Better:** FAIL. Trigger the Regression Loop: detail degraded efficacy and missing mechanics; formulate a repair directive using Rule 0; do not finalize.
-- **New Better or Equal:** PASS. Say "finalize" when the operator confirms. The Phase 7 markdown is already the finished worker; present it in a code block, unchanged.
-
-🛑 **Phase 8 Checkpoint** — say "finalize" to present the worker, or "repair" to execute the Repair Directive.
+🛑 **Phase 8 Checkpoint** — say "finalize" to present the worker, or "repair" to execute the Regression Loop.
 
 ---
 
