@@ -21,7 +21,7 @@ These apply only to unattended execution and PR submission — never relevant in
 Native file read the locked target `.md` to load legacy logic into context.
 
 ## Step 3: Architectural Synthesis & Validation
-Run the content-generation logic of Master-Forge.md's Phase 1 through Phase 6 against the locked target — Mission Scope, Archetype Engine reasoning, and Domain Scope Reasoning (Phase 1), Legacy Intelligence & Drift Analysis (Phase 2), the Target Data Array and Execution Steps (Phase 3), the Contextual Logic Engine (Phase 4), the Architectural Reconciliation checks (Phase 5), and the Configuration Linter checks (Phase 6) — exactly as currently defined there. Do not skip or simplify a check because this is headless; the standard is identical to an interactive build.
+Run the content-generation logic of Master-Forge.md's Phase 1 through Phase 6 against the locked target — Diagnostic Routing & Extraction (Phase 1), Legacy Intelligence & Drift Analysis (Phase 2), The Execution Blueprint (Phase 3), The Contextual Logic Engine (Phase 4), The Architectural Reconciliation (Phase 5), and The Configuration Linter (Phase 6) — exactly as currently defined there. Do not skip or simplify a check because this is headless; the standard is identical to an interactive build.
 
 This means the reasoning and output requirements only — explicitly exclude any interactive scaffolding those Phase sections contain (menu presentation, "🛑 Checkpoint" prompts, "say next" language). There is no operator here to respond to a menu or a checkpoint; encountering that text is a signal to extract the underlying instruction and continue synchronously, never to pause or simulate presenting it.
 
@@ -39,7 +39,7 @@ Generate `payload.json` from that reasoning. Generate `_diagnostic` first (`lint
 - **Task Board Mapping:** If the Archetype requires the Task Board, explicitly map the full Task Board Resolution Protocol string (Forge-Procedure Module 4) into `data.memory_and_triage.agent_tasks_board`, instead of just the file path.
 - **Archetype Physics Mapping:** Inject finalized `domain_anchor`, `mutation_scope`, `operational_boundaries`, `decisiveness_rule`, `workflow_execution`, and `journal_procedure` into `archetype_slots`. Map the selected base profile key or keys to `data.identity.archetype`. Preserve unique overrides in `salvaged_custom_logic` (Forge-Procedure Module 1).
 - **Presentation Mapping:** Inject finalized `presentation_slot` and `pr_headers` into `data.process.present`.
-- **Decoupled Velocity Generation:** Inject `execution_mandate`, `discovery_velocity_rule`, `execution_posture`, `reporter_procedure`, and `testing_doctrine` based on throughput and verification layers (Forge-Procedure Module 3).
+- **Decoupled Velocity Generation:** Inject `data.process.execute.execution_mandate`, `data.process.discover.discovery_velocity_rule`, `data.process.execute.execution_posture`, `data.process.verify.reporter_procedure`, and `data.process.verify.testing_doctrine` based on throughput and verification layers (Forge-Procedure Module 3).
 - **Phase 3 & 4 Mapping:** Map Target Data Array to `data.process.discover.target_matrix` (the compiler also accepts the flatter `data.process.target_matrix` as a fallback, but the nested path is the real convention — use it). Map Execution Steps to `data.process.execute.execution_steps`, Heuristics to `data.process.verify.heuristic_verification`, Philosophy to `data.philosophy`, Optimizations to `data.favorite_optimizations`. Map `domain_autonomy_declaration` and `discovery_fallback` to `data.process.discover`, using exact strings from Forge-Procedure Module 4.
 - **Overrides:** Map Theme Verb to `data.process.execute.theme_verb` and Payload Threshold to `data.process.select_classify.target_limit`. Generate `data.process.execute.target_limit_instruction` natively.
 - **Modifiers:** Inject active context modifier clauses into `data.strict_operational_mandates.domain_modifier_mandates`.
@@ -55,7 +55,7 @@ Generate `payload.json` from that reasoning. Generate `_diagnostic` first (`lint
 - **Retry Loop:** If `stderr` throws a `[FATAL ERROR]`, fix the `payload.json` parameter and retry. Disregard `[WARNING]`.
 
 ## Step 6: Efficacy Audit
-Run the content of Master-Forge.md's Phase 8 Efficacy Audit — Directives Degradation, Archetype Physics Override, Domain Fidelity (Tier: Core), and the Literal Efficacy Verdict — exactly as currently defined there, against the newly compiled `.md` alongside the legacy text. As in Step 3, extract the audit logic only; the interactive checkpoint at the end of Phase 8 ("say finalize") has no headless equivalent. Output complete results via `message_user` before PR submission.
+Run the content of Master-Forge.md's Phase 8: The Efficacy Audit — The Component Diff, Mandatory Archetype & Tier Audits, and the Literal Efficacy Verdict — exactly as currently defined there, against the newly compiled `.md` alongside the legacy text. As in Step 3, extract the audit logic only; the interactive checkpoint at the end of Phase 8 ("say finalize") has no headless equivalent. Output complete results via `message_user` before PR submission.
 
 Resolve headlessly: there is no operator to confirm "finalize." On PASS, proceed straight to Step 7. On FAIL, apply the Regression Loop — delete the flawed `.md`, adjust `payload.json`, rerun Step 5.
 

@@ -104,16 +104,16 @@ Your mission is to {{MISSION_SCOPE}}.
 
 ### The Process
 1. 🔍 **DISCOVER** — {{DISCOVER_TRIGGER}} {{DISCOVERY_FALLBACK}}
-**Task Board Resolution:** {{TASK_BOARD_RESOLUTION_PROTOCOL}}
-{{DOMAIN_AUTONOMY_STRING}}
-{{DISCOVERY_VELOCITY_STRING}}
+**Task Board Resolution:** {{WORKER_TASKS_BOARD}}
+{{DOMAIN_AUTONOMY_DECLARATION}}
+{{DISCOVERY_VELOCITY_RULE}}
 **Target Matrix:**
 {{TARGET_MATRIX}}
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets {{PRIORITY_LANGUAGE}} up to your limit. Log unhandled targets. Target Limit: {{TARGET_LIMIT}}.
 3. ⚙️ **{{THEME_VERB}}** — {{EXECUTION_POSTURE}} {{TARGET_LIMIT_INSTRUCTION}}
 {{EXECUTION_STEPS}}
-4. ✅ **VERIFY** — **The Reporter Protocol:** {{REPORTER_PROCEDURE_STRING}}
-**Testing Doctrine:** {{TESTING_DOCTRINE_STRING}}
+4. ✅ **VERIFY** — **The Reporter Protocol:** {{REPORTER_PROCEDURE}}
+**Testing Doctrine:** {{VERIFICATION_PROCEDURE}}
 **Heuristic Verification:**
 {{HEURISTICS}}
 5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "{{EMOJI}} {{NAME}}: [Action]". {{PRESENTATION_SLOT}}
