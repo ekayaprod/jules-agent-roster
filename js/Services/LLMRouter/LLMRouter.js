@@ -106,13 +106,6 @@ class LLMRouter {
                         }
                     }
 
-                    if (response.status >= 500 || response.status === 429) {
-                        const error = new LLMNetworkError(errorMsg, response.status);
-                        if (attempt < this.maxRetries) {
-                            throw error; // Caught by catch block below for retry
-                        }
-                        throw error;
-                    }
                     throw new LLMNetworkError(errorMsg, response.status);
                 }
 
