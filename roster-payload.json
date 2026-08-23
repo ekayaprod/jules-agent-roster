@@ -27,7 +27,7 @@
     "role": "Speed Daemon",
     "category": "Performance",
     "tier": "Core",
-    "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and aggressively purge latency.",
+    "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge system latency.",
     "forge_version": "V87.2",
     "promptFile": "prompts/Bolt+.md",
     "isCustom": false
@@ -38,8 +38,8 @@
     "role": "AI Integrator",
     "category": "Feature",
     "tier": "Core",
-    "description": "INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art handshakes.",
-    "forge_version": "V85.2",
+    "description": "INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art neural handshakes.",
+    "forge_version": "V87.2",
     "promptFile": "prompts/Cortex.md",
     "isCustom": false
   },
@@ -50,7 +50,7 @@
     "category": "Operations",
     "tier": "Core",
     "description": "DISPATCH pristine CI/CD payloads, optimize container transit, fortify meta-infrastructure, and provision context-aware MCP arrays.",
-    "forge_version": "V85.1",
+    "forge_version": "V87.2",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
@@ -424,7 +424,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "MUTATE UI components by injecting accessible hover, focus-visible, and disabled states.",
-    "forge_version": "V85.0",
+    "forge_version": "V87.2",
     "promptFile": "prompts/fusions/Chameleon.md",
     "isCustom": true
   },
@@ -435,7 +435,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "SECURE external dependencies and immediately refactor validation schemas (Zod/Joi) to ensure airtight architectural boundaries.",
-    "forge_version": "V85.0",
+    "forge_version": "V87.2",
     "promptFile": "prompts/fusions/Checkpoint.md",
     "isCustom": true
   },
