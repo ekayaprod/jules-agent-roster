@@ -369,6 +369,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     DOMAIN_AUTONOMY_STRING: trimText(data.process?.discover?.domain_autonomy_declaration),
     DISCOVERY_VELOCITY_STRING: trimText(data.process?.discover?.discovery_velocity_rule),
     REPORTER_PROCEDURE_STRING: trimText(data.process?.verify?.reporter_procedure),
+    TESTING_DOCTRINE_STRING: trimText(data.process?.verify?.testing_doctrine),
   };
 
   // Single-pass regex replacement (O(N) vs O(M*N))
