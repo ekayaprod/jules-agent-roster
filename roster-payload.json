@@ -27,8 +27,8 @@
     "role": "Speed Daemon",
     "category": "Performance",
     "tier": "Core",
-    "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge latency.",
-    "forge_version": "V86.9",
+    "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and aggressively purge latency.",
+    "forge_version": "V87.2",
     "promptFile": "prompts/Bolt+.md",
     "isCustom": false
   },
