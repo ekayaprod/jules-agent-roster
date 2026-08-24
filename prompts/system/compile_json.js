@@ -271,7 +271,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     { label: 'git clean baseline command', pattern: /git clean -fd/i },
     { label: 'temp_backup baseline path', pattern: /\.jules\/temp_backup/i },
     { label: 'SEARCH/REPLACE tool-lock block syntax', pattern: /<{3,}\s*SEARCH/i },
-    { label: 'Test Immunity Doctrine restatement', pattern: /test immunity doctrine/i },
+    { label: 'Testing Doctrine restatement', pattern: /testing doctrine/i },
     { label: 'Canonical testing doctrine phrase', pattern: /treat test files as immutable and read-only/i },
     { label: 'Canonical testing doctrine failure clause', pattern: /prove (?:the test|it) was failing on `?main`?/i },
     { label: 'Managed Interruption clause', pattern: /managed interruption/i },
