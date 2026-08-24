@@ -17,4 +17,3 @@
 - [INSTRUMENTER] `js/Features/JulesTerminal/JulesTerminal.js`: Resilience & Security Boundaries (Empty catch blocks/Unmapped edge cases).
 - [INSTRUMENTER] `js/Services/GithubAPI/GithubAPI.js`: Resilience & Security Boundaries (Empty catch blocks/Unmapped edge cases).
 - [INSTRUMENTER] `js/Services/AgentRepository.js`: Resilience & Security Boundaries (Empty catch blocks/Unmapped edge cases).
-- [INSTRUMENTER] `js/Services/LLMRouter/LLMRouter.js`: Resilience & Security Boundaries (Empty catch blocks/Unmapped edge cases).

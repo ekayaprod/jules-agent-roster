@@ -65,7 +65,7 @@ describe('LLMRouter', () => {
         it('should call OpenAI API correctly', async () => {
             global.fetch.mockResolvedValueOnce({
                 ok: true,
-                json: async () => ({ choices: [{ message: { content: 'hello' } }] })
+                json: async () => ({ choices: [{ message: { role: 'assistant', content: 'hello' } }] })
             });
 
             await router.chatOpenAI([{role: 'user', content: 'hi'}], 'gpt-4o');
@@ -162,7 +162,7 @@ describe('LLMRouter', () => {
                     const typeErr = new TypeError('Failed to fetch');
                     reject(typeErr);
                 } else {
-                    resolve({ ok: true, json: async () => ({ success: true }) });
+                    resolve({ ok: true, json: async () => ({ choices: [{ message: { role: 'assistant', content: 'hello' } }] }) });
                 }
             }));
 
@@ -205,7 +205,7 @@ describe('LLMRouter', () => {
                         reject(abortErr);
                     }, 15000);
                 } else {
-                    resolve({ ok: true, json: async () => ({ success: true }) });
+                    resolve({ ok: true, json: async () => ({ choices: [{ message: { role: 'assistant', content: 'hello' } }] }) });
                 }
             }));
 
@@ -244,7 +244,7 @@ describe('LLMRouter', () => {
         it('should concatenate multiple system messages', async () => {
             global.fetch.mockResolvedValueOnce({
                 ok: true,
-                json: async () => ({ content: [{ text: 'hello' }] })
+                json: async () => ({ content: [{ type: 'text', text: 'hello' }] })
             });
 
             await router.chatAnthropic([
@@ -267,7 +267,7 @@ describe('LLMRouter', () => {
         it('should call Anthropic API correctly and map system message', async () => {
             global.fetch.mockResolvedValueOnce({
                 ok: true,
-                json: async () => ({ content: [{ text: 'hello' }] })
+                json: async () => ({ content: [{ type: 'text', text: 'hello' }] })
             });
 
             await router.chatAnthropic([
@@ -294,7 +294,7 @@ describe('LLMRouter', () => {
 
         it('should handle 500 error with backoff', async () => {
             global.fetch.mockResolvedValueOnce({ ok: false, status: 500, json: async () => ({ error: { message: 'Server Error' } }) });
-            global.fetch.mockResolvedValueOnce({ ok: true, json: async () => ({ success: true }) });
+            global.fetch.mockResolvedValueOnce({ ok: true, json: async () => ({ content: [{ type: 'text', text: 'hello' }] }) });
 
             const promise = router.chatAnthropic([{role: 'user', content: 'hi'}]);
 
@@ -319,7 +319,7 @@ describe('LLMRouter', () => {
 
             // Force evaluation in a global scope where module is strictly absent
             const vm = require('vm');
-            const sandbox = { window: {} };
+            const sandbox = { window: {}, require: require };
             vm.createContext(sandbox);
             vm.runInContext(sourceCode, sandbox);
 
@@ -332,12 +332,12 @@ describe('LLMRouter', () => {
             const path = require('path');
             const sourceCode = fs.readFileSync(path.join(__dirname, 'LLMRouter.js'), 'utf8');
 
-            const sandbox = { window: {} };
-            const script = new Function('window', 'module', `
+            const sandbox = { window: {}, require: require };
+            const script = new Function('window', 'module', 'require', `
                 ${sourceCode}
             `);
             // we pass `module` as an object without `exports`
-            script(sandbox.window, {});
+            script(sandbox.window, {}, require);
 
             expect(sandbox.window.LLMRouter).toBeDefined();
             expect(sandbox.window.LLMRouter.name).toBe('LLMRouter');

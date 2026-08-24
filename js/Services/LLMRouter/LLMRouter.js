@@ -1,3 +1,23 @@
+const z = typeof require !== 'undefined' ? require('zod').z : window.z;
+
+const OpenAIResponseSchema = z.object({
+    id: z.string().optional(),
+    choices: z.array(z.object({
+        message: z.object({
+            role: z.string(),
+            content: z.string()
+        })
+    })).min(1)
+}).passthrough();
+
+const AnthropicResponseSchema = z.object({
+    id: z.string().optional(),
+    content: z.array(z.object({
+        type: z.string(),
+        text: z.string()
+    })).min(1)
+}).passthrough();
+
 class LLMConfigurationError extends Error {
     constructor(message) {
         super(message);
@@ -94,7 +114,7 @@ class LLMRouter {
                     try {
                         const errorData = await response.json();
                         errorMsg = errorData.error?.message || errorMsg;
-                    } catch {
+                    } catch (e1) {
                         // Fallback to text
                         try {
                             const errorText = await response.text();
@@ -155,7 +175,7 @@ class LLMRouter {
             temperature: temperature
         };
 
-        return this._fetchWithRetry("https://api.openai.com/v1/chat/completions", {
+        const rawResponse = await this._fetchWithRetry("https://api.openai.com/v1/chat/completions", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -163,6 +183,12 @@ class LLMRouter {
             },
             body: JSON.stringify(payload)
         }, "OpenAI");
+
+        try {
+            return OpenAIResponseSchema.parse(rawResponse);
+        } catch (error) {
+            throw new LLMValidationError(`OpenAI response failed schema validation: ${error.message}`);
+        }
     }
 
     /**
@@ -208,7 +234,7 @@ class LLMRouter {
             payload.system = systemMessage;
         }
 
-        return this._fetchWithRetry("https://api.anthropic.com/v1/messages", {
+        const rawResponse = await this._fetchWithRetry("https://api.anthropic.com/v1/messages", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -217,6 +243,12 @@ class LLMRouter {
             },
             body: JSON.stringify(payload)
         }, "Anthropic");
+
+        try {
+            return AnthropicResponseSchema.parse(rawResponse);
+        } catch (error) {
+            throw new LLMValidationError(`Anthropic response failed schema validation: ${error.message}`);
+        }
     }
 }
 
