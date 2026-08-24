@@ -14,6 +14,3 @@
 - [TRANSFORMER] `js/Utils/network/network-utils.js`: Rigid Presentation States (Hardcoded hex codes).
 - [TRANSFORMER] `js/Utils/dom/dom-utils.js`: Rigid Presentation States (Hardcoded hex codes).
 - [TRANSFORMER] `js/Features/JulesTerminal/TerminalPolling.js`: Rigid Presentation States (Hardcoded hex codes).
-- [INSTRUMENTER] `js/Features/JulesTerminal/JulesTerminal.js`: Resilience & Security Boundaries (Empty catch blocks/Unmapped edge cases).
-- [INSTRUMENTER] `js/Services/GithubAPI/GithubAPI.js`: Resilience & Security Boundaries (Empty catch blocks/Unmapped edge cases).
-- [INSTRUMENTER] `js/Services/AgentRepository.js`: Resilience & Security Boundaries (Empty catch blocks/Unmapped edge cases).

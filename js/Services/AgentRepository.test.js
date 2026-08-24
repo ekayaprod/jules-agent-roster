@@ -430,3 +430,62 @@ describe('AgentRepository', () => {
         });
     });
 });
+
+describe('AgentRepository (INSTRUMENTER Edge Cases)', () => {
+    let repo;
+
+    beforeEach(() => {
+        repo = new AgentRepository();
+        global.CONFIG = { categories: { core: {}, plus: {} } };
+        global.TelemetryUtils = { dispatchEvent: jest.fn() };
+        global.NetworkUtils = {
+            fetchWithRetry: jest.fn()
+        };
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test('validateAgentsData should gracefully ignore items without names', () => {
+        const payload = [{ emoji: '👻', category: 'core' }];
+        const result = repo.validateAgentsData(payload);
+        expect(result).toEqual([]);
+    });
+
+    test('validateAgentsData should default missing fields instead of crashing', () => {
+        const payload = [{ name: 'Test Agent', category: 'core' }];
+        const result = repo.validateAgentsData(payload);
+        expect(result).toHaveLength(1);
+        expect(result[0].name).toBe('Test Agent');
+    });
+
+    test('validateCustomAgent should explicitly fail gracefully if malicious payload triggers pattern', () => {
+        const payload = { name: '<script>alert(1)</script>', emoji: '👻' };
+        const result = repo.validateCustomAgent('test_key', payload);
+        expect(result.valid).toBe(false);
+        expect(result.reason).toContain('malicious content detected');
+    });
+
+    test('_fetchPayload should reject gracefully on network errors', async () => {
+        global.NetworkUtils.fetchWithRetry.mockRejectedValueOnce(new Error('Fetch failed'));
+        const result = await repo._fetchPayload();
+        expect(result).toEqual([]);
+    });
+
+    test('_fetchPayload should reject gracefully on JSON parse errors', async () => {
+        global.NetworkUtils.fetchWithRetry.mockResolvedValueOnce({
+            ok: true,
+            json: async () => { throw new Error('Invalid JSON'); }
+        });
+
+        await expect(repo._fetchPayload()).rejects.toThrow('Check your configuration file formatting and try again.');
+    });
+
+    test('fetchPrompt should fallback on failure', async () => {
+        global.NetworkUtils.fetchWithRetry.mockRejectedValueOnce(new Error('Fetch failed'));
+        const result = await repo.fetchPrompt('Agent', 'url', 'fallback text');
+        expect(result).toBe('fallback text');
+        expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('FETCH_PROMPT_FAILED', expect.any(Error), { url: 'url' });
+    });
+});
