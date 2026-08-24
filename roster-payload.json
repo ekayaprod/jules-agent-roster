@@ -1007,7 +1007,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "MAP untested code, critical paths, and missing edge cases, updating TESTING_PLAN.md to construct coverage roadmaps.",
-    "forge_version": "V85.0",
+    "forge_version": "V87.3",
     "promptFile": "prompts/fusions/Mapper.md",
     "isCustom": true
   },
