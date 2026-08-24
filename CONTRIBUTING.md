@@ -20,7 +20,7 @@ npm install
 npm start
 ```
 
-*Note: The `npm start` command will automatically compile the agent payload before launching a local server for you to test UI changes.*
+_Note: The `npm start` command will automatically compile the agent payload before launching a local server for you to test UI changes._
 
 ### 🐳 Docker Quick Start
 
@@ -33,26 +33,26 @@ docker run -p 8080:8080 jules-roster
 
 ## 🧪 Testing Your Changes
 
-Our testing strategy is split into two distinct paths. Please make sure you run the right one for your changes!
+Our testing strategy is split into three distinct paths. Please make sure you run the right one for your changes!
 
-* **Benchmarks (The Performance):** If you are checking the overall system performance or ensuring class loading works without a bundler, run the benchmark suite.
+- **Benchmarks (The Performance):** If you are checking the overall system performance or ensuring class loading works without a bundler, run the benchmark suite.
 
   ```bash
   npm test
   ```
 
-  *(Wait, what? Yes, `npm test` is intentionally aliased to run `benchmark.js` in our `package.json`!)*
+  _(Wait, what? Yes, `npm test` is intentionally aliased to run `benchmark.js` in our `package.json`!)_
 
-* **Unit Tests (The Code):** If you touch any `*.test.js` files (like our DOM utilities), you must run Jest explicitly. We use JSDOM to mock the browser environment.
+- **Unit Tests (The Code):** If you touch any `*.test.js` files (like our DOM utilities), you must run Jest explicitly. We use JSDOM to mock the browser environment.
 
   ```bash
   npm run test:unit
   ```
 
-* **End-to-End Tests (The User Journey):** If you are changing the UI flow or core interactions, make sure the Playwright suite still passes.
+- **End-to-End Tests (The User Journey):** If you are changing the UI flow or core interactions, make sure the Playwright suite still passes.
 
   ```bash
-  npx playwright test
+  npm run test:e2e
   ```
 
 ## 🏗️ Adding a New Agent
@@ -63,6 +63,6 @@ Our testing strategy is split into two distinct paths. Please make sure you run 
 
 ## 📜 Code Style
 
-* **Vanilla JS Only:** No React, no Vue, no bundlers.
-* **CSS:** Keep it utility-based or colocated in feature folders.
-* **Tone:** Keep it light, casual, and emoji-heavy! 🎨✨
+- **Vanilla JS Only:** No React, no Vue, no bundlers.
+- **CSS:** Keep it utility-based or colocated in feature folders.
+- **Tone:** Keep it light, casual, and emoji-heavy! 🎨✨
