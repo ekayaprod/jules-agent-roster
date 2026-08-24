@@ -60,8 +60,8 @@
     "role": "Logic Centrifuge",
     "category": "Architecture",
     "tier": "Core",
-    "description": "COLLAPSE sprawling imperative logic into highly dense, functional crystals using high-pressure vertical reduction.",
-    "forge_version": "V86.9",
+    "description": "COLLAPSE sprawling imperative logic into highly dense, declarative functional pipelines without sacrificing runtime physics or debugging clarity.",
+    "forge_version": "V87.2",
     "promptFile": "prompts/Helix.md",
     "isCustom": false
   },
@@ -446,7 +446,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "BUILD the automated machinery and pipelines that generate documentation, forging net-new release infrastructure from scratch.",
-    "forge_version": "V85.0",
+    "forge_version": "V87.3",
     "promptFile": "prompts/fusions/Chronicle.md",
     "isCustom": true
   },
