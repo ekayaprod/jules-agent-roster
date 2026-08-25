@@ -20,8 +20,8 @@ describe('NetworkUtils edge cases', () => {
         });
 
         it('falls back to raw URL if URL parsing fails', () => {
-            NetworkUtils._enforceRateLimit("invalid-url");
-            expect(NetworkUtils._requestBuckets["invalid-url"]).toBeDefined();
+            NetworkUtils._enforceRateLimit("http://%");
+            expect(NetworkUtils._requestBuckets["http://%"]).toBeDefined();
         });
     });
 });

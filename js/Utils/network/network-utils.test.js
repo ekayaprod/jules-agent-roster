@@ -387,12 +387,12 @@ describe('NetworkUtils', () => {
         });
 
         it('should fallback to using the original string as hostname if URL parsing fails', () => {
-            const malformedUrl = 'invalid';
+            const malformedUrl = 'http://%';
 
             // Should not throw Error due to malformed URL (as it is caught and handled via fallback)
             expect(() => NetworkUtils._enforceRateLimit(malformedUrl)).not.toThrow();
 
-            // The state should now track 'invalid' directly
+            // The state should now track 'http://%' directly
             expect(NetworkUtils._requestBuckets[malformedUrl]).toBeDefined();
             expect(NetworkUtils._requestBuckets[malformedUrl].count).toBeGreaterThan(0);
         });

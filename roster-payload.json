@@ -457,7 +457,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "ANNOTATE shipped features with strategic roadmaps to officially mark milestones complete.",
-    "forge_version": "V85.1",
+    "forge_version": "V87.3",
     "promptFile": "prompts/fusions/Chronicler.md",
     "isCustom": true
   },
