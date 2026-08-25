@@ -34,11 +34,7 @@ class NetworkUtils {
     } catch (error) {
         // Fallback for relative URLs
         try {
-            if (urlString.startsWith('.') || urlString.startsWith('/')) {
-                hostname = new URL(urlString, typeof window !== 'undefined' && window.location ? window.location.href : 'http://localhost').hostname;
-            } else {
-                 throw new Error("Not a relative URL");
-            }
+            hostname = new URL(urlString, typeof window !== 'undefined' && window.location ? window.location.href : 'http://localhost').hostname;
         } catch (innerError) {
             hostname = urlString;
             const tu = typeof getTelemetryUtils === "function" ? getTelemetryUtils() : (typeof window !== "undefined" ? window.TelemetryUtils : null);
