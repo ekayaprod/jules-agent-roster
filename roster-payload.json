@@ -1095,7 +1095,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "BURY unreferenced or explicitly deprecated dead code, documenting its architectural history.",
-    "forge_version": "V85.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Obituary Writer.md",
     "isCustom": true
   },
