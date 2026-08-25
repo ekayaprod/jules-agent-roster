@@ -468,7 +468,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "CATEGORIZE the repository by enforcing strict file naming conventions, injecting missing metadata, and assigning explicit ownership.",
-    "forge_version": "V85.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/City Clerk.md",
     "isCustom": true
   },
@@ -1047,11 +1047,11 @@
   {
     "name": "Mitosis",
     "emoji": "🧫",
-    "role": "Parallelizer",
-    "category": "UX",
+    "role": "Logic Parallelizer",
+    "category": "Performance",
     "tier": "Fusion",
     "description": "ACCELERATE heavy, single-threaded UI logic into identical, parallel Web Worker cells.",
-    "forge_version": "V85.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Mitosis.md",
     "isCustom": true
   },
