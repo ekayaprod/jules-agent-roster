@@ -1106,7 +1106,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "CODIFY scattered logic duplicates into a single utility, locking it behind an ironclad, strictly typed JSDoc contract.",
-    "forge_version": "V85.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Oracle.md",
     "isCustom": true
   },
@@ -1128,7 +1128,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "RESURRECT lost historical context for load-bearing spaghetti that modern developers are too afraid to touch.",
-    "forge_version": "V85.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Ouija.md",
     "isCustom": true
   },
