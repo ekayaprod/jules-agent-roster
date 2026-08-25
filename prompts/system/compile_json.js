@@ -317,21 +317,8 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     LANGUAGE: data.coding_standards?.language || '',
     GOOD_CODE: cleanCodeFence(data.coding_standards?.good_code_snippet),
     BAD_CODE: cleanCodeFence(data.coding_standards?.bad_code_snippet),
-    PRIMARY_RESPONSIBILITY: trimText(data.archetype_slots?.domain_anchor || data.strict_operational_mandates?.domain_anchor),
-    THE_SCOPE: trimText(data.archetype_slots?.mutation_scope || data.strict_operational_mandates?.mutation_scope),
-    EXECUTION_RULE: trimText(finalExecutionRule),
-    RESILIENCE_PROCEDURE: trimText(data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries),
-    DOMAIN_MODIFIERS: formatList(data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates),
-    AUTONOMOUS_SELECTION: trimText(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule),
-    WORKFLOW_EXECUTION: trimText(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution),
     VERIFICATION_PROCEDURE: trimText(data.process?.verify?.testing_doctrine),
-    SALVAGED_MANDATES: formatRetainedRules(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates),
-    ZERO_INTERACTION_MANDATES: formatList(data.zero_interaction_mandates),
-    SALVAGED_CUSTOM_LOGIC: formatRetainedRules(data.salvaged_custom_logic),
-    CROSS_VECTOR_GRANTS: formatList(data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants),
-    JOURNAL_PATH: isCore ? `.jules/${data.identity?.name || 'journal'}.md` : `.jules/journal_${category.toLowerCase()}.md`,
     WORKER_TASKS_BOARD: trimText(data.memory_and_triage?.agent_tasks_board),
-    JOURNAL_PROCEDURE: trimText(data.archetype_slots?.journal_procedure || data.memory_and_triage?.journal_procedure),
     DISCOVER_TRIGGER: String(data.process?.discover?.trigger || '').replace(/^via\s+/i, ''),
     DISCOVERY_FALLBACK: trimText(data.process?.discover?.discovery_fallback),
     DOMAIN_AUTONOMY_DECLARATION: trimText(data.process?.discover?.domain_autonomy_declaration),
@@ -357,20 +344,13 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
       trimText(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution),
       trimText(data.process?.verify?.testing_doctrine)
     ].filter(Boolean).join('\n'),
-    BASE_HYGIENE_CONTRACT: "* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.\n* **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.\n* **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.",
     SALVAGED_MANDATES_AND_MODIFIERS: [
       formatList(data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates),
       formatRetainedRules(data.strict_operational_mandates?.salvaged_mandates || data.salvaged_mandates),
       formatList(data.zero_interaction_mandates),
       formatRetainedRules(data.salvaged_custom_logic),
       formatList(data.strict_operational_mandates?.cross_vector_grants || data.cross_vector_grants)
-    ].filter(Boolean).join('\n'),
-    TASK_BOARD_RESOLUTION_PROTOCOL: trimText(data.memory_and_triage?.agent_tasks_board),
-    DOMAIN_AUTONOMY_STRING: trimText(data.process?.discover?.domain_autonomy_declaration),
-    DISCOVERY_VELOCITY_STRING: trimText(data.process?.discover?.discovery_velocity_rule),
-    REPORTER_PROCEDURE_STRING: trimText(data.process?.verify?.reporter_procedure),
-    TESTING_DOCTRINE_STRING: trimText(data.process?.verify?.testing_doctrine),
-
+    ].filter(Boolean).join('\n')
   };
 
   // Single-pass regex replacement (O(N) vs O(M*N))
