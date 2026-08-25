@@ -1062,7 +1062,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "DISTILL scattered logic into centralized utilities, rigorously locking their behavior with 100% unit test coverage.",
-    "forge_version": "V85.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Mixologist.md",
     "isCustom": true
   },
