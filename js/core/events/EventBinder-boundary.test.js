@@ -3,6 +3,13 @@
  */
 
 const EventBinder = require('./EventBinder');
+const { SearchEvents, TerminalEvents, ExportEvents, GlobalEvents, NavigationEvents } = require('./handlers');
+global.SearchEvents = SearchEvents;
+global.TerminalEvents = TerminalEvents;
+global.ExportEvents = ExportEvents;
+global.GlobalEvents = GlobalEvents;
+global.NavigationEvents = NavigationEvents;
+
 
 global.SafeUITimings = { MODAL_FOCUS_DELAY_MS: 50 };
 
