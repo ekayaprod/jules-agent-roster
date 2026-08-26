@@ -1,5 +1,5 @@
 # 📯 THE SECURE DISPATCH: Optimized Multi-Stage Transit
-FROM node:20-alpine AS builder
+FROM node:26-alpine AS builder
 
 WORKDIR /opt/payload
 
@@ -9,7 +9,7 @@ COPY prompts/ ./prompts/
 RUN node scripts/build-roster.js
 
 # 2. Production Serving Layer
-FROM node:20-alpine AS production
+FROM node:26-alpine AS production
 
 WORKDIR /opt/payload
 
