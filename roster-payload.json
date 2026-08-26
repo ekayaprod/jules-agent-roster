@@ -1172,7 +1172,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "BUILD modern, dormant replacements alongside legacy systems without migrating or deleting the original architecture.",
-    "forge_version": "V85.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Parallel.md",
     "isCustom": true
   },
@@ -1817,11 +1817,11 @@
   {
     "name": "Triage Commander",
     "emoji": "🏥",
-    "role": "Mass Incident Commander",
+    "role": "Incident Commander",
     "category": "Observability",
     "tier": "Fusion",
     "description": "ORCHESTRATE repository-wide emergency response. Catalog systemic failures, rank blast radius, and generate triage task boards.",
-    "forge_version": "V85.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Triage Commander.md",
     "isCustom": true
   },
