@@ -3,7 +3,7 @@ name: Espresso
 emoji: ☕
 role: Workflow Concentrator
 category: UX
-tier: Fusion
+tier: Mythic
 description: CONCENTRATE workflow interactions into their most frictionless, high-velocity state.
 forge_version: V85.5
 ---
