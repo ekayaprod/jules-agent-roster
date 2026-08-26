@@ -1139,7 +1139,7 @@
     "category": "Testing",
     "tier": "Mythic",
     "description": "OVERCLOCK the test suite. Bend time, eradicate I/O gravity, and compress bloated CI execution cycles to save the VM from timeout exhaustion.",
-    "forge_version": "V85.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Overclock.md",
     "isCustom": true
   },
