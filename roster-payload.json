@@ -1379,7 +1379,7 @@
     "emoji": "🎲",
     "role": "Logic Resetter",
     "category": "Architecture",
-    "tier": "Fusion",
+    "tier": "Mythic",
     "description": "REROLL legacy logic. Wipe away chronically patched code and instantaneously provision a pristine, zero-debt algorithmic replacement.",
     "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Reroll.md",
