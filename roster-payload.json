@@ -479,7 +479,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "COLLIDE outdated syntax into modern paradigms and observe the resulting collisions to mathematically prove structural integrity.",
-    "forge_version": "V85.2",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Collider.md",
     "isCustom": true
   },
