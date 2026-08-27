@@ -611,7 +611,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "ALIGN outdated assertions with current source files to correct semantic drift without inventing net-new test coverage.",
-    "forge_version": "V85.2",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Examiner.md",
     "isCustom": true
   },
@@ -1039,8 +1039,8 @@
     "role": "Render Optimizer",
     "category": "Performance",
     "tier": "Fusion",
-    "description": "ERADICATE useless React re-renders caused by unstable object references, un-memoized callbacks, and inline styles that destroy frontend performance.",
-    "forge_version": "V85.2",
+    "description": "ERADICATE useless React re-renders caused by unstable object references, un-memoized callbacks, and inline styles that destroy performance.",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Millisecond.md",
     "isCustom": true
   },
