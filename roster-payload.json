@@ -226,7 +226,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "ENFORCE strict build-time failure thresholds to halt bundle bloat before it ever hits production.",
-    "forge_version": "V87.1",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Accountant.md",
     "isCustom": true
   },
