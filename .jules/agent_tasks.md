@@ -6,10 +6,15 @@
 - [REFACTORER] `js/core/RosterApp.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (567 lines).
 - [REFACTORER] `js/Features/JulesTerminal/JulesTerminal.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (617 lines).
 - [REFACTORER] `css/main.css`: Monolithic file exceeding 500 lines mixing domain responsibilities (710 lines).
-- [TRANSFORMER] `css/main.css`: Rigid Presentation States (Hardcoded hex codes).
+- [TRANSFORMER] `css/main.css`: Rigid Presentation States (Hardcoded hex codes at lines 7, 10-19).
 - [TRANSFORMER] `js/UI/Toast/ToastNotification.js`: Rigid Presentation States (Hardcoded hex codes).
 - [TRANSFORMER] `js/core/RosterApp.js`: Rigid Presentation States (Hardcoded hex codes).
 - [TRANSFORMER] `js/Utils/format/format-utils.js`: Rigid Presentation States (Hardcoded hex codes).
 - [TRANSFORMER] `js/Utils/network/network-utils.js`: Rigid Presentation States (Hardcoded hex codes).
 - [TRANSFORMER] `js/Utils/dom/dom-utils.js`: Rigid Presentation States (Hardcoded hex codes).
 - [TRANSFORMER] `js/Features/JulesTerminal/TerminalPolling.js`: Rigid Presentation States (Hardcoded hex codes).
+- [PRUNER] `js/core/events/handlers/GlobalEvents.js`: Unstructured console.error usage at line 351.
+- [PRUNER] `js/core/events/handlers/TerminalEvents.js`: Unstructured console.error usage at lines 14, 19, 62.
+- [PRUNER] `js/core/RosterApp.js`: Unstructured console.error usage at line 154.
+- [PRUNER] `js/Features/Search/SearchController.js`: Unstructured console.error usage at line 63.
+- [PRUNER] `benchmark.js`: Unstructured console.error usage at lines 458, 497, 513.

@@ -1,17 +1,21 @@
 # Overseer Journal
 ## Traversal Tree
 - `js/`
-  - `core/`
-  - `Features/`
+  - `core/` (Mapped: [REFACTORER], [TRANSFORMER], [PRUNER])
+  - `Features/` (Mapped: [REFACTORER], [TRANSFORMER], [PRUNER])
   - `Services/`
-  - `UI/`
-  - `Utils/`
-- `css/`
+  - `UI/` (Mapped: [TRANSFORMER])
+  - `Utils/` (Mapped: [TRANSFORMER])
+- `css/` (Mapped: [REFACTORER], [TRANSFORMER])
   - `main.css`
+
 ## Mapped Regions
-- Monolithic structures (> 500 lines) mapped
+- Structural Monoliths (> 500 lines) mapped
 - Rigid presentation states (hex codes) mapped
-- Empty catch blocks mapped
+- Unstructured console.error usage mapped
+
 ## Overflow Targets
 - `js/core/events/EventBinder.js`: Semantic Dust & Debris (Empty brackets)
 - `js/Features/Fusion/FusionIndex.bench.js`: Semantic Dust & Debris (console.log)
+- `js/Services/GithubAPI/GithubAPI.js`: Unstructured console.error usage
+- `js/Services/JulesAPI/JulesAPI.js`: Unstructured console.error usage
