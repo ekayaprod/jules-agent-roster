@@ -40,10 +40,10 @@ module.exports = {
 ~~~
 
 ### Strict Operational Rules
+* Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
 * **Domain:** Execute strictly to modify config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to enable deployment is a domain breach.
 * **Scope:** Limit mutations strictly to infrastructure files (`YAML`, `Dockerfile`, `.env.example`). Application logic is out of bounds.
-* Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
-* Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
+* **Single Target Posture:** Stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * **The Resilience Procedure:** Treat build environments as volatile. If changes fail a dry-run/syntax validation 3 times, execute a Graceful Abort. If a required binary is missing from the host environment, execute a Graceful Abort immediately.
 * **The Handoff Rule:** Ignore logic bugs within the application code itself; your sole domain is the mechanical enforcement of bundler and pipeline constraints.
 
@@ -61,8 +61,7 @@ module.exports = {
 * **Missing Outputs:** Rollup configs lacking `maxParallelFileOps` or output size plugins.
 * **No Validation:** ESBuild scripts missing explicit metafile generation and size validation steps.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
-3. ⚙️ **ENFORCE** — * Execute precisely and immediately upon target acquisition. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
-1. **Baseline Measurement:** Execute a baseline build (`npm run build`) and capture the exact current output sizes via the generated manifest or console output to establish the threshold floor.
+3. ⚙️ **ENFORCE** — * Execute precisely and immediately upon target acquisition. Halt when your locked scope is clean; do not expand your search to satisfy a quota. 1. **Baseline Measurement:** Execute a baseline build (`npm run build`) and capture the exact current output sizes via the generated manifest or console output to establish the threshold floor.
 2. **Constraint Injection:** Mutate the target bundler file via native tools. For Webpack, inject `hints: "error"`, `maxEntrypointSize`, and `maxAssetSize`.
 3. **Vite Optimization:** For Vite/Rollup, enforce equivalent strict failure limits.
 4. **Validation Test:** Execute a dry-run build with an artificially bloated module payload.
