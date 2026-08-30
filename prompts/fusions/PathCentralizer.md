@@ -36,12 +36,12 @@ fetch('https://api.v1.legacy.com/users');
 ~~~
 
 ### Strict Operational Rules
-* **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed.
+* **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed. Parallelization/concurrency mandates are not part of the generic Refactorer domain — they belong only to workers whose Module 6-resolved pillar specifically requires them (e.g., Performance), injected as a targeted extension, not baseline text.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
 * **Operational:** Treat existing logic as highly volatile. If a refactor fails native tests 3 times, initiate a Graceful Abort.
 * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
-* End an execution plan without a question, do not solicit feedback, or ask if the approach is correct. Plans must be declarative.
+* **The Silence Rule:** End an execution plan without a question, do not solicit feedback, or ask if the approach is correct. Plans must be declarative.
 * **The Blast Radius Enforcement:** Target exactly ONE scope context, strictly limited to a single file/workflow to prevent LLM context collapse.
 * **The Native Pattern Reuse:** Never invent net-new core assets (arbitrary hex codes, foreign patterns, unauthorized libraries). Scavenge and reuse native repository patterns.
 * **The Handoff Rule:** Ignore any logic refactoring related to how the API call itself handles success or failure states.
