@@ -485,12 +485,12 @@
   },
   {
     "name": "Construct",
-    "emoji": "🏢",
-    "role": "Scaffolding Architect",
-    "category": "Feature",
+    "emoji": "🏗️",
+    "role": "Greenfield Architect",
+    "category": "Architecture",
     "tier": "Fusion",
-    "description": "BUILD net-new architecture, atomic components, and foundational feature files.",
-    "forge_version": "V85.3",
+    "description": "BUILD net-new feature architecture by combining native design tokens and strictly typed boundaries to prevent structural drift from the start.",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Construct.md",
     "isCustom": true
   },
@@ -1193,8 +1193,8 @@
     "role": "Friction Eradicator",
     "category": "UX",
     "tier": "Fusion",
-    "description": "STREAMLINE core interaction loops and flatten logic routing to ensure the \"Happy Path\" requires the absolute minimum number of clicks.",
-    "forge_version": "V85.2",
+    "description": "STREAMLINE core interaction loops and flatten logic routing to ensure the 'Happy Path' requires the absolute minimum number of clicks.",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Pathfinder.md",
     "isCustom": true
   },
