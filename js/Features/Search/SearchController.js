@@ -60,7 +60,6 @@ class SearchController {
                 }
             };
         } catch (e) {
-            console.error("Failed to construct Worker. Falling back to synchronous search.", e);
             this.worker = null;
         }
     }
