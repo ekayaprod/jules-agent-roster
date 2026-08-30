@@ -455,9 +455,6 @@ const runRosterAppBenchmark = (roster) => {
   console.log(`RosterApp cached filter execution: ${duration.toFixed(2)}ms`);
 
   if (duration > 200) {
-    console.error(
-      `PerformanceError: RosterApp search exceeded 200ms threshold (took ${duration.toFixed(2)}ms)`,
-    );
     process.exit(1);
   }
 };
@@ -494,7 +491,6 @@ const runFusionLabBenchmark = (roster, mockAgents, fusionIndexContainer) => {
   // Verify FusionIndex rendering
   const unlockedSlots = fusionIndexContainer.querySelectorAll('.fusion-item.unlocked');
   if (unlockedSlots.length === 0) {
-    console.error('FusionIndexError: No unlocked slots found in FusionIndex.');
     process.exit(1);
   }
   console.log(`FusionIndex verified: ${unlockedSlots.length} unlocked slot(s) found.`);
@@ -510,7 +506,6 @@ const runFusionExecutionBenchmark = async (roster, mockAgents) => {
   const resultContainer = getMockElement('fusionResultContainer');
   const resultCard = resultContainer.querySelector('.card');
   if (!resultCard) {
-    console.error('FusionError: Fusion result card not found in container.');
     process.exit(1);
   }
   console.log('Fusion result verification: Card successfully appended to container.');

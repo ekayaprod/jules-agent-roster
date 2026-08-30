@@ -92,52 +92,7 @@ class TerminalPolling {
                 const historyBuffer = [];
 
                 activities.forEach(act => {
-                    let text = act.title || act.description || "";
-
-                    if (act.title) {
-                        historyBuffer.push(`**${act.title}**\n\n`);
-                    }
-                    if (act.description) {
-                        historyBuffer.push(`${act.description}\n\n`);
-                    }
-                    if (act.type && act.type.includes('USER_INPUT') && act.message) {
-                        historyBuffer.push(`*You:* ${act.message}\n\n`);
-                    }
-                    if (act.error) {
-                        historyBuffer.push(`**Error:** ${act.error.message}\n\n`);
-                    }
-                    historyBuffer.push(`---\n\n`);
-
-                    if (text) {
-                        state.rawMessage = act.description || act.title;
-                        // 🕯️ CHRONICLE: Magic Number Translation. 70 character limit truncates excessively long log strings.
-                        // Historical Intent: Introduced via PR #2007 by ekayaprod to prevent terminal layout fractures in UI grids.
-                        if (text.length > 70) text = text.substring(0, 70) + "...";
-                        state.latestLog = text;
-                    }
-
-                    if (act.type && act.type.includes('USER_INPUT')) {
-                        state.latestLog = "User input transmitted.";
-                    }
-
-                    if (act.error) {
-                        state.hasError = true;
-                        state.latestLog = "Exception: " + (act.error.message || "Unknown error");
-                        state.rawMessage = state.latestLog;
-                    }
-
-                    if (
-                        act.userActionRequired ||
-                        act.requiresInput ||
-                        (act.type && act.type.includes('INPUT')) ||
-                        act.planGenerated ||
-                        (act.title && act.title.toLowerCase().includes('waiting for'))
-                    ) {
-                        state.isWaitingForInput = true;
-                    }
-                    if (act.planApproved) state.isWaitingForInput = false;
-
-                    if (act.sessionCompleted) state.isCompleted = true;
+                    this._processActivity(act, historyBuffer, state);
                 });
 
                 if (this.terminal.activeModalSessionId === sessionId) {
@@ -163,6 +118,55 @@ class TerminalPolling {
                 }
             }
         }, this.terminal.constructor.TERMINAL_POLL_MS);
+    }
+
+    _processActivity(act, historyBuffer, state) {
+        let text = act.title || act.description || "";
+
+        if (act.title) {
+            historyBuffer.push(`**${act.title}**\n\n`);
+        }
+        if (act.description) {
+            historyBuffer.push(`${act.description}\n\n`);
+        }
+        if (act.type && act.type.includes('USER_INPUT') && act.message) {
+            historyBuffer.push(`*You:* ${act.message}\n\n`);
+        }
+        if (act.error) {
+            historyBuffer.push(`**Error:** ${act.error.message}\n\n`);
+        }
+        historyBuffer.push(`---\n\n`);
+
+        if (text) {
+            state.rawMessage = act.description || act.title;
+            // 🕯️ CHRONICLE: Magic Number Translation. 70 character limit truncates excessively long log strings.
+            // Historical Intent: Introduced via PR #2007 by ekayaprod to prevent terminal layout fractures in UI grids.
+            if (text.length > 70) text = text.substring(0, 70) + "...";
+            state.latestLog = text;
+        }
+
+        if (act.type && act.type.includes('USER_INPUT')) {
+            state.latestLog = "User input transmitted.";
+        }
+
+        if (act.error) {
+            state.hasError = true;
+            state.latestLog = "Exception: " + (act.error.message || "Unknown error");
+            state.rawMessage = state.latestLog;
+        }
+
+        if (
+            act.userActionRequired ||
+            act.requiresInput ||
+            (act.type && act.type.includes('INPUT')) ||
+            act.planGenerated ||
+            (act.title && act.title.toLowerCase().includes('waiting for'))
+        ) {
+            state.isWaitingForInput = true;
+        }
+        if (act.planApproved) state.isWaitingForInput = false;
+
+        if (act.sessionCompleted) state.isCompleted = true;
     }
 
     _updatePollingState(sessionId, block, state, agentName, agentEmoji) {
