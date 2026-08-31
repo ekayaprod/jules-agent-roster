@@ -1205,7 +1205,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "ACCELERATE public traffic via aggressive caching while locking authenticated routes inside zero-trust cargo cars.",
-    "forge_version": "V85.3",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Payload.md",
     "isCustom": true
   },
