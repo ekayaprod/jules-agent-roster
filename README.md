@@ -26,14 +26,18 @@ To help you navigate the physical structure of the monorepo, here is the archite
 
 Welcome aboard! To boot the application locally:
 
-1. `cp .env.example .env` (Populate your API keys).
-2. `npm install`
-3. `npm start`
+```bash
+cp .env.example .env # Populate your API keys
+npm install
+npm start
+```
 
 Alternatively, to boot via Docker using the provided multi-stage `Dockerfile`:
 
-1. `docker build -t jules-roster .`
-2. `docker run -p 8080:8080 jules-roster`
+```bash
+docker build -t jules-roster .
+docker run -p 8080:8080 jules-roster
+```
 
 ## 2. The Operational Catalyst
 
