@@ -57,12 +57,12 @@ app.use((req, res, next) => {
 * **Missing Validation Headers:** `ETag` or `Last-Modified` headers absent from static asset delivery routes.
 * **Mixed Catalog States:** Mixing public catalog arrays with private user state in the same JSON object without splitting the API track.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 3.
-3. ⚙️ **ACCELERATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Identify the target middleware, controller, or static asset route requiring caching boundaries.
-* Inject necessary `if/else` branching logic into the middleware or controller to explicitly separate public and private tracks.
-* Set `res.setHeader('Cache-Control', 'public, max-age=...')` for public data endpoints.
-* Enforce strict `no-store, no-cache, must-revalidate` cache controls for authenticated or private routes.
-* Strip internal keys (e.g., `_id`, nulls) from public DTOs before transit to minimize payload size.
-* Verify compilation and test suite idempotency locally.
+3. ⚙️ **ACCELERATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Halt execution after exactly 3 mutations.
+1. Identify the target middleware, controller, or static asset route requiring caching boundaries.
+2. Inject necessary `if/else` branching logic into the middleware or controller to explicitly separate public and private tracks.
+3. Set `res.setHeader('Cache-Control', 'public, max-age=...')` for public data endpoints.
+4. Enforce strict `no-store, no-cache, must-revalidate` cache controls for authenticated or private routes.
+5. Strip internal keys (e.g., `_id`, nulls) from public DTOs before transit to minimize payload size.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling.
 **Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
 **Heuristic Verification:**
