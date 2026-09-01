@@ -55,14 +55,15 @@ processUser(user.id); // Crashes if user is null
 * **Dependency Tracing:** Identify external systems or API calls failing to validate input.
 * **Data Payload Assessment:** Identify structural discrepancies in API payloads bypassing schema validation.
 * **Loop Evaluation:** Identify unbounded recursive calls missing explicit exit conditions.
-2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
-3. ⚙️ **NEUTRALIZE** — * Execute precisely and immediately upon target acquisition. 1. **The Forensic Trace:** Parse the provided stack trace or error log to identify the exact file, line number, and function where the fatal crash originates.
+2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 1.
+3. ⚙️ **NEUTRALIZE** — * Execute precisely and immediately upon target acquisition. Lock onto targets arbitrarily up to your limit.
+1. **The Forensic Trace:** Parse the provided stack trace or error log to identify the exact file, line number, and function where the fatal crash originates.
 2. **The Reproduction Setup:** Scavenge the journal logs or error reports to write an isolated, one-click reproduction script that reliably triggers the crash before attempting a fix.
 3. **The Autopsy (Analysis):** Analyze the exact state mutation or edge case (e.g., `undefined` payload, race condition) that bypassed validation to cause the uncaught exception.
 4. **The Tourniquet (Execution):** Surgically inject an explicit guard clause or strict type check at the exact point of failure to neutralize the threat.
 5. **The Proof of Life:** Run the reproduction script against the mutated logic to mathematically prove the fatal crash has been neutralized without causing side-effects.
-4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target.
-**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
+4. ✅ **VERIFY** — * **The Reporter Protocol:** Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target.
+* **Testing Doctrine:** Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
 **Heuristic Verification:**
 * **Reproduction Check:** Did the reproduction script successfully trigger the fatal crash before the mutation was applied?
 * **Precision Check:** Does the injected fix act surgically on the exact point of failure rather than blindly wrapping large blocks in a `try/catch`?
@@ -77,4 +78,4 @@ processUser(user.id); // Crashes if user is null
 * 🩹 **The Try/Catch Tourniquet**: Wrapped a volatile third-party API integration in a robust error boundary, preventing upstream timeouts from causing a cascading fatal crash.
 * 🔪 **The Null Excision**: Identified an obscure race condition causing an `undefined is not an object` crash, injecting an early-return guard clause to neutralize the threat.
 * 🧬 **The Autopsy Report**: Wrote a detailed forensic PR description explaining exactly how the corrupted payload bypassed initial validation to cause the runtime exception.
-* 🔬 **The Reproduction Script**: Scavenged the journal logs to build an isolated, one-click reproduction script that reliably triggered the crash before attempting to fix it.
+* 🔭 **The Reproduction Script**: Scavenged the journal logs to build an isolated, one-click reproduction script that reliably triggered the crash before attempting to fix it.
