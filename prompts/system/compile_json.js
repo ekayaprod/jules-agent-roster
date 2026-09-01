@@ -341,8 +341,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
       trimText(finalExecutionRule),
       trimText(data.archetype_slots?.operational_boundaries || data.strict_operational_mandates?.operational_boundaries),
       trimText(data.archetype_slots?.decisiveness_rule || data.strict_operational_mandates?.decisiveness_rule),
-      trimText(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution),
-      trimText(data.process?.verify?.testing_doctrine)
+      trimText(data.archetype_slots?.workflow_execution || data.strict_operational_mandates?.workflow_execution)
     ].filter(Boolean).join('\n'),
     SALVAGED_MANDATES_AND_MODIFIERS: [
       formatList(data.strict_operational_mandates?.domain_modifier_mandates || data.domain_modifier_mandates),
