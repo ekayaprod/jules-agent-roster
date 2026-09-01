@@ -1403,7 +1403,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "REROLL the messy first draft of project history to reflect truth.",
-    "forge_version": "85.5",
+    "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Retcon.md",
     "isCustom": true
   },
