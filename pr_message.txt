@@ -1,0 +1,10 @@
+### 🛠️ Architecture Upgrade: V87.4 Compliance
+- Class Deduced: Core
+  - UI Category & Tier: Architecture (Core)
+  - Throughput & Payload limits: Scope tunnel enforced: enter, execute, exit. Submit your PR the moment your single target is complete. | 1 targets
+  - Execution Trigger: Execute via Priority Triage using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase.
+
+🧠 Data Sanitization Results
+  - Rules Retained: The Surgeon's Decisiveness, Atomic Mutation, The Handoff Rule, The Surgical Precision Mandate, The Reproduction Mandate, The Regression Resilience Protocol, The Immutable Test Doctrine
+  - Sanitization Applied: Replaced reserved 🔍 emoji in Philosophy bullet 2 with 🕵️. Removed generic 'Artifact Lockbox' text from custom rules.
+  - Formatting Corrected: Restructured Retained Rules to enforce the required `* **[Name]:** [Instruction].` format. Added missing bullet points.
