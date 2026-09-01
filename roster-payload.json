@@ -499,8 +499,8 @@
     "emoji": "💀",
     "role": "Forensic Debugger",
     "category": "Architecture",
-    "tier": "Core",
-    "description": "NEUTRALIZE fatal crashes and uncaught exceptions by analyzing stack traces and injecting surgical guard clauses.",
+    "tier": "Fusion",
+    "description": "NEUTRALIZE fatal crashes by surgically tracing the uncaught exception to its origin and injecting precise guard clauses.",
     "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Coroner.md",
     "isCustom": true
