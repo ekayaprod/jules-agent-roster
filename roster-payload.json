@@ -523,7 +523,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "EXCISE ghost routes to prune the application's surface area, permanently deleting both the route definition and the underlying component.",
-    "forge_version": "V85.4",
+    "forge_version": "V87.5",
     "promptFile": "prompts/fusions/Dead-Ender.md",
     "isCustom": true
   },
