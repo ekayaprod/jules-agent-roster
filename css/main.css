@@ -5,6 +5,11 @@
         --weight-normal: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700; --weight-extrabold: 800;
         --leading-none: 1; --leading-tight: 1.25; --leading-snug: 1.4; --leading-normal: 1.5; --leading-relaxed: 1.625;
         --bg-color: #0f172a; --card-bg: #1e293b; --text-primary: #f8fafc; --text-secondary: #94a3b8; --accent: #38bdf8; --accent-hover: #0ea5e9; --success: #10b981; --warning: #f59e0b; --error: #ef4444; --border: #334155; --details-bg: #020617; --mythic: #d946ef;
+        --tier-uncommon: rgba(20, 184, 166, 1);
+        --tier-rare: rgba(59, 130, 246, 1);
+        --tier-epic: rgba(217, 70, 239, 1);
+        --tier-legendary: rgba(245, 158, 11, 1);
+        --tier-mythic: rgba(16, 185, 129, 1);
 
         /* Terminal specific colors */
         --term-bg: #0d1117;
@@ -53,15 +58,15 @@
 
       /* Tier Rarity Borders and Effects */
       .tier-common .flip-card-front, .tier-common .flip-card-back { border-color: var(--border); }
-      .tier-uncommon .flip-card-front, .tier-uncommon .flip-card-back { border-color: rgba(20, 184, 166, 0.6); }
-      .tier-rare .flip-card-front, .tier-rare .flip-card-back { border-color: rgba(59, 130, 246, 0.6); }
+      .tier-uncommon .flip-card-front, .tier-uncommon .flip-card-back { border-color: color-mix(in srgb, var(--tier-uncommon) 60%, transparent); }
+      .tier-rare .flip-card-front, .tier-rare .flip-card-back { border-color: color-mix(in srgb, var(--tier-rare) 60%, transparent); }
 
       @keyframes epicPulse {
           0% { opacity: 0.8; transform: scale(1); }
           50% { opacity: 1; transform: scale(1.02); }
           100% { opacity: 0.8; transform: scale(1); }
       }
-      .tier-epic .flip-card-front, .tier-epic .flip-card-back { border-color: rgba(217, 70, 239, 0.6); }
+      .tier-epic .flip-card-front, .tier-epic .flip-card-back { border-color: color-mix(in srgb, var(--tier-epic) 60%, transparent); }
       .tier-epic { animation: epicPulse 4s infinite ease-in-out; }
 
       @keyframes legendaryPulse {
@@ -69,7 +74,7 @@
           50% { opacity: 1; transform: scale(1.02); }
           100% { opacity: 0.8; transform: scale(1); }
       }
-      .tier-legendary .flip-card-front, .tier-legendary .flip-card-back { border-color: rgba(245, 158, 11, 1); }
+      .tier-legendary .flip-card-front, .tier-legendary .flip-card-back { border-color: var(--tier-legendary); }
       .tier-legendary { animation: legendaryPulse 4s infinite ease-in-out; }
 
       @keyframes mythicPulse {
@@ -77,7 +82,7 @@
           50% { opacity: 1; transform: scale(1.02); }
           100% { opacity: 0.8; transform: scale(1); }
       }
-      .tier-mythic .flip-card-front, .tier-mythic .flip-card-back { border-color: rgba(16, 185, 129, 0.6); }
+      .tier-mythic .flip-card-front, .tier-mythic .flip-card-back { border-color: color-mix(in srgb, var(--tier-mythic) 60%, transparent); }
       .tier-mythic { animation: mythicPulse 4s infinite ease-in-out; }
 
       .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after,
@@ -100,7 +105,7 @@
       .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after { background-image: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.3) 46.66%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.3) 53.33%, transparent 60%); animation: shineRareLoop 15s linear infinite; }
 
       @keyframes shineEpicLoop { 0% { transform: translateX(33.333%); } 100% { transform: translateX(-33.333%); } }
-      .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after { background-image: linear-gradient(115deg, transparent 40%, rgba(217, 70, 239, 0.4) 43.33%, rgba(255, 255, 255, 0.9) 50%, rgba(56, 189, 248, 0.4) 56.66%, transparent 60%); animation: shineEpicLoop 15s linear infinite; mix-blend-mode: color-dodge; }
+      .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after { background-image: linear-gradient(115deg, transparent 40%, color-mix(in srgb, var(--tier-epic) 40%, transparent) 43.33%, rgba(255, 255, 255, 0.9) 50%, rgba(56, 189, 248, 0.4) 56.66%, transparent 60%); animation: shineEpicLoop 15s linear infinite; mix-blend-mode: color-dodge; }
 
       @keyframes holographicFoilLoop { 0% { transform: translateX(33.333%); } 100% { transform: translateX(-33.333%); } }
       .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after { background-image: linear-gradient(115deg, transparent 40%, rgba(255, 0, 0, 0.5) 43.33%, rgba(255, 154, 0, 0.5) 45%, rgba(208, 222, 33, 0.5) 46.66%, rgba(79, 220, 74, 0.5) 48.33%, rgba(63, 218, 216, 0.5) 50%, rgba(47, 201, 226, 0.5) 51.66%, rgba(28, 127, 238, 0.5) 53.33%, rgba(95, 21, 242, 0.5) 55%, rgba(186, 12, 248, 0.5) 56.66%, rgba(251, 7, 217, 0.5) 58.33%, transparent 60%); animation: holographicFoilLoop 15s linear infinite; mix-blend-mode: color-dodge; opacity: 0.25; }
@@ -147,12 +152,14 @@
       .flip-card-back .flip-hint { top: 0; right: 0; bottom: auto; }
 
       .prompt-scroll-area { position: relative; z-index: 1; flex-grow: 1; overflow-y: auto; background: var(--details-bg); padding: 0.75rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: var(--text-2xs); line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: 0.5rem; white-space: pre-wrap; font-family: inherit; cursor: text; box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2); }
+      .prompt-scroll-area:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
       .prompt-scroll-area::-webkit-scrollbar { width: 0.25rem; }
       .prompt-scroll-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0.25rem; }
 
       .card-actions { position: relative; z-index: 2; cursor: default; }
       .icon-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.25rem; transition: all 0.3s ease-in-out; min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; }
       @media (hover: hover) and (pointer: fine) { .icon-btn:hover { color: var(--text-primary); } }
+      .icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
       /* HEADER AND CONTROLS */
       .header { max-width: 75rem; margin: 0 auto 1.5rem auto; display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
@@ -169,7 +176,7 @@
       .clear-search-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       .clear-search-btn:active { transform: translateY(-50%) scale(0.9); }
       input[type="text"] { padding: 0.6rem 2.5rem 0.6rem 2.75rem; border-radius: 999px; background: transparent; border: 1px solid transparent; color: var(--text-primary); width: 100%; font-family: inherit; transition: all 0.2s ease-in-out; font-size: var(--text-sm);}
-      input[type="text"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-color: transparent; }
+      input[type="text"]:focus-visible { border-color: var(--accent); outline: none; box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--accent); }
 
       button { background-color: var(--accent); color: var(--bg-color); border: none; padding: 0.5rem 1rem; font-weight: var(--weight-semibold); border-radius: 0.75rem; cursor: pointer; transition: all 0.3s ease-in-out; font-family: -apple-system, sans-serif; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; }
       @media (hover: hover) and (pointer: fine) { button:hover { background-color: var(--accent-hover); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transform: translateY(-1px); } }
