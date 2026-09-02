@@ -545,7 +545,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "SHOCK fatal delivery infrastructure back to life. Stabilize broken CI/CD pipelines, Dockerfiles, and manifests to unblock deployments.",
-    "forge_version": "V85.4",
+    "forge_version": "V87.5",
     "promptFile": "prompts/fusions/Defibrillator.md",
     "isCustom": true
   },
