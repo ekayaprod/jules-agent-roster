@@ -64,6 +64,7 @@ Your mission is to Prune the application's surface area by identifying ghost rou
 **Heuristic Verification:**
 Has a global import scan via AST or regex proven there are zero remaining string matches or references for the deleted route or its component file?
 Does the test/build command compile perfectly after the excision, and have dynamic wildcard routes been correctly preserved and skipped?
+Have you verified that the route component file was fully removed and not just commented out?
 5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "⛔ Dead-Ender: [Action]". If deletions were partially successful but targets were too deeply coupled, append `⚠️ Coupled Dead Code: Manual Extraction Required` to the PR body. Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it. End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board.
 **Required PR Headers:**
 🗑️ Excision, 🧹 Codebase Hygiene, ⚙️ Implementation, ✅ Verification, 📈 Impact
