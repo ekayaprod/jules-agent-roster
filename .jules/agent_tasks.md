@@ -13,8 +13,6 @@
 - [TRANSFORMER] `js/Utils/network/network-utils.js`: Rigid Presentation States (Hardcoded hex codes).
 - [TRANSFORMER] `js/Utils/dom/dom-utils.js`: Rigid Presentation States (Hardcoded hex codes).
 - [TRANSFORMER] `js/Features/JulesTerminal/TerminalPolling.js`: Rigid Presentation States (Hardcoded hex codes).
-- [PRUNER] `js/core/events/handlers/GlobalEvents.js`: Unstructured console.error usage at line 351.
-- [PRUNER] `js/core/events/handlers/TerminalEvents.js`: Unstructured console.error usage at lines 14, 19, 62.
 - [PRUNER] `js/core/RosterApp.js`: Unstructured console.error usage at line 154.
 - [PRUNER] `js/Features/Search/SearchController.js`: Unstructured console.error usage at line 63.
 - [PRUNER] `benchmark.js`: Unstructured console.error usage at lines 458, 497, 513.
