@@ -1227,7 +1227,7 @@
     "category": "Strategy",
     "tier": "Fusion",
     "description": "UPGRADE implicit assumptions into explicit constraints by deducing intended execution environments and injecting strictness headers.",
-    "forge_version": "V85.4",
+    "forge_version": "V87.5",
     "promptFile": "prompts/fusions/Prefect.md",
     "isCustom": true
   },
