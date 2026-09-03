@@ -241,8 +241,11 @@ class JulesTerminal {
                     picker.addEventListener("change", async (e) => {
                         const sourceName = e.target.value;
                         if (sourceName) {
-                            this.loadPullRequestsForRepo(sourceName);
-                            this.loadActiveSessionsForRepo(sourceName);
+                            // ⚡ Bolt+: The Waterfall Collapse. Unblocked sequential API fetching into a concurrent Promise.all array to eliminate independent I/O blocking.
+                            await Promise.all([
+                                this.loadPullRequestsForRepo(sourceName),
+                                this.loadActiveSessionsForRepo(sourceName)
+                            ]);
                         } else {
                             this.polling._clearPollingAndCache();
                             this.getEl("julesTerminal").innerHTML = DOMUtils.getTerminalIndicatorHTML("Awaiting repository connection...");

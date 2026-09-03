@@ -16,3 +16,6 @@
 - [PRUNER] `js/core/RosterApp.js`: Unstructured console.error usage at line 154.
 - [PRUNER] `js/Features/Search/SearchController.js`: Unstructured console.error usage at line 63.
 - [PRUNER] `benchmark.js`: Unstructured console.error usage at lines 458, 497, 513.
+
+### Persistence Log
+* ⚡ Bolt+: Resolved I/O Waterfall in `JulesTerminal.js` (loadPullRequestsForRepo / loadActiveSessionsForRepo).
