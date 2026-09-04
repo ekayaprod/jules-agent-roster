@@ -263,6 +263,35 @@ describe('JulesTerminal', () => {
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
         });
 
+        it('restores button and input states if an error occurs during save', async () => {
+            global.StorageUtils.getItem.mockReturnValue(null);
+            await manager.init();
+
+            const keyInput = document.getElementById('julesApiKeyInput');
+            const githubTokenInput = document.getElementById('githubTokenInput');
+            keyInput.value = 'new_valid_key';
+            const saveBtn = document.getElementById('saveSettingsBtn');
+
+            const mockError = new Error('Configure failed');
+            global.window.julesAPI.configure.mockImplementation(() => {
+                throw mockError;
+            });
+
+            // The event listener is async, so we wrap the click in a try-catch
+            // since throwing inside it will bubble up as an unhandled promise rejection in the test environment
+            try {
+                await saveBtn.click();
+            } catch(e) {
+                // Expected
+            }
+
+            await Promise.resolve(); // flush promise queue
+
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(saveBtn, BUTTON_STATES.READY, "Save Settings & Connect");
+            expect(keyInput.disabled).toBe(false);
+            expect(githubTokenInput.disabled).toBe(false);
+        });
+
         it('dispatches BACKGROUND_FETCH_FAILED telemetry event if loadSources fails when saveSettingsBtn is clicked', async () => {
             global.StorageUtils.getItem.mockReturnValue(null);
 
