@@ -269,27 +269,35 @@ class RosterApp {
     // Flatten properties directly into the target object to prevent GC churn during rendering.
     // 🧬 COLLAPSE: Collapsed nested imperative accumulator and sort loops into a dense functional pipeline, eliminating intermediary scaffolding arrays.
     const hasPinnedManager = Boolean(this.pinnedManager);
-    const flattenedAgents = this.categoryKeys.flatMap(categoryKey => {
+    const flattenedAgents = [];
+
+    for (let j = 0; j < this.categoryKeys.length; j++) {
+      const categoryKey = this.categoryKeys[j];
       const arr = categorizedAgents[categoryKey] || [];
+
       for (let i = 0; i < arr.length; i++) {
-        arr[i].gridCategory = categoryKey;
-      }
-      arr.sort((a, b) => {
-        let aPinned = false, bPinned = false;
-        if (hasPinnedManager) {
-          aPinned = this.pinnedManager.isPinned(a.indexOrKey);
-          bPinned = this.pinnedManager.isPinned(b.indexOrKey);
+        const item = arr[i];
+        item.gridCategory = categoryKey;
+
+        let score = 0;
+        if (hasPinnedManager && this.pinnedManager.isPinned(item.indexOrKey)) {
+          score += 4;
         }
-        if (aPinned !== bPinned) return aPinned ? -1 : 1;
-        const aTier = a.agent?.tier === "Plus" ? 1 : 0;
-        const bTier = b.agent?.tier === "Plus" ? 1 : 0;
-        if (aTier !== bTier) return bTier - aTier;
-        const aName = a.agent?.name?.endsWith("+") ? 1 : 0;
-        const bName = b.agent?.name?.endsWith("+") ? 1 : 0;
-        return bName - aName;
-      });
-      return arr;
-    });
+        if (item.agent && item.agent.tier === "Plus") {
+          score += 2;
+        }
+        if (item.agent && item.agent.name && item.agent.name.endsWith("+")) {
+          score += 1;
+        }
+        item._sortScore = score;
+      }
+
+      arr.sort((a, b) => b._sortScore - a._sortScore);
+
+      for (let i = 0; i < arr.length; i++) {
+        flattenedAgents.push(arr[i]);
+      }
+    }
 
     const currentRenderId = Symbol();
     this.currentRenderId = currentRenderId;
