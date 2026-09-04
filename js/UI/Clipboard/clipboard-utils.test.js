@@ -78,6 +78,23 @@ describe('ClipboardUtils', () => {
             expect(result).toBe(false);
         });
 
+        it('should dispatch telemetry with exact error if execCommand throws an error in fallback mechanism', async () => {
+            // Setup condition to trigger fallback
+            const mockApiError = new Error('Clipboard denied');
+            global.navigator.clipboard.writeText.mockRejectedValue(mockApiError);
+
+            // Mock execCommand to throw error
+            const specificError = new TypeError('A specific execCommand error');
+            document.execCommand.mockImplementation(() => { throw specificError; });
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            // Verification
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', specificError);
+            expect(result).toBe(false);
+        });
+
         it('should use fallback if Clipboard API is not available', async () => {
             delete global.navigator.clipboard;
             document.execCommand.mockReturnValue(true);
