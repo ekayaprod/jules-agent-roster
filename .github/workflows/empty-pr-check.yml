@@ -1,0 +1,20 @@
+# 📯 THE SECURE DISPATCH: Empty PR Guard
+name: "Empty PR Check"
+
+"on":
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  check-empty:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - name: Fail on Empty PR
+        if: ${{ github.event.pull_request.changed_files == 0 }}
+        run: |
+          echo "❌ ERROR: This pull request contains 0 changed files."
+          echo "Empty pull requests are not allowed."
+          exit 1
