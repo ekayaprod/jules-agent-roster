@@ -86,6 +86,11 @@ describe('JulesAPI', () => {
             await expect(api._fetch('/test')).rejects.toThrow('Client Error: Jules API Error (404)');
         });
 
+        it('should use default error message if error response json lacks error.message', async () => {
+            global.fetch.mockResolvedValueOnce({ ok: false, status: 403, json: async () => ({ someOtherField: true }) });
+            await expect(api._fetch('/test')).rejects.toThrow('Client Error: Jules API Error (403)');
+        });
+
         it('should trigger JULES_API_NETWORK_ERROR via TelemetryUtils', async () => {
              global.TelemetryUtils = { dispatchEvent: jest.fn() };
              global.fetch.mockResolvedValueOnce({ ok: false, status: 404, json: async () => ({ error: { message: 'Not Found' } }) });
