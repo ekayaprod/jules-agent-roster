@@ -20,12 +20,17 @@ class TelemetryUtils {
         } catch {
             payload.error_payload_stringification_failed = true;
             payload.additionalContext = "[Circular Reference]";
-            console.error(JSON.stringify({
-                event: payload.event,
-                error: payload.error,
-                additionalContext: payload.additionalContext,
-                original_error: error.message
-            }));
+            try {
+                console.error(JSON.stringify({
+                    event: payload.event,
+                    error: payload.error,
+                    additionalContext: payload.additionalContext,
+                    original_error: error && error.message ? error.message : error
+                }));
+            } catch (fallbackError) {
+                // If console.error or fallback JSON stringification fails, fail silently
+                // to prevent telemetry from crashing the application.
+            }
         }
     }
 }

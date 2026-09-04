@@ -116,8 +116,21 @@ describe('TelemetryUtils boundary and coverage logic', () => {
         expect(console.error).toHaveBeenNthCalledWith(2, JSON.stringify({
             event: 'TEST_FALLBACK',
             error: 'error',
-            additionalContext: '[Circular Reference]'
+            additionalContext: '[Circular Reference]',
+            original_error: 'error'
         }));
+    });
+
+    it('fails silently if console.error permanently throws', () => {
+        console.error.mockImplementation(() => {
+            throw new Error('console.error failed permanently');
+        });
+
+        expect(() => {
+            TelemetryUtils.dispatchEvent('TEST_PERMANENT_THROW', 'error', { someContext: 'value' });
+        }).not.toThrow();
+
+        expect(console.error).toHaveBeenCalledTimes(2);
     });
 });
 
