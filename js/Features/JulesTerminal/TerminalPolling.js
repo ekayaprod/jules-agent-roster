@@ -9,6 +9,13 @@ class TerminalPolling {
         return null;
     }
 
+    static getFormatUtils() {
+        if (typeof FormatUtils !== 'undefined') return FormatUtils;
+        if (typeof window !== 'undefined' && window.FormatUtils) return window.FormatUtils;
+        if (typeof global !== 'undefined' && global.FormatUtils) return global.FormatUtils;
+        return null;
+    }
+
     constructor(julesTerminal) {
         this.terminal = julesTerminal;
     }
@@ -123,17 +130,38 @@ class TerminalPolling {
     _processActivity(act, historyBuffer, state) {
         let text = act.title || act.description || "";
 
+        // Safe fallback string escaper to prevent XSS.
+        const escapeStr = (str) => {
+            if (!str) return "";
+            return String(str)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        };
+
+        const formatUtils = TerminalPolling.getFormatUtils();
+        const safeEscapeHTML = (formatUtils && typeof formatUtils.escapeHTML === 'function')
+            ? formatUtils.escapeHTML.bind(formatUtils)
+            : escapeStr;
+
+        const safeTitle = safeEscapeHTML(act.title);
+        const safeDescription = safeEscapeHTML(act.description);
+        const safeMessage = safeEscapeHTML(act.message);
+        const safeErrorMessage = act.error ? safeEscapeHTML(act.error.message) : "";
+
         if (act.title) {
-            historyBuffer.push(`**${act.title}**\n\n`);
+            historyBuffer.push(`**${safeTitle}**\n\n`);
         }
         if (act.description) {
-            historyBuffer.push(`${act.description}\n\n`);
+            historyBuffer.push(`${safeDescription}\n\n`);
         }
         if (act.type && act.type.includes('USER_INPUT') && act.message) {
-            historyBuffer.push(`*You:* ${act.message}\n\n`);
+            historyBuffer.push(`*You:* ${safeMessage}\n\n`);
         }
         if (act.error) {
-            historyBuffer.push(`**Error:** ${act.error.message}\n\n`);
+            historyBuffer.push(`**Error:** ${safeErrorMessage}\n\n`);
         }
         historyBuffer.push(`---\n\n`);
 
