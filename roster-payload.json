@@ -1271,7 +1271,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "TRAP the ghosts in the machine—zombie intervals, detached DOM nodes, and rogue observers that actively haunt the runtime.",
-    "forge_version": "V85.4",
+    "forge_version": "V87.5",
     "promptFile": "prompts/fusions/Proton Pack.md",
     "isCustom": true
   },
@@ -1491,7 +1491,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "PROPAGATE the structural skeleton by bridging missing architectural boilerplate.",
-    "forge_version": "V85.4",
+    "forge_version": "V87.5",
     "promptFile": "prompts/fusions/Scaffolder.md",
     "isCustom": true
   },
