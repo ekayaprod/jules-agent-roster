@@ -114,7 +114,7 @@ class LLMRouter {
                     try {
                         const errorData = await response.json();
                         errorMsg = errorData.error?.message || errorMsg;
-                    } catch (e1) {
+                    } catch {
                         // Fallback to text
                         try {
                             const errorText = await response.text();
