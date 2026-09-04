@@ -459,6 +459,52 @@ describe('JulesTerminal', () => {
             jest.useRealTimers();
         });
 
+        it('handles task failure when TelemetryUtils is unavailable', async () => {
+            const originalTelemetryUtils = global.TelemetryUtils;
+            delete global.TelemetryUtils;
+
+            try {
+                const mockError = new Error('Task Failed');
+                manager.sessionQueue.push(async () => {
+                    throw mockError;
+                });
+
+                await manager._processSessionQueue();
+
+                expect(manager.isProcessingQueue).toBe(false);
+            } finally {
+                global.TelemetryUtils = originalTelemetryUtils;
+            }
+        });
+
+        it('processes queue in chunks and applies rate limit delay', async () => {
+            jest.useFakeTimers();
+            const task1 = jest.fn().mockResolvedValue();
+            const task2 = jest.fn().mockResolvedValue();
+            const task3 = jest.fn().mockResolvedValue();
+            const task4 = jest.fn().mockResolvedValue();
+
+            manager.sessionQueue.push(task1, task2, task3, task4);
+
+            const processPromise = manager._processSessionQueue();
+
+            if (jest.runAllTimersAsync) {
+                await jest.runAllTimersAsync();
+            } else {
+                for(let i = 0; i < 5; i++) {
+                    await Promise.resolve();
+                    jest.advanceTimersByTime(1000);
+                }
+            }
+
+            await processPromise;
+
+            expect(task1).toHaveBeenCalled();
+            expect(task2).toHaveBeenCalled();
+            expect(task3).toHaveBeenCalled();
+            expect(task4).toHaveBeenCalled();
+        });
+
         it('dispatches QUEUE_EXECUTION_ERROR on task failure', async () => {
             const mockError = new Error('Task Failed');
             manager.sessionQueue.push(async () => {
