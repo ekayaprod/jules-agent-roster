@@ -87,6 +87,42 @@ describe('ClipboardUtils', () => {
             expect(result).toBe(false);
         });
 
+        it('should always clean up the DOM if an error occurs in execCommand and the catch block itself throws', async () => {
+            delete global.navigator.clipboard;
+            const mockFallbackError = new Error('execCommand failed');
+            document.execCommand.mockImplementation(() => { throw mockFallbackError; });
+            window.TelemetryUtils.dispatchEvent.mockImplementation(() => { throw new Error('Telemetry failed'); });
+
+            const removeChildSpy = jest.spyOn(document.body, 'removeChild');
+
+            try {
+                await ClipboardUtils.copyText('test text');
+            } catch (err) {
+                expect(err.message).toBe('Telemetry failed');
+            }
+
+            expect(removeChildSpy).toHaveBeenCalledTimes(1);
+            expect(removeChildSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement));
+
+            removeChildSpy.mockRestore();
+        });
+
+        it('should clean up the DOM if an error occurs in execCommand', async () => {
+            delete global.navigator.clipboard;
+            const mockFallbackError = new Error('execCommand failed');
+            document.execCommand.mockImplementation(() => { throw mockFallbackError; });
+
+            const removeChildSpy = jest.spyOn(document.body, 'removeChild');
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(result).toBe(false);
+            expect(removeChildSpy).toHaveBeenCalledTimes(1);
+            expect(removeChildSpy).toHaveBeenCalledWith(expect.any(HTMLTextAreaElement));
+
+            removeChildSpy.mockRestore();
+        });
+
         it('should return false if fallback returns false when Clipboard API is not available', async () => {
             delete global.navigator.clipboard;
             document.execCommand.mockReturnValue(false);
