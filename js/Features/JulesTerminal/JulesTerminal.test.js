@@ -78,6 +78,21 @@ describe('JulesTerminal', () => {
             expect(mockApp.toast.show).toHaveBeenCalledWith("Unable to connect to GitHub: Test connection error", true);
         });
 
+        it('handles error in loadSources with missing message (fallback to Unknown error)', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            const originalText = picker.options[0].textContent;
+            const mockError = new Error();
+            delete mockError.message; // Ensure message is not present
+            global.window.julesAPI.getSources.mockRejectedValueOnce(mockError);
+
+            await manager.loadSources();
+
+            expect(picker.innerHTML).toBe(`<option value="">${originalText}</option>`);
+            expect(picker.disabled).toBe(false);
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("SOURCES_LOAD_FAILED", mockError);
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Unable to connect to GitHub: Unknown error", true);
+        });
+
         it('populates the dropdown when sources are present', async () => {
             const picker = document.getElementById("julesRepoPicker");
             global.window.julesAPI.getSources.mockResolvedValueOnce({
@@ -351,6 +366,13 @@ describe('JulesTerminal', () => {
             await manager.loadPullRequestsForRepo('owner/repo');
 
             expect(terminal.querySelectorAll('.term-pr-item').length).toBe(0);
+        });
+
+        it('handles errors when fetching pull requests fails', async () => {
+            const mockError = new Error('Failed to fetch PRs');
+            global.window.githubAPI.getPullRequests.mockRejectedValueOnce(mockError);
+
+            await expect(manager.loadPullRequestsForRepo('owner/repo')).rejects.toThrow('Failed to fetch PRs');
         });
     });
 
