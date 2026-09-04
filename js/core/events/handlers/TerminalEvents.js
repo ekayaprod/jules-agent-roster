@@ -11,10 +11,12 @@ class TerminalEvents {
                     app.julesTerminal.loadActiveSessionsForRepo(sourceName).catch(err => {
                         const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
                         if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", err);
+                        else console.error(err);
                     });
                     app.julesTerminal.loadPullRequestsForRepo(sourceName).catch(err => {
                         const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
                         if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", err);
+                        else console.error(err);
                     });
                 } else {
                     const terminal = app.elements.julesTerminal;
@@ -56,6 +58,8 @@ class TerminalEvents {
                     const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
                     if (tu) {
                         tu.dispatchEvent("TERMINAL_LOAD_ERROR", err);
+                    } else {
+                        console.error("JulesTerminal API failed to load sources after activation.", err);
                     }
                 });
             });
