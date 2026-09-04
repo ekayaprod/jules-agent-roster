@@ -59,19 +59,124 @@ describe('JulesTerminal', () => {
         expect(manager).toBeDefined();
     });
 
-    it('handles error in loadSources', async () => {
-        const picker = document.getElementById("julesRepoPicker");
-        const originalText = picker.options[0].textContent;
-        const mockError = new Error("Test connection error");
-        global.window.julesAPI.getSources.mockRejectedValueOnce(mockError);
+    describe('loadSources', () => {
+        beforeEach(() => {
+            JulesTerminal.getFormatUtils = jest.fn().mockReturnValue({ extractRepoPath: jest.fn(x => x), escapeHTML: jest.fn(x => x) });
+        });
 
-        await manager.loadSources();
+        it('handles error in loadSources', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            const originalText = picker.options[0].textContent;
+            const mockError = new Error("Test connection error");
+            global.window.julesAPI.getSources.mockRejectedValueOnce(mockError);
 
-        expect(picker.innerHTML).toBe(`<option value="">${originalText}</option>`);
-        expect(picker.disabled).toBe(false);
-        expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("SOURCES_LOAD_FAILED", mockError);
-        expect(mockApp.toast.show).toHaveBeenCalledWith("Unable to connect to GitHub: Test connection error", true);
+            await manager.loadSources();
+
+            expect(picker.innerHTML).toBe(`<option value="">${originalText}</option>`);
+            expect(picker.disabled).toBe(false);
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("SOURCES_LOAD_FAILED", mockError);
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Unable to connect to GitHub: Test connection error", true);
+        });
+
+        it('populates the dropdown when sources are present', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            global.window.julesAPI.getSources.mockResolvedValueOnce({
+                sources: [
+                    { name: 'repo1', githubRepo: { owner: 'owner1', repo: 'repo1' } },
+                    { name: 'repo2' }
+                ]
+            });
+
+            const formatUtils = { extractRepoPath: jest.fn().mockReturnValue('extracted/repo2'), escapeHTML: jest.fn(x => x) };
+            JulesTerminal.getFormatUtils = jest.fn().mockReturnValue(formatUtils);
+
+            await manager.loadSources();
+
+            expect(picker.disabled).toBe(false);
+            expect(picker.options.length).toBe(3);
+            expect(picker.options[1].value).toBe('repo1');
+            expect(picker.options[1].textContent).toBe('owner1/repo1');
+            expect(picker.options[2].value).toBe('repo2');
+            expect(picker.options[2].textContent).toBe('extracted/repo2');
+        });
+
+        it('handles loadSources resolving without sources', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            const originalText = picker.options[0].textContent;
+            global.window.julesAPI.getSources.mockResolvedValueOnce({});
+
+            await manager.loadSources();
+
+            expect(picker.innerHTML).toBe(`<option value="">${originalText}</option>`);
+        });
+
+        it('event listener triggers data fetch for valid source selection', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            delete picker.dataset.listenerAttached;
+            global.window.julesAPI.getSources.mockResolvedValueOnce({
+                sources: [{ name: 'owner/repo', githubRepo: { owner: 'owner', repo: 'repo' } }]
+            });
+
+            manager.loadPullRequestsForRepo = jest.fn().mockResolvedValue(null);
+            manager.loadActiveSessionsForRepo = jest.fn().mockResolvedValue(null);
+
+            let h2 = null;
+            picker.addEventListener = jest.fn((event, handler) => {
+                if (event === 'change') h2 = handler;
+            });
+            delete picker.dataset.listenerAttached;
+            await manager.loadSources();
+            if (h2) {
+                await h2({ target: { value: 'owner/repo' } });
+            }
+
+            expect(manager.loadPullRequestsForRepo).toHaveBeenCalledWith('owner/repo');
+            expect(manager.loadActiveSessionsForRepo).toHaveBeenCalledWith('owner/repo');
+        });
+
+        it('event listener clears polling and updates indicator for empty selection', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            delete picker.dataset.listenerAttached;
+
+            // Re-clone node to wipe ALL event listeners from previous tests
+            // that might prevent our mock from firing
+            const clone = picker.cloneNode(true);
+            delete clone.dataset.listenerAttached;
+            picker.parentNode.replaceChild(clone, picker);
+            manager.getEl = jest.fn((id) => {
+                if (id === 'julesRepoPicker') return clone;
+                if (id === 'julesTerminal') return document.getElementById('julesTerminal');
+                return document.getElementById(id);
+            });
+
+            global.window.julesAPI.getSources.mockResolvedValueOnce({
+                sources: [{ name: 'owner/repo' }]
+            });
+
+            manager.polling = new TerminalPolling();
+            manager.polling._clearPollingAndCache = jest.fn();
+            global.DOMUtils.getTerminalIndicatorHTML = jest.fn().mockReturnValue('<div>Ready. Awaiting execution commands...</div>');
+
+            let capturedHandler = null;
+            const originalAddEventListener = clone.addEventListener;
+            clone.addEventListener = jest.fn((event, handler) => {
+                if (event === 'change') capturedHandler = handler;
+                if (originalAddEventListener) originalAddEventListener.call(clone, event, handler);
+            });
+
+            await manager.loadSources();
+
+            // Simulate the user selecting the empty option
+            // By extracting the handler directly, we bypass any JSDOM event bubbling issues
+            // and execute the exact closure that loadSources bound to the DOM.
+            expect(capturedHandler).not.toBeNull();
+            await capturedHandler({ target: { value: '' } });
+
+            expect(manager.polling._clearPollingAndCache).toHaveBeenCalled();
+            expect(document.getElementById('julesTerminal').innerHTML).toBe('<div>Ready. Awaiting execution commands...</div>');
+        });
     });
+
 
     describe('init', () => {
         beforeEach(() => {
