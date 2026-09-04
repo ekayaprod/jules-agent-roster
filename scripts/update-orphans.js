@@ -66,9 +66,7 @@ async function updateOrphans() {
     const fusions = (await fs.promises.readdir(fusionsDir)).filter(f => f.endsWith('.md') && f !== 'README.md');
 
     // Ensure orphans dir exists
-    if (!fs.existsSync(orphansDir)) {
-        await fs.promises.mkdir(orphansDir, { recursive: true });
-    }
+    await fs.promises.mkdir(orphansDir, { recursive: true });
 
     const newlyOrphaned = (await Promise.all(
         fusions.map(async (file) => {
