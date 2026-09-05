@@ -167,7 +167,7 @@ class GlobalEvents {
 
           const isPinned = app.pinnedManager.togglePin(index);
 
-          const safeIndex = CSS.escape(String(index));
+          const safeIndex = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(String(index)) : String(index).replace(/(["\\])/g, '\\$1');
           const existingPins = document.querySelectorAll(`[data-action="toggle-pin"][data-index="${safeIndex}"]`);
           existingPins.forEach(pinBtn => {
               if (isPinned) {
@@ -209,7 +209,7 @@ class GlobalEvents {
           if (!card) return;
 
           const index = frontTarget.dataset.index;
-          const safeIndex = CSS.escape(String(index));
+          const safeIndex = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(String(index)) : String(index).replace(/(["\\])/g, '\\$1');
           const promptArea = card.querySelector(`#prompt-content-${safeIndex}`);
 
           if (!promptArea || promptArea.innerHTML.trim()) {
@@ -378,7 +378,8 @@ class GlobalEvents {
             app.activeDropdowns.forEach(menu => {
                 DOMUtils.closeDropdownMenu(menu, app);
                 const toggleId = menu.id.replace('card-dropdown-', '');
-                const toggleBtn = document.querySelector(`[data-action="toggle-card-dropdown"][data-index="${toggleId}"]`);
+                const safeToggleId = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(String(toggleId)) : String(toggleId).replace(/(["\\])/g, '\\$1');
+                const toggleBtn = document.querySelector(`[data-action="toggle-card-dropdown"][data-index="${safeToggleId}"]`);
                 if (toggleBtn) {
                     toggleBtn.focus();
                     toggleBtn.setAttribute('aria-expanded', 'false');
