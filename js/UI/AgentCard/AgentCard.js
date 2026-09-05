@@ -141,11 +141,11 @@ class AgentCard {
                         <div class="description mt-3">${desc}</div>
                     </div>
                     ${fusionQuickListHtml}
-                    <div class="flip-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95" aria-label="Tap to view protocol" >↺</div>
+                    <button class="flip-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" aria-label="Tap to view protocol" >↺</button>
                 </div>
 
                 <div class="flip-card-back" data-action="flip-card-back">
-                    <div class="flip-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95" aria-label="Tap to view front" >↺</div>
+                    <button class="flip-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" aria-label="Tap to view front" >↺</button>
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
                     
                     <div class="card-actions mt-auto pt-2 flex relative">
