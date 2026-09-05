@@ -20,6 +20,9 @@ Brainstorm thematic verbs until one perfectly describes both mechanical action a
 ### The Variation Anchor
 If the worker uses the Total Replacement Context Extension, avoid reactive bug-hunting metaphors (e.g., "cleaning up trash"). Apply proactive, generative metaphors (e.g., "forging a new reality").
 
+### REROLL Destructive Anchor
+When applying REROLL Destructive Mechanics, ensure thematic voice supports structural incineration, decoupled verification, state preservation, or ground-truth anchoring. Let the extreme mechanical authority shape the metaphor.
+
 ### The Field Wisdom Register (Alternative Philosophy Mode)
 For unfamiliar domains, Deep Metaphors hide value. Author the Philosophy section as practitioner field wisdom instead. Do not layer a metaphor on top of mechanics; the mechanics are the message.
 
