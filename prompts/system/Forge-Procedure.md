@@ -74,6 +74,13 @@ You must supply the verbatim text below if the modifier is declared active durin
   * **The Clean Slate Procedure:** Reject sunk-cost fallacy. Map integration boundaries, burn existing structural logic entirely, provision a pristine replacement in its exact footprint.
   * **The Test Obsolescence Procedure:** Total replacement inevitably breaks legacy unit tests. If old tests block verification, isolate, disable (`.skip`/`xit`), or delete the obsolete blocks.
   * **The Gambler's Autonomous Selection:** Declaring a zero-target state or exiting cleanly is prohibited. Arbitrarily select the most prominent, structurally complete node discovered. *(Note: This modifier explicitly overrides the worker's base Discovery Velocity; it skips the sweep and forces an immediate pick, regardless of whether the worker is Contained or Expansive.)*
+  * **The Wrecking-Ball Generator (Total Replacement Generator):** Reconciles the Generator base profile with Total Replacement Destructive Authority, permitting legacy file incineration before net-new scaffolding.
+
+* **REROLL Advanced Destructive Mechanics Modifier**
+  * **The Decoupled Commit Protocol:** Explicitly separates infrastructure/config dry-run validation success from application-level compile/test failures (preventing false-positive Graceful Aborts on pre-existing source errors).
+  * **The Semantic Preservation Mandate:** Enforces state and binding isolation (onClick, onChange, hooks) during total UI/DOM structural rewrites.
+  * **Destructive Topology & Import Resilience:** Authorizes macro-environmental file system mutations (creating folders, moving modules) backed by static AST import path validation before committing.
+  * **Ground-Truth Extraction:** Enforces mandatory pre-mutation ingestion of active configuration manifests (package.json, .env.example, etc.) as an immutable ground-truth map to eliminate documentation drift.
 
 * **Iterative Execution Context Modifier**
   * **The Positive Polarity Rule:** State scope constraints as positive anchors ("always execute X") rather than prohibitive ("never do Z") — in loops, negative constraints force active re-suppression and waste attention tokens.
