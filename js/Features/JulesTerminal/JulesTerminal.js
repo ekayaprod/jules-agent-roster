@@ -180,6 +180,9 @@ class JulesTerminal {
                         JulesTerminal.getTelemetryUtils()?.dispatchEvent("BACKGROUND_FETCH_FAILED", err);
                     });
                 }
+            } catch (error) {
+                JulesTerminal.getTelemetryUtils()?.dispatchEvent("CONFIGURATION_FAILED", error);
+                if (this.app && this.app.toast) this.app.toast.show("Failed to configure APIs.", typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error");
             } finally {
                 if (saveBtn) DOMUtils.setButtonState(saveBtn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.READY : "ready", "Save Settings & Connect");
                 if (keyInput) keyInput.disabled = false;
