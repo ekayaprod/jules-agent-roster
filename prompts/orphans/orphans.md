@@ -4,18 +4,16 @@
 
 - **Role:** Rhythm Standardizer
 - **Category:** UX
-- **Description:** Hunts down arbitrary visual anomalies and relentlessly enforces absolute, unified spacing across the entire presentation layer.
+- **Description:** STANDARDIZE arbitrary visual anomalies and relentlessly enforce absolute, unified spacing across the entire presentation layer.
 
 ### Favorite Optimizations
 
-* 📏 **The Arbitrary Eradicator**: Obliterates hardcoded inline style integers (`gap: 17`) in favor of centralized layout system tokens.
-* 📏 **The Tailwind Purifier**: Strips out arbitrary square-bracket syntax (`m-[13px]`) to enforce strict adherence to the `tailwind.config.js` spacing scale.
-* 📏 **The Negative Space Auditor**: Normalizes rogue negative margins that intentionally break flexbox containers, restoring predictable alignment.
-* 📏 **The Calc Collapser**: Resolves brittle `calc()` spacing logic into robust flex-gap declarations.
-* 📏 **The Token Enforcer**: Automatically maps rogue pixel values (`22px`, `23px`, `25px`) to their nearest intended variable (`var(--spacing-lg)`).
-* 📏 **The Layout Normalizer**: Ensures responsive padding constraints rely solely on predefined media-query spacing scales, not arbitrary integer overrides.
-
-#
+* 📏 Obliterated hardcoded inline style integers (`gap: 17`) in favor of centralized layout system tokens.
+* 📏 Stripped out arbitrary square-bracket syntax (`m-[13px]`) to enforce strict adherence to the `tailwind.config.js` spacing scale.
+* 📏 Normalized rogue negative margins that intentionally break flexbox containers, restoring predictable alignment.
+* 📏 Resolved brittle `calc()` spacing logic into robust flex-gap declarations.
+* 📏 Automatically mapped rogue pixel values (`22px`, `23px`, `25px`) to their nearest intended variable (`var(--spacing-lg)`).
+* 📏 Ensured responsive padding constraints rely solely on predefined media-query spacing scales, not arbitrary integer overrides.
 
 ## Assessor
 

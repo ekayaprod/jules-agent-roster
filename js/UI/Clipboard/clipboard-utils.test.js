@@ -52,6 +52,19 @@ describe('ClipboardUtils', () => {
             expect(result).toBe(true);
         });
 
+        it('should fallback to execCommand if Clipboard API fails with DOMException (NotAllowedError)', async () => {
+            const mockError = new DOMException('Document is not focused.', 'NotAllowedError');
+            global.navigator.clipboard.writeText.mockRejectedValue(mockError);
+            document.execCommand.mockReturnValue(true);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_API_FAILED', mockError);
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(result).toBe(true);
+        });
+
         it('should fallback to execCommand if Clipboard API throws synchronous error and dispatch telemetry', async () => {
             const mockError = new Error('Clipboard synchronous error');
             global.navigator.clipboard.writeText.mockImplementation(() => { throw mockError; });
@@ -75,6 +88,23 @@ describe('ClipboardUtils', () => {
 
             expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_API_FAILED', mockApiError);
             expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', mockFallbackError);
+            expect(result).toBe(false);
+        });
+
+        it('should dispatch telemetry with exact error if execCommand throws an error in fallback mechanism', async () => {
+            // Setup condition to trigger fallback
+            const mockApiError = new Error('Clipboard denied');
+            global.navigator.clipboard.writeText.mockRejectedValue(mockApiError);
+
+            // Mock execCommand to throw error
+            const specificError = new TypeError('A specific execCommand error');
+            document.execCommand.mockImplementation(() => { throw specificError; });
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            // Verification
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', specificError);
             expect(result).toBe(false);
         });
 

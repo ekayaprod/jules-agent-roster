@@ -308,6 +308,17 @@ describe('JulesTerminal', () => {
 
             expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to send reply.", "error");
         });
+
+        it('should safely skip telemetry if getTelemetryUtils returns null on API failure', async () => {
+            const error = new Error('Network error');
+            window.julesAPI.provideInput.mockRejectedValueOnce(error);
+
+            global.JulesTerminal.getTelemetryUtils.mockReturnValue(null);
+
+            await modals._transmitReply('session-1', 'user reply', mockCloseFn, null);
+
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to send reply.", "error");
+        });
     });
 
     describe('_showKeyError and _clearKeyError', () => {

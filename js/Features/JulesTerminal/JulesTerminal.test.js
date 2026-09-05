@@ -78,6 +78,21 @@ describe('JulesTerminal', () => {
             expect(mockApp.toast.show).toHaveBeenCalledWith("Unable to connect to GitHub: Test connection error", true);
         });
 
+        it('handles error in loadSources with missing message (fallback to Unknown error)', async () => {
+            const picker = document.getElementById("julesRepoPicker");
+            const originalText = picker.options[0].textContent;
+            const mockError = new Error();
+            delete mockError.message; // Ensure message is not present
+            global.window.julesAPI.getSources.mockRejectedValueOnce(mockError);
+
+            await manager.loadSources();
+
+            expect(picker.innerHTML).toBe(`<option value="">${originalText}</option>`);
+            expect(picker.disabled).toBe(false);
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("SOURCES_LOAD_FAILED", mockError);
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Unable to connect to GitHub: Unknown error", true);
+        });
+
         it('populates the dropdown when sources are present', async () => {
             const picker = document.getElementById("julesRepoPicker");
             global.window.julesAPI.getSources.mockResolvedValueOnce({
@@ -263,6 +278,35 @@ describe('JulesTerminal', () => {
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
         });
 
+        it('restores button and input states if an error occurs during save', async () => {
+            global.StorageUtils.getItem.mockReturnValue(null);
+            await manager.init();
+
+            const keyInput = document.getElementById('julesApiKeyInput');
+            const githubTokenInput = document.getElementById('githubTokenInput');
+            keyInput.value = 'new_valid_key';
+            const saveBtn = document.getElementById('saveSettingsBtn');
+
+            const mockError = new Error('Configure failed');
+            global.window.julesAPI.configure.mockImplementation(() => {
+                throw mockError;
+            });
+
+            // The event listener is async, so we wrap the click in a try-catch
+            // since throwing inside it will bubble up as an unhandled promise rejection in the test environment
+            try {
+                await saveBtn.click();
+            } catch(e) {
+                // Expected
+            }
+
+            await Promise.resolve(); // flush promise queue
+
+            expect(global.DOMUtils.setButtonState).toHaveBeenCalledWith(saveBtn, BUTTON_STATES.READY, "Save Settings & Connect");
+            expect(keyInput.disabled).toBe(false);
+            expect(githubTokenInput.disabled).toBe(false);
+        });
+
         it('dispatches BACKGROUND_FETCH_FAILED telemetry event if loadSources fails when saveSettingsBtn is clicked', async () => {
             global.StorageUtils.getItem.mockReturnValue(null);
 
@@ -351,6 +395,13 @@ describe('JulesTerminal', () => {
             await manager.loadPullRequestsForRepo('owner/repo');
 
             expect(terminal.querySelectorAll('.term-pr-item').length).toBe(0);
+        });
+
+        it('handles errors when fetching pull requests fails', async () => {
+            const mockError = new Error('Failed to fetch PRs');
+            global.window.githubAPI.getPullRequests.mockRejectedValueOnce(mockError);
+
+            await expect(manager.loadPullRequestsForRepo('owner/repo')).rejects.toThrow('Failed to fetch PRs');
         });
     });
 
@@ -457,6 +508,52 @@ describe('JulesTerminal', () => {
 
         afterEach(() => {
             jest.useRealTimers();
+        });
+
+        it('handles task failure when TelemetryUtils is unavailable', async () => {
+            const originalTelemetryUtils = global.TelemetryUtils;
+            delete global.TelemetryUtils;
+
+            try {
+                const mockError = new Error('Task Failed');
+                manager.sessionQueue.push(async () => {
+                    throw mockError;
+                });
+
+                await manager._processSessionQueue();
+
+                expect(manager.isProcessingQueue).toBe(false);
+            } finally {
+                global.TelemetryUtils = originalTelemetryUtils;
+            }
+        });
+
+        it('processes queue in chunks and applies rate limit delay', async () => {
+            jest.useFakeTimers();
+            const task1 = jest.fn().mockResolvedValue();
+            const task2 = jest.fn().mockResolvedValue();
+            const task3 = jest.fn().mockResolvedValue();
+            const task4 = jest.fn().mockResolvedValue();
+
+            manager.sessionQueue.push(task1, task2, task3, task4);
+
+            const processPromise = manager._processSessionQueue();
+
+            if (jest.runAllTimersAsync) {
+                await jest.runAllTimersAsync();
+            } else {
+                for(let i = 0; i < 5; i++) {
+                    await Promise.resolve();
+                    jest.advanceTimersByTime(1000);
+                }
+            }
+
+            await processPromise;
+
+            expect(task1).toHaveBeenCalled();
+            expect(task2).toHaveBeenCalled();
+            expect(task3).toHaveBeenCalled();
+            expect(task4).toHaveBeenCalled();
         });
 
         it('dispatches QUEUE_EXECUTION_ERROR on task failure', async () => {

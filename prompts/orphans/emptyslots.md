@@ -29,7 +29,6 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Helix,Janitor`
 - `Helix,Vibe Check`
 - `Inspector,Vibe Check`
-- `Inspector,Vibe`
 - `Janitor,Janitor`
 - `Janitor,Vibe Check`
 - `Janitor,Vibe`
