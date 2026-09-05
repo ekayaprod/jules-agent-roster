@@ -24,7 +24,7 @@
   <body>
     <div id="initial-loading-overlay" class="transition-all duration-500 ease-in-out backdrop-blur-md" aria-busy="true" aria-label="Loading Application">
       <div class="loading-spinner"></div>
-      <div >Initializing Protocol Matrix...</div>
+      <div class="skeleton-pulse font-semibold tracking-wide">Initializing Protocol Matrix...</div>
     </div>
 
     <header class="header">
@@ -147,13 +147,13 @@
             <label for="julesApiKeyInput" >Jules API Key</label>
             <input type="password" id="julesApiKeyInput" class="modal-input transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none hover:shadow-sm" placeholder="Paste key here..." />
             <span id="julesApiKeyError" role="alert" ></span>
-            <a href="https://jules.google.com/settings#api" target="_blank" class="modal-link">How to get an API Key →</a>
+            <a href="https://jules.google.com/settings#api" target="_blank" class="modal-link inline-block py-2 px-3 transition-all duration-300 ease-in-out hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none">How to get an API Key →</a>
         </div>
         <div >
             <label for="githubTokenInput" >GitHub Token</label>
             <input type="password" id="githubTokenInput" class="modal-input transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none hover:shadow-sm" placeholder="Paste token here..." />
             <span id="githubTokenError" role="alert" ></span>
-            <a href="https://github.com/settings/tokens" target="_blank" class="modal-link">How to get a GitHub Token →</a>
+            <a href="https://github.com/settings/tokens" target="_blank" class="modal-link inline-block py-2 px-3 transition-all duration-300 ease-in-out hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none">How to get a GitHub Token →</a>
         </div>
         <div class="flex gap-4 mt-4">
             <button id="closeSettingsBtn" aria-label="Cancel Settings" class="secondary flex-1 transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl">Cancel Settings</button>
@@ -191,7 +191,7 @@
                     <span id="prModalEmoji">🐙</span>
                     <span id="prModalTitleText">Pull Request Details</span>
                 </span>
-                <a id="prModalExternalLink" href="#" target="_blank" rel="noopener noreferrer" class="modal-link">View on GitHub →</a>
+                <a id="prModalExternalLink" href="#" target="_blank" rel="noopener noreferrer" class="modal-link inline-block py-2 px-3 transition-all duration-300 ease-in-out hover:scale-105 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none">View on GitHub →</a>
             </h3>
             <div id="prModalContent" ></div>
             <span id="prModalError" role="alert" class="text-xs hidden" ></span>
@@ -228,9 +228,9 @@
     <div class="fusion-lab-container">
       <h2>🧬 The Fusion Lab</h2>
       <div id="fusionLabSkeleton" class="fusion-visual-slots skeleton-pulse fade-transition" aria-hidden="true">
-        <div class="slot-card" ></div>
-        <div class="fusion-action-area"></div>
-        <div class="slot-card" ></div>
+        <div class="slot-card flex flex-col items-center justify-center p-4 gap-4"><div class="w-16 h-16 rounded-full bg-slate-800/50"></div><div class="h-4 w-24 rounded bg-slate-800/50"></div></div>
+        <div class="fusion-action-area"><div class="h-12 w-32 rounded-xl bg-slate-800/50"></div></div>
+        <div class="slot-card flex flex-col items-center justify-center p-4 gap-4"><div class="w-16 h-16 rounded-full bg-slate-800/50"></div><div class="h-4 w-24 rounded bg-slate-800/50"></div></div>
       </div>
       <div id="fusionLabContent" class="fusion-visual-slots fade-transition hidden">
         <button id="slotACard" class="slot-card transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95">
