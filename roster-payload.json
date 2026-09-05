@@ -1315,7 +1315,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "ERADICATE RPC-style verbs embedded in URLs. Enforce strict RESTful noun-based routing contracts across all backend endpoints.",
-    "forge_version": "V85.4",
+    "forge_version": "V87.6",
     "promptFile": "prompts/fusions/REST Enforcer.md",
     "isCustom": true
   },
