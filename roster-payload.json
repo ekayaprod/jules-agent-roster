@@ -1281,7 +1281,7 @@
     "role": "Code Destroyer",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "PRUNE mathematically impossible execution paths, unreachable logic branches, and unused exports.",
+    "description": "PRUNE mathematically impossible execution paths, unreachable logic branches, and unused exports to ensure strict control flow hygiene.",
     "forge_version": "V87.5",
     "promptFile": "prompts/fusions/Pruner.md",
     "isCustom": true
