@@ -188,7 +188,8 @@
       button.secondary:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
 
       /* --- ULTRA MINIMAL 1-LINE TERMINAL RUNNER --- */
-      .jules-runner-panel {
+      /* REMOVED .jules-runner-panel { */
+.jules-runner-panel-REMOVED {
         position: fixed;
         left: 0;
         top: 0;
@@ -208,10 +209,12 @@
         transform: translateX(-100%);
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
-      .jules-runner-panel.open {
+      /* REMOVED .jules-runner-panel.open { */
+.jules-runner-panel-open-REMOVED {
         transform: translateX(0);
       }
-      .jules-pull-tab {
+      /* REMOVED .jules-pull-tab { */
+.jules-pull-tab-REMOVED {
         position: absolute;
         right: -2.75rem;
         top: 20vh;
@@ -251,7 +254,8 @@
         outline-offset: -2px;
         transform: translateX(0.25rem);
       }
-      .runner-header {
+      /* REMOVED .runner-header { */
+.runner-header-REMOVED {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -259,7 +263,8 @@
         padding: 0.4rem 1rem;
         border-bottom: 1px solid var(--term-border);
       }
-      .runner-header h2 {
+      /* REMOVED .runner-header h2 { */
+.runner-header-h2-REMOVED {
         margin: 0;
         font-size: var(--text-xs);
         font-family: -apple-system, sans-serif;
@@ -271,12 +276,14 @@
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
-      .terminal-toggle-container {
+      /* REMOVED */
+.terminal-toggle-container-REMOVED {
         display: flex;
         align-items: center;
         gap: 0.5rem;
       }
-      .terminal-toggle-label {
+      /* REMOVED */
+.terminal-toggle-label-REMOVED {
         font-size: var(--text-xs);
         color: var(--term-muted);
         text-transform: uppercase;
@@ -339,7 +346,8 @@
       }
 
       /* MOBILE-FRIENDLY FLEX INPUTS */
-      .runner-inputs {
+      /* REMOVED .runner-inputs { */
+.runner-inputs-REMOVED {
         opacity: 0;
         max-height: 0;
         padding: 0;
@@ -351,13 +359,15 @@
         background: rgba(22, 27, 34, 0.5);
         border-bottom: 1px solid transparent;
       }
-      .runner-inputs.active {
+      /* REMOVED .runner-inputs.active { */
+.runner-inputs-active-REMOVED {
         opacity: 1;
         max-height: 20rem;
         padding: 0.5rem;
         border-bottom: 1px solid var(--term-border);
       }
-      .repo-picker, .task-input {
+      /* REMOVED */
+.repo-picker-REMOVED, .task-input-REMOVED {
         flex: 1 1 100%; /* Force full width on mobile */
         min-width: 0;
         background: var(--term-bg);
@@ -374,12 +384,14 @@
       .task-input { resize: vertical; min-height: 2.75rem; }
 
       @media (min-width: 640px) {
-        .runner-inputs { flex-wrap: nowrap; }
+        /* REMOVED .runner-inputs { */
+.runner-inputs-REMOVED { flex-wrap: nowrap; }
         .repo-picker { flex: 1; }
         .task-input { flex: 2; }
       }
 
-      .ide-viewport {
+      /* REMOVED */
+.ide-viewport-REMOVED {
         background: var(--term-panel-bg);
         padding: 0.5rem 1rem;
         flex-grow: 1;
@@ -468,8 +480,10 @@
 
       /* MISC UI */
       .section-header { flex: 0 0 auto; margin: auto 0; padding: 0 1rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; font-size: var(--text-sm); border-bottom: none; align-self: center; }
-      .grid { display: contents; }
-      #main { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; max-width: 75rem; margin: 0 auto; }
+      /* REMOVED .grid */
+.grid-REMOVED { }
+      /* REMOVED #main */
+#main-REMOVED { }
 
       .title-group { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1rem; text-align: left; }
       .agent-title { font-size: var(--text-base); font-weight: var(--weight-bold); margin: 0; font-family: -apple-system, sans-serif; }
@@ -564,7 +578,8 @@
 
       /* Desktop Expansion */
       @media (min-width: 640px) {
-        .ide-viewport { max-height: 25rem; padding: 1rem 1.5rem; }
+        /* REMOVED */
+.ide-viewport-REMOVED { max-height: 25rem; padding: 1rem 1.5rem; }
         .flip-card, .skeleton-card { flex-basis: 20rem !important; max-width: 24rem !important; margin-top: 2rem; }
         #main > .section-header { position: static; width: 100%; height: auto; padding: 1rem 1rem 0; margin: 0; overflow: visible; clip: auto; white-space: normal; border-bottom: none; text-align: left; }
         .grid > *:first-child::before { display: none; }
@@ -715,3 +730,121 @@
 }
 .search-input { width: 100%; background: var(--details-bg); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem 2.5rem 0.75rem 2.5rem; border-radius: 999px; outline: none; }
 .search-input:focus-visible { border-color: var(--accent); }
+
+      /* Mulligan Net-New Layout */
+      .jules-panel-grid {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: calc(100% - 2.75rem);
+        max-width: 32rem;
+        background: color-mix(in srgb, var(--term-bg) 90%, transparent);
+        border-right: 1px solid var(--term-border);
+        display: grid;
+        grid-template-rows: max-content max-content minmax(0, 1fr);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5), 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        transform: translateX(-100%);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .jules-panel-grid.open { transform: translateX(0); }
+      .jules-panel-grid-header { display: grid; grid-template-columns: 1fr auto; align-items: center; padding: 1rem 1.25rem; background: var(--term-header-bg); border-bottom: 1px solid var(--term-border); }
+      .jules-panel-branding { display: flex; align-items: center; gap: 0.75rem; }
+      .jules-panel-icon { color: var(--accent); display: flex; }
+      .jules-panel-title { margin: 0; font-size: var(--text-sm); font-weight: 700; color: var(--term-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+      .jules-panel-controls { display: flex; }
+      .jules-toggle-wrapper { display: flex; align-items: center; gap: 0.75rem; cursor: pointer; }
+      .jules-toggle-text { font-size: var(--text-xs); color: var(--term-muted); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+      .jules-toggle-switch { position: relative; width: 2.125rem; height: 1.25rem; }
+      .jules-toggle-input { opacity: 0; width: 0; height: 0; position: absolute; }
+      .jules-toggle-track { position: absolute; inset: 0; background: #ccc; border-radius: 9999px; transition: background-color 0.4s ease; }
+      .jules-toggle-thumb { position: absolute; top: 0.125rem; left: 0.125rem; width: 1rem; height: 1rem; background: white; border-radius: 50%; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+      .jules-toggle-input:checked ~ .jules-toggle-track { background: var(--accent); }
+      .jules-toggle-input:checked ~ .jules-toggle-thumb { transform: translateX(0.875rem); }
+      .jules-toggle-input:focus-visible ~ .jules-toggle-track { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      .jules-panel-grid-inputs { display: grid; grid-template-columns: 1fr; gap: 1rem; padding: 0; max-height: 0; overflow: hidden; background: rgba(22, 27, 34, 0.5); border-bottom: 1px solid transparent; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0; }
+      .jules-panel-grid-inputs.active { padding: 1.25rem; max-height: 24rem; opacity: 1; border-bottom: 1px solid var(--term-border); }
+      @media (min-width: 640px) {
+        .jules-panel-grid-inputs { grid-template-columns: 1fr 2fr; }
+      }
+      .jules-input-group { display: flex; flex-direction: column; gap: 0.5rem; }
+      .jules-input-label { font-size: var(--text-xs); color: var(--term-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+      .jules-select-wrapper { position: relative; display: flex; }
+      .jules-select-core { width: 100%; appearance: none; background: var(--term-bg); border: 1px solid var(--term-border); color: var(--term-text); padding: 0.625rem 2rem 0.625rem 0.75rem; border-radius: 0.5rem; font-family: inherit; font-size: var(--text-sm); outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+      .jules-select-core:focus-visible { outline: 2px solid var(--term-system); outline-offset: 2px; border-color: transparent; }
+      .jules-select-indicator { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--term-muted); }
+      .jules-textarea-wrapper { display: flex; height: 100%; }
+      .jules-textarea-core { width: 100%; background: var(--term-bg); border: 1px solid var(--term-border); color: var(--term-text); padding: 0.75rem; border-radius: 0.5rem; font-family: inherit; font-size: var(--text-sm); resize: vertical; min-height: 4rem; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+      .jules-textarea-core:focus-visible { outline: 2px solid var(--term-system); outline-offset: 2px; border-color: transparent; }
+
+      .jules-panel-grid-viewport { background: var(--term-panel-bg); padding: 0.5rem 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.75rem; font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: var(--text-xs); line-height: 1.4; color: var(--term-text); box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2); }
+      .jules-viewport-content { display: flex; flex-direction: column; gap: 0.75rem; }
+      .jules-status-line { padding: 0.5rem 0.75rem; color: var(--term-muted); border-radius: 0.375rem; }
+      .jules-status-pulse { animation: fadeIn 0.2s ease-out forwards; }
+
+      .jules-panel-trigger { position: absolute; right: -2.75rem; top: 20vh; width: 2.75rem; height: 3rem; background: var(--term-bg); border: 1px solid var(--term-border); border-left: none; border-radius: 0 0.5rem 0.5rem 0; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--term-text); transition: box-shadow 0.3s ease-in-out, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease-in-out, background-color 0.2s ease-in-out; }
+      @media (hover: hover) and (pointer: fine) { .jules-panel-trigger:hover { background: var(--term-panel-bg); color: var(--accent); transform: translateX(0.25rem); box-shadow: -4px 0 10px rgba(0,0,0,0.1); } }
+      .jules-panel-trigger:active { background: var(--term-panel-bg); color: var(--accent); transform: translateX(0.25rem) scale(0.95); }
+      .jules-panel-trigger:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; transform: translateX(0.25rem); }
+
+      /* 🃏 Mulligan Master Layout */
+      .mulligan-master-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        max-width: 85rem;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+
+      .mulligan-grid-section {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .mulligan-grid-section .section-header {
+        font-size: var(--text-2xl);
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid color-mix(in srgb, var(--accent) 30%, transparent);
+        width: 100%;
+        display: inline-block;
+      }
+
+      .mulligan-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        align-items: start;
+        width: 100%;
+      }
+
+      /* Target the old js injected .grid elements if any JS injects them back, though JS should query by ID mostly */
+      /* Also we need to make sure .mulligan-grid empty states don't take up space if there's no children. */
+      .mulligan-grid:empty { display: none; }
+
+      /* Make sure the card looks good in grid */
+      .card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: auto !important; /* Override JS inline styles if any */
+        margin: 0 !important;
+      }
+
+      .card-body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .description {
+        flex-grow: 1;
+      }
