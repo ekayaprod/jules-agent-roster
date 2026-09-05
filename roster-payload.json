@@ -1458,7 +1458,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "RUMBLE through undocumented Pull Requests, wrestle fragile logic into submission with net-new tests, and force the CI/CD pipeline to green.",
-    "forge_version": "V85.4",
+    "forge_version": "V87.5",
     "promptFile": "prompts/fusions/Rumble.md",
     "isCustom": true
   },
