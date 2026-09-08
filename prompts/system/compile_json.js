@@ -275,7 +275,6 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     { label: 'Canonical testing doctrine phrase', pattern: /treat test files as immutable and read-only/i },
     { label: 'Canonical testing doctrine failure clause', pattern: /prove (?:the test|it) was failing on `?main`?/i },
     { label: 'Managed Interruption clause', pattern: /managed interruption/i },
-    { label: 'Strict Journaling Protocol', pattern: /strict journaling protocol|solely to update a journal/i },
   ];
 
   const freeTextFieldsToScan = {

@@ -18,7 +18,6 @@ All profiles except Analyzer implicitly inherit this contract. Do not duplicate 
 * **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.
 * **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
 * **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
-* **Strict Journaling Protocol:** Never submit a PR solely to update a journal declaring no targets were found. The journal exists exclusively to record critical architectural information necessary for future agent runs. Do not log execution history or non-important details.
 
 
 ### 1. Pruner (Delete)
