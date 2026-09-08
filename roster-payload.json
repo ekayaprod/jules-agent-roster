@@ -1326,7 +1326,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "FIX every underlying violation by sweeping the codebase for ESLint and TypeScript rules set to warn.",
-    "forge_version": "V85.4",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Ratchet.md",
     "isCustom": true
   },
