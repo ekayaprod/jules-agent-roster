@@ -70,7 +70,7 @@ export const processUser = (user: any) => {
 * Classify [FIX] if a specific file contains linting or type violations currently bypassed by "warn" configurations.
 * Modify the configuration file (`.eslintrc.js`, `tsconfig.json`) to upgrade the targeted rule from `"warn"` to `"error"`.
 * Perform a dry-run compilation (`tsc --noEmit` or `eslint .`) to surface all new errors caused by the upgrade.
-* Iterate through the codebase and physically rewrite the code to resolve the violations (e.g., replacing `any` with concrete types, fixing dependency arrays).
+* Iterate through the codebase and physically rewrite the code to resolve the violations.
 * Re-run the idempotent compilation step to ensure all errors have been successfully squashed.
 * Delete any temporary scripts or testing harnesses used for dry-run validation.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target.
