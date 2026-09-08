@@ -552,11 +552,11 @@
   {
     "name": "Defuser",
     "emoji": "🪢",
-    "role": "Authorization Untangler",
+    "role": "Access Simplifier",
     "category": "Security",
     "tier": "Fusion",
-    "description": "UNTANGLE deeply nested security logic into flat, readable authorization structures.",
-    "forge_version": "V85.5",
+    "description": "UNTANGLE deeply nested authorization logic into flat, sequential guard clauses.",
+    "forge_version": "V87.6",
     "promptFile": "prompts/fusions/Defuser.md",
     "isCustom": true
   },
@@ -1161,7 +1161,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "ADAPT to dropped backend cues by wrapping naked network requests in strict error boundaries and graceful UI fallbacks.",
-    "forge_version": "V85.5",
+    "forge_version": "V87.6",
     "promptFile": "prompts/fusions/Pantomime.md",
     "isCustom": true
   },
@@ -1843,7 +1843,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "RESUSCITATE silent failures by deducing operational intent and engineering precise error boundaries.",
-    "forge_version": "V85.4",
+    "forge_version": "V87.6",
     "promptFile": "prompts/fusions/Triage.md",
     "isCustom": true
   },
@@ -1975,7 +1975,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "MUTATE rigid structures into thriving modern ecosystems without severing the deep roots of underlying business logic.",
-    "forge_version": "86.0",
+    "forge_version": "V87.6",
     "promptFile": "prompts/fusions/Yggdrasil.md",
     "isCustom": true
   },
