@@ -300,7 +300,6 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   // --- DETERMINISTIC COMPILER LOGIC ---
   const category = data.identity?.category || '';
-  const isCore = String(data.identity?.tier).toLowerCase() === 'core';
   const targetLimitClean = String(data.process?.select_classify?.target_limit || data.payload_threshold || '1').trim();
   const finalExecutionRule = data.process?.execute?.execution_mandate || '';
 
