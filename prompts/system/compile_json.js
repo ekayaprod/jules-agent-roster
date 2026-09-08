@@ -275,6 +275,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     { label: 'Canonical testing doctrine phrase', pattern: /treat test files as immutable and read-only/i },
     { label: 'Canonical testing doctrine failure clause', pattern: /prove (?:the test|it) was failing on `?main`?/i },
     { label: 'Managed Interruption clause', pattern: /managed interruption/i },
+    { label: 'Strict Journaling Protocol', pattern: /strict journaling protocol|solely to update a journal/i },
   ];
 
   const freeTextFieldsToScan = {
@@ -300,6 +301,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   // --- DETERMINISTIC COMPILER LOGIC ---
   const category = data.identity?.category || '';
+  const isCore = String(data.identity?.tier).toLowerCase() === 'core';
   const targetLimitClean = String(data.process?.select_classify?.target_limit || data.payload_threshold || '1').trim();
   const finalExecutionRule = data.process?.execute?.execution_mandate || '';
 
