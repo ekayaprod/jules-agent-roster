@@ -27,3 +27,8 @@
   - Palette+ UI aesthetic upgrades (e.g., `d29d6c56`, `e1d3edcf`, `a61c0691`, `6c3da6ba`, `99831ce1`)
   - Hazmat agent upgrades to V86.9 (e.g., `317afea1`, `90afddb3`, `9a076d0a`, `3eae3e64`)
   - Groundskeeper standards V86.8/V86.9 (e.g., `c6030fcb`, `06fed9c3`, `a4ef75ed`, `c80db11b`)
+  - Respec testing scaffolding (e.g., `d5f86d15`, `0e3ad09d`)
+  - Paramedic error handling hotfixes (e.g., `8bc2f3cd`)
+  - Auto-Forge upgrades for Quarantine & REST Enforcer (e.g., `77b87bf1`, `076f39df`)
+- **JSDoc Intent Sources (Current Pass)**:
+  - `900318f7` (Matrix Unlock easter egg magic number documented in `js/UI/FusionLab/FusionLabRenderer.js`)
