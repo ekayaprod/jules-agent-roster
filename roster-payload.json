@@ -567,7 +567,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "PURGE dead infrastructure code and orphaned dependencies to accelerate deployment velocity.",
-    "forge_version": "V85.5",
+    "forge_version": "V87.6",
     "promptFile": "prompts/fusions/Discharge.md",
     "isCustom": true
   },
