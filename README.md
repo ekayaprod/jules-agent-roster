@@ -20,6 +20,7 @@ To help you navigate the physical structure of the monorepo, here is the archite
 | `playwright/` | The End-to-End (E2E) testing suite to verify UI flows and browser interactions.                                           |
 | `prompts/`    | The absolute source of truth. Contains the raw Markdown files representing individual agent personas and instructions.    |
 | `scripts/`    | Build scripts, including the Node.js compiler that compiles raw markdown prompts into the `roster-payload.json` artifact. |
+| `.github/`    | Houses CI/CD workflows and deployment configurations.                                                                     |
 | `.jules/`     | Houses internal AI journals, agent task boards, and triage memory files used to coordinate autonomous agents.             |
 
 ## 🚀 Quick Start
