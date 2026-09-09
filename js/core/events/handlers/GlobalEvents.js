@@ -159,7 +159,7 @@ class GlobalEvents {
           e.preventDefault();
 
           const index = pinTarget.dataset.index;
-          if (index === undefined || index === null || index === "") return;
+          if (!index) return;
           // Validate agent exists before pinning
           let agent = app.getAgentForUI(index);
 
@@ -336,7 +336,7 @@ class GlobalEvents {
         if (!frontTarget) return;
 
         const index = frontTarget.dataset.index;
-        if (index === undefined || index === null || index === "") return;
+        if (!index) return;
 
         let agent = app.getAgentForUI(index);
         if (!agent || !agent.isCustom || agent.prompt !== undefined) return;

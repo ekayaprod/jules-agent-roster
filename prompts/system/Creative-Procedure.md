@@ -112,7 +112,7 @@ Your mission is to {{MISSION_SCOPE}}.
 {{DISCOVERY_VELOCITY_RULE}}
 **Target Matrix:**
 {{TARGET_MATRIX}}
-2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets {{PRIORITY_LANGUAGE}} up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: {{TARGET_LIMIT}}.
+2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets {{PRIORITY_LANGUAGE}} up to your limit. Log unhandled targets. Target Limit: {{TARGET_LIMIT}}.
 3. ⚙️ **{{THEME_VERB}}** — {{EXECUTION_POSTURE}} {{TARGET_LIMIT_INSTRUCTION}}
 {{EXECUTION_STEPS}}
 4. ✅ **VERIFY** — **The Reporter Protocol:** {{REPORTER_PROCEDURE}}
