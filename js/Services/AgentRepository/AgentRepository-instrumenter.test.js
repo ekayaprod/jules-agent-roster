@@ -1,7 +1,7 @@
 const AgentRepository = require('./AgentRepository.js');
-const NetworkUtils = require('../Utils/network/network-utils.js');
+const NetworkUtils = require('../../Utils/network/network-utils.js');
 
-jest.mock('../Utils/network/network-utils.js');
+jest.mock('../../Utils/network/network-utils.js');
 
 describe('AgentRepository - Instrumenter', () => {
     let repo;

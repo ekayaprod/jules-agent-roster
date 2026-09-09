@@ -1,4 +1,4 @@
-const JulesTerminal = require('../JulesTerminal');
+const JulesTerminal = require('./JulesTerminal');
 
 // Mocks to replace undefined DOM references in the constructor/init
 global.JulesModals = class JulesModals {
