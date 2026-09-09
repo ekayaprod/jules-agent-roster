@@ -1,4 +1,4 @@
-const { GithubAPI, GithubConfigurationError, GithubNetworkError } = require('../GithubAPI');
+const { GithubAPI, GithubConfigurationError, GithubNetworkError } = require('./GithubAPI');
 
 describe('GithubAPI (INSTRUMENTER Edge Cases)', () => {
     let api;

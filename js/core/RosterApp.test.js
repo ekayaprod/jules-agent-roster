@@ -41,6 +41,7 @@ describe('RosterApp (Boundary Interrogation)', () => {
         global.JulesTerminal = class { init() {} };
         global.SearchController = class { init() {} };
         global.ExportController = class { init() {} };
+        const AgentRepository = require("../Services/AgentRepository/AgentRepository");
         global.AgentRepository = class { async fetchWithRetry() { return []; } async initialize() { return true; } };
         global.PinnedManager = PinnedManager;
 
