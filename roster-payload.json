@@ -567,7 +567,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "PURGE dead infrastructure code and orphaned dependencies to accelerate deployment velocity.",
-    "forge_version": "V85.5",
+    "forge_version": "V87.8",
     "promptFile": "prompts/fusions/Discharge.md",
     "isCustom": true
   },
@@ -619,7 +619,7 @@
     "name": "Exorcist",
     "emoji": "✝️",
     "role": "Hallucination Eradicator",
-    "category": "fusions",
+    "category": "Hygiene",
     "tier": "Fusion",
     "description": "ERADICATE hallucinated MCP tool schemas and hallucinated orchestration stubs.",
     "forge_version": "V87.6",
