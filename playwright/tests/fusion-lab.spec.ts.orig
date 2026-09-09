@@ -5,11 +5,7 @@ test.describe('Fusion Lab End-to-End', () => {
     // Navigate to the app
     await page.goto('/');
 
-    try {
-      await page.waitForSelector('#initial-loading-overlay', { state: 'detached', timeout: 5000 });
-    } catch (e) {
-      // ignore timeout
-    }
+    await page.waitForSelector('#initial-loading-overlay.hidden', { state: 'attached', timeout: 5000 }).catch(() => {});
 
     // Ensure Fusion Lab section is visible
     await expect(page.getByRole('heading', { name: /The Fusion Lab/i })).toBeVisible();

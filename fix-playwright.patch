@@ -1,0 +1,45 @@
+--- a/playwright/tests/search.spec.ts
++++ b/playwright/tests/search.spec.ts
+@@ -4,7 +4,11 @@
+   test('User completes search flow and clears results', async ({ page }) => {
+     await page.goto('/');
+
+-    await page.waitForSelector('#initial-loading-overlay.hidden', { state: 'attached', timeout: 5000 }).catch(() => {});
++    try {
++      await page.waitForSelector('#initial-loading-overlay', { state: 'detached', timeout: 5000 });
++    } catch (e) {
++      // ignore timeout
++    }
+
+     const searchBtn = page.getByRole('button', { name: /Search/i });
+     await searchBtn.click();
+--- a/playwright/tests/settings.spec.ts
++++ b/playwright/tests/settings.spec.ts
+@@ -4,7 +4,11 @@
+   test('User can open and close settings modal', async ({ page }) => {
+     await page.goto('/');
+
+-    await page.waitForSelector('#initial-loading-overlay.hidden', { state: 'attached', timeout: 5000 }).catch(() => {});
++    try {
++      await page.waitForSelector('#initial-loading-overlay', { state: 'detached', timeout: 5000 });
++    } catch (e) {
++      // ignore timeout
++    }
+
+     const settingsBtn = page.locator('#openSettingsBtn');
+     await expect(settingsBtn).toBeVisible();
+--- a/playwright/tests/fusion-lab.spec.ts
++++ b/playwright/tests/fusion-lab.spec.ts
+@@ -4,7 +4,11 @@
+   test('User completes agent fusion flow', async ({ page }) => {
+     // Navigate to the app
+     await page.goto('/');
+
+-    await page.waitForSelector('#initial-loading-overlay.hidden', { state: 'attached', timeout: 5000 }).catch(() => {});
++    try {
++      await page.waitForSelector('#initial-loading-overlay', { state: 'detached', timeout: 5000 });
++    } catch (e) {
++      // ignore timeout
++    }
+
+     // Ensure Fusion Lab section is visible

@@ -4,7 +4,11 @@ test.describe('Settings Modal', () => {
   test('User can open and close settings modal', async ({ page }) => {
     await page.goto('/');
 
-    await page.waitForSelector('#initial-loading-overlay.hidden', { state: 'attached', timeout: 5000 }).catch(() => {});
+    try {
+      await page.waitForSelector('#initial-loading-overlay', { state: 'detached', timeout: 5000 });
+    } catch (e) {
+      // ignore timeout
+    }
 
     const settingsBtn = page.locator('#openSettingsBtn');
     await expect(settingsBtn).toBeVisible();

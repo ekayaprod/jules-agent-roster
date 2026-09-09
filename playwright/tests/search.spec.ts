@@ -4,7 +4,11 @@ test.describe('Search End-to-End', () => {
   test('User completes search flow and clears results', async ({ page }) => {
     await page.goto('/');
 
-    await page.waitForSelector('#initial-loading-overlay.hidden', { state: 'attached', timeout: 5000 }).catch(() => {});
+    try {
+      await page.waitForSelector('#initial-loading-overlay', { state: 'detached', timeout: 5000 });
+    } catch (e) {
+      // ignore timeout
+    }
 
     const searchBtn = page.getByRole('button', { name: /Search/i });
     await searchBtn.click();
