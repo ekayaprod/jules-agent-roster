@@ -353,7 +353,7 @@ const FusionLabRenderer = loadClass('js/UI/FusionLab/FusionLabRenderer.js');
 global.FusionLabRenderer = FusionLabRenderer;
 const FusionLab = loadClass('js/Features/Fusion/FusionLab.js');
 
-const AgentRepository = loadClass('js/Services/AgentRepository.js');
+const AgentRepository = loadClass('js/Services/AgentRepository/AgentRepository.js');
 const ToastNotification = loadClass('js/UI/Toast/ToastNotification.js');
 const PinnedManager = loadClass('js/Features/Pinned/PinnedManager.js');
 global.PinnedManager = PinnedManager;
