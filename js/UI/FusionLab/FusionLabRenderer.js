@@ -121,11 +121,6 @@ class FusionLabRenderer {
         }
         this.lab.lastAdversaryClickTime = now;
 
-        /**
-         * Magic Number: 7
-         * Matrix Unlock Easter Egg trigger mechanism.
-         * Introduced in PR #900318f7 to trigger glitch overlay animations.
-         */
         if (this.lab.adversaryClickCount >= 7) {
           this.lab.unlockMatrix();
           this.lab.adversaryClickCount = 0;

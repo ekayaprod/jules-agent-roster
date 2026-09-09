@@ -10,13 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🚀 Features
 - **UI & Transitions**: Implemented comprehensive Palette+ aesthetic upgrades, injecting fluid transitions, glassmorphism, depth layers, and semantic CSS utilities across frontend components (e.g., AgentCards, EmptyStates, Modals).
-- **Agent Architecture Upgrades**: Auto-Forge upgraded Quarantine (V86.0) and REST Enforcer (V87.6).
-
-### 🛡️ Resilience & Security
-- **Error Handling**: Paramedic hotfixes resolved unhandled Promise rejections and uncaught ReferenceErrors in JulesTerminal API configurations and GlobalEvents JSDOM fallback tests.
-
-### 🔧 Chores & Code Health
-- **Testing**: Rebuilt flaky SearchController tests into deterministic mocks and expanded test coverage with Inspector boundary tests for TerminalPolling.
 - **Agent Architecture Upgrades**: Auto-Forge mass upgraded numerous agents (Coroner, Triage, Pruner, Proton Pack, Customs, Propagator, Prefect, Payload, Construct, Pathfinder, PathCentralizer, Millisecond, Hazmat, Groundskeeper) to V85.2 - V86.9.
 - **UI & Layout**: Morphed Jules Runner Panel to Responsive Architecture and corrected flex wrap layout for section headers on desktop.
 

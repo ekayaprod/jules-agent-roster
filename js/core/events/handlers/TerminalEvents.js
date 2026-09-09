@@ -21,7 +21,7 @@ class TerminalEvents {
                 } else {
                     const terminal = app.elements.julesTerminal;
                     if (terminal) {
-                        terminal.innerHTML = `<div class="term-session-line term-muted-text"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
+                        terminal.innerHTML = `<div class="terminal-line"><span class="terminal-time">[System]</span> Awaiting Agent launch command...</div>`;
                         terminal.classList.remove('active');
                     }
                     app.julesTerminal.cleanup();

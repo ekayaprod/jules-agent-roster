@@ -4,7 +4,7 @@ test.describe('Search End-to-End', () => {
   test('User completes search flow and clears results', async ({ page }) => {
     await page.goto('/');
 
-    await page.waitForSelector('#initial-loading-overlay', { state: 'hidden' });
+    await page.waitForSelector('#initial-loading-overlay.hidden', { state: 'attached' });
 
     const searchBtn = page.getByRole('button', { name: /Search/i });
     await searchBtn.click();
