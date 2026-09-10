@@ -563,7 +563,7 @@
   {
     "name": "Discharge",
     "emoji": "🪫",
-    "role": "Pipeline Optimizer",
+    "role": "Pipeline Drainer",
     "category": "Operations",
     "tier": "Fusion",
     "description": "PURGE dead infrastructure code and orphaned dependencies to accelerate deployment velocity.",
@@ -578,7 +578,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "INTEGRATE new MCP servers into configuration manifests to ensure immediate discoverability.",
-    "forge_version": "V85.5",
+    "forge_version": "V87.8",
     "promptFile": "prompts/fusions/Dispatcher.md",
     "isCustom": true
   },
