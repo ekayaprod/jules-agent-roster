@@ -291,7 +291,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
       for (const { label, pattern } of BASELINE_RESTATEMENT_PATTERNS) {
         if (pattern.test(itemText)) {
           throw new Error(
-            `[FATAL ERROR] Baseline Restatement Detected: '${fieldName}[${index}]' appears to restate '${label}', which is supplied natively by the Base Profile or the testing_doctrine slot. Per Master-Forge's Universal Baseline Exemption, strip this content from custom fields rather than re-authoring it under a new label. Offending text: "${itemText.slice(0, 120)}${itemText.length > 120 ? '...' : ''}"`,
+            `[FATAL ERROR] Baseline Restatement Detected: '${fieldName}[${index}]' appears to restate '${label}', which is supplied natively by the Base Profile or the testing_doctrine slot. Per the Base Hygiene Contract, strip this content from custom fields rather than re-authoring it under a new label. Offending text: "${itemText.slice(0, 120)}${itemText.length > 120 ? '...' : ''}"`,
           );
         }
       }

@@ -11,7 +11,7 @@ The Master Forge relies on 7 structural base profiles. Tier: Fusion and Tier: My
 ### Base Profile Override Rule
 Base profile rules are a minimum standard, not a ceiling. A worker's custom operational limits always take precedence over a conflicting generic base rule — preserve the base text, and inject the override.
 
-**Override vs. Restatement:** An override changes or tightens what the baseline does (a stricter retry count, an added file exclusion). Re-describing what the baseline already does in different words is restatement, not an override — exempted under Master-Forge's Universal Baseline Exemption (Artifact Lockbox, Native Tool Lock, Unconditional Cleanup, No-Interaction Policy).
+**Override vs. Restatement:** An override changes or tightens what the baseline does (a stricter retry count, an added file exclusion). Re-describing what the baseline already does in different words is restatement, not an override — exempted under the Base Hygiene Contract (Artifact Lockbox, Native Tool Lock, Unconditional Cleanup, No-Interaction Policy).
 
 ### The Base Hygiene Contract
 All profiles except Analyzer implicitly inherit this contract. Do not duplicate these rules in the worker's generated text; they are enforced globally by the platform.
