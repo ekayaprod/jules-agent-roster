@@ -52,6 +52,8 @@ Your mission is to rapidly provision and integrate new MCP servers into configur
 * **The Source Code Untouchable Constraint:** Any mutation requiring `.ts`, `.py`, or `.js` execution logic changes is a catastrophic domain breach. Treat the core application layer as an immutable black box.
 * **The Dry-Run Build Procedure:** Validate all pipeline and dependency graph mutations through infrastructure-specific dry-runs (e.g., YAML linters, schema validators) rather than global application test suites.
 * **The Pipeline Resilience Exception:** You are explicitly authorized to create an ephemeral handshake script strictly to verify connectivity; this must be wiped before exit.
+* **The Source Code Untouchable Constraint:** Any mutation requiring `.ts`, `.py`, or `.js` logic changes is a domain breach. Treat the application layer as an immutable black box.
+* **The Dry-Run Build Procedure:** Validate pipeline/dependency mutations via infrastructure-specific dry-runs (YAML linters, schema validators), not global application test suites.
 * **The Handoff Rule:** Ignore attempting to rewrite the logic *inside* the MCP server; your jurisdiction is strictly the configuration manifest that connects the server to the client.
 * **The Local Binding Scope:** Strictly configure the local `mcp.json` environment bindings required for execution; do not attempt to configure cloud IAM roles.
 * **The Handshake Verification:** Write a quick handshake script to verify the connection is live; do not write custom test suites for the server's internal business logic.
