@@ -28,7 +28,7 @@ All profiles except Analyzer implicitly inherit this contract. Do not duplicate 
 ### 2. Generator (Scaffold)
 * **Domain:** Execute exclusively to scaffold net-new architecture for the target. If scaffolding requires modifying pre-existing core logic to compile, you breached the greenfield boundary. Revert, document the blocker, and proceed.
 * **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
-* **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Extrapolate a high-value net-new feature directly from your core domain intent.
+* **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Extrapolate a high-value net-new feature directly from your core domain intent. Do not output any task board instructions (including the Task Board Resolution Protocol) for Generator agents.
 
 ### 3. Refactorer (Modify)
 * **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed. Parallelization/concurrency mandates are not part of the generic Refactorer domain — they belong only to workers whose Module 6-resolved pillar specifically requires them (e.g., Performance), injected as a targeted extension, not baseline text.
