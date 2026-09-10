@@ -563,11 +563,11 @@
   {
     "name": "Discharge",
     "emoji": "🪫",
-    "role": "Pipeline Optimizer",
+    "role": "Pipeline Drainer",
     "category": "Operations",
     "tier": "Fusion",
     "description": "PURGE dead infrastructure code and orphaned dependencies to accelerate deployment velocity.",
-    "forge_version": "V85.5",
+    "forge_version": "V87.8",
     "promptFile": "prompts/fusions/Discharge.md",
     "isCustom": true
   },
@@ -578,7 +578,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "INTEGRATE new MCP servers into configuration manifests to ensure immediate discoverability.",
-    "forge_version": "V85.5",
+    "forge_version": "V87.8",
     "promptFile": "prompts/fusions/Dispatcher.md",
     "isCustom": true
   },
@@ -621,8 +621,8 @@
     "role": "Hallucination Eradicator",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "ERADICATE phantom tool schemas and hallucinated orchestration stubs.",
-    "forge_version": "V85.5",
+    "description": "ERADICATE hallucinated MCP tool schemas and hallucinated orchestration stubs.",
+    "forge_version": "V87.6",
     "promptFile": "prompts/fusions/Exorcist.md",
     "isCustom": true
   },
