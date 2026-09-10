@@ -20,12 +20,12 @@ RUN addgroup -S dispatch && adduser -S warden -G dispatch
 RUN npm install -g http-server@14.1.1
 
 # Transfer only the compiled artifacts and required runtime files
-COPY --from=builder --chown=warden:dispatch /opt/payload/roster-payload.json ./
 COPY --chown=warden:dispatch index.html ./
 COPY --chown=warden:dispatch js ./js
 COPY --chown=warden:dispatch css ./css
 COPY --chown=warden:dispatch fusion_matrix.json ./
 COPY --chown=warden:dispatch prompts/ ./prompts/
+COPY --from=builder --chown=warden:dispatch /opt/payload/roster-payload.json ./
 
 USER warden
 EXPOSE 8080
