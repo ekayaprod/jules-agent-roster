@@ -589,7 +589,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "REWIRE outdated AI provider SDKs and seamlessly upgrade the infrastructure wiring to modern API schemas.",
-    "forge_version": "V85.5",
+    "forge_version": "V87.8",
     "promptFile": "prompts/fusions/Electrician.md",
     "isCustom": true
   },
