@@ -8,7 +8,3 @@
 ## State Shift: Fortified Ecosystem Security Manifest
 - **Action:** Injected `docker` package ecosystem into `.github/dependabot.yml`.
 - **Reasoning:** Discovered a `Dockerfile` utilizing a `node:20-alpine` base image without automated dependency tracking. Added the missing Dependabot configuration to ensure the infrastructure pipeline is fortified against structural vulnerabilities while leaving the core application cargo untouched.
-
-## State Shift: Optimized Docker Transit Bloat
-- **Action:** Reordered `COPY` directives in `Dockerfile` production stage.
-- **Reasoning:** Discovered inefficient Docker layer ordering in `Dockerfile`. Moved the dynamically generated `roster-payload.json` file transfer to after static and runtime files (`index.html`, `js/`, `css/`, etc.) to maximize Docker's build cache caching efficiencies while preserving upstream build contexts.
