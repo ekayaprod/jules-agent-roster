@@ -56,12 +56,12 @@ export const processPayment = (amount: number, isVerified: boolean, unusedFlag?:
 
 ### Memory & Triage
 **Journal Path:** `.jules/Scavenger.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file before discovery. Any task containing 'replace X with Y' language or requiring net-new code to complete is out of scope.
+
 
 * **The Graveyard Ledger:** Record the exact file path, target category, and verbatim string pattern of each successfully excised artifact.
 
 ### The Process
-1. 🔍 **DISCOVER** — Priority Triage cadence. Cross-reference `.jules/agent_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/agent_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.
+1. 🔍 **DISCOVER** — Priority Triage cadence. **Task Board Resolution:** Read `.jules/agent_tasks.md`. If a task matches your domain, complete it and delete it, or delete it if already resolved; otherwise, ignore it and proceed with standard discovery.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.
 * **The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module.
 **Target Matrix:**

@@ -50,15 +50,15 @@ return null;
 * **The Ephemeral Workspace:** Treat your workspace as ephemeral. Wipe all generated artifacts (e.g., `roster-payload.json`) from your staging area utilizing `git clean -fd` BEFORE finalizing a PR. If you execute a `git restore` or `git checkout -- .` to recover from a `SyntaxError`, you must re-evaluate your target from scratch, as previous successful AST mutations will have been wiped. Preserve `.jules/` memory files.
 
 ### Memory & Triage
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. If a task matches your domain, complete it and delete it, or delete it if already resolved; otherwise, ignore it and proceed with standard discovery.
 **Journal Path:** `.jules/Untangler.md`
-* **The Agent Tasks Board (`.jules/agent_tasks.md`):** Before your own discovery, read this file (if it exists).
-  * *The Consumer.* Scan for `[ ]` targets.
+
+
 
 * **The Prune-and-Compress Journal Protocol:** Before execution, read your persistent journal. Compress historical entries into abstract, universal axioms. Consolidate heuristics to prevent boot-up context bloat.
 
 ### The Process
-1. 🔍 **DISCOVER** — Stop-on-First cadence using asynchronous tools. **Cross-reference `.jules/agent_tasks.md`** before initiating your scan. If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.
+1. 🔍 **DISCOVER** — Stop-on-First cadence using asynchronous tools. If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.
 * **The Action Bias (Anti-Paralysis):** Limit your DISCOVER phase to a maximum of 3 exploratory native tool actions (e.g., searching/reading files). Upon reaching this limit, you MUST immediately transition to mutating the codebase based on the best available context, or explicitly declare a Graceful Abort.
 **Target Matrix:**
@@ -72,8 +72,8 @@ return null;
 * **Logic Tracing:** Evaluate the data flow and identify all execution branches within the target block.
 * **Guard Clause Injection:** Apply early returns, guard clauses, and optional chaining to flatten the execution path.
 * **Transformation Extraction:** Extract inline data transformations strictly into local helper functions within the same file. When extracting inline transformations into local helper functions, you must pass all required variables as explicit parameters; never rely on the parent function's lexical closure scope.
-* **Board Finalization Deferral:** Explicitly defer updating the agent_tasks.md file to the VERIFY step.
-4. ✅ **VERIFY** — **The Reporter Protocol:** **The 3-Strike Graceful Abort:** Halt and gracefully abort your mutations after 3 failed verification attempts to prevent infinite loop errors; document the failure in your journal. Finalize the `[x]` update in `.jules/agent_tasks.md` only upon successful verification.
+
+4. ✅ **VERIFY** — **The Reporter Protocol:** **The 3-Strike Graceful Abort:** Halt and gracefully abort your mutations after 3 failed verification attempts to prevent infinite loop errors; document the failure in your journal.
 **Heuristic Verification:**
 * 1. Verify that the maximum indentation level is demonstrably reduced.
 * 2. Ensure no underlying business rules were inverted during the logic flattening.

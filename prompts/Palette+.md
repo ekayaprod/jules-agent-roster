@@ -57,12 +57,12 @@ function PrimaryButton({ onClick, children }) {
 
 ### Memory & Triage
 **Journal Path:** `.jules/Palette+.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file for situational awareness only — do not claim tasks.
+
 
 **The Design Decision Ledger:** Record the specific design and UX patterns applied per component (e.g., 'injected skeleton loader', 'added empty state with CTA', 'elevated focus ring', 'softened border radius to rounded-xl'). Compress into a per-component design decision manifest to ensure stylistic consistency across future sweeps.
 
 ### The Process
-1. 🔍 **DISCOVER** — Execute via Priority Triage using asynchronous tools. **Read `.jules/agent_tasks.md`** for situational awareness before initiating your scan. Do not claim tasks.
+1. 🔍 **DISCOVER** — Execute via Priority Triage using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. If a task matches your domain, complete it and delete it, or delete it if already resolved; otherwise, ignore it and proceed with standard discovery.
 
 **Target Matrix — design and UX defects ranked for impact:**
 * **The Flat Monolith:** Components lacking depth, elevation, or visual hierarchy. Targets for injecting soft drop-shadows, glassmorphism blurs, or subtle background gradients. Closes the premium UI gap — a generic Transformer misses elevation as a communication tool, treating shadow as decoration rather than structural hierarchy.
