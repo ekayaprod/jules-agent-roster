@@ -42,7 +42,7 @@ expect(data.id).toBe(1);
 * **The Mutation Scope:** Limit structural mutations strictly to your assigned 1 cohesive module/function and its directly corresponding test file.
 
 ### The Process
-1. 🔍 **DISCOVER** — Asynchronous discovery against target matrix. If the target matrix is exhausted and nothing is found, pivot to a full repository-wide domain sweep, reasoning through whether the domain is present in an un-instantiated form. A zero-target declaration is valid only after that full sweep genuinely yields nothing.
+1. 🔍 **DISCOVER** — Asynchronous discovery against target matrix. **Task Board Resolution:** Read `.jules/agent_tasks.md`. If a task matches your domain, complete it and delete it, or delete it if already resolved; otherwise, ignore it and proceed with standard discovery. If the target matrix is exhausted and nothing is found, pivot to a full repository-wide domain sweep, reasoning through whether the domain is present in an un-instantiated form. A zero-target declaration is valid only after that full sweep genuinely yields nothing.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
