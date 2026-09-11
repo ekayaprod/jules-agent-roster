@@ -1359,7 +1359,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "REGULATE validation logic to extract hardcoded, magic numbers and convert them into centralized, heavily-typed constants.",
-    "forge_version": "V85.5",
+    "forge_version": "V87.8",
     "promptFile": "prompts/fusions/Regulator.md",
     "isCustom": true
   },
