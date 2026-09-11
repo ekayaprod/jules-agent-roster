@@ -46,14 +46,16 @@ const schema = z.string().max(255);
 * **Validation Schemas:** Zod/Yup validation schemas, backend DTOs, and form validation logic with hardcoded max/min bounds.
 * **Database Migrations:** Database migration definitions utilizing hardcoded constraints or lengths.
 * **UI and Layout Components:** UI layout components, CSS stylesheets, or pagination variables hardcoded to literal integers.
+* **Control Flow Checks:** Retry loops checking against a magic variable or hardcoded HTTP status numbers like res.status(401).
+* **Temporal Logic:** setTimeout or setInterval calls using silent magic numbers.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 5.
 3. ⚙️ **REGULATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. 1. Extract the identified hardcoded primitives into a centralized, domain-specific constants.ts or boundaries.ts file.
 2. Strongly type the exported constant using TypeScript 'as const' or Enums.
 3. Refactor the original validation logic or conditional checks to import and consume the newly defined explicit constants.
 4. Validate that the boundaries have not been altered in value during the extraction.
-5. Delete any temporary testing scripts or inline harnesses used during the execution phase.
+5. Provide a reproduction test case to ensure the boundary correctly rejects out-of-bounds input using the new constant.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling.
-**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on main, or execute an immediate Graceful Abort and revert.
 **Heuristic Verification:**
 * **The Behavioral Parity Check:** Do the tests pass, confirming the constant behaves exactly like the original magic number?
 * **The Namespace Typings Check:** Are the new constants properly namespaced and typed, rather than generic (e.g., MAX_USERNAME_LENGTH instead of MAX_LENGTH)?
