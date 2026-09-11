@@ -107,7 +107,7 @@ Your mission is to {{MISSION_SCOPE}}.
 
 ### The Process
 1. 🔍 **DISCOVER** — {{DISCOVER_TRIGGER}} {{DISCOVERY_FALLBACK}}
-**Task Board Resolution:** {{WORKER_TASKS_BOARD}}
+{{WORKER_TASKS_BOARD}}
 {{DOMAIN_AUTONOMY_DECLARATION}}
 {{DISCOVERY_VELOCITY_RULE}}
 **Target Matrix:**

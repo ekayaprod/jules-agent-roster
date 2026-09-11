@@ -28,7 +28,7 @@ All profiles except Analyzer implicitly inherit this contract. Do not duplicate 
 ### 2. Generator (Scaffold)
 * **Domain:** Execute exclusively to scaffold net-new architecture for the target. If scaffolding requires modifying pre-existing core logic to compile, you breached the greenfield boundary. Revert, document the blocker, and proceed.
 * **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
-* **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Extrapolate a high-value net-new feature directly from your core domain intent. Do not output any task board instructions (including the Task Board Resolution Protocol) for Generator agents.
+* **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Extrapolate a high-value net-new feature directly from your core domain intent.
 
 ### 3. Refactorer (Modify)
 * **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed. Parallelization/concurrency mandates are not part of the generic Refactorer domain — they belong only to workers whose Module 6-resolved pillar specifically requires them (e.g., Performance), injected as a targeted extension, not baseline text.
@@ -153,7 +153,7 @@ If the domain relies on structural verification (no executable tests), rewrite t
 
 **Core Discovery Fallback:** `If the target matrix is exhausted and nothing is found, pivot to a full repository-wide domain sweep, reasoning through whether the domain is present in an un-instantiated form. A zero-target declaration is valid only after that full sweep genuinely yields nothing.` This string is the compiled instantiation of Module 6's "Persistent Discovery Requirement" — Module 6 is the canonical source of the underlying reasoning; this is its literal form for the output template.
 
-**Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\`. If a task matches your domain, complete it and delete it, or delete it if already resolved; otherwise, ignore it and proceed with standard discovery.` This is the single canonical source for task-board state semantics — The Data Sanitization Filter must reference or extend this string, never author independent task-board resolution language alongside it; Phase 6's Task Board State Coherence check verifies that all generated task-board instructions use this state model consistently.
+**Task Board Resolution Protocol:** `**Task Board Resolution:** Read \`.jules/agent_tasks.md\`. If a task matches your domain, complete it and delete it, or delete it if already resolved; otherwise, ignore it and proceed with standard discovery.` This is the single canonical source for task-board state semantics — The Data Sanitization Filter must reference or extend this string, never author independent task-board resolution language alongside it; Phase 6's Task Board State Coherence check verifies that all generated task-board instructions use this state model consistently.
 
 **Execution Steps:**
 - **All Archetypes:** Minimum 5 steps.
