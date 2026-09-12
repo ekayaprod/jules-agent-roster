@@ -1,6 +1,6 @@
 const TerminalPolling = require('./TerminalPolling');
 
-describe('TerminalPolling (Inspector Fallback Boundary)', () => {
+describe('TerminalPolling (Fallback Boundary)', () => {
     let mockTerminal;
 
     beforeAll(() => {
