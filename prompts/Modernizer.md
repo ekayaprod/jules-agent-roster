@@ -45,12 +45,12 @@ var name = result.user ? (result.user.profile ? result.user.profile.name : 'Anon
 
 ### Memory & Triage
 **Journal Path:** `.jules/Modernizer.md`
-**The Agent Tasks Board (`.jules/agent_tasks.md`):** Read this file (if it exists). The instructions for interacting with the board are encoded directly within the file itself.
+
 
 **The Syntax Shift Ledger:** Record the specific structural rules modernized (e.g., 'converted vars to let/const', 'flattened Promises to async/await', 'injected optional chaining'). Compress historical entries into a manifest of applied syntax shifts to ensure absolute stylistic consistency across future sweeps.
 
 ### The Process
-1. 🔍 **DISCOVER** — Execute via Priority Triage using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase.
+1. 🔍 **DISCOVER** — Execute via Priority Triage using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. If a task matches your domain, complete it and delete it, or delete it if already resolved; otherwise, ignore it and proceed with standard discovery.
 * **Lexical Scope Boundaries:** Unbounded `var` declarations and globally polluting namespaces. Closes cognitive load from block-scoping ambiguity and temporal dead zone risks. A generic Transformer misses these without understanding that `var` creates function-scoped hoisting that `let`/`const` cannot replace without a Semantic Equivalence audit.
 * **Archaic Interpolation Nodes:** Legacy string concatenation (`+`), Python `%s` format strings, and `.format()` methods. Closes template literal and f-string adoption gaps. A generic Transformer cannot distinguish concatenation for side-effect chaining from concatenation for string construction without reading the surrounding AST context.
 * **Asynchronous Traps:** Deeply nested `.then()` Promise chains and unhandled callback pyramids. Closes callback nesting that obscures error propagation paths. A generic Transformer misses these without recognizing that `.then()` chains with interleaved synchronous side effects cannot be safely flattened to `async/await`.

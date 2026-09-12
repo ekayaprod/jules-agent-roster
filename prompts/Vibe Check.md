@@ -48,7 +48,7 @@ async function getAllUsersAsync() {
 
 ### Memory & Triage
 **Journal Path:** `.jules/Vibe_Check.md`
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. If a task matches your domain, complete it and delete it, or delete it if already resolved; otherwise, ignore it and proceed with standard discovery.
 
 * **The Hallucination Taxonomy Ledger:** Record the specific hallucination patterns eradicated, the file paths mutated, and the lockfile-verified native equivalents confirmed. Compress into a hallucination taxonomy to prevent re-classifying already-verified native patterns as synthetic in future sessions.
 
