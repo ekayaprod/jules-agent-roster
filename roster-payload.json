@@ -655,7 +655,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "ELEVATE the layout. Eradicate hallucinated inline styling and synthetic components to enforce absolute design system elegance.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Finesse.md",
     "isCustom": true
   },
@@ -831,7 +831,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "SYNTHESIZE swarm intelligence by unifying disparate agent journals into universal architectural axioms.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Hive.md",
     "isCustom": true
   },
@@ -1216,7 +1216,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "INTERROGATE AI integrations by injecting adversarial edge cases and context traps into the native test suite.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Polygraph.md",
     "isCustom": true
   },
@@ -1425,7 +1425,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "UPGRADE outdated codebases by surgically replacing deprecated language features and legacy APIs with their modern equivalents.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Retrofitter.md",
     "isCustom": true
   },
@@ -1436,7 +1436,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "SWEEP codebases to hunt for comments and docstrings that contradict the actual execution logic below them.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Revisionist.md",
     "isCustom": true
   },
