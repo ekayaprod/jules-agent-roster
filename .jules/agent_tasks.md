@@ -22,4 +22,3 @@
 * Migrate `console.error` to telemetry logger at `js/Services/JulesAPI/JulesAPI.js:111`.
 
 ### The [PRUNER] Queue
-* Remove hollow carapace at `js/Features/JulesTerminal/JulesTerminal.js:511`.
