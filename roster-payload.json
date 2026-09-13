@@ -1447,7 +1447,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "EXTRACT hardcoded credentials, static IPs, and server secrets from source code.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Revoker.md",
     "isCustom": true
   },
