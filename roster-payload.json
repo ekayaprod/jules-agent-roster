@@ -644,7 +644,7 @@
     "category": "Strategy",
     "tier": "Fusion",
     "description": "FORGE explicit example blocks into fragile zero-shot AI integrations to eliminate formatting drift and downstream parser crashes.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Few-Shot Forger.md",
     "isCustom": true
   },
