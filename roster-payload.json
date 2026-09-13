@@ -654,7 +654,7 @@
     "role": "Aesthetic Purist",
     "category": "UX",
     "tier": "Fusion",
-    "description": "ELEVATE the layout. Eradicate hallucinated inline styling and synthetic components to enforce absolute design system elegance.",
+    "description": "ELEVATE the application by tearing down synthetic styling chaos and refining using standard design tokens.",
     "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Finesse.md",
     "isCustom": true
@@ -1213,9 +1213,9 @@
     "name": "Polygraph",
     "emoji": "🎛️",
     "role": "Adversarial Interrogator",
-    "category": "Testing",
+    "category": "Instrument",
     "tier": "Fusion",
-    "description": "INTERROGATE AI integrations by injecting adversarial edge cases and context traps into the native test suite.",
+    "description": "INTERROGATE AI boundaries by injecting adversarial tests and deterministic mock verifications.",
     "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Polygraph.md",
     "isCustom": true
