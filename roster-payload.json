@@ -633,7 +633,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "OPTIMIZE CI/CD pipelines with aggressive dependency caching, parallelism, and configuration tuning.",
-    "forge_version": "V85.6",
+    "forge_version": "V87.8",
     "promptFile": "prompts/fusions/Expediter.md",
     "isCustom": true
   },
@@ -644,7 +644,7 @@
     "category": "Strategy",
     "tier": "Fusion",
     "description": "FORGE explicit example blocks into fragile zero-shot AI integrations to eliminate formatting drift and downstream parser crashes.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Few-Shot Forger.md",
     "isCustom": true
   },
@@ -654,8 +654,8 @@
     "role": "Aesthetic Purist",
     "category": "UX",
     "tier": "Fusion",
-    "description": "ELEVATE the layout. Eradicate hallucinated inline styling and synthetic components to enforce absolute design system elegance.",
-    "forge_version": "V85.6",
+    "description": "ELEVATE the application by tearing down synthetic styling chaos and refining using standard design tokens.",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Finesse.md",
     "isCustom": true
   },
@@ -688,7 +688,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "CONJURE seamless frontend experiences by injecting optimistic UI, CSS skeletons, and GPU transitions to completely mask network latency.",
-    "forge_version": "V85.8",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Flourish.md",
     "isCustom": true
   },
@@ -831,7 +831,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "SYNTHESIZE swarm intelligence by unifying disparate agent journals into universal architectural axioms.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Hive.md",
     "isCustom": true
   },
@@ -1213,10 +1213,10 @@
     "name": "Polygraph",
     "emoji": "🎛️",
     "role": "Adversarial Interrogator",
-    "category": "Testing",
+    "category": "Instrument",
     "tier": "Fusion",
-    "description": "INTERROGATE AI integrations by injecting adversarial edge cases and context traps into the native test suite.",
-    "forge_version": "V85.6",
+    "description": "INTERROGATE AI boundaries by injecting adversarial tests and deterministic mock verifications.",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Polygraph.md",
     "isCustom": true
   },
@@ -1359,7 +1359,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "REGULATE validation logic to extract hardcoded, magic numbers and convert them into centralized, heavily-typed constants.",
-    "forge_version": "V85.5",
+    "forge_version": "V87.8",
     "promptFile": "prompts/fusions/Regulator.md",
     "isCustom": true
   },
@@ -1425,7 +1425,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "UPGRADE outdated codebases by surgically replacing deprecated language features and legacy APIs with their modern equivalents.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Retrofitter.md",
     "isCustom": true
   },
@@ -1436,7 +1436,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "SWEEP codebases to hunt for comments and docstrings that contradict the actual execution logic below them.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Revisionist.md",
     "isCustom": true
   },
@@ -1447,18 +1447,18 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "EXTRACT hardcoded credentials, static IPs, and server secrets from source code.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Revoker.md",
     "isCustom": true
   },
   {
     "name": "Rulemaker",
     "emoji": "🧑‍⚖️",
-    "role": "Style Guide Enforcer",
+    "role": "Style Enforcer",
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "ENFORCE strict code hygiene, formatting guidelines, linting rules, and type-checking standards.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Rulemaker.md",
     "isCustom": true
   },
@@ -1641,11 +1641,11 @@
   {
     "name": "Surveyor",
     "emoji": "⛏️",
-    "role": "Test Relocator",
+    "role": "Structural Inspector",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "EXCAVATE massive test silos and colocate fractured unit tests directly adjacent to their source code.",
-    "forge_version": "V85.6",
+    "description": "EXCAVATE massive aggregated test files and relocate them closer to source files.",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Surveyor.md",
     "isCustom": true
   },
