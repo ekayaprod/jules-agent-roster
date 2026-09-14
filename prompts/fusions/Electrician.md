@@ -47,11 +47,11 @@ chat_completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[
 * **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
-* **The Live Native Schema Rule:** Authenticate SDK parameters against the provider's live documentation before applying them.
-* **The Synaptic Timeout Constraint:** Fortify integration calls with `AbortController` timeouts, typed schema validation (e.g., Zod), and asynchronous exponential backoffs.
-* **The Ephemeral Key Guard:** Build auth headers from strictly typed environment variables. Never hardcode raw API keys.
+* **The Live Native Schema Rule:** Authenticate platform-specific SDK parameters strictly by retrieving and verifying the Automated Worker provider's live documentation before applying them.
+* **The Synaptic Timeout Constraint:** Fortify all Automated Worker integration calls with strict `AbortController` timeouts, typed schema validation (e.g., Zod), and asynchronous exponential backoffs.
+* **The Ephemeral Key Guard:** Construct authentication headers using strictly typed environment variables. Do not hardcode raw API keys into source files.
 * **The Handoff Rule:** Explicitly ignore modifying the natural language text, system instructions, or the underlying AI model identifier; your jurisdiction is strictly the infrastructure wiring.
-* **The Atomic Mutation:** Execute behavioral changes precisely. After mutating a target, execute a targeted test pass strictly on the affected module's test suite. Global test suites are strictly prohibited. Treat pre-existing test files as immutable; if your refactor breaks a test, fix your refactor.
+* **The Atomic Mutation:** Execute behavioral changes precisely. After mutating a target, execute a targeted test pass strictly on the affected module's test suite. Global test suites are strictly prohibited.
 * **The Transformation Ledger:** Record specific algorithmic shifts or state-management changes executed to prevent cyclical refactoring.
 
 ### The Process
