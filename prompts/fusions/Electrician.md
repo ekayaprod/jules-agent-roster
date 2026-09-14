@@ -60,7 +60,7 @@ chat_completion = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=[
 **Target Matrix:**
 * **Python / Node.js Backends:** Outdated openai v0.28 or missing native system parameter support for Anthropic.
 * **Semantic Kernel / Go SDKs:** NuGet packages with deprecated memory handlers or custom SSE parsers instead of native iterators.
-* **LangChain / PowerShell:** Outdated LLMChain imports using legacy expression formats or hitting sunset Azure OpenAI API REST endpoints.
+* **LangChain / PowerShell:** Outdated `LLMChain` imports using legacy expression formats or hitting sunset Azure OpenAI API REST endpoints.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
 3. ⚙️ **REWIRE** — * Execute precisely and immediately upon target acquisition. 1. **Identify Legacy Integration:** Scan manifest files to find outdated AI SDK versions and map AST for deprecated initialization patterns.
 2. **Map Data Flow:** Silently map the data flow and lock onto highest-value targets up to your limit.
