@@ -34,4 +34,3 @@ Stripped out ~5 redundant Coat-Check Wrappers (~35 lines of zero-logic boilerpla
 * **File:** `js/Services/AgentRepository.js`
 * **Details:** Located a cosmetic try/catch block wrapping the `fetchAgents()` method that merely caught and re-threw the error without adding any logic or telemetry. Stripped the syntax to allow the native error propagation to handle it.
 * **Date:** $(date)
-- Pruned empty `() => {}` function acting as a hollow carapace for the click callback on line 511 of `js/Features/JulesTerminal/JulesTerminal.js` (which corresponds to optimistic block creation).
