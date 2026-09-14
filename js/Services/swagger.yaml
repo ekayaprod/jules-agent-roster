@@ -302,3 +302,50 @@ paths:
                                         type: string
         '404':
           description: Session not found
+    post:
+      summary: Provide Session Input
+      description: Dispatches user input back to a blocked session requiring intervention.
+      operationId: provideInput
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          description: The unique identifier of the session.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - activity
+              properties:
+                activity:
+                  type: object
+                  required:
+                    - type
+                    - userInput
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                        - USER_INPUT
+                    userInput:
+                      type: object
+                      required:
+                        - text
+                      properties:
+                        text:
+                          type: string
+                          description: User message text.
+      responses:
+        '200':
+          description: The activity payload response.
+        '400':
+          description: Bad request (Invalid payload)
+        '401':
+          description: Unauthorized
+        '404':
+          description: Session not found
