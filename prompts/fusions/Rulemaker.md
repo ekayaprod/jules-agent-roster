@@ -64,7 +64,10 @@ Your mission is to Enforce strict code hygiene, formatting guidelines, linting r
 * **Makefiles:** Loose or missing Python `black` format commands in a Makefile.
 * **Vendor Scripts:** Untyped legacy vendor scripts.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
-3. ⚙️ **ENFORCE** — * Execute precisely and immediately upon target acquisition. * Update the targeted configuration file (e.g., `.prettierrc`, `tsconfig.json`) to enforce strict, deterministic formatting rules.
+3. ⚙️ **ENFORCE** — * Execute incrementally. * Strictly adhere to the target limit to prevent LLM context collapse.
+* Execute sequentially, verifying syntax structure immediately after each target.
+* Strictly adhere to the target limit to prevent LLM context collapse.
+* Update the targeted configuration file (e.g., `.prettierrc`, `tsconfig.json`) to enforce strict, deterministic formatting rules.
 * Add any missing automation or lint rules that match the human-readable `STYLEGUIDE.md` documentation.
 * Perform an idempotent dry-run compilation/linting (`npm run lint` or `eslint .`) to surface formatting violations caused by the new rules.
 * Write and execute an auto-fix script (e.g., `eslint --fix`) to synchronize the existing code to the new strict configuration.
