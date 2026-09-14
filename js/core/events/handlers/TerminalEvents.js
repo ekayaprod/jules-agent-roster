@@ -17,7 +17,6 @@ class TerminalEvents {
                         results.forEach(result => {
                             if (result.status === 'rejected') {
                                 if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", result.reason);
-                                else console.error(result.reason);
                             }
                         });
                     });
@@ -61,8 +60,6 @@ class TerminalEvents {
                     const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
                     if (tu) {
                         tu.dispatchEvent("TERMINAL_LOAD_ERROR", err);
-                    } else {
-                        console.error("JulesTerminal API failed to load sources after activation.", err);
                     }
                 });
             });
