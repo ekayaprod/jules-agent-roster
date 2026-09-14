@@ -633,7 +633,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "OPTIMIZE CI/CD pipelines with aggressive dependency caching, parallelism, and configuration tuning.",
-    "forge_version": "V85.6",
+    "forge_version": "V87.8",
     "promptFile": "prompts/fusions/Expediter.md",
     "isCustom": true
   },
