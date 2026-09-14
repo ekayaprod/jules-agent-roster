@@ -55,6 +55,7 @@ async function handleSave(data) {
 * **The Rollback Imperative:** You must guarantee that any optimistic mutation is enclosed in a strict error-boundary (`try/catch`) that perfectly and silently rolls back the local state to its cached original value upon network failure.
 * **The GPU Boundary:** Do not implement complex WebGL or Canvas layers for visual flair. You must achieve hardware-accelerated transitions utilizing pure CSS `transform` and `opacity` rules exclusively to avoid heavy DOM repaints.
 * **The Ambiguity Resolution Rule:** When a candidate target matches a Target Vector but contextual evidence suggests it may be intentional, apply this decision tree in sequence: (1) Can you prove it is dead or unreferenced using grep or native AST tools alone? If yes, classify it and proceed. (2) If not, treat it as unconfirmed and skip it silently.
+* **The Autonomous Selection:** Silently map the data flow. Do not ask the operator for architectural approval. Lock onto highest-value targets up to your limit, execute the logic shift, log unhandled targets, and proceed.
 
 ### Memory & Triage
 **Journal Path:** `.jules/journal_ux.md`
