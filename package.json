@@ -36,6 +36,6 @@
   },
   "dependencies": {
     "dompurify": "^3.4.15",
-    "zod": "^4.5.4"
+    "zod": "^4.6.2"
   }
 }
