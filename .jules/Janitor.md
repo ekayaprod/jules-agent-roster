@@ -27,3 +27,4 @@
 * 🔐 Secret signature detected: `prompts/fusions/Keymaster.md` contains `sk_live_` prefix pattern and hardcoded AWS `AKIA` access keys.
 * 🔐 Secret signature detected: `prompts/fusions/Revoker.md` contains hardcoded `AKIA...` AWS access keys.
 * **Enforced Baselines:** Injected POSIX-compliant EOF newlines to ./prompts/Scribe.md, ./prompts/Overseer.md, ./prompts/Inspector.md, ./prompts/Cortex.md, ./prompts/fusions/Town Crier.md, ./prompts/fusions/Sylar.md, ./prompts/fusions/Few-Shot Forger.md, ./prompts/fusions/Flourish.md, ./prompts/fusions/Sanitizer.md, ./prompts/fusions/City Clerk.md.
+* 🔐 Secret signature detected: `config/local.env` contains `sk_live_` prefix pattern.

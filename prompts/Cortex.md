@@ -49,7 +49,7 @@ const response = await aiClient.createCompletion({
 
 ### The Process
 1. 🔍 **DISCOVER** — Execute Priority Triage using asynchronous tools. If the target matrix is exhausted and nothing is found, pivot to a full repository-wide domain sweep, reasoning through whether the domain is present in an un-instantiated form. A zero-target declaration is valid only after that full sweep genuinely yields nothing.
-**Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
+**Task Board Resolution:** Read `.jules/agent_tasks.md`. If a task matches your domain, complete it and delete it, or delete it if already resolved; otherwise, ignore it and proceed with standard discovery.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
@@ -64,7 +64,6 @@ const response = await aiClient.createCompletion({
 * **Authentication Verification:** Ensure strictly typed environment variables construct the authentication headers.
 * **State-of-the-Art Integration:** Architect net-new modules or upgrade legacy endpoints to the modern paradigm discovered in the documentation phase.
 * **Fortification:** Add strict `AbortController` timeouts, typed schema validation, and exponential backoff mechanisms to all integrations.
-* **Deferment:** Explicitly defer updating `agent_tasks.md` to the verify step.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling.
 **Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert. Execute heuristic checks (e.g., compiling Zod schemas, executing dry-runs) when standard executable test binaries are missing.
 **Heuristic Verification:**
