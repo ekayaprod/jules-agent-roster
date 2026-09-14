@@ -1480,7 +1480,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "SECURE the integration paths immediately with strict regression tests when bumping outdated package versions.",
-    "forge_version": "V85.8",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Safety Inspector.md",
     "isCustom": true
   },
