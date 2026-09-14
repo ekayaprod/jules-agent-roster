@@ -80,7 +80,7 @@ describe('GithubAPI', () => {
                  status: 408,
                  name: 'GithubNetworkError'
              });
-             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("GITHUB_API_TIMEOUT", expect.any(Error), { path: "/test" });
+             expect(console.error).toHaveBeenCalledWith(`[GithubAPI] Request timeout: `, expect.any(Error));
         });
 
         it('should handle generic errors', async () => {
@@ -88,7 +88,7 @@ describe('GithubAPI', () => {
              global.fetch.mockRejectedValueOnce(genericError);
 
              await expect(api._fetch('/test')).rejects.toThrow('Generic Error');
-             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("GITHUB_API_NETWORK_ERROR", genericError, { path: "/test" });
+             expect(console.error).toHaveBeenCalledWith(`[GithubAPI] Request to /test failed: `, genericError);
         });
 
         it('should handle successful response but failing json parsing', async () => {
@@ -99,7 +99,7 @@ describe('GithubAPI', () => {
              });
 
              await expect(api._fetch('/test')).rejects.toThrow('JSON parsing error');
-             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("GITHUB_API_NETWORK_ERROR", jsonError, { path: "/test" });
+             expect(console.error).toHaveBeenCalledWith(`[GithubAPI] Request to /test failed: `, jsonError);
         });
 
         it('should handle ok:false and failing json parsing gracefully', async () => {

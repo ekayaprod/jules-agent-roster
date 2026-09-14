@@ -96,7 +96,7 @@ describe('EventBinder Boundary and Error Recovery', () => {
 
         await new Promise(process.nextTick);
 
-        // expect(consoleSpy).toHaveBeenCalledWith(mockError);
+        expect(consoleSpy).toHaveBeenCalledWith(mockError);
         consoleSpy.mockRestore();
     });
 
@@ -117,7 +117,7 @@ describe('EventBinder Boundary and Error Recovery', () => {
 
         await new Promise(process.nextTick);
 
-        // expect(consoleSpy).toHaveBeenCalledWith(mockError);
+        expect(consoleSpy).toHaveBeenCalledWith(mockError);
         consoleSpy.mockRestore();
     });
 
@@ -139,7 +139,7 @@ describe('EventBinder Boundary and Error Recovery', () => {
 
         await new Promise(process.nextTick);
 
-        // expect(consoleSpy).toHaveBeenCalledWith("JulesTerminal API failed to load sources after activation.", mockError);
+        expect(consoleSpy).toHaveBeenCalledWith("JulesTerminal API failed to load sources after activation.", mockError);
         consoleSpy.mockRestore();
     });
 

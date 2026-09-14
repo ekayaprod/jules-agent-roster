@@ -8,17 +8,15 @@ class TerminalEvents {
 
                 const sourceName = e.target.value;
                 if (sourceName) {
-                    // ⚡ THE WATERFALL COLLAPSE: Batch I/O requests concurrently using Promise.allSettled to prevent sequential blocking without swallowing independent errors.
-                    Promise.allSettled([
-                        app.julesTerminal.loadActiveSessionsForRepo(sourceName),
-                        app.julesTerminal.loadPullRequestsForRepo(sourceName)
-                    ]).then(results => {
+                    app.julesTerminal.loadActiveSessionsForRepo(sourceName).catch(err => {
                         const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
-                        results.forEach(result => {
-                            if (result.status === 'rejected') {
-                                if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", result.reason);
-                            }
-                        });
+                        if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", err);
+                        else console.error(err);
+                    });
+                    app.julesTerminal.loadPullRequestsForRepo(sourceName).catch(err => {
+                        const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+                        if (tu) tu.dispatchEvent("REPO_LOAD_ERROR", err);
+                        else console.error(err);
                     });
                 } else {
                     const terminal = app.elements.julesTerminal;
@@ -60,6 +58,8 @@ class TerminalEvents {
                     const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
                     if (tu) {
                         tu.dispatchEvent("TERMINAL_LOAD_ERROR", err);
+                    } else {
+                        console.error("JulesTerminal API failed to load sources after activation.", err);
                     }
                 });
             });
