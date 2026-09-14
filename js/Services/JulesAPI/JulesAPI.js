@@ -60,7 +60,6 @@ class JulesAPI {
         if (!this.apiKey) {
              const error = new JulesConfigurationError("Jules API key not configured");
              if (tu) tu.dispatchEvent("JULES_API_CONFIG_ERROR", error, { path });
-             else console.error("[JulesAPI] Request aborted. API Key is missing.", error);
              throw error;
         }
 
@@ -87,7 +86,6 @@ class JulesAPI {
                 } catch (e) {
                    // Fallback if parsing fails
                    if (tu) tu.dispatchEvent("JULES_API_PARSE_ERROR", e, { path });
-                   else console.error("[JulesAPI] Failed to parse error response JSON", e);
                 }
 
                 if (response.status >= 400 && response.status < 500) {
@@ -98,7 +96,6 @@ class JulesAPI {
 
                 const error = new JulesNetworkError(errorMsg, response.status);
                 if (tu) tu.dispatchEvent("JULES_API_NETWORK_ERROR", error, { path, status: response.status });
-                else console.error(`[JulesAPI] Request to ${path} failed: ${errorMsg}`, error);
                 throw error;
             }
 
@@ -108,7 +105,6 @@ class JulesAPI {
              if (error.name === 'AbortError') {
                  const timeoutErr = new JulesTimeoutError(`The request timed out. Please check your connection and try again.`);
                  if (tu) tu.dispatchEvent("JULES_API_TIMEOUT", timeoutErr, { path });
-                 else console.error("[JulesAPI] Request timeout.", timeoutErr);
                  throw timeoutErr;
              }
              throw error;
@@ -163,7 +159,6 @@ class JulesAPI {
              const error = new JulesConfigurationError("Missing sessionId for approvePlan");
              const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
              if (tu) tu.dispatchEvent("JULES_API_SESSION_APPROVE_ERROR", error);
-             else console.error("[JulesAPI] Cannot approve session", error);
              throw error;
          }
 
@@ -189,7 +184,6 @@ class JulesAPI {
              const error = new JulesConfigurationError("Missing required parameters for createSession");
              const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
              if (tu) tu.dispatchEvent("JULES_API_SESSION_CREATE_ERROR", error);
-             else console.error("[JulesAPI] Cannot create session", error);
              throw error;
          }
 
