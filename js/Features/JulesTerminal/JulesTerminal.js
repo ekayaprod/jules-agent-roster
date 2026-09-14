@@ -130,20 +130,21 @@ class JulesTerminal {
         const githubTokenErrorSpan = this.getEl("githubTokenError");
 
         const toggleModal = (show) => {
-            if (show) {
-                keyInput.value = getValidKey("jules_api_key");
-
-                if (githubTokenInput) {
-                    githubTokenInput.value = getValidKey("github_api_key");
-                }
-
-                settingsModal.classList.add("visible");
-                setTimeout(() => keyInput.focus(), JulesTerminal.MODAL_FOCUS_QUICK_DELAY_MS);
-                this.modals._clearKeyError(keyInput, errorSpan);
-                this.modals._clearKeyError(githubTokenInput, githubTokenErrorSpan);
-            } else {
+            if (!show) {
                 settingsModal.classList.remove("visible");
+                return;
             }
+
+            keyInput.value = getValidKey("jules_api_key");
+
+            if (githubTokenInput) {
+                githubTokenInput.value = getValidKey("github_api_key");
+            }
+
+            settingsModal.classList.add("visible");
+            setTimeout(() => keyInput.focus(), JulesTerminal.MODAL_FOCUS_QUICK_DELAY_MS);
+            this.modals._clearKeyError(keyInput, errorSpan);
+            this.modals._clearKeyError(githubTokenInput, githubTokenErrorSpan);
         };
 
         openBtn?.addEventListener("click", () => toggleModal(true));
@@ -507,8 +508,7 @@ class JulesTerminal {
             agentEmoji,
             safeAgentName,
             "Conjuring session...",
-            "",
-            () => {} // cursor pointer set implicitly via callback presence
+            ""
         );
 
         if (btn) DOMUtils.setButtonState(btn, typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.LOADING : "loading", "Launching...");
