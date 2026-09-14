@@ -655,7 +655,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "ELEVATE the layout. Eradicate hallucinated inline styling and synthetic components to enforce absolute design system elegance.",
-    "forge_version": "V85.6",
+    "forge_version": "V87.9",
     "promptFile": "prompts/fusions/Finesse.md",
     "isCustom": true
   },
@@ -1454,11 +1454,11 @@
   {
     "name": "Rulemaker",
     "emoji": "🧑‍⚖️",
-    "role": "Style Guide Enforcer",
+    "role": "Style Enforcer",
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "ENFORCE strict code hygiene, formatting guidelines, linting rules, and type-checking standards.",
-    "forge_version": "V85.6",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Rulemaker.md",
     "isCustom": true
   },
@@ -1480,7 +1480,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "SECURE the integration paths immediately with strict regression tests when bumping outdated package versions.",
-    "forge_version": "V85.8",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Safety Inspector.md",
     "isCustom": true
   },
