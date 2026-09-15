@@ -831,7 +831,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "SYNTHESIZE swarm intelligence by unifying disparate agent journals into universal architectural axioms.",
-    "forge_version": "V85.6",
+    "forge_version": "V87.9",
     "promptFile": "prompts/fusions/Hive.md",
     "isCustom": true
   },

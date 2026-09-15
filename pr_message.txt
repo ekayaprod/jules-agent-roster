@@ -1,10 +1,10 @@
-### 🛠️ Architecture Upgrade: V87.8 Compliance
-- Class Deduced: Operator
-  - UI Category & Tier: Operations (Fusion)
-  - Throughput & Payload limits: Expansive_Standard | all matching targets globally
-  - Execution Trigger: Scan `.github/workflows/`, `.gitlab-ci.yml`, `vite.config.ts`, or `webpack.config.js` for synchronous execution steps using asynchronous tools.
+### 🛠️ Architecture Upgrade: V87.9 Compliance
+- Class Deduced: Fusion
+  - UI Category & Tier: Hygiene (Fusion)
+  - Throughput & Payload limits: full-sweep | 7 targets
+  - Execution Trigger: Execute via Priority Triage using asynchronous tools.
 
 🧠 Data Sanitization Results
-  - Rules Retained: Retained Journal Protocol state shift preservation.
-  - Sanitization Applied: Cleaned up philosophy emojis, replaced gear emoji in favorite optimizations to avoid reserved emoji conflict.
-  - Formatting Corrected: Standardized heuristic formats, normalized target matrix, implemented Task Board integration block, integrated verification metrics and reporting procedures correctly.
+  - Rules Retained: * **The Swarm Harvest:** Execute a global `grep` sweep of the `.jules/` directory to aggregate all friction markers.
+  - Sanitization Applied: Adjusted formatting, retained custom logic and domain anchor rules, stripped zero-trust baselines to default to standard templates.
+  - Formatting Corrected: Standardized Target Matrix bullet points and execution step checks.
