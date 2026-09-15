@@ -262,7 +262,7 @@ class JulesTerminal {
         } catch (error) {
             picker.innerHTML = `<option value="">${originalText}</option>`;
             JulesTerminal.getTelemetryUtils()?.dispatchEvent("SOURCES_LOAD_FAILED", error);
-            this.app.toast.show(`Unable to connect to GitHub: ${error.message || "Unknown error"}`, true);
+            this.app.toast.show(`Unable to connect to GitHub: ${error.message || "Please check your credentials and try again."}`, true);
         } finally {
             picker.disabled = false;
         }
@@ -529,7 +529,7 @@ class JulesTerminal {
                 const launchError = new Error("JulesSessionLaunchFailure: " + error.message);
                 launchError.cause = error;
                 JulesTerminal.getTelemetryUtils()?.dispatchEvent("JULES_LAUNCH_SESSION_FAILED", launchError, { sourceName });
-                this.app.toast.show(`Could not launch the session: ${error.message || "Unknown error"}`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error", 20000);
+                this.app.toast.show(`Could not launch the session: ${error.message || "Please check the terminal for details."}`, typeof TOAST_TYPES !== "undefined" ? TOAST_TYPES.ERROR : "error", 20000);
                 if (fetchingIndicator) fetchingIndicator.classList.remove('hidden');
 
                 if (optimisticBlock.parentNode) optimisticBlock.remove();

@@ -78,7 +78,7 @@ describe('JulesTerminal', () => {
             expect(mockApp.toast.show).toHaveBeenCalledWith("Unable to connect to GitHub: Test connection error", true);
         });
 
-        it('handles error in loadSources with missing message (fallback to Unknown error)', async () => {
+        it('handles error in loadSources with missing message (fallback to Please check your credentials and try again.)', async () => {
             const picker = document.getElementById("julesRepoPicker");
             const originalText = picker.options[0].textContent;
             const mockError = new Error();
@@ -90,7 +90,7 @@ describe('JulesTerminal', () => {
             expect(picker.innerHTML).toBe(`<option value="">${originalText}</option>`);
             expect(picker.disabled).toBe(false);
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("SOURCES_LOAD_FAILED", mockError);
-            expect(mockApp.toast.show).toHaveBeenCalledWith("Unable to connect to GitHub: Unknown error", true);
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Unable to connect to GitHub: Please check your credentials and try again.", true);
         });
 
         it('populates the dropdown when sources are present', async () => {
