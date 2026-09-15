@@ -6,9 +6,6 @@
 - [REFACTORER] `js/core/RosterApp.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (567 lines).
 - [REFACTORER] `js/Features/JulesTerminal/JulesTerminal.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (617 lines).
 - [REFACTORER] `css/main.css`: Monolithic file exceeding 500 lines mixing domain responsibilities (710 lines).
-- [PRUNER] `js/core/RosterApp.js`: Unstructured console.error usage at line 154.
-- [PRUNER] `js/Features/Search/SearchController.js`: Unstructured console.error usage at line 63.
-- [PRUNER] `benchmark.js`: Unstructured console.error usage at lines 458, 497, 513.
 
 ### Persistence Log
 * ⚡ Bolt+: Resolved I/O Waterfall in `JulesTerminal.js` (loadPullRequestsForRepo / loadActiveSessionsForRepo).

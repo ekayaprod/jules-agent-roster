@@ -60,6 +60,9 @@ class SearchController {
                 }
             };
         } catch (e) {
+            if (typeof window !== 'undefined' && window.TelemetryUtils) {
+                window.TelemetryUtils.dispatchEvent("SEARCH_WORKER_INIT_FAILED", e);
+            }
             this.worker = null;
         }
     }
