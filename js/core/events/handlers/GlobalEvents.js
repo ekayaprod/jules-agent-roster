@@ -66,8 +66,10 @@ class GlobalEvents {
           ul.className = "fusion-quick-list fusion-quick-list-container";
           let hasItems = false;
 
+          const unlockedSet = new Set(unlockedKeys);
+
           potentialFusions.forEach(key => {
-              const isUnlocked = typeof unlockedKeys.has === 'function' ? unlockedKeys.has(key) : unlockedKeys.includes(key);
+              const isUnlocked = unlockedSet.has(key);
               if (!isUnlocked) return;
               const fusionName = app.fusionLab.compiler.fusionMatrixMap[key];
               const childAgent = AgentUtils.getCustomAgent(app.customAgents, fusionName) || app.fusionLab.compiler.customAgentsMap[fusionName];

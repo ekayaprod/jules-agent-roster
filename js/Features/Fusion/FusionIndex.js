@@ -51,21 +51,12 @@ class FusionIndex {
    * @returns {void}
    */
   _addUnlockedAgentsFromKey(key) {
-    let start = 0;
-    let end = key.indexOf(',');
-
-    while (end !== -1) {
-      if (end > start) {
-        this.unlockedAgents.add(key.slice(start, end).trim());
-      }
-      start = end + 1;
-      end = key.indexOf(',', start);
-    }
-
-    if (start < key.length) {
-      const lastPart = key.slice(start).trim();
-      if (lastPart) {
-        this.unlockedAgents.add(lastPart);
+    if (!key) return;
+    const parts = key.split(',');
+    for (let i = 0; i < parts.length; i++) {
+      const trimmed = parts[i].trim();
+      if (trimmed) {
+        this.unlockedAgents.add(trimmed);
       }
     }
   }
@@ -113,7 +104,14 @@ class FusionIndex {
 
     // Render slots for all custom agents without grouping
     // ⚡ Bolt+: Eliminated unnecessary closure and array allocations from Object.entries().forEach() by using a direct for...in loop
-    const sortedKeys = Object.keys(customAgentsSafe).sort((a, b) => {
+    const sortedKeys = [];
+    for (const key in customAgentsSafe) {
+      if (Object.prototype.hasOwnProperty.call(customAgentsSafe, key) && customAgentsSafe[key] !== '') {
+        sortedKeys.push(key);
+      }
+    }
+
+    sortedKeys.sort((a, b) => {
       const nameA = customAgentsSafe[a] || a;
       const nameB = customAgentsSafe[b] || b;
       return nameA.localeCompare(nameB);
@@ -121,12 +119,7 @@ class FusionIndex {
 
     const fragment = document.createDocumentFragment();
     for (const key of sortedKeys) {
-      if (
-        Object.prototype.hasOwnProperty.call(customAgentsSafe, key) &&
-        customAgentsSafe[key] !== ''
-      ) {
-        this._renderSlot(fragment, key, customAgentsSafe[key]);
-      }
+      this._renderSlot(fragment, key, customAgentsSafe[key]);
     }
     grid.appendChild(fragment);
 
