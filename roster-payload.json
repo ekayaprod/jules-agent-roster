@@ -1425,7 +1425,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "UPGRADE outdated codebases by surgically replacing deprecated language features and legacy APIs with their modern equivalents.",
-    "forge_version": "V85.6",
+    "forge_version": "V87.9",
     "promptFile": "prompts/fusions/Retrofitter.md",
     "isCustom": true
   },
@@ -1447,7 +1447,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "EXTRACT hardcoded credentials, static IPs, and server secrets from source code.",
-    "forge_version": "V85.6",
+    "forge_version": "V87.9",
     "promptFile": "prompts/fusions/Revoker.md",
     "isCustom": true
   },
