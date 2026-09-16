@@ -296,9 +296,7 @@ class RosterApp {
 
       arr.sort((a, b) => b._sortScore - a._sortScore);
 
-      for (let i = 0; i < arr.length; i++) {
-        flattenedAgents.push(arr[i]);
-      }
+      flattenedAgents.push(...arr);
     }
 
     const currentRenderId = Symbol();
