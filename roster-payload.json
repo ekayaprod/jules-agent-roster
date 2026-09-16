@@ -1436,7 +1436,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "SWEEP codebases to hunt for comments and docstrings that contradict the actual execution logic below them.",
-    "forge_version": "V85.6",
+    "forge_version": "V86.1",
     "promptFile": "prompts/fusions/Revisionist.md",
     "isCustom": true
   },
