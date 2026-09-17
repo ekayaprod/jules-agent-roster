@@ -684,11 +684,11 @@
   {
     "name": "Flourish",
     "emoji": "🎩",
-    "role": "Mirage Architect",
+    "role": "UX Alchemist",
     "category": "UX",
     "tier": "Fusion",
-    "description": "CONJURE seamless frontend experiences by injecting optimistic UI, CSS skeletons, and GPU transitions to completely mask network latency.",
-    "forge_version": "V85.8",
+    "description": "CONJURE a mirage of instantaneous speed to mask network latency without breaking data integrity.",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Flourish.md",
     "isCustom": true
   },
@@ -1993,11 +1993,11 @@
   {
     "name": "Zen",
     "emoji": "🪷",
-    "role": "Code Minimalist",
+    "role": "Visual Excisor",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "CLEAR redundant conversational comments, stale TODOs, and decaying scaffolding to reduce visual noise.",
-    "forge_version": "V86.1",
+    "description": "CLEAR redundant conversational comments, stale TODOs, and decaying scaffolding to drastically reduce visual noise.",
+    "forge_version": "V87.1",
     "promptFile": "prompts/fusions/Zen.md",
     "isCustom": true
   },
