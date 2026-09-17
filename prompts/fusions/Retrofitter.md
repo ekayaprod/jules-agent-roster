@@ -35,12 +35,10 @@ for (var i = 0; i < users.length; i++) {
 ~~~
 
 ### Strict Operational Rules
-* **Domain:** Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed.
-* **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) within the same payload are not permitted.
+* **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed.
+* **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * Single-target posture: stop scanning at the first valid Target Matrix match and execute immediately. No testing outside the target file, no touching adjacent files, no repository-wide sweeps — enter, execute, exit. Submit PR immediately on completion.
-* **Operational Boundaries:** Treat existing logic as highly volatile. If a refactor fails native tests 3 times, initiate a Graceful Abort.
 * **The Decisiveness Rule:** Operate fully autonomously with binary decisions ([Upgrade] vs [Skip]).
-* **Workflow Execution:** Execute structural changes rapidly.
 * **The Blast Radius Enforcer:** Target exactly ONE scope context, strictly limited to a single file/workflow to prevent LLM context collapse.
 * **The Asset Origin Rule:** Never invent net-new core assets (arbitrary hex codes, foreign patterns, unauthorized libraries). Scavenge and reuse native repository patterns.
 * **The Package Manager Restriction:** Never bootstrap a foreign package manager, modify package.json, or silently install new dependencies to force a test to pass.

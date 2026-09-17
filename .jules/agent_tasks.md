@@ -3,9 +3,5 @@
 * **Silent Rejection:** If a file cannot be processed due to environment constraints or unreadable formats, abort silently and do not flag it.
 * **Atomic Deletion:** The task list serves as a self-consuming queue; process tasks directly and eliminate overhead.
 
-- [REFACTORER] `js/core/RosterApp.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (567 lines).
-- [REFACTORER] `js/Features/JulesTerminal/JulesTerminal.js`: Monolithic file exceeding 500 lines mixing domain responsibilities (617 lines).
-- [REFACTORER] `css/main.css`: Monolithic file exceeding 500 lines mixing domain responsibilities (710 lines).
-
 ### Persistence Log
 * ⚡ Bolt+: Resolved I/O Waterfall in `JulesTerminal.js` (loadPullRequestsForRepo / loadActiveSessionsForRepo).
