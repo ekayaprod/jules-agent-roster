@@ -12,3 +12,4 @@
 ## State Shift: Optimized Docker Transit Bloat
 - **Action:** Reordered `COPY` directives in `Dockerfile` production stage.
 - **Reasoning:** Discovered inefficient Docker layer ordering in `Dockerfile`. Moved the dynamically generated `roster-payload.json` file transfer to after static and runtime files (`index.html`, `js/`, `css/`, etc.) to maximize Docker's build cache caching efficiencies while preserving upstream build contexts.
+- [2026-09-17T20:44:06Z] Resolved Chronological Decay by reverting hallucinated future action versions (v7, v6, v5) back to stable present standards (v4, v3).
