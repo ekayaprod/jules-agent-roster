@@ -255,6 +255,43 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     throw new Error(`[FATAL ERROR] Favorite Optimizations must contain exactly 6 entries. Found ${optimizationsRaw.length}.`);
   }
 
+  const getArrayLength = (input) => {
+    if (!input) return 0;
+    const arr = Array.isArray(input) ? input : String(input).split('\n');
+    return arr.map(item => String(item).trim()).filter(Boolean).length;
+  };
+
+  const hasGenerator = profileKeys.includes('Generator');
+  const hasPrunerOrTransformer = profileKeys.includes('Pruner') || profileKeys.includes('Transformer');
+  const isContainedVelocity = /Contained Velocity/i.test(data.process?.discover?.discovery_velocity_rule || '');
+  const isBoundedSweep = /Bounded-sweep/i.test(data.process?.execute?.execution_mandate || '');
+
+  const targetMatrixRaw = data.process?.target_matrix || data.process?.discover?.target_matrix;
+  const targetCount = getArrayLength(targetMatrixRaw);
+  let minTargetCount = 3;
+  if (isContainedVelocity || isBoundedSweep) {
+    minTargetCount = 1;
+  } else if (hasGenerator) {
+    minTargetCount = 4;
+  }
+
+  if (!isMythic && targetCount < minTargetCount) {
+    throw new Error(`[FATAL ERROR] Target Matrix must contain a minimum of ${minTargetCount} targets for this configuration. Found ${targetCount}.`);
+  }
+
+  const executionStepsRaw = data.process?.execute?.execution_steps || data.process?.execution_steps;
+  const stepCount = getArrayLength(executionStepsRaw);
+  if (!isMythic && stepCount < 5) {
+    throw new Error(`[FATAL ERROR] Execution Steps must contain a minimum of 5 steps. Found ${stepCount}.`);
+  }
+
+  const heuristicsRaw = data.process?.verify?.heuristic_verification || data.process?.heuristic_verification;
+  const heuristicCount = getArrayLength(heuristicsRaw);
+  const minHeuristicCount = hasPrunerOrTransformer ? 2 : 3;
+  if (!isMythic && heuristicCount < minHeuristicCount) {
+    throw new Error(`[FATAL ERROR] Heuristic Verification must contain a minimum of ${minHeuristicCount} checks for this archetype. Found ${heuristicCount}.`);
+  }
+
   const forgeVersion = data.identity?.forge_version || data.forge_version || '';
   if (!forgeVersion || String(forgeVersion).trim() === '') {
     throw new Error(
