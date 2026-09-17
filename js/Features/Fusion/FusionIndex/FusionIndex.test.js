@@ -26,7 +26,7 @@ describe('FusionIndex', () => {
             escapeHTML: jest.fn(str => str)
         };
         global.FormatUtils = mockFormatUtils;
-        const { AgentUtils } = require('../../Utils');
+        const { AgentUtils } = require('../../../Utils');
 global.AgentUtils = AgentUtils;
 
         // Setup DOM
@@ -242,7 +242,7 @@ global.AgentUtils = AgentUtils;
 
     it('escapes emoji payload to prevent DOM XSS', () => {
         // Create an unmocked escapeHTML version for this test, since it's mocked globally in beforeEach
-        mockFormatUtils.escapeHTML = jest.requireActual('../../Utils/format/format-utils').escapeHTML;
+        mockFormatUtils.escapeHTML = jest.requireActual('../../../Utils/format/format-utils').escapeHTML;
         mockFormatUtils.extractIcon = jest.fn().mockImplementation(agent => agent ? agent.emoji : '❓');
 
         fusionIndex.unlockedKeys = new Set(['MaliciousAgent']);
@@ -261,7 +261,7 @@ global.AgentUtils = AgentUtils;
 
     it('exports gracefully across different environment module definitions', () => {
         const fs = require('fs');
-        const code = fs.readFileSync('js/Features/Fusion/FusionIndex.js', 'utf8');
+        const code = fs.readFileSync('js/Features/Fusion/FusionIndex/FusionIndex.js', 'utf8');
 
         // Assert exports assign successfully in Node-like environment
         let isExported = false;

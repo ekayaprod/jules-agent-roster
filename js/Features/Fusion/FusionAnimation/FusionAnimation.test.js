@@ -1,7 +1,7 @@
 const { screen } = require('@testing-library/dom');
 require('@testing-library/jest-dom');
 const FusionAnimation = require('./FusionAnimation');
-const { ANIMATION_DURATIONS } = require('../../constants/ui.js');
+const { ANIMATION_DURATIONS } = require('../../../constants/ui.js');
 
 describe('FusionAnimation', () => {
     let animation;

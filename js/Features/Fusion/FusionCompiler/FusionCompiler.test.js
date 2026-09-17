@@ -1,4 +1,4 @@
-const PromptParser = require('../../Utils/prompt/prompt-parser');
+const PromptParser = require('../../../Utils/prompt/prompt-parser');
 global.PromptParser = PromptParser;
 const FusionCompiler = require('./FusionCompiler');
 
@@ -128,7 +128,7 @@ describe('FusionCompiler', () => {
 
     it('exports gracefully across different environment module definitions', () => {
         const fs = require('fs');
-        const code = fs.readFileSync('js/Features/Fusion/FusionCompiler.js', 'utf8');
+        const code = fs.readFileSync('js/Features/Fusion/FusionCompiler/FusionCompiler.js', 'utf8');
 
         // Assert exports assign successfully in Node-like environment
         let isExported = false;

@@ -340,12 +340,12 @@ const AgentCard = loadClass('js/UI/AgentCard/AgentCard.js');
 global.AgentCard = AgentCard;
 
 // Load Core logic
-const RarityEngine = loadClass('js/Features/Fusion/RarityEngine.js');
+const RarityEngine = loadClass('js/Features/Fusion/RarityEngine/RarityEngine.js');
 global.RarityEngine = RarityEngine;
 
-const FusionCompiler = loadClass('js/Features/Fusion/FusionCompiler.js');
-const FusionIndex = loadClass('js/Features/Fusion/FusionIndex.js');
-const AgentPicker = loadClass('js/Features/Fusion/AgentPicker.js');
+const FusionCompiler = loadClass('js/Features/Fusion/FusionCompiler/FusionCompiler.js');
+const FusionIndex = loadClass('js/Features/Fusion/FusionIndex/FusionIndex.js');
+const AgentPicker = loadClass('js/Features/Fusion/AgentPicker/AgentPicker.js');
 global.AgentPicker = AgentPicker;
 const FusionLabEvents = loadClass('js/UI/FusionLab/FusionLabEvents.js');
 global.FusionLabEvents = FusionLabEvents;

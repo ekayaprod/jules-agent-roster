@@ -40,11 +40,11 @@ graph TD;
     subgraph Features
         subgraph Fusion
             FusionLab[js/Features/Fusion/FusionLab.js]
-            FusionCompiler[js/Features/Fusion/FusionCompiler.js]
-            FusionIndex[js/Features/Fusion/FusionIndex.js]
-            FusionAnimation[js/Features/Fusion/FusionAnimation.js]
-            AgentPicker[js/Features/Fusion/AgentPicker.js]
-            RarityEngine[js/Features/Fusion/RarityEngine.js]
+            FusionCompiler[js/Features/Fusion/FusionCompiler/FusionCompiler.js]
+            FusionIndex[js/Features/Fusion/FusionIndex/FusionIndex.js]
+            FusionAnimation[js/Features/Fusion/FusionAnimation/FusionAnimation.js]
+            AgentPicker[js/Features/Fusion/AgentPicker/AgentPicker.js]
+            RarityEngine[js/Features/Fusion/RarityEngine/RarityEngine.js]
         end
         subgraph Pinned
             PinnedManager[js/Features/Pinned/PinnedManager.js]
