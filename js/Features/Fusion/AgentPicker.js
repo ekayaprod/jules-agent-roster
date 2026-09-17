@@ -36,13 +36,11 @@ class AgentPicker {
         this.elements = {};
 
         // ⚡ Bolt+: Pre-computed dictionary lookup for instant O(1) access instead of O(n) array `.find()` during hot-path selection events.
-        this.agentMap = new Map();
-        for (let i = 0; i < this.baseAgents.length; i++) {
-            const agent = this.baseAgents[i];
-            if (agent && agent.name) {
-                this.agentMap.set(agent.name.toLowerCase(), agent);
-            }
-        }
+        // 🧬 COLLAPSE: Collapsed imperative accumulator into a single-pass reduce pipeline, eliminating scaffolding variables.
+        this.agentMap = this.baseAgents.reduce((map, agent) => {
+            if (agent && agent.name) map.set(agent.name.toLowerCase(), agent);
+            return map;
+        }, new Map());
 
         this.cacheElements();
         this.bindEvents();

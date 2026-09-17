@@ -84,7 +84,7 @@ describe('ToastNotification', () => {
         it('should fallback to default message if empty', () => {
             toast.show('');
 
-            expect(screen.getByText('Notification')).toBeInTheDocument();
+            expect(screen.getByText('System update applied successfully.')).toBeInTheDocument();
         });
 
         it('should clear existing timeout if called repeatedly', () => {

@@ -151,7 +151,9 @@ class RosterApp {
             const fetched = await this.agentRepo.fetchPrompt(agent.name, url, MESSAGES.NO_PROTOCOL_DATA);
             agent.prompt = fetched;
           } catch (err) {
-            // Silently ignore errors as per original implementation
+            if (typeof window !== 'undefined' && window.TelemetryUtils) {
+                window.TelemetryUtils.dispatchEvent("PROMPT_FETCH_ERROR", err);
+            }
           }
         }
       });
@@ -294,9 +296,7 @@ class RosterApp {
 
       arr.sort((a, b) => b._sortScore - a._sortScore);
 
-      for (let i = 0; i < arr.length; i++) {
-        flattenedAgents.push(arr[i]);
-      }
+      flattenedAgents.push(...arr);
     }
 
     const currentRenderId = Symbol();

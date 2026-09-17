@@ -1215,7 +1215,7 @@
     "role": "Test Engineer",
     "category": "Testing",
     "tier": "Fusion",
-    "description": "INTERROGATE adversarial boundaries with structural verification",
+    "description": "INTERROGATE AI integrations by injecting adversarial edge cases and context traps into the native test suite.",
     "forge_version": "V87.9",
     "promptFile": "prompts/fusions/Polygraph.md",
     "isCustom": true
@@ -1425,7 +1425,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "UPGRADE outdated codebases by surgically replacing deprecated language features and legacy APIs with their modern equivalents.",
-    "forge_version": "V85.6",
+    "forge_version": "V87.9",
     "promptFile": "prompts/fusions/Retrofitter.md",
     "isCustom": true
   },
@@ -1436,7 +1436,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "SWEEP codebases to hunt for comments and docstrings that contradict the actual execution logic below them.",
-    "forge_version": "V85.6",
+    "forge_version": "V86.1",
     "promptFile": "prompts/fusions/Revisionist.md",
     "isCustom": true
   },
@@ -1447,7 +1447,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "EXTRACT hardcoded credentials, static IPs, and server secrets from source code.",
-    "forge_version": "V85.6",
+    "forge_version": "V87.9",
     "promptFile": "prompts/fusions/Revoker.md",
     "isCustom": true
   },
@@ -1645,7 +1645,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "EXCAVATE massive test silos and colocate fractured unit tests directly adjacent to their source code.",
-    "forge_version": "V85.6",
+    "forge_version": "V87.9",
     "promptFile": "prompts/fusions/Surveyor.md",
     "isCustom": true
   },
