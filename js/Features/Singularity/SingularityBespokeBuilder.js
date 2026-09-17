@@ -39,7 +39,7 @@ class SingularityBespokeBuilder {
               </svg>
               <div class="fusion-error-content">
                 <p class="fusion-error-title">Forge Error</p>
-                <p id="sgErrorText" class="fusion-error-desc">An error occurred while forging.</p>
+                <p id="sgErrorText" class="fusion-error-desc">Unable to forge agent. Please verify your inputs and try again.</p>
               </div>
             </div>
           </div>
@@ -168,7 +168,7 @@ class SingularityBespokeBuilder {
       uiState.rollback();
       if (this.elements.errorWrapper && this.elements.errorText) {
         this.elements.errorWrapper.classList.remove("hidden");
-        this.elements.errorText.innerText = error.message || "Unknown error";
+        this.elements.errorText.innerText = error.message || "Unable to forge agent. Please try again.";
         this.elements.errorWrapper.setAttribute("aria-live", "assertive");
       }
       if (this.elements.missionInput) {
@@ -185,7 +185,7 @@ class SingularityBespokeBuilder {
           if (globalTu) globalTu.dispatchEvent("BUILDER_FORGE_ERROR", forgeError);
       }
       if (window.rosterApp?.showToast) {
-        window.rosterApp.showToast(`Unable to forge bespoke agent: ${error.message || "Unknown error"}`);
+        window.rosterApp.showToast(`Unable to forge bespoke agent: ${error.message || "Please verify inputs and try again."}`);
       }
     }
   }
