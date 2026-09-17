@@ -1,0 +1,23 @@
+### 1. The Component Diff
+
+**Core Mission:** Drag old code into the present by upgrading syntax without changing the underlying business logic, preventing syntactic decay.
+
+**Mechanic 1: Legacy Context Removal:**
+- Original: "Unconditional Cleanup: Run git clean -fd -e .jules/ before PR or Abort." and "Native Tool Lock"
+- Draft Variant: Omitted because they are restatements of the Base Profile limits, meaning Master-Forge expects them stripped out from the JSON payload.
+- Adjudication: Removing these duplicates is an upgrade because the physics engine handles these safety boundaries natively.
+
+**Mechanic 2: Blast Radius:**
+- Original: "Target exactly ONE scope context, strictly limited to a single file/workflow to prevent LLM context collapse."
+- Draft Variant: Maintained within "salvaged_mandates".
+- Adjudication: Genuinely useful domain safeguard kept successfully.
+
+### 2. Mandatory Archetype & Tier Audits
+- Safety Overwrites: The base profile and compilation provides proper structural safety.
+- Core Ownership Framing: N/A, this is a Fusion tier.
+- Mythic Fidelity Check: N/A
+
+### 3. Literal Efficacy Verdict
+**Draft Better or Equal (PASS)**
+
+Since it passes, the Efficacy Audit is PASS.
