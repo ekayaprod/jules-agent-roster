@@ -56,7 +56,7 @@
       .flip-card.flipped { z-index: 10; }
       .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
       
-      .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1rem; padding: 0.75rem 1rem; display: flex; flex-direction: column; background-color: var(--card-bg); border: 1px solid var(--border);  overflow: hidden; }
+      .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 1rem; padding: 0.75rem 1rem; display: flex; flex-direction: column; background-color: var(--card-bg); border: 1px solid var(--border);  overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
       .flip-card-front { justify-content: center; gap: 0.5rem; }
       .flip-card-back { transform: rotateY(180deg); text-align: left; padding: 1.25rem; cursor: pointer; pointer-events: none; overflow: visible;}
       .flip-card.flipped .flip-card-back { pointer-events: auto; }
@@ -174,7 +174,7 @@
       input[type="text"] { padding: 0.6rem 2.5rem 0.6rem 2.75rem; border-radius: 999px; background: transparent; border: 1px solid transparent; color: var(--text-primary); width: 100%; font-family: inherit; transition: all 0.2s ease-in-out; font-size: var(--text-sm);}
       input[type="text"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-color: transparent; }
       
-      button { background-color: var(--accent); color: var(--bg-color); border: none; padding: 0.5rem 1rem; font-weight: var(--weight-semibold); border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease-in-out; font-family: -apple-system, sans-serif; min-height: 2.5rem; display: inline-flex; align-items: center; justify-content: center; }
+      button { background-color: var(--accent); color: var(--bg-color); border: none; padding: 0.5rem 1rem; font-weight: var(--weight-semibold); border-radius: 0.5rem; cursor: pointer; transition: all 0.3s ease-in-out; font-family: -apple-system, sans-serif; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; }
       button:hover { background-color: var(--accent-hover); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); transform: translateY(-1px); }
       button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
       button:active { transform: scale(0.95); }
@@ -332,6 +332,7 @@
         outline: none; 
       }
       .repo-picker:focus, .task-input:focus { border-color: var(--term-system); }
+      .repo-picker:focus-visible, .task-input:focus-visible { outline: 2px solid var(--term-system); outline-offset: -1px; }
       .task-input { resize: vertical; min-height: 2.75rem; }
       
       @media (min-width: 640px) {
@@ -447,7 +448,7 @@
       .action-main-btn { border-top-right-radius: 0; border-bottom-right-radius: 0; flex-grow: 1; padding: 0.5rem; font-size: var(--text-sm);}
       .action-toggle-btn { border-top-left-radius: 0; border-bottom-left-radius: 0; border-left: 1px solid var(--border); padding: 0 0.75rem;}
       
-      .dropdown-menu { position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; z-index: 50; display: none; flex-direction: column; min-width: 12rem;  overflow: hidden; }
+      .dropdown-menu { position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; z-index: 50; display: none; flex-direction: column; min-width: 12rem;  overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
       .dropdown-menu.visible { display: flex !important; }
       .dropdown-item { width: 100%; background: transparent; color: var(--text-primary); border: none; padding: 0.75rem 1rem; text-align: left; font-size: var(--text-sm); border-radius: 0; transition: all 0.3s ease-in-out;}
       .dropdown-item:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); }
@@ -456,8 +457,8 @@
       /* MODALS */
       .modal-backdrop { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; position: fixed; inset: 0; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 999; display: flex; justify-content: center; align-items: center; font-family: -apple-system, sans-serif;}
       .modal-backdrop.visible { opacity: 1; pointer-events: auto; }
-      .modal-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; width: 100%; max-width: 28rem; display: flex; flex-direction: column; gap: 1rem;  }
-      .modal-content h3 { margin: 0; font-size: var(--text-xl); }
+      .modal-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; width: 100%; max-width: 28rem; display: flex; flex-direction: column; gap: 1rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+      .modal-content h3 { margin: 0; font-size: var(--text-xl); letter-spacing: -0.025em; font-weight: var(--weight-bold); }
       .modal-content p { margin: 0; color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-relaxed);}
       .modal-input { width: 100%; background: var(--details-bg); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem; border-radius: 0.5rem; outline: none; transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
       .modal-input:focus-visible { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: 2px; }
@@ -493,7 +494,7 @@
       .empty-title { font-size: var(--text-xl); font-weight: var(--weight-bold); margin: 0 0 0.5rem 0; font-family: -apple-system, sans-serif; }
       .empty-desc { font-size: var(--text-sm); color: var(--text-secondary); max-width: 25rem; line-height: var(--leading-normal); margin: 0; font-family: -apple-system, sans-serif; }
       .hidden { display: none !important; } .mt-6 { margin-top: 1.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .flex { display: flex; }
-      .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: var(--text-primary); padding: 1rem 1.5rem; border-radius: 0.5rem;  transform: translateY(200%); transition: transform 0.3s; z-index: 1000; border: 1px solid var(--success); font-family: -apple-system, sans-serif;}
+      .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--card-bg); color: var(--text-primary); padding: 1rem 1.5rem; border-radius: 0.5rem;  transform: translateY(200%); transition: transform 0.3s; z-index: 1000; border: 1px solid var(--success); font-family: -apple-system, sans-serif; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
       .toast.show { transform: translateY(0); }
       
       .skeleton-card { height: 11.5rem; background-color: var(--card-bg); border: 1px dashed var(--border); border-radius: 1rem; flex: 1 1 100%; max-width: 100%; display: flex; align-items: center; justify-content: center; opacity: 0.6; }
