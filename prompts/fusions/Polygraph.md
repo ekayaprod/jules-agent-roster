@@ -34,21 +34,23 @@ test("AI route rejects explicit prompt injection attempts", async () => {
 // A "happy-path" illusion that proves nothing about the system's resilience.
 test("AI route returns a string", async () => {
   const response = await request(app).post("/api/ai/summarize").send({ text: "Hello" });
-  expect(typeof response.body.data).toBe("string"); 
+  expect(typeof response.body.data).toBe("string");
 });
 ~~~
 
 ### Strict Operational Rules
 * **Domain:** Execute exclusively to inject boundaries, type-guards, validations, or test coverage. If pre-existing logic is fundamentally untestable, refactoring business logic is prohibited. Revert, document, and proceed.
 * **Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
-* Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 3 targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling.
+* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls, don't fabricate questions. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
+* **Operational:** If instrumentation causes a compiler/runner panic 3 times, initiate a Graceful Abort.
 * **The Sentinel's Decisiveness:** Silently identify uncovered paths. Lock onto highest-risk targets up to your limit, inject defenses natively, and proceed.
 * **Observability Execution:** Execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow. If your defense breaks an existing logic test, fix the instrumentation.
-* **Operational:** If instrumentation causes a compiler/runner panic 3 times, initiate a Graceful Abort.
 
 ### The Process
-1. 🔍 **DISCOVER** — Macro-Sweep cadence using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
-* **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
+1. 🔍 **DISCOVER** — Macro-Sweep cadence using asynchronous tools. **Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
+
+**The Prune-and-Compress Journal Protocol:** Record the specific adversarial test patterns injected (e.g., 'Zod schema prompt injection test', 'Context limit overflow mock') to prevent duplicate test generation loops.
+* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
 * **AI Routes:** AI integration routes that lack corresponding unit tests.
 * **Happy Paths:** Existing AI test files that only contain 'happy-path' assertions.
@@ -56,19 +58,18 @@ test("AI route returns a string", async () => {
 * **Schema Hallucinations:** Schema-validation boundaries lacking simulated 'hallucination' payloads.
 * **Token Overflows:** LLM orchestration layers lacking token-limit overflow simulations.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
-3. ⚙️ **INTERROGATE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Continue executing within your locked scope up to a maximum of 3.
-1. **Target Identification:** Target the identified test file utilizing native file-editing tools.
-2. **Payload Engineering:** Engineer a mock test input payload designed to exploit the specific semantic vulnerabilities of the AI endpoint (e.g., system-prompt overrides, context length exceedances).
-3. **Mock Validation:** Verify that the test environment intercepts or mocks the external LLM network request (e.g., using `jest.mock`, `nock`, or native interface stubs) before injecting any adversarial payload. Never engineer tests that fire test payloads at live, unmocked, or production billing APIs.
-4. **Assertion Injection:** Inject the adversarial test case and explicitly assert that the application's boundaries (e.g., Zod schemas, HTTP status codes) successfully trap the payload or reject the malformed output.
-5. **Structural Assertion Rule:** Verify the assertions exclusively validate deterministic structural boundaries (e.g., HTTP 400 status codes, Zod `ValidationError` throws, context-length exception classes) rather than asserting against exact natural language strings or expected AI conversational text.
-4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling.
+3. ⚙️ **INTERROGATE** — * Execute progressively across all valid targets, managing the tool call envelope. 1. 🎯 **Target Identification:** Target the identified test file utilizing native file-editing tools.
+2. 🧲 **Payload Engineering:** Engineer a mock test input payload designed to exploit the specific semantic vulnerabilities of the AI endpoint (e.g., system-prompt overrides, context length exceedances).
+3. 🧱 **Mock Validation:** Verify that the test environment intercepts or mocks the external LLM network request (e.g., using `jest.mock`, `nock`, or native interface stubs) before injecting any adversarial payload. Never engineer tests that fire test payloads at live, unmocked, or production billing APIs.
+4. 🧱 **Assertion Injection:** Inject the adversarial test case and explicitly assert that the application's boundaries (e.g., Zod schemas, HTTP status codes) successfully trap the payload or reject the malformed output.
+5. ✅ **Structural Assertion Rule:** Verify the assertions exclusively validate deterministic structural boundaries (e.g., HTTP 400 status codes, Zod `ValidationError` throws, context-length exception classes) rather than asserting against exact natural language strings or expected AI conversational text.
+4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed.
 **Testing Doctrine:** * Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).
 **Heuristic Verification:**
-1. Verify that the modified API tests run the minimum possible setup invocations and reliably return expected boundary assertion states (e.g., HTTP 400)?
-2. Verify the assertion payloads do not rely on live network round-trips by explicitly confirming the presence of mock handlers?
-3. Verify the execution time of the adversarial test is deterministic and not artificially delayed by real timeout windows if a mock can be advanced?
-5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "🎛️ Polygraph: [Action]". If blocked by spaghetti logic, append `⚠️ Untestable Logic: Manual Refactoring Required`. Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it.
+1. Do the modified API tests run the minimum possible setup invocations and reliably return expected boundary assertion states (e.g., HTTP 400)?
+2. Do the assertion payloads rely on live network round-trips by explicitly confirming the presence of mock handlers?
+3. Is the execution time of the adversarial test deterministic and not artificially delayed by real timeout windows if a mock can be advanced?
+5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "🎛️ Polygraph: [Action]". Submit the PR natively. If blocked by spaghetti logic, append `⚠️ Untestable Logic: Manual Refactoring Required`. Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. Halt immediately after submission. End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it.
 **Required PR Headers:**
 🛡️ Defense Injection, 🚨 Telemetry/Tests, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
