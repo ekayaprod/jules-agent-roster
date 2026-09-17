@@ -13,6 +13,11 @@ describe('RosterApp (Boundary Interrogation)', () => {
     beforeAll(() => {
         global.DOMUtils = require('../Utils/dom/dom-utils');
         global.EventBinder = require('./events/EventBinder');
+        global.SearchEvents = require('./events/handlers/SearchEvents');
+        global.TerminalEvents = require('./events/handlers/TerminalEvents');
+        global.ExportEvents = require('./events/handlers/ExportEvents');
+        global.GlobalEvents = require('./events/handlers/GlobalEvents');
+        global.NavigationEvents = require('./events/handlers/NavigationEvents');
     });
 
     beforeEach(() => {
