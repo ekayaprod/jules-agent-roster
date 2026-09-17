@@ -1212,7 +1212,7 @@
   {
     "name": "Polygraph",
     "emoji": "🎛️",
-    "role": "Adversarial Interrogator",
+    "role": "Test Engineer",
     "category": "Testing",
     "tier": "Fusion",
     "description": "INTERROGATE AI integrations by injecting adversarial edge cases and context traps into the native test suite.",
