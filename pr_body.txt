@@ -1,7 +1,0 @@
-### 🛠️ Architecture Upgrade: V88.0 Compliance
-- **Mechanical Drift Fixed:** Updated `Master-Forge.md` Phase 6 Check for `List Lengths` to explicitly verify "heuristic" counts, which was missing from the checklist but strictly required by `Forge-Procedure.md` Module 4 List Length Constraints.
-- **Version Bump:** Bumped `CURRENT_FORGE_VERSION` in `Master-Forge.md` from V87.9 to V88.0 due to the validation behavior change.
-
-### Flagged, not changed
-- **`isCore` variable in `compile_json.js`:** `const isCore = String(data.identity?.tier).toLowerCase() === 'core';` is defined but never used within the file. Left untouched as it does not break compilation and isn't a mechanical failure.
-- **`data.payload_threshold` in `compile_json.js`:** The fallback property `data.payload_threshold` maps to `target_limit`, which isn't produced by `Auto-Forge.md` (which maps `data.process.select_classify.target_limit`). Left as a valid legacy fallback since this doesn't constitute an orphan in the forward pipeline.
