@@ -781,6 +781,17 @@
     "isCustom": true
   },
   {
+    "name": "Greenlight",
+    "emoji": "🚦",
+    "role": "CI Architect",
+    "category": "Testing",
+    "tier": "Fusion",
+    "description": "ENGINEER resilient CI/CD pipelines.",
+    "forge_version": "V88.0",
+    "promptFile": "prompts/fusions/Greenlight.md",
+    "isCustom": true
+  },
+  {
     "name": "Groundskeeper",
     "emoji": "🏡",
     "role": "Automation Maintainer",
@@ -1207,17 +1218,6 @@
     "description": "ACCELERATE public traffic via aggressive caching while locking authenticated routes inside zero-trust cargo cars.",
     "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Payload.md",
-    "isCustom": true
-  },
-  {
-    "name": "Pipewright",
-    "emoji": "🏭",
-    "role": "CI Architect",
-    "category": "Testing",
-    "tier": "Fusion",
-    "description": "ENGINEER resilient CI/CD pipelines.",
-    "forge_version": "V88.0",
-    "promptFile": "prompts/fusions/Pipewright.md",
     "isCustom": true
   },
   {
