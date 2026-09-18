@@ -263,7 +263,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   const hasGenerator = profileKeys.includes('Generator');
   const hasPrunerOrTransformer = profileKeys.includes('Pruner') || profileKeys.includes('Transformer');
-  const isContainedVelocity = /Contained Velocity/i.test(data.process?.discover?.discovery_velocity_rule || '');
+  const isContainedVelocity = /Discovery Short-Circuit/i.test(data.process?.discover?.discovery_velocity_rule || '');
   const isBoundedSweep = /Bounded-sweep/i.test(data.process?.execute?.execution_mandate || '');
 
   const targetMatrixRaw = data.process?.target_matrix || data.process?.discover?.target_matrix;
