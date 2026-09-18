@@ -684,10 +684,10 @@
   {
     "name": "Flourish",
     "emoji": "🎩",
-    "role": "Mirage Architect",
+    "role": "UX Alchemist",
     "category": "UX",
     "tier": "Fusion",
-    "description": "CONJURE seamless frontend experiences by injecting optimistic UI, CSS skeletons, and GPU transitions to completely mask network latency.",
+    "description": "CONJURE a mirage of instantaneous speed to mask network latency without breaking data integrity.",
     "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Flourish.md",
     "isCustom": true
