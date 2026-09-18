@@ -567,5 +567,15 @@ describe('JulesTerminal', () => {
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('QUEUE_EXECUTION_ERROR', mockError);
             expect(manager.isProcessingQueue).toBe(false);
         });
+
+        it('dispatches QUEUE_EXECUTION_ERROR on asynchronous task rejection', async () => {
+            const mockError = new Error('Task Rejected');
+            manager.sessionQueue.push(() => Promise.reject(mockError));
+
+            await manager._processSessionQueue();
+
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('QUEUE_EXECUTION_ERROR', mockError);
+            expect(manager.isProcessingQueue).toBe(false);
+        });
     });
 });
