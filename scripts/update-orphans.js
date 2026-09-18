@@ -3,7 +3,6 @@ const path = require('path');
 
 // --- JULES KILLSWITCH ---
 if (process.env.JULES_FORGE_MODE === 'true') {
-    console.log("Jules Forge Mode active: Bypassing orphan tracking updates.");
     process.exit(0);
 }
 // ------------------------
@@ -85,13 +84,11 @@ async function updateOrphans() {
     await Promise.all(newlyOrphaned.map(async (orphan) => {
         const destPath = path.join(orphansDir, orphan.file);
         await fs.promises.rename(orphan.filePath, destPath);
-        console.log(`Moved orphaned agent: ${orphan.name}`);
     }));
 
     // 5. Update emptyslots.md
     const emptySlotsContent = `# Empty Fusion Slots\n\nThis document tracks all fusion combinations from \`fusion_matrix.json\` that currently do not have an assigned agent (\`""\`).\n\n## How to update\n\nTo update this file, run a script that parses \`fusion_matrix.json\` for empty values and regenerates the list below. Do not edit this manually.\n\n## Missing Combinations\n\n${emptySlots.join('\n')}\n`;
     await fs.promises.writeFile(emptySlotsMdPath, emptySlotsContent);
-    console.log(`Updated ${emptySlotsMdPath}`);
 
     // 6. Regenerate orphans.md
     const allOrphans = (await fs.promises.readdir(orphansDir)).filter(f => f.endsWith('.md') && f !== 'orphans.md' && f !== 'emptyslots.md');
@@ -123,7 +120,6 @@ async function updateOrphans() {
     orphansMdContent += orphanContents.join('');
 
     await fs.promises.writeFile(orphansMdPath, orphansMdContent);
-    console.log(`Updated ${orphansMdPath}`);
 }
 
 updateOrphans().catch(console.error);

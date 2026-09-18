@@ -1,0 +1,2 @@
+- scripts/build-roster.js: Removed console.log and console.warn statements.
+- scripts/update-orphans.js: Removed console.log statements.
