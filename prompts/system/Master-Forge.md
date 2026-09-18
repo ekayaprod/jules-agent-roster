@@ -133,7 +133,7 @@ Phase 6 owns structural and logical validation. Do not defer these checks to lat
 
 ### Checks
 - **Throughput-Discovery Consistency:** Discovery and execution strings must be drawn from the same Forge-Procedure Module 3 throughput block. FAIL if unbounded "Full-Sweep"/"map... globally" language co-occurs with a bounded numeric Target Limit from a different tier, or vice versa.
-- **Task Board State Coherence:** If task-board handling language appears in more than one section, verify all instances describe one consistent state model matching the Task Board Resolution Protocol (Forge-Procedure Module 4). FAIL if two sections imply different outcomes for the same task state.
+- **Task Board State Coherence:** If task-board handling language appears in more than one section, verify all instances describe one consistent state model matching the Task Board Resolution Protocol (Forge-Procedure Module 4). FAIL if the generated agent contains any task board instructions other than the exact single string defined in the protocol.
 - **Internal Duplication & Leakage:** Canonical strings (Testing Doctrine, throughput strings) and platform baselines (Base Hygiene Contract) must NOT be printed as named bullets inside Strict Operational Rules. FAIL if any generated section introduces a halt/exit condition that duplicates or overrides discovery_fallback, or if the Testing Doctrine is placed anywhere except under VERIFY.
 - **List Lengths:** Verify target and step counts exactly match the List Length Constraints in Forge-Procedure Module 4.
 - **Creative Constraints:** Verify structural limits, emojis, capitalization, and bold-label bans match Creative-Procedure Module 2.

@@ -263,7 +263,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   const hasGenerator = profileKeys.includes('Generator');
   const hasPrunerOrTransformer = profileKeys.includes('Pruner') || profileKeys.includes('Transformer');
-  const isContainedVelocity = /Discovery Short-Circuit/i.test(data.process?.discover?.discovery_velocity_rule || '');
+  const isContainedVelocity = /Contained Velocity/i.test(data.process?.discover?.discovery_velocity_rule || '');
   const isBoundedSweep = /Bounded-sweep/i.test(data.process?.execute?.execution_mandate || '');
 
   const targetMatrixRaw = data.process?.target_matrix || data.process?.discover?.target_matrix;
@@ -312,6 +312,7 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     { label: 'Canonical testing doctrine phrase', pattern: /treat test files as immutable and read-only/i },
     { label: 'Canonical testing doctrine failure clause', pattern: /prove (?:the test|it) was failing on `?main`?/i },
     { label: 'Managed Interruption clause', pattern: /managed interruption/i },
+    { label: 'Task Board restatement', pattern: /task[- ]board/i },
   ];
 
   const freeTextFieldsToScan = {
