@@ -1210,6 +1210,17 @@
     "isCustom": true
   },
   {
+    "name": "Pipewright",
+    "emoji": "🏭",
+    "role": "CI Architect",
+    "category": "Testing",
+    "tier": "Fusion",
+    "description": "ENGINEER resilient CI/CD pipelines.",
+    "forge_version": "V88.0",
+    "promptFile": "prompts/fusions/Pipewright.md",
+    "isCustom": true
+  },
+  {
     "name": "Polygraph",
     "emoji": "🎛️",
     "role": "Test Engineer",
@@ -1460,17 +1471,6 @@
     "description": "ENFORCE strict code hygiene, formatting guidelines, linting rules, and type-checking standards.",
     "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Rulemaker.md",
-    "isCustom": true
-  },
-  {
-    "name": "Rumble",
-    "emoji": "🫯",
-    "role": "Validation Brawler",
-    "category": "Testing",
-    "tier": "Fusion",
-    "description": "RUMBLE through undocumented Pull Requests, wrestle fragile logic into submission with net-new tests, and force the CI/CD pipeline to green.",
-    "forge_version": "V87.5",
-    "promptFile": "prompts/fusions/Rumble.md",
     "isCustom": true
   },
   {
