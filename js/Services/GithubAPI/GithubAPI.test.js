@@ -70,6 +70,13 @@ describe('GithubAPI', () => {
              await expect(api._fetch('/test')).rejects.toThrow('Not Found');
         });
 
+        it('should handle server errors (status 500) correctly', async () => {
+             global.fetch.mockResolvedValueOnce({ ok: false, status: 500, json: async () => ({ message: 'Internal Server Error' }) });
+             await expect(api._fetch('/test')).rejects.toThrow(GithubNetworkError);
+             global.fetch.mockResolvedValueOnce({ ok: false, status: 500, json: async () => ({ message: 'Internal Server Error' }) });
+             await expect(api._fetch('/test')).rejects.toThrow('Server Error: Internal Server Error');
+        });
+
         it('should handle timeout (AbortError)', async () => {
              const abortError = new Error('The operation was aborted');
              abortError.name = 'AbortError';
