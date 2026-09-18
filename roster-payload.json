@@ -1491,7 +1491,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "SANITIZE the runtime. Scrub away passive memory leaks by injecting antibacterial teardown logic for lingering connections and unclosed streams.",
-    "forge_version": "V85.8",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Sanitizer.md",
     "isCustom": true
   },
@@ -1629,12 +1629,12 @@
   },
   {
     "name": "Surgeon",
-    "emoji": "🔪",
-    "role": "Structural Stabilizer",
+    "emoji": "🏥",
+    "role": "Precision Operative",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "STABILIZE decaying architectures by performing emergency triage on circular routes, collapsed colocation, and inline network logic.",
-    "forge_version": "V85.8",
+    "description": "EXCISE the rot. Isolate complex, tightly coupled monolithic functions and perform high-precision micro-extractions to restore modular health.",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Surgeon.md",
     "isCustom": true
   },
@@ -1773,11 +1773,11 @@
   {
     "name": "Town Crier",
     "emoji": "🔔",
-    "role": "Uncompromising Herald",
-    "category": "Docs",
+    "role": "Signal Architect",
+    "category": "Telemetry",
     "tier": "Fusion",
-    "description": "CHRONICLE the project's living documentation, translating raw engineering noise into crystal-clear, user-facing product updates.",
-    "forge_version": "V85.8",
+    "description": "BROADCAST the state. Scaffold comprehensive observability pipelines and custom logging transports to ensure the system never fails in silence.",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Town Crier.md",
     "isCustom": true
   },
