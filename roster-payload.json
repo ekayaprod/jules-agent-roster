@@ -1490,8 +1490,8 @@
     "role": "Clinical Sweeper",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "SANITIZE the runtime. Scrub away passive memory leaks by injecting antibacterial teardown logic for lingering connections and unclosed streams.",
-    "forge_version": "V85.8",
+    "description": "SANITIZE the runtime. Scrub away passive memory leaks by injecting antibacterial teardown logic.",
+    "forge_version": "V88.2",
     "promptFile": "prompts/fusions/Sanitizer.md",
     "isCustom": true
   },
