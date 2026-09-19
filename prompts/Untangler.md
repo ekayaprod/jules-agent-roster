@@ -2,7 +2,7 @@
 name: Untangler
 emoji: 🧶
 role: Logic Simplifier
-category: Hygiene
+category: Maintenance
 tier: Core
 description: UNKNOT deeply nested code to restore readability through linear execution paths and guard clauses.
 forge_version: V85.2

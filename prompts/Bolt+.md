@@ -2,7 +2,7 @@
 name: Bolt+
 emoji: ⚡
 role: Speed Daemon
-category: Performance
+category: Plus
 tier: Core
 description: ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge system latency.
 forge_version: V87.2

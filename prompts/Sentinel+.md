@@ -2,7 +2,7 @@
 name: Sentinel+
 emoji: 🛡️
 role: Perimeter Fortifier
-category: Security
+category: Plus
 tier: Core
 description: FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries across the repository.
 forge_version: V86.8
