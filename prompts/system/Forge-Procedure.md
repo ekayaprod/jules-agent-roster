@@ -112,14 +112,15 @@ You must supply the verbatim text below if the modifier is declared active durin
 ### The Managed Interruption Protocol
 Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared.
 
-#### Expansive_Standard (Full-Sweep)
+#### Full-Sweep Execution Mandate (Applies to all Expansive modes)
 * **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls, don't fabricate questions. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
+
+#### Expansive_Standard (Full-Sweep)
 * **Discovery Velocity:** "* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery."
 * **Execution Posture:** "* Execute progressively across all valid targets, managing the tool call envelope."
 * **Reporter Procedure:** "* Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed."
 
 #### Expansive_Pruner (Full-Sweep)
-* **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid interruption. See the Managed Interruption Protocol if forcibly paused."
 * **Discovery Velocity:** "* **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module."
 * **Execution Posture:** "* Execute incrementally."
 * **Reporter Procedure:** "* Verify incrementally (max 3 attempts per target, sequential testing permitted). A changing error message is not forward progress. Unlike standard Expansive workers, a Pruner MUST treat verification as a strict gatekeeper: if a deletion breaks tests, you must revert that specific deletion. Retain only non-breaking deletions and proceed to the next target."
@@ -143,7 +144,7 @@ If the domain relies on structural verification (no executable tests), rewrite t
 **⚠️ STRICT GENERATIVE BOUNDARY:** The following Target Matrix, Execution Steps, and Heuristic Verification list lengths are strictly evaluated during the Phase 6 Linter pass. None may be waived.
 
 **Target Matrix:**
-- **Contained Velocity:** Minimum 1 target.
+- **Contained Velocity / Bounded-sweep:** Minimum 1 target.
 - **Generator Archetype:** Minimum 4 target tiers.
 - **All Others:** Minimum 3 targets.
 
