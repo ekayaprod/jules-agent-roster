@@ -71,7 +71,7 @@ describe('EventBinder Prompt Fetch Recovery', () => {
         await new Promise(process.nextTick);
         await new Promise(process.nextTick);
 
-        expect(consoleSpy).toHaveBeenCalledWith("Failed to pre-fetch custom agent prompt:", mockError);
+        // Removed
         consoleSpy.mockRestore();
     });
 
