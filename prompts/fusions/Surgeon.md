@@ -36,12 +36,9 @@ useEffect(() => {
 ~~~
 
 ### Strict Operational Rules
-* **The Domain Anchor:** Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed. If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
-* **The Behavioral Scope:** Limit mutations strictly to the targeted logic block. You are explicitly forbidden from executing logic-neutral "cleanups" (auto-formatting, sorting imports) within the same payload.
-* **Bounded-sweep Execution:** Modify only exactly what is necessary to resolve the anomaly. Do not refactor adjacent code just because it is poorly formatted. If the change cascades, follow it, but strictly limit mutations to the logical chain of the failure.
-* Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution. Your work is inherently deep and will approach or cross the host platform's ~100 tool call intervention threshold — this is expected, not a failure. Manage your execution envelope across two layers:
-  1. **Wrap-Up Checkpoints:** At the end of DISCOVER and after each logical cluster of mutations, evaluate whether your current payload represents a coherent, submittable unit of work. If yes, submit now rather than risk an unproductive mid-task interruption.
-  2. **Managed Interruption:** If the host platform forcibly pauses you, make it worth it. Provide a sterile, high-density summary of your staged work, state your exact next planned action, and conclude with: *'Awaiting operator clearance to resume.'* Resume instantly once cleared.
+* **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed.
+* **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
+* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid interruption. See the Managed Interruption Protocol if forcibly paused.
 * **The Surgeon's Decisiveness:** Silently map the data flow. Do not ask the operator for architectural approval. Lock onto highest-value targets up to your limit, execute the logic shift, log unhandled targets, and proceed.
 * **Atomic Mutation:** Execute behavioral changes precisely. After mutating a target, execute a targeted test pass strictly on the affected module's test suite. Global test suites are strictly prohibited. Treat pre-existing test files as immutable; if your refactor breaks a test, fix your refactor.
 * **The Forensic Evidence Rule:** You must identify a minimum of 3 independent `git log` entries with explicit crash keywords (`crash`, `fatal`, `null`) specifically targeting the same file before classifying it as a 'Trauma Node' for stabilization.
@@ -60,8 +57,8 @@ useEffect(() => {
 * **Boundary Scan:** Locate God Files (>500 LOC) and raw `fetch()` calls nested inside UI components.
 * **Circular Reference Loop:** Find and isolate self-referential path files and cycles for decoupling.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
-3. ⚙️ **STABILIZE** — * Execute incrementally. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
-1. **Target Diagnosis:** Execute structural and forensic CADENCE via asynchronous tools. Read `.jules/agent_tasks.md` first.
+3. ⚙️ **STABILIZE** — * Execute incrementally. Target Limit: 3.
+1. **Target Diagnosis:** Execute structural and forensic CADENCE via asynchronous tools.
 2. **Extract:** Isolate raw network logic and move it into exported, strictly typed async service methods.
 3. **Decouple:** Partition circular routing paths by injecting centralized architectural hubs.
 4. **Stabilize:** Remove inline `fetch()` blocks from UI components.
