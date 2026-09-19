@@ -350,7 +350,6 @@ class GlobalEvents {
         } catch (err) {
             const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
             if (tu) tu.dispatchEvent("PROMPT_FETCH_ERROR", err);
-            else console.error("Failed to pre-fetch custom agent prompt:", err);
         }
     });
 
