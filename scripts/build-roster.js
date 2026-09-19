@@ -8,7 +8,6 @@ const path = require('path');
 // of the markdown files' current states (e.g., if other agents were merged into master recently).
 // You did not hallucinate those changes, they are derived naturally.
 if (process.env.JULES_FORGE_MODE === 'true') {
-    console.log("Jules Forge Mode active: Bypassing roster-payload.json generation.");
     process.exit(0);
 }
 // ------------------------
@@ -84,7 +83,6 @@ async function processDirectory(dirPath, isCustom, targetFolder) {
                     return agent;
                 }
             } catch (error) {
-                console.warn(`Failed to read or parse agent file ${file}:`, error.message);
             }
             return null;
         })();
@@ -130,7 +128,6 @@ async function buildRoster() {
 
     const outputPath = path.join(rootDir, 'roster-payload.json');
     await fs.promises.writeFile(outputPath, JSON.stringify(agents, null, 2) + '\n');
-    console.log(`Successfully compiled ${agents.length} agents to roster-payload.json`);
 }
 
 buildRoster().catch(console.error);

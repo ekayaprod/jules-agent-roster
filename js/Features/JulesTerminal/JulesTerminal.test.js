@@ -278,6 +278,31 @@ describe('JulesTerminal', () => {
             expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BACKGROUND_FETCH_FAILED', mockError);
         });
 
+        it('dispatches CONFIGURATION_FAILED telemetry event and shows error toast if save configuration fails', async () => {
+            global.StorageUtils.getItem.mockReturnValue(null);
+            await manager.init();
+
+            const keyInput = document.getElementById('julesApiKeyInput');
+            keyInput.value = 'new_valid_key';
+            const saveBtn = document.getElementById('saveSettingsBtn');
+
+            const mockError = new Error('Configure failed');
+            global.window.julesAPI.configure.mockImplementation(() => {
+                throw mockError;
+            });
+
+            try {
+                await saveBtn.click();
+            } catch(e) {
+                // Expected
+            }
+
+            await Promise.resolve(); // flush promise queue
+
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CONFIGURATION_FAILED', mockError);
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to configure APIs.", TOAST_TYPES.ERROR);
+        });
+
         it('restores button and input states if an error occurs during save', async () => {
             global.StorageUtils.getItem.mockReturnValue(null);
             await manager.init();
@@ -561,6 +586,16 @@ describe('JulesTerminal', () => {
             manager.sessionQueue.push(async () => {
                 throw mockError;
             });
+
+            await manager._processSessionQueue();
+
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('QUEUE_EXECUTION_ERROR', mockError);
+            expect(manager.isProcessingQueue).toBe(false);
+        });
+
+        it('dispatches QUEUE_EXECUTION_ERROR on asynchronous task rejection', async () => {
+            const mockError = new Error('Task Rejected');
+            manager.sessionQueue.push(() => Promise.reject(mockError));
 
             await manager._processSessionQueue();
 

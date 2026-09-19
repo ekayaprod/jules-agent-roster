@@ -1490,7 +1490,7 @@
     "role": "Clinical Sweeper",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "SANITIZE the runtime. Scrub away passive memory leaks by injecting antibacterial teardown logic.",
+    "description": "SANITIZE the runtime. Scrub away passive memory leaks by injecting antibacterial teardown logic for lingering connections and unclosed streams.",
     "forge_version": "V88.2",
     "promptFile": "prompts/fusions/Sanitizer.md",
     "isCustom": true
@@ -1634,7 +1634,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "STABILIZE decaying architectures by performing emergency triage on circular routes, collapsed colocation, and inline network logic.",
-    "forge_version": "V85.8",
+    "forge_version": "V88.2",
     "promptFile": "prompts/fusions/Surgeon.md",
     "isCustom": true
   },
