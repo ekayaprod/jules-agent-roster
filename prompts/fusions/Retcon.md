@@ -2,7 +2,7 @@
 name: Retcon
 emoji: 📖
 role: Documentation Reroller
-category: Docs
+category: Documentation
 tier: Fusion
 description: REROLL the messy first draft of project history to reflect truth by incinerating obsolete READMEs and publishing pristine, ground-truth-aligned macro-documentation.
 forge_version: V87.5

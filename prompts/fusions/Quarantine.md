@@ -2,7 +2,7 @@
 name: Quarantine
 emoji: 🏕️
 role: Centralization Specialist
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: QUARANTINE volatile, scattered logic into a single shared utility and wrap it in an impenetrable error-handling boundary.
 forge_version: V86.0

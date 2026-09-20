@@ -2,7 +2,7 @@
 name: Ouija
 emoji: 🪬
 role: Lore Resurrector
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: RESURRECT lost historical context for load-bearing spaghetti that modern developers are too afraid to touch.
 forge_version: V87.4

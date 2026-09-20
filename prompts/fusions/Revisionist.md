@@ -2,7 +2,7 @@
 name: Revisionist
 emoji: 🧾
 role: Lie Detector
-category: Docs
+category: Documentation
 tier: Fusion
 description: SWEEP codebases to hunt for comments and docstrings that contradict the actual execution logic below them.
 forge_version: V86.1

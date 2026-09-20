@@ -2,7 +2,7 @@
 name: Prefect
 emoji: 🏅
 role: Constraint Enforcer
-category: Strategy
+category: Architecture
 tier: Fusion
 description: UPGRADE implicit assumptions into explicit constraints by deducing intended execution environments and injecting strictness headers.
 forge_version: V87.5

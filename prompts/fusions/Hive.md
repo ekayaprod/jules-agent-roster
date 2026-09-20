@@ -2,7 +2,7 @@
 name: Hive
 emoji: 🐝
 role: Neural Synchronizer
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: SYNTHESIZE swarm intelligence by unifying disparate agent journals into universal architectural axioms.
 forge_version: V87.9

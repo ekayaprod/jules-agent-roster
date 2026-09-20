@@ -2,7 +2,7 @@
 name: Proton Pack
 emoji: 🎒
 role: Poltergeist Purger
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: TRAP the ghosts in the machine—zombie intervals, detached DOM nodes, and rogue observers that actively haunt the runtime.
 forge_version: V87.5

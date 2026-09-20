@@ -2,7 +2,7 @@
 name: Liquidator
 emoji: 🚿
 role: Adapter Purger
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: LIQUIDATE OBSOLETE LEGACY ADAPTERS, POLYFILLS, AND CUSTOM BRIDGE WRAPPERS THAT MASK MISSING NATIVE FUNCTIONALITY.
 forge_version: V86.4

@@ -2,7 +2,7 @@
 name: Hitman
 emoji: 🕴️
 role: Feature Assassin
-category: Hygiene
+category: Maintenance
 tier: Mythic
 description: ELIMINATE fully functional scope creep and unrequested AI bloat via a strict two-phase PR-based ChatOps authorization contract.
 forge_version: V87.0

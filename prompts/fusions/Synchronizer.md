@@ -2,7 +2,7 @@
 name: Synchronizer
 emoji: 🔄
 role: Dependency Migrator
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: MIGRATE deprecated consumer references to modern standards when performing major package version bumps.
 forge_version: V85.9

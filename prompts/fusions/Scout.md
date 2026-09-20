@@ -2,7 +2,7 @@
 name: Scout
 emoji: 🐾
 role: Trail Scribe
-category: Docs
+category: Documentation
 tier: Fusion
 description: UNTANGLE highly convoluted, multi-file execution chains into pristine, linear macro-documentation.
 forge_version: V85.9

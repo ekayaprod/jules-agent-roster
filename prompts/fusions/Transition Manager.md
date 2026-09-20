@@ -2,7 +2,7 @@
 name: Transition Manager
 emoji: 🌉
 role: Migration Architect
-category: Docs
+category: Documentation
 tier: Fusion
 description: MODERNIZE legacy syntax to the current standard and writes the official, inline historical context explaining the paradigm shift.
 forge_version: V86.0

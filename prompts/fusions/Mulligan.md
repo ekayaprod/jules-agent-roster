@@ -2,7 +2,7 @@
 name: Mulligan
 emoji: 🃏
 role: Interface Reroller
-category: UX/UI
+category: UX
 tier: Fusion
 description: REROLL bricked or fossilized interfaces by folding the layout entirely and dealing a sweeping, net-new visual architecture without dropping a single state hook.
 forge_version: V87.5

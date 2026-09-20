@@ -2,7 +2,7 @@
 name: Refiner
 emoji: 🏭
 role: Structural Modernization
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: DISTILL messy, nested callback spaghetti into flat, modern async/await execution paths by untangling the structure and upgrading the syntax.
 forge_version: V87.2
