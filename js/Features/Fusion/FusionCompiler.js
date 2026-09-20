@@ -79,7 +79,7 @@ const FusionCompiler = function (agents, customAgents, fusionMatrix = {}) {
           isCustom: true,
           short_description: custom.short_description || custom.desc || custom.description,
           prompt: custom.prompt,
-          tier: computedTier
+          tier: custom.tier === "Mythic" ? "Mythic" : computedTier
         };
       }
     }
