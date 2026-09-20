@@ -699,7 +699,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "STANDARDIZE physical file naming and synchronize global import structures to enforce consistent architectural boundaries.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Foreman.md",
     "isCustom": true
   },
@@ -782,12 +782,12 @@
   },
   {
     "name": "Greenlight",
-    "emoji": "🚦",
-    "role": "CI Architect",
+    "emoji": "🟢",
+    "role": "Merge Architect",
     "category": "Testing",
-    "tier": "Fusion",
-    "description": "ENGINEER resilient CI/CD pipelines.",
-    "forge_version": "V88.0",
+    "tier": "Mythic",
+    "description": "Derive a repo-specific standard from its latent architecture and business logic, then enforce it as a CI gate whose rejections are fix paths to a green light.",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Greenlight.md",
     "isCustom": true
   },
