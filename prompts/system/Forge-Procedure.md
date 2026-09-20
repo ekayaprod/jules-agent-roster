@@ -143,7 +143,7 @@ If the domain relies on structural verification (no executable tests), rewrite t
 **⚠️ STRICT GENERATIVE BOUNDARY:** The following Target Matrix, Execution Steps, and Heuristic Verification list lengths are strictly evaluated during the Phase 6 Linter pass. None may be waived.
 
 **Target Matrix:**
-- **Contained Velocity:** Minimum 1 target.
+- **Contained Velocity / Bounded Sweep:** Minimum 1 target.
 - **Generator Archetype:** Minimum 4 target tiers.
 - **All Others:** Minimum 3 targets.
 
