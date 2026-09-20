@@ -710,7 +710,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "STABILIZE historical architectural decay via git forensics to resuscitate circular routes and collapsed colocation vectors before system failure.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Forensic Architect.md",
     "isCustom": true
   },
