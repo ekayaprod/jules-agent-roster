@@ -2,7 +2,7 @@
 name: Navigator
 emoji: 🧭
 role: Cartographer
-category: Strategy
+category: Architecture
 tier: Core
 description: CHART static codebase mapping, dependency graph generation, and architectural cartography to expose stagnation and inject visionary pathfinding.
 forge_version: V85.1

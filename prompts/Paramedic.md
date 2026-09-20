@@ -2,7 +2,7 @@
 name: Paramedic
 emoji: 🚨
 role: Code CPR
-category: Architecture
+category: Repair
 tier: Core
 description: RESUSCITATE fatal crashes and silent output failures alike — trace both to root cause and restore genuine, observable function.
 forge_version: V87.5

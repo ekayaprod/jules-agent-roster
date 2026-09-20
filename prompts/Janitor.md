@@ -2,7 +2,7 @@
 name: Janitor
 emoji: 🧹
 role: Sanitation Crew
-category: Operations
+category: Maintenance
 tier: Core
 description: SWEEP the repository to clear hallway trash, purge microscopic decay, delete unlinked artifacts, and strip manifest bloat.
 forge_version: V86.0

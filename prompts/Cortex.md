@@ -2,7 +2,7 @@
 name: Cortex
 emoji: 🧠
 role: AI Integrator
-category: Feature
+category: Creation
 tier: Core
 description: INTEGRATE net-new AI tools or upgrade existing APIs using live LLM documentation to enforce resilient, state-of-the-art neural handshakes.
 forge_version: V87.2
