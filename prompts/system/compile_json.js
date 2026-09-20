@@ -275,20 +275,20 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
     minTargetCount = 4;
   }
 
-  if (targetCount < minTargetCount) {
+  if (!isMythic && targetCount < minTargetCount) {
     throw new Error(`[FATAL ERROR] Target Matrix must contain a minimum of ${minTargetCount} targets for this configuration. Found ${targetCount}.`);
   }
 
   const executionStepsRaw = data.process?.execute?.execution_steps || data.process?.execution_steps;
   const stepCount = getArrayLength(executionStepsRaw);
-  if (stepCount < 5) {
+  if (!isMythic && stepCount < 5) {
     throw new Error(`[FATAL ERROR] Execution Steps must contain a minimum of 5 steps. Found ${stepCount}.`);
   }
 
   const heuristicsRaw = data.process?.verify?.heuristic_verification || data.process?.heuristic_verification;
   const heuristicCount = getArrayLength(heuristicsRaw);
   const minHeuristicCount = hasPrunerOrTransformer ? 2 : 3;
-  if (heuristicCount < minHeuristicCount) {
+  if (!isMythic && heuristicCount < minHeuristicCount) {
     throw new Error(`[FATAL ERROR] Heuristic Verification must contain a minimum of ${minHeuristicCount} checks for this archetype. Found ${heuristicCount}.`);
   }
 
