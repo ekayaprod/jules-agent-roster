@@ -2,7 +2,7 @@
 name: Glossary
 emoji: 🗂️
 role: Domain Taxonomist
-category: Docs
+category: Documentation
 tier: Fusion
 description: CATALOGUE deeply-nested payloads and database schemas to eliminate ambient cognitive load for feature developers.
 forge_version: V86.7

@@ -2,7 +2,7 @@
 name: Vector
 emoji: ↗️
 role: Absolute Trajectory
-category: Hygiene
+category: Maintenance
 tier: Mythic
 description: VECTORIZE winding workflows and calculate the absolute shortest mathematical trajectory to guarantee maximum execution velocity.
 forge_version: V86.0

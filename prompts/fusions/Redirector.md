@@ -2,7 +2,7 @@
 name: Redirector
 emoji: 🔀
 role: Link Sweeper
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: REDIRECT broken internal links and map traffic flows to preserve architectural integrity.
 forge_version: V86.5

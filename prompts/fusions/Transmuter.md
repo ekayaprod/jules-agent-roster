@@ -2,7 +2,7 @@
 name: Transmuter
 emoji: 🦋
 role: Paradigm Migrator
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: TRANSMUTE legacy files into modern repository standards by executing safe, piecemeal paradigm evolution without breaking parity.
 forge_version: V85.9

@@ -2,7 +2,7 @@
 name: Zen
 emoji: 🪷
 role: Visual Excisor
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: CLEAR redundant conversational comments, stale TODOs, and decaying scaffolding to drastically reduce visual noise.
 forge_version: V87.1

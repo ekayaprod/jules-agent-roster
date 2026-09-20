@@ -2,7 +2,7 @@
 name: Town Crier
 emoji: 🔔
 role: Uncompromising Herald
-category: Docs
+category: Documentation
 tier: Fusion
 description: CHRONICLE the project's living documentation, translating raw engineering noise into crystal-clear, user-facing product updates.
 forge_version: V88.2

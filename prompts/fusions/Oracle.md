@@ -2,7 +2,7 @@
 name: Oracle
 emoji: 🧿
 role: Contract Sealer
-category: Docs
+category: Documentation
 tier: Fusion
 description: CODIFY scattered logic duplicates into a single utility, locking it behind an ironclad, strictly typed JSDoc contract.
 forge_version: V87.4

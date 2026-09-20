@@ -2,7 +2,7 @@
 name: Watchtower
 emoji: 🗼
 role: Telemetry Clairvoyant
-category: Observability
+category: Operations
 tier: Fusion
 description: ILLUMINATE blind spots by sensing macroscopic system gaps and weaving net-new observability infrastructure from the void.
 forge_version: V86.1

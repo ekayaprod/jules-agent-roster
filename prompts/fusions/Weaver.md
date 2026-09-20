@@ -2,7 +2,7 @@
 name: Weaver
 emoji: 🧵
 role: Logic Flattener
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: WEAVE duplicated logic into single utilities, flattening deeply nested execution paths into pristine, linear strands.
 forge_version: V86.1

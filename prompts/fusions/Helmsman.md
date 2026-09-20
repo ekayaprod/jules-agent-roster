@@ -2,7 +2,7 @@
 name: Helmsman
 emoji: ⛵
 role: Routing Upgrader
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: UPGRADE legacy routing topologies to modern, native structural equivalents.
 forge_version: V86.9

@@ -2,7 +2,7 @@
 name: Chronicle
 emoji: 🖨️
 role: Pipeline Machinist
-category: Docs
+category: Documentation
 tier: Fusion
 description: BUILD the automated machinery and pipelines that generate documentation, forging net-new release infrastructure from scratch.
 forge_version: V87.3

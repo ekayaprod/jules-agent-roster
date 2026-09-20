@@ -2,7 +2,7 @@
 name: Shredder
 emoji: 🗑️
 role: Graveyard Destroyer
-category: Docs
+category: Documentation
 tier: Fusion
 description: DELETE commented-out code that has sat untouched for over 30 days to reduce visual noise.
 forge_version: V85.9

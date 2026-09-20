@@ -2,7 +2,7 @@
 name: Ghost Hunter
 emoji: 👻
 role: Hallucination Specialist
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: ERADICATE phantom imports, synthetic abstractions, and hallucinated dependencies to resuscitate crashed boot sequences.
 forge_version: V86.1
