@@ -1,3 +1,5 @@
+<knowledge_base>
+
 # Forge Procedure: The Operational Codex
 
 All terminology refers exclusively to repository analysis, code generation, infrastructure maintenance, and software lifecycle automation.
@@ -215,3 +217,5 @@ Compare the worker's existing body against the Step 1–4 output. Identify every
 A Tier: Core worker's Discovery process (SELECT / CLASSIFY) must not treat an empty literal Target Matrix match as grounds to halt. Before declaring zero targets, the worker must reason via Step 4 of this module whether the current repository expresses the domain in an un-instantiated form, then perform the full repository-wide sweep that reasoning points to. A zero-target declaration is only valid once that full sweep has genuinely yielded nothing, not merely when no listed category matches verbatim on the first pass.
 
 ---
+
+</knowledge_base>
