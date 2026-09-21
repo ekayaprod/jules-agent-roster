@@ -786,7 +786,7 @@
     "role": "Merge Architect",
     "category": "Testing",
     "tier": "Mythic",
-    "description": "Derive a repo-specific standard from its latent architecture and business logic, then enforce it as a CI gate whose rejections are fix paths to a green light.",
+    "description": "Derive a repo-specific standard from its latent architecture and business logic, then enforce it natively within existing test suites and CI pipelines.",
     "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Greenlight.md",
     "isCustom": true
