@@ -1,3 +1,5 @@
+<knowledge_base>
+
 # 🎨 Forge Procedure: Creative & Ideation Directives
 
 This document governs thematic presentation, naming systems, ideation workflows, identity generation, and documentation styling used by repository automation workers.
@@ -126,3 +128,5 @@ Your mission is to {{MISSION_SCOPE}}.
 ### Favorite Optimizations
 {{FAVORITE_OPTIMIZATIONS}}
 <!-- WORKER_TEMPLATE_END -->
+
+</knowledge_base>
