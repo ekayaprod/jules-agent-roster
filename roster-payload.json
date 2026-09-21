@@ -50,7 +50,7 @@
     "category": "Operations",
     "tier": "Core",
     "description": "DISPATCH pristine CI/CD payloads, optimize container transit, fortify meta-infrastructure, and provision context-aware MCP arrays.",
-    "forge_version": "V87.2",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
@@ -754,7 +754,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "CENTRALIZE fragile, hardcoded padlocks scattered across the codebase and forge a single, impenetrable policy engine to govern all access.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Gatekeeper.md",
     "isCustom": true
   },
