@@ -155,7 +155,6 @@ If the domain relies on structural verification (no executable tests), rewrite t
 
 **Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\` and permanently delete genuinely completed tasks matching your domain.`
 
-**Task Board Generation Rules (For Forge):** The Data Sanitization Filter must inject the exact Task Board Resolution Protocol string above, and never extend it or author independent task-board resolution language alongside it. Master Forge must enforce this simplicity and prevent it from generating any additional task board logic or checkbox instructions for the agent; Phase 6's Task Board State Coherence check verifies that all generated task-board instructions use this state model consistently.
 
 **Execution Steps:**
 - **All Archetypes:** Minimum 5 steps.
@@ -210,12 +209,7 @@ Given the generalized domain from Steps 1–2, reason about what mechanical acti
 Translate the generalized domain into concrete, stack-specific targets using Repo Recon's already-gathered context (language, framework, workflow type, verification layer). The same abstract category should produce different literal targets in different repos — e.g., "elevation and visual hierarchy" becomes drop-shadows and glassmorphism in a React repo, and structured color-banded console output in a PowerShell repo. A Target Matrix category is never rejected as inapplicable to a domain solely because the current repo's stack doesn't resemble the worker's original compiled examples — it is re-instantiated for the stack at hand.
 
 ### Step 5: Drift Audit
-Compare the worker's existing body against the Step 1–4 output. Identify every discrepancy as either Narrowing or Incoherence and provide the evidence needed for Master Forge's Phase 2 Drift Audit to make the authoritative classification under Rule 5 (Surgical Repair Posture). Do not independently override Phase 2's classification.
-
-- **Narrowing:** Existing content is a true subset of the extrapolated domain (e.g., CSS-only targets under a domain that generalizes further). Indicates required expansion to add coverage without removing what is already correct.
-- **Incoherence:** Existing content actively contradicts or misrepresents the extrapolated domain — a rule, target, or optimization that belongs to a different pillar entirely, likely left over from before a Role change or a Cross-Vector Grant that outgrew its bounds. Indicates required removal or rewrite; it must not be silently folded in as a legitimate part of this worker's domain.
-
-Preserve the discrepancy analysis as context for the Master Forge Drift Audit and subsequent Efficacy Audit.
+Compare the worker's existing body against the Step 1–4 output. Identify every discrepancy as Narrowing or Incoherence (definitions in Master-Forge Phase 2) and provide the evidence needed for Master Forge's Phase 2 Drift Audit to make the authoritative classification under Rule 5 (Surgical Repair Posture). Do not independently override Phase 2's classification. Preserve the discrepancy analysis as context for the Master Forge Drift Audit and subsequent Efficacy Audit.
 
 ### Persistent Discovery Requirement
 A Tier: Core worker's Discovery process (SELECT / CLASSIFY) must not treat an empty literal Target Matrix match as grounds to halt. Before declaring zero targets, the worker must reason via Step 4 of this module whether the current repository expresses the domain in an un-instantiated form, then perform the full repository-wide sweep that reasoning points to. A zero-target declaration is only valid once that full sweep has genuinely yielded nothing, not merely when no listed category matches verbatim on the first pass.
