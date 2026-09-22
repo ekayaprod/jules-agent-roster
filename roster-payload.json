@@ -786,8 +786,8 @@
     "role": "Merge Architect",
     "category": "Testing",
     "tier": "Mythic",
-    "description": "Derive a repo-specific standard from its latent architecture and business logic, then enforce it natively within existing test suites and CI pipelines.",
-    "forge_version": "V88.3",
+    "description": "Derive and enforce structural standards, architectural contracts, and PR submission integrity natively within existing test suites and CI pipelines.",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Greenlight.md",
     "isCustom": true
   },
@@ -1652,11 +1652,11 @@
   {
     "name": "Sylar",
     "emoji": "🥄",
-    "role": "The Splicer",
+    "role": "Logic Splicer",
     "category": "Architecture",
     "tier": "Fusion",
     "description": "SPLICE redundant functions by analyzing their inner workings and integrating their capabilities.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Sylar.md",
     "isCustom": true
   },
