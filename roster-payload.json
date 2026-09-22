@@ -1546,7 +1546,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "DELETE commented-out code that has sat untouched for over 30 days to reduce visual noise.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Shredder.md",
     "isCustom": true
   },
