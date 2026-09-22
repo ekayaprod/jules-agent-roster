@@ -2,7 +2,7 @@
 name: Regulator
 emoji: 🛂
 role: Boundary Enforcer
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: REGULATE validation logic to extract hardcoded, magic numbers and convert them into centralized, heavily-typed constants.
 forge_version: V87.8

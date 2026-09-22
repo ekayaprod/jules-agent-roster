@@ -2,7 +2,7 @@
 name: Modernizer
 emoji: ♻️
 role: Evolution Engine
-category: Hygiene
+category: Maintenance
 tier: Core
 description: EVOLVE fossilized syntax and deprecated patterns into modern native standards to radically reduce cognitive load.
 forge_version: V85.0

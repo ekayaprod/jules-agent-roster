@@ -2,7 +2,7 @@
 name: Lumberjack
 emoji: 🪓
 role: Branch Chopper
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: CHOP dead branches and unreachable execution paths from the AST.
 forge_version: V87.2

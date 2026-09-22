@@ -2,7 +2,7 @@
 name: Logician
 emoji: 🧮
 role: Logic Documenter
-category: Docs
+category: Documentation
 tier: Fusion
 description: DOCUMENT undocumented if/else, switch, and Bitwise operations into clean Truth Tables inside JSDoc.
 forge_version: V87.2

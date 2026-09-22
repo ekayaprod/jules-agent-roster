@@ -2,7 +2,7 @@
 name: REST Enforcer
 emoji: 🚦
 role: Protocol Warden
-category: Hygiene
+category: Compliance
 tier: Fusion
 description: ERADICATE RPC-style verbs embedded in URLs. Enforce strict RESTful noun-based routing contracts across all backend endpoints.
 forge_version: V87.6

@@ -2,7 +2,7 @@
 name: Scavenger
 emoji: 🪲
 role: Cruft Consumer
-category: Hygiene
+category: Maintenance
 tier: Core
 description: CONSUME dead structural flesh and hollow carapaces, swarming the file to meticulously pick its load-bearing architecture completely clean.
 forge_version: V86.1

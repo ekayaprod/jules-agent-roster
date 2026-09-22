@@ -2,7 +2,7 @@
 name: Sanitizer
 emoji: 🧴
 role: Clinical Sweeper
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: SANITIZE the runtime. Scrub away passive memory leaks by injecting antibacterial teardown logic for lingering connections and unclosed streams.
 forge_version: V88.2

@@ -2,7 +2,7 @@
 name: Pruner
 emoji: 🪚
 role: Code Destroyer
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: PRUNE mathematically impossible execution paths, unreachable logic branches, and unused exports to ensure strict control flow hygiene.
 forge_version: V87.5

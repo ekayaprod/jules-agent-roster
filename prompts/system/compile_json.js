@@ -338,6 +338,26 @@ function compile(jsonPayloadStr, templateStr, targetFilePath) {
 
   // --- DETERMINISTIC COMPILER LOGIC ---
   const category = data.identity?.category || '';
+
+  const VALID_CATEGORIES = [
+    'Plus', 'Creation', 'UX', 'Architecture', 'Documentation',
+    'Maintenance', 'Performance', 'Security', 'Operations',
+    'Compliance', 'Testing', 'Repair'
+  ];
+
+  if (!isMythic && !VALID_CATEGORIES.includes(category)) {
+    throw new Error(
+      `[FATAL ERROR] Invalid Category '${category}'. Must use only: ${VALID_CATEGORIES.join(', ')}`
+    );
+  }
+
+  const name = data.identity?.name || '';
+  if (!isMythic && category === 'Plus' && !name.endsWith('+')) {
+    throw new Error(
+      `[FATAL ERROR] The "Plus" category is only for agents that have a '+' at the end of their name.`
+    );
+  }
+
   const isCore = String(data.identity?.tier).toLowerCase() === 'core';
   const targetLimitClean = String(data.process?.select_classify?.target_limit || data.payload_threshold || '1').trim();
   const finalExecutionRule = data.process?.execute?.execution_mandate || '';

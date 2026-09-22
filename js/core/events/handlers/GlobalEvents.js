@@ -6,10 +6,8 @@ class GlobalEvents {
     document.addEventListener("click", (e) => {
       // Close search if clicked outside and input is empty
       const nav = app.elements["category-nav"];
-      if (nav && nav.classList.contains("search-active")) {
-          if (!nav.contains(e.target) && (!app.elements.searchInput || app.elements.searchInput.value.trim() === "")) {
-              app.searchController?.clearSearch();
-          }
+      if (nav && nav.classList.contains("search-active") && !nav.contains(e.target) && (!app.elements.searchInput || app.elements.searchInput.value.trim() === "")) {
+          app.searchController?.clearSearch();
       }
 
       if (masterDropMenu && masterDropMenu.classList.contains("visible") && !masterDropMenu.contains(e.target) && !masterDropBtn.contains(e.target)) {
@@ -350,7 +348,6 @@ class GlobalEvents {
         } catch (err) {
             const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
             if (tu) tu.dispatchEvent("PROMPT_FETCH_ERROR", err);
-            else console.error("Failed to pre-fetch custom agent prompt:", err);
         }
     });
 

@@ -3,7 +3,7 @@ name: Canvas
 emoji: 🖼️
 role: Unified Surface
 category: UX
-tier: Fusion
+tier: Mythic
 description: REDESIGN fragmented multi-page mazes into cohesive single-page workflows to preserve user context.
 forge_version: V86.5
 ---

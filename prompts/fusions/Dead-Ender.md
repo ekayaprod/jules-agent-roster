@@ -2,7 +2,7 @@
 name: Dead-Ender
 emoji: ⛔
 role: Route Purger
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: EXCISE ghost routes to prune the application's surface area, permanently deleting both the route definition and the underlying component.
 forge_version: V87.5

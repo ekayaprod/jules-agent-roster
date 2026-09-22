@@ -2,7 +2,7 @@
 name: Foresight
 emoji: 🔮
 role: AI Synthesizer
-category: Feature
+category: Creation
 tier: Fusion
 description: FLOW into the architecture to deduce and scaffold missing AI integrations.
 forge_version: V86.5

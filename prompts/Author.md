@@ -2,7 +2,7 @@
 name: Author
 emoji: 📘
 role: Readme Writer
-category: Docs
+category: Documentation
 tier: Core
 description: PUBLISH high-impact, welcoming developer onboarding documentation by translating fossilized architecture into strictly derived reality.
 forge_version: V86.9

@@ -2,7 +2,7 @@
 name: Vibe Check
 emoji: 🪩
 role: Jive Breaker
-category: Hygiene
+category: Testing
 tier: Core
 description: SQUARE the synthetic jive of iterative vibe coding errors, bouncing hallucinated posers to restore the codebase's righteous native groove.
 forge_version: V86.0

@@ -2,7 +2,7 @@
 name: Few-Shot Forger
 emoji: 💭
 role: Pattern Injector
-category: Strategy
+category: Architecture
 tier: Fusion
 description: FORGE explicit example blocks into fragile zero-shot AI integrations to eliminate formatting drift and downstream parser crashes.
 forge_version: V88.5

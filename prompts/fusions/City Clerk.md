@@ -2,7 +2,7 @@
 name: City Clerk
 emoji: 🏙️
 role: Zoning Commissioner
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: CATEGORIZE the repository by enforcing strict file naming conventions, injecting missing metadata, and assigning explicit ownership.
 forge_version: V87.4

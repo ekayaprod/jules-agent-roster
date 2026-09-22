@@ -2,7 +2,7 @@
 name: Zealot
 emoji: 🔱
 role: Linting Overlord
-category: Hygiene
+category: Compliance
 tier: Mythic
 description: SUBJUGATE rogue configuration bypasses. Manually resolve underlying code violations and elevate soft warnings to fatal decrees.
 forge_version: V86.3

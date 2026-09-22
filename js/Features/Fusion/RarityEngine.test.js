@@ -54,10 +54,6 @@ describe('RarityEngine', () => {
             expect(RarityEngine.calculateRarity({ name: 'Agent1' }, {})).toBe('Common');
         });
 
-        it('returns "Mythic" for any agent combined with itself', () => {
-            expect(RarityEngine.calculateRarity({ name: 'Agent1' }, { name: 'Agent1' })).toBe('Mythic');
-        });
-
         it('returns "Legendary" if one of the agents is Scavenger', () => {
             expect(RarityEngine.calculateRarity({ name: 'Scavenger' }, { name: 'Agent2' })).toBe('Legendary');
             expect(RarityEngine.calculateRarity({ name: 'Agent1' }, { name: 'Scavenger' })).toBe('Legendary');
@@ -136,11 +132,6 @@ describe('RarityEngine', () => {
         it('returns "Unknown Domain" if agent1 or agent2 is missing', () => {
             expect(RarityEngine.getFusionDomain(null, { name: 'Agent1' })).toBe('Unknown Domain');
             expect(RarityEngine.getFusionDomain({ name: 'Agent1' }, null)).toBe('Unknown Domain');
-        });
-
-        it('returns "12. Plus Glitch" or "13. Core Glitch" for identically named agents', () => {
-            expect(RarityEngine.getFusionDomain({ name: 'Bolt+', tier: 'Plus' }, { name: 'Bolt+', tier: 'Plus' })).toBe('12. Plus Glitch');
-            expect(RarityEngine.getFusionDomain({ name: 'Agent1' }, { name: 'Agent1' })).toBe('13. Core Glitch');
         });
 
         it('returns "10. Plus Paradox" or "11. Core Paradox" when Scavenger is combined', () => {

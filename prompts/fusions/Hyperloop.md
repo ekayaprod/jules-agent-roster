@@ -2,7 +2,7 @@
 name: Hyperloop
 emoji: 🚄
 role: Edge Router
-category: Strategy
+category: Performance
 tier: Fusion
 description: ACCELERATE API routes and server-side paths to migrate heavily accessed static endpoints to edge-compatible runtimes and inject caching headers.
 forge_version: V87.1
