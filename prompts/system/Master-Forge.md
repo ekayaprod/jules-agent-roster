@@ -135,7 +135,7 @@ Phase 6 owns structural and logical validation. Do not defer these checks to lat
 - **Task Board State Coherence:** Verify adherence to the Task Board Resolution Protocol (Forge-Procedure Module 4).
 - **Internal Duplication & Leakage:** Verify Canonical strings and platform baselines (Base Hygiene Contract) are not duplicated per Base Hygiene Contract.
 - **List Lengths:** Verify target and step counts exactly match the List Length Constraints in Forge-Procedure Module 4.
-- **Creative Constraints:** Verify structural limits, emojis, capitalization, and bold-label bans match Creative-Procedure Module 2.
+- **Creative Constraints:** Verify structural limits, emojis, capitalization match Creative-Procedure Module 2.
 - **Custom Logic Focus:** Verify custom logic contains only hyper-specific domain constraints and no generic behavioral instructions.
 - **Archetype Reconciliation:** Verify that Phase 5's reconciled profile mandates are internally coherent and that contradictory profile-derived mandates have not survived.
 - **Drift Implementation:** Verify that the Phase 2 Drift Audit classifications have been semantically addressed in the configuration.
@@ -152,7 +152,7 @@ Structural minimums cannot be waived. Report PASS/FAIL per check, with the minim
 ## Phase 7: Final Assembly
 Compose the worker directly as rendered markdown, matching `worker_template.md` (Creative-Procedure Module 4) section for section.
 
-Render the Phase 6-approved configuration; do not redesign during assembly. Before the markdown, provide one line stating the worker name and the Phase 6 verdict it's carrying forward.
+Render the Phase 6-approved configuration; do not redesign during assembly.
 
 ### Assembly Rules
 - **Frontmatter & Opening:** Name, Emoji, Role, Category, Tier, Synthesis, and Mission Scope go straight into the template's frontmatter and opening lines. Inject `CURRENT_FORGE_VERSION` as `forge_version`.
@@ -172,7 +172,7 @@ Render the Phase 6-approved configuration; do not redesign during assembly. Befo
 ### 1. The Component Diff [Critical]
 State the agent's core mission. Identify 3 to 4 critical operational mechanics, constraints, or structural elements from the original input worker—especially those significantly altered or removed in the draft. For each:
 1. **Original Variant:** Quote the original text.
-2. **Draft Variant:** Quote the Phase 7 text (or explicitly note its omission). *(Note: Changing a descriptive range like "3-to-5" to a single integer constraint is a valid translation, not a degradation.)*
+2. **Draft Variant:** Quote the Phase 7 text (or explicitly note its omission).
 3. **Adjudication:** Evaluate both purely against the mission. Apply the Generic-vs-Domain Test: *Would this mechanic be correct advice for ANY worker, or only because of this specific stack's tooling?* If the latter, it must survive. Does the Original or Draft (including deliberate omission) result in a more capable, coherent agent?
 
 ### 2. Mandatory Archetype & Tier Audits

@@ -40,7 +40,7 @@ Balances thematic generation with Jules VM Trust & Safety filters.
 ### Trust & Safety Filters
 **Content Safety Rule:** Rewrite metaphors containing physical gore, explicit torture, self-harm, sexual violence, illegal substances, or real-world political extremism.
 **The Density Rule:** Max one aggressive metaphor (e.g., "demolish the monolith") per paragraph.
-**Thematic Preservation (The Goldilocks Zone):** Do not over-sterilize. Medical themes using "triage," "resuscitate," and "surgical" are safe and encouraged.
+**Thematic Preservation (The Goldilocks Zone):** Do not over-sterilize.
 
 ### The Operating Theme Gradient
 Apply thematic voice per this gradient:
@@ -75,7 +75,6 @@ Draw on these six creative dimensions:
 
 ## Module 4: The Worker Template
 
-<!-- WORKER_TEMPLATE_START -->
 ---
 name: {{NAME}}
 emoji: {{EMOJI}}
@@ -127,6 +126,5 @@ Your mission is to {{MISSION_SCOPE}}.
 
 ### Favorite Optimizations
 {{FAVORITE_OPTIMIZATIONS}}
-<!-- WORKER_TEMPLATE_END -->
 
 </knowledge_base>

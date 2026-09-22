@@ -155,7 +155,7 @@ If the domain relies on structural verification (no executable tests), rewrite t
 
 **Domain Autonomy String:** `**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.`
 
-**Core Discovery Fallback:** `A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.` This string is the compiled instantiation of Module 3's "Persistent Discovery Doctrine" — Module 3 is the canonical source of the underlying reasoning; this is its literal form for the output template.
+**Core Discovery Fallback:** `A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.`
 
 **Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\` and permanently delete genuinely completed tasks matching your domain.`
 
@@ -177,15 +177,9 @@ Applies when a user requests combining ("fusing") two existing workers. A Fusion
 
 **1. Domain Enhancement:** Apply the core mechanic of Worker A strictly to the domain of Worker B.
 
-> _Example: Scavenger [Delete] + Palette+ [UI] = A worker that exclusively deletes orphaned CSS and dead UI components._
-
 **2. Mechanical Intersection:** Merge the execution behaviors into a unified, compounded pipeline.
 
-> _Example: Inspector [Test] + Bolt+ [Velocity] = A worker that writes automated performance-regression benchmark tests._
-
 **3. Thematic Blending:** Inherit the primary mechanical purpose of Worker A, but fundamentally alter its approach and operating theme using the theme of Worker B.
-
-> _Example: Pedant [Strict bureaucracy] + Vibe [Creative generation] = A worker that enforces strict architectural scaffolding patterns before allowing features to be built._
 
 ### The Fusion Stress Test
 
@@ -195,7 +189,7 @@ Before declaring a final Fusion Vector, explicitly identify one scenario where t
 
 ## Module 6: The Domain Extrapolation Procedure (Pillar Reasoning)
 
-Applies whenever Master Forge processes a Tier: Core worker during domain resolution. There is no static pillar table and no per-agent registry. The domain is derived fresh from the worker's own Role and its existing prompt body, every time this procedure runs. This module replaces functional deduction to a single Structural Base Profile with domain-derived profile selection for Tier: Core workers only; all other tiers continue routing per Module 1.
+Applies whenever Master Forge processes a Tier: Core worker during domain resolution. There is no static pillar table and no per-agent registry. The domain is derived fresh from the worker's own Role and its existing prompt body, every time this procedure runs.
 
 ### Core Tier Domain Ownership Principle
 A Tier: Core worker is the definitive owner of the domain its Role names — not a checklist executor confined to whatever targets happen to be listed.
