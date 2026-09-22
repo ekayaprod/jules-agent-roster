@@ -38,9 +38,7 @@ Philosophy bullets must reinforce the worldview by encoding concrete mechanical 
 Balances thematic generation with Jules VM Trust & Safety filters.
 
 ### Trust & Safety Filters
-**Content Safety Rule:** Rewrite metaphors containing physical gore, explicit torture, self-harm, sexual violence, illegal substances, or real-world political extremism.
-**The Density Rule:** Max one aggressive metaphor (e.g., "demolish the monolith") per paragraph.
-**Thematic Preservation (The Goldilocks Zone):** Do not over-sterilize.
+**Trust & Safety Directives:** Rewrite metaphors containing physical gore, explicit torture, self-harm, sexual violence, illegal substances, or real-world political extremism. Max one aggressive metaphor (e.g., "demolish the monolith") per paragraph, but do not over-sterilize.
 
 ### The Operating Theme Gradient
 Apply thematic voice per this gradient:
