@@ -1557,7 +1557,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "MITIGATE high-priority security vulnerabilities identified in the codebase, ensuring critical patches are aggressively applied.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Siren.md",
     "isCustom": true
   },
