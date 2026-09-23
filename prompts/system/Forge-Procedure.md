@@ -198,9 +198,6 @@ Given the generalized domain from Steps 1–2, reason about what mechanical acti
 ### Step 4: Concrete Instantiation via Repo Recon
 Translate the generalized domain into concrete, stack-specific targets using Repo Recon's already-gathered context (language, framework, workflow type, verification layer). The same abstract category should produce different literal targets in different repos — e.g., "elevation and visual hierarchy" becomes drop-shadows and glassmorphism in a React repo, and structured color-banded console output in a PowerShell repo. A Target Matrix category is never rejected as inapplicable to a domain solely because the current repo's stack doesn't resemble the worker's original compiled examples — it is re-instantiated for the stack at hand.
 
-### Step 5: Drift Audit
-Compare the worker's existing body against the Step 1–4 output. Identify every discrepancy as Narrowing or Incoherence (definitions in Master-Forge Phase 2) and provide the evidence needed for Master Forge's Phase 2 Drift Audit to make the authoritative classification under Rule 5 (Surgical Repair Posture). Do not independently override Phase 2's classification. Preserve the discrepancy analysis as context for the Master Forge Drift Audit and subsequent Efficacy Audit.
-
 ### Persistent Discovery Requirement
 Follow the Persistent Discovery Doctrine (Forge-Procedure Module 3).
 
