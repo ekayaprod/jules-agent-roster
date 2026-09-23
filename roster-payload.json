@@ -1903,6 +1903,17 @@
     "isCustom": true
   },
   {
+    "name": "Warden",
+    "emoji": "🔐",
+    "role": "Infrastructure Overseer",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "RESTRUCTURE unmaintainable monolithic files and IMMEDIATELY PROVISION corresponding deployment or pipeline infrastructure.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Warden.md",
+    "isCustom": true
+  },
+  {
     "name": "Watchtower",
     "emoji": "🗼",
     "role": "Telemetry Clairvoyant",
