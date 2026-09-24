@@ -13,17 +13,14 @@ FROM node:26-alpine AS production
 
 WORKDIR /opt/payload
 
-# Create a non-root user for execution
-RUN addgroup -S dispatch && adduser -S warden -G dispatch
-
-# Install serving dependency globally to prevent runtime npx downloads
-RUN npm install -g http-server@14.1.1
+# ⚙️ COLLAPSE: Centrifuged environment setup into a highly dense chained command.
+RUN addgroup -S dispatch && adduser -S warden -G dispatch && \
+    npm install -g http-server@14.1.1
 
 # Transfer only the compiled artifacts and required runtime files
-COPY --chown=warden:dispatch index.html ./
-COPY --chown=warden:dispatch js ./js
-COPY --chown=warden:dispatch css ./css
-COPY --chown=warden:dispatch fusion_matrix.json ./
+COPY --chown=warden:dispatch index.html fusion_matrix.json ./
+COPY --chown=warden:dispatch js/ ./js/
+COPY --chown=warden:dispatch css/ ./css/
 COPY --chown=warden:dispatch prompts/ ./prompts/
 COPY --from=builder --chown=warden:dispatch /opt/payload/roster-payload.json ./
 
