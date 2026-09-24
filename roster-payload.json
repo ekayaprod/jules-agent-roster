@@ -396,6 +396,17 @@
     "isCustom": true
   },
   {
+    "name": "Cataloger",
+    "emoji": "🗃️",
+    "role": "Architectural Mapper",
+    "category": "Documentation",
+    "tier": "Fusion",
+    "description": "PUBLISH deep architectural insight by exhaustively mapping codebase internals into human-readable structural documentation.",
+    "forge_version": "V87.4",
+    "promptFile": "prompts/fusions/Cataloger.md",
+    "isCustom": true
+  },
+  {
     "name": "Catalyst",
     "emoji": "🏎️",
     "role": "Momentum Optimizer",
