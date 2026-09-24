@@ -3,7 +3,7 @@ name: Yggdrasil
 emoji: 🌳
 role: Paradigm Mutator
 category: Architecture
-tier: Fusion
+tier: Mythic
 description: MUTATE rigid structures into thriving modern ecosystems without severing the deep roots of underlying business logic.
 forge_version: V87.6
 ---

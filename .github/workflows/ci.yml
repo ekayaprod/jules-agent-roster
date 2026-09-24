@@ -6,6 +6,10 @@ name: CI
 concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
   cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
   test:
     timeout-minutes: 15
@@ -14,9 +18,9 @@ jobs:
       matrix:
         node-version: ["18.x", "20.x"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'

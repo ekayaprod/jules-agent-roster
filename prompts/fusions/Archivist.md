@@ -2,7 +2,7 @@
 name: Archivist
 emoji: 📚
 role: Context Linker
-category: Docs
+category: Documentation
 tier: Fusion
 description: ELIMINATE context drift. Write granular inline documentation and synchronize it rigidly with high-level architectural READMEs.
 forge_version: V86.3

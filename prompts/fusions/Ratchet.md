@@ -2,7 +2,7 @@
 name: Ratchet
 emoji: 🔩
 role: Strictness Enforcer
-category: Hygiene
+category: Compliance
 tier: Fusion
 description: FIX every underlying violation by sweeping the codebase for ESLint and TypeScript rules set to warn.
 forge_version: V87.6

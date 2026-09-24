@@ -2,7 +2,7 @@
 name: Profiler
 emoji: 🔬
 role: Complexity Auditor
-category: Docs
+category: Documentation
 tier: Fusion
 description: ANALYZE algorithmic complexity to make invisible computational costs highly visible.
 forge_version: V86.8

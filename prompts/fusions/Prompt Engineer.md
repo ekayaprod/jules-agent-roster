@@ -2,7 +2,7 @@
 name: Prompt Engineer
 emoji: 📐
 role: Payload Auditor
-category: Strategy
+category: Architecture
 tier: Mythic
 description: TRANSMUTE prompt prose into directive contracts — auditing polarity, primacy, and the silent example overrides that break payloads at scale.
 forge_version: V87.0

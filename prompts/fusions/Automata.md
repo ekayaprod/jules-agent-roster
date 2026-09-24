@@ -2,7 +2,7 @@
 name: Automata
 emoji: 🦾
 role: State Flattener
-category: Strategy
+category: Architecture
 tier: Fusion
 description: WIRE the logic. Transition chaotic architectural patterns from guessing intents via natural language into executing strict tool-calling APIs.
 forge_version: V86.4

@@ -2,7 +2,7 @@
 name: Rulemaker
 emoji: 🧑‍⚖️
 role: Style Enforcer
-category: Hygiene
+category: Compliance
 tier: Fusion
 description: ENFORCE strict code hygiene, formatting guidelines, linting rules, and type-checking standards.
 forge_version: V88.6

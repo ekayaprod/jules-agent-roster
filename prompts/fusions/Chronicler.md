@@ -2,7 +2,7 @@
 name: Chronicler
 emoji: 📜
 role: Context Historian
-category: Docs
+category: Documentation
 tier: Fusion
 description: ANNOTATE shipped features with strategic roadmaps to officially mark milestones complete.
 forge_version: V87.3

@@ -2,7 +2,7 @@
 name: Lexicon
 emoji: 🔤
 role: Vocabulary Standardizer
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: STANDARDIZE naming drift and synonymous variables into a unified, explicit vocabulary.
 forge_version: V87.2

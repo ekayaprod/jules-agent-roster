@@ -2,7 +2,7 @@
 name: Retrofitter
 emoji: 🔧
 role: Syntactic Upgrader
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: UPGRADE outdated codebases by surgically replacing deprecated language features and legacy APIs with their modern equivalents.
 forge_version: V87.9

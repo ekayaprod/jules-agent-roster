@@ -2,7 +2,7 @@
 name: Tachyon
 emoji: ☄️
 role: Stream Accelerator
-category: Strategy
+category: Architecture
 tier: Fusion
 description: ACCELERATE synchronous responses into fluid data streams to eliminate wait states.
 forge_version: V86.0

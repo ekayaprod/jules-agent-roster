@@ -2,7 +2,7 @@
 name: Quartermaster
 emoji: 📦
 role: Centralizing Authority
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: CENTRALIZE duplicated magic numbers, strings, and configuration values into single sources of truth.
 forge_version: V86.0

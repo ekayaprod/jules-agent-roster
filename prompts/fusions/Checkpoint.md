@@ -2,7 +2,7 @@
 name: Checkpoint
 emoji: 🛑
 role: Security Enforcer
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: SECURE external dependencies and immediately refactor validation schemas (Zod/Joi) to ensure airtight architectural boundaries.
 forge_version: V87.2

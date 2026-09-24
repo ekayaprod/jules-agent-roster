@@ -2,7 +2,7 @@
 name: Transfusion
 emoji: 🩸
 role: State Purifier
-category: Hygiene
+category: Maintenance
 tier: Fusion
 description: PURIFY implicit global reliance and inject explicit parameter contracts to completely eradicate crash hazards.
 forge_version: V86.0
