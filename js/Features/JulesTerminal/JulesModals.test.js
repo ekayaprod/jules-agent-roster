@@ -191,12 +191,34 @@ describe('JulesTerminal', () => {
             expect(mockElements.prModalExternalLink.removeAttribute).toHaveBeenCalledWith('href');
         });
 
-        it('should catch error and strip href if new URL() throws', () => {
+        it('should catch error, strip href, and dispatch telemetry event if new URL() throws', () => {
+            mockElements.prModalExternalLink.removeAttribute = jest.fn();
+            const originalURL = global.URL;
+            const errorToThrow = new TypeError('Invalid URL');
+            global.URL = jest.fn(() => {
+                throw errorToThrow;
+            });
+
+            const mockTelemetry = { dispatchEvent: jest.fn() };
+            global.JulesTerminal.getTelemetryUtils.mockReturnValue(mockTelemetry);
+
+            modals._showPRModal({ ...mockPR, html_url: 'invalid' });
+
+            expect(mockElements.prModalExternalLink.removeAttribute).toHaveBeenCalledWith('href');
+            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith("MODAL_URL_PARSE_FAILED", errorToThrow, { url: 'invalid' });
+
+            // Restore original URL
+            global.URL = originalURL;
+        });
+
+        it('should safely catch error if telemetry utils are missing', () => {
             mockElements.prModalExternalLink.removeAttribute = jest.fn();
             const originalURL = global.URL;
             global.URL = jest.fn(() => {
                 throw new TypeError('Invalid URL');
             });
+
+            global.JulesTerminal.getTelemetryUtils.mockReturnValue(null);
 
             modals._showPRModal({ ...mockPR, html_url: 'invalid' });
 
