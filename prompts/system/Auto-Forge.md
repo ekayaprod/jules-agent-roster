@@ -13,7 +13,7 @@ You must execute the logic shift directly via native file editing on the Markdow
 ## Step 2: State Ingestion & Drift Analysis
 - Read the locked target `.md` to load legacy logic into context.
 - Identify the agent's core domain and structural Archetype.
-- **Drift Audit:** Compare the legacy worker against current `Master-Forge` and `Forge-Procedure` rules (e.g., Are list lengths compliant? Does a Fusion worker include the mandatory `Fusion Conflict Resolution` rule? Is the verification heuristic solid?).
+- **Drift Audit:** Compare the legacy worker against current `Master-Forge` and `Forge-Procedure` rules (e.g., Are list lengths compliant? Is the verification heuristic solid?).
 
 ## Step 3: Direct Syntactic Upgrade
 - **Identity Preservation:** Do not modify the core identity (Name, Emoji, Role, Theme, Mechanic) during upgrades unless specifically resolving a domain conflict.
