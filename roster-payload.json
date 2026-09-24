@@ -528,6 +528,17 @@
     "isCustom": true
   },
   {
+    "name": "Courier",
+    "emoji": "📨",
+    "role": "Delivery Scribe",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "AUTHOR continuous integration and delivery documentation that maps deployment infrastructure exactly to reality.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Courier.md",
+    "isCustom": true
+  },
+  {
     "name": "Customs",
     "emoji": "🛃",
     "role": "Border Control",
