@@ -242,14 +242,8 @@ class RosterApp {
     }, { categoryContainers: {}, fragments: {}, categorizedAgents: {} });
 
     this.agents.forEach((agent, i) => {
-      let category = agent.category || "strategy";
-      category = category.toLowerCase();
-      if (agent.tier === "Plus" || (agent.name && agent.name.endsWith("+"))) {
-        category = "plus";
-      }
-      if (categorizedAgents[category]) {
-        categorizedAgents[category].push({ agent, indexOrKey: i });
-      }
+      const category = (agent.tier === "Plus" || agent.name?.endsWith("+")) ? "plus" : (agent.category || "strategy").toLowerCase();
+      if (categorizedAgents[category]) categorizedAgents[category].push({ agent, indexOrKey: i });
     });
 
     if (this.pinnedManager) {
@@ -271,33 +265,14 @@ class RosterApp {
     // Flatten properties directly into the target object to prevent GC churn during rendering.
     // 🧬 COLLAPSE: Collapsed nested imperative accumulator and sort loops into a dense functional pipeline, eliminating intermediary scaffolding arrays.
     const hasPinnedManager = Boolean(this.pinnedManager);
-    const flattenedAgents = [];
-
-    for (let j = 0; j < this.categoryKeys.length; j++) {
-      const categoryKey = this.categoryKeys[j];
-      const arr = categorizedAgents[categoryKey] || [];
-
-      for (let i = 0; i < arr.length; i++) {
-        const item = arr[i];
-        item.gridCategory = categoryKey;
-
-        let score = 0;
-        if (hasPinnedManager && this.pinnedManager.isPinned(item.indexOrKey)) {
-          score += 4;
-        }
-        if (item.agent && item.agent.tier === "Plus") {
-          score += 2;
-        }
-        if (item.agent && item.agent.name && item.agent.name.endsWith("+")) {
-          score += 1;
-        }
-        item._sortScore = score;
-      }
-
-      arr.sort((a, b) => b._sortScore - a._sortScore);
-
-      flattenedAgents.push(...arr);
-    }
+    const flattenedAgents = this.categoryKeys.flatMap(key => {
+      const arr = categorizedAgents[key] || [];
+      return arr.map(item => {
+        item.gridCategory = key;
+        item._sortScore = (hasPinnedManager && this.pinnedManager.isPinned(item.indexOrKey) ? 4 : 0) + (item.agent?.tier === "Plus" ? 2 : 0) + (item.agent?.name?.endsWith("+") ? 1 : 0);
+        return item;
+      }).sort((a, b) => b._sortScore - a._sortScore);
+    });
 
     const currentRenderId = Symbol();
     this.currentRenderId = currentRenderId;

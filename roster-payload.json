@@ -396,6 +396,17 @@
     "isCustom": true
   },
   {
+    "name": "Cataloger",
+    "emoji": "🗃️",
+    "role": "Architectural Mapper",
+    "category": "Documentation",
+    "tier": "Fusion",
+    "description": "PUBLISH deep architectural insight by exhaustively mapping codebase internals into human-readable structural documentation.",
+    "forge_version": "V87.4",
+    "promptFile": "prompts/fusions/Cataloger.md",
+    "isCustom": true
+  },
+  {
     "name": "Catalyst",
     "emoji": "🏎️",
     "role": "Momentum Optimizer",
@@ -492,6 +503,17 @@
     "description": "BUILD net-new feature architecture by combining native design tokens and strictly typed boundaries to prevent structural drift from the start.",
     "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Construct.md",
+    "isCustom": true
+  },
+  {
+    "name": "Conveyor",
+    "emoji": "⚙️",
+    "role": "Pipeline Centrifuge",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "COLLAPSE sprawling CI/CD pipelines and infrastructure manifests into highly dense, reusable matrices without sacrificing deployment stability.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Conveyor.md",
     "isCustom": true
   },
   {
@@ -786,8 +808,8 @@
     "role": "Merge Architect",
     "category": "Testing",
     "tier": "Mythic",
-    "description": "Derive a repo-specific standard from its latent architecture and business logic, then enforce it natively within existing test suites and CI pipelines.",
-    "forge_version": "V88.3",
+    "description": "Derive and enforce structural standards, architectural contracts, and PR submission integrity natively within existing test suites and CI pipelines.",
+    "forge_version": "V89.0",
     "promptFile": "prompts/fusions/Greenlight.md",
     "isCustom": true
   },
@@ -1524,7 +1546,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "UNTANGLE highly convoluted, multi-file execution chains into pristine, linear macro-documentation.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Scout.md",
     "isCustom": true
   },
@@ -1546,7 +1568,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "DELETE commented-out code that has sat untouched for over 30 days to reduce visual noise.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Shredder.md",
     "isCustom": true
   },
@@ -1557,7 +1579,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "MITIGATE high-priority security vulnerabilities identified in the codebase, ensuring critical patches are aggressively applied.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Siren.md",
     "isCustom": true
   },
@@ -1568,7 +1590,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "FLATTEN winding conditional logic and deeply nested `if/else` statements into lightning-fast, highly readable guard clauses and early returns.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Slipstream.md",
     "isCustom": true
   },
@@ -1652,11 +1674,11 @@
   {
     "name": "Sylar",
     "emoji": "🥄",
-    "role": "The Splicer",
+    "role": "Logic Splicer",
     "category": "Architecture",
     "tier": "Fusion",
     "description": "SPLICE redundant functions by analyzing their inner workings and integrating their capabilities.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Sylar.md",
     "isCustom": true
   },
@@ -1689,7 +1711,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "UNTANGLE workspaces of nested conditions and unlabelled variables by extracting deep logic into strictly typed local helper functions.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Systematizer.md",
     "isCustom": true
   },
@@ -1903,6 +1925,17 @@
     "isCustom": true
   },
   {
+    "name": "Warden",
+    "emoji": "🔐",
+    "role": "Infrastructure Overseer",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "RESTRUCTURE unmaintainable monolithic files and IMMEDIATELY PROVISION corresponding deployment or pipeline infrastructure.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Warden.md",
+    "isCustom": true
+  },
+  {
     "name": "Watchtower",
     "emoji": "🗼",
     "role": "Telemetry Clairvoyant",
@@ -1999,6 +2032,17 @@
     "description": "CLEAR redundant conversational comments, stale TODOs, and decaying scaffolding to drastically reduce visual noise.",
     "forge_version": "V87.1",
     "promptFile": "prompts/fusions/Zen.md",
+    "isCustom": true
+  },
+  {
+    "name": "Zoning Board",
+    "emoji": "🗺️",
+    "role": "Structural Auditor",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "EXCAVATE unmaintainable monoliths and structural drift by mapping the repository topology and routing discovered anomalies strictly to the architectural task board for downstream execution.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Zoning Board.md",
     "isCustom": true
   },
   {

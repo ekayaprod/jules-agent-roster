@@ -56,7 +56,7 @@ Run for net-new requests. If the custom command or a freeform request is given, 
 ## Phase 1: Diagnostic Routing & Extraction
 
 ### Repo Recon & Data Sanitization
-For Legacy Imports: Extract Target Data, Metaphors, Optimizations. Apply the Data Sanitization Filter to the legacy Strict Operational Rules. (Repo Recon extracts: language, framework, workflow type, verification layer, and active modifiers).
+For Legacy Imports: Extract Target Data, Metaphors, Optimizations. Apply the Data Sanitization Filter to the legacy Strict Operational Rules. (Repo Recon extracts: language, framework, workflow type, verification layer, and active modifiers. It also derives unwritten requirements from git history per Forge-Procedure Module 6, Step 4.)
 
 **Data Sanitization Filter:** Strip generic boilerplate and zero-trust baselines. Retain ONLY verifiable domain-specific knowledge, unique technical constraints, and demonstrated mechanics that materially improve autonomy (e.g., few-shot code, specific safeguards).
 *Mythic Exemption:* For Tier: Mythic, preserve extreme, boundary-breaking, or standard-limit-defying mechanics and route them to Creative-Procedure Module 3 instead of discarding them.
@@ -89,7 +89,7 @@ Apply the Phase 1 decisions to the legacy worker.
 Access Forge-Procedure Module 4. Construct the worker's actual execution model from the resolved domain.
 
 ### Output
-1. **Target Data:** Derive directly from Phase 1's Domain Scope Reasoning — derive one concrete, representative target for every category identified there. Core Tier must frame these as High-Probability Vectors (Forge-Procedure Module 4), but the list itself must already comprehensively cover the domain's factual, structural, and, where the Role implies it, qualitative dimensions.
+1. **Target Data:** Consume the concrete, stack-specific targets Module 6 Step 4 produced during Phase 1. You must not independently re-derive these targets from scratch. Core Tier must frame these as High-Probability Vectors (Forge-Procedure Module 4), but the list itself must already comprehensively cover the domain's factual, structural, and, where the Role implies it, qualitative dimensions.
 2. **Execution Steps:** Draft the 5 distinct operational steps (DISCOVER, SELECT/CLASSIFY, Execution, VERIFY, PRESENT) tailored to the Archetype's logic.
 3. **Heuristic Verification:** Archetype-scaled domain checks. Follow heuristic formatting (Creative-Procedure Module 2).
 
