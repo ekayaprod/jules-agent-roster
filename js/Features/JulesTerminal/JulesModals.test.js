@@ -341,6 +341,36 @@ describe('JulesTerminal', () => {
 
             expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to send reply.", "error");
         });
+
+        it('should handle synchronous errors such as missing julesAPI gracefully', async () => {
+            const originalAPI = window.julesAPI;
+            delete window.julesAPI;
+
+            const mockTelemetry = { dispatchEvent: jest.fn() };
+            global.JulesTerminal.getTelemetryUtils.mockReturnValue(mockTelemetry);
+
+            await modals._transmitReply('session-1', 'user reply', mockCloseFn, null);
+
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to send reply.", "error");
+            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith("JULES_SEND_REPLY_FAILED", expect.any(TypeError));
+
+            window.julesAPI = originalAPI;
+        });
+
+        it('should handle synchronous errors thrown by provideInput', async () => {
+            const error = new Error('Synchronous error');
+            window.julesAPI.provideInput.mockImplementationOnce(() => {
+                throw error;
+            });
+
+            const mockTelemetry = { dispatchEvent: jest.fn() };
+            global.JulesTerminal.getTelemetryUtils.mockReturnValue(mockTelemetry);
+
+            await modals._transmitReply('session-1', 'user reply', mockCloseFn, null);
+
+            expect(mockApp.toast.show).toHaveBeenCalledWith("Failed to send reply.", "error");
+            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith("JULES_SEND_REPLY_FAILED", error);
+        });
     });
 
     describe('_showKeyError and _clearKeyError', () => {
