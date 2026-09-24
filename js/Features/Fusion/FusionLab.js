@@ -107,10 +107,7 @@ class FusionLab {
       const isReady = this.state.slotA !== null && this.state.slotB !== null;
       fuseBtn.setAttribute("aria-disabled", String(!isReady));
 
-      let msg = "Select Protocols";
-      if (isReady) msg = "Ignite Fusion Protocol";
-      else if (!this.state.slotA && this.state.slotB) msg = "Select Agent A";
-      else if (this.state.slotA && !this.state.slotB) msg = "Select Agent B";
+      const msg = isReady ? "Ignite Fusion Protocol" : (!this.state.slotA && this.state.slotB ? "Select Agent A" : (this.state.slotA && !this.state.slotB ? "Select Agent B" : "Select Protocols"));
 
       const btnState = isReady ? "ready" : (typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.DISABLED : "disabled");
       DOMUtils.setButtonState(fuseBtn, btnState, msg);
@@ -136,9 +133,7 @@ class FusionLab {
       if (textSpan) textSpan.innerText = message;
 
       // Empathetic Recovery Path: Guide user back to missing input
-      let targetSlot = null;
-      if (!this.state.slotA && this.elements.slotACard) targetSlot = this.elements.slotACard;
-      else if (!this.state.slotB && this.elements.slotBCard) targetSlot = this.elements.slotBCard;
+      const targetSlot = (!this.state.slotA && this.elements.slotACard) || (!this.state.slotB && this.elements.slotBCard) || null;
       if (targetSlot) {
         targetSlot.focus();
         targetSlot.scrollIntoView({ behavior: "smooth", block: "center" });

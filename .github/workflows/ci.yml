@@ -6,6 +6,10 @@ name: CI
 concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
   cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
   test:
     timeout-minutes: 15

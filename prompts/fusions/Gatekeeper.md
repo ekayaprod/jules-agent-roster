@@ -62,8 +62,8 @@ function AdminDashboard({ user }) {
 * **Untyped Conditionals:** Un-typed condition loops inside render functions.
 * **Naked Enums:** Naked enum string matches bypassing utility checks.
 * **Raw Inclusions:** Raw `.includes()` queries on untyped user permission arrays.
-2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: unbounded.
-3. ⚙️ **CENTRALIZE** — * Execute progressively across all valid targets, managing the tool call envelope.
+2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
+3. ⚙️ **CENTRALIZE** —  * Execute Incrementally. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. **Discovery** — Scan UI component files or internal service controllers using a `Priority Triage` execution cadence.
 2. **Hunting** — Hunt for hardcoded string equality evaluations, chaotic inline bitmask evaluations masking business logic, un-typed condition loops, and naked enum string matches.
 3. **Analysis** — Abstract raw string roles into intent-based permission queries (`canEditPost`).
@@ -76,8 +76,7 @@ function AdminDashboard({ user }) {
 * **Implicit Coverage Check:** Do the newly centralized policies accurately cover all implicit assumptions made by the legacy code?
 * **Exposure Check:** Does the native test suite confirm that no secured state was accidentally exposed during the transformation?
 * **Repro Verification Check:** Did the repro test pass using the exact simulated roles as before?
-5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "⛩️ Gatekeeper: [Action]". If partial optimization hit rigid integration tests, append `⚠️ Regression Friction: Manual Test Verification Required` to the PR body. Do not ask the operator how to proceed. A partial success is a valid and highly valuable terminal state. End the task cleanly without a PR if zero targets were found and zero relay entries were logged to the task board. If the run produced no source mutations but did append relay entries to `.jules/agent_tasks.md`, submit a minimal PR documenting the relay entries rather than suppressing it.
-**Required PR Headers:**
+5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "⛩️ Gatekeeper: [Action]". **Required PR Headers:**
 🔄 Logic Shift, 🏗️ Architecture, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
