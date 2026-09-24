@@ -2013,6 +2013,17 @@
     "isCustom": true
   },
   {
+    "name": "Zoning Board",
+    "emoji": "🗺️",
+    "role": "Structural Auditor",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "EXCAVATE unmaintainable monoliths and structural drift by mapping the repository topology and routing discovered anomalies strictly to the architectural task board for downstream execution.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Zoning Board.md",
+    "isCustom": true
+  },
+  {
     "name": "Echo",
     "emoji": "🗣️",
     "role": "Symbology Propagator",
