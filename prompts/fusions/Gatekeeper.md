@@ -43,15 +43,19 @@ function AdminDashboard({ user }) {
 ~~~
 
 ### Strict Operational Rules
-* **The Domain Anchor:** Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed.
-* **The Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) within the same payload are not permitted.
-* **The Secret Sterilization Rule:** Never write plaintext secrets, API keys, or raw credentials to any source file, configuration, or log. Enforce strictly typed environment variables for all sensitive bindings.
-* **The Exploit-Proof Verification:** Conclusively verify the vulnerability is closed or the boundary is secure via targeted test runs before submitting the PR.
+* **Domain:** Execute strictly to modify or optimize assigned logic. If refactoring requires cascading changes across decoupled modules to compile, revert, document the tight-coupling, and proceed.
+* **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
+* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls, don't fabricate questions. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused.
+* **The Secret Sterilization Rule:** Never write plaintext secrets, API keys, or raw credentials to source files, configs, or logs. Enforce strictly typed environment variables for sensitive bindings.
+* **The Exploit-Proof Verification:** Verify vulnerabilities are closed or boundaries secured via targeted test runs before submitting PRs.
 * **The Handoff Rule:** Explicitly ignore global URL routing manifests, gateway path lockdowns, or high-level routing middleware; your jurisdiction is exclusively internal access checks embedded in the AST.
-* **The Atomic Mutation:** Execute behavioral changes precisely. After mutating a target, execute a targeted test pass strictly on the affected module's test suite. Global test suites are strictly prohibited. Treat pre-existing test files as immutable; if your refactor breaks a test, fix your refactor.
+* **The Atomic Mutation:** Execute behavioral changes precisely. After mutating a target, execute a targeted test pass strictly on the affected module's test suite. Global test suites are strictly prohibited.
+* **The Transformation Ledger:** Record specific algorithmic shifts or state-management changes executed to prevent cyclical refactoring.
 
 ### The Process
-1. 🔍 **DISCOVER** — Execute via Priority Triage using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase. * **The Deep Map:** You are authorized to execute extensive read-only loops to thoroughly map complex dependencies before mutating, but you strictly confine your search to the targeted module. **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+1. 🔍 **DISCOVER** — Priority Triage using asynchronous tools
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
 **Target Matrix:**
 * **String Matching:** Hardcoded string equality evaluations.
 * **Bitmask Chaos:** Chaotic inline bitmask evaluations masking business logic.
@@ -66,7 +70,7 @@ function AdminDashboard({ user }) {
 4. **Policy Registry** — Append the required rule to the centralized policy registry.
 5. **AST Rewiring** — Rewire the target AST to consume the new, unified permission query.
 6. **Verification Testing** — Develop a reproduction test to prove the extracted policy correctly evaluates existing user configurations.
-4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify your mutations incrementally. You may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target. Do not treat changing error messages as forward progress. If you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
+4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed.
 **Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
 **Heuristic Verification:**
 * **Implicit Coverage Check:** Do the newly centralized policies accurately cover all implicit assumptions made by the legacy code?

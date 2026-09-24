@@ -166,6 +166,18 @@ describe('ClipboardUtils', () => {
             removeChildSpy.mockRestore();
         });
 
+        it('should handle explicitly thrown errors from execCommand in the catch block on line 44', async () => {
+            delete global.navigator.clipboard;
+            const explicitError = new Error('Explicit execCommand error for line 44');
+            document.execCommand.mockImplementation(() => { throw explicitError; });
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', explicitError);
+            expect(result).toBe(false);
+        });
+
         it('should return false if fallback returns false when Clipboard API is not available', async () => {
             delete global.navigator.clipboard;
             document.execCommand.mockReturnValue(false);
