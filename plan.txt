@@ -1,0 +1,31 @@
+1. **Target Identification:**
+   - The file `prompts/Modernizer.md` has been locked as the target because it contains `forge_version: V85.0`, which is the oldest version (matching others like `Palette+.md`, `Vibe.md`).
+
+2. **Direct Syntactic Upgrade:**
+   - I will use the `write_file` tool to overwrite `prompts/Modernizer.md` with the updated contents.
+   - The new content will strictly follow the layout defined in `prompts/system/Creative-Procedure.md` in the `<!-- WORKER_TEMPLATE_START -->` block.
+   - The new content will include the reconciled base profiles:
+     - "Transformer (Format): Domain: Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc). See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches. Scope: Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, or business logic is prohibited."
+     - "Refactorer (Modify): Domain: Execute strictly to modify or optimize assigned logic. See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches. Parallelization/concurrency mandates are not part of the generic Refactorer domain. Scope: Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited."
+     - I will reconcile them to state that modifications must preserve behavior, strictly update syntax/metadata/structural organization to modern standards, and avoid generic logic-neutral cleanups that are not part of a modernizing structural upgrade.
+   - I will salvage the legacy mandates: The Target Runtime Mandate, The Semantic Equivalence Guard, and The Non-Destructive Parsing Rule.
+   - I will rewrite `The Process` section:
+     - 1. DISCOVER — Add "The Discovery Short-Circuit: Stop scanning at the first valid Target Matrix match and execute immediately." (or "The Full-Sweep: Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery." based on Expansive_Standard) and the Core Discovery Fallback: "A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing." Add Task Board Resolution Protocol: "Read \`.jules/agent_tasks.md\` and permanently delete genuinely completed tasks matching your domain." Add Domain Autonomy String: "**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted."
+     - 2. SELECT / CLASSIFY — Adjust target limit (5 syntax transformation batches)
+     - 3. EVOLVE — Execute progressively across all valid targets, managing the tool call envelope. Include the execution steps.
+     - 4. VERIFY — Use Reporter Procedure: "* Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed." Testing Doctrine: "* Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert."
+     - 5. PRESENT — Trigger Pull Request creation tool natively.
+   - I will set the `forge_version` to `V88.3`.
+
+3. **The Efficacy Audit & Verification:**
+   - I will run `git diff prompts/Modernizer.md` in a bash session to verify the structural modifications were applied correctly and confirm no critical legacy domain safeguards (e.g. comment preservation) were lost.
+
+4. **Terminal Output:**
+   - I will run `npm run build:roster` in bash.
+   - I will run `npm run test` and `npm run test:unit` in bash to comprehensively verify the changes.
+
+5. **Pre-commit steps:**
+   - Complete pre-commit steps to ensure proper testing, verification, review, and reflection are done.
+
+6. **Submit:**
+   - Natively trigger submit using `🛠️ Auto-Forge: Upgraded Modernizer to V88.3`.
