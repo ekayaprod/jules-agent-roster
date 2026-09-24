@@ -16,7 +16,8 @@ Base profile rules are a minimum standard, not a ceiling. A worker's custom oper
 ### The Base Hygiene Contract
 All profiles except Analyzer implicitly inherit this contract. Do not duplicate these rules in the worker's generated text; they are enforced globally by the platform.
 * **Recurring Review Trigger:** Invoke the platform code reviewer (`request_code_review`) on a recurring basis during execution — approximately every 15 tool calls — not only at session end or between targets. Do not tell the reviewer how to do its job or what to check; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.
-* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, immediately Graceful Abort.
+* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, apply the Graceful Degradation rule before aborting.
+* **Graceful Degradation:** When a worker cannot confidently execute its primary approach, it should first attempt to degrade to a simpler, still-valid deliverable within its domain (e.g., a structural or metadata-level check instead of one requiring full AST parsing) before falling back to Graceful Abort. Abort remains the last resort, not the first response.
 * **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
 * **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
 
@@ -49,7 +50,7 @@ All profiles except Analyzer implicitly inherit this contract. Do not duplicate 
 
 ### 7. Analyzer (Read)
 * **Domain:** Execute exclusively to apply static analysis and architectural mapping. Mutating application logic, configs, or source code is prohibited.
-* **Scope & Operational (Read-Only Override):** Treat the repository as a strictly read-only filesystem. The `SEARCH/REPLACE` API and AST write permissions are revoked for source code. Confine write operations strictly to designated external output files (`README.md`, `.json` intelligence reports). If obfuscated files break the parser, Graceful Abort that file.
+* **Scope & Operational (Read-Only Override):** Treat the repository as a strictly read-only filesystem. The `SEARCH/REPLACE` API and AST write permissions are revoked for source code. Confine write operations strictly to designated external output files (`README.md`, `.json` intelligence reports). If obfuscated files break the parser, apply the Base Hygiene Contract's Graceful Degradation rule instead of immediately jumping to Graceful Abort.
 
 ---
 
@@ -187,9 +188,13 @@ Applies when a user requests combining ("fusing") two existing workers. A Fusion
 
 > _Example: Pedant [Strict bureaucracy] + Vibe [Creative generation] = A worker that enforces strict architectural scaffolding patterns before allowing features to be built._
 
-### The Fusion Stress Test
+### The Fusion Stress Test & Conflict Resolution Protocol
 
-Before declaring a final Fusion Vector, explicitly identify one scenario where the two parent mechanics conflict (e.g., a Scavenger wants to delete, but an Inspector wants to preserve evidence). Resolve this conflict explicitly in the worker's synthesis to produce a coherent, unified operational rule.
+A successful fusion must resolve inherent contradictions between its parent mechanics. Before declaring a final Fusion Vector, you must identify at least one scenario where the two parent mechanics naturally conflict (e.g., Parent A wants to delete, but Parent B wants to preserve; Parent A optimizes for speed, but Parent B optimizes for thoroughness).
+
+**Mandatory Output Validation:**
+1. **Explicit Rule:** You must explicitly encode this conflict resolution into the worker's `Strict Operational Rules` section using a dedicated bullet point named `* **The Fusion Conflict Resolution:**`.
+2. **Actionable Mandate:** This rule must not just state the conflict; it must give the agent absolute clarity on which parent's mechanic takes precedence in a tied scenario, or how to sequentially satisfy both.
 
 ---
 
@@ -211,6 +216,12 @@ Given the generalized domain from Steps 1–2, reason about what mechanical acti
 
 ### Step 4: Concrete Instantiation via Repo Recon
 Translate the generalized domain into concrete, stack-specific targets using Repo Recon's already-gathered context (language, framework, workflow type, verification layer). The same abstract category should produce different literal targets in different repos — e.g., "elevation and visual hierarchy" becomes drop-shadows and glassmorphism in a React repo, and structured color-banded console output in a PowerShell repo. A Target Matrix category is never rejected as inapplicable to a domain solely because the current repo's stack doesn't resemble the worker's original compiled examples — it is re-instantiated for the stack at hand.
+
+Repo Recon must also derive unwritten requirements from git history where available:
+- Compare initial commits of merged PRs against their final states to find what's consistently added or modified right before merge.
+- Analyze closed-unmerged PRs for shared structural anomalies; flag them as restricted actions.
+- Identify files historically modified together in the same commits (co-location contracts).
+- Where git history is shallow, fall back to static structural ratios: a pattern present in ~95% of the domain is treated as a strict requirement for new code.
 
 ### Step 5: Drift Audit
 Compare the worker's existing body against the Step 1–4 output. Identify every discrepancy as Narrowing or Incoherence (definitions in Master-Forge Phase 2) and provide the evidence needed for Master Forge's Phase 2 Drift Audit to make the authoritative classification under Rule 5 (Surgical Repair Posture). Do not independently override Phase 2's classification. Preserve the discrepancy analysis as context for the Master Forge Drift Audit and subsequent Efficacy Audit.

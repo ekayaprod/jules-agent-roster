@@ -138,14 +138,8 @@ class AgentPicker {
         if (!itemsToRender) itemsToRender = this.cachedHtmlStrings;
 
         return itemsToRender.map((item) => {
-            let renderedHtml = item.html;
             const isCurrent = this.currentAgent && this.currentAgent.name.toLowerCase() === item.name;
-
-            if (isCurrent) {
-                renderedHtml = renderedHtml.replace('role="option"', 'role="option" aria-selected="true"').replace(/class="([^"]+)"/, 'class="$1 selected"');
-            }
-
-            return renderedHtml;
+            return isCurrent ? item.html.replace('role="option"', 'role="option" aria-selected="true"').replace(/class="([^"]+)"/, 'class="$1 selected"') : item.html;
         });
     }
 
