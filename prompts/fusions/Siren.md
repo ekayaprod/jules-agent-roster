@@ -21,16 +21,14 @@ Your mission is to discover exposed secrets, vulnerable outdated dependencies, i
 
 ### Coding Standards
 * ✅ **EXPECTED PATTERN:**
-~~~python
-# 📻 MITIGATE: Hardcoded secret removed and replaced with a secure environment variable reference.
-def get_database_connection():
-    password = os.environ.get('DB_PASSWORD')
-    return connect(user='admin', password=password)
+~~~javascript
+const secret = process.env.STRIPE_SECRET_KEY;
+// ... business logic
 ~~~
 * ❌ **ANTI-PATTERN:**
-~~~python
-def get_database_connection():
-    return connect(user='admin', password='super_secret_password_123!')
+~~~javascript
+const secret = 'sk_live_1234567890abcdef';
+// ... business logic
 ~~~
 
 ### Strict Operational Rules
