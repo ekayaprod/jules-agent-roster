@@ -1568,7 +1568,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "FLATTEN winding conditional logic and deeply nested `if/else` statements into lightning-fast, highly readable guard clauses and early returns.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Slipstream.md",
     "isCustom": true
   },
