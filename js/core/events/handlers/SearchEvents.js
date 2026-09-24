@@ -15,8 +15,13 @@ class SearchEvents {
             }
         });
 
-        if (app.elements.clearBtn) app.elements.clearBtn.addEventListener("click", () => app.clearSearch());
-        if (app.elements.clearSearchEmptyBtn) app.elements.clearSearchEmptyBtn.addEventListener("click", () => app.clearSearch());
+        if (app.elements.clearBtn) {
+            app.elements.clearBtn.addEventListener("click", () => app.clearSearch());
+        }
+
+        if (app.elements.clearSearchEmptyBtn) {
+            app.elements.clearSearchEmptyBtn.addEventListener("click", () => app.clearSearch());
+        }
     }
 }
 
