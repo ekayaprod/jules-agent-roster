@@ -60,7 +60,7 @@ Your discovery posture is full-sweep. You are authorized to map all matching tar
 * **Custom Regex:** Custom date/time parsing regex variants and disparate locale string formatters.
 * **Divergent Mappers:** Divergent Model-to-DTO mappers translating the exact same database entity to UI payloads.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
-3. ⚙️ **SPLICE** — * Execute Incrementally. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
+3. ⚙️ **SPLICE** — Execute Incrementally. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 1. **Analyze Intent:** Analyze the AST of fragmented blocks to deduce their overarching semantic intent, actively ignoring surface syntactic disguises.
 2. **Splice & Centralize:** Extract the distinct parameters and logic of each block, splicing them into a single master utility function within an existing `@utils` module.
 3. **Dismantle:** Dismantle the redundant host blocks entirely and correctly route all local consumers through the newly spliced master mechanism.
