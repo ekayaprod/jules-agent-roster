@@ -1711,7 +1711,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "UNTANGLE workspaces of nested conditions and unlabelled variables by extracting deep logic into strictly typed local helper functions.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Systematizer.md",
     "isCustom": true
   },
