@@ -178,6 +178,33 @@ describe('ClipboardUtils', () => {
             expect(result).toBe(false);
         });
 
+        it('should handle explicitly thrown errors from writeText in the catch block on line 28', async () => {
+            const explicitError = new Error('Explicit writeText error for line 28');
+            global.navigator.clipboard.writeText.mockRejectedValue(explicitError);
+            document.execCommand.mockReturnValue(true);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_API_FAILED', explicitError);
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(result).toBe(true);
+        });
+
+        it('should propagate errors if the catch block itself throws for Clipboard API on line 28', async () => {
+            const mockApiError = new Error('Clipboard denied');
+            global.navigator.clipboard.writeText.mockRejectedValue(mockApiError);
+
+            const telemetryError = new Error('Telemetry failed');
+            window.TelemetryUtils.dispatchEvent.mockImplementation(() => { throw telemetryError; });
+
+            try {
+                await ClipboardUtils.copyText('test text');
+            } catch (err) {
+                expect(err.message).toBe('Telemetry failed');
+            }
+        });
+
         it('should return false if fallback returns false when Clipboard API is not available', async () => {
             delete global.navigator.clipboard;
             document.execCommand.mockReturnValue(false);
