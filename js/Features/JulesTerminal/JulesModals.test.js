@@ -227,6 +227,26 @@ describe('JulesTerminal', () => {
             // Restore original URL
             global.URL = originalURL;
         });
+
+        it('should gracefully handle URL parsing error when JulesTerminal is undefined', () => {
+            mockElements.prModalExternalLink.removeAttribute = jest.fn();
+            const originalURL = global.URL;
+            global.URL = jest.fn(() => {
+                throw new TypeError('Invalid URL');
+            });
+
+            // Temporarily remove global.JulesTerminal to test the fallback branch
+            const originalJulesTerminal = global.JulesTerminal;
+            delete global.JulesTerminal;
+
+            modals._showPRModal({ ...mockPR, html_url: 'invalid' });
+
+            expect(mockElements.prModalExternalLink.removeAttribute).toHaveBeenCalledWith('href');
+
+            // Restore original URL and globals
+            global.URL = originalURL;
+            global.JulesTerminal = originalJulesTerminal;
+        });
     });
 
     describe('_transmitReply', () => {
