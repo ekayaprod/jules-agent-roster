@@ -27,7 +27,7 @@ class TelemetryUtils {
                     additionalContext: payload.additionalContext,
                     original_error: error && error.message ? error.message : error
                 }));
-            } catch (fallbackError) {
+            } catch {
                 // If console.error or fallback JSON stringification fails, fail silently
                 // to prevent telemetry from crashing the application.
             }
