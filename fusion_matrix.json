@@ -85,7 +85,7 @@
   "Dispatch,Scavenger": "",
   "Dispatch,Scribe": "Decoder",
   "Dispatch,Sentinel+": "Siren",
-  "Dispatch,Janitor": "",
+  "Dispatch,Janitor": "Decommissioner",
   "Dispatch,Untangler": "",
   "Dispatch,Vibe": "Respawn",
   "Dispatch,Vibe Check": "",
