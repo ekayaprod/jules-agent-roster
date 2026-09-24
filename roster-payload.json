@@ -1034,6 +1034,17 @@
     "isCustom": true
   },
   {
+    "name": "Manifest",
+    "emoji": "🧾",
+    "role": "Infrastructure Chronicler",
+    "category": "Operations",
+    "tier": "Specialist",
+    "description": "MANIFEST the unseen logistics network into authoritative documentation to fortify operational clarity.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Manifest.md",
+    "isCustom": true
+  },
+  {
     "name": "Mapper",
     "emoji": "🛰️",
     "role": "Coverage Mapper",
