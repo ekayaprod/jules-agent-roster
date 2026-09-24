@@ -188,13 +188,9 @@ Applies when a user requests combining ("fusing") two existing workers. A Fusion
 
 > _Example: Pedant [Strict bureaucracy] + Vibe [Creative generation] = A worker that enforces strict architectural scaffolding patterns before allowing features to be built._
 
-### The Fusion Stress Test & Conflict Resolution Protocol
+### The Fusion Logic Engine
 
-A successful fusion must resolve inherent contradictions between its parent mechanics. Before declaring a final Fusion Vector, you must identify at least one scenario where the two parent mechanics naturally conflict (e.g., Parent A wants to delete, but Parent B wants to preserve; Parent A optimizes for speed, but Parent B optimizes for thoroughness).
-
-**Mandatory Output Validation:**
-1. **Explicit Rule:** You must explicitly encode this conflict resolution into the worker's `Strict Operational Rules` section using a dedicated bullet point named `* **The Fusion Conflict Resolution:**`.
-2. **Actionable Mandate:** This rule must not just state the conflict; it must give the agent absolute clarity on which parent's mechanic takes precedence in a tied scenario, or how to sequentially satisfy both.
+A successful fusion does not just blindly stack two mechanics on top of each other. Instead, you are looking for something in the absolute center of the Venn diagram between the two parent roles. If there is absolutely no overlap between their mechanics, you must create a new circle (a new operational paradigm) that successfully overlaps with each side.
 
 ---
 
