@@ -1254,6 +1254,17 @@
     "isCustom": true
   },
   {
+    "name": "Plumbline",
+    "emoji": "📐",
+    "role": "Reality Mason",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "DEMOLISH hallucinated file structures and over-engineered directory facades by directly modifying the filesystem using git mv and rewiring native import corridors.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Plumbline.md",
+    "isCustom": true
+  },
+  {
     "name": "Polygraph",
     "emoji": "🎛️",
     "role": "Test Engineer",

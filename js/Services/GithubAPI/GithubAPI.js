@@ -77,10 +77,8 @@ class GithubAPI {
         } catch (error) {
             if (error.name === 'AbortError') {
                 const timeoutErr = new GithubNetworkError(`Request to ${path} timed out after 15s.`, 408);
-                console.error(`[GithubAPI] Request timeout: `, timeoutErr);
                 throw timeoutErr;
             }
-            console.error(`[GithubAPI] Request to ${path} failed: `, error);
             throw error;
         }
     }

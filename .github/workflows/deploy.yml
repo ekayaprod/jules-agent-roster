@@ -38,17 +38,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Roster Payload
-        run: npm run build:roster
-
-      - name: Run Unit Tests
-        run: npm run test:unit
-
-      - name: Run Native Benchmark Test
-        run: npm test
+      - name: Execute Validation Pipeline
+        run: npm ci && npm run build:roster && npm run test:unit && npm test
 
       - name: Cache Playwright Browsers
         id: cache-playwright
@@ -59,16 +50,32 @@ jobs:
           restore-keys: |
             playwright-${{ runner.os }}-
 
-      - name: Install Playwright Browsers
-        if: steps.cache-playwright.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
-
       - name: Install Playwright Dependencies
-        if: steps.cache-playwright.outputs.cache-hit == 'true'
-        run: npx playwright install-deps
+        run: |
+          if [ "${{ steps.cache-playwright.outputs.cache-hit }}" != "true" ]; then
+            npx playwright install --with-deps
+          else
+            npx playwright install-deps
+          fi
 
       - name: Run E2E Tests
         run: npx playwright test
+
+      - name: Setup Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v6
+
+      - name: Isolate Production Payload
+        if: github.ref == 'refs/heads/main'
+        run: |
+          mkdir _site
+          cp -t _site/ roster-payload.json fusion_matrix.json index.html && cp -r js css prompts _site/
+
+      - name: Upload artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
 
   deploy:
     needs: test
@@ -82,39 +89,6 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: '20'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Roster Payload
-        run: npm run build:roster
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v6
-
-      - name: Isolate Production Payload
-        run: |
-          mkdir _site
-          cp roster-payload.json _site/
-          cp fusion_matrix.json _site/
-          cp index.html _site/
-          cp -r js _site/
-          cp -r css _site/
-          cp -r prompts _site/
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '_site'
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
