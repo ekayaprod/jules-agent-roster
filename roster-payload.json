@@ -990,6 +990,17 @@
     "isCustom": true
   },
   {
+    "name": "Liaison",
+    "emoji": "📇",
+    "role": "Deployment Documenter",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "DISPATCH and PUBLISH deployment pipelines alongside accurate, auto-generated onboarding documentation.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Liaison.md",
+    "isCustom": true
+  },
+  {
     "name": "Limiter",
     "emoji": "🧊",
     "role": "Boundary Enforcer",
