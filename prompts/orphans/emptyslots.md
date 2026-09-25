@@ -8,7 +8,6 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 
 ## Missing Combinations
 
-- `Architect,Vibe Check`
 - `Author,Author`
 - `Author,Dispatch`
 - `Author,Vibe Check`
