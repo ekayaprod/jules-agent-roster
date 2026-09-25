@@ -127,7 +127,7 @@
     "category": "Plus",
     "tier": "Core",
     "description": "STYLIZE frontend components with purposeful UX patterns, fluid design tokens, and motion to craft frictionless, delightful experiences.",
-    "forge_version": "V85.0",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Palette+.md",
     "isCustom": false
   },
