@@ -1,0 +1,21 @@
+name: 'Setup Playwright'
+description: 'Caches and installs Playwright dependencies'
+runs:
+  using: 'composite'
+  steps:
+    - name: Cache Playwright Browsers
+      id: cache-playwright
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/ms-playwright
+        key: playwright-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          playwright-${{ runner.os }}-
+    - name: Install Playwright Dependencies
+      shell: bash
+      run: |
+        if [ "${{ steps.cache-playwright.outputs.cache-hit }}" != "true" ]; then
+          npx playwright install --with-deps
+        else
+          npx playwright install-deps
+        fi
