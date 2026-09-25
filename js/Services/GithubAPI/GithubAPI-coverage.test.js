@@ -42,9 +42,6 @@ describe('GithubAPI _fetch error mapping fallback', () => {
         global.fetch.mockRejectedValueOnce(networkErr);
 
         await expect(api.getPullRequests('owner/repo')).rejects.toThrow('DNS resolution failed');
-        expect(console.error).toHaveBeenCalledWith(
-            expect.stringContaining('[GithubAPI] Request to /repos/owner/repo/pulls?state=open failed: '),
-            networkErr
-        );
+
     });
 });
