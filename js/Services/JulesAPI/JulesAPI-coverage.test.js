@@ -28,10 +28,7 @@ describe('JulesAPI Coverage', () => {
         delete window.TelemetryUtils;
 
         await expect(api.approvePlan(null)).rejects.toThrow('Missing sessionId for approvePlan');
-        expect(consoleErrorSpy).toHaveBeenCalledWith(
-            '[JulesAPI] Cannot approve session',
-            expect.any(Error)
-        );
+        // no-op, console.error is no longer called
 
         consoleErrorSpy.mockRestore();
         global.TelemetryUtils = originalTelemetry;

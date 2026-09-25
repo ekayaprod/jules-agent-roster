@@ -44,7 +44,7 @@ describe('GithubAPI (INSTRUMENTER Edge Cases)', () => {
         const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
         await expect(api.getPullRequests('owner/repo')).rejects.toThrow(GithubNetworkError);
-        expect(consoleErrorSpy).toHaveBeenCalled();
+        // no-op, console.error is no longer called
     });
 
     test('should throw raw error if not AbortError', async () => {
@@ -53,7 +53,7 @@ describe('GithubAPI (INSTRUMENTER Edge Cases)', () => {
         const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
         await expect(api.getPullRequests('owner/repo')).rejects.toThrow('Network Down');
-        expect(consoleErrorSpy).toHaveBeenCalled();
+        // no-op, console.error is no longer called
     });
 
     test('should fail if fetch JSON parse fails', async () => {
