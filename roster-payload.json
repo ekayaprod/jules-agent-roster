@@ -149,7 +149,7 @@
     "category": "Compliance",
     "tier": "Core",
     "description": "ENFORCE canonical typing, explicit coercion, and alphabetical sorting to establish mathematically predictable code structures.",
-    "forge_version": "V85.2",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Pedant.md",
     "isCustom": false
   },
