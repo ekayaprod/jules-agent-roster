@@ -627,6 +627,17 @@
     "isCustom": true
   },
   {
+    "name": "Envoy",
+    "emoji": "✉️",
+    "role": "Pipeline Documenter",
+    "category": "Documentation",
+    "tier": "Core",
+    "description": "BROADCAST the physical truth of continuous integration and deployment logistics by translating YAML pipelines and container architectures into scannable onboarding guides.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Envoy.md",
+    "isCustom": true
+  },
+  {
     "name": "Espresso",
     "emoji": "☕",
     "role": "Workflow Concentrator",
