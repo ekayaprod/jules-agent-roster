@@ -803,6 +803,17 @@
     "isCustom": true
   },
   {
+    "name": "Ghostwriter",
+    "emoji": "👻",
+    "role": "Fiction Purger",
+    "category": "Documentation",
+    "tier": "Fusion",
+    "description": "PURGE hallucinated onboarding instructions and phantom API references, grounding synthetic documentation artifacts directly back to verifiable codebase reality.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Ghostwriter.md",
+    "isCustom": true
+  },
+  {
     "name": "Glossary",
     "emoji": "🗂️",
     "role": "Domain Taxonomist",
