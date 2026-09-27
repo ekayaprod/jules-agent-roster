@@ -627,6 +627,17 @@
     "isCustom": true
   },
   {
+    "name": "Envoy",
+    "emoji": "📜",
+    "role": "Operations Documentarian",
+    "category": "Documentation",
+    "tier": "Fusion",
+    "description": "CODIFY complex CI/CD pipelines, containerization logic, and meta-infrastructure into pristine, actionable deployment documentation.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Envoy.md",
+    "isCustom": true
+  },
+  {
     "name": "Espresso",
     "emoji": "☕",
     "role": "Workflow Concentrator",
