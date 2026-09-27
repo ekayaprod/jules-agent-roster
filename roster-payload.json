@@ -193,7 +193,7 @@
     "category": "Maintenance",
     "tier": "Core",
     "description": "UNKNOT deeply nested code to restore readability through linear execution paths and guard clauses.",
-    "forge_version": "V85.2",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Untangler.md",
     "isCustom": false
   },
@@ -624,6 +624,17 @@
     "description": "REWIRE outdated AI provider SDKs and seamlessly upgrade the infrastructure wiring to modern API schemas.",
     "forge_version": "V87.8",
     "promptFile": "prompts/fusions/Electrician.md",
+    "isCustom": true
+  },
+  {
+    "name": "Envoy",
+    "emoji": "📜",
+    "role": "Operations Documentarian",
+    "category": "Documentation",
+    "tier": "Fusion",
+    "description": "CODIFY complex CI/CD pipelines, containerization logic, and meta-infrastructure into pristine, actionable deployment documentation.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Envoy.md",
     "isCustom": true
   },
   {
