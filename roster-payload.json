@@ -101,7 +101,7 @@
   {
     "name": "Navigator",
     "emoji": "🧭",
-    "role": "Cartographer",
+    "role": "Architectural Cartographer",
     "category": "Architecture",
     "tier": "Core",
     "description": "CHART static codebase mapping, dependency graph generation, and architectural cartography to expose stagnation and inject visionary pathfinding.",
