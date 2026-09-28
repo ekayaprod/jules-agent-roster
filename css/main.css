@@ -540,6 +540,8 @@
       .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; background: color-mix(in srgb, var(--card-bg) 60%, transparent); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2rem; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); font-size: 1.125rem; }
       .empty-state.visible { display: flex; animation: fadeIn 0.4s ease-out forwards; }
       .empty-icon { font-size: var(--text-5xl); margin-bottom: 1rem; }
+      @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+      .animate-float { animation: float 3s ease-in-out infinite; }
       .empty-title { font-size: var(--text-xl); font-weight: var(--weight-bold); margin: 0 0 0.5rem 0; font-family: -apple-system, sans-serif; }
       .empty-desc { font-size: var(--text-sm); color: var(--text-secondary); max-width: 25rem; line-height: var(--leading-normal); margin: 0; font-family: -apple-system, sans-serif; }
       .hidden { display: none !important; } .mt-6 { margin-top: 1.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .flex { display: flex; }

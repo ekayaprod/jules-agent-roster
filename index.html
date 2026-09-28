@@ -497,6 +497,8 @@
       .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem 1rem; }
       .empty-state.visible { display: flex; animation: fadeIn 0.4s ease-out forwards; }
       .empty-icon { font-size: var(--text-5xl); margin-bottom: 1rem; }
+      @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+      .animate-float { animation: float 3s ease-in-out infinite; }
       .empty-title { font-size: var(--text-xl); font-weight: var(--weight-bold); margin: 0 0 0.5rem 0; font-family: -apple-system, sans-serif; }
       .empty-desc { font-size: var(--text-sm); color: var(--text-secondary); max-width: 25rem; line-height: var(--leading-normal); margin: 0; font-family: -apple-system, sans-serif; }
       .hidden { display: none !important; } .mt-6 { margin-top: 1.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .flex { display: flex; }
@@ -632,7 +634,12 @@
     </div>
     
     <div id="emptyState" class="empty-state">
-      <div class="empty-icon">🔍</div>
+      <div class="empty-icon animate-float opacity-50">
+        <svg aria-hidden="true" width="80" height="80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M10 21h4c4.418 0 8-3.582 8-8s-3.582-8-8-8H6a2 2 0 00-2 2v14m17-3l-4.5-4.5M10.5 15a4.5 4.5 0 100-9 4.5 4.5 0 000 9z" opacity="0.5"></path>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 18a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"></path>
+        </svg>
+      </div>
       <h2 class="empty-title">No results match your filters</h2>
       <p class="empty-desc text-secondary mt-2">We couldn't find any protocols matching your search. Try using different keywords, or clear your filters to explore the matrix.</p>
       <button id="clearSearchEmptyBtn" class="mt-3 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Clear Filters</button>
