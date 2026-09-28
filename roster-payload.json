@@ -101,7 +101,7 @@
   {
     "name": "Navigator",
     "emoji": "🧭",
-    "role": "Cartographer",
+    "role": "Architectural Cartographer",
     "category": "Architecture",
     "tier": "Core",
     "description": "CHART static codebase mapping, dependency graph generation, and architectural cartography to expose stagnation and inject visionary pathfinding.",
@@ -171,7 +171,7 @@
     "category": "Documentation",
     "tier": "Core",
     "description": "CHRONICLE complex logic via AST-driven docs, and aggregate release cycles using git history to silently preserve institutional memory.",
-    "forge_version": "V85.2",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Scribe.md",
     "isCustom": false
   },
@@ -193,7 +193,7 @@
     "category": "Maintenance",
     "tier": "Core",
     "description": "UNKNOT deeply nested code to restore readability through linear execution paths and guard clauses.",
-    "forge_version": "V85.2",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Untangler.md",
     "isCustom": false
   },
@@ -624,6 +624,17 @@
     "description": "REWIRE outdated AI provider SDKs and seamlessly upgrade the infrastructure wiring to modern API schemas.",
     "forge_version": "V87.8",
     "promptFile": "prompts/fusions/Electrician.md",
+    "isCustom": true
+  },
+  {
+    "name": "Envoy",
+    "emoji": "📜",
+    "role": "Operations Documentarian",
+    "category": "Documentation",
+    "tier": "Fusion",
+    "description": "CODIFY complex CI/CD pipelines, containerization logic, and meta-infrastructure into pristine, actionable deployment documentation.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Envoy.md",
     "isCustom": true
   },
   {
@@ -1310,12 +1321,12 @@
   },
   {
     "name": "Prompt Engineer",
-    "emoji": "📐",
-    "role": "Payload Auditor",
-    "category": "Architecture",
+    "emoji": "✨",
+    "role": "LLM Mechanics Expert",
+    "category": "Optimization",
     "tier": "Mythic",
-    "description": "TRANSMUTE prompt prose into directive contracts — auditing polarity, primacy, and the silent example overrides that break payloads at scale.",
-    "forge_version": "V87.0",
+    "description": "Refine vague prompt prose into high-fidelity instructions. Maximize LLM success by tuning polarity, primacy, and behavioral mechanics to perfectly match the prompt's execution environment.",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
@@ -1485,6 +1496,17 @@
     "isCustom": true
   },
   {
+    "name": "Retrofit",
+    "emoji": "🚢",
+    "role": "Transit Evolver",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "RETROFIT fossilized CI/CD pipelines and deprecated infrastructure configurations into modern containerization standards to maximize deployment velocity.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Retrofit.md",
+    "isCustom": true
+  },
+  {
     "name": "Retrofitter",
     "emoji": "🔧",
     "role": "Syntactic Upgrader",
@@ -1645,7 +1667,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "MAP the overarching impact of dependency updates and polyfill removals, bridging the gap between package bumps and macro architecture.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Steward.md",
     "isCustom": true
   },
@@ -1656,7 +1678,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "FLATTEN underlying cognitive complexity and mask it with clean, chunked UI, transforming overwhelming tasks into simple, step-by-step actions using progressive disclosure.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Streamliner.md",
     "isCustom": true
   },
