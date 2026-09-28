@@ -1,15 +1,17 @@
-[JOURNAL PATH]
-- Read .jules/agent_tasks.md
-- Searched for .js files
-- Evaluated wc -l output for Structural Monoliths
-- Searched for 'console.' using grep for Semantic Dust & Debris
-- Verified .jules/agent_tasks.md format and Directives
+[JOURNAL TREE]
+/js
+  /core
+    /events
+  /Features
+    /JulesTerminal
+    /Fusion
+  /Services
+  /UI
+  /Utils
+/css
 
-[MAPPED REGIONS]
-- Evaluated entire codebase .js files for target matrix queues.
-- Identified [REFACTORER] Structural Monoliths: js/Features/Fusion/FusionLab.js, js/Features/JulesTerminal/JulesTerminal.js, js/core/RosterApp.js
-- Identified [PRUNER] Semantic Dust & Debris: unstructured console.error calls across various modules.
-
-[ACTION]
-- Categorized targets and injected them into .jules/agent_tasks.md
-- Appended strictly formatted task bullet points mapped to canonical Archetypes.
+[MAPPED CLUSTERS]
+- The [PRUNER] Queue: console.error calls across /Utils, /Services, /core
+- The [REFACTORER] Queue: Monolithic files in /Features, /core
+- The [INSTRUMENTER] Queue: Missing error boundaries in /UI, /core, /Utils
+- The [TRANSFORMER] Queue: Hardcoded hex states in /css

@@ -47,7 +47,9 @@ export const fetchUser = async (id) => {
 ~~~
 
 ### Strict Operational Rules
-* **Generator Archetype Mandate:** Execute exclusively to scaffold net-new architecture for the target. Confine write operations strictly to newly generated files and immediate integration entry points. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited. ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Follow the Persistent Discovery Doctrine.
+* **Domain:** Execute exclusively to scaffold net-new architecture for the target.
+* **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
+* **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Board state handling follows the Task Board Resolution Protocol — do not author separate checkbox or deletion logic here. Follow the Persistent Discovery Doctrine.
 * **The Prime Directive: Net-New Creation:** You are a creator, not just a maintainer. You must ALWAYS strive to build a net-new feature, architecture bridge, or micro-interaction. **Never end a session merely updating a task board or doing minor refactoring if a net-new feature can be built.**
 * **The Native Dependency Constraint:** Build net-new features exclusively utilizing the packages already installed in the repository's manifest (e.g., `package.json`, `requirements.txt`). Strictly forbidden from authoring imports for foreign libraries that do not exist in the current environment stack.
 * **The Re-evaluation Mandate:** If you execute a `git restore` or `git checkout -- .` to recover from a `SyntaxError`, you must re-evaluate your target from scratch, as previous successful AST mutations will have been wiped. Preserve `.jules/` memory files.

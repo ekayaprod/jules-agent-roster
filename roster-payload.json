@@ -105,7 +105,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "CHART static codebase mapping, dependency graph generation, and architectural cartography to expose stagnation and inject visionary pathfinding.",
-    "forge_version": "V85.1",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Navigator.md",
     "isCustom": false
   },
@@ -116,7 +116,7 @@
     "category": "Operations",
     "tier": "Core",
     "description": "AUDIT the macroscopic repository topology, categorize structural decay, and govern the centralized triage queue to optimize swarm execution.",
-    "forge_version": "V85.2",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
@@ -149,7 +149,7 @@
     "category": "Compliance",
     "tier": "Core",
     "description": "ENFORCE canonical typing, explicit coercion, and alphabetical sorting to establish mathematically predictable code structures.",
-    "forge_version": "V85.2",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Pedant.md",
     "isCustom": false
   },
@@ -171,7 +171,7 @@
     "category": "Documentation",
     "tier": "Core",
     "description": "CHRONICLE complex logic via AST-driven docs, and aggregate release cycles using git history to silently preserve institutional memory.",
-    "forge_version": "V85.2",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Scribe.md",
     "isCustom": false
   },
@@ -193,7 +193,7 @@
     "category": "Maintenance",
     "tier": "Core",
     "description": "UNKNOT deeply nested code to restore readability through linear execution paths and guard clauses.",
-    "forge_version": "V85.2",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Untangler.md",
     "isCustom": false
   },
@@ -627,6 +627,17 @@
     "isCustom": true
   },
   {
+    "name": "Envoy",
+    "emoji": "📜",
+    "role": "Operations Documentarian",
+    "category": "Documentation",
+    "tier": "Fusion",
+    "description": "CODIFY complex CI/CD pipelines, containerization logic, and meta-infrastructure into pristine, actionable deployment documentation.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Envoy.md",
+    "isCustom": true
+  },
+  {
     "name": "Espresso",
     "emoji": "☕",
     "role": "Workflow Concentrator",
@@ -800,6 +811,17 @@
     "description": "ERADICATE phantom imports, synthetic abstractions, and hallucinated dependencies to resuscitate crashed boot sequences.",
     "forge_version": "V86.1",
     "promptFile": "prompts/fusions/Ghost Hunter.md",
+    "isCustom": true
+  },
+  {
+    "name": "Ghostwriter",
+    "emoji": "👻",
+    "role": "Fiction Purger",
+    "category": "Documentation",
+    "tier": "Fusion",
+    "description": "PURGE hallucinated onboarding instructions and phantom API references, grounding synthetic documentation artifacts directly back to verifiable codebase reality.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Ghostwriter.md",
     "isCustom": true
   },
   {
@@ -1299,12 +1321,12 @@
   },
   {
     "name": "Prompt Engineer",
-    "emoji": "📐",
-    "role": "Payload Auditor",
-    "category": "Architecture",
+    "emoji": "✨",
+    "role": "LLM Mechanics Expert",
+    "category": "Optimization",
     "tier": "Mythic",
-    "description": "TRANSMUTE prompt prose into directive contracts — auditing polarity, primacy, and the silent example overrides that break payloads at scale.",
-    "forge_version": "V87.0",
+    "description": "Refine vague prompt prose into high-fidelity instructions. Maximize LLM success by tuning polarity, primacy, and behavioral mechanics to perfectly match the prompt's execution environment.",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
@@ -1474,6 +1496,17 @@
     "isCustom": true
   },
   {
+    "name": "Retrofit",
+    "emoji": "🚢",
+    "role": "Transit Evolver",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "RETROFIT fossilized CI/CD pipelines and deprecated infrastructure configurations into modern containerization standards to maximize deployment velocity.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Retrofit.md",
+    "isCustom": true
+  },
+  {
     "name": "Retrofitter",
     "emoji": "🔧",
     "role": "Syntactic Upgrader",
@@ -1634,7 +1667,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "MAP the overarching impact of dependency updates and polyfill removals, bridging the gap between package bumps and macro architecture.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Steward.md",
     "isCustom": true
   },
