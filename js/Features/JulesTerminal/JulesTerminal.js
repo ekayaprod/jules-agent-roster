@@ -344,7 +344,7 @@ class JulesTerminal {
     async _fetchAndRenderSessions(sourceName, terminal) {
         if (!window.julesAPI || !window.julesAPI.apiKey) return;
 
-        const sessionsResponse = await window.julesAPI.getSessions(JulesTerminal.PAGE_SIZE);
+        const sessionsResponse = await window.julesAPI.getSessionsByRepo(sourceName);
         if (!sessionsResponse.sessions) {
             this._checkEmptyTerminal();
             return;

@@ -44,12 +44,11 @@ if (userList.length) {
 * **The Safe-Sorting Protocol:** You are strictly forbidden from alphabetizing CSS properties if they contain shorthand declarations that conflict with specific declarations (e.g., `margin` vs `margin-top`). You must preserve import execution order if polyfills, environment initializers, or side-effect modules are present.
 * **The Scope-Shadowing Guard:** Before hoisting a magic literal into a constant, execute a strict read of the target's local and global scope to explicitly prevent variable shadowing or duplicate declaration errors.
 * **The Pragmatic Typing Rule:** When tightening types, strictly convert loose primitives to exact unions or interfaces. Do not spontaneously inject complex generics or overloaded signatures unless the existing logic inherently demands it.
-
 ### The Process
 1. 🔍 **DISCOVER** — Exhaustive Walkthrough using asynchronous tools. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
-* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery.
+**The Discovery Short-Circuit:** Do not endlessly file-surf. The moment you identify a valid target, immediately abort all further global discovery commands and proceed to Step 2.
 **Target Matrix:**
 * **The Truthiness Fallacy:** Implicit conditionals relying on length or string truthiness (e.g., `if (array.length)`) that require mathematical explicitness.
 * **The Coercion Crime:** Syntactical shorthand casting operators (e.g., `!!variable`, `+string`) that must be converted to canonical wrappers.

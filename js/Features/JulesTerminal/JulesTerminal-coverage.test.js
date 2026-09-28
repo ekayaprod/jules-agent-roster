@@ -59,7 +59,7 @@ describe('JulesTerminal - Additional Coverage', () => {
 
         window.julesAPI = {
             apiKey: 'test-api-key',
-            getSessions: jest.fn()
+            getSessionsByRepo: jest.fn()
         };
 
         terminalInstance = new JulesTerminal(mockApp);
@@ -137,7 +137,7 @@ describe('JulesTerminal - Additional Coverage', () => {
         terminalInstance.dismissSession = jest.fn();
         terminalInstance._processSession = jest.fn();
 
-        window.julesAPI.getSessions.mockResolvedValue({
+        window.julesAPI.getSessionsByRepo.mockResolvedValue({
             sessions: [
                 {
                     id: 'session-1',
@@ -164,7 +164,7 @@ describe('JulesTerminal - Additional Coverage', () => {
 
         await terminalInstance._fetchAndRenderSessions(sourceName, terminal);
 
-        expect(window.julesAPI.getSessions).toHaveBeenCalledWith(JulesTerminal.PAGE_SIZE);
+        expect(window.julesAPI.getSessionsByRepo).toHaveBeenCalledWith(sourceName);
         expect(terminalInstance.dismissSession).toHaveBeenCalledWith('old-session');
         expect(terminalInstance._processSession).toHaveBeenCalledTimes(1);
         expect(terminalInstance._processSession).toHaveBeenCalledWith(expect.objectContaining({ id: 'session-1' }), terminal);
