@@ -11,7 +11,6 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Author,Author`
 - `Bolt+,Vibe Check`
 - `Dispatch,Dispatch`
-- `Dispatch,Modernizer`
 - `Dispatch,Navigator`
 - `Dispatch,Overseer`
 - `Dispatch,Pedant`
