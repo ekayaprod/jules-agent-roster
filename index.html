@@ -149,13 +149,14 @@
       .flip-card-inner:hover .flip-hint, .flip-card-inner:hover .fusions-hint { opacity: 1; }
       .flip-card-back .flip-hint { top: 0; right: 0; bottom: auto; }
 
-      .prompt-scroll-area { position: relative; z-index: 1; flex-grow: 1; overflow-y: auto; background: var(--details-bg); padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: var(--text-2xs); color: var(--text-secondary); margin-bottom: 0.5rem; white-space: pre-wrap; font-family: inherit; cursor: text; }
+      .prompt-scroll-area { position: relative; z-index: 1; flex-grow: 1; overflow-y: auto; background: var(--details-bg); padding: 0.5rem; border-radius: 0.5rem; border: 1px solid var(--border); font-size: var(--text-2xs); line-height: var(--leading-relaxed); color: var(--text-secondary); margin-bottom: 0.5rem; white-space: pre-wrap; font-family: inherit; cursor: text; box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2); }
       .prompt-scroll-area::-webkit-scrollbar { width: 0.25rem; }
       .prompt-scroll-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 0.25rem; }
       
       .card-actions { position: relative; z-index: 2; cursor: default; }
       .icon-btn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.25rem; transition: all 0.3s ease-in-out; min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center; }
-      .icon-btn:hover { color: var(--text-primary); }
+      .icon-btn:hover { color: var(--text-primary); transform: scale(1.1); }
+      .icon-btn:active { transform: scale(0.95); }
 
       /* HEADER AND CONTROLS */
       .header { max-width: 75rem; margin: 0 auto 1.5rem auto; display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
@@ -206,9 +207,9 @@
       }
       .jules-pull-tab {
         position: absolute;
-        right: -2.5rem;
+        right: -2.75rem;
         top: 20vh;
-        width: 2.5rem;
+        width: 2.75rem;
         height: 3rem;
         background: var(--term-bg);
         border: 1px solid var(--term-border);
@@ -331,11 +332,13 @@
         border-radius: 0.25rem; 
         font-family: inherit; 
         font-size: var(--text-xs);
-        outline: none; 
+        outline: none;
+        transition: all 0.3s ease-in-out;
+        min-height: 2.75rem;
       }
       .repo-picker:focus, .task-input:focus { border-color: var(--term-system); }
       .repo-picker:focus-visible, .task-input:focus-visible { outline: 2px solid var(--term-system); outline-offset: -1px; }
-      .task-input { resize: vertical; min-height: 2.75rem; }
+      .task-input { resize: vertical; }
       
       @media (min-width: 640px) {
         .runner-inputs { flex-wrap: nowrap; }
@@ -417,7 +420,7 @@
 
       .term-link { color: var(--term-system); text-decoration: none; transition: color 0.2s; flex-shrink: 0; }
       .term-link:hover { color: var(--term-system); text-decoration: underline; }
-      .term-action-btn { background: none; border: none; color: var(--term-muted); cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; margin-left: 0.5rem; transition: color 0.2s; flex-shrink: 0;}
+      .term-action-btn { background: none; border: none; color: var(--term-muted); cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; margin-left: 0.5rem; transition: color 0.2s; flex-shrink: 0; min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center;}
       .term-action-btn:hover { color: var(--term-error); }
       .term-action-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
@@ -434,7 +437,7 @@
       .tag-container { display: flex; flex-wrap: wrap; gap: 0.25rem; justify-content: flex-start; }
       .meta-tag { font-size: var(--text-3xs); padding: 0.1rem 0.4rem; border-radius: 0.25rem; background: color-mix(in srgb, var(--bg-color) 50%, transparent); border: 1px solid var(--border); }
       
-      .description { color: var(--text-secondary); font-size: clamp(0.75rem, 1.5vw, 0.95rem); line-height: var(--leading-snug); font-family: -apple-system, sans-serif; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; }
+      .description { color: var(--text-secondary); font-size: clamp(0.75rem, 1.5vw, 0.95rem); line-height: var(--leading-relaxed); font-family: -apple-system, sans-serif; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; }
 
       .category-nav { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 999px; padding: 0.35rem; display: flex; justify-content: flex-start; gap: 0.5rem; overflow-x: auto; font-family: -apple-system, sans-serif; flex: 2; align-items: center; transition: all 0.3s ease;}
       .category-nav.search-active { width: 100%; max-width: 40rem; }
@@ -492,7 +495,7 @@
 
       .dropdown-header { padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: bold; color: var(--text-secondary); text-transform: uppercase; border-bottom: 1px solid var(--border); }
       .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem 1rem; }
-      .empty-state.visible { display: flex; }
+      .empty-state.visible { display: flex; animation: fadeIn 0.4s ease-out forwards; }
       .empty-icon { font-size: var(--text-5xl); margin-bottom: 1rem; }
       .empty-title { font-size: var(--text-xl); font-weight: var(--weight-bold); margin: 0 0 0.5rem 0; font-family: -apple-system, sans-serif; }
       .empty-desc { font-size: var(--text-sm); color: var(--text-secondary); max-width: 25rem; line-height: var(--leading-normal); margin: 0; font-family: -apple-system, sans-serif; }
@@ -531,7 +534,7 @@
         #securityGrid > *:first-child::before { content: "Security"; }
       }
 
-      .fusion-error-alert { border-left: 4px solid var(--error); background-color: var(--card-bg); border-radius: 0 0.5rem 0.5rem 0; margin-top: 1.5rem; }
+      .fusion-error-alert { border-left: 4px solid var(--error); background-color: var(--card-bg); border-radius: 0 0.5rem 0.5rem 0; margin-top: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
       .fusion-error-icon { color: var(--error); width: 1.5rem; height: 1.5rem; flex-shrink: 0; }
       .fusion-error-content { display: flex; flex-direction: column; gap: 0.25rem; }
       .fusion-error-title { margin: 0; font-size: 0.875rem; font-weight: 600; color: var(--error); }
@@ -545,7 +548,7 @@
       button.btn-success:hover { filter: brightness(1.1); }
       button.btn-success:focus-visible { outline: 2px solid var(--term-success); outline-offset: 2px; }
 
-      .modal-link { font-size: var(--text-xs); color: var(--accent); text-decoration: none; margin-top: 0.25rem; transition: all 0.2s ease-in-out; }
+      .modal-link { font-size: var(--text-xs); color: var(--accent); text-decoration: none; margin-top: 0.25rem; transition: all 0.2s ease-in-out; display: inline-block; padding: 0.5rem; margin-left: -0.5rem; margin-right: -0.5rem; }
       .modal-link:hover { text-decoration: underline; opacity: 0.8; }
       .modal-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.125rem; }
     </style>
@@ -899,6 +902,7 @@
     <script src="js/Features/Export/ExportController.js"></script>
     <script src="js/core/events/EventBinder.js"></script>
     <script src="js/Features/Singularity/SingularityBespokeBuilder.js"></script>
+    <script src="js/core/GlobalErrorBoundary.js"></script>
     <script src="js/core/RosterApp.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {

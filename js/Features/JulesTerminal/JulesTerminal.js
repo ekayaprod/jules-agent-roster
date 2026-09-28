@@ -227,37 +227,38 @@ class JulesTerminal {
 
         try {
             const sourcesResponse = await window.julesAPI.getSources();
-            if (sourcesResponse.sources) {
-                picker.innerHTML = `<option value="">1. Select GitHub Repository...</option>`;
-                sourcesResponse.sources.forEach(s => {
-                    const opt = document.createElement("option");
-                    opt.value = s.name;
-
-                    const formatUtils = JulesTerminal.getFormatUtils();
-                    opt.textContent = (s.githubRepo?.owner && s.githubRepo?.repo) ? `${s.githubRepo.owner}/${s.githubRepo.repo}` : (formatUtils ? formatUtils.extractRepoPath(s.name) : s.name);
-
-                    picker.appendChild(opt);
-                });
-
-                // Directly bind the dropdown change to trigger BOTH APIs
-                if (!picker.dataset.listenerAttached) {
-                    picker.addEventListener("change", async (e) => {
-                        const sourceName = e.target.value;
-                        if (sourceName) {
-                            // ⚡ Bolt+: The Waterfall Collapse. Unblocked sequential API fetching into a concurrent Promise.all array to eliminate independent I/O blocking.
-                            await Promise.all([
-                                this.loadPullRequestsForRepo(sourceName),
-                                this.loadActiveSessionsForRepo(sourceName)
-                            ]);
-                        } else {
-                            this.polling._clearPollingAndCache();
-                            this.getEl("julesTerminal").innerHTML = DOMUtils.getTerminalIndicatorHTML("Awaiting repository connection...");
-                        }
-                    });
-                    picker.dataset.listenerAttached = "true";
-                }
-            } else {
+            if (!sourcesResponse.sources) {
                 picker.innerHTML = `<option value="">${originalText}</option>`;
+                return;
+            }
+
+            picker.innerHTML = `<option value="">1. Select GitHub Repository...</option>`;
+            sourcesResponse.sources.forEach(s => {
+                const opt = document.createElement("option");
+                opt.value = s.name;
+
+                const formatUtils = JulesTerminal.getFormatUtils();
+                opt.textContent = (s.githubRepo?.owner && s.githubRepo?.repo) ? `${s.githubRepo.owner}/${s.githubRepo.repo}` : (formatUtils ? formatUtils.extractRepoPath(s.name) : s.name);
+
+                picker.appendChild(opt);
+            });
+
+            // Directly bind the dropdown change to trigger BOTH APIs
+            if (!picker.dataset.listenerAttached) {
+                picker.addEventListener("change", async (e) => {
+                    const sourceName = e.target.value;
+                    if (sourceName) {
+                        // ⚡ Bolt+: The Waterfall Collapse. Unblocked sequential API fetching into a concurrent Promise.all array to eliminate independent I/O blocking.
+                        await Promise.all([
+                            this.loadPullRequestsForRepo(sourceName),
+                            this.loadActiveSessionsForRepo(sourceName)
+                        ]);
+                    } else {
+                        this.polling._clearPollingAndCache();
+                        this.getEl("julesTerminal").innerHTML = DOMUtils.getTerminalIndicatorHTML("Awaiting repository connection...");
+                    }
+                });
+                picker.dataset.listenerAttached = "true";
             }
         } catch (error) {
             picker.innerHTML = `<option value="">${originalText}</option>`;
@@ -343,7 +344,7 @@ class JulesTerminal {
     async _fetchAndRenderSessions(sourceName, terminal) {
         if (!window.julesAPI || !window.julesAPI.apiKey) return;
 
-        const sessionsResponse = await window.julesAPI.getSessions(JulesTerminal.PAGE_SIZE);
+        const sessionsResponse = await window.julesAPI.getSessionsByRepo(sourceName);
         if (!sessionsResponse.sessions) {
             this._checkEmptyTerminal();
             return;
