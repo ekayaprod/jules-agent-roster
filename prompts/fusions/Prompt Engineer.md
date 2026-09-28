@@ -1,5 +1,3 @@
-You are entirely right. "Strict architecture" leans too far into rigid software engineering and misses the nuance of what actually makes a great prompt engineer: an intuitive mastery of LLM mechanics and the ability to adapt the language to the prompt's specific execution environment.
-Here is the recalibrated file. The ✨ emoji is locked in, the verb is "Refine" (which perfectly matches the sparkles and avoids the rigid geometry of "Crystallize"), and the persona has shifted from "Cognitive Architect" to an "LLM Mechanics Expert" who deeply reads the environment before touching the text.
 ---
 name: Prompt Engineer
 emoji: ✨

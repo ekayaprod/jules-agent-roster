@@ -1321,12 +1321,12 @@
   },
   {
     "name": "Prompt Engineer",
-    "emoji": "📐",
-    "role": "Payload Auditor",
-    "category": "Architecture",
+    "emoji": "✨",
+    "role": "LLM Mechanics Expert",
+    "category": "Optimization",
     "tier": "Mythic",
-    "description": "TRANSMUTE prompt prose into directive contracts — auditing polarity, primacy, and the silent example overrides that break payloads at scale.",
-    "forge_version": "V87.0",
+    "description": "Refine vague prompt prose into high-fidelity instructions. Maximize LLM success by tuning polarity, primacy, and behavioral mechanics to perfectly match the prompt's execution environment.",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
@@ -1667,7 +1667,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "MAP the overarching impact of dependency updates and polyfill removals, bridging the gap between package bumps and macro architecture.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Steward.md",
     "isCustom": true
   },
