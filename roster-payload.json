@@ -1689,7 +1689,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "STANDARDIZE stylesheets to rip out hardcoded hex codes, pixel font sizes, and arbitrary margins, replacing them with the project's official CSS variables or Tailwind classes.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Stylist.md",
     "isCustom": true
   },
