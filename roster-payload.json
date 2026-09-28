@@ -101,7 +101,7 @@
   {
     "name": "Navigator",
     "emoji": "🧭",
-    "role": "Cartographer",
+    "role": "Architectural Cartographer",
     "category": "Architecture",
     "tier": "Core",
     "description": "CHART static codebase mapping, dependency graph generation, and architectural cartography to expose stagnation and inject visionary pathfinding.",
@@ -1321,12 +1321,12 @@
   },
   {
     "name": "Prompt Engineer",
-    "emoji": "📐",
-    "role": "Payload Auditor",
-    "category": "Architecture",
+    "emoji": "✨",
+    "role": "LLM Mechanics Expert",
+    "category": "Optimization",
     "tier": "Mythic",
-    "description": "TRANSMUTE prompt prose into directive contracts — auditing polarity, primacy, and the silent example overrides that break payloads at scale.",
-    "forge_version": "V87.0",
+    "description": "Refine vague prompt prose into high-fidelity instructions. Maximize LLM success by tuning polarity, primacy, and behavioral mechanics to perfectly match the prompt's execution environment.",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
@@ -1493,6 +1493,17 @@
     "description": "REROLL the messy first draft of project history to reflect truth by incinerating obsolete READMEs and publishing pristine, ground-truth-aligned macro-documentation.",
     "forge_version": "V87.5",
     "promptFile": "prompts/fusions/Retcon.md",
+    "isCustom": true
+  },
+  {
+    "name": "Retrofit",
+    "emoji": "🚢",
+    "role": "Transit Evolver",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "RETROFIT fossilized CI/CD pipelines and deprecated infrastructure configurations into modern containerization standards to maximize deployment velocity.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Retrofit.md",
     "isCustom": true
   },
   {
@@ -1667,7 +1678,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "FLATTEN underlying cognitive complexity and mask it with clean, chunked UI, transforming overwhelming tasks into simple, step-by-step actions using progressive disclosure.",
-    "forge_version": "V85.9",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Streamliner.md",
     "isCustom": true
   },
