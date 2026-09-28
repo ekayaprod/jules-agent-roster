@@ -9,18 +9,10 @@ class EmptyState {
    */
   static get ICONS() {
     return {
-      ERROR: `<div class="empty-icon animate-float opacity-50">
-                <svg aria-hidden="true" width="80" height="80" fill="none" stroke="var(--error)" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" opacity="0.5"></path>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
-                </svg>
-              </div>`,
-      SEARCH: `<div class="empty-icon animate-float opacity-50">
-                 <svg aria-hidden="true" width="80" height="80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M10 21h4c4.418 0 8-3.582 8-8s-3.582-8-8-8H6a2 2 0 00-2 2v14m17-3l-4.5-4.5M10.5 15a4.5 4.5 0 100-9 4.5 4.5 0 000 9z" opacity="0.5"></path>
-                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 18a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"></path>
-                 </svg>
-               </div>`,
+      ERROR: `<svg class="empty-icon" aria-hidden="true" width="64" height="64" fill="none" stroke="var(--error)" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+              </svg>`,
+      SEARCH: `<div class="empty-icon text-5xl mb-4 opacity-50"><svg aria-hidden="true" width="64" height="64" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></div>`,
     };
   }
 

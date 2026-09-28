@@ -1,3 +1,4 @@
+# 📯 THE SECURE DISPATCH: Optimized Multi-Stage Transit
 FROM node:26-alpine AS builder
 
 WORKDIR /opt/payload
@@ -10,6 +11,7 @@ FROM node:26-alpine AS production
 
 WORKDIR /opt/payload
 
+# ⚙️ COLLAPSE: Centrifuged environment setup into a highly dense chained command.
 RUN addgroup -S dispatch && adduser -S warden -G dispatch && \
     npm install -g http-server@14.1.1
 

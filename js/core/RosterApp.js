@@ -24,13 +24,6 @@ class RosterApp {
     this.activeDropdowns = new Set();
     this.agentRepo = new AgentRepository();
     this.toast = new ToastNotification(CONFIG.selectors.toast);
-
-    // Initialize and attach Global Error Boundary
-    this.errorBoundary = typeof GlobalErrorBoundary !== 'undefined' ? new GlobalErrorBoundary(this) : null;
-    if (this.errorBoundary) {
-        this.errorBoundary.attach();
-    }
-
     this.pinnedManager = new PinnedManager();
     this.fusionLab = null;
     this._cardHtmlCache = new Map();

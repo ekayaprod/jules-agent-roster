@@ -207,9 +207,9 @@
       }
       .jules-pull-tab {
         position: absolute;
-        right: -2.75rem;
+        right: -2.5rem;
         top: 20vh;
-        width: 2.75rem;
+        width: 2.5rem;
         height: 3rem;
         background: var(--term-bg);
         border: 1px solid var(--term-border);
@@ -333,12 +333,10 @@
         font-family: inherit; 
         font-size: var(--text-xs);
         outline: none;
-        transition: all 0.3s ease-in-out;
-        min-height: 2.75rem;
       }
       .repo-picker:focus, .task-input:focus { border-color: var(--term-system); }
       .repo-picker:focus-visible, .task-input:focus-visible { outline: 2px solid var(--term-system); outline-offset: -1px; }
-      .task-input { resize: vertical; }
+      .task-input { resize: vertical; min-height: 2.75rem; }
       
       @media (min-width: 640px) {
         .runner-inputs { flex-wrap: nowrap; }
@@ -420,7 +418,7 @@
 
       .term-link { color: var(--term-system); text-decoration: none; transition: color 0.2s; flex-shrink: 0; }
       .term-link:hover { color: var(--term-system); text-decoration: underline; }
-      .term-action-btn { background: none; border: none; color: var(--term-muted); cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; margin-left: 0.5rem; transition: color 0.2s; flex-shrink: 0; min-width: 2.75rem; min-height: 2.75rem; display: inline-flex; align-items: center; justify-content: center;}
+      .term-action-btn { background: none; border: none; color: var(--term-muted); cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; margin-left: 0.5rem; transition: color 0.2s; flex-shrink: 0;}
       .term-action-btn:hover { color: var(--term-error); }
       .term-action-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
@@ -497,8 +495,6 @@
       .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem 1rem; }
       .empty-state.visible { display: flex; animation: fadeIn 0.4s ease-out forwards; }
       .empty-icon { font-size: var(--text-5xl); margin-bottom: 1rem; }
-      @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-      .animate-float { animation: float 3s ease-in-out infinite; }
       .empty-title { font-size: var(--text-xl); font-weight: var(--weight-bold); margin: 0 0 0.5rem 0; font-family: -apple-system, sans-serif; }
       .empty-desc { font-size: var(--text-sm); color: var(--text-secondary); max-width: 25rem; line-height: var(--leading-normal); margin: 0; font-family: -apple-system, sans-serif; }
       .hidden { display: none !important; } .mt-6 { margin-top: 1.5rem; } .mt-3 { margin-top: 0.75rem; } .mt-2 { margin-top: 0.5rem; } .mt-auto { margin-top: auto; } .flex { display: flex; }
@@ -536,7 +532,7 @@
         #securityGrid > *:first-child::before { content: "Security"; }
       }
 
-      .fusion-error-alert { border-left: 4px solid var(--error); background-color: var(--card-bg); border-radius: 0 0.5rem 0.5rem 0; margin-top: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); }
+      .fusion-error-alert { border-left: 4px solid var(--error); background-color: var(--card-bg); border-radius: 0 0.5rem 0.5rem 0; margin-top: 1.5rem; }
       .fusion-error-icon { color: var(--error); width: 1.5rem; height: 1.5rem; flex-shrink: 0; }
       .fusion-error-content { display: flex; flex-direction: column; gap: 0.25rem; }
       .fusion-error-title { margin: 0; font-size: 0.875rem; font-weight: 600; color: var(--error); }
@@ -634,12 +630,7 @@
     </div>
     
     <div id="emptyState" class="empty-state">
-      <div class="empty-icon animate-float opacity-50">
-        <svg aria-hidden="true" width="80" height="80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M10 21h4c4.418 0 8-3.582 8-8s-3.582-8-8-8H6a2 2 0 00-2 2v14m17-3l-4.5-4.5M10.5 15a4.5 4.5 0 100-9 4.5 4.5 0 000 9z" opacity="0.5"></path>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 18a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35"></path>
-        </svg>
-      </div>
+      <div class="empty-icon">🔍</div>
       <h2 class="empty-title">No results match your filters</h2>
       <p class="empty-desc text-secondary mt-2">We couldn't find any protocols matching your search. Try using different keywords, or clear your filters to explore the matrix.</p>
       <button id="clearSearchEmptyBtn" class="mt-3 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md">Clear Filters</button>
@@ -909,7 +900,6 @@
     <script src="js/Features/Export/ExportController.js"></script>
     <script src="js/core/events/EventBinder.js"></script>
     <script src="js/Features/Singularity/SingularityBespokeBuilder.js"></script>
-    <script src="js/core/GlobalErrorBoundary.js"></script>
     <script src="js/core/RosterApp.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
