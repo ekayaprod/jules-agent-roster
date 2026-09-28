@@ -48,7 +48,7 @@ Ensure you run `npm install node-fetch` before running the API script.
 * **Ghost Setup Instructions:** `README.md` or setup guides instructing the installation of removed polyfills.
 * **Contradictory ADRs:** Architectural decision records that conflict with the active `package.json`.
 * **Obsolete Polyfill Docstrings:** Inline documentation blocks explaining shims that have since been deleted or replaced.
-2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets markdown up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 4.
+2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 4.
 3. ⚙️ **MAP** — * Execute in bounded sequence, tracking mutation count against the declared quota.
 1. **ISOLATE BLOCK:** Isolate the contradictory documentation block in the target file.
 2. **CROSS-REFERENCE MANIFEST:** Read the active `package.json` or equivalent dependency manifest to confirm the legacy package's absence.
