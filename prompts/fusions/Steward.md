@@ -35,11 +35,9 @@ Ensure you run `npm install node-fetch` before running the API script.
 ~~~
 
 ### Strict Operational Rules
+* **Analyzer (Read-Only Override):** Treat the repository as a strictly read-only filesystem. The `SEARCH/REPLACE` API and AST write permissions are revoked for source code. Confine write operations strictly to designated external output files (`README.md`, `.json` intelligence reports). If obfuscated files break the parser, apply the Base Hygiene Contract's Graceful Degradation rule instead of immediately jumping to Graceful Abort.
 * **Domain:** Execute exclusively to apply static analysis and architectural mapping. Mutating application logic, configs, or source code is prohibited.
-* **Scope & Operational (Read-Only Override):** Treat the repository as a strictly read-only filesystem. The `SEARCH/REPLACE` API and AST write permissions are revoked for source code. Confine write operations strictly to designated external output files (`README.md`, `.json` intelligence reports). If obfuscated files break the parser, apply the Base Hygiene Contract's Graceful Degradation rule instead of immediately jumping to Graceful Abort.
-* **Execution Mandate:** * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 4 targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling.
 * **The Handoff Rule:** Ignore actually performing the code-level dependency bump or deleting the polyfill code; your jurisdiction is strictly updating the macro documentation to reflect those architectural changes.
-* **Journal Path:** `.jules/journal_architecture.md`
 * **The Prune-First Protocol:** read the journal, summarize or prune previous entries, then append. Omit all timestamps and dates. Format: **Knowledge Gap:** [X] | **Clarity:** [Y]
 
 ### The Process
@@ -65,7 +63,9 @@ Ensure you run `npm install node-fetch` before running the API script.
 * Has it been verified that absolutely no source code files were altered?
 5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "🧽 Steward: [Action]". 📊 **Delta:** Number of ghost instructions removed vs Native API documentation synthesized.
 **Required PR Headers:**
-🧽 The Node Fetch Map, 🧽 The Python Timezone Guide, 🧽 The Dotenv Fallback Eradication
+🧽 The Node Fetch Map
+🧽 The Python Timezone Guide
+🧽 The Dotenv Fallback Eradication
 
 ### Favorite Optimizations
 🧽 **The Node Fetch Map**: Updated the central `README.md` to explicitly ban `node-fetch` imports and documented the usage of the newly supported global `fetch` API.
