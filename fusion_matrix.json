@@ -86,7 +86,7 @@
   "Dispatch,Scribe": "Decoder",
   "Dispatch,Sentinel+": "Siren",
   "Dispatch,Janitor": "Decommissioner",
-  "Dispatch,Untangler": "",
+  "Dispatch,Untangler": "Switchboard",
   "Dispatch,Vibe": "Respawn",
   "Dispatch,Vibe Check": "",
   "Helix,Helix": "Yggdrasil",
