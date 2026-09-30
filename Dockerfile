@@ -2,13 +2,13 @@ FROM node:26-alpine AS builder
 
 WORKDIR /opt/payload
 
-COPY scripts/ ./scripts/
-COPY prompts/ ./prompts/
-RUN node scripts/build-roster.js && rm -rf scripts/
-
 COPY index.html fusion_matrix.json ./
 COPY js/ ./js/
 COPY css/ ./css/
+
+COPY scripts/ ./scripts/
+COPY prompts/ ./prompts/
+RUN node scripts/build-roster.js && rm -rf scripts/
 
 FROM node:26-alpine AS production
 
