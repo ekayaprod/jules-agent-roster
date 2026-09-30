@@ -152,7 +152,6 @@ class LLMRouter {
 
                 const tu = typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
                 if (tu) tu.dispatchEvent('LLM_ROUTER_FINAL_FAILURE', error, { provider });
-                else console.error(`[LLMRouter] Final failure for ${provider}:`, error);
                 throw error;
             }
         }
