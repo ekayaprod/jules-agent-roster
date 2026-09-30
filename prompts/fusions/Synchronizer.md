@@ -58,9 +58,10 @@ export const App = () => (
 * DO fully evolve the code to the new standard.
 
 ### The Process
-1. 🔍 **DISCOVER** — Explicit command. If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.
-**Task Board Resolution:** The task ends when exactly 1 deprecation vector has been mapped to its target logic blocks.
-**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly falling within your domain, even if unlisted.
+1. 🔍 **DISCOVER** — explicit command If the target matrix is exhausted and nothing is found, you MUST seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
+A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 * **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute.
 **Target Matrix:**
 * **Dependency Bumps:** Hunt for precise `package.json` or `requirements.txt` dependencies trailing behind major stable releases.
@@ -77,9 +78,8 @@ export const App = () => (
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling.
 **Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
 **Heuristic Verification:**
-* Does the new dependency list resolve cleanly via a dry-run install?
-* Does the AST compile completely without deprecated reference errors?
-* Is the application logic strictly behavior-preserved despite syntax changes?
+* **Dry-Run Resolves:** Verify the new dependencies resolve cleanly via a dry-run install?
+* **Compilation Integrity:** Ensure the AST compiles without deprecated reference errors?
 5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "🔄 Synchronizer: [Action]". * 📊 **Delta:** Number of deprecated API calls rewritten vs Major version bumps applied. Exit cleanly if no targets exist.
 **Required PR Headers:**
 * **Mutation Ratio:** [Rewrite Count]
