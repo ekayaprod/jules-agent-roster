@@ -1168,10 +1168,10 @@
   {
     "name": "Occam",
     "emoji": "🪒",
-    "role": "Complexity Slasher",
-    "category": "Fusion",
+    "role": "Under Engineerer",
+    "category": "Architecture",
     "tier": "Fusion",
-    "description": "EXCISE over-engineered paradigms, heavily nested abstractions, and hallucinated synthetic wrappers to simplify execution paths.",
+    "description": "EXCISE over-engineered paradigms, convoluted dependencies, and hallucinated padding to leave only the minimal, boring, native truth.",
     "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Occam.md",
     "isCustom": true
@@ -2041,7 +2041,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "EMBED graceful fallback components across form wrappers and error boundaries to firmly manage the application's visual trust perimeter.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Watermark.md",
     "isCustom": true
   },
