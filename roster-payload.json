@@ -83,7 +83,7 @@
     "category": "Maintenance",
     "tier": "Core",
     "description": "SWEEP the repository to clear hallway trash, purge microscopic decay, delete unlinked artifacts, and strip manifest bloat.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Janitor.md",
     "isCustom": false
   },
@@ -204,7 +204,7 @@
     "category": "Testing",
     "tier": "Core",
     "description": "SQUARE the synthetic jive of iterative vibe coding errors, bouncing hallucinated posers to restore the codebase's righteous native groove.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Vibe Check.md",
     "isCustom": false
   },
@@ -1166,6 +1166,17 @@
     "isCustom": true
   },
   {
+    "name": "Occam",
+    "emoji": "🪒",
+    "role": "Complexity Slasher",
+    "category": "Fusion",
+    "tier": "Fusion",
+    "description": "EXCISE over-engineered paradigms, heavily nested abstractions, and hallucinated synthetic wrappers to simplify execution paths.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Occam.md",
+    "isCustom": true
+  },
+  {
     "name": "Oracle",
     "emoji": "🧿",
     "role": "Contract Sealer",
@@ -1207,6 +1218,17 @@
     "description": "OVERCLOCK the test suite. Bend time, eradicate I/O gravity, and compress bloated CI execution cycles to save the VM from timeout exhaustion.",
     "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Overclock.md",
+    "isCustom": true
+  },
+  {
+    "name": "Overdrive",
+    "emoji": "🏎️",
+    "role": "Hallucination Accelerator",
+    "category": "Fusion",
+    "tier": "Fusion",
+    "description": "ELIMINATE AI-hallucinated synchronous waterfalls and structurally padding loops to mathematically accelerate application throughput.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Overdrive.md",
     "isCustom": true
   },
   {
@@ -1724,6 +1746,17 @@
     "description": "EXCAVATE massive test silos and colocate fractured unit tests directly adjacent to their source code.",
     "forge_version": "V87.9",
     "promptFile": "prompts/fusions/Surveyor.md",
+    "isCustom": true
+  },
+  {
+    "name": "Switchboard",
+    "emoji": "🎛️",
+    "role": "Pipeline Simplifier",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "UNKNOT deeply nested CI/CD workflows and infrastructure configurations to restore readability through linear execution and pipeline-level guard clauses.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Switchboard.md",
     "isCustom": true
   },
   {
