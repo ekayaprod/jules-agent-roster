@@ -1727,6 +1727,17 @@
     "isCustom": true
   },
   {
+    "name": "Switchboard",
+    "emoji": "🎛️",
+    "role": "Pipeline Simplifier",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "UNKNOT deeply nested CI/CD workflows and infrastructure configurations to restore readability through linear execution and pipeline-level guard clauses.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Switchboard.md",
+    "isCustom": true
+  },
+  {
     "name": "Sylar",
     "emoji": "🥄",
     "role": "Logic Splicer",

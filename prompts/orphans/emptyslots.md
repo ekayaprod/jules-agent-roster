@@ -15,7 +15,6 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Dispatch,Overseer`
 - `Dispatch,Pedant`
 - `Dispatch,Scavenger`
-- `Dispatch,Untangler`
 - `Dispatch,Vibe Check`
 - `Helix,Janitor`
 - `Helix,Vibe Check`
