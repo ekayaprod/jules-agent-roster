@@ -89,7 +89,7 @@ describe('SingularityBespokeBuilder', () => {
       await builder.handleForge();
 
       expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BUILDER_FORGE_ERROR', expect.any(Error));
-      expect(global.window.rosterApp.showToast).toHaveBeenCalledWith(expect.stringContaining('Unable to forge bespoke agent:'));
+      expect(global.window.rosterApp.showToast).toHaveBeenCalledWith(expect.stringContaining('Failed to forge bespoke agent:'));
       expect(mockTerminal.launchSession).not.toHaveBeenCalled();
 
       delete global.window.TelemetryUtils;
@@ -103,7 +103,7 @@ describe('SingularityBespokeBuilder', () => {
       builder.init();
       await builder.handleForge();
 
-      expect(global.window.rosterApp.showToast).toHaveBeenCalledWith('Unable to load the Singularity template. Please try again.');
+      expect(global.window.rosterApp.showToast).toHaveBeenCalledWith('Failed to load the Singularity template. Try again.');
       expect(mockTerminal.launchSession).not.toHaveBeenCalled();
     });
 

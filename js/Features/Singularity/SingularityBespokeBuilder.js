@@ -20,7 +20,7 @@ class SingularityBespokeBuilder {
             <span class="sg-header-icon">🌌</span>
             <div>
               <h3 class="agent-title">Singularity Meta-Forge</h3>
-              <p class="description mt-1">Define your agent below — Singularity will scan your repo and forge the rest.</p>
+              <p class="description mt-1">Define your agent below — Singularity will scan your repository and forge the rest.</p>
             </div>
           </div>
         </div>
@@ -32,14 +32,14 @@ class SingularityBespokeBuilder {
               <label class="sg-label" for="sgMission">Core Mission</label>
               <span class="sg-label-note">Describe what you want the agent to do</span>
             </div>
-            <textarea id="sgMission" class="sg-textarea transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none hover:shadow-sm" placeholder="e.g., Build a python script to parse logs, or find and delete unused css files..."></textarea>
+            <textarea id="sgMission" class="sg-textarea transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none hover:shadow-sm" placeholder="e.g., Build a Python script to parse logs, or find and delete unused CSS files..."></textarea>
             <div id="sgErrorWrapper" class="fusion-error-alert transition-all duration-300 ease-in-out hidden mt-2">
               <svg class="fusion-error-icon shrink-0 mt-1" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
               <div class="fusion-error-content">
                 <p class="fusion-error-title">Forge Error</p>
-                <p id="sgErrorText" class="fusion-error-desc">Unable to forge agent. Please verify your inputs and try again.</p>
+                <p id="sgErrorText" class="fusion-error-desc">Failed to forge agent. Verify your inputs and try again.</p>
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@ class SingularityBespokeBuilder {
 
       if (!template) {
         if (window.rosterApp?.showToast) {
-          window.rosterApp.showToast("Unable to load the Singularity template. Please try again.");
+          window.rosterApp.showToast("Failed to load the Singularity template. Try again.");
         }
         uiState.rollback();
         return;
@@ -168,7 +168,7 @@ class SingularityBespokeBuilder {
       uiState.rollback();
       if (this.elements.errorWrapper && this.elements.errorText) {
         this.elements.errorWrapper.classList.remove("hidden");
-        this.elements.errorText.innerText = error.message || "Unable to forge agent. Please try again.";
+        this.elements.errorText.innerText = error.message || "Failed to forge agent. Try again.";
         this.elements.errorWrapper.setAttribute("aria-live", "assertive");
       }
       if (this.elements.missionInput) {
@@ -185,7 +185,7 @@ class SingularityBespokeBuilder {
           if (globalTu) globalTu.dispatchEvent("BUILDER_FORGE_ERROR", forgeError);
       }
       if (window.rosterApp?.showToast) {
-        window.rosterApp.showToast(`Unable to forge bespoke agent: ${error.message || "Please verify inputs and try again."}`);
+        window.rosterApp.showToast(`Failed to forge bespoke agent: ${error.message || "Verify your inputs and try again."}`);
       }
     }
   }
