@@ -18,7 +18,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/clusterize.js/0.19.0/clusterize.min.css" integrity="sha384-NWVxK0wPCJN11kXQ++zm28kRsy/H1e1nb8Rx28Gffv4TFrJqBN4Z+wbRu9XulXZI" crossorigin="anonymous" />
     <link rel="stylesheet" href="js/Features/Fusion/Fusion.css" />
-    <link rel="stylesheet" href="js/Features/Singularity/styles/SingularityBespokeBuilder.css" />
+    <link rel="stylesheet" href="js/Features/Singularity/SingularityBespokeBuilder.css" />
     <style>
       * { box-sizing: border-box; }
       :root {
@@ -456,14 +456,14 @@
       .dropdown-menu { position: absolute; bottom: 100%; right: 0; margin-bottom: 0.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; z-index: 50; display: none; flex-direction: column; min-width: 12rem;  overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
       .dropdown-menu.visible { display: flex !important; }
       .dropdown-item { width: 100%; background: transparent; color: var(--text-primary); border: none; padding: 0.75rem 1rem; text-align: left; font-size: var(--text-sm); border-radius: 0; transition: all 0.3s ease-in-out;}
-      .dropdown-item:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); }
+      .dropdown-item:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); color: var(--accent); padding-left: 1.25rem; }
       .dropdown-item:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 
       /* MODALS */
       .modal-backdrop { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; position: fixed; inset: 0; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(4px); z-index: 999; display: flex; justify-content: center; align-items: center; font-family: -apple-system, sans-serif;}
       .modal-backdrop.visible { opacity: 1; pointer-events: auto; }
-      .modal-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; width: 100%; max-width: 28rem; display: flex; flex-direction: column; gap: 1rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); transform: scale(0.95); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-      .modal-backdrop.visible .modal-content { transform: scale(1); }
+      .modal-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; width: 100%; max-width: 28rem; display: flex; flex-direction: column; gap: 1rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); transform: scale(0.9) translateY(20px); opacity: 0; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+      .modal-backdrop.visible .modal-content { transform: scale(1) translateY(0); opacity: 1; }
       .modal-content h3 { margin: 0; font-size: var(--text-xl); letter-spacing: -0.025em; font-weight: var(--weight-bold); }
       .modal-content p { margin: 0; color: var(--text-secondary); font-size: var(--text-sm); line-height: var(--leading-relaxed);}
       .modal-input { width: 100%; background: var(--details-bg); border: 1px solid var(--border); color: var(--text-primary); padding: 0.75rem; border-radius: 0.5rem; outline: none; transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; }
@@ -494,7 +494,7 @@
       .fusion-quick-btn:active { transform: translateY(0); }
 
       .dropdown-header { padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: bold; color: var(--text-secondary); text-transform: uppercase; border-bottom: 1px solid var(--border); }
-      .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 3rem 1rem; }
+      .empty-state { display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; background: color-mix(in srgb, var(--card-bg) 60%, transparent); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 2rem; box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); font-size: 1.125rem; }
       .empty-state.visible { display: flex; animation: fadeIn 0.4s ease-out forwards; }
       .empty-icon { font-size: var(--text-5xl); margin-bottom: 1rem; }
       @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }

@@ -11,6 +11,8 @@ name: Unified Pipeline
   pull_request:
     branches: ["main", "master"]
   workflow_dispatch:
+  schedule:
+    - cron: '37 12 * * 3'
 
 concurrency:
   group: "${{ github.workflow }}-${{ github.ref }}"
@@ -28,45 +30,29 @@ jobs:
       matrix:
         node-version: ["18.x", "20.x", "22.x"]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-
-      - name: Execute Validation Pipeline
-        run: npm ci && npm run build:roster && npm run test:unit && npm test
-
-      - name: Setup Playwright
-        if: matrix.node-version != '18.x'
+      - run: npm ci && npm run build:roster && npm run test:unit && npm test
+      - if: matrix.node-version != '18.x'
         uses: ./.github/actions/setup-playwright
-
-      - name: Run E2E Tests
-        if: matrix.node-version != '18.x'
+      - if: matrix.node-version != '18.x'
         run: npx playwright test
-
-      - uses: actions/upload-artifact@v7
-        if: always() && matrix.node-version != '18.x'
+      - if: always() && matrix.node-version != '18.x'
+        uses: actions/upload-artifact@v7
         with:
           name: playwright-report-${{ matrix.node-version }}
           path: playwright-report/
           retention-days: 30
-
-      - name: Setup Pages
-        if: github.ref == 'refs/heads/main' && matrix.node-version == '20.x'
+      - if: github.ref == 'refs/heads/main' && matrix.node-version == '20.x'
         uses: actions/configure-pages@v6
-
-      - name: Isolate Production Payload
-        if: github.ref == 'refs/heads/main' && matrix.node-version == '20.x'
+      - if: github.ref == 'refs/heads/main' && matrix.node-version == '20.x'
         run: |
           mkdir _site
           cp -t _site/ roster-payload.json fusion_matrix.json index.html && cp -r js css prompts _site/
-
-      - name: Upload artifact
-        if: github.ref == 'refs/heads/main' && matrix.node-version == '20.x'
+      - if: github.ref == 'refs/heads/main' && matrix.node-version == '20.x'
         uses: actions/upload-pages-artifact@v5
         with:
           path: '_site'
@@ -83,6 +69,68 @@ jobs:
       pages: write
       id-token: write
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v5
+
+  analyze:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript']
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '20'
+      - uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+      - uses: github/codeql-action/autobuild@v4
+      - uses: github/codeql-action/analyze@v4
+        with:
+          category: "/language:${{matrix.language}}"
+
+  pr-checks:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - if: ${{ github.event.pull_request.changed_files == 0 }}
+        run: |
+          echo "❌ ERROR: This pull request contains 0 changed files."
+          echo "Empty pull requests are not allowed."
+          exit 1
+      - uses: actions/checkout@v7
+      - uses: actions/dependency-review-action@v5
+
+  update-orphans:
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - run: node scripts/update-orphans.js
+      - run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add prompts/fusions prompts/orphans
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update orphans lists and move unreferenced fusions"
+            git push origin HEAD:${{ github.ref }}
+          else
+            echo "No changes to commit"
+          fi
