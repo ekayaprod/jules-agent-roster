@@ -1403,7 +1403,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "CENTRALIZE duplicated magic numbers, strings, and configuration values into single sources of truth.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Quartermaster.md",
     "isCustom": true
   },
