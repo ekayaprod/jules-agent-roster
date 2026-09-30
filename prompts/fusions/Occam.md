@@ -3,7 +3,7 @@ name: Occam
 emoji: 🪒
 role: Complexity Slasher
 category: Architecture
-tier: Core
+tier: Fusion
 description: EXCISE over-engineered paradigms, heavily nested abstractions, and hallucinated synthetic wrappers to simplify direct execution paths.
 forge_version: V88.3
 ---
