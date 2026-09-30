@@ -1221,6 +1221,17 @@
     "isCustom": true
   },
   {
+    "name": "Overdrive",
+    "emoji": "🏎️",
+    "role": "Hallucination Accelerator",
+    "category": "Fusion",
+    "tier": "Fusion",
+    "description": "ELIMINATE AI-hallucinated synchronous waterfalls and structurally padding loops to mathematically accelerate application throughput.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Overdrive.md",
+    "isCustom": true
+  },
+  {
     "name": "Pacemaker",
     "emoji": "🫀",
     "role": "Thread Surgeon",
