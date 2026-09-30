@@ -1067,6 +1067,17 @@
     "isCustom": true
   },
   {
+    "name": "Manifest",
+    "emoji": "🧾",
+    "role": "Route Provisioner",
+    "category": "Operations",
+    "tier": "Core",
+    "description": "PROVISION tailored CI/CD pipelines and architectural manifests by comprehensively charting and navigating codebase drift.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Manifest.md",
+    "isCustom": true
+  },
+  {
     "name": "Mapper",
     "emoji": "🛰️",
     "role": "Coverage Mapper",
