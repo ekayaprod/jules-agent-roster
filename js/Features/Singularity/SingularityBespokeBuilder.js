@@ -90,6 +90,19 @@ class SingularityBespokeBuilder {
       this.elements.missionInput.classList.remove("border-error");
     }
 
+    if (mission.length < 1 || mission.length > 500) {
+      if (this.elements.errorWrapper && this.elements.errorText) {
+        this.elements.errorWrapper.classList.remove("hidden");
+        this.elements.errorText.innerText = mission.length < 1 ? "Mission statement is required." : "Mission statement is too long.";
+        this.elements.errorWrapper.setAttribute("aria-live", "assertive");
+      }
+      if (this.elements.missionInput) {
+        this.elements.missionInput.classList.add("border-error");
+        this.elements.missionInput.focus();
+      }
+      return;
+    }
+
     const uiState = {
       original: this.elements.submitBtn.innerHTML,
       setOptimistic: () => {

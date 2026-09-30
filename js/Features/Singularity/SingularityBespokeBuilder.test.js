@@ -64,6 +64,30 @@ describe('SingularityBespokeBuilder', () => {
       delete global.DOMUtils;
     });
 
+    it('should reject empty mission and show validation error UI', async () => {
+      builder.init();
+      builder.elements.missionInput.value = '';
+
+      await builder.handleForge();
+
+      expect(mockTerminal.launchSession).not.toHaveBeenCalled();
+      expect(builder.elements.errorWrapper.classList.contains('hidden')).toBe(false);
+      expect(builder.elements.errorText.innerText).toBe('Mission statement is required.');
+      expect(builder.elements.missionInput.classList.contains('border-error')).toBe(true);
+    });
+
+    it('should reject excessively long mission and show validation error UI', async () => {
+      builder.init();
+      builder.elements.missionInput.value = 'a'.repeat(501);
+
+      await builder.handleForge();
+
+      expect(mockTerminal.launchSession).not.toHaveBeenCalled();
+      expect(builder.elements.errorWrapper.classList.contains('hidden')).toBe(false);
+      expect(builder.elements.errorText.innerText).toBe('Mission statement is too long.');
+      expect(builder.elements.missionInput.classList.contains('border-error')).toBe(true);
+    });
+
     it('should handle successful forge request', async () => {
       global.fetch.mockResolvedValueOnce({
         ok: true,
