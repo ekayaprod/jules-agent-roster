@@ -1062,7 +1062,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "AUDIT the AI integration surface and synthesize the macro task board.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Lumen.md",
     "isCustom": true
   },
