@@ -40,7 +40,6 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Pedant,Vibe`
 - `Scribe,Vibe Check`
 - `Sentinel+,Vibe Check`
-- `Untangler,Vibe Check`
 - `Untangler,Vibe`
 - `Vibe Check,Vibe Check`
 - `Vibe,Vibe Check`
