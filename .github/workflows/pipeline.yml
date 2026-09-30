@@ -21,7 +21,7 @@ permissions:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
     strategy:
@@ -29,10 +29,10 @@ jobs:
         node-version: ["18.x", "20.x", "22.x"]
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.2.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.0.3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
@@ -48,7 +48,7 @@ jobs:
         if: matrix.node-version != '18.x'
         run: npx playwright test
 
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.3.4
         if: always() && matrix.node-version != '18.x'
         with:
           name: playwright-report-${{ matrix.node-version }}
@@ -57,7 +57,7 @@ jobs:
 
       - name: Setup Pages
         if: github.ref == 'refs/heads/main' && matrix.node-version == '20.x'
-        uses: actions/configure-pages@v6
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
 
       - name: Isolate Production Payload
         if: github.ref == 'refs/heads/main' && matrix.node-version == '20.x'
@@ -67,7 +67,7 @@ jobs:
 
       - name: Upload artifact
         if: github.ref == 'refs/heads/main' && matrix.node-version == '20.x'
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3.0.1
         with:
           path: '_site'
 
@@ -77,7 +77,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       pages: write
@@ -85,4 +85,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
