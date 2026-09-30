@@ -15,7 +15,7 @@ class SingularityBespokeBuilder {
     this.container.innerHTML = `
       <div class="sg-builder">
 
-        <div class="sg-header" id="sgHeaderToggle">
+        <div class="sg-header" id="sgHeaderToggle" tabindex="0" role="button" aria-expanded="false" aria-controls="sgForgeContainer">
           <div class="sg-header-content">
             <span class="sg-header-icon">🌌</span>
             <div>
@@ -23,6 +23,7 @@ class SingularityBespokeBuilder {
               <p class="description mt-1">Define your agent below — Singularity will scan your repo and forge the rest.</p>
             </div>
           </div>
+          <div class="sg-header-escape-hint text-xs text-gray-500 hidden" aria-hidden="true" style="margin-left:auto;">[Esc] to close</div>
         </div>
 
         <div class="sg-body" id="sgForgeContainer">
@@ -73,9 +74,34 @@ class SingularityBespokeBuilder {
 
     const forgeContainer = document.getElementById("sgForgeContainer");
     const headerToggle = document.getElementById("sgHeaderToggle");
+    const escapeHint = headerToggle ? headerToggle.querySelector('.sg-header-escape-hint') : null;
+
     if (headerToggle && forgeContainer) {
-      headerToggle.addEventListener("click", () => {
-         forgeContainer.classList.toggle("expanded");
+      const toggleExpand = () => {
+         const isExpanded = forgeContainer.classList.toggle("expanded");
+         headerToggle.setAttribute("aria-expanded", isExpanded.toString());
+         if (escapeHint) {
+           if (isExpanded) {
+             escapeHint.classList.remove('hidden');
+           } else {
+             escapeHint.classList.add('hidden');
+           }
+         }
+      };
+
+      headerToggle.addEventListener("click", toggleExpand);
+      headerToggle.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              toggleExpand();
+          }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && forgeContainer.classList.contains("expanded")) {
+          toggleExpand();
+          headerToggle.focus();
+        }
       });
     }
   }
