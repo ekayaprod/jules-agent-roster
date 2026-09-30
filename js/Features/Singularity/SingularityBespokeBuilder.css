@@ -1,4 +1,9 @@
 
+        @keyframes sg-fade-in-up {
+          0% { opacity: 0; transform: translateY(10px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+
         .sg-builder {
           background: var(--card-bg);
           border: 1px solid var(--border);
@@ -9,7 +14,13 @@
           font-family: inherit;
           overflow: hidden;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-          transition: border-color 0.3s ease;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+          animation: sg-fade-in-up 0.4s ease-out forwards;
+        }
+
+        .sg-builder:hover {
+          border-color: var(--border-hover, var(--border));
+          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         .sg-header {
@@ -28,6 +39,10 @@
         .sg-header-icon {
           font-size: 2.25rem;
           filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+          transition: transform 0.3s ease-in-out;
+        }
+        .sg-header:hover .sg-header-icon {
+          transform: rotate(15deg) scale(1.1);
         }
 
         .sg-section {
@@ -139,22 +154,3 @@
         .sg-submit:not(:disabled):active { transform: scale(0.985); }
         .sg-submit:disabled { opacity: 0.4; cursor: not-allowed; }
         .sg-submit:focus-visible { outline: 2px solid var(--mythic); outline-offset: 2px; }
-
-.sg-submit {
-    transition: all 0.3s ease-in-out;
-}
-
-.sg-submit:focus-visible {
-    outline: 2px solid var(--mythic);
-    outline-offset: 2px;
-}
-
-.sg-submit:active {
-    transform: scale(0.95);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .sg-submit:hover {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-}

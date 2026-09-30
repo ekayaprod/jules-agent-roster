@@ -15,7 +15,7 @@ class SingularityBespokeBuilder {
     this.container.innerHTML = `
       <div class="sg-builder">
 
-        <div class="sg-header" id="sgHeaderToggle">
+        <div class="sg-header transition-all duration-300 ease-in-out hover:bg-black/5 dark:hover:bg-white/5 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" id="sgHeaderToggle" tabindex="0" role="button" aria-expanded="false" aria-controls="sgForgeContainer">
           <div class="sg-header-content">
             <span class="sg-header-icon">🌌</span>
             <div>
@@ -74,8 +74,18 @@ class SingularityBespokeBuilder {
     const forgeContainer = document.getElementById("sgForgeContainer");
     const headerToggle = document.getElementById("sgHeaderToggle");
     if (headerToggle && forgeContainer) {
-      headerToggle.addEventListener("click", () => {
-         forgeContainer.classList.toggle("expanded");
+      const toggleExpanded = () => {
+         const isExpanded = forgeContainer.classList.toggle("expanded");
+         headerToggle.setAttribute("aria-expanded", isExpanded);
+      };
+
+      headerToggle.addEventListener("click", toggleExpanded);
+
+      headerToggle.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleExpanded();
+        }
       });
     }
   }
@@ -110,10 +120,10 @@ class SingularityBespokeBuilder {
           DOMUtils.setButtonState(
             this.elements.submitBtn,
             typeof BUTTON_STATES !== "undefined" ? BUTTON_STATES.LOADING : "loading",
-            "Forging Agent..."
+            '<span class="animate-pulse">Forging Agent...</span>'
           );
         } else {
-          this.elements.submitBtn.innerHTML = "Forging Agent...";
+          this.elements.submitBtn.innerHTML = '<span class="animate-pulse">Forging Agent...</span>';
           this.elements.submitBtn.disabled  = true;
         }
       },
