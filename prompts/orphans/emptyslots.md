@@ -9,7 +9,6 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 ## Missing Combinations
 
 - `Author,Author`
-- `Bolt+,Vibe Check`
 - `Dispatch,Dispatch`
 - `Dispatch,Navigator`
 - `Dispatch,Overseer`
@@ -40,7 +39,6 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Pedant,Vibe`
 - `Scribe,Vibe Check`
 - `Sentinel+,Vibe Check`
-- `Untangler,Vibe Check`
 - `Untangler,Vibe`
 - `Vibe Check,Vibe Check`
 - `Vibe,Vibe Check`

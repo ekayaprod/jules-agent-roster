@@ -1166,6 +1166,17 @@
     "isCustom": true
   },
   {
+    "name": "Occam",
+    "emoji": "🪒",
+    "role": "Complexity Slasher",
+    "category": "Fusion",
+    "tier": "Fusion",
+    "description": "EXCISE over-engineered paradigms, heavily nested abstractions, and hallucinated synthetic wrappers to simplify execution paths.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Occam.md",
+    "isCustom": true
+  },
+  {
     "name": "Oracle",
     "emoji": "🧿",
     "role": "Contract Sealer",
@@ -1207,6 +1218,17 @@
     "description": "OVERCLOCK the test suite. Bend time, eradicate I/O gravity, and compress bloated CI execution cycles to save the VM from timeout exhaustion.",
     "forge_version": "V87.4",
     "promptFile": "prompts/fusions/Overclock.md",
+    "isCustom": true
+  },
+  {
+    "name": "Overdrive",
+    "emoji": "🏎️",
+    "role": "Hallucination Accelerator",
+    "category": "Fusion",
+    "tier": "Fusion",
+    "description": "ELIMINATE AI-hallucinated synchronous waterfalls and structurally padding loops to mathematically accelerate application throughput.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Overdrive.md",
     "isCustom": true
   },
   {
