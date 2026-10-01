@@ -182,7 +182,7 @@ class SingularityBespokeBuilder {
         this.julesTerminal.launchSession(agentPayload, this.elements.submitBtn);
       } else {
         uiState.rollback();
-        const tu = typeof window !== "undefined" ? window.TelemetryUtils : global.window.TelemetryUtils;
+        const tu = window.TelemetryUtils || global.window.TelemetryUtils;
         if (tu) {
             tu.dispatchEvent("BUILDER_MISSING_TERMINAL", new Error("julesTerminal instance is missing"));
         }
@@ -200,7 +200,7 @@ class SingularityBespokeBuilder {
       }
       const forgeError = new Error(`Singularity Forge Error: ${error.message}`);
       forgeError.cause = error;
-      const tu = typeof window !== "undefined" ? window.TelemetryUtils : global.window.TelemetryUtils;
+      const tu = window.TelemetryUtils || global.window.TelemetryUtils;
       if (tu) {
           tu.dispatchEvent("BUILDER_FORGE_ERROR", forgeError);
       } else {
