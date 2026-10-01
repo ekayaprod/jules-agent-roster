@@ -108,15 +108,15 @@ describe('SingularityBespokeBuilder', () => {
       global.fetch.mockRejectedValueOnce(new Error('Network error'));
 
       builder.init();
-      window.TelemetryUtils = { dispatchEvent: jest.fn() };
+      global.window.TelemetryUtils = { dispatchEvent: jest.fn() };
 
       await builder.handleForge();
 
-      expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BUILDER_FORGE_ERROR', expect.any(Error));
-      expect(window.rosterApp.showToast).toHaveBeenCalledWith(expect.stringContaining('Failed to forge bespoke agent:'));
+      expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BUILDER_FORGE_ERROR', expect.any(Error));
+      expect(global.window.rosterApp.showToast).toHaveBeenCalledWith(expect.stringContaining('Failed to forge bespoke agent:'));
       expect(mockTerminal.launchSession).not.toHaveBeenCalled();
 
-      delete window.TelemetryUtils;
+      delete global.window.TelemetryUtils;
     });
 
     it('should handle missing template response', async () => {
@@ -127,7 +127,7 @@ describe('SingularityBespokeBuilder', () => {
       builder.init();
       await builder.handleForge();
 
-      expect(window.rosterApp.showToast).toHaveBeenCalledWith('Failed to load the Singularity template. Try again.');
+      expect(global.window.rosterApp.showToast).toHaveBeenCalledWith('Failed to load the Singularity template. Try again.');
       expect(mockTerminal.launchSession).not.toHaveBeenCalled();
     });
 
@@ -186,16 +186,16 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
       text: () => Promise.resolve('Template'),
     });
 
-    window.TelemetryUtils = { dispatchEvent: jest.fn() };
+    global.window.TelemetryUtils = { dispatchEvent: jest.fn() };
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
 
     builder.julesTerminal = null;
     builder.init();
     await builder.handleForge();
 
-    expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_MISSING_TERMINAL", expect.any(Error));
+    expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_MISSING_TERMINAL", expect.any(Error));
 
-    delete window.TelemetryUtils;
+    delete global.window.TelemetryUtils;
     delete global.fetch;
     consoleWarnSpy.mockRestore();
   });
@@ -203,15 +203,15 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
   it('should dispatch BUILDER_FORGE_ERROR error if TelemetryUtils is available and fetch fails', async () => {
     global.fetch = jest.fn().mockRejectedValue(new Error('Network Failure'));
 
-    window.TelemetryUtils = { dispatchEvent: jest.fn() };
+    global.window.TelemetryUtils = { dispatchEvent: jest.fn() };
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     builder.init();
     await builder.handleForge();
 
-    expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_FORGE_ERROR", expect.any(Error));
+    expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_FORGE_ERROR", expect.any(Error));
 
-    delete window.TelemetryUtils;
+    delete global.window.TelemetryUtils;
     delete global.fetch;
     consoleErrorSpy.mockRestore();
   });
