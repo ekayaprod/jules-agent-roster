@@ -1298,6 +1298,17 @@
     "isCustom": true
   },
   {
+    "name": "Phoenix",
+    "emoji": "🐦‍🔥",
+    "role": "Genesis Engine",
+    "category": "Creation",
+    "tier": "Mythic",
+    "description": "RESURRECT entire application macro-features from the ashes of decommissioned legacy systems by hallucinating complete, multi-stack replacements.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Phoenix.md",
+    "isCustom": true
+  },
+  {
     "name": "Plumbline",
     "emoji": "📐",
     "role": "Reality Mason",
@@ -1694,6 +1705,17 @@
     "isCustom": true
   },
   {
+    "name": "Strategist",
+    "emoji": "♟️",
+    "role": "Roadmap Synchronizer",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "CODIFY proprietary commit patterns and unwritten release tagging rules into a universal micro-agent prompt to flawlessly draft future changelogs.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Strategist.md",
+    "isCustom": true
+  },
+  {
     "name": "Streamliner",
     "emoji": "⛷️",
     "role": "Load Reducer",
@@ -1722,7 +1744,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "SUNSET legacy patterns. Author formal DEPRECATION.md plans and sweep wikis to erase or rewrite tutorials that still point to retired systems.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Sunsetter.md",
     "isCustom": true
   },
