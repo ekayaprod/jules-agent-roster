@@ -54,13 +54,13 @@ describe('SingularityBespokeBuilder', () => {
   describe('handleForge', () => {
     beforeEach(() => {
       global.fetch = jest.fn();
-      global.window.rosterApp = { showToast: jest.fn() };
+      window.rosterApp = { showToast: jest.fn() };
       global.DOMUtils = { setButtonState: jest.fn() };
     });
 
     afterEach(() => {
       delete global.fetch;
-      delete global.window.rosterApp;
+      delete window.rosterApp;
       delete global.DOMUtils;
     });
 
@@ -108,15 +108,15 @@ describe('SingularityBespokeBuilder', () => {
       global.fetch.mockRejectedValueOnce(new Error('Network error'));
 
       builder.init();
-      global.window.TelemetryUtils = { dispatchEvent: jest.fn() };
+      window.TelemetryUtils = { dispatchEvent: jest.fn() };
 
       await builder.handleForge();
 
-      expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BUILDER_FORGE_ERROR', expect.any(Error));
-      expect(global.window.rosterApp.showToast).toHaveBeenCalledWith(expect.stringContaining('Failed to forge bespoke agent:'));
+      expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BUILDER_FORGE_ERROR', expect.any(Error));
+      expect(window.rosterApp.showToast).toHaveBeenCalledWith(expect.stringContaining('Failed to forge bespoke agent:'));
       expect(mockTerminal.launchSession).not.toHaveBeenCalled();
 
-      delete global.window.TelemetryUtils;
+      delete window.TelemetryUtils;
     });
 
     it('should handle missing template response', async () => {
@@ -127,7 +127,7 @@ describe('SingularityBespokeBuilder', () => {
       builder.init();
       await builder.handleForge();
 
-      expect(global.window.rosterApp.showToast).toHaveBeenCalledWith('Failed to load the Singularity template. Try again.');
+      expect(window.rosterApp.showToast).toHaveBeenCalledWith('Failed to load the Singularity template. Try again.');
       expect(mockTerminal.launchSession).not.toHaveBeenCalled();
     });
 
