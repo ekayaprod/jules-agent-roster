@@ -745,23 +745,6 @@
 
 #
 
-## Strategist
-
-- **Role:** Roadmap Synchronizer
-- **Category:** Strategy
-- **Description:** Autonomously analyze the repository's git history, extract the proprietary commit patterns and unwritten release tagging rules, and codify them into a universal micro-agent prompt that can flawlessly draft future changelogs.
-
-### Favorite Optimizations
-
-* ♟️ **The SemVer Broadcaster**: Engineered `prompts/micro/semver-changelog.md` to autonomously parse merged PRs matching `feat:` and group them by Jira ticket ID into the public changelog format used by the team.
-* ♟️ **The Roadmap Syncer**: Birthed `prompts/micro/roadmap-syncer.md` to trigger on main branch merges, scanning for `Closes #` syntax and checking off the exact corresponding item in `ROADMAP.md`.
-* ♟️ **The Shorthand Decrypter**: Built `prompts/micro/shorthand-translator.md` hardcoded with the specific proprietary abbreviations used by the backend team to translate them into product-audience release notes.
-* ♟️ **The Release Drafter**: Generated `prompts/micro/github-release-drafter.md` to automatically construct the exact JSON payload required to publish a GitHub Release matching the repository's strict formatting guidelines.
-* ♟️ **The Feature Flag Announcer**: Engineered a prompt triggered by the deletion of `is_enabled` flags in the codebase to automatically draft the "Now in General Availability" announcement.
-* ♟️ **The Milestone Enforcer**: Birthed a micro-agent prompt that cross-references all merged PRs in a release against the declared GitHub Milestone to flag any stray commits.
-
-#
-
 ## Stress Tester
 
 - **Role:** Security Assurance Specialist

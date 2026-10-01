@@ -32,7 +32,6 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Overseer,Palette+`
 - `Overseer,Pedant`
 - `Overseer,Scavenger`
-- `Overseer,Scribe`
 - `Overseer,Untangler`
 - `Overseer,Vibe Check`
 - `Pedant,Vibe Check`
@@ -42,4 +41,3 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Untangler,Vibe`
 - `Vibe Check,Vibe Check`
 - `Vibe,Vibe Check`
-- `Vibe,Vibe`
