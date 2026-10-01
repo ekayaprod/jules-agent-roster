@@ -858,6 +858,17 @@
     "isCustom": true
   },
   {
+    "name": "Harbormaster",
+    "emoji": "⚓",
+    "role": "Logistics Cartographer",
+    "category": "Architecture",
+    "tier": "Core",
+    "description": "CHART robust CI/CD terrains, map deployment infrastructure drift, and inject visionary pipelines to conquer transit stagnation.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Harbormaster.md",
+    "isCustom": true
+  },
+  {
     "name": "Hazmat",
     "emoji": "☣️",
     "role": "Biohazard Responder",
