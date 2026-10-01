@@ -108,6 +108,7 @@ describe('SingularityBespokeBuilder', () => {
       global.fetch.mockRejectedValueOnce(new Error('Network error'));
 
       builder.init();
+      builder.elements.missionInput.value = 'Test Mission';
       global.window.TelemetryUtils = { dispatchEvent: jest.fn() };
 
       await builder.handleForge();
@@ -125,6 +126,7 @@ describe('SingularityBespokeBuilder', () => {
       });
 
       builder.init();
+      builder.elements.missionInput.value = 'Test Mission';
       await builder.handleForge();
 
       expect(global.window.rosterApp.showToast).toHaveBeenCalledWith('Failed to load the Singularity template. Try again.');
@@ -191,6 +193,7 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
 
     builder.julesTerminal = null;
     builder.init();
+    builder.elements.missionInput.value = 'Test Mission';
     await builder.handleForge();
 
     expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_MISSING_TERMINAL", expect.any(Error));
@@ -207,6 +210,7 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     builder.init();
+    builder.elements.missionInput.value = 'Test Mission';
     await builder.handleForge();
 
     expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_FORGE_ERROR", expect.any(Error));
