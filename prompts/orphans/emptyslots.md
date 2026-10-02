@@ -18,8 +18,8 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Helix,Vibe Check`
 - `Inspector,Vibe Check`
 - `Janitor,Janitor`
-- `Janitor,Vibe`
 - `Janitor,Vibe Check`
+- `Janitor,Vibe`
 - `Modernizer,Modernizer`
 - `Modernizer,Vibe Check`
 - `Navigator,Overseer`
