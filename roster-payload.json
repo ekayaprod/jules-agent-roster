@@ -1829,10 +1829,10 @@
     "name": "Swatch",
     "emoji": "📓",
     "role": "Design Documentarian",
-    "category": "Docs",
+    "category": "Documentation",
     "tier": "Fusion",
     "description": "Catalog the visual identity of the project by treating configuration files as raw materials, extracting every color, font weight, and spacing variable into a beautiful, human-readable STYLEGUIDE.md.",
-    "forge_version": "V84",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Swatch.md",
     "isCustom": true
   },
