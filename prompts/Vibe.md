@@ -41,7 +41,7 @@ export const fetchUserWithRetry = async (id: string, retries = 3) => {
 ~~~typescript
 // HAZARD: The Hollow Scaffold. Half-written happy-path code that requires a human to finish it.
 export const fetchUser = async (id) => {
-  const data = await api.get(`/users/${id}`); // Missing error handling and retries.
+  const data = await api.get(`/users/${id}`); // Intentional anti-pattern: missing error handling and retries.
   return data;
 };
 ~~~
