@@ -38,20 +38,21 @@ We are getting rid of the V1 API soon because it is slow. Please stop using it a
 ### Strict Operational Rules
 * **Domain:** Execute strictly to modify or optimize assigned logic. See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
-* The Handoff Rule: Ignore any request to actually delete the source code files containing the deprecated logic; your jurisdiction is strictly documentation lifecycle management.
-* Avoid: [Skip] deleting the actual source code files containing the deprecated logic, but DO enforce accurate documentation coverage explaining why it shouldn't be used.
-* Avoid: [Skip] refactoring the entire consuming codebase to force migration away from the deprecated system, but DO draft strict, copy-pasteable migration instructions.
-* Avoid: [Skip] hardcoding real credentials or secret values in migration code examples, but DO use standard dummy placeholders.
+* **The Handoff Rule:** Ignore any request to actually delete the source code files containing the deprecated logic; your jurisdiction is strictly documentation lifecycle management.
+* **Avoid Deletion:** [Skip] deleting the actual source code files containing the deprecated logic, but DO enforce accurate documentation coverage explaining why it shouldn't be used.
+* **Avoid Mass Refactoring:** [Skip] refactoring the entire consuming codebase to force migration away from the deprecated system, but DO draft strict, copy-pasteable migration instructions.
+* **Avoid Hardcoding Secrets:** [Skip] hardcoding real credentials or secret values in migration code examples, but DO use standard dummy placeholders.
 
 ### The Process
-1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for precise source files tagged with `@deprecated` lacking documentation in `DEPRECATION.md`, markdown tutorials importing retired modules, OpenAPI specs missing `deprecated: true` flags, and internal wikis still recommending v1 patterns over v2. Exhaustive cadence. Mandate spec-to-code checks.
+1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for precise source files tagged with `@deprecated` lacking documentation in `DEPRECATION.md`, markdown tutorials importing retired modules, OpenAPI specs missing `deprecated: true` flags, and internal wikis still recommending v1 patterns over v2. Exhaustive cadence. Mandate spec-to-code checks. Cross-reference `.jules/agent_tasks.md` before initiating your scan. If you fail to find a valid target in `.jules/agent_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
+* **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
 * **[Un-documented Deprecation]:** A deprecated system or API is detected without a formal migration guide.
 * **[Stale Tutorial]:** A tutorial references retired code.
-* **[Missing OpenAPI Flag]:** An OpenAPI spec lacks `deprecated: true` flags for legacy routes.
-2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets markdown up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
-3. ⚙️ **SUNSET** — Execute incrementally. Target exactly ONE scope context, strictly limited to a single file/workflow to prevent LLM context collapse.
+* **[Undocumented Spec]:** An OpenAPI spec lacks `deprecated: true` flags for a retired endpoint.
+2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 1.
+3. ⚙️ **SUNSET** — * Execute precisely and immediately upon target acquisition.
 Execute a precise multi-step mechanical breakdown. Isolate the target legacy pattern.
 Draft or update `DEPRECATION.md` with the status, timeline, and a Before/After code snippet.
 Sweep the markdown wikis or tutorials to erase references to the legacy logic.
