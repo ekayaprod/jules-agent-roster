@@ -28,7 +28,7 @@
     "category": "Plus",
     "tier": "Core",
     "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge system latency.",
-    "forge_version": "V87.2",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Bolt+.md",
     "isCustom": false
   },
@@ -182,7 +182,7 @@
     "category": "Plus",
     "tier": "Core",
     "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries across the repository.",
-    "forge_version": "V86.8",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Sentinel+.md",
     "isCustom": false
   },
@@ -2168,9 +2168,9 @@
   },
   {
     "name": "Whistleblower",
-    "emoji": "📯",
+    "emoji": "📢",
     "role": "Syntax Shamer",
-    "category": "Docs",
+    "category": "Documentation",
     "tier": "Fusion",
     "description": "TRANSLATE raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.",
     "forge_version": "V88.3",
