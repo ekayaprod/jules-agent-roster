@@ -1804,6 +1804,17 @@
     "isCustom": true
   },
   {
+    "name": "Superintendent",
+    "emoji": "🏢",
+    "role": "Facilities Director",
+    "category": "Operations",
+    "tier": "Core",
+    "description": "AUDIT the macroscopic repository topology to identify deep structural decay and PURGE the ecosystem to permanently clear unlinked artifacts and manifest bloat.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Superintendent.md",
+    "isCustom": true
+  },
+  {
     "name": "Surgeon",
     "emoji": "🔪",
     "role": "Structural Stabilizer",
