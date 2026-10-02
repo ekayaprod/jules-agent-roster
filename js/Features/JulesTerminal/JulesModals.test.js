@@ -178,6 +178,17 @@ describe('JulesTerminal', () => {
             expect(mockElements.prModalTitleText.textContent).toBeUndefined();
         });
 
+        it('should safely handle missing DOM elements', () => {
+            mockElements.prModalTitleText = null;
+            mockElements.prModalExternalLink = null;
+            mockElements.prModalContent = null;
+            mockElements.prModalError = null;
+
+            expect(() => {
+                modals._showPRModal(mockPR);
+            }).not.toThrow();
+        });
+
         it('should strip href if URL protocol is unsafe', () => {
             mockElements.prModalExternalLink.removeAttribute = jest.fn();
             modals._showPRModal({ ...mockPR, html_url: 'javascript:alert(1)' });
@@ -246,6 +257,60 @@ describe('JulesTerminal', () => {
             // Restore original URL and globals
             global.URL = originalURL;
             global.JulesTerminal = originalJulesTerminal;
+        });
+
+        it('should use window.TelemetryUtils if JulesTerminal is undefined but window is defined', () => {
+            mockElements.prModalExternalLink.removeAttribute = jest.fn();
+            const originalURL = global.URL;
+            const errorToThrow = new TypeError('Invalid URL');
+            global.URL = jest.fn(() => {
+                throw errorToThrow;
+            });
+
+            const originalJulesTerminal = global.JulesTerminal;
+            delete global.JulesTerminal;
+
+            const mockTelemetry = { dispatchEvent: jest.fn() };
+            const originalTelemetryUtils = window.TelemetryUtils;
+            window.TelemetryUtils = mockTelemetry;
+
+            modals._showPRModal({ ...mockPR, html_url: 'invalid' });
+
+            expect(mockElements.prModalExternalLink.removeAttribute).toHaveBeenCalledWith('href');
+            expect(mockTelemetry.dispatchEvent).toHaveBeenCalledWith("MODAL_URL_PARSE_FAILED", errorToThrow, { url: 'invalid' });
+
+            // Restore original URL and globals
+            global.URL = originalURL;
+            global.JulesTerminal = originalJulesTerminal;
+            window.TelemetryUtils = originalTelemetryUtils;
+        });
+
+        it('should gracefully handle URL parsing error when both JulesTerminal and window are undefined', () => {
+            mockElements.prModalExternalLink.removeAttribute = jest.fn();
+            const originalURL = global.URL;
+            const errorToThrow = new TypeError('Invalid URL');
+            global.URL = jest.fn(() => {
+                throw errorToThrow;
+            });
+
+            const originalJulesTerminal = global.JulesTerminal;
+            delete global.JulesTerminal;
+
+            const originalWindow = global.window;
+            // Since our tests run in a Node environment (JSDOM), we need to simulate window being undefined
+            // in a way that respects the `typeof window !== 'undefined'` check.
+            // Note: In JSDOM, window is globally available. We can't perfectly simulate `typeof window === 'undefined'`
+            // without a lot of hacking, but we can set `global.window = undefined`.
+            global.window = undefined;
+
+            modals._showPRModal({ ...mockPR, html_url: 'invalid' });
+
+            expect(mockElements.prModalExternalLink.removeAttribute).toHaveBeenCalledWith('href');
+
+            // Restore original URL and globals
+            global.URL = originalURL;
+            global.JulesTerminal = originalJulesTerminal;
+            global.window = originalWindow;
         });
     });
 
