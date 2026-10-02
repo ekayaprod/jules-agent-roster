@@ -1403,7 +1403,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "Prepare developers for API end-of-life cycles by hunting for `@deprecated` tags and injecting runtime environment-sensitive warnings.",
-    "forge_version": "V85.1",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Prophet.md",
     "isCustom": true
   },
