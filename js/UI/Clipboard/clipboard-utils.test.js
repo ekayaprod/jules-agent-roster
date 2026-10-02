@@ -52,6 +52,19 @@ describe('ClipboardUtils', () => {
             expect(result).toBe(true);
         });
 
+        it('should handle string errors thrown by Clipboard API writeText', async () => {
+            const stringError = 'String error from writeText';
+            global.navigator.clipboard.writeText.mockRejectedValue(stringError);
+            document.execCommand.mockReturnValue(true);
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(global.navigator.clipboard.writeText).toHaveBeenCalledWith('test text');
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_API_FAILED', stringError);
+            expect(document.execCommand).toHaveBeenCalledWith('copy');
+            expect(result).toBe(true);
+        });
+
         it('should fallback to execCommand if Clipboard API fails with DOMException (NotAllowedError)', async () => {
             const mockError = new DOMException('Document is not focused.', 'NotAllowedError');
             global.navigator.clipboard.writeText.mockRejectedValue(mockError);
