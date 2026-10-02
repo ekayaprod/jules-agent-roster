@@ -858,6 +858,17 @@
     "isCustom": true
   },
   {
+    "name": "Harbormaster",
+    "emoji": "⚓",
+    "role": "Logistics Cartographer",
+    "category": "Architecture",
+    "tier": "Core",
+    "description": "CHART robust CI/CD terrains, map deployment infrastructure drift, and inject visionary pipelines to conquer transit stagnation.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Harbormaster.md",
+    "isCustom": true
+  },
+  {
     "name": "Hazmat",
     "emoji": "☣️",
     "role": "Biohazard Responder",
@@ -1298,6 +1309,17 @@
     "isCustom": true
   },
   {
+    "name": "Phoenix",
+    "emoji": "🐦‍🔥",
+    "role": "Genesis Engine",
+    "category": "Creation",
+    "tier": "Mythic",
+    "description": "RESURRECT entire application macro-features from the ashes of decommissioned legacy systems by hallucinating complete, multi-stack replacements.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Phoenix.md",
+    "isCustom": true
+  },
+  {
     "name": "Plumbline",
     "emoji": "📐",
     "role": "Reality Mason",
@@ -1306,6 +1328,17 @@
     "description": "DEMOLISH hallucinated file structures and over-engineered directory facades by directly modifying the filesystem using git mv and rewiring native import corridors.",
     "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Plumbline.md",
+    "isCustom": true
+  },
+  {
+    "name": "Policy Maker",
+    "emoji": "⚖️",
+    "role": "AI Architect",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "GOVERN the codebase by establishing strict AI data boundaries and ensuring no internal PII or unauthorized models breach compliance.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Policy Maker.md",
     "isCustom": true
   },
   {
@@ -1361,6 +1394,17 @@
     "description": "PROPAGATE overgrown WET clippings into pristine, net-new utility soil to cultivate a centralized, structurally cohesive root system.",
     "forge_version": "V87.5",
     "promptFile": "prompts/fusions/Propagator.md",
+    "isCustom": true
+  },
+  {
+    "name": "Prophet",
+    "emoji": "🔮",
+    "role": "Deprecation Forecaster",
+    "category": "Hygiene",
+    "tier": "Fusion",
+    "description": "Prepare developers for API end-of-life cycles by hunting for `@deprecated` tags and injecting runtime environment-sensitive warnings.",
+    "forge_version": "V85.1",
+    "promptFile": "prompts/fusions/Prophet.md",
     "isCustom": true
   },
   {
@@ -1449,6 +1493,17 @@
     "description": "DISTILL messy, nested callback spaghetti into flat, modern async/await execution paths by untangling the structure and upgrading the syntax.",
     "forge_version": "V87.2",
     "promptFile": "prompts/fusions/Refiner.md",
+    "isCustom": true
+  },
+  {
+    "name": "Registrar",
+    "emoji": "📑",
+    "role": "Component Cataloger",
+    "category": "Architecture",
+    "tier": "Mythic",
+    "description": "Synthesizes a live, repository-wide architectural symbol graph to unify all component registers, eliminate dependency anomalies, and optimize global import topologies at scale.",
+    "forge_version": "V85",
+    "promptFile": "prompts/fusions/Registrar.md",
     "isCustom": true
   },
   {
@@ -1683,6 +1738,17 @@
     "isCustom": true
   },
   {
+    "name": "Standardizer",
+    "emoji": "🔢",
+    "role": "Copy Centralizer",
+    "category": "Hygiene",
+    "tier": "Fusion",
+    "description": "Identify minor, semantic variations of identically intentioned code blocks, UI copy, and constant strings scattered across the repository, and centralize them into single, reusable references.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Standardizer.md",
+    "isCustom": true
+  },
+  {
     "name": "Steward",
     "emoji": "🧽",
     "role": "Dependency Caretaker",
@@ -1691,6 +1757,17 @@
     "description": "MAP the overarching impact of dependency updates and polyfill removals, bridging the gap between package bumps and macro architecture.",
     "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Steward.md",
+    "isCustom": true
+  },
+  {
+    "name": "Strategist",
+    "emoji": "♟️",
+    "role": "Roadmap Synchronizer",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "CODIFY proprietary commit patterns and unwritten release tagging rules into a universal micro-agent prompt to flawlessly draft future changelogs.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Strategist.md",
     "isCustom": true
   },
   {
@@ -1746,6 +1823,17 @@
     "description": "EXCAVATE massive test silos and colocate fractured unit tests directly adjacent to their source code.",
     "forge_version": "V87.9",
     "promptFile": "prompts/fusions/Surveyor.md",
+    "isCustom": true
+  },
+  {
+    "name": "Swatch",
+    "emoji": "📓",
+    "role": "Design Documentarian",
+    "category": "Docs",
+    "tier": "Fusion",
+    "description": "Catalog the visual identity of the project by treating configuration files as raw materials, extracting every color, font weight, and spacing variable into a beautiful, human-readable STYLEGUIDE.md.",
+    "forge_version": "V84",
+    "promptFile": "prompts/fusions/Swatch.md",
     "isCustom": true
   },
   {
@@ -2065,6 +2153,17 @@
     "description": "WEAVE duplicated logic into single utilities, flattening deeply nested execution paths into pristine, linear strands.",
     "forge_version": "V86.1",
     "promptFile": "prompts/fusions/Weaver.md",
+    "isCustom": true
+  },
+  {
+    "name": "Whistleblower",
+    "emoji": "📯",
+    "role": "Syntax Shamer",
+    "category": "Docs",
+    "tier": "Fusion",
+    "description": "Translate raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.",
+    "forge_version": "V84",
+    "promptFile": "prompts/fusions/Whistleblower.md",
     "isCustom": true
   },
   {

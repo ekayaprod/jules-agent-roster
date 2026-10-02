@@ -10,7 +10,7 @@ describe('Architecture Standard: Test Colocation', () => {
                 // Try to get changes relative to main
                 const diffOutput = execSync('git diff --name-only origin/main...HEAD', { encoding: 'utf-8' });
                 changedFiles = diffOutput.split('\n').filter(Boolean);
-            } catch (e) {
+            } catch {
                 try {
                     // Fallback to currently staged/unstaged changes
                     const diffOutput = execSync('git diff --name-only HEAD', { encoding: 'utf-8' });
@@ -25,7 +25,7 @@ describe('Architecture Standard: Test Colocation', () => {
                     changedFiles = diffOutput.split('\n').filter(Boolean);
                 }
             }
-        } catch (e) {
+        } catch {
             // Safely skip if not in a git repo
             return;
         }
