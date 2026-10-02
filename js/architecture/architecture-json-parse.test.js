@@ -10,12 +10,12 @@ describe('Architecture Standard: Safe JSON Parsing', () => {
             try {
                 const diffOutput = execSync('git diff --name-only origin/main...HEAD', { encoding: 'utf-8' });
                 changedFiles = diffOutput.split('\n').filter(Boolean);
-            } catch (e) {
+            } catch {
                 // Fallback to checking uncommitted changes or just HEAD~1
                 const diffOutput = execSync('git diff --name-only HEAD~1', { encoding: 'utf-8' });
                 changedFiles = diffOutput.split('\n').filter(Boolean);
             }
-        } catch (e) {
+        } catch {
             // If not in a git repo or something fails, skip safely
             return;
         }

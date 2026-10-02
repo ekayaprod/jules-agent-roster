@@ -109,7 +109,7 @@ describe('SingularityBespokeBuilder', () => {
 
       builder.init();
       global.window.TelemetryUtils = { dispatchEvent: jest.fn() };
-
+      builder.elements.missionInput.value = 'Valid Mission';
       await builder.handleForge();
 
       expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('BUILDER_FORGE_ERROR', expect.any(Error));
@@ -125,6 +125,7 @@ describe('SingularityBespokeBuilder', () => {
       });
 
       builder.init();
+      builder.elements.missionInput.value = 'Valid Mission';
       await builder.handleForge();
 
       expect(global.window.rosterApp.showToast).toHaveBeenCalledWith('Failed to load the Singularity template. Try again.');
@@ -191,7 +192,8 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
 
     builder.julesTerminal = null;
     builder.init();
-    await builder.handleForge();
+      builder.elements.missionInput.value = 'Valid Mission';
+      await builder.handleForge();
 
     expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_MISSING_TERMINAL", expect.any(Error));
 
@@ -207,7 +209,8 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     builder.init();
-    await builder.handleForge();
+      builder.elements.missionInput.value = 'Valid Mission';
+      await builder.handleForge();
 
     expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_FORGE_ERROR", expect.any(Error));
 
@@ -226,7 +229,8 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
 
     builder.julesTerminal = null;
     builder.init();
-    await builder.handleForge();
+      builder.elements.missionInput.value = 'Valid Mission';
+      await builder.handleForge();
 
     expect(consoleWarnSpy).not.toHaveBeenCalledWith("Singularity Builder: julesTerminal instance is missing.");
 

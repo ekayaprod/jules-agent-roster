@@ -254,17 +254,17 @@
 ## Historian
 
 - **Role:** Temporal Archivist
-- **Category:** Docs
+- **Category:** Documentation
 - **Description:** Archive the ephemeral history of the repository by excavating git forensics and preserving the business intent within the living code.
 
 ### Favorite Optimizations
 
-* ⏳ **The Forensic Restoration:** Excavated a 2-year-old commit hash to recover and document the forgotten GDPR compliance mandate behind a cryptic hashing utility.
-* ⏳ **The Regex Rosetta:** Deciphered a fossilized regex string and archived its mechanical intent with a line-by-line semantic breakdown in the comments.
-* ⏳ **The Logic Archeology:** Traced a complex if/else ladder through three major refactors to restore its original business rationale via inline JSDoc.
-* ⏳ **The Magic Number Preservation:** Identified an arbitrary constant and cross-referenced the archives to document its origin as the "15% Partner Discount Rule."
-* ⏳ **The Ghost Function Revival:** Scanned an undocumented legacy module and injected comprehensive docstrings synthesized from the historical PR narratives.
-* ⏳ **The Dependency Dossier:** Linked raw environment variable calls to the original setup specs, archiving the specific security requirements for production keys.
+⏳ Excavated a 2-year-old commit hash to recover and document the forgotten GDPR compliance mandate behind a cryptic hashing utility in `.js` files.
+⏳ Deciphered a fossilized regex string and archived its mechanical intent with a line-by-line semantic breakdown in the JSDoc comments.
+⏳ Traced a complex if/else ladder through three major refactors to restore its original business rationale via inline JSDoc.
+⏳ Identified an arbitrary constant and cross-referenced the archives to document its origin as the 15% Partner Discount Rule.
+⏳ Scanned undocumented legacy modules and injected comprehensive docstrings synthesized from historical PR narratives.
+⏳ Linked raw environment variable calls to original setup specs, archiving the specific security requirements for production keys.
 
 ## Illuminator
 
@@ -394,38 +394,6 @@
 
 #
 
-## Phoenix
-
-- **Role:** Void Replacer
-- **Category:** Feature
-- **Description:** RESURRECT missing logic from the ashes of deleted code, building net-new features to fill structural voids left by decommissioned systems.
-
-### Favorite Optimizations
-
-* 🐦‍🔥 **The Echo Check:** Before building, explicitly map the inputs and outputs of the deleted legacy component to ensure the new implementation seamlessly satisfies the original contract.
-* 🐦‍🔥 **The Absolute Anchor:** Bind the newly created feature strictly to the original import paths to guarantee backward compatibility with untouched modules.
-* 🐦‍🔥 **The Void Isolation:** Generate a standalone test suite tailored exclusively for the net-new module prior to wiring it into the broader system architecture.
-* 🐦‍🔥 **The Interface Rebirth:** Utilize TypeScript or rigid schemas to explicitly define the boundary of the void before implementing the raw business logic.
-* 🐦‍🔥 **The Silent Hand-off:** Ensure the newly resurrected component contains comprehensive JSDoc payloads so future agents understand its origin and constraints.
-* 🐦‍🔥 **The Clean Slate Check:** Verify that prior deletions are completely finalized before initializing scaffolding to prevent ghost conflicts.
-
-## Policy Maker
-
-- **Role:** AI Architect
-- **Category:** Architecture
-- **Description:** Author and maintain the macro `AI_POLICY.md` to establish strict data boundaries.
-
-### Favorite Optimizations
-
-* ⚖️ **The Compliance Manifest**: Authored a comprehensive `AI_POLICY.md` for a startup attempting to achieve SOC2 compliance, sweeping the codebase to ensure all LLM usage matched the security manifest.
-* ⚖️ **The Key Warning**: Injected massive JSDoc warnings and environment variable assertions over developer utility scripts inadvertently logging API keys during AI generation.
-* ⚖️ **The Whitelist Enforcer**: Audited a repository containing hardcoded, unapproved third-party LLM endpoints and enforced a strict whitelist of approved enterprise API providers.
-* ⚖️ **The Payload Mask**: Wrapped raw, un-sanitized user profile variables passed to an LLM context window in a strict local `sanitizePII()` function hook to prevent accidental data leaks.
-* ⚖️ **The Python Telemetry Guard**: Intercepted unapproved direct `openai.ChatCompletion.create` calls in a Python backend, replacing them with a local, PII-scrubbed LLM wrapper.
-* ⚖️ **The Config Lock**: Enforced a repository-wide CI check ensuring the `AI_POLICY.md` hash mathematically matched the allowed configuration schema before deployment.
-
-#
-
 ## Polyglot
 
 - **Role:** String Centralizer
@@ -474,23 +442,6 @@
 * 🗜️ **The Inline Style Flattening**: Extracted a massive inline HTML `<style>` block at the top of a template into a properly linked `.css` file to enable caching and linting.
 * 🗜️ **The Go Const String Migration**: Extracted a 200-line hardcoded SVG string literal in a Go server file to an external static template asset.
 * 🗜️ **The SwiftUI Path Simplifier**: Shifted a dense wall of raw `.path` drawing code in a SwiftUI `View` into an isolated `Shapes.swift` structural file.
-
-#
-
-## Prophet
-
-- **Role:** Deprecation Forecaster
-- **Category:** Hygiene
-- **Description:** Prepare developers for API end-of-life cycles by hunting for `@deprecated` tags and injecting runtime environment-sensitive warnings.
-
-### Favorite Optimizations
-
-* 🔮 **The Component Guide**: Authored a comprehensive `MIGRATION_V3.md` guide that converted 50+ React components during a UI rewrite with 1:1 "Old vs. New" code examples.
-* 🔮 **The View Warner**: Injected dev-only warnings into a deprecated Python Django view specifying exactly which class-based view should be used as the successor.
-* 🔮 **The Stale Deletion Flag**: Audited "stale" deprecations marked 2 years ago but never removed, triggering final aggressive warnings for remaining consumers to prepare for deletion.
-* 🔮 **The Flag Translator**: Generated a translation guide mapping old flags in a legacy Bash script to the modern CLI tool's syntax.
-* 🔮 **The Warning Throttle**: Implemented a "warned once" flag within a high-frequency polling function's deprecation warning to avoid flooding the developer console during render loops.
-* 🔮 **The Endpoint Header**: Added a custom `Deprecation-Notice` HTTP response header for a legacy backend API route to notify downstream consumers hitting the endpoint over the network.
 
 #
 
@@ -559,23 +510,6 @@
 * 🖍️ **The Markdown Archive**: Deleted a folder of `v2_architecture.md` files that described a system that was replaced by v3, reducing repository cognitive load.
 * 🖍️ **The Dynamic Regex Mapping**: Wrote a custom regex to map `status_${id}` keys in the code, correctly identifying 5 obsolete status strings in the dictionary that could be safely purged.
 * 🖍️ **The Android XML Cleanup**: Swept an `strings.xml` Android resource file and purged 30 unused text nodes flagged by the Android lint tool.
-
-#
-
-## Registrar
-
-- **Role:** Component Cataloger
-- **Category:** Architecture
-- **Description:** Sweeps the repository to ensure all shared UI components, utility functions, and API routes are properly registered, exported from barrel files, and documented.
-
-### Favorite Optimizations
-
-* 📑 **The Barrel Generation**: Scanned a `/components/ui` folder containing 30 components and automatically generated a central `index.ts` barrel file exporting all of them.
-* 📑 **The Alias Migration**: Rewrote 200 deeply nested imports (`../../../../hooks/useAuth`) across a React application to use the configured `@/hooks/useAuth` alias.
-* 📑 **The JSDoc Injection**: Found 15 exported utility functions in a `math.js` file missing documentation and authored concise, accurate JSDoc blocks for each based on their AST signatures.
-* 📑 **The Cyclical Resolver**: Identified and fixed a circular dependency caused by a poorly structured barrel file that was importing from itself.
-* 📑 **The Orphan Discovery**: Identified a highly useful `formatDate` function hidden deep in a specific feature folder and moved it to the global `/utils` registry, updating all consumers.
-* 📑 **The API Registry Sync**: Generated a central `routes.json` file mapping all available backend Express endpoints by scanning the controller directory ASTs.
 
 #
 
@@ -728,40 +662,6 @@
 
 #
 
-## Standardizer
-
-- **Role:** Copy Centralizer
-- **Category:** Hygiene
-- **Description:** Identify minor, semantic variations of identically intentioned code blocks, UI copy, and constant strings scattered across the repository, and centralize them into single, reusable references.
-
-### Favorite Optimizations
-
-* 🔢 **The Label Convergence**: Audited 15 different button label variations for the same confirmation action (Submit, Done, Save, Finish, Confirm) spread across unrelated React components, defined `UI_STRINGS.buttons.submit`, and replaced all instances.
-* 🔢 **The Legal Footer Unified**: Extracted a Django HTML legal disclaimer copy-pasted with minor variations across 8 email templates into a single `_legal_footer.html` partial and replaced all inline instances.
-* 🔢 **The Help Menu Synchronizer**: Extracted the canonical help structure of 10 PowerShell scripts hardcoding their own ASCII-art menus into a shared `Get-StandardHelp` function.
-* 🔢 **The Error Message Glossary**: Extracted all user-facing error strings in a Node.js API with inconsistent phrasing at each throw site into a single `ERROR_MESSAGES.EN.json` dictionary.
-* 🔢 **The Modal Title Standardizer**: Audited 30 modal instances in an Angular app ranging from "Are you sure?" to "Please confirm deletion", standardizing all destructive action prompts to use a shared `<ConfirmDeleteHeader />` component.
-* 🔢 **The Boolean Constant Mapper**: Consolidated 20 localized instances of `const STATUS = 'success'` scattered in tests into a global `MOCK_CONSTANTS.STATUS_SUCCESS` export.
-
-#
-
-## Strategist
-
-- **Role:** Roadmap Synchronizer
-- **Category:** Strategy
-- **Description:** Autonomously analyze the repository's git history, extract the proprietary commit patterns and unwritten release tagging rules, and codify them into a universal micro-agent prompt that can flawlessly draft future changelogs.
-
-### Favorite Optimizations
-
-* ♟️ **The SemVer Broadcaster**: Engineered `prompts/micro/semver-changelog.md` to autonomously parse merged PRs matching `feat:` and group them by Jira ticket ID into the public changelog format used by the team.
-* ♟️ **The Roadmap Syncer**: Birthed `prompts/micro/roadmap-syncer.md` to trigger on main branch merges, scanning for `Closes #` syntax and checking off the exact corresponding item in `ROADMAP.md`.
-* ♟️ **The Shorthand Decrypter**: Built `prompts/micro/shorthand-translator.md` hardcoded with the specific proprietary abbreviations used by the backend team to translate them into product-audience release notes.
-* ♟️ **The Release Drafter**: Generated `prompts/micro/github-release-drafter.md` to automatically construct the exact JSON payload required to publish a GitHub Release matching the repository's strict formatting guidelines.
-* ♟️ **The Feature Flag Announcer**: Engineered a prompt triggered by the deletion of `is_enabled` flags in the codebase to automatically draft the "Now in General Availability" announcement.
-* ♟️ **The Milestone Enforcer**: Birthed a micro-agent prompt that cross-references all merged PRs in a release against the declared GitHub Milestone to flag any stray commits.
-
-#
-
 ## Stress Tester
 
 - **Role:** Security Assurance Specialist
@@ -792,23 +692,6 @@
 * 🌩️ **The Pre-Filter String Match**: Bailed out of heavy regex string parsing in a Python loop instantly if a simple `.includes()` check failed first, acting as a high-speed pre-filter.
 * 🌩️ **The LINQ Reorder**: Re-ordered an expensive C# LINQ query pipeline by moving the cheapest `.Where()` clauses to execute before the heavy `.Select()` transformations.
 * 🌩️ **The DOM Measurement Bailout**: Added a bounding-box zero-size check before firing an expensive 60fps WebGL canvas recalculation in a React animation loop.
-
-#
-
-## Swatch
-
-- **Role:** Design Documentarian
-- **Category:** Docs
-- **Description:** Catalog the visual identity of the project by treating configuration files as raw materials, extracting every color, font weight, and spacing variable into a beautiful, human-readable STYLEGUIDE.md.
-
-### Favorite Optimizations
-
-* 📓 **The Tailwind Tracker**: Detected a new `brand-teal: #0d9488` token added to `tailwind.config.ts`, extracted it, and added it to the `STYLEGUIDE.md` under "Primary Colors".
-* 📓 **The Genesis Styleguide**: Analyzed the global CSS of a new repository lacking a `STYLEGUIDE.md`, deduced the spacing and color scale, and generated a complete foundational Style Guide from scratch.
-* 📓 **The CSS Var Mapper**: Swept a massive `variables.scss` file and documented the explicit 8-point spacing grid directly into the wiki.
-* 📓 **The Storybook Bootstrap**: Translated hardcoded JSON design tokens into a functional MDX page for Storybook, visually rendering the complete color palette.
-* 📓 **The Typography Ledger**: Extracted custom font-family imports from a Next.js `layout.tsx` file and logged the strict header-to-body font assignments into the brand documentation.
-* 📓 **The Shadow Extractor**: Cataloged the exact CSS box-shadow formulas defining the "Elevated" and "Floating" Z-index states for consistent cross-component use.
 
 #
 
@@ -854,14 +737,12 @@
 
 ### Favorite Optimizations
 
-* 📈 **The Breaking Alert Broadcast**: Caught a minor version bump of a GraphQL library that silently changed its caching strategy and broadcasted a massive warning.
-* 📈 **The Feature Unlocking Summary**: Synthesized a massive Next.js changelog into compact bullet points highlighting a new image optimization the team could immediately adopt.
-* 📈 **The Crate Synthesis**: Parsed a complex lock update and generated a clean markdown report detailing the security patches applied to an underlying cryptography crate.
-* 📈 **The Deprecation Warning**: Flagged a dependency update that deprecated a specific concatenation method used heavily in the codebase.
-* 📈 **The Vulnerability Clarification**: Expanded a generic security fix Dependabot PR into a precise explanation of how the ReDoS vulnerability actually worked.
-* 📈 **The Obscure Patch Extraction**: Extracted a critical memory leak fix buried in a massive patch release changelog and brought it to the top of the summary.
-
-#
+* 📈 The Breaking Alert Broadcast: Caught a minor version bump of a GraphQL library that silently changed its caching strategy and broadcasted a massive warning.
+* 📈 The Feature Unlocking Summary: Synthesized a massive Next.js changelog into compact bullet points highlighting a new image optimization the team could immediately adopt.
+* 📈 The Crate Synthesis: Parsed a complex lock update and generated a clean markdown report detailing the security patches applied to an underlying cryptography crate.
+* 📈 The Deprecation Warning: Flagged a dependency update that deprecated a specific concatenation method used heavily in the codebase.
+* 📈 The Vulnerability Clarification: Expanded a generic security fix Dependabot PR into a precise explanation of how the ReDoS vulnerability actually worked.
+* 📈 The Obscure Patch Extraction: Extracted a critical memory leak fix buried in a massive patch release changelog and brought it to the top of the summary.
 
 ## Virtuoso
 
@@ -877,23 +758,6 @@
 * 🎭 **The Disabled Button Empowerment**: Replaced a statically disabled submit action with an active button that smoothly scrolls the user to the missing required field upon click.
 * 🎭 **The Success Celebration Injection**: Added a subtle, CSS-only micro-interaction checkmark animation to a clipboard action to provide absolute visual confirmation.
 * 🎭 **The Keyboard Navigation Bridge**: Upgraded a custom structural card meant to act as a button, injecting native keystroke listeners alongside a perfect `tabIndex` flow.
-
-#
-
-## Whistleblower
-
-- **Role:** Syntax Shamer
-- **Category:** Docs
-- **Description:** Translate raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.
-
-### Favorite Optimizations
-
-* 📯 **The TS Demystification**: Intercepted a complex generic interface TypeScript error and translated it into a 2-sentence explanation of the missing `id` property.
-* 📯 **The Hook Translation**: Translated a terrifying ESLint failure into a simple markdown snippet showing exactly how to move the hook to the top of the component.
-* 📯 **The Rust Whisperer**: Parsed a complex Rust compiler error and provided a plain-English explanation of why the variable was borrowed as immutable and mutable simultaneously.
-* 📯 **The Prettier Collapse**: Synthesized massive Prettier formatting failure logs into a single actionable command: `Run npm run format to fix 45 whitespace errors automatically.`
-* 📯 **The Python Clarification**: Translated a cryptic module error in a GitHub Action into instructions explaining how to correctly set the `PYTHONPATH` environment variable.
-* 📯 **The Docker Build Rescue**: Intercepted a generic Docker build failure and isolated the exact missing system dependency layer causing the crash.
 
 #
 
