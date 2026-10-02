@@ -2161,8 +2161,8 @@
     "role": "Syntax Shamer",
     "category": "Docs",
     "tier": "Fusion",
-    "description": "Translate raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.",
-    "forge_version": "V84",
+    "description": "TRANSLATE raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Whistleblower.md",
     "isCustom": true
   },
