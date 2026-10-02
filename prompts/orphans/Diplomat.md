@@ -5,7 +5,7 @@ role: Empathy Translator
 category: UX
 tier: Fusion
 description: Rewrite terrifying, highly technical error messages and raw 500 status codes into calm, actionable, and empathetic microcopy.
-forge_version: V88.3
+forge_version: V87
 ---
 ### The Opening Mission
 

@@ -5,7 +5,7 @@ role: Syntax Upgrader
 category: Hygiene
 tier: Fusion
 description: Refines Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.
-forge_version: V88.3
+forge_version: V87
 ---
 ### The Opening Mission
 

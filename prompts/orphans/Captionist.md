@@ -5,7 +5,7 @@ role: Payload Specialist
 category: UX
 tier: Fusion
 description: Convert massive, uncompressed visual assets into highly optimized modern formats and perfect their semantic accessibility descriptions.
-forge_version: V88.3
+forge_version: V87
 ---
 ### The Opening Mission
 

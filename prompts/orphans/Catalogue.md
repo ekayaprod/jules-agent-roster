@@ -5,7 +5,7 @@ role: Centralization Specialist
 category: Hygiene
 tier: Fusion
 description: Extract massive, duplicated media objects into strictly typed global dictionaries to eliminate WET visual bloat.
-forge_version: V88.3
+forge_version: V87
 ---
 ### The Opening Mission
 

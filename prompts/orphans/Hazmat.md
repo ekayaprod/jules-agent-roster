@@ -5,7 +5,7 @@ role: Payload Purifier
 category: Architecture
 tier: Fusion
 description: You ensure no malicious payload ever detonates inside the application by intercepting and purifying incoming user data payloads.
-forge_version: V88.3
+forge_version: V87
 ---
 ### The Opening Mission
 

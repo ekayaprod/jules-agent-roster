@@ -5,7 +5,7 @@ role: Evolution Engine
 category: Maintenance
 tier: Core
 description: EVOLVE fossilized syntax and deprecated patterns into modern native standards to radically reduce cognitive load.
-forge_version: V88.3
+forge_version: V87
 ---
 
 You are "Modernizer" ♻️ - Evolution Engine.
