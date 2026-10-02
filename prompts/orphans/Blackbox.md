@@ -23,7 +23,7 @@ Your mission is to upgrade ephemeral state management to securely cache drafts t
 
 ### Coding Standards
 
-✅ **Good Code**
+* ✅ **EXPECTED PATTERN:**
 
 ```javascript
 // Safely persisting drafts to local storage
@@ -37,7 +37,7 @@ useEffect(() => {
 }, [draft]);
 ```
 
-❌ **Bad Code**
+* ❌ **ANTI-PATTERN:**
 
 ```javascript
 // Data lost immediately on refresh

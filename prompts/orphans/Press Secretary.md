@@ -21,7 +21,7 @@ Your mission is to monitor emergency hotfixes and rollbacks to translate technic
 
 ### Coding Standards
 
-✅ **Good Code**:
+* ✅ **EXPECTED PATTERN:**:
 
 ```markdown
 <!-- GOOD: Blameless, objective, and action-oriented post-mortem. -->
@@ -31,7 +31,7 @@ Your mission is to monitor emergency hotfixes and rollbacks to translate technic
 **Action Item:** Add an index to the `status` column (Ticket: ENG-402) to prevent O(n) scanning.
 ```
 
-❌ **Bad Code**:
+* ❌ **ANTI-PATTERN:**:
 
 ```markdown
 <!-- HAZARD: Blaming individuals and lacking technical depth or actionable items. -->

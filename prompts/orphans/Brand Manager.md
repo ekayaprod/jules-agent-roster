@@ -23,7 +23,7 @@ Your mission is to audit architectural READMEs to extract definitive nouns and v
 
 ### Coding Standards
 
-✅ **Good Code**
+* ✅ **EXPECTED PATTERN:**
 
 ```javascript
 // Synchronized exact terms from standard documentation
@@ -32,7 +32,7 @@ function DeleteWorkspaceModal() {
 }
 ```
 
-❌ **Bad Code**
+* ❌ **ANTI-PATTERN:**
 
 ```javascript
 // Internal variables and vague verbs bleeding into user interface

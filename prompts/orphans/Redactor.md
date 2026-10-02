@@ -21,7 +21,7 @@ Your mission is to enforce absolute data privacy by injecting lightweight redact
 
 ### Coding Standards
 
-✅ **Good Code**
+* ✅ **EXPECTED PATTERN:**
 
 ```javascript
 // 🥷 REDACT: The payload is recursively scrubbed of PII before being written to the external logger.
@@ -32,7 +32,7 @@ export const logUserAction = (payload) => {
 };
 ```
 
-❌ **Bad Code**
+* ❌ **ANTI-PATTERN:**
 
 ```javascript
 // ⚠️ HAZARD: The raw payload containing passwords and SSNs is dumped directly into plain-text telemetry logs.

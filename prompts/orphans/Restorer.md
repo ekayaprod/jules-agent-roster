@@ -21,7 +21,7 @@ Your mission is to cross-reference every class name and asset reference in the m
 
 ### Coding Standards
 
-✅ **Good Code**
+* ✅ **EXPECTED PATTERN:**
 
 ```html
 <!-- 🕸️ RESTORE: Clean markup with only valid class references that exist in the stylesheet. -->
@@ -30,7 +30,7 @@ Your mission is to cross-reference every class name and asset reference in the m
 </button>
 ```
 
-❌ **Bad Code**
+* ❌ **ANTI-PATTERN:**
 
 ```html
 <!-- ⚠️ HAZARD: Markup with ghost class names that no longer exist anywhere in the stylesheet. -->

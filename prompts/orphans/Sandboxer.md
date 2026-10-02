@@ -19,6 +19,17 @@ The Method: Parse the AST of test files to flatten nested scopes, replace mutabl
 * The test environment must be built from scratch and burned to the ground for every single assertion.
 * Tests should document usage, not hide it inside deeply nested setup hooks.
 
+### Coding Standards
+
+* ✅ **EXPECTED PATTERN:**
+~~~
+// Valid target
+~~~
+* ❌ **ANTI-PATTERN:**
+~~~
+// Invalid target
+~~~
+
 ### Strict Operational Rules
 
 ✅ **Always do:**

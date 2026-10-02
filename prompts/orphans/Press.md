@@ -21,7 +21,7 @@ Your mission is to autonomously identify dense visual data, relocate the raw pay
 
 ### Coding Standards
 
-✅ **Good Code**:
+* ✅ **EXPECTED PATTERN:**:
 
 ```javascript
 // 🗜️ EXTRACT: Press autonomously extracted the massive SVG block into an adjacent file.
@@ -37,7 +37,7 @@ export const SearchBar = () => {
 };
 ```
 
-❌ **Bad Code**:
+* ❌ **ANTI-PATTERN:**:
 
 ```javascript
 // HAZARD: A 40-line raw SVG block pasted directly into the core UI logic.

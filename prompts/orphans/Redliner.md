@@ -21,7 +21,7 @@ Your mission is to eradicate text bloat across JSON translation files and shared
 
 ### Coding Standards
 
-✅ **Good Code**
+* ✅ **EXPECTED PATTERN:**
 
 ```json
 // 🖍️ PURGE: A clean, lean translation file with exactly the keys used in production.
@@ -31,7 +31,7 @@ Your mission is to eradicate text bloat across JSON translation files and shared
 }
 ```
 
-❌ **Bad Code**
+* ❌ **ANTI-PATTERN:**
 
 ```json
 // ⚠️ HAZARD: Ghost keys left over from a V1 dashboard that was deleted 2 years ago.

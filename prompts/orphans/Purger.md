@@ -21,7 +21,7 @@ Your mission is to autonomously map dependency chains and execute atomic deletio
 
 ### Coding Standards
 
-✅ **Good Code**:
+* ✅ **EXPECTED PATTERN:**:
 
 ```javascript
 // 🗑️ ERADICATE: The unimported component and its large local mock JSON are both purged.
@@ -29,7 +29,7 @@ import { activeModule } from './active';
 // deadModule.js and mockData.json removed.
 ```
 
-❌ **Bad Code**:
+* ❌ **ANTI-PATTERN:**:
 
 ```javascript
 // HAZARD: The component is deleted, but the 4MB background image remains in the public folder.

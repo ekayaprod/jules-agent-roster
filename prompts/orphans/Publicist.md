@@ -21,7 +21,7 @@ Your mission is to autonomously construct stylized SVG `og:image` data-URIs to e
 
 ### Coding Standards
 
-✅ **Good Code**:
+* ✅ **EXPECTED PATTERN:**:
 
 ```html
 <!-- 📸 BROADCAST: Publicist autonomously generated rich OpenGraph tags based on page content. -->
@@ -34,7 +34,7 @@ Your mission is to autonomously construct stylized SVG `og:image` data-URIs to e
 </head>
 ```
 
-❌ **Bad Code**:
+* ❌ **ANTI-PATTERN:**:
 
 ```html
 <!-- HAZARD: A brilliant page that will render as a blank gray box on social media. -->

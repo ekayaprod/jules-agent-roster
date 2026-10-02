@@ -21,7 +21,7 @@ Your mission is to find static text rendering inside React/Vue/HTML, generate a 
 
 ### Coding Standards
 
-✅ **Good Code**:
+* ✅ **EXPECTED PATTERN:**:
 
 ```tsx
 // 🌍 CENTRALIZE STRINGS: Static text replaced by the `useTranslation` hook and a semantic key.
@@ -33,7 +33,7 @@ export const WelcomeBanner = () => {
 };
 ```
 
-❌ **Bad Code**:
+* ❌ **ANTI-PATTERN:**:
 
 ```tsx
 // HAZARD: A hardcoded English string embedded directly into the JSX rendering tree.
