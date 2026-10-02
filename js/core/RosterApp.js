@@ -270,16 +270,46 @@ class RosterApp {
 
     // ⚡ Bolt+: Bypass redundant nested wrapper object creations and object spreading.
     // Flatten properties directly into the target object to prevent GC churn during rendering.
-    // 🧬 COLLAPSE: Collapsed nested imperative accumulator and sort loops into a dense functional pipeline, eliminating intermediary scaffolding arrays.
+    // 🧬 COLLAPSE: Optimized array allocations by pre-calculating total size and using imperative loops to eliminate intermediate scaffolding arrays.
     const hasPinnedManager = Boolean(this.pinnedManager);
-    const flattenedAgents = this.categoryKeys.flatMap(key => {
-      const arr = categorizedAgents[key] || [];
-      return arr.map(item => {
-        item.gridCategory = key;
-        item._sortScore = (hasPinnedManager && this.pinnedManager.isPinned(item.indexOrKey) ? 4 : 0) + (item.agent?.tier === "Plus" ? 2 : 0) + (item.agent?.name?.endsWith("+") ? 1 : 0);
-        return item;
-      }).sort((a, b) => b._sortScore - a._sortScore);
-    });
+
+    let totalLength = 0;
+    const catKeysLen = this.categoryKeys.length;
+    for (let i = 0; i < catKeysLen; i++) {
+        const arr = categorizedAgents[this.categoryKeys[i]];
+        if (arr) totalLength += arr.length;
+    }
+    const flattenedAgents = new Array(totalLength);
+    let offset = 0;
+
+    for (let i = 0; i < catKeysLen; i++) {
+        const key = this.categoryKeys[i];
+        const arr = categorizedAgents[key];
+        if (!arr || arr.length === 0) continue;
+
+        const arrLen = arr.length;
+        for (let j = 0; j < arrLen; j++) {
+            const item = arr[j];
+            item.gridCategory = key;
+
+            let score = 0;
+            if (hasPinnedManager && this.pinnedManager.isPinned(item.indexOrKey)) score += 4;
+
+            const agent = item.agent;
+            if (agent) {
+                if (agent.tier === "Plus") score += 2;
+                const name = agent.name;
+                if (name && name.endsWith("+")) score += 1;
+            }
+            item._sortScore = score;
+        }
+
+        arr.sort((a, b) => b._sortScore - a._sortScore);
+
+        for (let j = 0; j < arrLen; j++) {
+            flattenedAgents[offset++] = arr[j];
+        }
+    }
 
     const currentRenderId = Symbol();
     this.currentRenderId = currentRenderId;
