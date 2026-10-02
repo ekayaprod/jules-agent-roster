@@ -57,32 +57,40 @@
       .flip-card.flipped .flip-card-front { pointer-events: none; }
 
       /* Tier Rarity Borders and Effects */
-      .tier-common .flip-card-front, .tier-common .flip-card-back { border-color: var(--border); }
-      .tier-uncommon .flip-card-front, .tier-uncommon .flip-card-back { border-color: color-mix(in srgb, var(--tier-uncommon) 60%, transparent); }
-      .tier-rare .flip-card-front, .tier-rare .flip-card-back { border-color: color-mix(in srgb, var(--tier-rare) 60%, transparent); }
+      .tier-common .flip-card-front, .tier-common .flip-card-back { border-color: var(--border); box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05); transition: border-color 0.3s; }
+
+      @keyframes uncommonPulse {
+          0% { opacity: 0.9; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.01); }
+          100% { opacity: 0.9; transform: scale(1); }
+      }
+      .tier-uncommon .flip-card-front, .tier-uncommon .flip-card-back { border-color: color-mix(in srgb, var(--tier-uncommon) 60%, transparent); box-shadow: 0 0 15px color-mix(in srgb, var(--tier-uncommon) 40%, transparent); }
+      .tier-uncommon { animation: uncommonPulse 4s infinite ease-in-out; }
+
+      .tier-rare .flip-card-front, .tier-rare .flip-card-back { border-color: color-mix(in srgb, var(--tier-rare) 60%, transparent); box-shadow: 0 0 20px color-mix(in srgb, var(--tier-rare) 50%, transparent); }
 
       @keyframes epicPulse {
           0% { opacity: 0.8; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.02); }
+          50% { opacity: 1; transform: scale(1.03); }
           100% { opacity: 0.8; transform: scale(1); }
       }
-      .tier-epic .flip-card-front, .tier-epic .flip-card-back { border-color: color-mix(in srgb, var(--tier-epic) 60%, transparent); }
+      .tier-epic .flip-card-front, .tier-epic .flip-card-back { border-color: color-mix(in srgb, var(--tier-epic) 60%, transparent); box-shadow: 0 0 30px color-mix(in srgb, var(--tier-epic) 60%, transparent); }
       .tier-epic { animation: epicPulse 4s infinite ease-in-out; }
 
       @keyframes legendaryPulse {
           0% { opacity: 0.8; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.02); }
+          50% { opacity: 1; transform: scale(1.04); }
           100% { opacity: 0.8; transform: scale(1); }
       }
-      .tier-legendary .flip-card-front, .tier-legendary .flip-card-back { border-color: var(--tier-legendary); }
+      .tier-legendary .flip-card-front, .tier-legendary .flip-card-back { border-color: var(--tier-legendary); box-shadow: 0 0 40px color-mix(in srgb, var(--tier-legendary) 70%, transparent); }
       .tier-legendary { animation: legendaryPulse 4s infinite ease-in-out; }
 
       @keyframes mythicPulse {
           0% { opacity: 0.8; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.02); }
+          50% { opacity: 1; transform: scale(1.05); }
           100% { opacity: 0.8; transform: scale(1); }
       }
-      .tier-mythic .flip-card-front, .tier-mythic .flip-card-back { border-color: color-mix(in srgb, var(--tier-mythic) 60%, transparent); }
+      .tier-mythic .flip-card-front, .tier-mythic .flip-card-back { border-color: color-mix(in srgb, var(--tier-mythic) 60%, transparent); box-shadow: 0 0 50px color-mix(in srgb, var(--tier-mythic) 80%, transparent); }
       .tier-mythic { animation: mythicPulse 4s infinite ease-in-out; }
 
       .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after,
@@ -102,26 +110,26 @@
       }
 
       @keyframes shineRareLoop { 0% { transform: translateX(33.333%); } 100% { transform: translateX(-33.333%); } }
-      .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after { background-image: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.3) 46.66%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.3) 53.33%, transparent 60%); animation: shineRareLoop 15s linear infinite; }
+      .tier-rare .flip-card-front::after, .tier-rare .flip-card-back::after { background-image: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.3) 46.66%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.3) 53.33%, transparent 60%); animation: shineRareLoop 10s linear infinite; }
 
       @keyframes shineEpicLoop { 0% { transform: translateX(33.333%); } 100% { transform: translateX(-33.333%); } }
       .tier-epic .flip-card-front::after, .tier-epic .flip-card-back::after { background-image: linear-gradient(115deg, transparent 40%, color-mix(in srgb, var(--tier-epic) 40%, transparent) 43.33%, rgba(255, 255, 255, 0.9) 50%, rgba(56, 189, 248, 0.4) 56.66%, transparent 60%); animation: shineEpicLoop 15s linear infinite; mix-blend-mode: color-dodge; }
 
       @keyframes holographicFoilLoop { 0% { transform: translateX(33.333%); } 100% { transform: translateX(-33.333%); } }
-      .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after { background-image: linear-gradient(115deg, transparent 40%, rgba(255, 0, 0, 0.5) 43.33%, rgba(255, 154, 0, 0.5) 45%, rgba(208, 222, 33, 0.5) 46.66%, rgba(79, 220, 74, 0.5) 48.33%, rgba(63, 218, 216, 0.5) 50%, rgba(47, 201, 226, 0.5) 51.66%, rgba(28, 127, 238, 0.5) 53.33%, rgba(95, 21, 242, 0.5) 55%, rgba(186, 12, 248, 0.5) 56.66%, rgba(251, 7, 217, 0.5) 58.33%, transparent 60%); animation: holographicFoilLoop 15s linear infinite; mix-blend-mode: color-dodge; opacity: 0.25; }
+      .tier-legendary .flip-card-front::after, .tier-legendary .flip-card-back::after { background-image: linear-gradient(115deg, transparent 40%, rgba(255, 0, 0, 0.5) 43.33%, rgba(255, 154, 0, 0.5) 45%, rgba(208, 222, 33, 0.5) 46.66%, rgba(79, 220, 74, 0.5) 48.33%, rgba(63, 218, 216, 0.5) 50%, rgba(47, 201, 226, 0.5) 51.66%, rgba(28, 127, 238, 0.5) 53.33%, rgba(95, 21, 242, 0.5) 55%, rgba(186, 12, 248, 0.5) 56.66%, rgba(251, 7, 217, 0.5) 58.33%, transparent 60%); animation: holographicFoilLoop 15s linear infinite; mix-blend-mode: color-dodge; opacity: 0.4; }
 
       @keyframes mythicCRTLoop {
           0% { translate: 0 33.333%; }
           100% { translate: 0 -33.333%; }
       }
       @keyframes mythicGlitchLoop {
-          0%, 94% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
-          95% { clip-path: inset(10% 0 85% 0); opacity: 0.5; transform: translateX(-5px); }
-          96% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
-          97% { clip-path: inset(45% 0 45% 0); opacity: 0.6; transform: translateX(5px); }
-          98% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
-          99% { clip-path: inset(75% 0 15% 0); opacity: 0.4; transform: translateX(-3px); }
-          100% { clip-path: inset(0 0 0 0); opacity: 0.3; transform: translateX(0); }
+          0%, 94% { clip-path: inset(0 0 0 0); opacity: 0.5; transform: translateX(0); }
+          95% { clip-path: inset(10% 0 85% 0); opacity: 0.7; transform: translateX(-5px); }
+          96% { clip-path: inset(0 0 0 0); opacity: 0.5; transform: translateX(0); }
+          97% { clip-path: inset(45% 0 45% 0); opacity: 0.8; transform: translateX(5px); }
+          98% { clip-path: inset(0 0 0 0); opacity: 0.5; transform: translateX(0); }
+          99% { clip-path: inset(75% 0 15% 0); opacity: 0.6; transform: translateX(-3px); }
+          100% { clip-path: inset(0 0 0 0); opacity: 0.5; transform: translateX(0); }
       }
       .tier-mythic .flip-card-front::after, .tier-mythic .flip-card-back::after {
         content: '';
@@ -135,7 +143,7 @@
         background-size: 100% 33.333%, 100% 100%;
         animation: mythicCRTLoop 10s linear infinite, mythicGlitchLoop 10s infinite step-end;
         mix-blend-mode: screen;
-        opacity: 0.3;
+        opacity: 0.5;
         z-index: 0;
       }
 

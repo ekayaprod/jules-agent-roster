@@ -77,20 +77,20 @@ const RarityEngine = (function() {
     }
 
     function _checkSynergy(agent1, agent2, sd1, sd2) {
-        if (sd1 === "Plus" && sd2 === "Plus") return { rarity: "Common", domain: "1. Base Synthesis" };
+        if (sd1 === "Plus" && sd2 === "Plus") return { rarity: "Uncommon", domain: "1. Base Synthesis" };
 
         const hasPlus = sd1 === "Plus" || sd2 === "Plus";
         const plusAgent = sd1 === "Plus" ? agent1 : agent2;
         const otherSd = sd1 === "Plus" ? sd2 : sd1;
 
-        if (hasPlus && getPlusMatchingDomain(plusAgent?.name) === otherSd) return { rarity: "Common", domain: "2. Plus Affinity" };
+        if (hasPlus && getPlusMatchingDomain(plusAgent?.name) === otherSd) return { rarity: "Uncommon", domain: "2. Plus Affinity" };
         if (hasPlus) return { rarity: "Uncommon", domain: "4. Plus Bridge" };
 
-        if (agent1.category === agent2.category) return { rarity: "Common", domain: "3. Domain Mastery" };
+        if (agent1.category === agent2.category) return { rarity: "Uncommon", domain: "3. Domain Mastery" };
 
         if (sd1 === "Visible" && sd2 === "Visible") return { rarity: "Uncommon", domain: "5. Frontend Synergy" };
         if (sd1 === "Integrity" && sd2 === "Integrity") return { rarity: "Uncommon", domain: "7. Integrity Synergy" };
-        if (sd1 === "Invisible" && sd2 === "Invisible") return { rarity: "Common", domain: "6. Backend Synergy" };
+        if (sd1 === "Invisible" && sd2 === "Invisible") return { rarity: "Uncommon", domain: "6. Backend Synergy" };
 
         return null;
     }
