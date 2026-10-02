@@ -54,13 +54,13 @@ describe('SingularityBespokeBuilder', () => {
   describe('handleForge', () => {
     beforeEach(() => {
       global.fetch = jest.fn();
-      global.window.rosterApp = { showToast: jest.fn() };
+      window.rosterApp = { showToast: jest.fn() };
       global.DOMUtils = { setButtonState: jest.fn() };
     });
 
     afterEach(() => {
       delete global.fetch;
-      delete global.window.rosterApp;
+      delete window.rosterApp;
       delete global.DOMUtils;
     });
 
@@ -187,7 +187,7 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
       text: () => Promise.resolve('Template'),
     });
 
-    window.TelemetryUtils = { dispatchEvent: jest.fn() };
+    global.window.TelemetryUtils = { dispatchEvent: jest.fn() };
     const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
 
     builder.julesTerminal = null;
@@ -195,9 +195,9 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
       builder.elements.missionInput.value = 'Valid Mission';
       await builder.handleForge();
 
-    expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_MISSING_TERMINAL", expect.any(Error));
+    expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_MISSING_TERMINAL", expect.any(Error));
 
-    delete window.TelemetryUtils;
+    delete global.window.TelemetryUtils;
     delete global.fetch;
     consoleWarnSpy.mockRestore();
   });
@@ -205,16 +205,16 @@ describe('SingularityBespokeBuilder - Edge Cases', () => {
   it('should dispatch BUILDER_FORGE_ERROR error if TelemetryUtils is available and fetch fails', async () => {
     global.fetch = jest.fn().mockRejectedValue(new Error('Network Failure'));
 
-    window.TelemetryUtils = { dispatchEvent: jest.fn() };
+    global.window.TelemetryUtils = { dispatchEvent: jest.fn() };
     const consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     builder.init();
       builder.elements.missionInput.value = 'Valid Mission';
       await builder.handleForge();
 
-    expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_FORGE_ERROR", expect.any(Error));
+    expect(global.window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("BUILDER_FORGE_ERROR", expect.any(Error));
 
-    delete window.TelemetryUtils;
+    delete global.window.TelemetryUtils;
     delete global.fetch;
     consoleErrorSpy.mockRestore();
   });
