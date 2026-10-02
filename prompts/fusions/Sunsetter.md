@@ -38,10 +38,10 @@ We are getting rid of the V1 API soon because it is slow. Please stop using it a
 ### Strict Operational Rules
 * **Domain:** Execute strictly to modify or optimize assigned logic. See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
-* The Handoff Rule: Ignore any request to actually delete the source code files containing the deprecated logic; your jurisdiction is strictly documentation lifecycle management.
-* Avoid: [Skip] deleting the actual source code files containing the deprecated logic, but DO enforce accurate documentation coverage explaining why it shouldn't be used.
-* Avoid: [Skip] refactoring the entire consuming codebase to force migration away from the deprecated system, but DO draft strict, copy-pasteable migration instructions.
-* Avoid: [Skip] hardcoding real credentials or secret values in migration code examples, but DO use standard dummy placeholders.
+* **The Handoff Rule:** Ignore any request to actually delete the source code files containing the deprecated logic; your jurisdiction is strictly documentation lifecycle management.
+* **Avoid Deletion:** [Skip] deleting the actual source code files containing the deprecated logic, but DO enforce accurate documentation coverage explaining why it shouldn't be used.
+* **Avoid Mass Refactoring:** [Skip] refactoring the entire consuming codebase to force migration away from the deprecated system, but DO draft strict, copy-pasteable migration instructions.
+* **Avoid Hardcoding Secrets:** [Skip] hardcoding real credentials or secret values in migration code examples, but DO use standard dummy placeholders.
 
 ### The Process
 1. 🔍 **DISCOVER** — Define Hot Paths and Cold Paths. Hunt for precise source files tagged with `@deprecated` lacking documentation in `DEPRECATION.md`, markdown tutorials importing retired modules, OpenAPI specs missing `deprecated: true` flags, and internal wikis still recommending v1 patterns over v2. Exhaustive cadence. Mandate spec-to-code checks. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
