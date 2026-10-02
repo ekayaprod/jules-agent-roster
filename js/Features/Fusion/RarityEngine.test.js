@@ -48,10 +48,10 @@ describe('RarityEngine', () => {
             expect(RarityEngine.calculateRarity({ name: 'Agent1' }, undefined)).toBe('Common');
         });
 
-        it('returns "Common" for empty agent objects', () => {
-            expect(RarityEngine.calculateRarity({}, {})).toBe('Common');
-            expect(RarityEngine.calculateRarity({}, { name: 'Agent1' })).toBe('Common');
-            expect(RarityEngine.calculateRarity({ name: 'Agent1' }, {})).toBe('Common');
+        it('returns "Uncommon" for empty agent objects', () => {
+            expect(RarityEngine.calculateRarity({}, {})).toBe('Uncommon');
+            expect(RarityEngine.calculateRarity({}, { name: 'Agent1' })).toBe('Uncommon');
+            expect(RarityEngine.calculateRarity({ name: 'Agent1' }, {})).toBe('Uncommon');
         });
 
         it('returns "Legendary" if one of the agents is Scavenger', () => {
@@ -77,8 +77,8 @@ describe('RarityEngine', () => {
         });
 
         describe('Plus interactions', () => {
-            it('returns "Common" for Plus + Plus (Different)', () => {
-                expect(RarityEngine.calculateRarity({ name: 'Bolt+', tier: 'Plus' }, { name: 'Palette+', tier: 'Plus' })).toBe('Common');
+            it('returns "Uncommon" for Plus + Plus (Different)', () => {
+                expect(RarityEngine.calculateRarity({ name: 'Bolt+', tier: 'Plus' }, { name: 'Palette+', tier: 'Plus' })).toBe('Uncommon');
             });
 
             it('returns "Uncommon" for Plus Agent with invalid name and unhandled Domain', () => {
@@ -93,11 +93,11 @@ describe('RarityEngine', () => {
                 // It NEVER receives any other string! So `return null` is UNREACHABLE logic.
             });
 
-            it('returns "Common" for Plus Affinity: Plus + Matching Domain', () => {
-                expect(RarityEngine.calculateRarity({ name: 'Bolt+', tier: 'Plus' }, { name: 'A', category: 'architecture' })).toBe('Common'); // Bolt+ matches Invisible
-                expect(RarityEngine.calculateRarity({ name: 'B', category: 'architecture' }, { name: 'Bolt+', tier: 'Plus' })).toBe('Common');
-                expect(RarityEngine.calculateRarity({ name: 'Palette+', tier: 'Plus' }, { name: 'C', category: 'ux' })).toBe('Common'); // Palette+ matches Visible
-                expect(RarityEngine.calculateRarity({ name: 'Sentinel+', tier: 'Plus' }, { name: 'D', category: 'testing' })).toBe('Common'); // Sentinel+ matches Integrity
+            it('returns "Uncommon" for Plus Affinity: Plus + Matching Domain', () => {
+                expect(RarityEngine.calculateRarity({ name: 'Bolt+', tier: 'Plus' }, { name: 'A', category: 'architecture' })).toBe('Uncommon'); // Bolt+ matches Invisible
+                expect(RarityEngine.calculateRarity({ name: 'B', category: 'architecture' }, { name: 'Bolt+', tier: 'Plus' })).toBe('Uncommon');
+                expect(RarityEngine.calculateRarity({ name: 'Palette+', tier: 'Plus' }, { name: 'C', category: 'ux' })).toBe('Uncommon'); // Palette+ matches Visible
+                expect(RarityEngine.calculateRarity({ name: 'Sentinel+', tier: 'Plus' }, { name: 'D', category: 'testing' })).toBe('Uncommon'); // Sentinel+ matches Integrity
             });
 
             it('returns "Uncommon" for Plus Bridge: Plus + Unmatched Domain', () => {
@@ -106,8 +106,8 @@ describe('RarityEngine', () => {
             });
         });
 
-        it('returns "Common" for Exact same sub-category', () => {
-            expect(RarityEngine.calculateRarity({ name: 'A1', category: 'ux' }, { name: 'A2', category: 'ux' })).toBe('Common');
+        it('returns "Uncommon" for Exact same sub-category', () => {
+            expect(RarityEngine.calculateRarity({ name: 'A1', category: 'ux' }, { name: 'A2', category: 'ux' })).toBe('Uncommon');
         });
 
         it('returns "Uncommon" for Frontend Synergy: Visible + Visible', () => {
@@ -118,8 +118,8 @@ describe('RarityEngine', () => {
             expect(RarityEngine.calculateRarity({ name: 'A1', category: 'testing' }, { name: 'A2', category: 'hygiene' })).toBe('Uncommon');
         });
 
-        it('returns "Common" for Backend Synergy: Invisible + Invisible', () => {
-            expect(RarityEngine.calculateRarity({ name: 'A1', category: 'architecture' }, { name: 'A2', category: 'operations' })).toBe('Common');
+        it('returns "Uncommon" for Backend Synergy: Invisible + Invisible', () => {
+            expect(RarityEngine.calculateRarity({ name: 'A1', category: 'architecture' }, { name: 'A2', category: 'operations' })).toBe('Uncommon');
         });
 
         it('returns "Common" as fallback safety for mixed unhandled domains', () => {
