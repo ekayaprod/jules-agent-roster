@@ -208,6 +208,27 @@ describe('JulesTerminal - Additional Coverage', () => {
         expect(terminalInstance._createAndInsertSessionBlock).not.toHaveBeenCalled();
     });
 
+    it('should catch error and dispatch SOURCES_LOAD_FAILED when loadSources fails', async () => {
+        terminalInstance.loadSources.mockRestore();
+        terminalInstance.app = { toast: { show: jest.fn() } };
+        const picker = document.createElement("select");
+        picker.id = "julesRepoPicker";
+        picker.innerHTML = `<option value="">Select GitHub Repository...</option>`;
+        document.body.appendChild(picker);
+
+        JulesTerminal.getTelemetryUtils = jest.fn().mockReturnValue(global.TelemetryUtils);
+
+        const mockError = new Error("Network connection failed");
+        window.julesAPI.getSources = jest.fn().mockRejectedValue(mockError);
+
+        await terminalInstance.loadSources();
+
+        expect(picker.innerHTML).toBe(`<option value="">Select GitHub Repository...</option>`);
+        expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith("SOURCES_LOAD_FAILED", mockError);
+        expect(terminalInstance.app.toast.show).toHaveBeenCalledWith(expect.stringContaining("Unable to connect to GitHub: Network connection failed"), true);
+        expect(picker.disabled).toBe(false);
+    });
+
     it('should handle blur on keyInput correctly', () => {
         terminalInstance.init.mockRestore(); // restore for this test
         const keyInput = document.getElementById('julesApiKeyInput');
