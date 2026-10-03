@@ -7,9 +7,10 @@ I want you to autonomously build a new Fusion worker to fill an empty slot in th
 Execute the following steps from start to finish without pausing for input:
 
 1. **Selection & Research:** Check `prompts/orphans/emptyslots.md` and `fusion_matrix.json` for an unassigned fusion combination. Pick one. Then, read the two corresponding parent `.md` files in the root `prompts/` directory to deeply understand their mechanics and philosophies so you can design a coherent synthesis.
-2. **Author the Worker:** Read the rules in `prompts/system/Master-Forge.md` and `prompts/system/Forge-Procedure.md`. Then, use the exact `<!-- WORKER_TEMPLATE_START -->` block found inside `prompts/system/Creative-Procedure.md` to hand-author your new worker's markdown file in `prompts/fusions/`.
-3. **Update the Ecosystem:**
+2. **Author the Worker:** Read the rules in `prompts/system/Master-Forge.md`, `prompts/system/Forge-Procedure.md` (Module 5, the Fusion Engine, governs the synthesis), and `prompts/system/Creative-Procedure.md` (Modules 1–2 govern the theme). Work through Phases 1–4 and the Finalization Pipeline internally. Then, use the exact `<!-- WORKER_TEMPLATE_START -->` block found inside `prompts/system/Creative-Procedure.md` to hand-author your new worker's markdown file in `prompts/fusions/`.
+3. **Self-Audit:** Run `prompts/system/Forge-Procedure.md` Module 7 Part A (checks 1–7 and 10; checks 8 and 9 do not apply to a net-new Fusion) and the Part B Mandatory Audits that apply. Repair every FAIL before continuing.
+4. **Update the Ecosystem:**
    - Update `fusion_matrix.json` to map the parent combination to your new worker's name.
    - Run `node scripts/update-orphans.js` to clear the slot from the tracking file.
    - Run `npm run build:roster` to compile the frontend `roster-payload.json` artifact.
-4. **Verify and Submit:** Run `npm install` and `npx playwright install --with-deps`, then run the test suites (`npm run test` and `npm run test:e2e`). Follow standard pre-commit instructions, ensure all changes are committed, and submit the PR.
+5. **Verify and Submit:** Run `npm install` and `npx playwright install --with-deps`, then run the test suites (`npm run test` and `npm run test:e2e`). Follow standard pre-commit instructions, ensure all changes are committed, and submit the PR. Include the final Module 7 Part A PASS/FAIL list in the PR body.
