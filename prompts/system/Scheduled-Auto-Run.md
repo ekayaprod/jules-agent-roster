@@ -8,9 +8,8 @@ defined in Auto-Forge.md using the following targeting configuration:
 - **TARGET_FILE_OVERRIDE:** ""
 
 If `TARGET_FILE_OVERRIDE` is empty, Auto-Forge.md's Step 1 locates the next valid target via
-the Target Sorting Rule (defined in Auto-Forge.md's Headless-Only Mandates). Do not pause for
+the Target Sorting Rule (defined in Auto-Forge.md Step 1). Do not pause for
 interactive menus.
 
-**Strict Toolchain Mandate:** You must strictly utilize the existing `prompts/system/compile_json.js`
-and `prompts/system/Creative-Procedure.md` toolchain as explicitly defined in Auto-Forge.md Step 5.
+**Strict Toolchain Mandate:** Edit the target Markdown natively and run only the validation scripts named in Auto-Forge.md Step 5.
 Do not write, generate, or execute custom `.js` or `.sh` scripts to bypass this native architecture.
