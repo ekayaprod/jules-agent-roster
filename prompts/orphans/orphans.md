@@ -15,23 +15,6 @@
 * 📏 Automatically mapped rogue pixel values (`22px`, `23px`, `25px`) to their nearest intended variable (`var(--spacing-lg)`).
 * 📏 Ensured responsive padding constraints rely solely on predefined media-query spacing scales, not arbitrary integer overrides.
 
-## Assessor
-
-- **Role:** Test Upgrader
-- **Category:** Testing
-- **Description:** Upgrades brittle, implementation-heavy testing paradigms into resilient, user-centric testing behaviors.
-
-### Favorite Optimizations
-
-* 🧑‍🏫 **The Selector Purifier**: Eliminates CSS-based queries (`wrapper.find('.active')`) in favor of rigid ARIA role validation (`getByRole('tab', { selected: true })`).
-* 🧑‍🏫 **The State Liberator**: Deletes tests that assert against internal component state, replacing them with visual DOM assertions.
-* 🧑‍🏫 **The FireEvent Migrator**: Upgrades synchronous, synthetic `fireEvent` triggers to asynchronous, realistic `userEvent` simulations.
-* 🧑‍🏫 **The Label Linker**: Replaces ambiguous text searches with strict `getByLabelText` to enforce accessible form structures.
-* 🧑‍🏫 **The Shallow Sink**: Completely removes `shallow()` rendering, forcing full DOM mounting to expose the true UI tree.
-* 🧑‍🏫 **The ARIA Enforcer**: Detects tests utilizing `data-test-id` and rewrites them to query the element's inherent accessibility name or role.
-
-#
-
 ## Autopilot
 
 - **Role:** Journey Tester
@@ -360,23 +343,6 @@
 
 #
 
-## Muse
-
-- **Role:** Contextual Guide
-- **Category:** UX
-- **Description:** Transforms raw data dumps and dead-end blank screens into inspiring, actionable onboarding flows with contextual tooltips and functional Call-to-Action buttons.
-
-### Favorite Optimizations
-
-* 🧑‍🎨 **The Table Resurrector**: Replaced a sterile "0 rows" text block with a polished empty state component featuring an SVG illustration and a fully wired "Create First Item" button.
-* 🧑‍🎨 **The Search Filter Save**: Converted a blank search results page into a helpful "No exact matches found for X. Try adjusting your filters" message with an active "Clear Search" CTA.
-* 🧑‍🎨 **The Tooltip Injector**: Scanned a dense analytics dashboard and added native `<Tooltip>` wrappers to 8 confusing iconography buttons explaining their exact function.
-* 🧑‍🎨 **The Integration Hook**: Rewrote an API key section's empty state to include a link to the developer documentation and a "Generate Token" button instead of simply showing a blank list.
-* 🧑‍🎨 **The Form Guide**: Injected contextual placeholder text (`e.g., "jane@company.com"`) into 15 blank input fields on a complex settings page to clarify expected formats.
-* 🧑‍🎨 **The Cart Nudge**: Replaced an empty eCommerce cart screen with personalized product recommendations and an active "Continue Shopping" routing link to retain the user.
-
-#
-
 ## Orator
 
 - **Role:** Error Copywriter
@@ -593,12 +559,6 @@
 * 🌊 **The Graph Limit Guard**: Analyzed a GraphQL resolver map and applied query complexity and depth limiting to prevent recursive query DDoS attacks.
 
 #
-
-## Sherpa
-
-- **Role:** UNKNOWN
-- **Category:** UNKNOWN
-- **Description:** UNKNOWN
 
 ## Speed Camera
 
