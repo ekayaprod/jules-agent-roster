@@ -23,25 +23,25 @@ All profiles except Analyzer implicitly inherit this contract. Do not duplicate 
 
 
 ### 1. Pruner (Delete)
-* **Domain:** Execute strictly to identify and delete targets. See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches.
+* **Domain:** Execute strictly to identify and delete targets.
 * **Scope:** Limit deletions strictly to your assigned scope. Do not expand blast radius to clean adjacent logic, format files, or fix typos; your only authorized mutation is subtraction.
 * **No-Interaction Policy:** Hygiene workers operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
 
 ### 2. Generator (Scaffold)
-* **Domain:** Execute exclusively to scaffold net-new architecture for the target. See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches.
+* **Domain:** Execute exclusively to scaffold net-new architecture for the target.
 * **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
-* **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Board state handling follows the Task Board Resolution Protocol (Forge-Procedure Module 4) — do not author separate checkbox or deletion logic here. Follow the Persistent Discovery Doctrine (Forge-Procedure Module 3).
+* **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Board state handling follows the worker's Task Board Resolution step — do not author separate checkbox or deletion logic here. A single empty discovery pass is not conclusive; before concluding there is nothing to build, return to Repo Recon, reconsider whether the target exists in a form the first pass didn't recognize, and search again.
 
 ### 3. Refactorer (Modify)
-* **Domain:** Execute strictly to modify or optimize assigned logic. See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches. Parallelization/concurrency mandates are not part of the generic Refactorer domain — they belong only to workers whose Module 6-resolved pillar specifically requires them (e.g., Performance), injected as a targeted extension, not baseline text.
+* **Domain:** Execute strictly to modify or optimize assigned logic. Parallelization/concurrency mandates are not part of the generic Refactorer domain — they belong only to workers whose Module 6-resolved pillar specifically requires them (e.g., Performance), injected as a targeted extension, not baseline text.
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 
 ### 4. Transformer (Format)
-* **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc). See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches.
+* **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc).
 * **Scope:** Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, or business logic is prohibited.
 
 ### 5. Instrumenter (Wrap)
-* **Domain:** Execute exclusively to inject boundaries, type-guards, validations, or test coverage. See the Recurring Review Trigger in the Base Hygiene Contract for handling domain breaches.
+* **Domain:** Execute exclusively to inject boundaries, type-guards, validations, or test coverage.
 * **Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
 
 ### 6. Operator (Deploy)
@@ -72,11 +72,10 @@ You must supply the verbatim text below if the modifier is declared active durin
   * **The Ephemeral Key Guard:** Build auth headers from strictly typed environment variables. Never hardcode raw API keys.
 
 * **Total Replacement Modifier**
-  * **The Inevitable Variation Doctrine:** A zero-target state is invalid. Don't reactively bug-fix. Follow the Persistent Discovery Doctrine (Forge-Procedure Module 3).
   * **The Clean Slate Procedure:** Reject sunk-cost fallacy. Map integration boundaries, burn existing structural logic entirely, provision a pristine replacement in its exact footprint.
   * **The Test Obsolescence Procedure:** Total replacement inevitably breaks legacy unit tests. If old tests block verification, isolate, disable (`.skip`/`xit`), or delete the obsolete blocks.
-  * **The Gambler's Autonomous Selection:** Declaring a zero-target state or exiting cleanly is prohibited. Follow the Persistent Discovery Doctrine (Forge-Procedure Module 3). *(Note: This modifier explicitly overrides the worker's base Discovery Velocity; it skips the sweep and forces an immediate pick, regardless of whether the worker is Contained or Expansive.)*
-  * **The Wrecking-Ball Generator (Total Replacement Generator):** Reconciles the Generator base profile with Total Replacement Destructive Authority, permitting legacy file incineration before net-new scaffolding.
+  * **The Inevitable Variation Doctrine:** A zero-target state is invalid; declaring one or exiting cleanly is prohibited. Don't reactively bug-fix. If no target surfaces, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; then pick the best candidate in the domain and replace it. *(Note: This modifier explicitly overrides the worker's base Discovery Velocity; it skips the sweep and forces an immediate pick, regardless of whether the worker is Contained or Expansive.)*
+  * **The Wrecking-Ball Generator (Total Replacement Generator):** Reconciles the Generator base profile with the Clean Slate Procedure's destructive authority, permitting legacy file incineration before net-new scaffolding.
 
 * **REROLL Advanced Destructive Mechanics Modifier**
   * **The Decoupled Commit Protocol:** Explicitly separates infrastructure/config dry-run validation success from application-level compile/test failures (preventing false-positive Graceful Aborts on pre-existing source errors).
@@ -126,10 +125,11 @@ Both Expansive throughput modes reference this instead of restating it. If forci
 * **Execution Posture:** "* Execute incrementally."
 * **Reporter Procedure:** "* Verify incrementally (max 3 attempts per target, sequential testing permitted). A changing error message is not forward progress. Unlike standard Expansive workers, a Pruner MUST treat verification as a strict gatekeeper: if a deletion breaks tests, you must revert that specific deletion. Retain only non-breaking deletions and proceed to the next target."
 
-### 3. Persistent Discovery Doctrine
+### 2. Persistent Discovery Doctrine
 A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
+**Exception:** Total Replacement workers never declare zero targets (Module 2).
 
-### 2. Testing Doctrine
+### 3. Testing Doctrine
 
 #### Standard Domain
 * **Testing Doctrine:** "* Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert."
@@ -161,7 +161,7 @@ If the domain relies on structural verification (no executable tests), rewrite t
 **Task Board Resolution Protocol:** `Read \`.jules/agent_tasks.md\` and permanently delete genuinely completed tasks matching your domain.`
 
 
-**Execution Steps:**
+**Execution Steps:** (the sub-steps under the Theme Verb step, `{{EXECUTION_STEPS}}`)
 - **All Archetypes:** Minimum 5 steps.
 
 **Heuristic Verification:**
@@ -205,7 +205,7 @@ A Tier: Core worker is the definitive owner of the domain its Role names — not
 Read the Role literally. Strip it of any assumption tied to a specific file type, language, or medium. State the underlying value the pillar delivers in the most general terms possible — what problem does this agent solve for *any* codebase, in any form it might take. This statement must not reference a specific tech stack, framework, or file extension.
 
 ### Step 2: Corroborating Context Pass
-Read the worker's existing Philosophy, Target Matrix, Coding Standards, and Favorite Optimizations as a second signal — not to define the domain, but to disambiguate it where the two-word Role is genuinely too compressed to be actionable alone. Existing content may sharpen the Step 1 statement (e.g., confirming "Design" means visual/UX design, not systems architecture) but may never narrow it below what Step 1 established. Where existing content and the Role's plain meaning disagree, the Role wins — flag the disagreement for Step 5.
+Read the worker's existing Philosophy, Target Matrix, Coding Standards, and Favorite Optimizations as a second signal — not to define the domain, but to disambiguate it where the two-word Role is genuinely too compressed to be actionable alone. Existing content may sharpen the Step 1 statement (e.g., confirming "Design" means visual/UX design, not systems architecture) but may never narrow it below what Step 1 established. Where existing content and the Role's plain meaning disagree, the Role wins — flag the disagreement for the Phase 2 Drift Audit.
 
 ### Step 3: Mechanical Requirement Reasoning
 Given the generalized domain from Steps 1–2, reason about what mechanical actions are required to act on it anywhere: creation of things that don't yet exist, restructuring of existing output, or wrapping/instrumenting feedback into existing flow. Route to the Structural Base Profile(s) this implies — a Tier: Core worker may require more than one. Synthesize the selected profiles, explicitly resolving any contradictions into unified Domain and Scope rules rather than appending them verbatim. Do not consult a fixed mapping table — reason it out from the domain statement itself, the same way Phase 0 reasons a Synthesis Vector from two parent workers.
@@ -219,11 +219,42 @@ Repo Recon must also derive unwritten requirements from git history where availa
 - Identify files historically modified together in the same commits (co-location contracts).
 - Where git history is shallow, fall back to static structural ratios: a pattern present in ~95% of the domain is treated as a strict requirement for new code.
 
-### Step 5: Drift Audit
-Compare the worker's existing body against the Step 1–4 output. Identify every discrepancy as Narrowing or Incoherence (definitions in Master-Forge Phase 2) and provide the evidence needed for Master Forge's Phase 2 Drift Audit to make the authoritative classification under Rule 5 (Surgical Repair Posture). Do not independently override Phase 2's classification. Preserve the discrepancy analysis as context for the Master Forge Drift Audit and subsequent Efficacy Audit.
+---
 
-### Persistent Discovery Requirement
-Follow the Persistent Discovery Doctrine (Forge-Procedure Module 3).
+## Module 7: The Worker Verification Checklist
+
+Shared by Master-Forge (Phases 6 and 8), Auto-Forge (Steps 2 and 4), and Auto-Build (Step 3). Report PASS/FAIL per check with the minimal correction for any FAIL. Structural minimums cannot be waived. Mythic Agents are exempt where explicitly permitted by the underlying rules.
+
+### Part A: Structural Checks
+Rigid, literal. No creative judgment.
+1. **Throughput-Discovery Consistency:** Verify Module 3 throughput block consistency (discovery and execution strings come from the same block).
+2. **Task Board State Coherence:** Verify adherence to the Task Board Resolution Protocol (Module 4).
+3. **Internal Duplication & Leakage:** Verify Canonical strings and Base Hygiene Contract rules are not duplicated in the worker text.
+4. **List Lengths:** Verify target, step, and heuristic counts meet the List Length Constraints in Module 4.
+5. **Creative Constraints:** Verify structural limits, emojis, capitalization, and bold-label bans match Creative-Procedure Module 2.
+6. **Custom Logic Focus:** Verify custom logic contains only hyper-specific domain constraints and no generic behavioral instructions.
+7. **Archetype Reconciliation:** Verify the reconciled profile mandates are internally coherent and that contradictory profile-derived mandates have not survived.
+8. **Drift Implementation:** Verify the Drift Audit classifications (Master-Forge Phase 2) have been semantically addressed. Not applicable to net-new workers.
+9. **Core Domain Coverage:** For Tier: Core, verify the Target Matrix thoroughly covers the resolved domain.
+10. **Assembly Fidelity (rendered worker only):** Verify every template section from Creative-Procedure Module 4 is present in order, no `{{TOKEN}}` remains, all frontmatter keys are populated with `forge_version` equal to `CURRENT_FORGE_VERSION`, and every literal string that applies to the worker (Domain Autonomy, Core Discovery Fallback, Task Board Resolution Protocol, throughput block strings) appears verbatim.
+
+### Part B: Efficacy Checks
+Impartial adjudication of an original worker against its upgraded draft. Do not assume that "missing" means "broken" — removing restrictive boilerplate or contradictory legacy rules is often an upgrade. The only metric is which variant produces a superior headless worker for *this specific domain*. For net-new workers there is no original: skip the Component Diff and run only the Mandatory Audits that apply.
+
+**1. The Component Diff [Critical]**
+State the agent's core mission. Identify 3 to 4 critical operational mechanics, constraints, or structural elements from the original worker—especially those significantly altered or removed in the draft. For each:
+1. **Original Variant:** Quote the original text.
+2. **Draft Variant:** Quote the draft text (or explicitly note its omission). *(Note: Changing a descriptive range like "3-to-5" to a single integer constraint is a valid translation, not a degradation.)*
+3. **Adjudication:** Evaluate both purely against the mission. Apply the Generic-vs-Domain Test: *Would this mechanic be correct advice for ANY worker, or only because of this specific stack's tooling?* If the latter, it must survive. Does the Original or Draft (including deliberate omission) result in a more capable, coherent agent?
+
+**2. Mandatory Archetype & Tier Audits**
+- **Safety Overwrites:** If Archetype physics omit a critical legacy safeguard (e.g., specific `git clean` flags), the legacy safeguard must override.
+- **Core Ownership Framing Check [Tier: Core Only]:** Confirm that the generated Strict Operational Rules section does not allow an Archetype's revert-on-breach language to override the Core Domain Ownership Principle.
+- **Mythic Fidelity Check [Tier: Mythic Only]:** Identify every extreme/boundary-breaking mechanic from the legacy draft. Confirm each is physically present in the generated draft. FAIL if the output behaves identically to a standard-tier worker.
+
+**3. Verdict**
+- **Original Better (FAIL):** If the Original Variant wins any diff (i.e., a genuinely useful domain safeguard, structural PR header, or terminal fallback was lost), or if any Mandatory Audit fails. Repair per the invoking procedure (Master-Forge Regression Loop; Auto-Forge Step 4).
+- **Draft Better or Equal (PASS):** If the draft wins or ties every comparison and passes all Mandatory Audits.
 
 ---
 
