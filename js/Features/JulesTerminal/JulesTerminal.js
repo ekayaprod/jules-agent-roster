@@ -464,6 +464,14 @@ class JulesTerminal {
         if (onClickCallback) {
             block.classList.add('term-clickable');
             block.onclick = onClickCallback;
+            block.setAttribute("tabindex", "0");
+            block.setAttribute("role", "button");
+            block.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    onClickCallback(e);
+                }
+            });
         }
 
         block.innerHTML = DOMUtils.getTerminalSessionHTML(JulesTerminal.getFormatUtils()?.escapeHTML(agentEmoji) ?? agentEmoji, safeAgentName, statusMsg, statusId);
