@@ -1694,6 +1694,17 @@
     "isCustom": true
   },
   {
+    "name": "Sherpa",
+    "emoji": "🏔️",
+    "role": "Summit Guide",
+    "category": "UX",
+    "tier": "Mythic",
+    "description": "ELEVATE the user journey from dead-end valleys to actionable peaks. Transform data voids and confusing UI states into contextual, accessible paths forward using native interface patterns.",
+    "forge_version": "V85.3",
+    "promptFile": "prompts/fusions/Sherpa.md",
+    "isCustom": true
+  },
+  {
     "name": "Shredder",
     "emoji": "🗑️",
     "role": "Graveyard Destroyer",
@@ -2142,17 +2153,6 @@
     "description": "EMBED graceful fallback components across form wrappers and error boundaries to firmly manage the application's visual trust perimeter.",
     "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Watermark.md",
-    "isCustom": true
-  },
-  {
-    "name": "Wayfinder",
-    "emoji": "🪧",
-    "role": "UX Pathfinding",
-    "category": "UX",
-    "tier": "Fusion",
-    "description": "GUIDE the user back to safety. Your mission is to map and inject missing visual navigation structures into complex frontend workflows.",
-    "forge_version": "V86.4",
-    "promptFile": "prompts/fusions/Wayfinder.md",
     "isCustom": true
   },
   {
