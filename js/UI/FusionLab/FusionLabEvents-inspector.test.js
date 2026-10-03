@@ -4,7 +4,7 @@
 
 const FusionLabEvents = require('./FusionLabEvents');
 global.ClipboardUtils = {
-    copyText: jest.fn().mockResolvedValue(),
+    copyText: jest.fn().mockResolvedValue(true),
     animateButtonSuccess: jest.fn()
 };
 

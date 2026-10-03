@@ -747,7 +747,7 @@ describe('FusionLab Initialization and Bindings', () => {
 
         // Mock window properties if used in bindings
         global.window.rosterApp = { showToast: jest.fn() };
-        global.ClipboardUtils = { copyText: jest.fn().mockResolvedValue(), animateButtonSuccess: jest.fn() };
+        global.ClipboardUtils = { copyText: jest.fn().mockResolvedValue(true), animateButtonSuccess: jest.fn() };
     });
 
     afterEach(() => {
