@@ -195,11 +195,21 @@ describe('JulesTerminal', () => {
             expect(mockElements.prModalExternalLink.removeAttribute).toHaveBeenCalledWith('href');
         });
 
-        it('should strip href if URL throws an error during parsing', () => {
+        it('should strip href if URL is not http/https', () => {
             mockElements.prModalExternalLink.removeAttribute = jest.fn();
-            // The existing test covers the else block when protocol is not http/https
             modals._showPRModal({ ...mockPR, html_url: 'data:text/html,<script>alert(1)</script>' });
             expect(mockElements.prModalExternalLink.removeAttribute).toHaveBeenCalledWith('href');
+        });
+
+        it('should strip href if URL throws an error during parsing', () => {
+            mockElements.prModalExternalLink.removeAttribute = jest.fn();
+            const originalURL = global.URL;
+            global.URL = jest.fn(() => {
+                throw new TypeError('Invalid URL');
+            });
+            modals._showPRModal({ ...mockPR, html_url: 'invalid' });
+            expect(mockElements.prModalExternalLink.removeAttribute).toHaveBeenCalledWith('href');
+            global.URL = originalURL;
         });
 
         it('should catch error, strip href, and dispatch telemetry event if new URL() throws', () => {
