@@ -1056,6 +1056,17 @@
     "isCustom": true
   },
   {
+    "name": "LogisticsCoordinator",
+    "emoji": "📋",
+    "role": "Infrastructure Auditor",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "INVENTORY meta-infrastructure, categorize CI/CD supply line decay, and govern the centralized logistics queue to optimize swarm execution.",
+    "forge_version": "V88.4",
+    "promptFile": "prompts/fusions/LogisticsCoordinator.md",
+    "isCustom": true
+  },
+  {
     "name": "Lumberjack",
     "emoji": "🪓",
     "role": "Branch Chopper",
@@ -1700,7 +1711,7 @@
     "category": "UX",
     "tier": "Mythic",
     "description": "ELEVATE the user journey from dead-end valleys to actionable peaks. Transform data voids and confusing UI states into contextual, accessible paths forward using native interface patterns.",
-    "forge_version": "V85.3",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Sherpa.md",
     "isCustom": true
   },
