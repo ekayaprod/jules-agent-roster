@@ -191,6 +191,17 @@ describe('ClipboardUtils', () => {
             expect(result).toBe(false);
         });
 
+        it('should return false and dispatch telemetry if fallback execCommand throws an error', async () => {
+            delete global.navigator.clipboard;
+            const mockFallbackError = new Error('Explicit execCommand error');
+            document.execCommand.mockImplementation(() => { throw mockFallbackError; });
+
+            const result = await ClipboardUtils.copyText('test text');
+
+            expect(window.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('CLIPBOARD_FALLBACK_FAILED', mockFallbackError);
+            expect(result).toBe(false);
+        });
+
         it('should handle explicitly thrown errors from writeText in the catch block on line 28', async () => {
             const explicitError = new Error('Explicit writeText error for line 28');
             global.navigator.clipboard.writeText.mockRejectedValue(explicitError);
