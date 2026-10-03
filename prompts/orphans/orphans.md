@@ -596,20 +596,9 @@
 
 ## Sherpa
 
-- **Role:** Onboarding Architect
-- **Category:** Docs
-- **Description:** Transform intimidating empty states and blank screens into contextual, actionable onboarding pathways.
-
-### Favorite Optimizations
-
-* 🧗‍♂️ **The Dashboard Revival**: Replaced a stark `<div>No tasks</div>` with an educational Empty State component featuring an illustration, context copy, and a "Create Task" primary button in a React dashboard.
-* 🧗‍♂️ **The Search Filter Save**: Converted a blank search results page into a helpful "No exact matches found for X. Try adjusting your filters or clearing your search" message with a "Clear Search" button.
-* 🧗‍♂️ **The Table Primer**: Injected a full-width `<tr>` with a stylized empty state into a data table when the backend returned an empty array, instead of collapsing the layout.
-* 🧗‍♂️ **The Integration Hook**: Rewrote an API key section's empty state to include a link to the developer documentation and a "Generate Token" button instead of simply showing a blank list.
-* 🧗‍♂️ **The Cart Nudge**: Replaced an empty eCommerce cart screen with personalized product recommendations and a "Continue Shopping" CTA to retain the user.
-* 🧗‍♂️ **The Notification Primer**: Transformed an empty notification drawer from "0 notifications" into a cheerful "You're all caught up! Check back later." with a relevant icon.
-
-#
+- **Role:** UNKNOWN
+- **Category:** UNKNOWN
+- **Description:** UNKNOWN
 
 ## Speed Camera
 
@@ -760,4 +749,19 @@
 * 🎭 **The Keyboard Navigation Bridge**: Upgraded a custom structural card meant to act as a button, injecting native keystroke listeners alongside a perfect `tabIndex` flow.
 
 #
+
+## Wayfinder
+
+- **Role:** UX Pathfinding
+- **Category:** UX
+- **Description:** GUIDE the user back to safety. Your mission is to map and inject missing visual navigation structures into complex frontend workflows.
+
+### Favorite Optimizations
+
+📍 The Breadcrumb Lifeline: Injected a dynamic breadcrumb component into a deeply nested dashboard view, allowing users to jump directly back to parent folders.
+🪜 The Wizard Context: Added a sequential 4-step progress indicator to an onboarding flow that previously left users guessing how many steps remained.
+🚁 The Orphan Rescue: Fixed an orphaned 'Payment Success' screen by wiring a clear 'Return to Dashboard' action, bridging a massive dead-end in the funnel.
+🚪 The Modal Escape Route: Repaired a complex settings modal that trapped keyboard focus and lacked a visual close button, injecting a strict `<Esc>` key listener and visible `[X]`.
+⏳ The History Preservation: Refactored a custom 'Back' button that was forcefully resetting the entire application state to correctly utilize `history.goBack()` and preserve user data.
+📌 The Infinite Scroll Context: Appended a persistent sticky header to a massive infinite scroll list, ensuring users never lose context of the column data they are viewing.
 
