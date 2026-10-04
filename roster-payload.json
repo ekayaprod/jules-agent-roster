@@ -875,7 +875,7 @@
     "category": "Operations",
     "tier": "Mythic",
     "description": "DECONTAMINATE the blast zone. Incinerate environmental toxins, corrupted caches, and orphaned debris poisoning the virtual machine.",
-    "forge_version": "V86.9",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Hazmat.md",
     "isCustom": true
   },
