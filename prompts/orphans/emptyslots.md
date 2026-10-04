@@ -10,7 +10,6 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 
 - `Author,Author`
 - `Dispatch,Dispatch`
-- `Dispatch,Overseer`
 - `Dispatch,Pedant`
 - `Dispatch,Scavenger`
 - `Dispatch,Vibe Check`
