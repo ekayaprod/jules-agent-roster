@@ -2008,7 +2008,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "ENFORCE telemetry logging on empty catch blocks to eliminate blind spots and route swallowed exceptions into centralized observability pipelines.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Toxicologist.md",
     "isCustom": true
   },
