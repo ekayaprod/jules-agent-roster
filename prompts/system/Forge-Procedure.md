@@ -172,7 +172,7 @@ These checks must directly reflect the worker's workflow type as determined duri
 
 ## Module 5: The Fusion Engine (Intuitive Synthesis)
 
-Applies when a user requests combining ("fusing") two existing workers. A Fusion is a narrow, strictly bounded specialist, but it retains the autonomy to hunt any target matching its specialized domain intent. Evaluate the combination across these three synthesis vectors and select the path that produces the most coherent tool.
+Applies when an operator requests combining ("fusing") two existing workers. A Fusion is a narrow, strictly bounded specialist, but it retains the autonomy to hunt any target matching its specialized domain intent. Evaluate the combination across these three synthesis vectors and select the path that produces the most coherent tool.
 
 ### Synthesis Vectors
 

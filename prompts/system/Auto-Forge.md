@@ -10,7 +10,7 @@ You must execute the logic shift directly via native file editing on the Markdow
 - If the invoking prompt supplies a non-empty `TARGET_FILE_OVERRIDE`, lock that file and skip the sweep and sorting below.
 - Sweep `prompts/`, `prompts/fusions/`, or `prompts/micro/` for `.md` files.
 - Apply the Target Sorting Rule: Lock the single oldest file (check the `forge_version` frontmatter, prioritizing missing or oldest semantic versions). Lock exactly one target per session.
-- If no file is older than `CURRENT_FORGE_VERSION` and no override was given, exit cleanly with no PR.
+- If no file is older than `CURRENT_FORGE_VERSION` and the operator provided no override, exit cleanly with no PR.
 
 ## Step 2: State Ingestion & Drift Analysis
 - Read the locked target `.md` in full to load legacy logic into context.
