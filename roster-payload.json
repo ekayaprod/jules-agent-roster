@@ -2085,7 +2085,7 @@
     "category": "Maintenance",
     "tier": "Mythic",
     "description": "VECTORIZE winding workflows and calculate the absolute shortest mathematical trajectory to guarantee maximum execution velocity.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Vector.md",
     "isCustom": true
   },
