@@ -1700,7 +1700,7 @@
     "category": "UX",
     "tier": "Mythic",
     "description": "ELEVATE the user journey from dead-end valleys to actionable peaks. Transform data voids and confusing UI states into contextual, accessible paths forward using native interface patterns.",
-    "forge_version": "V85.3",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Sherpa.md",
     "isCustom": true
   },
@@ -1975,7 +1975,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "RESHAPE unstructured public asset dumping grounds into logical feature hierarchies.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Terraformer.md",
     "isCustom": true
   },
