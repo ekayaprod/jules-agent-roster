@@ -175,15 +175,13 @@ class RosterApp {
    * @see ../../docs/architecture/core/README.md#rosterapp-architecture
    */
   cacheElements() {
-    const selectors = CONFIG.selectors;
-    for (const key in selectors) {
-      if (Object.prototype.hasOwnProperty.call(selectors, key)) {
-        const selector = selectors[key];
-        this.elements[key] = (typeof selector === 'string' && selector.startsWith("#"))
-          ? document.getElementById(selector.substring(1))
-          : document.querySelectorAll(selector);
-      }
-    }
+    // 🧬 COLLAPSE: Collapsed verbose for-in DOM hydration into a single-pass reduce pipeline.
+    this.elements = Object.entries(CONFIG.selectors).reduce((acc, [key, selector]) => {
+      acc[key] = (typeof selector === 'string' && selector.startsWith("#"))
+        ? document.getElementById(selector.substring(1))
+        : document.querySelectorAll(selector);
+      return acc;
+    }, this.elements || {});
 
     // ⚡ Bolt+: Extracted redundant DOM queries outside of loops and cached the references on initialization.
     this.categoryElements = {};
@@ -542,15 +540,13 @@ class RosterApp {
       OBSERVER_OPTIONS
     );
 
-    // ⚡ Bolt+: Replaced Object.keys().forEach with a direct for...in lookup
-    for (const gridId in CONFIG.sectionMap) {
-      if (Object.prototype.hasOwnProperty.call(CONFIG.sectionMap, gridId)) {
+    // 🧬 COLLAPSE: Converted imperative for-in loop to a dense functional pipeline, pruning tautological hasOwnProperty checks.
+    Object.keys(CONFIG?.sectionMap || {}).forEach(gridId => {
         // ⚡ Bolt+: Utilize cached category elements and O(1) reversed lookups to prevent repeated query execution.
         const catKey = this.categoryLookup[gridId];
         const el = catKey ? this.categoryElements[catKey] : document.getElementById(gridId);
         if (el) this.observer.observe(el);
-      }
-    }
+    });
   }
 
   /**

@@ -56,10 +56,12 @@ I needed a localized, single source of truth that lived strictly on my machine, 
 
 This project is ruthlessly optimized for speed and simplicity, relying entirely on native web APIs.
 
-- **Minimal-Dependency Frontend:** Built with Pure Vanilla JavaScript, relying only on lightweight utilities like DOMPurify and Zod for security and validation. There are no bundlers (Webpack/Vite) and no Virtual DOMs (React/Vue).
-- **Data Compilation (`scripts/build-roster.js`):** A lightweight Node.js script acts as a compiler, executing a single-pass extraction to convert raw Markdown agent files into a highly optimized `roster-payload.json` artifact for the frontend to consume.
-- **Fusion Logic (`js/Features/Fusion/FusionLab.js`):** The core intelligence of the UI. It handles the state management of merging distinct agent protocols into a single, cohesive payload.
-- **Asynchronous Execution (`js/UI/JulesTerminal/JulesTerminal.js`):** Orchestrates active session executions, relying heavily on native asynchronous DOM manipulation. It implements optimistic UI state blocks and manages execution queues via local caching and async polling mechanisms.
+| Architectural Component | Description |
+| :--- | :--- |
+| **Minimal-Dependency Frontend** | Built with Pure Vanilla JavaScript, relying only on lightweight utilities like DOMPurify and Zod for security and validation. There are no bundlers (Webpack/Vite) and no Virtual DOMs (React/Vue). |
+| **Data Compilation** (`scripts/build-roster.js`) | A lightweight Node.js script acts as a compiler, executing a single-pass extraction to convert raw Markdown agent files into a highly optimized `roster-payload.json` artifact for the frontend to consume. |
+| **Fusion Logic** (`js/Features/Fusion/FusionLab.js`) | The core intelligence of the UI. It handles the state management of merging distinct agent protocols into a single, cohesive payload. |
+| **Asynchronous Execution** (`js/UI/JulesTerminal/JulesTerminal.js`) | Orchestrates active session executions, relying heavily on native asynchronous DOM manipulation. It implements optimistic UI state blocks and manages execution queues via local caching and async polling mechanisms. |
 
 ## 4. Robustness & Integrity
 

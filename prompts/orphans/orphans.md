@@ -1,19 +1,19 @@
 # Orphaned Agents
 
-## Aligner
+## Aegis
 
-- **Role:** Rhythm Standardizer
-- **Category:** UX
-- **Description:** STANDARDIZE arbitrary visual anomalies and relentlessly enforce absolute, unified spacing across the entire presentation layer.
+- **Role:** Payload Purifier
+- **Category:** Security
+- **Description:** PURIFY the perimeter. Intercept vulnerable data pathways and enforce strict sanitization boundaries to prevent hostile payloads from detonating inside the application architecture.
 
 ### Favorite Optimizations
 
-* 📏 Obliterated hardcoded inline style integers (`gap: 17`) in favor of centralized layout system tokens.
-* 📏 Stripped out arbitrary square-bracket syntax (`m-[13px]`) to enforce strict adherence to the `tailwind.config.js` spacing scale.
-* 📏 Normalized rogue negative margins that intentionally break flexbox containers, restoring predictable alignment.
-* 📏 Resolved brittle `calc()` spacing logic into robust flex-gap declarations.
-* 📏 Automatically mapped rogue pixel values (`22px`, `23px`, `25px`) to their nearest intended variable (`var(--spacing-lg)`).
-* 📏 Ensured responsive padding constraints rely solely on predefined media-query spacing scales, not arbitrary integer overrides.
+* 🛡️ Wrapped a vulnerable dynamically rendered React prop in a strict sanitization call, neutralizing a critical DOM injection vector in a comment section.
+* 🧱 Refactored a raw, string-interpolated database query into a secure parameterized query, closing a massive data exposure loophole.
+* 🛂 Added a strict escaping utility to a child process command that was receiving unfiltered user input from an API route.
+* 🛡️ Replaced a catastrophic, exponentially backtracking regular expression with a safe, strictly bounded native validator.
+* 🛂 Injected a strict HTML scrubber into a markdown parsing pipeline, ensuring embedded scripts were neutralized before rendering.
+* 🧱 Replaced an insecure payload parsing call with a strict deserialization method wrapped in a schema validation layer.
 
 ## Autopilot
 
@@ -49,22 +49,35 @@
 
 #
 
-## Brand Manager
+## Caliper
 
-- **Role:** Lexicon Synchronizer
-- **Category:** Docs
-- **Description:** Establishes the official domain terminology in the documentation to eradicate fragmented lexicons leaking into the UI.
+- **Role:** Spatial Standardizer
+- **Category:** UX
+- **Description:** RECALIBRATE fragile DOM geometry and hardcoded spacing into an absolute, tokenized mathematical grid using centralized design variables.
 
 ### Favorite Optimizations
 
-* 🏷️ **The Canonical Action**: Replaced generic "Submit" buttons scattered across the application with action-oriented domain verbs matching the README (e.g., "Deploy Workspace").
-* 🏷️ **The Entity Sync**: Rewrote error messages exposing internal technical database constraints to use the exact entity names defined in the user-facing API documentation.
-* 🏷️ **The Settings Unification**: Standardized UI labels and modal titles using "Preferences", "Options", and "Config" interchangeably to use the canonical term "Settings".
-* 🏷️ **The Destructive Verb**: Synchronized inconsistent destructive actions ("Remove", "Trash") to use the official documentation term "Delete".
-* 🏷️ **The Python Docstring Alignment**: Updated CLI argument descriptions in argparse to match the canonical verbs established in the overarching project documentation.
-* 🏷️ **The iOS Label Sync**: Refactored SwiftUI Text labels mapping internal struct variables to strictly use the public domain glossary.
+* 📐 Obliterated hardcoded inline style integers (`style={{ gap: 17 }}`) in `Dashboard.tsx` in favor of centralized layout system tokens (`var(--spacing-md)`).
+* 📐 Stripped out arbitrary square-bracket syntax (`m-[13px]`) in `ProfileCard.jsx` to enforce strict adherence to the `tailwind.config.js` spacing scale.
+* 📐 Normalized rogue negative margins (`margin-left: -15px`) in `Navigation.css` that intentionally broke flexbox containers, restoring predictable alignment.
+* 📐 Replaced an entire grid of product cards relying on fragile `float: left` and clearfixes with a robust, one-dimensional flexbox architecture in `ProductGrid.tsx`.
+* 📐 Converted text elements trapped in brittle `position: absolute` mathematical positioning into fluid, responsive `display: flex` rows inside `HeroBanner.jsx`.
+* 📐 Resolved brittle `calc(100% - 15px)` spacing logic into robust flex-gap declarations driven strictly by predefined system tokens in `Modal.css`.
 
-#
+## Canon
+
+- **Role:** Lexicon Arbiter
+- **Category:** UX
+- **Description:** CANONIZE fragmented UI text and developer jargon into an absolute, unified product language derived strictly from canonical documentation.
+
+### Favorite Optimizations
+
+* 📜 Translated 14 passive-aggressive `workspace_id_null` server toast notifications into the canonical "Select a Workspace" empathetic error state in the React dashboard.
+* 📜 Synchronized scattered generic "Submit" buttons across 5 payment modals to strictly use the authoritative "Authorize Payment" domain verb defined in the roadmap.
+* 📜 Mapped deprecated `aria-label="Trash Folder"` attributes inside the Angular navigation tree to the canonical "Delete Workspace" accessibility terminology.
+* 📜 Stripped raw database `snake_case` keys from an analytics data grid and mapped them to the human-readable table column headers documented in the API schema.
+* 📜 Eradicated 9 instances of "Config" and "Options" in the Vue settings portal, enforcing the absolute "Preferences" terminology mandated by the architectural README.
+* 📜 Aligned mismatched hover tooltips on a SwiftUI tab bar to correctly reflect the updated feature nouns from the Q3 product strategy glossary.
 
 ## Captionist
 
@@ -80,23 +93,6 @@
 * 🎟️ **The Icon Clarification**: Made the screen reader announce a generic gear icon link as "Settings" instead of just "gear icon" using an `aria-label`.
 * 🎟️ **The SVG Sanitization**: Stripped unnecessary XML metadata and comment blocks from heavy inline SVGs using svgo, significantly reducing raw document payload.
 * 🎟️ **The Markdown Image Tag**: Rewrote plain Markdown image links `![image](foo.png)` to include rich contextual descriptions and converted source files to `.avif`.
-
-#
-
-## Catalogue
-
-- **Role:** Centralization Specialist
-- **Category:** Hygiene
-- **Description:** Extract massive, duplicated media objects into strictly typed global dictionaries to eliminate WET visual bloat.
-
-### Favorite Optimizations
-
-* 📇 **The SVG Component Extractor**: Extracted a "Checkmark" SVG pasted across 12 React components into a centralized `Icons.tsx` library, cutting visual clutter.
-* 📇 **The Base64 Payload Consolidation**: Centralized a massive Base64 placeholder image copy-pasted across 8 Vue components into a single exported constant.
-* 📇 **The CSS Variable Hoist**: Centralized an identical Base64 loading GIF used inside 5 different CSS files into a single global CSS variable.
-* 📇 **The CDN Truth Dictionary**: Extracted hardcoded external CDN URLs for brand logos across HTML templates into a strictly typed `BrandAssets` object.
-* 📇 **The JSON Theme Mapping**: Centralized scattered hex color codes corresponding to visual branding themes into a structured `theme.json` dictionary.
-* 📇 **The Flutter Asset Registry**: Refactored raw `AssetImage('images/icon.png')` calls in Dart to reference a strongly typed static `AppIcons` class.
 
 #
 
@@ -129,23 +125,6 @@
 * 🔏 **The Permission Breakdown**: Injected a CHMOD translation detailing Owner/Group access above a Node.js build script.
 * 🔏 **The Python Struct Format**: Translated a little-endian C struct format string above a Python struct unpack call.
 * 🔏 **The Bash Parameter Expansion**: Injected an explanation detailing the removal of the shortest matching prefix above a bash script.
-
-#
-
-## Darkroom
-
-- **Role:** Media Upgrader
-- **Category:** Hygiene
-- **Description:** Eliminates multi-megabyte image payloads by converting legacy assets into modern web formats.
-
-### Favorite Optimizations
-
-* 🎞️ **The Picture Polyfill**: Converted a 3MB uncompressed landing page hero PNG to WebP and wrapped the image tag in a `<picture>` tag with the original PNG as fallback.
-* 🎞️ **The Spinner Swap**: Converted a suite of looping GIF loading spinners into WebM and MP4 video files, replacing the image tags with muted autoplay video elements.
-* 🎞️ **The Bleeding Edge AVIF**: Generated AVIF variants alongside existing WebP files and added a source entry above the WebP source in each picture tag.
-* 🎞️ **The CSS Background Conversion**: Converted a large background image from `bg.png` to `bg.webp` and updated the CSS url reference, adding a supports fallback.
-* 🎞️ **The SVG Minimizer**: Executed SVGO across a directory of raw icon exports from Figma, stripping thousands of lines of metadata and empty groups without changing raster files.
-* 🎞️ **The Lazy Loading Injection**: Scanned for massive below-the-fold image assets and injected the `loading="lazy"` attribute into every image tag missing it.
 
 #
 
@@ -183,57 +162,6 @@
 
 #
 
-## Gallerist
-
-- **Role:** Media Presenter
-- **Category:** UX
-- **Description:** Substitutes heavy rasters with scalable vectors and wraps assets in optimized loading boundaries to completely eliminate layout shifts across the entire application ecosystem.
-
-### Favorite Optimizations
-
-* 📽️ **The Raster Purge**: Replaced a massive 2MB PNG icon with a crisp, 2KB inline SVG, eliminating a critical render-blocking resource.
-* 📽️ **The Boundary Enforcement**: Wrapped an unpredictable hero image in an explicit `aspect-ratio` container, completely curing a 0.8 Cumulative Layout Shift penalty.
-* 📽️ **The Lazy Loader Integration**: Upgraded 50 below-the-fold `<img>` tags to utilize native `loading="lazy"`, immediately reducing the initial network payload by 40%.
-* 📽️ **The Next.js Image Migration**: Refactored standard HTML `img` tags across a React codebase into `next/image` components, enabling automatic WebP optimization.
-* 📽️ **The Placeholder Synthesis**: Injected base64-encoded blurry placeholders into a gallery component, providing a seamless visual transition on slow 3G networks.
-* 📽️ **The Sprite Unification**: Consolidated 20 individual SVG files scattered across the codebase into a single robust SVG sprite map, drastically cutting down HTTP requests.
-
-#
-
-## Grammarian
-
-- **Role:** Microcopy Canonicalizer
-- **Category:** UX
-- **Description:** Extracts sloppy, hardcoded UI strings into strict canonical constants and rewrites them into polished, active-voice microcopy.
-
-### Favorite Optimizations
-
-* ✒️ **The Error Message Centralization**: Centralized 20 scattered, passive-voice error messages across a React app into a strict `error_constants.ts` dictionary with empathetic, action-oriented language.
-* ✒️ **The Button Text Polish**: Replaced robotic "Initialize Data" buttons in a workspace manager with clear "Create Workspace" action verbs matching the domain roadmap.
-* ✒️ **The Toast Notification Unification**: Unified inconsistent toast notifications in a Next.js application into a standard active-voice tone and centralized the string map.
-* ✒️ **The Validation Re-framing**: Standardized generic validation messages in a TypeScript form to ensure empathetic responses that guide the user to a solution rather than highlighting a failure.
-* ✒️ **The Placeholder Replacement**: Rewrote lazy "Type here..." input placeholders into descriptive hints like "Enter your billing email address."
-* ✒️ **The Empty State Revamp**: Replaced a blank "No data" message in a dashboard widget with an actionable "Create your first project to get started" constant.
-
-#
-
-## Hazmat
-
-- **Role:** Payload Purifier
-- **Category:** Architecture
-- **Description:** You ensure no malicious payload ever detonates inside the application by intercepting and purifying incoming user data payloads.
-
-### Favorite Optimizations
-
-* ☣️ **The DOM Purifier Injection**: Wrapped a vulnerable `dangerouslySetInnerHTML` React prop in a strict `DOMPurify.sanitize()` call, neutralizing a critical XSS vector in a comment section.
-* ☣️ **The SQL Parameterization**: Refactored a raw, string-interpolated PostgreSQL query (`SELECT * FROM users WHERE name = '${name}'`) into a secure parameterized query (`$1`), closing a massive injection loophole.
-* ☣️ **The Shell Escaper**: Added a strict `shell-escape` utility to a Node.js child process `exec()` command that was receiving unfiltered user input from an API route.
-* ☣️ **The Regex DoS Neutralizer**: Replaced a catastrophic, exponentially backtracking regular expression used for email validation with a safe, strictly bounded native validator.
-* ☣️ **The Markdown Sanitizer**: Injected a strict HTML scrubber into a markdown parsing pipeline, ensuring `<script>` tags embedded in markdown were neutralized before rendering.
-* ☣️ **The Deserialization Armor**: Replaced an insecure `eval()` call used to parse a JSON payload with a strict `JSON.parse()` wrapped in a Zod schema validation layer.
-
-#
-
 ## Historian
 
 - **Role:** Temporal Archivist
@@ -249,21 +177,6 @@
 ⏳ Scanned undocumented legacy modules and injected comprehensive docstrings synthesized from historical PR narratives.
 ⏳ Linked raw environment variable calls to original setup specs, archiving the specific security requirements for production keys.
 
-## Illuminator
-
-- **Role:** Architecture Draftsman
-- **Category:** Docs
-- **Description:** Draft precise architectural blueprints from dense text walls to reveal the structural truth of the repository.
-
-### Favorite Optimizations
-
-* 🖌️ **The Infrastructure Blueprint:** Transmuted a sprawling 500-line AWS description into a multi-layered Mermaid cloud architecture graph.
-* 🖌️ **The Logic Trace:** Isolated a nested `if/else` comment block and drafted a `stateDiagram-v2` schematic to prove the edge cases.
-* 🖌️ **The Schema Surveyor:** Parsed a plain-text database manifest and generated a strict ERD with relationship cardinality.
-* 🖌️ **The Inheritance Lattice:** Traced Python Docstring inheritance lists and sketched a hierarchical ASCII class tree to visualize the lineage.
-* 🖌️ **The Pipeline Projection:** Projected a linear CI/CD description into a chronological flowchart to highlight bottleneck nodes.
-* 🖌️ **The Object Cartography:** Mapped out a sprawling JSON payload description into a nested Mermaid graph for immediate API clarity.
-
 ## Information Architect
 
 - **Role:** Layout Narrator
@@ -278,23 +191,6 @@
 * 📋 **The Form Narrative**: Audited a complex multi-step form lacking context and added clear semantic `<fieldset>` boundaries with empathetic step labels.
 * 📋 **The Table Headers**: Upgraded complex `<div>` grids presenting tabular data into native semantic `<table>`, `<thead>`, and `<th scope="col">` elements.
 * 📋 **The iOS Semantic Map**: Applied `.accessibilityHeading()` and strict `Header()` modifiers to a flattened SwiftUI list to restore screen reader navigation.
-
-#
-
-## Interpolator
-
-- **Role:** Syntax Upgrader
-- **Category:** Hygiene
-- **Description:** Refines Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.
-
-### Favorite Optimizations
-
-* 💬 **The Tactical Cleanse**: Eliminated brittle legacy string `+` implementations and standardized them into modern backticks (` `) across a massive React component.
-* 💬 **The Structural Refactor**: Migrated arbitrary Python `%s` formatting into native, readable `f-strings`.
-* 💬 **The Silent Hardening**: Upgraded C# `String.Format({0})` methods into clean, modern `$"{variable}"` syntax.
-* 💬 **The Multiline Miracle**: Replaced a 10-line array `.join('\n')` hack with a single, clean multi-line template literal.
-* 💬 **The SQL String Purge**: Refactored raw SQL query construction logic heavily reliant on `+` string builders into clean template literals.
-* 💬 **The Log Cleanup**: Fixed dozens of broken spacing bugs in a `logger.info()` module caused by developers forgetting trailing spaces during manual string concatenation.
 
 #
 
@@ -326,22 +222,20 @@
 * 📺 **The Error Router**: Intercepted a silent GraphQL mutation failure that was burying 500s in the network tab and broadcasted it into an actionable, user-facing error toast.
 * 📺 **The Button Lock**: Semantically disabled a "Submit Order" button during network flight time, injecting an inline SVG spinner while preserving the screen reader announcement text.
 
-## Mason
+## Media Pipeline
 
-- **Role:** Spatial Reinforcer
-- **Category:** UX
-- **Description:** Fix broken CSS layouts, WPF flexboxes, and container overflows to reinforce mathematical spatial integrity across the application.
+- **Role:** Asset Optimizer
+- **Category:** Performance
+- **Description:** PROCESS unrefined visual bloat by extracting, compressing, and centralizing media assets into strict dictionaries wrapped in explicit boundaries.
 
 ### Favorite Optimizations
 
-* 🧱 **The Float Eradicator**: Replaced an entire grid of product cards relying on fragile `float: left` and clearfixes with a robust, one-dimensional flexbox architecture.
-* 🧱 **The Overflow Container**: Fixed unintended horizontal scrollbars on mobile screens by correcting absolute container boundaries and applying `max-w-full overflow-hidden`.
-* 🧱 **The Two-Dimensional Realignment**: Realigned heavily nested elements inside a complex dashboard container using CSS Grid for mathematically perfect two-dimensional layout control.
-* 🧱 **The Margin Gap Migrator**: Removed structural spacing hacks relying on negative margins and `:last-child` selectors, enforcing organic spacing with flex `gap`.
-* 🧱 **The Absolute Normalizer**: Converted elements trapped in brittle `position: absolute` mathematical positioning into fluid, responsive `display: flex` rows.
-* 🧱 **The Fluid Auto-Fitter**: Upgraded legacy CSS media queries managing column counts to a modern `grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))` for seamless scaling.
-
-#
+* 🏭 Extracted a massive 2MB PNG icon and processed it through a temporary sharp script, deploying a crisp, 2KB inline SVG while deleting the harness.
+* 🏭 Deduplicated a "Checkmark" SVG pasted across 12 React components, centralizing it into `Icons.tsx` and wrapping it in an explicit `aspect-ratio` container.
+* 🏭 Processed a suite of looping GIF loading spinners into WebM video files, replacing the image tags with muted autoplay video elements enclosed in layout boundaries.
+* 🏭 Relocated 3 different 50-line SVG icons bloating a core logic file into a separate `/icons/` directory, leaving the machinery perfectly readable.
+* 🏭 Upgraded 50 below-the-fold `<img>` tags across the application lifecycle to utilize native `loading="lazy"` attributes, curing a 0.8 Cumulative Layout Shift penalty.
+* 🏭 Extracted hardcoded external CDN URLs for brand logos across HTML templates into a strictly typed `BrandAssets` object verified by AST compilation.
 
 ## Orator
 
@@ -360,6 +254,21 @@
 
 #
 
+## Performance Engineer
+
+- **Role:** Performance Profiler
+- **Category:** Performance
+- **Description:** OVERHAUL the codebase's engine by measuring actual bottlenecks, cutting power to unnecessary executions, and eliminating structural drag.
+
+### Favorite Optimizations
+
+🏎️ Injected temporary telemetry into a heavy React `useEffect`, discovered a 50fps render stall, and hoisted an early-return guard to bypass the loop entirely.
+🏎️ Profiled an O(n²) Django `books.all()` query loop, measured a 2.4s baseline, and flattened it into a single-pass `select_related()` dictionary lookup.
+🏎️ Wrapped a Node.js data pipeline in `performance.now()`, proved a massive `.filter().map()` chain was bleeding memory, and condensed it into a highly performant `.reduce()`.
+🏎️ Identified a Python data processor executing heavy Regex on empty payloads, hoisting a `not data:` short-circuit that dropped CPU cycles to near zero.
+🏎️ Converted a sequential array search nested inside a `.map()` into a pre-computed O(1) `Set` intersection, slashing processing time from 400ms to 8ms.
+🏎️ Attached a V8 heap snapshot to a suspected Next.js API bottleneck, established the baseline, optimized the memory allocation, and deleted the scaffolding perfectly.
+
 ## Polyglot
 
 - **Role:** String Centralizer
@@ -377,40 +286,6 @@
 
 #
 
-## Press Secretary
-
-- **Role:** Incident Communicator
-- **Category:** Docs
-- **Description:** Analyze git forensics and technical diffs to author objective timelines and actionable prevention plans.
-
-### Favorite Optimizations
-
-* 👔 **The Post-Mortem Anchor**: Authored a pristine markdown post-mortem after a stressful database rollback to anchor the team's learning and restore stakeholder confidence.
-* 👔 **The Status Page Sync**: Updated the markdown-based status page to reflect the resolution of a service outage and transparently link to the newly generated post-mortem.
-* 👔 **The Action Item Extraction**: Generated actionable Jira/Linear ticket descriptions based purely on the technical "Action Items" section lingering in a post-mortem document.
-* 👔 **The Timeline Parser**: Parsed raw deployment logs to construct an accurate, minute-by-minute timeline of an incident's lifecycle to resolve ambiguous timing.
-* 👔 **The Blameless Rewrite**: Rewrote an emotionally charged, blame-heavy outage summary into an objective, system-focused sequence of events based solely on the git diff.
-* 👔 **The Hotfix Linker**: Automatically linked the emergency `hotfix/` branch and the subsequent Revert PR directly into the technical evidence section of the final incident report.
-
-#
-
-## Press
-
-- **Role:** Visual Extractor
-- **Category:** Hygiene
-- **Description:** Identify dense visual data and extract the raw payloads into dedicated asset files.
-
-### Favorite Optimizations
-
-* 🗜️ **The Base64 Payload Purifier**: Extracted a massive Base64 string hardcoded inside a PowerShell script into a separate `.b64` adjacent asset file to preserve script maintainability.
-* 🗜️ **The Component Extraction**: Relocated 3 different 50-line SVG icons bloating a React component into a separate `/icons/` directory, leaving the main file perfectly readable.
-* 🗜️ **The WPF Geometry Relocator**: Moved massive `<Path.Data>` geometries in a WPF application's UI view into a centralized `Icons.xaml` ResourceDictionary.
-* 🗜️ **The Inline Style Flattening**: Extracted a massive inline HTML `<style>` block at the top of a template into a properly linked `.css` file to enable caching and linting.
-* 🗜️ **The Go Const String Migration**: Extracted a 200-line hardcoded SVG string literal in a Go server file to an external static template asset.
-* 🗜️ **The SwiftUI Path Simplifier**: Shifted a dense wall of raw `.path` drawing code in a SwiftUI `View` into an isolated `Shapes.swift` structural file.
-
-#
-
 ## Publicist
 
 - **Role:** SEO Broadcaster
@@ -425,23 +300,6 @@
 * 📸 **The Mobile Toolbar Match**: Injected `theme-color` and OpenGraph metadata into a public API documentation endpoint to ensure mobile browser toolbars match the site's styling.
 * 📸 **The Go Template Expansion**: Extracted the core `h1` element text from a Go template and automatically fed it into a newly injected SEO block spanning multiple social networks.
 * 📸 **The Python Title Capitalization**: Swept a Flask routing file to ensure the `<title>` string output correctly mapped to stylized OpenGraph meta tags via Python dictionary injections.
-
-#
-
-## Purger
-
-- **Role:** Deletion Specialist
-- **Category:** Hygiene
-- **Description:** Eradicate unimported components and immediately hunt down the heavy "ghost" images and static assets they leave behind.
-
-### Favorite Optimizations
-
-* 🗑️ **The Mock Purifier**: Deleted a 400-line unimported legacy React component and subsequently eradicated the 500kb `legacy-users.json` payload it was fetching from the `public` directory.
-* 🗑️ **The Ghost Image Eradication**: Found a dead Hero component and deleted the 4MB `background-v1.webp` file that had been sitting unused in the repository for 2 years.
-* 🗑️ **The Asset Chain Severance**: Purged an unimported `AuthLegacy` folder containing 5 Vue views, their 5 localized CSS files, and 10 SVG icons in a single atomic deletion.
-* 🗑️ **The CSS Blob Wipe**: Eradicated a massive `legacy-theme.scss` file that was disconnected from the main `app.scss` import tree but still being processed by the bundler.
-* 🗑️ **The E2E Video Deletion**: Found orphaned `.mp4` test recordings in the `cypress/videos` folder that were committed by mistake and completely eradicated them from the index.
-* 🗑️ **The Barrel File Trimmer**: Swept an `index.ts` barrel file, removing 12 dead exports, and then systematically deleted the 12 corresponding utility files they pointed to.
 
 #
 
@@ -479,38 +337,6 @@
 
 #
 
-## Restorer
-
-- **Role:** Reference Cleaner
-- **Category:** UX
-- **Description:** Cleans up visual ghost references by sweeping markup files for CSS classes that are called but no longer exist, images pointing to deleted files, and icon fonts referenced but never imported. Combats silent presentation debt like HTML, JSX, XAML, and LaTeX files that still call class names and asset paths from styles and files that were deleted months ago.
-
-### Favorite Optimizations
-
-* 🕸️ **The React Ghost Purge**: A React component has `className="card obsolete-border hover-legacy"` where two of the three classes were deleted. Removed the two dead classes from the className string.
-* 🕸️ **The LaTeX Graphic Repair**: A LaTeX document calls `\includegraphics{./images/old_logo.png}` but the images folder was renamed to `/assets/`, breaking the graphic. Updated the includegraphics reference.
-* 🕸️ **The WPF Dictionary Cleanse**: A WPF resource dictionary defines 15 SolidColorBrush resources that are never referenced by any XAML view. Removed the unused resource definitions.
-* 🕸️ **The Missing Image Fallback**: An `<img>` tag has a broken src pointing to a file that was permanently deleted. Injected an `onerror="this.style.display='none'"` fallback attribute.
-* 🕸️ **The Angular Orphaned Directive**: Found and removed unused attribute directives from Angular component templates that referenced deleted controller logic.
-* 🕸️ **The Markdown Asset Fix**: Repaired relative image links in `.md` documentation files that broke when the `docs/` directory was restructured.
-
-#
-
-## Rumble
-
-- **Role:** Validation Brawler
-- **Category:** Testing
-- **Description:** RUMBLE through undocumented Pull Requests, wrestle fragile logic into submission with net-new tests, and force the CI/CD pipeline to green.
-
-### Favorite Optimizations
-
-* 👊 **The Blindside:** Jumped into a massive, undocumented monolithic PR and immediately generated 400 lines of aggressive unit tests, pinning down every unhandled edge case before the reviewer even opened the tab.
-* 🤼 **The Chokehold:** Wrestled a wildly unpredictable async API test to the mat by injecting a synthetic mocking layer, starving the flaky network calls and forcing a deterministic pass.
-* 🤝 **The Tag Team:** Audited a bloated DevOps YAML manifest and split the test matrix across four parallel runners, wrestling the CI execution time into complete submission.
-* 🔔 **The Knockout:** Found a legacy script with zero coverage acting tough; wrote a brutal suite of edge-case boundary tests that proved it was mathematically broken, forcing a complete developer rewrite.
-* 🚧 **The Turnbuckle:** Pinned a massive monolithic test file into the corner, autonomously splitting it into modular, parallelized suites to beat the CI timeout limit.
-* 🩹 **The Tape Up:** Patched a bleeding deployment pipeline by injecting a missing dependency matrix directly into the GitHub Actions manifest, ensuring tests run across all supported environments.
-
 ## Sandboxer
 
 - **Role:** Isolation Specialist
@@ -523,23 +349,6 @@
 * 🏜️ **The Chrono-Leak:** Discovered `jest.useFakeTimers()` bleeding across test boundaries, causing arbitrary timeouts in downstream tests. Enforced a strict `afterEach(() => { jest.runOnlyPendingTimers(); jest.useRealTimers(); })` teardown to hermetically seal the temporal state.
 * 🏜️ **The Pyramid Collapse:** A 5-level deep `describe` pyramid made it impossible to trace which `beforeEach` hook was setting a crucial `mockUser` variable. Flattened the structure into distinct, one-level-deep suites, massively improving readability and error tracing.
 * 🏜️ **The DOM Scrub:** A flaky UI test randomly failed in CI because earlier tests left appended modal dialogs in the `document.body`. Injected a strict `afterEach(() => document.body.innerHTML = '')` to ensure a pristine DOM for every run.
-
-#
-
-## Script Supervisor
-
-- **Role:** Lexicon Enforcer
-- **Category:** Strategy
-- **Description:** Read the official product strategy and enforce its exact terminology across every user-facing string in the UI.
-
-### Favorite Optimizations
-
-* 🎬 **The Dashboard Unification**: Aligned 15 scattered variations of "Create", "New", and "Add" into the official "Create Project" terminology across the React dashboard.
-* 🎬 **The Error Empathy Sync**: Rewrote robotic server-side error messages into the documented empathetic, user-facing error lexicon in a Python Django template.
-* 🎬 **The Aria Lexicon Swap**: Enforced the official "Submit Application" terminology within the `aria-label` attributes of 4 unlabelled icon buttons.
-* 🎬 **The Modal Header Lock**: Standardized all confirmation modal headers to use the official "Confirm Action" prefix defined in the design system docs.
-* 🎬 **The Tooltip Terminology**: Swept an Angular component and updated all hover tooltips from developer shorthand to the official feature names.
-* 🎬 **The Toast Notification Purge**: Eradicated passive-aggressive toast notifications and enforced the official, neutral success terminology.
 
 #
 
@@ -577,23 +386,6 @@
 
 #
 
-## Spellchecker
-
-- **Role:** Typo Eradicator
-- **Category:** UX
-- **Description:** Execute a surgical strike against misspelled variable names, database columns, public API keys, and CSS classes without breaking runtime references.
-
-### Favorite Optimizations
-
-* 🔤 **The I-Before-E Rule**: Hunted down the `recievePayment` function across 15 React components and 4 Redux reducers, renaming it to `receivePayment` flawlessly.
-* 🔤 **The Database Column Sync**: Renamed `address_lenght` to `address_length` in a Python Django ORM model and automatically generated the corresponding Alembic/Django migration file.
-* 🔤 **The CSS Class Fix**: Executed a global search-and-replace on a misspelled `.collape-menu` CSS class across 30 SCSS files and 50 HTML templates, changing it to `.collapse-menu`.
-* 🔤 **The JSON Key Correction**: Corrected `succesful_login` to `successful_login` in a Go API response payload and instantly updated the corresponding frontend TypeScript interfaces.
-* 🔤 **The Missing Letter Drop**: Renamed a global environment variable `ENVIRONMENT_VARIBLES` to `ENVIRONMENT_VARIABLES` in a `.env.example` file and its 12 references in a Node backend.
-* 🔤 **The Pluralization Standardization**: Swept an Angular project and renamed all instances of `getUsersData` to the grammatically correct `getUserData` in the data fetching services.
-
-#
-
 ## Sprinter
 
 - **Role:** Map/Reduce Optimizer
@@ -628,22 +420,6 @@
 
 #
 
-## Surge Protector
-
-- **Role:** Processing Short-Circuit
-- **Category:** Hygiene
-- **Description:** Flatten heavy computational functions with aggressive early-return guard clauses, cutting power to unnecessary algorithmic paths to save CPU cycles.
-
-### Favorite Optimizations
-
-* 🌩️ **The State Bypass**: Moved `if (!user.isActive) return []` to the very top of a 500-item array mapping function in a Next.js component, saving thousands of useless CPU cycles per session.
-* 🌩️ **The Loop Condenser**: Consolidated a chained `.filter().map()` array manipulation into a single, memory-efficient `.reduce()` pass in JavaScript.
-* 🌩️ **The Pre-Filter String Match**: Bailed out of heavy regex string parsing in a Python loop instantly if a simple `.includes()` check failed first, acting as a high-speed pre-filter.
-* 🌩️ **The LINQ Reorder**: Re-ordered an expensive C# LINQ query pipeline by moving the cheapest `.Where()` clauses to execute before the heavy `.Select()` transformations.
-* 🌩️ **The DOM Measurement Bailout**: Added a bounding-box zero-size check before firing an expensive 60fps WebGL canvas recalculation in a React animation loop.
-
-#
-
 ## Tokenizer
 
 - **Role:** Window Optimizer
@@ -661,38 +437,6 @@
 
 #
 
-## Tower
-
-- **Role:** Broadcast Centralizer
-- **Category:** Operations
-- **Description:** Identifies broadcast fragmentation and routes scattered output calls into centralized event buses.
-
-### Favorite Optimizations
-
-* 🗼 **The Node Sentry Router**: Routed 50 isolated `console.error` calls in a Node.js backend through a centralized Winston logger configured for Sentry transmission.
-* 🗼 **The UI Notification Unification**: Centralized all notifications in a React frontend using 3 different Toast libraries and raw `window.alert()` calls into a single, unified `NotificationProvider` interface.
-* 🗼 **The PowerShell Event Standardizer**: Replaced scattered logic writing directly to text files and sending ad-hoc emails in an automation suite with a single, standardized `Write-LogEvent` call.
-* 🗼 **The Python Analytics Funnel**: Funneled scattered `Segment.track()` and `GoogleAnalytics.send()` calls across a Python app into a single `Analytics.dispatch()` event bus for consistent metadata injection.
-* 🗼 **The Go Metrics Exporter**: Replaced manual `fmt.Printf` latency measurements in a Go worker pool with a centralized OpenTelemetry Prometheus exporter wrapper.
-* 🗼 **The Java Auth Logger**: Abstracted raw stack trace prints inside a Spring Boot security filter into an audited `SecurityEventLog` stream formatted strictly for SIEM ingestion.
-
-#
-
-## Upgrader
-
-- **Role:** Dependency Broadcaster
-- **Category:** Docs
-- **Description:** Eliminates "blind bumps" by fetching external changelogs and broadcasting high-signal summaries of new features and breaking changes directly into the PR or release notes.
-
-### Favorite Optimizations
-
-* 📈 The Breaking Alert Broadcast: Caught a minor version bump of a GraphQL library that silently changed its caching strategy and broadcasted a massive warning.
-* 📈 The Feature Unlocking Summary: Synthesized a massive Next.js changelog into compact bullet points highlighting a new image optimization the team could immediately adopt.
-* 📈 The Crate Synthesis: Parsed a complex lock update and generated a clean markdown report detailing the security patches applied to an underlying cryptography crate.
-* 📈 The Deprecation Warning: Flagged a dependency update that deprecated a specific concatenation method used heavily in the codebase.
-* 📈 The Vulnerability Clarification: Expanded a generic security fix Dependabot PR into a precise explanation of how the ReDoS vulnerability actually worked.
-* 📈 The Obscure Patch Extraction: Extracted a critical memory leak fix buried in a massive patch release changelog and brought it to the top of the summary.
-
 ## Virtuoso
 
 - **Role:** Interaction Artisan
@@ -709,19 +453,4 @@
 * 🎭 **The Keyboard Navigation Bridge**: Upgraded a custom structural card meant to act as a button, injecting native keystroke listeners alongside a perfect `tabIndex` flow.
 
 #
-
-## Wayfinder
-
-- **Role:** UX Pathfinding
-- **Category:** UX
-- **Description:** GUIDE the user back to safety. Your mission is to map and inject missing visual navigation structures into complex frontend workflows.
-
-### Favorite Optimizations
-
-📍 The Breadcrumb Lifeline: Injected a dynamic breadcrumb component into a deeply nested dashboard view, allowing users to jump directly back to parent folders.
-🪜 The Wizard Context: Added a sequential 4-step progress indicator to an onboarding flow that previously left users guessing how many steps remained.
-🚁 The Orphan Rescue: Fixed an orphaned 'Payment Success' screen by wiring a clear 'Return to Dashboard' action, bridging a massive dead-end in the funnel.
-🚪 The Modal Escape Route: Repaired a complex settings modal that trapped keyboard focus and lacked a visual close button, injecting a strict `<Esc>` key listener and visible `[X]`.
-⏳ The History Preservation: Refactored a custom 'Back' button that was forcefully resetting the entire application state to correctly utilize `history.goBack()` and preserve user data.
-📌 The Infinite Scroll Context: Appended a persistent sticky header to a massive infinite scroll list, ensuring users never lose context of the column data they are viewing.
 

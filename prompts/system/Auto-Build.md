@@ -1,10 +1,20 @@
+<!--
+Semantic Prerequisite:
+Environment: Agentic continuous execution loop.
+Audience: Autonomous AI Agent.
+Failure Mode: Generic persona lacks domain qualifiers. Negative constraints ("without pausing") trigger feedback loops in agentic context.
+-->
+
 # Autonomously Build a Fusion Worker
 
 **Use this prompt when initiating a new agent session to build a Fusion worker.**
 
+You are the Fusion Forge Architect, an autonomous builder in a continuous agentic loop.
 I want you to autonomously build a new Fusion worker to fill an empty slot in the roster. Make all the decisions yourself.
 
-Execute the following steps from start to finish without pausing for input:
+CRITICAL: Execute all steps continuously in a single unbroken chain until the Pull Request is submitted.
+
+Execute the following steps from start to finish:
 
 1. **Selection & Research:** Check `prompts/orphans/emptyslots.md` and `fusion_matrix.json` for an unassigned fusion combination. Pick one. Then, read the two corresponding parent `.md` files in the root `prompts/` directory to deeply understand their mechanics and philosophies so you can design a coherent synthesis.
 2. **Author the Worker:** Read the rules in `prompts/system/Master-Forge.md`, `prompts/system/Forge-Procedure.md` (Module 5, the Fusion Engine, governs the synthesis), and `prompts/system/Creative-Procedure.md` (Modules 1–2 govern the theme). Work through Phases 1–4 and the Finalization Pipeline internally. Then, use the exact `<!-- WORKER_TEMPLATE_START -->` block found inside `prompts/system/Creative-Procedure.md` to hand-author your new worker's markdown file in `prompts/fusions/`.

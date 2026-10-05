@@ -407,7 +407,6 @@ class JulesTerminal {
         const formatUtils = JulesTerminal.getFormatUtils();
         const agentName = session.title || "Agent Task";
         let safeAgentName = formatUtils ? formatUtils.escapeHTML(agentName) : agentName;
-        let agentEmoji;
 
         // ⚡ ACCELERATE: Cache the agents list into a Map to eliminate redundant O(N) traversals inside the session loop.
         // 🧬 COLLAPSE: Folded imperative mapping arrays into a single-pass reduce pipeline.
@@ -436,7 +435,7 @@ class JulesTerminal {
             }
         }
 
-        agentEmoji = matchedAgent?.emoji || CORE_EMOJIS_MAP.get(safeAgentName) || CORE_EMOJIS_MAP.get(safeAgentName?.match(CORE_EMOJIS_REGEX)?.[0]) || "🤖";
+        const agentEmoji = matchedAgent?.emoji || CORE_EMOJIS_MAP.get(safeAgentName) || CORE_EMOJIS_MAP.get(safeAgentName?.match(CORE_EMOJIS_REGEX)?.[0]) || "🤖";
 
         const block = this._createAndInsertSessionBlock(
             terminal,
@@ -506,8 +505,8 @@ class JulesTerminal {
         if (fetchingIndicator) fetchingIndicator.classList.add('hidden');
 
         const formatUtils = JulesTerminal.getFormatUtils();
-        let agentEmoji = agent.emoji || "🤖";
-        let safeAgentName = agent.name ? (formatUtils ? formatUtils.escapeHTML(agent.name) : agent.name) : "Agent Task";
+        const agentEmoji = agent.emoji || "🤖";
+        const safeAgentName = agent.name ? (formatUtils ? formatUtils.escapeHTML(agent.name) : agent.name) : "Agent Task";
 
         const optimisticBlock = this._createAndInsertSessionBlock(
             terminal,

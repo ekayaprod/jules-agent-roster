@@ -193,7 +193,7 @@ class LLMRouter {
     /**
      * Route a request to Anthropic Messages API
      */
-    async chatAnthropic(messages, model = "claude-sonnet-5", temperature = 0.7, maxTokens = 4096) {
+    async chatAnthropic(messages, model = "claude-sonnet-3-7", temperature = 0.7, maxTokens = 4096) {
         this._validateAuthHeader(this.anthropicKey, "Anthropic");
         this._validateMessages(messages);
 
