@@ -840,9 +840,9 @@
     "emoji": "✒️",
     "role": "Microcopy Canonicalizer",
     "category": "UX",
-    "tier": "Fusion",
+    "tier": "Mythic",
     "description": "Extracts sloppy, hardcoded UI strings into strict canonical constants and rewrites them into polished, active-voice microcopy.",
-    "forge_version": "V87",
+    "forge_version": "V84",
     "promptFile": "prompts/fusions/Grammarian.md",
     "isCustom": true
   },
@@ -974,7 +974,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "Draft precise architectural blueprints from dense text walls to reveal the structural truth of the repository.",
-    "forge_version": "V87",
+    "forge_version": "V84",
     "promptFile": "prompts/fusions/Illuminator.md",
     "isCustom": true
   },
@@ -996,7 +996,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "Refines Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.",
-    "forge_version": "V87",
+    "forge_version": "V84",
     "promptFile": "prompts/fusions/Interpolator.md",
     "isCustom": true
   },
@@ -1403,7 +1403,7 @@
     "category": "Docs",
     "tier": "Fusion",
     "description": "Analyze git forensics and technical diffs to author objective timelines and actionable prevention plans.",
-    "forge_version": "V87",
+    "forge_version": "V84",
     "promptFile": "prompts/fusions/Press Secretary.md",
     "isCustom": true
   },
@@ -1478,9 +1478,9 @@
     "emoji": "🗑️",
     "role": "Deletion Specialist",
     "category": "Hygiene",
-    "tier": "Fusion",
+    "tier": "Mythic",
     "description": "Eradicate unimported components and immediately hunt down the heavy \"ghost\" images and static assets they leave behind.",
-    "forge_version": "V87",
+    "forge_version": "V84",
     "promptFile": "prompts/fusions/Purger.md",
     "isCustom": true
   },
@@ -1623,7 +1623,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "Cleans up visual ghost references by sweeping markup files for CSS classes that are called but no longer exist, images pointing to deleted files, and icon fonts referenced but never imported. Combats silent presentation debt like HTML, JSX, XAML, and LaTeX files that still call class names and asset paths from styles and files that were deleted months ago.",
-    "forge_version": "V87",
+    "forge_version": "V84",
     "promptFile": "prompts/fusions/Restorer.md",
     "isCustom": true
   },
@@ -1700,7 +1700,7 @@
     "category": "Testing",
     "tier": "Fusion",
     "description": "RUMBLE through undocumented Pull Requests, wrestle fragile logic into submission with net-new tests, and force the CI/CD pipeline to green.",
-    "forge_version": "V87",
+    "forge_version": "V84",
     "promptFile": "prompts/fusions/Rumble.md",
     "isCustom": true
   },
@@ -1832,7 +1832,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "Execute a surgical strike against misspelled variable names, database columns, public API keys, and CSS classes without breaking runtime references.",
-    "forge_version": "V87",
+    "forge_version": "V84",
     "promptFile": "prompts/fusions/Spellchecker.md",
     "isCustom": true
   },
@@ -2085,7 +2085,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "Identifies broadcast fragmentation and routes scattered output calls into centralized event buses.",
-    "forge_version": "V87",
+    "forge_version": "V84",
     "promptFile": "prompts/fusions/Tower.md",
     "isCustom": true
   },
@@ -2182,9 +2182,9 @@
     "emoji": "📈",
     "role": "Dependency Broadcaster",
     "category": "Docs",
-    "tier": "Fusion",
+    "tier": "Mythic",
     "description": "Eliminates \"blind bumps\" by fetching external changelogs and broadcasting high-signal summaries of new features and breaking changes directly into the PR or release notes.",
-    "forge_version": "V87",
+    "forge_version": "V84",
     "promptFile": "prompts/fusions/Upgrader.md",
     "isCustom": true
   },
@@ -2272,7 +2272,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "GUIDE the user back to safety. Your mission is to map and inject missing visual navigation structures into complex frontend workflows.",
-    "forge_version": "V86.4",
+    "forge_version": "V84",
     "promptFile": "prompts/fusions/Wayfinder.md",
     "isCustom": true
   },
