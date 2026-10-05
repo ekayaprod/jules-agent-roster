@@ -162,23 +162,6 @@
 
 #
 
-## Grammarian
-
-- **Role:** Microcopy Canonicalizer
-- **Category:** UX
-- **Description:** Extracts sloppy, hardcoded UI strings into strict canonical constants and rewrites them into polished, active-voice microcopy.
-
-### Favorite Optimizations
-
-* ✒️ **The Error Message Centralization**: Centralized 20 scattered, passive-voice error messages across a React app into a strict `error_constants.ts` dictionary with empathetic, action-oriented language.
-* ✒️ **The Button Text Polish**: Replaced robotic "Initialize Data" buttons in a workspace manager with clear "Create Workspace" action verbs matching the domain roadmap.
-* ✒️ **The Toast Notification Unification**: Unified inconsistent toast notifications in a Next.js application into a standard active-voice tone and centralized the string map.
-* ✒️ **The Validation Re-framing**: Standardized generic validation messages in a TypeScript form to ensure empathetic responses that guide the user to a solution rather than highlighting a failure.
-* ✒️ **The Placeholder Replacement**: Rewrote lazy "Type here..." input placeholders into descriptive hints like "Enter your billing email address."
-* ✒️ **The Empty State Revamp**: Replaced a blank "No data" message in a dashboard widget with an actionable "Create your first project to get started" constant.
-
-#
-
 ## Historian
 
 - **Role:** Temporal Archivist
@@ -194,21 +177,6 @@
 ⏳ Scanned undocumented legacy modules and injected comprehensive docstrings synthesized from historical PR narratives.
 ⏳ Linked raw environment variable calls to original setup specs, archiving the specific security requirements for production keys.
 
-## Illuminator
-
-- **Role:** Architecture Draftsman
-- **Category:** Docs
-- **Description:** Draft precise architectural blueprints from dense text walls to reveal the structural truth of the repository.
-
-### Favorite Optimizations
-
-* 🖌️ **The Infrastructure Blueprint:** Transmuted a sprawling 500-line AWS description into a multi-layered Mermaid cloud architecture graph.
-* 🖌️ **The Logic Trace:** Isolated a nested `if/else` comment block and drafted a `stateDiagram-v2` schematic to prove the edge cases.
-* 🖌️ **The Schema Surveyor:** Parsed a plain-text database manifest and generated a strict ERD with relationship cardinality.
-* 🖌️ **The Inheritance Lattice:** Traced Python Docstring inheritance lists and sketched a hierarchical ASCII class tree to visualize the lineage.
-* 🖌️ **The Pipeline Projection:** Projected a linear CI/CD description into a chronological flowchart to highlight bottleneck nodes.
-* 🖌️ **The Object Cartography:** Mapped out a sprawling JSON payload description into a nested Mermaid graph for immediate API clarity.
-
 ## Information Architect
 
 - **Role:** Layout Narrator
@@ -223,23 +191,6 @@
 * 📋 **The Form Narrative**: Audited a complex multi-step form lacking context and added clear semantic `<fieldset>` boundaries with empathetic step labels.
 * 📋 **The Table Headers**: Upgraded complex `<div>` grids presenting tabular data into native semantic `<table>`, `<thead>`, and `<th scope="col">` elements.
 * 📋 **The iOS Semantic Map**: Applied `.accessibilityHeading()` and strict `Header()` modifiers to a flattened SwiftUI list to restore screen reader navigation.
-
-#
-
-## Interpolator
-
-- **Role:** Syntax Upgrader
-- **Category:** Hygiene
-- **Description:** Refines Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.
-
-### Favorite Optimizations
-
-* 💬 **The Tactical Cleanse**: Eliminated brittle legacy string `+` implementations and standardized them into modern backticks (` `) across a massive React component.
-* 💬 **The Structural Refactor**: Migrated arbitrary Python `%s` formatting into native, readable `f-strings`.
-* 💬 **The Silent Hardening**: Upgraded C# `String.Format({0})` methods into clean, modern `$"{variable}"` syntax.
-* 💬 **The Multiline Miracle**: Replaced a 10-line array `.join('\n')` hack with a single, clean multi-line template literal.
-* 💬 **The SQL String Purge**: Refactored raw SQL query construction logic heavily reliant on `+` string builders into clean template literals.
-* 💬 **The Log Cleanup**: Fixed dozens of broken spacing bugs in a `logger.info()` module caused by developers forgetting trailing spaces during manual string concatenation.
 
 #
 
@@ -335,23 +286,6 @@
 
 #
 
-## Press Secretary
-
-- **Role:** Incident Communicator
-- **Category:** Docs
-- **Description:** Analyze git forensics and technical diffs to author objective timelines and actionable prevention plans.
-
-### Favorite Optimizations
-
-* 👔 **The Post-Mortem Anchor**: Authored a pristine markdown post-mortem after a stressful database rollback to anchor the team's learning and restore stakeholder confidence.
-* 👔 **The Status Page Sync**: Updated the markdown-based status page to reflect the resolution of a service outage and transparently link to the newly generated post-mortem.
-* 👔 **The Action Item Extraction**: Generated actionable Jira/Linear ticket descriptions based purely on the technical "Action Items" section lingering in a post-mortem document.
-* 👔 **The Timeline Parser**: Parsed raw deployment logs to construct an accurate, minute-by-minute timeline of an incident's lifecycle to resolve ambiguous timing.
-* 👔 **The Blameless Rewrite**: Rewrote an emotionally charged, blame-heavy outage summary into an objective, system-focused sequence of events based solely on the git diff.
-* 👔 **The Hotfix Linker**: Automatically linked the emergency `hotfix/` branch and the subsequent Revert PR directly into the technical evidence section of the final incident report.
-
-#
-
 ## Publicist
 
 - **Role:** SEO Broadcaster
@@ -366,23 +300,6 @@
 * 📸 **The Mobile Toolbar Match**: Injected `theme-color` and OpenGraph metadata into a public API documentation endpoint to ensure mobile browser toolbars match the site's styling.
 * 📸 **The Go Template Expansion**: Extracted the core `h1` element text from a Go template and automatically fed it into a newly injected SEO block spanning multiple social networks.
 * 📸 **The Python Title Capitalization**: Swept a Flask routing file to ensure the `<title>` string output correctly mapped to stylized OpenGraph meta tags via Python dictionary injections.
-
-#
-
-## Purger
-
-- **Role:** Deletion Specialist
-- **Category:** Hygiene
-- **Description:** Eradicate unimported components and immediately hunt down the heavy "ghost" images and static assets they leave behind.
-
-### Favorite Optimizations
-
-* 🗑️ **The Mock Purifier**: Deleted a 400-line unimported legacy React component and subsequently eradicated the 500kb `legacy-users.json` payload it was fetching from the `public` directory.
-* 🗑️ **The Ghost Image Eradication**: Found a dead Hero component and deleted the 4MB `background-v1.webp` file that had been sitting unused in the repository for 2 years.
-* 🗑️ **The Asset Chain Severance**: Purged an unimported `AuthLegacy` folder containing 5 Vue views, their 5 localized CSS files, and 10 SVG icons in a single atomic deletion.
-* 🗑️ **The CSS Blob Wipe**: Eradicated a massive `legacy-theme.scss` file that was disconnected from the main `app.scss` import tree but still being processed by the bundler.
-* 🗑️ **The E2E Video Deletion**: Found orphaned `.mp4` test recordings in the `cypress/videos` folder that were committed by mistake and completely eradicated them from the index.
-* 🗑️ **The Barrel File Trimmer**: Swept an `index.ts` barrel file, removing 12 dead exports, and then systematically deleted the 12 corresponding utility files they pointed to.
 
 #
 
@@ -419,38 +336,6 @@
 * 🖍️ **The Android XML Cleanup**: Swept an `strings.xml` Android resource file and purged 30 unused text nodes flagged by the Android lint tool.
 
 #
-
-## Restorer
-
-- **Role:** Reference Cleaner
-- **Category:** UX
-- **Description:** Cleans up visual ghost references by sweeping markup files for CSS classes that are called but no longer exist, images pointing to deleted files, and icon fonts referenced but never imported. Combats silent presentation debt like HTML, JSX, XAML, and LaTeX files that still call class names and asset paths from styles and files that were deleted months ago.
-
-### Favorite Optimizations
-
-* 🕸️ **The React Ghost Purge**: A React component has `className="card obsolete-border hover-legacy"` where two of the three classes were deleted. Removed the two dead classes from the className string.
-* 🕸️ **The LaTeX Graphic Repair**: A LaTeX document calls `\includegraphics{./images/old_logo.png}` but the images folder was renamed to `/assets/`, breaking the graphic. Updated the includegraphics reference.
-* 🕸️ **The WPF Dictionary Cleanse**: A WPF resource dictionary defines 15 SolidColorBrush resources that are never referenced by any XAML view. Removed the unused resource definitions.
-* 🕸️ **The Missing Image Fallback**: An `<img>` tag has a broken src pointing to a file that was permanently deleted. Injected an `onerror="this.style.display='none'"` fallback attribute.
-* 🕸️ **The Angular Orphaned Directive**: Found and removed unused attribute directives from Angular component templates that referenced deleted controller logic.
-* 🕸️ **The Markdown Asset Fix**: Repaired relative image links in `.md` documentation files that broke when the `docs/` directory was restructured.
-
-#
-
-## Rumble
-
-- **Role:** Validation Brawler
-- **Category:** Testing
-- **Description:** RUMBLE through undocumented Pull Requests, wrestle fragile logic into submission with net-new tests, and force the CI/CD pipeline to green.
-
-### Favorite Optimizations
-
-* 👊 **The Blindside:** Jumped into a massive, undocumented monolithic PR and immediately generated 400 lines of aggressive unit tests, pinning down every unhandled edge case before the reviewer even opened the tab.
-* 🤼 **The Chokehold:** Wrestled a wildly unpredictable async API test to the mat by injecting a synthetic mocking layer, starving the flaky network calls and forcing a deterministic pass.
-* 🤝 **The Tag Team:** Audited a bloated DevOps YAML manifest and split the test matrix across four parallel runners, wrestling the CI execution time into complete submission.
-* 🔔 **The Knockout:** Found a legacy script with zero coverage acting tough; wrote a brutal suite of edge-case boundary tests that proved it was mathematically broken, forcing a complete developer rewrite.
-* 🚧 **The Turnbuckle:** Pinned a massive monolithic test file into the corner, autonomously splitting it into modular, parallelized suites to beat the CI timeout limit.
-* 🩹 **The Tape Up:** Patched a bleeding deployment pipeline by injecting a missing dependency matrix directly into the GitHub Actions manifest, ensuring tests run across all supported environments.
 
 ## Sandboxer
 
@@ -498,23 +383,6 @@
 * 📸 **The Memory Leak Profile**: Attached a temporary V8 heap snapshot analyzer to a suspected memory leak in a Next.js API route, capturing the exact detached DOM nodes.
 * 📸 **The Regex Timeout Catch**: Wrapped a complex Regex match inside a Python validator with a strict execution timer, proving it suffered from Catastrophic Backtracking on specific edge cases.
 * 📸 **The Network Latency Trace**: Instrumented a Go microservice hitting a 3rd party API, logging the exact roundtrip latency before injecting an exponential backoff wrapper.
-
-#
-
-## Spellchecker
-
-- **Role:** Typo Eradicator
-- **Category:** UX
-- **Description:** Execute a surgical strike against misspelled variable names, database columns, public API keys, and CSS classes without breaking runtime references.
-
-### Favorite Optimizations
-
-* 🔤 **The I-Before-E Rule**: Hunted down the `recievePayment` function across 15 React components and 4 Redux reducers, renaming it to `receivePayment` flawlessly.
-* 🔤 **The Database Column Sync**: Renamed `address_lenght` to `address_length` in a Python Django ORM model and automatically generated the corresponding Alembic/Django migration file.
-* 🔤 **The CSS Class Fix**: Executed a global search-and-replace on a misspelled `.collape-menu` CSS class across 30 SCSS files and 50 HTML templates, changing it to `.collapse-menu`.
-* 🔤 **The JSON Key Correction**: Corrected `succesful_login` to `successful_login` in a Go API response payload and instantly updated the corresponding frontend TypeScript interfaces.
-* 🔤 **The Missing Letter Drop**: Renamed a global environment variable `ENVIRONMENT_VARIBLES` to `ENVIRONMENT_VARIABLES` in a `.env.example` file and its 12 references in a Node backend.
-* 🔤 **The Pluralization Standardization**: Swept an Angular project and renamed all instances of `getUsersData` to the grammatically correct `getUserData` in the data fetching services.
 
 #
 
@@ -569,38 +437,6 @@
 
 #
 
-## Tower
-
-- **Role:** Broadcast Centralizer
-- **Category:** Operations
-- **Description:** Identifies broadcast fragmentation and routes scattered output calls into centralized event buses.
-
-### Favorite Optimizations
-
-* 🗼 **The Node Sentry Router**: Routed 50 isolated `console.error` calls in a Node.js backend through a centralized Winston logger configured for Sentry transmission.
-* 🗼 **The UI Notification Unification**: Centralized all notifications in a React frontend using 3 different Toast libraries and raw `window.alert()` calls into a single, unified `NotificationProvider` interface.
-* 🗼 **The PowerShell Event Standardizer**: Replaced scattered logic writing directly to text files and sending ad-hoc emails in an automation suite with a single, standardized `Write-LogEvent` call.
-* 🗼 **The Python Analytics Funnel**: Funneled scattered `Segment.track()` and `GoogleAnalytics.send()` calls across a Python app into a single `Analytics.dispatch()` event bus for consistent metadata injection.
-* 🗼 **The Go Metrics Exporter**: Replaced manual `fmt.Printf` latency measurements in a Go worker pool with a centralized OpenTelemetry Prometheus exporter wrapper.
-* 🗼 **The Java Auth Logger**: Abstracted raw stack trace prints inside a Spring Boot security filter into an audited `SecurityEventLog` stream formatted strictly for SIEM ingestion.
-
-#
-
-## Upgrader
-
-- **Role:** Dependency Broadcaster
-- **Category:** Docs
-- **Description:** Eliminates "blind bumps" by fetching external changelogs and broadcasting high-signal summaries of new features and breaking changes directly into the PR or release notes.
-
-### Favorite Optimizations
-
-* 📈 The Breaking Alert Broadcast: Caught a minor version bump of a GraphQL library that silently changed its caching strategy and broadcasted a massive warning.
-* 📈 The Feature Unlocking Summary: Synthesized a massive Next.js changelog into compact bullet points highlighting a new image optimization the team could immediately adopt.
-* 📈 The Crate Synthesis: Parsed a complex lock update and generated a clean markdown report detailing the security patches applied to an underlying cryptography crate.
-* 📈 The Deprecation Warning: Flagged a dependency update that deprecated a specific concatenation method used heavily in the codebase.
-* 📈 The Vulnerability Clarification: Expanded a generic security fix Dependabot PR into a precise explanation of how the ReDoS vulnerability actually worked.
-* 📈 The Obscure Patch Extraction: Extracted a critical memory leak fix buried in a massive patch release changelog and brought it to the top of the summary.
-
 ## Virtuoso
 
 - **Role:** Interaction Artisan
@@ -617,19 +453,4 @@
 * 🎭 **The Keyboard Navigation Bridge**: Upgraded a custom structural card meant to act as a button, injecting native keystroke listeners alongside a perfect `tabIndex` flow.
 
 #
-
-## Wayfinder
-
-- **Role:** UX Pathfinding
-- **Category:** UX
-- **Description:** GUIDE the user back to safety. Your mission is to map and inject missing visual navigation structures into complex frontend workflows.
-
-### Favorite Optimizations
-
-📍 The Breadcrumb Lifeline: Injected a dynamic breadcrumb component into a deeply nested dashboard view, allowing users to jump directly back to parent folders.
-🪜 The Wizard Context: Added a sequential 4-step progress indicator to an onboarding flow that previously left users guessing how many steps remained.
-🚁 The Orphan Rescue: Fixed an orphaned 'Payment Success' screen by wiring a clear 'Return to Dashboard' action, bridging a massive dead-end in the funnel.
-🚪 The Modal Escape Route: Repaired a complex settings modal that trapped keyboard focus and lacked a visual close button, injecting a strict `<Esc>` key listener and visible `[X]`.
-⏳ The History Preservation: Refactored a custom 'Back' button that was forcefully resetting the entire application state to correctly utilize `history.goBack()` and preserve user data.
-📌 The Infinite Scroll Context: Appended a persistent sticky header to a massive infinite scroll list, ensuring users never lose context of the column data they are viewing.
 
