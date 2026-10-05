@@ -852,8 +852,8 @@
     "role": "Microcopy Canonicalizer",
     "category": "UX",
     "tier": "Mythic",
-    "description": "Extracts sloppy, hardcoded UI strings into strict canonical constants and rewrites them into polished, active-voice microcopy.",
-    "forge_version": "V84",
+    "description": "EXTRACT sloppy, hardcoded UI strings into strict canonical constants and rewrite them into polished, active-voice microcopy.",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Grammarian.md",
     "isCustom": true
   },
