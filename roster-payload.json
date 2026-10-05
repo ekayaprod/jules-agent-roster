@@ -594,6 +594,17 @@
     "isCustom": true
   },
   {
+    "name": "Demolition",
+    "emoji": "🧨",
+    "role": "Pipeline Scavenger",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "DEMOLISH orphaned CI/CD workflows, dead infrastructure artifacts, and fossilized container layers.",
+    "forge_version": "V88.5",
+    "promptFile": "prompts/fusions/Demolition.md",
+    "isCustom": true
+  },
+  {
     "name": "Discharge",
     "emoji": "🪫",
     "role": "Pipeline Drainer",
