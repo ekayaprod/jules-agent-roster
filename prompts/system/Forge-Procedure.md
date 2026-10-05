@@ -41,7 +41,7 @@ All profiles except Analyzer implicitly inherit this contract. Exclude these rul
 
 ### 3. Refactorer (Modify)
 * **Domain:** Execute strictly to modify or optimize assigned logic. Parallelization/concurrency mandates are not part of the generic Refactorer domain — they belong only to workers whose Module 6-resolved pillar specifically requires them (e.g., Performance), injected as a targeted extension, not baseline text.
-* **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
+* **Scope:** Limit mutations strictly to the targeted logic block. Do not execute logic-neutral cleanups (auto-formatting, sorting imports).
 
 ### 4. Transformer (Format)
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc).

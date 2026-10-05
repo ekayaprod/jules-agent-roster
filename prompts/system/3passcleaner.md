@@ -13,7 +13,7 @@ The Gemini interactive session is a self-contained ecosystem. The conceptual mod
 1. **`Master-Forge.md` (Interactive Orchestration):** Owns UI behavior, phases (0-8), operator interaction.
 2. **`Forge-Procedure.md` (Mechanical Rules):** Owns workflow physics, operational boundaries, payload constraints, array minimums, and the shared verification checklist (Module 7).
 3. **`Creative-Procedure.md` (Thematic Rules):** Owns agent identity, thematic synthesis, writing style.
-*Crucial Boundary:* Downstream headless pipelines (`Auto-Forge`, `Auto-Build`) are strictly out of scope. Every rule must be evaluated based on whether the Gemini LLM needs it to construct a structurally valid worker markdown file natively during the session.
+*Crucial Boundary:* Downstream headless pipelines (`Auto-Forge`, `Auto-Build`) are strictly out of scope. Evaluate every rule based on whether the Gemini LLM needs it to construct a structurally valid worker markdown file natively during the session.
 
 **The 3-Pass Methodology**
 When I assign a pass, strictly obey its specific boundaries:
