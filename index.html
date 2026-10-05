@@ -555,12 +555,12 @@
       .fusion-error-desc { margin: 0; font-size: 0.875rem; color: var(--text-secondary); }
 
       button.btn-danger { background-color: transparent; color: var(--term-error); border: 1px solid var(--term-error); transition: all 0.2s ease-in-out; }
-      button.btn-danger:hover { background-color: color-mix(in srgb, var(--term-error) 10%, transparent); }
-      button.btn-danger:focus-visible { outline: 2px solid var(--term-error); outline-offset: 2px; }
+      button.btn-danger:hover { background-color: color-mix(in srgb, var(--term-error) 10%, transparent); transform: translateY(-1px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+      button.btn-danger:focus-visible { outline: 2px solid var(--term-error); outline-offset: 2px; transform: scale(1.02); }
 
       button.btn-success { background-color: var(--term-success); color: var(--bg-color); border: none; transition: all 0.2s ease-in-out; }
-      button.btn-success:hover { filter: brightness(1.1); }
-      button.btn-success:focus-visible { outline: 2px solid var(--term-success); outline-offset: 2px; }
+      button.btn-success:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+      button.btn-success:focus-visible { outline: 2px solid var(--term-success); outline-offset: 2px; transform: scale(1.02); }
 
       .modal-link { font-size: var(--text-xs); color: var(--accent); text-decoration: none; margin-top: 0.25rem; transition: all 0.2s ease-in-out; display: inline-block; padding: 0.5rem; margin-left: -0.5rem; margin-right: -0.5rem; }
       .modal-link:hover { text-decoration: underline; opacity: 0.8; }
@@ -569,7 +569,7 @@
   </head>
   <body>
     <div id="initial-loading-overlay" aria-busy="true" aria-label="Loading Application">
-      <div class="loading-spinner"></div>
+      <div class="loading-spinner-container"><div class="loading-spinner"></div></div>
       <div >Initializing Protocol Matrix...</div>
     </div>
 

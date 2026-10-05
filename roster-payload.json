@@ -594,6 +594,17 @@
     "isCustom": true
   },
   {
+    "name": "Demolition",
+    "emoji": "🧨",
+    "role": "Pipeline Scavenger",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "DEMOLISH orphaned CI/CD workflows, dead infrastructure artifacts, and fossilized container layers.",
+    "forge_version": "V88.5",
+    "promptFile": "prompts/fusions/Demolition.md",
+    "isCustom": true
+  },
+  {
     "name": "Discharge",
     "emoji": "🪫",
     "role": "Pipeline Drainer",
@@ -836,6 +847,17 @@
     "isCustom": true
   },
   {
+    "name": "Grammarian",
+    "emoji": "✒️",
+    "role": "Microcopy Canonicalizer",
+    "category": "UX",
+    "tier": "Mythic",
+    "description": "EXTRACT sloppy, hardcoded UI strings into strict canonical constants and rewrite them into polished, active-voice microcopy.",
+    "forge_version": "V88.5",
+    "promptFile": "prompts/fusions/Grammarian.md",
+    "isCustom": true
+  },
+  {
     "name": "Greenlight",
     "emoji": "🟢",
     "role": "Merge Architect",
@@ -957,6 +979,17 @@
     "isCustom": true
   },
   {
+    "name": "Illuminator",
+    "emoji": "🖌️",
+    "role": "Architecture Draftsman",
+    "category": "Docs",
+    "tier": "Fusion",
+    "description": "Draft precise architectural blueprints from dense text walls to reveal the structural truth of the repository.",
+    "forge_version": "V84",
+    "promptFile": "prompts/fusions/Illuminator.md",
+    "isCustom": true
+  },
+  {
     "name": "Inoculator",
     "emoji": "💉",
     "role": "Resilience Specialist",
@@ -965,6 +998,17 @@
     "description": "INOCULATE legacy architecture to modern asynchronous paradigms while explicitly treating the new failure modes introduced by the shift.",
     "forge_version": "V87.1",
     "promptFile": "prompts/fusions/Inoculator.md",
+    "isCustom": true
+  },
+  {
+    "name": "Interpolator",
+    "emoji": "💬",
+    "role": "Syntax Upgrader",
+    "category": "Hygiene",
+    "tier": "Fusion",
+    "description": "Refines Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.",
+    "forge_version": "V84",
+    "promptFile": "prompts/fusions/Interpolator.md",
     "isCustom": true
   },
   {
@@ -1364,6 +1408,17 @@
     "isCustom": true
   },
   {
+    "name": "Press Secretary",
+    "emoji": "👔",
+    "role": "Incident Communicator",
+    "category": "Docs",
+    "tier": "Fusion",
+    "description": "Analyze git forensics and technical diffs to author objective timelines and actionable prevention plans.",
+    "forge_version": "V84",
+    "promptFile": "prompts/fusions/Press Secretary.md",
+    "isCustom": true
+  },
+  {
     "name": "Profiler",
     "emoji": "🔬",
     "role": "Complexity Auditor",
@@ -1427,6 +1482,17 @@
     "description": "PRUNE mathematically impossible execution paths, unreachable logic branches, and unused exports to ensure strict control flow hygiene.",
     "forge_version": "V87.5",
     "promptFile": "prompts/fusions/Pruner.md",
+    "isCustom": true
+  },
+  {
+    "name": "Purger",
+    "emoji": "🗑️",
+    "role": "Deletion Specialist",
+    "category": "Hygiene",
+    "tier": "Mythic",
+    "description": "Eradicate unimported components and immediately hunt down the heavy \"ghost\" images and static assets they leave behind.",
+    "forge_version": "V84",
+    "promptFile": "prompts/fusions/Purger.md",
     "isCustom": true
   },
   {
@@ -1562,6 +1628,17 @@
     "isCustom": true
   },
   {
+    "name": "Restorer",
+    "emoji": "🕸️",
+    "role": "Reference Cleaner",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "Cleans up visual ghost references by sweeping markup files for CSS classes that are called but no longer exist, images pointing to deleted files, and icon fonts referenced but never imported. Combats silent presentation debt like HTML, JSX, XAML, and LaTeX files that still call class names and asset paths from styles and files that were deleted months ago.",
+    "forge_version": "V84",
+    "promptFile": "prompts/fusions/Restorer.md",
+    "isCustom": true
+  },
+  {
     "name": "Retcon",
     "emoji": "📖",
     "role": "Documentation Reroller",
@@ -1625,6 +1702,17 @@
     "description": "ENFORCE strict code hygiene, formatting guidelines, linting rules, and type-checking standards.",
     "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Rulemaker.md",
+    "isCustom": true
+  },
+  {
+    "name": "Rumble",
+    "emoji": "🫯",
+    "role": "Validation Brawler",
+    "category": "Testing",
+    "tier": "Fusion",
+    "description": "RUMBLE through undocumented Pull Requests, wrestle fragile logic into submission with net-new tests, and force the CI/CD pipeline to green.",
+    "forge_version": "V84",
+    "promptFile": "prompts/fusions/Rumble.md",
     "isCustom": true
   },
   {
@@ -1746,6 +1834,17 @@
     "description": "COLLAPSE the illusion of choice by semantically tracing dead architectural branches and ruthlessly executing bounded, deterministic deletions.",
     "forge_version": "V86.1",
     "promptFile": "prompts/fusions/Smith.md",
+    "isCustom": true
+  },
+  {
+    "name": "Spellchecker",
+    "emoji": "🔤",
+    "role": "Typo Eradicator",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "Execute a surgical strike against misspelled variable names, database columns, public API keys, and CSS classes without breaking runtime references.",
+    "forge_version": "V84",
+    "promptFile": "prompts/fusions/Spellchecker.md",
     "isCustom": true
   },
   {
@@ -1991,6 +2090,17 @@
     "isCustom": true
   },
   {
+    "name": "Tower",
+    "emoji": "🗼",
+    "role": "Broadcast Centralizer",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "Identifies broadcast fragmentation and routes scattered output calls into centralized event buses.",
+    "forge_version": "V84",
+    "promptFile": "prompts/fusions/Tower.md",
+    "isCustom": true
+  },
+  {
     "name": "Town Crier",
     "emoji": "🔔",
     "role": "Uncompromising Herald",
@@ -2079,6 +2189,17 @@
     "isCustom": true
   },
   {
+    "name": "Upgrader",
+    "emoji": "📈",
+    "role": "Dependency Broadcaster",
+    "category": "Docs",
+    "tier": "Mythic",
+    "description": "Eliminates \"blind bumps\" by fetching external changelogs and broadcasting high-signal summaries of new features and breaking changes directly into the PR or release notes.",
+    "forge_version": "V84",
+    "promptFile": "prompts/fusions/Upgrader.md",
+    "isCustom": true
+  },
+  {
     "name": "Vector",
     "emoji": "↗️",
     "role": "Absolute Trajectory",
@@ -2153,6 +2274,17 @@
     "description": "EMBED graceful fallback components across form wrappers and error boundaries to firmly manage the application's visual trust perimeter.",
     "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Watermark.md",
+    "isCustom": true
+  },
+  {
+    "name": "Wayfinder",
+    "emoji": "🪧",
+    "role": "UX Pathfinding",
+    "category": "UX",
+    "tier": "Fusion",
+    "description": "GUIDE the user back to safety. Your mission is to map and inject missing visual navigation structures into complex frontend workflows.",
+    "forge_version": "V84",
+    "promptFile": "prompts/fusions/Wayfinder.md",
     "isCustom": true
   },
   {

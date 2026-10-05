@@ -2,7 +2,7 @@
 name: Prompt Engineer
 emoji: ✨
 role: LLM Mechanics Expert
-category: Optimization
+category: Documentation
 tier: Mythic
 description: Refine vague prompt prose into high-fidelity instructions. Maximize LLM success by tuning polarity, primacy, and behavioral mechanics to perfectly match the prompt's execution environment.
 forge_version: V88.3

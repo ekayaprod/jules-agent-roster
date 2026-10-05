@@ -55,7 +55,7 @@ Run for net-new requests. If the custom command or a freeform request is given, 
 ### Repo Recon & Data Sanitization
 For Legacy Imports: Extract Target Data, Metaphors, Optimizations. Apply the Data Sanitization Filter to the legacy Strict Operational Rules. (Repo Recon extracts: language, framework, workflow type, verification layer, and active modifiers. It also derives unwritten requirements from git history per Forge-Procedure Module 6, Step 4.)
 
-**Data Sanitization Filter:** Strip generic boilerplate and zero-trust baselines. Retain ONLY verifiable domain-specific knowledge, unique technical constraints, and demonstrated mechanics that materially improve autonomy (e.g., few-shot code, specific safeguards).
+**Data Sanitization Filter:** Strip generic boilerplate and zero-trust baselines. Retain ONLY verifiable domain-specific knowledge, unique technical constraints, demonstrated mechanics, concrete examples, output formats, and worker-specific terminal behavior that materially improve autonomy.
 *Mythic Exemption:* For Tier: Mythic, preserve extreme, boundary-breaking, or standard-limit-defying mechanics and route them to Creative-Procedure Module 3 instead of discarding them.
 
 ### Phase 1 Output
@@ -71,7 +71,7 @@ For Legacy Imports: Extract Target Data, Metaphors, Optimizations. Apply the Dat
 Apply the Phase 1 decisions to the legacy worker.
 
 ### Output
-1. **Legacy Intelligence:** Retain domain-specific knowledge, demonstrated mechanics, concrete examples, output formats, and worker-specific terminal behavior that materially improve the new worker. Discard generic boilerplate.
+1. **Legacy Intelligence:** Output the legacy intelligence retained by the Phase 1 Data Sanitization Filter.
 2. **Drift Audit:** Compare the legacy worker against the Phase 1-resolved domain. Classify every discrepancy as:
    - **Narrowing:** Existing content is a true subset of the extrapolated domain. Indicates required expansion to add coverage without removing what is already correct.
    - **Incoherence:** Existing content actively contradicts or misrepresents the extrapolated domain. Indicates required removal or rewrite; it must not be silently folded in.
