@@ -1006,8 +1006,8 @@
     "role": "Syntax Upgrader",
     "category": "Hygiene",
     "tier": "Fusion",
-    "description": "Refines Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.",
-    "forge_version": "V84",
+    "description": "Refine Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Interpolator.md",
     "isCustom": true
   },
