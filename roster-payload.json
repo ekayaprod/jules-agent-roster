@@ -2096,7 +2096,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "Identifies broadcast fragmentation and routes scattered output calls into centralized event buses.",
-    "forge_version": "V84",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Tower.md",
     "isCustom": true
   },
