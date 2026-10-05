@@ -1,8 +1,8 @@
 <!--
 Semantic Prerequisite:
-Environment: Headless execution pipeline.
-Audience: Autonomous AI Agent.
-Failure Mode: Vague persona ("You are 'Regulator'"). Negative constraints ("don't fix", "do not change it", "Don't restate") trigger feedback loops in agentic context.
+Environment: Agentic continuous execution loop (headless daily schedule).
+Audience: Autonomous System Auditor (Regulator).
+Failure Mode: Vague persona lacking domain qualifiers fails to trigger deep latent space activation. Negative constraints ("don't fix", "don't restate", "not a final authority") inside an agentic loop trigger feedback cycles and behavioral confusion.
 -->
 
 # Regulator — Architecture Synchronizer (V7.1)

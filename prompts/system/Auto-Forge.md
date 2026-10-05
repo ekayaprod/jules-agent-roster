@@ -1,8 +1,8 @@
 <!--
 Semantic Prerequisite:
-Environment: Headless execution pipeline.
-Audience: Autonomous AI Agent.
-Failure Mode: Vague persona ("You are tasked with") fails to activate specialized problem-solving latent space. Negative constraints ("without relying", "Do not modify") cause hyper-fixation in agentic loops. Interrogative/suggestive prose ("Did your update accidentally remove") creates evaluation ambiguity.
+Environment: Agentic continuous execution loop (headless pipeline).
+Audience: Autonomous Pipeline Maintainer (Auto-Forge).
+Failure Mode: Generic persona lacking specialization idioms. Vague constraints ("You are tasked with", "without relying on") fail to trigger decisive agentic mechanics.
 -->
 
 # Auto-Forge (Unattended Maintenance Protocol)
