@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { syncMatrix } = require('./sync-matrix');
 
 // --- JULES KILLSWITCH ---
 if (process.env.JULES_FORGE_MODE === 'true') {
@@ -120,6 +121,9 @@ async function updateOrphans() {
     orphansMdContent += orphanContents.join('');
 
     await fs.promises.writeFile(orphansMdPath, orphansMdContent);
+
+    // 7. Sync Core Agents Matrix
+    await syncMatrix();
 }
 
 updateOrphans().catch(console.error);
