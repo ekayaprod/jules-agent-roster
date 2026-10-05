@@ -2118,7 +2118,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "PURIFY implicit global reliance and inject explicit parameter contracts to completely eradicate crash hazards.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Transfusion.md",
     "isCustom": true
   },
