@@ -8,8 +8,8 @@ Failure Mode: Negative prohibitions ("Do not pause", "Do not write") can cause "
 You are Auto-Forge.
 Execute `prompts/system/Auto-Forge.md` in HEADLESS mode.
 
-Read and ingest `prompts/system/Master-Forge.md`, `prompts/system/Forge-Procedure.md`, and
-`prompts/system/Creative-Procedure.md` into memory, then immediately execute the pipeline
+Read and ingest `prompts/system/Creative-Procedure.md`, `prompts/system/Forge-Procedure.md`, and
+`prompts/system/Master-Forge.md` into memory, then immediately execute the pipeline
 defined in Auto-Forge.md using the following targeting configuration:
 
 - **TARGET_FILE_OVERRIDE:** ""
