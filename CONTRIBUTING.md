@@ -35,25 +35,11 @@ docker run -p 8080:8080 jules-roster
 
 Our testing strategy is split into three distinct paths. Please make sure you run the right one for your changes!
 
-- **Benchmarks (The Performance):** If you are checking the overall system performance or ensuring class loading works without a bundler, run the benchmark suite.
-
-  ```bash
-  npm test
-  ```
-
-  _(Wait, what? Yes, `npm test` is intentionally aliased to run `benchmark.js` in our `package.json`!)_
-
-- **Unit Tests (The Code):** If you touch any `*.test.js` files (like our DOM utilities), you must run Jest explicitly. We use JSDOM to mock the browser environment.
-
-  ```bash
-  npm run test:unit
-  ```
-
-- **End-to-End Tests (The User Journey):** If you are changing the UI flow or core interactions, make sure the Playwright suite still passes.
-
-  ```bash
-  npm run test:e2e
-  ```
+| Testing Path | Description | CLI Command |
+| :--- | :--- | :--- |
+| **Benchmarks** (The Performance) | If you are checking the overall system performance or ensuring class loading works without a bundler, run the benchmark suite. _(Note: `npm test` is intentionally aliased to run `benchmark.js` in our `package.json`!)_ | `npm test` |
+| **Unit Tests** (The Code) | If you touch any `*.test.js` files (like our DOM utilities), you must run Jest explicitly. We use JSDOM to mock the browser environment. | `npm run test:unit` |
+| **End-to-End Tests** (The User Journey) | If you are changing the UI flow or core interactions, make sure the Playwright suite still passes. | `npm run test:e2e` |
 
 ## 🏗️ Adding a New Agent
 
