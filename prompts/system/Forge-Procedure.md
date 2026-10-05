@@ -29,12 +29,12 @@ All profiles except Analyzer implicitly inherit this contract. Do not duplicate 
 
 ### 2. Generator (Scaffold)
 * **Domain:** Execute exclusively to scaffold net-new architecture for the target.
-* **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
+* **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points. Do not refactor adjacent pre-existing logic to accommodate your new feature.
 * **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Board state handling follows the worker's Task Board Resolution step — do not author separate checkbox or deletion logic here. A single empty discovery pass is not conclusive; before concluding there is nothing to build, return to Repo Recon, reconsider whether the target exists in a form the first pass didn't recognize, and search again.
 
 ### 3. Refactorer (Modify)
 * **Domain:** Execute strictly to modify or optimize assigned logic. Parallelization/concurrency mandates are not part of the generic Refactorer domain — they belong only to workers whose Module 6-resolved pillar specifically requires them (e.g., Performance), injected as a targeted extension, not baseline text.
-* **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
+* **Scope:** Limit mutations strictly to the targeted logic block. Do not execute logic-neutral cleanups (auto-formatting, sorting imports).
 
 ### 4. Transformer (Format)
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc).
