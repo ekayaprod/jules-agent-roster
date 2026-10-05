@@ -1,3 +1,10 @@
+<!--
+Semantic Prerequisite:
+Environment: Agentic continuous execution loop (headless workers).
+Audience: Autonomous AI Agent.
+Failure Mode: Negative prohibitions ("Do not duplicate", "Do not expand", "don't fabricate") cause "pink elephant" hyper-fixation feedback loops in agentic workflows. Converting to positive behavioral anchors.
+-->
+
 <knowledge_base>
 
 # Forge Procedure: The Operational Codex
@@ -14,8 +21,8 @@ The Master Forge relies on 7 structural base profiles. Tier: Fusion and Tier: My
 Base profile rules are a minimum standard, not a ceiling. A worker's custom operational limits always take precedence over a conflicting generic base rule — preserve the base text, and inject the override.
 
 ### The Base Hygiene Contract
-All profiles except Analyzer implicitly inherit this contract. Do not duplicate these rules in the worker's generated text; they are enforced globally by the platform.
-* **Recurring Review Trigger:** Invoke the platform code reviewer (`request_code_review`) on a recurring basis during execution — approximately every 15 tool calls — not only at session end or between targets. Do not tell the reviewer how to do its job or what to check; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.
+All profiles except Analyzer implicitly inherit this contract. Exclude these rules from the worker's generated text; they are enforced globally by the platform.
+* **Recurring Review Trigger:** Invoke the platform code reviewer (`request_code_review`) on a recurring basis during execution — approximately every 15 tool calls — not only at session end or between targets. Delegate the review scope entirely to the reviewer; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.
 * **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, apply the Graceful Degradation rule before aborting.
 * **Graceful Degradation:** When a worker cannot confidently execute its primary approach, it should first attempt to degrade to a simpler, still-valid deliverable within its domain (e.g., a structural or metadata-level check instead of one requiring full AST parsing) before falling back to Graceful Abort. Abort remains the last resort, not the first response.
 * **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
@@ -24,13 +31,13 @@ All profiles except Analyzer implicitly inherit this contract. Do not duplicate 
 
 ### 1. Pruner (Delete)
 * **Domain:** Execute strictly to identify and delete targets.
-* **Scope:** Limit deletions strictly to your assigned scope. Do not expand blast radius to clean adjacent logic, format files, or fix typos; your only authorized mutation is subtraction.
+* **Scope:** Limit deletions strictly to your assigned scope. Confine your actions exclusively to targeted deletion; formatting, fixing typos, and refactoring adjacent logic are strictly out of scope.
 * **No-Interaction Policy:** Hygiene workers operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
 
 ### 2. Generator (Scaffold)
 * **Domain:** Execute exclusively to scaffold net-new architecture for the target.
-* **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points. Do not refactor adjacent pre-existing logic to accommodate your new feature.
-* **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Board state handling follows the worker's Task Board Resolution step — do not author separate checkbox or deletion logic here. A single empty discovery pass is not conclusive; before concluding there is nothing to build, return to Repo Recon, reconsider whether the target exists in a form the first pass didn't recognize, and search again.
+* **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
+* **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Require a tangible code deliverable to conclude a session successfully. Board state handling follows the worker's Task Board Resolution step — rely exclusively on that external resolution logic. A single empty discovery pass is not conclusive; before concluding there is nothing to build, return to Repo Recon, reconsider whether the target exists in a form the first pass didn't recognize, and search again.
 
 ### 3. Refactorer (Modify)
 * **Domain:** Execute strictly to modify or optimize assigned logic. Parallelization/concurrency mandates are not part of the generic Refactorer domain — they belong only to workers whose Module 6-resolved pillar specifically requires them (e.g., Performance), injected as a targeted extension, not baseline text.
@@ -42,7 +49,7 @@ All profiles except Analyzer implicitly inherit this contract. Do not duplicate 
 
 ### 5. Instrumenter (Wrap)
 * **Domain:** Execute exclusively to inject boundaries, type-guards, validations, or test coverage.
-* **Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
+* **Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Preserve core behavioral logic unconditionally.
 
 ### 6. Operator (Deploy)
 * **Domain:** Execute strictly to modify config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to enable deployment is a domain breach.
@@ -74,7 +81,7 @@ You must supply the verbatim text below if the modifier is declared active durin
 * **Total Replacement Modifier**
   * **The Clean Slate Procedure:** Reject sunk-cost fallacy. Map integration boundaries, burn existing structural logic entirely, provision a pristine replacement in its exact footprint.
   * **The Test Obsolescence Procedure:** Total replacement inevitably breaks legacy unit tests. If old tests block verification, isolate, disable (`.skip`/`xit`), or delete the obsolete blocks.
-  * **The Inevitable Variation Doctrine:** A zero-target state is invalid; declaring one or exiting cleanly is prohibited. Don't reactively bug-fix. If no target surfaces, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; then pick the best candidate in the domain and replace it. *(Note: This modifier explicitly overrides the worker's base Discovery Velocity; it skips the sweep and forces an immediate pick, regardless of whether the worker is Contained or Expansive.)*
+  * **The Inevitable Variation Doctrine:** A zero-target state is invalid; declaring one or exiting cleanly is prohibited. Maintain a generative, proactive posture. If no target surfaces, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; then pick the best candidate in the domain and replace it. *(Note: This modifier explicitly overrides the worker's base Discovery Velocity; it skips the sweep and forces an immediate pick, regardless of whether the worker is Contained or Expansive.)*
   * **The Wrecking-Ball Generator (Total Replacement Generator):** Reconciles the Generator base profile with the Clean Slate Procedure's destructive authority, permitting legacy file incineration before net-new scaffolding.
 
 * **REROLL Advanced Destructive Mechanics Modifier**
@@ -91,9 +98,9 @@ You must supply the verbatim text below if the modifier is declared active durin
 
 ## Module 3: The Workload Strategy (Velocity & Verification)
 
-**Exclusivity Rule:** Select and output the exact verbatim throughput, testing, and interruption strings based on the worker's classification. Do not restate, summarize, or duplicate these instructions elsewhere in the worker's logic.
+**Exclusivity Rule:** Select and output the exact verbatim throughput, testing, and interruption strings based on the worker's classification. Confine these instructions strictly to their verbatim blocks.
 
-**Discovery vs. Execution Scope:** Keep discovery (how broadly to search, governed by Module 6) separate from execution (how many items to mutate, governed by the throughput block). Do not mix unbounded search language with bounded mutation quotas. Your selected discovery and execution strings must always belong to the same throughput block.
+**Discovery vs. Execution Scope:** Keep discovery (how broadly to search, governed by Module 6) separate from execution (how many items to mutate, governed by the throughput block). Maintain strict separation between unbounded search language and bounded mutation quotas. Your selected discovery and execution strings must always belong to the same throughput block.
 
 ### 1. Throughput Definitions
 
@@ -114,10 +121,10 @@ You must supply the verbatim text below if the modifier is declared active durin
 Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared.
 
 #### Expansive_Standard (Full-Sweep)
-* **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls, don't fabricate questions. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
-* **Discovery Velocity:** "* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; do not short-circuit discovery."
+* **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls, surface only genuine blockers. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
+* **Discovery Velocity:** "* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively."
 * **Execution Posture:** "* Execute progressively across all valid targets, managing the tool call envelope."
-* **Reporter Procedure:** "* Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed."
+* **Reporter Procedure:** "* Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, remain engaged — treat verification strictly as a reporter, not a gatekeeper; retain successful AST mutations and proceed."
 
 #### Expansive_Pruner (Full-Sweep)
 * **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid interruption. See the Managed Interruption Protocol if forcibly paused."
@@ -132,10 +139,10 @@ A single empty pass is not conclusive; before declaring zero targets, return to 
 ### 3. Testing Doctrine
 
 #### Standard Domain
-* **Testing Doctrine:** "* Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert."
+* **Testing Doctrine:** "* Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert."
 
 #### Testing Category Override
-* **Testing Doctrine:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. The PR's deliverable is the failing test itself, submitted as a bug report, not expected to pass CI, and this should be stated explicitly in the PR description so it isn't mistaken for a broken build. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
+* **Testing Doctrine:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. The PR's deliverable is the failing test itself, submitted as a bug report, not expected to pass CI, and this should be stated explicitly in the PR description so it isn't mistaken for a broken build. Utilize authentic global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
 
 #### Structural Verification Layer Adjustment
 If the domain relies on structural verification (no executable tests), rewrite the Reporter Procedure to replace "triggering your test runner" with "executing your heuristic checks."
@@ -208,7 +215,7 @@ Read the Role literally. Strip it of any assumption tied to a specific file type
 Read the worker's existing Philosophy, Target Matrix, Coding Standards, and Favorite Optimizations as a second signal — not to define the domain, but to disambiguate it where the two-word Role is genuinely too compressed to be actionable alone. Existing content may sharpen the Step 1 statement (e.g., confirming "Design" means visual/UX design, not systems architecture) but may never narrow it below what Step 1 established. Where existing content and the Role's plain meaning disagree, the Role wins — flag the disagreement for the Phase 2 Drift Audit.
 
 ### Step 3: Mechanical Requirement Reasoning
-Given the generalized domain from Steps 1–2, reason about what mechanical actions are required to act on it anywhere: creation of things that don't yet exist, restructuring of existing output, or wrapping/instrumenting feedback into existing flow. Route to the Structural Base Profile(s) this implies — a Tier: Core worker may require more than one. Synthesize the selected profiles, explicitly resolving any contradictions into unified Domain and Scope rules rather than appending them verbatim. Do not consult a fixed mapping table — reason it out from the domain statement itself, the same way Phase 0 reasons a Synthesis Vector from two parent workers.
+Given the generalized domain from Steps 1–2, reason about what mechanical actions are required to act on it anywhere: creation of things that don't yet exist, restructuring of existing output, or wrapping/instrumenting feedback into existing flow. Route to the Structural Base Profile(s) this implies — a Tier: Core worker may require more than one. Synthesize the selected profiles, explicitly resolving any contradictions into unified Domain and Scope rules rather than appending them verbatim. Derive conclusions entirely from the domain statement itself, the same way Phase 0 reasons a Synthesis Vector from two parent workers.
 
 ### Step 4: Concrete Instantiation via Repo Recon
 Translate the generalized domain into concrete, stack-specific targets using Repo Recon's already-gathered context (language, framework, workflow type, verification layer). The same abstract category should produce different literal targets in different repos — e.g., "elevation and visual hierarchy" becomes drop-shadows and glassmorphism in a React repo, and structured color-banded console output in a PowerShell repo. A Target Matrix category is never rejected as inapplicable to a domain solely because the current repo's stack doesn't resemble the worker's original compiled examples — it is re-instantiated for the stack at hand.
@@ -239,7 +246,7 @@ Rigid, literal. No creative judgment.
 10. **Assembly Fidelity (rendered worker only):** Verify every template section from Creative-Procedure Module 4 is present in order, no `{{TOKEN}}` remains, all frontmatter keys are populated with `forge_version` equal to `CURRENT_FORGE_VERSION`, and every literal string that applies to the worker (Domain Autonomy, Core Discovery Fallback, Task Board Resolution Protocol, throughput block strings) appears verbatim.
 
 ### Part B: Efficacy Checks
-Impartial adjudication of an original worker against its upgraded draft. Do not assume that "missing" means "broken" — removing restrictive boilerplate or contradictory legacy rules is often an upgrade. The only metric is which variant produces a superior headless worker for *this specific domain*. For net-new workers there is no original: skip the Component Diff and run only the Mandatory Audits that apply.
+Impartial adjudication of an original worker against its upgraded draft. Recognize that "missing" can mean "improved" — removing restrictive boilerplate or contradictory legacy rules is often an upgrade. The only metric is which variant produces a superior headless worker for *this specific domain*. For net-new workers there is no original: skip the Component Diff and run only the Mandatory Audits that apply.
 
 **1. The Component Diff [Critical]**
 State the agent's core mission. Identify 3 to 4 critical operational mechanics, constraints, or structural elements from the original worker—especially those significantly altered or removed in the draft. For each:
