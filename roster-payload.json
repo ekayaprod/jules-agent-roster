@@ -982,7 +982,7 @@
     "name": "Illuminator",
     "emoji": "🖌️",
     "role": "Architecture Draftsman",
-    "category": "Docs",
+    "category": "Documentation",
     "tier": "Fusion",
     "description": "Draft precise architectural blueprints from dense text walls to reveal the structural truth of the repository.",
     "forge_version": "V88.5",
