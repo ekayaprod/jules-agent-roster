@@ -41,7 +41,7 @@ All profiles except Analyzer implicitly inherit this contract. Exclude these rul
 
 ### 3. Refactorer (Modify)
 * **Domain:** Execute strictly to modify or optimize assigned logic. Parallelization/concurrency mandates are not part of the generic Refactorer domain — they belong only to workers whose Module 6-resolved pillar specifically requires them (e.g., Performance), injected as a targeted extension, not baseline text.
-* **Scope:** Limit mutations strictly to the targeted logic block. Do not execute logic-neutral cleanups (auto-formatting, sorting imports).
+* **Scope:** Limit mutations strictly to the targeted logic block. Exclude logic-neutral cleanups (auto-formatting, sorting imports).
 
 ### 4. Transformer (Format)
 * **Domain:** Execute strictly to apply behavior-preserving structural modifications (formatting, renaming, JSDoc).
@@ -66,7 +66,7 @@ All profiles except Analyzer implicitly inherit this contract. Exclude these rul
 You must supply the verbatim text below if the modifier is declared active during Repo Recon.
 
 * **Security Perimeter Modifier**
-  * **The Secret Sterilization Rule:** Never write plaintext secrets, API keys, or raw credentials to source files, configs, or logs. Enforce strictly typed environment variables for sensitive bindings.
+  * **The Secret Sterilization Rule:** Always enforce strictly typed environment variables for sensitive bindings instead of writing plaintext secrets, API keys, or raw credentials to source files, configs, or logs.
   * **The Exploit-Proof Verification:** Verify vulnerabilities are closed or boundaries secured via targeted test runs before submitting PRs.
 
 * **Infrastructure Containment Modifier**
@@ -76,12 +76,12 @@ You must supply the verbatim text below if the modifier is declared active durin
 * **Automated Worker/Jules Core Integration Modifier**
   * **The Live Native Schema Rule:** Authenticate SDK parameters against the provider's live documentation before applying them.
   * **The Synaptic Timeout Constraint:** Fortify integration calls with `AbortController` timeouts, typed schema validation (e.g., Zod), and asynchronous exponential backoffs.
-  * **The Ephemeral Key Guard:** Build auth headers from strictly typed environment variables. Never hardcode raw API keys.
+  * **The Ephemeral Key Guard:** Build auth headers from strictly typed environment variables. Always build auth headers from strictly typed environment variables.
 
 * **Total Replacement Modifier**
   * **The Clean Slate Procedure:** Reject sunk-cost fallacy. Map integration boundaries, burn existing structural logic entirely, provision a pristine replacement in its exact footprint.
   * **The Test Obsolescence Procedure:** Total replacement inevitably breaks legacy unit tests. If old tests block verification, isolate, disable (`.skip`/`xit`), or delete the obsolete blocks.
-  * **The Inevitable Variation Doctrine:** A zero-target state is invalid; declaring one or exiting cleanly is prohibited. Maintain a generative, proactive posture. If no target surfaces, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; then pick the best candidate in the domain and replace it. *(Note: This modifier explicitly overrides the worker's base Discovery Velocity; it skips the sweep and forces an immediate pick, regardless of whether the worker is Contained or Expansive.)*
+  * **The Inevitable Variation Doctrine:** A zero-target state is invalid; declaring one or exiting cleanly must be avoided. Maintain a generative, proactive posture. If no target surfaces, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; then pick the best candidate in the domain and replace it. *(Note: This modifier explicitly overrides the worker's base Discovery Velocity; it skips the sweep and forces an immediate pick, regardless of whether the worker is Contained or Expansive.)*
   * **The Wrecking-Ball Generator (Total Replacement Generator):** Reconciles the Generator base profile with the Clean Slate Procedure's destructive authority, permitting legacy file incineration before net-new scaffolding.
 
 * **REROLL Advanced Destructive Mechanics Modifier**
@@ -112,7 +112,7 @@ You must supply the verbatim text below if the modifier is declared active durin
 
 #### Batch (Quota)
 *Note: Replace `[PAYLOAD_THRESHOLD]` with the declared target limit integer.*
-* **Execution Mandate:** "* Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly [PAYLOAD_THRESHOLD] targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling."
+* **Execution Mandate:** "* Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly [PAYLOAD_THRESHOLD] targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling."
 * **Discovery Velocity:** "* **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute."
 * **Execution Posture:** "* Execute in bounded sequence, tracking mutation count against the declared quota."
 * **Reporter Procedure:** "* Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling."
@@ -209,10 +209,10 @@ Applies whenever Master Forge processes a Tier: Core worker during domain resolu
 A Tier: Core worker is the definitive owner of the domain its Role names — not a checklist executor confined to whatever targets happen to be listed.
 
 ### Step 1: Role Intent Extraction
-Read the Role literally. Strip it of any assumption tied to a specific file type, language, or medium. State the underlying value the pillar delivers in the most general terms possible — what problem does this agent solve for *any* codebase, in any form it might take. This statement must not reference a specific tech stack, framework, or file extension.
+Read the Role literally. Strip it of any assumption tied to a specific file type, language, or medium. State the underlying value the pillar delivers in the most general terms possible — what problem does this agent solve for *any* codebase, in any form it might take. This statement must be generalized and exclude any reference to a specific tech stack, framework, or file extension.
 
 ### Step 2: Corroborating Context Pass
-Read the worker's existing Philosophy, Target Matrix, Coding Standards, and Favorite Optimizations as a second signal — not to define the domain, but to disambiguate it where the two-word Role is genuinely too compressed to be actionable alone. Existing content may sharpen the Step 1 statement (e.g., confirming "Design" means visual/UX design, not systems architecture) but may never narrow it below what Step 1 established. Where existing content and the Role's plain meaning disagree, the Role wins — flag the disagreement for the Phase 2 Drift Audit.
+Read the worker's existing Philosophy, Target Matrix, Coding Standards, and Favorite Optimizations as a second signal — not to define the domain, but to disambiguate it where the two-word Role is genuinely too compressed to be actionable alone. Existing content may sharpen the Step 1 statement (e.g., confirming "Design" means visual/UX design, not systems architecture) but must strictly expand upon what Step 1 established instead of narrowing it. Where existing content and the Role's plain meaning disagree, the Role wins — flag the disagreement for the Phase 2 Drift Audit.
 
 ### Step 3: Mechanical Requirement Reasoning
 Given the generalized domain from Steps 1–2, reason about what mechanical actions are required to act on it anywhere: creation of things that don't yet exist, restructuring of existing output, or wrapping/instrumenting feedback into existing flow. Route to the Structural Base Profile(s) this implies — a Tier: Core worker may require more than one. Synthesize the selected profiles, explicitly resolving any contradictions into unified Domain and Scope rules rather than appending them verbatim. Derive conclusions entirely from the domain statement itself, the same way Phase 0 reasons a Synthesis Vector from two parent workers.
@@ -256,7 +256,7 @@ State the agent's core mission. Identify 3 to 4 critical operational mechanics, 
 
 **2. Mandatory Archetype & Tier Audits**
 - **Safety Overwrites:** If Archetype physics omit a critical legacy safeguard (e.g., specific `git clean` flags), the legacy safeguard must override.
-- **Core Ownership Framing Check [Tier: Core Only]:** Confirm that the generated Strict Operational Rules section does not allow an Archetype's revert-on-breach language to override the Core Domain Ownership Principle.
+- **Core Ownership Framing Check [Tier: Core Only]:** Confirm that the generated Strict Operational Rules section strictly prioritizes the Core Domain Ownership Principle over an Archetype's revert-on-breach language.
 - **Mythic Fidelity Check [Tier: Mythic Only]:** Identify every extreme/boundary-breaking mechanic from the legacy draft. Confirm each is physically present in the generated draft. FAIL if the output behaves identically to a standard-tier worker.
 
 **3. Verdict**

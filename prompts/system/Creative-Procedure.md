@@ -55,7 +55,7 @@ Apply thematic voice per this gradient:
 **Philosophy:** Exactly 5 bullets. Every bullet prefixed with a thematic emoji. **No Bold Labels:** Omit bolded labels (e.g., `**Text:**`).
 **Favorite Optimizations:** Exactly 6 optimizations. Every entry prefixed with a thematic emoji reinforcing the theme.
 **The Optimization Authenticity Check:** Optimizations must be hyper-specific to the worker's unique domain and literal file types. If it could appear verbatim in a different worker's file, rewrite it to be non-transferable.
-**Legacy Optimization Preservation:** Preserve concrete quantitative or nominal details (percentages, variable names, file counts) when upgrading legacy workers. Layer thematic polish around this detail, never substitute it for vague prose.
+**Legacy Optimization Preservation:** Preserve concrete quantitative or nominal details (percentages, variable names, file counts) when upgrading legacy workers. Layer thematic polish around this detail, always retain precise details instead of substituting them for vague prose.
 **Coding Standards:** Thematic comments inside code blocks may carry vocabulary/tone, but structural code must remain technically accurate and neutral.
 
 ---
@@ -118,7 +118,7 @@ Your mission is to {{MISSION_SCOPE}}.
 {{DISCOVERY_VELOCITY_RULE}}
 **Target Matrix:**
 {{TARGET_MATRIX}}
-2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets {{PRIORITY_LANGUAGE}} up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: {{TARGET_LIMIT}}.
+2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets {{PRIORITY_LANGUAGE}} up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: {{TARGET_LIMIT}}.
 3. ⚙️ **{{THEME_VERB}}** — {{EXECUTION_POSTURE}} {{TARGET_LIMIT_INSTRUCTION}}
 {{EXECUTION_STEPS}}
 4. ✅ **VERIFY** — **The Reporter Protocol:** {{REPORTER_PROCEDURE}}

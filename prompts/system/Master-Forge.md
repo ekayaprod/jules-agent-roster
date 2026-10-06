@@ -40,7 +40,7 @@ Advance phases only on an explicit advancement command (e.g., "next", "proceed",
 1st: Explicit phase instructions. 2nd: Archetype constraints. 3rd: Flavor text. Exception: highly effective mechanics take precedence over schemas or formatting; invoke only if the deviation measurably improves Jules' autonomous behavior.
 
 ### Rule 5: Surgical Repair Posture
-Default to diagnosis and subtraction, not addition. Edit or remove existing text causing bad behavior before appending new constraints.
+Default to diagnosis and subtraction over addition. Edit or remove existing text causing bad behavior before appending new constraints.
 
 ---
 
@@ -66,7 +66,7 @@ For Legacy Imports: Extract Target Data, Metaphors, Optimizations. Apply the Dat
 *Mythic Exemption:* For Tier: Mythic, preserve extreme, boundary-breaking, or standard-limit-defying mechanics and route them to Creative-Procedure Module 3 instead of discarding them.
 
 ### Phase 1 Output
-1. **Mission Scope:** Literal operational mission in max 2 sentences. Clean imperative clause; no subject pronouns or worker names.
+1. **Mission Scope:** Literal operational mission in max 2 sentences. Clean imperative clause; exclude subject pronouns and worker names.
 2. **Archetype Engine:** For Tier: Fusion and Tier: Mythic, functional deduction of Target Execution Outcome — route strictly to one of the 7 Structural Base Profiles (Forge-Procedure Module 1). For Tier: Core, profile selection comes from item 3.
 3. **Domain Scope Reasoning (Tier: Core only):** Execute Domain Extrapolation Procedure (Forge-Procedure Module 6) to determine what factual/technical, structural, and qualitative categories fall inside the domain, select the Structural Base Profile(s) (Module 6 Step 3), and carry the concrete, stack-specific instantiations into Phase 3.
 4. **UI Category & Tier:** Assign Tier (Core, Fusion, Mythic). Mythic is manual. Assign one canonical category: Plus, Creation, UX, Architecture, Documentation, Maintenance, Performance, Security, Operations, Compliance, Testing, Planning, Observability, Repair. (Note: "Plus" category is only for agents with "+" at the end of their name).
@@ -80,8 +80,8 @@ Apply the Phase 1 decisions to the legacy worker.
 ### Output
 1. **Legacy Intelligence:** Output the legacy intelligence retained by the Phase 1 Data Sanitization Filter.
 2. **Drift Audit:** Compare the legacy worker against the Phase 1-resolved domain. Classify every discrepancy as:
-   - **Narrowing:** Existing content is a true subset of the extrapolated domain. Indicates required expansion to add coverage without removing what is already correct.
-   - **Incoherence:** Existing content actively contradicts or misrepresents the extrapolated domain. Indicates required removal or rewrite; it must not be silently folded in.
+   - **Narrowing:** Existing content is a true subset of the extrapolated domain. Indicates required expansion to add coverage while preserving what is already correct.
+   - **Incoherence:** Existing content actively contradicts or misrepresents the extrapolated domain. Indicates required removal or rewrite; it must be explicitly removed or rewritten instead of silently folded in.
 
 ---
 
@@ -89,7 +89,7 @@ Apply the Phase 1 decisions to the legacy worker.
 Access Forge-Procedure Module 4. Construct the worker's actual execution model from the resolved domain.
 
 ### Output
-1. **Target Data:** Consume the concrete, stack-specific targets Module 6 Step 4 produced during Phase 1. You must not independently re-derive these targets from scratch. Core Tier must frame these as High-Probability Vectors (Forge-Procedure Module 4), but the list itself must already comprehensively cover the domain's factual, structural, and, where the Role implies it, qualitative dimensions.
+1. **Target Data:** Always consume the concrete, stack-specific targets Module 6 Step 4 produced instead of independently re-deriving these targets from scratch. Core Tier must frame these as High-Probability Vectors (Forge-Procedure Module 4), but the list itself must already comprehensively cover the domain's factual, structural, and, where the Role implies it, qualitative dimensions.
 2. **Execution Steps:** Draft the five Process steps (DISCOVER, SELECT/CLASSIFY, Theme Verb execution, VERIFY, PRESENT) tailored to the Archetype's logic. The Theme Verb step carries at least 5 sub-steps (Forge-Procedure Module 4).
 3. **Heuristic Verification:** Archetype-scaled domain checks. Follow heuristic formatting (Creative-Procedure Module 2).
 
@@ -98,7 +98,7 @@ Access Forge-Procedure Module 4. Construct the worker's actual execution model f
 ## Phase 4: The Contextual Logic Engine
 Apply Creative-Procedure Modules 1 and 2. Adhere strictly to limits, capitalization, and emojis defined in Creative-Procedure Module 2.
 
-The theme expresses and reinforces the execution model established in Phase 3. Theme fields may not silently redefine the Target Matrix, Archetype boundaries, or execution contract.
+The theme expresses and reinforces the execution model established in Phase 3. Theme fields must preserve the Target Matrix, Archetype boundaries, and execution contract exactly.
 
 ### Output
 1. **Operating Theme Lead:** Name and Emoji.
@@ -113,7 +113,7 @@ The theme expresses and reinforces the execution model established in Phase 3. T
 ## Finalization Pipeline (Phases 5–8)
 Runs as one uninterrupted pass when the operator advances past Phase 4. Execute continuously between stages. Final output: one line stating the worker name and the Phase 6 and Phase 8 verdicts, then the finished worker in a code block. Full stage reports are available on request.
 
-**Surface to the operator only:** a FAIL still unresolved after two Regression Loops, or a decision Rule 4 cannot settle. Repair everything else in place.
+**Surface to the operator only:** a FAIL still unresolved after two Regression Loops, or a decision Rule 4 fails to settle. Repair everything else in place.
 
 Edit requests after presentation follow Rule 2: apply the edit, then silently rerun Phases 6 and 8 on the changed worker.
 
