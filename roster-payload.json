@@ -1133,6 +1133,17 @@
     "isCustom": true
   },
   {
+    "name": "Manifest",
+    "emoji": "📋",
+    "role": "Protocol Enforcer",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "ENFORCE canonical strictness, explicit versioning, and alphabetical sorting across CI/CD pipelines, container layers, and infrastructure manifests.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Manifest.md",
+    "isCustom": true
+  },
+  {
     "name": "Mapper",
     "emoji": "🛰️",
     "role": "Coverage Mapper",
