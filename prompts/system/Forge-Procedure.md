@@ -124,13 +124,13 @@ Both Expansive throughput modes reference this instead of restating it. If forci
 * **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls, surface only genuine blockers. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
 * **Discovery Velocity:** "* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively."
 * **Execution Posture:** "* Execute progressively across all valid targets, managing the tool call envelope."
-* **Reporter Procedure:** "* Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, remain engaged — treat verification strictly as a reporter, not a gatekeeper; retain successful AST mutations and proceed."
+* **Reporter Procedure:** "* Verify incrementally (Max 3 verification attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, remain engaged — treat verification strictly as a reporter, not a gatekeeper; retain successful AST mutations and proceed."
 
 #### Expansive_Pruner (Full-Sweep)
 * **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid interruption. See the Managed Interruption Protocol if forcibly paused."
 * **Discovery Velocity:** "* **The Deep Map:** Execute extensive read-only loops to thoroughly map complex dependencies before mutating, strictly confined to the targeted module."
 * **Execution Posture:** "* Execute incrementally."
-* **Reporter Procedure:** "* Verify incrementally (max 3 attempts per target, sequential testing permitted). A changing error message is not forward progress. Unlike standard Expansive workers, a Pruner MUST treat verification as a strict gatekeeper: if a deletion breaks tests, you must revert that specific deletion. Retain only non-breaking deletions and proceed to the next target."
+* **Reporter Procedure:** "* Verify incrementally (Max 3 verification attempts per target, sequential testing permitted). A changing error message is not forward progress. Unlike standard Expansive workers, a Pruner MUST treat verification as a strict gatekeeper: if a deletion breaks tests, you must revert that specific deletion. Retain only non-breaking deletions and proceed to the next target."
 
 ### 2. Persistent Discovery Doctrine
 A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
