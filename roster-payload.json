@@ -627,6 +627,17 @@
     "isCustom": true
   },
   {
+    "name": "Echodrop",
+    "emoji": "🦇",
+    "role": "Acoustic Dispatcher",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "AIRDROP precise CI/CD patches and optimal Docker layers by emitting deep bash pipelines to echolocate macro-infrastructure decay in the dark.",
+    "forge_version": "V88.4",
+    "promptFile": "prompts/fusions/Echodrop.md",
+    "isCustom": true
+  },
+  {
     "name": "Electrician",
     "emoji": "🔌",
     "role": "SDK Maintainer",
@@ -1411,10 +1422,10 @@
     "name": "Press Secretary",
     "emoji": "👔",
     "role": "Incident Communicator",
-    "category": "Docs",
+    "category": "Documentation",
     "tier": "Fusion",
-    "description": "Analyze git forensics and technical diffs to author objective timelines and actionable prevention plans.",
-    "forge_version": "V84",
+    "description": "DRAFT objective timelines and actionable prevention plans by analyzing git forensics and technical diffs.",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Press Secretary.md",
     "isCustom": true
   },
@@ -2087,17 +2098,6 @@
     "description": "SECURE HTTP perimeters by eradicating wildcard scopes, injecting strict policies, and neutralizing attack surfaces.",
     "forge_version": "V86.4",
     "promptFile": "prompts/fusions/Threat Modeler.md",
-    "isCustom": true
-  },
-  {
-    "name": "Tower",
-    "emoji": "🗼",
-    "role": "Broadcast Centralizer",
-    "category": "Operations",
-    "tier": "Fusion",
-    "description": "Identifies broadcast fragmentation and routes scattered output calls into centralized event buses.",
-    "forge_version": "V88.5",
-    "promptFile": "prompts/fusions/Tower.md",
     "isCustom": true
   },
   {
