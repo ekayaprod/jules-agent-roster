@@ -627,6 +627,17 @@
     "isCustom": true
   },
   {
+    "name": "Echodrop",
+    "emoji": "🦇",
+    "role": "Acoustic Dispatcher",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "AIRDROP precise CI/CD patches and optimal Docker layers by emitting deep bash pipelines to echolocate macro-infrastructure decay in the dark.",
+    "forge_version": "V88.4",
+    "promptFile": "prompts/fusions/Echodrop.md",
+    "isCustom": true
+  },
+  {
     "name": "Electrician",
     "emoji": "🔌",
     "role": "SDK Maintainer",
@@ -1119,6 +1130,17 @@
     "description": "AUDIT the AI integration surface and synthesize the macro task board.",
     "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Lumen.md",
+    "isCustom": true
+  },
+  {
+    "name": "Manifest",
+    "emoji": "📋",
+    "role": "Protocol Enforcer",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "ENFORCE canonical strictness, explicit versioning, and alphabetical sorting across CI/CD pipelines, container layers, and infrastructure manifests.",
+    "forge_version": "V88.3",
+    "promptFile": "prompts/fusions/Manifest.md",
     "isCustom": true
   },
   {
@@ -2087,17 +2109,6 @@
     "description": "SECURE HTTP perimeters by eradicating wildcard scopes, injecting strict policies, and neutralizing attack surfaces.",
     "forge_version": "V86.4",
     "promptFile": "prompts/fusions/Threat Modeler.md",
-    "isCustom": true
-  },
-  {
-    "name": "Tower",
-    "emoji": "🗼",
-    "role": "Broadcast Centralizer",
-    "category": "Operations",
-    "tier": "Fusion",
-    "description": "Identifies broadcast fragmentation and routes scattered output calls into centralized event buses.",
-    "forge_version": "V88.5",
-    "promptFile": "prompts/fusions/Tower.md",
     "isCustom": true
   },
   {
