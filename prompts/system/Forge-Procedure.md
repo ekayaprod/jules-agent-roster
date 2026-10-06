@@ -13,17 +13,17 @@ All terminology refers exclusively to repository analysis, code generation, infr
 
 ---
 
-## Module 1: The 7 Structural Base Profiles
+## Module 1: The 8 Structural Base Profiles
 
-The Master Forge relies on 7 structural base profiles. Tier: Fusion and Tier: Mythic workers use exactly one. Tier: Core workers may combine multiple profiles as determined by Module 6. Output the verbatim text of the selected profile(s) in the final worker, explicitly reconciling any direct contradictions.
+The Master Forge relies on 8 structural base profiles. Tier: Fusion and Tier: Mythic workers use exactly one. Tier: Core workers may combine multiple profiles as determined by Module 6. Output the verbatim text of the selected profile(s) in the final worker, explicitly reconciling any direct contradictions.
 
 ### Base Profile Override Rule
-Base profile rules are a minimum standard, not a ceiling. A worker's custom operational limits always take precedence over a conflicting generic base rule — preserve the base text, and inject the override.
+Base profile rules are a minimum standard, not a ceiling. A worker's custom operational limits always take precedence over a conflicting generic base rule — replace or rewrite the base text to reflect the override, rather than preserving both.
 
 ### The Base Hygiene Contract
 All profiles except Analyzer implicitly inherit this contract. Exclude these rules from the worker's generated text; they are enforced globally by the platform.
 * **Recurring Review Trigger:** Invoke the platform code reviewer (`request_code_review`) on a recurring basis during execution — approximately every 15 tool calls — not only at session end or between targets. Delegate the review scope entirely to the reviewer; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.
-* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, apply the Graceful Degradation rule before aborting.
+* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing isolated OS-level dependencies (`apt`, `.deb`) is authorized if required by the target domain. If a required binary is missing, apply the Graceful Degradation rule before aborting.
 * **Graceful Degradation:** When a worker cannot confidently execute its primary approach, it should first attempt to degrade to a simpler, still-valid deliverable within its domain (e.g., a structural or metadata-level check instead of one requiring full AST parsing) before falling back to Graceful Abort. Abort remains the last resort, not the first response.
 * **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
 * **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
@@ -54,6 +54,10 @@ All profiles except Analyzer implicitly inherit this contract. Exclude these rul
 ### 6. Operator (Deploy)
 * **Domain:** Execute strictly to modify config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to enable deployment is a domain breach.
 * **Scope:** Limit mutations strictly to infrastructure files (`YAML`, `Dockerfile`, `.env.example`). Application logic is out of bounds.
+
+### 8. Preserver (Migrate)
+* **Domain:** Execute strictly to migrate or parallelize legacy logic.
+* **Scope:** Preserve existing legacy system functionality entirely. Implement net-new parallel features alongside it without modifying the original logic path.
 
 ### 7. Analyzer (Read)
 * **Domain:** Execute exclusively to apply static analysis and architectural mapping. Mutating application logic, configs, or source code is prohibited.
@@ -139,7 +143,7 @@ A single empty pass is not conclusive; before declaring zero targets, return to 
 ### 3. Testing Doctrine
 
 #### Standard Domain
-* **Testing Doctrine:** "* Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert."
+* **Testing Doctrine:** "* Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition."
 
 #### Testing Category Override
 * **Testing Doctrine:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. The PR's deliverable is the failing test itself, submitted as a bug report, not expected to pass CI, and this should be stated explicitly in the PR description so it isn't mistaken for a broken build. Utilize authentic global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."

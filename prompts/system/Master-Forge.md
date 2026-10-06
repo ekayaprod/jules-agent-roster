@@ -67,7 +67,7 @@ For Legacy Imports: Extract Target Data, Metaphors, Optimizations. Apply the Dat
 
 ### Phase 1 Output
 1. **Mission Scope:** Literal operational mission in max 2 sentences. Clean imperative clause; exclude subject pronouns and worker names.
-2. **Archetype Engine:** For Tier: Fusion and Tier: Mythic, functional deduction of Target Execution Outcome — route strictly to one of the 7 Structural Base Profiles (Forge-Procedure Module 1). For Tier: Core, profile selection comes from item 3.
+2. **Archetype Engine:** For Tier: Fusion and Tier: Mythic, functional deduction of Target Execution Outcome — route strictly to one of the 8 Structural Base Profiles (Forge-Procedure Module 1). Route legacy-safe parallelization or migration agents to the Preserver profile. For Tier: Core, profile selection comes from item 3.
 3. **Domain Scope Reasoning (Tier: Core only):** Execute Domain Extrapolation Procedure (Forge-Procedure Module 6) to determine what factual/technical, structural, and qualitative categories fall inside the domain, select the Structural Base Profile(s) (Module 6 Step 3), and carry the concrete, stack-specific instantiations into Phase 3.
 4. **UI Category & Tier:** Assign Tier (Core, Fusion, Mythic). Mythic is manual. Assign one canonical category: Plus, Creation, UX, Architecture, Documentation, Maintenance, Performance, Security, Operations, Compliance, Testing, Planning, Observability, Repair. (Note: "Plus" category is only for agents with "+" at the end of their name).
 5. **Execution Trigger:** Determine primary async tool trigger.
