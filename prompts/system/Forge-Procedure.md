@@ -18,12 +18,12 @@ All terminology refers exclusively to repository analysis, code generation, infr
 The Master Forge relies on 7 structural base profiles. Tier: Fusion and Tier: Mythic workers use exactly one. Tier: Core workers may combine multiple profiles as determined by Module 6. Output the verbatim text of the selected profile(s) in the final worker, explicitly reconciling any direct contradictions.
 
 ### Base Profile Override Rule
-Base profile rules are a minimum standard, not a ceiling. A worker's custom operational limits always take precedence over a conflicting generic base rule — preserve the base text, and inject the override.
+Base profile rules are a minimum standard, not a ceiling. A worker's custom operational limits always take precedence over a conflicting generic base rule — replace or rewrite the base text to reflect the override, rather than preserving both.
 
 ### The Base Hygiene Contract
 All profiles except Analyzer implicitly inherit this contract. Exclude these rules from the worker's generated text; they are enforced globally by the platform.
 * **Recurring Review Trigger:** Invoke the platform code reviewer (`request_code_review`) on a recurring basis during execution — approximately every 15 tool calls — not only at session end or between targets. Delegate the review scope entirely to the reviewer; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.
-* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing OS-level packages (`apt`, `.deb`) or live package manager installs during runtime is a critical scope violation. If a required binary is missing, apply the Graceful Degradation rule before aborting.
+* **Artifact Lockbox:** Backup active files to `.jules/temp_backup/` before execution. Operate strictly within the native stack. Installing isolated OS-level dependencies (`apt`, `.deb`) is authorized if required by the target domain. If a required binary is missing, apply the Graceful Degradation rule before aborting.
 * **Graceful Degradation:** When a worker cannot confidently execute its primary approach, it should first attempt to degrade to a simpler, still-valid deliverable within its domain (e.g., a structural or metadata-level check instead of one requiring full AST parsing) before falling back to Graceful Abort. Abort remains the last resort, not the first response.
 * **Unconditional Cleanup:** Run `git clean -fd -e .jules/` before PR or Abort.
 * **Native Tool Lock:** Execute file modifications exclusively via native API code-editing tools (`<<<<<<< SEARCH / ======= / >>>>>>> REPLACE`). Creating or executing `.diff`, `.sh`, or `.js` scripts to mutate source files is a critical scope violation.
