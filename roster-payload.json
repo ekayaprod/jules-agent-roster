@@ -424,7 +424,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "FORTIFY naked boundaries by building a three-headed defense: rate limits, strict schema validation, and error wrappers.",
-    "forge_version": "V87.1",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Cerberus.md",
     "isCustom": true
   },
