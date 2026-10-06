@@ -14,7 +14,7 @@
           font-family: inherit;
           overflow: hidden;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+          transition: all 0.3s ease-in-out;
           animation: sg-fade-in-up 0.4s ease-out forwards;
         }
 
@@ -80,7 +80,7 @@
           color: var(--text-primary);
           font-family: inherit;
           line-height: 1.6;
-          transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+          transition: all 0.3s ease-in-out;
           box-sizing: border-box;
         }
         .sg-textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
@@ -142,7 +142,7 @@
           border-radius: 0.5rem;
           cursor: pointer;
           min-height: 2.75rem;
-          transition: filter 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+          transition: all 0.3s ease-in-out;
         }
         @media (hover: hover) and (pointer: fine) {
           .sg-submit:not(:disabled):hover {
