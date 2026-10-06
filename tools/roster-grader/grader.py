@@ -410,17 +410,31 @@ def score_dim_B_corpus(all_files_operational_units, all_files_names):
             if sim > max_sim:
                 max_sim = sim
             if idx1 < idx2:
-                similarity_pairs.append((sim, idx1, idx2))
+                similarity_pairs.append((sim, all_files_names[idx1], all_files_names[idx2]))
 
         metrics_B[all_files_names[idx1]] = {
             'rare_token_share': rare_share,
             'nearest_neighbor_cosine': max_sim
         }
 
+
     similarity_pairs.sort(reverse=True)
     top_10_pairs = similarity_pairs[:10]
 
-    return metrics_B, top_10_pairs, rare_tokens_set, doc_freq
+    same_name_pairs = []
+    import os
+    for i in range(total_docs):
+        for j in range(i + 1, total_docs):
+            f1 = all_files_names[i]
+            f2 = all_files_names[j]
+            if os.path.basename(f1) == os.path.basename(f2):
+                sim = cosine_sim(tf_idf_vectors[i], tf_idf_vectors[j])
+                same_name_pairs.append((sim, f1, f2))
+
+    same_name_pairs.sort(reverse=True)
+
+    return metrics_B, top_10_pairs, rare_tokens_set, doc_freq, same_name_pairs
+
 
 def score_dim_C(units):
     conditionals = 0
@@ -647,54 +661,7 @@ def check_tool_availability(tools):
             missing.add(tool)
     return missing
 
-def score_dim_G(raw_content):
-    blocks = re.findall(r'```(bash|sh|python|json|javascript|js|typescript|ts|node)\n(.*?)```', raw_content, re.DOTALL)
 
-    valid = 0
-    invalid = 0
-
-    for lang, code in blocks:
-        code = code.strip()
-        if not code:
-            continue
-
-        lang = lang.lower()
-        if lang in ('python',):
-            try:
-                ast.parse(code)
-                valid += 1
-            except SyntaxError:
-                invalid += 1
-        elif lang in ('json',):
-            try:
-                json.loads(code)
-                valid += 1
-            except json.JSONDecodeError:
-                invalid += 1
-        elif lang in ('bash', 'sh'):
-            try:
-                process = subprocess.run(['bash', '-n'], input=code.encode('utf-8'), capture_output=True)
-                if process.returncode == 0:
-                    valid += 1
-                else:
-                    invalid += 1
-            except:
-                pass
-        elif lang in ('javascript', 'js', 'typescript', 'ts', 'node'):
-            try:
-                process = subprocess.run(['node', '--check'], input=code.encode('utf-8'), capture_output=True)
-                if process.returncode == 0:
-                    valid += 1
-                else:
-                    invalid += 1
-            except FileNotFoundError:
-                pass
-
-    total = valid + invalid
-    if total == 0:
-        return None
-
-    return valid / total
 
 def score_dim_H(units, dedup_units):
     if not units:
@@ -774,7 +741,7 @@ def full_scoring(files, config=None):
             'boilerplate_share': 1 - (len(non_bp) / len(dedup)) if dedup else 0
         })
 
-    metrics_B_corpus, top_10_pairs, rare_tokens_set, doc_freq = score_dim_B_corpus(all_op_units, all_names)
+    metrics_B_corpus, top_10_pairs, rare_tokens_set, doc_freq, same_name_pairs = score_dim_B_corpus(all_op_units, all_names)
 
     f_flags = []
     g_validity_values = []
@@ -791,13 +758,13 @@ def full_scoring(files, config=None):
         f_flags.append(flags_F)
         mission_drifts.append(drift)
 
-        g_val = score_dim_G(fd['rest'])
+        g_val = None
         g_validity_values.append(g_val)
 
         m_H = score_dim_H(fd['units'], fd['non_bp'])
 
         fd['metrics'] = {
-            'A': m_A, 'B': m_B, 'C': m_C, 'D': m_D, 'E': m_E, 'G': {'validity': g_val}, 'H': m_H
+            'A': m_A, 'B': m_B, 'C': m_C, 'D': m_D, 'E': m_E,  'H': m_H
         }
 
     tension_pairs = Counter()
@@ -827,7 +794,7 @@ def full_scoring(files, config=None):
         penalty_flags = [f for f in scored_flags if f['type'] != 'mission_drift_advisory']
         fd['F_score'] = max(0, 100 - f_penalty_k * len(penalty_flags))
 
-    g_valid_count = sum(1 for g in g_validity_values if g is not None)
+
 
     if not config:
         if os.path.exists('tools/roster-grader/config.json'):
@@ -848,7 +815,7 @@ def full_scoring(files, config=None):
             'D2': [fd['metrics']['D']['acceptance_criteria_density'] for fd in file_data],
             'E1': [fd['metrics']['E']['blast_limits'] for fd in file_data],
             'E2': [fd['metrics']['E']['blast_caps'] for fd in file_data],
-            'G': [g for g in g_validity_values if g is not None],
+
             'H1': [fd['metrics']['H']['unique_concrete_units_log'] for fd in file_data],
             'H2': [fd['metrics']['H']['gzip_ratio'] for fd in file_data],
             'H3': [-fd['metrics']['H']['repeated_ngram_rate'] for fd in file_data]
@@ -856,17 +823,10 @@ def full_scoring(files, config=None):
         with open('tools/roster-grader/config.json', 'w') as f:
             json.dump(cfg, f, indent=2)
 
-    g_share = g_valid_count / len(files) if files else 0
-    weights = {'A': 20, 'B': 10, 'C': 15, 'D': 15, 'E': 10, 'F': 15, 'G': 5, 'H': 10}
+    g_share = 0
+    weights = {'A': 20, 'B': 10, 'C': 15, 'D': 15, 'E': 10, 'F': 15,  'H': 10}
 
-    if g_share < 0.30:
-        g_w = weights['G']
-        weights['G'] = 0
-        rem = sum(weights.values())
-        if rem > 0:
-            for k in weights:
-                if k != 'G':
-                    weights[k] += g_w * (weights[k] / rem)
+
 
     p_A1 = calculate_percentiles_for_metric([fd['metrics']['A']['anchors_per_100_words'] for fd in file_data], frozen_table=config['percentiles'].get('A1') if config else None)
     p_A2 = calculate_percentiles_for_metric([fd['metrics']['A']['pct_units_with_anchor'] for fd in file_data], frozen_table=config['percentiles'].get('A2') if config else None)
@@ -888,7 +848,7 @@ def full_scoring(files, config=None):
     p_E2 = calculate_percentiles_for_metric([fd['metrics']['E']['blast_caps'] for fd in file_data], frozen_table=config['percentiles'].get('E2') if config else None)
     p_E = [(e1+e2)/2 for e1, e2 in zip(p_E1, p_E2)]
 
-    p_G = calculate_percentiles_for_metric(g_validity_values, frozen_table=config['percentiles'].get('G') if config else None)
+
 
     p_H1 = calculate_percentiles_for_metric([fd['metrics']['H']['unique_concrete_units_log'] for fd in file_data], frozen_table=config['percentiles'].get('H1') if config else None)
     p_H2 = calculate_percentiles_for_metric([fd['metrics']['H']['gzip_ratio'] for fd in file_data], frozen_table=config['percentiles'].get('H2') if config else None)
@@ -899,7 +859,7 @@ def full_scoring(files, config=None):
 
     length_log = [math.log1p(fd['word_count']) for fd in file_data]
 
-    dims = {'A': p_A, 'B': p_B, 'C': p_C, 'D': p_D, 'E': p_E, 'G': p_G, 'H': p_H}
+    dims = {'A': p_A, 'B': p_B, 'C': p_C, 'D': p_D, 'E': p_E,  'H': p_H}
     before_corr = {}
     after_corr = {}
 
@@ -1004,9 +964,9 @@ def full_scoring(files, config=None):
 
     missing_tools = check_tool_availability(list(file_tools.keys()))
 
-    return file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, g_share, weights, bp_counts, missing_tools, file_tool_mapping, after_corr
+    return file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, g_share, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, [], same_name_pairs
 
-def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, g_share, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, excluded, found_files):
+def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, g_share, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, excluded, found_files, same_name_pairs):
     import csv
     import os
     os.makedirs('reports/roster-grading', exist_ok=True)
@@ -1109,10 +1069,16 @@ def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools
                 f.write(f"  - Strengths: {', '.join([f'{k} ({v:.1f})' for k,v in top_dims])}\n")
                 f.write(f"  - Issues: {', '.join([f'{k} ({v:.1f})' for k,v in bot_dims])}\n")
 
+
         f.write("\n## 6. Redundancy\n")
         f.write("Top 10 Closest Pairs:\n")
-        for sim, i1, i2 in top_10_pairs:
-            f.write(f"- {sim:.2f}: File {i1} and File {i2}\n")
+        for sim, f1, f2 in top_10_pairs:
+            f.write(f"- {sim:.2f}: {f1} and {f2}\n")
+
+        f.write("\nSame-Name File Pairs:\n")
+        for sim, f1, f2 in same_name_pairs:
+            f.write(f"- {sim:.2f}: {f1} and {f2}\n")
+
 
         f.write("\n## 7. Coherence\n")
         f.write("Top 25 files by F flags:\n")
@@ -1195,7 +1161,7 @@ def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools
 if __name__ == "__main__":
     found_files, excluded = discover_files()
 
-    file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, g_share, weights, bp_counts, missing_tools, file_tool_mapping, after_corr = full_scoring(found_files)
+    file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, g_share, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, _, same_name_pairs = full_scoring(found_files)
 
     with open('reports/roster-grading/scores.json', 'w', encoding='utf-8') as f:
         json_data = []
@@ -1212,7 +1178,7 @@ if __name__ == "__main__":
             })
         json.dump(json_data, f, indent=2)
 
-    generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, g_share, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, excluded, found_files)
+    generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, g_share, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, excluded, found_files, same_name_pairs)
 
     print(f"Coverage: {len(found_files)} scored, {len(excluded)} excluded.")
     print("Done scoring full roster.")

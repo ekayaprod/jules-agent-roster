@@ -35,12 +35,6 @@ class TestGrader(unittest.TestCase):
         f_scores = {fd['file']: fd['F_score'] for fd in file_data}
         self.assertLess(f_scores[self.contradict], f_scores[self.strong])
 
-    def test_broken_snippet_g_score(self):
-        files = [self.strong, self.broken]
-        file_data, *_ = full_scoring(files, config=self.config)
-
-        g_scores = {fd['file']: fd['final_dims']['G'] for fd in file_data}
-        self.assertLess(g_scores[self.broken], g_scores[self.strong])
 
     def test_jsx_style_flag(self):
         content = "Here is an example: <div style={{ color: 'red' }}></div>"

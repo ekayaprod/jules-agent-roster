@@ -4,8 +4,8 @@
 Tiers: Top (83), Middle (80), Bottom (84), Unstable (2)
 
 Top 10 Most Unstable Files:
-- prompts/orphans/emptyslots.md (Range: 83 - 136)
-- prompts/fusions/Cerberus.md (Range: 73 - 125)
+- prompts/orphans/emptyslots.md (Range: 83 - 137)
+- prompts/fusions/Cerberus.md (Range: 75 - 126)
 
 ## 2. Coverage
 Found: 249
@@ -25,25 +25,24 @@ Excluded: 12
 - prompts/system/Auto-Build.md: In prompts/system/
 
 ## 3. Method & Weights
-Saturated Dimensions: G
-G Artifact Share: 6.4%
-Final Weights: {"A": 21.05263157894737, "B": 10.526315789473685, "C": 15.789473684210526, "D": 15.789473684210526, "E": 10.526315789473685, "F": 15.789473684210526, "G": 0, "H": 10.526315789473685}
+Saturated Dimensions: None
+G Artifact Share: 0.0%
+Final Weights: {"A": 20, "B": 10, "C": 15, "D": 15, "E": 10, "F": 15, "H": 10}
 
 ## 4. Validation & Correlations
-Length Correlation (before): {"A": -0.15, "B": -0.22, "C": 0.28, "D": 0.13, "E": 0.49, "G": -0.14, "H": -0.32, "Composite": -0.08}
-Length Correlation (after): {"A": -0.15, "B": -0.22, "C": 0.28, "D": 0.13, "E": 0.49, "G": -0.14, "H": -0.32}
+Length Correlation (before): {"A": -0.15, "B": -0.22, "C": 0.28, "D": 0.13, "E": 0.49, "H": -0.32, "Composite": -0.08}
+Length Correlation (after): {"A": -0.15, "B": -0.22, "C": 0.28, "D": 0.13, "E": 0.49, "H": -0.32}
 
 Dimension Correlation Matrix:
-| | A | B | C | D | E | F | G | H |
-|---|---|---|---|---|---|---|---|---|
-| A | 1.00 | 0.46 | -0.05 | -0.10 | -0.14 | 0.03 | 0.14 | 0.53 |
-| B | 0.46 | 1.00 | -0.26 | -0.11 | -0.31 | 0.14 | 0.09 | 0.34 |
-| C | -0.05 | -0.26 | 1.00 | 0.25 | 0.47 | -0.28 | -0.07 | -0.16 |
-| D | -0.10 | -0.11 | 0.25 | 1.00 | 0.17 | -0.10 | 0.07 | -0.13 |
-| E | -0.14 | -0.31 | 0.47 | 0.17 | 1.00 | -0.49 | -0.26 | -0.31 |
-| F | 0.03 | 0.14 | -0.28 | -0.10 | -0.49 | 1.00 | 0.14 | 0.26 |
-| G | 0.14 | 0.09 | -0.07 | 0.07 | -0.26 | 0.14 | 1.00 | 0.14 |
-| H | 0.53 | 0.34 | -0.16 | -0.13 | -0.31 | 0.26 | 0.14 | 1.00 |
+| | A | B | C | D | E | F | H |
+|---|---|---|---|---|---|---|---|
+| A | 1.00 | 0.46 | -0.05 | -0.10 | -0.14 | 0.03 | 0.53 |
+| B | 0.46 | 1.00 | -0.26 | -0.11 | -0.31 | 0.14 | 0.34 |
+| C | -0.05 | -0.26 | 1.00 | 0.25 | 0.47 | -0.28 | -0.16 |
+| D | -0.10 | -0.11 | 0.25 | 1.00 | 0.17 | -0.10 | -0.13 |
+| E | -0.14 | -0.31 | 0.47 | 0.17 | 1.00 | -0.49 | -0.31 |
+| F | 0.03 | 0.14 | -0.28 | -0.10 | -0.49 | 1.00 | 0.26 |
+| H | 0.53 | 0.34 | -0.16 | -0.13 | -0.31 | 0.26 | 1.00 |
 
 ## 5. Top 25 and Bottom 25
 
@@ -66,7 +65,7 @@ Dimension Correlation Matrix:
 - **prompts/fusions/Hazmat.md**: Rank 6 (p10-p90: 4-9)
   - Strengths: B (91.9), D (84.8), A (84.4)
   - Issues: E (18.3), H (48.4), C (71.9)
-- **prompts/fusions/Millisecond.md**: Rank 7 (p10-p90: 4-8)
+- **prompts/fusions/Millisecond.md**: Rank 7 (p10-p90: 5-8)
   - Strengths: D (82.9), A (79.2), H (68.8)
   - Issues: E (46.8), B (56.4), C (61.3)
 - **prompts/orphans/Choreographer.md**: Rank 8 (p10-p90: 4-9)
@@ -78,16 +77,16 @@ Dimension Correlation Matrix:
 - **prompts/fusions/Triage.md**: Rank 10 (p10-p90: 11-15)
   - Strengths: A (89.9), D (67.8), E (67.8)
   - Issues: H (55.6), B (60.0), C (63.5)
-- **prompts/fusions/Zealot.md**: Rank 11 (p10-p90: 8-18)
+- **prompts/fusions/Zealot.md**: Rank 11 (p10-p90: 8-19)
   - Strengths: A (85.9), E (80.4), C (79.3)
   - Issues: H (60.2), B (68.3), D (70.1)
-- **prompts/fusions/Hyperloop.md**: Rank 12 (p10-p90: 9-17)
+- **prompts/fusions/Hyperloop.md**: Rank 12 (p10-p90: 10-16)
   - Strengths: C (85.0), E (79.5), B (74.6)
   - Issues: H (56.7), D (60.9), A (64.8)
 - **prompts/fusions/Purger.md**: Rank 13 (p10-p90: 9-18)
   - Strengths: A (90.6), H (81.5), D (75.4)
   - Issues: E (6.4), C (43.0), B (67.4)
-- **prompts/fusions/Retrofitter.md**: Rank 14 (p10-p90: 10-18)
+- **prompts/fusions/Retrofitter.md**: Rank 14 (p10-p90: 9-18)
   - Strengths: H (94.0), A (88.6), B (60.6)
   - Issues: D (29.0), C (54.5), E (55.5)
 - **prompts/fusions/Groundskeeper.md**: Rank 15 (p10-p90: 11-17)
@@ -99,7 +98,7 @@ Dimension Correlation Matrix:
 - **prompts/fusions/Sculptor.md**: Rank 17 (p10-p90: 12-21)
   - Strengths: A (97.8), H (77.0), B (57.2)
   - Issues: D (31.8), E (44.9), C (56.8)
-- **prompts/Inspector.md**: Rank 18 (p10-p90: 10-21)
+- **prompts/Inspector.md**: Rank 18 (p10-p90: 10-20)
   - Strengths: D (93.9), E (81.5), B (78.4)
   - Issues: H (37.3), A (42.6), C (54.6)
 - **prompts/fusions/Limiter.md**: Rank 19 (p10-p90: 16-27)
@@ -125,31 +124,31 @@ Dimension Correlation Matrix:
   - Issues: E (6.4), B (55.1), C (63.4)
 
 ### Bottom 25
-- **prompts/fusions/Parallel.md**: Rank 225 (p10-p90: 216-231)
+- **prompts/fusions/Parallel.md**: Rank 225 (p10-p90: 216-232)
   - Strengths: E (67.8), D (55.3), C (46.3)
   - Issues: H (23.6), A (32.6), B (44.0)
 - **prompts/fusions/Checkpoint.md**: Rank 226 (p10-p90: 216-231)
   - Strengths: D (76.4), E (64.7), C (32.8)
   - Issues: A (2.7), H (19.4), B (23.8)
-- **prompts/fusions/Expediter.md**: Rank 227 (p10-p90: 221-231)
+- **prompts/fusions/Expediter.md**: Rank 227 (p10-p90: 219-232)
   - Strengths: D (69.0), C (45.5), E (36.6)
   - Issues: A (9.8), B (12.0), H (20.4)
-- **prompts/fusions/Typesetter.md**: Rank 228 (p10-p90: 223-231)
+- **prompts/fusions/Typesetter.md**: Rank 228 (p10-p90: 222-231)
   - Strengths: D (56.9), C (56.8), H (37.6)
   - Issues: B (6.5), A (11.9), E (36.6)
-- **prompts/fusions/Espresso.md**: Rank 229 (p10-p90: 223-231)
+- **prompts/fusions/Espresso.md**: Rank 229 (p10-p90: 222-231)
   - Strengths: H (51.8), E (45.1), B (41.5)
   - Issues: A (7.0), D (35.5), C (35.9)
-- **prompts/fusions/Synchronizer.md**: Rank 230 (p10-p90: 223-233)
+- **prompts/fusions/Synchronizer.md**: Rank 230 (p10-p90: 222-233)
   - Strengths: H (56.0), D (52.1), B (50.4)
   - Issues: A (3.6), C (13.0), E (45.4)
 - **prompts/fusions/Illuminator.md**: Rank 231 (p10-p90: 224-233)
   - Strengths: H (66.7), E (45.1), D (41.0)
   - Issues: C (17.9), B (22.3), A (31.9)
-- **prompts/orphans/Virtuoso.md**: Rank 232 (p10-p90: 226-238)
+- **prompts/orphans/Virtuoso.md**: Rank 232 (p10-p90: 225-238)
   - Strengths: B (65.2), A (52.3), H (39.9)
   - Issues: C (4.8), E (6.4), D (26.0)
-- **prompts/Sentinel+.md**: Rank 233 (p10-p90: 228-236)
+- **prompts/Sentinel+.md**: Rank 233 (p10-p90: 229-236)
   - Strengths: B (61.5), C (52.6), D (39.8)
   - Issues: E (30.0), A (30.5), H (30.6)
 - **prompts/fusions/Mulligan.md**: Rank 234 (p10-p90: 231-237)
@@ -158,10 +157,10 @@ Dimension Correlation Matrix:
 - **prompts/fusions/Transmuter.md**: Rank 235 (p10-p90: 232-237)
   - Strengths: D (52.4), B (51.6), C (37.4)
   - Issues: A (2.9), E (18.3), H (29.5)
-- **prompts/fusions/Cataloger.md**: Rank 236 (p10-p90: 233-237)
+- **prompts/fusions/Cataloger.md**: Rank 236 (p10-p90: 232-237)
   - Strengths: C (65.0), E (63.4), H (37.9)
   - Issues: B (17.5), A (19.0), D (19.3)
-- **prompts/fusions/Examiner.md**: Rank 237 (p10-p90: 229-240)
+- **prompts/fusions/Examiner.md**: Rank 237 (p10-p90: 229-241)
   - Strengths: E (81.2), D (74.2), C (70.4)
   - Issues: H (12.0), A (16.8), B (27.7)
 - **prompts/fusions/REST Enforcer.md**: Rank 238 (p10-p90: 235-239)
@@ -185,7 +184,7 @@ Dimension Correlation Matrix:
 - **prompts/fusions/Lumen.md**: Rank 244 (p10-p90: 244-246)
   - Strengths: E (72.6), D (36.4), C (23.6)
   - Issues: B (4.7), A (9.0), H (13.2)
-- **prompts/fusions/Cartographer.md**: Rank 245 (p10-p90: 243-246)
+- **prompts/fusions/Cartographer.md**: Rank 245 (p10-p90: 244-246)
   - Strengths: E (67.8), H (52.8), B (33.7)
   - Issues: D (15.1), C (30.2), A (32.0)
 - **prompts/fusions/Logician.md**: Rank 246 (p10-p90: 244-246)
@@ -203,16 +202,19 @@ Dimension Correlation Matrix:
 
 ## 6. Redundancy
 Top 10 Closest Pairs:
-- 0.86: File 0 and File 180
-- 0.74: File 11 and File 58
-- 0.60: File 59 and File 61
-- 0.58: File 12 and File 172
-- 0.56: File 16 and File 127
-- 0.51: File 10 and File 187
-- 0.50: File 2 and File 199
-- 0.48: File 34 and File 64
-- 0.47: File 34 and File 119
-- 0.44: File 9 and File 99
+- 0.86: prompts/Janitor.md and prompts/fusions/Superintendent.md
+- 0.74: prompts/Navigator.md and prompts/fusions/Harbormaster.md
+- 0.60: prompts/fusions/Surgeon.md and prompts/fusions/Forensic Architect.md
+- 0.58: prompts/Architect.md and prompts/fusions/Plumbline.md
+- 0.56: prompts/Overseer.md and prompts/fusions/Zoning Board.md
+- 0.51: prompts/Helix.md and prompts/fusions/Conveyor.md
+- 0.50: prompts/Author.md and prompts/fusions/Ghostwriter.md
+- 0.48: prompts/fusions/Pacemaker.md and prompts/fusions/Lumen.md
+- 0.47: prompts/fusions/Pacemaker.md and prompts/fusions/Canvas.md
+- 0.44: prompts/Bolt+.md and prompts/fusions/Overdrive.md
+
+Same-Name File Pairs:
+- 0.13: prompts/Janitor.md and prompts/orphans/Janitor.md
 
 ## 7. Coherence
 Top 25 files by F flags:
@@ -396,46 +398,46 @@ Top Tools:
 - href: 4
 
 Missing Tools:
-- layout.tsx (used by prompts/fusions/Swatch.md)
-- components.spec.tsx (used by prompts/fusions/Surveyor.md)
-- pytz (used by prompts/fusions/Steward.md)
-- err.message (used by prompts/orphans/Diplomat.md)
-- gap-4 (used by prompts/orphans/Caliper.md)
-- disallow_untyped_defs (used by prompts/fusions/Zealot.md)
-- href (used by prompts/fusions/Helmsman.md, prompts/fusions/Redirector.md)
-- preconnect (used by prompts/fusions/Calligrapher.md)
-- duration (used by prompts/fusions/Telemetrist.md)
-- variables.css (used by prompts/fusions/Stylist.md, prompts/orphans/Caliper.md)
-- f-strings (used by prompts/fusions/Interpolator.md)
-- graph (used by prompts/fusions/Illuminator.md)
-- pwsh (used by prompts/orphans/Historian.md)
-- let (used by prompts/fusions/Canner.md, prompts/Untangler.md, prompts/fusions/Collider.md)
-- redis-cli (used by prompts/fusions/Marshal.md)
-- logger.warn (used by prompts/fusions/Triage.md)
-- key (used by prompts/fusions/Revoker.md)
-- off (used by prompts/fusions/Zealot.md)
-- null (used by prompts/Inspector.md, prompts/fusions/Collider.md, prompts/fusions/Forensic Architect.md)
-- switch (used by prompts/fusions/Slipstream.md, prompts/fusions/Defuser.md, prompts/Untangler.md)
-- access_key_id (used by prompts/fusions/Keymaster.md)
-- health_controller.py (used by prompts/fusions/Scaffolder.md)
-- subgraph (used by prompts/fusions/Cartographer.md)
-- legacy_ (used by prompts/fusions/Obituary Writer.md)
+- pg_restore (used by prompts/fusions/Marshal.md)
+- focus-visible (used by prompts/Palette+.md, prompts/orphans/Virtuoso.md, prompts/fusions/Chameleon.md)
+- setup-python (used by prompts/fusions/Echodrop.md)
+- v2 (used by prompts/fusions/Checkpoint.md, prompts/fusions/Retrofit.md)
+- v4 (used by prompts/fusions/Retrofit.md, prompts/fusions/Echodrop.md)
+- console.log (used by prompts/orphans/Speed Camera.md, prompts/fusions/Zealot.md)
 - localhost (used by prompts/fusions/Launchpad.md)
-- beforeunload (used by prompts/orphans/Blackbox.md, prompts/orphans/orphans.md)
-- mtime (used by prompts/fusions/Harbormaster.md, prompts/Scribe.md, prompts/Navigator.md)
-- array2 (used by prompts/orphans/Sprinter.md, prompts/orphans/orphans.md)
-- urls.py (used by prompts/fusions/Dead-Ender.md, prompts/fusions/Scaffolder.md)
-- blur (used by prompts/fusions/Pathfinder.md)
-- app.kubernetes.io (used by prompts/fusions/City Clerk.md)
-- old_ (used by prompts/fusions/Obituary Writer.md)
-- axios (used by prompts/fusions/Bulwark.md, prompts/fusions/Siren.md, prompts/fusions/Quarantine.md)
-- modifier (used by prompts/fusions/Acetone.md)
-- public (used by prompts/fusions/Purger.md)
-- theme (used by prompts/fusions/Acetone.md)
-- transition-height (used by prompts/fusions/Hologram.md)
-- tailwind.config.js (used by prompts/fusions/Stylist.md, prompts/fusions/Swatch.md, prompts/orphans/Caliper.md)
-- aria (used by prompts/fusions/Pathfinder.md)
-- fs.promises (used by prompts/fusions/Yggdrasil.md)
+- hadolint (used by prompts/fusions/Respawn.md)
+- auth.json (used by prompts/orphans/Polyglot.md, prompts/orphans/orphans.md)
+- err (used by prompts/fusions/Temporal Loom.md, prompts/fusions/Slipstream.md)
+- try-catch (used by prompts/fusions/Amputator.md, prompts/fusions/Automata.md)
+- framer-motion (used by prompts/orphans/Choreographer.md, prompts/fusions/Viewmorph.md)
+- custom_agents.json (used by prompts/micro/Nomenclator.md)
+- fr.json (used by prompts/orphans/Redliner.md)
+- aria-invalid (used by prompts/fusions/Renovator.md)
+- opts.age (used by prompts/fusions/Collider.md)
+- mcp.json (used by prompts/fusions/Dispatcher.md)
+- undefined (used by prompts/fusions/Hoister.md, prompts/orphans/Diplomat.md, prompts/orphans/Tokenizer.md)
+- markdownlint-cli (used by prompts/fusions/Illuminator.md)
+- it (used by prompts/orphans/Sandboxer.md)
+- rel (used by prompts/fusions/Calligrapher.md)
+- legacy-theme.css (used by prompts/fusions/Purger.md)
+- max-w (used by prompts/fusions/Viewmorph.md)
+- tracking (used by prompts/Palette+.md)
+- aws_access_key_id (used by prompts/fusions/Revoker.md)
+- boto3 (used by prompts/fusions/Keymaster.md)
+- docker-compose.yml (used by prompts/Author.md, prompts/fusions/Marshal.md, prompts/fusions/Respawn.md)
+- if (used by prompts/fusions/Toxicologist.md, prompts/fusions/Lumberjack.md, prompts/Pedant.md)
+- sk-... (used by prompts/fusions/Policy Maker.md)
+- v1_ (used by prompts/fusions/Obituary Writer.md)
+- section (used by prompts/fusions/Viewmorph.md)
+- context (used by prompts/fusions/Forensic Architect.md)
+- en.json (used by prompts/orphans/orphans.md, prompts/fusions/Standardizer.md, prompts/fusions/Wordsmith.md)
+- workspace_id_null (used by prompts/orphans/Canon.md, prompts/orphans/orphans.md)
+- user.flags (used by prompts/fusions/Defuser.md)
+- request_code_review (used by prompts/fusions/Overdrive.md, prompts/fusions/Vector.md, prompts/fusions/Policy Maker.md)
+- aria-labelledby (used by prompts/orphans/Information Architect.md)
+- ffmpeg (used by prompts/orphans/Media Pipeline.md)
+- title (used by prompts/orphans/Canon.md, prompts/orphans/Polyglot.md, prompts/orphans/orphans.md)
+- patch.js (used by prompts/fusions/Hazmat.md)
 
 ## 11. Effect Report
 

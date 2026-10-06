@@ -13,9 +13,9 @@ All terminology refers exclusively to repository analysis, code generation, infr
 
 ---
 
-## Module 1: The 7 Structural Base Profiles
+## Module 1: The 8 Structural Base Profiles
 
-The Master Forge relies on 7 structural base profiles. Tier: Fusion and Tier: Mythic workers use exactly one. Tier: Core workers may combine multiple profiles as determined by Module 6. Output the verbatim text of the selected profile(s) in the final worker, explicitly reconciling any direct contradictions.
+The Master Forge relies on 8 structural base profiles. Tier: Fusion and Tier: Mythic workers use exactly one. Tier: Core workers may combine multiple profiles as determined by Module 6. Output the verbatim text of the selected profile(s) in the final worker, explicitly reconciling any direct contradictions.
 
 ### Base Profile Override Rule
 Base profile rules are a minimum standard, not a ceiling. A worker's custom operational limits always take precedence over a conflicting generic base rule — replace or rewrite the base text to reflect the override, rather than preserving both.
@@ -54,6 +54,10 @@ All profiles except Analyzer implicitly inherit this contract. Exclude these rul
 ### 6. Operator (Deploy)
 * **Domain:** Execute strictly to modify config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to enable deployment is a domain breach.
 * **Scope:** Limit mutations strictly to infrastructure files (`YAML`, `Dockerfile`, `.env.example`). Application logic is out of bounds.
+
+### 8. Preserver (Migrate)
+* **Domain:** Execute strictly to migrate or parallelize legacy logic.
+* **Scope:** Preserve existing legacy system functionality entirely. Implement net-new parallel features alongside it without modifying the original logic path.
 
 ### 7. Analyzer (Read)
 * **Domain:** Execute exclusively to apply static analysis and architectural mapping. Mutating application logic, configs, or source code is prohibited.
@@ -139,7 +143,7 @@ A single empty pass is not conclusive; before declaring zero targets, return to 
 ### 3. Testing Doctrine
 
 #### Standard Domain
-* **Testing Doctrine:** "* Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert."
+* **Testing Doctrine:** "* Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition."
 
 #### Testing Category Override
 * **Testing Doctrine:** "* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. The PR's deliverable is the failing test itself, submitted as a bug report, not expected to pass CI, and this should be stated explicitly in the PR description so it isn't mistaken for a broken build. Utilize authentic global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`)."
