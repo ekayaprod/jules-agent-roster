@@ -47,38 +47,38 @@ def extract_tools_from_fences(content):
 
     return tools
 
-def detect_anchors(unit, config, boilerplate):
+def detect_anchors(unit_text, config, boilerplate):
     """
     A concrete anchor is: a backticked command or code span, a file path or glob,
     a CLI flag, a numeric threshold, or a named tool or package.
     """
-    from tools.roster_grader.parser import normalize_text
-    norm_unit = normalize_text(unit)
+    from tools.roster_grader.parser import normalize_text, is_boilerplate
+    norm_unit = normalize_text(unit_text)
 
-    if norm_unit in boilerplate:
+    if is_boilerplate(norm_unit, boilerplate):
         return []
 
     anchors = []
 
     # Backticked command or code span
-    if re.search(r'`([^`]+)`', unit):
-        anchors.extend(re.findall(r'`([^`]+)`', unit))
+    if re.search(r'`([^`]+)`', unit_text):
+        anchors.extend(re.findall(r'`([^`]+)`', unit_text))
 
     # File path or glob (e.g. /path/to, *.js, .env)
-    paths = re.findall(r'\b[\w\.\-\/]+\.\w+\b|\b\/\w[\w\.\-\/]*\b|\*\.\w+', unit)
+    paths = re.findall(r'\b[\w\.\-\/]+\.\w+\b|\b\/\w[\w\.\-\/]*\b|\*\.\w+', unit_text)
     anchors.extend(paths)
 
     # CLI flag (e.g. --flag, -f)
-    flags = re.findall(r'\s-[a-zA-Z]|\s--[a-zA-Z0-9\-]+', unit)
+    flags = re.findall(r'\s-[a-zA-Z]|\s--[a-zA-Z0-9\-]+', unit_text)
     anchors.extend(flags)
 
     # Numeric threshold
-    numbers = re.findall(r'\b\d+\b', unit)
+    numbers = re.findall(r'\b\d+\b', unit_text)
     anchors.extend(numbers)
 
     # Named tools
     all_tools = set(config["built_in_tools"] + config["derived_tools"])
-    for word in unit.split():
+    for word in unit_text.split():
         clean_word = re.sub(r'[^a-zA-Z0-9\-]', '', word)
         if clean_word in all_tools:
             anchors.append(clean_word)
@@ -89,6 +89,7 @@ def score_dimension_a(units, config, boilerplate):
     """
     Metrics: anchors per 100 words, and the percentage of instruction units
     containing at least one anchor.
+    units: list of dicts {"text": ..., "norm": ..., "line": ...}
     """
     if not units:
         return 0, 0, []
@@ -99,15 +100,16 @@ def score_dimension_a(units, config, boilerplate):
 
     operational_units = []
 
-    for unit in units:
-        words = len(unit.split())
+    for unit_obj in units:
+        unit_text = unit_obj["text"]
+        words = len(unit_text.split())
         total_words += words
-        anchors = detect_anchors(unit, config, boilerplate)
+        anchors = detect_anchors(unit_text, config, boilerplate)
 
         if anchors:
             total_anchors += len(anchors)
             units_with_anchors += 1
-            operational_units.append(unit)
+            operational_units.append(unit_text)
 
     anchors_per_100_words = (total_anchors / total_words * 100) if total_words > 0 else 0
     pct_units_with_anchors = (units_with_anchors / len(units) * 100) if units else 0
@@ -119,7 +121,7 @@ def compute_tf_idf_and_cosine(all_operational_units_per_file):
     B. Distinctiveness
     TF-IDF over operational text only.
     Metrics: share of tokens that are corpus-rare (DF <= 5%), and nearest-neighbor cosine similarity.
-    all_operational_units_per_file: list of lists of strings (units)
+    all_operational_units_per_file: list of lists of strings (units texts)
     Returns list of dicts (one per file) with metrics.
     """
     from tools.roster_grader.parser import normalize_text

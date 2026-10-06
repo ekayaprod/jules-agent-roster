@@ -1,620 +1,724 @@
-# Roster Grader Summary
+# Roster Grader Summary (Run 2)
 
 ## 1. Coverage
-- Files discovered and scored: 251
+- Files discovered and scored: 248
+- Files excluded: 13
+  - `prompts/README.md`: Matches README*.md
+  - `prompts/fusions/README.md`: Matches README*.md
+  - `prompts/system/DATA_FLOW.md`: Inside excluded directory (prompts/system/)
+  - `prompts/system/Master-Forge.md`: Inside excluded directory (prompts/system/)
+  - `prompts/system/Auto-Forge.md`: Inside excluded directory (prompts/system/)
+  - `prompts/system/Forge-Procedure.md`: Inside excluded directory (prompts/system/)
+  - `prompts/system/3passcleaner.md`: Inside excluded directory (prompts/system/)
+  - `prompts/system/Audit-Procedure.md`: Inside excluded directory (prompts/system/)
+  - `prompts/system/Core-Agents-Matrix.md`: Inside excluded directory (prompts/system/)
+  - `prompts/system/Scheduled-Auto-Run.md`: Inside excluded directory (prompts/system/)
+  - `prompts/system/Creative-Procedure.md`: Inside excluded directory (prompts/system/)
+  - `prompts/system/Auto-Build.md`: Inside excluded directory (prompts/system/)
+  - `prompts/orphans/orphans.md`: Contains 3 or more '- role:' lines (28)
 
-## 2. Method and Weights
+## 2. Method and Judgments
 Weights used: {"A": 20, "B": 10, "C": 15, "D": 15, "E": 10, "F": 15, "G": 5, "H": 10}
+Judgment Calls: Opposing modalities require matching verb stem and object, avoiding self-comparison. Dangling refs ignore fences/inline code and Vue/React template syntax.
 
 ## 3. Validation Results
-Correlation of file length to composite score: 0.08
+### Test Output
+```
+All tests passed.
+..........
+----------------------------------------------------------------------
+Ran 10 tests in 0.075s
 
-## 4. Top 25 and Bottom 25
+OK
+
+```
+### Length Correlations
+- **A**: 0.32
+- **B**: -0.10
+- **C**: 0.21
+- **D**: 0.11
+- **E**: 0.35
+- **F**: -0.20
+- **G**: 0.13
+- **H**: 0.78 ⚠️ FLAG
+- **composite**: 0.45
+
+### Dimension Correlations (>0.5 shown)
+
+
+## 4. Rankings
 ### Top 25
-- 1. Hazmat (prompts/fusions/Hazmat.md) - Composite: 86.69
-- 2. Barricade (prompts/fusions/Barricade.md) - Composite: 85.38
-- 3. Mitosis (prompts/fusions/Mitosis.md) - Composite: 79.18
-- 4. Defuser (prompts/fusions/Defuser.md) - Composite: 78.94
-- 5. Quarantine (prompts/fusions/Quarantine.md) - Composite: 78.73
-- 6. Obituary Writer (prompts/fusions/Obituary Writer.md) - Composite: 78.55
-- 7. Hoister (prompts/fusions/Hoister.md) - Composite: 75.68
-- 8. Construct (prompts/fusions/Construct.md) - Composite: 75.28
-- 9. Reroll (prompts/fusions/Reroll.md) - Composite: 74.32
-- 10. Electrician (prompts/fusions/Electrician.md) - Composite: 74.02
-- 11. Architect (prompts/Architect.md) - Composite: 73.96
-- 12. Archivist (prompts/fusions/Archivist.md) - Composite: 73.80
-- 13. Phoenix (prompts/fusions/Phoenix.md) - Composite: 73.39
-- 14. Respawn (prompts/fusions/Respawn.md) - Composite: 73.01
-- 15. Toxicologist (prompts/fusions/Toxicologist.md) - Composite: 72.99
-- 16. Acetone (prompts/fusions/Acetone.md) - Composite: 72.41
-- 17. Lumberjack (prompts/fusions/Lumberjack.md) - Composite: 72.19
-- 18. Oracle (prompts/fusions/Oracle.md) - Composite: 72.07
-- 19. Paramedic (prompts/Paramedic.md) - Composite: 70.36
-- 20. Slipstream (prompts/fusions/Slipstream.md) - Composite: 70.06
-- 21. Medic (prompts/fusions/Medic.md) - Composite: 69.96
-- 22. Forensic Architect (prompts/fusions/Forensic Architect.md) - Composite: 69.86
-- 23. Foresight (prompts/fusions/Foresight.md) - Composite: 69.46
-- 24. Zoning Board (prompts/fusions/Zoning Board.md) - Composite: 69.10
-- 25. Watchtower (prompts/fusions/Watchtower.md) - Composite: 69.04
+- **1. Collider** (prompts/fusions/Collider.md) - Comp: 89.33
+  - *Strengths*: A (98.8), F (100.0), G (100.0)
+  - *Issues*: B (32.7), D (86.7), E (92.3)
+- **2. Adversary** (prompts/fusions/Adversary.md) - Comp: 88.57
+  - *Strengths*: D (98.0), F (100.0), G (100.0)
+  - *Issues*: B (46.0), A (80.2), E (92.3)
+- **3. Paramedic** (prompts/Paramedic.md) - Comp: 88.45
+  - *Strengths*: C (99.6), F (100.0), G (100.0)
+  - *Issues*: E (54.8), B (78.2), A (83.5)
+- **4. Hazmat** (prompts/fusions/Hazmat.md) - Comp: 85.12
+  - *Strengths*: C (97.6), F (100.0), G (100.0)
+  - *Issues*: E (35.9), H (64.1), A (83.9)
+- **5. Interrogator** (prompts/fusions/Interrogator.md) - Comp: 82.90
+  - *Strengths*: A (94.4), F (100.0), G (100.0)
+  - *Issues*: B (60.1), E (66.1), C (67.7)
+- **6. Foresight** (prompts/fusions/Foresight.md) - Comp: 82.46
+  - *Strengths*: A (95.6), F (100.0), G (100.0)
+  - *Issues*: B (14.9), E (79.0), H (81.9)
+- **7. Zealot** (prompts/fusions/Zealot.md) - Comp: 81.92
+  - *Strengths*: C (98.4), F (100.0), G (100.0)
+  - *Issues*: E (47.2), B (52.8), H (71.0)
+- **8. Temporal Loom** (prompts/fusions/Temporal Loom.md) - Comp: 81.61
+  - *Strengths*: A (97.2), F (100.0), G (100.0)
+  - *Issues*: B (17.7), D (65.3), C (82.3)
+- **9. Pedant** (prompts/Pedant.md) - Comp: 81.49
+  - *Strengths*: E (99.6), F (100.0), G (100.0)
+  - *Issues*: D (37.5), B (50.8), C (77.0)
+- **10. Flourish** (prompts/fusions/Flourish.md) - Comp: 80.58
+  - *Strengths*: E (93.5), F (100.0), G (100.0)
+  - *Issues*: D (43.1), C (72.6), H (76.6)
+- **11. Quarantine** (prompts/fusions/Quarantine.md) - Comp: 80.50
+  - *Strengths*: C (98.0), F (100.0), G (100.0)
+  - *Issues*: B (36.3), H (62.5), A (71.0)
+- **12. Scavenger** (prompts/Scavenger.md) - Comp: 79.64
+  - *Strengths*: H (93.1), F (100.0), G (100.0)
+  - *Issues*: B (46.4), D (46.4), C (73.8)
+- **13. Construct** (prompts/fusions/Construct.md) - Comp: 79.50
+  - *Strengths*: H (98.8), F (100.0), G (100.0)
+  - *Issues*: B (22.2), C (53.6), D (79.8)
+- **14. Redirector** (prompts/fusions/Redirector.md) - Comp: 78.21
+  - *Strengths*: E (96.4), F (100.0), G (100.0)
+  - *Issues*: B (3.6), D (61.3), C (76.2)
+- **15. Coroner** (prompts/fusions/Coroner.md) - Comp: 78.15
+  - *Strengths*: A (91.9), F (100.0), G (100.0)
+  - *Issues*: C (20.2), B (63.3), H (77.8)
+- **16. Watchtower** (prompts/fusions/Watchtower.md) - Comp: 76.88
+  - *Strengths*: A (98.0), F (100.0), G (100.0)
+  - *Issues*: B (24.6), H (43.1), D (69.8)
+- **17. Acetone** (prompts/fusions/Acetone.md) - Comp: 76.11
+  - *Strengths*: E (99.2), F (100.0), G (100.0)
+  - *Issues*: B (19.8), C (47.6), D (56.9)
+- **18. Cerberus** (prompts/fusions/Cerberus.md) - Comp: 76.01
+  - *Strengths*: A (96.8), H (99.2), G (100.0)
+  - *Issues*: F (3.2 - [opposing_modality] Must: 'If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' (line 56) vs Never: 'Halt when your locked scope is clean; do not expand your search to satisfy a quota.' (line 67)), C (71.4), B (72.6)
+- **19. Bulwark** (prompts/fusions/Bulwark.md) - Comp: 75.34
+  - *Strengths*: C (93.1), F (100.0), G (100.0)
+  - *Issues*: B (27.4), E (54.8), A (57.7)
+- **20. Inspector** (prompts/Inspector.md) - Comp: 74.64
+  - *Strengths*: D (99.2), F (100.0), G (100.0)
+  - *Issues*: E (40.3), C (54.0), H (60.1)
+- **21. Overdrive** (prompts/fusions/Overdrive.md) - Comp: 74.58
+  - *Strengths*: D (89.9), F (100.0), G (100.0)
+  - *Issues*: E (36.7), A (59.3), B (61.3)
+- **22. Reroll** (prompts/fusions/Reroll.md) - Comp: 74.21
+  - *Strengths*: D (89.1), F (100.0), G (100.0)
+  - *Issues*: C (29.8), B (66.1), E (66.1)
+- **23. Revoker** (prompts/fusions/Revoker.md) - Comp: 73.83
+  - *Strengths*: D (81.9), F (100.0), G (100.0)
+  - *Issues*: B (37.5), C (57.7), H (63.3)
+- **24. Architect** (prompts/Architect.md) - Comp: 73.13
+  - *Strengths*: A (89.1), F (100.0), G (100.0)
+  - *Issues*: E (19.4), D (35.1), H (72.6)
+- **25. Plumbline** (prompts/fusions/Plumbline.md) - Comp: 73.04
+  - *Strengths*: B (94.0), F (100.0), G (100.0)
+  - *Issues*: H (23.0), E (33.5), D (63.3)
 
 ### Bottom 25
-- 227. Polyglot (prompts/orphans/Polyglot.md) - Composite: 39.22
-- 228. Policy Maker (prompts/fusions/Policy Maker.md) - Composite: 39.18
-- 229. Spellchecker (prompts/fusions/Spellchecker.md) - Composite: 39.02
-- 230. Redliner (prompts/orphans/Redliner.md) - Composite: 38.78
-- 231. Millisecond (prompts/fusions/Millisecond.md) - Composite: 38.37
-- 232. Retrofit (prompts/fusions/Retrofit.md) - Composite: 37.95
-- 233. Upgrader (prompts/fusions/Upgrader.md) - Composite: 37.21
-- 234. Whistleblower (prompts/fusions/Whistleblower.md) - Composite: 36.45
-- 235. Aegis (prompts/orphans/Aegis.md) - Composite: 36.18
-- 236. Auditor (prompts/fusions/Auditor.md) - Composite: 35.00
-- 237. orphans (prompts/orphans/orphans.md) - Composite: 34.86
-- 238. Rulemaker (prompts/fusions/Rulemaker.md) - Composite: 34.14
-- 239. Echo (prompts/micro/Echo.md) - Composite: 34.10
-- 240. Synchronizer (prompts/fusions/Synchronizer.md) - Composite: 33.73
-- 241. Interpolator (prompts/fusions/Interpolator.md) - Composite: 33.67
-- 242. Sculptor (prompts/fusions/Sculptor.md) - Composite: 31.75
-- 243. Speed Camera (prompts/orphans/Speed Camera.md) - Composite: 31.65
-- 244. Palette+ (prompts/Palette+.md) - Composite: 31.22
-- 245. Tokenizer (prompts/orphans/Tokenizer.md) - Composite: 30.10
-- 246. Tachyon (prompts/fusions/Tachyon.md) - Composite: 30.02
-- 247. Terraformer (prompts/fusions/Terraformer.md) - Composite: 28.29
-- 248. Telepath (prompts/fusions/Telepath.md) - Composite: 27.71
-- 249. Vector (prompts/fusions/Vector.md) - Composite: 26.55
-- 250. Sentinel+ (prompts/Sentinel+.md) - Composite: 25.12
-- 251. Virtuoso (prompts/orphans/Virtuoso.md) - Composite: 21.29
+- **224. Standardizer** (prompts/fusions/Standardizer.md) - Comp: 44.66
+  - *Strengths*: B (70.2), F (100.0), G (100.0)
+  - *Issues*: H (4.8), E (23.8), C (27.8)
+- **225. Tachyon** (prompts/fusions/Tachyon.md) - Comp: 44.46
+  - *Strengths*: E (75.8), F (100.0), G (100.0)
+  - *Issues*: H (2.0), A (5.2), D (24.2)
+- **226. Sunsetter** (prompts/fusions/Sunsetter.md) - Comp: 43.71
+  - *Strengths*: E (55.6), F (100.0), G (100.0)
+  - *Issues*: A (8.5), C (15.3), H (23.8)
+- **227. Overclock** (prompts/fusions/Overclock.md) - Comp: 43.51
+  - *Strengths*: B (69.0), D (94.8), G (100.0)
+  - *Issues*: F (6.5 - [near_duplicate] '**Testing Doctrine:** * Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).' approx equals '* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).' (line 35)), C (8.5), E (21.4)
+- **228. Accountant** (prompts/fusions/Accountant.md) - Comp: 43.02
+  - *Strengths*: B (81.5), D (82.3), G (100.0)
+  - *Issues*: F (1.2 - [near_duplicate] 'Your mission is to ENFORCE strict build-time failure thresholds to halt bundle bloat before it ever hits production.' approx equals 'ENFORCE strict build-time failure thresholds to halt bundle bloat before it ever hits production.' (line 4)), E (6.9), A (21.0)
+- **229. Few-Shot Forger** (prompts/fusions/Few-Shot Forger.md) - Comp: 42.14
+  - *Strengths*: B (60.5), F (100.0), G (100.0)
+  - *Issues*: A (1.2), C (11.7), H (30.6)
+- **230. Stylist** (prompts/fusions/Stylist.md) - Comp: 42.10
+  - *Strengths*: A (48.0), F (100.0), G (100.0)
+  - *Issues*: H (3.2), D (14.1), E (25.8)
+- **231. Prompt Engineer** (prompts/fusions/Prompt Engineer.md) - Comp: 41.90
+  - *Strengths*: B (99.6), F (100.0), G (100.0)
+  - *Issues*: C (0.8), D (1.6), E (14.1)
+- **232. Terraformer** (prompts/fusions/Terraformer.md) - Comp: 41.75
+  - *Strengths*: C (53.2), F (100.0), G (100.0)
+  - *Issues*: A (4.0), B (5.2), H (5.2)
+- **233. Hyperloop** (prompts/fusions/Hyperloop.md) - Comp: 41.13
+  - *Strengths*: E (66.1), C (78.2), G (100.0)
+  - *Issues*: F (0.4 - [opposing_modality] Must: 'If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' (line 47) vs Never: 'Halt when your locked scope is clean; do not expand your search to satisfy a quota.' (line 59)), A (16.5), B (33.5)
+- **234. Speed Camera** (prompts/orphans/Speed Camera.md) - Comp: 40.95
+  - *Strengths*: E (59.7), B (80.2), F (100.0)
+  - *Issues*: G (0.0), A (2.0), H (2.4)
+- **235. Logician** (prompts/fusions/Logician.md) - Comp: 40.73
+  - *Strengths*: E (64.1), H (84.7), G (100.0)
+  - *Issues*: B (7.3), F (14.5 - [near_duplicate] '* | false   | false   | true      | true   |' approx equals '* | false   | true    | *         | true   |' (line 22)), A (20.2)
+- **236. Janitor** (prompts/orphans/Janitor.md) - Comp: 40.34
+  - *Strengths*: E (47.2), F (100.0), G (100.0)
+  - *Issues*: H (8.5), B (11.7), C (13.7)
+- **237. Information Architect** (prompts/orphans/Information Architect.md) - Comp: 40.28
+  - *Strengths*: B (82.7), F (100.0), G (100.0)
+  - *Issues*: H (4.0), A (5.6), D (10.1)
+- **238. Safety Inspector** (prompts/fusions/Safety Inspector.md) - Comp: 39.98
+  - *Strengths*: E (83.9), D (88.3), G (100.0)
+  - *Issues*: A (6.0), F (11.3 - [near_duplicate] '**Testing Doctrine:** * Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).' approx equals '* **Domain Anchor (Testing):** Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).' (line 30)), C (16.1)
+- **239. Swatch** (prompts/fusions/Swatch.md) - Comp: 39.50
+  - *Strengths*: B (55.2), F (100.0), G (100.0)
+  - *Issues*: D (9.3), H (10.5), A (15.3)
+- **240. Mulligan** (prompts/fusions/Mulligan.md) - Comp: 39.21
+  - *Strengths*: A (75.0), B (98.8), G (100.0)
+  - *Issues*: E (2.0), C (4.4), F (4.4 - [near_duplicate] '* 🎱 Folding a claustrophobic, div-heavy dashboard and dealing out a sweeping, CSS Grid masterpiece without dropping a single React state hook.' approx equals '* 🃏 Folding a claustrophobic, div-heavy dashboard and dealing out a sweeping, CSS Grid masterpiece without dropping a single React state hook.' (line 8))
+- **241. Ratchet** (prompts/fusions/Ratchet.md) - Comp: 39.17
+  - *Strengths*: E (49.6), F (100.0), G (100.0)
+  - *Issues*: H (12.9), A (13.7), B (22.6)
+- **242. Lexicon** (prompts/fusions/Lexicon.md) - Comp: 38.67
+  - *Strengths*: B (54.4), F (100.0), G (100.0)
+  - *Issues*: A (8.1), H (8.9), E (14.1)
+- **243. Virtuoso** (prompts/orphans/Virtuoso.md) - Comp: 38.65
+  - *Strengths*: B (95.2), F (100.0), G (100.0)
+  - *Issues*: A (2.4), D (7.3), C (10.9)
+- **244. Tokenizer** (prompts/orphans/Tokenizer.md) - Comp: 34.13
+  - *Strengths*: B (38.3), F (100.0), G (100.0)
+  - *Issues*: A (3.2), H (10.1), C (15.3)
+- **245. Synchronizer** (prompts/fusions/Synchronizer.md) - Comp: 32.26
+  - *Strengths*: C (31.0), F (100.0), G (100.0)
+  - *Issues*: A (0.0), B (9.3), E (12.1)
+- **246. Media Pipeline** (prompts/orphans/Media Pipeline.md) - Comp: 27.66
+  - *Strengths*: A (41.5), B (71.8), G (100.0)
+  - *Issues*: F (4.0 - [near_duplicate] '<img src="/hero.jpg" alt="Hero" />' approx equals '<img src="/hero.jpg" alt="Hero" loading="lazy" />' (line 26)), C (6.5), E (6.5)
+- **247. Upgrader** (prompts/fusions/Upgrader.md) - Comp: 26.61
+  - *Strengths*: H (37.5), B (85.5), G (100.0)
+  - *Issues*: A (3.6), C (6.9), F (8.1 - [near_duplicate] '3. Fetch external GitHub release notes, parse explicitly for breaking changes, synthesize raw noise into high-signal actionable bullet points, and validate notes against lockfile version diffs.' approx equals '3. ⚙️ **BROADCAST** — Fetch external GitHub release notes, parse explicitly for breaking changes, synthesize raw noise into high-signal actionable bullet points, and validate notes against lockfile version diffs.' (line 47))
+- **248. Iconographer** (prompts/micro/Iconographer.md) - Comp: 23.19
+  - *Strengths*: B (54.0), E (73.0), G (100.0)
+  - *Issues*: C (1.2), A (1.6), F (2.0 - [near_duplicate] '# You are "Iconographer" 🔣 - The Symbology Curator.' approx equals 'You are "Iconographer" 🔣 - Symbology Curator.' (line 3))
 
-## 5. Redundancy Clusters (Similarity >= 0.85)
+## 5. Redundancy
+No cluster reaches 0.85. Maximum similarity is 0.81.
 
-## 6. Coherence Flags (Dimension F)
-### prompts/Bolt+.md
-- Line -1: [opposing_modality] Must: 'the philosophy
-🏎️ speed is a structural architectural feature, meaning systemic latency is a vulnerability that must be ruthlessly purged from the execution path.', Never: '⏳ the cpu must never wait for independent data, meaning idle cycles and sequential i/o waterfalls are treated as wasted computational resources.'
-- Line 6: [opposing_modality] Must: '⏳ the cpu must never wait for independent data, meaning idle cycles and sequential i/o waterfalls are treated as wasted computational resources.', Never: '⏳ the cpu must never wait for independent data, meaning idle cycles and sequential i/o waterfalls are treated as wasted computational resources.'
-- Line 6: [opposing_modality] Must: '⏳ the cpu must never wait for independent data, meaning idle cycles and sequential i/o waterfalls are treated as wasted computational resources.', Never: 'these scripts must never be used to mutate source code and must be securely deleted after verification.'
-- Line 25: [opposing_modality] Must: 'these scripts must never be used to mutate source code and must be securely deleted after verification.', Never: '⏳ the cpu must never wait for independent data, meaning idle cycles and sequential i/o waterfalls are treated as wasted computational resources.'
-- Line 25: [opposing_modality] Must: 'these scripts must never be used to mutate source code and must be securely deleted after verification.', Never: 'these scripts must never be used to mutate source code and must be securely deleted after verification.'
-### prompts/Helix.md
-- Line 8: [opposing_modality] Must: '⚖️ visual density must never come at the cost of stack trace readability, meaning deeply nested callbacks are extracted and mixed-concern loops remain untouched.', Never: '⚖️ visual density must never come at the cost of stack trace readability, meaning deeply nested callbacks are extracted and mixed-concern loops remain untouched.'
-- Line 32: [opposing_modality] Must: 'visual density must yield to horizontal readability.', Never: '⚖️ visual density must never come at the cost of stack trace readability, meaning deeply nested callbacks are extracted and mixed-concern loops remain untouched.'
-### prompts/Janitor.md
-- Line 9: [opposing_modality] Must: '🔦 what cannot be bagged must be illuminated — shine a light on observable hazards and log them to the journal for institutional awareness without polluting the task board.', Never: 'operational hazards observed are recorded here and never written to the task board.'
-### prompts/Overseer.md
-- Line 8: [opposing_modality] Must: '🔥 enforce thermodynamic efficiency; the board must operate as a self-consuming hopper, not a stagnant backlog.', Never: 'the agent tasks board ( .jules/agent tasks.md ): read this file for situational awareness only — do not claim tasks.'
-- Line 51: [opposing_modality] Must: 'ensure tasks specify exact file paths and line numbers to eliminate downstream search tax.', Never: 'do not pause to ask the operator for permission to read the next file in your established search heuristic.'
-- Line 51: [opposing_modality] Must: 'ensure tasks specify exact file paths and line numbers to eliminate downstream search tax.', Never: 'the agent tasks board ( .jules/agent tasks.md ): read this file for situational awareness only — do not claim tasks.'
-- Line 56: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/Palette+.md
-- Line 27: [dangling_reference] <button onclick={onclick} style={{ backgroundcolor: ' 2563eb', padding: '10px' }}
-### prompts/Paramedic.md
-- Line 29: [opposing_modality] Must: 'when a target's symptom is silence rather than a thrown error, you must reason about the actual observed output — as a human user would — rather than trusting compiler success or a green test suite as a substitute for confirming the thing actually worked.', Never: '- 🩹 never trade a masked symptom for a true cure; stubbing a broken interface, swallowing a fatal error, or accepting a clean exit that produced no real output is a fundamental failure of care.'
-- Line 30: [opposing_modality] Must: 'if a mutation causes a test failure or is blocked by a styling/conditional-render rule, you must either prove the test was already failing on main, or execute a graceful abort — unless you can mechanically prove (not infer) that the specific test assertion or rule is itself enforcing the defect.', Never: 'in that proven case only, you have surgical authority to correct that exact assertion or rule as part of your mutation — never to broaden, delete, .skip , or weaken coverage beyond the proven scope.'
-- Line 30: [opposing_modality] Must: 'if a mutation causes a test failure or is blocked by a styling/conditional-render rule, you must either prove the test was already failing on main, or execute a graceful abort — unless you can mechanically prove (not infer) that the specific test assertion or rule is itself enforcing the defect.', Never: 'if a mutation breaks a test, do not modify the test to pass.'
-### prompts/Pedant.md
-- Line 52: [opposing_modality] Must: '3) ensure that extracted magic constants are correctly scoped and do not shadow required local variables.', Never: '3) ensure that extracted magic constants are correctly scoped and do not shadow required local variables.'
-- Line 52: [opposing_modality] Must: '3) ensure that extracted magic constants are correctly scoped and do not shadow required local variables.', Never: 'required pr headers: 🎯 feature/shift, 🏗️ architecture, ⚙️ implementation, ✅ verification, 📈 impact
-favorite optimizations
-☝️ the exhaustive alphabetization (signature): "um, actually, your object literal was unsorted." took the liberty of alphabetizing all 142 configuration properties so humans do not have to blindly hunt for duplicate keys.'
-### prompts/README.md
-- Line 9: [dangling_reference] 4. escape any template syntax (e.g., {{ }} ) within code blocks to prevent unintended parsing by github pages.
-### prompts/Scavenger.md
-- Line 6: [opposing_modality] Must: 'you must rely exclusively on your native search/replace mandibles to delicately pick the flesh off the living logic.', Never: 'you do not stop when a single meal is found; you swarm the target file and feed persistently until the living architecture is immaculate.'
-- Line 33: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 43: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'you do not stop when a single meal is found; you swarm the target file and feed persistently until the living architecture is immaculate.'
-- Line 43: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.'
-- Line 43: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 43: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/Sentinel+.md
-- Line 7: [opposing_modality] Must: '⚖️️ paranoid restriction must never compromise legitimate core application usability, block intended functionality, or break legacy clients.', Never: '⚖️️ paranoid restriction must never compromise legitimate core application usability, block intended functionality, or break legacy clients.'
-- Line 55: [opposing_modality] Must: 'the safe-mock mandate: reproduction tests must strictly use non-destructive, observable mock payloads (e.g., select 1 ).', Never: 'do not mock global engine primitives (e.g., promise.all).'
-### prompts/Untangler.md
-- Line 7: [opposing_modality] Must: '⚖️ never trade runtime integrity for flatness; the input-to-output mapping must remain entirely unchanged.', Never: '⚖️ never trade runtime integrity for flatness; the input-to-output mapping must remain entirely unchanged.'
-- Line 7: [opposing_modality] Must: '⚖️ never trade runtime integrity for flatness; the input-to-output mapping must remain entirely unchanged.', Never: 'when extracting inline transformations into local helper functions, you must pass all required variables as explicit parameters; never rely on the parent function's lexical closure scope.'
-- Line 30: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'when extracting inline transformations into local helper functions, you must pass all required variables as explicit parameters; never rely on the parent function's lexical closure scope.'
-- Line 31: [opposing_modality] Must: 'upon reaching this limit, you must immediately transition to mutating the codebase based on the best available context, or explicitly declare a graceful abort.', Never: 'when extracting inline transformations into local helper functions, you must pass all required variables as explicit parameters; never rely on the parent function's lexical closure scope.'
-- Line 33: [opposing_modality] Must: 'the side-effect guard: ensure that the chronological execution order of any state-mutating side-effects (e.g., database writes, logging, external api calls) remains exactly identical to the original nested logic when refactoring into guard clauses.', Never: 'when extracting inline transformations into local helper functions, you must pass all required variables as explicit parameters; never rely on the parent function's lexical closure scope.'
-- Line 34: [opposing_modality] Must: 'to recover from a syntaxerror , you must re-evaluate your target from scratch, as previous successful ast mutations will have been wiped.', Never: 'when extracting inline transformations into local helper functions, you must pass all required variables as explicit parameters; never rely on the parent function's lexical closure scope.'
-- Line 36: [opposing_modality] Must: 'if the target matrix is exhausted and nothing is found, you must seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.', Never: 'when extracting inline transformations into local helper functions, you must pass all required variables as explicit parameters; never rely on the parent function's lexical closure scope.'
-- Line 49: [opposing_modality] Must: 'when extracting inline transformations into local helper functions, you must pass all required variables as explicit parameters; never rely on the parent function's lexical closure scope.', Never: '⚖️ never trade runtime integrity for flatness; the input-to-output mapping must remain entirely unchanged.'
-- Line 49: [opposing_modality] Must: 'when extracting inline transformations into local helper functions, you must pass all required variables as explicit parameters; never rely on the parent function's lexical closure scope.', Never: 'when extracting inline transformations into local helper functions, you must pass all required variables as explicit parameters; never rely on the parent function's lexical closure scope.'
-### prompts/Vibe Check.md
-- Line 30: [opposing_modality] Must: 'to recover from a syntaxerror , you must re-evaluate your target from scratch, as previous successful ast mutations will have been wiped.', Never: 'do not write a literal grep or regex script to hunt for specific examples; you must read the source code and apply semantic reasoning to identify the "vibe" of ai-generated structural decay.'
-- Line 32: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'target matrix:
-dynamic hallucination sync: do not treat this target matrix as a literal, exhaustive checklist.'
-- Line 32: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'do not write a literal grep or regex script to hunt for specific examples; you must read the source code and apply semantic reasoning to identify the "vibe" of ai-generated structural decay.'
-- Line 32: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 37: [opposing_modality] Must: 'you must apply semantic reasoning to the ast, not literal string matching.', Never: 'do not write a literal grep or regex script to hunt for specific examples; you must read the source code and apply semantic reasoning to identify the "vibe" of ai-generated structural decay.'
-- Line 44: [opposing_modality] Must: 'do not write a literal grep or regex script to hunt for specific examples; you must read the source code and apply semantic reasoning to identify the "vibe" of ai-generated structural decay.', Never: 'do not write a literal grep or regex script to hunt for specific examples; you must read the source code and apply semantic reasoning to identify the "vibe" of ai-generated structural decay.'
-- Line 44: [opposing_modality] Must: 'do not write a literal grep or regex script to hunt for specific examples; you must read the source code and apply semantic reasoning to identify the "vibe" of ai-generated structural decay.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 50: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'do not write a literal grep or regex script to hunt for specific examples; you must read the source code and apply semantic reasoning to identify the "vibe" of ai-generated structural decay.'
-### prompts/fusions/Acetone.md
-- Line 26: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/fusions/Adversary.md
-- Line 29: [opposing_modality] Must: 'the atomic inversion execution: execute operations sequentially (using ; , never && ) to ensure intentional test failures do not halt the testing chain unexpectedly.', Never: '🥷 i do not test the code; i test the environment that tests the code, leaving a hardened boundary that strictly traps deterministic runner failures.'
-- Line 29: [opposing_modality] Must: 'the atomic inversion execution: execute operations sequentially (using ; , never && ) to ensure intentional test failures do not halt the testing chain unexpectedly.', Never: 'execute atomic inversions sequentially (using ; , never && ).'
-- Line 29: [opposing_modality] Must: 'the atomic inversion execution: execute operations sequentially (using ; , never && ) to ensure intentional test failures do not halt the testing chain unexpectedly.', Never: 'the atomic inversion execution: execute operations sequentially (using ; , never && ) to ensure intentional test failures do not halt the testing chain unexpectedly.'
-- Line 29: [opposing_modality] Must: 'the atomic inversion execution: execute operations sequentially (using ; , never && ) to ensure intentional test failures do not halt the testing chain unexpectedly.', Never: 'never write a test that forces a false positive to maintain a green build.'
-- Line 29: [opposing_modality] Must: 'the atomic inversion execution: execute operations sequentially (using ; , never && ) to ensure intentional test failures do not halt the testing chain unexpectedly.', Never: 'not finding something in the agent task board never means mission accomplished.'
-- Line 29: [opposing_modality] Must: 'the atomic inversion execution: execute operations sequentially (using ; , never && ) to ensure intentional test failures do not halt the testing chain unexpectedly.', Never: 'halt when your locked scope is clean; do not expand your search to satisfy a quota.'
-### prompts/fusions/Amputator.md
-- Line 38: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.'
-- Line 38: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 38: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'halt when your locked scope is clean; do not expand your search to satisfy a quota.'
-### prompts/fusions/Annotator.md
-- Line 63: [opposing_modality] Must: '⏳ the temporal decoder: explained dense timestamp mock setups ( "simulates a leap-year billing boundary to ensure pro-rated calculations do not overflow" ).', Never: 'do not mock global engine primitives (e.g., promise.all).'
-- Line 63: [opposing_modality] Must: '⏳ the temporal decoder: explained dense timestamp mock setups ( "simulates a leap-year billing boundary to ensure pro-rated calculations do not overflow" ).', Never: '⏳ the temporal decoder: explained dense timestamp mock setups ( "simulates a leap-year billing boundary to ensure pro-rated calculations do not overflow" ).'
-- Line 63: [opposing_modality] Must: '⏳ the temporal decoder: explained dense timestamp mock setups ( "simulates a leap-year billing boundary to ensure pro-rated calculations do not overflow" ).', Never: '🔦 the obscured edge case: deciphered cryptic integer boundary assertions ( "ensures sequence ids do not overlap when batch size exceeds maximum connection limits" ).'
-### prompts/fusions/Antibody.md
-- Line 59: [opposing_modality] Must: 'injected explicit concurrency locks into the testing pipeline to ensure synchronous completion of all simulated network calls before assertions fired.', Never: 'do not waste tool calls testing line-by-line.'
-### prompts/fusions/Automata.md
-- Line 72: [dangling_reference] 🧩 seamlessly maps dynamic prompt variables ( {{user id}} ) into strict, typed function arguments.
-### prompts/fusions/Bulwark.md
-- Line 7: [opposing_modality] Must: '🔭 a failure at the perimeter must never be allowed to cascade and crash the core process.', Never: '🔭 a failure at the perimeter must never be allowed to cascade and crash the core process.'
-- Line 33: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'the execution: execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow.'
-- Line 33: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'the native dependency constraint: you are strictly forbidden from introducing new schema-validation libraries (e.g., zod) if they do not already exist in the project's lockfile.'
-- Line 39: [opposing_modality] Must: 'the sabotage requirement: you must author a dedicated testing block that deliberately stress-tests the newly fortified boundary to prove fallback logic holds.', Never: 'the execution: execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow.'
-### prompts/fusions/Canvas.md
-- Line 40: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify a target within 3 attempts due to flaky test runners or environmental opacity, do not abort the session.'
-### prompts/fusions/Cartographer.md
-- Line 30: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 37: [opposing_modality] Must: '🔍 discover — exhaustive walkthrough using asynchronous tools if the target matrix is exhausted and nothing is found, you must seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 52: [opposing_modality] Must: 'visual validation — validate the syntax using the repository's native markdown linter or dry-run tools to ensure the diagram compiles and renders correctly.', Never: 'noise—never map every single 1-line utility file into a global diagram to prevent unreadable visual spaghetti; map the core domain modules.'
-### prompts/fusions/Catalyst.md
-- Line 34: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 34: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'halt when your locked scope is clean; do not expand your search to satisfy a quota.'
-- Line 44: [opposing_modality] Must: 'this contract must remain strictly identical post-mutation.', Never: 'the contract preservation: do not refactor core data structures (like swapping maps for objects) that act as external api contracts; strictly optimize how those objects are natively processed internally.'
-### prompts/fusions/Cerberus.md
-- Line 33: [opposing_modality] Must: 'you are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 1 targets.', Never: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.'
-- Line 33: [opposing_modality] Must: 'you are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 1 targets.', Never: 'the sad path mandate: you must never consider an execution complete until an explicit, aggressive malicious 'sad path' test is authored and successfully executed against the newly fortified defense.'
-- Line 35: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'the execution: execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow.'
-- Line 35: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.'
-- Line 35: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'the sad path mandate: you must never consider an execution complete until an explicit, aggressive malicious 'sad path' test is authored and successfully executed against the newly fortified defense.'
-- Line 37: [opposing_modality] Must: 'you must execute the sad path test block to prove boundary resilience.', Never: 'the execution: execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow.'
-- Line 37: [opposing_modality] Must: 'you must execute the sad path test block to prove boundary resilience.', Never: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.'
-- Line 37: [opposing_modality] Must: 'you must execute the sad path test block to prove boundary resilience.', Never: 'the sad path mandate: you must never consider an execution complete until an explicit, aggressive malicious 'sad path' test is authored and successfully executed against the newly fortified defense.'
-- Line 38: [opposing_modality] Must: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.', Never: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.'
-- Line 38: [opposing_modality] Must: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.', Never: 'the sad path mandate: you must never consider an execution complete until an explicit, aggressive malicious 'sad path' test is authored and successfully executed against the newly fortified defense.'
-- Line 40: [opposing_modality] Must: 'the sad path mandate: you must never consider an execution complete until an explicit, aggressive malicious 'sad path' test is authored and successfully executed against the newly fortified defense.', Never: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.'
-- Line 40: [opposing_modality] Must: 'the sad path mandate: you must never consider an execution complete until an explicit, aggressive malicious 'sad path' test is authored and successfully executed against the newly fortified defense.', Never: 'the sad path mandate: you must never consider an execution complete until an explicit, aggressive malicious 'sad path' test is authored and successfully executed against the newly fortified defense.'
-- Line 43: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 43: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'the execution: execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow.'
-- Line 43: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.'
-- Line 43: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'the sad path mandate: you must never consider an execution complete until an explicit, aggressive malicious 'sad path' test is authored and successfully executed against the newly fortified defense.'
-- Line 43: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'halt when your locked scope is clean; do not expand your search to satisfy a quota.'
-- Line 46: [opposing_modality] Must: 'the bounded sweep: you may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.', Never: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.'
-- Line 46: [opposing_modality] Must: 'the bounded sweep: you may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.', Never: 'the sad path mandate: you must never consider an execution complete until an explicit, aggressive malicious 'sad path' test is authored and successfully executed against the newly fortified defense.'
-- Line 70: [opposing_modality] Must: '🧱 the api fallback armor : wrapped an unprotected third-party fetch() call in a resilient try/catch block with exponential backoff, injected a strict type-validator for the response, and mocked a 500 server error in the test suite to ensure graceful degradation under duress.', Never: 'the execution: execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow.'
-### prompts/fusions/Chronicler.md
-- Line 45: [opposing_modality] Must: 'the consistency review: ensure the generated docstrings adhere strictly to the target repository's comment standard without violating structural boundaries.', Never: 'the layout preservation: do not modify the structural layout of the roadmap.md file itself; strictly update the individual milestone checkboxes inside it.'
-### prompts/fusions/Collider.md
-- Line 26: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 34: [opposing_modality] Must: 'the bounded sweep: you may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/fusions/Construct.md
-- Line 8: [opposing_modality] Must: '🏗️ we build bridges, not islands: every net-new component must instantly plug into the native ecosystem.', Never: 'the mock isolation mandate: do not write complex backend api logic; strictly scaffold mock json data and typed interfaces to build frontend features in isolation.'
-### prompts/fusions/Conveyor.md
-- Line 22: [dangling_reference] - name: use node.js ${{ matrix.node-version }}
-- Line 25: [dangling_reference] node-version: ${{ matrix.node-version }}
-### prompts/fusions/Coroner.md
-- Line 31: [opposing_modality] Must: 'the ephemeral script grant: you are explicitly authorized to create ephemeral reproduction scripts strictly to trigger the crash and verify your fix; these must be wiped during cleanup.', Never: 'the philosophy
-💀 a fatal crash is a crime scene; do not tamper with the evidence before you understand it.'
-### prompts/fusions/Customs.md
-- Line 28: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'the observability execution: execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow.'
-- Line 28: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.'
-- Line 31: [opposing_modality] Must: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.', Never: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.'
-- Line 32: [opposing_modality] Must: 'the exploit-proof verification: you must mathematically prove the vulnerability is closed or the boundary is secure via targeted test runs before submitting the pr.', Never: 'the observability execution: execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow.'
-- Line 32: [opposing_modality] Must: 'the exploit-proof verification: you must mathematically prove the vulnerability is closed or the boundary is secure via targeted test runs before submitting the pr.', Never: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.'
-### prompts/fusions/Decommissioner.md
-- Line 8: [opposing_modality] Must: '🛑 protocol correctness is non-negotiable; structural integrity must be strictly validated by dry-run builds before the cargo leaves the bay, ensuring deletions do not sever active deployment routes.', Never: '🛑 protocol correctness is non-negotiable; structural integrity must be strictly validated by dry-run builds before the cargo leaves the bay, ensuring deletions do not sever active deployment routes.'
-### prompts/fusions/Defibrillator.md
-- Line 17: [dangling_reference] key: ${{ runner.os }}-node-${{ hashfiles(' /package-lock.json') }}
-- Line 27: [dangling_reference] the credential mandate: bind environment variables exclusively utilizing the native, approved ci/cd secret injection syntax of the target environment (e.g., ${{ secrets.my key }} ); treat all plain-text fallback strings for configuration values as invalid state.
-### prompts/fusions/Dispatcher.md
-- Line 2: [opposing_modality] Must: 'integrate new mcp servers into configuration manifests to ensure immediate discoverability.', Never: '🧱 the nemesis: the silent node — an mcp server or custom tool that was built and deployed, but its configuration manifest was never updated, leaving it invisible to the ai ecosystem.'
-- Line 30: [opposing_modality] Must: 'the pipeline resilience exception: you are explicitly authorized to create an ephemeral handshake script strictly to verify connectivity; this must be wiped before exit.', Never: 'the handshake verification: write a quick handshake script to verify the connection is live; do not write custom test suites for the server's internal business logic.'
-- Line 50: [opposing_modality] Must: 'the clean handoff: ensure the ephemeral handshake script is properly documented and removed after the connection is verified.', Never: 'the handshake verification: write a quick handshake script to verify the connection is live; do not write custom test suites for the server's internal business logic.'
-### prompts/fusions/Espresso.md
-- Line 34: [opposing_modality] Must: '(exception: destructive operations, e.g., recursive directory deletions, production database mutations, must retain explicit hardware-aligned execution prompts).', Never: '(exception: if state loss is a deliberate security requirement, e.g., clearing sensitive payment forms or authentication tokens upon exit, do not bypass it).'
-### prompts/fusions/Examiner.md
-- Line 25: [opposing_modality] Must: 'the orphan protocol: if the native test runner highlights a failure because the underlying target source file or feature no longer exists, you must delete the orphaned test file entirely.', Never: '📝 never guess the state of the repository; rely entirely on the native test runner output as your definitive map of semantic drift.'
-### prompts/fusions/Finesse.md
-- Line 19: [dangling_reference] <span style={{ fontsize: '12px', color: ' 666', margintop: 10 }}
-- Line 36: [dangling_reference] hallucinated inline spaghetti: ai-generated or hastily patched inline styles (e.g., style={{ margintop: '12px', color: ' ff0000' }}) that bypass the established design system or utility frameworks.
-- Line 57: [dangling_reference] 🧹 the inline spaghetti purge (signature): purified 300 lines of hallucinated react style={{}} attributes, ruthlessly converting every magic hex code and pixel value into canonical design tokens.
-### prompts/fusions/Firewall.md
-- Line 37: [opposing_modality] Must: 'the structural isolation rule: when sanitizing user inputs for the llm, you must prioritize structural isolation (e.g., wrapping untrusted input in strict xml tags like <user input ) over raw character escaping.', Never: 'the philosophy
-🛑 the trust vacuum: the llm is a chaotic engine; never trust its raw output to map cleanly to your database without a structural checkpoint.'
-- Line 37: [opposing_modality] Must: 'the structural isolation rule: when sanitizing user inputs for the llm, you must prioritize structural isolation (e.g., wrapping untrusted input in strict xml tags like <user input ) over raw character escaping.', Never: 'never apply html/sql escaping to inputs if the llm is expected to analyze code, syntax, or raw data formats.'
-- Line 51: [opposing_modality] Must: 'ensure raw api keys or plain-text secrets are removed.', Never: 'do not hardcode raw api keys into source files.'
-### prompts/fusions/Flourish.md
-- Line 7: [opposing_modality] Must: '⚖️ never trade true data integrity for perceived speed; your optimistic mirages must gracefully vanish and perfectly reset if the underlying reality (the network) fails.', Never: '⚖️ never trade true data integrity for perceived speed; your optimistic mirages must gracefully vanish and perfectly reset if the underlying reality (the network) fails.'
-- Line 7: [opposing_modality] Must: '⚖️ never trade true data integrity for perceived speed; your optimistic mirages must gracefully vanish and perfectly reset if the underlying reality (the network) fails.', Never: 'log unhandled targets into your journal, but never submit a pr solely to say no targets were found.'
-- Line 8: [opposing_modality] Must: '🚫 the unprotected mutation is your ultimate adversary—naked api calls that freeze the stage and block the visual paint must be shielded immediately.', Never: '⚖️ never trade true data integrity for perceived speed; your optimistic mirages must gracefully vanish and perfectly reset if the underlying reality (the network) fails.'
-- Line 33: [opposing_modality] Must: 'the rollback imperative: you must guarantee that any optimistic mutation is enclosed in a strict error-boundary ( try/catch ) that perfectly and silently rolls back the local state to its cached original value upon network failure.', Never: '⚖️ never trade true data integrity for perceived speed; your optimistic mirages must gracefully vanish and perfectly reset if the underlying reality (the network) fails.'
-### prompts/fusions/Forensic Architect.md
-- Line 28: [opposing_modality] Must: 'the forensic evidence rule: you must identify a minimum of 3 independent git log entries with explicit crash keywords ( crash , fatal , null ) specifically targeting the same file before classifying it as a "trauma node" for stabilization.', Never: 'the god file metric: classify a file as a "god file" exclusively if it exceeds 500 lines of code or contains more than 15 independent exports; do not perform triage on files below this threshold unless they actively trigger circular routing deadlocks.'
-- Line 29: [opposing_modality] Must: 'the logic invariance guardrail: when extracting logic from ui components into service layers, you must ensure all reactive dependencies (e.g., react props , state , or context ) are preserved; if the logic cannot be extracted without losing local scope, you must keep it co-located and focus on circular dependency decoupling instead.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 49: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/fusions/Foresight.md
-- Line 35: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: '🌱 you do not force foreign abstractions; you naturally grow the architecture in the direction it was already heading.'
-- Line 36: [opposing_modality] Must: 'you must always strive to build a net-new feature, architecture bridge, or micro-interaction.', Never: '🌱 you do not force foreign abstractions; you naturally grow the architecture in the direction it was already heading.'
-### prompts/fusions/Futurist.md
-- Line 40: [opposing_modality] Must: 'if you upgrade an outgoing request payload or sdk method signature, you must simultaneously locate and upgrade the corresponding response parsing logic to handle the new return object structure.', Never: 'never upgrade a request without verifying the response handler.'
-### prompts/fusions/Ghost Hunter.md
-- Line 30: [opposing_modality] Must: 'the task board valve check: if you discover tasks marked with [x] (blocked / false positive) syntax on the agent tasks board, you must skip them without execution.', Never: 'not finding something in the agent task board never means mission accomplished.'
-- Line 35: [opposing_modality] Must: 'the bounded sweep: you may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.', Never: 'the hallucination definition lock: treat code as a "hallucination" only if it mathematically references an external package that is missing from package.json , or a strictly unexported local module; do not delete syntactically valid logic simply because you disagree with its abstraction pattern.'
-### prompts/fusions/Ghostwriter.md
-- Line 42: [opposing_modality] Must: 'execute a targeted test pass via the repository's native markdown linter (or equivalent) on the mutated file to ensure rendering integrity.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-### prompts/fusions/Hive.md
-- Line 58: [opposing_modality] Must: '💨 pheromone compaction: converting complex, multi-paragraph log failures into single-sentence "always/never" architectural mandates.', Never: 'log unhandled targets into your journal, but never submit a pr solely to say no targets were found.'
-- Line 58: [opposing_modality] Must: '💨 pheromone compaction: converting complex, multi-paragraph log failures into single-sentence "always/never" architectural mandates.', Never: '💨 pheromone compaction: converting complex, multi-paragraph log failures into single-sentence "always/never" architectural mandates.'
-### prompts/fusions/Hologram.md
-- Line 6: [opposing_modality] Must: '✨ an interface should breathe; streaming text must render seamlessly into structured, native components.', Never: '🛡️ visual flair must never compromise security; never trade safe, sanitized text rendering for a vulnerable injection that invites attacks.'
-- Line 7: [opposing_modality] Must: '🛡️ visual flair must never compromise security; never trade safe, sanitized text rendering for a vulnerable injection that invites attacks.', Never: '🛡️ visual flair must never compromise security; never trade safe, sanitized text rendering for a vulnerable injection that invites attacks.'
-- Line 37: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'halt when your locked scope is clean; do not expand your search to satisfy a quota.'
-### prompts/fusions/Hyperloop.md
-- Line 33: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 33: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'halt when your locked scope is clean; do not expand your search to satisfy a quota.'
-### prompts/fusions/Inoculator.md
-- Line 35: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 35: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'halt when your locked scope is clean; do not expand your search to satisfy a quota.'
-### prompts/fusions/Jeweler.md
-- Line 31: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: '⚙️ polish — halt when your locked scope is clean; do not expand your search to satisfy a quota.'
-### prompts/fusions/Launchpad.md
-- Line 15: [dangling_reference] openai api key: ${{ secrets.openai api key }}
-- Line 16: [dangling_reference] vector db url: ${{ secrets.prod vector url }}
-### prompts/fusions/Lumen.md
-- Line 36: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'the philosophy
-🩻 you are the mri scanner; you illuminate anomalies but do not make the incision.'
-- Line 36: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'halt when your locked scope is clean; do not expand your search to satisfy a quota.'
-- Line 36: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 36: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 54: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/fusions/Mapper.md
-- Line 29: [opposing_modality] Must: 'the handoff rule: ignore logic bugs in the identified unverified paths; you must strictly outline what tests need to be written, leaving the implementation to downstream agents.', Never: 'no interactive dependency generation: do not wait for the user to provide exact dependencies or logic bugs; outline what tests need to be written, leaving the implementation to downstream agents.'
-### prompts/fusions/Marshal.md
-- Line 30: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'the handoff rule: ignore logic bugs in the infrastructure itself; you must strictly document the current reality, never suggest massive architectural changes during an outage simulation.'
-- Line 30: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 35: [opposing_modality] Must: 'the handoff rule: ignore logic bugs in the infrastructure itself; you must strictly document the current reality, never suggest massive architectural changes during an outage simulation.', Never: 'the handoff rule: ignore logic bugs in the infrastructure itself; you must strictly document the current reality, never suggest massive architectural changes during an outage simulation.'
-- Line 35: [opposing_modality] Must: 'the handoff rule: ignore logic bugs in the infrastructure itself; you must strictly document the current reality, never suggest massive architectural changes during an outage simulation.', Never: 'the action override: never execute destructive failover scripts or modify production cloud states; restrict modifications strictly to drafting the recovery plan text.'
-- Line 59: [opposing_modality] Must: 'have all infrastructure execution scripts been rigorously avoided to ensure this remains a static documentation generation?: ensure no destructive logic was executed.', Never: 'the handoff rule: ignore logic bugs in the infrastructure itself; you must strictly document the current reality, never suggest massive architectural changes during an outage simulation.'
-- Line 59: [opposing_modality] Must: 'have all infrastructure execution scripts been rigorously avoided to ensure this remains a static documentation generation?: ensure no destructive logic was executed.', Never: 'the action override: never execute destructive failover scripts or modify production cloud states; restrict modifications strictly to drafting the recovery plan text.'
-### prompts/fusions/Medic.md
-- Line 27: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 31: [opposing_modality] Must: 'the reusability check: before generating net-new structural logic, scan the immediate directory and shared utility folders to ensure the required method, state object, or type definition does not already exist; if it does, resolve the crash via proper importing rather than recreation.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 31: [opposing_modality] Must: 'the reusability check: before generating net-new structural logic, scan the immediate directory and shared utility folders to ensure the required method, state object, or type definition does not already exist; if it does, resolve the crash via proper importing rather than recreation.', Never: 'blast radius check: do the executed changes adhere to the domain boundary constraints and do not touch unrelated files or configs?'
-- Line 16: [dangling_reference] return <authcontext.provider value={{ user, setuser }} {children}</authcontext.provider ;
-### prompts/fusions/Millisecond.md
-- Line 26: [dangling_reference] <div style={{ margin: 10, padding: 5 }}
-### prompts/fusions/Mulligan.md
-- Line 15: [dangling_reference] const bad = () = <span style={{ float: 'left', margin: '10px' }} / ;
-### prompts/fusions/Occam.md
-- Line -1: [opposing_modality] Must: 'the philosophy
-🪒 the best code is the code you never write; always prioritize the deletion of code over the addition of code.', Never: 'the philosophy
-🪒 the best code is the code you never write; always prioritize the deletion of code over the addition of code.'
-### prompts/fusions/Overdrive.md
-- Line -1: [opposing_modality] Must: 'the philosophy
-🏎️ the cpu must never wait for independent data; synchronous waterfalls born from probabilistic token-prediction failures are structural enemies that must be refactored into concurrent promise.all batches.', Never: 'the philosophy
-🏎️ the cpu must never wait for independent data; synchronous waterfalls born from probabilistic token-prediction failures are structural enemies that must be refactored into concurrent promise.all batches.'
-- Line -1: [opposing_modality] Must: 'the philosophy
-🏎️ the cpu must never wait for independent data; synchronous waterfalls born from probabilistic token-prediction failures are structural enemies that must be refactored into concurrent promise.all batches.', Never: 'these scripts must never be used to mutate source code and must be securely deleted after verification.'
-- Line 28: [opposing_modality] Must: 'these scripts must never be used to mutate source code and must be securely deleted after verification.', Never: 'the philosophy
-🏎️ the cpu must never wait for independent data; synchronous waterfalls born from probabilistic token-prediction failures are structural enemies that must be refactored into concurrent promise.all batches.'
-- Line 28: [opposing_modality] Must: 'these scripts must never be used to mutate source code and must be securely deleted after verification.', Never: 'these scripts must never be used to mutate source code and must be securely deleted after verification.'
-- Line 40: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-### prompts/fusions/Pacemaker.md
-- Line 24: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/fusions/Pantomime.md
-- Line -1: [opposing_modality] Must: 'the philosophy
-🔇 a silent crash is an abandoned stage; every asynchronous network pulse must have a dedicated monitor, a mapped recovery plan, and a graceful exit so the performance never stops.', Never: 'the philosophy
-🔇 a silent crash is an abandoned stage; every asynchronous network pulse must have a dedicated monitor, a mapped recovery plan, and a graceful exit so the performance never stops.'
-- Line 7: [opposing_modality] Must: 'external apis are inherently hostile and flaky; you must armor every fetch with exponential backoff and localized timeouts to keep the rhythm.', Never: 'the philosophy
-🔇 a silent crash is an abandoned stage; every asynchronous network pulse must have a dedicated monitor, a mapped recovery plan, and a graceful exit so the performance never stops.'
-### prompts/fusions/Parallel.md
-- Line 59: [opposing_modality] Must: '♾️ the parallel test suite: always generate a side-by-side test file (e.g., module v2.test.js ) that proves your modern logic handles the exact same mock data as the legacy tests.', Never: 'board state handling follows the task board resolution protocol (forge-procedure module 4) — do not author separate checkbox or deletion logic here.'
-### prompts/fusions/Payload.md
-- Line 47: [opposing_modality] Must: 'enforce strict no-store, no-cache, must-revalidate cache controls for authenticated or private routes.', Never: '🐍 the django vault car: enforced strict @never cache decorators on authenticated python/django views.'
-### prompts/fusions/Phoenix.md
-- Line 33: [opposing_modality] Must: 'the task board valve: if you claim a [ ] task from .jules/agent tasks.md but mathematically prove the target is already resolved, out of scope, or blocked by an immutable test suite that actively enforces the legacy bug, you must update the board to - [x] (blocked / false positive) and gracefully abort to prevent downstream agents from falling into an infinite retry loop.', Never: 'board state handling follows the task board resolution protocol — do not author separate checkbox or deletion logic here.'
-- Line 37: [opposing_modality] Must: 'you must cross-reference the historical deletion against the current, live ast of the surviving caller files to ensure their expected inputs/outputs have not drifted since the deletion occurred.', Never: 'board state handling follows the task board resolution protocol — do not author separate checkbox or deletion logic here.'
-- Line 37: [opposing_modality] Must: 'you must cross-reference the historical deletion against the current, live ast of the surviving caller files to ensure their expected inputs/outputs have not drifted since the deletion occurred.', Never: 'the active caller anchor: do not rely solely on git history for your contract.'
-### prompts/fusions/Plumbline.md
-- Line 31: [opposing_modality] Must: 'the workspace validator: before classifying any import or interface as orphaned or hallucinated, explicitly traverse upward to verify root-level monorepo manifests, hoisted lockfiles, and workspace: symlinks to ensure the dependency is not inherited from a parent configuration.', Never: 'the regex ban: use native ast tools or native ide language-server renaming commands for import rewiring; do not use brute-force text parsers like sed or awk .'
-### prompts/fusions/Policy Maker.md
-- Line 21: [opposing_modality] Must: 'do not tell the reviewer how to do its job or what to check; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.', Never: 'do not tell the reviewer how to do its job or what to check; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.'
-- Line 31: [opposing_modality] Must: 'always execute: delete any temporary testing harnesses, inline comments, or throwaway scripts created during execution before finalizing the pr.', Never: 'never execute: end an execution plan with a question, solicit feedback, or ask if the approach is correct.'
-- Line 49: [opposing_modality] Must: 'you must require a reproduction test case.', Never: 'do not tell the reviewer how to do its job or what to check; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.'
-### prompts/fusions/Polygraph.md
-- Line -1: [opposing_modality] Must: 'required pr headers:
-🛡️ defense injection, 🚨 telemetry/tests, ⚙️ implementation, ✅ verification, 📈 impact
-favorite optimizations
-🎛️ injected a baseline test to ensure an llm classification endpoint gracefully degraded when fed pure conversational gibberish instead of expected parameters.', Never: 'observability execution: execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow.'
-### prompts/fusions/Prompt Engineer.md
-- Line 6: [dangling_reference] variable preservation: treat dynamic placeholders ( {{var}} , ${context} ) as load-bearing integration points. you must perfectly preserve, unmutated, and retain all dynamic variables in your output.
-- Line 61: [dangling_reference] 🔭 token ceiling contract: injected a compression directive ordering the system to preserve a constraints block before injecting a massive {{document}} variable, preventing silent instruction dropout.
-### prompts/fusions/Pruner.md
-- Line 52: [opposing_modality] Must: 'unlike standard expansive workers, a pruner must treat verification as a strict gatekeeper: if a deletion breaks tests, you must revert that specific deletion.', Never: 'if deletion breaks a dependency, do not refactor the dependency.'
-### prompts/fusions/Quartermaster.md
-- Line 48: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/fusions/README.md
-- Line 9: [dangling_reference] 4. escape any template syntax (e.g., {{ }} ) within code blocks to prevent unintended parsing.
-### prompts/fusions/Redirector.md
-- Line 38: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify a target within 3 attempts due to flaky heuristic checks or environmental opacity, do not abort the session.'
-### prompts/fusions/Refiner.md
-- Line 52: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 52: [opposing_modality] Must: 'if you fail to find a valid target in .jules/worker tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: '⚙️ distill — halt when your locked scope is clean; do not expand your search to satisfy a quota.'
-### prompts/fusions/Respec.md
-- Line -1: [opposing_modality] Must: 'the philosophy
-💾 a flaky test suite is a corrupted save file; if you cannot trust the green checkmark, the run is dead, meaning we must burn the file and start fresh.', Never: '🪄 when a test file crosses the threshold of unmaintainability, we do not patch the glitches; we incinerate the skill tree and respec the suite from scratch.'
-### prompts/fusions/Retrofit.md
-- Line 6: [opposing_modality] Must: '⚖️ a reliable, well-understood deployment manifest is superior to a bleeding-edge, incomprehensible pipeline—stability must outlive novelty.', Never: '🏗️ the cargo hold must be upgraded while the ship is sailing—structural pipeline evolution must never disrupt the underlying payload or deployment execution path.'
-- Line 8: [opposing_modality] Must: '🏗️ the cargo hold must be upgraded while the ship is sailing—structural pipeline evolution must never disrupt the underlying payload or deployment execution path.', Never: '🏗️ the cargo hold must be upgraded while the ship is sailing—structural pipeline evolution must never disrupt the underlying payload or deployment execution path.'
-- Line 9: [opposing_modality] Must: '🛡️ every retrofitted manifest must be validated strictly by native yaml linters and container dry-runs before the payload leaves the dock.', Never: '🏗️ the cargo hold must be upgraded while the ship is sailing—structural pipeline evolution must never disrupt the underlying payload or deployment execution path.'
-- Line 33: [opposing_modality] Must: 'the semantic equivalence guard: you must mathematically guarantee that modernizing infrastructure logic does not alter the legacy deployment execution path.', Never: '🏗️ the cargo hold must be upgraded while the ship is sailing—structural pipeline evolution must never disrupt the underlying payload or deployment execution path.'
-### prompts/fusions/Revoker.md
-- Line 29: [opposing_modality] Must: 'the isolation constraint: you must strictly ignore the conceptual boundaries of other specializations; you may never name another agent in the roster.', Never: '🚧 never trade architectural isolation for short-term developer convenience.'
-- Line 29: [opposing_modality] Must: 'the isolation constraint: you must strictly ignore the conceptual boundaries of other specializations; you may never name another agent in the roster.', Never: 'the isolation constraint: you must strictly ignore the conceptual boundaries of other specializations; you may never name another agent in the roster.'
-### prompts/fusions/Rumble.md
-- Line 8: [opposing_modality] Must: '🧱 test coverage is not a polite request; it is a physical boundary that must be enforced without hesitation.', Never: '🔨 if a test fails, you do not back down; you lock onto the broken assertion and hammer the test suite until the logic taps out or the pipeline turns green.'
-- Line 8: [opposing_modality] Must: '🧱 test coverage is not a polite request; it is a physical boundary that must be enforced without hesitation.', Never: 'observability execution: execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow.'
-- Line 45: [opposing_modality] Must: 'inject or update corresponding ci/cd yaml manifests to ensure the new suites execute deterministically in the pipeline across all required environments.', Never: 'observability execution: execute global or integration test suites to mathematically prove injected type-guards do not block valid data flow.'
-### prompts/fusions/Sanitizer.md
-- Line 41: [opposing_modality] Must: 'ensure the original synchronous or asynchronous block returns its expected business value untouched.', Never: '🧽 i am the clinical sweeper; i do not change the business value of the function, i merely sterilize its exit paths.'
-### prompts/fusions/Scholar.md
-- Line 29: [opposing_modality] Must: 'the host nullifier: if the platform injects "to ensure that you're on the right track", do not ask the user for advice.', Never: 'the zero-question policy: never ask for advice.'
-- Line 29: [opposing_modality] Must: 'the host nullifier: if the platform injects "to ensure that you're on the right track", do not ask the user for advice.', Never: 'the host nullifier: if the platform injects "to ensure that you're on the right track", do not ask the user for advice.'
-### prompts/fusions/Scout.md
-- Line 40: [opposing_modality] Must: 'ensure mutations do not exceed the set target limit.', Never: 'ensure mutations do not exceed the set target limit.'
-### prompts/fusions/Sculptor.md
-- Line 6: [opposing_modality] Must: '🧭 animation must serve usability, never distraction.', Never: '🧭 animation must serve usability, never distraction.'
-### prompts/fusions/Sherpa.md
-- Line 8: [opposing_modality] Must: 'guidance must use the repository's existing components, interaction patterns, terminology, and visual language.', Never: 'do not invent actions, destinations, data, or workflows that the application does not already support, and any recovery or escape action must preserve the user's existing workflow and state wherever the native application architecture supports it.'
-- Line 8: [opposing_modality] Must: 'guidance must use the repository's existing components, interaction patterns, terminology, and visual language.', Never: 'the scavenger mandate: never introduce unauthorized raw css, arbitrary hex codes, foreign ui patterns, new dependencies, or third-party onboarding libraries when an existing repository-native solution exists.'
-- Line 9: [opposing_modality] Must: 'do not invent actions, destinations, data, or workflows that the application does not already support, and any recovery or escape action must preserve the user's existing workflow and state wherever the native application architecture supports it.', Never: 'do not invent actions, destinations, data, or workflows that the application does not already support, and any recovery or escape action must preserve the user's existing workflow and state wherever the native application architecture supports it.'
-- Line 9: [opposing_modality] Must: 'do not invent actions, destinations, data, or workflows that the application does not already support, and any recovery or escape action must preserve the user's existing workflow and state wherever the native application architecture supports it.', Never: 'do not modify backend return values, apis, business rules, persistence behavior, authentication, or unrelated application control flow.'
-- Line 9: [opposing_modality] Must: 'do not invent actions, destinations, data, or workflows that the application does not already support, and any recovery or escape action must preserve the user's existing workflow and state wherever the native application architecture supports it.', Never: 'the no-false-handhold rule: never create a cta, link, tooltip, breadcrumb, back button, or other navigation element unless its destination or action already exists and is demonstrably valid within the application's native workflow.'
-- Line 9: [opposing_modality] Must: 'do not invent actions, destinations, data, or workflows that the application does not already support, and any recovery or escape action must preserve the user's existing workflow and state wherever the native application architecture supports it.', Never: 'preserve user state where the native architecture supports it; never force a hard application reset merely to provide an escape route.'
-- Line 9: [opposing_modality] Must: 'do not invent actions, destinations, data, or workflows that the application does not already support, and any recovery or escape action must preserve the user's existing workflow and state wherever the native application architecture supports it.', Never: 'the handoff rule: do not repair underlying data-fetching failures, invent missing backend data, redesign complete navigation systems, create product tours, or repair unrelated accessibility defects.'
-- Line 9: [opposing_modality] Must: 'do not invent actions, destinations, data, or workflows that the application does not already support, and any recovery or escape action must preserve the user's existing workflow and state wherever the native application architecture supports it.', Never: 'preserve scope: do not redesign surrounding components merely because they could be improved.'
-- Line 44: [opposing_modality] Must: 'the accessibility rule: injected ctas, tooltips, and contextual controls must remain keyboard reachable, screen-reader understandable, and consistent with the repository's existing accessibility implementation.', Never: 'do not invent actions, destinations, data, or workflows that the application does not already support, and any recovery or escape action must preserve the user's existing workflow and state wherever the native application architecture supports it.'
-- Line 44: [opposing_modality] Must: 'the accessibility rule: injected ctas, tooltips, and contextual controls must remain keyboard reachable, screen-reader understandable, and consistent with the repository's existing accessibility implementation.', Never: 'the handoff rule: do not repair underlying data-fetching failures, invent missing backend data, redesign complete navigation systems, create product tours, or repair unrelated accessibility defects.'
-### prompts/fusions/Smith.md
-- Line 9: [opposing_modality] Must: '⚙️ execution must be cold and localized; surgically eradicate the targeted anomaly without expanding the blast radius or negotiating with the operator.', Never: 'do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.'
-- Line 35: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.'
-### prompts/fusions/Spellchecker.md
-- Line 38: [opposing_modality] Must: 'ensure you do not match partial strings (e.g., replacing recive but accidentally breaking receiver ).', Never: 'ensure you do not match partial strings (e.g., replacing recive but accidentally breaking receiver ).'
-### prompts/fusions/Steward.md
-- Line 7: [opposing_modality] Must: '📖 documentation must serve readability; never trade a clean explanation for a massive, redundant changelog paste.', Never: '📖 documentation must serve readability; never trade a clean explanation for a massive, redundant changelog paste.'
-- Line 19: [opposing_modality] Must: 'ensure you run npm install node-fetch before running the api script.', Never: 'do not install node-fetch or axios for standard requests.'
-- Line 28: [opposing_modality] Must: 'the bounded sweep: you may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.', Never: 'log unhandled targets into your journal, but never submit a pr solely to say no targets were found.'
-### prompts/fusions/Streamliner.md
-- Line 23: [dangling_reference] <div style={{ display: showadvanced ? 'block' : 'none' }}
-- Line 57: [dangling_reference] ⛷️ the display none purge : replaced a massive style={{ display: isactive ? 'block' : 'none' }} accordion list with a conditional boolean render isactive && <item / , instantly slashing the initial dom node count by 800.
-### prompts/fusions/Stylist.md
-- Line 56: [dangling_reference] 👗 the tailwind map : extracted raw style={{ backgroundcolor: ' f3f4f6' }} inline objects in a next.js app and replaced them with the strict classname="bg-gray-100" utility.
-### prompts/fusions/Surgeon.md
-- Line 9: [opposing_modality] Must: '⚖️ god files are the primary crash vectors; they must be partitioned to restore structural breathing room.', Never: 'we do not build new limbs; we stop the bleeding and restore structural integrity.'
-- Line 26: [opposing_modality] Must: 'the logic invariance guardrail: when extracting logic from ui components into service layers, you must ensure all reactive dependencies (props, state, context) are preserved; if logic cannot be extracted without losing local scope, focus strictly on circular decoupling.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/fusions/Surveyor.md
-- Line 55: [opposing_modality] Must: 'a replacement agent must never exit empty-handed; submit the pr natively with the newly generated variation.', Never: 'log unhandled targets into your journal, but never submit a pr solely to say no targets were found.'
-- Line 55: [opposing_modality] Must: 'a replacement agent must never exit empty-handed; submit the pr natively with the newly generated variation.', Never: 'a replacement agent must never exit empty-handed; submit the pr natively with the newly generated variation.'
-### prompts/fusions/Switchboard.md
-- Line 7: [opposing_modality] Must: '⚖️ never trade deployment integrity for flatness; the build mapping must remain entirely unchanged.', Never: '⚖️ never trade deployment integrity for flatness; the build mapping must remain entirely unchanged.'
-### prompts/fusions/Sylar.md
-- Line 29: [opposing_modality] Must: 'the divergence threshold: restrict your discovery phase exclusively to "semantic ghosts." before extracting a capability, you must mathematically verify that the target functions possess distinctly different ast shapes (e.g., a declarative .reduce() vs.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 51: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/fusions/Synchronizer.md
-- Line 40: [opposing_modality] Must: '🔍 discover — explicit command if the target matrix is exhausted and nothing is found, you must seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.', Never: 'log unhandled targets into your journal, but never submit a pr solely to say no targets were found.'
-### prompts/fusions/Syntax.md
-- Line 34: [opposing_modality] Must: 'the positive polarity rule: express scope constraints as positive behavioral anchors ('always execute x') rather than prohibitive ('never do z').', Never: 'the positive polarity rule: express scope constraints as positive behavioral anchors ('always execute x') rather than prohibitive ('never do z').'
-### prompts/fusions/Tectonic.md
-- Line 28: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 37: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 37: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/fusions/Telemetrist.md
-- Line 37: [opposing_modality] Must: 'you must explicitly select and log only non-sensitive primitive metadata (e.g., length , status code , duration ).', Never: 'export async function processdata(payload: any) {
-const start = performance.now();
-const result = await externalservice.call(payload);
-const duration = performance.now() - start;
-try {
-telemetry.emit('boundary execution', {
-target: 'externalservice',
-latencyms: duration,
-status: result.status,
-inputlength: json.stringify(payload).length // 📡 primitive metadata only
-});
-} catch (err) {
-// non-destructive monitoring: monitor failure never terminates logic.'
-- Line 38: [opposing_modality] Must: 'the non-destructive monitoring rule: every injected telemetry call must be wrapped in a try/catch block or implemented as a non-blocking 'fire-and-forget' asynchronous call.', Never: '🛫 the fire-and-forget safety: implemented a global telemetry wrapper that ensures metric collection never blocks the main event loop.'
-- Line 38: [opposing_modality] Must: 'the failure of the observability layer must never be allowed to propagate and terminate primary application logic.', Never: 'export async function processdata(payload: any) {
-const start = performance.now();
-const result = await externalservice.call(payload);
-const duration = performance.now() - start;
-try {
-telemetry.emit('boundary execution', {
-target: 'externalservice',
-latencyms: duration,
-status: result.status,
-inputlength: json.stringify(payload).length // 📡 primitive metadata only
-});
-} catch (err) {
-// non-destructive monitoring: monitor failure never terminates logic.'
-- Line 38: [opposing_modality] Must: 'the failure of the observability layer must never be allowed to propagate and terminate primary application logic.', Never: 'the failure of the observability layer must never be allowed to propagate and terminate primary application logic.'
-### prompts/fusions/Telepath.md
-- Line 8: [opposing_modality] Must: '🕸️ the network is a neural pathway; you must prime the routing synapses before the conscious thought to navigate even arrives.', Never: 'the silent failure protocol: predictive network requests must never disrupt the active foreground ui.'
-- Line 44: [opposing_modality] Must: 'the silent failure protocol: predictive network requests must never disrupt the active foreground ui.', Never: 'the silent failure protocol: predictive network requests must never disrupt the active foreground ui.'
-- Line 44: [opposing_modality] Must: 'the silent failure protocol: predictive network requests must never disrupt the active foreground ui.', Never: 'they must never trigger global error boundaries, global toast notifications, or authentication redirects.'
-- Line 44: [opposing_modality] Must: 'they must never trigger global error boundaries, global toast notifications, or authentication redirects.', Never: 'the silent failure protocol: predictive network requests must never disrupt the active foreground ui.'
-- Line 44: [opposing_modality] Must: 'they must never trigger global error boundaries, global toast notifications, or authentication redirects.', Never: 'they must never trigger global error boundaries, global toast notifications, or authentication redirects.'
-### prompts/fusions/Temporal Loom.md
-- Line 6: [opposing_modality] Must: '🪡 arrow code is fundamentally hostile to deterministic execution; the true path must read strictly top-to-bottom without deviation.', Never: '📏 i do not merely format code; i collapse its structural depth so the true execution plane is exposed without illusion.'
-- Line 32: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 60: [opposing_modality] Must: 'sprawl containment check: ensure total line count does not explode due to extraction boilerplate.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/fusions/Terraformer.md
-- Line 16: [dangling_reference] <div style={{ backgroundimage: url(${heroimage}) }}
-### prompts/fusions/Threat Modeler.md
-- Line 8: [opposing_modality] Must: '🛡️ trust must be explicitly granted, never implicitly assumed.', Never: '🛡️ trust must be explicitly granted, never implicitly assumed.'
-### prompts/fusions/Transfusion.md
-- Line 31: [opposing_modality] Must: 'the declarative plan protocol: never end an execution plan with a question, solicit feedback, or ask if the approach is correct; plans must be strictly declarative.', Never: 'the declarative plan protocol: never end an execution plan with a question, solicit feedback, or ask if the approach is correct; plans must be strictly declarative.'
-### prompts/fusions/Triage Commander.md
-- Line 28: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/fusions/Triage.md
-- Line 29: [opposing_modality] Must: 'the test alignment protocol: if your newly engineered error boundary causes a legacy test assertion to fail (e.g., a test specifically expecting a silent null return), you must mutate the targeted test file to expect the explicit throw.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 29: [opposing_modality] Must: 'the test alignment protocol: if your newly engineered error boundary causes a legacy test assertion to fail (e.g., a test specifically expecting a silent null return), you must mutate the targeted test file to expect the explicit throw.', Never: 'do not rollback your boundary to appease an outdated test.'
-- Line 44: [opposing_modality] Must: 'verify constraints: review the patch to ensure no net-new global state management actions were imported and the mutation remains within the assigned cohesive module.', Never: 'do not hallucinate or import net-new global state management actions.'
-### prompts/fusions/Typesetter.md
-- Line 31: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 43: [opposing_modality] Must: 'if the target matrix is exhausted and nothing is found, you must seamlessly pivot to a full repository-wide domain sweep to locate valid targets within your domain before considering the task complete.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-- Line 62: [opposing_modality] Must: 'visual rhythm: ensure the rounded pixel values do not cause massive visual overflow in tightly constrained flexbox containers.', Never: 'visual rhythm: ensure the rounded pixel values do not cause massive visual overflow in tightly constrained flexbox containers.'
-- Line 26: [dangling_reference] the scope: limit mutations strictly to raw css/scss files, styled-components, inline style={{}} tags, and legacy ui directories.
-### prompts/fusions/Vector.md
-- Line 7: [opposing_modality] Must: '🛡️ simplicity must never destroy extensibility; never trade a necessary boundary for an unmaintainable one-liner.', Never: '🛡️ simplicity must never destroy extensibility; never trade a necessary boundary for an unmaintainable one-liner.'
-- Line 23: [opposing_modality] Must: 'do not tell the reviewer how to do its job or what to check; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.', Never: 'do not tell the reviewer how to do its job or what to check; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.'
-### prompts/fusions/Vice.md
-- Line 14: [dangling_reference] <div style={{ transform: 'translatey(10px)', transition: 'transform 0.2s' }}
-- Line 20: [dangling_reference] <div style={{ top: '10px', transition: 'top 0.2s' }}
-### prompts/fusions/Viewmorph.md
-- Line 8: [opposing_modality] Must: '📐 the horizontal scroll prison is an architectural failure; contain the current and ensure the geometry flows down, never sideways.', Never: '📐 the horizontal scroll prison is an architectural failure; contain the current and ensure the geometry flows down, never sideways.'
-- Line 24: [dangling_reference] <div style={{ width: '800px', padding: '16px' }} onmouseenter={ontoggle}
-### prompts/fusions/Watchtower.md
-- Line 41: [opposing_modality] Must: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.', Never: 'if a structural mutation causes a test failure, do not modify the test file to accommodate your change.'
-- Line 66: [opposing_modality] Must: '🗼 the ephemeral trace: ensure traces do not leak memory over long-running processes by utilizing bounded buffers for local telemetry aggregation.', Never: '🗼 the ephemeral trace: ensure traces do not leak memory over long-running processes by utilizing bounded buffers for local telemetry aggregation.'
-### prompts/fusions/Watermark.md
-- Line 27: [opposing_modality] Must: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.', Never: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.'
-- Line 28: [opposing_modality] Must: 'the exploit-proof verification: you must mathematically prove the vulnerability is closed or the boundary is secure via targeted test runs before submitting the pr.', Never: 'the secret sterilization mandate: you must never write plaintext secrets, api keys, or raw credentials to any source file, configuration, or log.'
-### prompts/fusions/Wayfinder.md
-- Line 30: [opposing_modality] Must: 'you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', Never: 'if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session.'
-### prompts/fusions/Wordsmith.md
-- Line 24: [opposing_modality] Must: 'mutate only the string values, never the keys, and ensure trailing commas and quoting rules remain intact.', Never: 'mutate only the string values, never the keys, and ensure trailing commas and quoting rules remain intact.'
-- Line 23: [dangling_reference] the interpolation shield: strictly preserve all string interpolation variables (e.g., ${var} , {{var}} , %s ). you may rearrange them to fit natural grammar, but you are strictly forbidden from removing or renaming them.
-- Line 39: [dangling_reference] 2. rewrite & resonate: target passive, flawed, or robotic text within the locked scope, altering string literals to an active voice. safely reposition existing interpolation variables ( ${var} , {{var}} ) to fit natural grammar without ever removing them.
-### prompts/fusions/Yggdrasil.md
-- Line 7: [opposing_modality] Must: '🌳 never force an unnatural graft; paradigm mutations must align organically with the target language's native ecosystem and idiomatic best practices.', Never: '🌳 never force an unnatural graft; paradigm mutations must align organically with the target language's native ecosystem and idiomatic best practices.'
-- Line 7: [opposing_modality] Must: '🌳 never force an unnatural graft; paradigm mutations must align organically with the target language's native ecosystem and idiomatic best practices.', Never: 'you must never execute standalone deletions of operational logic, fallback functions, or older utilities simply because they appear to be deadwood.'
-- Line 31: [opposing_modality] Must: 'the external contract lock: you must strictly preserve all exported function signatures, class interfaces, variable names, and return payload structures.', Never: 'you must never execute standalone deletions of operational logic, fallback functions, or older utilities simply because they appear to be deadwood.'
-- Line 31: [opposing_modality] Must: 'if a paradigm shift natively requires altering how external files consume this module, you must gracefully abort.', Never: '🌳 never force an unnatural graft; paradigm mutations must align organically with the target language's native ecosystem and idiomatic best practices.'
-- Line 31: [opposing_modality] Must: 'if a paradigm shift natively requires altering how external files consume this module, you must gracefully abort.', Never: 'you must never execute standalone deletions of operational logic, fallback functions, or older utilities simply because they appear to be deadwood.'
-- Line 33: [opposing_modality] Must: 'the idiomatic validator: before executing a structural shift, you must definitively confirm that the target paradigm is the heavily optimized, idiomatic standard for the specific language you are editing.', Never: '🌳 never force an unnatural graft; paradigm mutations must align organically with the target language's native ecosystem and idiomatic best practices.'
-- Line 33: [opposing_modality] Must: 'the idiomatic validator: before executing a structural shift, you must definitively confirm that the target paradigm is the heavily optimized, idiomatic standard for the specific language you are editing.', Never: 'you must never execute standalone deletions of operational logic, fallback functions, or older utilities simply because they appear to be deadwood.'
-- Line 36: [opposing_modality] Must: 'you must never execute standalone deletions of operational logic, fallback functions, or older utilities simply because they appear to be deadwood.', Never: '🌳 never force an unnatural graft; paradigm mutations must align organically with the target language's native ecosystem and idiomatic best practices.'
-- Line 36: [opposing_modality] Must: 'you must never execute standalone deletions of operational logic, fallback functions, or older utilities simply because they appear to be deadwood.', Never: 'you must never execute standalone deletions of operational logic, fallback functions, or older utilities simply because they appear to be deadwood.'
-- Line 54: [opposing_modality] Must: 'ensure all modifications are self-contained within your blast radius and strictly limited to the targeted one cohesive module.', Never: 'do not chase cascading errors outside your blast radius.'
-### prompts/fusions/Zen.md
-- Line 32: [opposing_modality] Must: 'the bounded sweep: you may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.', Never: 'log unhandled targets into your journal, but never submit a pr solely to say no targets were found.'
-- Line 42: [opposing_modality] Must: 'validate structural integrity: perform a read-only validation check to ensure the excision did not accidentally sever an active execution path, delete an essential jsdoc type definition, or cause a syntax collapse.', Never: 'delete genuinely completed tasks from the board permanently; do not leave resolved entries in place.'
-### prompts/fusions/Zoning Board.md
-- Line 33: [opposing_modality] Must: 'it must strictly route its architectural findings to .jules/agent tasks.md (overseer's mechanic) using the canonical archetypes [refactorer] and [transformer] .', Never: 'task board resolution: read .jules/agent tasks.md for situational awareness only — do not claim tasks.'
-- Line 48: [opposing_modality] Must: 'verify routing: ensure the generated task board mapping is functionally complete and properly sorted prior to initiating validation scans.', Never: 'task board resolution: read .jules/agent tasks.md for situational awareness only — do not claim tasks.'
-### prompts/micro/Echo.md
-- Line 2: [opposing_modality] Must: 'propagate canonical header emojis throughout markdown files to eliminate visual drift and ensure thematic consistency.', Never: 'the philosophy
-🗣️ a brand is only as strong as its consistency as visual drift implies a lack of attention to detail and erodes trust in the automated system
-🗣️ the first line header is the ultimate law and the entire body must perfectly echo its intent
-🗣️ stale legacy emojis stranded deep within the body cause visual dissonance and must be excised without hesitation
-🗣️ structural markers serve a separate universal purpose and must never be caught in the propagation wave
-🗣️ your jurisdiction is exclusively the body of the text ensuring the source-of-truth remains pristine and untouched
-coding standards
-✅ expected pattern:
-markdown
-echo's favorite optimizations
-🗣️ scenario: an old robot emoji was left in the bullets.'
-- Line 2: [opposing_modality] Must: 'propagate canonical header emojis throughout markdown files to eliminate visual drift and ensure thematic consistency.', Never: 'the structural preservation: never replace structural emojis (e.g., ❌, ✅) that are not acting as the thematic bullet marker.'
-- Line -1: [opposing_modality] Must: 'the philosophy
-🗣️ a brand is only as strong as its consistency as visual drift implies a lack of attention to detail and erodes trust in the automated system
-🗣️ the first line header is the ultimate law and the entire body must perfectly echo its intent
-🗣️ stale legacy emojis stranded deep within the body cause visual dissonance and must be excised without hesitation
-🗣️ structural markers serve a separate universal purpose and must never be caught in the propagation wave
-🗣️ your jurisdiction is exclusively the body of the text ensuring the source-of-truth remains pristine and untouched
-coding standards
-✅ expected pattern:
-markdown
-echo's favorite optimizations
-🗣️ scenario: an old robot emoji was left in the bullets.', Never: 'the philosophy
-🗣️ a brand is only as strong as its consistency as visual drift implies a lack of attention to detail and erodes trust in the automated system
-🗣️ the first line header is the ultimate law and the entire body must perfectly echo its intent
-🗣️ stale legacy emojis stranded deep within the body cause visual dissonance and must be excised without hesitation
-🗣️ structural markers serve a separate universal purpose and must never be caught in the propagation wave
-🗣️ your jurisdiction is exclusively the body of the text ensuring the source-of-truth remains pristine and untouched
-coding standards
-✅ expected pattern:
-markdown
-echo's favorite optimizations
-🗣️ scenario: an old robot emoji was left in the bullets.'
-- Line -1: [opposing_modality] Must: 'the philosophy
-🗣️ a brand is only as strong as its consistency as visual drift implies a lack of attention to detail and erodes trust in the automated system
-🗣️ the first line header is the ultimate law and the entire body must perfectly echo its intent
-🗣️ stale legacy emojis stranded deep within the body cause visual dissonance and must be excised without hesitation
-🗣️ structural markers serve a separate universal purpose and must never be caught in the propagation wave
-🗣️ your jurisdiction is exclusively the body of the text ensuring the source-of-truth remains pristine and untouched
-coding standards
-✅ expected pattern:
-markdown
-echo's favorite optimizations
-🗣️ scenario: an old robot emoji was left in the bullets.', Never: 'the header jurisdiction: never modify the header emoji itself; your jurisdiction is strictly the propagation of the header emoji into the body of the text.'
-- Line -1: [opposing_modality] Must: 'the philosophy
-🗣️ a brand is only as strong as its consistency as visual drift implies a lack of attention to detail and erodes trust in the automated system
-🗣️ the first line header is the ultimate law and the entire body must perfectly echo its intent
-🗣️ stale legacy emojis stranded deep within the body cause visual dissonance and must be excised without hesitation
-🗣️ structural markers serve a separate universal purpose and must never be caught in the propagation wave
-🗣️ your jurisdiction is exclusively the body of the text ensuring the source-of-truth remains pristine and untouched
-coding standards
-✅ expected pattern:
-markdown
-echo's favorite optimizations
-🗣️ scenario: an old robot emoji was left in the bullets.', Never: 'the structural preservation: never replace structural emojis (e.g., ❌, ✅) that are not acting as the thematic bullet marker.'
-- Line 46: [opposing_modality] Must: 'filter out structural emojis to ensure they are preserved and untouched during the replacement process.', Never: 'the philosophy
-🗣️ a brand is only as strong as its consistency as visual drift implies a lack of attention to detail and erodes trust in the automated system
-🗣️ the first line header is the ultimate law and the entire body must perfectly echo its intent
-🗣️ stale legacy emojis stranded deep within the body cause visual dissonance and must be excised without hesitation
-🗣️ structural markers serve a separate universal purpose and must never be caught in the propagation wave
-🗣️ your jurisdiction is exclusively the body of the text ensuring the source-of-truth remains pristine and untouched
-coding standards
-✅ expected pattern:
-markdown
-echo's favorite optimizations
-🗣️ scenario: an old robot emoji was left in the bullets.'
-- Line 46: [opposing_modality] Must: 'filter out structural emojis to ensure they are preserved and untouched during the replacement process.', Never: 'the structural preservation: never replace structural emojis (e.g., ❌, ✅) that are not acting as the thematic bullet marker.'
-### prompts/orphans/Aegis.md
-- Line 9: [opposing_modality] Must: '⚖️ every purification must be validated against the native test suite to ensure legitimate data flows remain unbroken.', Never: 'the native arsenal mandate: never bootstrap a foreign package manager, modify package.json, or silently install new dependencies to force a test to pass.'
-- Line 46: [opposing_modality] Must: 'the legitimacy check: do the native tests pass to ensure legitimate string formats were not incorrectly truncated by the new boundary?', Never: 'the native arsenal mandate: never bootstrap a foreign package manager, modify package.json, or silently install new dependencies to force a test to pass.'
-- Line 16: [dangling_reference] return <div dangerouslysetinnerhtml={{ html: dompurify.sanitize(rawhtml) }} / ;
-- Line 20: [dangling_reference] return <div dangerouslysetinnerhtml={{ html: rawhtml }} / ;
-### prompts/orphans/Caliper.md
-- Line 39: [dangling_reference] hardcoded spacing integers: inline styles (e.g., style={{ gap: 19 }} ), arbitrary tailwind classes ( m-[17px] ), or rogue css padding/margin pixels bypassing the centralized configuration scale.
-- Line 57: [dangling_reference] 📐 obliterated hardcoded inline style integers ( style={{ gap: 17 }} ) in dashboard.tsx in favor of centralized layout system tokens ( var(--spacing-md) ).
-### prompts/orphans/Choreographer.md
-- Line 6: [opposing_modality] Must: 'pipelines dictate the tempo; styling must mask the weight of the data so fluidity remains an unbroken feature, not a decoration.', Never: 'i do not alter the underlying data pipeline or backend infrastructure; i choreograph the visual dance that happens while the audience waits.'
-### prompts/orphans/Polyglot.md
-- Line 48: [dangling_reference] the variable sync check : validate mathematically that any dynamic variables {{var}} used in the hardcoded string were safely passed as arguments to the new translation function.
-- Line 56: [dangling_reference] 🌍 the vue interpolator : extracted a complex vue template string <p welcome back, {{ user.firstname }}</p and properly mapped the variable to $t('welcome', { name: user.firstname }) .
-### prompts/orphans/Sandboxer.md
-- Line -1: [opposing_modality] Must: 'coding standards
-✅ expected pattern:
-javascript
-import dompurify from 'dompurify';
-const cleanhtml = dompurify.sanitize(dirty);
-❌ anti-pattern:
-const cleanhtml = dirty;
-strict operational rules
-✅ always do:
-extract shared mutable beforeeach logic into clean, deterministic factory functions (e.g., const user = createmockuser() ).', Never: '❌ never do:
-share mutable variables across multiple it blocks to save a few lines of code.'
-### prompts/orphans/Tokenizer.md
-- Line 49: [opposing_modality] Must: 'mental heuristic 2: ensure the minification utilities (like regex) do not crash on null or undefined inputs.', Never: 'mental heuristic 2: ensure the minification utilities (like regex) do not crash on null or undefined inputs.'
-### prompts/orphans/Virtuoso.md
-- Line 9: [opposing_modality] Must: 'foundational principle: validate every interaction flow strictly by running the repository's native accessibility linter and visual test suite to ensure screen readers do not fail and contrast ratios are preserved.', Never: 'foundational principle: validate every interaction flow strictly by running the repository's native accessibility linter and visual test suite to ensure screen readers do not fail and contrast ratios are preserved.'
-- Line 48: [opposing_modality] Must: 'ensure injected animations strictly respect @media (prefers-reduced-motion) .', Never: 'foundational principle: validate every interaction flow strictly by running the repository's native accessibility linter and visual test suite to ensure screen readers do not fail and contrast ratios are preserved.'
-- Line -1: [opposing_modality] Must: 'avoids
-❌ [skip] redesigning the entire global color palette, but do apply the existing repository palette correctly to interaction states to ensure wcag contrast compliance.', Never: 'foundational principle: validate every interaction flow strictly by running the repository's native accessibility linter and visual test suite to ensure screen readers do not fail and contrast ratios are preserved.'
-### prompts/orphans/orphans.md
-- Line -1: [opposing_modality] Must: '📢 the form accessibility boost : linked a vague "invalid" span to an input field using aria-errormessage and expanded the text to "password must contain at least one uppercase letter and one number."
-📢 the assert expansion : rewrote an internal testing library's generic assert(false, "fail") to explicitly state assert(false, "expected user role to be admin, but received guest.")
-performance engineer
-- role: performance profiler
-- description: overhaul the codebase's engine by measuring actual bottlenecks, cutting power to unnecessary executions, and eliminating structural drag.', Never: 'autopilot
-- role: journey tester
-- category: testing
-- description: generates robust, user-facing end-to-end tests that programmatically drive the browser and guarantee the core routing tree never breaks in production.'
-- Line 37: [dangling_reference] 📐 obliterated hardcoded inline style integers ( style={{ gap: 17 }} ) in dashboard.tsx in favor of centralized layout system tokens ( var(--spacing-md) ).
-- Line 166: [dangling_reference] 🌍 the vue interpolator : extracted a complex vue template string <p welcome back, {{ user.firstname }}</p and properly mapped the variable to $t('welcome', { name: user.firstname }) .
+### 10 Closest Pairs:
+- prompts/Janitor.md <-> prompts/fusions/Superintendent.md (Sim: 0.81)
+- prompts/fusions/Superintendent.md <-> prompts/Janitor.md (Sim: 0.81)
+- prompts/fusions/Surgeon.md <-> prompts/fusions/Forensic Architect.md (Sim: 0.64)
+- prompts/fusions/Forensic Architect.md <-> prompts/fusions/Surgeon.md (Sim: 0.64)
+- prompts/Architect.md <-> prompts/fusions/Plumbline.md (Sim: 0.62)
+- prompts/fusions/Plumbline.md <-> prompts/Architect.md (Sim: 0.62)
+- prompts/fusions/Harbormaster.md <-> prompts/Navigator.md (Sim: 0.62)
+- prompts/Navigator.md <-> prompts/fusions/Harbormaster.md (Sim: 0.62)
+- prompts/fusions/Zoning Board.md <-> prompts/Overseer.md (Sim: 0.56)
+- prompts/Overseer.md <-> prompts/fusions/Zoning Board.md (Sim: 0.56)
 
-## 7. Blind Spots
+## 6. Coherence Flags (Top 25 Files)
+### prompts/fusions/Policy Maker.md (6 flags)
+- Line 37: [opposing_modality] Must: '* **Always Execute:** Operate fully autonomously with binary decisions ([Govern] vs [Skip]).' (line 37) vs Never: '* **Never Execute:** Bootstrap a foreign package manager, modify package.json, or silently install new dependencies to force a test to pass.' (line 41)
+- Line 37: [opposing_modality] Must: '* **Always Execute:** Operate fully autonomously with binary decisions ([Govern] vs [Skip]).' (line 37) vs Never: '* **Never Execute:** End an execution plan with a question, solicit feedback, or ask if the approach is correct.' (line 42)
+- Line 37: [opposing_modality] Must: '* **Always Execute:** Operate fully autonomously with binary decisions ([Govern] vs [Skip]).' (line 37) vs Never: '* **Never Execute:** Invent net-new core assets (arbitrary hex codes, foreign patterns, unauthorized libraries).' (line 43)
+### prompts/fusions/Hyperloop.md (3 flags)
+- Line 47: [opposing_modality] Must: 'If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' (line 47) vs Never: 'Halt when your locked scope is clean; do not expand your search to satisfy a quota.' (line 59)
+- Line 41: [near_duplicate] 'Validate every caching layer by executing a baseline benchmark versus the optimized time—if the response does not mathematically accelerate or if state breaks, the edge rewrite must be reverted.' approx equals '* ⏱️ Validate every caching layer by executing a baseline benchmark versus the optimized time—if the response does not mathematically accelerate or if state breaks, the edge rewrite must be reverted.' (line 12)
+- Line 42: [near_duplicate] '* **The Handoff Rule:** Ignore rewriting actual database schemas or complex stateful mutations; caching and edge execution is your only jurisdiction.' approx equals 'Ignore rewriting actual database schemas or complex stateful mutations; caching and edge execution is your only jurisdiction.' (line 35)
+### prompts/Vibe.md (2 flags)
+- Line 62: [dangling_reference] * **Build:** Enter flow state. Build exactly ONE cohesive, self-contained feature or architectural bridge into production-ready completion using only packages present in the repository's existing manifest. Replace all mocks with real implementations. Handle edge cases, 5xx errors, timeouts, and malformed payloads natively. Apply strict typings to all authored functions, variables, and state definitions. Leave zero TODO or mock placeholder in any authored code.
+- Line 67: [dangling_reference] * Do any TODO or mock data placeholders remain in any authored code block?
+### prompts/fusions/Accountant.md (2 flags)
+- Line 5: [near_duplicate] 'Your mission is to ENFORCE strict build-time failure thresholds to halt bundle bloat before it ever hits production.' approx equals 'ENFORCE strict build-time failure thresholds to halt bundle bloat before it ever hits production.' (line 4)
+- Line 56: [near_duplicate] '3. ⚙️ **ENFORCE** — Execute precisely and immediately upon target acquisition. Halt when your locked scope is clean; do not expand your search to satisfy a quota.' approx equals 'Execute precisely and immediately upon target acquisition. Halt when your locked scope is clean; do not expand your search to satisfy a quota.' (line 37)
+### prompts/fusions/Catalyst.md (2 flags)
+- Line 45: [opposing_modality] Must: 'If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' (line 45) vs Never: 'Halt when your locked scope is clean; do not expand your search to satisfy a quota.' (line 54)
+- Line 46: [near_duplicate] '* **The Discovery Short-Circuit:** The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution. You are strictly forbidden from: running tests outside the immediate target file, updating adjacent scripts or configuration files not directly required by your change, performing repository-wide sweeps to find additional targets, or executing any verification step not directly caused by your specific mutation. Scope tunnel enforced: enter, execute, exit. Submit your PR the moment your single target is complete.' approx equals '* Your discovery posture is single-target. The moment you identify one valid match from your Target Matrix, immediately abort all further scanning and proceed to execution. You are strictly forbidden from: running tests outside the immediate target file, updating adjacent scripts or configuration files not directly required by your change, performing repository-wide sweeps to find additional targets, or executing any verification step not directly caused by your specific mutation. Scope tunnel enforced: enter, execute, exit. Submit your PR the moment your single target is complete.' (line 30)
+### prompts/fusions/Cerberus.md (2 flags)
+- Line 56: [opposing_modality] Must: 'If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' (line 56) vs Never: 'Halt when your locked scope is clean; do not expand your search to satisfy a quota.' (line 67)
+- Line 36: [near_duplicate] 'app.post('/api/login', (req, res) => {' approx equals 'app.post('/api/login', authLimiter, (req, res) => {' (line 21)
+### prompts/fusions/Forensic Architect.md (2 flags)
+- Line 55: [near_duplicate] '1. **Trauma Mapping:** Identify historical circular dependency chains causing stack overflow or boot deadlocks using the Forensic Evidence Rule.' approx equals '* **Trauma Mapping:** Identify historical circular dependency chains causing stack overflow or boot deadlocks using the Forensic Evidence Rule.' (line 50)
+- Line 56: [near_duplicate] '2. **Colocation Audit:** Map files where logical dependencies no longer match physical locations, specifically targeting identified God Files.' approx equals '* **Colocation Audit:** Map files where logical dependencies no longer match physical locations, specifically targeting identified God Files.' (line 51)
+### prompts/fusions/Medic.md (2 flags)
+- Line 27: [dangling_reference] // TODO: Implement later
+- Line 42: [dangling_reference] * **The Intent Preservation Rule:** If an unfinished stub contains explicit developer instructions (e.g., TODO or FIXME comments) indicating a complex, external system integration (like payment processing), gracefully abort and flag the task as out of scope rather than blindly bypassing it with an empty return value.
+### prompts/fusions/Sylar.md (2 flags)
+- Line 59: [near_duplicate] '4. **The Scoped Deletion Grant:** Authorizes the agent to explicitly delete/remove the legacy redundant logic blocks strictly after successfully extracting and routing their capabilities into the newly spliced master utility.' approx equals '* **The Scoped Deletion Grant:** Authorizes the agent to explicitly delete/remove the legacy redundant logic blocks strictly after successfully extracting and routing their capabilities into the newly spliced master utility.' (line 40)
+- Line 60: [near_duplicate] '5. **Cyclomatic Boundary Verification:** Confirm the newly spliced utility does not require excessive dynamic parameters, deep nesting, or complex `if/else` branching to satisfy disparate edge-cases. Deem the logic structurally incompatible and gracefully abort if this boundary is breached.' approx equals '* **Cyclomatic Boundary Verification:** Confirm the newly spliced utility does not require excessive dynamic parameters, deep nesting, or complex `if/else` branching to satisfy disparate edge-cases. Deem the logic structurally incompatible and gracefully abort if this boundary is breached.' (line 38)
+### prompts/micro/Iconographer.md (2 flags)
+- Line 18: [near_duplicate] '# You are "Iconographer" 🔣 - The Symbology Curator.' approx equals 'You are "Iconographer" 🔣 - Symbology Curator.' (line 3)
+- Line 54: [near_duplicate] '* 4. Execute a targeted replacement of the emoji exclusively within the designated markdown file headers.' approx equals '* **Workflow Execution:** Execute a targeted replacement of the emoji exclusively within the designated markdown file headers.' (line 34)
+### prompts/Scribe.md (1 flags)
+- Line 36: [near_duplicate] '* **The Scope:** Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, or business logic is not permitted.' approx equals '* **Scope:** Limit mutations strictly to syntax, metadata, and structural organization. Modifying return values, control flow, or business logic is prohibited.' (line 34)
+### prompts/Untangler.md (1 flags)
+- Line 50: [near_duplicate] '**The Action Bias (Anti-Paralysis):** Limit your DISCOVER phase to a maximum of 3 exploratory native tool actions (e.g., searching/reading files). Upon reaching this limit, you MUST immediately transition to mutating the codebase based on the best available context, or explicitly declare a Graceful Abort.' approx equals '* **The Action Bias (Anti-Paralysis):** You are an execution engine. Limit your DISCOVER phase to a maximum of 3 exploratory native tool actions (e.g., searching/reading files). Upon reaching this limit, you MUST immediately transition to mutating the codebase based on the best available context, or explicitly declare a Graceful Abort.' (line 41)
+### prompts/fusions/Amputator.md (1 flags)
+- Line 51: [opposing_modality] Must: 'If you fail to find a valid target in `.jules/agent_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' (line 51) vs Never: 'Halt when your locked scope is clean; do not expand your search to satisfy a quota.' (line 60)
+### prompts/fusions/Annotator.md (1 flags)
+- Line 36: [near_duplicate] 'const response = await initiateTransfer(account, { amount: 1000 });' approx equals 'const response = await initiateTransfer(ledgerState, { amount: 1000 });' (line 26)
+### prompts/fusions/Calligrapher.md (1 flags)
+- Line 78: [near_duplicate] '* **Format Prioritization:** Prioritize `.woff2` formats and strip legacy `.eot`, `.svg`, or `.ttf` fallbacks unless explicitly required by a documented legacy browser support matrix.' approx equals '* **The Format Prioritization:** Prioritize `.woff2` formats and strip legacy `.eot`, `.svg`, or `.ttf` fallbacks unless explicitly required by a documented legacy browser support matrix.' (line 53)
+### prompts/fusions/Canner.md (1 flags)
+- Line 5: [near_duplicate] 'Your mission is to seal individual test suites by ripping out shared mutable state and brittle static fixtures, replacing them with hermetic dynamic factories.' approx equals 'SEAL INDIVIDUAL test suites by ripping out shared mutable state and brittle static fixtures, replacing them with hermetic dynamic factories.' (line 4)
+### prompts/fusions/Dispatcher.md (1 flags)
+- Line 47: [near_duplicate] '* **The Source Code Untouchable Constraint:** Any mutation requiring `.ts`, `.py`, or `.js` logic changes is a domain breach. Treat the application layer as an immutable black box.' approx equals '* **The Source Code Untouchable Constraint:** Any mutation requiring `.ts`, `.py`, or `.js` execution logic changes is a catastrophic domain breach. Treat the core application layer as an immutable black box.' (line 44)
+### prompts/fusions/Examiner.md (1 flags)
+- Line 53: [near_duplicate] '**Testing Doctrine:** * Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).' approx equals '* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).' (line 32)
+### prompts/fusions/Hologram.md (1 flags)
+- Line 47: [opposing_modality] Must: 'If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' (line 47) vs Never: 'Halt when your locked scope is clean; do not expand your search to satisfy a quota.' (line 57)
+### prompts/fusions/Inoculator.md (1 flags)
+- Line 49: [opposing_modality] Must: 'If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' (line 49) vs Never: 'Halt when your locked scope is clean; do not expand your search to satisfy a quota.' (line 59)
+### prompts/fusions/Jeweler.md (1 flags)
+- Line 42: [opposing_modality] Must: 'If you fail to find a valid target in `.jules/worker_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' (line 42) vs Never: '⚙️ **POLISH** —  Halt when your locked scope is clean; do not expand your search to satisfy a quota.' (line 52)
+### prompts/fusions/Logician.md (1 flags)
+- Line 23: [near_duplicate] '* | false   | false   | true      | true   |' approx equals '* | false   | true    | *         | true   |' (line 22)
+### prompts/fusions/Lumen.md (1 flags)
+- Line 45: [opposing_modality] Must: 'If you fail to find a valid target in `.jules/agent_tasks.md`, your job is NOT done; you MUST seamlessly transition to a repository-wide discovery scan.' (line 45) vs Never: 'Halt when your locked scope is clean; do not expand your search to satisfy a quota.' (line 56)
+### prompts/fusions/Mulligan.md (1 flags)
+- Line 60: [near_duplicate] '* 🎱 Folding a claustrophobic, div-heavy dashboard and dealing out a sweeping, CSS Grid masterpiece without dropping a single React state hook.' approx equals '* 🃏 Folding a claustrophobic, div-heavy dashboard and dealing out a sweeping, CSS Grid masterpiece without dropping a single React state hook.' (line 8)
+### prompts/fusions/Narrator.md (1 flags)
+- Line 59: [near_duplicate] '**Testing Doctrine:** * Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).' approx equals '* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).' (line 41)
+
+## 7. Recurring Tensions
+- MUST: 'if you fail to find a valid target in .jules/agent tasks.md , your job is not done; you must seamlessly transition to a repository-wide discovery scan.' VS NEVER: 'halt when your locked scope is clean; do not expand your search to satisfy a quota.' (Occurs in 9 files)
+
+## 8. Spot-Check Sample
+- Rank 169: Seawall (prompts/orphans/Seawall.md)
+- Rank 34: Tectonic (prompts/fusions/Tectonic.md)
+- Rank 12: Scavenger (prompts/Scavenger.md)
+- Rank 195: Pruner (prompts/fusions/Pruner.md)
+- Rank 76: Retrofit (prompts/fusions/Retrofit.md)
+- Rank 68: Typesetter (prompts/fusions/Typesetter.md)
+- Rank 63: Sanitizer (prompts/fusions/Sanitizer.md)
+- Rank 41: Barricade (prompts/fusions/Barricade.md)
+- Rank 194: Redliner (prompts/orphans/Redliner.md)
+- Rank 32: LiveFeed (prompts/orphans/LiveFeed.md)
+- Rank 1: Collider (prompts/fusions/Collider.md)
+- Rank 2: Adversary (prompts/fusions/Adversary.md)
+- Rank 3: Paramedic (prompts/Paramedic.md)
+- Rank 4: Hazmat (prompts/fusions/Hazmat.md)
+- Rank 5: Interrogator (prompts/fusions/Interrogator.md)
+- Rank 244: Tokenizer (prompts/orphans/Tokenizer.md)
+- Rank 245: Synchronizer (prompts/fusions/Synchronizer.md)
+- Rank 246: Media Pipeline (prompts/orphans/Media Pipeline.md)
+- Rank 247: Upgrader (prompts/fusions/Upgrader.md)
+- Rank 248: Iconographer (prompts/micro/Iconographer.md)
+
+## 9. Tool Inventory (Missing on VM)
+- **@/**: used by Architect, Ghost Hunter, Plumbline, Zoning Board
+- **@/***: used by Architect, Plumbline
+- **Architecture**: used by Architect, Fractal, Futurist, Groundskeeper, Hoister and more
+- **⚠️**: used by Architect, Bolt+, Cortex, Dispatch, Modernizer and more
+- **math/**: used by Architect, Plumbline
+- **.jules/agent_tasks.md**: used by Architect, Bolt+, Cortex, Dispatch, Helix and more
+- **/types**: used by Architect, Plumbline
+- **index.ts**: used by Architect, City Clerk, Construct, Registrar, Renovator and more
+- **types.ts**: used by Architect, Plumbline, Tectonic
+- **../../**: used by Architect, Plumbline, Zoning Board
+- **main**: used by Architect, Author, Cortex, Dispatch, Helix and more
+- **string/**: used by Architect, Plumbline
+- **__init__.py**: used by Architect, Plumbline
+- **utils/**: used by Architect, Fractal, Plumbline, Zoning Board
+- **<<<<<<<**: used by Author, Helix, Pedant, Scribe, Untangler and more
+- **CONTRIBUTING.md**: used by Author, Cataloger, Ghostwriter, Steward
+- **package.json**: used by Author, Dispatch, Janitor, Modernizer, Navigator and more
+- **Makefile**: used by Author, Envoy, Ghostwriter, Janitor
+- **docker-compose.yml**: used by Author, Bastion, Envoy, Ghostwriter, Marshal and more
+- **README.md**: used by Author, Navigator, Overseer, Archivist, Cartographer and more
+- **docker-compose**: used by Author, Ghostwriter, Janitor
+- **.json**: used by Author, Navigator, Overseer, Cartographer, Cataloger and more
+- **API.md**: used by Author, Ghostwriter
+- **.jules/**: used by Author, Scavenger, Scribe, Untangler, Vibe Check and more
+- **Promise.all**: used by Bolt+, Interrogator, Overdrive
+- **.sh**: used by Bolt+, Untangler, Bulwark, Canvas, Cerberus and more
+- **Map**: used by Bolt+, Overdrive
+- **Set**: used by Bolt+, Overdrive
+- **.js**: used by Bolt+, Untangler, Bulwark, Cerberus, Chameleon and more
+- **gpt-4o**: used by Cortex, Firewall
+- **Zod**: used by Cortex, Cerberus, Reroll, Scout
+- **agent_tasks.md**: used by Cortex, Parallel, Scholar, Yggdrasil, Choreographer and more
+- **AbortController**: used by Cortex, Electrician, Few-Shot Forger, Limiter, Tachyon
+- **fetch**: used by Cortex, Bulwark, Limiter, Occam, Overclock and more
+- **JSON.parse**: used by Cortex, Automata, Bulwark, Cerberus, Quarantine
+- **Dockerfile**: used by Dispatch, Accountant, Bastion, Conveyor, Decommissioner and more
+- **YAML**: used by Dispatch, Accountant, Bastion, Conveyor, Decommissioner and more
+- **.mcp.json**: used by Dispatch, Decommissioner, Demolition, Echodrop, Retrofit and more
+- **.dockerignore**: used by Dispatch, Decommissioner, Echodrop
+- **dependabot.yml**: used by Dispatch, Echodrop, Groundskeeper
+- **GITHUB_TOKEN**: used by Dispatch, Decommissioner, Retrofit
+- **.github/workflows/ci.yml**: used by Dispatch, Adversary, Echodrop
+- **.py**: used by Dispatch, Chronicle, Defibrillator, Dispatcher, Echodrop and more
+- **actions/checkout@v2**: used by Dispatch, Decommissioner, Echodrop, Retrofit
+- **.env.example**: used by Dispatch, Janitor, Sentinel+, Accountant, Bastion and more
+- **for**: used by Helix, Limiter, Retrofitter, Slipstream, Temporal Loom and more
+- **.reduce()**: used by Helix, Sylar, Sprinter
+- **useEffect**: used by Helix, Flourish, Ouija, Proton Pack, Ratchet and more
+- **while**: used by Helix, Hoister, Limiter, Sylar
+- **if/else**: used by Helix, Modernizer, Scavenger, Untangler, Defuser and more
+- **,**: used by Inspector, Illuminator, Purger, Restorer, Autopilot and more
+- **.**: used by Inspector, Illuminator, Purger, Restorer, Spellchecker and more
+- **typescript**: used by Inspector, Spellchecker, Fabricator, Performance Engineer, Stress Tester
+- **).**: used by Inspector, Purger, Spellchecker, Autopilot, Blackbox and more
+- *****: used by Inspector, Janitor, Scribe, Bastion, Press Secretary and more
+- **to**: used by Inspector, Helmsman, Restorer, Spellchecker, Caliper and more
+- **###**: used by Inspector, Hive, Phoenix, Press Secretary, Purger and more
+- **)**: used by Inspector, Illuminator, Press Secretary, Purger, Transition Manager and more
+- **patch_*.sh**: used by Janitor, Superintendent
+- **.DS_Store**: used by Janitor, Superintendent
+- **config/local.env**: used by Janitor, Superintendent
+- **patches/**: used by Janitor, Superintendent
+- **.diff**: used by Janitor, Untangler, Bulwark, Cerberus, Chameleon and more
+- **.swp**: used by Janitor, Superintendent
+- **.gitattributes**: used by Janitor, Superintendent
+- **verification*.png**: used by Janitor, Superintendent
+- **update_*.py**: used by Janitor, Superintendent
+- **.gitignore**: used by Janitor, Decommissioner, Revoker, Superintendent
+- **.patch**: used by Janitor, Superintendent
+- **plan.md**: used by Janitor, Superintendent
+- **__pycache__**: used by Janitor, Hazmat, Superintendent, Janitor
+- **sk_live_**: used by Janitor, Keymaster, Superintendent
+- **modify_*.py**: used by Janitor, Superintendent
+- **fix_*.py**: used by Janitor, Superintendent
+- **fix.diff**: used by Janitor, Superintendent
+- **SEARCH/REPLACE**: used by Modernizer, Navigator, Overseer, Paramedic, Scavenger and more
+- **async/await**: used by Modernizer, Catalyst, Collider, Inoculator, Refiner and more
+- **require()**: used by Modernizer, Paramedic, Collider, Terraformer, Transition Manager
+- **var**: used by Modernizer, Collider, Prefect, Refiner, Retrofitter and more
+- **Object.assign({},**: used by Modernizer, Retrofitter
+- **.then()**: used by Modernizer, Catalyst, Collider, Inoculator, Yggdrasil
+- **let**: used by Modernizer, Untangler, Canner, Collider, Prefect and more
+- **Object.assign**: used by Modernizer, Retrofitter
+- **const**: used by Modernizer, Untangler, Auditor, Collider, Hoister and more
+- **||**: used by Modernizer, Switchboard
+- **%s**: used by Modernizer, Interpolator, Wordsmith
+- **&&**: used by Modernizer, Sentinel+, Adversary, Annotator, Antibody and more
+- **+**: used by Modernizer, Pedant, Interpolator, Cryptographer
+- **Auth.js**: used by Navigator, Phoenix
+- **Pydantic**: used by Navigator, Cerberus
+- **date-fns**: used by Navigator, Liquidator
+- **mtime**: used by Navigator, Scribe, Harbormaster
+- **ROADMAP.md**: used by Navigator, Chronicler, Harbormaster, Strategist
+- **f8a92b1**: used by Navigator, Harbormaster
+- **payment.js**: used by Overseer, Zoning Board
+- **[TRANSFORMER]**: used by Overseer, Zoning Board
+- **/mock-data**: used by Overseer, Zoning Board
+- **[REFACTORER]**: used by Overseer, Zoning Board
+- **js/Services/AgentRepository.js**: used by Overseer, Zoning Board
+- **src/core/RosterApp.js**: used by Overseer, Zoning Board
+- **The**: used by Overseer, Zoning Board
+- **@media**: used by Palette+, Sculptor, Stylist
+- **transition-all**: used by Palette+, Hologram
+- **focus-visible**: used by Palette+, Chameleon
+- **aria-label**: used by Palette+, Grammarian, Wordsmith
+- **<button>**: used by Palette+, Chameleon, Wordsmith
+- **!important**: used by Palette+, Finesse
+- **div**: used by Palette+, Viewmorph
+- **<div>**: used by Palette+, Vibe, Millisecond, Information Architect
+- **dist/**: used by Paramedic, Hazmat
+- **build/**: used by Paramedic, Hazmat
+- **tsc**: used by Paramedic, Oracle, Ratchet, Registrar, Whistleblower and more
+- **.skip**: used by Paramedic, Canvas, Reroll, Respawn, Respec
+- **enum**: used by Pedant, Auditor, PathCentralizer
+- **margin**: used by Pedant, Flourish, Sculptor
+- **any**: used by Pedant, Vibe, Cerberus, Glossary, Oracle and more
+- **if**: used by Pedant, Scavenger, Amputator, Auditor, Automata and more
+- **node_modules**: used by Pedant, Decoder, Foreman
+- **{**: used by Scavenger, Auditor, Decoder, Millisecond, Retrofitter
+- **catch**: used by Scavenger, Amputator, Cerberus, Inoculator, Toxicologist and more
+- **//**: used by Scavenger, Amputator, Archivist, Exorcist, Revisionist and more
+- **console.log()**: used by Scavenger, Zen
+- **export**: used by Scavenger, Collider, Hyperloop, Scaffolder, Transition Manager
+- **{}**: used by Scavenger, Millisecond
+- **try/catch**: used by Scavenger, Vibe Check, Bulwark, Cerberus, Coroner and more
+- **roster-payload.json**: used by Scavenger, Untangler, Hazmat, Launchpad, Smith and more
+- **CHANGELOG.md**: used by Scribe, Retcon, Strategist
+- **Security**: used by Sentinel+, Cerberus, Firewall, First Responder, Keymaster and more
+- **;**: used by Sentinel+, Adversary, Annotator, Antibody, Canner and more
+- **dangerouslySetInnerHTML**: used by Sentinel+, First Responder, Aegis
+- **try/finally**: used by Sentinel+, Sanitizer
+- **SELECT**: used by Sentinel+, Temporal Loom
+- **process.env**: used by Sentinel+, Prophet, Revoker, Sandboxer
+- **[x]**: used by Untangler, Chronicler, Futurist, Ghost Hunter, Interrogator and more
+- **SyntaxError**: used by Untangler, Vibe Check, Vibe, Launchpad, Choreographer
+- **switch**: used by Untangler, Defuser, Slipstream, Smith
+- **workspace:***: used by Vibe Check, Ghostwriter, Plumbline
+- **.d.ts**: used by Vibe Check, Overdrive, Plumbline
+- **TODO**: used by Vibe, Prophet
+- **requirements.txt**: used by Vibe, Marshal, Synchronizer, Watchtower
+- **try/except**: used by Vibe, Temporal Loom
+- **500**: used by Accountant, Quartermaster
+- **<div**: used by Acetone, Hologram, Vice
+- **.jules/journal_ux.md**: used by Acetone, Calligrapher, Canvas, Espresso, Grammarian and more
+- **style**: used by Acetone, Restorer
+- **.scss**: used by Acetone, Stylist, Vice
+- **jest.setup.js**: used by Adversary, Overclock
+- **.jules/journal_testing.md**: used by Adversary, Annotator, Antibody, Auditor, Canner and more
+- **.deb**: used by Amputator, Antibody, Bulwark, Catalyst, Cerberus and more
+- **try-catch**: used by Amputator, Automata
+- **.jules/journal_operations.md**: used by Amputator, Inoculator, Launchpad, Limiter, Tokenizer
+- **user.role**: used by Annotator, Gatekeeper
+- **jest.spyOn**: used by Annotator, Sandboxer
+- **beforeEach**: used by Annotator, Antibody, Canner, Overclock, Respec and more
+- **await**: used by Antibody, Flourish, Inoculator, Ouija, Tachyon
+- **.jules/journal_docs.md**: used by Archivist, Glossary, Logician, Marshal, Profiler and more
+- **@param**: used by Archivist, Oracle, Revisionist
+- **ARCHITECTURE.md**: used by Archivist, Cartographer, Cataloger, Steward
+- **@throws**: used by Archivist, Oracle
+- **@see**: used by Archivist, Chronicler, Sunsetter
+- **constants.ts**: used by Auditor, Hoister
+- **.jules/journal_strategy.md**: used by Automata, Hyperloop
+- **functions**: used by Automata, Futurist
+- **properties**: used by Automata, Caliper
+- **/**: used by Automata, Restorer, Caliper, Captionist, Performance Engineer
+- **tools**: used by Automata, Futurist
+- **.jules/journal_security.md**: used by Barricade, Cerberus, Defuser, Firewall, First Responder and more
+- **/health**: used by Barricade, Watchtower
+- **.jules/journal_architecture.md**: used by Bastion, Bulwark, Fractal, Futurist, Groundskeeper and more
+- **match**: used by Bastion, Defuser
+- **axios**: used by Bulwark, Quarantine, Safety Inspector, Siren, Steward
+- **.catch()**: used by Bulwark, Pantomime
+- **JSON.parse()**: used by Bulwark, First Responder, Mitosis
+- **fetch()**: used by Bulwark, Cerberus, Hyperloop, Liquidator, PathCentralizer and more
+- **.svg**: used by Calligrapher, Terraformer
+- **string**: used by Calligrapher, Whistleblower, Publicist
+- **afterEach(()**: used by Canner, Sandboxer
+- **setupTests.ts**: used by Canner, Sandboxer
+- **jest.useFakeTimers()**: used by Canner, Overclock, Sandboxer
+- **document.body**: used by Canner, Sandboxer
+- **setTimeout**: used by Canner, Interrogator, Ouija, Overclock, Respec
+- **expect()**: used by Canner, Interrogator, Narrator, Sandboxer
+- **afterEach**: used by Canner, Respec, Sandboxer
+- **buildMockDB(overrides)**: used by Canner, Sandboxer
+- **xit**: used by Canvas, Reroll, Respawn, Respec
+- **html/template**: used by Canvas, Flourish
+- **.jules/journal_observability.md**: used by Cartographer, Telemetrist, Watchtower
+- **.jules/worker_tasks.md**: used by Catalyst, Cerberus, Firewall, First Responder, Hologram and more
+- **Intl**: used by Catalyst, Fractal
+- **undefined**: used by Catalyst, Collider, Coroner, Decoder, Hoister and more
+- **.jules/journal_performance.md**: used by Catalyst, Pacemaker, Vice
+- **Record<string,**: used by Cerberus, Fractal
+- **/login**: used by Cerberus, Customs
+- **<a>**: used by Chameleon, Helmsman, Telepath, Wordsmith
+- **onClick**: used by Chameleon, Mulligan, Viewmorph
+- **opacity:**: used by Chameleon, Sculptor
+- **transform:**: used by Chameleon, Sculptor, Vice
+- **<input>**: used by Chameleon, Pathfinder
+- **opacity**: used by Chameleon, Flourish, Sculptor, Vice
+- **disabled**: used by Chameleon, LiveFeed
+- **.jules/temp_backup/**: used by Chameleon, Customs, Logician, Medic, Overdrive and more
+- **:hover**: used by Chameleon, Sculptor, Viewmorph
+- **transform**: used by Chameleon, Flourish, Sculptor, Vice
+- **:focus-visible**: used by Chameleon, Sculptor
+- **transition**: used by Chameleon, Sculptor
+- **v2**: used by Checkpoint, Retrofit
+- **.txt**: used by Chronicle, Lumen, Retcon
+- **.md**: used by Chronicle, Retcon, Strategist, Nomenclator
+- **.ts**: used by Chronicle, Defibrillator, Dispatcher, Echodrop, Expediter and more
+- **index.tsx**: used by City Clerk, Construct
+- **utils.ts**: used by City Clerk, Hoister, Warden
+- **.map()**: used by Collider, Profiler, Retrofitter, Sprinter
+- **.then().catch()**: used by Collider, Temporal Loom, Transition Manager
+- **module.exports**: used by Collider, Transition Manager
+- **null**: used by Collider, Forensic Architect, Keymaster, Oracle, Quarantine and more
+- **switch/case**: used by Collider, Sylar, Systematizer, Weaver, Yggdrasil
+- **import**: used by Collider, Purger, Terraformer, Transition Manager
+- **RUN**: used by Conveyor, Switchboard
+- **.gitlab-ci.yml**: used by Conveyor, Expediter, Groundskeeper, Launchpad
+- **urls.py**: used by Dead-Ender, Scaffolder
+- **<Route>**: used by Dead-Ender, Redirector
+- **App.tsx**: used by Dead-Ender, Temporal Loom
+- **<Link>**: used by Dead-Ender, Helmsman, PathCentralizer, Telepath
+- **📈**: used by Decoder, Prompt Engineer, Yggdrasil
+- **⚙️**: used by Decoder, Prompt Engineer, Yggdrasil
+- **KeyError**: used by Decoder, Toxicologist
+- **✅**: used by Decoder, Prompt Engineer, Yggdrasil, Fabricator, Information Architect
+- **📊**: used by Decoder, Mapper, Pruner, Registrar
+- **.github/workflows/**: used by Decommissioner, Expediter, Greenlight, Groundskeeper, Launchpad
+- **.github/workflows/deploy.yml**: used by Decommissioner, Temporal Loom
+- **set**: used by Defibrillator, Prefect
+- **yamllint**: used by Defibrillator, Respawn
+- **-**: used by Defuser, Phoenix, Choreographer, Cryptographer, Historian and more
+- **return**: used by Defuser, Inoculator, Proton Pack, Pruner, Slipstream
+- **.github/workflows**: used by Discharge, Envoy, Harbormaster, Retrofit, Warden
+- **v4**: used by Echodrop, Retrofit
+- **system**: used by Electrician, Futurist
+- **src/ai/**: used by Few-Shot Forger, Foresight
+- **prompts/**: used by Few-Shot Forger, Iconographer
+- **style={{}}**: used by Finesse, Typesetter
+- **height**: used by Flourish, Sculptor, Vice
+- **fatal**: used by Forensic Architect, Surgeon
+- **crash**: used by Forensic Architect, Surgeon
+- **.jules/journal_feature.md**: used by Foresight, Phoenix
+- **.prompt**: used by Foresight, Lumen
+- **<T>**: used by Fractal, Oracle
+- **lib/**: used by Fractal, Greenlight
+- **${var}**: used by Futurist, Wordsmith
+- **Priority**: used by Gatekeeper, Quarantine
+- **WHERE**: used by Gatekeeper, Aegis
+- **tsconfig.json**: used by Ghost Hunter, Ratchet, Retcon, Rulemaker, Zealot
+- **.jules/journal_hygiene.md**: used by Ghost Hunter, Helmsman, Hitman, Lexicon, Liquidator and more
+- **Docs**: used by Glossary, Logician, Profiler
+- **status**: used by Glossary, Diplomat
+- **@description**: used by Glossary, Transition Manager
+- **/****: used by Glossary, Keymaster, Ouija
+- **[Skip]**: used by Grammarian, Groundskeeper, Lumberjack, Mapper, Millisecond and more
+- **src/**: used by Greenlight, Organizer
+- **throw**: used by Greenlight, Mapper, Pruner, Temporal Loom, Triage and more
+- **[PLATFORM**: used by Groundskeeper, Lumberjack, Pathfinder, Pruner, Transfusion
+- **package-lock.json**: used by Hazmat, Jeweler, Upgrader
+- **href**: used by Helmsman, Redirector
+- **301**: used by Helmsman, Redirector
+- **<meta**: used by Helmsman, Prefect
+- **<a**: used by Helmsman, Redirector
+- **Hygiene**: used by Helmsman, Hitman, Lexicon, Lumberjack, Refiner and more
+- **next.config.js**: used by Helmsman, Redirector, Scaffolder
+- ****Learning:****: used by Hive, Prophet
+- **new**: used by Hoister, Sanitizer, Vector
+- **useCallback**: used by Hoister, Millisecond
+- **formatDate**: used by Hoister, Propagator
+- **UX**: used by Hologram, Sculptor
+- **Cache-Control**: used by Hyperloop, Payload
+- **getServerSideProps**: used by Hyperloop, PathCentralizer
+- **but**: used by Illuminator, Restorer, Spellchecker
+- **and**: used by Illuminator, Standardizer, Autopilot, Caliper, Canon and more
+- **context.WithTimeout**: used by Inoculator, Liquidator
+- **Operations**: used by Inoculator, Launchpad, Limiter
+- **aria-***: used by Interrogator, Renovator
+- **Testing**: used by Interrogator, Jeweler
+- **aria-disabled="true"**: used by Jeweler, LiveFeed
+- **<form>**: used by Jeweler, Streamliner
+- **.env**: used by Keymaster, Launchpad, Quartermaster, Retcon, Revoker and more
+- **🎯**: used by Launchpad, Overclock, Registrar, Watchtower, Yggdrasil and more
+- **structuredClone**: used by Liquidator, Sylar
+- **else**: used by Lumberjack, Slipstream
+- **except**: used by Lumberjack, Toxicologist, Triage
+- **<thinking>**: used by Mapper, Mitosis, Triage, Echo
+- **onChange**: used by Millisecond, Mulligan
+- **window**: used by Mitosis, Proton Pack
+- **.test.ts**: used by Mixologist, Obituary Writer, Surveyor, Wordsmith, Sandboxer
+- **.css**: used by Mulligan, Renovator, Scaffolder, Stylist
+- **.tsx**: used by Mulligan, Renovator
+- **onSubmit**: used by Mulligan, Pathfinder
+- **@deprecated**: used by Obituary Writer, Parallel, Prophet, Revisionist, Sunsetter and more
+- **request_code_review**: used by Overdrive, Policy Maker, Vector
+- **finally**: used by Pantomime, Sanitizer, Triage
+- **isLoading**: used by Pantomime, Renovator, Choreographer, LiveFeed
+- **<Suspense>**: used by Pantomime, Renovator
+- **<ErrorBoundary>**: used by Pantomime, Renovator
+- **isSubmitting**: used by Pantomime, Choreographer
+- **<Modal>**: used by Pathfinder, Streamliner
+- **Hallucination**: used by Phoenix, Strategist
+- **.create()**: used by Policy Maker, Tachyon
+- **jest.mock**: used by Polygraph, Sandboxer
+- **#**: used by Prefect, Revisionist
+- **/***: used by Prefect, Shredder
+- **Mandate**: used by Press Secretary, Purger, Restorer, Spellchecker, Autopilot and more
+- **markdown**: used by Press Secretary, Fabricator, Information Architect
+- **or**: used by Press Secretary, Purger, Autopilot, Blackbox, Caliper and more
+- **file.**: used by Press Secretary, Autopilot, Blackbox
+- **{{var}}**: used by Prompt Engineer, Wordsmith
+- **clearInterval**: used by Proton Pack, Sanitizer
+- **IntersectionObserver**: used by Proton Pack, Reroll, Streamliner, Telepath
+- **setInterval**: used by Proton Pack, Sanitizer
+- **break**: used by Pruner, Slipstream, Yggdrasil
+- **files**: used by Purger, Redliner
+- **directory.**: used by Purger, Restorer
+- **error**: used by Purger, Ratchet, Zealot
+- **),**: used by Purger, Autopilot, Blackbox, Caliper, Diplomat and more
+- **javascript**: used by Purger, Autopilot, Blackbox, Diplomat, Orator and more
+- **.png**: used by Purger, Terraformer, Media Pipeline
+- **/public**: used by Purger, Terraformer
+- **defer**: used by Quarantine, Sanitizer
+- **exhaustive-deps**: used by Ratchet, Zealot
+- **warn**: used by Ratchet, Zealot
+- **useQuery**: used by Renovator, Steward
+- **mechanics.**: used by Restorer, Redactor, Redliner
+- **tag**: used by Restorer, Publicist
+- **missing**: used by Restorer, Blackbox, Seawall
+- **tags**: used by Restorer, Captionist, Information Architect, Polyglot, Publicist and more
+- **attributes**: used by Restorer, Canon
+- **html**: used by Restorer, Captionist, Information Architect, Publicist
+- **where**: used by Restorer, Redactor
+- **that**: used by Restorer, Autopilot, Caliper, Captionist
+- **class**: used by Retrofitter, Transition Manager, Yggdrasil
+- **function**: used by Retrofitter, Spellchecker
+- **reduce**: used by Retrofitter, Vector
+- **process.env.STRIPE_SECRET_KEY**: used by Revoker, Siren
+- **key**: used by Revoker, Redliner
+- **STYLEGUIDE.md**: used by Rulemaker, Swatch
+- **react-router-dom**: used by Safety Inspector, Upgrader
+- **lodash**: used by Safety Inspector, Vector
+- **display:**: used by Sculptor, Streamliner
+- **left**: used by Sculptor, Vice
+- **continue**: used by Slipstream, Yggdrasil
+- **err**: used by Slipstream, Temporal Loom
+- **in**: used by Spellchecker, Caliper, Redliner
+- **en.json**: used by Standardizer, Wordsmith
+- **style={{**: used by Streamliner, Stylist
+- **13px**: used by Stylist, Typesetter
+- **rem**: used by Stylist, Viewmorph
+- **tailwind.config.js**: used by Stylist, Swatch
+- **performance.now()**: used by Telemetrist, Speed Camera
+- **.jpg**: used by Terraformer, Media Pipeline
+- **.webp**: used by Terraformer, Media Pipeline
+- **_**: used by Toxicologist, Zealot
+- **window.localStorage**: used by Transfusion, Sandboxer
+- **componentDidMount**: used by Transition Manager, Yggdrasil
+- **<picture>**: used by Vice, Media Pipeline
+- **loading="lazy"**: used by Vice, Media Pipeline
+- **framer-motion**: used by Viewmorph, Choreographer
+- **<svg>**: used by Viewmorph, Media Pipeline, Tokenizer
+- **useState**: used by Yggdrasil, LiveFeed
+- **.jules/agents_journal.md**: used by Echo, Iconographer
+- **prompts/fusions/**: used by Iconographer, Nomenclator
+- **instead**: used by Autopilot, Information Architect
+- **—**: used by Autopilot, Orator
+- **calls**: used by Autopilot, Blackbox, Fabricator, Redactor
+- **vs**: used by Blackbox, Fabricator, Orator
+- **before**: used by Blackbox, Redactor
+- **upon**: used by Caliper, Canon
+- **tsx**: used by Canon, Polyglot
+- **block.**: used by Captionist, Diplomat
+- **<img>**: used by Choreographer, Media Pipeline
+- **on**: used by Diplomat, Orator, Sprinter
+- ****Path:****: used by Fabricator, Information Architect
+- **❌**: used by Fabricator, Information Architect
+- **calls,**: used by Fabricator, Orator
+- **chains**: used by Information Architect, Performance Engineer
+- **tags.**: used by Information Architect, Publicist
+- **containing**: used by Orator, Redliner
+- **);**: used by Orator, Performance Engineer, Speed Camera
+- **nested**: used by Performance Engineer, Sprinter
+- **dictionary**: used by Performance Engineer, Polyglot, Sprinter
+- **into**: used by Performance Engineer, Sprinter
+- **element**: used by Publicist, Virtuoso
+- **keys**: used by Redactor, Redliner
+- **loops**: used by Speed Camera, Sprinter
+- **loop**: used by Speed Camera, Sprinter
+
+
+## 10. Rank Stability
+### Tiers
+- **Top**: 79
+- **Middle**: 69
+- **Bottom**: 74
+- **Unstable**: 26
+
+### Top 10 Most Unstable
+- Amputator (Range: 86 to 147)
+- Hologram (Range: 136 to 197)
+- Canner (Range: 141 to 202)
+- Lumen (Range: 146 to 207)
+- PathCentralizer (Range: 154 to 215)
+- Jeweler (Range: 100 to 159)
+- Vibe (Range: 138 to 197)
+- Untangler (Range: 129 to 187)
+- Inoculator (Range: 71 to 128)
+- Catalyst (Range: 135 to 192)
+
+## 11. Effect Report
+Previous run scores not found. Skipping effect report.
+
+## 12. Blind Spots
 The graders cannot judge domain correctness, whether a command works on a given repo, or reasoning quality. Treat the ranking as triage, not a verdict.

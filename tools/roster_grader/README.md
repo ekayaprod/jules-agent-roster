@@ -2,5 +2,5 @@
 
 To rerun the grader, run:
 ```bash
-python3 tools/roster-grader/main.py
+PYTHONPATH=. python3 tools/roster_grader/main.py
 ```

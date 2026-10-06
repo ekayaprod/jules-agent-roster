@@ -1,8 +1,5 @@
 import re
-import json
-from pathlib import Path
 from collections import Counter
-import os
 
 STOPLIST = {"the", "a", "an", "and", "or", "but", "if", "for", "to", "in", "of", "on", "with", "as", "at", "by", "from", "it", "this", "that", "these", "those", "is", "are", "was", "were", "be", "been", "being", "have", "has", "had", "do", "does", "did"}
 
@@ -51,35 +48,62 @@ def extract_instruction_units_from_text(text, imperative_lexicon):
     """
     Split content into instruction units: list items, or sentences that start with an imperative verb
     or contain must, never, always, ensure, do not.
+    Keep the line number mapping. Split multi-line blocks into separate units on line breaks and bullets.
+    Returns: list of dicts: [{"text": orig_text, "line": line_number, "norm": normalized_text}]
     """
     units = []
 
-    # Simple sentence splitting by . ! ?
-    sentences = re.split(r'(?<=[.!?])\s+', text)
+    # Track line numbers mapping using find() or simple iteration
+    lines = text.split('\n')
 
-    for sentence in sentences:
-        sentence = sentence.strip()
-        if not sentence:
+    for i, line in enumerate(lines):
+        line_num = i + 1
+
+        # Simple sentence splitting by . ! ? on each line independently
+        sentences = re.split(r'(?<=[.!?])\s+', line)
+
+        for sentence in sentences:
+            sentence = sentence.strip()
+            if not sentence:
+                continue
+
+            norm = normalize_text(sentence)
+            if not norm:
+                continue
+
+            # Check if list item
+            is_list_item = bool(re.match(r'^[\*\-\+]|\d+\.', sentence))
+
+            # Check keywords
+            contains_keyword = bool(re.search(r'\b(must|never|always|ensure|do not)\b', norm))
+
+            # Check imperative verb
+            first_word = norm.split()[0]
+            starts_with_imperative = first_word in imperative_lexicon
+
+            if is_list_item or contains_keyword or starts_with_imperative:
+                units.append({"text": sentence, "line": line_num, "norm": norm})
+
+    # Deduplicate keeping line mapping
+    unique_units = []
+    seen_normalized = set()
+
+    for unit in units:
+        norm = unit["norm"]
+        if norm in seen_normalized:
             continue
 
-        norm = normalize_text(sentence)
-        if not norm:
-            continue
+        is_dup = False
+        for existing in seen_normalized:
+            if compute_jaccard(norm, existing) >= 0.8:
+                is_dup = True
+                break
 
-        # Check if list item
-        is_list_item = bool(re.match(r'^[\*\-\+]|\d+\.', sentence))
+        if not is_dup:
+            seen_normalized.add(norm)
+            unique_units.append(unit)
 
-        # Check keywords
-        contains_keyword = bool(re.search(r'\b(must|never|always|ensure|do not)\b', norm))
-
-        # Check imperative verb
-        first_word = norm.split()[0]
-        starts_with_imperative = first_word in imperative_lexicon
-
-        if is_list_item or contains_keyword or starts_with_imperative:
-            units.append(sentence)
-
-    return deduplicate_lines(units)
+    return unique_units
 
 def parse_file(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
@@ -120,17 +144,14 @@ def derive_lexicon_and_boilerplate(files):
     for f in files:
         parsed = parse_file(f)
 
-        # For boilerplate tracking, we just use unique normalized lines from this file
         for norm_line in parsed['unique_normalized_lines']:
             line_counts[norm_line] += 1
 
-        # For list items tracking
         for line in parsed['unique_raw_lines']:
             if re.match(r'^\s*([\*\-\+]|\d+\.)', line):
                 norm = normalize_text(line)
                 if norm:
                     first_word = norm.split()[0]
-                    # Remove non-alpha from first word just in case
                     first_word = re.sub(r'[^a-z]', '', first_word)
                     if first_word and first_word not in STOPLIST:
                         list_item_starts[first_word] += 1
@@ -139,3 +160,14 @@ def derive_lexicon_and_boilerplate(files):
     boilerplate = {line for line, count in line_counts.items() if count >= (total_files * 0.1)}
 
     return imperative_lexicon, boilerplate, line_counts
+
+def is_boilerplate(unit_norm, boilerplate_set):
+    """
+    Fuzzy match boilerplate (Jaccard >= 0.8)
+    """
+    if unit_norm in boilerplate_set:
+        return True
+    for bp in boilerplate_set:
+        if compute_jaccard(unit_norm, bp) >= 0.8:
+            return True
+    return False

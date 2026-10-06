@@ -79,8 +79,11 @@ def score_dimension_h(units, text, boilerplate):
     config = load_or_init_config()
 
     concrete_units = 0
-    for u in units:
-        if u not in boilerplate and detect_anchors(u, config, boilerplate):
+    from tools.roster_grader.parser import is_boilerplate
+    for unit_obj in units:
+        u_norm = unit_obj["norm"]
+        u_text = unit_obj["text"]
+        if not is_boilerplate(u_norm, boilerplate) and detect_anchors(u_text, config, boilerplate):
             concrete_units += 1
 
     # Log-scaled payload (add 1 to avoid log(0))

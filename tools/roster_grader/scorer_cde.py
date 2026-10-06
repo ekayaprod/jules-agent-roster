@@ -3,22 +3,21 @@ import re
 def score_dimension_c(units, config, boilerplate):
     """
     C. Decision Logic and Termination
-    Count conditionals whose predicate contains a concrete anchor, ordered steps,
-    explicit bounds (max, at most, no more than, limit + number),
-    completion or stop conditions, and fallbacks or tie-breakers.
-    Normalize per 100 instruction units.
+    units is a list of dicts: {"text": ..., "norm": ..., "line": ...}
     """
     from tools.roster_grader.scorer_ab import detect_anchors
+    from tools.roster_grader.parser import is_boilerplate
 
     total = 0
     if not units:
         return 0
 
-    for unit in units:
-        if unit in boilerplate:
+    for unit_obj in units:
+        unit = unit_obj["text"]
+        norm = unit_obj["norm"]
+        if is_boilerplate(norm, boilerplate):
             continue
 
-        norm = unit.lower()
         score_for_unit = 0
 
         # Conditionals with anchors
@@ -49,23 +48,19 @@ def score_dimension_c(units, config, boilerplate):
 
 
 def score_dimension_d(units, config, boilerplate):
-    """
-    D. Verification and Evidence
-    Count instructions that run a concrete check (test, lint, build, typecheck, benchmark command),
-    define acceptance criteria, or require before/after evidence in the PR output.
-    Weight a named command above a bare "verify your work".
-    """
     from tools.roster_grader.scorer_ab import detect_anchors
+    from tools.roster_grader.parser import is_boilerplate
 
     total = 0
     if not units:
         return 0
 
-    for unit in units:
-        if unit in boilerplate:
+    for unit_obj in units:
+        unit = unit_obj["text"]
+        norm = unit_obj["norm"]
+        if is_boilerplate(norm, boilerplate):
             continue
 
-        norm = unit.lower()
         has_anchor = len(detect_anchors(unit, config, boilerplate)) > 0
 
         # Concrete checks
@@ -83,24 +78,19 @@ def score_dimension_d(units, config, boilerplate):
 
 
 def score_dimension_e(units, config, boilerplate):
-    """
-    E. Blast-Radius Control
-    Count concrete scope limits: paths or files not to touch, numeric caps on files
-    or lines changed, revert or rollback conditions, and "do not" constraints
-    with a concrete object.
-    Vague caution ("be careful") scores zero.
-    """
     from tools.roster_grader.scorer_ab import detect_anchors
+    from tools.roster_grader.parser import is_boilerplate
 
     total = 0
     if not units:
         return 0
 
-    for unit in units:
-        if unit in boilerplate:
+    for unit_obj in units:
+        unit = unit_obj["text"]
+        norm = unit_obj["norm"]
+        if is_boilerplate(norm, boilerplate):
             continue
 
-        norm = unit.lower()
         has_anchor = len(detect_anchors(unit, config, boilerplate)) > 0
 
         # Revert or rollback
