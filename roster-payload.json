@@ -1512,8 +1512,8 @@
     "role": "Deletion Specialist",
     "category": "Hygiene",
     "tier": "Mythic",
-    "description": "Eradicate unimported components and immediately hunt down the heavy \"ghost\" images and static assets they leave behind.",
-    "forge_version": "V84",
+    "description": "ERADICATE unimported components and immediately hunt down the heavy \"ghost\" images and static assets they leave behind.",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Purger.md",
     "isCustom": true
   },
