@@ -15,9 +15,9 @@ any,15,No
 null,15,No
 aria-label,14,No
 undefined,14,No
+docker-compose.yml,13,No
 docker,13,Yes
 index.ts,13,No
-docker-compose.yml,12,No
 throw,12,No
 en.json,10,No
 opacity,9,No
@@ -49,11 +49,11 @@ except,5,No
 xit,5,No
 functions,5,No
 it,5,No
-node_modules,4,No
 dependabot.yml,4,No
 process.env,4,No
 requirements.txt,4,No
 axios,4,No
+v2,4,No
 error,4,No
 req.body,4,No
 transition,4,No
@@ -71,6 +71,7 @@ title,4,No
 aria-live,4,No
 raise,4,No
 enum,3,No
+node_modules,3,No
 mtime,3,No
 ls,3,Yes
 sed,3,Yes
@@ -78,12 +79,13 @@ awk,3,Yes
 types.ts,3,No
 div,3,No
 find,3,Yes
+env,3,Yes
+ubuntu-latest,3,No
 console.log,3,No
 exhaustive-deps,3,No
 request_code_review,3,No
 size-adjust,3,No
 ascent-override,3,No
-v2,3,No
 try,3,No
 module.exports,3,No
 top,3,Yes
@@ -213,6 +215,11 @@ custom_agents.json,1,No
 eslint-report.json,1,No
 id,1,Yes
 debugger,1,No
+v4.3.1,1,No
+latest,1,No
+v2.1.0,1,No
+ubuntu-22.04,1,No
+yaml,1,No
 off,1,No
 eslint.config.js,1,No
 print,1,No
@@ -349,7 +356,6 @@ delay,1,No
 fs,1,No
 bcrypt,1,No
 rich,1,No
-ubuntu-latest,1,No
 prettier,1,Yes
 window.,1,No
 process.env.,1,No
@@ -398,7 +404,6 @@ tool_calls.function.name,1,No
 properties,1,No
 parameters,1,No
 mcp.json,1,No
-env,1,Yes
 claude_desktop_config.json,1,No
 index.js,1,No
 webpack,1,Yes
