@@ -94,7 +94,7 @@ class AgentCard {
     const isFusionAgent = typeof index === 'string' && Number.isNaN(Number(index));
     const pinHtml =
       index !== undefined && index !== null && index !== '' && isFusionAgent
-        ? `<button class="icon-btn pin-btn ${pinClass} transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" aria-pressed="${String(Boolean(isPinned))}">📌</button>`
+        ? `<button class="icon-btn pin-btn ${pinClass} transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" data-action="toggle-pin" data-index="${index}" aria-label="Toggle Pin" aria-pressed="${String(Boolean(isPinned))}">📌</button>`
         : '';
 
     // Splay Out Child Fusions Logic (Refactored to Modal Trigger)
@@ -103,7 +103,7 @@ class AgentCard {
     const fusionIndex = window.rosterApp?.fusionLab?.fusionIndex;
 
     if (hasValidIndex && AgentCard._hasChildFusions(agent.name, fusionIndex)) {
-      fusionQuickListHtml = `<div class="fusions-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
+      fusionQuickListHtml = `<div class="fusions-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" data-action="open-fusions-modal" data-index="${index}" aria-label="View Available Fusions" title="View Available Fusions" role="button" tabindex="0">▼</div>`;
     }
 
     const repoPicker = document.getElementById('julesRepoPicker');
@@ -118,7 +118,7 @@ class AgentCard {
 
     const safeAgentName = FormatUtils.escapeHTML(agent.name || '');
     const downloadFusionsBtnHtml = !isFusionAgent
-      ? `<button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="download-parent-fusions" data-parent-name="${safeAgentName}" role="menuitem" aria-label="Download Unlocked Fusions">🧬 Download Fusions</button>`
+      ? `<button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 active:scale-95 hover:shadow-md" data-action="download-parent-fusions" data-parent-name="${safeAgentName}" role="menuitem" aria-label="Download Unlocked Fusions">🧬 Download Fusions</button>`
       : '';
 
     card.innerHTML = `
@@ -141,26 +141,26 @@ class AgentCard {
                         <div class="description mt-3">${desc}</div>
                     </div>
                     ${fusionQuickListHtml}
-                    <button class="flip-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" aria-label="Tap to view protocol" >↺</button>
+                    <button class="flip-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" aria-label="Tap to view protocol" >↺</button>
                 </div>
 
                 <div class="flip-card-back" data-action="flip-card-back">
-                    <button class="flip-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" aria-label="Tap to view front" >↺</button>
+                    <button class="flip-hint transition-all duration-300 ease-in-out hover:scale-110 active:scale-95 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" aria-label="Tap to view front" >↺</button>
                     <div class="prompt-scroll-area" id="prompt-content-${index}"></div>
                     
                     <div class="card-actions mt-auto pt-2 flex relative">
-                        <button class="secondary action-main-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="${primaryAction}" data-index="${index}" title="${primaryTitle}" aria-label="${primaryTitle}">
+                        <button class="secondary action-main-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 active:scale-95 hover:shadow-md" data-action="${primaryAction}" data-index="${index}" title="${primaryTitle}" aria-label="${primaryTitle}">
                             <span class="btn-text">${primaryText}</span>
                         </button>
-                        <button class="secondary action-toggle-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="toggle-card-dropdown" data-index="${index}" aria-label="More options" aria-haspopup="menu" aria-expanded="false" aria-controls="card-dropdown-${index}">
+                        <button class="secondary action-toggle-btn transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 active:scale-95 hover:shadow-md" data-action="toggle-card-dropdown" data-index="${index}" aria-label="More options" aria-haspopup="menu" aria-expanded="false" aria-controls="card-dropdown-${index}">
                             ▼
                         </button>
                         
                         <!-- Custom Agent Dropdown -->
                         <div class="dropdown-menu" id="card-dropdown-${index}" role="menu">
-                            <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="${dropdownAction}" data-index="${index}" role="menuitem" aria-label="${dropdownText.replace(/[^a-zA-Z\\s]/g, '').trim()}">${dropdownText}</button>
-                            <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="copy-agent-instruction" data-index="${index}" role="menuitem" aria-label="Copy Instructions">📋 Copy Instructions</button>
-                            <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md" data-action="download-agent" data-index="${index}" role="menuitem" aria-label="Download Protocol as Markdown">💾 Download .md</button>
+                            <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 active:scale-95 hover:shadow-md" data-action="${dropdownAction}" data-index="${index}" role="menuitem" aria-label="${dropdownText.replace(/[^a-zA-Z\\s]/g, '').trim()}">${dropdownText}</button>
+                            <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 active:scale-95 hover:shadow-md" data-action="copy-agent-instruction" data-index="${index}" role="menuitem" aria-label="Copy Instructions">📋 Copy Instructions</button>
+                            <button class="dropdown-item transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 active:scale-95 hover:shadow-md" data-action="download-agent" data-index="${index}" role="menuitem" aria-label="Download Protocol as Markdown">💾 Download .md</button>
                             ${downloadFusionsBtnHtml}
                         </div>
                     </div>

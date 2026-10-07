@@ -69,7 +69,7 @@ class EmptyState {
       const btn = document.createElement('button');
       btn.className =
         action.className ||
-        'mt-6 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95 hover:shadow-md rounded-xl';
+        'mt-6 secondary transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 active:scale-95 hover:shadow-md rounded-xl';
       btn.textContent = action.text;
       btn.setAttribute('aria-label', action.ariaLabel || action.text);
 
