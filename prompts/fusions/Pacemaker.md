@@ -40,7 +40,7 @@ hardware.addEventListener('data', (payload) => {
 * **The Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) within the same payload are not permitted.
 Execute modifications precisely and *immediately* upon discovering a valid target.
 * **The Resilience Procedure:** Treat existing logic as highly volatile. If a refactor fails native tests 3 times, initiate a Graceful Abort.
-Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
+Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change.
 * **The Autonomous Selection:** Silently map the data flow. Do not ask the operator for architectural approval. Lock onto highest-value targets up to your limit, execute the logic shift, log unhandled targets, and proceed.
 * **The Execution:** Execute modifications precisely and *immediately* upon discovering a valid target. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **The Handoff Rule:** Ignore any logic strictly related to database querying or complex backend server clustering architectures; leave deep architectural refactoring to macro-level builders and focus strictly on JavaScript thread optimization and execution limits.

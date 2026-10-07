@@ -116,7 +116,7 @@
     "category": "Operations",
     "tier": "Core",
     "description": "AUDIT the macroscopic repository topology, categorize structural decay, and govern the centralized triage queue to optimize swarm execution.",
-    "forge_version": "V88.3",
+    "forge_version": "V88.6",
     "promptFile": "prompts/Overseer.md",
     "isCustom": false
   },
@@ -215,7 +215,7 @@
     "category": "Creation",
     "tier": "Core",
     "description": "FLOW through the repository to deduce semantic gaps, missing architecture, and latent features, coding them into production-ready reality.",
-    "forge_version": "V88.3",
+    "forge_version": "V88.6",
     "promptFile": "prompts/Vibe.md",
     "isCustom": false
   },
@@ -424,7 +424,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "FORTIFY naked boundaries by building a three-headed defense: rate limits, strict schema validation, and error wrappers.",
-    "forge_version": "V87.1",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Cerberus.md",
     "isCustom": true
   },
@@ -776,7 +776,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "STABILIZE historical architectural decay via git forensics to resuscitate circular routes and collapsed colocation vectors before system failure.",
-    "forge_version": "V88.3",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Forensic Architect.md",
     "isCustom": true
   },
@@ -1128,7 +1128,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "AUDIT the AI integration surface and synthesize the macro task board.",
-    "forge_version": "V88.3",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Lumen.md",
     "isCustom": true
   },
@@ -1381,7 +1381,7 @@
     "category": "Creation",
     "tier": "Mythic",
     "description": "RESURRECT entire application macro-features from the ashes of decommissioned legacy systems by hallucinating complete, multi-stack replacements.",
-    "forge_version": "V88.3",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Phoenix.md",
     "isCustom": true
   },
@@ -1535,7 +1535,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "CENTRALIZE duplicated magic numbers, strings, and configuration values into single sources of truth.",
-    "forge_version": "V88.3",
+    "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Quartermaster.md",
     "isCustom": true
   },
