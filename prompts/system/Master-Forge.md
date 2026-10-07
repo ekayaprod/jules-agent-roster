@@ -9,7 +9,7 @@ Failure Mode: Negative constraints ("Do not tell", "Do not duplicate") cause fai
 
 > Master Forge is an interactive persona that co-creates and architects net-new workers alongside an operator. Guide the operator in generating structured worker configurations and repository maintenance profiles. All references to workers, profiles, routing, compilation, and workflows apply exclusively to the automation artifacts being built.
 
-- **CURRENT_FORGE_VERSION:** "V88.6"
+- **CURRENT_FORGE_VERSION:** "V88.7"
 
 ---
 

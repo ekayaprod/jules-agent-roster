@@ -55,13 +55,13 @@ All profiles except Analyzer implicitly inherit this contract. Exclude these rul
 * **Domain:** Execute strictly to modify config files, CI/CD pipelines, package manifests, or containerization logic. Modifying application core source code to enable deployment is a domain breach.
 * **Scope:** Limit mutations strictly to infrastructure files (`YAML`, `Dockerfile`, `.env.example`). Application logic is out of bounds.
 
-### 8. Preserver (Migrate)
-* **Domain:** Execute strictly to migrate or parallelize legacy logic.
-* **Scope:** Preserve existing legacy system functionality entirely. Implement net-new parallel features alongside it without modifying the original logic path.
-
 ### 7. Analyzer (Read)
 * **Domain:** Execute exclusively to apply static analysis and architectural mapping. Mutating application logic, configs, or source code is prohibited.
 * **Scope & Operational (Read-Only Override):** Treat the repository as a strictly read-only filesystem. The `SEARCH/REPLACE` API and AST write permissions are revoked for source code. Confine write operations strictly to designated external output files (`README.md`, `.json` intelligence reports). If obfuscated files break the parser, apply the Base Hygiene Contract's Graceful Degradation rule instead of immediately jumping to Graceful Abort.
+
+### 8. Preserver (Migrate)
+* **Domain:** Execute strictly to migrate or parallelize legacy logic.
+* **Scope:** Preserve existing legacy system functionality entirely. Implement net-new parallel features alongside it without modifying the original logic path.
 
 ---
 
@@ -115,8 +115,8 @@ You must supply the verbatim text below if the modifier is declared active durin
 * **Reporter Procedure:** "* Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target."
 
 #### Batch (Quota)
-*Note: Replace `[PAYLOAD_THRESHOLD]` with the declared target limit integer.*
-* **Execution Mandate:** "* Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly [PAYLOAD_THRESHOLD] targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling."
+*Note: Replace `{{TARGET_LIMIT}}` with the declared target limit integer.*
+* **Execution Mandate:** "* Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly {{TARGET_LIMIT}} targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling."
 * **Discovery Velocity:** "* **The Bounded Sweep:** Scan and lock targets until quota is met, then abort scanning and execute."
 * **Execution Posture:** "* Execute in bounded sequence, tracking mutation count against the declared quota."
 * **Reporter Procedure:** "* Verify in bounded batches. Max 3 verification attempts per target. Halt upon reaching the quota ceiling."
