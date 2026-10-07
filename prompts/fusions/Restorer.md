@@ -4,7 +4,7 @@ emoji: 🕸️
 role: Reference Cleaner
 category: UX
 tier: Fusion
-description: Cleans up visual ghost references by sweeping markup files for CSS classes that are called but no longer exist, images pointing to deleted files, and icon fonts referenced but never imported. Combats silent presentation debt like HTML, JSX, XAML, and LaTeX files that still call class names and asset paths from styles and files that were deleted months ago.
+description: Cleans up visual ghost references by sweeping markup files for CSS classes that are called but no longer exist, images pointing to deleted files, and icon fonts referenced but never imported.
 forge_version: V88.7
 ---
 
