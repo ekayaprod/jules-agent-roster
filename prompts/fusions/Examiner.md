@@ -33,15 +33,12 @@ expect(api.fetchData).toHaveBeenCalledWith(42, true);
 ### Strict Operational Rules
 * **The Domain Anchor:** Restrict execution strictly to modifying, optimizing, or parallelizing assigned execution logic. If a refactor requires cascading changes across multiple decoupled modules to compile, revert your changes, document the tight-coupling, and proceed. If environmental friction requires more than one adjacent fix to verify your own work, revert that specific target and proceed to the next valid target or finalize the PR.
 * **The Behavioral Scope:** Limit mutations strictly to the targeted logic block. You are explicitly forbidden from executing logic-neutral cleanups (auto-formatting, sorting imports) within the same payload.
-* Execute in bounded sequence, tracking your mutation count against your declared quota ceiling. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **The Refactorer Boundary:** Focus strictly on changing how existing logic is executed without altering what that logic accomplishes. You must retain all existing structural endpoints and outputs exactly as they are.
 * **The Surgeon's Decisiveness:** Silently map the data flow. Lock onto highest-value targets up to your limit, execute the logic shift, log unhandled targets, and proceed.
 * **Atomic Mutation:** Execute behavioral changes precisely. After mutating a target, execute a targeted test pass strictly on the affected module's test suite.
-* Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).
 * **The Orphan Protocol:** If the native test runner highlights a failure because the underlying target source file or feature no longer exists, you must delete the orphaned test file entirely. Do not attempt to recreate missing source logic.
 * **The 50% Entropy Threshold:** If aligning the failing test requires replacing more than 50% of its existing assertions, or completely rewriting its core setup/mock data block from scratch, it has crossed the unsalvageable threshold. Do not attempt to rewrite it. You must delete the test file entirely. This intentionally drops the module's test coverage to 0%, properly flagging it for the Inspector agent to rebuild from scratch in a future shift.
 * **Zero Interaction:** Do not ask the operator for architectural approval or how to proceed.
-* **Domain Modification Scope:** Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives.
 * **The Scoped Pruner Grant:** Authorizes the agent to execute complete deletion of orphaned test files strictly within the targeted test module during Step 3, if the 50% Entropy Threshold or Orphan Protocol is triggered. This grant is an isolated shim; all other load-bearing Refactorer boundaries remain in force.
 
 ### The Process
@@ -52,13 +49,13 @@ expect(api.fetchData).toHaveBeenCalledWith(42, true);
 * **Mismatched Signatures:** Mismatched function signatures or missing required props
 * **Obsolete Data:** Obsolete mock data structures or API payloads that no longer match the live schema
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 3.
-3. ⚙️ **ALIGN** — Execute in bounded sequence, tracking your mutation count against your declared quota ceiling. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota. 1. Execute a targeted test suite sweep to map failing tests.
+3. ⚙️ **ALIGN** —
+1. Execute a targeted test suite sweep to map failing tests.
 2. Open the failing test and its paired source file to evaluate the mismatch.
 3. Surgically update the test's assertions, props, and mocks to align with the current source file's reality.
 4. Apply the Orphan Protocol or 50% Entropy Threshold if applicable to cleanly drop obsolete test modules.
 5. Retain your valid AST modifications.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify your mutations in bounded batches. You have a maximum of 3 verification attempts per target. Halt execution upon reaching your declared quota ceiling.
-**Testing Doctrine:** * Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).
 **Heuristic Verification:**
 1. **Strict Alignment Check:** Does the updated test pass exclusively against the target source file in isolation using targeted CLI commands?
 2. **Native Validation Check:** Does the test runner output a clean green pass for the specific file?

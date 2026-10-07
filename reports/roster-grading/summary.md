@@ -1,15 +1,14 @@
 # Roster Grader Summary
 
 ## 1. Headline
-Tiers: Top (83), Middle (80), Bottom (84), Unstable (2)
+Tiers: Top (83), Middle (81), Bottom (85), Unstable (1)
 
 Top 10 Most Unstable Files:
-- prompts/orphans/emptyslots.md (Range: 83 - 137)
-- prompts/fusions/Cerberus.md (Range: 75 - 126)
+- prompts/orphans/Polyglot.md (Range: 117 - 168)
 
 ## 2. Coverage
-Found: 249
-Parsed & Scored: 249
+Found: 250
+Parsed & Scored: 250
 Excluded: 12
 - prompts/README.md: README file
 - prompts/fusions/README.md: README file
@@ -26,179 +25,178 @@ Excluded: 12
 
 ## 3. Method & Weights
 Saturated Dimensions: None
-G Artifact Share: 0.0%
 Final Weights: {"A": 20, "B": 10, "C": 15, "D": 15, "E": 10, "F": 15, "H": 10}
 
 ## 4. Validation & Correlations
-Length Correlation (before): {"A": -0.15, "B": -0.22, "C": 0.28, "D": 0.13, "E": 0.49, "H": -0.32, "Composite": -0.08}
-Length Correlation (after): {"A": -0.15, "B": -0.22, "C": 0.28, "D": 0.13, "E": 0.49, "H": -0.32}
+Length Correlation (before): {"A": -0.15, "B": -0.22, "C": 0.25, "D": 0.15, "E": 0.47, "H": -0.28, "Composite": -0.1}
+Length Correlation (after): {"A": -0.15, "B": -0.22, "C": 0.25, "D": 0.15, "E": 0.47, "H": -0.28}
 
 Dimension Correlation Matrix:
 | | A | B | C | D | E | F | H |
 |---|---|---|---|---|---|---|---|
-| A | 1.00 | 0.46 | -0.05 | -0.10 | -0.14 | 0.03 | 0.53 |
-| B | 0.46 | 1.00 | -0.26 | -0.11 | -0.31 | 0.14 | 0.34 |
-| C | -0.05 | -0.26 | 1.00 | 0.25 | 0.47 | -0.28 | -0.16 |
-| D | -0.10 | -0.11 | 0.25 | 1.00 | 0.17 | -0.10 | -0.13 |
-| E | -0.14 | -0.31 | 0.47 | 0.17 | 1.00 | -0.49 | -0.31 |
-| F | 0.03 | 0.14 | -0.28 | -0.10 | -0.49 | 1.00 | 0.26 |
-| H | 0.53 | 0.34 | -0.16 | -0.13 | -0.31 | 0.26 | 1.00 |
+| A | 1.00 | 0.44 | -0.12 | -0.11 | -0.14 | -0.01 | 0.56 |
+| B | 0.44 | 1.00 | -0.23 | -0.11 | -0.33 | 0.16 | 0.36 |
+| C | -0.12 | -0.23 | 1.00 | 0.24 | 0.46 | -0.24 | -0.28 |
+| D | -0.11 | -0.11 | 0.24 | 1.00 | 0.14 | -0.12 | -0.18 |
+| E | -0.14 | -0.33 | 0.46 | 0.14 | 1.00 | -0.51 | -0.29 |
+| F | -0.01 | 0.16 | -0.24 | -0.12 | -0.51 | 1.00 | 0.19 |
+| H | 0.56 | 0.36 | -0.28 | -0.18 | -0.29 | 0.19 | 1.00 |
 
 ## 5. Top 25 and Bottom 25
 
 ### Top 25
 - **prompts/fusions/Sanitizer.md**: Rank 1 (p10-p90: 1-1)
-  - Strengths: A (84.5), E (80.6), B (79.6)
-  - Issues: H (45.4), D (73.1), C (78.3)
-- **prompts/fusions/Viewmorph.md**: Rank 2 (p10-p90: 2-2)
-  - Strengths: A (88.8), B (88.1), H (79.8)
-  - Issues: D (37.3), E (54.6), C (74.8)
-- **prompts/fusions/Narrator.md**: Rank 3 (p10-p90: 3-4)
-  - Strengths: A (81.9), E (77.0), C (66.2)
-  - Issues: H (57.4), D (58.7), B (59.9)
-- **prompts/fusions/Bastion.md**: Rank 4 (p10-p90: 3-10)
-  - Strengths: A (97.6), C (90.7), E (72.6)
-  - Issues: H (56.6), D (63.7), B (67.8)
-- **prompts/fusions/Slipstream.md**: Rank 5 (p10-p90: 4-9)
-  - Strengths: C (86.9), D (71.5), E (68.1)
-  - Issues: H (44.4), B (57.7), A (62.4)
-- **prompts/fusions/Hazmat.md**: Rank 6 (p10-p90: 4-9)
-  - Strengths: B (91.9), D (84.8), A (84.4)
-  - Issues: E (18.3), H (48.4), C (71.9)
-- **prompts/fusions/Millisecond.md**: Rank 7 (p10-p90: 5-8)
-  - Strengths: D (82.9), A (79.2), H (68.8)
-  - Issues: E (46.8), B (56.4), C (61.3)
-- **prompts/orphans/Choreographer.md**: Rank 8 (p10-p90: 4-9)
-  - Strengths: A (96.8), H (79.6), C (63.4)
-  - Issues: E (47.1), D (49.5), B (56.5)
-- **prompts/orphans/Janitor.md**: Rank 9 (p10-p90: 6-12)
-  - Strengths: A (99.4), C (62.6), H (56.5)
-  - Issues: B (46.0), D (49.9), E (54.5)
-- **prompts/fusions/Triage.md**: Rank 10 (p10-p90: 11-15)
-  - Strengths: A (89.9), D (67.8), E (67.8)
-  - Issues: H (55.6), B (60.0), C (63.5)
-- **prompts/fusions/Zealot.md**: Rank 11 (p10-p90: 8-19)
-  - Strengths: A (85.9), E (80.4), C (79.3)
-  - Issues: H (60.2), B (68.3), D (70.1)
-- **prompts/fusions/Hyperloop.md**: Rank 12 (p10-p90: 10-16)
-  - Strengths: C (85.0), E (79.5), B (74.6)
-  - Issues: H (56.7), D (60.9), A (64.8)
-- **prompts/fusions/Purger.md**: Rank 13 (p10-p90: 9-18)
-  - Strengths: A (90.6), H (81.5), D (75.4)
-  - Issues: E (6.4), C (43.0), B (67.4)
-- **prompts/fusions/Retrofitter.md**: Rank 14 (p10-p90: 9-18)
-  - Strengths: H (94.0), A (88.6), B (60.6)
-  - Issues: D (29.0), C (54.5), E (55.5)
-- **prompts/fusions/Groundskeeper.md**: Rank 15 (p10-p90: 11-17)
-  - Strengths: A (88.2), H (66.9), D (64.1)
-  - Issues: B (44.2), C (50.1), E (52.9)
-- **prompts/fusions/Terraformer.md**: Rank 16 (p10-p90: 12-18)
-  - Strengths: C (78.3), H (72.9), D (69.8)
-  - Issues: B (40.3), E (55.5), A (66.4)
-- **prompts/fusions/Sculptor.md**: Rank 17 (p10-p90: 12-21)
-  - Strengths: A (97.8), H (77.0), B (57.2)
-  - Issues: D (31.8), E (44.9), C (56.8)
-- **prompts/Inspector.md**: Rank 18 (p10-p90: 10-20)
-  - Strengths: D (93.9), E (81.5), B (78.4)
-  - Issues: H (37.3), A (42.6), C (54.6)
-- **prompts/fusions/Limiter.md**: Rank 19 (p10-p90: 16-27)
-  - Strengths: E (97.4), C (74.8), A (66.1)
-  - Issues: D (27.1), B (53.8), H (60.2)
-- **prompts/fusions/Auditor.md**: Rank 20 (p10-p90: 18-25)
-  - Strengths: D (84.3), A (79.0), B (55.7)
-  - Issues: E (27.8), C (49.6), H (51.5)
-- **prompts/fusions/Interrogator.md**: Rank 21 (p10-p90: 17-30)
-  - Strengths: D (95.3), A (80.4), B (67.9)
-  - Issues: H (46.9), C (57.3), E (62.4)
-- **prompts/fusions/Respawn.md**: Rank 22 (p10-p90: 20-25)
-  - Strengths: D (75.7), C (73.6), A (63.3)
-  - Issues: E (46.8), H (48.4), B (60.0)
-- **prompts/fusions/Ouija.md**: Rank 23 (p10-p90: 19-30)
-  - Strengths: B (86.5), H (80.8), C (78.9)
-  - Issues: D (29.5), E (38.0), A (60.7)
-- **prompts/Cortex.md**: Rank 24 (p10-p90: 20-29)
-  - Strengths: E (86.2), B (74.2), A (63.1)
-  - Issues: H (44.4), C (52.2), D (52.9)
-- **prompts/orphans/Stress Tester.md**: Rank 25 (p10-p90: 20-29)
-  - Strengths: D (79.7), H (71.4), A (70.3)
-  - Issues: E (6.4), B (55.1), C (63.4)
+  - Strengths: C (87.0), E (81.2), B (79.7)
+  - Issues: H (39.8), D (67.9), A (72.5)
+- **prompts/fusions/Narrator.md**: Rank 2 (p10-p90: 2-3)
+  - Strengths: C (81.1), E (77.6), A (71.9)
+  - Issues: H (49.1), D (51.5), B (60.9)
+- **prompts/orphans/Choreographer.md**: Rank 3 (p10-p90: 2-5)
+  - Strengths: A (95.9), H (80.7), C (59.4)
+  - Issues: D (46.3), E (47.5), B (57.2)
+- **prompts/fusions/Viewmorph.md**: Rank 4 (p10-p90: 3-5)
+  - Strengths: B (87.9), A (79.4), C (74.4)
+  - Issues: D (31.1), E (54.7), H (58.5)
+- **prompts/fusions/Slipstream.md**: Rank 5 (p10-p90: 3-7)
+  - Strengths: C (84.0), E (68.3), D (66.8)
+  - Issues: H (45.2), B (57.0), A (57.6)
+- **prompts/orphans/Janitor.md**: Rank 6 (p10-p90: 5-9)
+  - Strengths: A (98.3), H (57.5), C (55.4)
+  - Issues: D (45.0), B (46.7), C (55.4)
+- **prompts/fusions/Groundskeeper.md**: Rank 7 (p10-p90: 5-9)
+  - Strengths: A (85.4), E (68.3), H (65.7)
+  - Issues: B (40.1), C (45.3), D (61.6)
+- **prompts/fusions/Hazmat.md**: Rank 8 (p10-p90: 6-12)
+  - Strengths: B (92.1), D (80.0), A (74.8)
+  - Issues: E (18.6), H (41.8), C (69.7)
+- **prompts/fusions/Retrofitter.md**: Rank 9 (p10-p90: 7-12)
+  - Strengths: H (91.6), A (76.6), C (64.4)
+  - Issues: D (25.5), E (56.0), B (60.9)
+- **prompts/Inspector.md**: Rank 10 (p10-p90: 6-16)
+  - Strengths: D (92.4), E (82.7), B (78.1)
+  - Issues: A (37.0), H (38.2), C (52.5)
+- **prompts/fusions/Millisecond.md**: Rank 11 (p10-p90: 9-13)
+  - Strengths: D (77.5), C (74.0), E (63.7)
+  - Issues: H (41.7), B (52.6), A (59.9)
+- **prompts/fusions/Sculptor.md**: Rank 12 (p10-p90: 9-16)
+  - Strengths: A (93.2), H (77.1), B (57.5)
+  - Issues: D (31.1), E (45.1), C (50.3)
+- **prompts/fusions/Terraformer.md**: Rank 13 (p10-p90: 10-15)
+  - Strengths: C (83.0), H (72.7), D (62.0)
+  - Issues: B (49.9), A (52.7), E (56.0)
+- **prompts/fusions/Limiter.md**: Rank 14 (p10-p90: 11-19)
+  - Strengths: E (99.2), C (76.0), H (61.8)
+  - Issues: D (25.3), B (46.6), A (60.2)
+- **prompts/fusions/Hyperloop.md**: Rank 15 (p10-p90: 13-18)
+  - Strengths: E (80.1), C (78.2), B (73.7)
+  - Issues: A (55.4), H (56.5), D (57.4)
+- **prompts/fusions/Bastion.md**: Rank 16 (p10-p90: 9-28)
+  - Strengths: A (94.2), C (85.9), E (80.8)
+  - Issues: H (54.5), D (60.3), B (66.5)
+- **prompts/Cortex.md**: Rank 17 (p10-p90: 15-21)
+  - Strengths: E (89.2), B (74.3), A (56.6)
+  - Issues: H (45.1), D (49.3), C (51.0)
+- **prompts/fusions/Auditor.md**: Rank 18 (p10-p90: 14-22)
+  - Strengths: D (80.4), A (75.3), B (55.4)
+  - Issues: E (28.0), C (43.5), H (52.0)
+- **prompts/fusions/Purger.md**: Rank 19 (p10-p90: 14-22)
+  - Strengths: A (79.6), H (78.2), B (75.5)
+  - Issues: E (17.4), C (46.6), D (47.7)
+- **prompts/fusions/Interrogator.md**: Rank 20 (p10-p90: 15-26)
+  - Strengths: D (94.6), A (70.8), B (67.9)
+  - Issues: H (41.4), C (58.7), E (63.0)
+- **prompts/fusions/Helmsman.md**: Rank 21 (p10-p90: 19-24)
+  - Strengths: E (81.5), A (69.4), B (63.6)
+  - Issues: H (43.3), C (55.4), D (56.7)
+- **prompts/fusions/Respawn.md**: Rank 22 (p10-p90: 19-25)
+  - Strengths: C (72.0), D (70.7), B (60.9)
+  - Issues: E (47.0), H (48.8), A (53.6)
+- **prompts/fusions/Prophet.md**: Rank 23 (p10-p90: 19-28)
+  - Strengths: A (80.9), B (78.5), C (58.1)
+  - Issues: E (28.1), D (34.8), H (53.9)
+- **prompts/fusions/Ouija.md**: Rank 24 (p10-p90: 20-33)
+  - Strengths: B (83.6), C (79.6), E (54.7)
+  - Issues: D (28.4), A (52.0), H (52.1)
+- **prompts/Dispatch.md**: Rank 25 (p10-p90: 22-31)
+  - Strengths: C (80.2), A (68.4), H (62.3)
+  - Issues: E (28.1), B (44.9), D (52.2)
 
 ### Bottom 25
-- **prompts/fusions/Parallel.md**: Rank 225 (p10-p90: 216-232)
-  - Strengths: E (67.8), D (55.3), C (46.3)
-  - Issues: H (23.6), A (32.6), B (44.0)
-- **prompts/fusions/Checkpoint.md**: Rank 226 (p10-p90: 216-231)
-  - Strengths: D (76.4), E (64.7), C (32.8)
-  - Issues: A (2.7), H (19.4), B (23.8)
-- **prompts/fusions/Expediter.md**: Rank 227 (p10-p90: 219-232)
-  - Strengths: D (69.0), C (45.5), E (36.6)
-  - Issues: A (9.8), B (12.0), H (20.4)
-- **prompts/fusions/Typesetter.md**: Rank 228 (p10-p90: 222-231)
-  - Strengths: D (56.9), C (56.8), H (37.6)
-  - Issues: B (6.5), A (11.9), E (36.6)
-- **prompts/fusions/Espresso.md**: Rank 229 (p10-p90: 222-231)
-  - Strengths: H (51.8), E (45.1), B (41.5)
-  - Issues: A (7.0), D (35.5), C (35.9)
-- **prompts/fusions/Synchronizer.md**: Rank 230 (p10-p90: 222-233)
-  - Strengths: H (56.0), D (52.1), B (50.4)
-  - Issues: A (3.6), C (13.0), E (45.4)
-- **prompts/fusions/Illuminator.md**: Rank 231 (p10-p90: 224-233)
-  - Strengths: H (66.7), E (45.1), D (41.0)
-  - Issues: C (17.9), B (22.3), A (31.9)
-- **prompts/orphans/Virtuoso.md**: Rank 232 (p10-p90: 225-238)
-  - Strengths: B (65.2), A (52.3), H (39.9)
-  - Issues: C (4.8), E (6.4), D (26.0)
-- **prompts/Sentinel+.md**: Rank 233 (p10-p90: 229-236)
-  - Strengths: B (61.5), C (52.6), D (39.8)
-  - Issues: E (30.0), A (30.5), H (30.6)
-- **prompts/fusions/Mulligan.md**: Rank 234 (p10-p90: 231-237)
-  - Strengths: B (58.3), C (41.2), E (27.1)
-  - Issues: A (12.9), H (13.8), D (26.8)
-- **prompts/fusions/Transmuter.md**: Rank 235 (p10-p90: 232-237)
-  - Strengths: D (52.4), B (51.6), C (37.4)
-  - Issues: A (2.9), E (18.3), H (29.5)
-- **prompts/fusions/Cataloger.md**: Rank 236 (p10-p90: 232-237)
-  - Strengths: C (65.0), E (63.4), H (37.9)
-  - Issues: B (17.5), A (19.0), D (19.3)
-- **prompts/fusions/Examiner.md**: Rank 237 (p10-p90: 229-241)
-  - Strengths: E (81.2), D (74.2), C (70.4)
-  - Issues: H (12.0), A (16.8), B (27.7)
-- **prompts/fusions/REST Enforcer.md**: Rank 238 (p10-p90: 235-239)
-  - Strengths: B (46.0), H (42.7), E (36.6)
-  - Issues: A (0.8), D (26.0), C (33.4)
-- **prompts/fusions/Pacemaker.md**: Rank 239 (p10-p90: 237-241)
-  - Strengths: E (87.4), C (55.8), D (52.1)
-  - Issues: A (2.9), B (3.7), H (8.3)
-- **prompts/micro/Nomenclator.md**: Rank 240 (p10-p90: 238-241)
-  - Strengths: B (45.0), C (42.2), E (36.6)
-  - Issues: H (10.4), D (14.8), A (21.6)
-- **prompts/fusions/Foreman.md**: Rank 241 (p10-p90: 239-242)
-  - Strengths: D (33.5), H (33.3), B (33.1)
-  - Issues: A (4.8), C (29.1), E (30.0)
-- **prompts/fusions/Pruner.md**: Rank 242 (p10-p90: 241-243)
-  - Strengths: E (72.6), C (36.8), H (35.1)
-  - Issues: B (12.0), A (16.0), D (21.0)
-- **prompts/fusions/Upgrader.md**: Rank 243 (p10-p90: 242-244)
-  - Strengths: B (59.9), D (37.1), H (26.5)
-  - Issues: A (8.6), E (12.5), C (19.8)
-- **prompts/fusions/Lumen.md**: Rank 244 (p10-p90: 244-246)
-  - Strengths: E (72.6), D (36.4), C (23.6)
-  - Issues: B (4.7), A (9.0), H (13.2)
-- **prompts/fusions/Cartographer.md**: Rank 245 (p10-p90: 244-246)
-  - Strengths: E (67.8), H (52.8), B (33.7)
-  - Issues: D (15.1), C (30.2), A (32.0)
-- **prompts/fusions/Logician.md**: Rank 246 (p10-p90: 244-246)
-  - Strengths: E (39.2), H (38.2), B (22.7)
-  - Issues: D (6.4), C (18.0), A (20.4)
-- **prompts/fusions/Prompt Engineer.md**: Rank 247 (p10-p90: 247-248)
-  - Strengths: B (96.2), H (27.0), D (17.5)
-  - Issues: A (4.5), C (6.5), E (15.1)
-- **prompts/micro/Echo.md**: Rank 248 (p10-p90: 247-248)
-  - Strengths: E (61.8), C (44.2), A (27.0)
-  - Issues: D (5.5), H (17.3), B (18.9)
-- **prompts/fusions/Sherpa.md**: Rank 249 (p10-p90: 249-249)
-  - Strengths: C (48.9), B (39.3), E (27.1)
-  - Issues: A (0.0), D (4.3), H (13.9)
+- **prompts/fusions/Espresso.md**: Rank 226 (p10-p90: 219-229)
+  - Strengths: H (52.5), E (45.9), B (41.9)
+  - Issues: A (4.9), D (26.2), C (39.7)
+- **prompts/fusions/Ghost Hunter.md**: Rank 227 (p10-p90: 213-235)
+  - Strengths: E (86.1), C (55.7), A (49.1)
+  - Issues: B (16.3), H (36.6), D (40.8)
+- **prompts/fusions/Transmuter.md**: Rank 228 (p10-p90: 220-231)
+  - Strengths: B (51.5), C (51.5), D (44.3)
+  - Issues: A (2.0), E (18.6), H (27.9)
+- **prompts/fusions/Illuminator.md**: Rank 229 (p10-p90: 223-233)
+  - Strengths: H (67.1), E (45.9), D (35.3)
+  - Issues: C (15.2), B (23.3), A (29.3)
+- **prompts/fusions/Occam.md**: Rank 230 (p10-p90: 226-233)
+  - Strengths: C (60.9), E (45.9), D (33.0)
+  - Issues: A (3.2), B (28.5), H (31.1)
+- **prompts/fusions/Pacemaker.md**: Rank 231 (p10-p90: 227-235)
+  - Strengths: E (80.1), C (54.0), D (45.7)
+  - Issues: A (3.2), B (3.7), H (10.0)
+- **prompts/fusions/Archivist.md**: Rank 232 (p10-p90: 224-240)
+  - Strengths: E (86.1), H (62.6), C (41.8)
+  - Issues: D (14.4), A (39.0), B (40.1)
+- **prompts/fusions/Canvas.md**: Rank 233 (p10-p90: 230-238)
+  - Strengths: E (53.5), D (51.6), H (48.8)
+  - Issues: B (5.7), A (9.5), C (26.4)
+- **prompts/Sentinel+.md**: Rank 234 (p10-p90: 231-238)
+  - Strengths: B (61.7), C (46.6), D (36.0)
+  - Issues: A (27.6), E (30.4), H (31.0)
+- **prompts/fusions/Typesetter.md**: Rank 235 (p10-p90: 232-239)
+  - Strengths: D (54.8), C (47.4), E (45.9)
+  - Issues: B (6.5), A (6.9), H (37.2)
+- **prompts/fusions/Cataloger.md**: Rank 236 (p10-p90: 233-239)
+  - Strengths: E (77.6), C (57.2), H (23.9)
+  - Issues: B (16.2), D (18.5), A (19.4)
+- **prompts/fusions/Examiner.md**: Rank 237 (p10-p90: 227-242)
+  - Strengths: E (81.8), D (71.7), C (66.7)
+  - Issues: H (12.5), A (15.0), B (27.7)
+- **prompts/fusions/REST Enforcer.md**: Rank 238 (p10-p90: 231-240)
+  - Strengths: B (46.5), C (40.0), E (36.9)
+  - Issues: A (0.4), D (24.0), H (27.9)
+- **prompts/fusions/Mulligan.md**: Rank 239 (p10-p90: 231-239)
+  - Strengths: B (58.3), C (35.4), E (27.4)
+  - Issues: A (12.0), H (14.9), D (20.1)
+- **prompts/micro/Nomenclator.md**: Rank 240 (p10-p90: 237-241)
+  - Strengths: E (55.4), B (46.5), C (38.0)
+  - Issues: D (9.7), H (10.5), A (15.3)
+- **prompts/orphans/Virtuoso.md**: Rank 241 (p10-p90: 234-242)
+  - Strengths: B (65.5), A (44.5), H (41.7)
+  - Issues: C (4.0), E (6.3), D (24.0)
+- **prompts/fusions/Foreman.md**: Rank 242 (p10-p90: 240-242)
+  - Strengths: B (34.7), H (34.2), E (30.4)
+  - Issues: A (4.3), C (26.5), D (28.4)
+- **prompts/fusions/Logician.md**: Rank 243 (p10-p90: 243-244)
+  - Strengths: E (53.5), H (39.4), C (25.6)
+  - Issues: D (15.9), A (16.4), B (20.0)
+- **prompts/fusions/Pruner.md**: Rank 244 (p10-p90: 243-245)
+  - Strengths: E (73.1), H (35.8), C (32.2)
+  - Issues: B (11.5), A (13.9), D (17.2)
+- **prompts/fusions/Upgrader.md**: Rank 245 (p10-p90: 243-245)
+  - Strengths: B (59.7), D (35.3), H (27.7)
+  - Issues: A (7.3), E (12.6), C (14.2)
+- **prompts/fusions/Cartographer.md**: Rank 246 (p10-p90: 246-248)
+  - Strengths: E (77.6), H (52.0), B (33.7)
+  - Issues: D (15.6), C (23.3), A (25.4)
+- **prompts/micro/Echo.md**: Rank 247 (p10-p90: 247-249)
+  - Strengths: E (72.6), C (39.4), A (28.1)
+  - Issues: D (6.9), B (16.4), H (20.3)
+- **prompts/fusions/Lumen.md**: Rank 248 (p10-p90: 246-249)
+  - Strengths: E (63.7), D (27.6), C (21.6)
+  - Issues: B (4.7), A (8.2), H (13.7)
+- **prompts/fusions/Prompt Engineer.md**: Rank 249 (p10-p90: 247-249)
+  - Strengths: B (95.9), H (28.1), E (15.1)
+  - Issues: A (3.6), C (5.4), D (13.7)
+- **prompts/fusions/Sherpa.md**: Rank 250 (p10-p90: 250-250)
+  - Strengths: C (51.0), B (41.1), E (27.4)
+  - Issues: A (0.0), D (2.6), H (14.8)
 
 ## 6. Redundancy
 Top 10 Closest Pairs:
@@ -218,14 +216,22 @@ Same-Name File Pairs:
 
 ## 7. Coherence
 Top 25 files by F flags:
+- **prompts/fusions/Cerberus.md**: 21 flags
+  - opposing_modality: * **The Execution Rule:** Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 1 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+  - opposing_modality: * **The Execution Rule:** Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 1 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+  - opposing_modality: * **The Execution Rule:** Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 1 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+- **prompts/orphans/Historian.md**: 21 flags
+  - opposing_modality: * **The Autonomous Execution Mandate:** You are a fully autonomous engine. You are strictly forbidden from pausing to ask for manual guidance, progress summaries, or permission under any circumstances. Never end your output with a question. Conclude every turn by explicitly stating your next autonomous tool action, finalizing the PR, or declaring a Graceful Abort. Execute your entire process end-to-end.
+  - opposing_modality: * **The Autonomous Execution Mandate:** You are a fully autonomous engine. You are strictly forbidden from pausing to ask for manual guidance, progress summaries, or permission under any circumstances. Never end your output with a question. Conclude every turn by explicitly stating your next autonomous tool action, finalizing the PR, or declaring a Graceful Abort. Execute your entire process end-to-end.
+  - opposing_modality: * **The Autonomous Execution Mandate:** You are a fully autonomous engine. You are strictly forbidden from pausing to ask for manual guidance, progress summaries, or permission under any circumstances. Never end your output with a question. Conclude every turn by explicitly stating your next autonomous tool action, finalizing the PR, or declaring a Graceful Abort. Execute your entire process end-to-end.
 - **prompts/fusions/Phoenix.md**: 19 flags
-  - opposing_modality: * ⚡ The host environment is a hostile sandbox, meaning we must rely on absolute anchor points in the surviving codebase to wire our massive creations.
-  - opposing_modality: * **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points across the macro-stack (backend, data layer, and frontend view) to ensure complete 1:1 functional parity.
-  - opposing_modality: * **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points across the macro-stack (backend, data layer, and frontend view) to ensure complete 1:1 functional parity.
-- **prompts/fusions/Cerberus.md**: 18 flags
-  - opposing_modality: * ⚖️ Graceful degradation is a required feature, not a nice-to-have. Never let a bad payload crash the application.
-  - opposing_modality: * ⚖️ Graceful degradation is a required feature, not a nice-to-have. Never let a bad payload crash the application.
-  - opposing_modality: * **The Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
+  - opposing_modality: * **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points across the macro-stack (backend, data layer, and frontend view) to ensure complete 1:1 functional parity. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
+  - opposing_modality: * **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points across the macro-stack (backend, data layer, and frontend view) to ensure complete 1:1 functional parity. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
+  - opposing_modality: * **Scope:** Confine write operations strictly to newly generated files and immediate integration entry points across the macro-stack (backend, data layer, and frontend view) to ensure complete 1:1 functional parity. Refactoring adjacent pre-existing logic to accommodate your new feature is prohibited.
+- **prompts/fusions/Amputator.md**: 18 flags
+  - opposing_modality: * **The Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
+  - opposing_modality: * **The Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
+  - opposing_modality: * **The Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
 - **prompts/fusions/Examiner.md**: 16 flags
   - opposing_modality: * 📚 Codebase bit rot is the enemy, so you must surgically correct tests asserting against obsolete properties or missing arguments.
   - opposing_modality: * 📝 Never guess the state of the repository; rely entirely on the native test runner output as your definitive map of semantic drift.
@@ -234,14 +240,14 @@ Top 25 files by F flags:
   - opposing_modality: * 🧗‍♂️ Every dead end needs a handhold. An empty or confusing state should provide a clear, functional next action whenever one exists.
   - opposing_modality: * 🗺️ Follow the native trail. Guidance must use the repository's existing components, interaction patterns, terminology, and visual language.
   - opposing_modality: * 🗺️ Follow the native trail. Guidance must use the repository's existing components, interaction patterns, terminology, and visual language.
-- **prompts/fusions/Amputator.md**: 13 flags
+- **prompts/Untangler.md**: 14 flags
+  - opposing_modality: * **The Test Immunity Doctrine:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
+  - opposing_modality: * **The Test Immunity Doctrine:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
+  - opposing_modality: * **The Test Immunity Doctrine:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
+- **prompts/fusions/Ghost Hunter.md**: 14 flags
   - opposing_modality: * **The Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
   - opposing_modality: * **The Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
-  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 3 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
-- **prompts/orphans/Historian.md**: 13 flags
-  - opposing_modality: * **The Autonomous Execution Mandate:** You are a fully autonomous engine. You are strictly forbidden from pausing to ask for manual guidance, progress summaries, or permission under any circumstances. Never end your output with a question. Conclude every turn by explicitly stating your next autonomous tool action, finalizing the PR, or declaring a Graceful Abort. Execute your entire process end-to-end.
-  - opposing_modality: * **The Autonomous Execution Mandate:** You are a fully autonomous engine. You are strictly forbidden from pausing to ask for manual guidance, progress summaries, or permission under any circumstances. Never end your output with a question. Conclude every turn by explicitly stating your next autonomous tool action, finalizing the PR, or declaring a Graceful Abort. Execute your entire process end-to-end.
-  - opposing_modality: * **The Autonomous Execution Mandate:** You are a fully autonomous engine. You are strictly forbidden from pausing to ask for manual guidance, progress summaries, or permission under any circumstances. Never end your output with a question. Conclude every turn by explicitly stating your next autonomous tool action, finalizing the PR, or declaring a Graceful Abort. Execute your entire process end-to-end.
+  - opposing_modality: * **The Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
 - **prompts/fusions/Adversary.md**: 12 flags
   - opposing_modality: * 🥷 I do not test the code; I test the environment that tests the code, leaving a hardened boundary that strictly traps deterministic runner failures.
   - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 3 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
@@ -258,22 +264,50 @@ Top 25 files by F flags:
   - opposing_modality: * 🌳 Never force an unnatural graft; paradigm mutations must align organically with the target language's native ecosystem and idiomatic best practices.
   - opposing_modality: * 🌳 Never force an unnatural graft; paradigm mutations must align organically with the target language's native ecosystem and idiomatic best practices.
   - opposing_modality: * 🌳 Never force an unnatural graft; paradigm mutations must align organically with the target language's native ecosystem and idiomatic best practices.
-- **prompts/Untangler.md**: 10 flags
-  - opposing_modality: * **The Action Bias (Anti-Paralysis):** You are an execution engine. Limit your DISCOVER phase to a maximum of 3 exploratory native tool actions (e.g., searching/reading files). Upon reaching this limit, you MUST immediately transition to mutating the codebase based on the best available context, or explicitly declare a Graceful Abort.
-  - opposing_modality: * **The Action Bias (Anti-Paralysis):** You are an execution engine. Limit your DISCOVER phase to a maximum of 3 exploratory native tool actions (e.g., searching/reading files). Upon reaching this limit, you MUST immediately transition to mutating the codebase based on the best available context, or explicitly declare a Graceful Abort.
-  - opposing_modality: * **The Side-Effect Guard:** Ensure that the chronological execution order of any state-mutating side-effects (e.g., database writes, logging, external API calls) remains exactly identical to the original nested logic when refactoring into guard clauses.
-- **prompts/fusions/Ghost Hunter.md**: 9 flags
-  - opposing_modality: * **The Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
-  - opposing_modality: * **The Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
+- **prompts/fusions/Zealot.md**: 10 flags
+  - opposing_modality: * **The Boundary Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
+  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 7 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 7 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+- **prompts/fusions/Collider.md**: 10 flags
+  - opposing_modality: * **The Test Immunity Doctrine:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
+  - opposing_modality: * **The Test Immunity Doctrine:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
+  - opposing_modality: * **The Test Immunity Doctrine:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
+- **prompts/fusions/Payload.md**: 10 flags
+  - opposing_modality: * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
+  - opposing_modality: * **The Infrastructure Rule:** You are strictly forbidden from implementing or bootstrapping complex Redis or Memcached infrastructure. You must utilize native in-memory caching or aggressive HTTP edge headers exclusively.
+  - opposing_modality: * **The Infrastructure Rule:** You are strictly forbidden from implementing or bootstrapping complex Redis or Memcached infrastructure. You must utilize native in-memory caching or aggressive HTTP edge headers exclusively.
+- **prompts/Scavenger.md**: 9 flags
+  - opposing_modality: * 🪲 The code is the bone, the dead syntax is the flesh. You do not stop when a single meal is found; you swarm the target file and feed persistently until the living architecture is immaculate.
+  - opposing_modality: * 🪲 The code is the bone, the dead syntax is the flesh. You do not stop when a single meal is found; you swarm the target file and feed persistently until the living architecture is immaculate.
+  - opposing_modality: * **Scope:** Limit your deletion sweep strictly to your assigned scope. Do not expand your blast radius to clean up adjacent messy logic, format files, or fix typos; your only authorized mutation is subtraction.
+- **prompts/fusions/Policy Maker.md**: 9 flags
+  - opposing_modality: * **Recurring Review Trigger:** Invoke the platform code reviewer (`request_code_review`) on a recurring basis during execution — approximately every 15 tool calls — not only at session end or between targets. Do not tell the reviewer how to do its job or what to check; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.
+  - opposing_modality: * **Recurring Review Trigger:** Invoke the platform code reviewer (`request_code_review`) on a recurring basis during execution — approximately every 15 tool calls — not only at session end or between targets. Do not tell the reviewer how to do its job or what to check; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.
+  - opposing_modality: * **Recurring Review Trigger:** Invoke the platform code reviewer (`request_code_review`) on a recurring basis during execution — approximately every 15 tool calls — not only at session end or between targets. Do not tell the reviewer how to do its job or what to check; only specify that it runs, and that you must act on what it reports (revert what it flags as out of scope) before continuing.
+- **prompts/fusions/Calligrapher.md**: 9 flags
+  - opposing_modality: ⚡ The Flash Mitigator: We ensure text is immediately visible during web font loading using asynchronous paths and swap constraints.
+  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 3 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
   - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 3 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
 - **prompts/fusions/Antibody.md**: 9 flags
   - opposing_modality: * 🔥 True resuscitation requires extreme stress; a test must be broken forcefully and repeatedly in a controlled local loop before it can be healed permanently.
   - opposing_modality: * Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).
   - opposing_modality: * Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).
-- **prompts/fusions/Payload.md**: 9 flags
-  - opposing_modality: * **The Infrastructure Rule:** You are strictly forbidden from implementing or bootstrapping complex Redis or Memcached infrastructure. You must utilize native in-memory caching or aggressive HTTP edge headers exclusively.
-  - opposing_modality: * **The Infrastructure Rule:** You are strictly forbidden from implementing or bootstrapping complex Redis or Memcached infrastructure. You must utilize native in-memory caching or aggressive HTTP edge headers exclusively.
-  - opposing_modality: * **The Economy Execution Limit:** You operate under a strict execution time limit. You are forbidden from pausing to ask for guidance. You must operate with absolute economy (limit to 10-15 total tool invocations). Batch your commands, execute swiftly, and finalize the PR *before* the host environment paralyzes your session for running too long.
+- **prompts/fusions/Bastion.md**: 9 flags
+  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 7 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 7 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 7 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+- **prompts/fusions/Archivist.md**: 9 flags
+  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 7 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 7 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 7 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+- **prompts/fusions/Automata.md**: 9 flags
+  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 7 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 7 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+  - opposing_modality: * Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 7 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
+- **prompts/fusions/Bulwark.md**: 8 flags
+  - opposing_modality: * **The Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
+  - opposing_modality: * **The Scope:** Limit mutations strictly to defensive wrappers, schema definitions, telemetry, or test files. Do not alter core behavioral logic.
+  - opposing_modality: * **The Verification Procedure:** Treat all test files as immutable and read-only. If a structural mutation causes a test failure, do not modify the test file to accommodate your change. You must either prove the test was already failing on the main branch, or execute an immediate Graceful Abort and full revert.
 - **prompts/fusions/Cartographer.md**: 8 flags
   - opposing_modality: * ⚖️ Accuracy vs. Noise—Never map every single 1-line utility file into a global diagram to prevent unreadable visual spaghetti; map the core domain modules.
   - opposing_modality: * **The Noise Reduction Protocol:** Ingest all data within radius, filter noise, and map the systemic state. Ensure the blast radius targets exactly ONE scope context.
@@ -282,62 +316,26 @@ Top 25 files by F flags:
   - opposing_modality: * ⛏️ Structural Isolation: Global mocks must be decentralized to the specific test files that require them.
   - opposing_modality: * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 5 targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling.
   - opposing_modality: * **The Decisiveness Rule:** Silently identify all AST nodes violating the target structural pattern. Do not pause to ask the operator for stylistic preferences or metadata definitions. Lock onto the targets according to declared priority weighting up to your limit, execute the batch transformation natively, log the remaining unhandled files, and proceed.
-- **prompts/fusions/Canner.md**: 8 flags
-  - opposing_modality: * **The Execution Rule:** Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 5 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
-  - opposing_modality: * **The Execution Rule:** Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 5 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
-  - opposing_modality: * **The Execution Rule:** Your discovery posture is bounded-sweep. You are authorized to traverse the repository to locate targets but must abort execution the moment you have mutated exactly 5 targets. Do not exceed the declared quota. Submit your PR immediately upon reaching the mutation ceiling.
-- **prompts/Paramedic.md**: 7 flags
-  - opposing_modality: - 🚑 Every failure is a patient in critical condition: stabilize first, trace symptoms through their dependency chain to true root cause, and repair the underlying pathology — ignore genuinely cosmetic defects, but never dismiss a quiet-looking symptom without proving it isn't the visible face of a silent logic failure.
-  - opposing_modality: - 🩹 Never trade a masked symptom for a true cure; stubbing a broken interface, swallowing a fatal error, or accepting a clean exit that produced no real output is a fundamental failure of care.
-  - opposing_modality: - 🩹 Never trade a masked symptom for a true cure; stubbing a broken interface, swallowing a fatal error, or accepting a clean exit that produced no real output is a fundamental failure of care.
-- **prompts/Modernizer.md**: 7 flags
-  - opposing_modality: * 🧬 Archaic syntax is genetic debt — it drags down the cognitive velocity of the entire ecosystem and must be systematically sequenced out before it calcifies into unmaintainable legacy.
-  - opposing_modality: * **The Target Runtime Mandate:** Before injecting modern language features, you must cross-reference the minimum supported environment (e.g., checking `package.json` engines, `.nvmrc`, or `.python-version`). You are strictly forbidden from introducing syntax (like Optional Chaining or ES Modules) that exceeds the repository's configured base runtime.
-  - opposing_modality: * **The Target Runtime Mandate:** Before injecting modern language features, you must cross-reference the minimum supported environment (e.g., checking `package.json` engines, `.nvmrc`, or `.python-version`). You are strictly forbidden from introducing syntax (like Optional Chaining or ES Modules) that exceeds the repository's configured base runtime.
-- **prompts/Vibe.md**: 7 flags
-  - opposing_modality: * **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Board state handling follows the Task Board Resolution Protocol — do not author separate checkbox or deletion logic here. Follow the Persistent Discovery Doctrine.
-  - opposing_modality: * **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Board state handling follows the Task Board Resolution Protocol — do not author separate checkbox or deletion logic here. Follow the Persistent Discovery Doctrine.
-  - opposing_modality: * **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Board state handling follows the Task Board Resolution Protocol — do not author separate checkbox or deletion logic here. Follow the Persistent Discovery Doctrine.
-- **prompts/fusions/Retrofit.md**: 7 flags
-  - opposing_modality: * ⚖️ A reliable, well-understood deployment manifest is superior to a bleeding-edge, incomprehensible pipeline—stability must outlive novelty.
-  - opposing_modality: * 🏗️ The cargo hold must be upgraded while the ship is sailing—structural pipeline evolution must never disrupt the underlying payload or deployment execution path.
-  - opposing_modality: * 🏗️ The cargo hold must be upgraded while the ship is sailing—structural pipeline evolution must never disrupt the underlying payload or deployment execution path.
-- **prompts/fusions/Decommissioner.md**: 7 flags
-  - opposing_modality: * 🛑 Protocol correctness is non-negotiable; structural integrity must be strictly validated by dry-run builds before the cargo leaves the bay, ensuring deletions do not sever active deployment routes.
-  - opposing_modality: * 🛑 Protocol correctness is non-negotiable; structural integrity must be strictly validated by dry-run builds before the cargo leaves the bay, ensuring deletions do not sever active deployment routes.
-  - opposing_modality: * 🛑 Protocol correctness is non-negotiable; structural integrity must be strictly validated by dry-run builds before the cargo leaves the bay, ensuring deletions do not sever active deployment routes.
-- **prompts/fusions/Parallel.md**: 7 flags
-  - opposing_modality: * ♾️ The legacy system works. Do not touch it. Do not break it. Do not migrate it.
-  - opposing_modality: * **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Board state handling follows the Task Board Resolution Protocol (Forge-Procedure Module 4) — do not author separate checkbox or deletion logic here. If no explicit target exists after applying that protocol, extrapolate a high-value net-new feature directly from your core domain intent.
-  - opposing_modality: * **Creation Imperative:** ALWAYS build a net-new feature, architecture bridge, or micro-interaction. Do not end a session merely updating a task board. Board state handling follows the Task Board Resolution Protocol (Forge-Procedure Module 4) — do not author separate checkbox or deletion logic here. If no explicit target exists after applying that protocol, extrapolate a high-value net-new feature directly from your core domain intent.
-- **prompts/Janitor.md**: 6 flags
-  - opposing_modality: * 🔦 What cannot be bagged must be illuminated — shine a light on observable hazards and log them to the journal for institutional awareness without polluting the task board.
-  - opposing_modality: * 🔦 What cannot be bagged must be illuminated — shine a light on observable hazards and log them to the journal for institutional awareness without polluting the task board.
-  - opposing_modality: * 🔦 What cannot be bagged must be illuminated — shine a light on observable hazards and log them to the journal for institutional awareness without polluting the task board.
-- **prompts/Sentinel+.md**: 6 flags
-  - opposing_modality: * ⚖️️ Paranoid restriction must never compromise legitimate core application usability, block intended functionality, or break legacy clients.
-  - opposing_modality: * **Scope:** Limit mutations strictly to defensive schema boundaries, validation middleware, secret management, parameterized sinks, and reproduction tests. Do not perform unrelated business refactoring.
-  - opposing_modality: * **Scope:** Limit mutations strictly to defensive schema boundaries, validation middleware, secret management, parameterized sinks, and reproduction tests. Do not perform unrelated business refactoring.
 
 ## 8. Recurring Tensions
-- ('you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', '✅ **verify** — **the reporter protocol:** verify your mutations incrementally. you may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target. do not treat changing error messages as forward progress. if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. treat verification as a reporter, not a gatekeeper. accept that the environment is hostile, retain your successful ast mutations, and proceed.'): 5 files
+- ('treat all test files as immutable and read-only. if a structural mutation causes a test failure, do not modify the test file to accommodate your change. you must either prove the test was already failing on the main branch, or execute an immediate graceful abort and full revert.', '✅ **verify** — **the reporter protocol:** * verify your mutations incrementally. you may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target. do not treat changing error messages as forward progress. if you cannot cleanly verify the target within 3 attempts due to flaky test runners or environmental opacity, do not panic and do not abort the entire session. treat verification as a reporter, not a gatekeeper. accept that the environment is hostile, retain your successful ast mutations, and proceed.'): 6 files
 
 ## 9. Spot Check Sample
 - prompts/fusions/Sanitizer.md (Rank 1)
-- prompts/fusions/Viewmorph.md (Rank 2)
-- prompts/fusions/Narrator.md (Rank 3)
-- prompts/fusions/Bastion.md (Rank 4)
+- prompts/fusions/Narrator.md (Rank 2)
+- prompts/orphans/Choreographer.md (Rank 3)
+- prompts/fusions/Viewmorph.md (Rank 4)
 - prompts/fusions/Slipstream.md (Rank 5)
-- prompts/fusions/Cartographer.md (Rank 245)
-- prompts/fusions/Logician.md (Rank 246)
-- prompts/fusions/Prompt Engineer.md (Rank 247)
-- prompts/micro/Echo.md (Rank 248)
-- prompts/fusions/Sherpa.md (Rank 249)
+- prompts/fusions/Cartographer.md (Rank 246)
+- prompts/micro/Echo.md (Rank 247)
+- prompts/fusions/Lumen.md (Rank 248)
+- prompts/fusions/Prompt Engineer.md (Rank 249)
+- prompts/fusions/Sherpa.md (Rank 250)
 
 ## 10. Tool Lexicon & Inventory
 Top Tools:
+- main: 148
 - git: 114
-- main: 110
 - package.json: 56
 - if: 36
 - npm: 27
@@ -352,9 +350,9 @@ Top Tools:
 - null: 15
 - aria-label: 14
 - undefined: 14
+- docker-compose.yml: 13
 - docker: 13
 - index.ts: 13
-- docker-compose.yml: 12
 - throw: 12
 - en.json: 10
 - opacity: 9
@@ -386,11 +384,11 @@ Top Tools:
 - xit: 5
 - functions: 5
 - it: 5
-- node_modules: 4
 - dependabot.yml: 4
 - process.env: 4
 - requirements.txt: 4
 - axios: 4
+- v2: 4
 - error: 4
 - req.body: 4
 - transition: 4
@@ -398,57 +396,57 @@ Top Tools:
 - href: 4
 
 Missing Tools:
-- pg_restore (used by prompts/fusions/Marshal.md)
-- focus-visible (used by prompts/Palette+.md, prompts/orphans/Virtuoso.md, prompts/fusions/Chameleon.md)
-- setup-python (used by prompts/fusions/Echodrop.md)
-- v2 (used by prompts/fusions/Checkpoint.md, prompts/fusions/Retrofit.md)
-- v4 (used by prompts/fusions/Retrofit.md, prompts/fusions/Echodrop.md)
-- console.log (used by prompts/orphans/Speed Camera.md, prompts/fusions/Zealot.md)
-- localhost (used by prompts/fusions/Launchpad.md)
-- hadolint (used by prompts/fusions/Respawn.md)
-- auth.json (used by prompts/orphans/Polyglot.md, prompts/orphans/orphans.md)
-- err (used by prompts/fusions/Temporal Loom.md, prompts/fusions/Slipstream.md)
-- try-catch (used by prompts/fusions/Amputator.md, prompts/fusions/Automata.md)
-- framer-motion (used by prompts/orphans/Choreographer.md, prompts/fusions/Viewmorph.md)
-- custom_agents.json (used by prompts/micro/Nomenclator.md)
-- fr.json (used by prompts/orphans/Redliner.md)
-- aria-invalid (used by prompts/fusions/Renovator.md)
+- crossorigin (used by prompts/fusions/Calligrapher.md)
+- allow (used by prompts/fusions/Bastion.md)
+- server.js (used by prompts/fusions/Watchtower.md)
+- eslint.config.js (used by prompts/fusions/Zealot.md)
+- status_code (used by prompts/fusions/Telemetrist.md)
+- auth-styles.scss (used by prompts/fusions/Renovator.md)
+- prettier (used by prompts/fusions/Groundskeeper.md)
+- gpt-4o (used by prompts/Cortex.md, prompts/fusions/Firewall.md)
+- actionlint (used by prompts/fusions/Rumble.md)
+- stripe.js (used by prompts/fusions/Chronicler.md)
+- black (used by prompts/fusions/Rulemaker.md)
+- transition-height (used by prompts/fusions/Hologram.md)
+- error_constants.ts (used by prompts/fusions/Grammarian.md)
+- raise (used by prompts/orphans/Orator.md, prompts/orphans/orphans.md)
 - opts.age (used by prompts/fusions/Collider.md)
-- mcp.json (used by prompts/fusions/Dispatcher.md)
-- undefined (used by prompts/fusions/Hoister.md, prompts/orphans/Diplomat.md, prompts/orphans/Tokenizer.md)
-- markdownlint-cli (used by prompts/fusions/Illuminator.md)
-- it (used by prompts/orphans/Sandboxer.md)
-- rel (used by prompts/fusions/Calligrapher.md)
-- legacy-theme.css (used by prompts/fusions/Purger.md)
-- max-w (used by prompts/fusions/Viewmorph.md)
-- tracking (used by prompts/Palette+.md)
-- aws_access_key_id (used by prompts/fusions/Revoker.md)
-- boto3 (used by prompts/fusions/Keymaster.md)
-- docker-compose.yml (used by prompts/Author.md, prompts/fusions/Marshal.md, prompts/fusions/Respawn.md)
-- if (used by prompts/fusions/Toxicologist.md, prompts/fusions/Lumberjack.md, prompts/Pedant.md)
-- sk-... (used by prompts/fusions/Policy Maker.md)
-- v1_ (used by prompts/fusions/Obituary Writer.md)
-- section (used by prompts/fusions/Viewmorph.md)
-- context (used by prompts/fusions/Forensic Architect.md)
-- en.json (used by prompts/orphans/orphans.md, prompts/fusions/Standardizer.md, prompts/fusions/Wordsmith.md)
-- workspace_id_null (used by prompts/orphans/Canon.md, prompts/orphans/orphans.md)
-- user.flags (used by prompts/fusions/Defuser.md)
-- request_code_review (used by prompts/fusions/Overdrive.md, prompts/fusions/Vector.md, prompts/fusions/Policy Maker.md)
-- aria-labelledby (used by prompts/orphans/Information Architect.md)
-- ffmpeg (used by prompts/orphans/Media Pipeline.md)
-- title (used by prompts/orphans/Canon.md, prompts/orphans/Polyglot.md, prompts/orphans/orphans.md)
-- patch.js (used by prompts/fusions/Hazmat.md)
+- key (used by prompts/fusions/Revoker.md)
+- clean.sh (used by prompts/orphans/Janitor.md)
+- v4 (used by prompts/fusions/Echodrop.md, prompts/fusions/Retrofit.md)
+- status (used by prompts/orphans/orphans.md, prompts/fusions/Glossary.md, prompts/orphans/Polyglot.md)
+- console.log (used by prompts/fusions/Zealot.md, prompts/orphans/Speed Camera.md)
+- tool_calls.function.name (used by prompts/fusions/Automata.md)
+- err (used by prompts/fusions/Temporal Loom.md, prompts/fusions/Slipstream.md)
+- routes.ts (used by prompts/fusions/Dead-Ender.md)
+- count (used by prompts/orphans/orphans.md, prompts/orphans/Polyglot.md)
+- auth.login.button (used by prompts/orphans/Polyglot.md)
+- access_key_id (used by prompts/fusions/Keymaster.md)
+- style (used by prompts/fusions/Acetone.md)
+- linear-gradient (used by prompts/fusions/Sculptor.md)
+- let (used by prompts/Untangler.md, prompts/fusions/Refiner.md, prompts/orphans/Sandboxer.md)
+- opts.name (used by prompts/fusions/Collider.md)
+- workspace_id_null (used by prompts/orphans/orphans.md, prompts/orphans/Canon.md)
+- export (used by prompts/fusions/Purger.md, prompts/Scavenger.md, prompts/fusions/Hyperloop.md)
+- ng (used by prompts/fusions/Scaffolder.md)
+- main.ts (used by prompts/Architect.md)
+- async (used by prompts/fusions/Inoculator.md)
+- dead_code (used by prompts/fusions/Zealot.md)
+- limit (used by prompts/fusions/Limiter.md)
+- tsconfig.json (used by prompts/fusions/Zealot.md, prompts/fusions/Ghost Hunter.md, prompts/fusions/Retcon.md)
+- runtime (used by prompts/fusions/Hyperloop.md)
+- zoneinfo (used by prompts/fusions/Steward.md)
 
 ## 11. Effect Report
 
 ## 12. Reference Check and Human Anchors
-Hazmat: 6
-Paramedic: 126
-Virtuoso: 232
-Tokenizer: 186
-Synchronizer: 230
-Speed Camera: 88
-Upgrader: 243
+Hazmat: 8
+Paramedic: 115
+Virtuoso: 241
+Tokenizer: 178
+Synchronizer: 216
+Speed Camera: 91
+Upgrader: 245
 
 ## 13. Blind Spots
 The graders cannot judge domain correctness, whether a command works on a given repo, or reasoning quality. Treat the ranking as triage, not a verdict.
