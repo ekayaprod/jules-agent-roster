@@ -15,7 +15,7 @@ class SingularityBespokeBuilder {
     this.container.innerHTML = `
       <div class="sg-builder">
 
-        <div class="sg-header transition-all duration-300 ease-in-out hover:bg-black/5 dark:hover:bg-white/5 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none" id="sgHeaderToggle" tabindex="0" role="button" aria-expanded="false" aria-controls="sgForgeContainer">
+        <div class="sg-header transition-all duration-300 ease-in-out hover:bg-black/5 dark:hover:bg-white/5 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50" id="sgHeaderToggle" tabindex="0" role="button" aria-expanded="false" aria-controls="sgForgeContainer">
           <div class="sg-header-content">
             <span class="sg-header-icon">🌌</span>
             <div>
@@ -32,7 +32,7 @@ class SingularityBespokeBuilder {
               <label class="sg-label" for="sgMission">Core Mission</label>
               <span class="sg-label-note">Describe what you want the agent to do</span>
             </div>
-            <textarea id="sgMission" class="sg-textarea transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none hover:shadow-sm" placeholder="e.g., Build a Python script to parse logs, or find and delete unused CSS files..."></textarea>
+            <textarea id="sgMission" class="sg-textarea transition-all duration-300 ease-in-out focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 hover:shadow-sm" placeholder="e.g., Build a Python script to parse logs, or find and delete unused CSS files..."></textarea>
             <div id="sgErrorWrapper" class="fusion-error-alert transition-all duration-300 ease-in-out hidden mt-2">
               <svg class="fusion-error-icon shrink-0 mt-1" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -52,7 +52,7 @@ class SingularityBespokeBuilder {
           <p class="sg-outcome-note">
             Singularity will scan your repository and deliver a new agent file via pull request to <code>.jules/agents/</code>
           </p>
-          <button class="sg-submit transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95" id="sgSubmit">🌌 Forge Bespoke Agent</button>
+          <button class="sg-submit transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 active:scale-95" id="sgSubmit">🌌 Forge Bespoke Agent</button>
         </div>
 
       </div>
