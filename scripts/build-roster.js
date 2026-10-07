@@ -57,48 +57,29 @@ async function processDirectory(dirPath, isCustom, targetFolder) {
     const validFiles = files.filter(file => file.endsWith('.md') && file !== 'README.md');
 
     // ⚡ Bolt+: The Unbounded Concurrency Fix. Applied a sliding-window concurrency limit to prevent memory and file descriptor exhaustion.
-    const CONCURRENCY_LIMIT = 5;
-    const results = new Array(validFiles.length);
-    const activeTasks = new Set();
-
-    for (let i = 0; i < validFiles.length; i++) {
-        const file = validFiles[i];
-        const taskPromise = (async () => {
-            try {
-                const content = await fs.promises.readFile(path.join(dirPath, file), 'utf-8');
-                const parsed = parseMarkdownFrontmatter(content);
-                if (parsed.attributes.name) {
-                    let relativePath = `prompts/${file}`;
-                    if (targetFolder === 'fusions') {
-                        relativePath = `prompts/fusions/${file}`;
-                    } else if (targetFolder === 'micro') {
-                        relativePath = `prompts/micro/${file}`;
-                    }
-
-                    const agent = {
-                        ...parsed.attributes,
-                        promptFile: relativePath,
-                        isCustom: isCustom
-                    };
-                    return agent;
+    const results = await Promise.all(validFiles.map(async file => {
+        try {
+            const content = await fs.promises.readFile(path.join(dirPath, file), 'utf-8');
+            const parsed = parseMarkdownFrontmatter(content);
+            if (parsed.attributes.name) {
+                let relativePath = `prompts/${file}`;
+                if (targetFolder === 'fusions') {
+                    relativePath = `prompts/fusions/${file}`;
+                } else if (targetFolder === 'micro') {
+                    relativePath = `prompts/micro/${file}`;
                 }
-            } catch (error) {
+
+                return {
+                    ...parsed.attributes,
+                    promptFile: relativePath,
+                    isCustom: isCustom
+                };
             }
-            return null;
-        })();
-
-        activeTasks.add(taskPromise);
-        taskPromise.then(agent => {
-            results[i] = agent;
-            activeTasks.delete(taskPromise);
-        });
-
-        if (activeTasks.size >= CONCURRENCY_LIMIT) {
-            await Promise.race(activeTasks);
+        } catch (error) {
         }
-    }
+        return null;
+    }));
 
-    await Promise.all(activeTasks);
     return results.filter(Boolean);
 }
 
