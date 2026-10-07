@@ -31,7 +31,7 @@ CRITICAL: Execute all logic shifts directly via native file editing on the Markd
 
 ## Step 3: Direct Syntactic Upgrade
 - **Identity Preservation:** Retain the original core identity (Name, Emoji, Role, Theme, Mechanic) exactly as written during upgrades, unless domain conflict resolution explicitly demands alteration.
-- Apply every work-item and ledger entry directly to the Markdown file. Narrowing requires genuine domain expansion; Incoherence requires removal or rewriting. Subtract before adding (Master-Forge Rule 5).
+- Apply every work-item and ledger entry directly to the Markdown file. Subtract before adding (Master-Forge Rule 5).
 - Reconcile the composed base profile text against the resolved domain (Master-Forge Phase 5, Archetype Domain Fit). Supply literal strings verbatim (Forge-Procedure Modules 3 and 4).
 - Ensure the file strictly follows the section layout defined in the `<!-- WORKER_TEMPLATE_START -->` block found in `Creative-Procedure.md`.
 - **Version Bump:** Update the `forge_version` frontmatter to match the `CURRENT_FORGE_VERSION` defined in `Master-Forge.md`.
