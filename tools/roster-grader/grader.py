@@ -685,11 +685,10 @@ def score_dim_F(units, raw_content, fm=None, rare_tokens_set=None):
 
     return flags, mission_drift_share
 
-def check_tool_availability(tools):
+def check_tool_availability(tools, whitelist):
     missing = set()
-    import shutil
     for tool in tools:
-        if not shutil.which(tool):
+        if tool not in whitelist:
             missing.add(tool)
     return missing
 
@@ -776,7 +775,6 @@ def full_scoring(files, config=None):
     metrics_B_corpus, top_10_pairs, rare_tokens_set, doc_freq, same_name_pairs = score_dim_B_corpus(all_op_units, all_names)
 
     f_flags = []
-    g_validity_values = []
     mission_drifts = []
 
     for idx, fd in enumerate(file_data):
@@ -789,9 +787,6 @@ def full_scoring(files, config=None):
         flags_F, drift = score_dim_F(fd['non_bp'], fd['rest'], fd['fm'], rare_tokens_set)
         f_flags.append(flags_F)
         mission_drifts.append(drift)
-
-        g_val = None
-        g_validity_values.append(g_val)
 
         m_H = score_dim_H(fd['units'], fd['non_bp'])
 
@@ -855,7 +850,6 @@ def full_scoring(files, config=None):
         with open('tools/roster-grader/config.json', 'w') as f:
             json.dump(cfg, f, indent=2)
 
-    g_share = 0
     weights = {'A': 20, 'B': 10, 'C': 15, 'D': 15, 'E': 10, 'F': 15,  'H': 10}
 
 
@@ -994,11 +988,12 @@ def full_scoring(files, config=None):
         file_data[i]['tier'] = tiers[i]
         file_data[i]['final_dims'] = {k: dims[k][i] for k in dims}
 
-    missing_tools = check_tool_availability(list(file_tools.keys()))
+    whitelist = config.get('tool_whitelist', []) if config else []
+    missing_tools = check_tool_availability(list(file_tools.keys()), whitelist)
 
-    return file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, g_share, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, [], same_name_pairs
+    return file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, [], same_name_pairs
 
-def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, g_share, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, excluded, found_files, same_name_pairs):
+def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, excluded, found_files, same_name_pairs):
     import csv
     import os
     os.makedirs('reports/roster-grading', exist_ok=True)
@@ -1060,7 +1055,6 @@ def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools
 
         f.write("\n## 3. Method & Weights\n")
         f.write(f"Saturated Dimensions: {', '.join(saturated) if saturated else 'None'}\n")
-        f.write(f"G Artifact Share: {g_share*100:.1f}%\n")
         f.write(f"Final Weights: {json.dumps(weights)}\n")
 
         f.write("\n## 4. Validation & Correlations\n")
@@ -1193,7 +1187,12 @@ def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools
 if __name__ == "__main__":
     found_files, excluded = discover_files()
 
-    file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, g_share, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, _, same_name_pairs = full_scoring(found_files)
+    cfg = None
+    if os.path.exists('tools/roster-grader/config.json'):
+        with open('tools/roster-grader/config.json', 'r') as f:
+            cfg = json.load(f)
+
+    file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, _, same_name_pairs = full_scoring(found_files, config=cfg)
 
     with open('reports/roster-grading/scores.json', 'w', encoding='utf-8') as f:
         json_data = []
@@ -1210,7 +1209,7 @@ if __name__ == "__main__":
             })
         json.dump(json_data, f, indent=2)
 
-    generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, g_share, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, excluded, found_files, same_name_pairs)
+    generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, excluded, found_files, same_name_pairs)
 
     print(f"Coverage: {len(found_files)} scored, {len(excluded)} excluded.")
     print("Done scoring full roster.")
