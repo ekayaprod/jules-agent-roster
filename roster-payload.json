@@ -28,7 +28,7 @@
     "category": "Plus",
     "tier": "Core",
     "description": "ACCELERATE computational bottlenecks and parallelize blocking operations to supercharge application throughput and purge system latency.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Bolt+.md",
     "isCustom": false
   },
@@ -50,7 +50,7 @@
     "category": "Operations",
     "tier": "Core",
     "description": "DISPATCH pristine CI/CD payloads, optimize container transit, fortify meta-infrastructure, and provision context-aware MCP arrays.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Dispatch.md",
     "isCustom": false
   },
@@ -83,7 +83,7 @@
     "category": "Maintenance",
     "tier": "Core",
     "description": "SWEEP the repository to clear hallway trash, purge microscopic decay, delete unlinked artifacts, and strip manifest bloat.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Janitor.md",
     "isCustom": false
   },
@@ -94,7 +94,7 @@
     "category": "Maintenance",
     "tier": "Core",
     "description": "EVOLVE fossilized syntax and deprecated patterns into modern native standards to radically reduce cognitive load.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Modernizer.md",
     "isCustom": false
   },
@@ -105,7 +105,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "CHART static codebase mapping, dependency graph generation, and architectural cartography to expose stagnation and inject visionary pathfinding.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Navigator.md",
     "isCustom": false
   },
@@ -127,7 +127,7 @@
     "category": "Plus",
     "tier": "Core",
     "description": "STYLIZE frontend components with purposeful UX patterns, fluid design tokens, and motion to craft frictionless, delightful experiences.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Palette+.md",
     "isCustom": false
   },
@@ -149,7 +149,7 @@
     "category": "Compliance",
     "tier": "Core",
     "description": "ENFORCE canonical typing, explicit coercion, and alphabetical sorting to establish mathematically predictable code structures.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Pedant.md",
     "isCustom": false
   },
@@ -171,7 +171,7 @@
     "category": "Documentation",
     "tier": "Core",
     "description": "CHRONICLE complex logic via AST-driven docs, and aggregate release cycles using git history to silently preserve institutional memory.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Scribe.md",
     "isCustom": false
   },
@@ -182,7 +182,7 @@
     "category": "Plus",
     "tier": "Core",
     "description": "FORTIFY execution paths against injection vectors, exposed credentials, and broken security boundaries across the repository.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Sentinel+.md",
     "isCustom": false
   },
@@ -193,7 +193,7 @@
     "category": "Maintenance",
     "tier": "Core",
     "description": "UNKNOT deeply nested code to restore readability through linear execution paths and guard clauses.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Untangler.md",
     "isCustom": false
   },
@@ -204,7 +204,7 @@
     "category": "Testing",
     "tier": "Core",
     "description": "SQUARE the synthetic jive of iterative vibe coding errors, bouncing hallucinated posers to restore the codebase's righteous native groove.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/Vibe Check.md",
     "isCustom": false
   },
@@ -512,7 +512,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "COLLAPSE sprawling CI/CD pipelines and infrastructure manifests into highly dense, reusable matrices without sacrificing deployment stability.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Conveyor.md",
     "isCustom": true
   },
@@ -567,7 +567,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "EXCISE orphaned deployment configurations, purge unused CI/CD artifacts, and strip meta-infrastructure bloat to fortify repository supply lines.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Decommissioner.md",
     "isCustom": true
   },
@@ -600,7 +600,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "DEMOLISH orphaned CI/CD workflows, dead infrastructure artifacts, and fossilized container layers.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Demolition.md",
     "isCustom": true
   },
@@ -633,7 +633,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "AIRDROP precise CI/CD patches and optimal Docker layers by emitting deep bash pipelines to echolocate macro-infrastructure decay in the dark.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Echodrop.md",
     "isCustom": true
   },
@@ -655,7 +655,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "CODIFY complex CI/CD pipelines, containerization logic, and meta-infrastructure into pristine, actionable deployment documentation.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Envoy.md",
     "isCustom": true
   },
@@ -710,7 +710,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "FORGE explicit example blocks into fragile zero-shot AI integrations to eliminate formatting drift and downstream parser crashes.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Few-Shot Forger.md",
     "isCustom": true
   },
@@ -754,7 +754,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "CONJURE a mirage of instantaneous speed to mask network latency without breaking data integrity.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.0",
     "promptFile": "prompts/fusions/Flourish.md",
     "isCustom": true
   },
@@ -765,7 +765,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "STANDARDIZE physical file naming and synchronize global import structures to enforce consistent architectural boundaries.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Foreman.md",
     "isCustom": true
   },
@@ -820,7 +820,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "CENTRALIZE fragile, hardcoded padlocks scattered across the codebase and forge a single, impenetrable policy engine to govern all access.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Gatekeeper.md",
     "isCustom": true
   },
@@ -842,7 +842,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "PURGE hallucinated onboarding instructions and phantom API references, grounding synthetic documentation artifacts directly back to verifiable codebase reality.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Ghostwriter.md",
     "isCustom": true
   },
@@ -864,7 +864,7 @@
     "category": "UX",
     "tier": "Mythic",
     "description": "EXTRACT sloppy, hardcoded UI strings into strict canonical constants and rewrite them into polished, active-voice microcopy.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Grammarian.md",
     "isCustom": true
   },
@@ -897,7 +897,7 @@
     "category": "Architecture",
     "tier": "Core",
     "description": "CHART robust CI/CD terrains, map deployment infrastructure drift, and inject visionary pipelines to conquer transit stagnation.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Harbormaster.md",
     "isCustom": true
   },
@@ -908,7 +908,7 @@
     "category": "Operations",
     "tier": "Mythic",
     "description": "DECONTAMINATE the blast zone. Incinerate environmental toxins, corrupted caches, and orphaned debris poisoning the virtual machine.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Hazmat.md",
     "isCustom": true
   },
@@ -996,7 +996,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "Draft precise architectural blueprints from dense text walls to reveal the structural truth of the repository.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Illuminator.md",
     "isCustom": true
   },
@@ -1018,7 +1018,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "Refine Sweep codebases to upgrade archaic, hard-to-read string concatenations and legacy formatters into modern syntax.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Interpolator.md",
     "isCustom": true
   },
@@ -1139,7 +1139,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "ENFORCE canonical strictness, explicit versioning, and alphabetical sorting across CI/CD pipelines, container layers, and infrastructure manifests.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Manifest.md",
     "isCustom": true
   },
@@ -1161,7 +1161,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "DRILL catastrophic outage scenarios and explicitly draft actionable, command-level disaster recovery steps into a formalized runbook.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Marshal.md",
     "isCustom": true
   },
@@ -1249,7 +1249,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "EXCISE over-engineered paradigms, convoluted dependencies, and hallucinated padding to leave only the minimal, boring, native truth.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Occam.md",
     "isCustom": true
   },
@@ -1304,7 +1304,7 @@
     "category": "Fusion",
     "tier": "Fusion",
     "description": "ELIMINATE AI-hallucinated synchronous waterfalls and structurally padding loops to mathematically accelerate application throughput.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Overdrive.md",
     "isCustom": true
   },
@@ -1392,7 +1392,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "DEMOLISH hallucinated file structures and over-engineered directory facades by directly modifying the filesystem using git mv and rewiring native import corridors.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Plumbline.md",
     "isCustom": true
   },
@@ -1403,7 +1403,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "GOVERN the codebase by establishing strict AI data boundaries and ensuring no internal PII or unauthorized models breach compliance.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Policy Maker.md",
     "isCustom": true
   },
@@ -1458,7 +1458,7 @@
     "category": "Documentation",
     "tier": "Mythic",
     "description": "Refine vague prompt prose into high-fidelity instructions. Maximize LLM success by tuning polarity, primacy, and behavioral mechanics to perfectly match the prompt's execution environment.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Prompt Engineer.md",
     "isCustom": true
   },
@@ -1480,7 +1480,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "Prepare developers for API end-of-life cycles by hunting for `@deprecated` tags and injecting runtime environment-sensitive warnings.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Prophet.md",
     "isCustom": true
   },
@@ -1524,7 +1524,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "QUARANTINE volatile, scattered logic into a single shared utility and wrap it in an impenetrable error-handling boundary.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Quarantine.md",
     "isCustom": true
   },
@@ -1590,7 +1590,7 @@
     "category": "Architecture",
     "tier": "Mythic",
     "description": "Synthesizes a live, repository-wide architectural symbol graph to unify all component registers, eliminate dependency anomalies, and optimize global import topologies at scale.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Registrar.md",
     "isCustom": true
   },
@@ -1678,7 +1678,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "RETROFIT fossilized CI/CD pipelines and deprecated infrastructure configurations into modern containerization standards to maximize deployment velocity.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Retrofit.md",
     "isCustom": true
   },
@@ -1755,7 +1755,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "SANITIZE the runtime. Scrub away passive memory leaks by injecting antibacterial teardown logic for lingering connections and unclosed streams.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.2",
     "promptFile": "prompts/fusions/Sanitizer.md",
     "isCustom": true
   },
@@ -1777,7 +1777,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "SYNTHESIZE implicit domain boundaries and tribal knowledge via git archaeology into living Architecture Decision Records (ADRs) and glossaries.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Scholar.md",
     "isCustom": true
   },
@@ -1788,7 +1788,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "UNTANGLE highly convoluted, multi-file execution chains into pristine, linear macro-documentation.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Scout.md",
     "isCustom": true
   },
@@ -1810,7 +1810,7 @@
     "category": "UX",
     "tier": "Mythic",
     "description": "ELEVATE the user journey from dead-end valleys to actionable peaks. Transform data voids and confusing UI states into contextual, accessible paths forward using native interface patterns.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Sherpa.md",
     "isCustom": true
   },
@@ -1821,7 +1821,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "DELETE commented-out code that has sat untouched for over 30 days to reduce visual noise.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Shredder.md",
     "isCustom": true
   },
@@ -1832,7 +1832,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "MITIGATE high-priority security vulnerabilities identified in the codebase, ensuring critical patches are aggressively applied.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Siren.md",
     "isCustom": true
   },
@@ -1843,7 +1843,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "FLATTEN winding conditional logic and deeply nested `if/else` statements into lightning-fast, highly readable guard clauses and early returns.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Slipstream.md",
     "isCustom": true
   },
@@ -1876,7 +1876,7 @@
     "category": "Hygiene",
     "tier": "Fusion",
     "description": "Identify minor, semantic variations of identically intentioned code blocks, UI copy, and constant strings scattered across the repository, and centralize them into single, reusable references.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Standardizer.md",
     "isCustom": true
   },
@@ -1887,7 +1887,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "MAP the overarching impact of dependency updates and polyfill removals, bridging the gap between package bumps and macro architecture.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Steward.md",
     "isCustom": true
   },
@@ -1898,7 +1898,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "CODIFY proprietary commit patterns and unwritten release tagging rules into a universal micro-agent prompt to flawlessly draft future changelogs.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Strategist.md",
     "isCustom": true
   },
@@ -1909,7 +1909,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "FLATTEN underlying cognitive complexity and mask it with clean, chunked UI, transforming overwhelming tasks into simple, step-by-step actions using progressive disclosure.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Streamliner.md",
     "isCustom": true
   },
@@ -1920,7 +1920,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "STANDARDIZE stylesheets to rip out hardcoded hex codes, pixel font sizes, and arbitrary margins, replacing them with the project's official CSS variables or Tailwind classes.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Stylist.md",
     "isCustom": true
   },
@@ -1931,7 +1931,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "SUNSET legacy patterns. Author formal DEPRECATION.md plans and sweep wikis to erase or rewrite tutorials that still point to retired systems.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Sunsetter.md",
     "isCustom": true
   },
@@ -1942,7 +1942,7 @@
     "category": "Operations",
     "tier": "Core",
     "description": "AUDIT the macroscopic repository topology to identify deep structural decay and PURGE the ecosystem to permanently clear unlinked artifacts and manifest bloat.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Superintendent.md",
     "isCustom": true
   },
@@ -1953,7 +1953,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "STABILIZE decaying architectures by performing emergency triage on circular routes, collapsed colocation, and inline network logic.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.2",
     "promptFile": "prompts/fusions/Surgeon.md",
     "isCustom": true
   },
@@ -1975,7 +1975,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "Catalog the visual identity of the project by treating configuration files as raw materials, extracting every color, font weight, and spacing variable into a beautiful, human-readable STYLEGUIDE.md.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Swatch.md",
     "isCustom": true
   },
@@ -1986,7 +1986,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "UNKNOT deeply nested CI/CD workflows and infrastructure configurations to restore readability through linear execution and pipeline-level guard clauses.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Switchboard.md",
     "isCustom": true
   },
@@ -1997,7 +1997,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "SPLICE redundant functions by analyzing their inner workings and integrating their capabilities.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Sylar.md",
     "isCustom": true
   },
@@ -2008,7 +2008,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "MIGRATE deprecated consumer references to modern standards when performing major package version bumps.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Synchronizer.md",
     "isCustom": true
   },
@@ -2030,7 +2030,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "UNTANGLE workspaces of nested conditions and unlabelled variables by extracting deep logic into strictly typed local helper functions.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Systematizer.md",
     "isCustom": true
   },
@@ -2041,7 +2041,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "ACCELERATE synchronous responses into fluid data streams to eliminate wait states.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Tachyon.md",
     "isCustom": true
   },
@@ -2074,7 +2074,7 @@
     "category": "Performance",
     "tier": "Fusion",
     "description": "ANTICIPATE the user's path by harnessing physical intent signals to silently cache routing payloads before the click.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Telepath.md",
     "isCustom": true
   },
@@ -2096,7 +2096,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "RESHAPE unstructured public asset dumping grounds into logical feature hierarchies.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Terraformer.md",
     "isCustom": true
   },
@@ -2118,7 +2118,7 @@
     "category": "Documentation",
     "tier": "Mythic",
     "description": "CHRONICLE the project's living documentation, translating raw engineering noise into crystal-clear, user-facing product updates.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.2",
     "promptFile": "prompts/fusions/Town Crier.md",
     "isCustom": true
   },
@@ -2129,7 +2129,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "ENFORCE telemetry logging on empty catch blocks to eliminate blind spots and route swallowed exceptions into centralized observability pipelines.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Toxicologist.md",
     "isCustom": true
   },
@@ -2140,7 +2140,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "PURIFY implicit global reliance and inject explicit parameter contracts to completely eradicate crash hazards.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.5",
     "promptFile": "prompts/fusions/Transfusion.md",
     "isCustom": true
   },
@@ -2162,7 +2162,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "TRANSMUTE legacy files into modern repository standards by executing safe, piecemeal paradigm evolution without breaking parity.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Transmuter.md",
     "isCustom": true
   },
@@ -2217,7 +2217,7 @@
     "category": "Maintenance",
     "tier": "Mythic",
     "description": "VECTORIZE winding workflows and calculate the absolute shortest mathematical trajectory to guarantee maximum execution velocity.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Vector.md",
     "isCustom": true
   },
@@ -2250,7 +2250,7 @@
     "category": "Maintenance",
     "tier": "Fusion",
     "description": "ERADICATE duplicated logic, centralize into a single source of truth, and physically eradicate legacy source files from the repository.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Void.md",
     "isCustom": true
   },
@@ -2261,7 +2261,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "RESTRUCTURE unmaintainable monolithic files and IMMEDIATELY PROVISION corresponding deployment or pipeline infrastructure.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Warden.md",
     "isCustom": true
   },
@@ -2283,7 +2283,7 @@
     "category": "Security",
     "tier": "Fusion",
     "description": "EMBED graceful fallback components across form wrappers and error boundaries to firmly manage the application's visual trust perimeter.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Watermark.md",
     "isCustom": true
   },
@@ -2316,7 +2316,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "TRANSLATE raw compiler and linter errors into plain-English, actionable instructions that empower developers to fix violations immediately.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Whistleblower.md",
     "isCustom": true
   },
@@ -2327,7 +2327,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "ELEVATE global UI strings, eradicate typos, and strictly enforce the application's unique brand voice across all human-readable touchpoints.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.4",
     "promptFile": "prompts/fusions/Wordsmith.md",
     "isCustom": true
   },
@@ -2382,7 +2382,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "EXCAVATE unmaintainable monoliths and structural drift by mapping the repository topology and routing discovered anomalies strictly to the architectural task board for downstream execution.",
-    "forge_version": "V88.6",
+    "forge_version": "V88.3",
     "promptFile": "prompts/fusions/Zoning Board.md",
     "isCustom": true
   },
