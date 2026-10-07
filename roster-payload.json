@@ -594,6 +594,17 @@
     "isCustom": true
   },
   {
+    "name": "Demodulator",
+    "emoji": "🎛️",
+    "role": "Signal Purifier",
+    "category": "Architecture",
+    "tier": "Fusion",
+    "description": "DEMODULATE hallucinated posers and sprawling imperative jive into dense, native functional pipelines to restore the codebase's righteous signal.",
+    "forge_version": "V88.7",
+    "promptFile": "prompts/fusions/Demodulator.md",
+    "isCustom": true
+  },
+  {
     "name": "Demolition",
     "emoji": "🧨",
     "role": "Pipeline Scavenger",
