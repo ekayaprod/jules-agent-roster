@@ -28,14 +28,14 @@ jobs:
       contents: read
     strategy:
       matrix:
-        node-version: ["18.x", "20.x", "22.x"]
+        node-version: ${{ github.event_name == 'pull_request' && fromJSON('["20.x"]') || fromJSON('["18.x", "20.x", "22.x"]') }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm ci && npm run build:roster && npm run test:unit && npm test
+      - run: npm ci && npm run build:roster && npx jest --testPathIgnorePatterns="playwright/" && npm run benchmark
       - if: matrix.node-version != '18.x'
         uses: ./.github/actions/setup-playwright
       - if: matrix.node-version != '18.x'
