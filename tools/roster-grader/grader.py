@@ -125,15 +125,17 @@ def get_stopwords_and_keywords():
     language_keywords = {"if", "for", "while", "return", "set", "map", "to", "and", "the", "function", "class", "def", "import", "export", "let", "const", "var", "yield", "await", "async"}
     return english_stopwords.union(language_keywords)
 
+NORMALIZE_RE = re.compile(r'[*_`~]+')
+LIST_MATCH_RE = re.compile(r'^([-*+]|\d+\.)\s+(.*)')
+SENTENCE_SPLIT_RE = re.compile(r'(?<=[.!?])\s+')
+CLEAN_RE_AZ = re.compile(r'[^a-z]')
+
 def normalize_text(text):
     text = text.lower()
-    text = re.sub(r'[*_`~]+', '', text)
-    text = re.sub(r'\s+', ' ', text)
-    return text.strip()
+    text = NORMALIZE_RE.sub('', text)
+    return " ".join(text.split())
 
-def jaccard(s1, s2):
-    set1 = set(s1.split())
-    set2 = set(s2.split())
+def jaccard(set1, set2):
     if not set1 or not set2:
         return 0.0
     return len(set1.intersection(set2)) / len(set1.union(set2))
@@ -150,9 +152,14 @@ def deduplicate_units(units):
         if norm in seen_exact:
             continue
 
+        norm_set = set(norm.split())
+
         is_near_dup = False
         for eu in unique_units:
-            if jaccard(norm, eu['norm']) >= 0.8:
+            eu_set = eu['norm_set']
+            if not norm_set or not eu_set:
+                continue
+            if len(norm_set.intersection(eu_set)) / len(norm_set.union(eu_set)) >= 0.8:
                 is_near_dup = True
                 break
 
@@ -160,6 +167,7 @@ def deduplicate_units(units):
             seen_exact.add(norm)
             u_copy = dict(u)
             u_copy['norm'] = norm
+            u_copy['norm_set'] = norm_set
             unique_units.append(u_copy)
 
     return unique_units
@@ -190,12 +198,12 @@ def build_lexicon_and_boilerplate(files):
 
                 all_normalized_lines.append((idx, norm_line, line_str))
 
-                list_match = re.match(r'^([-*+]|\d+\.)\s+(.*)', line_str)
+                list_match = LIST_MATCH_RE.match(line_str)
                 if list_match:
                     text_clean = normalize_text(list_match.group(2))
                     if text_clean:
                         first_word = text_clean.split()[0]
-                        first_word = re.sub(r'[^a-z]', '', first_word)
+                        first_word = CLEAN_RE_AZ.sub('', first_word)
                         if first_word and first_word not in stopwords:
                             first_words[first_word] += 1
 
@@ -222,11 +230,17 @@ def build_lexicon_and_boilerplate(files):
 
     remaining_norms = [n for n in line_file_map.keys() if n not in boilerplate_norms]
 
+    boilerplate_norms_sets = [(bp_norm, set(bp_norm.split())) for bp_norm in boilerplate_norms]
+
     for norm in remaining_norms:
-        for bp_norm in list(boilerplate_norms):
-            if jaccard(norm, bp_norm) >= 0.8:
+        norm_set = set(norm.split())
+        for bp_norm, bp_norm_set in boilerplate_norms_sets:
+            if not norm_set or not bp_norm_set:
+                continue
+            if len(norm_set.intersection(bp_norm_set)) / len(norm_set.union(bp_norm_set)) >= 0.8:
                 boilerplate_norms.add(norm)
                 boilerplate_raw_counts[raw_map[norm]] = len(line_file_map[norm])
+                boilerplate_norms_sets.append((norm, norm_set))
                 break
 
     return lexicon, boilerplate_norms, boilerplate_raw_counts
@@ -236,7 +250,7 @@ def extract_units(content, imperative_lexicon):
     in_code = False
 
     def get_sentences(text):
-        return [s.strip() for s in re.split(r'(?<=[.!?])\s+', text) if s.strip()]
+        return [s.strip() for s in SENTENCE_SPLIT_RE.split(text) if s.strip()]
 
     for line_idx, line in enumerate(content.splitlines()):
         line_num = line_idx + 1
@@ -249,10 +263,10 @@ def extract_units(content, imperative_lexicon):
         if not line_str or in_code:
             continue
 
-        list_match = re.match(r'^([-*+]|\d+\.)\s+(.*)', line_str)
+        list_match = LIST_MATCH_RE.match(line_str)
         if list_match:
             text = list_match.group(2)
-            text_clean = re.sub(r'[*_`~]+', '', text).strip()
+            text_clean = NORMALIZE_RE.sub('', text).strip()
             units.append({
                 'text': text,
                 'raw': line,
@@ -262,11 +276,11 @@ def extract_units(content, imperative_lexicon):
         else:
             sentences = get_sentences(line_str)
             for s in sentences:
-                s_clean = re.sub(r'[*_`~]+', '', s).strip()
+                s_clean = NORMALIZE_RE.sub('', s).strip()
                 if not s_clean:
                     continue
                 first_word = s_clean.split()[0].lower()
-                first_word = re.sub(r'[^a-z]', '', first_word)
+                first_word = CLEAN_RE_AZ.sub('', first_word)
 
                 has_keyword = any(kw in s_clean.lower() for kw in ['must', 'never', 'always', 'ensure', 'do not'])
                 if has_keyword or (first_word in imperative_lexicon):
@@ -382,12 +396,25 @@ def score_dim_B_corpus(all_files_operational_units, all_files_names):
                 vector[term] = tf_val * idf_val
         tf_idf_vectors[idx] = vector
 
-    def cosine_sim(v1, v2):
-        dot = sum(v1.get(k, 0) * v2.get(k, 0) for k in set(v1) & set(v2))
-        mag1 = math.sqrt(sum(v**2 for v in v1.values()))
-        mag2 = math.sqrt(sum(v**2 for v in v2.values()))
+    tf_idf_mags = {}
+    for idx, vector in tf_idf_vectors.items():
+        tf_idf_mags[idx] = math.sqrt(sum(v**2 for v in vector.values()))
+
+    def cosine_sim_idx(idx1, idx2):
+        v1 = tf_idf_vectors[idx1]
+        v2 = tf_idf_vectors[idx2]
+        mag1 = tf_idf_mags[idx1]
+        mag2 = tf_idf_mags[idx2]
         if mag1 == 0 or mag2 == 0:
             return 0.0
+
+        if len(v1) > len(v2):
+            v1, v2 = v2, v1
+
+        common_keys = v1.keys() & v2.keys()
+        dot = 0.0
+        for k in common_keys:
+            dot += v1[k] * v2[k]
         return dot / (mag1 * mag2)
 
     metrics_B = {}
@@ -406,7 +433,7 @@ def score_dim_B_corpus(all_files_operational_units, all_files_names):
 
         for idx2 in range(total_docs):
             if idx1 == idx2: continue
-            sim = cosine_sim(tf_idf_vectors[idx1], tf_idf_vectors[idx2])
+            sim = cosine_sim_idx(idx1, idx2)
             if sim > max_sim:
                 max_sim = sim
             if idx1 < idx2:
@@ -428,7 +455,7 @@ def score_dim_B_corpus(all_files_operational_units, all_files_names):
             f1 = all_files_names[i]
             f2 = all_files_names[j]
             if os.path.basename(f1) == os.path.basename(f2):
-                sim = cosine_sim(tf_idf_vectors[i], tf_idf_vectors[j])
+                sim = cosine_sim_idx(i, j)
                 same_name_pairs.append((sim, f1, f2))
 
     same_name_pairs.sort(reverse=True)
@@ -538,26 +565,31 @@ def score_dim_F(units, raw_content, fm=None, rare_tokens_set=None):
         if clean_text.strip():
             u_clean = dict(u)
             u_clean['clean_text'] = clean_text
+
+            t_lower = clean_text.lower()
+            u_clean['t_lower'] = t_lower
+            u_clean['req'] = any(kw in t_lower for kw in ['must', 'always', 'ensure'])
+            u_clean['pro'] = any(kw in t_lower for kw in ['never', 'do not'])
+
+            words_list = re.findall(r'\b[a-z]+\b', t_lower)
+            u_clean['words'] = words_list
+            u_clean['words_set'] = set(words_list)
+
             cleaned_units.append(u_clean)
 
+    stopwords = get_stopwords_and_keywords()
     for i in range(len(cleaned_units)):
         for j in range(i + 1, len(cleaned_units)):
             u1 = cleaned_units[i]
             u2 = cleaned_units[j]
-            t1 = u1['clean_text'].lower()
-            t2 = u2['clean_text'].lower()
 
-            req1 = any(kw in t1 for kw in ['must', 'always', 'ensure'])
-            pro1 = any(kw in t1 for kw in ['never', 'do not'])
-            req2 = any(kw in t2 for kw in ['must', 'always', 'ensure'])
-            pro2 = any(kw in t2 for kw in ['never', 'do not'])
+            req1 = u1['req']
+            pro1 = u1['pro']
+            req2 = u2['req']
+            pro2 = u2['pro']
 
             if (req1 and pro2) or (pro1 and req2):
-                words1 = set(re.findall(r'\b[a-z]+\b', t1))
-                words2 = set(re.findall(r'\b[a-z]+\b', t2))
-
-                common = words1.intersection(words2)
-                stopwords = get_stopwords_and_keywords()
+                common = u1['words_set'].intersection(u2['words_set'])
                 meaningful_common = [w for w in common if w not in stopwords and len(w) > 2]
 
                 if len(meaningful_common) >= 2:
@@ -565,7 +597,7 @@ def score_dim_F(units, raw_content, fm=None, rare_tokens_set=None):
                         'type': 'opposing_modality',
                         'evidence': [u1['raw'], u2['raw']],
                         'lines': [u1['line_num'], u2['line_num']],
-                        'pair_key': tuple(sorted([t1, t2]))
+                        'pair_key': tuple(sorted([u1['t_lower'], u2['t_lower']]))
                     })
 
     has_numbered_steps = any(re.match(r'^\d+\.', u['text']) for u in cleaned_units)
@@ -611,22 +643,22 @@ def score_dim_F(units, raw_content, fm=None, rare_tokens_set=None):
         if u1['line_num'] <= 8:
             continue
 
-        words1 = re.findall(r'\b[a-z]+\b', u1['clean_text'].lower())
-        if len(words1) < 12:
+        if len(u1['words']) < 12:
             continue
+
+        set1 = u1['words_set']
 
         for j in range(i + 1, len(cleaned_units)):
             u2 = cleaned_units[j]
             if u2['line_num'] <= 8:
                 continue
 
-            words2 = re.findall(r'\b[a-z]+\b', u2['clean_text'].lower())
-            if len(words2) < 12:
+            if len(u2['words']) < 12:
                 continue
 
-            set1 = set(words1)
-            set2 = set(words2)
-            jacc = len(set1.intersection(set2)) / len(set1.union(set2)) if set1.union(set2) else 0
+            set2 = u2['words_set']
+            union_len = len(set1.union(set2))
+            jacc = len(set1.intersection(set2)) / union_len if union_len else 0
 
             sym_diff = len(set1.symmetric_difference(set2))
 
