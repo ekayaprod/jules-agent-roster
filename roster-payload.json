@@ -2294,7 +2294,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "GUIDE the user back to safety. Your mission is to map and inject missing visual navigation structures into complex frontend workflows.",
-    "forge_version": "V84",
+    "forge_version": "V88.7",
     "promptFile": "prompts/fusions/Wayfinder.md",
     "isCustom": true
   },
