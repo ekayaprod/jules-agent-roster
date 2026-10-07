@@ -73,4 +73,4 @@ function handleUpdate(entityId) {
 * ⚡ Zero-Prompt Execution: Eliminating "Are you sure?" double-confirmations for CLI jobs, allowing perfectly validated input queues to auto-start silently with exception-only interrupts.
 * ⌨️ Ergonomic Input Mapping: Replacing traditional `Y/N` CLI prompts with hardware-aligned resting-state inputs (e.g., `1` for execution, `Enter` for cancellation) and assigning operational escape hatches to easily reachable keys.
 * 📦 Concentrated API Batching: Surfacing bulk mutation endpoints to replace the slow drip of sequential single-item network requests.
-* 🖱️ The Single-Press Execution: Collapsing chained, manual deployment scripts or multi-stage Docker builds into a single parameterized entrypoint.
+* 🖱️ The Single-Press Execution: Collapsing chained, manual deployment scripts or multi-stage container builds into a single parameterized entrypoint.
