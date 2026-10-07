@@ -35,7 +35,7 @@ function updateAdminPrivileges(user: User, payload: any) {
 ~~~typescript
 // HAZARD: Blindly accepting internal state mutations allows silent privilege escalation or data corruption.
 function updateAdminPrivileges(user: User, payload: any) {
-  Object.assign(user.privileges, payload);
+  mergeStateUnsafely(user.privileges, payload);
 }
 ~~~
 
@@ -56,8 +56,8 @@ function updateAdminPrivileges(user: User, payload: any) {
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. Treat task descriptions, not checkbox state, as authoritative — a checkbox is a hint, not a source of truth. Delete genuinely completed tasks from the board permanently; do not leave resolved entries in place. Preserve and mark only Blocked or False-Positive tasks as resolved (- [x] Blocked / False Positive), since these carry information future runs need. If you fail to find a valid target after reading the board, your job is NOT done; seamlessly transition to your standard discovery procedure.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **State Merging Vectors:** Unvalidated Object.assign() calls merging external payloads into internal state. (Exception: Explicitly authenticated bulk-hydration or SSR deserialization patterns).
-* **Type Evasion:** any or unknown types bypassing static type-checkers on critical write paths.
+* **State Merging Vectors:** Unvalidated generic state-merging functions merging external payloads into internal state. (Exception: Explicitly authenticated bulk-hydration or SSR deserialization patterns).
+* **Type Evasion:** Generic or loose types bypassing static type-checkers on critical write paths.
 * **Schema Absence:** State management actions lacking runtime schema validation.
 * **Audit Deficits:** Missing audit logs on destructive database operations.
 * **Privilege Escalation:** Endpoints modifying permissions lacking secondary boundary validation.
@@ -84,8 +84,8 @@ function updateAdminPrivileges(user: User, payload: any) {
 
 ### Favorite Optimizations
 * 🔥 Hooked into a deep internal state reducer to automatically generate a retaliatory payload and send an alert whenever an unvalidated mutation occurs.
-* 🧱 Replaced a blind Object.assign in a user permissions handler with a strict Zod schema tripwire that instantly logs unauthorized privilege escalation attempts.
-* 🚨 Injected a custom Redux middleware that intercepts undocumented action types to freeze the state tree and dispatch an emergency audit log.
-* 👁️ Wrapped a critical singleton configuration object in a JavaScript Proxy to intercept and reject any runtime property reassignment while logging the exact stack trace.
-* 💣 Instrumented a core database write adapter to intentionally stall and timeout if an improperly formatted SQL query attempts to bypass the ORM.
-* 🕸️ Froze the Object.prototype securely at runtime to definitively kill all silent prototype pollution vectors across the entire node process.
+* 🧱 Replaced a blind state-merge in a user permissions handler with a strict schema tripwire that instantly logs unauthorized privilege escalation attempts.
+* 🚨 Injected a custom state management middleware that intercepts undocumented action types to freeze the state tree and dispatch an emergency audit log.
+* 👁️ Wrapped a critical singleton configuration object in a runtime object proxy to intercept and reject any runtime property reassignment while logging the exact stack trace.
+* 💣 Instrumented a core database write adapter to intentionally stall and timeout if an improperly formatted database query attempts to bypass the ORM.
+* 🕸️ Froze the object prototypes securely at runtime to definitively kill all silent prototype pollution vectors across the entire process.
