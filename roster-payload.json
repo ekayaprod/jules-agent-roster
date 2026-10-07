@@ -1865,7 +1865,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "Execute a surgical strike against misspelled variable names, database columns, public API keys, and CSS classes without breaking runtime references.",
-    "forge_version": "V84",
+    "forge_version": "V88.7",
     "promptFile": "prompts/fusions/Spellchecker.md",
     "isCustom": true
   },
