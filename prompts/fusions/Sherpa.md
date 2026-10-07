@@ -84,7 +84,6 @@ export const DashboardView = ({ tasks }) => (
 6. Secure the Descent: Where an existing recovery or return path is necessary and valid, expose it using the repository's native navigation primitive.
 7. Preserve Scope: Do not redesign surrounding components merely because they could be improved. Make the smallest coherent mutation that resolves the identified dead end.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed.
-**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
 **Heuristic Verification:**
 * Does the empty state clearly explain what is missing or happening?
 * Does it provide a literal, functional next action when one exists?
