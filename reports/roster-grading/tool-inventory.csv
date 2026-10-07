@@ -1,9 +1,9 @@
 tool,count,available
-main,148,No
+main,145,No
 git,114,Yes
-package.json,56,No
+package.json,53,No
 if,36,No
-npm,27,Yes
+npm,25,Yes
 const,25,No
 var,20,No
 npx,18,Yes
@@ -102,6 +102,7 @@ description,3,No
 repository,3,No
 index.tsx,3,No
 flake8,3,No
+pnpm-workspace.yaml,3,No
 yamllint,3,No
 beforeunload,3,No
 count,3,No
@@ -111,8 +112,6 @@ theme-color,3,No
 strings.xml,3,No
 express-rate-limit,3,No
 console.error,3,No
-plan.md,2,No
-fix.diff,2,No
 as,2,No
 boolean,2,No
 gap,2,No
@@ -197,6 +196,8 @@ read_file,2,No
 fusion_matrix.json,2,No
 data,2,No
 err.message,2,No
+plan.md,1,No
+fix.diff,1,No
 app.get,1,No
 margin-top,1,No
 codeql-analysis.yml,1,No
@@ -248,7 +249,6 @@ subgraph,1,No
 health_controller.py,1,No
 ng,1,No
 routes.go,1,No
-actionlint,1,No
 utils.test.ts,1,No
 test_utils,1,No
 components.spec.tsx,1,No
@@ -348,8 +348,9 @@ function_call,1,No
 openai.chat.completions.create,1,No
 server.js,1,No
 main.py,1,No
-vite.config.ts,1,No
-webpack.config.js,1,No
+config,1,No
+container,1,No
+environment,1,No
 reduce,1,No
 function,1,No
 delay,1,No
@@ -385,6 +386,7 @@ node-fetch,1,No
 pytz,1,No
 zoneinfo,1,No
 dotenv,1,No
+lerna.json,1,No
 req.user,1,No
 awaitable,1,No
 entrypoint.sh,1,No
@@ -407,6 +409,8 @@ mcp.json,1,No
 claude_desktop_config.json,1,No
 index.js,1,No
 webpack,1,No
+documentation,1,No
+intelligence,1,No
 markdownlint-cli,1,No
 graph,1,No
 hadolint,1,No
