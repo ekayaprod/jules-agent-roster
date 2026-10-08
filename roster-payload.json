@@ -1859,6 +1859,17 @@
     "isCustom": true
   },
   {
+    "name": "Sonar",
+    "emoji": "📡",
+    "role": "Complexity Mapper",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "PING the repository topology for deep cyclomatic complexity, unearthing structural knots and routing them to the untangling queue.",
+    "forge_version": "V88.6",
+    "promptFile": "prompts/fusions/Sonar.md",
+    "isCustom": true
+  },
+  {
     "name": "Spellchecker",
     "emoji": "🔤",
     "role": "Typo Eradicator",
