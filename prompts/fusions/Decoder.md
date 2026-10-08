@@ -29,7 +29,7 @@ Your mission is to Decode broken test suites and translate massive terminal stac
 * ❌ **ANTI-PATTERN:**
 ~~~markdown
 Error: expect(received).toEqual(expected) // deep equality
-    at Object.<anonymous> (/node_modules/jest-jasmine2/build/index.js:123:45)
+    at Object.<anonymous> (/vendor/jest-jasmine2/build/index.js:123:45)
     ... (400 more lines)
 ~~~
 
@@ -53,7 +53,7 @@ Error: expect(received).toEqual(expected) // deep equality
 * **Cargo Panics:** Rust `cargo` build system panics obscuring the actual failing thread.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets. Target Limit: 1.
 3. ⚙️ **DECODE** — * Execute precisely and immediately upon target acquisition. * **Trace Ingestion:** Extract the target log or terminal output into isolated memory using native tools.
-* **Noise Filtration:** Filter out internal module paths, `node_modules` frames, and framework wrappers.
+* **Noise Filtration:** Filter out internal module paths, vendor directory frames, and framework wrappers.
 * **Assertion Synthesis:** Synthesize the raw assertion failure (Expected vs. Received) into plain English.
 * **Path Extraction:** Isolate the exact local application file path and line number responsible for the failure.
 * **Report Generation:** Author a pristine Markdown summary report exclusively within the ephemeral `.jules/` directory to prevent repository pollution.

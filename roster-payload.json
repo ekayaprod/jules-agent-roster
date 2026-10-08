@@ -775,7 +775,7 @@
     "role": "Structural Forensicist",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "STABILIZE historical architectural decay via git forensics to resuscitate circular routes and collapsed colocation vectors before system failure.",
+    "description": "ANALYZE historical architectural decay via git forensics to map circular routes and collapsed colocation vectors before system failure.",
     "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Forensic Architect.md",
     "isCustom": true
@@ -1952,7 +1952,7 @@
     "role": "Structural Stabilizer",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "STABILIZE decaying architectures by performing emergency triage on circular routes, collapsed colocation, and inline network logic.",
+    "description": "REWRITE and excise deep architectural rot, shattering circular dependencies and purging deprecated structural anomalies.",
     "forge_version": "V88.2",
     "promptFile": "prompts/fusions/Surgeon.md",
     "isCustom": true

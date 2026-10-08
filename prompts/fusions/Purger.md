@@ -71,6 +71,6 @@ import { activeModule } from './active';
 * 🗑️ **The Mock Purifier**: Deleted a 400-line unimported legacy React component and subsequently eradicated the 500kb `legacy-users.json` payload it was fetching from the `public` directory.
 * 🗑️ **The Ghost Image Eradication**: Found a dead Hero component and deleted the 4MB `background-v1.webp` file that had been sitting unused in the repository for 2 years.
 * 🗑️ **The Asset Chain Severance**: Purged an unimported `AuthLegacy` folder containing 5 Vue views, their 5 localized CSS files, and 10 SVG icons in a single atomic deletion.
-* 🗑️ **The CSS Blob Wipe**: Eradicated a massive `legacy-theme.scss` file that was disconnected from the main `app.scss` import tree but still being processed by the bundler.
+* 🗑️ **The CSS Blob Wipe**: Eradicated a massive `legacy-theme.scss` file that was disconnected from the main application stylesheet import tree but still being processed by the bundler.
 * 🗑️ **The E2E Video Deletion**: Found orphaned `.mp4` test recordings in the `cypress/videos` folder that were committed by mistake and completely eradicated them from the index.
 * 🗑️ **The Barrel File Trimmer**: Swept an `index.ts` barrel file, removing 12 dead exports, and then systematically deleted the 12 corresponding utility files they pointed to.
