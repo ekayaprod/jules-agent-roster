@@ -213,7 +213,7 @@
       },
       "B": {
         "rare_token_share": 0.2563451776649746,
-        "nearest_neighbor_cosine": 0.390122050734698
+        "nearest_neighbor_cosine": 0.39012205073469836
       },
       "C": {
         "logic_density": 15.909090909090908,
@@ -557,7 +557,7 @@
       },
       "B": {
         "rare_token_share": 0.1933534743202417,
-        "nearest_neighbor_cosine": 0.37543812479933636
+        "nearest_neighbor_cosine": 0.3754381247993362
       },
       "C": {
         "logic_density": 27.906976744186046,
@@ -1015,7 +1015,7 @@
       },
       "B": {
         "rare_token_share": 0.21379310344827587,
-        "nearest_neighbor_cosine": 0.5029287535999393
+        "nearest_neighbor_cosine": 0.5029287535999392
       },
       "C": {
         "logic_density": 13.953488372093023,
@@ -1383,7 +1383,7 @@
       },
       "B": {
         "rare_token_share": 0.3022222222222222,
-        "nearest_neighbor_cosine": 0.16601765464889853
+        "nearest_neighbor_cosine": 0.1660176546488986
       },
       "C": {
         "logic_density": 27.083333333333332,
@@ -1915,7 +1915,7 @@
       },
       "B": {
         "rare_token_share": 0.21933962264150944,
-        "nearest_neighbor_cosine": 0.2758901368332059
+        "nearest_neighbor_cosine": 0.27589013683320596
       },
       "C": {
         "logic_density": 14.634146341463413,
@@ -2334,7 +2334,7 @@
       },
       "B": {
         "rare_token_share": 0.31004366812227074,
-        "nearest_neighbor_cosine": 0.44101801405049673
+        "nearest_neighbor_cosine": 0.44101801405049657
       },
       "C": {
         "logic_density": 24.444444444444443,
@@ -2771,7 +2771,7 @@
       },
       "B": {
         "rare_token_share": 0.27358490566037735,
-        "nearest_neighbor_cosine": 0.4602576243643917
+        "nearest_neighbor_cosine": 0.46025762436439177
       },
       "C": {
         "logic_density": 18.91891891891892,
@@ -3213,7 +3213,7 @@
       },
       "B": {
         "rare_token_share": 0.3076923076923077,
-        "nearest_neighbor_cosine": 0.18901466149793722
+        "nearest_neighbor_cosine": 0.18901466149793714
       },
       "C": {
         "logic_density": 30.76923076923077,
@@ -3934,7 +3934,7 @@
       },
       "B": {
         "rare_token_share": 0.1862348178137652,
-        "nearest_neighbor_cosine": 0.44829048958166234
+        "nearest_neighbor_cosine": 0.44829048958166245
       },
       "C": {
         "logic_density": 7.894736842105263,
@@ -4600,7 +4600,7 @@
       },
       "B": {
         "rare_token_share": 0.20418848167539266,
-        "nearest_neighbor_cosine": 0.5831164679427706
+        "nearest_neighbor_cosine": 0.583116467942771
       },
       "C": {
         "logic_density": 27.77777777777778,
@@ -4999,7 +4999,7 @@
       },
       "B": {
         "rare_token_share": 0.21666666666666667,
-        "nearest_neighbor_cosine": 0.5781537777067995
+        "nearest_neighbor_cosine": 0.5781537777068003
       },
       "C": {
         "logic_density": 29.545454545454547,
@@ -5892,7 +5892,7 @@
       },
       "B": {
         "rare_token_share": 0.2737556561085973,
-        "nearest_neighbor_cosine": 0.25283114446697186
+        "nearest_neighbor_cosine": 0.2528311444669717
       },
       "C": {
         "logic_density": 13.953488372093023,
@@ -6298,7 +6298,7 @@
       },
       "B": {
         "rare_token_share": 0.3798449612403101,
-        "nearest_neighbor_cosine": 0.1700144284750424
+        "nearest_neighbor_cosine": 0.17001442847504225
       },
       "C": {
         "logic_density": 9.523809523809524,
@@ -6634,7 +6634,7 @@
       },
       "B": {
         "rare_token_share": 0.24719101123595505,
-        "nearest_neighbor_cosine": 0.6358199341273232
+        "nearest_neighbor_cosine": 0.6358199341273225
       },
       "C": {
         "logic_density": 12.5,
@@ -6997,7 +6997,7 @@
       },
       "B": {
         "rare_token_share": 0.2594752186588921,
-        "nearest_neighbor_cosine": 0.1755820479583622
+        "nearest_neighbor_cosine": 0.1755820479583621
       },
       "C": {
         "logic_density": 18.6046511627907,
@@ -7548,7 +7548,7 @@
       },
       "B": {
         "rare_token_share": 0.2727272727272727,
-        "nearest_neighbor_cosine": 0.19805262362003964
+        "nearest_neighbor_cosine": 0.19805262362003975
       },
       "C": {
         "logic_density": 19.148936170212767,
@@ -7938,7 +7938,7 @@
       },
       "B": {
         "rare_token_share": 0.2324159021406728,
-        "nearest_neighbor_cosine": 0.29273987797156303
+        "nearest_neighbor_cosine": 0.2927398779715632
       },
       "C": {
         "logic_density": 38.88888888888889,
@@ -8325,7 +8325,7 @@
       },
       "B": {
         "rare_token_share": 0.08962264150943396,
-        "nearest_neighbor_cosine": 0.29074377857623934
+        "nearest_neighbor_cosine": 0.29074377857623956
       },
       "C": {
         "logic_density": 18.75,
@@ -8649,7 +8649,7 @@
       },
       "B": {
         "rare_token_share": 0.14285714285714285,
-        "nearest_neighbor_cosine": 0.1793758614087855
+        "nearest_neighbor_cosine": 0.17937586140878556
       },
       "C": {
         "logic_density": 11.11111111111111,
@@ -8909,7 +8909,7 @@
       },
       "B": {
         "rare_token_share": 0.11538461538461539,
-        "nearest_neighbor_cosine": 0.16921959574494647
+        "nearest_neighbor_cosine": 0.1692195957449465
       },
       "C": {
         "logic_density": 15.384615384615385,
@@ -9204,7 +9204,7 @@
       },
       "B": {
         "rare_token_share": 0.15849056603773584,
-        "nearest_neighbor_cosine": 0.1361996099334675
+        "nearest_neighbor_cosine": 0.13619960993346758
       },
       "C": {
         "logic_density": 8.695652173913043,
@@ -9532,7 +9532,7 @@
       },
       "B": {
         "rare_token_share": 0.18586387434554974,
-        "nearest_neighbor_cosine": 0.2160600392391154
+        "nearest_neighbor_cosine": 0.21606003923911538
       },
       "C": {
         "logic_density": 17.5,
@@ -9917,7 +9917,7 @@
       },
       "B": {
         "rare_token_share": 0.10676156583629894,
-        "nearest_neighbor_cosine": 0.2983859033851507
+        "nearest_neighbor_cosine": 0.29838590338515075
       },
       "C": {
         "logic_density": 12.903225806451612,
@@ -10248,7 +10248,7 @@
       },
       "B": {
         "rare_token_share": 0.14285714285714285,
-        "nearest_neighbor_cosine": 0.2632504059568596
+        "nearest_neighbor_cosine": 0.26325040595685956
       },
       "C": {
         "logic_density": 27.906976744186046,
@@ -10714,7 +10714,7 @@
       },
       "B": {
         "rare_token_share": 0.278125,
-        "nearest_neighbor_cosine": 0.2758901368332059
+        "nearest_neighbor_cosine": 0.27589013683320596
       },
       "C": {
         "logic_density": 10.81081081081081,
@@ -11301,7 +11301,7 @@
       },
       "B": {
         "rare_token_share": 0.1574585635359116,
-        "nearest_neighbor_cosine": 0.3490865372341428
+        "nearest_neighbor_cosine": 0.34908653723414285
       },
       "C": {
         "logic_density": 11.11111111111111,
@@ -11704,7 +11704,7 @@
       },
       "B": {
         "rare_token_share": 0.2310126582278481,
-        "nearest_neighbor_cosine": 0.19302876681852948
+        "nearest_neighbor_cosine": 0.19302876681852962
       },
       "C": {
         "logic_density": 24.444444444444443,
@@ -12433,7 +12433,7 @@
       },
       "B": {
         "rare_token_share": 0.18729096989966554,
-        "nearest_neighbor_cosine": 0.18524420118566873
+        "nearest_neighbor_cosine": 0.18524420118566867
       },
       "C": {
         "logic_density": 22.857142857142858,
@@ -12696,7 +12696,7 @@
       },
       "B": {
         "rare_token_share": 0.05339805825242718,
-        "nearest_neighbor_cosine": 0.2983859033851507
+        "nearest_neighbor_cosine": 0.29838590338515075
       },
       "C": {
         "logic_density": 36.666666666666664,
@@ -13055,7 +13055,7 @@
       },
       "B": {
         "rare_token_share": 0.18253968253968253,
-        "nearest_neighbor_cosine": 0.19179502251788988
+        "nearest_neighbor_cosine": 0.19179502251788985
       },
       "C": {
         "logic_density": 13.333333333333334,
@@ -13321,7 +13321,7 @@
       },
       "B": {
         "rare_token_share": 0.0622568093385214,
-        "nearest_neighbor_cosine": 0.4861499294910787
+        "nearest_neighbor_cosine": 0.4861499294910783
       },
       "C": {
         "logic_density": 8.88888888888889,
@@ -13620,7 +13620,7 @@
       },
       "B": {
         "rare_token_share": 0.16666666666666666,
-        "nearest_neighbor_cosine": 0.2940826907181136
+        "nearest_neighbor_cosine": 0.294082690718114
       },
       "C": {
         "logic_density": 18.91891891891892,
@@ -13998,7 +13998,7 @@
       },
       "B": {
         "rare_token_share": 0.21052631578947367,
-        "nearest_neighbor_cosine": 0.29018954877924624
+        "nearest_neighbor_cosine": 0.2901895487792461
       },
       "C": {
         "logic_density": 21.568627450980394,
@@ -14420,7 +14420,7 @@
       },
       "B": {
         "rare_token_share": 0.21428571428571427,
-        "nearest_neighbor_cosine": 0.23097037266541523
+        "nearest_neighbor_cosine": 0.23097037266541537
       },
       "C": {
         "logic_density": 14.893617021276595,
@@ -14828,7 +14828,7 @@
       },
       "B": {
         "rare_token_share": 0.33559322033898303,
-        "nearest_neighbor_cosine": 0.08847415306078082
+        "nearest_neighbor_cosine": 0.08847415306078081
       },
       "C": {
         "logic_density": 14.000000000000002,
@@ -15140,7 +15140,7 @@
       },
       "B": {
         "rare_token_share": 0.06273062730627306,
-        "nearest_neighbor_cosine": 0.30248774892530716
+        "nearest_neighbor_cosine": 0.3024877489253072
       },
       "C": {
         "logic_density": 26.82926829268293,
@@ -15531,7 +15531,7 @@
       },
       "B": {
         "rare_token_share": 0.15555555555555556,
-        "nearest_neighbor_cosine": 0.3196005544975373
+        "nearest_neighbor_cosine": 0.31960055449753727
       },
       "C": {
         "logic_density": 32.5,
@@ -15890,7 +15890,7 @@
       },
       "B": {
         "rare_token_share": 0.10211267605633803,
-        "nearest_neighbor_cosine": 0.2369671756909064
+        "nearest_neighbor_cosine": 0.2369671756909063
       },
       "C": {
         "logic_density": 24.324324324324326,
@@ -16287,7 +16287,7 @@
       },
       "B": {
         "rare_token_share": 0.24776119402985075,
-        "nearest_neighbor_cosine": 0.23782417936988232
+        "nearest_neighbor_cosine": 0.2378241793698824
       },
       "C": {
         "logic_density": 21.951219512195124,
@@ -16826,7 +16826,7 @@
       },
       "B": {
         "rare_token_share": 0.19093851132686085,
-        "nearest_neighbor_cosine": 0.15815552394215507
+        "nearest_neighbor_cosine": 0.15815552394215512
       },
       "C": {
         "logic_density": 25.64102564102564,
@@ -17155,7 +17155,7 @@
       },
       "B": {
         "rare_token_share": 0.1259259259259259,
-        "nearest_neighbor_cosine": 0.38942610088673446
+        "nearest_neighbor_cosine": 0.3894261008867346
       },
       "C": {
         "logic_density": 10.638297872340425,
@@ -18024,7 +18024,7 @@
       },
       "B": {
         "rare_token_share": 0.27483443708609273,
-        "nearest_neighbor_cosine": 0.26544347390782913
+        "nearest_neighbor_cosine": 0.2654434739078292
       },
       "C": {
         "logic_density": 20.0,
@@ -18329,7 +18329,7 @@
       },
       "B": {
         "rare_token_share": 0.19658119658119658,
-        "nearest_neighbor_cosine": 0.31084158401660045
+        "nearest_neighbor_cosine": 0.3108415840166006
       },
       "C": {
         "logic_density": 11.627906976744185,
@@ -18591,7 +18591,7 @@
       },
       "B": {
         "rare_token_share": 0.13553113553113552,
-        "nearest_neighbor_cosine": 0.25280671370166913
+        "nearest_neighbor_cosine": 0.2528067137016692
       },
       "C": {
         "logic_density": 17.5,
@@ -19084,7 +19084,7 @@
       },
       "B": {
         "rare_token_share": 0.19714285714285715,
-        "nearest_neighbor_cosine": 0.2125047525967271
+        "nearest_neighbor_cosine": 0.212504752596727
       },
       "C": {
         "logic_density": 27.027027027027028,
@@ -19467,7 +19467,7 @@
       },
       "B": {
         "rare_token_share": 0.2006172839506173,
-        "nearest_neighbor_cosine": 0.24744164179698858
+        "nearest_neighbor_cosine": 0.24744164179698844
       },
       "C": {
         "logic_density": 16.666666666666664,
@@ -19800,7 +19800,7 @@
       },
       "B": {
         "rare_token_share": 0.09844559585492228,
-        "nearest_neighbor_cosine": 0.2515652681368199
+        "nearest_neighbor_cosine": 0.25156526813682
       },
       "C": {
         "logic_density": 12.82051282051282,
@@ -20287,7 +20287,7 @@
       },
       "B": {
         "rare_token_share": 0.2132701421800948,
-        "nearest_neighbor_cosine": 0.22782341415536
+        "nearest_neighbor_cosine": 0.22782341415536003
       },
       "C": {
         "logic_density": 20.930232558139537,
@@ -20772,7 +20772,7 @@
       },
       "B": {
         "rare_token_share": 0.21428571428571427,
-        "nearest_neighbor_cosine": 0.16205994083711892
+        "nearest_neighbor_cosine": 0.162059940837119
       },
       "C": {
         "logic_density": 14.893617021276595,
@@ -21284,7 +21284,7 @@
       },
       "B": {
         "rare_token_share": 0.21171171171171171,
-        "nearest_neighbor_cosine": 0.18460062943331398
+        "nearest_neighbor_cosine": 0.18460062943331396
       },
       "C": {
         "logic_density": 2.272727272727273,
@@ -21574,7 +21574,7 @@
       },
       "B": {
         "rare_token_share": 0.15162454873646208,
-        "nearest_neighbor_cosine": 0.23080500110670726
+        "nearest_neighbor_cosine": 0.2308050011067073
       },
       "C": {
         "logic_density": 7.894736842105263,
@@ -21965,7 +21965,7 @@
       },
       "B": {
         "rare_token_share": 0.16666666666666666,
-        "nearest_neighbor_cosine": 0.17136635434394848
+        "nearest_neighbor_cosine": 0.1713663543439485
       },
       "C": {
         "logic_density": 23.076923076923077,
@@ -22289,7 +22289,7 @@
       },
       "B": {
         "rare_token_share": 0.18385650224215247,
-        "nearest_neighbor_cosine": 0.16378275868235856
+        "nearest_neighbor_cosine": 0.16378275868235848
       },
       "C": {
         "logic_density": 31.11111111111111,
@@ -22716,7 +22716,7 @@
       },
       "B": {
         "rare_token_share": 0.2,
-        "nearest_neighbor_cosine": 0.5831164679427706
+        "nearest_neighbor_cosine": 0.583116467942771
       },
       "C": {
         "logic_density": 25.64102564102564,
@@ -22989,7 +22989,7 @@
       },
       "B": {
         "rare_token_share": 0.07725321888412018,
-        "nearest_neighbor_cosine": 0.3130755560964484
+        "nearest_neighbor_cosine": 0.31307555609644844
       },
       "C": {
         "logic_density": 2.564102564102564,
@@ -23300,7 +23300,7 @@
       },
       "B": {
         "rare_token_share": 0.24517906336088155,
-        "nearest_neighbor_cosine": 0.1732888089854426
+        "nearest_neighbor_cosine": 0.17328880898544266
       },
       "C": {
         "logic_density": 12.76595744680851,
@@ -23621,7 +23621,7 @@
       },
       "B": {
         "rare_token_share": 0.12578616352201258,
-        "nearest_neighbor_cosine": 0.3130755560964484
+        "nearest_neighbor_cosine": 0.31307555609644844
       },
       "C": {
         "logic_density": 10.81081081081081,
@@ -23831,7 +23831,7 @@
       },
       "B": {
         "rare_token_share": 0.12393162393162394,
-        "nearest_neighbor_cosine": 0.33420617544113185
+        "nearest_neighbor_cosine": 0.334206175441132
       },
       "C": {
         "logic_density": 17.5,
@@ -24189,7 +24189,7 @@
       },
       "B": {
         "rare_token_share": 0.18100890207715134,
-        "nearest_neighbor_cosine": 0.18616747317867446
+        "nearest_neighbor_cosine": 0.18616747317867455
       },
       "C": {
         "logic_density": 12.195121951219512,
@@ -24508,7 +24508,7 @@
       },
       "B": {
         "rare_token_share": 0.07394366197183098,
-        "nearest_neighbor_cosine": 0.4861499294910787
+        "nearest_neighbor_cosine": 0.4861499294910783
       },
       "C": {
         "logic_density": 6.521739130434782,
@@ -25839,7 +25839,7 @@
       },
       "B": {
         "rare_token_share": 0.20738636363636365,
-        "nearest_neighbor_cosine": 0.23883802533404905
+        "nearest_neighbor_cosine": 0.2388380253340493
       },
       "C": {
         "logic_density": 15.555555555555555,
@@ -26218,7 +26218,7 @@
       },
       "B": {
         "rare_token_share": 0.19746835443037974,
-        "nearest_neighbor_cosine": 0.2669313878087391
+        "nearest_neighbor_cosine": 0.26693138780873915
       },
       "C": {
         "logic_density": 17.02127659574468,
@@ -26618,7 +26618,7 @@
       },
       "B": {
         "rare_token_share": 0.19101123595505617,
-        "nearest_neighbor_cosine": 0.218827556992724
+        "nearest_neighbor_cosine": 0.2188275569927239
       },
       "C": {
         "logic_density": 11.76470588235294,
@@ -27083,7 +27083,7 @@
       },
       "B": {
         "rare_token_share": 0.046875,
-        "nearest_neighbor_cosine": 0.19236668000282417
+        "nearest_neighbor_cosine": 0.19236668000282406
       },
       "C": {
         "logic_density": 12.903225806451612,
@@ -27459,7 +27459,7 @@
       },
       "B": {
         "rare_token_share": 0.16887417218543047,
-        "nearest_neighbor_cosine": 0.2626567117501082
+        "nearest_neighbor_cosine": 0.2626567117501083
       },
       "C": {
         "logic_density": 34.146341463414636,
@@ -27867,7 +27867,7 @@
       },
       "B": {
         "rare_token_share": 0.20047169811320756,
-        "nearest_neighbor_cosine": 0.25280671370166913
+        "nearest_neighbor_cosine": 0.2528067137016692
       },
       "C": {
         "logic_density": 17.073170731707318,
@@ -28303,7 +28303,7 @@
       },
       "B": {
         "rare_token_share": 0.14479638009049775,
-        "nearest_neighbor_cosine": 0.25029961817776414
+        "nearest_neighbor_cosine": 0.2502996181777642
       },
       "C": {
         "logic_density": 8.0,
@@ -28609,7 +28609,7 @@
       },
       "B": {
         "rare_token_share": 0.237012987012987,
-        "nearest_neighbor_cosine": 0.1486924631001428
+        "nearest_neighbor_cosine": 0.14869246310014278
       },
       "C": {
         "logic_density": 9.30232558139535,
@@ -29228,7 +29228,7 @@
       },
       "B": {
         "rare_token_share": 0.10355029585798817,
-        "nearest_neighbor_cosine": 0.30248774892530716
+        "nearest_neighbor_cosine": 0.3024877489253072
       },
       "C": {
         "logic_density": 9.090909090909092,
@@ -29598,7 +29598,7 @@
       },
       "B": {
         "rare_token_share": 0.15730337078651685,
-        "nearest_neighbor_cosine": 0.29778236040877354
+        "nearest_neighbor_cosine": 0.2977823604087734
       },
       "C": {
         "logic_density": 12.5,
@@ -29992,7 +29992,7 @@
       },
       "B": {
         "rare_token_share": 0.14420062695924765,
-        "nearest_neighbor_cosine": 0.1929947070241655
+        "nearest_neighbor_cosine": 0.19299470702416546
       },
       "C": {
         "logic_density": 20.0,
@@ -30328,7 +30328,7 @@
       },
       "B": {
         "rare_token_share": 0.1722689075630252,
-        "nearest_neighbor_cosine": 0.18408590653112197
+        "nearest_neighbor_cosine": 0.1840859065311219
       },
       "C": {
         "logic_density": 12.5,
@@ -30600,7 +30600,7 @@
       },
       "B": {
         "rare_token_share": 0.06976744186046512,
-        "nearest_neighbor_cosine": 0.33420617544113185
+        "nearest_neighbor_cosine": 0.334206175441132
       },
       "C": {
         "logic_density": 25.0,
@@ -31430,7 +31430,7 @@
       },
       "B": {
         "rare_token_share": 0.21875,
-        "nearest_neighbor_cosine": 0.21077114217001672
+        "nearest_neighbor_cosine": 0.2107711421700167
       },
       "C": {
         "logic_density": 19.51219512195122,
@@ -31780,7 +31780,7 @@
       },
       "B": {
         "rare_token_share": 0.19655172413793104,
-        "nearest_neighbor_cosine": 0.21532476609125423
+        "nearest_neighbor_cosine": 0.21532476609125406
       },
       "C": {
         "logic_density": 20.930232558139537,
@@ -32130,7 +32130,7 @@
       },
       "B": {
         "rare_token_share": 0.21238938053097345,
-        "nearest_neighbor_cosine": 0.2206889514556638
+        "nearest_neighbor_cosine": 0.22068895145566367
       },
       "C": {
         "logic_density": 6.8181818181818175,
@@ -34020,7 +34020,7 @@
       },
       "B": {
         "rare_token_share": 0.16455696202531644,
-        "nearest_neighbor_cosine": 0.1870676134201922
+        "nearest_neighbor_cosine": 0.1870676134201923
       },
       "C": {
         "logic_density": 26.666666666666668,
@@ -34439,7 +34439,7 @@
       },
       "B": {
         "rare_token_share": 0.20569620253164558,
-        "nearest_neighbor_cosine": 0.17306419926709252
+        "nearest_neighbor_cosine": 0.17306419926709246
       },
       "C": {
         "logic_density": 30.23255813953488,
@@ -34834,7 +34834,7 @@
       },
       "B": {
         "rare_token_share": 0.32673267326732675,
-        "nearest_neighbor_cosine": 0.16000598500261026
+        "nearest_neighbor_cosine": 0.16000598500261023
       },
       "C": {
         "logic_density": 10.81081081081081,
@@ -35144,7 +35144,7 @@
       },
       "B": {
         "rare_token_share": 0.21935483870967742,
-        "nearest_neighbor_cosine": 0.26544347390782913
+        "nearest_neighbor_cosine": 0.2654434739078292
       },
       "C": {
         "logic_density": 15.384615384615385,
@@ -35440,7 +35440,7 @@
       },
       "B": {
         "rare_token_share": 0.21653543307086615,
-        "nearest_neighbor_cosine": 0.13171619913093238
+        "nearest_neighbor_cosine": 0.13171619913093235
       },
       "C": {
         "logic_density": 15.151515151515152,
@@ -35753,7 +35753,7 @@
       },
       "B": {
         "rare_token_share": 0.2844574780058651,
-        "nearest_neighbor_cosine": 0.2375164093367464
+        "nearest_neighbor_cosine": 0.23751640933674648
       },
       "C": {
         "logic_density": 7.317073170731707,
@@ -36094,7 +36094,7 @@
       },
       "B": {
         "rare_token_share": 0.22530864197530864,
-        "nearest_neighbor_cosine": 0.23012765893847073
+        "nearest_neighbor_cosine": 0.2301276589384708
       },
       "C": {
         "logic_density": 32.5,
@@ -36545,7 +36545,7 @@
       },
       "B": {
         "rare_token_share": 0.20388349514563106,
-        "nearest_neighbor_cosine": 0.1703645821047752
+        "nearest_neighbor_cosine": 0.17036458210477518
       },
       "C": {
         "logic_density": 13.333333333333334,
@@ -36917,7 +36917,7 @@
       },
       "B": {
         "rare_token_share": 0.1348314606741573,
-        "nearest_neighbor_cosine": 0.203005521702208
+        "nearest_neighbor_cosine": 0.20300552170220793
       },
       "C": {
         "logic_density": 26.82926829268293,
@@ -37327,7 +37327,7 @@
       },
       "B": {
         "rare_token_share": 0.2222222222222222,
-        "nearest_neighbor_cosine": 0.44829048958166234
+        "nearest_neighbor_cosine": 0.44829048958166245
       },
       "C": {
         "logic_density": 17.02127659574468,
@@ -37812,7 +37812,7 @@
       },
       "B": {
         "rare_token_share": 0.37538461538461537,
-        "nearest_neighbor_cosine": 0.16629178415701681
+        "nearest_neighbor_cosine": 0.1662917841570169
       },
       "C": {
         "logic_density": 23.809523809523807,
@@ -38204,7 +38204,7 @@
       },
       "B": {
         "rare_token_share": 0.22514619883040934,
-        "nearest_neighbor_cosine": 0.2025035801797428
+        "nearest_neighbor_cosine": 0.20250358017974282
       },
       "C": {
         "logic_density": 18.181818181818183,
@@ -38603,7 +38603,7 @@
       },
       "B": {
         "rare_token_share": 0.21641791044776118,
-        "nearest_neighbor_cosine": 0.27304128007532363
+        "nearest_neighbor_cosine": 0.27304128007532347
       },
       "C": {
         "logic_density": 22.0,
@@ -39060,7 +39060,7 @@
       },
       "B": {
         "rare_token_share": 0.2202970297029703,
-        "nearest_neighbor_cosine": 0.6358199341273232
+        "nearest_neighbor_cosine": 0.6358199341273225
       },
       "C": {
         "logic_density": 12.5,
@@ -39323,7 +39323,7 @@
       },
       "B": {
         "rare_token_share": 0.09154929577464789,
-        "nearest_neighbor_cosine": 0.11392559504998653
+        "nearest_neighbor_cosine": 0.11392559504998655
       },
       "C": {
         "logic_density": 17.073170731707318,
@@ -39662,7 +39662,7 @@
       },
       "B": {
         "rare_token_share": 0.24806201550387597,
-        "nearest_neighbor_cosine": 0.348499109748863
+        "nearest_neighbor_cosine": 0.34849910974886317
       },
       "C": {
         "logic_density": 16.216216216216218,
@@ -39935,7 +39935,7 @@
       },
       "B": {
         "rare_token_share": 0.11801242236024845,
-        "nearest_neighbor_cosine": 0.1585724488457068
+        "nearest_neighbor_cosine": 0.15857244884570681
       },
       "C": {
         "logic_density": 8.16326530612245,
@@ -40303,7 +40303,7 @@
       },
       "B": {
         "rare_token_share": 0.2090032154340836,
-        "nearest_neighbor_cosine": 0.1074472117727645
+        "nearest_neighbor_cosine": 0.10744721177276441
       },
       "C": {
         "logic_density": 27.77777777777778,
@@ -40677,7 +40677,7 @@
       },
       "B": {
         "rare_token_share": 0.17518248175182483,
-        "nearest_neighbor_cosine": 0.26178259009323634
+        "nearest_neighbor_cosine": 0.26178259009323646
       },
       "C": {
         "logic_density": 10.869565217391305,
@@ -41019,7 +41019,7 @@
       },
       "B": {
         "rare_token_share": 0.15613382899628253,
-        "nearest_neighbor_cosine": 0.18495932514728952
+        "nearest_neighbor_cosine": 0.18495932514728958
       },
       "C": {
         "logic_density": 20.930232558139537,
@@ -41376,7 +41376,7 @@
       },
       "B": {
         "rare_token_share": 0.2276923076923077,
-        "nearest_neighbor_cosine": 0.2632742563695642
+        "nearest_neighbor_cosine": 0.2632742563695645
       },
       "C": {
         "logic_density": 17.5,
@@ -41749,7 +41749,7 @@
       },
       "B": {
         "rare_token_share": 0.1286549707602339,
-        "nearest_neighbor_cosine": 0.18622560377107486
+        "nearest_neighbor_cosine": 0.1862256037710748
       },
       "C": {
         "logic_density": 22.0,
@@ -42074,7 +42074,7 @@
       },
       "B": {
         "rare_token_share": 0.2109090909090909,
-        "nearest_neighbor_cosine": 0.20997226192369634
+        "nearest_neighbor_cosine": 0.2099722619236963
       },
       "C": {
         "logic_density": 20.51282051282051,
@@ -42445,7 +42445,7 @@
       },
       "B": {
         "rare_token_share": 0.22468354430379747,
-        "nearest_neighbor_cosine": 0.1585293303813208
+        "nearest_neighbor_cosine": 0.15852933038132086
       },
       "C": {
         "logic_density": 16.27906976744186,
@@ -42832,7 +42832,7 @@
       },
       "B": {
         "rare_token_share": 0.2702702702702703,
-        "nearest_neighbor_cosine": 0.4602576243643917
+        "nearest_neighbor_cosine": 0.46025762436439177
       },
       "C": {
         "logic_density": 13.157894736842104,
@@ -43161,7 +43161,7 @@
       },
       "B": {
         "rare_token_share": 0.1267605633802817,
-        "nearest_neighbor_cosine": 0.2820487970253165
+        "nearest_neighbor_cosine": 0.28204879702531654
       },
       "C": {
         "logic_density": 20.51282051282051,
@@ -43512,7 +43512,7 @@
       },
       "B": {
         "rare_token_share": 0.17391304347826086,
-        "nearest_neighbor_cosine": 0.21685646354801325
+        "nearest_neighbor_cosine": 0.21685646354801316
       },
       "C": {
         "logic_density": 40.0,
@@ -43888,7 +43888,7 @@
       },
       "B": {
         "rare_token_share": 0.1350210970464135,
-        "nearest_neighbor_cosine": 0.2312503978790824
+        "nearest_neighbor_cosine": 0.23125039787908255
       },
       "C": {
         "logic_density": 10.81081081081081,
@@ -44483,7 +44483,7 @@
       },
       "B": {
         "rare_token_share": 0.12186379928315412,
-        "nearest_neighbor_cosine": 0.32074951774111116
+        "nearest_neighbor_cosine": 0.3207495177411111
       },
       "C": {
         "logic_density": 15.151515151515152,
@@ -46014,7 +46014,7 @@
       },
       "B": {
         "rare_token_share": 0.15857605177993528,
-        "nearest_neighbor_cosine": 0.2020349180351988
+        "nearest_neighbor_cosine": 0.20203491803519888
       },
       "C": {
         "logic_density": 30.23255813953488,
@@ -46770,7 +46770,7 @@
       },
       "B": {
         "rare_token_share": 0.19786096256684493,
-        "nearest_neighbor_cosine": 0.1584488058307697
+        "nearest_neighbor_cosine": 0.15844880583076967
       },
       "C": {
         "logic_density": 11.538461538461538,
@@ -47034,7 +47034,7 @@
       },
       "B": {
         "rare_token_share": 0.23660714285714285,
-        "nearest_neighbor_cosine": 0.10029852447248175
+        "nearest_neighbor_cosine": 0.1002985244724817
       },
       "C": {
         "logic_density": 13.043478260869565,
@@ -47373,7 +47373,7 @@
       },
       "B": {
         "rare_token_share": 0.26618705035971224,
-        "nearest_neighbor_cosine": 0.3541865643658965
+        "nearest_neighbor_cosine": 0.35418656436589635
       },
       "C": {
         "logic_density": 23.809523809523807,
@@ -47907,7 +47907,7 @@
       },
       "B": {
         "rare_token_share": 0.20303030303030303,
-        "nearest_neighbor_cosine": 0.3158954789097439
+        "nearest_neighbor_cosine": 0.3158954789097441
       },
       "C": {
         "logic_density": 7.6923076923076925,
@@ -48185,7 +48185,7 @@
       },
       "B": {
         "rare_token_share": 0.21362229102167182,
-        "nearest_neighbor_cosine": 0.17491176184209972
+        "nearest_neighbor_cosine": 0.1749117618420996
       },
       "C": {
         "logic_density": 17.94871794871795,
@@ -48982,7 +48982,7 @@
       },
       "B": {
         "rare_token_share": 0.26605504587155965,
-        "nearest_neighbor_cosine": 0.13103784168580135
+        "nearest_neighbor_cosine": 0.1310378416858013
       },
       "C": {
         "logic_density": 16.666666666666664,
@@ -49304,7 +49304,7 @@
       },
       "B": {
         "rare_token_share": 0.1831831831831832,
-        "nearest_neighbor_cosine": 0.22992540879679715
+        "nearest_neighbor_cosine": 0.2299254087967972
       },
       "C": {
         "logic_density": 20.0,
@@ -49622,7 +49622,7 @@
       },
       "B": {
         "rare_token_share": 0.0776255707762557,
-        "nearest_neighbor_cosine": 0.2594715182756576
+        "nearest_neighbor_cosine": 0.25947151827565784
       },
       "C": {
         "logic_density": 26.47058823529412,
@@ -50020,7 +50020,7 @@
       },
       "B": {
         "rare_token_share": 0.23308270676691728,
-        "nearest_neighbor_cosine": 0.18916539734877752
+        "nearest_neighbor_cosine": 0.18916539734877735
       },
       "C": {
         "logic_density": 26.47058823529412,
@@ -50291,7 +50291,7 @@
       },
       "B": {
         "rare_token_share": 0.1225296442687747,
-        "nearest_neighbor_cosine": 0.38634124168843936
+        "nearest_neighbor_cosine": 0.38634124168843886
       },
       "C": {
         "logic_density": 20.51282051282051,
@@ -51188,7 +51188,7 @@
       },
       "B": {
         "rare_token_share": 0.30903790087463556,
-        "nearest_neighbor_cosine": 0.12385326498045426
+        "nearest_neighbor_cosine": 0.12385326498045422
       },
       "C": {
         "logic_density": 27.500000000000004,
@@ -51598,7 +51598,7 @@
       },
       "B": {
         "rare_token_share": 0.24172185430463577,
-        "nearest_neighbor_cosine": 0.18039958933625475
+        "nearest_neighbor_cosine": 0.18039958933625466
       },
       "C": {
         "logic_density": 23.404255319148938,
@@ -52384,7 +52384,7 @@
       },
       "B": {
         "rare_token_share": 0.11057692307692307,
-        "nearest_neighbor_cosine": 0.2950973904788905
+        "nearest_neighbor_cosine": 0.29509739047889044
       },
       "C": {
         "logic_density": 31.03448275862069,
@@ -52747,7 +52747,7 @@
       },
       "B": {
         "rare_token_share": 0.232,
-        "nearest_neighbor_cosine": 0.390122050734698
+        "nearest_neighbor_cosine": 0.39012205073469836
       },
       "C": {
         "logic_density": 24.390243902439025,
@@ -53226,7 +53226,7 @@
       },
       "B": {
         "rare_token_share": 0.1656441717791411,
-        "nearest_neighbor_cosine": 0.203005521702208
+        "nearest_neighbor_cosine": 0.20300552170220793
       },
       "C": {
         "logic_density": 6.8181818181818175,
@@ -53601,7 +53601,7 @@
       },
       "B": {
         "rare_token_share": 0.2056338028169014,
-        "nearest_neighbor_cosine": 0.2180007640934609
+        "nearest_neighbor_cosine": 0.21800076409346084
       },
       "C": {
         "logic_density": 21.428571428571427,
@@ -53991,7 +53991,7 @@
       },
       "B": {
         "rare_token_share": 0.21754385964912282,
-        "nearest_neighbor_cosine": 0.2334391055119965
+        "nearest_neighbor_cosine": 0.2334391055119967
       },
       "C": {
         "logic_density": 14.285714285714285,
@@ -54239,7 +54239,7 @@
       },
       "B": {
         "rare_token_share": 0.08866995073891626,
-        "nearest_neighbor_cosine": 0.16947112794452734
+        "nearest_neighbor_cosine": 0.16947112794452737
       },
       "C": {
         "logic_density": 23.333333333333332,
@@ -54569,7 +54569,7 @@
       },
       "B": {
         "rare_token_share": 0.18309859154929578,
-        "nearest_neighbor_cosine": 0.41207127366880575
+        "nearest_neighbor_cosine": 0.4120712736688058
       },
       "C": {
         "logic_density": 24.324324324324326,
@@ -54955,7 +54955,7 @@
       },
       "B": {
         "rare_token_share": 0.2507204610951009,
-        "nearest_neighbor_cosine": 0.14096947775909208
+        "nearest_neighbor_cosine": 0.1409694777590922
       },
       "C": {
         "logic_density": 28.57142857142857,
@@ -55291,7 +55291,7 @@
       },
       "B": {
         "rare_token_share": 0.14743589743589744,
-        "nearest_neighbor_cosine": 0.29018954877924624
+        "nearest_neighbor_cosine": 0.2901895487792461
       },
       "C": {
         "logic_density": 15.789473684210526,
@@ -55708,7 +55708,7 @@
       },
       "B": {
         "rare_token_share": 0.25064599483204136,
-        "nearest_neighbor_cosine": 0.20997836752854582
+        "nearest_neighbor_cosine": 0.20997836752854585
       },
       "C": {
         "logic_density": 30.0,
@@ -56066,7 +56066,7 @@
       },
       "B": {
         "rare_token_share": 0.05142857142857143,
-        "nearest_neighbor_cosine": 0.2950973904788905
+        "nearest_neighbor_cosine": 0.29509739047889044
       },
       "C": {
         "logic_density": 28.125,
@@ -56839,7 +56839,7 @@
       },
       "B": {
         "rare_token_share": 0.20440251572327045,
-        "nearest_neighbor_cosine": 0.18901466149793722
+        "nearest_neighbor_cosine": 0.18901466149793714
       },
       "C": {
         "logic_density": 15.555555555555555,
@@ -57155,7 +57155,7 @@
       },
       "B": {
         "rare_token_share": 0.10276679841897234,
-        "nearest_neighbor_cosine": 0.22992540879679715
+        "nearest_neighbor_cosine": 0.2299254087967972
       },
       "C": {
         "logic_density": 11.363636363636363,
@@ -57597,7 +57597,7 @@
       },
       "B": {
         "rare_token_share": 0.25,
-        "nearest_neighbor_cosine": 0.19639757359812426
+        "nearest_neighbor_cosine": 0.19639757359812432
       },
       "C": {
         "logic_density": 15.0,
@@ -57990,7 +57990,7 @@
       },
       "B": {
         "rare_token_share": 0.07391304347826087,
-        "nearest_neighbor_cosine": 0.3991175062179429
+        "nearest_neighbor_cosine": 0.399117506217943
       },
       "C": {
         "logic_density": 10.256410256410255,
@@ -58299,7 +58299,7 @@
       },
       "B": {
         "rare_token_share": 0.15878378378378377,
-        "nearest_neighbor_cosine": 0.2020349180351988
+        "nearest_neighbor_cosine": 0.20203491803519888
       },
       "C": {
         "logic_density": 22.727272727272727,
@@ -58609,7 +58609,7 @@
       },
       "B": {
         "rare_token_share": 0.175,
-        "nearest_neighbor_cosine": 0.2267326513545094
+        "nearest_neighbor_cosine": 0.22673265135450923
       },
       "C": {
         "logic_density": 20.0,
@@ -59462,7 +59462,7 @@
       },
       "B": {
         "rare_token_share": 0.19815668202764977,
-        "nearest_neighbor_cosine": 0.2359916159077123
+        "nearest_neighbor_cosine": 0.23599161590771223
       },
       "C": {
         "logic_density": 7.894736842105263,
@@ -59791,7 +59791,7 @@
       },
       "B": {
         "rare_token_share": 0.19117647058823528,
-        "nearest_neighbor_cosine": 0.44101801405049673
+        "nearest_neighbor_cosine": 0.44101801405049657
       },
       "C": {
         "logic_density": 27.027027027027028,
@@ -60125,7 +60125,7 @@
       },
       "B": {
         "rare_token_share": 0.13915857605177995,
-        "nearest_neighbor_cosine": 0.3676096607609914
+        "nearest_neighbor_cosine": 0.3676096607609915
       },
       "C": {
         "logic_density": 14.634146341463413,
@@ -60818,7 +60818,7 @@
       },
       "B": {
         "rare_token_share": 0.1676470588235294,
-        "nearest_neighbor_cosine": 0.1457118584121972
+        "nearest_neighbor_cosine": 0.14571185841219725
       },
       "C": {
         "logic_density": 6.382978723404255,
@@ -61159,7 +61159,7 @@
       },
       "B": {
         "rare_token_share": 0.17301038062283736,
-        "nearest_neighbor_cosine": 0.22644820683182132
+        "nearest_neighbor_cosine": 0.22644820683182112
       },
       "C": {
         "logic_density": 31.57894736842105,
@@ -61624,7 +61624,7 @@
       },
       "B": {
         "rare_token_share": 0.13190184049079753,
-        "nearest_neighbor_cosine": 0.2853698947086708
+        "nearest_neighbor_cosine": 0.28536989470867075
       },
       "C": {
         "logic_density": 26.666666666666668,
@@ -62344,7 +62344,7 @@
       },
       "B": {
         "rare_token_share": 0.16943521594684385,
-        "nearest_neighbor_cosine": 0.23657399725773565
+        "nearest_neighbor_cosine": 0.23657399725773567
       },
       "C": {
         "logic_density": 20.0,
@@ -62727,7 +62727,7 @@
       },
       "B": {
         "rare_token_share": 0.12307692307692308,
-        "nearest_neighbor_cosine": 0.29074377857623934
+        "nearest_neighbor_cosine": 0.29074377857623956
       },
       "C": {
         "logic_density": 14.000000000000002,
@@ -62956,7 +62956,7 @@
       },
       "B": {
         "rare_token_share": 0.09016393442622951,
-        "nearest_neighbor_cosine": 0.1525066860324481
+        "nearest_neighbor_cosine": 0.15250668603244824
       },
       "C": {
         "logic_density": 15.789473684210526,
@@ -63243,7 +63243,7 @@
       },
       "B": {
         "rare_token_share": 0.24025974025974026,
-        "nearest_neighbor_cosine": 0.1823270666401881
+        "nearest_neighbor_cosine": 0.18232706664018808
       },
       "C": {
         "logic_density": 11.627906976744185,
@@ -63514,7 +63514,7 @@
       },
       "B": {
         "rare_token_share": 0.18382352941176472,
-        "nearest_neighbor_cosine": 0.26415235051304425
+        "nearest_neighbor_cosine": 0.2641523505130442
       },
       "C": {
         "logic_density": 20.454545454545457,
@@ -63832,7 +63832,7 @@
       },
       "B": {
         "rare_token_share": 0.1390728476821192,
-        "nearest_neighbor_cosine": 0.09492595730210424
+        "nearest_neighbor_cosine": 0.09492595730210425
       },
       "C": {
         "logic_density": 28.000000000000004,
@@ -64149,7 +64149,7 @@
       },
       "B": {
         "rare_token_share": 0.2792022792022792,
-        "nearest_neighbor_cosine": 0.5781537777067995
+        "nearest_neighbor_cosine": 0.5781537777068003
       },
       "C": {
         "logic_density": 20.0,
@@ -64513,7 +64513,7 @@
       },
       "B": {
         "rare_token_share": 0.15261044176706828,
-        "nearest_neighbor_cosine": 0.2180007640934609
+        "nearest_neighbor_cosine": 0.21800076409346084
       },
       "C": {
         "logic_density": 12.195121951219512,
@@ -64883,7 +64883,7 @@
       },
       "B": {
         "rare_token_share": 0.24355300859598855,
-        "nearest_neighbor_cosine": 0.2142289856191941
+        "nearest_neighbor_cosine": 0.21422898561919412
       },
       "C": {
         "logic_density": 12.244897959183673,
@@ -65181,7 +65181,7 @@
       },
       "B": {
         "rare_token_share": 0.15546218487394958,
-        "nearest_neighbor_cosine": 0.26415235051304425
+        "nearest_neighbor_cosine": 0.2641523505130442
       },
       "C": {
         "logic_density": 10.0,
@@ -65472,7 +65472,7 @@
       },
       "B": {
         "rare_token_share": 0.23387096774193547,
-        "nearest_neighbor_cosine": 0.1459416113046349
+        "nearest_neighbor_cosine": 0.14594161130463487
       },
       "C": {
         "logic_density": 6.122448979591836,
@@ -65822,7 +65822,7 @@
       },
       "B": {
         "rare_token_share": 0.10245901639344263,
-        "nearest_neighbor_cosine": 0.2594715182756576
+        "nearest_neighbor_cosine": 0.25947151827565784
       },
       "C": {
         "logic_density": 25.0,
@@ -66200,7 +66200,7 @@
       },
       "B": {
         "rare_token_share": 0.21132075471698114,
-        "nearest_neighbor_cosine": 0.18611106562088006
+        "nearest_neighbor_cosine": 0.18611106562088003
       },
       "C": {
         "logic_density": 15.789473684210526,
@@ -66489,7 +66489,7 @@
       },
       "B": {
         "rare_token_share": 0.12301587301587301,
-        "nearest_neighbor_cosine": 0.38634124168843936
+        "nearest_neighbor_cosine": 0.38634124168843886
       },
       "C": {
         "logic_density": 8.333333333333332,
@@ -67253,7 +67253,7 @@
       },
       "B": {
         "rare_token_share": 0.2026578073089701,
-        "nearest_neighbor_cosine": 0.2668456644970767
+        "nearest_neighbor_cosine": 0.2668456644970768
       },
       "C": {
         "logic_density": 21.428571428571427,
@@ -68109,7 +68109,7 @@
       },
       "B": {
         "rare_token_share": 0.23486682808716708,
-        "nearest_neighbor_cosine": 0.1829227423479051
+        "nearest_neighbor_cosine": 0.18292274234790507
       },
       "C": {
         "logic_density": 28.888888888888886,
@@ -68569,7 +68569,7 @@
       },
       "B": {
         "rare_token_share": 0.22560975609756098,
-        "nearest_neighbor_cosine": 0.12047418917179863
+        "nearest_neighbor_cosine": 0.1204741891717986
       },
       "C": {
         "logic_density": 11.428571428571429,
@@ -68919,7 +68919,7 @@
       },
       "B": {
         "rare_token_share": 0.2462686567164179,
-        "nearest_neighbor_cosine": 0.16005008020487946
+        "nearest_neighbor_cosine": 0.16005008020487949
       },
       "C": {
         "logic_density": 10.869565217391305,
@@ -69258,7 +69258,7 @@
       },
       "B": {
         "rare_token_share": 0.2024793388429752,
-        "nearest_neighbor_cosine": 0.15684266363049298
+        "nearest_neighbor_cosine": 0.15684266363049304
       },
       "C": {
         "logic_density": 14.285714285714285,
@@ -69973,7 +69973,7 @@
       },
       "B": {
         "rare_token_share": 0.25507246376811593,
-        "nearest_neighbor_cosine": 0.2025035801797428
+        "nearest_neighbor_cosine": 0.20250358017974282
       },
       "C": {
         "logic_density": 7.6923076923076925,
@@ -70309,7 +70309,7 @@
       },
       "B": {
         "rare_token_share": 0.224,
-        "nearest_neighbor_cosine": 0.22159694285856202
+        "nearest_neighbor_cosine": 0.22159694285856205
       },
       "C": {
         "logic_density": 18.64406779661017,
@@ -71050,7 +71050,7 @@
       },
       "B": {
         "rare_token_share": 0.2937062937062937,
-        "nearest_neighbor_cosine": 0.11056542197916594
+        "nearest_neighbor_cosine": 0.11056542197916593
       },
       "C": {
         "logic_density": 29.268292682926827,
@@ -71573,7 +71573,7 @@
       },
       "B": {
         "rare_token_share": 0.21967213114754097,
-        "nearest_neighbor_cosine": 0.2591724411518377
+        "nearest_neighbor_cosine": 0.25917244115183785
       },
       "C": {
         "logic_density": 31.818181818181817,
@@ -71920,7 +71920,7 @@
       },
       "B": {
         "rare_token_share": 0.19172932330827067,
-        "nearest_neighbor_cosine": 0.3196005544975373
+        "nearest_neighbor_cosine": 0.31960055449753727
       },
       "C": {
         "logic_density": 27.77777777777778,
@@ -72308,7 +72308,7 @@
       },
       "B": {
         "rare_token_share": 0.15306122448979592,
-        "nearest_neighbor_cosine": 0.2235097488789107
+        "nearest_neighbor_cosine": 0.22350974887891062
       },
       "C": {
         "logic_density": 11.11111111111111,
@@ -72635,7 +72635,7 @@
       },
       "B": {
         "rare_token_share": 0.12393162393162394,
-        "nearest_neighbor_cosine": 0.2125047525967271
+        "nearest_neighbor_cosine": 0.212504752596727
       },
       "C": {
         "logic_density": 27.027027027027028,
@@ -73014,7 +73014,7 @@
       },
       "B": {
         "rare_token_share": 0.19921875,
-        "nearest_neighbor_cosine": 0.1721920290790652
+        "nearest_neighbor_cosine": 0.1721920290790651
       },
       "C": {
         "logic_density": 25.53191489361702,
@@ -73425,7 +73425,7 @@
       },
       "B": {
         "rare_token_share": 0.19636363636363635,
-        "nearest_neighbor_cosine": 0.1518463407737835
+        "nearest_neighbor_cosine": 0.1518463407737836
       },
       "C": {
         "logic_density": 22.5,
@@ -73740,7 +73740,7 @@
       },
       "B": {
         "rare_token_share": 0.16271186440677965,
-        "nearest_neighbor_cosine": 0.5029287535999393
+        "nearest_neighbor_cosine": 0.5029287535999392
       },
       "C": {
         "logic_density": 15.384615384615385,
@@ -74444,7 +74444,7 @@
       },
       "B": {
         "rare_token_share": 0.15669515669515668,
-        "nearest_neighbor_cosine": 0.24744164179698858
+        "nearest_neighbor_cosine": 0.24744164179698844
       },
       "C": {
         "logic_density": 22.22222222222222,
@@ -74874,7 +74874,7 @@
       },
       "B": {
         "rare_token_share": 0.22950819672131148,
-        "nearest_neighbor_cosine": 0.23012765893847073
+        "nearest_neighbor_cosine": 0.2301276589384708
       },
       "C": {
         "logic_density": 6.976744186046512,
@@ -75156,7 +75156,7 @@
       },
       "B": {
         "rare_token_share": 0.13592233009708737,
-        "nearest_neighbor_cosine": 0.15089848198912906
+        "nearest_neighbor_cosine": 0.15089848198912903
       },
       "C": {
         "logic_density": 16.27906976744186,
@@ -75554,7 +75554,7 @@
       },
       "B": {
         "rare_token_share": 0.1758957654723127,
-        "nearest_neighbor_cosine": 0.2183202064260853
+        "nearest_neighbor_cosine": 0.21832020642608524
       },
       "C": {
         "logic_density": 15.909090909090908,
@@ -76365,7 +76365,7 @@
       },
       "B": {
         "rare_token_share": 0.14982578397212543,
-        "nearest_neighbor_cosine": 0.2235097488789107
+        "nearest_neighbor_cosine": 0.22350974887891062
       },
       "C": {
         "logic_density": 10.256410256410255,
@@ -76718,7 +76718,7 @@
       },
       "B": {
         "rare_token_share": 0.2961672473867596,
-        "nearest_neighbor_cosine": 0.18242532618291132
+        "nearest_neighbor_cosine": 0.18242532618291143
       },
       "C": {
         "logic_density": 19.047619047619047,
@@ -76993,7 +76993,7 @@
       },
       "B": {
         "rare_token_share": 0.058823529411764705,
-        "nearest_neighbor_cosine": 0.2515652681368199
+        "nearest_neighbor_cosine": 0.25156526813682
       },
       "C": {
         "logic_density": 12.195121951219512,
@@ -77290,7 +77290,7 @@
       },
       "B": {
         "rare_token_share": 0.06563706563706563,
-        "nearest_neighbor_cosine": 0.2856717147123258
+        "nearest_neighbor_cosine": 0.2856717147123259
       },
       "C": {
         "logic_density": 25.806451612903224,
@@ -77949,7 +77949,7 @@
       },
       "B": {
         "rare_token_share": 0.07228915662650602,
-        "nearest_neighbor_cosine": 0.18916539734877752
+        "nearest_neighbor_cosine": 0.18916539734877735
       },
       "C": {
         "logic_density": 15.789473684210526,
@@ -78162,7 +78162,7 @@
       },
       "B": {
         "rare_token_share": 0.17272727272727273,
-        "nearest_neighbor_cosine": 0.2482051102029943
+        "nearest_neighbor_cosine": 0.24820511020299427
       },
       "C": {
         "logic_density": 6.666666666666667,
@@ -78606,7 +78606,7 @@
       },
       "B": {
         "rare_token_share": 0.2540322580645161,
-        "nearest_neighbor_cosine": 0.19184103049394707
+        "nearest_neighbor_cosine": 0.19184103049394713
       },
       "C": {
         "logic_density": 1.8867924528301887,
@@ -79198,7 +79198,7 @@
       },
       "B": {
         "rare_token_share": 0.11949685534591195,
-        "nearest_neighbor_cosine": 0.3154123474004245
+        "nearest_neighbor_cosine": 0.31541234740042445
       },
       "C": {
         "logic_density": 10.256410256410255,
@@ -79428,7 +79428,7 @@
       },
       "B": {
         "rare_token_share": 0.14027149321266968,
-        "nearest_neighbor_cosine": 0.2613435493183048
+        "nearest_neighbor_cosine": 0.2613435493183047
       },
       "C": {
         "logic_density": 7.142857142857142,
@@ -80091,7 +80091,7 @@
       },
       "B": {
         "rare_token_share": 0.2397003745318352,
-        "nearest_neighbor_cosine": 0.2267326513545094
+        "nearest_neighbor_cosine": 0.22673265135450923
       },
       "C": {
         "logic_density": 25.0,
@@ -80427,7 +80427,7 @@
       },
       "B": {
         "rare_token_share": 0.14545454545454545,
-        "nearest_neighbor_cosine": 0.3154123474004245
+        "nearest_neighbor_cosine": 0.31541234740042445
       },
       "C": {
         "logic_density": 11.11111111111111,
@@ -80853,7 +80853,7 @@
       },
       "B": {
         "rare_token_share": 0.21835443037974683,
-        "nearest_neighbor_cosine": 0.1816247446852272
+        "nearest_neighbor_cosine": 0.1816247446852273
       },
       "C": {
         "logic_density": 19.444444444444446,
@@ -81096,7 +81096,7 @@
       },
       "B": {
         "rare_token_share": 0.14534883720930233,
-        "nearest_neighbor_cosine": 0.15463300985465522
+        "nearest_neighbor_cosine": 0.15463300985465525
       },
       "C": {
         "logic_density": 18.91891891891892,
@@ -82082,7 +82082,7 @@
       },
       "B": {
         "rare_token_share": 0.38571428571428573,
-        "nearest_neighbor_cosine": 0.24927223392539483
+        "nearest_neighbor_cosine": 0.24927223392539488
       },
       "C": {
         "logic_density": 14.583333333333334,
@@ -82377,7 +82377,7 @@
       },
       "B": {
         "rare_token_share": 0.37104072398190047,
-        "nearest_neighbor_cosine": 0.26910302894686516
+        "nearest_neighbor_cosine": 0.2691030289468652
       },
       "C": {
         "logic_density": 9.090909090909092,
@@ -82617,7 +82617,7 @@
       },
       "B": {
         "rare_token_share": 0.425531914893617,
-        "nearest_neighbor_cosine": 0.3541865643658965
+        "nearest_neighbor_cosine": 0.35418656436589635
       },
       "C": {
         "logic_density": 12.5,
@@ -82904,7 +82904,7 @@
       },
       "B": {
         "rare_token_share": 0.39351851851851855,
-        "nearest_neighbor_cosine": 0.23282828485136456
+        "nearest_neighbor_cosine": 0.23282828485136461
       },
       "C": {
         "logic_density": 6.25,
@@ -83213,7 +83213,7 @@
       },
       "B": {
         "rare_token_share": 0.3333333333333333,
-        "nearest_neighbor_cosine": 0.3182065422981853
+        "nearest_neighbor_cosine": 0.3182065422981854
       },
       "C": {
         "logic_density": 5.128205128205128,
@@ -83439,7 +83439,7 @@
       },
       "B": {
         "rare_token_share": 0.4525862068965517,
-        "nearest_neighbor_cosine": 0.2637873866457822
+        "nearest_neighbor_cosine": 0.26378738664578216
       },
       "C": {
         "logic_density": 8.823529411764707,
@@ -84985,7 +84985,7 @@
       },
       "B": {
         "rare_token_share": 0.6419928825622776,
-        "nearest_neighbor_cosine": 0.3182065422981853
+        "nearest_neighbor_cosine": 0.3182065422981854
       },
       "C": {
         "logic_density": 8.056872037914692,
@@ -85801,7 +85801,7 @@
       },
       "B": {
         "rare_token_share": 0.4474885844748858,
-        "nearest_neighbor_cosine": 0.33565215191770015
+        "nearest_neighbor_cosine": 0.3356521519177001
       },
       "C": {
         "logic_density": 18.75,
@@ -86206,7 +86206,7 @@
       },
       "B": {
         "rare_token_share": 0.2990353697749196,
-        "nearest_neighbor_cosine": 0.18601626925400044
+        "nearest_neighbor_cosine": 0.1860162692540004
       },
       "C": {
         "logic_density": 21.62162162162162,
@@ -86985,7 +86985,7 @@
       },
       "B": {
         "rare_token_share": 0.31277533039647576,
-        "nearest_neighbor_cosine": 0.26130664420079663
+        "nearest_neighbor_cosine": 0.26130664420079636
       },
       "C": {
         "logic_density": 1.9607843137254901,
@@ -87231,7 +87231,7 @@
       },
       "B": {
         "rare_token_share": 0.22996515679442509,
-        "nearest_neighbor_cosine": 0.22404192140064286
+        "nearest_neighbor_cosine": 0.2240419214006429
       },
       "C": {
         "logic_density": 25.0,
@@ -87515,7 +87515,7 @@
       },
       "B": {
         "rare_token_share": 0.35384615384615387,
-        "nearest_neighbor_cosine": 0.22814394120139278
+        "nearest_neighbor_cosine": 0.22814394120139267
       },
       "C": {
         "logic_density": 13.043478260869565,
@@ -87787,7 +87787,7 @@
       },
       "B": {
         "rare_token_share": 0.40594059405940597,
-        "nearest_neighbor_cosine": 0.2826074049871783
+        "nearest_neighbor_cosine": 0.2826074049871784
       },
       "C": {
         "logic_density": 9.375,
@@ -88091,7 +88091,7 @@
       },
       "B": {
         "rare_token_share": 0.31125827814569534,
-        "nearest_neighbor_cosine": 0.2449600012598591
+        "nearest_neighbor_cosine": 0.24496000125985923
       },
       "C": {
         "logic_density": 10.256410256410255,
@@ -88787,7 +88787,7 @@
       },
       "B": {
         "rare_token_share": 0.12987012987012986,
-        "nearest_neighbor_cosine": 0.21428038461964746
+        "nearest_neighbor_cosine": 0.21428038461964755
       },
       "C": {
         "logic_density": 12.903225806451612,
@@ -89376,7 +89376,7 @@
       },
       "B": {
         "rare_token_share": 0.3412698412698413,
-        "nearest_neighbor_cosine": 0.2440616077630327
+        "nearest_neighbor_cosine": 0.2440616077630329
       },
       "C": {
         "logic_density": 10.81081081081081,
@@ -89814,7 +89814,7 @@
       },
       "B": {
         "rare_token_share": 0.39285714285714285,
-        "nearest_neighbor_cosine": 0.2670460693310977
+        "nearest_neighbor_cosine": 0.26704606933109754
       },
       "C": {
         "logic_density": 7.5,
@@ -90075,7 +90075,7 @@
       },
       "B": {
         "rare_token_share": 0.4074074074074074,
-        "nearest_neighbor_cosine": 0.32074951774111116
+        "nearest_neighbor_cosine": 0.3207495177411111
       },
       "C": {
         "logic_density": 2.7777777777777777,
@@ -90518,7 +90518,7 @@
       },
       "B": {
         "rare_token_share": 0.2929782082324455,
-        "nearest_neighbor_cosine": 0.2824062265243373
+        "nearest_neighbor_cosine": 0.28240622652433717
       },
       "C": {
         "logic_density": 20.0,
