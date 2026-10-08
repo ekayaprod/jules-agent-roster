@@ -578,8 +578,6 @@ def score_dim_F(units, raw_content, fm=None, rare_tokens_set=None):
             cleaned_units.append(u_clean)
 
     stopwords = get_stopwords_and_keywords()
-    domain_stopwords = {'target', 'repository', 'execute', 'mutation', 'test', 'file', 'abort', 'attempt'}
-    f_stopwords = stopwords.union(domain_stopwords)
     for i in range(len(cleaned_units)):
         for j in range(i + 1, len(cleaned_units)):
             u1 = cleaned_units[i]
@@ -590,15 +588,11 @@ def score_dim_F(units, raw_content, fm=None, rare_tokens_set=None):
             req2 = u2['req']
             pro2 = u2['pro']
 
-            if (req1 != req2) and (pro1 != pro2) and (req1 == pro2) and (pro1 == req2):
+            if (req1 and pro2) or (pro1 and req2):
                 common = u1['words_set'].intersection(u2['words_set'])
-                meaningful_common = [w for w in common if w not in f_stopwords and len(w) > 2]
+                meaningful_common = [w for w in common if w not in stopwords and len(w) > 2]
 
-                w1_meaningful = [w for w in u1['words_set'] if w not in f_stopwords and len(w) > 2]
-                w2_meaningful = [w for w in u2['words_set'] if w not in f_stopwords and len(w) > 2]
-                min_len = min(len(w1_meaningful), len(w2_meaningful))
-
-                if min_len > 0 and (len(meaningful_common) / min_len) >= 0.35:
+                if len(meaningful_common) >= 2:
                     flags.append({
                         'type': 'opposing_modality',
                         'evidence': [u1['raw'], u2['raw']],

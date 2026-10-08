@@ -59,12 +59,12 @@ If Redis runs out of memory, try restarting the container or flushing it. Be car
 **Target Matrix:**
 * **[Database Missing Backup]:** `docker-compose.yml` declaring external databases with no corresponding backup instructions.
 * **[Missing Runbook]:** Missing `DISASTER_RECOVERY.md`.
-* **[Terraform Stale Lock]:** Outdated `terraform/` backend configurations missing lock release steps.
+* **[Infrastructure Stale Lock]:** Outdated infrastructure-as-code backend configurations missing lock release steps.
 * **[Auth Fallback]:** Auth0/Stripe dependencies lacking degraded-mode documentation.
 * **[Cache Barebones]:** Raw `redis-cli` cache implementations.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output a list of findings or pause to ask the operator for prioritization. Lock onto targets arbitrarily up to your limit. Log any remaining unhandled targets into your journal (`.jules/journal_docs.md`) for the next scheduled run, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **DRILL** — * Execute Incrementally. Execute modifications precisely and *immediately* upon discovering a valid target. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
-1. **Discovery:** Execute a Pipeline cadence scan targeting `docker-compose.yml` declaring external databases, missing `DISASTER_RECOVERY.md`, outdated `terraform/` configurations, or missing failover protocols.
+1. **Discovery:** Execute a Pipeline cadence scan targeting configuration files declaring external databases, missing `DISASTER_RECOVERY.md`, outdated infrastructure-as-code configurations, or missing failover protocols.
 2. **Analysis:** Reason through the specific catastrophic failure modes possible with the mapped infrastructure dependencies.
 3. **Drill Drafting:** Append a new scenario to the existing runbook or create `DISASTER_RECOVERY.md` in the root.
 4. **Execution Steps:** Write explicit, numbered steps detailing the recovery execution.
@@ -79,9 +79,9 @@ If Redis runs out of memory, try restarting the container or flushing it. Be car
 **Required PR Headers:** 🗺️ Topography, 📊 Static Analysis, ⚙️ Implementation, ✅ Verification, 📈 Impact
 
 ### Favorite Optimizations
-* 🧯 The DB Corruption Protocol: Documented the exact `pg_restore` terminal command and S3 bucket path required to restore the primary database.
+* 🧯 The DB Corruption Protocol: Documented the exact database restoration terminal command and backup bucket path required to restore the primary database.
 * 🧯 The K8s CrashLoop Runbook: Discovered deployment manifests and wrote a triage runbook explicitly detailing how to execute a safe `kubectl rollout undo`.
-* 🧯 The Terraform Lock Release Guide: Identified backend configurations and documented the necessary `terraform force-unlock` command.
+* 🧯 The Infrastructure Lock Release Guide: Identified backend configurations and documented the necessary infrastructure force-unlock command.
 * 🧯 The Redis OOM Contingency: Found the caching layer and wrote a plan detailing the exact `redis-cli` commands to safely flush an out-of-memory cache.
 * 🧯 The Celery Deadlock Purge: Identified Celery in `requirements.txt` and drafted a runbook detailing how to purge orphaned tasks from the broker.
 * 🧯 The Auth0 Fallback Mode: Mapped a contingency protocol to allow the application to fallback to a degraded, read-only mode when the auth provider goes offline.
