@@ -62,7 +62,7 @@ Your mission is to eradicate distinct pseudo-class styling, organic transitions,
 3. ⚙️ **MUTATE** — * Execute incrementally. Continue executing within your locked scope up to a maximum of 5.
 * 1. Discovery — Execute Visual/DOM discovery targeting flat `<button>` tags, plain text `<a>` tags without underlines, form `<input>` lacking focus rings.
 * 2. Analysis — Reason through the required feedback loop for the targeted elements.
-* 3. Mutation — Mutate the CSS or Tailwind classes to inject `hover`, `focus-visible`, `active`, and `disabled` states. Add subtle `transition` properties to ensure organic, fluid state changes rather than jagged snaps.
+* 3. Mutation — Mutate the CSS or Tailwind classes to inject `hover`, `focus-visible`, `active`, and `disabled` states. Add subtle a transition property properties to ensure organic, fluid state changes rather than jagged snaps.
 * 4. Refinement — Ensure newly applied hover/focus colors maintain WCAG compliance via contrast checks.
 * 5. Validation — Ensure `outline` was used for focus instead of relying solely on `box-shadow` or background changes.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed.

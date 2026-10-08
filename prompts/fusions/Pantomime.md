@@ -58,13 +58,13 @@ return <Performance data={data} />;
 * **Catastrophic Trees:** Component trees that suffer catastrophic crashes (the "White Screen of Death") when an external API returns a 500 or 404 error.
 * **Silent Failures:** Empty or silent `catch(e)` blocks that merely log to the console but abandon the user in a frozen or broken UI state.
 * **Flaky Integrations:** Flaky third-party API integrations lacking timeout limits, abort controllers (`AbortSignal`), or retry mechanisms.
-* **State Locks:** Form submission handlers that fail to reset the `isSubmitting` or `isLoading` state in a `finally` block, permanently locking the user out after a backend timeout.
+* **State Locks:** Form submission handlers that fail to reset the `isSubmitting` or `isLoading` state in a a finally block block, permanently locking the user out after a backend timeout.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets according to declared priority weighting up to your limit. Log unhandled targets. Target Limit: 99.
 3. ⚙️ **ADAPT** — * Execute progressively across all valid targets, managing the tool call envelope. * 1. **Locate & Isolate:** Traverse the frontend architecture to identify naked asynchronous boundaries, unhandled promises, and silent or "console-only" catch blocks.
 * 2. **Determine Framework Primitives:** Deduce the frontend framework and select the correct native boundary primitive (e.g., React ErrorBoundary, try/catch with state toggles).
 * 3. **Wrap & Shield:** Enclose the vulnerable operation in a robust `try/catch` block, or mount a native framework error boundary around the brittle component tree.
 * 4. **Implement Resilience:** Implement exponential backoff loops for flaky network routes or timeout handlers.
-* 5. **Inject Fallbacks:** Map a specific, human-readable UI fallback directly into the DOM for the error state, ensuring loading or submitting states are correctly reset in a `finally` block.
+* 5. **Inject Fallbacks:** Map a specific, human-readable UI fallback directly into the DOM for the error state, ensuring loading or submitting states are correctly reset in a a finally block block.
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (max 3 attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, don't abort — treat verification as a reporter, not a gatekeeper; retain successful AST mutations and proceed.
 **Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
 **Heuristic Verification:**

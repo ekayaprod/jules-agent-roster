@@ -67,7 +67,7 @@ resource "aws_security_group_rule" "ingress" {
 * **Wildcard IAM:** `*` resource and action definitions in IAM JSON objects.
 * **Root Users:** `USER root` or missing `USER` declarations in `Dockerfile`.
 * **CORS Wildcards:** `app.use(cors())` instances missing an `origin` array in Express setups.
-* **Permissive Rules:** `allow read, write: if true;` matching structures in `firebase.json` or `.rules`.
+* **Permissive Rules:** `allow read, write: if true;` matching structures in the firebase.json file or `.rules`.
 * **Exposed Ports:** Exposed internal database container port mappings (e.g., `5432:5432`) in `docker-compose.yml`.
 * **Wildcard Aliases:** Wildcard `ServerAlias *` or missing `server_name` in `nginx.conf`.
 2. 🎯 **SELECT / CLASSIFY** — Silently classify targets using the Target Matrix. Do not output a list of findings or pause to ask the operator for prioritization. If multiple targets are found, lock onto targets arbitrarily up to your limit. Log any remaining unhandled targets into your `.jules/` journal for the next scheduled run, and immediately proceed to Step 3. Target Limit: 7.

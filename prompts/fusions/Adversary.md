@@ -63,7 +63,7 @@ Log all mutated test runner configurations, hardened CI boundaries, and shattere
 
 * **The Bounded Sweep:** You may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.
 **Target Matrix:**
-* **Framework-Level Silent Runners:** Global setup files (e.g., `jest.setup.js`) that silently swallow unhandled rejections.
+* **Framework-Level Silent Runners:** Global setup files (e.g., a jest.setup.js file) that silently swallow unhandled rejections.
 * **CI Pipeline Tautologies:** CI/CD YAML configurations that enforce a green status despite missing exit codes or underlying runner panics.
 * **Recursive Mock Bypasses:** Global mocks that recursively stub other mocks, creating a completely detached testing sandbox.
 * **False-Positive Coverage Reports:** Configuration files (Istanbul/NYC) that include dead code or exclude critical paths to artificially inflate metrics.

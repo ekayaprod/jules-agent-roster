@@ -1,25 +1,34 @@
 file,type,lines,evidence
 prompts/Janitor.md,opposing_modality,12|45,"* 🔦 What cannot be bagged must be illuminated — shine a light on observable hazards and log them to the journal for institutional awareness without polluting the task board. || * **The Prune-and-Compress Journal Protocol:** The repository's institutional memory of structural decay. Record the exact paths of successfully purged contamination, enforced baselines, deleted artifacts, and repaired links. Maintain a strict manifest detailing three categories: Resolved Entropy, Persistent Entropy, and Hazard Log. Operational hazards observed are recorded here and NEVER written to the task board."
 prompts/Dispatch.md,opposing_modality,12|43,"* 🛑 Protocol correctness is non-negotiable; structural integrity must be strictly validated by native YAML linters or dry-run builds before the cargo leaves the bay. || * **The Dry-Run Enclosure:** Never trigger remote CI runs to test drafts. Rely strictly on local native YAML linters, schema validators, and `docker build` dry-runs to prove structural correctness."
+prompts/Dispatch.md,mission_drift_advisory,0,Mission drift score: 0.75
+prompts/Architect.md,mission_drift_advisory,0,Mission drift score: 0.75
 prompts/micro/Nomenclator.md,mission_drift_advisory,0,Mission drift score: 0.67
 prompts/fusions/Firewall.md,opposing_modality,48|64,* **The Ephemeral Key Guard:** Construct authentication headers using strictly typed environment variables. Do not hardcode raw API keys into source files. || * Ensure raw API keys or plain-text secrets are removed.
 prompts/fusions/Polygraph.md,mission_drift_advisory,0,Mission drift score: 0.50
+prompts/fusions/Town Crier.md,mission_drift_advisory,0,Mission drift score: 0.75
 prompts/fusions/Sylar.md,near_duplicate,32|55,* **Incremental Scope Lock:** Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota. || 3. ⚙️ **SPLICE** — Execute Incrementally. Continue executing within your locked scope up to a maximum of 3. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
+prompts/fusions/Chameleon.md,mission_drift_advisory,0,Mission drift score: 0.75
 prompts/fusions/Sculptor.md,mission_drift_advisory,0,Mission drift score: 0.67
 prompts/fusions/Retrofit.md,opposing_modality,12|49,"* 🛡️ Every retrofitted manifest must be validated strictly by native YAML linters and container dry-runs before the payload leaves the dock. || * **The Dry-Run Enclosure:** Never trigger remote CI runs to test drafts. Rely strictly on local native YAML linters, schema validators, and `docker build` dry-runs to prove structural correctness."
-prompts/fusions/Triage.md,opposing_modality,42|57,"* **The State Bounding Rule:** When updating `catch` or `finally` blocks to restore application state, exclusively utilize state-setter functions (e.g., `setIsLoading`) that are already imported and visibly present within the immediate module scope. Do not hallucinate or import net-new global state management actions. || * **Verify Constraints:** Review the patch to ensure no net-new global state management actions were imported and the mutation remains within the assigned cohesive module."
+prompts/fusions/Triage.md,opposing_modality,42|57,"* **The State Bounding Rule:** When updating `catch` or a finally block blocks to restore application state, exclusively utilize state-setter functions (e.g., `setIsLoading`) that are already imported and visibly present within the immediate module scope. Do not hallucinate or import net-new global state management actions. || * **Verify Constraints:** Review the patch to ensure no net-new global state management actions were imported and the mutation remains within the assigned cohesive module."
 prompts/fusions/Warden.md,opposing_modality,12|42,"* 🛑 Protocol correctness is non-negotiable; structural integrity must be strictly validated by native AST tools and YAML linters before the cargo leaves the bay. || * **The Dry-Run Enclosure:** Never trigger remote CI runs to test drafts. Rely strictly on local native YAML linters, schema validators, AST tools, and `docker build` dry-runs to prove structural correctness."
 prompts/fusions/Sherpa.md,opposing_modality,11|51,"* 🗺️ Follow the native trail. Guidance must use the repository's existing components, interaction patterns, terminology, and visual language. || * The Native Trail Rule: Reuse existing design-system primitives, components, routing patterns, copy conventions, and accessibility patterns. Never invent arbitrary visual systems merely to make a target look better."
 prompts/fusions/Discharge.md,mission_drift_advisory,0,Mission drift score: 0.50
-prompts/fusions/Canvas.md,mission_drift_advisory,0,Mission drift score: 0.67
+prompts/fusions/Honeypot.md,mission_drift_advisory,0,Mission drift score: 0.75
+prompts/fusions/Canvas.md,mission_drift_advisory,0,Mission drift score: 0.75
 prompts/fusions/Bastion.md,mission_drift_advisory,0,Mission drift score: 0.50
-prompts/fusions/Void.md,mission_drift_advisory,0,Mission drift score: 0.67
+prompts/fusions/Decommissioner.md,mission_drift_advisory,0,Mission drift score: 0.75
+prompts/fusions/Envoy.md,mission_drift_advisory,0,Mission drift score: 0.75
 prompts/fusions/Cataloger.md,mission_drift_advisory,0,Mission drift score: 0.50
 prompts/fusions/Mapper.md,opposing_modality,34|37,"* **No Interactive Dependency Generation:** Do not wait for the user to provide exact dependencies or logic bugs; outline what tests need to be written, leaving the implementation to downstream agents. || * **The Handoff Rule:** Ignore logic bugs in the identified unverified paths; you must strictly outline what tests need to be written, leaving the implementation to downstream agents."
+prompts/fusions/Mapper.md,mission_drift_advisory,0,Mission drift score: 0.75
 prompts/fusions/Rulemaker.md,mission_drift_advisory,0,Mission drift score: 0.67
 prompts/fusions/Obituary Writer.md,opposing_modality,31|52,"* **Domain:** Execute strictly to identify and delete targets. If deletion breaks a dependency, do not refactor the dependency. Revert the deletion, leave the dead code, and proceed. || 1. **Target Isolation:** Isolate the identified deprecated domain or dead code module to ensure the deletion scope is strictly bounded."
 prompts/fusions/Quarantine.md,mission_drift_advisory,0,Mission drift score: 0.50
 prompts/fusions/Scout.md,mission_drift_advisory,0,Mission drift score: 0.67
+prompts/fusions/Telepath.md,mission_drift_advisory,0,Mission drift score: 0.75
 prompts/orphans/Sprinter.md,mission_drift_advisory,0,Mission drift score: 0.60
+prompts/orphans/Autopilot.md,mission_drift_advisory,0,Mission drift score: 0.75
 prompts/orphans/Publicist.md,mission_drift_advisory,0,Mission drift score: 0.67
 prompts/orphans/Choreographer.md,opposing_modality,54|79,"* Uncover form submit buttons that do not visually disable or pulse while `isSubmitting` is true. || * 🩰 **The Graceful Exit**: Appended a native CSS SVG spinner inside a form submit button while `isSubmitting` was true, and ensured the `catch` block explicitly removed the spinner on failure."

@@ -48,7 +48,7 @@ def read_log(file_path):
 1. 🔍 **DISCOVER** — Continuous Asynchronous cadence using asynchronous tools **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately.
 **Target Matrix:**
-* **Database Client Instantiations:** Hunt for explicit missing `finally` blocks around DB client instantiations.
+* **Database Client Instantiations:** Hunt for explicit missing a finally block blocks around DB client instantiations.
 * **Orphaned File Descriptors:** Target orphaned file descriptors (e.g., `open()` in Python) lacking native context managers.
 * **Unclosed Socket Streams:** Identify unclosed socket streams (e.g., `net.Server`).
 * **Hanging Timers:** Detect hanging timers or intervals (e.g., `setInterval`) lacking a corresponding `clearInterval` inside component teardowns.

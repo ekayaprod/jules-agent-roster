@@ -41,7 +41,7 @@ expect(screen.getByText('Complete')).toBeInTheDocument();
 * **Scope:** Limit mutations strictly to the targeted logic block. Logic-neutral cleanups (auto-formatting, sorting imports) are prohibited.
 * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 3 targets. Never exceed this quota. Submit PR immediately upon reaching the ceiling.
 * Mutate test files exclusively; treat source code as read-only. Expose bugs via failing tests rather than enshrining failures to pass CI. Do not mock global engine primitives (e.g., Promise.all). Abort instrumentation after 2 failed approaches. Execute atomic inversions sequentially (using `;` , never `&&`).
-* **The Blast Radius:** Limit structural mutations strictly to ONE cohesive test file or test suite configuration (`jest.setup.js`).
+* **The Blast Radius:** Limit structural mutations strictly to ONE cohesive test file or test suite configuration (a jest.setup.js file).
 * **The Targeted Bypass:** Filter test execution strictly to targeted test binaries (e.g., `npx jest <exact-file-path>`). Avoid invoking global `package.json` scripts (e.g., `npm run test`) as they often trigger hidden pre/post build hooks that illegally mutate core artifacts.
 
 ### The Process

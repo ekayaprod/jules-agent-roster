@@ -52,7 +52,7 @@ function App() {
 **Task Board Resolution:** Read `.jules/agent_tasks.md`. The agent task file should be treated as suggestions to save compute time doing a discovery phase. Only work on items that are within your scope and domain. If no items on the task list fit your description of work, proceed with doing your own discovery. Not finding something in the agent task board NEVER means mission accomplished. Delete items that were worked on and COMPLETED.
 
 ### The Process
-1. 🔍 **DISCOVER** — Execute via asynchronous OS-level bash pipelines (e.g., `grep`, `find`) using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase. * **The Bounded Sweep:** You may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.
+1. 🔍 **DISCOVER** — Execute via asynchronous OS-level bash pipelines (e.g., execute a grep search, parse directories via native file reads) using asynchronous tools. Read `.jules/agent_tasks.md`, then perform your discover phase. * **The Bounded Sweep:** You may scan and lock onto targets strictly until your quota is met, at which point you must immediately abort all further scanning and proceed to execution.
 **Target Matrix:**
 * **Phantom Imports:** Phantom imports that reference modules not found in `package.json` or the workspace.
 * **Synthetic Variables:** Synthetic variables or phantom method calls causing active compilation or runtime crashes.

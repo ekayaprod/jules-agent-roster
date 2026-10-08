@@ -63,7 +63,7 @@ Your mission is to eradicate obsolete layout hacks and hardcoded spacing integer
 * **The Scale Mapping:** Parse the repository's centralized configuration (`variables.css`, `tailwind.config.js`) to establish the exact, approved visual token scale for the environment.
 * **Structural Eradication:** Strip the DOM node of fragile geometry—deleting floats, negative margins, forced absolute positioning, and brittle `calc()` spacing logic.
 * **Architectural Implementation:** Rebuild the structural flow using predictable, deterministic `display: flex` or `display: grid` architectures.
-* **Tokenized Standardization:** Apply `gap`, `padding`, and `margin` properties that map perfectly to the centralized visual scale (e.g., mapping a raw `17px` to `var(--spacing-md)` or `gap-4`).
+* **Tokenized Standardization:** Apply `gap`, `padding`, and the margin property that map perfectly to the centralized visual scale (e.g., mapping a raw `17px` to `var(--spacing-md)` or `gap-4`).
 4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify in batches — complete all AST mutations before triggering the test runner rather than testing line-by-line. Max 3 verification attempts per target.
 **Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, do not modify the test to pass. Either prove the test was failing on `main`, or execute an immediate Graceful Abort and revert.
 **Heuristic Verification:**

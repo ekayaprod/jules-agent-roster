@@ -1,5 +1,5 @@
 tool,count,available
-main,145,No
+main,144,No
 git,113,Yes
 package.json,53,No
 if,36,No
@@ -22,10 +22,9 @@ throw,12,No
 en.json,10,No
 opacity,9,No
 transform,9,No
-grep,8,Yes
 fetch,8,No
 apt,8,Yes
-finally,8,No
+pnpm-workspace.yaml,8,No
 tsc,7,Yes
 export,7,No
 false,7,No
@@ -34,7 +33,9 @@ import,7,No
 describe,7,No
 roster-payload.json,6,No
 while,6,No
+switch,6,No
 focus-visible,6,No
+grep,6,Yes
 agent_tasks.md,6,No
 next.config.js,6,No
 height,6,No
@@ -42,8 +43,6 @@ return,6,No
 await,6,No
 tailwind.config.js,6,No
 tools,6,No
-margin,5,No
-switch,5,No
 class,5,No
 except,5,No
 xit,5,No
@@ -56,7 +55,6 @@ axios,4,No
 v2,4,No
 error,4,No
 req.body,4,No
-transition,4,No
 try-catch,4,No
 href,4,No
 width,4,No
@@ -77,7 +75,6 @@ sed,3,No
 awk,3,No
 types.ts,3,No
 div,3,No
-find,3,No
 env,3,No
 ubuntu-latest,3,No
 console.log,3,No
@@ -94,14 +91,12 @@ system,3,No
 else,3,No
 break,3,No
 document.body,3,No
-rm,3,No
 variables.css,3,No
 lodash,3,No
 description,3,No
 repository,3,No
 index.tsx,3,No
 flake8,3,No
-pnpm-workspace.yaml,3,No
 yamllint,3,No
 beforeunload,3,No
 count,3,No
@@ -116,7 +111,7 @@ boolean,2,No
 gap,2,No
 leading,2,No
 transition-all,2,No
-wc,2,No
+echo,2,No
 payment.js,2,No
 gpt-3.5-turbo,2,No
 gpt-4o,2,No
@@ -133,7 +128,6 @@ disabled,2,No
 outline,2,No
 box-shadow,2,No
 redis-cli,2,No
-jest.setup.js,2,No
 length,2,No
 status_code,2,No
 duration,2,No
@@ -180,7 +174,6 @@ i18n,2,No
 auth.json,2,No
 item_one,2,No
 item_other,2,No
-docker-compose,2,Yes
 react-router,2,No
 snake_case,2,No
 loading.tsx,2,No
@@ -192,6 +185,7 @@ request_code_edit,2,No
 read_file,2,No
 fusion_matrix.json,2,No
 data,2,No
+docker-compose,2,Yes
 err.message,2,No
 plan.md,1,No
 fix.diff,1,No
@@ -202,12 +196,10 @@ date-fns,1,No
 main.ts,1,No
 true,1,No
 v1.4.0,1,No
-bg-blue-600,1,No
 ease-in-out,1,No
 rounded-xl,1,No
 ring-1,1,No
 tracking,1,No
-echo,1,No
 text-davinci-003,1,No
 custom_agents.json,1,No
 eslint-report.json,1,No
@@ -244,13 +236,11 @@ legacy-theme.scss,1,No
 subgraph,1,No
 health_controller.py,1,No
 ng,1,No
-routes.go,1,No
 utils.test.ts,1,No
 test_utils,1,No
 components.spec.tsx,1,No
 hooks.test.ts,1,No
 nock,1,No
-middleware.ts,1,No
 crash,1,No
 fatal,1,No
 gpt-3.5-turbo-0301,1,No
@@ -305,6 +295,7 @@ localhost,1,No
 theme,1,No
 asyncio,1,No
 async,1,No
+delete_file,1,No
 legacy_api,1,No
 stdout,1,No
 recive,1,No
@@ -325,7 +316,6 @@ variables.scss,1,No
 layout.tsx,1,No
 origin,1,No
 allow,1,No
-firebase.json,1,No
 server_name,1,No
 nginx.conf,1,No
 aws_s3_bucket_public_access_block,1,No
@@ -414,7 +404,6 @@ logger,1,No
 telemetry,1,No
 aria-labelledby,1,No
 auth.login.button,1,No
-clean.sh,1,No
 aria-labels,1,No
 right,1,No
 clearfix,1,No
@@ -430,6 +419,7 @@ cy.request,1,No
 cy.intercept,1,No
 checkout.spec.ts,1,No
 page.goto,1,No
+clean.sh,1,No
 winston,1,No
 log4j,1,No
 user.id,1,No

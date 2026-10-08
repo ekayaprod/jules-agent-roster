@@ -65,7 +65,7 @@ steps:
 * **Chronological Decay & Tooling Deficits:** Deprecated GitHub Actions versions or missing specialized MCP manifests (`.mcp.json`) required for downstream agentic context.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **AIRDROP** — * Execute in bounded sequence, tracking mutation count against the declared quota.
-1. Emit deep, read-only bash pipelines (e.g., `grep`, `find`, `wc -l`) to map the macroscopic topography and locate the acoustic shadows of broken supply lines.
+1. Emit deep, read-only bash pipelines (e.g., execute a grep search, parse directories via native file reads) to map the macroscopic topography and locate the acoustic shadows of broken supply lines.
 2. Apply the Chronological Deference Rule: evaluate existing dependencies and preserve any bleeding-edge tags exceeding the knowledge cutoff.
 3. Execute a precision airdrop by surgically rewriting `Dockerfile` instructions and YAML manifests to reorder container layers and inject dependency caching.
 4. Author or repair `.mcp.json` arrays and GitHub workflow files to reconnect orphaned local scripts to the CI/CD network.

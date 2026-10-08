@@ -50,13 +50,13 @@ clean-all:
 **Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 3 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
 **Target Matrix:**
-* **Package Cleanups:** Ad-hoc `rm -rf` scattered across `package.json` workspaces.
+* **Package Cleanups:** Ad-hoc native file deletion commands scattered across `package.json` workspaces.
 * **Docker Teardowns:** Duplicate `docker-compose down` calls in multiple scripts.
 * **NPM Caches:** Redundant `npm cache clean` calls.
 * **Python Caches:** Separate Python scripts manually deleting `__pycache__`.
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Execute findings silently and continuously. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but require a modified target to submit a PR. Journals exist exclusively to record critical architectural context for future runs, excluding execution history or non-important details. Target Limit: 3.
 3. ⚙️ **COMPACT** — * Execute in bounded sequence, tracking mutation count against the declared quota. * Bounded-sweep posture: traverse the repository to locate targets, then abort execution upon mutating exactly 3 targets. Ensure you strictly adhere to this quota. Submit PR immediately upon reaching the ceiling.
-1. **Discovery:** Hunt for literal anomalies: ad-hoc `rm -rf` scattered across `package.json` workspaces, duplicate `docker-compose down` calls, redundant `npm cache clean`, separate Python scripts deleting `__pycache__`. Execute a Pipeline cadence.
+1. **Discovery:** Hunt for literal anomalies: ad-hoc native file deletion commands scattered across `package.json` workspaces, duplicate `docker-compose down` calls, redundant `npm cache clean`, separate Python scripts deleting `__pycache__`. Execute a Pipeline cadence.
 2. **Analysis:** Reason through consolidating multiple localized cleanup scripts into a single master execution target.
 3. **Execution Preparation:** Design a top-level manifest (e.g., a root `Makefile`, `clean.sh`, or root `package.json`) that can gracefully handle missing directories without fatal exit codes.
 4. **Execution Centralization:** Write the scattered execution logic into the centralized top-level manifest.

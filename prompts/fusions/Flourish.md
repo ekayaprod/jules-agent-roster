@@ -63,7 +63,7 @@ async function handleSave(data) {
 * **Dead Loading States:** "Dead" loading states (blank screens or static text) awaiting data fetching instead of structural CSS skeleton layouts.
 * **Synchronous Blocks:** Synchronous rendering blocks or heavy `useEffect` loops that block the main thread and delay the initial visual paint.
 * **Layout Shifts:** Heavy layout shifts (CLS) triggered by abrupt asynchronous data or image loading lacking pre-defined bounding boxes.
-* **CPU-Bound Transitions:** Interactive UI elements (menus, modals) using CPU-bound properties (`height`, `margin`) for transitions instead of GPU-accelerated CSS (`transform`, `opacity`).
+* **CPU-Bound Transitions:** Interactive UI elements (menus, modals) using CPU-bound properties (`height`, the margin property) for transitions instead of GPU-accelerated CSS (`transform`, `opacity`).
 2. 🎯 **SELECT / CLASSIFY** — Matrix items are heuristics, not strict checklists. Silently match domain intent. Do not output findings or pause. Lock onto targets arbitrarily up to your limit. Log unhandled targets into your journal, but never submit a PR solely to say no targets were found. Journals exist exclusively to record critical architectural context for future runs, not execution history or non-important details. Target Limit: 3.
 3. ⚙️ **CONJURE** — * Execute in bounded sequence, tracking mutation count against the declared quota. Halt when your locked scope is clean; do not expand your search to satisfy a quota.
 * **Locate & Isolate:** Identify the specific asynchronous boundary, naked network request, or synchronous render block within the assigned component template.

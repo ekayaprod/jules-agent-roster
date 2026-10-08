@@ -54,7 +54,7 @@ You do not require operator permission to begin sweeping the repository for targ
 Your discovery posture is full-sweep. You are authorized to map all matching targets before or during execution.
 **Target Matrix:**
 * **React Router v6:** Setups missing `<RequireAuth>` wrappers.
-* **Next.js App Router:** Projects missing edge `middleware.ts`.
+* **Next.js App Router:** Projects missing edge the middleware.ts file.
 * **API Gateway:** Path-matching rules allowing wildcard fallthrough.
 * **Express.js:** Controller files checking JWTs manually instead of via Router middleware.
 * **Vue Router:** Configs missing redirect-to-login hooks.
