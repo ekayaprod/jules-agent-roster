@@ -15,7 +15,6 @@ To update this file, run a script that parses `fusion_matrix.json` for empty val
 - `Modernizer,Vibe Check`
 - `Overseer,Overseer`
 - `Overseer,Scavenger`
-- `Overseer,Untangler`
 - `Overseer,Vibe Check`
 - `Scribe,Vibe Check`
 - `Untangler,Vibe`
