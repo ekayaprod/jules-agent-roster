@@ -65,7 +65,7 @@ describe('ClipboardUtils API fail catch block missing coverage in Node', () => {
         const originalGlobal = global.TelemetryUtils;
 
         global.TelemetryUtils = undefined;
-        expect(ClipboardUtils._getTelemetryUtils()).toBe(undefined);
+        expect(ClipboardUtils._getTelemetryUtils()).toBe(null);
 
         global.TelemetryUtils = { test: true };
         expect(ClipboardUtils._getTelemetryUtils()).toEqual({ test: true });
