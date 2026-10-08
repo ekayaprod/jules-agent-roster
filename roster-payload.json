@@ -2148,10 +2148,10 @@
     "name": "Transition Manager",
     "emoji": "🌉",
     "role": "Migration Architect",
-    "category": "Documentation",
+    "category": "fusions",
     "tier": "Fusion",
     "description": "MODERNIZE legacy syntax to the current standard and writes the official, inline historical context explaining the paradigm shift.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.7",
     "promptFile": "prompts/fusions/Transition Manager.md",
     "isCustom": true
   },
