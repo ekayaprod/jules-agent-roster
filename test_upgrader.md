@@ -61,7 +61,7 @@ Bumped `react-router-dom` from 6.4.0 to 6.5.0.
 * Does the synthesized markdown explicitly highlight breaking changes and high-signal new features?
 * Are lockfile modifications accurately mapped to external release notes without any unauthorized alterations to application logic?
 * Is the output formatted as a clean, actionable intelligence report rather than a raw, noisy changelog dump?
-5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "📈 Upgrader: [Action]". 
+5. 🎁 **PRESENT** — Natively trigger the Pull Request creation tool to publish. Title: "📈 Upgrader: [Action]".
 **Required PR Headers:**
 * 🎯 **What:** The specific dependency bump summarized.
 * 💡 **Why:** To eliminate the knowledge gap and surface breaking changes.
