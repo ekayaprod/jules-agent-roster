@@ -63,4 +63,59 @@ describe('DOMUtils Inspector Polygraph', () => {
             expect(window.MarkdownRenderer.render).toHaveBeenCalledWith('test content');
         });
     });
+
+    describe('setElementsDisplay Interrogation', () => {
+        it('should not modify style.display if display parameter is an empty string', () => {
+            const container = document.createElement('div');
+            container.innerHTML = `<div class="target-class d-none" style="display: flex;"></div>`;
+            const el = container.querySelector('.target-class');
+
+            DOMUtils.setElementsDisplay(container.querySelectorAll('.target-class'), '');
+
+            expect(el.classList.contains('d-none')).toBe(false);
+            expect(el.style.display).toBe('flex');
+        });
+    });
+
+    describe('getTerminalSessionHTML Interrogation', () => {
+        it('should handle falsy escapedEmoji by returning an empty string for the emoji portion', () => {
+            const result = DOMUtils.getTerminalSessionHTML(null, 'AgentSmith', 'Active');
+            expect(result).toContain('AgentSmith');
+            expect(result).not.toContain('null');
+        });
+
+        it('should properly escape potentially malicious characters in the escapedEmoji argument', () => {
+            const maliciousEmoji = `<script>alert('xss')</script>&"'`;
+            const result = DOMUtils.getTerminalSessionHTML(maliciousEmoji, 'AgentX', 'Idle');
+            expect(result).toContain('&lt;script&gt;alert(&#039;xss&#039;)&lt;/script&gt;&amp;&quot;&#039;');
+            expect(result).not.toContain('<script>');
+        });
+    });
+
+    describe('createMarkdownPreBlock Interrogation', () => {
+        it('should handle missing window.MarkdownRenderer by falling back to createTextNode', () => {
+            const originalRenderer = window.MarkdownRenderer;
+            delete window.MarkdownRenderer;
+
+            const text = "Raw Text content";
+            const result = DOMUtils.createMarkdownPreBlock(text);
+
+            expect(result.textContent).toBe(text);
+            expect(result.childNodes[0].nodeType).toBe(Node.TEXT_NODE);
+
+            window.MarkdownRenderer = originalRenderer;
+        });
+
+        it('should handle missing window.MarkdownRenderer with null/empty text', () => {
+            const originalRenderer = window.MarkdownRenderer;
+            delete window.MarkdownRenderer;
+
+            const result = DOMUtils.createMarkdownPreBlock(null);
+
+            expect(result.textContent).toBe("");
+            expect(result.childNodes[0].nodeType).toBe(Node.TEXT_NODE);
+
+            window.MarkdownRenderer = originalRenderer;
+        });
+    });
 });
