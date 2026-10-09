@@ -3330,6 +3330,59 @@
     "grep",
     "tsc",
     "jest",
-    "playwright"
+    "playwright",
+    "pytest",
+    "eslint",
+    "python",
+    "jq",
+    "sed",
+    "awk",
+    "curl",
+    "tar",
+    "make"
+  ],
+  "category_weights": {
+    "operational": {
+      "A": 30,
+      "B": 5,
+      "C": 5,
+      "D": 20,
+      "E": 20,
+      "H": 5,
+      "I": 15,
+      "L": 0,
+      "M": 0
+    },
+    "advisory": {
+      "A": 5,
+      "B": 20,
+      "C": 20,
+      "D": 5,
+      "E": 5,
+      "H": 15,
+      "I": 5,
+      "L": 15,
+      "M": 10
+    },
+    "default": {
+      "A": 15,
+      "B": 10,
+      "C": 15,
+      "D": 15,
+      "E": 15,
+      "H": 10,
+      "I": 10,
+      "L": 5,
+      "M": 5
+    }
+  },
+  "benchmark_anchors": [
+    "Hazmat",
+    "Paramedic",
+    "Virtuoso",
+    "Tokenizer",
+    "Synchronizer",
+    "Speed Camera",
+    "Upgrader"
   ]
 }
