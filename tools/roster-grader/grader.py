@@ -732,9 +732,11 @@ def score_dim_F(units, raw_content, fm=None, rare_tokens_set=None):
 
             u_clean['req'] = bool(req_match)
             u_clean['pro'] = bool(pro_match)
+            if u_clean['req'] and u_clean['pro']:
+                u_clean['req'] = False
 
-            u_clean['req_action'] = req_match.group(2) if req_match else None
-            u_clean['pro_action'] = pro_match.group(2) if pro_match else None
+            u_clean['req_action'] = req_match.group(2) if u_clean['req'] and req_match else None
+            u_clean['pro_action'] = pro_match.group(2) if u_clean['pro'] and pro_match else None
 
             words_list = re.findall(r'\b[a-z]+\b', t_lower)
             u_clean['words'] = words_list
