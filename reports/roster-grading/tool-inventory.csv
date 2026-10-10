@@ -1,1 +1,14 @@
 tool,count,available
+git,113,Yes
+npm,25,Yes
+npx,18,Yes
+apt-get,16,Yes
+docker,13,Yes
+grep,10,Yes
+apt,8,Yes
+tsc,7,Yes
+eslint,4,Yes
+sed,3,Yes
+awk,3,Yes
+jest,2,Yes
+docker-compose,2,Yes
