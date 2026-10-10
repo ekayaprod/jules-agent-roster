@@ -160,7 +160,7 @@
     "category": "Maintenance",
     "tier": "Core",
     "description": "CONSUME dead structural flesh and hollow carapaces, swarming the file to meticulously pick its load-bearing architecture completely clean.",
-    "forge_version": "V86.1",
+    "forge_version": "V88.7",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
