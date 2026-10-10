@@ -16,7 +16,7 @@ class ClipboardUtils {
      */
     static _getTelemetryUtils() {
         /* istanbul ignore next */
-        return typeof window !== 'undefined' ? window.TelemetryUtils : (typeof global !== 'undefined' ? global.TelemetryUtils : null);
+        return typeof window !== 'undefined' && window.TelemetryUtils ? window.TelemetryUtils : (typeof global !== 'undefined' && global.TelemetryUtils ? global.TelemetryUtils : null);
     }
 
     static async copyText(text) {

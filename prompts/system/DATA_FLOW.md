@@ -4,7 +4,7 @@ This document flattens the system's chronological execution chains across the `p
 
 ## 1. Auto-Forge Pipeline (Unattended Maintenance Flow)
 1. `Scheduled-Auto-Run.md` triggers execution in headless mode without a target override.
-2. `Auto-Forge.md` sweeps `prompts/` and selects a single legacy `.md` target based on the Target Sorting Rule.
+2. `Auto-Forge.md` sweeps `prompts/`, `prompts/fusions/`, or `prompts/micro/` and selects a single legacy `.md` target based on the Target Sorting Rule.
 3. `Auto-Forge.md` reads `Master-Forge.md` Phase 1 and 2 to resolve domain, archetype, and classify drift.
 4. `Auto-Forge.md` runs `Forge-Procedure.md` Module 6 and 7 to evaluate requirements and identify failing work-items against legacy text.
 5. `Auto-Forge.md` mutates the target file using the template block from `Creative-Procedure.md`.

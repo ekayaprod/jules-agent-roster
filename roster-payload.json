@@ -160,7 +160,7 @@
     "category": "Maintenance",
     "tier": "Core",
     "description": "CONSUME dead structural flesh and hollow carapaces, swarming the file to meticulously pick its load-bearing architecture completely clean.",
-    "forge_version": "V86.1",
+    "forge_version": "V88.7",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
@@ -237,7 +237,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "DISSOLVE the visual ghosting. Hunt down orphaned style definitions, redundant view wrappers, and dead UI templates to flatten the render tree.",
-    "forge_version": "V86.1",
+    "forge_version": "V88.7",
     "promptFile": "prompts/fusions/Acetone.md",
     "isCustom": true
   },
@@ -775,7 +775,7 @@
     "role": "Structural Forensicist",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "STABILIZE historical architectural decay via git forensics to resuscitate circular routes and collapsed colocation vectors before system failure.",
+    "description": "ANALYZE historical architectural decay via git forensics to map circular routes and collapsed colocation vectors before system failure.",
     "forge_version": "V88.6",
     "promptFile": "prompts/fusions/Forensic Architect.md",
     "isCustom": true
@@ -1859,13 +1859,24 @@
     "isCustom": true
   },
   {
+    "name": "Sonar",
+    "emoji": "📡",
+    "role": "Complexity Mapper",
+    "category": "Operations",
+    "tier": "Fusion",
+    "description": "PING the repository topology for deep cyclomatic complexity, unearthing structural knots and routing them to the untangling queue.",
+    "forge_version": "V88.6",
+    "promptFile": "prompts/fusions/Sonar.md",
+    "isCustom": true
+  },
+  {
     "name": "Spellchecker",
     "emoji": "🔤",
     "role": "Typo Eradicator",
     "category": "UX",
     "tier": "Fusion",
     "description": "Execute a surgical strike against misspelled variable names, database columns, public API keys, and CSS classes without breaking runtime references.",
-    "forge_version": "V84",
+    "forge_version": "V88.7",
     "promptFile": "prompts/fusions/Spellchecker.md",
     "isCustom": true
   },
@@ -1952,7 +1963,7 @@
     "role": "Structural Stabilizer",
     "category": "Architecture",
     "tier": "Fusion",
-    "description": "STABILIZE decaying architectures by performing emergency triage on circular routes, collapsed colocation, and inline network logic.",
+    "description": "REWRITE and excise deep architectural rot, shattering circular dependencies and purging deprecated structural anomalies.",
     "forge_version": "V88.2",
     "promptFile": "prompts/fusions/Surgeon.md",
     "isCustom": true
@@ -2151,7 +2162,7 @@
     "category": "Documentation",
     "tier": "Fusion",
     "description": "MODERNIZE legacy syntax to the current standard and writes the official, inline historical context explaining the paradigm shift.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.7",
     "promptFile": "prompts/fusions/Transition Manager.md",
     "isCustom": true
   },
@@ -2195,7 +2206,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "ENFORCE visual rhythm at the code level by hunting down rogue inline margins and enforcing WCAG contrast ratios.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.7",
     "promptFile": "prompts/fusions/Typesetter.md",
     "isCustom": true
   },
@@ -2203,10 +2214,10 @@
     "name": "Upgrader",
     "emoji": "📈",
     "role": "Dependency Broadcaster",
-    "category": "Docs",
+    "category": "Documentation",
     "tier": "Mythic",
-    "description": "Eliminates \"blind bumps\" by fetching external changelogs and broadcasting high-signal summaries of new features and breaking changes directly into the PR or release notes.",
-    "forge_version": "V84",
+    "description": "BROADCAST high-signal summaries of external changelogs into PRs. Eliminate blind bumps by parsing release notes and extracting breaking alerts directly for the team.",
+    "forge_version": "V88.7",
     "promptFile": "prompts/fusions/Upgrader.md",
     "isCustom": true
   },

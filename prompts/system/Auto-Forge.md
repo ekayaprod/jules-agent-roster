@@ -20,7 +20,7 @@ CRITICAL: Execute all logic shifts directly via native file editing on the Markd
 - If the invoking prompt supplies a non-empty `TARGET_FILE_OVERRIDE`, lock that file and skip the sweep and sorting below.
 - Sweep `prompts/`, `prompts/fusions/`, or `prompts/micro/` for `.md` files.
 - Apply the Target Sorting Rule: Lock the single oldest file (check the `forge_version` frontmatter, prioritizing missing or oldest semantic versions). Lock exactly one target per session.
-- Exit cleanly with no PR if all files are older than or equal to `CURRENT_FORGE_VERSION` and the operator provided no override.
+- Exit cleanly with no PR if all files are equal to or newer than `CURRENT_FORGE_VERSION` and the operator provided no override.
 
 ## Step 2: State Ingestion & Drift Analysis
 - Read the locked target `.md` in full to load legacy logic into context.
@@ -38,7 +38,6 @@ CRITICAL: Execute all logic shifts directly via native file editing on the Markd
 
 ## Step 4: The Efficacy Audit
 - Run Forge-Procedure Module 7 Part B (Component Diff and Mandatory Audits) comparing your modified Markdown against the original legacy file, then rerun Part A on the modified file.
-- **The Generic-vs-Domain Test:** If your update removes a highly specific, useful legacy domain safeguard (e.g., a specific `git clean` flag or syntax parsing rule), revert your edit and manually re-inject the safeguard into your new structure.
 - On any FAIL, repair in place and rerun the failing check. After two repair loops, revert the specific change that still fails, keep the legacy text there, and list it under "Flagged, not changed" in the PR.
 - The updated file must result in a more capable, coherent, and domain-specific agent than the legacy variant.
 

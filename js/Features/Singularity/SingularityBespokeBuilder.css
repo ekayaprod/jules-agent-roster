@@ -7,7 +7,7 @@
         .sg-builder {
           background: var(--card-bg);
           border: 1px solid var(--border);
-          border-radius: 1rem;
+          border-radius: 1.5rem;
           padding: 0.75rem 1rem;
           margin-top: 2rem;
           color: var(--text-primary);
@@ -24,6 +24,8 @@
         }
 
         .sg-header {
+          min-height: 2.75rem;
+          transition: all 0.3s ease-in-out;
           padding: 0;
           cursor: pointer;
           display: flex;
@@ -84,7 +86,7 @@
           box-sizing: border-box;
         }
         .sg-textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
-        .sg-textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .sg-textarea:focus-visible { box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--accent); border-color: transparent; outline: none; }
         .sg-textarea::placeholder { color: var(--text-secondary); }
 
         .sg-footer-divider {
@@ -154,3 +156,4 @@
         .sg-submit:not(:disabled):active { transform: scale(0.985); }
         .sg-submit:disabled { opacity: 0.4; cursor: not-allowed; }
         .sg-submit:focus-visible { outline: 2px solid var(--mythic); outline-offset: 2px; }
+        .sg-header:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--accent); border-radius: 0.5rem; }

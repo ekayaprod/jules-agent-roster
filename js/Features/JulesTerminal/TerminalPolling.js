@@ -148,7 +148,7 @@ class TerminalPolling {
 
         const safeTitle = safeEscapeHTML(act.title);
         const safeDescription = safeEscapeHTML(act.description);
-        const safeMessage = safeEscapeHTML(act.message);
+        const safeMessage = safeEscapeHTML(act.userInput ? act.userInput.text : act.message);
         const safeErrorMessage = act.error ? safeEscapeHTML(act.error.message) : "";
 
         if (act.title) {
@@ -157,7 +157,7 @@ class TerminalPolling {
         if (act.description) {
             historyBuffer.push(`${safeDescription}\n\n`);
         }
-        if (act.type && act.type.includes('USER_INPUT') && act.message) {
+        if (act.type && act.type.includes('USER_INPUT') && safeMessage) {
             historyBuffer.push(`*You:* ${safeMessage}\n\n`);
         }
         if (act.error) {
