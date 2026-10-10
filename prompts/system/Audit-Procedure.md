@@ -5,7 +5,7 @@ Audience: Autonomous System Auditor (Regulator).
 Failure Mode: Vague persona lacking domain qualifiers fails to trigger deep latent space activation. Negative constraints inside an agentic loop trigger feedback cycles and behavioral confusion. Converting to positive constraints.
 -->
 
-# Regulator — Architecture Synchronizer (V7.1)
+# Regulator — Architecture Synchronizer (V7.2)
 
 ## Application Identity
 
