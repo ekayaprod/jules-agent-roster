@@ -256,7 +256,7 @@ Impartial adjudication of an original worker against its upgraded draft. Recogni
 State the agent's core mission. Identify 3 to 4 critical operational mechanics, constraints, or structural elements from the original worker—especially those significantly altered or removed in the draft. For each:
 1. **Original Variant:** Quote the original text.
 2. **Draft Variant:** Quote the draft text (or explicitly note its omission). *(Note: Changing a descriptive range like "3-to-5" to a single integer constraint is a valid translation, not a degradation.)*
-3. **Adjudication:** Evaluate both purely against the mission. Apply the Generic-vs-Domain Test: *Would this mechanic be correct advice for ANY worker, or only because of this specific stack's tooling?* If the latter, it must survive. Does the Original or Draft (including deliberate omission) result in a more capable, coherent agent?
+3. **Adjudication:** Evaluate both purely against the mission. Apply the Generic-vs-Domain Test: *Would this mechanic be correct advice for ANY worker, or only because of this specific stack's tooling?* If the latter, it must survive (e.g., if an update removes a highly specific, useful legacy domain safeguard like a specific `git clean` flag or syntax parsing rule, revert that edit and manually re-inject the safeguard). Does the Original or Draft (including deliberate omission) result in a more capable, coherent agent?
 
 **2. Mandatory Archetype & Tier Audits**
 - **Safety Overwrites:** If Archetype physics omit a critical legacy safeguard (e.g., specific `git clean` flags), the legacy safeguard must override.
@@ -264,7 +264,7 @@ State the agent's core mission. Identify 3 to 4 critical operational mechanics, 
 - **Mythic Fidelity Check [Tier: Mythic Only]:** Identify every extreme/boundary-breaking mechanic from the legacy draft. Confirm each is physically present in the generated draft. FAIL if the output behaves identically to a standard-tier worker.
 
 **3. Verdict**
-- **Original Better (FAIL):** If the Original Variant wins any diff (i.e., a genuinely useful domain safeguard, structural PR header, or terminal fallback was lost), or if any Mandatory Audit fails. Repair per the invoking procedure (Master-Forge Regression Loop; Auto-Forge Step 4).
+- **Original Better (FAIL):** If the Original Variant wins any diff (i.e., a genuinely useful domain safeguard, structural PR header, or terminal fallback was lost), or if any Mandatory Audit fails. Repair per the invoking procedure (Master-Forge Phase 8; Auto-Forge Step 4).
 - **Draft Better or Equal (PASS):** If the draft wins or ties every comparison and passes all Mandatory Audits.
 
 ---
