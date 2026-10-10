@@ -259,7 +259,7 @@
     "category": "Operations",
     "tier": "Fusion",
     "description": "AMPUTATE dead wrappers. Excise obsolete resilience infrastructure and dead service wrappers, elevating fallbacks into the primary path.",
-    "forge_version": "V86.1",
+    "forge_version": "V88.8",
     "promptFile": "prompts/fusions/Amputator.md",
     "isCustom": true
   },
@@ -2219,17 +2219,6 @@
     "description": "ENFORCE visual rhythm at the code level by hunting down rogue inline margins and enforcing WCAG contrast ratios.",
     "forge_version": "V88.7",
     "promptFile": "prompts/fusions/Typesetter.md",
-    "isCustom": true
-  },
-  {
-    "name": "Upcycler",
-    "emoji": "♻️",
-    "role": "Architectural Recycler",
-    "category": "Creation",
-    "tier": "Fusion",
-    "description": "UPCYCLE abandoned stubs, hollow scaffolds, and incomplete boilerplate by deducing their intended purpose and building them into fully realized, production-ready architecture.",
-    "forge_version": "V88.6",
-    "promptFile": "prompts/fusions/Upcycler.md",
     "isCustom": true
   },
   {

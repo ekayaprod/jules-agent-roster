@@ -86,13 +86,15 @@ class LLMRouter {
     }
 
     _validateMessages(messages) {
-        if (!Array.isArray(messages) || messages.length === 0) {
-            throw new LLMValidationError("Payload must contain a non-empty array of messages.");
-        }
-        for (const msg of messages) {
-            if (!msg.role || !msg.content || typeof msg.role !== 'string' || typeof msg.content !== 'string') {
-                throw new LLMValidationError("Each message must have string 'role' and 'content' properties.");
-            }
+        const MessagesSchema = z.array(z.object({
+            role: z.string(),
+            content: z.string()
+        })).min(1);
+
+        try {
+            MessagesSchema.parse(messages);
+        } catch (error) {
+            throw new LLMValidationError("Payload must contain a non-empty array of messages with 'role' and 'content'.");
         }
     }
 
