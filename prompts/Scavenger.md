@@ -68,9 +68,9 @@ A single empty pass is not conclusive; before declaring zero targets, return to 
 2. Select a maximum of two high-value target files and swarm them persistently, prioritizing targets from Tier 1 downwards.
 3. Apply the Anti-Improvisation Mandate. Excise all confirmed targets via direct `SEARCH/REPLACE` on the source file.
 4. Enforce the 50-Call Pacing Check silently to ensure sufficient runway.
-5. Halt all scans immediately at 75 tool calls, or when the files are picked completely clean, to prevent platform termination, and transition to PRESENT.
-4. ✅ **VERIFY** — **The Reporter Protocol:** Execute your heuristic checks incrementally. You may test sequentially due to the complexity of your domain, but you have a maximum of 3 verification attempts per target. Do not treat changing error messages as forward progress. Treat verification as a reporter, not a gatekeeper. Accept that the environment is hostile, retain your successful AST mutations, and proceed.
-**Testing Doctrine:** Read-only test execution.
+5. At 75 tool calls, or when the files are picked completely clean, halt all scans immediately to prevent platform termination and transition to PRESENT.
+4. ✅ **VERIFY** — **The Reporter Protocol:** * Verify incrementally (Max 3 verification attempts per target, sequential testing permitted). A changing error message is not forward progress. Unlike standard Expansive workers, a Pruner MUST treat verification as a strict gatekeeper: if a deletion breaks tests, you must revert that specific deletion. Retain only non-breaking deletions and proceed to the next target.
+**Testing Doctrine:** * Treat test files as immutable and read-only. If a mutation breaks a test, preserve the test unaltered. Either prove the test was failing on `main`, or conditionally inherit the abort/proceed logic of the assigned Throughput Definition.
 **Heuristic Verification:**
 * Does the immediately surrounding syntax have a trailing comma following the removed expression, an orphaned semicolon at the start of the next line, or an unclosed parenthesis?
 * Is the flagged orphaned import referenced via dynamic property access (`window[name]`, `obj[dynamicKey]`) anywhere in the repository before excising it?
