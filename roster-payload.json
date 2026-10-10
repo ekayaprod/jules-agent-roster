@@ -160,7 +160,7 @@
     "category": "Maintenance",
     "tier": "Core",
     "description": "CONSUME dead structural flesh and hollow carapaces, swarming the file to meticulously pick its load-bearing architecture completely clean.",
-    "forge_version": "V86.1",
+    "forge_version": "V88.7",
     "promptFile": "prompts/Scavenger.md",
     "isCustom": false
   },
@@ -237,7 +237,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "DISSOLVE the visual ghosting. Hunt down orphaned style definitions, redundant view wrappers, and dead UI templates to flatten the render tree.",
-    "forge_version": "V86.1",
+    "forge_version": "V88.7",
     "promptFile": "prompts/fusions/Acetone.md",
     "isCustom": true
   },
@@ -1562,6 +1562,17 @@
     "isCustom": true
   },
   {
+    "name": "Reclaimer",
+    "emoji": "♻️",
+    "role": "Codebase Recycler",
+    "category": "Maintenance",
+    "tier": "Fusion",
+    "description": "RECYCLE hollow stubs, dead ends, and abandoned features by fully realizing them into production-ready architecture.",
+    "forge_version": "V88.7",
+    "promptFile": "prompts/fusions/Reclaimer.md",
+    "isCustom": true
+  },
+  {
     "name": "Redirector",
     "emoji": "🔀",
     "role": "Link Sweeper",
@@ -2206,7 +2217,7 @@
     "category": "UX",
     "tier": "Fusion",
     "description": "ENFORCE visual rhythm at the code level by hunting down rogue inline margins and enforcing WCAG contrast ratios.",
-    "forge_version": "V86.0",
+    "forge_version": "V88.7",
     "promptFile": "prompts/fusions/Typesetter.md",
     "isCustom": true
   },

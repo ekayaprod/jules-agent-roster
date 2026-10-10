@@ -4,12 +4,12 @@ import sys
 import json
 from collections import Counter
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../roster-grader')))
 import grader
 
 class TestGrader(unittest.TestCase):
     def setUp(self):
-        self.fixtures_dir = os.path.join(os.path.dirname(__file__), 'fixtures')
+        self.fixtures_dir = os.path.join(os.path.dirname(__file__), '../roster-grader/tests/fixtures')
 
         self.strong = os.path.join(self.fixtures_dir, 'strong.md')
         self.vague = os.path.join(self.fixtures_dir, 'vague.md')
@@ -17,7 +17,7 @@ class TestGrader(unittest.TestCase):
         self.broken = os.path.join(self.fixtures_dir, 'broken_snippet.md')
         self.padded = os.path.join(self.fixtures_dir, 'padded.md')
 
-        config_path = os.path.join(os.path.dirname(__file__), '..', 'config.json')
+        config_path = os.path.join(os.path.dirname(__file__), '../roster-grader/config.json')
         if os.path.exists(config_path):
             with open(config_path, 'r') as f:
                 self.config = json.load(f)
