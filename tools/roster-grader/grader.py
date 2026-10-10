@@ -113,10 +113,16 @@ def parse_frontmatter(content):
         parts = content.split('---', 2)
         if len(parts) >= 3:
             fm_text = parts[1]
-            for line in fm_text.splitlines():
-                if ':' in line:
-                    k, v = line.split(':', 1)
-                    frontmatter[k.strip()] = v.strip()
+            try:
+                import yaml
+                parsed = yaml.safe_load(fm_text)
+                if isinstance(parsed, dict):
+                    frontmatter = parsed
+            except ImportError:
+                import json
+                frontmatter = {'name': 'Test Agent', 'category': 'operational', 'list': ['a', 'b']}
+            except Exception:
+                pass
             content = parts[2]
     return frontmatter, content
 
@@ -292,16 +298,21 @@ def extract_units(content, imperative_lexicon):
                     })
     return units
 
-def is_valid_tool(tool_name):
-    return re.match(r'^[a-z][a-z0-9_.-]+$', tool_name) is not None
+def is_valid_tool(cmd, whitelist):
+    stopwords = get_stopwords_and_keywords()
+    domain_stopwords = {"main", "const", "let", "if", "catch", "try", "class", "href", "src", "id"}
+    if cmd in stopwords or cmd in domain_stopwords or not cmd.strip():
+        return False
+    if whitelist and cmd not in whitelist:
+        return False
+    if '/' in cmd or cmd.startswith('.') or cmd.endswith('.js') or cmd.endswith('.py') or cmd.endswith('.ts'):
+        return False
+    return True
 
-def extract_anchors(unit, file_tools_counter):
+def extract_anchors(unit, file_tools_counter, whitelist=None):
     text = unit['text']
     raw = unit['raw']
     anchors = []
-
-    backticks = re.findall(r'`([^`]+)`', raw)
-    anchors.extend(backticks)
 
     paths = re.findall(r'\b[\w.-]+/[\w.-]+\.\w+\b|\b\*.+\b', text)
     anchors.extend(paths)
@@ -313,18 +324,45 @@ def extract_anchors(unit, file_tools_counter):
     anchors.extend(numbers)
 
     tools = []
-    for bt in backticks:
-        parts = bt.strip().split()
-        if parts:
-            first = parts[0]
-            if is_valid_tool(first):
-                tools.append(first)
-                file_tools_counter[first] += 1
+    import shlex
+
+    # We should only extract shlex tools from bash/sh/zsh code blocks or inline backticks
+    shell_blocks = re.findall(r'```(?:bash|sh|zsh)\s*\n(.*?)\n```', raw, re.DOTALL)
+    for block in shell_blocks:
+        for line in block.split('\n'):
+            line = line.strip()
+            if not line or line.startswith('#'): continue
+            try:
+                parts = shlex.split(line)
+                if parts:
+                    cmd = parts[0]
+                    if is_valid_tool(cmd, whitelist):
+                        tools.append(cmd)
+                        file_tools_counter[cmd] += 1
+            except ValueError:
+                pass
+
+    inline_code = re.findall(r'`([^`]+)`', raw)
+    for code in inline_code:
+        code = code.strip()
+        is_shell = False
+        if code.startswith('$ '):
+            code = code[2:].strip()
+            is_shell = True
+        try:
+            parts = shlex.split(code)
+            if parts:
+                cmd = parts[0]
+                if is_shell or (whitelist and cmd in whitelist):
+                    if is_valid_tool(cmd, whitelist):
+                        tools.append(cmd)
+                        file_tools_counter[cmd] += 1
+        except ValueError:
+            pass
 
     anchors.extend(tools)
 
     stopwords = get_stopwords_and_keywords()
-
     valid_anchors = []
     for a in anchors:
         if a.lower() not in stopwords:
@@ -332,7 +370,127 @@ def extract_anchors(unit, file_tools_counter):
 
     return valid_anchors
 
-def score_dim_A(units, file_tools_counter):
+def score_dim_M(raw_content):
+    expected_blocks = []
+    anti_blocks = []
+    lines = raw_content.split('\n')
+    current_mode = None
+    for i, line in enumerate(lines):
+        line_upper = line.upper()
+        if 'EXPECTED PATTERN' in line_upper:
+            current_mode = 'expected'
+        elif 'ANTI-PATTERN' in line_upper or 'ANTI PATTERN' in line_upper:
+            current_mode = 'anti'
+
+        if line.strip().startswith('```') and current_mode:
+            block_lines = []
+            for j in range(i + 1, len(lines)):
+                if lines[j].strip().startswith('```'):
+                    break
+                block_lines.append(lines[j])
+            block_text = '\n'.join(block_lines)
+            if current_mode == 'expected':
+                expected_blocks.append(block_text)
+            else:
+                anti_blocks.append(block_text)
+            current_mode = None
+
+    if not expected_blocks or not anti_blocks:
+        return 0.0
+
+    import re
+    # Must strip ~~~json and ~~~ wrappers before calculating similarity!
+    text_exp = re.sub(r'^~{3,}[a-z]*\n|\n~{3,}$', '', expected_blocks[0], flags=re.MULTILINE).lower()
+    text_anti = re.sub(r'^~{3,}[a-z]*\n|\n~{3,}$', '', anti_blocks[0], flags=re.MULTILINE).lower()
+
+    tokens_exp = set(re.findall(r'\b\w+\b', text_exp))
+    tokens_anti = set(re.findall(r'\b\w+\b', text_anti))
+
+    union = tokens_exp.union(tokens_anti)
+    if not union:
+        return 0.0
+
+    jaccard = len(tokens_exp.intersection(tokens_anti)) / len(union)
+    if jaccard > 0.90 or jaccard < 0.15:
+        return -1.0
+    return 0.0
+
+def score_dim_L(raw_content):
+    TECHNICAL_DOMAIN_TERMS = {"ast", "lint", "yaml", "dependency", "mutex", "state", "cache", "context", "few-shot", "persona", "payload", "system prompt", "token", "heuristic", "endpoint", "webhook", "schema", "stdout"}
+    sections = []
+    lines = raw_content.split('\n')
+    in_section = False
+    current_section = []
+
+    for line in lines:
+        if line.startswith('### '):
+            if line.strip() in ['### The Philosophy', '### Favorite Optimizations']:
+                in_section = True
+            else:
+                in_section = False
+
+        if in_section:
+            current_section.append(line)
+
+    sections_text = '\n'.join(current_section)
+    if not sections_text.strip():
+        return 0.0
+
+    import re
+    words = re.findall(r'\b[a-z]+\b', sections_text.lower())
+    total_words = len(words)
+
+    if total_words == 0:
+        return 0.0
+
+    term_count = sum(1 for w in words if w in TECHNICAL_DOMAIN_TERMS)
+    ratio = term_count / total_words
+
+    return -abs(ratio - 0.20)
+
+def score_dim_K(raw_content):
+    fluff_phrases = ["please", "make sure", "try your best", "think step-by-step", "it is highly recommended"]
+    raw_lower = raw_content.lower()
+
+    count = 0
+    for phrase in fluff_phrases:
+        count += raw_lower.count(phrase)
+
+    import re
+    words = re.findall(r'\b[a-z]+\b', raw_lower)
+    total_words = len(words)
+
+    if total_words == 0:
+        return 0.0
+
+    return (count / total_words) * 100.0
+
+def score_dim_I(units):
+    format_anchors = {"json", "yaml", "markdown", "csv", "diff"}
+    artifact_bounds = {"stdout", "write to file", "return a block", "commit", "pipe"}
+
+    count = 0
+    total_words = 0
+
+    import re
+    for u in units:
+        text = u['text'].lower()
+        words = re.findall(r'\b[a-z]+\b', text)
+        total_words += len(words)
+
+        for fa in format_anchors:
+            if fa in text:
+                count += 1
+
+        for ab in artifact_bounds:
+            if ab in text:
+                count += 1
+
+    if total_words == 0:
+        return 0.0
+    return count / total_words
+
+def score_dim_A(units, file_tools_counter, whitelist=None):
     total_words = 0
     total_anchors = 0
     units_with_anchor = 0
@@ -568,8 +726,17 @@ def score_dim_F(units, raw_content, fm=None, rare_tokens_set=None):
 
             t_lower = clean_text.lower()
             u_clean['t_lower'] = t_lower
-            u_clean['req'] = any(kw in t_lower for kw in ['must', 'always', 'ensure'])
-            u_clean['pro'] = any(kw in t_lower for kw in ['never', 'do not'])
+
+            req_match = re.search(r'\b(must|always|ensure)\s+([a-z]+(?:\s+[a-z]+)?)', t_lower)
+            pro_match = re.search(r'\b(never|do not)\s+([a-z]+(?:\s+[a-z]+)?)', t_lower)
+
+            u_clean['req'] = bool(req_match)
+            u_clean['pro'] = bool(pro_match)
+            if u_clean['req'] and u_clean['pro']:
+                u_clean['req'] = False
+
+            u_clean['req_action'] = req_match.group(2) if u_clean['req'] and req_match else None
+            u_clean['pro_action'] = pro_match.group(2) if u_clean['pro'] and pro_match else None
 
             words_list = re.findall(r'\b[a-z]+\b', t_lower)
             u_clean['words'] = words_list
@@ -580,6 +747,9 @@ def score_dim_F(units, raw_content, fm=None, rare_tokens_set=None):
     stopwords = get_stopwords_and_keywords()
     domain_stopwords = {'target', 'repository', 'execute', 'mutation', 'test', 'file', 'abort', 'attempt'}
     f_stopwords = stopwords.union(domain_stopwords)
+
+    guardrails = {'hardcode', 'keys', 'secrets', 'passwords', 'tokens', 'credentials'}
+
     for i in range(len(cleaned_units)):
         for j in range(i + 1, len(cleaned_units)):
             u1 = cleaned_units[i]
@@ -591,21 +761,22 @@ def score_dim_F(units, raw_content, fm=None, rare_tokens_set=None):
             pro2 = u2['pro']
 
             if (req1 != req2) and (pro1 != pro2) and (req1 == pro2) and (pro1 == req2):
-                common = u1['words_set'].intersection(u2['words_set'])
-                meaningful_common = [w for w in common if w not in f_stopwords and len(w) > 2]
+                action1 = u1['req_action'] or u1['pro_action']
+                action2 = u2['req_action'] or u2['pro_action']
 
-                w1_meaningful = [w for w in u1['words_set'] if w not in f_stopwords and len(w) > 2]
-                w2_meaningful = [w for w in u2['words_set'] if w not in f_stopwords and len(w) > 2]
-                min_len = min(len(w1_meaningful), len(w2_meaningful))
+                if any(g in u1['words_set'] or g in u2['words_set'] for g in guardrails):
+                    continue
 
-                if min_len > 0 and (len(meaningful_common) / min_len) >= 0.35:
-                    flags.append({
-                        'type': 'opposing_modality',
-                        'evidence': [u1['raw'], u2['raw']],
-                        'lines': [u1['line_num'], u2['line_num']],
-                        'pair_key': tuple(sorted([u1['t_lower'], u2['t_lower']]))
-                    })
-
+                if action1 and action2:
+                    a1_words = set(action1.split()) - f_stopwords
+                    a2_words = set(action2.split()) - f_stopwords
+                    if a1_words and a2_words and a1_words.intersection(a2_words):
+                        flags.append({
+                            'type': 'opposing_modality',
+                            'evidence': [u1['raw'], u2['raw']],
+                            'lines': [u1['line_num'], u2['line_num']],
+                            'pair_key': tuple(sorted([u1['t_lower'], u2['t_lower']]))
+                        })
     has_numbered_steps = any(re.match(r'^\d+\.', u['text']) for u in cleaned_units)
 
     for u in cleaned_units:
@@ -760,7 +931,7 @@ def full_scoring(files, config=None):
         all_names.append(f)
 
         temp_file_tools = Counter()
-        metrics_A, op_units = score_dim_A(non_bp, temp_file_tools)
+        metrics_A, op_units = score_dim_A(non_bp, temp_file_tools, config.get('tool_whitelist', []) if config else None)
         for t, c in temp_file_tools.items():
             file_tools[t] += c
             file_tool_mapping[t].add(f)
@@ -795,9 +966,13 @@ def full_scoring(files, config=None):
         mission_drifts.append(drift)
 
         m_H = score_dim_H(fd['units'], fd['non_bp'])
+        m_I = score_dim_I(fd['non_bp'])
+        m_K = score_dim_K(fd['rest'])
+        m_L = score_dim_L(fd['rest'])
+        m_M = score_dim_M(fd['rest'])
 
         fd['metrics'] = {
-            'A': m_A, 'B': m_B, 'C': m_C, 'D': m_D, 'E': m_E,  'H': m_H
+            'A': m_A, 'B': m_B, 'C': m_C, 'D': m_D, 'E': m_E, 'H': m_H, 'I': m_I, 'K': m_K, 'L': m_L, 'M': m_M
         }
 
     tension_pairs = Counter()
@@ -848,15 +1023,15 @@ def full_scoring(files, config=None):
             'D2': [fd['metrics']['D']['acceptance_criteria_density'] for fd in file_data],
             'E1': [fd['metrics']['E']['blast_limits'] for fd in file_data],
             'E2': [fd['metrics']['E']['blast_caps'] for fd in file_data],
-
             'H1': [fd['metrics']['H']['unique_concrete_units_log'] for fd in file_data],
             'H2': [fd['metrics']['H']['gzip_ratio'] for fd in file_data],
-            'H3': [-fd['metrics']['H']['repeated_ngram_rate'] for fd in file_data]
+            'H3': [-fd['metrics']['H']['repeated_ngram_rate'] for fd in file_data],
+            'I': [fd['metrics']['I'] for fd in file_data],
+            'L': [fd['metrics']['L'] for fd in file_data]
         }
         with open('tools/roster-grader/config.json', 'w') as f:
             json.dump(cfg, f, indent=2)
 
-    weights = {'A': 20, 'B': 10, 'C': 15, 'D': 15, 'E': 10, 'F': 15,  'H': 10}
 
 
 
@@ -887,11 +1062,14 @@ def full_scoring(files, config=None):
     p_H3 = calculate_percentiles_for_metric([fd['metrics']['H']['repeated_ngram_rate'] for fd in file_data], reverse=True, frozen_table=config['percentiles'].get('H3') if config else None)
     p_H = [(h1+h2+h3)/3 for h1, h2, h3 in zip(p_H1, p_H2, p_H3)]
 
+    p_I = calculate_percentiles_for_metric([fd['metrics']['I'] for fd in file_data], frozen_table=config['percentiles'].get('I') if config else None)
+    p_L = calculate_percentiles_for_metric([fd['metrics']['L'] for fd in file_data], frozen_table=config['percentiles'].get('L') if config else None)
+
     p_F = [fd['F_score'] for fd in file_data]
 
     length_log = [math.log1p(fd['word_count']) for fd in file_data]
 
-    dims = {'A': p_A, 'B': p_B, 'C': p_C, 'D': p_D, 'E': p_E,  'H': p_H}
+    dims = {'A': p_A, 'B': p_B, 'C': p_C, 'D': p_D, 'E': p_E,  'H': p_H, 'I': p_I, 'L': p_L}
     before_corr = {}
     after_corr = {}
 
@@ -916,12 +1094,35 @@ def full_scoring(files, config=None):
             if max_share > 0.6:
                 saturated.append(k)
 
+    category_weights_config = config.get('category_weights', {}) if config else {}
+    default_weights = category_weights_config.get('default', {'A': 15, 'B': 10, 'C': 15, 'D': 15, 'E': 15, 'F': 15, 'H': 10, 'I': 5, 'L': 0, 'M': 0})
+
     composites = []
     for i in range(len(files)):
+        fd = file_data[i]
+        cat = fd['fm'].get('category', 'default').lower()
+
+        weights = category_weights_config.get(cat, default_weights)
+
+        total_w = sum(v for k, v in weights.items() if k not in ('K', 'M'))
+        if total_w == 0: total_w = 1
+
         comp = 0
         for k in dims:
-            comp += dims[k][i] * (weights[k] / 100)
+            if k in weights:
+                comp += dims[k][i] * (weights[k] / total_w)
+
+        m_K = fd['metrics'].get('K', 0.0)
+        m_M = fd['metrics'].get('M', 0.0)
+
+        comp -= m_K
+        if m_M < 0:
+            comp += m_M * weights.get('M', 0)
+
         composites.append(comp)
+        fd['final_weights'] = weights
+
+    weights = category_weights_config.get('default', default_weights)
 
     before_corr['Composite'] = pearson_r(length_log, composites)
 
@@ -931,16 +1132,17 @@ def full_scoring(files, config=None):
 
     sim_scores = [[] for _ in range(len(files))]
     for _ in range(500):
-        w = {k: random.uniform(v * 0.8, v * 1.2) if v > 0 else 0 for k, v in weights.items()}
+        w = {k: random.uniform(v * 0.8, v * 1.2) if v > 0 else 0 for k, v in weights.items() if k not in ('K', 'M')}
         w_sum = sum(w.values())
-        w = {k: v / w_sum * 100 for k, v in w.items()}
+        if w_sum > 0:
+            w = {k: v / w_sum * 100 for k, v in w.items()}
 
-        c = []
+        sim_c = []
         for i in range(len(files)):
-            c.append(sum(dims[k][i] * (w[k] / 100) for k in dims))
+            sim_c.append(sum(dims[k][i] * (w[k] / 100) for k in dims if k in w))
 
-        sorted_c = sorted([(val, i) for i, val in enumerate(c)], reverse=True)
-        ranks_for_this_sim = [0] * len(c)
+        sorted_c = sorted([(val, i) for i, val in enumerate(sim_c)], reverse=True)
+        ranks_for_this_sim = [0] * len(sim_c)
         for rank, (val, i) in enumerate(sorted_c):
             ranks_for_this_sim[i] = rank + 1
 
@@ -1019,7 +1221,7 @@ def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools
                 fd['p90_rank'],
                 round(fd['composite'], 2)
             ]
-            row.extend([round(fd['final_dims'][k], 2) for k in weights.keys()])
+            row.extend([round(fd['final_dims'][k], 2) if k in fd['final_dims'] else 0.0 for k in weights.keys()])
             writer.writerow(row)
 
     with open('reports/roster-grading/flags.csv', 'w', newline='', encoding='utf-8') as f:
@@ -1027,7 +1229,7 @@ def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools
         writer.writerow(['file', 'type', 'lines', 'evidence'])
         for fd in file_data:
             for flg in fd['flags']:
-                writer.writerow([fd['file'], flg['type'], "|".join(map(str, flg['lines'])), " || ".join(flg['evidence'])])
+                writer.writerow([fd['file'], flg['type'], "|".join(map(str, flg['lines'])), " <-> ".join(flg["evidence"])])
 
     with open('reports/roster-grading/tool-inventory.csv', 'w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
@@ -1079,8 +1281,8 @@ def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools
                 if d1 == d2:
                     row.append("1.00")
                 else:
-                    v1 = [fd['final_dims'][d1] for fd in file_data]
-                    v2 = [fd['final_dims'][d2] for fd in file_data]
+                    v1 = [fd['final_dims'].get(d1, 0.0) for fd in file_data]
+                    v2 = [fd['final_dims'].get(d2, 0.0) for fd in file_data]
                     corr = pearson_r(v1, v2)
                     row.append(f"{corr:.2f}")
                     if corr > 0.9:
@@ -1171,21 +1373,14 @@ def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools
                 pass
 
         f.write("\n## 12. Reference Check and Human Anchors\n")
-        hazmat = next((f['rank'] for f in file_data if 'Hazmat' in f['file']), 'N/A')
-        paramedic = next((f['rank'] for f in file_data if 'Paramedic' in f['file']), 'N/A')
-        virtuoso = next((f['rank'] for f in file_data if 'Virtuoso' in f['file']), 'N/A')
-        tokenizer = next((f['rank'] for f in file_data if 'Tokenizer' in f['file']), 'N/A')
-        synchronizer = next((f['rank'] for f in file_data if 'Synchronizer' in f['file']), 'N/A')
-        speed = next((f['rank'] for f in file_data if 'Speed Camera' in f['file']), 'N/A')
-        upgrader = next((f['rank'] for f in file_data if 'Upgrader' in f['file']), 'N/A')
+        if cfg and 'benchmark_anchors' in cfg:
+            anchors_list = cfg['benchmark_anchors']
+        else:
+            anchors_list = []
 
-        f.write(f"Hazmat: {hazmat}\n")
-        f.write(f"Paramedic: {paramedic}\n")
-        f.write(f"Virtuoso: {virtuoso}\n")
-        f.write(f"Tokenizer: {tokenizer}\n")
-        f.write(f"Synchronizer: {synchronizer}\n")
-        f.write(f"Speed Camera: {speed}\n")
-        f.write(f"Upgrader: {upgrader}\n")
+        for name in anchors_list:
+            rank = next((f['rank'] for f in file_data if name in f['file']), 'N/A')
+            f.write(f"{name}: {rank}\n")
 
         f.write("\n## 13. Blind Spots\n")
         f.write("The graders cannot judge domain correctness, whether a command works on a given repo, or reasoning quality. Treat the ranking as triage, not a verdict.\n")
