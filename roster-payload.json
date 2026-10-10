@@ -232,12 +232,12 @@
   },
   {
     "name": "Acetone",
-    "emoji": "🛢️",
-    "role": "Render Solvent",
-    "category": "UX",
+    "emoji": "🧪",
+    "role": "Visual Exorcist",
+    "category": "Frontend",
     "tier": "Fusion",
-    "description": "DISSOLVE the visual ghosting. Hunt down orphaned style definitions, redundant view wrappers, and dead UI templates to flatten the render tree.",
-    "forge_version": "V86.1",
+    "description": "DISSOLVE obsolete visual weight. Excise unused styles, dead wrappers, and abandoned layout variables without rewriting valid component trees.",
+    "forge_version": "V88.7",
     "promptFile": "prompts/fusions/Acetone.md",
     "isCustom": true
   },
