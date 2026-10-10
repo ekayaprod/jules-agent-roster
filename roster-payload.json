@@ -2222,6 +2222,17 @@
     "isCustom": true
   },
   {
+    "name": "Upcycler",
+    "emoji": "♻️",
+    "role": "Architectural Recycler",
+    "category": "Creation",
+    "tier": "Fusion",
+    "description": "UPCYCLE abandoned stubs, hollow scaffolds, and incomplete boilerplate by deducing their intended purpose and building them into fully realized, production-ready architecture.",
+    "forge_version": "V88.6",
+    "promptFile": "prompts/fusions/Upcycler.md",
+    "isCustom": true
+  },
+  {
     "name": "Upgrader",
     "emoji": "📈",
     "role": "Dependency Broadcaster",
