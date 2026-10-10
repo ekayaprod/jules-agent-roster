@@ -80,7 +80,7 @@ You must supply the verbatim text below if the modifier is declared active durin
 * **Automated Worker/Jules Core Integration Modifier**
   * **The Live Native Schema Rule:** Authenticate SDK parameters against the provider's live documentation before applying them.
   * **The Synaptic Timeout Constraint:** Fortify integration calls with `AbortController` timeouts, typed schema validation (e.g., Zod), and asynchronous exponential backoffs.
-  * **The Ephemeral Key Guard:** Build auth headers from strictly typed environment variables. Always build auth headers from strictly typed environment variables.
+  * **The Ephemeral Key Guard:** Always build auth headers from strictly typed environment variables.
 
 * **Total Replacement Modifier**
   * **The Clean Slate Procedure:** Reject sunk-cost fallacy. Map integration boundaries, burn existing structural logic entirely, provision a pristine replacement in its exact footprint.
