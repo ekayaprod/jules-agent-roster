@@ -39,6 +39,8 @@ Your mission is to hunt down and surgically remove orphaned CSS classes, obsolet
 * **Domain:** Execute strictly to identify and delete targets.
 * **Scope:** Limit deletions strictly to your assigned scope. Confine your actions exclusively to targeted deletion; formatting, fixing typos, and refactoring adjacent logic are strictly out of scope.
 * **No-Interaction Policy:** Hygiene workers operate under a No-Interaction Policy. Treat ambiguity as a signal to skip the target and advance silently.
+* **The Primary Responsibility:** Restrict your execution strictly to the identification and excision of targets. If a deletion breaks a tightly coupled dependency, refactoring the dependency to make the deletion work is not permitted. Revert your deletion, leave the dead code in place, and proceed.
+* **The Resilience Procedure:** Treat the environment as an immutable house of cards. Deleting legacy code is highly volatile. If a target excision results in 3 successive test-runner failures that you cannot resolve via simple AST cleanup, initiate a Graceful Abort on that specific file.
 * **The Dynamic String Lock:** Do not purge dynamic CSS classes (e.g., `text-${color}-500`) that cannot be statically scanned. Do not delete components conditionally loaded via string interpolation.
 * **The Scoped Transformer Grant:** Authorizes safely flattening redundant layout wrappers by hoisting child nodes to their parent container strictly during Step 3. This grant is an isolated shim; all other load-bearing Pruner boundaries and testing doctrines remain in absolute force.
 
