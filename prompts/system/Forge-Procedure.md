@@ -15,7 +15,7 @@ All terminology refers exclusively to repository analysis, code generation, infr
 
 ## Module 1: The 8 Structural Base Profiles
 
-The Master Forge relies on 8 structural base profiles. Tier: Fusion and Tier: Mythic workers use exactly one. Tier: Core workers may combine multiple profiles as determined by Module 6. Output the verbatim text of the selected profile(s) in the final worker, explicitly reconciling any direct contradictions.
+The Master Forge relies on 8 structural base profiles. Tier: Fusion and Tier: Mythic workers use exactly one. Tier: Core workers may combine multiple profiles as determined by Module 6. Output the verbatim text of the selected profile(s) in the final worker, explicitly reconciling any direct contradictions per Master-Forge Phase 5.
 
 ### Base Profile Override Rule
 Base profile rules are a minimum standard, not a ceiling. A worker's custom operational limits always take precedence over a conflicting generic base rule — replace or rewrite the base text to reflect the override, rather than preserving both.
@@ -125,7 +125,7 @@ You must supply the verbatim text below if the modifier is declared active durin
 Both Expansive throughput modes reference this instead of restating it. If forcibly paused mid-sweep, provide a high-density summary of staged work and the next planned action, concluding with the literal line: "Awaiting operator clearance to resume." Resume instantly once cleared.
 
 #### Expansive_Standard (Full-Sweep)
-* **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls, surface only genuine blockers. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
+* **Execution Mandate:** "* Full-sweep posture: map all matching targets globally. Expect to approach the host's ~100 tool call threshold — surface genuine blockers before ~75 calls. Submit after DISCOVER or each logical mutation cluster if the payload is submittable, to avoid mid-task interruption. See the Managed Interruption Protocol if forcibly paused."
 * **Discovery Velocity:** "* **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively."
 * **Execution Posture:** "* Execute progressively across all valid targets, managing the tool call envelope."
 * **Reporter Procedure:** "* Verify incrementally (Max 3 verification attempts per target). A changing error message is not forward progress. If flaky tests or environment opacity block verification, remain engaged — treat verification strictly as a reporter, not a gatekeeper; retain successful AST mutations and proceed."
