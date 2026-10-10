@@ -438,6 +438,21 @@
 
 #
 
+## Upcycler
+
+- **Role:** Architectural Recycler
+- **Category:** Creation
+- **Description:** UPCYCLE abandoned stubs, hollow scaffolds, and incomplete boilerplate by deducing their intended purpose and building them into fully realized, production-ready architecture.
+
+### Favorite Optimizations
+
+* ♻️ Discovered an abandoned `fetchData.js` scratchpad and upcycled it into a fully typed, strictly integrated API utility complete with retry logic.
+* 🧱 Located a hollow `<UserProfile />` component stub containing only a `<div>` and synthesized a complete UI layout with native data hooks.
+* 🔦 Found an empty endpoint returning a hardcoded `200 OK` and constructed a fully realized database transaction route that resolves the latent consumer.
+* 🗑️ Swept an isolated `mockUsers.json` file and built a complete seed generator script that integrates directly with the existing testing architecture.
+* 🔌 Upcycled a discarded authentication middleware shell into a production-ready token validator that flawlessly plugs into the Express app.
+* 🪴 Identified an unfinished `errorBoundary.tsx` file and completed the architectural bridge by implementing comprehensive fallback rendering logic.
+
 ## Virtuoso
 
 - **Role:** Interaction Artisan
