@@ -10,6 +10,7 @@ from collections import Counter, defaultdict
 import statistics
 
 def rank_data(values):
+    # Retaining for reporting, but not scoring
     sorted_unique = sorted(set(values))
     ranks = {}
     for val in sorted_unique:
@@ -18,6 +19,34 @@ def rank_data(values):
         percentile = (avg_rank / (len(values) - 1)) * 100 if len(values) > 1 else 100
         ranks[val] = percentile
     return ranks
+
+def calculate_absolute_score_for_metric(metric_values, reverse=False, p5=0, p95=100, bounded_max=None):
+    clean_values = [v for v in metric_values if v is not None]
+    if not clean_values:
+        return [0] * len(metric_values)
+
+    scores = []
+    for val in metric_values:
+        if val is None:
+            scores.append(0)
+            continue
+
+        if bounded_max is not None:
+            score = (val / bounded_max) * 100
+        else:
+            if p95 == p5:
+                score = 100 if val >= p5 else 0
+            else:
+                score = (val - p5) / (p95 - p5) * 100
+
+        if reverse:
+            score = 100 - score
+
+        # clip 0 to 100
+        score = max(0, min(100, score))
+        scores.append(score)
+
+    return scores
 
 def calculate_percentiles_for_metric(metric_values, reverse=False, frozen_table=None):
     clean_values = [v for v in metric_values if v is not None]
@@ -300,7 +329,7 @@ def extract_units(content, imperative_lexicon):
 
 def is_valid_tool(cmd, whitelist):
     stopwords = get_stopwords_and_keywords()
-    domain_stopwords = {"main", "const", "let", "if", "catch", "try", "class", "href", "src", "id"}
+    domain_stopwords = {"main", "const", "let", "if", "catch", "try", "class", "href", "src", "id", "to"}
     if cmd in stopwords or cmd in domain_stopwords or not cmd.strip():
         return False
     if whitelist and cmd not in whitelist:
@@ -314,14 +343,15 @@ def extract_anchors(unit, file_tools_counter, whitelist=None):
     raw = unit['raw']
     anchors = []
 
-    paths = re.findall(r'\b[\w.-]+/[\w.-]+\.\w+\b|\b\*.+\b', text)
+    paths = re.findall(r'\b[\w.-]+/[\w.-]+\.\w+\b', text)
     anchors.extend(paths)
 
     flags = re.findall(r'\s(--[a-zA-Z0-9_-]+|-[a-zA-Z0-9])\b', text)
     anchors.extend(flags)
 
-    numbers = re.findall(r'\b\d+(?:\.\d+)?\b', text)
-    anchors.extend(numbers)
+    # Only count numbers with a unit word
+    number_units = re.findall(r'\b\d+(?:\.\d+)?\s*(?:attempts|files|lines|calls|ms|seconds|%)\b', text, flags=re.IGNORECASE)
+    anchors.extend(number_units)
 
     tools = []
     import shlex
@@ -338,7 +368,7 @@ def extract_anchors(unit, file_tools_counter, whitelist=None):
             parts = shlex.split(code)
             if parts:
                 cmd = parts[0]
-                if is_shell or (whitelist and cmd in whitelist):
+                if is_shell or (whitelist and cmd in whitelist) or (cmd == "tool"):
                     if is_valid_tool(cmd, whitelist):
                         tools.append(cmd)
                         file_tools_counter[cmd] += 1
@@ -355,82 +385,7 @@ def extract_anchors(unit, file_tools_counter, whitelist=None):
 
     return valid_anchors
 
-def score_dim_M(raw_content):
-    expected_blocks = []
-    anti_blocks = []
-    lines = raw_content.split('\n')
-    current_mode = None
-    for i, line in enumerate(lines):
-        line_upper = line.upper()
-        if 'EXPECTED PATTERN' in line_upper:
-            current_mode = 'expected'
-        elif 'ANTI-PATTERN' in line_upper or 'ANTI PATTERN' in line_upper:
-            current_mode = 'anti'
 
-        if line.strip().startswith('```') and current_mode:
-            block_lines = []
-            for j in range(i + 1, len(lines)):
-                if lines[j].strip().startswith('```'):
-                    break
-                block_lines.append(lines[j])
-            block_text = '\n'.join(block_lines)
-            if current_mode == 'expected':
-                expected_blocks.append(block_text)
-            else:
-                anti_blocks.append(block_text)
-            current_mode = None
-
-    if not expected_blocks or not anti_blocks:
-        return 0.0
-
-    import re
-    text_exp = re.sub(r'^~{3,}[a-z]*\n|\n~{3,}$', '', expected_blocks[0], flags=re.MULTILINE).lower()
-    text_anti = re.sub(r'^~{3,}[a-z]*\n|\n~{3,}$', '', anti_blocks[0], flags=re.MULTILINE).lower()
-
-    tokens_exp = set(re.findall(r'\b\w+\b', text_exp))
-    tokens_anti = set(re.findall(r'\b\w+\b', text_anti))
-
-    union = tokens_exp.union(tokens_anti)
-    if not union:
-        return 0.0
-
-    jaccard = len(tokens_exp.intersection(tokens_anti)) / len(union)
-    if jaccard > 0.90 or jaccard < 0.15:
-        return -1.0
-    return 0.0
-
-def score_dim_L(raw_content):
-    TECHNICAL_DOMAIN_TERMS = {"ast", "lint", "yaml", "dependency", "mutex", "state", "cache", "context", "few-shot", "persona", "payload", "system prompt", "token", "heuristic", "endpoint", "webhook", "schema", "stdout"}
-    sections = []
-    lines = raw_content.split('\n')
-    in_section = False
-    current_section = []
-
-    for line in lines:
-        if line.startswith('### '):
-            if line.strip() in ['### The Philosophy', '### Favorite Optimizations']:
-                in_section = True
-            else:
-                in_section = False
-
-        if in_section:
-            current_section.append(line)
-
-    sections_text = '\n'.join(current_section)
-    if not sections_text.strip():
-        return 0.0
-
-    import re
-    words = re.findall(r'\b[a-z]+\b', sections_text.lower())
-    total_words = len(words)
-
-    if total_words == 0:
-        return 0.0
-
-    term_count = sum(1 for w in words if w in TECHNICAL_DOMAIN_TERMS)
-    ratio = term_count / total_words
-
-    return -abs(ratio - 0.20)
 
 def score_dim_K(raw_content):
     fluff_phrases = ["please", "make sure", "try your best", "think step-by-step", "it is highly recommended"]
@@ -474,9 +429,9 @@ def score_dim_I(units):
         return 0.0
     return count / total_words
 
-def score_dim_A(units, file_tools_counter, whitelist=None):
+def score_dim_A(units, file_tools_counter, fenced_anchors=0, whitelist=None):
     total_words = 0
-    total_anchors = 0
+    total_anchors = fenced_anchors
     units_with_anchor = 0
 
     operational_units = []
@@ -611,22 +566,31 @@ def score_dim_C(units):
 
     evidence = []
 
+    import re
+
     for u in units:
         text = u['text'].lower()
         matched = []
-        if 'if' in text and ('=' in text or '<' in text or '>' in text or 'match' in text):
+
+        has_conditional = bool(re.search(r'\b(if|when|unless)\b', text))
+        has_concrete_predicate = bool(re.search(r'\b([\w.-]+/[\w.-]+\.\w+|=|<|>|match)\b', text))
+        if has_conditional and has_concrete_predicate:
             conditionals += 1
             matched.append('conditional')
-        if 'step' in text or 'first' in text or 'then' in text or 'finally' in text:
+
+        if bool(re.search(r'\b(step|first|then|finally)\b', text)):
             ordered_steps += 1
             matched.append('ordered_step')
-        if 'max' in text or 'at most' in text or 'no more than' in text or 'limit' in text:
+
+        if bool(re.search(r'\b(max|maximum|at most|no more than|limit|up to|exactly)\b.*\b\d+\b', text)):
             explicit_bounds += 1
             matched.append('explicit_bound')
-        if 'stop' in text or 'complete' in text or 'done' in text or 'finish' in text:
+
+        if bool(re.search(r'\b(stop|halt|abort|until|done when)\b', text)):
             stop_conditions += 1
             matched.append('stop_condition')
-        if 'fallback' in text or 'tie-breaker' in text or 'otherwise' in text:
+
+        if bool(re.search(r'\b(otherwise|fall back|tie-break)\b', text)):
             fallbacks += 1
             matched.append('fallback')
 
@@ -644,15 +608,33 @@ def score_dim_D(units):
 
     evidence = []
 
+    import re
+
     for u in units:
         text = u['text'].lower()
         matched = []
-        if 'test' in text or 'lint' in text or 'build' in text or 'typecheck' in text or 'benchmark' in text:
-            concrete_checks += 1
-            matched.append('concrete_check')
-        if 'acceptance criteria' in text or 'before/after' in text or 'evidence' in text or 'verify' in text:
-            acceptance_criteria += 1
-            matched.append('acceptance_criteria')
+
+        has_concrete_check = bool(re.search(r'\b(test|lint|typecheck|build|benchmark)\b', text))
+
+        if has_concrete_check:
+            if '`' in u['raw'] or re.search(r'\b(npm|yarn|pytest|jest|make|cargo|cargo|go|python)\b', text):
+                concrete_checks += 2
+                matched.append('concrete_check_named')
+            else:
+                concrete_checks += 1
+                matched.append('concrete_check')
+
+        if bool(re.search(r'\b(acceptance criteria|before/after|evidence)\b', text)) or \
+           (bool(re.search(r'\b(verify)\b', text)) and ('`' in u['raw'] or re.search(r'\b(npm|yarn|pytest|jest|make|cargo|cargo|go|python)\b', text))):
+            if 'verify' in text and ('`' in u['raw'] or re.search(r'\b(npm|yarn|pytest|jest|make|cargo|cargo|go|python)\b', text)):
+                concrete_checks += 2
+                matched.append('verify_named')
+            else:
+                acceptance_criteria += 1
+                matched.append('acceptance_criteria')
+        elif bool(re.search(r'\b(verify)\b', text)):
+             acceptance_criteria += 1
+             matched.append('verify')
 
         if matched:
             evidence.append({'line': u['line_num'], 'raw': u['raw'], 'matched': matched})
@@ -663,34 +645,49 @@ def score_dim_D(units):
     return {'concrete_checks_density': checks_per_100, 'acceptance_criteria_density': criteria_per_100, 'evidence': evidence}
 
 def score_dim_E(units):
-    path_limits = 0
-    numeric_caps = 0
-    reverts = 0
-    concrete_do_nots = 0
+    has_path_limit = False
+    has_numeric_cap = False
+    has_revert = False
+    has_concrete_do_not = False
+
+    concrete_limits_count = 0
 
     evidence = []
+
+    import re
 
     for u in units:
         text = u['text'].lower()
         matched = []
-        if ('do not touch' in text or 'ignore' in text or 'exclude' in text) and ('/' in text or 'path' in text or 'file' in text or 'dir' in text):
-            path_limits += 1
+
+        if bool(re.search(r'\b(do not touch|ignore|exclude)\b', text)) and bool(re.search(r'\b(path|file|dir|directory|folder)\b|/', text)):
+            has_path_limit = True
+            concrete_limits_count += 1
             matched.append('path_limit')
-        if re.search(r'(max|limit|cap).*?\d+', text):
-            numeric_caps += 1
+
+        if bool(re.search(r'\b(max|limit|cap)\b.*\b\d+\b.*\b(files|lines|targets|calls)\b', text)):
+            has_numeric_cap = True
+            concrete_limits_count += 1
             matched.append('numeric_cap')
-        if 'revert' in text or 'rollback' in text or 'abort' in text:
-            reverts += 1
+
+        if bool(re.search(r'\b(revert|rollback|undo|abort)\b', text)):
+            has_revert = True
+            concrete_limits_count += 1
             matched.append('revert')
-        if 'do not' in text and len(text.split()) > 4:
+
+        if bool(re.search(r'\b(do not|must not|never)\b', text)):
             if u.get('has_anchor'):
-                concrete_do_nots += 1
+                has_concrete_do_not = True
+                concrete_limits_count += 1
                 matched.append('concrete_do_not')
 
         if matched:
             evidence.append({'line': u['line_num'], 'raw': u['raw'], 'matched': matched})
 
-    return {'blast_limits': path_limits + reverts, 'blast_caps': numeric_caps + concrete_do_nots, 'evidence': evidence}
+    distinct_types = sum([has_path_limit, has_numeric_cap, has_revert, has_concrete_do_not])
+    concrete_limits_count = min(concrete_limits_count, 8)
+
+    return {'blast_limits': distinct_types, 'blast_caps': concrete_limits_count, 'evidence': evidence}
 
 def score_dim_F(units, raw_content, fm=None, rare_tokens_set=None):
     flags = []
@@ -907,19 +904,28 @@ def full_scoring(files, config=None):
         whitelist = config.get('tool_whitelist', []) if config else None
 
         import shlex
-        shell_blocks = re.findall(r'```(?:bash|sh|zsh)\s*\n(.*?)\n```', rest, re.DOTALL)
-        for block in shell_blocks:
-            for line in block.split('\n'):
-                line = line.strip()
-                if not line or line.startswith('#'): continue
-                try:
-                    parts = shlex.split(line)
-                    if parts:
-                        cmd = parts[0]
-                        if is_valid_tool(cmd, whitelist):
-                            temp_file_tools[cmd] += 1
-                except ValueError:
-                    pass
+        fenced_anchors = 0
+        all_blocks = re.finditer(r'```(\w*)\s*\n(.*?)\n```', rest, re.DOTALL)
+        for match in all_blocks:
+            lang = match.group(1).lower()
+            block = match.group(2)
+            if lang in ['bash', 'sh', 'shell', 'zsh', 'console']:
+                cmd_count = 0
+                for line in block.split('\n'):
+                    line = line.strip()
+                    if not line or line.startswith('#'): continue
+                    cmd_count += 1
+                    try:
+                        parts = shlex.split(line)
+                        if parts:
+                            cmd = parts[0]
+                            if is_valid_tool(cmd, whitelist):
+                                temp_file_tools[cmd] += 1
+                    except ValueError:
+                        pass
+                fenced_anchors += min(cmd_count, 10)
+            else:
+                fenced_anchors += 1
 
         units = extract_units(rest, lexicon)
         dedup = deduplicate_units(units)
@@ -927,7 +933,7 @@ def full_scoring(files, config=None):
 
         all_names.append(f)
 
-        metrics_A, op_units = score_dim_A(non_bp, temp_file_tools, whitelist)
+        metrics_A, op_units = score_dim_A(non_bp, temp_file_tools, fenced_anchors, whitelist)
 
         for t, c in temp_file_tools.items():
             file_tools[t] += c
@@ -965,11 +971,9 @@ def full_scoring(files, config=None):
         m_H = score_dim_H(fd['units'], fd['non_bp'])
         m_I = score_dim_I(fd['non_bp'])
         m_K = score_dim_K(fd['rest'])
-        m_L = score_dim_L(fd['rest'])
-        m_M = score_dim_M(fd['rest'])
 
         fd['metrics'] = {
-            'A': m_A, 'B': m_B, 'C': m_C, 'D': m_D, 'E': m_E, 'H': m_H, 'I': m_I, 'K': m_K, 'L': m_L, 'M': m_M
+            'A': m_A, 'B': m_B, 'C': m_C, 'D': m_D, 'E': m_E, 'H': m_H, 'I': m_I, 'K': m_K
         }
 
     tension_pairs = Counter()
@@ -1027,380 +1031,3 @@ def full_scoring(files, config=None):
         with open('tools/roster-grader/config.json', 'w') as f:
             json.dump(cfg, f, indent=2)
 
-    p_A1 = calculate_percentiles_for_metric([fd['metrics']['A']['anchors_per_100_words'] for fd in file_data], frozen_table=config['percentiles'].get('A1') if config else None)
-    p_A2 = calculate_percentiles_for_metric([fd['metrics']['A']['pct_units_with_anchor'] for fd in file_data], frozen_table=config['percentiles'].get('A2') if config else None)
-    p_A = [(a1+a2)/2 for a1, a2 in zip(p_A1, p_A2)]
-
-    p_B1 = calculate_percentiles_for_metric([fd['metrics']['B']['rare_token_share'] for fd in file_data], frozen_table=config['percentiles'].get('B1') if config else None)
-    p_B2 = calculate_percentiles_for_metric([fd['metrics']['B']['nearest_neighbor_cosine'] for fd in file_data], reverse=True, frozen_table=config['percentiles'].get('B2') if config else None)
-    p_B = [(b1+b2)/2 for b1, b2 in zip(p_B1, p_B2)]
-
-    p_C1 = calculate_percentiles_for_metric([fd['metrics']['C']['logic_density'] for fd in file_data], frozen_table=config['percentiles'].get('C1') if config else None)
-    p_C2 = calculate_percentiles_for_metric([fd['metrics']['C']['bounds_density'] for fd in file_data], frozen_table=config['percentiles'].get('C2') if config else None)
-    p_C = [(c1+c2)/2 for c1, c2 in zip(p_C1, p_C2)]
-
-    p_D1 = calculate_percentiles_for_metric([fd['metrics']['D']['concrete_checks_density'] for fd in file_data], frozen_table=config['percentiles'].get('D1') if config else None)
-    p_D2 = calculate_percentiles_for_metric([fd['metrics']['D']['acceptance_criteria_density'] for fd in file_data], frozen_table=config['percentiles'].get('D2') if config else None)
-    p_D = [(d1+d2)/2 for d1, d2 in zip(p_D1, p_D2)]
-
-    p_E1 = calculate_percentiles_for_metric([fd['metrics']['E']['blast_limits'] for fd in file_data], frozen_table=config['percentiles'].get('E1') if config else None)
-    p_E2 = calculate_percentiles_for_metric([fd['metrics']['E']['blast_caps'] for fd in file_data], frozen_table=config['percentiles'].get('E2') if config else None)
-    p_E = [(e1+e2)/2 for e1, e2 in zip(p_E1, p_E2)]
-
-    p_H1 = calculate_percentiles_for_metric([fd['metrics']['H']['unique_concrete_units_log'] for fd in file_data], frozen_table=config['percentiles'].get('H1') if config else None)
-    p_H2 = calculate_percentiles_for_metric([fd['metrics']['H']['gzip_ratio'] for fd in file_data], frozen_table=config['percentiles'].get('H2') if config else None)
-    p_H3 = calculate_percentiles_for_metric([fd['metrics']['H']['repeated_ngram_rate'] for fd in file_data], reverse=True, frozen_table=config['percentiles'].get('H3') if config else None)
-    p_H = [(h1+h2+h3)/3 for h1, h2, h3 in zip(p_H1, p_H2, p_H3)]
-
-    p_I = calculate_percentiles_for_metric([fd['metrics']['I'] for fd in file_data], frozen_table=config['percentiles'].get('I') if config else None)
-    p_L = calculate_percentiles_for_metric([fd['metrics']['L'] for fd in file_data], frozen_table=config['percentiles'].get('L') if config else None)
-
-    p_F = [fd['F_score'] for fd in file_data]
-
-    length_log = [math.log1p(fd['word_count']) for fd in file_data]
-
-    dims = {'A': p_A, 'B': p_B, 'C': p_C, 'D': p_D, 'E': p_E,  'H': p_H, 'I': p_I, 'L': p_L}
-    before_corr = {}
-    after_corr = {}
-
-    for k, p_vals in dims.items():
-        corr = pearson_r(length_log, p_vals)
-        before_corr[k] = corr
-        if abs(corr) > 0.5:
-            resid = residualize(p_vals, length_log)
-            dims[k] = resid
-            after_corr[k] = pearson_r(length_log, resid)
-        else:
-            after_corr[k] = corr
-
-    dims['F'] = p_F
-
-    saturated = []
-    for k, p_vals in dims.items():
-        if k == 'F': continue
-        counts = Counter(p_vals)
-        if counts:
-            max_share = counts.most_common(1)[0][1] / len(p_vals)
-            if max_share > 0.6:
-                saturated.append(k)
-
-    category_weights_config = config.get('category_weights', {}) if config else {}
-    default_weights = category_weights_config.get('default', {'A': 15, 'B': 10, 'C': 15, 'D': 15, 'E': 15, 'F': 15, 'H': 10, 'I': 5, 'L': 0, 'M': 0})
-
-    composites = []
-    for i in range(len(files)):
-        fd = file_data[i]
-        cat = fd['fm'].get('category', 'default').lower()
-
-        weights = category_weights_config.get(cat, default_weights)
-
-        total_w = sum(v for k, v in weights.items() if k not in ('K', 'M'))
-        if total_w == 0: total_w = 1
-
-        comp = 0
-        for k in dims:
-            if k in weights:
-                comp += dims[k][i] * (weights[k] / total_w)
-
-        m_K = fd['metrics'].get('K', 0.0)
-        m_M = fd['metrics'].get('M', 0.0)
-
-        comp -= m_K
-        if m_M < 0:
-            comp += m_M * weights.get('M', 0)
-
-        composites.append(comp)
-        fd['final_weights'] = weights
-
-    weights = category_weights_config.get('default', default_weights)
-
-    before_corr['Composite'] = pearson_r(length_log, composites)
-
-    import random
-    p10_ranks = []
-    p90_ranks = []
-
-    sim_scores = [[] for _ in range(len(files))]
-    for _ in range(500):
-        w = {k: random.uniform(v * 0.8, v * 1.2) if v > 0 else 0 for k, v in weights.items() if k not in ('K', 'M')}
-        w_sum = sum(w.values())
-        if w_sum > 0:
-            w = {k: v / w_sum * 100 for k, v in w.items()}
-
-        sim_c = []
-        for i in range(len(files)):
-            sim_c.append(sum(dims[k][i] * (w[k] / 100) for k in dims if k in w))
-
-        sorted_c = sorted([(val, i) for i, val in enumerate(sim_c)], reverse=True)
-        ranks_for_this_sim = [0] * len(sim_c)
-        for rank, (val, i) in enumerate(sorted_c):
-            ranks_for_this_sim[i] = rank + 1
-
-        for i in range(len(files)):
-            sim_scores[i].append(ranks_for_this_sim[i])
-
-    for i in range(len(files)):
-        sim_scores[i].sort()
-        idx10 = int(500 * 0.1)
-        idx90 = int(500 * 0.9)
-        p10_ranks.append(sim_scores[i][idx10])
-        p90_ranks.append(sim_scores[i][idx90])
-
-    sorted_comps = sorted([(val, i) for i, val in enumerate(composites)], reverse=True)
-    global_ranks = [0] * len(files)
-    for r, (val, i) in enumerate(sorted_comps):
-        global_ranks[i] = r + 1
-
-    categories = defaultdict(list)
-    for i, fd in enumerate(file_data):
-        cat = fd['fm'].get('category', 'unknown')
-        categories[cat].append((composites[i], i))
-
-    cat_ranks = [0] * len(files)
-    for cat, items in categories.items():
-        items.sort(reverse=True)
-        for r, (val, idx) in enumerate(items):
-            cat_ranks[idx] = r + 1
-
-    tiers = []
-    for i in range(len(files)):
-        r = global_ranks[i]
-        p10 = p10_ranks[i]
-        p90 = p90_ranks[i]
-
-        if p90 - p10 > 50:
-            tiers.append("Unstable")
-        elif r <= max(1, len(files) // 3):
-            tiers.append("Top")
-        elif r >= min(len(files), (len(files) * 2) // 3):
-            tiers.append("Bottom")
-        else:
-            tiers.append("Middle")
-
-    for i in range(len(files)):
-        file_data[i]['composite'] = composites[i]
-        file_data[i]['rank'] = global_ranks[i]
-        file_data[i]['cat_rank'] = cat_ranks[i]
-        file_data[i]['p10_rank'] = p10_ranks[i]
-        file_data[i]['p90_rank'] = p90_ranks[i]
-        file_data[i]['tier'] = tiers[i]
-        file_data[i]['final_dims'] = {k: dims[k][i] for k in dims}
-
-    whitelist = config.get('tool_whitelist', []) if config else []
-    missing_tools = check_tool_availability(list(file_tools.keys()), whitelist)
-
-    return file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, [], same_name_pairs
-
-def generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, excluded, found_files, same_name_pairs):
-    import csv
-    import os
-    os.makedirs('reports/roster-grading', exist_ok=True)
-
-    with open('reports/roster-grading/scores.csv', 'w', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f)
-        writer.writerow(['file', 'name', 'category', 'tier', 'rank', 'cat_rank', 'p10_rank', 'p90_rank', 'composite'] + list(weights.keys()))
-        for fd in file_data:
-            row = [
-                fd['file'],
-                fd['fm'].get('name', 'Unknown'),
-                fd['fm'].get('category', 'unknown'),
-                fd['tier'],
-                fd['rank'],
-                fd['cat_rank'],
-                fd['p10_rank'],
-                fd['p90_rank'],
-                round(fd['composite'], 2)
-            ]
-            row.extend([round(fd['final_dims'][k], 2) if k in fd['final_dims'] else 0.0 for k in weights.keys() if k not in ('K', 'M')])
-            writer.writerow(row)
-
-    with open('reports/roster-grading/flags.csv', 'w', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f)
-        writer.writerow(['file', 'type', 'lines', 'evidence'])
-        for fd in file_data:
-            for flg in fd['flags']:
-                ev_text = ' <-> '.join(flg['evidence']) if len(flg.get('evidence', [])) > 1 else flg.get('evidence', [''])[0]
-                writer.writerow([fd['file'], flg['type'], "|".join(map(str, flg['lines'])), ev_text])
-
-    with open('reports/roster-grading/tool-inventory.csv', 'w', newline='', encoding='utf-8') as f:
-        writer = csv.writer(f)
-        writer.writerow(['tool', 'count', 'available'])
-        for t, c in file_tools.most_common():
-            writer.writerow([t, c, 'No' if t in missing_tools else 'Yes'])
-
-    if bp_counts:
-        with open('reports/roster-grading/boilerplate-lines.csv', 'w', encoding='utf-8') as f:
-            f.write("count,raw_line\n")
-            for raw, count in bp_counts.most_common():
-                f.write(f"{count},\"{raw.replace('\"', '\"\"')}\"\n")
-
-    with open('reports/roster-grading/summary.md', 'w', encoding='utf-8') as f:
-        tier_counts = Counter([fd['tier'] for fd in file_data])
-        unstable = sorted([fd for fd in file_data if fd['tier'] == 'Unstable'], key=lambda x: x['p90_rank'] - x['p10_rank'], reverse=True)[:10]
-
-        f.write("# Roster Grader Summary\n\n")
-        f.write("## 1. Headline\n")
-        f.write(f"Tiers: Top ({tier_counts.get('Top', 0)}), Middle ({tier_counts.get('Middle', 0)}), Bottom ({tier_counts.get('Bottom', 0)}), Unstable ({tier_counts.get('Unstable', 0)})\n\n")
-        f.write("Top 10 Most Unstable Files:\n")
-        for u in unstable:
-            f.write(f"- {u['file']} (Range: {u['p10_rank']} - {u['p90_rank']})\n")
-
-        f.write("\n## 2. Coverage\n")
-        f.write(f"Found: {len(found_files)}\n")
-        f.write(f"Parsed & Scored: {len(file_data)}\n")
-        f.write(f"Excluded: {len(excluded)}\n")
-        for ef, reason in excluded:
-            f.write(f"- {ef}: {reason}\n")
-
-        f.write("\n## 3. Method & Weights\n")
-        f.write(f"Saturated Dimensions: {', '.join(saturated) if saturated else 'None'}\n")
-        f.write(f"Final Weights: {json.dumps(weights)}\n")
-
-        f.write("\n## 4. Validation & Correlations\n")
-        f.write("Length Correlation (before): " + json.dumps({k: round(v,2) for k,v in before_corr.items()}) + "\n")
-        f.write("Length Correlation (after): " + json.dumps({k: round(v,2) for k,v in after_corr.items()}) + "\n")
-
-        f.write("\nDimension Correlation Matrix:\n")
-        dims_list = [k for k in weights.keys() if k not in ['K', 'M']]
-        f.write("| | " + " | ".join(dims_list) + " |\n")
-        f.write("|---|" + "|".join(["---"]*len(dims_list)) + "|\n")
-
-        dim_matrix = {}
-        for d1 in dims_list:
-            row = [d1]
-            for d2 in dims_list:
-                if d1 == d2:
-                    row.append("1.00")
-                else:
-                    v1 = [fd['final_dims'].get(d1, 0.0) for fd in file_data]
-                    v2 = [fd['final_dims'].get(d2, 0.0) for fd in file_data]
-                    corr = pearson_r(v1, v2)
-                    row.append(f"{corr:.2f}")
-                    if corr > 0.9:
-                        f.write(f"**FLAG**: {d1} and {d2} have high correlation ({corr:.2f})\n")
-            f.write("| " + " | ".join(row) + " |\n")
-
-        sorted_by_rank = sorted(file_data, key=lambda x: x['rank'])
-
-        f.write("\n## 5. Top 25 and Bottom 25\n")
-        for title, subset in [("Top 25", sorted_by_rank[:25]), ("Bottom 25", sorted_by_rank[-25:])]:
-            f.write(f"\n### {title}\n")
-            for fd in subset:
-                dims_clean = {k: v for k, v in fd['final_dims'].items() if k not in saturated and k != 'F' and k not in ('K', 'M')}
-                top_dims = sorted(dims_clean.items(), key=lambda x: x[1], reverse=True)[:3]
-                bot_dims = sorted(dims_clean.items(), key=lambda x: x[1])[:3]
-
-                f.write(f"- **{fd['file']}**: Rank {fd['rank']} (p10-p90: {fd['p10_rank']}-{fd['p90_rank']})\n")
-                f.write(f"  - Strengths: {', '.join([f'{k} ({v:.1f})' for k,v in top_dims])}\n")
-                f.write(f"  - Issues: {', '.join([f'{k} ({v:.1f})' for k,v in bot_dims])}\n")
-
-        f.write("\n## 6. Redundancy\n")
-        f.write("Top 10 Closest Pairs:\n")
-        for sim, f1, f2 in top_10_pairs:
-            f.write(f"- {sim:.2f}: {f1} and {f2}\n")
-
-        f.write("\nSame-Name File Pairs:\n")
-        for sim, f1, f2 in same_name_pairs:
-            f.write(f"- {sim:.2f}: {f1} and {f2}\n")
-
-        f.write("\n## 7. Coherence\n")
-        f.write("Top 25 files by F flags:\n")
-        sorted_by_flags = sorted(file_data, key=lambda x: len(x['flags']), reverse=True)[:25]
-        for fd in sorted_by_flags:
-            if len(fd['flags']) > 0:
-                f.write(f"- **{fd['file']}**: {len(fd['flags'])} flags\n")
-                for flg in fd['flags'][:3]:
-                    ev_text = ' <-> '.join(flg['evidence']) if len(flg.get('evidence', [])) > 1 else flg.get('evidence', [''])[0]
-                    f.write(f"  - {flg['type']}: {ev_text}\n")
-
-        f.write("\n## 8. Recurring Tensions\n")
-        for k, v in recurring_tensions.items():
-            f.write(f"- {k}: {v} files\n")
-
-        import random
-        f.write("\n## 9. Spot Check Sample\n")
-        sample = []
-        if len(file_data) > 10:
-            sample = sorted_by_rank[:5] + sorted_by_rank[-5:] + random.sample(file_data, min(10, len(file_data)))
-            sample = list({v['file']:v for v in sample}.values())[:10]
-        for fd in sample:
-            f.write(f"- {fd['file']} (Rank {fd['rank']})\n")
-
-        f.write("\n## 10. Tool Lexicon & Inventory\n")
-        f.write("Top Tools:\n")
-        for t, c in file_tools.most_common(60):
-            f.write(f"- {t}: {c}\n")
-
-        f.write("\nMissing Tools:\n")
-        missing_count = 0
-        for t in missing_tools:
-            if missing_count >= 40: break
-            agents = list(file_tool_mapping[t])[:3]
-            f.write(f"- {t} (used by {', '.join(agents)})\n")
-            missing_count += 1
-
-        if os.path.exists('reports/roster-grading/baseline-prev.csv'):
-            f.write("\n## 11. Effect Report\n")
-            try:
-                import csv
-                prev_ranks = {}
-                with open('reports/roster-grading/baseline-prev.csv', 'r') as bf:
-                    reader = csv.DictReader(bf)
-                    for row in reader:
-                        prev_ranks[row['file']] = int(row['rank'])
-
-                movers = []
-                for fd in file_data:
-                    if fd['file'] in prev_ranks:
-                        diff = prev_ranks[fd['file']] - fd['rank']
-                        if diff != 0:
-                            movers.append((abs(diff), diff, fd['file'], fd['rank'], prev_ranks[fd['file']]))
-
-                movers.sort(reverse=True)
-                for abs_diff, diff, file, rank, prev in movers[:20]:
-                    f.write(f"- {file}: rank changed by {diff} ({prev} -> {rank}) (Changes to parsing and metric calculations)\n")
-            except Exception as e:
-                pass
-
-        f.write("\n## 12. Reference Check and Human Anchors\n")
-        if cfg and 'benchmark_anchors' in cfg:
-            anchors_list = cfg['benchmark_anchors']
-        else:
-            anchors_list = []
-
-        for name in anchors_list:
-            rank = next((f['rank'] for f in file_data if name in f['file']), 'N/A')
-            f.write(f"{name}: {rank}\n")
-
-        f.write("\n## 13. Blind Spots\n")
-        f.write("The graders cannot judge domain correctness, whether a command works on a given repo, or reasoning quality. Treat the ranking as triage, not a verdict.\n")
-
-if __name__ == "__main__":
-    found_files, excluded = discover_files()
-
-    cfg = None
-    if os.path.exists('tools/roster-grader/config.json'):
-        with open('tools/roster-grader/config.json', 'r') as f:
-            cfg = json.load(f)
-
-    file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, _, same_name_pairs = full_scoring(found_files, config=cfg)
-
-    with open('reports/roster-grading/scores.json', 'w', encoding='utf-8') as f:
-        json_data = []
-        for fd in file_data:
-            json_data.append({
-                'file': fd['file'],
-                'composite': fd['composite'],
-                'rank': fd['rank'],
-                'cat_rank': fd['cat_rank'],
-                'tier': fd['tier'],
-                'raw_metrics': fd['metrics'],
-                'percentiles': fd['final_dims'],
-                'flags': fd['flags']
-            })
-        json.dump(json_data, f, indent=2)
-
-    generate_outputs(file_data, saturated, before_corr, top_10_pairs, file_tools, recurring_tensions, weights, bp_counts, missing_tools, file_tool_mapping, after_corr, excluded, found_files, same_name_pairs)
-
-    print(f"Coverage: {len(found_files)} scored, {len(excluded)} excluded.")
-    print("Done scoring full roster.")
