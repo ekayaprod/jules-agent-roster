@@ -347,7 +347,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "FORTIFY vulnerable boundaries. Fortify vulnerable I/O boundaries against malformed payloads and external network volatility.",
-    "forge_version": "V86.1",
+    "forge_version": "V88.8",
     "promptFile": "prompts/fusions/Bulwark.md",
     "isCustom": true
   },
