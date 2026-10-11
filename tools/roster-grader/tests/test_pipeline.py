@@ -75,6 +75,9 @@ class TestPipeline(unittest.TestCase):
 
     def test_dimensions_match_specs(self):
         self.assertEqual(set(metrics.DIMENSIONS.keys()), set(scoring.METRIC_SPECS.keys()))
+        for dim, keys in metrics.DIMENSIONS.items():
+            spec_keys = {spec['key'] for spec in scoring.METRIC_SPECS[dim]}
+            self.assertEqual(set(keys), spec_keys, f"Mismatch in dimension {dim}")
 
     def test_hierarchy(self):
         files = {
@@ -191,23 +194,28 @@ class TestPipeline(unittest.TestCase):
             self.assertGreater(len(corpus_state.boilerplate_norms), 10)
 
     def test_missing_weight_fails(self):
-        env = os.environ.copy()
-        shutil.copy(self.config_path, str(self.config_path) + ".bak")
-        try:
-            cfg = self.config.copy()
+        with tempfile.TemporaryDirectory() as td:
+            td_path = Path(td)
+
+            shutil.copytree(Path(os.path.dirname(__file__)) / "..", td_path / "roster-grader")
+            cfg_path = td_path / "roster-grader/config.json"
+
+            with open(cfg_path, "r") as f:
+                cfg = json.load(f)
+
             del cfg["weights"]["A"]
             if "category_weights" in cfg:
                 for c in cfg["category_weights"]:
                     if "A" in cfg["category_weights"][c]:
                         del cfg["category_weights"][c]["A"]
-            with open(self.config_path, "w") as f:
+
+            with open(cfg_path, "w") as f:
                 json.dump(cfg, f)
 
-            res = subprocess.run([sys.executable, str(Path(os.path.dirname(__file__)) / "../grader.py")], capture_output=True, text=True)
+            res = subprocess.run([sys.executable, str(td_path / "roster-grader/grader.py")], capture_output=True, text=True, cwd=str(td_path / "roster-grader"))
             self.assertNotEqual(res.returncode, 0)
             self.assertIn("Computed dimension A must be scored", res.stderr)
-        finally:
-            shutil.move(str(self.config_path) + ".bak", self.config_path)
+
 
     def test_calibration_hash_mismatch_fails(self):
         shutil.copy(self.calib_path, str(self.calib_path) + ".bak")
@@ -225,17 +233,34 @@ class TestPipeline(unittest.TestCase):
             shutil.move(str(self.calib_path) + ".bak", self.calib_path)
 
     def test_determinism_and_history(self):
-        res1 = subprocess.run([sys.executable, str(Path(os.path.dirname(__file__)) / "../grader.py")], capture_output=True, text=True)
-        res2 = subprocess.run([sys.executable, str(Path(os.path.dirname(__file__)) / "../grader.py")], capture_output=True, text=True)
+        with tempfile.TemporaryDirectory() as td:
+            td_path = Path(td)
+            # Setup a mini isolated repo
+            rg_dir = td_path / "roster-grader"
+            shutil.copytree(Path(os.path.dirname(__file__)) / "..", rg_dir)
+            # clear reports if any
+            if (rg_dir / "reports").exists():
+                shutil.rmtree(rg_dir / "reports")
 
-        p1 = Path("reports/roster-grading/scores.csv")
-        self.assertTrue(p1.exists())
-        text1 = p1.read_text()
+            res1 = subprocess.run([sys.executable, str(rg_dir / "grader.py")], capture_output=True, text=True, cwd=str(rg_dir))
+            self.assertEqual(res1.returncode, 0, res1.stderr)
 
-        lines = text1.strip().split("\n")
-        header_count = len(lines[0].split(","))
-        for line in lines[1:]:
-            self.assertEqual(len(line.split(",")), header_count)
+            scores1 = (rg_dir / "reports/roster-grading/scores.csv").read_text()
+
+            res2 = subprocess.run([sys.executable, str(rg_dir / "grader.py")], capture_output=True, text=True, cwd=str(rg_dir))
+            self.assertEqual(res2.returncode, 0, res2.stderr)
+
+            scores2 = (rg_dir / "reports/roster-grading/scores.csv").read_text()
+
+            import hashlib
+            self.assertEqual(hashlib.md5(scores1.encode()).hexdigest(), hashlib.md5(scores2.encode()).hexdigest())
+
+            # verify column counts
+            lines = scores1.strip().split("\n")
+            header_count = len(lines[0].split(","))
+            for line in lines[1:]:
+                self.assertEqual(len(line.split(",")), header_count)
+
 
     def test_score_file_matches_full_pipeline(self):
         res = subprocess.run([sys.executable, str(Path(os.path.dirname(__file__)) / "../grader.py"), "--score-file", str(Path(os.path.dirname(__file__)) / "fixtures/strong_real.md"), "--json"], capture_output=True, text=True)

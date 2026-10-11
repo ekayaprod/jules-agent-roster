@@ -101,28 +101,39 @@ def run_pipeline(args):
             "category": cat
         }
 
-    global_ranks = scoring.percentile_ranks(composites)
-    for i, path in enumerate([ctx["path"] for ctx in ctxs]):
-        scores_by_path[path]["rank"] = global_ranks[i]
+    global_ranks = scoring.rank_desc(composites)
+    for idx, path in enumerate([ctx["path"] for ctx in ctxs]):
+        scores_by_path[path]["rank"] = global_ranks[idx]
 
     for cat, cat_comps in cat_composites.items():
-        ranks = scoring.percentile_ranks(cat_comps)
-        # assign back to scores_by_path
-        # we need to map the rank back to the specific file.
+        ranks = scoring.rank_desc(cat_comps)
         idx = 0
         for path, d in scores_by_path.items():
             if d["category"] == cat:
                 d["cat_rank"] = ranks[idx]
                 idx += 1
 
-    cat_ranks = {cat: scoring.percentile_ranks(cat_comps) for cat, cat_comps in cat_composites.items()}
+    dims_by_path = {p: d["dim_scores"] for p, d in scores_by_path.items()}
+    jitter_res = scoring.weight_jitter(dims_by_path, weights, cfg.get("band_thresholds", {}), random.Random(1234), draws=500)
+    saturation_res = scoring.saturation(dims_by_path)
 
     for path, d in scores_by_path.items():
-        comp = d["composite"]
-        cat = d["category"]
+        if path in jitter_res:
+            d["p10_rank"] = jitter_res[path]["p10_rank"]
+            d["p90_rank"] = jitter_res[path]["p90_rank"]
+            d["band_change_share"] = jitter_res[path]["band_change_share"]
+        else:
+            d["p10_rank"] = 0
+            d["p90_rank"] = 0
+            d["band_change_share"] = 0
 
-        d["rank"] = 0 # ranks will be assigned below
-        d["cat_rank"] = 0
+        d["nearest_neighbor"] = ""
+        d["similarity"] = 0.0
+
+        b_metrics = corpus_metrics.get("B", {}).get(path)
+        if b_metrics:
+            d["nearest_neighbor"] = b_metrics.get("nearest_neighbor_path", "")
+            d["similarity"] = b_metrics.get("nearest_neighbor_cosine", 0.0)
 
     report_data = {
         "cfg": cfg,
@@ -130,8 +141,10 @@ def run_pipeline(args):
         "scores_by_path": scores_by_path,
         "excluded": excluded,
         "recurring_tensions": recurring_tensions,
-        "corpus_state": corpus_state
+        "corpus_state": corpus_state,
+        "saturation_res": saturation_res
     }
+
 
     return report_data
 

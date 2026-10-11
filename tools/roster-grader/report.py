@@ -179,6 +179,20 @@ def write_markdown_summaries(report_data):
         f.write("## 1. Self-check\n")
         f.write("PASS: calibration matches code\n")
         f.write("PASS: every computed dimension has a weight or is advisory\n")
+
+        saturation_res = report_data.get("saturation_res", {})
+        warns = []
+        for dim, data in saturation_res.items():
+            if data["tied_at_min"] > 0.6 or data["tied_at_max"] > 0.6:
+                warns.append(f"WARN: {dim} tied at min/max above 60%")
+            if not (25 <= data["median"] <= 75):
+                warns.append(f"WARN: {dim} median {data['median']:.1f} not between 25 and 75")
+
+        if warns:
+            for w in warns:
+                f.write(f"{w}\n")
+        else:
+            f.write("PASS: all dimension distributions healthy\n")
         saturation_res = report_data.get("saturation_res", {})
         warns = []
         for dim, data in saturation_res.items():
