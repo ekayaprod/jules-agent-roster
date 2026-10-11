@@ -68,7 +68,7 @@ For Legacy Imports: Extract Target Data, Metaphors, Optimizations. Apply the Dat
 ### Phase 1 Output
 1. **Mission Scope:** Literal operational mission in max 2 sentences. Clean imperative clause; exclude subject pronouns and worker names.
 2. **Archetype Engine:** For Tier: Fusion and Tier: Mythic, functional deduction of Target Execution Outcome — route strictly to one of the 8 Structural Base Profiles (Forge-Procedure Module 1). Route legacy-safe parallelization or migration agents to the Preserver profile. For Tier: Core, profile selection comes from item 3.
-3. **Domain Scope Reasoning (Tier: Core only):** Execute Domain Extrapolation Procedure (Forge-Procedure Module 6) to determine what factual/technical, structural, and qualitative categories fall inside the domain, select the Structural Base Profile(s) (Module 6 Step 3), and carry the concrete, stack-specific instantiations into Phase 3.
+3. **Domain Scope Reasoning (Tier: Core only):** Execute Domain Extrapolation Procedure (Forge-Procedure Module 6) to determine what factual/technical, structural, and qualitative categories fall inside the domain, select the Structural Base Profile(s) (Forge-Procedure Module 6, Step 3), and carry the concrete, stack-specific instantiations into Phase 3.
 4. **UI Category & Tier:** Assign Tier (Core, Fusion, Mythic). Mythic is manual. Assign one canonical category: Plus, Creation, UX, Architecture, Documentation, Maintenance, Performance, Security, Operations, Compliance, Testing, Planning, Observability, Repair. (Note: "Plus" category is only for agents with "+" at the end of their name).
 5. **Execution Trigger:** Determine primary async tool trigger.
 
@@ -89,7 +89,7 @@ Apply the Phase 1 decisions to the legacy worker.
 Access Forge-Procedure Module 4. Construct the worker's actual execution model from the resolved domain.
 
 ### Output
-1. **Target Data:** Always consume the concrete, stack-specific targets Module 6 Step 4 produced instead of independently re-deriving these targets from scratch. Core Tier must frame these as High-Probability Vectors (Forge-Procedure Module 4), but the list itself must already comprehensively cover the domain's factual, structural, and, where the Role implies it, qualitative dimensions.
+1. **Target Data:** Always consume the concrete, stack-specific targets Forge-Procedure Module 6, Step 4 produced instead of independently re-deriving these targets from scratch. Core Tier must frame these as High-Probability Vectors (Forge-Procedure Module 4), but the list itself must already comprehensively cover the domain's factual, structural, and, where the Role implies it, qualitative dimensions.
 2. **Execution Steps:** Draft the five Process steps (DISCOVER, SELECT/CLASSIFY, Theme Verb execution, VERIFY, PRESENT) tailored to the Archetype's logic. The Theme Verb step carries at least 5 sub-steps (Forge-Procedure Module 4).
 3. **Heuristic Verification:** Archetype-scaled domain checks. Follow heuristic formatting (Creative-Procedure Module 2).
 

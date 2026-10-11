@@ -19,7 +19,7 @@ CRITICAL: Execute all logic shifts directly via native file editing on the Markd
 ## Step 1: Target Identification & Locking
 - If the invoking prompt supplies a non-empty `TARGET_FILE_OVERRIDE`, lock that file and skip the sweep and sorting below.
 - Read and parse the `reports/roster-grading/summary.md` file.
-- Apply the Target Sorting Rule: Lock exactly one target file listed under the "Bottom 25" or "Unstable" sections of the summary report.
+- Apply the Metric Target Sorting Rule: Lock exactly one target file listed under the "Bottom 25" or "Unstable" sections of the summary report.
 - Halt execution and exit cleanly with no PR if the summary report contains zero targets in the bottom/unstable tiers and the operator provided no override.
 
 ## Step 2: Metric Ingestion & Remediation Strategy
