@@ -1,6 +1,6 @@
 tool,count,available
 git,113,Yes
-npm,26,Yes
+npm,25,Yes
 npx,18,Yes
 apt-get,15,Yes
 docker,13,Yes
