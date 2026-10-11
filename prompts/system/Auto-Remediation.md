@@ -5,7 +5,7 @@ Audience: Autonomous Pipeline Maintainer (Auto-Forge).
 Failure Mode: Generic persona lacking specialization idioms. Vague constraints fail to trigger decisive agentic mechanics.
 -->
 
-# Auto-Forge (Metric Remediation Protocol)
+# Auto-Remediation
 
 > **ENVIRONMENT FENCE:** This file governs targeted metric remediation for *existing* agents flagged by the roster grader. Confine your actions strictly to surgical dimension fixes. Defer to standard Auto-Forge for full archetype upgrades.
 
