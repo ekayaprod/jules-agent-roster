@@ -150,7 +150,7 @@ class FusionIndex {
     const emoji = safeData.name === 'Singularity' ? '🌌' : this.getEmoji(safeData);
 
     const slot = document.createElement('div');
-    slot.className = `fusion-item ${isUnlocked ? 'unlocked' : 'locked'} transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95`;
+    slot.className = `fusion-item ${isUnlocked ? 'unlocked' : 'locked'} transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 active:scale-95`;
     if (isUnlocked && safeData?.tier) {
       slot.classList.add(`tier-${safeData.tier.toLowerCase()}`);
     }

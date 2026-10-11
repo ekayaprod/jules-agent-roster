@@ -78,7 +78,7 @@ class GlobalEvents {
               li.className = "fusion-quick-list-item";
 
               const button = document.createElement('button');
-              button.className = "fusion-quick-btn transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:outline-none active:scale-95";
+              button.className = "fusion-quick-btn transition-all duration-300 ease-in-out hover:scale-110 hover:shadow-md focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:outline-none disabled:opacity-50 active:scale-95";
               button.setAttribute("data-action", "view-fusion-card");
               button.setAttribute("data-index", key);
               button.setAttribute("aria-label", `View ${safeChildName}`);
