@@ -1,10 +1,10 @@
 tool,count,available
 git,113,Yes
-npm,25,Yes
+npm,26,Yes
 npx,18,Yes
-apt-get,16,Yes
+apt-get,15,Yes
 docker,13,Yes
-grep,10,Yes
+grep,11,Yes
 apt,8,Yes
 tsc,7,Yes
 eslint,4,Yes
