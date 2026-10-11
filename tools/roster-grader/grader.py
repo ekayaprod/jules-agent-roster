@@ -5,6 +5,7 @@ import sys
 import shutil
 import subprocess
 import datetime
+import os
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
@@ -102,16 +103,14 @@ def run_pipeline(args):
         }
 
     global_ranks = scoring.rank_desc(composites)
-    for idx, path in enumerate([ctx["path"] for ctx in ctxs]):
-        scores_by_path[path]["rank"] = global_ranks[idx]
+    for path in [ctx["path"] for ctx in ctxs]:
+        scores_by_path[path]["rank"] = global_ranks[scores_by_path[path]["composite"]]
 
     for cat, cat_comps in cat_composites.items():
         ranks = scoring.rank_desc(cat_comps)
-        idx = 0
         for path, d in scores_by_path.items():
             if d["category"] == cat:
-                d["cat_rank"] = ranks[idx]
-                idx += 1
+                d["cat_rank"] = ranks[d["composite"]]
 
     dims_by_path = {p: d["dim_scores"] for p, d in scores_by_path.items()}
     jitter_res = scoring.weight_jitter(dims_by_path, weights, cfg.get("band_thresholds", {}), random.Random(1234), draws=500)
@@ -158,7 +157,8 @@ def main():
     args = parser.parse_args()
 
     if args.selftest:
-        result = subprocess.run([sys.executable, "-m", "unittest", "discover", "tools/roster-grader/tests"], capture_output=True, text=True)
+        env = dict(os.environ, PYTHONPATH="tools/roster-grader")
+        result = subprocess.run([sys.executable, "-m", "unittest", "discover", "tools/roster-grader/tests"], capture_output=True, text=True, env=env)
         passed = result.returncode == 0
         if not passed:
             print(result.stderr)

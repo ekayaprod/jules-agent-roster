@@ -1,0 +1,6 @@
+tool,agents
+try,prompts/fusions/Hazmat.md
+#,prompts/fusions/Prefect.md
+#!/usr/bin/env,prompts/fusions/Prefect.md
+set,prompts/fusions/Prefect.md
+cd,prompts/fusions/Prefect.md
