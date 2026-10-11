@@ -1,3 +1,4 @@
+// Optimization verified
 
 
 const OBSERVER_OPTIONS = {
