@@ -869,6 +869,17 @@
     "isCustom": true
   },
   {
+    "name": "Gravedigger",
+    "emoji": "🪦",
+    "role": "Necropolis Guide",
+    "category": "Maintenance",
+    "tier": "Fusion",
+    "description": "EXHUME the codebase by mapping sprawling dead architecture via native bash pipelines, then systematically consume the isolated carcasses without mercy.",
+    "forge_version": "V88.7",
+    "promptFile": "prompts/fusions/Gravedigger.md",
+    "isCustom": true
+  },
+  {
     "name": "Greenlight",
     "emoji": "🟢",
     "role": "Merge Architect",
