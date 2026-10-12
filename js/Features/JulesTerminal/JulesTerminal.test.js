@@ -495,6 +495,23 @@ describe('JulesTerminal', () => {
             expect(global.window.julesAPI.createSession).toHaveBeenCalledWith('fetched prompt', 'task description', 'owner/repo', 'TestAgent');
         });
 
+        it('handles fetchPrompt failure gracefully', async () => {
+            const agent = { name: 'TestAgent' };
+            const mockError = new Error('Fetch Error');
+            mockApp.agentRepo.fetchPrompt.mockRejectedValue(mockError);
+
+            await manager.launchSession(agent);
+
+            await Promise.resolve();
+            await Promise.resolve();
+            await Promise.resolve();
+
+            expect(mockApp.toast.show).toHaveBeenCalledWith(expect.stringContaining('Could not launch the session: Fetch Error'), TOAST_TYPES.ERROR, 20000);
+            expect(global.TelemetryUtils.dispatchEvent).toHaveBeenCalledWith('JULES_LAUNCH_SESSION_FAILED', expect.any(Error), { sourceName: 'owner/repo' });
+            expect(global.window.julesAPI.createSession).not.toHaveBeenCalled();
+            expect(manager._fetchAndRenderSessions).not.toHaveBeenCalled();
+        });
+
         it('handles launch failure gracefully', async () => {
             const agent = { name: 'TestAgent', prompt: 'test' };
             const mockError = new Error('API Error');
