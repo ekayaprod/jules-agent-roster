@@ -286,6 +286,10 @@ class RosterApp {
         if (!arr || arr.length === 0) continue;
 
         const arrLen = arr.length;
+        // Bucket sort logic: Scores are purely calculated as:
+        // Pinned (4) + Plus Tier (2) + Ends with '+' (1). Max is 7.
+        const buckets = [[], [], [], [], [], [], [], []];
+
         for (let j = 0; j < arrLen; j++) {
             const item = arr[j];
             item.gridCategory = key;
@@ -299,13 +303,15 @@ class RosterApp {
                 const name = agent.name;
                 if (name && name.endsWith("+")) score += 1;
             }
-            item._sortScore = score;
+            buckets[score].push(item);
         }
 
-        arr.sort((a, b) => b._sortScore - a._sortScore);
-
-        for (let j = 0; j < arrLen; j++) {
-            flattenedAgents[offset++] = arr[j];
+        for (let score = 7; score >= 0; score--) {
+            const bucket = buckets[score];
+            const bucketLen = bucket.length;
+            for (let j = 0; j < bucketLen; j++) {
+                flattenedAgents[offset++] = bucket[j];
+            }
         }
     }
 
