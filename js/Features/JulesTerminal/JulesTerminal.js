@@ -252,7 +252,9 @@ class JulesTerminal {
                         await Promise.all([
                             this.loadPullRequestsForRepo(sourceName),
                             this.loadActiveSessionsForRepo(sourceName)
-                        ]);
+                        ]).catch(error => {
+                            JulesTerminal.getTelemetryUtils()?.dispatchEvent("BACKGROUND_FETCH_FAILED", error);
+                        });
                     } else {
                         this.polling._clearPollingAndCache();
                         this.getEl("julesTerminal").innerHTML = DOMUtils.getTerminalIndicatorHTML("Awaiting repository connection...");
