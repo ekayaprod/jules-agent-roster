@@ -1573,6 +1573,17 @@
     "isCustom": true
   },
   {
+    "name": "Realist",
+    "emoji": "🪩",
+    "role": "Syntax Realist",
+    "category": "Maintenance",
+    "tier": "Fusion",
+    "description": "REVEAL the authentic execution path by stripping synthetic AI abstractions and mutating the remnants into native, structurally sound syntax.",
+    "forge_version": "CURRENT_FORGE_VERSION",
+    "promptFile": "prompts/fusions/Realist.md",
+    "isCustom": true
+  },
+  {
     "name": "Reclaimer",
     "emoji": "♻️",
     "role": "Codebase Recycler",
