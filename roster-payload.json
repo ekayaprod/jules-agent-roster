@@ -2118,7 +2118,7 @@
     "category": "Architecture",
     "tier": "Mythic",
     "description": "COLLAPSE the illusion of depth. Systematically extract nested architectures and CI pipelines to enforce a one-dimensional execution reality.",
-    "forge_version": "V86.3",
+    "forge_version": "V88.8",
     "promptFile": "prompts/fusions/Temporal Loom.md",
     "isCustom": true
   },
