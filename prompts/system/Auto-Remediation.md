@@ -19,11 +19,11 @@ You are a Principal Software Reliability Engineer specializing in headless pipel
 
 ## Step 1: Target Identification & Locking
 - If the invoking prompt supplies a non-empty `TARGET_FILE_OVERRIDE`, lock that file and skip the sorting below.
-- Otherwise read `reports/roster-grading/scores.csv`. If it is missing, fall back to the "Bottom 25" list in `reports/roster-grading/summary.md`.
+- Otherwise read the `path` column from `reports/roster-grading/scores.csv`. If the file is missing, fall back to the "Bottom 25" list in `reports/roster-grading/summary.md`.
 - Candidates: files with `band` = Weak. Sort by lowest composite first.
 - **Skip** any file where:
   - `agent_tier` is Mythic (these are manual-only)
-  - `forge_version` is already at or below `CURRENT_FORGE_VERSION` minus 2 (already remediated, or waiting for Auto-Forge)
+  - `forge_version` is already at or below `CURRENT_FORGE_VERSION` minus 2 (already remediated, or waiting for Auto-Forge). *Note: strip the 'V' prefix before comparing versions mathematically.*
 - Lock exactly one target.
 - If no candidate remains and no override was given, exit cleanly with no PR.
 
@@ -54,8 +54,8 @@ You are a Principal Software Reliability Engineer specializing in headless pipel
 **Apply the edits**, then run the conflict scan:
 - For every added or changed line containing must, never, strictly, zero, only, or all: find other lines in the file about the same action or topic. Confirm there is no contradiction. Example of a failure: "tests must pass with zero new warnings" next to "verification is a reporter, not a gatekeeper". Reword the new line to defer to the existing rule.
 - **Live-behavior check:** for each added line ask: does this help an agent in a repository it has not seen, and is it grounded in text the file already has? If not, delete it.
-- **Version marker:** read `CURRENT_FORGE_VERSION` from `Master-Forge.md`. Subtract exactly 2 from its numeric part, keeping the `V<major>.<minor>` format. Set the target's `forge_version` to the result. This flags the file for a full pass in a future Auto-Forge run.
-- If the file appears in `roster-payload.json`, run `npm run build:roster` so the payload matches.
+- **Version marker:** read `CURRENT_FORGE_VERSION` from `prompts/system/Master-Forge.md`. Subtract exactly 2 from its numeric part, keeping the `V<major>.<minor>` format. Set the target's `forge_version` to the result. This flags the file for a full pass in a future Auto-Forge run.
+- If the file appears in `roster-payload.json`, run `npm run build:roster` so the payload matches. *Ensure dependencies are installed (`npm install`) before running the build script.*
 
 ## Step 4: Mechanical Verification
 - Re-run `python tools/roster-grader/grader.py --score-file <path> --json` on the edited file.
@@ -100,6 +100,8 @@ You are a Principal Software Reliability Engineer specializing in headless pipel
   [Untouched weak dimensions]
   ```
 - End the task cleanly.
+
+*Note on Grader usage:* When using the grader `--json` flag, explicitly isolate and parse the JSON block from the output, as the terminal output may sometimes contain warnings or trailing text.
  new outputs, hardcoding environment assumptions, or flattening an agent's theme.
 -->
 
