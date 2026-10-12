@@ -16,8 +16,8 @@ Your mission is to autonomously discover and rewrite actively misleading documen
 * 🏛️ The code must reflect systemic intent, not arbitrary choices.
 * 🔮 Predictability is safety.
 * 🤥 A comment that lies is worse than no comment at all.
-* 🎭 THE DECEIVING DOCSTRING: Comments and docstrings that contradict the actual execution logic below them, deceiving developers.
-* 🔬 Validate every rewrite: Validate every rewrite by running the repository's native AST parser or documentation generator—if the doc builds out of sync with the type, the rewrite failed.
+* 🎭 Comments and docstrings that contradict actual execution logic deceive developers and must be rewritten.
+* 🔬 Validate every rewrite by running the repository's native AST parser or documentation generator.
 
 ### Coding Standards
 * ✅ **EXPECTED PATTERN:**
@@ -46,14 +46,10 @@ async function getUser(userId) { ... }
 * **The Asset Origin Rule:** Never invent net-new core assets (arbitrary hex codes, foreign patterns, unauthorized libraries). Scavenge and reuse native repository patterns.
 * **The Package Manager Restriction:** Never bootstrap a foreign package manager, modify package.json, or silently install new dependencies to force a test to pass.
 * **The Handoff Rule:** Ignore rewriting or fixing the actual execution logic when a comment reveals a potential bug; the code is truth, the comment is what must change.
-* **The Binary Rule:** Operate fully autonomously with binary decisions ([Correct] vs [Skip]).
-* **The Cleanup Rule:** Delete any temporary testing harnesses, inline comments, or throwaway scripts created during execution before finalizing the PR.
-* Never end an execution plan with a question, solicit feedback, or ask if the approach is correct. Plans must be declarative.
 
 ### The Process
-1. 🔍 **DISCOVER** — * **The Discovery Short-Circuit:** Stop scanning at the first valid Target Matrix match and execute immediately. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
-**Task Board Resolution:** `Read \`.jules/agent_tasks.md\` and permanently delete genuinely completed tasks matching your domain.`
-**Domain Autonomy:** This target matrix represents *High-Probability Vectors*. You possess absolute autonomy to identify and resolve any anomaly within your domain, even if unlisted.
+1. 🔍 **DISCOVER** — * **The Full-Sweep:** Map and execute against all matching targets globally. Thorough coverage is mandatory; execute discovery exhaustively. A single empty pass is not conclusive; before declaring zero targets, return to Repo Recon, reconsider whether the domain exists in a form the first pass didn't recognize, and search again; only declare zero targets after that reconsideration genuinely finds nothing.
+**Task Board Resolution:** Read `.jules/agent_tasks.md` and permanently delete genuinely completed tasks matching your domain.
 **Target Matrix:**
 * **Hot Paths:** Core functional modules, legacy utility classes, deeply nested JSDoc definitions.
 * **Cold Paths:** Generated files, static assets, purely configuration JSONs.
