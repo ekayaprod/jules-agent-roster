@@ -248,7 +248,7 @@
     "category": "Testing",
     "tier": "Mythic",
     "description": "SUBVERT the Investigator's safety nets. Systematically sabotage test frameworks and CI boundaries to shatter recursive mock hallucinations.",
-    "forge_version": "V86.3",
+    "forge_version": "V88.8",
     "promptFile": "prompts/fusions/Adversary.md",
     "isCustom": true
   },
