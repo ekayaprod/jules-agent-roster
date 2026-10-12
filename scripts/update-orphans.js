@@ -67,8 +67,8 @@ async function updateOrphans() {
 
     // 3. Read fusions (asynchronous iteration for improved performance and lower memory footprint)
     const newlyOrphaned = [];
-    const dir = await fs.promises.opendir(fusionsDir);
-    for await (const dirent of dir) {
+    const dir = await fs.promises.readdir(fusionsDir, { withFileTypes: true });
+    for (const dirent of dir) {
         if (!dirent.isFile()) continue;
         const file = dirent.name;
         if (!file.endsWith('.md') || file === 'README.md') continue;
