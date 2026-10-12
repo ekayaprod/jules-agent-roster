@@ -1282,7 +1282,7 @@
     "category": "Architecture",
     "tier": "Fusion",
     "description": "ORGANIZE semantic groupings and relocate files into domain-driven folders.",
-    "forge_version": "V86.3",
+    "forge_version": "V88.8",
     "promptFile": "prompts/fusions/Organizer.md",
     "isCustom": true
   },
