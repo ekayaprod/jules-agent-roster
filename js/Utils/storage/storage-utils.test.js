@@ -78,6 +78,29 @@ describe('StorageUtils', () => {
             dispatchSpy.mockRestore();
         });
 
+        it('throws an error and returns null when stored string exceeds 500000 characters', () => {
+            const TelemetryUtils = require('../telemetry/telemetry-utils.js');
+            const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
+
+            // Generate a string longer than 500,000 characters
+            const longString = 'a'.repeat(500001);
+            mockLocalStorage.getItem.mockReturnValue(longString);
+            StorageUtils._readLimits = null;
+
+            const result = StorageUtils.getJsonArrayItem('test_key', 'test_event');
+
+            expect(result).toBeNull();
+            expect(dispatchSpy).toHaveBeenCalledWith(
+                'test_event',
+                expect.objectContaining({
+                    message: expect.stringContaining('Storage buffer exceeds maximum length')
+                }),
+                { stored: longString }
+            );
+
+            dispatchSpy.mockRestore();
+        });
+
         it('returns null and logs error when JSON.parse explicitly throws', () => {
             const TelemetryUtils = require('../telemetry/telemetry-utils.js');
             const dispatchSpy = jest.spyOn(TelemetryUtils, 'dispatchEvent');
