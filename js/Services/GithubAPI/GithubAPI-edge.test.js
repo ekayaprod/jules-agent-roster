@@ -4,6 +4,7 @@ describe('GithubAPI (INSTRUMENTER Edge Cases)', () => {
     let api;
 
     beforeEach(() => {
+        jest.spyOn(console, 'error').mockImplementation(() => {});
         api = new GithubAPI();
         api.configure('valid_token');
         global.fetch = jest.fn();
