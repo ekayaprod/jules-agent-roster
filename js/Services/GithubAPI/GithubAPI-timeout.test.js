@@ -5,6 +5,7 @@ describe('GithubAPI AbortError/Timeout explicitly tested boundaries', () => {
     let originalFetch;
 
     beforeEach(() => {
+        jest.spyOn(console, 'error').mockImplementation(() => {});
         api = new GithubAPI();
         api.configure('test-key');
         originalFetch = global.fetch;
@@ -12,6 +13,7 @@ describe('GithubAPI AbortError/Timeout explicitly tested boundaries', () => {
     });
 
     afterEach(() => {
+        jest.restoreAllMocks();
         global.fetch = originalFetch;
         jest.useRealTimers();
     });

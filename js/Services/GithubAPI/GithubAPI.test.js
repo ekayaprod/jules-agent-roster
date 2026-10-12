@@ -88,6 +88,14 @@ describe('GithubAPI', () => {
                  name: 'GithubNetworkError'
              });
 
+             expect(console.error).toHaveBeenCalledWith(
+                 '[GithubAPI] Request timeout: ',
+                 expect.objectContaining({
+                     message: 'Request to /test timed out after 15s.',
+                     status: 408,
+                     name: 'GithubNetworkError'
+                 })
+             );
         });
 
         it('should handle generic errors', async () => {
@@ -96,6 +104,10 @@ describe('GithubAPI', () => {
 
              await expect(api._fetch('/test')).rejects.toThrow('Generic Error');
 
+             expect(console.error).toHaveBeenCalledWith(
+                 '[GithubAPI] Request to /test failed: ',
+                 genericError
+             );
         });
 
         it('should handle successful response but failing json parsing', async () => {

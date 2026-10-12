@@ -4,12 +4,14 @@ describe('GithubAPI - Instrumenter', () => {
     let api;
 
     beforeEach(() => {
+        jest.spyOn(console, 'error').mockImplementation(() => {});
         api = new GithubAPI();
         api.configure('test-key');
         global.fetch = jest.fn();
     });
 
     afterEach(() => {
+        jest.restoreAllMocks();
         jest.clearAllMocks();
     });
 
