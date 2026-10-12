@@ -23,10 +23,10 @@ CRITICAL: Execute all logic shifts directly via native file editing on the Markd
 - Exit cleanly with no PR if all files are equal to or newer than `CURRENT_FORGE_VERSION` and the operator provided no override.
 
 ## Step 2: State Ingestion & Drift Analysis
-- Read the locked target `.md` in full to load legacy logic into context. If the file is large, use targeted read commands (like `grep`, `head`, or `tail`) to prevent tool output truncation from creating blind spots.
+- Read the locked target `.md` in full to load legacy logic into context. Use the `read_file` tool to ingest the entire file. Do not use `cat` or `head` in bash sessions as they will truncate output for large markdown rule files, creating blind spots.
 - Resolve the domain and Archetype: for Tier: Core, run Forge-Procedure Module 6 (Steps 1–4); for Tier: Fusion and Tier: Mythic, route to one Structural Base Profile (Forge-Procedure Module 1). For Tier: Mythic, preserve its boundary-breaking mechanics (Master-Forge Phase 1, Mythic Exemption).
 - Apply the Data Sanitization Filter (Master-Forge Phase 1): list the legacy mechanics worth retaining.
-- **Drift Audit:** Classify every discrepancy between the legacy worker and the resolved domain as Narrowing or Incoherence (Master-Forge Phase 2). Keep the ledger in your working notes.
+- **Drift Audit:** Classify every discrepancy between the legacy worker and the resolved domain as Narrowing or Incoherence (Master-Forge Phase 2). Keep the ledger exclusively in an in-memory variable or bash session payload. **Do not create temporary artifact files (e.g. `drift_audit.md` or `test_part_b.md`) in the repository to store your notes.**
 - Run Forge-Procedure Module 7 Part A against the legacy file. Every FAIL is an upgrade work-item.
 
 ## Step 3: Direct Syntactic Upgrade
@@ -37,7 +37,7 @@ CRITICAL: Execute all logic shifts directly via native file editing on the Markd
 - **Version Bump:** Update the `forge_version` frontmatter to match the `CURRENT_FORGE_VERSION` defined in `Master-Forge.md`.
 
 ## Step 4: The Efficacy Audit
-- Run Forge-Procedure Module 7 Part B (Component Diff and Mandatory Audits) comparing your modified Markdown against the original legacy file, then rerun Part A on the modified file.
+- Run Forge-Procedure Module 7 Part B (Component Diff and Mandatory Audits) comparing your modified Markdown against the original legacy file, then rerun Part A on the modified file. Use `read_file` or native `grep` commands to perform this audit in memory, and supply the output directly in the final PR body.
 - On any FAIL, repair in place and rerun the failing check. After two repair loops, revert the specific change that still fails, keep the legacy text there, and list it under "Flagged, not changed" in the PR.
 - The updated file must result in a more capable, coherent, and domain-specific agent than the legacy variant.
 
